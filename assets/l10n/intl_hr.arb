@@ -2376,7 +2376,7 @@
       }
     }
   },
-  "fileIsTooBigForServer": "Poslužitelj javlja da je datoteka prevelika za slanje.",
+  "fileIsTooBigForServer": "Neuspjelo slanje! Poslužitelj podržava samo priloge do {max}.",
   "@fileIsTooBigForServer": {},
   "jumpToLastReadMessage": "Skoči na zadnju pročitanu poruku",
   "@jumpToLastReadMessage": {},
@@ -2980,5 +2980,17 @@
   "alwaysUse24HourFormat": "true",
   "@alwaysUse24HourFormat": {
     "description": "Set to true to always display time of day in 24 hour format."
+  },
+  "prepareSendingAttachment": "Pripremi slanje priloga …",
+  "@prepareSendingAttachment": {},
+  "sendingAttachment": "Slanje priloga …",
+  "@sendingAttachment": {},
+  "sendingAttachmentCountOfCount": "Slanje priloga {index} od {length} …",
+  "@sendingAttachmentCountOfCount": {
+    "type": "integer",
+    "placeholders": {
+      "index": {},
+      "length": {}
+    }
   }
 }

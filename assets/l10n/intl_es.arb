@@ -205,7 +205,7 @@
       }
     }
   },
-  "changedTheDisplaynameTo": "{username} cambió su nombre visible a: {displayname}",
+  "changedTheDisplaynameTo": "{username} cambió su nombre visible a: '{displayname}'",
   "@changedTheDisplaynameTo": {
     "type": "String",
     "placeholders": {
@@ -933,7 +933,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "Parece que no tienes servicios de Google en tu teléfono. ¡Esa es una buena decisión para tu privacidad! Para recibir notificaciones instantáneas en FluffyChat, recomendamos usar microG: https://microg.org/",
+  "noGoogleServicesWarning": "Parece que no tienes servicios de Firebase Cloud Messaging en tu dispositivo. Para recibir de todas formas notificaciones, recomendamos instalar ntfy. Con ntfy o cualquier proveedor Unified Push, puedes recibir notificaciones manteniendo seguridad de datos. Puedes descargar ntfy de la PlayStore o de F-Droid.",
   "@noGoogleServicesWarning": {
     "type": "String",
     "placeholders": {}
@@ -2110,7 +2110,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "wipeChatBackup": "¿Limpiar la copia de seguridad de su chat para crear una nueva clave de seguridad?",
+  "wipeChatBackup": "¿Limpiar la copia de seguridad de tu chat para crear una nueva clave de recuperación?",
   "@wipeChatBackup": {
     "type": "String",
     "placeholders": {}
@@ -2133,11 +2133,11 @@
     "type": "String",
     "placeholders": {}
   },
-  "repeatPassword": "Repita la contraseña",
+  "repeatPassword": "Repite la contraseña",
   "@repeatPassword": {},
   "removeFromSpace": "Eliminar del espacio",
   "@removeFromSpace": {},
-  "addToSpaceDescription": "Elige un espacio para añadir este chat a el.",
+  "addToSpaceDescription": "Elige un espacio para añadirle este chat.",
   "@addToSpaceDescription": {},
   "openGallery": "Abrir galería",
   "@openGallery": {},
@@ -2567,7 +2567,7 @@
   "@hideRedactedMessages": {},
   "appLockDescription": "Bloquear la aplicación cuando no se use con código pin",
   "@appLockDescription": {},
-  "alwaysUse24HourFormat": "Falso",
+  "alwaysUse24HourFormat": "falso",
   "@alwaysUse24HourFormat": {
     "description": "Set to true to always display time of day in 24 hour format."
   },
@@ -2600,5 +2600,665 @@
         "type": "int"
       }
     }
-  }
+  },
+  "notifyMeFor": "Notificarme",
+  "@notifyMeFor": {},
+  "presencesToggle": "Mostrar mensajes de estado de otros usuarios",
+  "@presencesToggle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "placeCall": "Llamar",
+  "@placeCall": {},
+  "callingAccount": "Llamando a cuenta",
+  "@callingAccount": {},
+  "appearOnTopDetails": "Permite que la app aparezca delante (no hace falta si ya tienes Fluffychat configurado como cuenta llamante)",
+  "@appearOnTopDetails": {},
+  "disableEncryptionWarning": "Por motivos de seguridad no es posible deshabilitar el cifrado en un chat si ha sido habilitado previamente.",
+  "@disableEncryptionWarning": {},
+  "setColorTheme": "Poner tema de color:",
+  "@setColorTheme": {},
+  "inviteGroupChat": "📨 Invitar a grupo de chat",
+  "@inviteGroupChat": {},
+  "invalidInput": "¡Entrada no válida!",
+  "@invalidInput": {},
+  "wrongPinEntered": "¡Pin erróneo! Vuelve a intenrarlo en {seconds} segundos...",
+  "@wrongPinEntered": {
+    "type": "text",
+    "placeholders": {
+      "seconds": {}
+    }
+  },
+  "decline": "Declinar",
+  "@decline": {},
+  "thisDevice": "Este dispositivo:",
+  "@thisDevice": {},
+  "minimumPowerLevel": "{level} es el nivel mínimo.",
+  "@minimumPowerLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "verifyOtherDevice": "🔐 Verificar otro dispositivo",
+  "@verifyOtherDevice": {},
+  "chatPermissionsDescription": "Definir el nivel necesario para ciertas acciones en este chat. Los niveles 0, 50 y 100 habitualmente representan usuarios, moderadores y administradores, pero se puede establecer cualquier escala.",
+  "@chatPermissionsDescription": {},
+  "updateInstalled": "¡🎉 Actualización {version} instalada!",
+  "@updateInstalled": {
+    "type": "text",
+    "placeholders": {
+      "version": {}
+    }
+  },
+  "changelog": "Cambios",
+  "@changelog": {},
+  "sendCanceled": "Envío cancelado",
+  "@sendCanceled": {},
+  "invite": "Invitación",
+  "@invite": {},
+  "searchIn": "Buscar en chat \"{chat}\"...",
+  "@searchIn": {
+    "type": "text",
+    "placeholders": {
+      "chat": {}
+    }
+  },
+  "appWantsToUseForLogin": "Usar '{server}' para entrar",
+  "@appWantsToUseForLogin": {
+    "type": "text",
+    "placeholders": {
+      "server": {}
+    }
+  },
+  "appWantsToUseForLoginDescription": "Por la presente permites a la app y web compartir información sobre ti.",
+  "@appWantsToUseForLoginDescription": {},
+  "encryptThisChat": "Cifrar este chat",
+  "@encryptThisChat": {},
+  "publicLink": "Enlace público",
+  "@publicLink": {},
+  "transparent": "Transparente",
+  "@transparent": {},
+  "select": "Elegir",
+  "@select": {},
+  "newPassword": "Nueva clave",
+  "@newPassword": {},
+  "nothingFound": "No se encontró nada...",
+  "@nothingFound": {},
+  "subspace": "Sub espacio",
+  "@subspace": {},
+  "openLinkInBrowser": "Abrir enlace en navegador",
+  "@openLinkInBrowser": {},
+  "presenceStyle": "Presencia:",
+  "@presenceStyle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "youInvitedToBy": "📩 Te han invitado con un enlace a:\n{alias}",
+  "@youInvitedToBy": {
+    "placeholders": {
+      "alias": {}
+    }
+  },
+  "signInWith": "Entrar con {provider}",
+  "@signInWith": {
+    "type": "text",
+    "placeholders": {
+      "provider": {}
+    }
+  },
+  "setTheme": "Poner tema:",
+  "@setTheme": {},
+  "learnMore": "Aprender más",
+  "@learnMore": {},
+  "incomingMessages": "Mensajes entrantes",
+  "@incomingMessages": {},
+  "noOtherDevicesFound": "No se han encontrado otros dispositivos",
+  "@noOtherDevicesFound": {},
+  "generalNotificationSettings": "Ajustes de notificación generales",
+  "@generalNotificationSettings": {},
+  "roomNotificationSettings": "Ajustes de notificación de salas",
+  "@roomNotificationSettings": {},
+  "userSpecificNotificationSettings": "Ajustes de notificación por usuario",
+  "@userSpecificNotificationSettings": {},
+  "contentNotificationSettings": "Ajustes de notificación de contenido",
+  "@contentNotificationSettings": {},
+  "otherNotificationSettings": "Otros ajustes de notificación",
+  "@otherNotificationSettings": {},
+  "notificationRuleContainsUserName": "Contiene nombre de usuario",
+  "@notificationRuleContainsUserName": {},
+  "notificationRuleContainsUserNameDescription": "Notifica al usuario cuando un mensaje contiene su nombre de usuario.",
+  "@notificationRuleContainsUserNameDescription": {},
+  "notificationRuleMaster": "Silenciar todas las notificaciones",
+  "@notificationRuleMaster": {},
+  "notificationRuleMasterDescription": "Anula todas las demás reglas y desactiva todas las notificaciones.",
+  "@notificationRuleMasterDescription": {},
+  "notificationRuleSuppressNotices": "Suprimir los mensajes automáticos",
+  "@notificationRuleSuppressNotices": {},
+  "notificationRuleSuppressNoticesDescription": "Suprimir notificaciones de clientes automáticos, como bots.",
+  "@notificationRuleSuppressNoticesDescription": {},
+  "notificationRuleInviteForMe": "Invitación para mí",
+  "@notificationRuleInviteForMe": {},
+  "notificationRuleInviteForMeDescription": "Notifica al usuario cuando se les invita a una sala.",
+  "@notificationRuleInviteForMeDescription": {},
+  "notificationRuleMemberEvent": "Evento para miembros",
+  "@notificationRuleMemberEvent": {},
+  "notificationRuleMemberEventDescription": "Suprimir notificaciones de eventos para miembros.",
+  "@notificationRuleMemberEventDescription": {},
+  "notificationRuleIsUserMention": "Mención al usuario",
+  "@notificationRuleIsUserMention": {},
+  "notificationRuleIsUserMentionDescription": "Notifica al usuario cuando son mencionados directamente en un mensaje.",
+  "@notificationRuleIsUserMentionDescription": {},
+  "notificationRuleContainsDisplayName": "Contiene el nombre visible",
+  "@notificationRuleContainsDisplayName": {},
+  "notificationRuleContainsDisplayNameDescription": "Notifica al usuario cuando un mensaje contiene su nombre visible.",
+  "@notificationRuleContainsDisplayNameDescription": {},
+  "notificationRuleIsRoomMention": "Mención de sala",
+  "@notificationRuleIsRoomMention": {},
+  "notificationRuleIsRoomMentionDescription": "Notifica al usuario cuando hay una mención de sala.",
+  "@notificationRuleIsRoomMentionDescription": {},
+  "notificationRuleRoomnotif": "Notificación de sala",
+  "@notificationRuleRoomnotif": {},
+  "notificationRuleRoomnotifDescription": "Notifica al usuario cuando un mensaje contiene '@sala'.",
+  "@notificationRuleRoomnotifDescription": {},
+  "notificationRuleTombstone": "Lápida",
+  "@notificationRuleTombstone": {},
+  "notificationRuleTombstoneDescription": "Notifica al usuario sobre mensajes de desactivación de sala.",
+  "@notificationRuleTombstoneDescription": {},
+  "notificationRuleReaction": "Reacción",
+  "@notificationRuleReaction": {},
+  "notificationRuleReactionDescription": "Suprime notificaciones por reacciones.",
+  "@notificationRuleReactionDescription": {},
+  "notificationRuleRoomServerAcl": "ACL de servidor de sala",
+  "@notificationRuleRoomServerAcl": {},
+  "notificationRuleRoomServerAclDescription": "Suprime notificaciones de listas de control de acceso de servidores de sala.",
+  "@notificationRuleRoomServerAclDescription": {},
+  "notificationRuleSuppressEdits": "Suprimir ediciones",
+  "@notificationRuleSuppressEdits": {},
+  "notificationRuleSuppressEditsDescription": "Suprime las notificaciones de mensajes editados.",
+  "@notificationRuleSuppressEditsDescription": {},
+  "notificationRuleCall": "Llamar",
+  "@notificationRuleCall": {},
+  "notificationRuleCallDescription": "Notifica al usuario de llamadas.",
+  "@notificationRuleCallDescription": {},
+  "notificationRuleEncryptedRoomOneToOne": "Sala cifrada uno a uno",
+  "@notificationRuleEncryptedRoomOneToOne": {},
+  "notificationRuleEncryptedRoomOneToOneDescription": "Notifica al usuario sobre mensajes en salas cifradas uno a uno.",
+  "@notificationRuleEncryptedRoomOneToOneDescription": {},
+  "notificationRuleRoomOneToOne": "Sala uno a uno",
+  "@notificationRuleRoomOneToOne": {},
+  "notificationRuleRoomOneToOneDescription": "Notifica al usuario sobre mensajes en salas uno a uno.",
+  "@notificationRuleRoomOneToOneDescription": {},
+  "notificationRuleMessage": "Mensaje",
+  "@notificationRuleMessage": {},
+  "notificationRuleMessageDescription": "Notifica al usuario sobre mensajes generales.",
+  "@notificationRuleMessageDescription": {},
+  "notificationRuleEncrypted": "Cifrado",
+  "@notificationRuleEncrypted": {},
+  "notificationRuleEncryptedDescription": "Notifica al usuario sobre mensajes en salas cifradas.",
+  "@notificationRuleEncryptedDescription": {},
+  "notificationRuleJitsi": "Jitsi",
+  "@notificationRuleJitsi": {},
+  "notificationRuleJitsiDescription": "Notifica al usuario sobre eventos del componente de Jitsi.",
+  "@notificationRuleJitsiDescription": {},
+  "notificationRuleServerAcl": "Suprimir eventos de ACL del servidor",
+  "@notificationRuleServerAcl": {},
+  "notificationRuleServerAclDescription": "Suprime notificaciones de eventos de ACL del servidor.",
+  "@notificationRuleServerAclDescription": {},
+  "unknownPushRule": "Regla de notificación desconocida '{rule}'",
+  "@unknownPushRule": {
+    "type": "text",
+    "placeholders": {
+      "rule": {}
+    }
+  },
+  "deletePushRuleCanNotBeUndone": "Si eliminas este ajuste de notificación, esto no se puede deshacer.",
+  "@deletePushRuleCanNotBeUndone": {},
+  "more": "Más",
+  "@more": {},
+  "serverLimitReached": "¡Alcanzado límite del servidor! Esperando {seconds} segundos...",
+  "@serverLimitReached": {
+    "type": "integer",
+    "placeholders": {
+      "seconds": {}
+    }
+  },
+  "groupCanBeFoundViaSearch": "Los grupos se pueden encontrar buscando",
+  "@groupCanBeFoundViaSearch": {},
+  "addChatOrSubSpace": "Añadir chat o sub espacio",
+  "@addChatOrSubSpace": {},
+  "sendRoomNotifications": "Mandar notificación @sala",
+  "@sendRoomNotifications": {},
+  "changeTheChatPermissions": "Cambiar los permisos de chat",
+  "@changeTheChatPermissions": {},
+  "setWallpaper": "Poner fondo",
+  "@setWallpaper": {},
+  "sendImages": "Envío de la imagen {count}",
+  "@sendImages": {
+    "type": "text",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "invitedBy": "📩 Invitado por {user}",
+  "@invitedBy": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "usersMustKnock": "Los usuarios han de avisar",
+  "@usersMustKnock": {},
+  "noOneCanJoin": "Nadie puede unirse",
+  "@noOneCanJoin": {},
+  "reopenChat": "Reabrir chat",
+  "@reopenChat": {},
+  "hidePresences": "¿Esconder la lista de estado?",
+  "@hidePresences": {},
+  "fileIsTooBigForServer": "¡No se pudo mandar! El servidor solamente permite adjuntos de hasta {max}.",
+  "@fileIsTooBigForServer": {
+    "type": "text",
+    "placeholders": {
+      "max": {}
+    }
+  },
+  "jumpToLastReadMessage": "Saltar al último mensaje leído",
+  "@jumpToLastReadMessage": {},
+  "report": "informe",
+  "@report": {},
+  "readUpToHere": "Leer hasta aquí",
+  "@readUpToHere": {},
+  "signInWithPassword": "Entrar con clave",
+  "@signInWithPassword": {},
+  "formattedMessages": "Mensajes con formato",
+  "@formattedMessages": {},
+  "publicSpaces": "Espacios públicos",
+  "@publicSpaces": {},
+  "formattedMessagesDescription": "Mostrar contenido de mensaje enriquecido, como texto en negrita, usando markdown.",
+  "@formattedMessagesDescription": {},
+  "userLevel": "{level} - Usuario",
+  "@userLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "completedKeyVerification": "{sender} completó la verificación de clave",
+  "@completedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "sendingAttachment": "Enviando adjunto...",
+  "@sendingAttachment": {},
+  "compress": "Comprimir",
+  "@compress": {},
+  "pleaseFillOut": "Por favor, rellenar",
+  "@pleaseFillOut": {},
+  "newChatRequest": "📩 Nueva petición de chat",
+  "@newChatRequest": {},
+  "unbanUserDescription": "El usuario podrá entrar al chat de nuevo si lo intenta.",
+  "@unbanUserDescription": {},
+  "roomUpgradeDescription": "El chat se volverá a crear con la nueva versión de sala. Todos los participantes serán notificados de que tienen que cambiarse al nuevo chat. Puedes encontrar más información sobre versiones de salas en https://spec.matrix.org/latest/rooms/",
+  "@roomUpgradeDescription": {},
+  "makeAdminDescription": "Una vez hagas que este usuario sea admin, puede que no puedas deshacerlo porque tendrá los mismos permisos que tú.",
+  "@makeAdminDescription": {},
+  "knocking": "Avisando",
+  "@knocking": {},
+  "chatCanBeDiscoveredViaSearchOnServer": "El chat se puede descubrir buscando en {server}",
+  "@chatCanBeDiscoveredViaSearchOnServer": {
+    "type": "text",
+    "placeholders": {
+      "server": {}
+    }
+  },
+  "searchChatsRooms": "Buscar #chats, @usuarios...",
+  "@searchChatsRooms": {},
+  "groupName": "Nombre de grupo",
+  "@groupName": {},
+  "createGroupAndInviteUsers": "Crear un grupo e invitar usuarios",
+  "@createGroupAndInviteUsers": {},
+  "databaseMigrationTitle": "La base de datos está optimizada",
+  "@databaseMigrationTitle": {},
+  "searchForUsers": "Buscar @usuarios...",
+  "@searchForUsers": {},
+  "startConversation": "Iniciar conversación",
+  "@startConversation": {},
+  "gallery": "Galería",
+  "@gallery": {},
+  "files": "Archivos",
+  "@files": {},
+  "initAppError": "Hubo un error al arrancar la app",
+  "@initAppError": {},
+  "sessionLostBody": "Se perdió tu sesión. Por favor, informa de este error a los desarrolladores en {url}. El mensaje de error es: {error}",
+  "@sessionLostBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  },
+  "unreadChatsInApp": "{appname}: {unread} chats no leídos",
+  "@unreadChatsInApp": {
+    "type": "text",
+    "placeholders": {
+      "appname": {},
+      "unread": {}
+    }
+  },
+  "restricted": "Restringido",
+  "@restricted": {},
+  "requestedKeyVerification": "{sender} ha pedido verificación de clave",
+  "@requestedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "adminLevel": "{level} - Administrador",
+  "@adminLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "changeGeneralChatSettings": "Cambiar los ajustes generales de chat",
+  "@changeGeneralChatSettings": {},
+  "inviteOtherUsers": "Invitar a otros usuarios a este chat",
+  "@inviteOtherUsers": {},
+  "calculatingFileSize": "Calculando tamaño de archivo...",
+  "@calculatingFileSize": {},
+  "prepareSendingAttachment": "Prepara envío del adjunto...",
+  "@prepareSendingAttachment": {},
+  "generatingVideoThumbnail": "Generando miniatura de vídeo...",
+  "@generatingVideoThumbnail": {},
+  "sendingAttachmentCountOfCount": "Enviando adjunto {index} de {length}...",
+  "@sendingAttachmentCountOfCount": {
+    "type": "integer",
+    "placeholders": {
+      "index": {},
+      "length": {}
+    }
+  },
+  "compressVideo": "Comprimiendo vídeo...",
+  "@compressVideo": {},
+  "blur": "Difuminar:",
+  "@blur": {},
+  "continueText": "Continuar",
+  "@continueText": {},
+  "welcomeText": "Eh, eh, 👋 Esto es FluffyChat. Puedes acceder a cualquier homeserver, que sea compatible con https://matrix.org. Y luego chatear con cualquiera. ¡Es una red de mensajería descentralizada enorme!",
+  "@welcomeText": {},
+  "opacity": "Opacidad:",
+  "@opacity": {},
+  "version": "Versión",
+  "@version": {},
+  "serverInformation": "Información del servidor:",
+  "@serverInformation": {},
+  "website": "Web",
+  "@website": {},
+  "name": "Nombre",
+  "@name": {},
+  "knockRestricted": "Aviso restringido",
+  "@knockRestricted": {},
+  "hideMemberChangesInPublicChats": "Ocultar cambios de miembros en salas públicas",
+  "@hideMemberChangesInPublicChats": {},
+  "hideMemberChangesInPublicChatsBody": "No mostrar en el chat que alguien entra o sale de una sala pública para mejorar la inteligibilidad.",
+  "@hideMemberChangesInPublicChatsBody": {},
+  "passwordRecoverySettings": "Ajustes de recuperación de clave",
+  "@passwordRecoverySettings": {},
+  "acceptedKeyVerification": "{sender} aceptó la verificación de clave",
+  "@acceptedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "stickers": "Pegatinas",
+  "@stickers": {},
+  "shareKeysWith": "Compartir claves con...",
+  "@shareKeysWith": {},
+  "shareKeysWithDescription": "¿Qué dispositivos deben ser de confianza para que puedan leer tus mensajes en chats cifrados?",
+  "@shareKeysWithDescription": {},
+  "crossVerifiedDevicesIfEnabled": "Dispositivos verificados si están habilitados",
+  "@crossVerifiedDevicesIfEnabled": {},
+  "allDevices": "Todos los dispositivos",
+  "@allDevices": {},
+  "crossVerifiedDevices": "Dispositivos verificados",
+  "@crossVerifiedDevices": {},
+  "verifiedDevicesOnly": "Solo dispositivos verificados",
+  "@verifiedDevicesOnly": {},
+  "deviceKeys": "Claves de dispositivo:",
+  "@deviceKeys": {},
+  "overview": "Vista general",
+  "@overview": {},
+  "removeDevicesDescription": "Vas a salir en este dispositivo y ya no podrás recibir mensajes.",
+  "@removeDevicesDescription": {},
+  "databaseMigrationBody": "Por favor espera. Esto llevará un momento.",
+  "@databaseMigrationBody": {},
+  "pleaseEnterYourCurrentPassword": "Por favor, pon tu clave actual",
+  "@pleaseEnterYourCurrentPassword": {},
+  "pleaseChooseAStrongPassword": "Por favor, pon una clave fuerte",
+  "@pleaseChooseAStrongPassword": {},
+  "joinSpace": "Unirse al espacio",
+  "@joinSpace": {},
+  "wrongRecoveryKey": "Lo siento... esta no parece ser la clave de recuperación correcta.",
+  "@wrongRecoveryKey": {},
+  "leaveEmptyToClearStatus": "Deja vacío para limpiar tu estado.",
+  "@leaveEmptyToClearStatus": {},
+  "databaseBuildErrorBody": "No pude crear la base de datos SQlite. La app intenta usar la base de datos heredada por ahora. Por favor, informa de este error a los desarrolladores en {url}. El mensaje de error es: {error}",
+  "@databaseBuildErrorBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  },
+  "restoreSessionBody": "La app ahora trata de recuperar tu sesión de la copia de seguridad. Por favor, informa de este error a los desarrolladores en {url}. El mensaje de error es: {error}",
+  "@restoreSessionBody": {
+    "type": "text",
+    "placeholders": {
+      "url": {},
+      "error": {}
+    }
+  },
+  "sendReadReceipts": "Mandar recibos de lectura",
+  "@sendReadReceipts": {},
+  "sendTypingNotificationsDescription": "Otros participantes en un chat pueden ver cuándo estás escribiendo un mensaje.",
+  "@sendTypingNotificationsDescription": {},
+  "sendReadReceiptsDescription": "Otros participantes en un chat pueden ver cuándo has leído un mensaje.",
+  "@sendReadReceiptsDescription": {},
+  "verifyOtherUserDescription": "Si verificas a otro usuario, puedes estar seguro de a quién estás escribiendo realmente. 💪\n\nCuando empiezas una verificación, tú y el otro usuario veréis una ventana emergente en la app. En ella veréis una serie de emojiso números que tenéis que comparar.\n\nLa mejor forma de hacer esto es quedar o una videollamada. 👭",
+  "@verifyOtherUserDescription": {},
+  "verifyOtherDeviceDescription": "Cuando verificas otro dispositivo, esos dispositivos pueden intercambiar claves, incrementando tu seguridad global. 💪 Cuando inicias una verificación, aparece una ventana en la app en ambos dispositivos. En ella, verás una serie de emojis o números que tienes que comparar. Es mejor tener ambos dispositivos a mano antes de empezar la verificación. 🤳",
+  "@verifyOtherDeviceDescription": {},
+  "canceledKeyVerification": "{sender} canceló la verificación de clave",
+  "@canceledKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "commandHint_unignore": "No ignorar la ID de matrix dada",
+  "@commandHint_unignore": {},
+  "noDatabaseEncryption": "En esta plataforma no hay cifrado de base de datos",
+  "@noDatabaseEncryption": {},
+  "startedKeyVerification": "{sender} ha comenzado verificación de clave",
+  "@startedKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "discover": "Descubrir",
+  "@discover": {},
+  "thereAreCountUsersBlocked": "Ahora mismo, hay {count} usuarios bloqueados.",
+  "@thereAreCountUsersBlocked": {
+    "type": "text",
+    "count": {}
+  },
+  "commandHint_ignore": "Ignorar la ID de matrix dada",
+  "@commandHint_ignore": {},
+  "jump": "Saltar",
+  "@jump": {},
+  "commandHint_sendraw": "Mandar json pelado",
+  "@commandHint_sendraw": {},
+  "kickUserDescription": "Se expulsa al usuario del chat, pero no se le prohíbe volver a entrar. En chats públicos, el usuario podrá volver a entrar en cualquier momento.",
+  "@kickUserDescription": {},
+  "fileHasBeenSavedAt": "Archivo guardado en {path}",
+  "@fileHasBeenSavedAt": {
+    "type": "text",
+    "placeholders": {
+      "path": {}
+    }
+  },
+  "markAsUnread": "Marcar no leído",
+  "@markAsUnread": {},
+  "changeTheDescriptionOfTheGroup": "Cambiar la descripción del chat",
+  "@changeTheDescriptionOfTheGroup": {},
+  "sorryThatsNotPossible": "Lo siento... eso no es posible",
+  "@sorryThatsNotPossible": {},
+  "publicChatAddresses": "Dirección de chat pública",
+  "@publicChatAddresses": {},
+  "createNewAddress": "Crear nueva dirección",
+  "@createNewAddress": {},
+  "userRole": "Rol de usuario",
+  "@userRole": {},
+  "boldText": "Texto en negrita",
+  "@boldText": {},
+  "italicText": "Texto en cursiva",
+  "@italicText": {},
+  "strikeThrough": "Tachado",
+  "@strikeThrough": {},
+  "searchMore": "Buscar más...",
+  "@searchMore": {},
+  "noPublicLinkHasBeenCreatedYet": "No se ha creado un enlace público aún",
+  "@noPublicLinkHasBeenCreatedYet": {},
+  "knock": "Aviso",
+  "@knock": {},
+  "newSpaceDescription": "Los espacios permiten consolidar los chats y montar comunidades privadas o públicas.",
+  "@newSpaceDescription": {},
+  "pleaseTryAgainLaterOrChooseDifferentServer": "Por favor, intente luego o elija un servidor distinto.",
+  "@pleaseTryAgainLaterOrChooseDifferentServer": {},
+  "pleaseEnterANumber": "Por favor pon un número mayor que 0",
+  "@pleaseEnterANumber": {},
+  "archiveRoomDescription": "El chat se moverá al archivo. Otros usuarios podrán ver que has abandonado el chat.",
+  "@archiveRoomDescription": {},
+  "pushNotificationsNotAvailable": "No están disponibles las notificaciones emergentes",
+  "@pushNotificationsNotAvailable": {},
+  "passwordsDoNotMatch": "Las claves no coinciden",
+  "@passwordsDoNotMatch": {},
+  "passwordIsWrong": "La clave que has puesto es incorrecta",
+  "@passwordIsWrong": {},
+  "verifyOtherUser": "🔐 Verificar a otro usuario",
+  "@verifyOtherUser": {},
+  "isReadyForKeyVerification": "{sender} está preparado para verificación de clave",
+  "@isReadyForKeyVerification": {
+    "type": "text",
+    "placeholders": {
+      "sender": {}
+    }
+  },
+  "goToSpace": "Ir al espacio: {space}",
+  "@goToSpace": {
+    "type": "text",
+    "space": {}
+  },
+  "oneOfYourDevicesIsNotVerified": "Uno de tus dispositivos no está verificado",
+  "@oneOfYourDevicesIsNotVerified": {},
+  "noticeChatBackupDeviceVerification": "Nota: Cuando conectas todos tus dispositivos a la copia de seguridad del chat, son verificados automáticamente.",
+  "@noticeChatBackupDeviceVerification": {},
+  "manageAccount": "Gestionar cuenta",
+  "@manageAccount": {},
+  "contactServerAdmin": "Contactar con el administrador del servidor",
+  "@contactServerAdmin": {},
+  "contactServerSecurity": "Contactar con seguridad del servidor",
+  "@contactServerSecurity": {},
+  "supportPage": "Página de atención",
+  "@supportPage": {},
+  "invalidUrl": "URL incorrecta",
+  "@invalidUrl": {},
+  "addLink": "Añadir enlace",
+  "@addLink": {},
+  "unableToJoinChat": "No se puede entrar al chat. Puede que la otra parte ya haya cerrado la conversación.",
+  "@unableToJoinChat": {},
+  "waitingForServer": "Esperando al servidor...",
+  "@waitingForServer": {},
+  "discoverHomeservers": "Descubrir homeservers",
+  "@discoverHomeservers": {},
+  "profileNotFound": "El usuario no se encontró en el servidor. Puede que haya un problema de conexión o el usuario no exista.",
+  "@profileNotFound": {},
+  "synchronizingPleaseWaitCounter": " Sincronizando… ({percentage}%)",
+  "@synchronizingPleaseWaitCounter": {
+    "type": "text",
+    "placeholders": {
+      "percentage": {}
+    }
+  },
+  "reportErrorDescription": "😭 Oh, no. Algo ha salido mal. Si quieres, puedes informar de este fallo a los desarrolladores.",
+  "@reportErrorDescription": {},
+  "hasKnocked": "🚪 {user} ha avisado",
+  "@hasKnocked": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "noBackupWarning": "¡Cuidado! Si no se habilita la copia de seguridad del chat, perderás acceso a tus mensajes cifrados. Se recomienda encarecidamente habilitar la copia de seguridad del chat antes de salir.",
+  "@noBackupWarning": {},
+  "userWouldLikeToChangeTheChat": "{user} quiere unirse al chat.",
+  "@userWouldLikeToChangeTheChat": {
+    "placeholders": {
+      "user": {}
+    }
+  },
+  "yourGlobalUserIdIs": "Tu id de usuario global es: ",
+  "@yourGlobalUserIdIs": {},
+  "noKeyForThisMessage": "Esto puede ocurrir si el mensaje se envió antes de que entraras en tu cuenta en este dispositivo.\n\nTambién puede que el remitente haya bloqueado tu dispositivo o haya fallado algo en la conexión a Internet.\n\n¿Puedes leer el mensaje en otra sesión? Entonces, ¡puedes transferir el mensaje desde allí! Ve a Ajustes > Dispositivos y asegúrate de que tus dispositivos se han verificado mutuamente. Cuando abras la sala la próxima vez y ambas sesiones estén en primer plano, las claves se transmitirán automáticamente.\n\n¿No quieres perder las claves al salir o al cambiar de dispositivo? Asegúrate de que has habilitado la copia de seguridad del chat en los ajustes.",
+  "@noKeyForThisMessage": {},
+  "invitePrivateChat": "📨 Invitar a chat privado",
+  "@invitePrivateChat": {},
+  "banUserDescription": "Se expulsará al usuario del chat y no podrá volver a entrar hasta que se le permita.",
+  "@banUserDescription": {},
+  "loginWithMatrixId": "Entrar con un ID de Matrix",
+  "@loginWithMatrixId": {},
+  "changeTheCanonicalRoomAlias": "Cambiar la dirección pública principal de chat",
+  "@changeTheCanonicalRoomAlias": {},
+  "noContactInformationProvided": "El servidor no suministra ninguna información de contacto válida",
+  "@noContactInformationProvided": {},
+  "noUsersFoundWithQuery": "Desgraciadamente, no se encontró ningún usuario con \"{query}\". Por favor, revisa si cometiste un error.",
+  "@noUsersFoundWithQuery": {
+    "type": "text",
+    "placeholders": {
+      "query": {}
+    }
+  },
+  "changeTheVisibilityOfChatHistory": "Cambiar la visibilidad de la historia de chat",
+  "@changeTheVisibilityOfChatHistory": {},
+  "doesNotSeemToBeAValidHomeserver": "No parece ser un homeserver compatible. ¿URL equivocada?",
+  "@doesNotSeemToBeAValidHomeserver": {},
+  "moderatorLevel": "{level} - Moderador",
+  "@moderatorLevel": {
+    "type": "text",
+    "placeholders": {
+      "level": {}
+    }
+  },
+  "homeserverDescription": "Todos tus datos se guardan en el homeserver, como en un proveedor de correo electrónico. Puedes elegir el homeserver que quieres usar, a la par que te puedes comunicar con todos. Más en https://matrix.org.",
+  "@homeserverDescription": {},
+  "whatIsAHomeserver": "¿Qué es un homeserver?",
+  "@whatIsAHomeserver": {},
+  "open": "Abrir",
+  "@open": {},
+  "appIntroduction": "FluffyChat te permite chatear con tus amigos con diferentes mensajerías. Aprende más en https://matrix.org o simplemente pincha *Continuar*.",
+  "@appIntroduction": {},
+  "forwardMessageTo": "¿Reenviar mensaje a {roomName}?",
+  "@forwardMessageTo": {
+    "type": "text",
+    "placeholders": {
+      "roomName": {}
+    }
+  },
+  "previous": "Anterior",
+  "@previous": {},
+  "otherPartyNotLoggedIn": "La otra parte ahora mismo no está conectada y por tanto ¡no puede recibir mensajes!",
+  "@otherPartyNotLoggedIn": {}
 }
