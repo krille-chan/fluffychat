@@ -31,6 +31,12 @@ class MorphAnalyticsView extends StatelessWidget {
           builder: (context, snapshot) {
             final morphs = snapshot.data ?? defaultMorphMapping;
 
+            morphs.displayFeatures.sort(
+              (a, b) => morphFeatureSortOrder
+                  .indexOf(a.feature)
+                  .compareTo(morphFeatureSortOrder.indexOf(b.feature)),
+            );
+
             return snapshot.connectionState == ConnectionState.done
                 ? ListView.builder(
                     key: const PageStorageKey<String>('morph-analytics'),
