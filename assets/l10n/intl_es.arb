@@ -25,7 +25,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "activatedEndToEndEncryption": "{username} activó el cifrado de extremo a extremo",
+  "activatedEndToEndEncryption": "🔐 {username} activó el cifrado de extremo a extremo",
   "@activatedEndToEndEncryption": {
     "type": "String",
     "placeholders": {
@@ -2208,7 +2208,7 @@
   "@importFromZipFile": {},
   "exportEmotePack": "Exportar paquete de emotes como .zip",
   "@exportEmotePack": {},
-  "addChatDescription": "Añadir una descripción del chat",
+  "addChatDescription": "Añadir una descripción del chat...",
   "@addChatDescription": {},
   "sendTypingNotifications": "Enviar notificaciones \"está escribiendo\"",
   "@sendTypingNotifications": {},
