@@ -3290,9 +3290,11 @@
   "@notificationRuleServerAclDescription": {},
   "unknownPushRule": "Regra push descoñecida '{rule}'",
   "@unknownPushRule": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "rule": {}
+      "rule": {
+        "type": "String"
+      }
     }
   },
   "deletePushRuleCanNotBeUndone": "Se omites este axuste de notificacións non poderás desfacer a acción.",
@@ -3325,9 +3327,11 @@
   "@notificationRuleMemberEventDescription": {},
   "synchronizingPleaseWaitCounter": " Sincronizando…({percentage}%)",
   "@synchronizingPleaseWaitCounter": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "percentage": {}
+      "percentage": {
+        "type": "String"
+      }
     }
   }
 }

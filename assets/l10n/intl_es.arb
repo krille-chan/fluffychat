@@ -2605,7 +2605,7 @@
   "@notifyMeFor": {},
   "presencesToggle": "Mostrar mensajes de estado de otros usuarios",
   "@presencesToggle": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "placeCall": "Llamar",
@@ -2624,9 +2624,11 @@
   "@invalidInput": {},
   "wrongPinEntered": "¡Pin erróneo! Vuelve a intenrarlo en {seconds} segundos...",
   "@wrongPinEntered": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "seconds": {}
+      "seconds": {
+        "type": "int"
+      }
     }
   },
   "decline": "Declinar",
@@ -2635,9 +2637,11 @@
   "@thisDevice": {},
   "minimumPowerLevel": "{level} es el nivel mínimo.",
   "@minimumPowerLevel": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "level": {}
+      "level": {
+        "type": "String"
+      }
     }
   },
   "verifyOtherDevice": "🔐 Verificar otro dispositivo",
@@ -2646,9 +2650,11 @@
   "@chatPermissionsDescription": {},
   "updateInstalled": "¡🎉 Actualización {version} instalada!",
   "@updateInstalled": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "version": {}
+      "version": {
+        "type": "String"
+      }
     }
   },
   "changelog": "Cambios",
@@ -2659,16 +2665,20 @@
   "@invite": {},
   "searchIn": "Buscar en chat \"{chat}\"...",
   "@searchIn": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "chat": {}
+      "chat": {
+        "type": "String"
+      }
     }
   },
   "appWantsToUseForLogin": "Usar '{server}' para entrar",
   "@appWantsToUseForLogin": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "server": {}
+      "server": {
+        "type": "String"
+      }
     }
   },
   "appWantsToUseForLoginDescription": "Por la presente permites a la app y web compartir información sobre ti.",
@@ -2691,20 +2701,24 @@
   "@openLinkInBrowser": {},
   "presenceStyle": "Presencia:",
   "@presenceStyle": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "youInvitedToBy": "📩 Te han invitado con un enlace a:\n{alias}",
   "@youInvitedToBy": {
     "placeholders": {
-      "alias": {}
+      "alias": {
+        "type": "String"
+      }
     }
   },
   "signInWith": "Entrar con {provider}",
   "@signInWith": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "provider": {}
+      "provider": {
+        "type": "String"
+      }
     }
   },
   "setTheme": "Poner tema:",
@@ -2807,9 +2821,11 @@
   "@notificationRuleServerAclDescription": {},
   "unknownPushRule": "Regla de notificación desconocida '{rule}'",
   "@unknownPushRule": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "rule": {}
+      "rule": {
+        "type": "String"
+      }
     }
   },
   "deletePushRuleCanNotBeUndone": "Si eliminas este ajuste de notificación, esto no se puede deshacer.",
@@ -2820,7 +2836,9 @@
   "@serverLimitReached": {
     "type": "integer",
     "placeholders": {
-      "seconds": {}
+      "seconds": {
+        "type": "int"
+      }
     }
   },
   "groupCanBeFoundViaSearch": "Los grupos se pueden encontrar buscando",
@@ -2835,15 +2853,19 @@
   "@setWallpaper": {},
   "sendImages": "Envío de la imagen {count}",
   "@sendImages": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "count": {}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "invitedBy": "📩 Invitado por {user}",
   "@invitedBy": {
     "placeholders": {
-      "user": {}
+      "user": {
+        "type": "String"
+      }
     }
   },
   "usersMustKnock": "Los usuarios han de avisar",
@@ -2856,9 +2878,11 @@
   "@hidePresences": {},
   "fileIsTooBigForServer": "¡No se pudo mandar! El servidor solamente permite adjuntos de hasta {max}.",
   "@fileIsTooBigForServer": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "max": {}
+      "max": {
+        "type": "String"
+      }
     }
   },
   "jumpToLastReadMessage": "Saltar al último mensaje leído",
@@ -2877,16 +2901,20 @@
   "@formattedMessagesDescription": {},
   "userLevel": "{level} - Usuario",
   "@userLevel": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "level": {}
+      "level": {
+        "type": "int"
+      }
     }
   },
   "completedKeyVerification": "{sender} completó la verificación de clave",
   "@completedKeyVerification": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "sender": {}
+      "sender": {
+        "type": "String"
+      }
     }
   },
   "sendingAttachment": "Enviando adjunto...",
@@ -2907,9 +2935,11 @@
   "@knocking": {},
   "chatCanBeDiscoveredViaSearchOnServer": "El chat se puede descubrir buscando en {server}",
   "@chatCanBeDiscoveredViaSearchOnServer": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "server": {}
+      "server": {
+        "type": "String"
+      }
     }
   },
   "searchChatsRooms": "Buscar #chats, @usuarios...",
@@ -2932,34 +2962,46 @@
   "@initAppError": {},
   "sessionLostBody": "Se perdió tu sesión. Por favor, informa de este error a los desarrolladores en {url}. El mensaje de error es: {error}",
   "@sessionLostBody": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "url": {},
-      "error": {}
+      "url": {
+        "type": "String"
+      },
+      "error": {
+        "type": "String"
+      }
     }
   },
   "unreadChatsInApp": "{appname}: {unread} chats no leídos",
   "@unreadChatsInApp": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "appname": {},
-      "unread": {}
+      "appname": {
+        "type": "String"
+      },
+      "unread": {
+        "type": "String"
+      }
     }
   },
   "restricted": "Restringido",
   "@restricted": {},
   "requestedKeyVerification": "{sender} ha pedido verificación de clave",
   "@requestedKeyVerification": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "sender": {}
+      "sender": {
+        "type": "String"
+      }
     }
   },
   "adminLevel": "{level} - Administrador",
   "@adminLevel": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "level": {}
+      "level": {
+        "type": "int"
+      }
     }
   },
   "changeGeneralChatSettings": "Cambiar los ajustes generales de chat",
@@ -2976,8 +3018,12 @@
   "@sendingAttachmentCountOfCount": {
     "type": "integer",
     "placeholders": {
-      "index": {},
-      "length": {}
+      "index": {
+        "type": "int"
+      },
+      "length": {
+        "type": "int"
+      }
     }
   },
   "compressVideo": "Comprimiendo vídeo...",
@@ -3008,9 +3054,11 @@
   "@passwordRecoverySettings": {},
   "acceptedKeyVerification": "{sender} aceptó la verificación de clave",
   "@acceptedKeyVerification": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "sender": {}
+      "sender": {
+        "type": "String"
+      }
     }
   },
   "stickers": "Pegatinas",
@@ -3047,18 +3095,26 @@
   "@leaveEmptyToClearStatus": {},
   "databaseBuildErrorBody": "No pude crear la base de datos SQlite. La app intenta usar la base de datos heredada por ahora. Por favor, informa de este error a los desarrolladores en {url}. El mensaje de error es: {error}",
   "@databaseBuildErrorBody": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "url": {},
-      "error": {}
+      "url": {
+        "type": "String"
+      },
+      "error": {
+        "type": "String"
+      }
     }
   },
   "restoreSessionBody": "La app ahora trata de recuperar tu sesión de la copia de seguridad. Por favor, informa de este error a los desarrolladores en {url}. El mensaje de error es: {error}",
   "@restoreSessionBody": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "url": {},
-      "error": {}
+      "url": {
+        "type": "String"
+      },
+      "error": {
+        "type": "String"
+      }
     }
   },
   "sendReadReceipts": "Mandar recibos de lectura",
@@ -3073,9 +3129,11 @@
   "@verifyOtherDeviceDescription": {},
   "canceledKeyVerification": "{sender} canceló la verificación de clave",
   "@canceledKeyVerification": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "sender": {}
+      "sender": {
+        "type": "String"
+      }
     }
   },
   "commandHint_unignore": "No ignorar la ID de matrix dada",
@@ -3084,16 +3142,18 @@
   "@noDatabaseEncryption": {},
   "startedKeyVerification": "{sender} ha comenzado verificación de clave",
   "@startedKeyVerification": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "sender": {}
+      "sender": {
+        "type": "String"
+      }
     }
   },
   "discover": "Descubrir",
   "@discover": {},
   "thereAreCountUsersBlocked": "Ahora mismo, hay {count} usuarios bloqueados.",
   "@thereAreCountUsersBlocked": {
-    "type": "text",
+    "type": "String",
     "count": {}
   },
   "commandHint_ignore": "Ignorar la ID de matrix dada",
@@ -3106,9 +3166,11 @@
   "@kickUserDescription": {},
   "fileHasBeenSavedAt": "Archivo guardado en {path}",
   "@fileHasBeenSavedAt": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "path": {}
+      "path": {
+        "type": "String"
+      }
     }
   },
   "markAsUnread": "Marcar no leído",
@@ -3153,14 +3215,16 @@
   "@verifyOtherUser": {},
   "isReadyForKeyVerification": "{sender} está preparado para verificación de clave",
   "@isReadyForKeyVerification": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "sender": {}
+      "sender": {
+        "type": "String"
+      }
     }
   },
   "goToSpace": "Ir al espacio: {space}",
   "@goToSpace": {
-    "type": "text",
+    "type": "String",
     "space": {}
   },
   "oneOfYourDevicesIsNotVerified": "Uno de tus dispositivos no está verificado",
@@ -3189,9 +3253,11 @@
   "@profileNotFound": {},
   "synchronizingPleaseWaitCounter": " Sincronizando… ({percentage}%)",
   "@synchronizingPleaseWaitCounter": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "percentage": {}
+      "percentage": {
+        "type": "String"
+      }
     }
   },
   "reportErrorDescription": "😭 Oh, no. Algo ha salido mal. Si quieres, puedes informar de este fallo a los desarrolladores.",
@@ -3199,7 +3265,9 @@
   "hasKnocked": "🚪 {user} ha avisado",
   "@hasKnocked": {
     "placeholders": {
-      "user": {}
+      "user": {
+        "type": "String"
+      }
     }
   },
   "noBackupWarning": "¡Cuidado! Si no se habilita la copia de seguridad del chat, perderás acceso a tus mensajes cifrados. Se recomienda encarecidamente habilitar la copia de seguridad del chat antes de salir.",
@@ -3207,7 +3275,9 @@
   "userWouldLikeToChangeTheChat": "{user} quiere unirse al chat.",
   "@userWouldLikeToChangeTheChat": {
     "placeholders": {
-      "user": {}
+      "user": {
+        "type": "String"
+      }
     }
   },
   "yourGlobalUserIdIs": "Tu id de usuario global es: ",
@@ -3226,9 +3296,11 @@
   "@noContactInformationProvided": {},
   "noUsersFoundWithQuery": "Desgraciadamente, no se encontró ningún usuario con \"{query}\". Por favor, revisa si cometiste un error.",
   "@noUsersFoundWithQuery": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "query": {}
+      "query": {
+        "type": "String"
+      }
     }
   },
   "changeTheVisibilityOfChatHistory": "Cambiar la visibilidad de la historia de chat",
@@ -3237,9 +3309,11 @@
   "@doesNotSeemToBeAValidHomeserver": {},
   "moderatorLevel": "{level} - Moderador",
   "@moderatorLevel": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "level": {}
+      "level": {
+        "type": "int"
+      }
     }
   },
   "homeserverDescription": "Todos tus datos se guardan en el homeserver, como en un proveedor de correo electrónico. Puedes elegir el homeserver que quieres usar, a la par que te puedes comunicar con todos. Más en https://matrix.org.",
@@ -3252,9 +3326,11 @@
   "@appIntroduction": {},
   "forwardMessageTo": "¿Reenviar mensaje a {roomName}?",
   "@forwardMessageTo": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "roomName": {}
+      "roomName": {
+        "type": "String"
+      }
     }
   },
   "previous": "Anterior",

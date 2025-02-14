@@ -3210,9 +3210,11 @@
   "@crossVerifiedDevices": {},
   "appWantsToUseForLogin": "Використати '{server}', щоб увійти",
   "@appWantsToUseForLogin": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "server": {}
+      "server": {
+        "type": "String"
+      }
     }
   },
   "appWantsToUseForLoginDescription": "Цим ви дозволяєте застосунку та вебсайту ділитися інформацією про вас.",

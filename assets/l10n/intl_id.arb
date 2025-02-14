@@ -3276,9 +3276,11 @@
   "@notificationRuleServerAclDescription": {},
   "unknownPushRule": "Aturan dorongan '{rule}' tidak diketahui",
   "@unknownPushRule": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "rule": {}
+      "rule": {
+        "type": "String"
+      }
     }
   },
   "deletePushRuleCanNotBeUndone": "Jika kamu menghapus pengaturan notifikasi ini, maka tidak dapat diurungkan.",
@@ -3301,9 +3303,11 @@
   "@shareKeysWith": {},
   "synchronizingPleaseWaitCounter": " Sinkronisasi… ({percentage}%)",
   "@synchronizingPleaseWaitCounter": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "percentage": {}
+      "percentage": {
+        "type": "String"
+      }
     }
   },
   "shareKeysWithDescription": "Perangkat apa saja yang dipercayai supaya mereka bisa membaca bersama dengan pesanmu dalam obrolan terenkripsi?",
@@ -3318,9 +3322,11 @@
   "@otherPartyNotLoggedIn": {},
   "appWantsToUseForLogin": "Gunakan '{server}' untuk masuk",
   "@appWantsToUseForLogin": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "server": {}
+      "server": {
+        "type": "String"
+      }
     }
   },
   "appWantsToUseForLoginDescription": "Anda memperbolehkan aplikasi dan situs web membagikan informasi tentang Anda.",
