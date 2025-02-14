@@ -1,13 +1,13 @@
 ((a,b,c)=>{a[b]=a[b]||{}
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_253",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
-$__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cz2(){return new B.Ez(A.dh("hr"))},
+$__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
+cz2(){return new A.Ez(B.dh("hr"))},
 Ez:function Ez(d){this.a=d}}
-A=c[0]
+B=c[0]
 C=c[51]
-B=a.updateHolder(c[26],B)
-B.Ez.prototype={
+A=a.updateHolder(c[26],A)
+A.Ez.prototype={
 gnt(){return"true"},
 gjK(){return"Ponovi lozinku"},
 gm_(){return"Nije slikovna datoteka."},
@@ -49,7 +49,7 @@ gki(){return"Po\u0161alji pismene obavijesti"},
 gnr(){return"Za odgovaranje povuci prstom zdesna ulijevo"},
 gfY(){return"Po\u0161alji pritiskom tipke enter"},
 hs(d,e,f,g){return"Doma\u0107i poslu\u017eitelj podr\u017eava verzije specifikacije:\n"+d+"\nMe\u0111utim ovaj program podr\u017eava samo "+e},
-l0(d,e){return A.t(d)+" chats and "+A.t(e)+" participants"},
+l0(d,e){return""+d+" chats and "+e+" participants"},
 glX(){return"No more chats found..."},
 goo(){return"No chats found here yet. Start a new chat with someone by using the button below. \u2935\ufe0f"},
 gnC(){return"Unread"},
@@ -123,7 +123,7 @@ gig(){return"Kopirano u me\u0111uspremnik"},
 geF(d){return"Kopiraj"},
 gih(){return"Kopiraj u me\u0111uspremnik"},
 ii(d){return"Neuspjelo de\u0161ifriranje poruke: "+d},
-dX(d){return A.t(d)+" sudionika"},
+dX(d){return""+d+" sudionika"},
 gfi(d){return"Stvori"},
 ij(d){return"\ud83d\udcac "+d+" je zapo\u010deo/la razgovor"},
 gej(){return"Stvori grupu"},
@@ -242,7 +242,7 @@ gea(){return"Ne"},
 gjf(){return"Ne postoji veza s poslu\u017eiteljem"},
 gfD(){return"Nema emotikona. \ud83d\ude15"},
 gjg(){return"\u0160ifriranje mo\u017ee\u0161 aktivirati samo nakon \u0161to soba vi\u0161e nije javno dostupna."},
-jh(d,e){return d.k(0)+" nije matrix poslu\u017eitelj. Da li umjesto njega koristiti "+e.k(0)+"?"},
+jh(d,e){return d+" nije matrix poslu\u017eitelj. Da li umjesto njega koristiti "+e+"?"},
 gks(){return"Dijeli poveznicu za poziv"},
 gjj(){return"Jo\u0161 nisi dodao/la na\u010din za obnavljanje lozinke."},
 geT(){return"Bez dozvole"},
@@ -628,8 +628,8 @@ goa(){return"Cross verified devices"},
 gph(){return"Verified devices only"},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Ez,C.aF)})()
-A.dW(b.typeUniverse,JSON.parse('{"Ez":{"aF":[]}}'))};
+y(A.Ez,C.aF)})()
+B.dW(b.typeUniverse,JSON.parse('{"Ez":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_253",e:"endPart",h:b})})($__dart_deferred_initializers__,"f3V9Dp9yMKk712/FzEILkAywrtM=");
+a.eventLog.push({p:"main.dart.js_253",e:"endPart",h:b})})($__dart_deferred_initializers__,"Zf6SutcpebJHQxu7tCs2o07ADzo=");
 //# sourceMappingURL=main.dart.js_253.part.js.map

@@ -1,13 +1,13 @@
 ((a,b,c)=>{a[b]=a[b]||{}
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_231",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
-$__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cyS(){return new B.Eo(A.dh("es"))},
+$__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
+cyS(){return new A.Eo(B.dh("es"))},
 Eo:function Eo(d){this.a=d}}
-A=c[0]
+B=c[0]
 C=c[51]
-B=a.updateHolder(c[15],B)
-B.Eo.prototype={
+A=a.updateHolder(c[15],A)
+A.Eo.prototype={
 gnt(){return"Falso"},
 gjK(){return"Repita la contrase\xf1a"},
 gm_(){return"El archivo no es una imagen."},
@@ -49,7 +49,7 @@ gki(){return'Enviar notificaciones "est\xe1 escribiendo"'},
 gnr(){return"Desliza a la izquierda para responder"},
 gfY(){return"Enviar con enter"},
 hs(d,e,f,g){return"El servidor soporta las siguientes versiones de la especificaci\xf3n:\n"+d+"\npero esta aplicaci\xf3n s\xf3lo soporta las versiones "+e},
-l0(d,e){return A.t(d)+" chats y "+A.t(e)+" participantes"},
+l0(d,e){return""+d+" chats y "+e+" participantes"},
 glX(){return"No se encontraron m\xe1s chats..."},
 goo(){return"No se han encontrado chats. Inicia un nuevo chat usando el bot\xf3n de abajo. \u2935\ufe0f"},
 gnC(){return"No le\xeddos"},
@@ -123,7 +123,7 @@ gig(){return"Copiado al portapapeles"},
 geF(d){return"Copiar"},
 gih(){return"Copiar al portapapeles"},
 ii(d){return"No se pudo descifrar el mensaje: "+d},
-dX(d){return A.t(d)+" participantes"},
+dX(d){return""+d+" participantes"},
 gfi(d){return"Crear"},
 ij(d){return"\ud83d\udcac"+d+" cre\xf3 el chat"},
 gej(){return"Crear grupo"},
@@ -242,7 +242,7 @@ gea(){return"No"},
 gjf(){return"Sin conexi\xf3n al servidor"},
 gfD(){return"Ning\xfan emote encontrado. \ud83d\ude15"},
 gjg(){return"S\xf3lo se puede activar el cifrado en cuanto la sala deja de ser de acceso p\xfablico."},
-jh(d,e){return d.k(0)+" no es un servidor matrix, usar "+e.k(0)+" en su lugar?"},
+jh(d,e){return d+" no es un servidor matrix, usar "+e+" en su lugar?"},
 gks(){return"Compartir enlace de invitaci\xf3n"},
 gjj(){return"A\xfan no ha agregado una forma de recuperar su contrase\xf1a."},
 geT(){return"Sin autorizaci\xf3n"},
@@ -419,7 +419,7 @@ glK(){return"Knock"},
 gmQ(){return"Usuarios"},
 gmH(){return"Desbloquear mensajes viejos"},
 gkd(){return"Compartir esta clave manualmente usando el di\xe1logo de compartir del sistema o el portapapeles."},
-l1(d){return d+" archivos"},
+l1(d){return""+d+" archivos"},
 gdU(){return"Usuario"},
 gik(){return"Personalizado"},
 gn6(){return"\xbfPor qu\xe9 no se puede leer este mensaje?"},
@@ -628,8 +628,8 @@ goa(){return"Cross verified devices"},
 gph(){return"Verified devices only"},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Eo,C.aF)})()
-A.dW(b.typeUniverse,JSON.parse('{"Eo":{"aF":[]}}'))};
+y(A.Eo,C.aF)})()
+B.dW(b.typeUniverse,JSON.parse('{"Eo":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_231",e:"endPart",h:b})})($__dart_deferred_initializers__,"FVyN1bijQL/BcPxuDBXkqdWXPjM=");
+a.eventLog.push({p:"main.dart.js_231",e:"endPart",h:b})})($__dart_deferred_initializers__,"iQlOMBsm4gcIyUs4f0zkKt2jSkQ=");
 //# sourceMappingURL=main.dart.js_231.part.js.map

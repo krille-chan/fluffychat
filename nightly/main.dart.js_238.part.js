@@ -1,13 +1,13 @@
 ((a,b,c)=>{a[b]=a[b]||{}
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_238",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
-$__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cyU(){return new B.Eq(A.dh("eu"))},
+$__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
+cyU(){return new A.Eq(B.dh("eu"))},
 Eq:function Eq(d){this.a=d}}
-A=c[0]
+B=c[0]
 C=c[51]
-B=a.updateHolder(c[17],B)
-B.Eq.prototype={
+A=a.updateHolder(c[17],A)
+A.Eq.prototype={
 gnt(){return"false"},
 gjK(){return"Idatzi berriro pasahitza"},
 gm_(){return"Ez da irudi-fitxategia."},
@@ -49,7 +49,7 @@ gki(){return"Jakinarazi idazten nagoela"},
 gnr(){return"Herrestatu eskuin-ezker erantzuteko"},
 gfY(){return"Bidali enter sakatuz"},
 hs(d,e,f,g){return"Zerbitzariak ondorengo ezaugarriak onartzen ditu:\n"+d+"\nBaina aplikazioak hauek onartzen ditu bakarrik: "+e},
-l0(d,e){return A.t(d)+" txat eta "+A.t(e)+" partaide"},
+l0(d,e){return""+d+" txat eta "+e+" partaide"},
 glX(){return"Ez da beste txatik aurkitu..."},
 goo(){return"Ez da txatik aurkitu. Hasi norbaitekin txateatzen beheko botoia erabiliz. \u2935\ufe0f"},
 gnC(){return"Irakurtzeke"},
@@ -123,7 +123,7 @@ gig(){return"Arbelera kopiatu da"},
 geF(d){return"Kopiatu"},
 gih(){return"Kopiatu arbelera"},
 ii(d){return"Ezin izan da mezua deszifratu: "+d},
-dX(d){return A.t(d)+" partaide"},
+dX(d){return""+d+" partaide"},
 gfi(d){return"Sortu"},
 ij(d){return"\ud83d\udcac "+d+"(e)k txata sortu du"},
 gej(){return"Sortu taldea"},
@@ -242,7 +242,7 @@ gea(){return"Ez"},
 gjf(){return"Ez dago konexiorik zerbitzariarekin"},
 gfD(){return"Ez da emoterik aurkitu. \ud83d\ude15"},
 gjg(){return"Zifratzea aktiba dezakezu soilik gelak publikoa izateari utzi badio."},
-jh(d,e){return d.k(0)+" ez da matrix zerbitzari bat, "+e.k(0)+" erabili nahi duzu haren ordez?"},
+jh(d,e){return d+" ez da matrix zerbitzari bat, "+e+" erabili nahi duzu haren ordez?"},
 gks(){return"Partekatu gonbidapen-esteka"},
 gjj(){return"Oraindik ez duzu pasahitza berreskuratzeko modurik gehitu."},
 geT(){return"Baimenik gabe"},
@@ -419,7 +419,7 @@ glK(){return"Eskatu baimena"},
 gmQ(){return"Erabiltzaileak"},
 gmH(){return"Desblokeatu mezu zaharrak"},
 gkd(){return"Gorde eskuz gako hau gailuko partekatze-menua edo arbela erabiliz."},
-l1(d){return d+" fitxategi"},
+l1(d){return""+d+" fitxategi"},
 gdU(){return"Erabiltzailea"},
 gik(){return"Neurrira egindakoa"},
 gn6(){return"Zergatik ezin da mezu hau irakurri?"},
@@ -628,9 +628,9 @@ goa(){return"Cross verified devices"},
 gph(){return"Verified devices only"},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.Eq,C.aF)})()
-A.dW(b.typeUniverse,JSON.parse('{"Eq":{"aF":[]}}'))
+x(A.Eq,C.aF)})()
+B.dW(b.typeUniverse,JSON.parse('{"Eq":{"aF":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_238",e:"endPart",h:b})})($__dart_deferred_initializers__,"oHDPPzweXrwaS4oDw75cPDdxKvQ=");
+a.eventLog.push({p:"main.dart.js_238",e:"endPart",h:b})})($__dart_deferred_initializers__,"7c+tsXGd7ipccsvSSu9M34jz4L8=");
 //# sourceMappingURL=main.dart.js_238.part.js.map

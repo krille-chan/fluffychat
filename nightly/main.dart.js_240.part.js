@@ -1,13 +1,13 @@
 ((a,b,c)=>{a[b]=a[b]||{}
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_240",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
-$__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cyV(){return new B.Er(A.dh("fa"))},
+$__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
+cyV(){return new A.Er(B.dh("fa"))},
 Er:function Er(d){this.a=d}}
-A=c[0]
+B=c[0]
 C=c[51]
-B=a.updateHolder(c[18],B)
-B.Er.prototype={
+A=a.updateHolder(c[18],A)
+A.Er.prototype={
 gnt(){return"false"},
 gjK(){return"\u062a\u06a9\u0631\u0627\u0631 \u0631\u0645\u0632\u0639\u0628\u0648\u0631"},
 gm_(){return"\u06cc\u06a9 \u0641\u0627\u06cc\u0644 \u062a\u0635\u0648\u06cc\u0631\u06cc \u0646\u06cc\u0633\u062a."},
@@ -49,7 +49,7 @@ gki(){return"Send typing notifications"},
 gnr(){return"Swipe right to left to reply"},
 gfY(){return"\u0627\u0631\u0633\u0627\u0644 \u0628\u0627 \u06a9\u0644\u06cc\u062f \u062a\u0639\u0648\u064a\u0636 \u0633\u0637\u0631"},
 hs(d,e,f,g){return"\u0633\u0631\u0648\u0631 \u0645\u06cc\u200c\u062a\u0648\u0627\u0646\u062f \u0627\u06cc\u0646 \u0646\u0633\u062e\u0647\u200c\u0647\u0627\u06cc \u0645\u0634\u062e\u0635\u0627\u062a \u0631\u0627 \u067e\u0634\u062a\u06cc\u0628\u0627\u0646\u06cc \u06a9\u0646\u062f:\n"+d+y.a+e},
-l0(d,e){return A.t(d)+" chats and "+A.t(e)+" participants"},
+l0(d,e){return""+d+" chats and "+e+" participants"},
 glX(){return"No more chats found..."},
 goo(){return"No chats found here yet. Start a new chat with someone by using the button below. \u2935\ufe0f"},
 gnC(){return"Unread"},
@@ -123,7 +123,7 @@ gig(){return"\u062f\u0631 \u062d\u0627\u0641\u0638\u0647 \u06a9\u067e\u06cc \u06
 geF(d){return"\u06a9\u067e\u06cc"},
 gih(){return"\u062f\u0631 \u062d\u0627\u0641\u0638\u0647 \u06a9\u067e\u06cc \u06a9\u0646\u06cc\u062f"},
 ii(d){return"\u0646\u062a\u0648\u0627\u0646\u0633\u062a\u06cc\u0645 \u067e\u06cc\u0627\u0645 \u0631\u0627 \u0631\u0645\u0632\u06af\u0634\u0627\u06cc\u06cc \u06a9\u0646\u06cc\u0645: "+d},
-dX(d){return A.t(d)+" \u0634\u0631\u06a9\u062a \u06a9\u0646\u0646\u062f\u0647"},
+dX(d){return""+d+" \u0634\u0631\u06a9\u062a \u06a9\u0646\u0646\u062f\u0647"},
 gfi(d){return"\u0627\u06cc\u062c\u0627\u062f"},
 ij(d){return"\ud83d\udcac "+d+" \u06af\u067e \u0631\u0627 \u0627\u06cc\u062c\u0627\u062f \u06a9\u0631\u062f"},
 gej(){return"Create group"},
@@ -242,7 +242,7 @@ gea(){return"\u0646\u0647"},
 gjf(){return"\u0639\u062f\u0645 \u0627\u062a\u0635\u0627\u0644 \u0628\u0647 \u0633\u0631\u0648\u0631"},
 gfD(){return"\u0647\u06cc\u0686 \u0634\u06a9\u0644\u06a9\u06cc \u067e\u06cc\u062f\u0627 \u0646\u0634\u062f. \ud83d\ude15"},
 gjg(){return"\u0641\u0642\u0637 \u0632\u0645\u0627\u0646\u06cc \u0645\u06cc\u200c\u062a\u0648\u0627\u0646\u06cc\u062f \u0631\u0645\u0632\u06af\u0630\u0627\u0631\u06cc \u0631\u0627 \u0641\u0639\u0627\u0644 \u06a9\u0646\u06cc\u062f \u06a9\u0647 \u0627\u062a\u0627\u0642\u060c \u062f\u06cc\u06af\u0631 \u062f\u0631 \u062f\u0633\u062a\u0631\u0633 \u0639\u0645\u0648\u0645 \u0646\u0628\u0627\u0634\u062f."},
-jh(d,e){return d.k(0)+" \u0633\u0631\u0648\u0631 \u0645\u0627\u062a\u0631\u06cc\u06a9\u0633 \u0646\u06cc\u0633\u062a\u060c \u0628\u0647 \u062c\u0627\u06cc \u0622\u0646 \u0627\u0632 "+e.k(0)+" \u0627\u0633\u062a\u0641\u0627\u062f\u0647 \u0634\u0648\u062f\u061f"},
+jh(d,e){return d+" \u0633\u0631\u0648\u0631 \u0645\u0627\u062a\u0631\u06cc\u06a9\u0633 \u0646\u06cc\u0633\u062a\u060c \u0628\u0647 \u062c\u0627\u06cc \u0622\u0646 \u0627\u0632 "+e+" \u0627\u0633\u062a\u0641\u0627\u062f\u0647 \u0634\u0648\u062f\u061f"},
 gks(){return"Share invite link"},
 gjj(){return"\u0634\u0645\u0627 \u0647\u0646\u0648\u0632 \u0631\u0627\u0647\u06cc \u0628\u0631\u0627\u06cc \u0628\u0627\u0632\u06cc\u0627\u0628\u06cc \u0631\u0645\u0632 \u0639\u0628\u0648\u0631 \u062e\u0648\u062f \u0627\u0636\u0627\u0641\u0647 \u0646\u06a9\u0631\u062f\u0647\u200c\u0627\u06cc\u062f."},
 geT(){return"\u0628\u062f\u0648\u0646 \u0627\u062c\u0627\u0632\u0647"},
@@ -419,7 +419,7 @@ glK(){return"Knock"},
 gmQ(){return"\u06a9\u0627\u0631\u0628\u0631\u0647\u0627"},
 gmH(){return"\u06af\u0634\u0648\u062f\u0646 \u0642\u0641\u0644 \u067e\u06cc\u0627\u0645\u200c\u0647\u0627\u06cc \u0642\u062f\u06cc\u0645\u06cc"},
 gkd(){return"\u0627\u06cc\u0646 \u06a9\u0644\u06cc\u062f \u0631\u0627 \u0628\u0647 \u0635\u0648\u0631\u062a \u062f\u0633\u062a\u06cc \u0628\u0627 \u0641\u0639\u0627\u0644 \u06a9\u0631\u062f\u0646 \u06af\u0641\u062a\u06af\u0648\u06cc \u0627\u0634\u062a\u0631\u0627\u06a9 \u06af\u0630\u0627\u0631\u06cc \u0633\u06cc\u0633\u062a\u0645 \u06cc\u0627 \u06a9\u0644\u06cc\u067e \u0628\u0648\u0631\u062f \u0630\u062e\u06cc\u0631\u0647 \u06a9\u0646\u06cc\u062f."},
-l1(d){return d+" \u0641\u0627\u06cc\u0644"},
+l1(d){return""+d+" \u0641\u0627\u06cc\u0644"},
 gdU(){return"\u06a9\u0627\u0631\u0628\u0631"},
 gik(){return"\u0633\u0641\u0627\u0631\u0634\u06cc"},
 gn6(){return"\u0686\u0631\u0627 \u0627\u06cc\u0646 \u067e\u06cc\u0627\u0645 \u0642\u0627\u0628\u0644 \u062e\u0648\u0627\u0646\u062f\u0646 \u0646\u06cc\u0633\u062a\u061f"},
@@ -628,9 +628,9 @@ goa(){return"Cross verified devices"},
 gph(){return"Verified devices only"},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(B.Er,C.aF)})()
-A.dW(b.typeUniverse,JSON.parse('{"Er":{"aF":[]}}'))
+x(A.Er,C.aF)})()
+B.dW(b.typeUniverse,JSON.parse('{"Er":{"aF":[]}}'))
 var y={a:"\n\u0648\u0644\u06cc \u0627\u06cc\u0646 \u0628\u0631\u0646\u0627\u0645\u0647 \u0641\u0642\u0637 \u0645\u06cc\u200c\u062a\u0648\u0627\u0646\u062f \u0627\u06cc\u0646\u200c\u0647\u0627 \u0631\u0627 \u067e\u0634\u062a\u06cc\u0628\u0627\u0646\u06cc \u06a9\u0646\u062f:\n"}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_240",e:"endPart",h:b})})($__dart_deferred_initializers__,"z+RzOEPkimSUd7lyuq0U6jod8/A=");
+a.eventLog.push({p:"main.dart.js_240",e:"endPart",h:b})})($__dart_deferred_initializers__,"jPjWwn6xdVUcO/WnGYkEKS7FcDE=");
 //# sourceMappingURL=main.dart.js_240.part.js.map

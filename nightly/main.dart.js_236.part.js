@@ -1,13 +1,13 @@
 ((a,b,c)=>{a[b]=a[b]||{}
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_236",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
-$__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cyT(){return new B.Ep(A.dh("et"))},
+$__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
+cyT(){return new A.Ep(B.dh("et"))},
 Ep:function Ep(d){this.a=d}}
-A=c[0]
+B=c[0]
 C=c[51]
-B=a.updateHolder(c[16],B)
-B.Ep.prototype={
+A=a.updateHolder(c[16],A)
+A.Ep.prototype={
 gnt(){return"false"},
 gjK(){return"Korda salas\xf5na"},
 gm_(){return"See pole pildifail."},
@@ -49,7 +49,7 @@ gki(){return"Saada kirjutamise teavitusi"},
 gnr(){return"Vastamiseks viipa paremalt vasakule"},
 gfY(){return"Saada s\xf5num sisestusklahvi vajutusel"},
 hs(d,e,f,g){return"See koduserver toetab Matrixi spetsifikatsioonist j\xe4rgmisi versioone:\n"+d+"\nAga see rakendus toetab vaid j\xe4rgmisi versioone: "+e},
-l0(d,e){return A.t(d)+" vestlust ja "+A.t(e)+" osalejat"},
+l0(d,e){return""+d+" vestlust ja "+e+" osalejat"},
 glX(){return"Rohkem vestlusi ei leidu..."},
 goo(){return"Siin ei leidu veel \xfchtegi vestlust. Alusta uut vestlust kl\xf5psides allpool asuvat nuppu. \u2935\ufe0f"},
 gnC(){return"Lugemata"},
@@ -123,7 +123,7 @@ gig(){return"Kopeerisin l\xf5ikelauale"},
 geF(d){return"Kopeeri"},
 gih(){return"Kopeeri l\xf5ikelauale"},
 ii(d){return"S\xf5numi dekr\xfcptimine ei \xf5nnestunud: "+d},
-dX(d){return A.t(d)+" osalejat"},
+dX(d){return""+d+" osalejat"},
 gfi(d){return"Loo"},
 ij(d){return"\ud83d\udcac "+d+" algatas vestluse"},
 gej(){return"Loo vestlusr\xfchm"},
@@ -242,7 +242,7 @@ gea(){return"Ei"},
 gjf(){return"Puudub \xfchendus koduserveriga"},
 gfD(){return"\xdchtegi emotsioonitegevust ei leidunud. \ud83d\ude15"},
 gjg(){return"Sa v\xf5id kr\xfcptimise kasutusele v\xf5tta niipea, kui jututuba pole enam avalik."},
-jh(d,e){return d.k(0)+" pole Matrix'i server, kas kasutame selle asemel "+e.k(0)+" serverit?"},
+jh(d,e){return d+" pole Matrix'i server, kas kasutame selle asemel "+e+" serverit?"},
 gks(){return"Jaga kutse linki"},
 gjj(){return"Sa pole veel lisanud v\xf5imalust salas\xf5na taastamiseks."},
 geT(){return"\xd5igused puuduvad"},
@@ -419,7 +419,7 @@ glK(){return"Koputa uksele"},
 gmQ(){return"Kasutajad"},
 gmH(){return"Muuda vanad s\xf5numid loetavaks"},
 gkd(){return"Salvesta see kr\xfcptov\xf5ti kasutades selle s\xfcsteemi jagamisvalikuid v\xf5i l\xf5ikelauda."},
-l1(d){return d+" faili"},
+l1(d){return""+d+" faili"},
 gdU(){return"Kasutaja"},
 gik(){return"Kohandatud"},
 gn6(){return"Miks see s\xf5num pole loetav?"},
@@ -628,8 +628,8 @@ goa(){return"Risttunnustatud seadmeid"},
 gph(){return"Vaid verifitseeritud seadmeid"},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Ep,C.aF)})()
-A.dW(b.typeUniverse,JSON.parse('{"Ep":{"aF":[]}}'))};
+y(A.Ep,C.aF)})()
+B.dW(b.typeUniverse,JSON.parse('{"Ep":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_236",e:"endPart",h:b})})($__dart_deferred_initializers__,"Qie1M2BJaf5SuEknRhVQEtq+5Tw=");
+a.eventLog.push({p:"main.dart.js_236",e:"endPart",h:b})})($__dart_deferred_initializers__,"Tx9bI2DoQPZGUJKgEBsAidT/shc=");
 //# sourceMappingURL=main.dart.js_236.part.js.map

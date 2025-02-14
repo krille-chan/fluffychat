@@ -1,13 +1,13 @@
 ((a,b,c)=>{a[b]=a[b]||{}
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_241",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
-$__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cyW(){return new B.Es(A.dh("fi"))},
+$__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
+cyW(){return new A.Es(B.dh("fi"))},
 Es:function Es(d){this.a=d}}
-A=c[0]
+B=c[0]
 C=c[51]
-B=a.updateHolder(c[19],B)
-B.Es.prototype={
+A=a.updateHolder(c[19],A)
+A.Es.prototype={
 gnt(){return"false"},
 gjK(){return"Salasana uudelleen"},
 gm_(){return"T\xe4m\xe4 ei ole kuvatiedosto."},
@@ -49,7 +49,7 @@ gki(){return"L\xe4het\xe4 kirjoitusilmoituksia"},
 gnr(){return"Vastaa pyyhk\xe4isem\xe4ll\xe4 oikealta vasemmalle"},
 gfY(){return"L\xe4het\xe4 painamalla rivinvaihton\xe4pp\xe4int\xe4"},
 hs(d,e,f,g){return"Kotipalvelin tukee Matrix Spec versio(it)a:\n"+d+", mutta t\xe4m\xe4 sovellus tukee vain versio(it)a "+e},
-l0(d,e){return A.t(d)+" chats and "+A.t(e)+" participants"},
+l0(d,e){return""+d+" chats and "+e+" participants"},
 glX(){return"Lis\xe4\xe4 keskusteluja ei l\xf6ytynyt..."},
 goo(){return"No chats found here yet. Start a new chat with someone by using the button below. \u2935\ufe0f"},
 gnC(){return"Lukemattomat"},
@@ -123,7 +123,7 @@ gig(){return"Kopioitu leikep\xf6yd\xe4lle"},
 geF(d){return"Kopioi"},
 gih(){return"Kopioi leikep\xf6yd\xe4lle"},
 ii(d){return"Viestin salausta ei voitu purkaa: "+d},
-dX(d){return A.t(d)+" osallistujaa"},
+dX(d){return""+d+" osallistujaa"},
 gfi(d){return"Luo"},
 ij(d){return d+" loi keskustelun"},
 gej(){return"Luo ryhm\xe4"},
@@ -242,7 +242,7 @@ gea(){return"Ei"},
 gjf(){return"Ei yhteytt\xe4 palvelimeen"},
 gfD(){return"Emoteja ei l\xf6ytynyt. \ud83d\ude15"},
 gjg(){return"Voit ottaa salauksen k\xe4ytt\xf6\xf6n vasta kun huone ei ole julkisesti liitytt\xe4viss\xe4."},
-jh(d,e){return d.k(0)+" ei ole Matrix-palvelin, k\xe4ytet\xe4\xe4nk\xf6 "+e.k(0)+" sen sijaan?"},
+jh(d,e){return d+" ei ole Matrix-palvelin, k\xe4ytet\xe4\xe4nk\xf6 "+e+" sen sijaan?"},
 gks(){return"Jaa kutsulinkki"},
 gjj(){return"Et ole viel\xe4 lis\xe4nnyt tapaa salasanasi palauttamiseksi."},
 geT(){return"Ei lupaa"},
@@ -419,7 +419,7 @@ glK(){return"Knock"},
 gmQ(){return"K\xe4ytt\xe4j\xe4t"},
 gmH(){return"Pura vanhojen viestien salaus"},
 gkd(){return"Tallenna t\xe4m\xe4 avain manuaalisesti k\xe4ytt\xe4en j\xe4rjestelm\xe4n jakodialogia tai leikep\xf6yt\xe4\xe4."},
-l1(d){return d+" tiedostoa"},
+l1(d){return""+d+" tiedostoa"},
 gdU(){return"K\xe4ytt\xe4j\xe4"},
 gik(){return"Mukautettu"},
 gn6(){return"Miksei t\xe4t\xe4 viesti\xe4 voida lukea?"},
@@ -628,8 +628,8 @@ goa(){return"Cross verified devices"},
 gph(){return"Verified devices only"},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Es,C.aF)})()
-A.dW(b.typeUniverse,JSON.parse('{"Es":{"aF":[]}}'))};
+y(A.Es,C.aF)})()
+B.dW(b.typeUniverse,JSON.parse('{"Es":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_241",e:"endPart",h:b})})($__dart_deferred_initializers__,"MQU1YZnOUWg4vc5dW14598oMXzA=");
+a.eventLog.push({p:"main.dart.js_241",e:"endPart",h:b})})($__dart_deferred_initializers__,"waD5LLCWwLWEYDvW913oFFn0Ej4=");
 //# sourceMappingURL=main.dart.js_241.part.js.map

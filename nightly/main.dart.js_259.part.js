@@ -1,13 +1,13 @@
 ((a,b,c)=>{a[b]=a[b]||{}
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_259",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
-$__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cz3(){return new B.EA(A.dh("hu"))},
+$__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
+cz3(){return new A.EA(B.dh("hu"))},
 EA:function EA(d){this.a=d}}
-A=c[0]
+B=c[0]
 C=c[51]
-B=a.updateHolder(c[27],B)
-B.EA.prototype={
+A=a.updateHolder(c[27],A)
+A.EA.prototype={
 gnt(){return"true"},
 gjK(){return"Jelsz\xf3 megism\xe9tl\xe9se"},
 gm_(){return"Nem k\xe9p f\xe1jl."},
@@ -49,7 +49,7 @@ gki(){return"G\xe9pel\xe9si inf\xf3 megjelen\xedt\xe9se"},
 gnr(){return"H\xfazza balra a v\xe1laszol\xe1shoz"},
 gfY(){return"K\xfcld\xe9s Enterrel"},
 hs(d,e,f,g){return"A Matrix szerver ezeket a specifik\xe1ci\xf3 verzi\xf3kat t\xe1mogatja:\n"+d+"\nAzonban ez az app csak ezeket: "+e},
-l0(d,e){return A.t(d)+" cseveg\xe9sek \xe9s "+A.t(e)+" r\xe9sztvev\u0151k"},
+l0(d,e){return""+d+" cseveg\xe9sek \xe9s "+e+" r\xe9sztvev\u0151k"},
 glX(){return"Nincs t\xf6bb cseveg\xe9s..."},
 goo(){return"Itt m\xe9g nincs cseveg\xe9s. Kezdjen \xfajat valakivel a lentebbi gombbal. \u2935\ufe0f"},
 gnC(){return"Olvasatlan"},
@@ -123,7 +123,7 @@ gig(){return"V\xe1g\xf3lapra m\xe1solva"},
 geF(d){return"M\xe1sol\xe1s"},
 gih(){return"V\xe1g\xf3lapra m\xe1sol\xe1s"},
 ii(d){return"Nem siker\xfclt visszafejteni az \xfczenetet: "+d},
-dX(d){return A.t(d)+" r\xe9sztvev\u0151"},
+dX(d){return""+d+" r\xe9sztvev\u0151"},
 gfi(d){return"L\xe9trehoz\xe1s"},
 ij(d){return"\ud83d\udcac "+d+" cseveg\xe9st hozott l\xe9tre"},
 gej(){return"Csoport l\xe9trehoz\xe1sa"},
@@ -242,7 +242,7 @@ gea(){return"Nem"},
 gjf(){return"Nem el\xe9rhet\u0151 a szerver"},
 gfD(){return"Emojik nem el\xe9rhet\u0151ek. \ud83d\ude15"},
 gjg(){return"Csak akkor kapcsolhat\xf3 be a titkos\xedt\xe1s, ha a szoba nem nyilv\xe1nosan hozz\xe1f\xe9rhet\u0151."},
-jh(d,e){return d.k(0)+" nem egy Matrix szerver, haszn\xe1lja a "+e.k(0)+" szervert ink\xe1bb?"},
+jh(d,e){return d+" nem egy Matrix szerver, haszn\xe1lja a "+e+" szervert ink\xe1bb?"},
 gks(){return"Megh\xedv\xf3 link megoszt\xe1sa"},
 gjj(){return"M\xe9g nem adott meg semmilyen m\xf3dot a jelszava vissza\xe1ll\xedt\xe1s\xe1ra."},
 geT(){return"Nincs enged\xe9ly"},
@@ -419,7 +419,7 @@ glK(){return"Kopog\xe1s"},
 gmQ(){return"Felhaszn\xe1l\xf3k"},
 gmH(){return"R\xe9gi \xfczenetek felold\xe1sa"},
 gkd(){return"A kulcs manu\xe1lis ment\xe9se rendszer megoszt\xe1s vagy v\xe1g\xf3lap m\xe1sol\xe1s seg\xedts\xe9g\xe9vel."},
-l1(d){return d+" f\xe1jl"},
+l1(d){return""+d+" f\xe1jl"},
 gdU(){return"Felhaszn\xe1l\xf3"},
 gik(){return"Egy\xe9ni"},
 gn6(){return"Mi\xe9rt nem olvashat\xf3 ez az \xfczenet?"},
@@ -628,8 +628,8 @@ goa(){return"Cross verified devices"},
 gph(){return"Verified devices only"},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.EA,C.aF)})()
-A.dW(b.typeUniverse,JSON.parse('{"EA":{"aF":[]}}'))};
+y(A.EA,C.aF)})()
+B.dW(b.typeUniverse,JSON.parse('{"EA":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_259",e:"endPart",h:b})})($__dart_deferred_initializers__,"vGQ1fNV3MABuP7TKKd6hZmmDNtI=");
+a.eventLog.push({p:"main.dart.js_259",e:"endPart",h:b})})($__dart_deferred_initializers__,"9C4JVtd+Oquo7ZLkjjkHesxQ1aA=");
 //# sourceMappingURL=main.dart.js_259.part.js.map

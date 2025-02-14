@@ -1,13 +1,13 @@
 ((a,b,c)=>{a[b]=a[b]||{}
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_272",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
-$__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cz9(){return new B.EG(A.dh("ka"))},
+$__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
+cz9(){return new A.EG(B.dh("ka"))},
 EG:function EG(d){this.a=d}}
-A=c[0]
+B=c[0]
 C=c[51]
-B=a.updateHolder(c[33],B)
-B.EG.prototype={
+A=a.updateHolder(c[33],A)
+A.EG.prototype={
 gnt(){return"false"},
 gjK(){return"\u10d2\u10d0\u10d8\u10db\u10d4\u10dd\u10e0\u10d4\u10d7 \u10de\u10d0\u10e0\u10dd\u10da\u10d8"},
 gm_(){return"\u10e4\u10d0\u10d8\u10da\u10d8 \u10d0\u10e0\u10d0\u10d0 \u10e1\u10e3\u10e0\u10d0\u10d7\u10d8."},
@@ -49,7 +49,7 @@ gki(){return"\u10ec\u10d4\u10e0\u10d8\u10e1 \u10e8\u10d4\u10e2\u10e7\u10dd\u10d1
 gnr(){return"Swipe right to left to reply"},
 gfY(){return"\u10d2\u10d0\u10d2\u10d6\u10d0\u10d5\u10dc\u10d0 enter-\u10d8\u10e1 \u10d3\u10d0\u10ed\u10d4\u10e0\u10d8\u10e1\u10d0\u10e1"},
 hs(d,e,f,g){return"The homeserver supports the Spec versions:\n"+d+"\nBut this app supports only "+e},
-l0(d,e){return A.t(d)+" chats and "+A.t(e)+" participants"},
+l0(d,e){return""+d+" chats and "+e+" participants"},
 glX(){return"No more chats found..."},
 goo(){return"No chats found here yet. Start a new chat with someone by using the button below. \u2935\ufe0f"},
 gnC(){return"Unread"},
@@ -123,7 +123,7 @@ gig(){return"\u10d9\u10dd\u10de\u10d8\u10e0\u10d4\u10d1\u10e3\u10da\u10d8\u10d0 
 geF(d){return"\u10d9\u10dd\u10de\u10d8\u10e0\u10d4\u10d1\u10d0"},
 gih(){return"\u10d9\u10dd\u10de\u10d8\u10e0\u10d4\u10d1\u10d0 \u10d1\u10e3\u10e4\u10d4\u10e0\u10e8\u10d8"},
 ii(d){return"\u10e8\u10d4\u10e2\u10e7\u10dd\u10d1\u10d8\u10dc\u10d4\u10d1\u10d8\u10e1 \u10d2\u10d0\u10e8\u10d8\u10e4\u10d5\u10e0\u10d8\u10e1 \u10e8\u10d4\u10ea\u10d3\u10dd\u10db\u10d0: "+d},
-dX(d){return A.t(d)+" \u10db\u10dd\u10dc\u10d0\u10ec\u10d8\u10da\u10d4"},
+dX(d){return""+d+" \u10db\u10dd\u10dc\u10d0\u10ec\u10d8\u10da\u10d4"},
 gfi(d){return"\u10e8\u10d4\u10e5\u10db\u10dc\u10d0"},
 ij(d){return"\ud83d\udcac "+d+" \u10e8\u10d4\u10e5\u10db\u10dc\u10d0 \u10e9\u10d0\u10e2\u10d8"},
 gej(){return"\u10ef\u10d2\u10e3\u10e4\u10d8\u10e1 \u10e8\u10d4\u10e5\u10db\u10dc\u10d0"},
@@ -242,7 +242,7 @@ gea(){return"No"},
 gjf(){return"No connection to the server"},
 gfD(){return"No emotes found. \ud83d\ude15"},
 gjg(){return"You can only activate encryption as soon as the room is no longer publicly accessible."},
-jh(d,e){return d.k(0)+" is no matrix server, use "+e.k(0)+" instead?"},
+jh(d,e){return d+" is no matrix server, use "+e+" instead?"},
 gks(){return"Share invite link"},
 gjj(){return"You have not added a way to recover your password yet."},
 geT(){return"No permission"},
@@ -419,7 +419,7 @@ glK(){return"Knock"},
 gmQ(){return"Users"},
 gmH(){return"Unlock old messages"},
 gkd(){return"Save this key manually by triggering the system share dialog or clipboard."},
-l1(d){return d+" files"},
+l1(d){return""+d+" files"},
 gdU(){return"User"},
 gik(){return"Custom"},
 gn6(){return"Why is this message unreadable?"},
@@ -628,8 +628,8 @@ goa(){return"Cross verified devices"},
 gph(){return"Verified devices only"},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.EG,C.aF)})()
-A.dW(b.typeUniverse,JSON.parse('{"EG":{"aF":[]}}'))};
+y(A.EG,C.aF)})()
+B.dW(b.typeUniverse,JSON.parse('{"EG":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_272",e:"endPart",h:b})})($__dart_deferred_initializers__,"hFhtSJgA4I2zEBkwOoHp0+BYPfs=");
+a.eventLog.push({p:"main.dart.js_272",e:"endPart",h:b})})($__dart_deferred_initializers__,"LcdNLFQ6t77+S3Fk9gMwx1/MgBU=");
 //# sourceMappingURL=main.dart.js_272.part.js.map

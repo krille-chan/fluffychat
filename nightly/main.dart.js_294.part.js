@@ -1,13 +1,13 @@
 ((a,b,c)=>{a[b]=a[b]||{}
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_294",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
-$__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-czt(){return new B.EZ(A.dh("vi"))},
+$__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
+czt(){return new A.EZ(B.dh("vi"))},
 EZ:function EZ(d){this.a=d}}
-A=c[0]
+B=c[0]
 C=c[51]
-B=a.updateHolder(c[50],B)
-B.EZ.prototype={
+A=a.updateHolder(c[50],A)
+A.EZ.prototype={
 gnt(){return"Kh\xf4ng"},
 gjK(){return"Nh\u1eadp l\u1ea1i m\u1eadt kh\u1ea9u"},
 gm_(){return"Kh\xf4ng ph\u1ea3i t\u1ec7p \u1ea3nh."},
@@ -49,7 +49,7 @@ gki(){return"Send typing notifications"},
 gnr(){return"Swipe right to left to reply"},
 gfY(){return"Send on enter"},
 hs(d,e,f,g){return"M\xe1y ch\u1ee7 nh\xe0 h\u1ed7 tr\u1ee3 Spec phi\xean b\u1ea3n:\n"+f+"\nNh\u01b0ng \u1ee9ng d\u1ee5ng n\xe0y ch\u1ec9 h\u1ed7 tr\u1ee3 "+e},
-l0(d,e){return A.t(d)+" chats and "+A.t(e)+" participants"},
+l0(d,e){return""+d+" chats and "+e+" participants"},
 glX(){return"No more chats found..."},
 goo(){return"No chats found here yet. Start a new chat with someone by using the button below. \u2935\ufe0f"},
 gnC(){return"Unread"},
@@ -123,7 +123,7 @@ gig(){return"Copied to clipboard"},
 geF(d){return"Sao ch\xe9p"},
 gih(){return"Copy to clipboard"},
 ii(d){return"Kh\xf4ng th\u1ec3 gi\u1ea3i m\xe3 tin nh\u1eafn: "+d},
-dX(d){return A.t(d)+" th\xe0nh vi\xean"},
+dX(d){return""+d+" th\xe0nh vi\xean"},
 gfi(d){return"T\u1ea1o"},
 ij(d){return d+" \u0111\xe3 t\u1ea1o cu\u1ed9c tr\xf2 chuy\u1ec7n"},
 gej(){return"Create group"},
@@ -242,7 +242,7 @@ gea(){return"No"},
 gjf(){return"No connection to the server"},
 gfD(){return"No emotes found. \ud83d\ude15"},
 gjg(){return"B\u1ea1n ch\u1ec9 c\xf3 th\u1ec3 k\xedch ho\u1ea1t m\xe3 ho\xe1 khi ph\xf2ng n\xe0y kh\xf4ng m\u1edf"},
-jh(d,e){return d.k(0)+" is no matrix server, use "+e.k(0)+" instead?"},
+jh(d,e){return d+" is no matrix server, use "+e+" instead?"},
 gks(){return"Share invite link"},
 gjj(){return"You have not added a way to recover your password yet."},
 geT(){return"No permission"},
@@ -419,7 +419,7 @@ glK(){return"Knock"},
 gmQ(){return"Users"},
 gmH(){return"Unlock old messages"},
 gkd(){return"Save this key manually by triggering the system share dialog or clipboard."},
-l1(d){return d+" files"},
+l1(d){return""+d+" files"},
 gdU(){return"User"},
 gik(){return"Custom"},
 gn6(){return"Why is this message unreadable?"},
@@ -628,8 +628,8 @@ goa(){return"Cross verified devices"},
 gph(){return"Verified devices only"},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.EZ,C.aF)})()
-A.dW(b.typeUniverse,JSON.parse('{"EZ":{"aF":[]}}'))};
+y(A.EZ,C.aF)})()
+B.dW(b.typeUniverse,JSON.parse('{"EZ":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_294",e:"endPart",h:b})})($__dart_deferred_initializers__,"dTFCbcx8Jcmb0o7qFwtiXMNhvYU=");
+a.eventLog.push({p:"main.dart.js_294",e:"endPart",h:b})})($__dart_deferred_initializers__,"jrRaRRtqBCFUnbB27/ZI6umI5jA=");
 //# sourceMappingURL=main.dart.js_294.part.js.map

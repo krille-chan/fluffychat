@@ -1,13 +1,13 @@
 ((a,b,c)=>{a[b]=a[b]||{}
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_204",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
-$__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cyM(){return new B.Ei(A.dh("ca"))},
+$__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
+cyM(){return new A.Ei(B.dh("ca"))},
 Ei:function Ei(d){this.a=d}}
-A=c[0]
+B=c[0]
 C=c[51]
-B=a.updateHolder(c[9],B)
-B.Ei.prototype={
+A=a.updateHolder(c[9],A)
+A.Ei.prototype={
 gnt(){return"true"},
 gjK(){return"Repetiu la contrasenya"},
 gm_(){return"No \xe9s un arxiu d'image."},
@@ -49,7 +49,7 @@ gki(){return"Envia notificacions d'escriptura"},
 gnr(){return"Llisca de dreta esquerra per respondre"},
 gfY(){return"Envia en pr\xe9mer Retorn"},
 hs(d,e,f,g){return"Aquest servidor suporta aquestes versions de Matrix:\n"+d+"\nPer\xf2 aquesta aplicaci\xf3n nom\xe9s \xe9s compatible amb "+e},
-l0(d,e){return A.t(d)+" xats i "+A.t(e)+" participants"},
+l0(d,e){return""+d+" xats i "+e+" participants"},
 glX(){return"No hi ha m\xe9s xats..."},
 goo(){return"Encara no hi ha xats. Obre una conversa amb alg\xfa picant al bot\xf3 de sota. \u2935\ufe0f"},
 gnC(){return"Sense llegir"},
@@ -123,7 +123,7 @@ gig(){return"S\u2019ha copiat al porta-retalls"},
 geF(d){return"Copia"},
 gih(){return"Copia al porta-retalls"},
 ii(d){return"No s'ha pogut desxifrar el missatge: "+d},
-dX(d){return A.t(d)+" participants"},
+dX(d){return""+d+" participants"},
 gfi(d){return"Crea"},
 ij(d){return"\ud83d\udcac "+d+" ha creat el xat"},
 gej(){return"Crea un grup"},
@@ -242,7 +242,7 @@ gea(){return"No"},
 gjf(){return"Sense connexi\xf3 al servidor"},
 gfD(){return"No s\u2019ha trobat cap emoticona. \ud83d\ude15"},
 gjg(){return"Nom\xe9s podreu activar el xifratge quan la sala ja no sigui accessible p\xfablicament."},
-jh(d,e){return d.k(0)+" no \xe9s un servidor de matrix, vols fer servir "+e.k(0)+" ?"},
+jh(d,e){return d+" no \xe9s un servidor de matrix, vols fer servir "+e+" ?"},
 gks(){return"Comparteix un enlla\xe7 d'invitaci\xf3"},
 gjj(){return"Encara no heu afegit cap m\xe8tode per a poder recuperar la contrasenya."},
 geT(){return"Sense perm\xeds"},
@@ -419,7 +419,7 @@ glK(){return"Pica"},
 gmQ(){return"Usu\xe0r\xefis"},
 gmH(){return"Desbloqueja els missatges antics"},
 gkd(){return"Per desar aquesta clau manualment, pica l'eina de compartir o copia-la al porta-retalls."},
-l1(d){return d+" arxius"},
+l1(d){return""+d+" arxius"},
 gdU(){return"Usu\xe0r\xefi"},
 gik(){return"Personalitzat"},
 gn6(){return"Per qu\xe8 no es pot llegir aquest missatge?"},
@@ -628,8 +628,8 @@ goa(){return"Els dispositius verificats m\xfatuament"},
 gph(){return"Nom\xe9s els dispositius verificats"},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Ei,C.aF)})()
-A.dW(b.typeUniverse,JSON.parse('{"Ei":{"aF":[]}}'))};
+y(A.Ei,C.aF)})()
+B.dW(b.typeUniverse,JSON.parse('{"Ei":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_204",e:"endPart",h:b})})($__dart_deferred_initializers__,"9FN2teEKGpYRVz8YJ6CHv9vi6mA=");
+a.eventLog.push({p:"main.dart.js_204",e:"endPart",h:b})})($__dart_deferred_initializers__,"M0D3zzSnW8bRlrLqNo+xxIjoOZA=");
 //# sourceMappingURL=main.dart.js_204.part.js.map

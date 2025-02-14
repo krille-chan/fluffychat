@@ -1,13 +1,13 @@
 ((a,b,c)=>{a[b]=a[b]||{}
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_213",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
-$__dart_deferred_initializers__.current=function(a,b,c,$){var A,C,B={
-cyN(){return new B.Ej(A.dh("cs"))},
+$__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
+cyN(){return new A.Ej(B.dh("cs"))},
 Ej:function Ej(d){this.a=d}}
-A=c[0]
+B=c[0]
 C=c[51]
-B=a.updateHolder(c[10],B)
-B.Ej.prototype={
+A=a.updateHolder(c[10],A)
+A.Ej.prototype={
 gnt(){return"Vypnuto"},
 gjK(){return"Zopakujte heslo"},
 gm_(){return"Nen\xed obr\xe1zek."},
@@ -49,7 +49,7 @@ gki(){return"Pos\xedlat ozn\xe1men\xed o psan\xed"},
 gnr(){return"Pot\xe1hn\u011bte z prava do leva pro odpov\u011b\u010f"},
 gfY(){return"Odeslat p\u0159i vstupu"},
 hs(d,e,f,g){return"Homeserver podporuje specifikaci verz\xed:\n"+d+"\nAle tato aplikace podporuje pouze verze "+e},
-l0(d,e){return A.t(d)+" konverzaci a "+A.t(e)+" \xfa\u010dastn\xedci"},
+l0(d,e){return""+d+" konverzaci a "+e+" \xfa\u010dastn\xedci"},
 glX(){return"\u017d\xe1dn\xe9 dal\u0161\xed konverzace nalezeny..."},
 goo(){return"Nejsou zde \u017e\xe1dn\xe9 chaty. Za\u010dn\u011bte nov\xfd chat s n\u011bk\xfdm, pou\u017eit\xedm n\xed\u017ee uveden\xe9ho tla\u010d\xedtka. \u2935\ufe0f"},
 gnC(){return"Nep\u0159e\u010dten\xe9"},
@@ -123,7 +123,7 @@ gig(){return"Zkop\xedrov\xe1no do schr\xe1nky"},
 geF(d){return"Kop\xedrovat"},
 gih(){return"Zkop\xedrovat do schr\xe1nky"},
 ii(d){return"Nebylo mo\u017en\xe9 de\u0161ifrovat zpr\xe1vu: "+d},
-dX(d){return A.t(d)+" \xfa\u010dastn\xedk\u016f"},
+dX(d){return""+d+" \xfa\u010dastn\xedk\u016f"},
 gfi(d){return"Vytvo\u0159it"},
 ij(d){return"\ud83d\udcac "+d+" zalo\u017eil/a chat"},
 gej(){return"Vytvo\u0159it skupinu"},
@@ -242,7 +242,7 @@ gea(){return"Ne"},
 gjf(){return"\u017d\xe1dn\xe9 p\u0159ipojen\xed k serveru"},
 gfD(){return"Nebyly nalezeny \u017e\xe1dn\xe9 emotikony. \ud83d\ude15"},
 gjg(){return"M\u016f\u017eete aktivovat \u0161ifrov\xe1n\xed jakmile m\xedstnost p\u0159estane b\xfdt ve\u0159ejn\u011b dostupn\xe1."},
-jh(d,e){return d.k(0)+" nen\xed matrixov\xfd server, pou\u017e\xedt m\xedsto toho server "+e.k(0)+"?"},
+jh(d,e){return d+" nen\xed matrixov\xfd server, pou\u017e\xedt m\xedsto toho server "+e+"?"},
 gks(){return"Sd\xedlet pozv\xe1nku"},
 gjj(){return"Dosud jste nep\u0159idali zp\u016fsob, jak obnovit sv\xe9 heslo."},
 geT(){return"Chyb\xed opr\xe1vn\u011bn\xed"},
@@ -419,7 +419,7 @@ glK(){return"Knock"},
 gmQ(){return"U\u017eivatel\xe9"},
 gmH(){return"Odemknout star\xe9 zpr\xe1vy"},
 gkd(){return"Ulo\u017ete tento kl\xed\u010d manu\xe1ln\u011b pomoc\xed syst\xe9mov\xe9ho dialogu sd\xedlen\xed nebo zkop\xedrov\xe1n\xedm do schr\xe1nky."},
-l1(d){return d+" soubor\u016f"},
+l1(d){return""+d+" soubor\u016f"},
 gdU(){return"U\u017eivatel"},
 gik(){return"Vlastn\xed"},
 gn6(){return"Pro\u010d nelze p\u0159e\u010d\xedst tuto zpr\xe1vu?"},
@@ -628,8 +628,8 @@ goa(){return"Cross verified devices"},
 gph(){return"Verified devices only"},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(B.Ej,C.aF)})()
-A.dW(b.typeUniverse,JSON.parse('{"Ej":{"aF":[]}}'))};
+y(A.Ej,C.aF)})()
+B.dW(b.typeUniverse,JSON.parse('{"Ej":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_213",e:"endPart",h:b})})($__dart_deferred_initializers__,"5ksEsQveL+bPblO8PNxN0ummDt8=");
+a.eventLog.push({p:"main.dart.js_213",e:"endPart",h:b})})($__dart_deferred_initializers__,"eQnfK7Zs1FiOPkGEd9zEEB8Tgr8=");
 //# sourceMappingURL=main.dart.js_213.part.js.map
