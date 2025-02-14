@@ -9,6 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     if: github.actor == 'weblate'
     steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
       - name: Enable Pull Request Automerge
         run: gh pr merge --merge --auto "1"
         env:
