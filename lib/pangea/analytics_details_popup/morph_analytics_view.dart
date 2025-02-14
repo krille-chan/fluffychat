@@ -31,7 +31,7 @@ class MorphAnalyticsView extends StatelessWidget {
           builder: (context, snapshot) {
             final morphs = snapshot.data ?? defaultMorphMapping;
 
-            morphs.displayFeatures.sort(
+            final features = morphs.displayFeatures.sorted(
               (a, b) => morphFeatureSortOrder
                   .indexOf(a.feature)
                   .compareTo(morphFeatureSortOrder.indexOf(b.feature)),
@@ -40,21 +40,21 @@ class MorphAnalyticsView extends StatelessWidget {
             return snapshot.connectionState == ConnectionState.done
                 ? ListView.builder(
                     key: const PageStorageKey<String>('morph-analytics'),
-                    itemCount: morphs.displayFeatures.length,
-                    itemBuilder: (context, index) => morphs
-                            .displayFeatures[index].displayTags.isNotEmpty
-                        ? MorphFeatureBox(
-                            morphFeature: morphs.displayFeatures[index].feature,
-                            allTags: snapshot.data
-                                    ?.getDisplayTags(
-                                      morphs.displayFeatures[index].feature,
-                                    )
-                                    .map((tag) => tag.toLowerCase())
-                                    .toSet() ??
-                                {},
-                            onConstructZoom: onConstructZoom,
-                          )
-                        : const SizedBox.shrink(),
+                    itemCount: features.length,
+                    itemBuilder: (context, index) =>
+                        features[index].displayTags.isNotEmpty
+                            ? MorphFeatureBox(
+                                morphFeature: features[index].feature,
+                                allTags: snapshot.data
+                                        ?.getDisplayTags(
+                                          features[index].feature,
+                                        )
+                                        .map((tag) => tag.toLowerCase())
+                                        .toSet() ??
+                                    {},
+                                onConstructZoom: onConstructZoom,
+                              )
+                            : const SizedBox.shrink(),
                   )
                 : const Center(
                     child: CircularProgressIndicator(),
