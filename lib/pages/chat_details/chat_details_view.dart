@@ -295,7 +295,7 @@ class ChatDetailsView extends StatelessWidget {
                         ListTile(
                           title: Text(
                             L10n.of(context).countParticipants(
-                              actualMembersCount.toString(),
+                              actualMembersCount,
                             ),
                             style: TextStyle(
                               color: theme.colorScheme.secondary,
@@ -324,7 +324,7 @@ class ChatDetailsView extends StatelessWidget {
                       : ListTile(
                           title: Text(
                             L10n.of(context).loadCountMoreParticipants(
-                              (actualMembersCount - members.length).toString(),
+                              (actualMembersCount - members.length),
                             ),
                           ),
                           leading: CircleAvatar(
