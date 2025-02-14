@@ -33,6 +33,7 @@ class MorphAnalyticsView extends StatelessWidget {
 
             return snapshot.connectionState == ConnectionState.done
                 ? ListView.builder(
+                    key: const PageStorageKey<String>('morph-analytics'),
                     itemCount: morphs.displayFeatures.length,
                     itemBuilder: (context, index) => morphs
                             .displayFeatures[index].displayTags.isNotEmpty

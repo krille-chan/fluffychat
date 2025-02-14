@@ -82,6 +82,7 @@ class VocabAnalyticsView extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 20),
       child: ListView(
+        key: const PageStorageKey<String>('vocab-analytics'),
         children: [flowers, greens, seeds],
       ),
     );
