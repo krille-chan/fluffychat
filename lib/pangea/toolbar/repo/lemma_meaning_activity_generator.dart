@@ -38,7 +38,7 @@ class LemmaMeaningActivityGenerator {
       userL1: req.userL1,
     );
 
-    final res = await LemmaInfoRepo.get(lemmaDefReq);
+    final res = await LemmaInfoRepo.get(lemmaDefReq, null, true);
 
     final choices = await getDistractorMeanings(lemmaDefReq, 3);
 
