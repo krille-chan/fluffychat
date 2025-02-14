@@ -129,7 +129,8 @@ class LoginController extends State<Login> {
           final dialogResult = await showOkCancelAlertDialog(
             context: context,
             useRootNavigator: false,
-            title: L10n.of(context).noMatrixServer(newDomain, oldHomeserver!),
+            title: L10n.of(context)
+                .noMatrixServer(newDomain.toString(), oldHomeserver.toString()),
             okLabel: L10n.of(context).ok,
             cancelLabel: L10n.of(context).cancel,
           );

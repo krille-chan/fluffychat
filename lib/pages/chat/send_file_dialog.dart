@@ -168,7 +168,7 @@ class SendFileDialogState extends State<SendFileDialog> {
 
     final fileName = widget.files.length == 1
         ? widget.files.single.name
-        : L10n.of(context).countFiles(widget.files.length.toString());
+        : L10n.of(context).countFiles(widget.files.length);
     final fileTypes = widget.files
         .map((file) => file.name.split('.').last)
         .toSet()
