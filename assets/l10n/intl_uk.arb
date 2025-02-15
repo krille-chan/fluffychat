@@ -3228,5 +3228,9 @@
   "shareKeysWithDescription": "Яким пристроям довіряти, щоб вони могли читати ваші повідомлення в зашифрованих бесідах?",
   "@shareKeysWithDescription": {},
   "verifiedDevicesOnly": "Лише верифіковані пристрої",
-  "@verifiedDevicesOnly": {}
+  "@verifiedDevicesOnly": {},
+  "contentNotificationSettings": "Налаштування сповіщень про вміст",
+  "@contentNotificationSettings": {},
+  "generalNotificationSettings": "Загальні налаштування сповіщень",
+  "@generalNotificationSettings": {}
 }
