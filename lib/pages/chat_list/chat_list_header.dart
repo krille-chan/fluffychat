@@ -79,12 +79,21 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                             color: theme.colorScheme.onPrimaryContainer,
                           ),
                         )
-                  : Icon(
-                      status.icon,
-                      color: status.error != null
-                          ? theme.colorScheme.error
-                          : theme.colorScheme.onPrimaryContainer,
-                      size: 18,
+                  : Container(
+                      margin: const EdgeInsets.all(12),
+                      width: 8,
+                      height: 8,
+                      child: Center(
+                        child: CircularProgressIndicator.adaptive(
+                          strokeWidth: 2,
+                          value: status.progress,
+                          valueColor: status.error != null
+                              ? AlwaysStoppedAnimation<Color>(
+                                  theme.colorScheme.error,
+                                )
+                              : null,
+                        ),
+                      ),
                     ),
               suffixIcon: controller.isSearchMode && globalSearch
                   ? controller.isSearching

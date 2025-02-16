@@ -100,12 +100,17 @@ class ChatAppBarTitle extends StatelessWidget {
                             )
                           : Row(
                               children: [
-                                Icon(
-                                  status.icon,
-                                  size: 12,
-                                  color: status.error != null
-                                      ? Theme.of(context).colorScheme.error
-                                      : null,
+                                SizedBox.square(
+                                  dimension: 10,
+                                  child: CircularProgressIndicator.adaptive(
+                                    strokeWidth: 1,
+                                    value: status.progress,
+                                    valueColor: status.error != null
+                                        ? AlwaysStoppedAnimation<Color>(
+                                            Theme.of(context).colorScheme.error,
+                                          )
+                                        : null,
+                                  ),
                                 ),
                                 const SizedBox(width: 4),
                                 Expanded(
