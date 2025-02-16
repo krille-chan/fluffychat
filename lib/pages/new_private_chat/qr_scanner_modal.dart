@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:qr_code_scanner_plus/qr_code_scanner_plus.dart';
 
 class QrScannerModal extends StatefulWidget {
   final void Function(String) onScan;
@@ -71,11 +71,5 @@ class QrScannerModalState extends State<QrScannerModal> {
       final data = scanData.code;
       if (data != null) widget.onScan(data);
     });
-  }
-
-  @override
-  void dispose() {
-    controller?.dispose();
-    super.dispose();
   }
 }
