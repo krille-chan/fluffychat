@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 
 import 'package:cross_file/cross_file.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:flutter_shortcuts/flutter_shortcuts.dart';
+import 'package:flutter_shortcuts_new/flutter_shortcuts_new.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart' as sdk;
 import 'package:matrix/matrix.dart';
