@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_226",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cyR(){return new A.Eo(B.dh("eo"))},
+cyt(){return new A.Eo(B.dh("eo"))},
 Eo:function Eo(d){this.a=d}}
 B=c[0]
 C=c[51]
@@ -237,7 +237,7 @@ gjc(){return"Reguligisto"},
 gfB(){return"Silentigi babilon"},
 gjd(){return"Nova babilo"},
 gfC(){return"Nova kontrolpeto!"},
-gdm(d){return"Sekva"},
+gdl(d){return"Sekva"},
 gea(){return"Ne"},
 gjf(){return"Neniu konekto al la servilo"},
 gfD(){return"Neniuj mienetoj trovi\u011dis. \ud83d\ude15"},
@@ -631,5 +631,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Eo,C.aF)})()
 B.dW(b.typeUniverse,JSON.parse('{"Eo":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_226",e:"endPart",h:b})})($__dart_deferred_initializers__,"0kJfZPmpoAky/2B/ngqJyEu39zs=");
+a.eventLog.push({p:"main.dart.js_226",e:"endPart",h:b})})($__dart_deferred_initializers__,"MdgJaty2kpK08/JQP1N6ZaZNTec=");
 //# sourceMappingURL=main.dart.js_226.part.js.map

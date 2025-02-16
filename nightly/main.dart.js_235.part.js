@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_235",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cyU(){return new A.Er(B.dh("eu"))},
+cyw(){return new A.Er(B.dh("eu"))},
 Er:function Er(d){this.a=d}}
 B=c[0]
 C=c[51]
@@ -237,7 +237,7 @@ gjc(){return"Moderatzailea"},
 gfB(){return"Mututu txata"},
 gjd(){return"Txat berria"},
 gfC(){return"Egiaztaketa-eskaera berria!"},
-gdm(d){return"Hurrengoa"},
+gdl(d){return"Hurrengoa"},
 gea(){return"Ez"},
 gjf(){return"Ez dago konexiorik zerbitzariarekin"},
 gfD(){return"Ez da emoterik aurkitu. \ud83d\ude15"},
@@ -632,5 +632,5 @@ x(A.Er,C.aF)})()
 B.dW(b.typeUniverse,JSON.parse('{"Er":{"aF":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_235",e:"endPart",h:b})})($__dart_deferred_initializers__,"J1RLO/yXdKAMTUckxLAqTbMhSfs=");
+a.eventLog.push({p:"main.dart.js_235",e:"endPart",h:b})})($__dart_deferred_initializers__,"QaQGHfbWjq3h6ISCp+droR+98V0=");
 //# sourceMappingURL=main.dart.js_235.part.js.map

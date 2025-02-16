@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_201",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cyM(){return new A.Ej(B.dh("ca"))},
+cyo(){return new A.Ej(B.dh("ca"))},
 Ej:function Ej(d){this.a=d}}
 B=c[0]
 C=c[51]
@@ -237,7 +237,7 @@ gjc(){return"Moderador"},
 gfB(){return"Silencia el xat"},
 gjd(){return"Xat nou"},
 gfC(){return"Nova sol\xb7licitud de verificaci\xf3!"},
-gdm(d){return"Seg\xfcent"},
+gdl(d){return"Seg\xfcent"},
 gea(){return"No"},
 gjf(){return"Sense connexi\xf3 al servidor"},
 gfD(){return"No s\u2019ha trobat cap emoticona. \ud83d\ude15"},
@@ -631,5 +631,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Ej,C.aF)})()
 B.dW(b.typeUniverse,JSON.parse('{"Ej":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_201",e:"endPart",h:b})})($__dart_deferred_initializers__,"Tn0MY2/8lbfX/+fsT2AeKDJ0yO8=");
+a.eventLog.push({p:"main.dart.js_201",e:"endPart",h:b})})($__dart_deferred_initializers__,"y1HlIHeBwEDXJ7REf99U4PTuM2c=");
 //# sourceMappingURL=main.dart.js_201.part.js.map
