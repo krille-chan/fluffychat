@@ -29,7 +29,6 @@ dependencies:
   file_selector: ^1.0.3
   flutter:
     sdk: flutter
-  flutter_app_badger: ^1.5.0
   flutter_cache_manager: ^3.4.1
   flutter_foreground_task: ^6.1.3
   flutter_highlighter: ^0.1.1
@@ -38,6 +37,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_map: ^6.1.0
+  flutter_new_badger: ^1.1.1
   flutter_olm: 1.3.2 # Keep in sync with scripts/prepare-web.sh ! 1.4.0 does currently not build on Android
   flutter_openssl_crypto: ^0.3.0
   flutter_ringtone_player: ^4.0.0+2
