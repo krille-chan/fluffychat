@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'package:app_links/app_links.dart';
 import 'package:cross_file/cross_file.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_shortcuts_new/flutter_shortcuts_new.dart';
@@ -11,7 +12,6 @@ import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart' as sdk;
 import 'package:matrix/matrix.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
-import 'package:uni_links/uni_links.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_view.dart';
@@ -29,7 +29,6 @@ import 'package:fluffychat/widgets/share_scaffold_dialog.dart';
 import '../../../utils/account_bundles.dart';
 import '../../config/setting_keys.dart';
 import '../../utils/url_launcher.dart';
-import '../../widgets/fluffy_chat_app.dart';
 import '../../widgets/matrix.dart';
 import '../bootstrap/bootstrap_dialog.dart';
 
@@ -362,11 +361,11 @@ class ChatListController extends State<ChatList>
     );
   }
 
-  void _processIncomingUris(String? text) async {
-    if (text == null) return;
+  void _processIncomingUris(Uri? uri) async {
+    if (uri == null) return;
     context.go('/rooms');
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      UrlLauncher(context, text).openMatrixToUrl();
+      UrlLauncher(context, uri.toString()).openMatrixToUrl();
     });
   }
 
@@ -384,11 +383,8 @@ class ChatListController extends State<ChatList>
         .then(_processIncomingSharedMedia);
 
     // For receiving shared Uris
-    _intentUriStreamSubscription = linkStream.listen(_processIncomingUris);
-    if (FluffyChatApp.gotInitialLink == false) {
-      FluffyChatApp.gotInitialLink = true;
-      getInitialLink().then(_processIncomingUris);
-    }
+    _intentUriStreamSubscription =
+        AppLinks().uriLinkStream.listen(_processIncomingUris);
 
     if (PlatformInfos.isAndroid) {
       final shortcuts = FlutterShortcuts();

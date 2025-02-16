@@ -9,6 +9,7 @@ environment:
 
 dependencies:
   animations: ^2.0.11
+  app_links: ^6.3.3
   archive: ^3.4.10
   async: ^2.11.0
   badges: ^3.1.2
@@ -82,7 +83,6 @@ dependencies:
   sqlcipher_flutter_libs: ^0.6.1
   swipe_to_action: ^0.3.0
   tor_detector_web: ^1.1.0
-  uni_links: ^0.5.1
   unifiedpush: ^5.0.1
   unifiedpush_ui: ^0.1.0
   universal_html: ^2.2.4
