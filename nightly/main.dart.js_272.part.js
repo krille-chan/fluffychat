@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_272",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czc(){return new A.EJ(B.dh("lv"))},
-EJ:function EJ(d){this.a=d}}
+czc(){return new A.EK(B.dh("lv"))},
+EK:function EK(d){this.a=d}}
 B=c[0]
 C=c[51]
 A=a.updateHolder(c[36],A)
-A.EJ.prototype={
+A.EK.prototype={
 gnt(){return"n\u0113"},
 gjK(){return"Atk\u0101rtot paroli"},
 gm_(){return"Nav att\u0113la datne."},
@@ -628,8 +628,8 @@ goa(){return"Savstarp\u0113ji apliecin\u0101tas ier\u012bces"},
 gph(){return"Tikai apliecin\u0101tas ier\u012bces"},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.EJ,C.aF)})()
-B.dW(b.typeUniverse,JSON.parse('{"EJ":{"aF":[]}}'))};
+y(A.EK,C.aF)})()
+B.dW(b.typeUniverse,JSON.parse('{"EK":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_272",e:"endPart",h:b})})($__dart_deferred_initializers__,"i0+c/V2ynMmLrUh7vFiK9ZdvPbI=");
+a.eventLog.push({p:"main.dart.js_272",e:"endPart",h:b})})($__dart_deferred_initializers__,"Tks26Wf3crbHsphCY7csi1nwKpo=");
 //# sourceMappingURL=main.dart.js_272.part.js.map
