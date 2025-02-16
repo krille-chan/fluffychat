@@ -22,7 +22,7 @@ ns(d){return"Acerca de "+d},
 gf4(d){return"Aceptar"},
 hb(d){return d+" acept\xf3 la invitaci\xf3n"},
 ghd(){return"Cuenta"},
-he(d){return d+" activ\xf3 el cifrado de extremo a extremo"},
+he(d){return"\ud83d\udd10 "+d+" activ\xf3 el cifrado de extremo a extremo"},
 ghf(){return"A\xf1adir direcci\xf3n de correo"},
 gl_(){return"Por favor confirma tu Matrix ID para borrar tu cuenta."},
 kC(d){return"Esto deber\xeda ser "+d},
@@ -631,5 +631,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Ep,C.aF)})()
 B.dW(b.typeUniverse,JSON.parse('{"Ep":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_228",e:"endPart",h:b})})($__dart_deferred_initializers__,"3ddtk/f39SRAIrnnY3hHJRFQytA=");
+a.eventLog.push({p:"main.dart.js_228",e:"endPart",h:b})})($__dart_deferred_initializers__,"hltaY7vy88bruSaFe70csH/iWdg=");
 //# sourceMappingURL=main.dart.js_228.part.js.map

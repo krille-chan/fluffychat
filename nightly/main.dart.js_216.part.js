@@ -583,7 +583,7 @@ goI(){return"Alle Benachrichtigungen stummschalten"},
 goJ(){return"Setzt alle anderen Regeln au\xdfer Kraft und deaktiviert alle Benachrichtigungen."},
 gp_(){return"Automatisierte Nachrichten unterdr\xfccken"},
 gp0(){return"Unterdr\xfcckt Benachrichtigungen von automatisierten Clients wie Bots."},
-goA(){return"Invite for Me"},
+goA(){return"Einladung f\xfcr mich"},
 goB(){return"Notifies the user when they are invited to a room."},
 goK(){return"Member Event"},
 goL(){return"Suppresses notifications for membership events."},
@@ -632,5 +632,5 @@ x(A.El,C.aF)})()
 B.dW(b.typeUniverse,JSON.parse('{"El":{"aF":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_216",e:"endPart",h:b})})($__dart_deferred_initializers__,"Tg73Ept7cYLW/mVofUxZMoYlrq4=");
+a.eventLog.push({p:"main.dart.js_216",e:"endPart",h:b})})($__dart_deferred_initializers__,"sZwWZrH2YeMNfHbAZwdf43m8AQ4=");
 //# sourceMappingURL=main.dart.js_216.part.js.map

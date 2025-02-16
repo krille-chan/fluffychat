@@ -572,8 +572,8 @@ gp8(d){return"\u0412\u0456\u0434\u043a\u0440\u0438\u0442\u0438"},
 gpk(){return"\u041e\u0447\u0456\u043a\u0443\u0432\u0430\u043d\u043d\u044f \u0441\u0435\u0440\u0432\u0435\u0440\u0430..."},
 gnT(){return"FluffyChat \u0434\u0430\u0454 \u0437\u043c\u043e\u0433\u0443 \u0441\u043f\u0456\u043b\u043a\u0443\u0432\u0430\u0442\u0438\u0441\u044f \u0437 \u0434\u0440\u0443\u0437\u044f\u043c\u0438 \u0443 \u0440\u0456\u0437\u043d\u0438\u0445 \u043c\u0435\u0441\u0435\u043d\u0434\u0436\u0435\u0440\u0430\u0445. \u0414\u0456\u0437\u043d\u0430\u0439\u0442\u0435\u0441\u044f \u0431\u0456\u043b\u044c\u0448\u0435 \u043d\u0430 https://matrix.org \u0430\u0431\u043e \u043f\u0440\u043e\u0441\u0442\u043e \u043d\u0430\u0442\u0438\u0441\u043d\u0456\u0442\u044c *\u041f\u0440\u043e\u0434\u043e\u0432\u0436\u0438\u0442\u0438*."},
 gon(){return"\ud83d\udce9 \u041d\u043e\u0432\u0438\u0439 \u0437\u0430\u043f\u0438\u0442 \u043d\u0430 \u0441\u043f\u0456\u043b\u043a\u0443\u0432\u0430\u043d\u043d\u044f"},
-go9(){return"Content notification settings"},
-gnD(){return"General notification settings"},
+go9(){return"\u041d\u0430\u043b\u0430\u0448\u0442\u0443\u0432\u0430\u043d\u043d\u044f \u0441\u043f\u043e\u0432\u0456\u0449\u0435\u043d\u044c \u043f\u0440\u043e \u0432\u043c\u0456\u0441\u0442"},
+gnD(){return"\u0417\u0430\u0433\u0430\u043b\u044c\u043d\u0456 \u043d\u0430\u043b\u0430\u0448\u0442\u0443\u0432\u0430\u043d\u043d\u044f \u0441\u043f\u043e\u0432\u0456\u0449\u0435\u043d\u044c"},
 gpd(){return"Room notification settings"},
 gpg(){return"User specific notification settings"},
 gp9(){return"Other notification settings"},
@@ -631,5 +631,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.EZ,C.aF)})()
 B.dW(b.typeUniverse,JSON.parse('{"EZ":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_290",e:"endPart",h:b})})($__dart_deferred_initializers__,"eVYgN1FYJxcdSy1X4Fw02caMDSc=");
+a.eventLog.push({p:"main.dart.js_290",e:"endPart",h:b})})($__dart_deferred_initializers__,"mRoRM9AKPfWsbRUPzxPrRcoYgcE=");
 //# sourceMappingURL=main.dart.js_290.part.js.map
