@@ -701,11 +701,12 @@ packages:
   flutter_web_auth_2:
     dependency: "direct main"
     description:
-      name: flutter_web_auth_2
-      sha256: "4d3d2fd3d26bf1a26b3beafd4b4b899c0ffe10dc99af25abc58ffe24e991133c"
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.1.2"
+      path: flutter_web_auth_2
+      ref: "3.x-without-v1"
+      resolved-ref: "48682f19576001e50104a602d891343850adb67f"
+      url: "https://github.com/ThexXTURBOXx/flutter_web_auth_2.git"
+    source: git
+    version: "3.1.2-without-v1"
   flutter_web_auth_2_platform_interface:
     dependency: transitive
     description:
@@ -1189,8 +1190,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: HEAD
-      resolved-ref: d76335e2039c041585df8103f5d4f5924e9e2add
+      ref: "krille/remove-deprecated-flutter-v1-plugin"
+      resolved-ref: "7cd8ef2fedd7f0bef5549b285d63ddb08865d4c1"
       url: "https://github.com/famedly/dart_native_imaging.git"
     source: git
     version: "0.1.1"
@@ -2115,10 +2116,10 @@ packages:
     dependency: "direct main"
     description:
       name: video_compress
-      sha256: "5b42d89f3970c956bad7a86c29682b0892c11a4ddf95ae6e29897ee28788e377"
+      sha256: "31bc5cdb9a02ba666456e5e1907393c28e6e0e972980d7d8d619a7beda0d4f20"
       url: "https://pub.dev"
     source: hosted
-    version: "3.1.3"
+    version: "3.1.4"
   video_player:
     dependency: "direct main"
     description:
