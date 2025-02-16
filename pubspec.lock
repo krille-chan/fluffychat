@@ -629,14 +629,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.23"
-  flutter_ringtone_player:
-    dependency: "direct main"
-    description:
-      name: flutter_ringtone_player
-      sha256: d0277a04e629a6582d776f5dcc2a879a733f7326ba073b872a9ccfbff9d9b51f
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.0.0+3"
   flutter_secure_storage:
     dependency: "direct main"
     description:
@@ -731,10 +723,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_webrtc
-      sha256: f6800cc2af79018c12e955ddf8ad007891fdfbb8199b0ce3dccd0977ed2add9c
+      sha256: "572df3de6c828e571db4b75b4a96a15c2f34fa3d420a84438f44a3158b22e81a"
       url: "https://pub.dev"
     source: hosted
-    version: "0.11.7"
+    version: "0.12.9"
   frontend_server_client:
     dependency: transitive
     description:
@@ -2243,10 +2235,10 @@ packages:
     dependency: "direct main"
     description:
       name: webrtc_interface
-      sha256: abec3ab7956bd5ac539cf34a42fa0c82ea26675847c0966bb85160400eea9388
+      sha256: "10fc6dc0ac16f909f5e434c18902415211d759313c87261f1e4ec5b4f6a04c26"
       url: "https://pub.dev"
     source: hosted
-    version: "1.2.0"
+    version: "1.2.1"
   win32:
     dependency: "direct overridden"
     description:
