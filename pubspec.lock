@@ -110,14 +110,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.1"
-  callkeep:
-    dependency: "direct main"
-    description:
-      name: callkeep
-      sha256: "9e86e9632a603a61f7045c179ea5ca0ee4da0a49fc5f80c2fe09fb422b96d3c6"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.3.3"
   canonical_json:
     dependency: transitive
     description:
