@@ -3245,5 +3245,7 @@
   "roomNotificationSettings": "Einstellungen für Raumbenachrichtigungen",
   "@roomNotificationSettings": {},
   "notificationRuleSuppressNoticesDescription": "Unterdrückt Benachrichtigungen von automatisierten Clients wie Bots.",
-  "@notificationRuleSuppressNoticesDescription": {}
+  "@notificationRuleSuppressNoticesDescription": {},
+  "notificationRuleInviteForMe": "Einladung für mich",
+  "@notificationRuleInviteForMe": {}
 }
