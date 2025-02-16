@@ -1196,10 +1196,11 @@ packages:
   native_imaging:
     dependency: "direct main"
     description:
-      name: native_imaging
-      sha256: "182ccd8e0815a8a2158500ef66c828c030f6b9e05783e41e22f33bbcfd46a3d5"
-      url: "https://pub.dev"
-    source: hosted
+      path: "."
+      ref: HEAD
+      resolved-ref: d76335e2039c041585df8103f5d4f5924e9e2add
+      url: "https://github.com/famedly/dart_native_imaging.git"
+    source: git
     version: "0.1.1"
   nested:
     dependency: transitive

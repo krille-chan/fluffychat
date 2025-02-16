@@ -61,7 +61,8 @@ dependencies:
   linkify: ^5.0.0
   matrix: ^0.38.0
   mime: ^1.0.6
-  native_imaging: ^0.1.1
+  native_imaging:
+    git: https://github.com/famedly/dart_native_imaging.git
   opus_caf_converter_dart: ^1.0.1
   package_info_plus: ^8.0.2
   pasteboard: ^0.2.0
