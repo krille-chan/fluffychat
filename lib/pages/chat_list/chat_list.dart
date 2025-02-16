@@ -29,7 +29,6 @@ import 'package:fluffychat/widgets/share_scaffold_dialog.dart';
 import '../../../utils/account_bundles.dart';
 import '../../config/setting_keys.dart';
 import '../../utils/url_launcher.dart';
-import '../../utils/voip/callkeep_manager.dart';
 import '../../widgets/fluffy_chat_app.dart';
 import '../../widgets/matrix.dart';
 import '../bootstrap/bootstrap_dialog.dart';
@@ -409,7 +408,6 @@ class ChatListController extends State<ChatList>
     scrollController.addListener(_onScroll);
     _waitForFirstSync();
     _hackyWebRTCFixForWeb();
-    CallKeepManager().initialize();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (mounted) {
         searchServer =
