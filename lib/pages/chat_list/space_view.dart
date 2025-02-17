@@ -547,8 +547,7 @@ class _SpaceViewState extends State<SpaceView> {
                   L10n.of(context).countChatsAndCountParticipants(
                     // #Pangea
                     // room.spaceChildren.length,
-                    (_discoveredChildren?.length ?? 0) +
-                        (joinedRooms?.length ?? 0),
+                    room.spaceChildCount.toString(),
                     // Pangea#
                     room.summary.mJoinedMemberCount ?? 1,
                   ),
