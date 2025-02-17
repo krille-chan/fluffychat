@@ -238,16 +238,24 @@ class MessageTextWidget extends StatelessWidget {
               );
             }
 
-            // if the tokenPosition is a combination of the token and following punctuation
+            // if the tokenPosition is a combination of the token and preceding / following punctuation
             // split them so that only the token itself is highlighted when clicked
-            String firstSubstring = substring;
-            String secondSubstring = '';
+            String start = '';
+            String middle = substring;
+            String end = '';
+
+            if (tokenPosition.tokenStart != tokenPosition.start) {
+              final splitIndex =
+                  (tokenPosition.tokenStart - tokenPosition.start);
+              start = substring.substring(0, splitIndex);
+              middle = substring.substring(splitIndex);
+            }
 
             if (tokenPosition.end != tokenPosition.tokenEnd) {
               final splitIndex = (tokenPosition.end - tokenPosition.start) -
                   (tokenPosition.end - tokenPosition.tokenEnd);
-              firstSubstring = substring.substring(0, splitIndex);
-              secondSubstring = substring.substring(splitIndex);
+              middle = middle.substring(0, splitIndex);
+              end = substring.substring(splitIndex);
             }
 
             return WidgetSpan(
@@ -260,8 +268,22 @@ class MessageTextWidget extends StatelessWidget {
                   child: RichText(
                     text: TextSpan(
                       children: [
+                        if (start.isNotEmpty)
+                          LinkifySpan(
+                            text: start,
+                            style: style,
+                            linkStyle: TextStyle(
+                              decoration: TextDecoration.underline,
+                              color: Theme.of(context).brightness ==
+                                      Brightness.light
+                                  ? Theme.of(context).colorScheme.primary
+                                  : Theme.of(context).colorScheme.onPrimary,
+                            ),
+                            onOpen: (url) =>
+                                UrlLauncher(context, url.url).launchUrl(),
+                          ),
                         LinkifySpan(
-                          text: firstSubstring,
+                          text: middle,
                           style: style.merge(
                             TextStyle(
                               backgroundColor: backgroundColor,
@@ -277,9 +299,9 @@ class MessageTextWidget extends StatelessWidget {
                           onOpen: (url) =>
                               UrlLauncher(context, url.url).launchUrl(),
                         ),
-                        if (secondSubstring.isNotEmpty)
+                        if (end.isNotEmpty)
                           LinkifySpan(
-                            text: secondSubstring,
+                            text: end,
                             style: style,
                             linkStyle: TextStyle(
                               decoration: TextDecoration.underline,

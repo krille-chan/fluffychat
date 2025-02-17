@@ -28,7 +28,7 @@ class MessageTextUtil {
       final tokens = pangeaMessageEvent.messageDisplayRepresentation!.tokens!;
       int pointer = 0;
       while (pointer < tokens.length) {
-        final token = tokens[pointer];
+        PangeaToken token = tokens[pointer];
         final start = token.start;
         final end = token.end;
 
@@ -56,13 +56,23 @@ class MessageTextUtil {
           );
         }
 
-        // group tokens with punctuation next to it so punctuation doesn't cause newline
-        final List<PangeaToken> followingPunctTokens = [];
+        // group tokens with punctuation before and after so punctuation doesn't cause newline
         int nextTokenPointer = pointer + 1;
         while (nextTokenPointer < tokens.length) {
           final nextToken = tokens[nextTokenPointer];
-          if (nextToken.pos == 'PUNCT') {
-            followingPunctTokens.add(nextToken);
+          if (token.pos == 'PUNCT' && token.end == nextToken.start) {
+            token = nextToken;
+            nextTokenPointer++;
+            endIndex = messageCharacters.take(nextToken.end).length;
+            continue;
+          }
+          break;
+        }
+
+        while (nextTokenPointer < tokens.length) {
+          final nextToken = tokens[nextTokenPointer];
+
+          if (nextToken.pos == 'PUNCT' && token.end == nextToken.start) {
             nextTokenPointer++;
             endIndex = messageCharacters.take(nextToken.end).length;
             continue;
@@ -74,8 +84,8 @@ class MessageTextUtil {
           TokenPosition(
             start: startIndex,
             end: endIndex,
-            tokenStart: startIndex,
-            tokenEnd: messageCharacters.take(end).length,
+            tokenStart: messageCharacters.take(token.start).length,
+            tokenEnd: messageCharacters.take(token.end).length,
             token: token,
             hideContent: hideContent,
             selected: (isSelected?.call(token) ?? false) &&
