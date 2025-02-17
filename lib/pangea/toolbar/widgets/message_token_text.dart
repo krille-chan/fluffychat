@@ -241,27 +241,19 @@ class MessageTextWidget extends StatelessWidget {
             // if the tokenPosition is a combination of the token and preceding / following punctuation
             // split them so that only the token itself is highlighted when clicked
             String start = '';
-            String middle = substring;
+            String middle = '';
             String end = '';
 
             final startSplitIndex =
-                (tokenPosition.tokenStart - tokenPosition.start);
-            final endSplitIndex = (tokenPosition.end - tokenPosition.tokenEnd);
+                tokenPosition.tokenStart - tokenPosition.start;
+            final endSplitIndex = tokenPosition.tokenEnd - tokenPosition.start;
 
-            if (tokenPosition.tokenStart != tokenPosition.start) {
-              start = substring.substring(0, startSplitIndex);
-            }
-
-            if (tokenPosition.end != tokenPosition.tokenEnd) {
-              end = substring.substring(endSplitIndex);
-            }
-
-            if (start.isNotEmpty || end.isNotEmpty) {
-              middle = substring.substring(
-                start.isEmpty ? 0 : start.length,
-                substring.length - (end.isEmpty ? 0 : end.length),
-              );
-            }
+            start = substring.substring(0, startSplitIndex);
+            end = substring.substring(endSplitIndex);
+            middle = substring.substring(
+              startSplitIndex,
+              endSplitIndex,
+            );
 
             return WidgetSpan(
               child: MouseRegion(
