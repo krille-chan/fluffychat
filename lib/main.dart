@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:collection/collection.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -114,6 +115,9 @@ Future<void> startGui(List<Client> clients, SharedPreferences store) async {
       await firstClient.logout();
     }
   }
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp, // Lock to portrait mode
+  ]);
   // Pangea#
   runApp(FluffyChatApp(clients: clients, pincode: pin, store: store));
 }
