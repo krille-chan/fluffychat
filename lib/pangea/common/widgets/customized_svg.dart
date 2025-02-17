@@ -70,22 +70,39 @@ class CustomizedSvg extends StatelessWidget {
 
   Future<String?> _getModifiedSvg() async {
     final svgContent = await _fetchSvg();
-    String? modifiedSvg = svgContent;
+    final String? modifiedSvg = svgContent;
     if (modifiedSvg == null) {
       return null;
     }
 
-    // find the white and replace with black
-    // or find black and replace with white
-    modifiedSvg = modifiedSvg.replaceAll("fill=\"none\"", '');
+    return _modifySVG(modifiedSvg);
+  }
+
+  String _modifySVG(String svgContent) {
+    String modifiedSvg = svgContent.replaceAll("fill=\"none\"", '');
     for (final entry in colorReplacements.entries) {
-      modifiedSvg = modifiedSvg!.replaceAll(entry.key, entry.value);
+      modifiedSvg = modifiedSvg.replaceAll(entry.key, entry.value);
     }
     return modifiedSvg;
   }
 
+  String? _getSvgFromCache() {
+    final cachedSvgEntry = _svgStorage.read(svgUrl);
+    if (cachedSvgEntry != null &&
+        cachedSvgEntry is Map<String, dynamic> &&
+        cachedSvgEntry['svg'] is String) {
+      return _modifySVG(cachedSvgEntry['svg'] as String);
+    }
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
+    final cached = _getSvgFromCache();
+    if (cached != null) {
+      return SvgPicture.string(cached);
+    }
+
     return FutureBuilder<String?>(
       future: _getModifiedSvg(),
       builder: (context, snapshot) {

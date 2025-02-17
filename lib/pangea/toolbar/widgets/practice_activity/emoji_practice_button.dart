@@ -27,7 +27,7 @@ class EmojiPracticeButton extends StatelessWidget {
     final emoji = token.getEmoji();
     return _shouldDoActivity || emoji != null
         ? SizedBox(
-            width: 30,
+            width: 40,
             child: WordZoomActivityButton(
               icon: emoji == null
                   ? const Icon(Icons.add_reaction_outlined)
@@ -36,6 +36,6 @@ class EmojiPracticeButton extends StatelessWidget {
               onPressed: onPressed,
             ),
           )
-        : const SizedBox(width: 30);
+        : const SizedBox(width: 40);
   }
 }
