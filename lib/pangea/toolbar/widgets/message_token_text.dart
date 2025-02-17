@@ -244,18 +244,23 @@ class MessageTextWidget extends StatelessWidget {
             String middle = substring;
             String end = '';
 
+            final startSplitIndex =
+                (tokenPosition.tokenStart - tokenPosition.start);
+            final endSplitIndex = (tokenPosition.end - tokenPosition.tokenEnd);
+
             if (tokenPosition.tokenStart != tokenPosition.start) {
-              final splitIndex =
-                  (tokenPosition.tokenStart - tokenPosition.start);
-              start = substring.substring(0, splitIndex);
-              middle = substring.substring(splitIndex);
+              start = substring.substring(0, startSplitIndex);
             }
 
             if (tokenPosition.end != tokenPosition.tokenEnd) {
-              final splitIndex = (tokenPosition.end - tokenPosition.start) -
-                  (tokenPosition.end - tokenPosition.tokenEnd);
-              middle = middle.substring(0, splitIndex);
-              end = substring.substring(splitIndex);
+              end = substring.substring(endSplitIndex);
+            }
+
+            if (start.isNotEmpty || end.isNotEmpty) {
+              middle = substring.substring(
+                start.isEmpty ? 0 : start.length,
+                substring.length - (end.isEmpty ? 0 : end.length),
+              );
             }
 
             return WidgetSpan(
