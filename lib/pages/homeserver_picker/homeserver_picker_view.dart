@@ -38,11 +38,11 @@ class HomeserverPickerView extends StatelessWidget {
             onSelected: controller.onMoreAction,
             itemBuilder: (_) => [
               PopupMenuItem(
-                value: MoreLoginActions.passwordLogin,
+                value: MoreLoginActions.importBackup,
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Icon(Icons.login_outlined),
+                    const Icon(Icons.import_export_outlined),
                     const SizedBox(width: 12),
                     Text(L10n.of(context).loginWithMatrixId),
                   ],
@@ -212,8 +212,10 @@ class HomeserverPickerView extends StatelessWidget {
                             ),
                             onPressed: controller.isLoading
                                 ? null
-                                : controller.restoreBackup,
-                            child: Text(L10n.of(context).hydrate),
+                                : () => controller.checkHomeserverAction(
+                                      legacyPasswordLogin: true,
+                                    ),
+                            child: Text(L10n.of(context).loginWithMatrixId),
                           ),
                         ],
                       ),
