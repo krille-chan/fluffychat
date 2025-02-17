@@ -104,6 +104,11 @@ class PublicRoomBottomSheetState extends State<PublicRoomBottomSheet> {
           !client.getRoomById(result.result!)!.isSpace) {
         outerContext.go('/rooms/${result.result!}');
       }
+      // #Pangea
+      else {
+        outerContext.push('/rooms/${result.result!}/details');
+      }
+      // Pangea#
       return;
     }
   }
