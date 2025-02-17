@@ -209,6 +209,7 @@ class TtsController {
   Future<void> _speak(String text) async {
     try {
       stop();
+      text = text.toLowerCase();
 
       Logs().i('Speaking: $text');
       final result = await Future(
