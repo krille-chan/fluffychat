@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
@@ -31,6 +33,22 @@ class LemmaUseExampleMessages extends StatelessWidget {
         continue;
       }
 
+      final exampleIndex = examples.indexWhere(
+        (example) => example.event.eventId == use.metadata.eventId!,
+      );
+
+      if (exampleIndex != -1) {
+        final example = examples[exampleIndex];
+        final token = example.tokens.firstWhereOrNull(
+          (token) => token.text.content == use.form,
+        );
+        if (token == null) continue;
+        if (example.isTokenAdded(token)) continue;
+        example.addToken(token);
+        examples[exampleIndex] = example;
+        continue;
+      }
+
       final Room? room = MatrixState.pangeaController.matrixState.client
           .getRoomById(use.metadata.roomId);
       if (room == null) continue;
@@ -39,10 +57,6 @@ class LemmaUseExampleMessages extends StatelessWidget {
       if (room.timeline == null) {
         timeline = await room.getTimeline();
       }
-
-      final exampleIndex = examples.indexWhere(
-        (example) => example.event.eventId == use.metadata.eventId!,
-      );
 
       final Event? event = exampleIndex != -1
           ? examples[exampleIndex].event
@@ -62,19 +76,15 @@ class LemmaUseExampleMessages extends StatelessWidget {
       );
       if (token == null) continue;
 
-      final example = exampleIndex == -1
-          ? ExampleMessage(
-              event: event,
-              message: pangeaMessageEvent.messageDisplayText,
-            )
-          : examples[exampleIndex];
+      final example = ExampleMessage(
+        event: event,
+        message: pangeaMessageEvent.messageDisplayText,
+        tokens: tokens,
+      );
 
       if (example.isTokenAdded(token)) continue;
-      example.addTokenPosition(token.text.offset, token.text.length);
-
-      exampleIndex == -1
-          ? examples.add(example)
-          : examples[exampleIndex] = example;
+      example.addToken(token);
+      examples.add(example);
       if (examples.length > 4) break;
     }
 
@@ -135,52 +145,143 @@ class LemmaUseExampleMessages extends StatelessWidget {
 class ExampleMessage {
   final Event event;
   final String message;
-  final Map<int, int> _tokenPositions;
+  final List<PangeaToken> tokens;
+  final List<PangeaToken> _boldedTokens;
 
   ExampleMessage({
     required this.event,
     required this.message,
-  }) : _tokenPositions = {};
+    required this.tokens,
+  }) : _boldedTokens = [];
 
-  void addTokenPosition(int offset, int length) {
-    _tokenPositions[offset] = length;
+  final int tokenWindowSize = 10;
+
+  void addToken(PangeaToken token) {
+    _boldedTokens.add(token);
   }
 
-  bool isTokenAdded(PangeaToken token) {
-    return _tokenPositions.keys.any(
-      (offset) => offset == token.text.offset,
-    );
-  }
+  bool isTokenAdded(PangeaToken token) => _boldedTokens.contains(token);
 
-  List<List<int>> get _sortedTokenPositions {
-    return _tokenPositions.entries
-        .sorted((a, b) => a.key.compareTo(b.key))
-        .map((entry) => [entry.key, entry.value])
-        .toList();
-  }
-
+  /// Get a list of text spans with styling to indicate the matching tokens.
+  /// Leaves a window of tokens around the highlighted tokens.
   List<TextSpan> get textSpans {
-    final spans = <TextSpan>[];
-    int lastOffset = 0;
-    for (final token in _sortedTokenPositions) {
-      spans.add(
-        TextSpan(
-          text: message.substring(lastOffset, token[0]),
+    // define the token windows
+    final List<TokenWindow> tokenWindows = [];
+    tokens.sort((a, b) => a.text.offset.compareTo(b.text.offset));
+    _boldedTokens.sort((a, b) => a.text.offset.compareTo(b.text.offset));
+
+    int globalTokenIndex = 0;
+    for (int i = 0; i < _boldedTokens.length; i++) {
+      // go through each of the bolded tokens and add the surrounding token windows
+      final boldedToken = _boldedTokens[i];
+      final tokenIndex = tokens.indexOf(boldedToken);
+
+      // globalTokenIndex is the index of the last token added to this list + 1.
+      if (globalTokenIndex < tokenIndex) {
+        final gapSize = tokenIndex - globalTokenIndex;
+        if (gapSize <= tokenWindowSize) {
+          // if the gap is less than the window size, add all the gap tokens
+          tokenWindows.add(
+            TokenWindow(
+              globalTokenIndex,
+              tokenIndex,
+              false,
+            ),
+          );
+        } else {
+          // otherwise, add the window size tokens preceding the bolded token
+          tokenWindows.add(
+            TokenWindow(
+              tokenIndex - tokenWindowSize,
+              tokenIndex,
+              false,
+            ),
+          );
+        }
+      }
+
+      globalTokenIndex = tokenIndex;
+
+      tokenWindows.add(
+        TokenWindow(
+          tokenIndex,
+          tokenIndex + 1,
+          true,
         ),
       );
-      spans.add(
-        TextSpan(
-          text: message.substring(token[0], token[0] + token[1]),
-          style: const TextStyle(fontWeight: FontWeight.bold),
+
+      globalTokenIndex = tokenIndex + 1;
+
+      if (i >= _boldedTokens.length - 1) {
+        // if this is the last bolded token, then add the
+        // remaining tokens (up to the max window size)
+        if (globalTokenIndex >= tokens.length) break;
+        final endIndex = min(tokens.length, globalTokenIndex + tokenWindowSize);
+        tokenWindows.add(
+          TokenWindow(
+            globalTokenIndex,
+            endIndex,
+            false,
+          ),
+        );
+        break;
+      }
+
+      // add the window tokens after the bolded token
+      final nextToken = _boldedTokens[i + 1];
+      final nextTokenIndex = tokens.indexOf(nextToken);
+      final endIndex = min(nextTokenIndex, globalTokenIndex + tokenWindowSize);
+      tokenWindows.add(
+        TokenWindow(
+          globalTokenIndex,
+          endIndex,
+          false,
         ),
       );
-      lastOffset = token[0] + token[1];
+
+      globalTokenIndex = endIndex;
     }
-    spans.add(
-      TextSpan(
-        text: message.substring(lastOffset),
-      ),
-    );
+
+    final List<TextSpan> spans = [];
+    // use separate pointers to handle white space around bolded tokens
+    int characterPointer = 0;
+    int tokenPointer = 0;
+
+    for (final window in tokenWindows) {
+      if (tokenPointer < window.startTokenIndex) {
+        spans.add(const TextSpan(text: " ... "));
+        characterPointer = tokens[window.startTokenIndex].text.offset;
+      }
+
+      spans.add(
+        TextSpan(
+          text: message.substring(
+            characterPointer,
+            tokens[window.endTokenIndex - 1].text.offset +
+                tokens[window.endTokenIndex - 1].text.length,
+          ),
+          style: window.isBold
+              ? const TextStyle(fontWeight: FontWeight.bold)
+              : null,
+        ),
+      );
+
+      tokenPointer = window.endTokenIndex;
+      characterPointer = tokens[window.endTokenIndex - 1].text.offset +
+          tokens[window.endTokenIndex - 1].text.length;
+    }
+
+    if (tokenPointer < tokens.length) {
+      spans.add(const TextSpan(text: " ... "));
+    }
     return spans;
   }
+}
+
+class TokenWindow {
+  int startTokenIndex;
+  int endTokenIndex;
+  bool isBold;
+
+  TokenWindow(this.startTokenIndex, this.endTokenIndex, this.isBold);
 }
