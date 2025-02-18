@@ -1189,12 +1189,11 @@ packages:
   native_imaging:
     dependency: "direct main"
     description:
-      path: "."
-      ref: "krille/remove-deprecated-flutter-v1-plugin"
-      resolved-ref: "7cd8ef2fedd7f0bef5549b285d63ddb08865d4c1"
-      url: "https://github.com/famedly/dart_native_imaging.git"
-    source: git
-    version: "0.1.1"
+      name: native_imaging
+      sha256: "93573afdcab070011d78a40fc1f69b61967f1f8485d2b81a7a2ee585a85f4c04"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.0"
   nested:
     dependency: transitive
     description:

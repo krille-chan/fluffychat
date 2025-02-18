@@ -60,10 +60,7 @@ dependencies:
   linkify: ^5.0.0
   matrix: ^0.38.0
   mime: ^1.0.6
-  native_imaging:
-    git: 
-      url: https://github.com/famedly/dart_native_imaging.git
-      ref: krille/remove-deprecated-flutter-v1-plugin
+  native_imaging: ^0.2.0
   opus_caf_converter_dart: ^1.0.1
   package_info_plus: ^8.0.2
   pasteboard: ^0.2.0
