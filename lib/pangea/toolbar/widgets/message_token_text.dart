@@ -197,12 +197,12 @@ class MessageTextWidget extends StatelessWidget {
       text: TextSpan(
         children:
             tokenPositions.mapIndexed((int i, TokenPosition tokenPosition) {
-          final shouldDo = tokenPosition.token?.shouldDoActivity(
-                a: ActivityTypeEnum.wordMeaning,
-                feature: null,
-                tag: null,
-              ) ??
-              false;
+          final shouldDo = pangeaMessageEvent.shouldDoActivity(
+            token: tokenPosition.token,
+            a: ActivityTypeEnum.wordMeaning,
+            feature: null,
+            tag: null,
+          );
 
           final didMeaningActivity =
               tokenPosition.token?.didActivitySuccessfully(

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
+import 'package:fluffychat/pangea/toolbar/enums/activity_type_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/word_zoom/morphs/morphological_list_item.dart';
 
 class ActivityMorph {
@@ -16,12 +18,14 @@ class ActivityMorph {
 }
 
 class MorphologicalListWidget extends StatelessWidget {
+  final PangeaMessageEvent pangeaMessageEvent;
   final PangeaToken token;
   final String? selectedMorphFeature;
   final Function(String?) setMorphFeature;
 
   const MorphologicalListWidget({
     super.key,
+    required this.pangeaMessageEvent,
     required this.selectedMorphFeature,
     required this.token,
     required this.setMorphFeature,
@@ -32,7 +36,12 @@ class MorphologicalListWidget extends StatelessWidget {
       return ActivityMorph(
         morphFeature: entry.key,
         morphTag: entry.value,
-        revealed: !token.shouldDoMorphActivity(entry.key),
+        revealed: !pangeaMessageEvent.shouldDoActivity(
+          token: token,
+          a: ActivityTypeEnum.morphId,
+          feature: entry.key,
+          tag: token.getMorphTag(entry.key),
+        ),
       );
     }).toList();
 

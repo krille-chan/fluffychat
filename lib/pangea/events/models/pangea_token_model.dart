@@ -388,16 +388,6 @@ class PangeaToken {
     }
   }
 
-  bool get shouldDoPosActivity => shouldDoMorphActivity("pos");
-
-  bool shouldDoMorphActivity(String feature) {
-    return shouldDoActivity(
-      a: ActivityTypeEnum.morphId,
-      feature: feature,
-      tag: getMorphTag(feature),
-    );
-  }
-
   /// Safely get morph tag for a given feature without regard for case
   String? getMorphTag(String feature) {
     if (morph.containsKey(feature)) return morph[feature];
@@ -461,22 +451,6 @@ class PangeaToken {
   }) {
     return isActivityBasicallyEligible(a, feature, tag) &&
         _isActivityProbablyLevelAppropriate(a, feature, tag);
-  }
-
-  List<ActivityTypeEnum> get eligibleActivityTypes {
-    final List<ActivityTypeEnum> eligibleActivityTypes = [];
-
-    if (!lemma.saveVocab) {
-      return eligibleActivityTypes;
-    }
-
-    for (final type in ActivityTypeEnum.values) {
-      if (shouldDoActivity(a: type, feature: null, tag: null)) {
-        eligibleActivityTypes.add(type);
-      }
-    }
-
-    return eligibleActivityTypes;
   }
 
   ConstructUses get vocabConstruct =>
@@ -576,14 +550,6 @@ class PangeaToken {
       .where((construct) => construct != null)
       .cast<ConstructUses>()
       .toList();
-
-  Map<String, dynamic> toServerChoiceTokenWithXP() {
-    return {
-      'token': toJson(),
-      'constructs_with_xp': constructs.map((e) => e.toJson()).toList(),
-      'target_types': eligibleActivityTypes.map((e) => e.string).toList(),
-    };
-  }
 
   Future<List<String>> getEmojiChoices() => LemmaInfoRepo.get(
         LemmaInfoRequest(

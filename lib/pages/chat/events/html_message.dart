@@ -253,7 +253,8 @@ class HtmlMessage extends StatelessWidget {
             ? isSelected!.call(token)
             : false;
 
-        final shouldDo = token?.shouldDoActivity(
+        final shouldDo = pangeaMessageEvent?.shouldDoActivity(
+              token: token,
               a: ActivityTypeEnum.wordMeaning,
               feature: null,
               tag: null,

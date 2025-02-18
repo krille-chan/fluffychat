@@ -71,6 +71,8 @@ class MessageAnalyticsEntry {
 
   late final bool _includeHiddenWordActivities;
 
+  late final PangeaMessageEvent _pangeaMessageEvent;
+
   final List<TargetTokensAndActivityType> _activityQueue = [];
 
   final int _maxQueueLength = 3;
@@ -78,9 +80,11 @@ class MessageAnalyticsEntry {
   MessageAnalyticsEntry({
     required List<PangeaToken> tokens,
     required bool includeHiddenWordActivities,
+    required PangeaMessageEvent pangeaMessageEvent,
   }) {
     _tokens = tokens;
     _includeHiddenWordActivities = includeHiddenWordActivities;
+    _pangeaMessageEvent = pangeaMessageEvent;
     setActivityQueue();
   }
 
@@ -171,7 +175,8 @@ class MessageAnalyticsEntry {
     final List<List<PangeaToken>> sequences = [];
     List<PangeaToken> currentSequence = [];
     for (final token in _tokens) {
-      if (token.shouldDoActivity(
+      if (_pangeaMessageEvent.shouldDoActivity(
+        token: token,
         a: ActivityTypeEnum.hiddenWordListening,
         feature: null,
         tag: null,
@@ -257,6 +262,7 @@ class MessageAnalyticsController {
     _cache[key] = MessageAnalyticsEntry(
       tokens: tokens,
       includeHiddenWordActivities: includeHiddenWordActivities,
+      pangeaMessageEvent: pangeaMessageEvent,
     );
 
     clean();

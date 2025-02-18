@@ -13,6 +13,7 @@ import 'package:fluffychat/pangea/choreographer/repo/full_text_translation_repo.
 import 'package:fluffychat/pangea/common/constants/model_keys.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_representation_event.dart';
 import 'package:fluffychat/pangea/events/extensions/pangea_event_extension.dart';
+import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/events/models/representation_content_model.dart';
 import 'package:fluffychat/pangea/events/models/tokens_event_content_model.dart';
 import 'package:fluffychat/pangea/spaces/models/space_model.dart';
@@ -578,7 +579,8 @@ class PangeaMessageEvent {
     if (eligibleTokens.isEmpty) return 1;
 
     final alreadyDid = eligibleTokens.where(
-      (token) => !token.shouldDoActivity(
+      (token) => !shouldDoActivity(
+        token: token,
         a: ActivityTypeEnum.wordMeaning,
         feature: null,
         tag: null,
@@ -697,4 +699,21 @@ class PangeaMessageEvent {
       l2Code == null ? [] : practiceActivitiesByLangCode(l2Code!);
 
   bool get shouldShowToolbar => !event.isActivityMessage;
+
+  bool shouldDoActivity({
+    required PangeaToken? token,
+    required ActivityTypeEnum a,
+    required String? feature,
+    required String? tag,
+  }) {
+    if (!messageDisplayLangIsL2 || token == null) {
+      return false;
+    }
+
+    return token.shouldDoActivity(
+      a: a,
+      feature: feature,
+      tag: tag,
+    );
+  }
 }
