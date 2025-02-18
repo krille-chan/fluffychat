@@ -2492,7 +2492,7 @@
       }
     }
   },
-  "fileIsTooBigForServer": "Le serveur signale que le fichier est trop volumineux pour être envoyé.",
+  "fileIsTooBigForServer": "Impossible d'envoyer ! Le serveur accepte uniquement les pièces jointes jusqu'à {max}.",
   "@fileIsTooBigForServer": {},
   "jumpToLastReadMessage": "Aller au dernier message lu",
   "@jumpToLastReadMessage": {},
@@ -3017,6 +3017,77 @@
     "type": "String",
     "placeholders": {
       "homeserver": {
+        "type": "String"
+      }
+    }
+  },
+  "changeTheDescriptionOfTheGroup": "Modifier la description de la discussion",
+  "@changeTheDescriptionOfTheGroup": {},
+  "userLevel": "{level} — Membre",
+  "@userLevel": {
+    "type": "String",
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
+  "chatPermissionsDescription": "Définir quel niveau de pouvoir est nécessaires pour certaines actions dans cette discussion. Les niveaux de pouvoir 0, 50 et 100 représentent généralement les membres, la modération et l'administration, mais toute gradation est possible.",
+  "@chatPermissionsDescription": {},
+  "changeGeneralChatSettings": "Modifier les paramètres généraux de la discussion",
+  "@changeGeneralChatSettings": {},
+  "invitedBy": "📩 Invitation par {user}",
+  "@invitedBy": {
+    "placeholders": {
+      "user": {
+        "type": "String"
+      }
+    }
+  },
+  "moderatorLevel": "{level} — Modération",
+  "@moderatorLevel": {
+    "type": "String",
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
+  "sendCanceled": "Envoi annulé",
+  "@sendCanceled": {},
+  "adminLevel": "{level} — Administration",
+  "@adminLevel": {
+    "type": "String",
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
+  "inviteOtherUsers": "Inviter d'autres membres dans cette discussion",
+  "@inviteOtherUsers": {},
+  "changeTheChatPermissions": "Modifier les autorisations de cette discussion",
+  "@changeTheChatPermissions": {},
+  "changeTheVisibilityOfChatHistory": "Modifier la visibilité de l'historique de la discussion",
+  "@changeTheVisibilityOfChatHistory": {},
+  "changeTheCanonicalRoomAlias": "Modifier l'adresse publique principale de la discussion",
+  "@changeTheCanonicalRoomAlias": {},
+  "changelog": "Journal des modifications",
+  "@changelog": {},
+  "synchronizingPleaseWaitCounter": " Synchronisation… ({percentage} %)",
+  "@synchronizingPleaseWaitCounter": {
+    "type": "String",
+    "placeholders": {
+      "percentage": {
+        "type": "String"
+      }
+    }
+  },
+  "updateInstalled": "🎉 La mise à niveau {version} est installée !",
+  "@updateInstalled": {
+    "type": "String",
+    "placeholders": {
+      "version": {
         "type": "String"
       }
     }
