@@ -97,7 +97,8 @@ class PLanguageDropdownState extends State<PLanguageDropdown> {
             maxHeight: kIsWeb ? 500 : null,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(14),
-              color: widget.backgroundColor,
+              color: widget.backgroundColor ??
+                  Theme.of(context).colorScheme.surfaceContainerHigh,
             ),
           ),
           items: [

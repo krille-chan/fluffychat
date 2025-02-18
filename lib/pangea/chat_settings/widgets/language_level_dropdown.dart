@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:dropdown_button2/dropdown_button2.dart';
@@ -11,6 +12,7 @@ class LanguageLevelDropdown extends StatelessWidget {
   final Function(LanguageLevelTypeEnum)? onChanged;
   final FormFieldValidator<Object>? validator;
   final bool enabled;
+  final Color? backgroundColor;
 
   const LanguageLevelDropdown({
     super.key,
@@ -18,6 +20,7 @@ class LanguageLevelDropdown extends StatelessWidget {
     this.onChanged,
     this.validator,
     this.enabled = true,
+    this.backgroundColor,
   });
 
   @override
@@ -48,6 +51,14 @@ class LanguageLevelDropdown extends StatelessWidget {
           ? (value) => onChanged?.call(value as LanguageLevelTypeEnum)
           : null,
       validator: validator,
+      dropdownStyleData: DropdownStyleData(
+        maxHeight: kIsWeb ? 500 : null,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(14),
+          color: backgroundColor ??
+              Theme.of(context).colorScheme.surfaceContainerHigh,
+        ),
+      ),
     );
   }
 }
