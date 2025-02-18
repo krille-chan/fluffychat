@@ -15,7 +15,7 @@ class ModelKey {
   static const String userInterests = 'interests';
   static const String l2LanguageKey = 'target_language';
   static const String l1LanguageKey = 'source_language';
-  static const String publicProfile = 'public';
+  static const String publicProfile = 'public_profile';
   static const String userId = 'user_id';
   static const String toolSettings = 'tool_settings';
   static const String userSettings = 'user_settings';

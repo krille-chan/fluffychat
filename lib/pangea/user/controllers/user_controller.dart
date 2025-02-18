@@ -286,7 +286,7 @@ class UserController extends BaseController {
 
   /// Returns a boolean value indicating whether the user's profile is public.
   bool get isPublic {
-    return profile.userSettings.publicProfile;
+    return profile.userSettings.publicProfile ?? true;
   }
 
   /// Retrieves the user's email address.

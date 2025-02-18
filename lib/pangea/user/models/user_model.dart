@@ -12,10 +12,10 @@ import '../../learning_settings/models/language_model.dart';
 class UserSettings {
   DateTime? dateOfBirth;
   DateTime? createdAt;
-  bool autoPlayMessages;
+  bool? autoPlayMessages;
   // bool itAutoPlay;
   bool activatedFreeTrial;
-  bool publicProfile;
+  bool? publicProfile;
   String? targetLanguage;
   String? sourceLanguage;
   String? country;
@@ -25,10 +25,10 @@ class UserSettings {
   UserSettings({
     this.dateOfBirth,
     this.createdAt,
-    this.autoPlayMessages = false,
+    this.autoPlayMessages,
     // this.itAutoPlay = true,
     this.activatedFreeTrial = false,
-    this.publicProfile = false,
+    this.publicProfile,
     this.targetLanguage,
     this.sourceLanguage,
     this.country,
@@ -43,10 +43,10 @@ class UserSettings {
         createdAt: json[ModelKey.userCreatedAt] != null
             ? DateTime.parse(json[ModelKey.userCreatedAt])
             : null,
-        autoPlayMessages: json[ModelKey.autoPlayMessages] ?? false,
+        autoPlayMessages: json[ModelKey.autoPlayMessages],
         // itAutoPlay: json[ModelKey.itAutoPlay] ?? true,
         activatedFreeTrial: json[ModelKey.activatedTrialKey] ?? false,
-        publicProfile: json[ModelKey.publicProfile] ?? false,
+        publicProfile: json[ModelKey.publicProfile],
         targetLanguage: json[ModelKey.l2LanguageKey],
         sourceLanguage: json[ModelKey.l1LanguageKey],
         country: json[ModelKey.userCountry],
@@ -351,7 +351,7 @@ class PangeaProfile {
   String? sourceLanguage;
 
   String? country;
-  bool publicProfile;
+  bool? publicProfile;
 
   PangeaProfile({
     required this.createdAt,
@@ -360,7 +360,7 @@ class PangeaProfile {
     this.targetLanguage,
     this.sourceLanguage,
     this.country,
-    this.publicProfile = false,
+    this.publicProfile,
   });
 
   factory PangeaProfile.fromJson(Map<String, dynamic> json) {
@@ -377,7 +377,7 @@ class PangeaProfile {
       dateOfBirth: json[ModelKey.userDateOfBirth],
       targetLanguage: l2,
       sourceLanguage: l1,
-      publicProfile: json[ModelKey.publicProfile] ?? false,
+      publicProfile: json[ModelKey.publicProfile],
       country: json[ModelKey.userCountry],
     );
   }

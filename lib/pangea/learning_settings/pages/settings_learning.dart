@@ -142,7 +142,7 @@ class SettingsLearningController extends State<SettingsLearning> {
       ? PangeaLanguage.byLangCode(_profile.userSettings.targetLanguage!)
       : null;
 
-  bool get publicProfile => _profile.userSettings.publicProfile;
+  bool get publicProfile => _profile.userSettings.publicProfile ?? true;
 
   LanguageLevelTypeEnum get cefrLevel => _profile.userSettings.cefrLevel;
 
