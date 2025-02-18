@@ -3009,5 +3009,16 @@
         "type": "String"
       }
     }
+  },
+  "noChatsFoundHere": "Aucune discussion trouvée. Utilisez le bouton ci-dessous pour commencer une nouvelle discussion. ⤵️",
+  "@noChatsFoundHere": {},
+  "aboutHomeserver": "À propos de {homeserver}",
+  "@aboutHomeserver": {
+    "type": "String",
+    "placeholders": {
+      "homeserver": {
+        "type": "String"
+      }
+    }
   }
 }
