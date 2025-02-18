@@ -647,7 +647,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "defaultPermissionLevel": "Niveau d'autorisation par défaut",
+  "defaultPermissionLevel": "Niveau d'autorisation par défaut pour les arrivants",
   "@defaultPermissionLevel": {
     "type": "String",
     "placeholders": {}
