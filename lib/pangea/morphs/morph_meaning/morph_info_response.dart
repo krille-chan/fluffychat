@@ -2,13 +2,11 @@ import 'package:collection/collection.dart';
 
 class MorphologicalTag {
   final String code;
-  final String l2Title;
   final String l1Title;
   final String l1Description;
 
   MorphologicalTag({
     required this.code,
-    required this.l2Title,
     required this.l1Title,
     required this.l1Description,
   });
@@ -16,7 +14,6 @@ class MorphologicalTag {
   factory MorphologicalTag.fromJson(Map<String, dynamic> json) {
     return MorphologicalTag(
       code: json['code'],
-      l2Title: json['l2_title'],
       l1Title: json['l1_title'],
       l1Description: json['l1_description'],
     );
@@ -25,7 +22,6 @@ class MorphologicalTag {
   Map<String, dynamic> toJson() {
     return {
       'code': code,
-      'l2_title': l2Title,
       'l1_title': l1Title,
       'l1_description': l1Description,
     };
@@ -34,13 +30,11 @@ class MorphologicalTag {
 
 class MorphologicalFeature {
   final String code;
-  final String l2Title;
   final String l1Title;
   final List<MorphologicalTag> tags;
 
   MorphologicalFeature({
     required this.code,
-    required this.l2Title,
     required this.l1Title,
     required this.tags,
   });
@@ -52,7 +46,6 @@ class MorphologicalFeature {
 
     return MorphologicalFeature(
       code: json['code'],
-      l2Title: json['l2_title'],
       l1Title: json['l1_title'],
       tags: tagsList,
     );
@@ -61,7 +54,6 @@ class MorphologicalFeature {
   Map<String, dynamic> toJson() {
     return {
       'code': code,
-      'l2_title': l2Title,
       'l1_title': l1Title,
       'tags': tags.map((tag) => tag.toJson()).toList(),
     };
