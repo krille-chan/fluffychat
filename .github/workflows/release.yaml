@@ -1,9 +1,9 @@
 name: Release Workflow
 
 on:
-  release:
-    types:
-      - created
+  push:
+    branches:
+      - production
 
 concurrency:
   group: release_workflow
@@ -15,7 +15,28 @@ env:
   WEB_APP_ENV: ${{ vars.WEB_APP_ENV }}
 
 jobs:
+  create_release:
+    name: "Tagged Release"
+    runs-on: "ubuntu-latest"
+    outputs:
+      upload_url: ${{ steps.create_release.outputs.upload_url }}
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Get Version from pubspec.yaml
+        run: echo "VERSION=$(grep '^version:' pubspec.yaml | cut -d ' ' -f2 | tr -d '\r')" >> $GITHUB_ENV
+      - name: Create GitHub Release
+        id: create_release
+        uses: ncipollo/release-action@v1
+        with:
+          name: Release v${{ env.VERSION }}
+          tag: ${{ env.VERSION }}
+          draft: false
+          prerelease: false
+          generateReleaseNotes: true
+
   build_web:
+    needs: create_release
     runs-on: ubuntu-latest
     environment: production
     steps:
@@ -63,12 +84,13 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.PAGES_DEPLOY_TOKEN }}
         with:
-          upload_url: ${{ github.event.release.upload_url }}
+          upload_url: ${{ needs.create_release.outputs.upload_url }}
           asset_path: pangeachat-web.tar.gz
           asset_name: pangeachat-web.tar.gz
           asset_content_type: application/gzip
 
   build_apk:
+    needs: create_release
     runs-on: ubuntu-latest
     environment: production
     env:
@@ -120,15 +142,16 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.PAGES_DEPLOY_TOKEN }}
         with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: build/app/outputs/apk/release/app-release.apk
+          upload_url: ${{ needs.create_release.outputs.upload_url }}
+          asset_path: build/app/outputs/flutter-apk/app-release.apk
           asset_name: pangeachat.apk
           asset_content_type: application/vnd.android.package-archive
   build_linux:
     strategy:
       matrix:
-        arch: [ x64, arm64 ]
-    runs-on: ${{ matrix.arch == 'arm64' && 'self-hosted' || 'ubuntu-latest'}}
+        arch: [ x64 ]
+    runs-on: ubuntu-latest
+    needs: create_release
     steps:
       - uses: actions/checkout@v4
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
@@ -149,7 +172,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.PAGES_DEPLOY_TOKEN }}
         with:
-          upload_url: ${{ github.event.release.upload_url }}
+          upload_url: ${{ needs.create_release.outputs.upload_url }}
           asset_path: pangeachat-linux-${{ matrix.arch }}.tar.gz
           asset_name: pangeachat-linux-${{ matrix.arch }}.tar.gz
           asset_content_type: application/gzip
