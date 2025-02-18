@@ -248,12 +248,12 @@ class MessageTextWidget extends StatelessWidget {
                 tokenPosition.tokenStart - tokenPosition.start;
             final endSplitIndex = tokenPosition.tokenEnd - tokenPosition.start;
 
-            start = substring.substring(0, startSplitIndex);
-            end = substring.substring(endSplitIndex);
-            middle = substring.substring(
-              startSplitIndex,
-              endSplitIndex,
-            );
+            start = substring.characters.take(startSplitIndex).toString();
+            end = substring.characters.skip(endSplitIndex).toString();
+            middle = substring.characters
+                .skip(startSplitIndex)
+                .take(endSplitIndex)
+                .toString();
 
             return WidgetSpan(
               child: MouseRegion(
