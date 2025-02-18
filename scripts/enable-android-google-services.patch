@@ -135,8 +135,8 @@ index fb3e3ca4..039b2ccc 100644
    dynamic_color: ^1.7.0
    emoji_picker_flutter: ^3.1.0
    emojis: ^0.9.9
--  #fcm_shared_isolate: ^0.1.0
-+  fcm_shared_isolate: ^0.1.0
+-  #fcm_shared_isolate: ^0.2.0
++  fcm_shared_isolate: ^0.2.0
    file_picker: ^8.1.2
    file_selector: ^1.0.3
    flutter:
