@@ -72,6 +72,9 @@ class BackgroundPush {
 
   void _init() async {
     try {
+      if (PlatformInfos.isIOS) {
+        await firebase?.requestPermission();
+      }
       await _flutterLocalNotificationsPlugin.initialize(
         const InitializationSettings(
           android: AndroidInitializationSettings('notifications_icon'),
@@ -147,9 +150,7 @@ class BackgroundPush {
     Set<String?>? oldTokens,
     bool useDeviceSpecificAppId = false,
   }) async {
-    if (PlatformInfos.isIOS) {
-      await firebase?.requestPermission();
-    } else if (PlatformInfos.isAndroid) {
+    if (PlatformInfos.isAndroid) {
       _flutterLocalNotificationsPlugin
           .resolvePlatformSpecificImplementation<
               AndroidFlutterLocalNotificationsPlugin>()
