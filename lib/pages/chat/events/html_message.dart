@@ -580,9 +580,9 @@ class HtmlMessage extends StatelessWidget {
     return SelectionArea(
       child: GestureDetector(
         onTap: () {
-          if (!isOverlay) {
+          if (!isOverlay && pangeaMessageEvent != null) {
             controller.showToolbar(
-              event,
+              pangeaMessageEvent!.event,
               pangeaMessageEvent: pangeaMessageEvent,
               nextEvent: nextEvent,
               prevEvent: prevEvent,

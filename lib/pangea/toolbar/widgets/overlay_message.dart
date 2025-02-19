@@ -180,7 +180,7 @@ class OverlayMessage extends StatelessWidget {
                   },
                 ),
               MessageContent(
-                event,
+                event.getDisplayEvent(timeline),
                 textColor: textColor,
                 pangeaMessageEvent: pangeaMessageEvent,
                 immersionMode: immersionMode,
