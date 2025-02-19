@@ -67,8 +67,6 @@ parts:
     override-build: |
       # Workaround for Flutter build error:
       rm -rf build
-      flutter pub get
-      flutter gen-l10n
       craftctl default
     build-packages:
       - libsecret-1-dev
