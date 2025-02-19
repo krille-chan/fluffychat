@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_199",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cyk(){return new A.Eh(B.dh("bn"))},
-Eh:function Eh(d){this.a=d}},C
+cyl(){return new A.Ei(B.dh("bo"))},
+Ei:function Ei(d){this.a=d}},C
 B=c[0]
-A=a.updateHolder(c[7],A)
+A=a.updateHolder(c[8],A)
 C=c[51]
-A.Eh.prototype={
+A.Ei.prototype={
 gns(){return"false"},
 gjJ(){return"Repeat password"},
 glZ(){return"Not an image file."},
@@ -17,11 +17,11 @@ glx(){return"Import Emojis"},
 gly(){return"Import from .zip file"},
 glg(){return"Export Emote pack as .zip"},
 gmm(d){return"Replace"},
-geB(){return"\u09b8\u09ae\u09cd\u09aa\u09b0\u09cd\u0995\u09c7"},
+geB(){return"About"},
 nr(d){return"About "+d},
-gf4(d){return"\u09b8\u09cd\u09ac\u09c0\u0995\u09be\u09b0 \u0995\u09b0\u09bf"},
-hb(d){return d+" \u0986\u09ae\u09a8\u09cd\u09a4\u09cd\u09b0\u09a3 \u0997\u09cd\u09b0\u09b9\u09a3 \u0995\u09b0\u09c7\u099b\u09c7"},
-ghd(){return"\u0985\u09cd\u09af\u09be\u0995\u09be\u0989\u09a8\u09cd\u099f"},
+gf4(d){return"Accept"},
+hb(d){return"\ud83d\udc4d "+d+" accepted the invitation"},
+ghd(){return"Account"},
 he(d){return"\ud83d\udd10 "+d+" activated end to end encryption"},
 ghf(){return"Add email"},
 gkZ(){return"Please confirm your Matrix ID in order to delete your account."},
@@ -627,8 +627,8 @@ goa(){return"Cross verified devices"},
 gpg(){return"Verified devices only"},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Eh,C.aF)})()
-B.dW(b.typeUniverse,JSON.parse('{"Eh":{"aF":[]}}'))};
+y(A.Ei,C.aF)})()
+B.dW(b.typeUniverse,JSON.parse('{"Ei":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_199",e:"endPart",h:b})})($__dart_deferred_initializers__,"TKRiJp7264zm9OXt1F7C59YRSV4=");
+a.eventLog.push({p:"main.dart.js_199",e:"endPart",h:b})})($__dart_deferred_initializers__,"oi41oXejnth89fKCi5ItxepUiJM=");
 //# sourceMappingURL=main.dart.js_199.part.js.map
