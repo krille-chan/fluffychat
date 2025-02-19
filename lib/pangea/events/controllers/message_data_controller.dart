@@ -12,6 +12,7 @@ import 'package:fluffychat/pangea/common/controllers/base_controller.dart';
 import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/common/network/requests.dart';
 import 'package:fluffychat/pangea/common/network/urls.dart';
+import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/events/models/representation_content_model.dart';
 import 'package:fluffychat/pangea/events/models/tokens_event_content_model.dart';
@@ -183,5 +184,71 @@ class MessageDataController extends BaseController {
         );
 
     return rep;
+  }
+
+  Future<String?> getPangeaRepresentationEvent({
+    required FullTextTranslationRequestModel req,
+    required PangeaMessageEvent messageEvent,
+    bool originalSent = false,
+  }) async {
+    final FullTextTranslationResponseModel res =
+        await FullTextTranslationRepo.translate(
+      accessToken: _pangeaController.userController.accessToken,
+      request: req,
+    );
+
+    if (originalSent && messageEvent.originalSent != null) {
+      originalSent = false;
+    }
+
+    final rep = PangeaRepresentation(
+      langCode: req.tgtLang,
+      text: res.bestTranslation,
+      originalSent: originalSent,
+      originalWritten: false,
+    );
+
+    try {
+      final repEvent = await messageEvent.room.sendPangeaEvent(
+        content: rep.toJson(),
+        parentEventId: messageEvent.eventId,
+        type: PangeaEventTypes.representation,
+      );
+      return repEvent?.eventId;
+    } catch (e, s) {
+      ErrorHandler.logError(
+        m: "error in _getPangeaRepresentation.sendPangeaEvent",
+        e: e,
+        s: s,
+        data: req.toJson(),
+      );
+      return null;
+    }
+  }
+
+  Future<void> sendTokensEvent({
+    required String repEventId,
+    required TokensRequestModel req,
+    required Room room,
+  }) async {
+    final TokensResponseModel res = await _fetchTokens(
+      _pangeaController.userController.accessToken,
+      req,
+    );
+
+    try {
+      await room.sendPangeaEvent(
+        content: PangeaMessageTokens(tokens: res.tokens).toJson(),
+        parentEventId: repEventId,
+        type: PangeaEventTypes.tokens,
+      );
+    } catch (e, s) {
+      ErrorHandler.logError(
+        m: "error in _getTokens.sendPangeaEvent",
+        e: e,
+        s: s,
+        data: req.toJson(),
+      );
+    }
   }
 }

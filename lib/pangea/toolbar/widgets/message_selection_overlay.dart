@@ -12,6 +12,7 @@ import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/analytics_misc/message_analytics_controller.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
+import 'package:fluffychat/pangea/events/event_wrappers/pangea_representation_event.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_text_model.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/text_to_speech_controller.dart';
@@ -52,8 +53,6 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   MessageMode toolbarMode = MessageMode.noneSelected;
   PangeaTokenText? _selectedSpan;
   List<PangeaTokenText>? _highlightedTokens;
-
-  List<PangeaToken>? tokens;
   bool initialized = false;
 
   PangeaMessageEvent? get pangeaMessageEvent => PangeaMessageEvent(
@@ -143,20 +142,43 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   }
 
   MessageAnalyticsEntry? get messageAnalyticsEntry =>
-      pangeaMessageEvent != null && tokens != null
+      pangeaMessageEvent?.messageDisplayRepresentation?.tokens != null
           ? MatrixState.pangeaController.getAnalytics.perMessage.get(
-              tokens!,
+              pangeaMessageEvent!.messageDisplayRepresentation!.tokens!,
               pangeaMessageEvent!,
             )
           : null;
 
+  Future<RepresentationEvent?> _fetchNewRepEvent() async {
+    final RepresentationEvent? repEvent =
+        pangeaMessageEvent?.messageDisplayRepresentation;
+
+    if (repEvent != null) return repEvent;
+    final eventID =
+        await pangeaMessageEvent?.representationByDetectedLanguage();
+
+    if (eventID == null) return null;
+    final event = await widget._event.room.getEventById(eventID);
+    if (event == null) return null;
+    return RepresentationEvent(
+      timeline: pangeaMessageEvent!.timeline,
+      parentMessageEvent: pangeaMessageEvent!.event,
+      event: event,
+    );
+  }
+
   Future<void> initializeTokensAndMode() async {
     try {
-      final repEvent = pangeaMessageEvent?.messageDisplayRepresentation;
-      if (repEvent != null) {
-        tokens = await repEvent.tokensGlobal(
-          pangeaMessageEvent!.senderId,
-          pangeaMessageEvent!.originServerTs,
+      RepresentationEvent? repEvent =
+          pangeaMessageEvent?.messageDisplayRepresentation;
+      repEvent ??= await _fetchNewRepEvent();
+
+      if (repEvent?.event != null) {
+        await repEvent!.sendTokensEvent(
+          repEvent.event!.eventId,
+          widget._event.room,
+          MatrixState.pangeaController.languageController.userL1!.langCode,
+          MatrixState.pangeaController.languageController.userL2!.langCode,
         );
       }
     } catch (e, s) {
@@ -331,7 +353,9 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     );
   }
 
-  PangeaToken? get selectedToken => tokens?.firstWhereOrNull(isTokenSelected);
+  PangeaToken? get selectedToken =>
+      pangeaMessageEvent?.messageDisplayRepresentation?.tokens
+          ?.firstWhereOrNull(isTokenSelected);
 
   /// Whether the overlay is currently displaying a selection
   bool get isSelection => _selectedSpan != null || _highlightedTokens != null;

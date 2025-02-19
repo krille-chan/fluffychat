@@ -4,7 +4,7 @@ import 'package:http/http.dart';
 
 import 'package:fluffychat/pangea/choreographer/models/language_detection_model.dart';
 import 'package:fluffychat/pangea/choreographer/models/pangea_match_model.dart';
-import 'package:fluffychat/pangea/choreographer/repo/language_detection_request.dart';
+import 'package:fluffychat/pangea/choreographer/repo/language_detection_repo.dart';
 import 'package:fluffychat/pangea/choreographer/repo/span_data_repo.dart';
 import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
@@ -41,7 +41,7 @@ class IgcRepo {
     await Future.delayed(const Duration(seconds: 2));
 
     final IGCTextData igcTextData = IGCTextData(
-      detections: LanguageDetectionRequest(
+      detections: LanguageDetectionResponse(
         detections: [LanguageDetection(langCode: "en", confidence: 0.99)],
         fullText: "This be a sample text",
       ),

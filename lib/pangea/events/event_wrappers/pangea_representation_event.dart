@@ -160,6 +160,33 @@ class RepresentationEvent {
     return res;
   }
 
+  Future<void> sendTokensEvent(
+    String repEventID,
+    Room room,
+    String userl1,
+    String userl2,
+  ) async {
+    if (tokens != null) return;
+    if (_event == null) {
+      ErrorHandler.logError(
+        e: "Called getTokensEvent with no _event",
+        data: {},
+      );
+      return;
+    }
+
+    await MatrixState.pangeaController.messageData.sendTokensEvent(
+      repEventId: repEventID,
+      room: room,
+      req: TokensRequestModel(
+        fullText: text,
+        langCode: langCode,
+        senderL1: userl1,
+        senderL2: userl2,
+      ),
+    );
+  }
+
   ChoreoRecord? get choreo {
     if (_choreo != null) return _choreo;
 

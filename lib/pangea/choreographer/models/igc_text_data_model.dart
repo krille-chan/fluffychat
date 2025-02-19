@@ -10,7 +10,7 @@ import 'package:fluffychat/pangea/choreographer/models/language_detection_model.
 import 'package:fluffychat/pangea/choreographer/models/pangea_match_model.dart';
 import 'package:fluffychat/pangea/choreographer/models/span_card_model.dart';
 import 'package:fluffychat/pangea/choreographer/models/span_data.dart';
-import 'package:fluffychat/pangea/choreographer/repo/language_detection_request.dart';
+import 'package:fluffychat/pangea/choreographer/repo/language_detection_repo.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_representation_event.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
@@ -21,7 +21,7 @@ import '../../common/constants/model_keys.dart';
 // import 'package:language_tool/language_tool.dart';
 
 class IGCTextData {
-  LanguageDetectionRequest detections;
+  LanguageDetectionResponse detections;
   String originalInput;
   String? fullTextCorrection;
   List<PangeaToken> tokens;
@@ -47,14 +47,15 @@ class IGCTextData {
   factory IGCTextData.fromJson(Map<String, dynamic> json) {
     // changing this to allow for use of the LanguageDetectionResponse methods
     // TODO - change API after we're sure all clients are updated. not urgent.
-    final LanguageDetectionRequest detections = json[_detectionsKey] is Iterable
-        ? LanguageDetectionRequest.fromJson({
-            "detections": json[_detectionsKey],
-            "full_text": json["original_input"],
-          })
-        : LanguageDetectionRequest.fromJson(
-            json[_detectionsKey] as Map<String, dynamic>,
-          );
+    final LanguageDetectionResponse detections =
+        json[_detectionsKey] is Iterable
+            ? LanguageDetectionResponse.fromJson({
+                "detections": json[_detectionsKey],
+                "full_text": json["original_input"],
+              })
+            : LanguageDetectionResponse.fromJson(
+                json[_detectionsKey] as Map<String, dynamic>,
+              );
 
     return IGCTextData(
       tokens: (json[_tokensKey] as Iterable)
@@ -102,7 +103,7 @@ class IGCTextData {
     }
 
     return IGCTextData(
-      detections: LanguageDetectionRequest(
+      detections: LanguageDetectionResponse(
         detections: [
           LanguageDetection(langCode: content.langCode, confidence: 1),
         ],
@@ -136,7 +137,7 @@ class IGCTextData {
       };
 
   /// if we haven't run IGC or IT or there are no matches, we use the highest validated detection
-  /// from [LanguageDetectionRequest.highestValidatedDetection]
+  /// from [LanguageDetectionResponse.highestValidatedDetection]
   /// if we have run igc/it and there are no matches, we can relax the threshold
   /// and use the highest confidence detection
   String get detectedLanguage {

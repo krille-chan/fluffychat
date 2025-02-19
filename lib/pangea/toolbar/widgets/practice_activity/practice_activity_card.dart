@@ -200,7 +200,8 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
       userL1: MatrixState.pangeaController.languageController.userL1!.langCode,
       userL2: MatrixState.pangeaController.languageController.userL2!.langCode,
       messageText: widget.pangeaMessageEvent.messageDisplayText,
-      messageTokens: widget.overlayController.tokens!,
+      messageTokens:
+          widget.pangeaMessageEvent.messageDisplayRepresentation?.tokens ?? [],
       activityQualityFeedback: activityFeedback,
       targetTokens: tokens,
       targetType: type,

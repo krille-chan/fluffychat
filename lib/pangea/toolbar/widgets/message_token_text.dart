@@ -16,9 +16,6 @@ import 'package:fluffychat/widgets/matrix.dart';
 /// Need to test.
 class MessageTokenText extends StatelessWidget {
   final PangeaMessageEvent _pangeaMessageEvent;
-
-  final List<PangeaToken>? _tokens;
-
   final TextStyle _style;
 
   final bool Function(PangeaToken)? _isSelected;
@@ -34,8 +31,10 @@ class MessageTokenText extends StatelessWidget {
   })  : _onClick = onClick,
         _isSelected = isSelected,
         _style = style,
-        _tokens = tokens,
         _pangeaMessageEvent = pangeaMessageEvent;
+
+  List<PangeaToken>? get _tokens =>
+      _pangeaMessageEvent.messageDisplayRepresentation?.tokens;
 
   MessageAnalyticsEntry? get messageAnalyticsEntry => _tokens != null
       ? MatrixState.pangeaController.getAnalytics.perMessage.get(
@@ -44,6 +43,12 @@ class MessageTokenText extends StatelessWidget {
         )
       : null;
 
+  void callOnClick(TokenPosition tokenPosition) {
+    _onClick != null && tokenPosition.token != null
+        ? _onClick!(tokenPosition.token!)
+        : null;
+  }
+
   @override
   Widget build(BuildContext context) {
     if (_tokens == null) {
@@ -51,12 +56,6 @@ class MessageTokenText extends StatelessWidget {
         _pangeaMessageEvent.messageDisplayText,
         style: _style,
       );
-    }
-
-    void callOnClick(TokenPosition tokenPosition) {
-      _onClick != null && tokenPosition.token != null
-          ? _onClick!(tokenPosition.token!)
-          : null;
     }
 
     return MessageTextWidget(
