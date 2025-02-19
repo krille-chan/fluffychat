@@ -306,6 +306,9 @@ class BackgroundPush {
     Logs().v('Setup firebase');
     if (_fcmToken?.isEmpty ?? true) {
       try {
+        if (PlatformInfos.isIOS) {
+          await firebase?.requestPermission();
+        }
         _fcmToken = await firebase?.getToken();
         if (_fcmToken == null) throw ('PushToken is null');
       } catch (e, s) {
