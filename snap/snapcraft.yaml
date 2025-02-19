@@ -67,7 +67,8 @@ parts:
     override-build: |
       # Switch to correct Flutter version
       source .github/workflows/versions.env
-      flutter_base=$(dirname $(dirname $(which flutter)))
+      flutter_path=$(which flutter)
+      flutter_base=$(dirname $(dirname $flutter_path))
       git -C $flutter_base checkout $FLUTTER_VERSION
       flutter doctor
       # Workaround for Flutter build error:
