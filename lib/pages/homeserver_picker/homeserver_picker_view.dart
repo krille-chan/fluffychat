@@ -44,7 +44,7 @@ class HomeserverPickerView extends StatelessWidget {
                   children: [
                     const Icon(Icons.import_export_outlined),
                     const SizedBox(width: 12),
-                    Text(L10n.of(context).loginWithMatrixId),
+                    Text(L10n.of(context).hydrate),
                   ],
                 ),
               ),
