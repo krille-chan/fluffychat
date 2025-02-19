@@ -65,6 +65,11 @@ parts:
     plugin: flutter
     source: .
     override-build: |
+      # Switch to correct Flutter version
+      source .github/workflows/versions.env
+      flutter_base=$(dirname $(dirname $(which flutter)))
+      git -C $flutter_base checkout $FLUTTER_VERSION
+      flutter doctor
       # Workaround for Flutter build error:
       rm -rf build
       craftctl default
