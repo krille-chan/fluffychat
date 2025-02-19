@@ -267,7 +267,8 @@ class LoginController extends State<Login> {
           final dialogResult = await showOkCancelAlertDialog(
             context: context,
             useRootNavigator: false,
-            title: L10n.of(context).noMatrixServer(newDomain, oldHomeserver!),
+            title: L10n.of(context)
+                .noMatrixServer(newDomain.toString(), oldHomeserver.toString()),
             okLabel: L10n.of(context).ok,
             cancelLabel: L10n.of(context).cancel,
           );
@@ -335,7 +336,10 @@ class LoginController extends State<Login> {
       useRootNavigator: false,
       context: context,
       title: L10n.of(context).weSentYouAnEmail,
-      message: L10n.of(context).pleaseClickOnLink,
+      // #Pangea
+      // message: L10n.of(context).pleaseClickOnLink,
+      message: L10n.of(context).clickOnEmailLink,
+      // Pangea#
       okLabel: L10n.of(context).iHaveClickedOnLink,
     );
     if (ok != OkCancelResult.ok) return;

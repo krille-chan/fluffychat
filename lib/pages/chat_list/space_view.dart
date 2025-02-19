@@ -547,7 +547,7 @@ class _SpaceViewState extends State<SpaceView> {
                   L10n.of(context).countChatsAndCountParticipants(
                     // #Pangea
                     // room.spaceChildren.length,
-                    room.spaceChildCount.toString(),
+                    room.spaceChildCount,
                     // Pangea#
                     room.summary.mJoinedMemberCount ?? 1,
                   ),
@@ -602,7 +602,10 @@ class _SpaceViewState extends State<SpaceView> {
               true
           ? FloatingActionButton.extended(
               onPressed: _addChatOrSubspace,
-              label: Text(L10n.of(context).group),
+              // #Pangea
+              // label: Text(L10n.of(context).group),
+              label: Text(L10n.of(context).chat),
+              // Pangea#
               icon: const Icon(Icons.group_add_outlined),
             )
           : null,

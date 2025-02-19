@@ -97,7 +97,10 @@ extension PangeaPasswordForgotten on LoginController {
                               useRootNavigator: false,
                               context: context,
                               title: L10n.of(context).weSentYouAnEmail,
-                              message: L10n.of(context).pleaseClickOnLink,
+                              // #Pangea
+                              // message: L10n.of(context).pleaseClickOnLink,
+                              message: L10n.of(context).clickOnEmailLink,
+                              // Pangea#
                               okLabel: L10n.of(context).iHaveClickedOnLink,
                             );
                             if (ok != OkCancelResult.ok) return;

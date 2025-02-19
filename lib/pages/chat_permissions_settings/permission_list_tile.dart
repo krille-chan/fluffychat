@@ -47,7 +47,10 @@ class PermissionsListTile extends StatelessWidget {
     } else if (category == 'events') {
       switch (permissionKey) {
         case EventTypes.RoomName:
-          return L10n.of(context).changeTheNameOfTheGroup;
+          // #Pangea
+          // return L10n.of(context).changeTheNameOfTheGroup;
+          return L10n.of(context).changeTheNameOfTheChat;
+        // Pangea#
         case EventTypes.RoomTopic:
           return L10n.of(context).changeTheDescriptionOfTheGroup;
         case EventTypes.RoomPowerLevels:

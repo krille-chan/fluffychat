@@ -61,7 +61,10 @@ class ChatAccessSettingsPageView extends StatelessWidget {
                 Divider(color: theme.dividerColor),
                 ListTile(
                   title: Text(
-                    L10n.of(context).whoIsAllowedToJoinThisGroup,
+                    // #Pangea
+                    // L10n.of(context).whoIsAllowedToJoinThisGroup,
+                    L10n.of(context).whoIsAllowedToJoinThisChat,
+                    // Pangea#
                     style: TextStyle(
                       color: theme.colorScheme.secondary,
                       fontWeight: FontWeight.bold,

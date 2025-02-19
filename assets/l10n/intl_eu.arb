@@ -3,1207 +3,1361 @@
   "@@last_modified": "2021-08-14 12:41:10.062383",
   "about": "Honi buruz",
   "@about": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "accept": "Onartu",
   "@accept": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "acceptedTheInvitation": "👍 {username}(e)k gonbidapena onartu du",
   "@acceptedTheInvitation": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "username": {}
+      "username": {
+        "type": "String"
+      }
     }
   },
   "account": "Kontua",
   "@account": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "activatedEndToEndEncryption": "🔐 {username}(e)k ertzetik ertzerako zifratzea gaitu du",
   "@activatedEndToEndEncryption": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "username": {}
+      "username": {
+        "type": "String"
+      }
     }
   },
   "admin": "Administratzailea",
   "@admin": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "alias": "ezizena",
   "@alias": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "answeredTheCall": "{senderName}(e)k deia erantzun du",
   "@answeredTheCall": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "senderName": {}
+      "senderName": {
+        "type": "String"
+      }
     }
   },
   "anyoneCanJoin": "Edonor batu daiteke",
   "@anyoneCanJoin": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "archive": "Fitxategia",
   "@archive": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "areGuestsAllowedToJoin": "Batu daitezke bisitan dauden erabiltzaileak?",
   "@areGuestsAllowedToJoin": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "areYouSure": "Ziur zaude?",
   "@areYouSure": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "askSSSSSign": "Beste pertsona egiaztatzeko, sartu zure biltegiratze segururako pasaesaldia edo berreskuratze-gakoa.",
   "@askSSSSSign": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "askVerificationRequest": "{username}(r)en egiaztaketa-eskaera onartu?",
   "@askVerificationRequest": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "username": {}
+      "username": {
+        "type": "String"
+      }
     }
   },
   "banFromChat": "Txatera batzeko debekua ezarri",
   "@banFromChat": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "banned": "Kanporatuta",
   "@banned": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "bannedUser": "{username}(e)k {targetName}(r)i debekua ezarri dio",
   "@bannedUser": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "username": {},
-      "targetName": {}
+      "username": {
+        "type": "String"
+      },
+      "targetName": {
+        "type": "String"
+      }
     }
   },
   "blockDevice": "Blokeatu gailua",
   "@blockDevice": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "cancel": "Utzi",
   "@cancel": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "changedTheChatAvatar": "{username}(e)k txataren abatarra aldatu du",
   "@changedTheChatAvatar": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "username": {}
+      "username": {
+        "type": "String"
+      }
     }
   },
   "changedTheChatDescriptionTo": "{username}(e)k txataren deskribapena aldatu du: '{description}'",
   "@changedTheChatDescriptionTo": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "username": {},
-      "description": {}
+      "username": {
+        "type": "String"
+      },
+      "description": {
+        "type": "String"
+      }
     }
   },
   "changedTheChatNameTo": "{username}(e)k txataren izena '{chatname}'(e)ra aldatu du",
   "@changedTheChatNameTo": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "username": {},
-      "chatname": {}
+      "username": {
+        "type": "String"
+      },
+      "chatname": {
+        "type": "String"
+      }
     }
   },
   "changedTheChatPermissions": "{username}(e)k txataren baimenak aldatu ditu",
   "@changedTheChatPermissions": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "username": {}
+      "username": {
+        "type": "String"
+      }
     }
   },
   "changedTheDisplaynameTo": "{username}(e)k bere ezizena aldatu du. Aurrerantzean '{displayname}' izango da",
   "@changedTheDisplaynameTo": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "username": {},
-      "displayname": {}
+      "username": {
+        "type": "String"
+      },
+      "displayname": {
+        "type": "String"
+      }
     }
   },
   "changedTheGuestAccessRules": "{username}(e)k bisitarien sarbide-arauak aldatu ditu",
   "@changedTheGuestAccessRules": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "username": {}
+      "username": {
+        "type": "String"
+      }
     }
   },
   "changedTheGuestAccessRulesTo": "{username}(e)k bisitarien arauak aldatu ditu: {rules}",
   "@changedTheGuestAccessRulesTo": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "username": {},
-      "rules": {}
+      "username": {
+        "type": "String"
+      },
+      "rules": {
+        "type": "String"
+      }
     }
   },
   "changedTheHistoryVisibility": "{username}(e)k historiaren ikusgaitasuna aldatu du",
   "@changedTheHistoryVisibility": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "username": {}
+      "username": {
+        "type": "String"
+      }
     }
   },
   "changedTheHistoryVisibilityTo": "{username}(e)k historiaren ikusgaitasuna {rules}-(e)ra aldatu du",
   "@changedTheHistoryVisibilityTo": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "username": {},
-      "rules": {}
+      "username": {
+        "type": "String"
+      },
+      "rules": {
+        "type": "String"
+      }
     }
   },
   "changedTheJoinRules": "{username}(e)k batzeko arauak aldatu ditu",
   "@changedTheJoinRules": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "username": {}
+      "username": {
+        "type": "String"
+      }
     }
   },
   "changedTheJoinRulesTo": "{username}(e)k batzeko arauak aldatu ditu: {joinRules}",
   "@changedTheJoinRulesTo": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "username": {},
-      "joinRules": {}
+      "username": {
+        "type": "String"
+      },
+      "joinRules": {
+        "type": "String"
+      }
     }
   },
   "changedTheProfileAvatar": "{username}(e)k profileko abatarra aldatu du",
   "@changedTheProfileAvatar": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "username": {}
+      "username": {
+        "type": "String"
+      }
     }
   },
   "changedTheRoomAliases": "{username}(e)k gelaren ezizena aldatu du",
   "@changedTheRoomAliases": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "username": {}
+      "username": {
+        "type": "String"
+      }
     }
   },
   "changedTheRoomInvitationLink": "{username}(e)k gonbidapen-esteka aldatu du",
   "@changedTheRoomInvitationLink": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "username": {}
+      "username": {
+        "type": "String"
+      }
     }
   },
   "changeTheHomeserver": "Aldatu zerbitzaria",
   "@changeTheHomeserver": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "changeTheme": "Aldatu itxura",
   "@changeTheme": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "changeTheNameOfTheGroup": "Taldearen izena aldatu",
   "@changeTheNameOfTheGroup": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "channelCorruptedDecryptError": "Zifratzea hondatu egin da",
   "@channelCorruptedDecryptError": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "chat": "Txata",
   "@chat": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "chatDetails": "Txataren xehetasunak",
   "@chatDetails": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "chooseAStrongPassword": "Aukeratu pasahitz sendo bat",
   "@chooseAStrongPassword": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "close": "Itxi",
   "@close": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "compareEmojiMatch": "Konparatu emojiak",
   "@compareEmojiMatch": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "compareNumbersMatch": "Konparatu zenbakiak",
   "@compareNumbersMatch": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "confirm": "Baieztatu",
   "@confirm": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "connect": "Konektatu",
   "@connect": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "contactHasBeenInvitedToTheGroup": "Kontaktua taldera gonbidatu da",
   "@contactHasBeenInvitedToTheGroup": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "copiedToClipboard": "Arbelera kopiatu da",
   "@copiedToClipboard": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "copy": "Kopiatu",
   "@copy": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "couldNotDecryptMessage": "Ezin izan da mezua deszifratu: {error}",
   "@couldNotDecryptMessage": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "error": {}
+      "error": {
+        "type": "String"
+      }
     }
   },
   "countParticipants": "{count} partaide",
   "@countParticipants": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "count": {}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "create": "Sortu",
   "@create": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "createdTheChat": "💬 {username}(e)k txata sortu du",
   "@createdTheChat": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "username": {}
+      "username": {
+        "type": "String"
+      }
     }
   },
   "currentlyActive": "Une honetan aktibo",
   "@currentlyActive": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "darkTheme": "Iluna",
   "@darkTheme": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "dateAndTimeOfDay": "{date}, {timeOfDay}",
   "@dateAndTimeOfDay": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "date": {},
-      "timeOfDay": {}
+      "date": {
+        "type": "String"
+      },
+      "timeOfDay": {
+        "type": "String"
+      }
     }
   },
   "dateWithoutYear": "{month}/{day}",
   "@dateWithoutYear": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "month": {},
-      "day": {}
+      "month": {
+        "type": "String"
+      },
+      "day": {
+        "type": "String"
+      }
     }
   },
   "dateWithYear": "{year}/{month}/{day}",
   "@dateWithYear": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "year": {},
-      "month": {},
-      "day": {}
+      "year": {
+        "type": "String"
+      },
+      "month": {
+        "type": "String"
+      },
+      "day": {
+        "type": "String"
+      }
     }
   },
   "delete": "Ezabatu",
   "@delete": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "deleteMessage": "Mezuak ezabatu",
   "@deleteMessage": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "device": "Gailua",
   "@device": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "devices": "Gailuak",
   "@devices": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "displaynameHasBeenChanged": "Ezizena aldatu da",
   "@displaynameHasBeenChanged": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "downloadFile": "Deskargatu fitxategia",
   "@downloadFile": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "editDisplayname": "Editatu ezizena",
   "@editDisplayname": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "emoteExists": "Emotea badago lehendik ere!",
   "@emoteExists": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "emoteInvalid": "Emotearen laburdura ez da baliozkoa!",
   "@emoteInvalid": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "emoteSettings": "Emote-ezarpenak",
   "@emoteSettings": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "emoteShortcode": "Laburdura",
   "@emoteShortcode": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "emoteWarnNeedToPick": "Emote-laburdura eta irudi bat aukeratu behar dituzu!",
   "@emoteWarnNeedToPick": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "emptyChat": "Txata hutsik dago",
   "@emptyChat": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "enableEncryptionWarning": "Ezingo duzu zifratzea ezgaitu. Ziur zaude?",
   "@enableEncryptionWarning": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "encryption": "Zifratzea",
   "@encryption": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "encryptionNotEnabled": "Zifratzea ez dago gaituta",
   "@encryptionNotEnabled": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "endedTheCall": "{senderName}(e)k deia amaitu du",
   "@endedTheCall": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "senderName": {}
+      "senderName": {
+        "type": "String"
+      }
     }
   },
   "enterYourHomeserver": "Sartu zure zerbitzaria",
   "@enterYourHomeserver": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "fileName": "Fitxategiaren izena",
   "@fileName": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "fluffychat": "FluffyChat",
   "@fluffychat": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "forward": "Birbidali",
   "@forward": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "fromJoining": "Batzeaz geroztik",
   "@fromJoining": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "fromTheInvitation": "Gonbidapenaz geroztik",
   "@fromTheInvitation": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "group": "Taldea",
   "@group": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "groupIsPublic": "Taldea publikoa da",
   "@groupIsPublic": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "groupWith": "{displayname} duen taldea",
   "@groupWith": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "displayname": {}
+      "displayname": {
+        "type": "String"
+      }
     }
   },
   "guestsAreForbidden": "Ez, bisitariak ez daude baimenduta",
   "@guestsAreForbidden": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "guestsCanJoin": "Bai, bisitariak batu daitezke",
   "@guestsCanJoin": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "hasWithdrawnTheInvitationFor": "{username}(e)k {targetName}(r)en gonbidapena atzera bota du",
   "@hasWithdrawnTheInvitationFor": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "username": {},
-      "targetName": {}
+      "username": {
+        "type": "String"
+      },
+      "targetName": {
+        "type": "String"
+      }
     }
   },
   "help": "Laguntza",
   "@help": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "id": "IDa",
   "@id": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "identity": "Identitatea",
   "@identity": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "incorrectPassphraseOrKey": "Pasaesaldi edo berreskuratze-gakoa ez da zuzena",
   "@incorrectPassphraseOrKey": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "inviteContact": "Kontaktuak gonbidatu",
   "@inviteContact": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "inviteContactToGroup": "Gonbidatu kontaktua {groupName}(e)ra",
   "@inviteContactToGroup": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "groupName": {}
+      "groupName": {
+        "type": "String"
+      }
     }
   },
   "invited": "Gonbidatuta",
   "@invited": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "invitedUser": "📩 {username}(e)k {targetName} gonbidatu du",
   "@invitedUser": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "username": {},
-      "targetName": {}
+      "username": {
+        "type": "String"
+      },
+      "targetName": {
+        "type": "String"
+      }
     }
   },
   "invitedUsersOnly": "Gonbidatutako erabiltzaileak solik",
   "@invitedUsersOnly": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "inviteText": "{username}(e)k FluffyChatera gonbidatu zaitu.\n1. Bisitatu https://fluffychat.im eta instalatu aplikazioa\n2. Eman izena edo hasi saioa\n3. Ireki gonbidapen-esteka:\n{link}",
   "@inviteText": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "username": {},
-      "link": {}
+      "username": {
+        "type": "String"
+      },
+      "link": {
+        "type": "String"
+      }
     }
   },
   "isTyping": "idazten ari da…",
   "@isTyping": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "joinedTheChat": "👋 {username} txatera batu da",
   "@joinedTheChat": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "username": {}
+      "username": {
+        "type": "String"
+      }
     }
   },
   "joinRoom": "Batu gelara",
   "@joinRoom": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "kicked": "👞 {username}(e)k {targetName} kanporatu du",
   "@kicked": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "username": {},
-      "targetName": {}
+      "username": {
+        "type": "String"
+      },
+      "targetName": {
+        "type": "String"
+      }
     }
   },
   "kickedAndBanned": "🙅 {username}(e)k {targetName} kanporatu eta debekua ezarri dio",
   "@kickedAndBanned": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "username": {},
-      "targetName": {}
+      "username": {
+        "type": "String"
+      },
+      "targetName": {
+        "type": "String"
+      }
     }
   },
   "kickFromChat": "Txatetik kanporatu",
   "@kickFromChat": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "lastActiveAgo": "Azkenekoz aktibo: {localizedTimeShort}",
   "@lastActiveAgo": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "localizedTimeShort": {}
+      "localizedTimeShort": {
+        "type": "String"
+      }
     }
   },
   "leave": "Irten",
   "@leave": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "leftTheChat": "Txatetik irten da",
   "@leftTheChat": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "license": "Lizentzia",
   "@license": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "lightTheme": "Argia",
   "@lightTheme": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "loadCountMoreParticipants": "Kargatu {count} partaide gehiago",
   "@loadCountMoreParticipants": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "count": {}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "loadingPleaseWait": "Kargatzen… itxaron.",
   "@loadingPleaseWait": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "loadMore": "Kargatu gehiago…",
   "@loadMore": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "login": "Hasi saioa",
   "@login": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "logInTo": "Hasi saioa {homeserver}(e)n",
   "@logInTo": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "homeserver": {}
+      "homeserver": {
+        "type": "String"
+      }
     }
   },
   "logout": "Amaitu saioa",
   "@logout": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "moderator": "Moderatzailea",
   "@moderator": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "muteChat": "Mututu txata",
   "@muteChat": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "needPantalaimonWarning": "Kontuan izan oraingoz Pantalaimon behar duzula ertzetik ertzerako zifratzerako.",
   "@needPantalaimonWarning": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "newMessageInFluffyChat": "💬 Mezu berria FluffyChaten",
   "@newMessageInFluffyChat": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "newVerificationRequest": "Egiaztaketa-eskaera berria!",
   "@newVerificationRequest": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "no": "Ez",
   "@no": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "noEmotesFound": "Ez da emoterik aurkitu. 😕",
   "@noEmotesFound": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "noGoogleServicesWarning": "Ez dirudi Firebase Cloud Messaging zure mugikorrean erabilgarri dagoenik. Jakinarazpenak jasotzeko ntfy instalatzea gomendatzen dugu. ntfy edo beste Unified Push hornitzaileren batekin, push jakinarazpenak jaso ditzazkezu datuentzako segurua den modu batean. ntfy PlayStore edo F-Droid dendetatik deskarga dezakezu.",
   "@noGoogleServicesWarning": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "none": "Bat ere ez",
   "@none": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "noPermission": "Baimenik gabe",
   "@noPermission": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "noRoomsFound": "Ez da gelarik aurkitu…",
   "@noRoomsFound": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "ok": "Ados",
   "@ok": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "onlineKeyBackupEnabled": "Gakoen online babeskopia gaituta dago",
   "@onlineKeyBackupEnabled": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "oopsSomethingWentWrong": "Hara, zerbaitek huts egin du…",
   "@oopsSomethingWentWrong": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "openAppToReadMessages": "Ireki aplikazioa mezuak irakurtzeko",
   "@openAppToReadMessages": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "openCamera": "Ireki kamera",
   "@openCamera": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "passphraseOrKey": "pasaesaldia edo berreskuratze-gakoa",
   "@passphraseOrKey": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "password": "Pasahitza",
   "@password": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "pickImage": "Aukeratu irudi bat",
   "@pickImage": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "pin": "Finkatu",
   "@pin": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "play": "Abiarazi {fileName}",
   "@play": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "fileName": {}
+      "fileName": {
+        "type": "String"
+      }
     }
   },
   "pleaseEnterYourPassword": "Sartu zure pasahitza",
   "@pleaseEnterYourPassword": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "pleaseEnterYourUsername": "Sartu zure erabiltzaile-izena",
   "@pleaseEnterYourUsername": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "publicRooms": "Gela publikoak",
   "@publicRooms": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "recording": "Grabatzen",
   "@recording": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "redactedAnEvent": "{username}(e)k gertaera bat atzera bota du",
   "@redactedAnEvent": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "username": {}
+      "username": {
+        "type": "String"
+      }
     }
   },
   "reject": "Baztertu",
   "@reject": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "rejectedTheInvitation": "{username}(e)k gonbidapena baztertu du",
   "@rejectedTheInvitation": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "username": {}
+      "username": {
+        "type": "String"
+      }
     }
   },
   "rejoin": "Batu berriro",
   "@rejoin": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "remove": "Kendu",
   "@remove": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "removeAllOtherDevices": "Kendu gainerako gailu guztiak",
   "@removeAllOtherDevices": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "removedBy": "{username}(e)k kendu du",
   "@removedBy": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "username": {}
+      "username": {
+        "type": "String"
+      }
     }
   },
   "removeDevice": "Kendu gailua",
   "@removeDevice": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "unbanFromChat": "Kendu txatean duen debekua",
   "@unbanFromChat": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "renderRichContent": "Kargatu mezu aberatseko edukia",
   "@renderRichContent": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "reply": "Erantzun",
   "@reply": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "requestPermission": "Eskatu baimena",
   "@requestPermission": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "roomHasBeenUpgraded": "Gela bertsio-berritu da",
   "@roomHasBeenUpgraded": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "seenByUser": "{username}(e)k ikusi du",
   "@seenByUser": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "username": {}
+      "username": {
+        "type": "String"
+      }
     }
   },
   "send": "Bidali",
   "@send": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "sendAMessage": "Bidali mezua",
   "@sendAMessage": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "sendAudio": "Bidali audioa",
   "@sendAudio": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "sendFile": "Bidali fitxategia",
   "@sendFile": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "sendImage": "Bidali irudia",
   "@sendImage": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "sendOriginal": "Bidali jatorrizkoa",
   "@sendOriginal": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "sendVideo": "Bidali bideoa",
   "@sendVideo": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "sentAFile": "📁 {username}(e)k fitxategia bidali du",
   "@sentAFile": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "username": {}
+      "username": {
+        "type": "String"
+      }
     }
   },
   "sentAnAudio": "🎤 {username}(e)k audioa bidali du",
   "@sentAnAudio": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "username": {}
+      "username": {
+        "type": "String"
+      }
     }
   },
   "sentAPicture": "🖼️ {username}(e)k irudia bidali du",
   "@sentAPicture": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "username": {}
+      "username": {
+        "type": "String"
+      }
     }
   },
   "sentASticker": "😊 {username}(e)k pegatina bidali du",
   "@sentASticker": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "username": {}
+      "username": {
+        "type": "String"
+      }
     }
   },
   "sentAVideo": "🎥 {username}(e)k bideoa bidali du",
   "@sentAVideo": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "username": {}
+      "username": {
+        "type": "String"
+      }
     }
   },
   "sentCallInformations": "{senderName}(e)k deiaren informazioa bidali du",
   "@sentCallInformations": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "senderName": {}
+      "senderName": {
+        "type": "String"
+      }
     }
   },
   "setInvitationLink": "Gonbidapen-esteka ezarri",
   "@setInvitationLink": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "setStatus": "Ezarri egoera",
   "@setStatus": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "settings": "Ezarpenak",
   "@settings": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "share": "Partekatu",
   "@share": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "sharedTheLocation": "{username}(e)k kokapena partekatu du",
   "@sharedTheLocation": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "username": {}
+      "username": {
+        "type": "String"
+      }
     }
   },
   "skip": "Saltatu",
   "@skip": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "sourceCode": "Iturburu kodea",
   "@sourceCode": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "startedACall": "{senderName}(e)k deia hasi du",
   "@startedACall": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "senderName": {}
+      "senderName": {
+        "type": "String"
+      }
     }
   },
   "statusExampleMessage": "Zer moduz zaude gaur?",
   "@statusExampleMessage": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "submit": "Bidali",
   "@submit": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "systemTheme": "Sistemak darabilena",
   "@systemTheme": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "theyDontMatch": "Ez datoz bat",
   "@theyDontMatch": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "theyMatch": "Bat datoz",
   "@theyMatch": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "title": "FluffyChat",
   "@title": {
     "description": "Title for the application",
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "tryToSendAgain": "Saiatu berriro bidaltzen",
   "@tryToSendAgain": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "unbannedUser": "{username}(e)k {targetName}(r)i debekua kendu dio",
   "@unbannedUser": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "username": {},
-      "targetName": {}
+      "username": {
+        "type": "String"
+      },
+      "targetName": {
+        "type": "String"
+      }
     }
   },
   "unblockDevice": "Desblokeatu gailua",
   "@unblockDevice": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "unknownDevice": "Gailu ezezaguna",
   "@unknownDevice": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "unknownEncryptionAlgorithm": "Zifratze-algoritmo ezezaguna",
   "@unknownEncryptionAlgorithm": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "unknownEvent": "'{type}' gertaera ezezaguna",
   "@unknownEvent": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "type": {}
+      "type": {
+        "type": "String"
+      }
     }
   },
   "unmuteChat": "Utzi txata mututzeari",
   "@unmuteChat": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "unpin": "Utzi finkatzeari",
   "@unpin": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "userAndOthersAreTyping": "{username} eta beste {count} idazten ari dira…",
   "@userAndOthersAreTyping": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "username": {},
-      "count": {}
+      "username": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
     }
   },
   "userAndUserAreTyping": "{username} eta {username2} idazten ari dira…",
   "@userAndUserAreTyping": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "username": {},
-      "username2": {}
+      "username": {
+        "type": "String"
+      },
+      "username2": {
+        "type": "String"
+      }
     }
   },
   "userIsTyping": "{username} idazten ari da…",
   "@userIsTyping": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "username": {}
+      "username": {
+        "type": "String"
+      }
     }
   },
   "userLeftTheChat": "🚪 {username}(e)k txata utzi du",
   "@userLeftTheChat": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "username": {}
+      "username": {
+        "type": "String"
+      }
     }
   },
   "username": "Erabiltzaile-izena",
   "@username": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "userSentUnknownEvent": "{username}(e)k {type} gertaera bat bidali du",
   "@userSentUnknownEvent": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "username": {},
-      "type": {}
+      "username": {
+        "type": "String"
+      },
+      "type": {
+        "type": "String"
+      }
     }
   },
   "verify": "Egiaztatu",
   "@verify": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "verifyStart": "Abiarazi egiaztaketa",
   "@verifyStart": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "verifySuccess": "Ondo egiaztatu duzu!",
   "@verifySuccess": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "verifyTitle": "Beste kontua egiaztatzen",
   "@verifyTitle": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "videoCall": "Bideo-deia",
   "@videoCall": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "visibilityOfTheChatHistory": "Txat-historiaren ikusgaitasuna",
   "@visibilityOfTheChatHistory": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "visibleForAllParticipants": "Partaide guztientzat ikusgai",
   "@visibleForAllParticipants": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "visibleForEveryone": "Edonorentzat ikusgai",
   "@visibleForEveryone": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "voiceMessage": "Ahozko mezua",
   "@voiceMessage": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "waitingPartnerAcceptRequest": "Kideak eskaera onartuko zain…",
   "@waitingPartnerAcceptRequest": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "waitingPartnerEmoji": "Kideak emojia onartuko zain…",
   "@waitingPartnerEmoji": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "waitingPartnerNumbers": "Kideak zenbakiak onartuko zain…",
   "@waitingPartnerNumbers": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "wallpaper": "Horma-irudia:",
   "@wallpaper": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "whoIsAllowedToJoinThisGroup": "Nor batu daiteke talde honetara?",
   "@whoIsAllowedToJoinThisGroup": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "writeAMessage": "Idatzi mezua…",
   "@writeAMessage": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "yes": "Bai",
   "@yes": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "you": "Zeu",
   "@you": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "youAreNoLongerParticipatingInThisChat": "Ez duzu txat honetan parte hartzen honezkero",
   "@youAreNoLongerParticipatingInThisChat": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "youHaveBeenBannedFromThisChat": "Txat honetan debekua ezarri dizute",
   "@youHaveBeenBannedFromThisChat": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "editRoomAliases": "Editatu gelaren aliasak",
   "@editRoomAliases": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "chats": "Txatak",
   "@chats": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "emojis": "Emojiak",
@@ -1218,123 +1372,127 @@
   "@unsupportedAndroidVersionLong": {},
   "commandHint_ban": "Debekatu erabiltzailea gela honetan",
   "@commandHint_ban": {
-    "type": "text",
+    "type": "String",
     "description": "Usage hint for the command /ban"
   },
   "commandHint_clearcache": "Ezabatu katxea",
   "@commandHint_clearcache": {
-    "type": "text",
+    "type": "String",
     "description": "Usage hint for the command /clearcache"
   },
   "commandHint_create": "Sortu taldeko-txat huts bat\nErabili --no-encyption zifratzea desgaitzeko",
   "@commandHint_create": {
-    "type": "text",
+    "type": "String",
     "description": "Usage hint for the command /create"
   },
   "commandHint_op": "Zehaztu erabiltzaile honen botere-maila (defektuz: 50)",
   "@commandHint_op": {
-    "type": "text",
+    "type": "String",
     "description": "Usage hint for the command /op"
   },
   "commandHint_plain": "Bidali formaturik gabeko testua",
   "@commandHint_plain": {
-    "type": "text",
+    "type": "String",
     "description": "Usage hint for the command /plain"
   },
   "commandHint_react": "Bidali erantzuna erreakzio gisa",
   "@commandHint_react": {
-    "type": "text",
+    "type": "String",
     "description": "Usage hint for the command /react"
   },
   "commandHint_send": "Bidali testua",
   "@commandHint_send": {
-    "type": "text",
+    "type": "String",
     "description": "Usage hint for the command /send"
   },
   "createNewSpace": "Gune berria",
   "@createNewSpace": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "editBlockedServers": "Editatu blokeatutako zerbitzariak",
   "@editBlockedServers": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "editRoomAvatar": "Gelaren abatarra editatu",
   "@editRoomAvatar": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "encrypted": "Zifratuta",
   "@encrypted": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "enterAnEmailAddress": "Sartu helbide elektroniko bat",
   "@enterAnEmailAddress": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "homeserver": "Zerbitzaria",
   "@homeserver": {},
   "errorObtainingLocation": "Errorea kokapena lortzerakoan: {error}",
   "@errorObtainingLocation": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "error": {}
+      "error": {
+        "type": "String"
+      }
     }
   },
   "everythingReady": "Dena prest!",
   "@everythingReady": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "extremeOffensive": "Izugarri iraingarria",
   "@extremeOffensive": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "goToTheNewRoom": "Joan gela berrira",
   "@goToTheNewRoom": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "groups": "Taldeak",
   "@groups": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "hideRedactedEvents": "Ezkutatu atzera botatako gertaerak",
   "@hideRedactedEvents": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "hideUnknownEvents": "Ezkutatu gertaera ezezagunak",
   "@hideUnknownEvents": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "inviteForMe": "Niretzako gonbidapenak",
   "@inviteForMe": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "notificationsEnabledForThisAccount": "Gaitu kontu honentzako jakinarazpenak",
   "@notificationsEnabledForThisAccount": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "numUsersTyping": "{count} erabiltzaile idazten ari dira…",
   "@numUsersTyping": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "count": {}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "notifications": "Jakinarazpenak",
   "@notifications": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "oneClientLoggedOut": "Zure gailuetako batek saioa amaitu du",
@@ -1345,46 +1503,48 @@
   "@editBundlesForAccount": {},
   "oopsPushError": "Hara! Zoritxarrez, errore bat gertatu da push jakinarazpenak ezartzerakoan.",
   "@oopsPushError": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "pleaseChoose": "Aukeratu",
   "@pleaseChoose": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "saveFile": "Gorde fitxategia",
   "@saveFile": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "singlesignon": "Single Sign on",
   "@singlesignon": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "unreadChats": "{unreadCount, plural, =1{irakurri gabeko txat 1} other {irakurri gabeko {unreadCount} txat}}",
   "@unreadChats": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "unreadCount": {}
+      "unreadCount": {
+        "type": "int"
+      }
     }
   },
   "videoCallsBetaWarning": "Kontuan izan bideo-deiak beta fasean daudela. Litekeena da behar bezala erabili ezin izatea —erabili ahal badira—.",
   "@videoCallsBetaWarning": {},
   "toggleMuted": "Ikusi / Ezkutatu mutututakoak",
   "@toggleMuted": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "all": "Guztia",
   "@all": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "next": "Hurrengoa",
   "@next": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "experimentalVideoCalls": "Bideo-dei esperimentalak",
@@ -1395,7 +1555,7 @@
   "@enableMultiAccounts": {},
   "openVideoCamera": "Ireki kamera bideorako",
   "@openVideoCamera": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "removeFromBundle": "Kendu sorta honetatik",
@@ -1404,49 +1564,49 @@
   "@serverRequiresEmail": {},
   "or": "Edo",
   "@or": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "link": "Esteka",
   "@link": {},
   "privacy": "Pribatutasuna",
   "@privacy": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "redactMessage": "Bota mezua atzera",
   "@redactMessage": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "register": "Eman izena",
   "@register": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "pleaseFollowInstructionsOnWeb": "Jarraitu webguneko argibideak eta sakatu 'Hurrengoa'.",
   "@pleaseFollowInstructionsOnWeb": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "reason": "Arrazoia",
   "@reason": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "reportMessage": "Salatu mezua",
   "@reportMessage": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "status": "Egoera",
   "@status": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "yourPublicKey": "Zure gako publikoa",
   "@yourPublicKey": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "messageType": "Mezu mota",
@@ -1459,251 +1619,265 @@
   "@switchToAccount": {
     "type": "number",
     "placeholders": {
-      "number": {}
+      "number": {
+        "type": "String"
+      }
     }
   },
   "previousAccount": "Aurreko kontua",
   "@previousAccount": {},
   "edit": "Editatu",
   "@edit": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "mention": "Aipatu",
   "@mention": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "repeatPassword": "Idatzi berriro pasahitza",
   "@repeatPassword": {},
   "addEmail": "Gehitu ePosta",
   "@addEmail": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "areYouSureYouWantToLogout": "Ziur zaude saioa amaitu nahi duzula?",
   "@areYouSureYouWantToLogout": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "copyToClipboard": "Kopiatu arbelera",
   "@copyToClipboard": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "ignoredUsers": "Ez ikusia egindako erabiltzaileak",
   "@ignoredUsers": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "security": "Segurtasuna",
   "@security": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "autoplayImages": "Automatikoki abiarazi pegatina eta emote animatuak",
   "@autoplayImages": {
-    "type": "text",
+    "type": "String",
     "placeholder": {}
   },
   "sendOnEnter": "Bidali enter sakatuz",
   "@sendOnEnter": {},
   "badServerVersionsException": "Zerbitzariak ondorengo ezaugarriak onartzen ditu:\n{serverVersions}\nBaina aplikazioak hauek onartzen ditu bakarrik: {supportedVersions}",
   "@badServerVersionsException": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "serverVersions": {},
-      "supportedVersions": {}
+      "serverVersions": {
+        "type": "String"
+      },
+      "supportedVersions": {
+        "type": "String"
+      }
     }
   },
   "botMessages": "Boten mezuak",
   "@botMessages": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "cantOpenUri": "Ezin da {uri} URIa ireki",
   "@cantOpenUri": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "uri": {}
+      "uri": {
+        "type": "String"
+      }
     }
   },
   "changeDeviceName": "Aldatu gailuaren izena",
   "@changeDeviceName": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "changePassword": "Aldatu pasahitza",
   "@changePassword": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "changeYourAvatar": "Aldatu abatarra",
   "@changeYourAvatar": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "chatBackup": "Txataren babeskopia",
   "@chatBackup": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "chatBackupDescription": "Txat zaharrak berreskuratze-gako batekin daude babestuta. Ez galdu gako hori.",
   "@chatBackupDescription": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "chatHasBeenAddedToThisSpace": "Txata gune honetara gehitu da",
   "@chatHasBeenAddedToThisSpace": {},
   "configureChat": "Txata konfiguratu",
   "@configureChat": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "contentHasBeenReported": "Edukia zerbitzariko administratzaileei jakinarazi zaie",
   "@contentHasBeenReported": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "memberChanges": "Kideen aldaketak",
   "@memberChanges": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "setAsCanonicalAlias": "Ezarri alias nagusi bezala",
   "@setAsCanonicalAlias": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "setCustomEmotes": "Ezarri zure emoteak",
   "@setCustomEmotes": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "appLock": "Aplikazioa blokeatzea",
   "@appLock": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "addToSpace": "Gehitu gunera",
   "@addToSpace": {},
   "allChats": "Txat guztiak",
   "@allChats": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "badServerLoginTypesException": "Zerbitzariak ondorengo aukerak onartzen ditu saioa hasteko:\n{serverVersions}\nBaina aplikazioak hauek onartzen ditu bakarrik:\n{supportedVersions}",
   "@badServerLoginTypesException": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "serverVersions": {},
-      "supportedVersions": {}
+      "serverVersions": {
+        "type": "String"
+      },
+      "supportedVersions": {
+        "type": "String"
+      }
     }
   },
   "commandHint_dm": "Hasi banakako txat bat\nErabili --no-encyption zifratzea desgaitzeko",
   "@commandHint_dm": {
-    "type": "text",
+    "type": "String",
     "description": "Usage hint for the command /dm"
   },
   "commandHint_leave": "Utzi gela hau",
   "@commandHint_leave": {
-    "type": "text",
+    "type": "String",
     "description": "Usage hint for the command /leave"
   },
   "blocked": "Blokeatuta",
   "@blocked": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "commandInvalid": "Komandoa ez da baliozkoa",
   "@commandInvalid": {
-    "type": "text"
+    "type": "String"
   },
   "commandHint_myroomnick": "Ezarri zure ezizena gela honetarako",
   "@commandHint_myroomnick": {
-    "type": "text",
+    "type": "String",
     "description": "Usage hint for the command /myroomnick"
   },
   "ignore": "Ezikusi",
   "@ignore": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "containsUserName": "Erabiltzaile-izena dauka",
   "@containsUserName": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "containsDisplayName": "Ezizena dauka",
   "@containsDisplayName": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "locationDisabledNotice": "Kokapen zerbitzuak ezgaituta daude. Gaitu zure kokapena partekatu ahal izateko.",
   "@locationDisabledNotice": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "directChats": "Banakako txatak",
   "@directChats": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "enableEncryption": "Gaitu zifratzea",
   "@enableEncryption": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "iHaveClickedOnLink": "Estekan sakatu dut",
   "@iHaveClickedOnLink": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "noPasswordRecoveryDescription": "Oraindik ez duzu pasahitza berreskuratzeko modurik gehitu.",
   "@noPasswordRecoveryDescription": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "online": "Linean",
   "@online": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "pushRules": "Push arauak",
   "@pushRules": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "pleaseEnter4Digits": "Sartu lau zenbaki edo utzi hutsik aplikazioa babestu nahi ez baduzu.",
   "@pleaseEnter4Digits": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "replaceRoomWithNewerVersion": "Ordezkatu gela bertsio berriago batekin",
   "@replaceRoomWithNewerVersion": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "search": "Bilatu",
   "@search": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "withTheseAddressesRecoveryDescription": "Helbide hauekin pasahitza berreskuratu dezakezu.",
   "@withTheseAddressesRecoveryDescription": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "whyDoYouWantToReportThis": "Zergatik salatu nahi duzu?",
   "@whyDoYouWantToReportThis": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "videoWithSize": "Bideoa ({size})",
   "@videoWithSize": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "size": {}
+      "size": {
+        "type": "String"
+      }
     }
   },
   "openGallery": "Ireki bilduma",
@@ -1712,10 +1886,14 @@
   "@pinMessage": {},
   "reactedWith": "{sender}(e)k {reaction}(r)ekin erreakzionatu du",
   "@reactedWith": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "sender": {},
-      "reaction": {}
+      "sender": {
+        "type": "String"
+      },
+      "reaction": {
+        "type": "String"
+      }
     }
   },
   "confirmEventUnpin": "Ziur zaude gertaera finaktzeari utzi nahi diozula?",
@@ -1730,145 +1908,151 @@
   "@clearArchive": {},
   "commandHint_html": "Bidali testua HTML formatuan",
   "@commandHint_html": {
-    "type": "text",
+    "type": "String",
     "description": "Usage hint for the command /html"
   },
   "commandHint_invite": "Gonbidatu erabiltzailea gela honetara",
   "@commandHint_invite": {
-    "type": "text",
+    "type": "String",
     "description": "Usage hint for the command /invite"
   },
   "commandHint_join": "Batu gelara",
   "@commandHint_join": {
-    "type": "text",
+    "type": "String",
     "description": "Usage hint for the command /join"
   },
   "commandHint_kick": "Kendu erabiltzaile hori gela honetatik",
   "@commandHint_kick": {
-    "type": "text",
+    "type": "String",
     "description": "Usage hint for the command /kick"
   },
   "commandHint_me": "Deskribatu zure burua",
   "@commandHint_me": {
-    "type": "text",
+    "type": "String",
     "description": "Usage hint for the command /me"
   },
   "commandHint_myroomavatar": "Ezarri zure irudia gela honetarako (mxc-uri bidez)",
   "@commandHint_myroomavatar": {
-    "type": "text",
+    "type": "String",
     "description": "Usage hint for the command /myroomavatar"
   },
   "commandHint_unban": "Kendu erabiltzaileak gela honetan duen debekua",
   "@commandHint_unban": {
-    "type": "text",
+    "type": "String",
     "description": "Usage hint for the command /unban"
   },
   "commandMissing": "{command} ez da komandoa.",
   "@commandMissing": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "command": {}
+      "command": {
+        "type": "String"
+      }
     },
     "description": "State that {command} is not a valid /command."
   },
   "commandHint_discardsession": "Baztertu saioa",
   "@commandHint_discardsession": {
-    "type": "text",
+    "type": "String",
     "description": "Usage hint for the command /discardsession"
   },
   "deactivateAccountWarning": "Honek zure kontua desaktibatuko du. Ezin da desegin! Ziur zaude?",
   "@deactivateAccountWarning": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "defaultPermissionLevel": "Erabiltzaile berrien defektuzko botere-maila",
   "@defaultPermissionLevel": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "deleteAccount": "Ezabatu kontua",
   "@deleteAccount": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "deviceId": "Gailuaren IDa",
   "@deviceId": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "emotePacks": "Gelarako emote-sortak",
   "@emotePacks": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "enableEmotesGlobally": "Gaitu emote-sorta txat guztietarako",
   "@enableEmotesGlobally": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "fontSize": "Letraren tamaina",
   "@fontSize": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "howOffensiveIsThisContent": "Zenbaterainoko iraingarria da eduki hau?",
   "@howOffensiveIsThisContent": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "inoffensive": "Ez da iraingarria",
   "@inoffensive": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "locationPermissionDeniedNotice": "Kokapen baimena ukatu da. Eman zure kokapena partekatzeko baimena.",
   "@locationPermissionDeniedNotice": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "messages": "Mezuak",
   "@messages": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "newChat": "Txat berria",
   "@newChat": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "noConnectionToTheServer": "Ez dago konexiorik zerbitzariarekin",
   "@noConnectionToTheServer": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "noEncryptionForPublicRooms": "Zifratzea aktiba dezakezu soilik gelak publikoa izateari utzi badio.",
   "@noEncryptionForPublicRooms": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "noMatrixServer": "{server1} ez da matrix zerbitzari bat, {server2} erabili nahi duzu haren ordez?",
   "@noMatrixServer": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "server1": {},
-      "server2": {}
+      "server1": {
+        "type": "String"
+      },
+      "server2": {
+        "type": "String"
+      }
     }
   },
   "scanQrCode": "Eskaneatu QR kodea",
   "@scanQrCode": {},
   "obtainingLocation": "Kokapena atzitzen…",
   "@obtainingLocation": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "offensive": "Iraingarria",
   "@offensive": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "offline": "Lineaz kanpo",
   "@offline": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "addToBundle": "Gehitu sortara",
@@ -1877,153 +2061,153 @@
   "@bundleName": {},
   "openInMaps": "Ireki mapen aplikazioan",
   "@openInMaps": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "participant": "Partaide",
   "@participant": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "passwordForgotten": "Pasahitza ahaztu dut",
   "@passwordForgotten": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "passwordHasBeenChanged": "Pasahitza aldatu da",
   "@passwordHasBeenChanged": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "passwordRecovery": "Pasahitzaren berreskurapena",
   "@passwordRecovery": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "people": "Jendea",
   "@people": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "pleaseChooseAPasscode": "Aukeratu sartzeko kode bat",
   "@pleaseChooseAPasscode": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "pleaseClickOnLink": "Sakatu ePostako estekan eta ondoren jarraitu.",
   "@pleaseClickOnLink": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "pleaseEnterYourPin": "Sartu zure PINa",
   "@pleaseEnterYourPin": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "removeYourAvatar": "Kendu zure abatarra",
   "@removeYourAvatar": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "roomVersion": "Gelaren bertsioa",
   "@roomVersion": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "sendAsText": "Bidali testu bezala",
   "@sendAsText": {
-    "type": "text"
+    "type": "String"
   },
   "sendMessages": "Mezuak bidali",
   "@sendMessages": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "sendSticker": "Bidali pegatina",
   "@sendSticker": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "setPermissionsLevel": "Ezarri baimen-maila",
   "@setPermissionsLevel": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "shareLocation": "Partekatu kokapena",
   "@shareLocation": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "showPassword": "Erakutsi pasahitza",
   "@showPassword": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "spaceIsPublic": "Gunea publikoa da",
   "@spaceIsPublic": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "spaceName": "Gunearen izena",
   "@spaceName": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "synchronizingPleaseWait": "Sinkronizatzen… itxaron.",
   "@synchronizingPleaseWait": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "toggleFavorite": "Ikusi / Ezkutatu gogokoak",
   "@toggleFavorite": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "toggleUnread": "Markatu irakurrita / irakurri gabe",
   "@toggleUnread": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "tooManyRequestsWarning": "Eskaera gehiegi. Saiatu berriro geroago!",
   "@tooManyRequestsWarning": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "transferFromAnotherDevice": "Beste gailu batetik transferitu",
   "@transferFromAnotherDevice": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "unavailable": "Ez dago eskuragai",
   "@unavailable": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "unverified": "Egiaztatu gabe(a)",
   "@unverified": {},
   "verified": "Egiaztatuta",
   "@verified": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "warning": "Kontuz!",
   "@warning": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "weSentYouAnEmail": "ePosta bat bidali dizugu",
   "@weSentYouAnEmail": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "whoCanPerformWhichAction": "Nork zer egin dezakeen",
   "@whoCanPerformWhichAction": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "wipeChatBackup": "Ezabatu txataren babeskopia berreskuratze-gako berria sortzeko?",
   "@wipeChatBackup": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "messageInfo": "Mezuaren xehetasunak",
@@ -2061,50 +2245,64 @@
   "youBannedUser": "{user}(r)i debekua ezarri diozu",
   "@youBannedUser": {
     "placeholders": {
-      "user": {}
+      "user": {
+        "type": "String"
+      }
     }
   },
   "youHaveWithdrawnTheInvitationFor": "{user}(r)i luzatutako gonbidapena baliogabetu duzu",
   "@youHaveWithdrawnTheInvitationFor": {
     "placeholders": {
-      "user": {}
+      "user": {
+        "type": "String"
+      }
     }
   },
   "youInvitedBy": "📩 {user}(e)k gonbidatu zaitu",
   "@youInvitedBy": {
     "placeholders": {
-      "user": {}
+      "user": {
+        "type": "String"
+      }
     }
   },
   "youInvitedUser": "📩 {user} gonbidatu duzu",
   "@youInvitedUser": {
     "placeholders": {
-      "user": {}
+      "user": {
+        "type": "String"
+      }
     }
   },
   "youKicked": "👞 {user} kanporatu duzu",
   "@youKicked": {
     "placeholders": {
-      "user": {}
+      "user": {
+        "type": "String"
+      }
     }
   },
   "youKickedAndBanned": "🙅 {user} kanporatu eta debekua ezarri diozu",
   "@youKickedAndBanned": {
     "placeholders": {
-      "user": {}
+      "user": {
+        "type": "String"
+      }
     }
   },
   "youUnbannedUser": "{user}(r)i debekua kendu diozu",
   "@youUnbannedUser": {
     "placeholders": {
-      "user": {}
+      "user": {
+        "type": "String"
+      }
     }
   },
   "youRejectedTheInvitation": "Gonbidapena baztertu duzu",
   "@youRejectedTheInvitation": {},
   "separateChatTypes": "Bereizi banakako mezuak eta taldeak",
   "@separateChatTypes": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "widgetUrlError": "Ez da baliozko URLa.",
@@ -2138,7 +2336,9 @@
   "countFiles": "{count} fitxategi",
   "@countFiles": {
     "placeholders": {
-      "count": {}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "user": "Erabiltzailea",
@@ -2197,7 +2397,9 @@
   "@numChats": {
     "type": "number",
     "placeholders": {
-      "number": {}
+      "number": {
+        "type": "String"
+      }
     }
   },
   "hideUnimportantStateEvents": "Ezkutatu garrantzirik gabeko gertaerak",
@@ -2206,9 +2408,11 @@
   "@noKeyForThisMessage": {},
   "supposedMxid": "Hau {mxid} izan behar da",
   "@supposedMxid": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "mxid": {}
+      "mxid": {
+        "type": "String"
+      }
     }
   },
   "commandHint_markasgroup": "Markatu talde bezala",
@@ -2219,9 +2423,11 @@
   "@commandHint_markasdm": {},
   "wasDirectChatDisplayName": "Txata hutsik dago ({oldDisplayName} zen lehen)",
   "@wasDirectChatDisplayName": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "oldDisplayName": {}
+      "oldDisplayName": {
+        "type": "String"
+      }
     }
   },
   "deviceKeys": "Gailuaren gakoak:",
@@ -2246,9 +2452,11 @@
   "@commandHint_hug": {},
   "hugContent": "{senderName}(e)k besarkatu zaitu",
   "@hugContent": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "senderName": {}
+      "senderName": {
+        "type": "String"
+      }
     }
   },
   "sorryThatsNotPossible": "Barka… hori ez da posible",
@@ -2261,14 +2469,16 @@
   "@commandHint_cuddle": {},
   "googlyEyesContent": "{senderName}(e)k begi dibertigarri batzuk bidali dizkizu",
   "@googlyEyesContent": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "senderName": {}
+      "senderName": {
+        "type": "String"
+      }
     }
   },
   "allRooms": "Talde-txat guztiak",
   "@allRooms": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "jumpToLastReadMessage": "Joan irakurritako azken mezura",
@@ -2277,18 +2487,22 @@
   "@reportErrorDescription": {},
   "cuddleContent": "{senderName}(e)k samurki besarkatu zaitu",
   "@cuddleContent": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "senderName": {}
+      "senderName": {
+        "type": "String"
+      }
     }
   },
   "readUpToHere": "Honaino irakurrita",
   "@readUpToHere": {},
   "fileHasBeenSavedAt": "Fitxategia {path}(e)n gorde da",
   "@fileHasBeenSavedAt": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "path": {}
+      "path": {
+        "type": "String"
+      }
     }
   },
   "jump": "Joan",
@@ -2303,9 +2517,11 @@
   "@pleaseTryAgainLaterOrChooseDifferentServer": {},
   "signInWith": "Hasi saioa {provider}(r)ekin",
   "@signInWith": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "provider": {}
+      "provider": {
+        "type": "String"
+      }
     }
   },
   "notAnImage": "Ez da irudi-fitxategia.",
@@ -2338,9 +2554,11 @@
   "@setChatDescription": {},
   "redactedBy": "{username}(e)k atzera bota du",
   "@redactedBy": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "username": {}
+      "username": {
+        "type": "String"
+      }
     }
   },
   "optionalRedactReason": "(Aukerakoa) Mezua atzera botatzearen arrazoia…",
@@ -2349,10 +2567,14 @@
   "@inviteContactToGroupQuestion": {},
   "redactedByBecause": "{username}(e)k atzera bota du \"{reason}\" dela-eta",
   "@redactedByBecause": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "username": {},
-      "reason": {}
+      "username": {
+        "type": "String"
+      },
+      "reason": {
+        "type": "String"
+      }
     }
   },
   "redactMessageDescription": "Mezua elkarrizketa honetako partaide guztientzat botako da atzera. Ezin da desegin.",
@@ -2363,9 +2585,11 @@
   "@directChat": {},
   "wrongPinEntered": "PIN okerra! Saiatu berriro {seconds} segundu barru…",
   "@wrongPinEntered": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "seconds": {}
+      "seconds": {
+        "type": "int"
+      }
     }
   },
   "noChatDescriptionYet": "Ez da txaterako deskribapenik sortu oraindik.",
@@ -2378,7 +2602,7 @@
   "@shareInviteLink": {},
   "emoteKeyboardNoRecents": "Oraintsu erabilitako emoteak hemen ageriko dira…",
   "@emoteKeyboardNoRecents": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "setTheme": "Ezarri gaia:",
@@ -2408,7 +2632,9 @@
   "hasKnocked": "🚪 {user}(e)k baimena eskatu du",
   "@hasKnocked": {
     "placeholders": {
-      "user": {}
+      "user": {
+        "type": "String"
+      }
     }
   },
   "learnMore": "Gehiago irakurri",
@@ -2427,9 +2653,11 @@
   "@groupCanBeFoundViaSearch": {},
   "noUsersFoundWithQuery": "Zoritxarrez ez da \"{query}\" duen erabiltzailerik aurkitu. Egiaztatu zuzen idatzi duzula.",
   "@noUsersFoundWithQuery": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "query": {}
+      "query": {
+        "type": "String"
+      }
     }
   },
   "yourGlobalUserIdIs": "Zure erabiltzaile-ID orokorra: ",
@@ -2488,34 +2716,48 @@
   "@decline": {},
   "databaseBuildErrorBody": "Ezin da SQlite datu-basea eraiki. Aplikazioa aurreko datu-basea erabiltzen saiatuko da oraingoz. Jakinarazi errorea garatzaileei {url} helbidean. Errorearen mezua ondorengoa da: {error}",
   "@databaseBuildErrorBody": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "url": {},
-      "error": {}
+      "url": {
+        "type": "String"
+      },
+      "error": {
+        "type": "String"
+      }
     }
   },
   "initAppError": "Errorea aplikazioa abiaraztean",
   "@initAppError": {},
   "sessionLostBody": "Zure saioa galdu da. Jakinarazi errorea garatzaileei {url} helbidean. Errorearen mezua ondorengoa da: {error}",
   "@sessionLostBody": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "url": {},
-      "error": {}
+      "url": {
+        "type": "String"
+      },
+      "error": {
+        "type": "String"
+      }
     }
   },
   "restoreSessionBody": "Aplikazioa babeskopia erabiliz saioa leheneratzen saiatuko da. Jakinarazi errorea garatzaileei {url} helbidean. Errorearen mezua ondorengoa da: {error}",
   "@restoreSessionBody": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "url": {},
-      "error": {}
+      "url": {
+        "type": "String"
+      },
+      "error": {
+        "type": "String"
+      }
     }
   },
   "youInvitedToBy": "📩 Esteka baten bidez gonbidatu zaituzte:\n{alias}",
   "@youInvitedToBy": {
     "placeholders": {
-      "alias": {}
+      "alias": {
+        "type": "String"
+      }
     }
   },
   "transparent": "Gardena",
@@ -2528,46 +2770,58 @@
   "@verifyOtherDevice": {},
   "acceptedKeyVerification": "{sender}(e)k gakoaren egiaztapena onartu du",
   "@acceptedKeyVerification": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "sender": {}
+      "sender": {
+        "type": "String"
+      }
     }
   },
   "canceledKeyVerification": "{sender}(e)k gakoen egiaztapena ezeztatu du",
   "@canceledKeyVerification": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "sender": {}
+      "sender": {
+        "type": "String"
+      }
     }
   },
   "requestedKeyVerification": "{sender}(e)k gakoen egiaztapena galdegin du",
   "@requestedKeyVerification": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "sender": {}
+      "sender": {
+        "type": "String"
+      }
     }
   },
   "sendReadReceiptsDescription": "Txateko beste partaideek mezu bat irakurri duzula ikus dezakete.",
   "@sendReadReceiptsDescription": {},
   "forwardMessageTo": "Birbidali mezua {roomName}(e)ra?",
   "@forwardMessageTo": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "roomName": {}
+      "roomName": {
+        "type": "String"
+      }
     }
   },
   "completedKeyVerification": "{sender}(e)k gakoen egiaztapena osatu du",
   "@completedKeyVerification": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "sender": {}
+      "sender": {
+        "type": "String"
+      }
     }
   },
   "isReadyForKeyVerification": "{sender} gakoak egiaztatzeko prest dago",
   "@isReadyForKeyVerification": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "sender": {}
+      "sender": {
+        "type": "String"
+      }
     }
   },
   "verifyOtherDeviceDescription": "Beste gailu bat egiaztatzean, gailu horiek gakoak truka ditzakete, eta segurtasun orokorra handitu. 💪 Egiaztapena hasten duzunean, laster-leiho bat agertuko da bi gailuetan. Bertan, elkarrekin alderatu behar diren emoji edo zenbaki batzuk ikusiko dituzu. Hobe da bi gailuak eskura izatea egiaztapena hasi aurretik. 🤳",
@@ -2582,19 +2836,21 @@
   "@verifyOtherUser": {},
   "startedKeyVerification": "{sender}(e)k gakoen egiaztapena hasi du",
   "@startedKeyVerification": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "sender": {}
+      "sender": {
+        "type": "String"
+      }
     }
   },
   "presencesToggle": "Erakutsi beste erabiltzaileen egoera-mezuak",
   "@presencesToggle": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "presenceStyle": "Presentzia:",
   "@presenceStyle": {
-    "type": "text",
+    "type": "String",
     "placeholders": {}
   },
   "incomingMessages": "Jasotako mezuak",
@@ -2611,10 +2867,14 @@
   "@commandHint_ignore": {},
   "unreadChatsInApp": "{appname}: {unread} mezu irakurri gabe",
   "@unreadChatsInApp": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "appname": {},
-      "unread": {}
+      "appname": {
+        "type": "String"
+      },
+      "unread": {
+        "type": "String"
+      }
     }
   },
   "noDatabaseEncryption": "Plataforma honetan ezin da datu-basea zifratu",
@@ -2624,7 +2884,9 @@
   "userWouldLikeToChangeTheChat": "{user}(e)k txatera batu nahiko luke.",
   "@userWouldLikeToChangeTheChat": {
     "placeholders": {
-      "user": {}
+      "user": {
+        "type": "String"
+      }
     }
   },
   "knock": "Eskatu baimena",
@@ -2633,14 +2895,16 @@
   "@knocking": {},
   "chatCanBeDiscoveredViaSearchOnServer": "Txata {server}(e)n bilaketa eginez aurkitu daiteke",
   "@chatCanBeDiscoveredViaSearchOnServer": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "server": {}
+      "server": {
+        "type": "String"
+      }
     }
   },
   "thereAreCountUsersBlocked": "Une honetan {count} erabiltzaile daude blokeatuta.",
   "@thereAreCountUsersBlocked": {
-    "type": "text",
+    "type": "String",
     "count": {}
   },
   "appLockDescription": "Blokeatu aplikazioa pin kode batekin erabiltzen ari ez zarenean",
@@ -2681,9 +2945,11 @@
   "@userRole": {},
   "minimumPowerLevel": "{level} da gutxieneko botere-maila.",
   "@minimumPowerLevel": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "level": {}
+      "level": {
+        "type": "String"
+      }
     }
   },
   "publicChatAddresses": "Txataren helbide publikoak",
@@ -2696,9 +2962,11 @@
   "@gallery": {},
   "searchIn": "Bilatu {chat} txatean...",
   "@searchIn": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "chat": {}
+      "chat": {
+        "type": "String"
+      }
     }
   },
   "searchMore": "Bilatu gehiago...",
@@ -2723,26 +2991,32 @@
   "@joinedChats": {},
   "goToSpace": "Joan {space} gunera",
   "@goToSpace": {
-    "type": "text",
+    "type": "String",
     "space": {}
   },
   "markAsUnread": "Markatu irakurri gabetzat",
   "@markAsUnread": {},
   "countChatsAndCountParticipants": "{chats} txat eta {participants} partaide",
   "@countChatsAndCountParticipants": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "chats": {},
-      "participants": {}
+      "chats": {
+        "type": "int"
+      },
+      "participants": {
+        "type": "int"
+      }
     }
   },
   "spaces": "Guneak",
   "@spaces": {},
   "adminLevel": "{level} - Administratzailea",
   "@adminLevel": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "level": {}
+      "level": {
+        "type": "int"
+      }
     }
   },
   "changeTheChatPermissions": "Aldatu txataren baimenak",
@@ -2751,16 +3025,20 @@
   "@inviteOtherUsers": {},
   "userLevel": "{level} - Erabiltzailea",
   "@userLevel": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "level": {}
+      "level": {
+        "type": "int"
+      }
     }
   },
   "moderatorLevel": "{level} - Moderatzailea",
   "@moderatorLevel": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "level": {}
+      "level": {
+        "type": "int"
+      }
     }
   },
   "sendRoomNotifications": "Bidali @gela jakinarazpena",
@@ -2776,14 +3054,18 @@
   "invitedBy": "📩 {user}(e)k gonbidatua",
   "@invitedBy": {
     "placeholders": {
-      "user": {}
+      "user": {
+        "type": "String"
+      }
     }
   },
   "updateInstalled": "🎉 {version} bertsioa instalatu da!",
   "@updateInstalled": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "version": {}
+      "version": {
+        "type": "String"
+      }
     }
   },
   "changelog": "Aldaketak",
@@ -2818,15 +3100,21 @@
   "@serverLimitReached": {
     "type": "integer",
     "placeholders": {
-      "seconds": {}
+      "seconds": {
+        "type": "int"
+      }
     }
   },
   "sendingAttachmentCountOfCount": "{index}. eranskina bidaltzen ({length} guztira)…",
   "@sendingAttachmentCountOfCount": {
     "type": "integer",
     "placeholders": {
-      "index": {},
-      "length": {}
+      "index": {
+        "type": "int"
+      },
+      "length": {
+        "type": "int"
+      }
     }
   },
   "oneOfYourDevicesIsNotVerified": "Zure gailuetako bat ez dago egiaztatuta",
@@ -2849,9 +3137,11 @@
   "@contactServerAdmin": {},
   "aboutHomeserver": "{homeserver}(e)ri buruz",
   "@aboutHomeserver": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "homeserver": {}
+      "homeserver": {
+        "type": "String"
+      }
     }
   },
   "supportPage": "Laguntza orria",
@@ -2888,11 +3178,67 @@
   "@unableToJoinChat": {},
   "sendImages": "Bidali {count} irudi",
   "@sendImages": {
-    "type": "text",
+    "type": "String",
     "placeholders": {
-      "count": {}
+      "count": {
+        "type": "int"
+      }
     }
   },
   "compress": "Konprimatu",
-  "@compress": {}
+  "@compress": {},
+  "previous": "Aurrekoa",
+  "@previous": {},
+  "otherPartyNotLoggedIn": "Besteak ez du saiorik hasita eta, beraz, ezin du mezurik jaso!",
+  "@otherPartyNotLoggedIn": {},
+  "appWantsToUseForLogin": "Erabili '{server}' saioa hasteko",
+  "@appWantsToUseForLogin": {
+    "type": "String",
+    "placeholders": {
+      "server": {
+        "type": "String"
+      }
+    }
+  },
+  "appWantsToUseForLoginDescription": "Honenbestez, aplikazioak eta webguneak zuri buruzko informazioa partekatzea baimentzen duzu.",
+  "@appWantsToUseForLoginDescription": {},
+  "open": "Ireki",
+  "@open": {},
+  "generalNotificationSettings": "Jakinarazpen orokorren ezarpenak",
+  "@generalNotificationSettings": {},
+  "notificationRuleContainsUserName": "Erabiltzaile-izena dauka",
+  "@notificationRuleContainsUserName": {},
+  "notificationRuleMaster": "Isilarazi jakinarazpen guztiak",
+  "@notificationRuleMaster": {},
+  "userSpecificNotificationSettings": "Erabiltzaile zehatzen jakinarazpenen ezarpenak",
+  "@userSpecificNotificationSettings": {},
+  "more": "Gehiago",
+  "@more": {},
+  "newChatRequest": "📩 Txat-eskaera berria",
+  "@newChatRequest": {},
+  "contentNotificationSettings": "Edukiaren jakinarazpenen ezarpenak",
+  "@contentNotificationSettings": {},
+  "notificationRuleContainsUserNameDescription": "Jakinarazten du mezuan erabiltzaile-izena aipatzen denean.",
+  "@notificationRuleContainsUserNameDescription": {},
+  "notificationRuleMasterDescription": "Gainerako arauak gainidatzi eta jakinarazpenak ezgaitzen ditu.",
+  "@notificationRuleMasterDescription": {},
+  "roomNotificationSettings": "Gelen jakinarazpenen ezarpenak",
+  "@roomNotificationSettings": {},
+  "otherNotificationSettings": "Beste jakinarazpenen ezarpenak",
+  "@otherNotificationSettings": {},
+  "waitingForServer": "Zerbitzariaren zain…",
+  "@waitingForServer": {},
+  "appIntroduction": "FluffyChatek mezularitza-programa desberdinak erabiltzen dituzten lagunekin txateatzea ahalbidetzen dizu. Ikasi gehiago https://matrix.org estekan edo sakatu *Jarraitu*.",
+  "@appIntroduction": {},
+  "synchronizingPleaseWaitCounter": " Sinkronizatzen… (%{percentage})",
+  "@synchronizingPleaseWaitCounter": {
+    "type": "String",
+    "placeholders": {
+      "percentage": {
+        "type": "String"
+      }
+    }
+  },
+  "notificationRuleInviteForMe": "Gonbidapena niretzat",
+  "@notificationRuleInviteForMe": {}
 }

@@ -138,7 +138,10 @@ class MatrixLocals extends MatrixLocalizations {
 
   @override
   String groupWith(String displayname) {
-    return l10n.groupWith(displayname);
+    // #Pangea
+    // return l10n.groupWith(displayname);
+    return l10n.chatWith(displayname);
+    // Pangea#
   }
 
   @override

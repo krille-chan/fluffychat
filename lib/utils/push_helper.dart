@@ -227,7 +227,10 @@ Future<void> _tryPushHelper(
 
   final notificationGroupId =
       event.room.isDirectChat ? 'directChats' : 'groupChats';
-  final groupName = event.room.isDirectChat ? l10n.directChats : l10n.groups;
+  // #Pangea
+  // final groupName = event.room.isDirectChat ? l10n.directChats : l10n.groups;
+  final groupName = event.room.isDirectChat ? l10n.directChats : l10n.chats;
+  // Pangea#
 
   final messageRooms = AndroidNotificationChannelGroup(
     notificationGroupId,

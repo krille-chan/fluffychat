@@ -14,8 +14,7 @@ extension RoomStatusExtension on Room {
     if (AppConfig.hideTypingUsernames) {
       typingText = L10n.of(context).isTyping;
       if (typingUsers.first.id != directChatMatrixID) {
-        typingText =
-            L10n.of(context).numUsersTyping(typingUsers.length.toString());
+        typingText = L10n.of(context).numUsersTyping(typingUsers.length);
       }
     } else if (typingUsers.length == 1) {
       typingText = L10n.of(context).isTyping;
@@ -29,10 +28,11 @@ extension RoomStatusExtension on Room {
         typingUsers[1].calcDisplayname(),
       );
     } else if (typingUsers.length > 2) {
-      typingText = L10n.of(context).userAndOthersAreTyping(
-        typingUsers.first.calcDisplayname(),
-        (typingUsers.length - 1).toString(),
-      );
+      typingText = L10n.of(context).isTyping;
+      if (typingUsers.first.id != directChatMatrixID) {
+        typingText =
+            L10n.of(context).userIsTyping(typingUsers.first.calcDisplayname());
+      }
     }
     return typingText;
   }

@@ -47,7 +47,10 @@ class NewGroupView extends StatelessWidget {
                 segments: [
                   ButtonSegment(
                     value: CreateGroupType.group,
-                    label: Text(L10n.of(context).group),
+                    // #Pangea
+                    // label: Text(L10n.of(context).group),
+                    label: Text(L10n.of(context).chat),
+                    // Pangea#
                   ),
                   ButtonSegment(
                     value: CreateGroupType.space,

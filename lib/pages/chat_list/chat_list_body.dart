@@ -403,7 +403,10 @@ class PublicRoomsHorizontalListState extends State<PublicRoomsHorizontalList> {
                 itemBuilder: (context, i) => _SearchItem(
                   title: publicRooms[i].name ??
                       publicRooms[i].canonicalAlias?.localpart ??
-                      L10n.of(context).group,
+                      // #Pangea
+                      // L10n.of(context).group,
+                      L10n.of(context).chat,
+                  // Pangea#
                   avatar: publicRooms[i].avatarUrl,
                   onPressed: () => showAdaptiveBottomSheet(
                     context: context,

@@ -1050,7 +1050,10 @@ class ChatController extends State<ChatPageWithRoom>
         ),
         AdaptiveModalAction(
           value: 0,
-          label: L10n.of(context).inoffensive,
+          // #Pangea
+          // label: L10n.of(context).inoffensive,
+          label: L10n.of(context).slightlyOffensive,
+          // Pangea#
         ),
       ],
     );

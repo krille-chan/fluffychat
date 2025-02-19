@@ -11,7 +11,10 @@ void pLogoutAction(BuildContext context, {bool? isDestructiveAction}) async {
         useRootNavigator: false,
         context: context,
         title: L10n.of(context).areYouSureYouWantToLogout,
-        message: L10n.of(context).noBackupWarning,
+        // #Pangea
+        // message: L10n.of(context).noBackupWarning,
+        message: L10n.of(context).dontForgetPassword,
+        // Pangea#
         okLabel: L10n.of(context).logout,
         cancelLabel: L10n.of(context).cancel,
       ) ==

@@ -65,7 +65,10 @@ extension UiaRequestManager on MatrixState {
                 useRootNavigator: false,
                 context: navigatorContext,
                 title: l10n.weSentYouAnEmail,
-                message: l10n.pleaseClickOnLink,
+                // #Pangea
+                // message: L10n.of(context).pleaseClickOnLink,
+                message: L10n.of(context).clickOnEmailLink,
+                // Pangea#
                 okLabel: l10n.iHaveClickedOnLink,
                 cancelLabel: l10n.cancel,
               )) {
