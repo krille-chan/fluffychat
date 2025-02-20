@@ -35,7 +35,7 @@ class SettingsHomeserverView extends StatelessWidget {
         ),
       ),
       body: MaxWidthBody(
-        withScrolling: false,
+        withScrolling: true,
         child: SelectionArea(
           child: Column(
             mainAxisSize: MainAxisSize.min,
