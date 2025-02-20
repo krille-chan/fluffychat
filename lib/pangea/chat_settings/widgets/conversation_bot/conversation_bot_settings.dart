@@ -18,6 +18,7 @@ import 'package:fluffychat/pangea/common/widgets/full_width_dialog.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_enum.dart';
+import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class ConversationBotSettings extends StatefulWidget {
@@ -54,18 +55,6 @@ class ConversationBotSettingsState extends State<ConversationBotSettings> {
     }
   }
 
-  Future<void> showBotOptionsDialog() async {
-    final BotOptionsModel? newBotOptions = await showDialog<BotOptionsModel?>(
-      context: context,
-      builder: (BuildContext context) =>
-          ConversationBotSettingsDialog(room: widget.room),
-    );
-
-    if (newBotOptions != null) {
-      setBotOptions(newBotOptions);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
@@ -91,7 +80,13 @@ class ConversationBotSettingsState extends State<ConversationBotSettings> {
                 expression: BotExpression.idle,
               ),
             ),
-            onTap: showBotOptionsDialog,
+            onTap: () => showDialog<BotOptionsModel?>(
+              context: context,
+              builder: (BuildContext context) => ConversationBotSettingsDialog(
+                room: widget.room,
+                onSubmit: setBotOptions,
+              ),
+            ),
           ),
         ],
       ),
@@ -101,10 +96,12 @@ class ConversationBotSettingsState extends State<ConversationBotSettings> {
 
 class ConversationBotSettingsDialog extends StatefulWidget {
   final Room room;
+  final Function(BotOptionsModel) onSubmit;
 
   const ConversationBotSettingsDialog({
     super.key,
     required this.room,
+    required this.onSubmit,
   });
 
   @override
@@ -272,7 +269,10 @@ class ConversationBotSettingsDialogState
                     botOptions.targetLanguage ??= MatrixState
                         .pangeaController.languageController.userL2?.langCode;
 
-                    Navigator.of(context).pop(botOptions);
+                    await showFutureLoadingDialog(
+                      context: context,
+                      future: () async => widget.onSubmit(botOptions),
+                    );
 
                     final bool isBotRoomMember = await widget.room.botIsInRoom;
                     if (addBot && !isBotRoomMember) {
@@ -280,6 +280,8 @@ class ConversationBotSettingsDialogState
                     } else if (!addBot && isBotRoomMember) {
                       await widget.room.kick(BotName.byEnvironment);
                     }
+
+                    Navigator.of(context).pop(botOptions);
                   },
                   child: hasPermission
                       ? Text(L10n.of(context).confirm)
