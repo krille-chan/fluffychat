@@ -9,12 +9,14 @@ class PangeaLoginScaffold extends StatelessWidget {
   final Uint8List? mainAssetBytes;
   final List<Widget> children;
   final bool showAppName;
+  final AppBar? customAppBar;
 
   const PangeaLoginScaffold({
     required this.children,
     this.mainAssetPath = "assets/pangea/PangeaChat_Glow_Logo.png",
     this.mainAssetBytes,
     this.showAppName = true,
+    this.customAppBar,
     super.key,
   });
 
@@ -22,7 +24,7 @@ class PangeaLoginScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(),
+        appBar: customAppBar ?? AppBar(),
         body: LayoutBuilder(
           builder: (context, constraints) {
             return SingleChildScrollView(

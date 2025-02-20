@@ -10,6 +10,7 @@ import 'package:fluffychat/pangea/login/pages/pangea_login_scaffold.dart';
 import 'package:fluffychat/pangea/login/pages/user_settings.dart';
 import 'package:fluffychat/pangea/login/widgets/full_width_button.dart';
 import 'package:fluffychat/pangea/login/widgets/tos_checkbox.dart';
+import 'package:fluffychat/pangea/user/utils/p_logout.dart';
 
 class UserSettingsView extends StatelessWidget {
   final UserSettingsState controller;
@@ -69,6 +70,14 @@ class UserSettingsView extends StatelessWidget {
     return Form(
       key: controller.formKey,
       child: PangeaLoginScaffold(
+        customAppBar: AppBar(
+          leading: BackButton(
+            onPressed: () => pLogoutAction(
+              context,
+              bypassWarning: true,
+            ),
+          ),
+        ),
         showAppName: false,
         mainAssetPath: controller.selectedAvatarPath ?? "",
         mainAssetBytes: controller.avatar,
