@@ -30,18 +30,14 @@ class SignupPageView extends StatelessWidget {
         PangeaSsoButton(
           provider: SSOProvider.google,
           title: L10n.of(context).signUpWithGoogle,
-          setError: controller.setSSOError,
           setLoading: controller.setLoadingSSO,
           loading: controller.loadingGoogleSSO,
-          error: controller.googleSSOError,
         ),
         PangeaSsoButton(
           provider: SSOProvider.apple,
           title: L10n.of(context).signUpWithApple,
-          setError: controller.setSSOError,
           setLoading: controller.setLoadingSSO,
           loading: controller.loadingAppleSSO,
-          error: controller.appleSSOError,
         ),
       ],
     );

@@ -51,7 +51,7 @@ post_install do |installer|
       config.build_settings['ENABLE_BITCODE'] = 'NO'
 
       # see https://github.com/flutter-webrtc/flutter-webrtc/issues/1054
-      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '11.0'
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'
       config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = 'arm64 i386'
       config.build_settings["CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES"] = 'YES'
 

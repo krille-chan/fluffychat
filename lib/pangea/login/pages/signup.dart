@@ -3,13 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix_api_lite/model/matrix_exception.dart';
 
-import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/common/utils/firebase_analytics.dart';
 import 'package:fluffychat/pangea/login/pages/signup_view.dart';
 import 'package:fluffychat/pangea/login/pages/signup_with_email_view.dart';
 import 'package:fluffychat/pangea/login/widgets/p_sso_button.dart';
-import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class SignupPage extends StatefulWidget {
@@ -32,12 +31,9 @@ class SignupPageController extends State<SignupPage> {
   String? passwordText;
   String? emailText;
 
-  String? error;
   bool loadingSignup = false;
   bool loadingAppleSSO = false;
   bool loadingGoogleSSO = false;
-  String? appleSSOError;
-  String? googleSSOError;
 
   bool showPassword = false;
   bool noEmailWarningConfirmed = false;
@@ -69,19 +65,7 @@ class SignupPageController extends State<SignupPage> {
     passwordController.dispose();
     emailController.dispose();
     loadingSignup = false;
-    error = null;
     super.dispose();
-  }
-
-  void setSSOError(String? error, SSOProvider provider) {
-    if (provider == SSOProvider.apple) {
-      appleSSOError = error;
-      googleSSOError = null;
-    } else if (provider == SSOProvider.google) {
-      googleSSOError = error;
-      appleSSOError = null;
-    }
-    if (mounted) setState(() {});
   }
 
   void setLoadingSSO(bool loading, SSOProvider provider) {
@@ -149,13 +133,8 @@ class SignupPageController extends State<SignupPage> {
   }
 
   String? emailTextFieldValidator(String? value) {
-    // #Pangea
     if (value == null || value.isEmpty) {
-      // if (value!.isEmpty && !noEmailWarningConfirmed) {
-      //   noEmailWarningConfirmed = true;
-      // return L10n.of(context).noEmailWarning;
       return L10n.of(context).pleaseEnterEmail;
-      // Pangea#
     }
     if (value.isNotEmpty && !value.contains('@')) {
       return L10n.of(context).pleaseEnterValidEmail;
@@ -172,83 +151,63 @@ class SignupPageController extends State<SignupPage> {
   }
 
   void signup([_]) async {
-    setState(() {
-      error = null;
-    });
+    setState(() => signupError = null);
     final valid = formKey.currentState!.validate();
     if (!isTnCChecked) {
-      setState(() {
-        signupError = L10n.of(context).pleaseAgreeToTOS;
-      });
+      setState(() => signupError = L10n.of(context).pleaseAgreeToTOS);
     }
-    if (!valid || !isTnCChecked) {
-      return;
-    }
+    if (!valid || !isTnCChecked) return;
+    setState(() => loadingSignup = true);
 
-    setState(() {
-      loadingSignup = true;
-    });
+    await showFutureLoadingDialog(
+      context: context,
+      future: _signupFuture,
+      onError: (e, s) {
+        setState(() {
+          loadingSignup = false;
+          loadingAppleSSO = false;
+          loadingGoogleSSO = false;
+        });
+        return e is MatrixException
+            ? e.errorMessage
+            : L10n.of(context).oopsSomethingWentWrong;
+      },
+    );
+  }
 
-    try {
-      final client = Matrix.of(context).getLoginClient();
-      final email = emailController.text;
-      if (email.isNotEmpty) {
-        Matrix.of(context).currentClientSecret =
-            DateTime.now().millisecondsSinceEpoch.toString();
-        Matrix.of(context).currentThreepidCreds =
-            await client.requestTokenToRegisterEmail(
-          Matrix.of(context).currentClientSecret,
-          email,
-          0,
-        );
-      }
-
-      final displayname = usernameController.text;
-      final localPart = displayname.toLowerCase().replaceAll(' ', '_');
-
-      final registerRes = await client.uiaRequestBackground(
-        (auth) => client.register(
-          username: localPart,
-          password: passwordController.text,
-          initialDeviceDisplayName: PlatformInfos.clientName,
-          auth: auth,
-        ),
+  Future<void> _signupFuture() async {
+    final client = Matrix.of(context).getLoginClient();
+    final email = emailController.text;
+    if (email.isNotEmpty) {
+      Matrix.of(context).currentClientSecret =
+          DateTime.now().millisecondsSinceEpoch.toString();
+      Matrix.of(context).currentThreepidCreds =
+          await client.requestTokenToRegisterEmail(
+        Matrix.of(context).currentClientSecret,
+        email,
+        0,
       );
+    }
 
-      GoogleAnalytics.login("pangea", registerRes.userId);
+    final displayname = usernameController.text;
+    final localPart = displayname.toLowerCase().replaceAll(' ', '_');
 
-      if (displayname != localPart && client.userID != null) {
-        await client.setDisplayName(
-          client.userID!,
-          displayname,
-        );
-      }
-    } on MatrixException catch (e, s) {
-      if (e.error != MatrixError.M_THREEPID_IN_USE) {
-        ErrorHandler.logError(
-          e: e,
-          s: s,
-          data: {},
-        );
-      }
-      error = e.errorMessage;
-    } catch (e, s) {
-      const cancelledString = "Exception: Request has been canceled";
-      if (e.toString() != cancelledString) {
-        ErrorHandler.logError(
-          e: e,
-          s: s,
-          data: {},
-        );
-      }
+    final registerRes = await client.uiaRequestBackground(
+      (auth) => client.register(
+        username: localPart,
+        password: passwordController.text,
+        initialDeviceDisplayName: PlatformInfos.clientName,
+        auth: auth,
+      ),
+    );
 
-      if (mounted) {
-        error = (e).toLocalizedString(context);
-      }
-    } finally {
-      if (mounted) {
-        setState(() => loadingSignup = false);
-      }
+    GoogleAnalytics.login("pangea", registerRes.userId);
+
+    if (displayname != localPart && client.userID != null) {
+      await client.setDisplayName(
+        client.userID!,
+        displayname,
+      );
     }
   }
 

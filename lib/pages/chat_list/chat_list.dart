@@ -4,14 +4,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'package:app_links/app_links.dart';
 import 'package:cross_file/cross_file.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:flutter_shortcuts/flutter_shortcuts.dart';
+import 'package:flutter_shortcuts_new/flutter_shortcuts_new.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart' as sdk;
 import 'package:matrix/matrix.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
-import 'package:uni_links/uni_links.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
@@ -38,12 +38,11 @@ import 'package:fluffychat/widgets/share_scaffold_dialog.dart';
 import '../../../utils/account_bundles.dart';
 import '../../config/setting_keys.dart';
 import '../../utils/url_launcher.dart';
-import '../../utils/voip/callkeep_manager.dart';
-import '../../widgets/fluffy_chat_app.dart';
 import '../../widgets/matrix.dart';
 
 import 'package:fluffychat/utils/tor_stub.dart'
     if (dart.library.html) 'package:tor_detector_web/tor_detector_web.dart';
+
 
 enum PopupMenuAction {
   settings,
@@ -184,23 +183,20 @@ class ChatListController extends State<ChatList>
       case ActiveFilter.messages:
         return (room) =>
             !room.isSpace &&
-            room.isDirectChat
-            // #Pangea
+            room.isDirectChat // #Pangea
             &&
             !room.isAnalyticsRoom;
       // Pangea#
       case ActiveFilter.groups:
         return (room) =>
             !room.isSpace &&
-            !room.isDirectChat
-            // #Pangea
+            !room.isDirectChat // #Pangea
             &&
             !room.isAnalyticsRoom;
       // Pangea#
       case ActiveFilter.unread:
         return (room) =>
-            room.isUnreadOrInvited
-            // #Pangea
+            room.isUnreadOrInvited // #Pangea
             &&
             !room.isAnalyticsRoom;
       // Pangea#
@@ -405,11 +401,11 @@ class ChatListController extends State<ChatList>
     );
   }
 
-  void _processIncomingUris(String? text) async {
-    if (text == null) return;
+  void _processIncomingUris(Uri? uri) async {
+    if (uri == null) return;
     context.go('/rooms');
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      UrlLauncher(context, text).openMatrixToUrl();
+      UrlLauncher(context, uri.toString()).openMatrixToUrl();
     });
   }
 
@@ -427,11 +423,8 @@ class ChatListController extends State<ChatList>
         .then(_processIncomingSharedMedia);
 
     // For receiving shared Uris
-    _intentUriStreamSubscription = linkStream.listen(_processIncomingUris);
-    if (FluffyChatApp.gotInitialLink == false) {
-      FluffyChatApp.gotInitialLink = true;
-      getInitialLink().then(_processIncomingUris);
-    }
+    _intentUriStreamSubscription =
+        AppLinks().uriLinkStream.listen(_processIncomingUris);
 
     if (PlatformInfos.isAndroid) {
       final shortcuts = FlutterShortcuts();
@@ -459,7 +452,6 @@ class ChatListController extends State<ChatList>
     scrollController.addListener(_onScroll);
     _waitForFirstSync();
     _hackyWebRTCFixForWeb();
-    CallKeepManager().initialize();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (mounted) {
         searchServer =
@@ -851,7 +843,6 @@ class ChatListController extends State<ChatList>
         return;
       case ChatContextAction.leave:
         final confirmed = await showOkCancelAlertDialog(
-          useRootNavigator: false,
           context: context,
           title: L10n.of(context).areYouSure,
           // #Pangea

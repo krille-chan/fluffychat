@@ -58,7 +58,6 @@ class SignupWithEmailView extends StatelessWidget {
               forceColor: Theme.of(context).colorScheme.onPrimary,
             ),
             onPressed: controller.enableSignUp ? controller.signup : null,
-            error: controller.error,
             loading: controller.loadingSignup,
             enabled: controller.enableSignUp,
           ),

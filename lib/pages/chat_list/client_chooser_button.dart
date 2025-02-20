@@ -6,7 +6,7 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pangea/learning_settings/pages/settings_learning.dart';
 import 'package:fluffychat/pangea/spaces/utils/space_code.dart';
-import 'package:fluffychat/pangea/user/utils/logout.dart';
+import 'package:fluffychat/pangea/user/utils/p_logout.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';

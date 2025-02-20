@@ -5,7 +5,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/pangea/user/utils/logout.dart';
+import 'package:fluffychat/pangea/user/utils/p_logout.dart';
 import 'package:fluffychat/utils/file_selector.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_modal_action_popup.dart';
