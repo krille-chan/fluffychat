@@ -1829,6 +1829,13 @@ class ChatController extends State<ChatPageWithRoom>
       onSelectMessage(event);
     });
   }
+
+  double inputBarHeight = 64;
+  void updateInputBarHeight(double height) {
+    if (mounted && height != inputBarHeight) {
+      setState(() => inputBarHeight = height);
+    }
+  }
   // Pangea#
 
   late final ValueNotifier<bool> _displayChatDetailsColumn;

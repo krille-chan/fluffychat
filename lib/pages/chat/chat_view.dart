@@ -7,22 +7,16 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/chat_app_bar_list_tile.dart';
 import 'package:fluffychat/pages/chat/chat_app_bar_title.dart';
 import 'package:fluffychat/pages/chat/chat_event_list.dart';
 import 'package:fluffychat/pages/chat/pinned_events.dart';
-import 'package:fluffychat/pages/chat/reply_display.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_page_launch_icon_button.dart';
-import 'package:fluffychat/pangea/analytics_misc/gain_points_animation.dart';
-import 'package:fluffychat/pangea/analytics_misc/put_analytics_controller.dart';
-import 'package:fluffychat/pangea/chat/widgets/chat_floating_action_button.dart';
+import 'package:fluffychat/pangea/chat/widgets/chat_input_bar.dart';
+import 'package:fluffychat/pangea/chat/widgets/chat_input_bar_header.dart';
 import 'package:fluffychat/pangea/chat/widgets/chat_view_background.dart';
-import 'package:fluffychat/pangea/chat/widgets/input_bar_wrapper.dart';
-import 'package:fluffychat/pangea/choreographer/widgets/it_bar.dart';
-import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/utils/account_config.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
@@ -30,7 +24,6 @@ import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
 import 'package:fluffychat/widgets/unread_rooms_badge.dart';
 import '../../utils/stream_extension.dart';
-import 'chat_emoji_picker.dart';
 
 enum _EventContextAction { info, report }
 
@@ -118,33 +111,10 @@ class ChatView extends StatelessWidget {
           ),
       ];
       // #Pangea
-    } else {
-      return [
-        IconButton(
-          icon: const Icon(Icons.search_outlined),
-          tooltip: L10n.of(context).search,
-          onPressed: () {
-            context.go('/rooms/${controller.room.id}/search');
-          },
-        ),
-        ActivityPlanPageLaunchIconButton(controller: controller),
-        IconButton(
-          icon: const Icon(Icons.settings_outlined),
-          tooltip: L10n.of(context).chatDetails,
-          onPressed: () {
-            if (GoRouterState.of(context).uri.path.endsWith('/details')) {
-              context.go('/rooms/${controller.room.id}');
-            } else {
-              context.go('/rooms/${controller.room.id}/details');
-            }
-          },
-        ),
-      ];
     }
     // } else if (!controller.room.isArchived) {
     //   return [
-    //     if (AppConfig.experimentalVoip &&
-    //         Matrix.of(context).voipPlugin != null &&
+    //     if (Matrix.of(context).voipPlugin != null &&
     //         controller.room.isDirectChat)
     //       IconButton(
     //         onPressed: controller.onPhoneButtonTap,
@@ -156,6 +126,27 @@ class ChatView extends StatelessWidget {
     //   ];
     // }
     // return [];
+    return [
+      IconButton(
+        icon: const Icon(Icons.search_outlined),
+        tooltip: L10n.of(context).search,
+        onPressed: () {
+          context.go('/rooms/${controller.room.id}/search');
+        },
+      ),
+      ActivityPlanPageLaunchIconButton(controller: controller),
+      IconButton(
+        icon: const Icon(Icons.settings_outlined),
+        tooltip: L10n.of(context).chatDetails,
+        onPressed: () {
+          if (GoRouterState.of(context).uri.path.endsWith('/details')) {
+            context.go('/rooms/${controller.room.id}');
+          } else {
+            context.go('/rooms/${controller.room.id}/details');
+          }
+        },
+      ),
+    ];
     // Pangea#
   }
 
@@ -168,11 +159,6 @@ class ChatView extends StatelessWidget {
         future: () => controller.room.join(),
         exceptionContext: ExceptionContext.joinRoom,
       );
-      // #Pangea
-      controller.room.leaveIfFull().then(
-            (full) => full ? context.go('/rooms') : null,
-          );
-      // Pangea#
     }
     final bottomSheetPadding = FluffyThemes.isColumnMode(context) ? 16.0 : 8.0;
     final scrollUpBannerEventId = controller.scrollUpBannerEventId;
@@ -229,12 +215,7 @@ class ChatView extends StatelessWidget {
                             .stream
                             .where((syncUpdate) => syncUpdate.hasRoomUpdate),
                         builder: (context, _) => UnreadRoomsBadge(
-                          filter: (r) =>
-                              r.id != controller.roomId
-                              // #Pangea
-                              &&
-                              !r.isAnalyticsRoom,
-                          // Pangea#
+                          filter: (r) => r.id != controller.roomId,
                           badgePosition: BadgePosition.topEnd(end: 8, top: 4),
                           child: const Center(child: BackButton()),
                         ),
@@ -417,9 +398,7 @@ class ChatView extends StatelessWidget {
                               ),
                             // #Pangea
                             // Keep messages above minimum input bar height
-                            const SizedBox(
-                              height: 60,
-                            ),
+                            SizedBox(height: controller.inputBarHeight),
                             // Pangea#
                           ],
                         ),
@@ -433,77 +412,13 @@ class ChatView extends StatelessWidget {
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              if (!controller.selectMode)
-                                Container(
-                                  margin: EdgeInsets.only(
-                                    bottom: 10,
-                                    left: bottomSheetPadding,
-                                    right: bottomSheetPadding,
-                                  ),
-                                  constraints: const BoxConstraints(
-                                    maxWidth: FluffyThemes.columnWidth * 2.4,
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      const PointsGainedAnimation(
-                                        gainColor: AppConfig.gold,
-                                        origin:
-                                            AnalyticsUpdateOrigin.sendMessage,
-                                      ),
-                                      const SizedBox(width: 100),
-                                      ChatFloatingActionButton(
-                                        controller: controller,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              Container(
-                                margin: EdgeInsets.only(
-                                  bottom: bottomSheetPadding,
-                                  left: bottomSheetPadding,
-                                  right: bottomSheetPadding,
-                                ),
-                                constraints: const BoxConstraints(
-                                  maxWidth: FluffyThemes.columnWidth * 2.5,
-                                ),
-                                alignment: Alignment.center,
-                                child: Material(
-                                  clipBehavior: Clip.hardEdge,
-                                  // #Pangea
-                                  // color: Theme.of(context)
-                                  //     .colorScheme
-                                  //     .surfaceContainerHighest,
-                                  type: MaterialType.transparency,
-                                  // Pangea#
-                                  borderRadius: const BorderRadius.all(
-                                    Radius.circular(24),
-                                  ),
-
-                                  child: Column(
-                                    children: [
-                                      ITBar(
-                                        choreographer: controller.choreographer,
-                                      ),
-                                      DecoratedBox(
-                                        decoration: BoxDecoration(
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .surfaceContainerHighest,
-                                        ),
-                                        child: Column(
-                                          children: [
-                                            ReplyDisplay(controller),
-                                            ChatInputRowWrapper(
-                                              controller: controller,
-                                            ),
-                                            ChatEmojiPicker(controller),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
+                              ChatInputBarHeader(
+                                controller: controller,
+                                padding: bottomSheetPadding,
+                              ),
+                              ChatInputBar(
+                                controller: controller,
+                                padding: bottomSheetPadding,
                               ),
                             ],
                           ),
