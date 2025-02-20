@@ -161,8 +161,9 @@ class SendFileDialogState extends State<SendFileDialog> {
     final theme = Theme.of(context);
 
     var sendStr = L10n.of(context).sendFile;
-    final uniqueMimeType = widget.files
+    final uniqueFileType = widget.files
         .map((file) => file.mimeType ?? lookupMimeType(file.name))
+        .map((mimeType) => mimeType?.split('/').first)
         .toSet()
         .singleOrNull;
 
@@ -175,15 +176,15 @@ class SendFileDialogState extends State<SendFileDialog> {
         .join(', ')
         .toUpperCase();
 
-    if (uniqueMimeType?.startsWith('image') ?? false) {
+    if (uniqueFileType == 'image') {
       if (widget.files.length == 1) {
         sendStr = L10n.of(context).sendImage;
       } else {
         sendStr = L10n.of(context).sendImages(widget.files.length);
       }
-    } else if (uniqueMimeType?.startsWith('audio') ?? false) {
+    } else if (uniqueFileType == 'audio') {
       sendStr = L10n.of(context).sendAudio;
-    } else if (uniqueMimeType?.startsWith('video') ?? false) {
+    } else if (uniqueFileType == 'video') {
       sendStr = L10n.of(context).sendVideo;
     }
 
@@ -201,7 +202,7 @@ class SendFileDialogState extends State<SendFileDialog> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 const SizedBox(height: 12),
-                if (uniqueMimeType?.startsWith('image') ?? false)
+                if (uniqueFileType == 'image')
                   Padding(
                     padding: const EdgeInsets.only(bottom: 16.0),
                     child: SizedBox(
@@ -233,17 +234,17 @@ class SendFileDialogState extends State<SendFileDialog> {
                       ),
                     ),
                   ),
-                if (uniqueMimeType?.startsWith('image') != true)
+                if (uniqueFileType != 'image')
                   Padding(
                     padding: const EdgeInsets.only(bottom: 16.0),
                     child: Row(
                       children: [
                         Icon(
-                          uniqueMimeType == null
+                          uniqueFileType == null
                               ? Icons.description_outlined
-                              : uniqueMimeType.startsWith('video')
+                              : uniqueFileType == 'video'
                                   ? Icons.video_file_outlined
-                                  : uniqueMimeType.startsWith('audio')
+                                  : uniqueFileType == 'audio'
                                       ? Icons.audio_file_outlined
                                       : Icons.description_outlined,
                           size: 32,
@@ -272,9 +273,7 @@ class SendFileDialogState extends State<SendFileDialog> {
                     ),
                   ),
                 // Workaround for SwitchListTile.adaptive crashes in CupertinoDialog
-                if (uniqueMimeType != null &&
-                    (uniqueMimeType.startsWith('image') ||
-                        uniqueMimeType.startsWith('video')))
+                if ({'image', 'video'}.contains(uniqueFileType))
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -282,7 +281,7 @@ class SendFileDialogState extends State<SendFileDialog> {
                           .contains(theme.platform))
                         CupertinoSwitch(
                           value: compress,
-                          onChanged: uniqueMimeType.startsWith('video') &&
+                          onChanged: uniqueFileType == 'video' &&
                                   !PlatformInfos.isMobile
                               ? null
                               : (v) => setState(() => compress = v),
@@ -290,7 +289,7 @@ class SendFileDialogState extends State<SendFileDialog> {
                       else
                         Switch.adaptive(
                           value: compress,
-                          onChanged: uniqueMimeType.startsWith('video') &&
+                          onChanged: uniqueFileType == 'video' &&
                                   !PlatformInfos.isMobile
                               ? null
                               : (v) => setState(() => compress = v),
