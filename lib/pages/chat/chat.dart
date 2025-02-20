@@ -330,7 +330,14 @@ class ChatController extends State<ChatPageWithRoom>
     WidgetsBinding.instance.addObserver(this);
     // #Pangea
     if (!mounted) return;
-    if (room.isSpace) context.go("/rooms");
+    if (room.isSpace) {
+      ErrorHandler.logError(
+        e: "Space chat opened",
+        s: StackTrace.current,
+        data: {"roomId": roomId},
+      );
+      context.go("/rooms");
+    }
     Future.delayed(const Duration(seconds: 1), () async {
       if (!mounted) return;
       debugPrint(
