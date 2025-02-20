@@ -486,8 +486,8 @@ class InputBar extends StatelessWidget {
           // show suggestions after 50ms idle time (default is 300)
           // #Pangea
           // builder: (context, controller, focusNode) => TextField(
-          builder: (context, _, focusNode) => SelectionArea(
-            child: TextField(
+          builder: (context, _, focusNode) {
+            return TextField(
               enableSuggestions: false,
               readOnly:
                   controller != null && controller!.choreographer.isRunningIT,
@@ -560,8 +560,8 @@ class InputBar extends StatelessWidget {
                 onChanged!(text);
               },
               textCapitalization: TextCapitalization.sentences,
-            ),
-          ),
+            );
+          },
           suggestionsCallback: getSuggestions,
           itemBuilder: (c, s) =>
               buildSuggestion(c, s, Matrix.of(context).client),
