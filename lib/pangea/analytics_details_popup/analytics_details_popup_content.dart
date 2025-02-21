@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
@@ -46,8 +47,11 @@ class AnalyticsDetailsViewContent extends StatelessWidget {
           headerContent,
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0),
-            child: Image.network(
-              "${AppConfig.assetsBaseURL}/${AnalyticsConstants.popupDividerFileName}",
+            child: CachedNetworkImage(
+              imageUrl:
+                  "${AppConfig.assetsBaseURL}/${AnalyticsConstants.popupDividerFileName}",
+              placeholder: (context, url) => const CircularProgressIndicator(),
+              errorWidget: (context, url, error) => const Icon(Icons.error),
             ),
           ),
           Row(

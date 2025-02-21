@@ -18,6 +18,7 @@ dependencies:
   async: ^2.11.0
   badges: ^3.1.2
   blurhash_dart: ^1.2.1
+  cached_network_image: ^3.4.1
   characters: ^1.2.0
   chewie: ^1.8.1
   collection: ^1.18.0
