@@ -92,8 +92,6 @@ class SendFileDialogState extends State<SendFileDialog> {
               widget.files.length,
             ),
           );
-        } else {
-          scaffoldMessenger.clearSnackBars();
         }
 
         try {
