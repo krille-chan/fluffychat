@@ -151,7 +151,9 @@ class IgcController {
       // This will make the loading of span details faster for the user
       if (igcTextData?.matches.isNotEmpty ?? false) {
         for (int i = 0; i < igcTextData!.matches.length; i++) {
-          spanDataController.getSpanDetails(i);
+          if (!igcTextData!.matches[i].isITStart) {
+            spanDataController.getSpanDetails(i);
+          }
         }
       }
 
