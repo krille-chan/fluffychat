@@ -4,6 +4,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pangea/analytics_misc/level_display_name.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import '../../widgets/avatar.dart';
 import '../user_bottom_sheet/user_bottom_sheet.dart';
@@ -49,6 +50,9 @@ class ParticipantListItem extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
               ),
             ),
+            // #Pangea
+            LevelDisplayName(userId: user.id),
+            // Pangea#
             if (permissionBatch.isNotEmpty)
               Container(
                 padding: const EdgeInsets.symmetric(
