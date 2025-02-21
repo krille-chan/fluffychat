@@ -50,9 +50,13 @@ jobs:
           asset_path: fluffychat-web.tar.gz
           asset_name: fluffychat-web.tar.gz
           asset_content_type: application/gzip
+      - name: Install and build tailwindcss
+        working-directory: docs
+        run: |
+          npm install tailwindcss @tailwindcss/cli
+          npx tailwindcss -o ./tailwind.css
       - name: Build Website
         run: |
-          cd docs && npx tailwindcss -o ./tailwind.css --minify && cd ..
           mv docs public
           mv repo public || true
           mv build/web/ public/web
