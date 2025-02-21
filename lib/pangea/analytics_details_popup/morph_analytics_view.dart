@@ -4,64 +4,49 @@ import 'package:collection/collection.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pangea/analytics_details_popup/analytics_details_popup.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_identifier.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_level_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_use_model.dart';
-import 'package:fluffychat/pangea/morphs/default_morph_mapping.dart';
 import 'package:fluffychat/pangea/morphs/get_grammar_copy.dart';
 import 'package:fluffychat/pangea/morphs/morph_icon.dart';
 import 'package:fluffychat/pangea/user/client_extension.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import '../morphs/morph_repo.dart';
 
 class MorphAnalyticsView extends StatelessWidget {
   final void Function(ConstructIdentifier) onConstructZoom;
+  final AnalyticsPopupWrapperState controller;
 
   const MorphAnalyticsView({
     required this.onConstructZoom,
+    required this.controller,
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20),
-        child: FutureBuilder(
-          future: MorphsRepo.get(),
-          builder: (context, snapshot) {
-            final morphs = snapshot.data ?? defaultMorphMapping;
-
-            final features = morphs.displayFeatures.sorted(
-              (a, b) => morphFeatureSortOrder
-                  .indexOf(a.feature)
-                  .compareTo(morphFeatureSortOrder.indexOf(b.feature)),
-            );
-
-            return snapshot.connectionState == ConnectionState.done
-                ? ListView.builder(
-                    key: const PageStorageKey<String>('morph-analytics'),
-                    itemCount: features.length,
-                    itemBuilder: (context, index) =>
-                        features[index].displayTags.isNotEmpty
-                            ? MorphFeatureBox(
-                                morphFeature: features[index].feature,
-                                allTags: snapshot.data
-                                        ?.getDisplayTags(
-                                          features[index].feature,
-                                        )
-                                        .map((tag) => tag.toLowerCase())
-                                        .toSet() ??
-                                    {},
-                                onConstructZoom: onConstructZoom,
-                              )
-                            : const SizedBox.shrink(),
-                  )
-                : const Center(
-                    child: CircularProgressIndicator(),
-                  );
-          },
-        ),
-      );
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 20),
+      child: ListView.builder(
+        key: const PageStorageKey<String>('morph-analytics'),
+        itemCount: controller.features.length,
+        itemBuilder: (context, index) {
+          final feature = controller.features[index];
+          return feature.displayTags.isNotEmpty
+              ? MorphFeatureBox(
+                  morphFeature: feature.feature,
+                  allTags: controller.morphs
+                      .getDisplayTags(feature.feature)
+                      .map((tag) => tag.toLowerCase())
+                      .toSet(),
+                  onConstructZoom: onConstructZoom,
+                )
+              : const SizedBox.shrink();
+        },
+      ),
+    );
+  }
 }
 
 class MorphFeatureBox extends StatelessWidget {

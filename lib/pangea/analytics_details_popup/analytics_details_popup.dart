@@ -10,7 +10,12 @@ import 'package:fluffychat/pangea/analytics_details_popup/vocab_details_view.dar
 import 'package:fluffychat/pangea/analytics_misc/construct_identifier.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_summary/progress_indicators_enum.dart';
+import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/common/widgets/full_width_dialog.dart';
+import 'package:fluffychat/pangea/morphs/default_morph_mapping.dart';
+import 'package:fluffychat/pangea/morphs/morph_models.dart';
+import 'package:fluffychat/pangea/morphs/morph_repo.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 
 class AnalyticsPopupWrapper extends StatefulWidget {
   const AnalyticsPopupWrapper({
@@ -30,14 +35,39 @@ class AnalyticsPopupWrapperState extends State<AnalyticsPopupWrapper> {
   ConstructIdentifier? localConstructZoom;
   ConstructTypeEnum localView = ConstructTypeEnum.vocab;
 
+  MorphFeaturesAndTags morphs = defaultMorphMapping;
+  List<MorphFeature> features = defaultMorphMapping.displayFeatures;
+
   @override
   void initState() {
     super.initState();
     localView = widget.view;
-    setConstructZoom(widget.constructZoom);
+    _setConstructZoom(widget.constructZoom);
+    _setMorphs();
   }
 
-  void setConstructZoom(ConstructIdentifier? id) {
+  Future<void> _setMorphs() async {
+    try {
+      final resp = await MorphsRepo.get();
+      morphs = resp;
+      features = resp.displayFeatures;
+    } catch (e, s) {
+      ErrorHandler.logError(
+        e: e,
+        s: s,
+        data: {"l2": MatrixState.pangeaController.languageController.userL2},
+      );
+    } finally {
+      features.sort(
+        (a, b) => morphFeatureSortOrder
+            .indexOf(a.feature)
+            .compareTo(morphFeatureSortOrder.indexOf(b.feature)),
+      );
+      if (mounted) setState(() {});
+    }
+  }
+
+  void _setConstructZoom(ConstructIdentifier? id) {
     if (id != null && id.type != localView) {
       localView = id.type;
     }
@@ -61,7 +91,7 @@ class AnalyticsPopupWrapperState extends State<AnalyticsPopupWrapper> {
                 : const Icon(Icons.arrow_back),
             onPressed: localConstructZoom == null
                 ? () => Navigator.of(context).pop()
-                : () => setConstructZoom(null),
+                : () => _setConstructZoom(null),
           ),
           actions: [
             TextButton.icon(
@@ -102,10 +132,13 @@ class AnalyticsPopupWrapperState extends State<AnalyticsPopupWrapper> {
         ),
         body: localView == ConstructTypeEnum.morph
             ? localConstructZoom == null
-                ? MorphAnalyticsView(onConstructZoom: setConstructZoom)
+                ? MorphAnalyticsView(
+                    onConstructZoom: _setConstructZoom,
+                    controller: this,
+                  )
                 : MorphDetailsView(constructId: localConstructZoom!)
             : localConstructZoom == null
-                ? VocabAnalyticsView(onConstructZoom: setConstructZoom)
+                ? VocabAnalyticsView(onConstructZoom: _setConstructZoom)
                 : VocabDetailsView(constructId: localConstructZoom!),
       ),
       maxWidth: 600,
