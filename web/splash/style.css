@@ -40,7 +40,6 @@ html {
     margin: 0;
     height: 100%;
     background: #000000;
-    background-image: url("img/dark-background.png");
     background-size: 100% 100%;
   }
 }
