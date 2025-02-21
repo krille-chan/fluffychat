@@ -2,6 +2,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart' as sdk;
 import 'package:matrix/matrix.dart';
@@ -112,6 +113,11 @@ class NewGroupController extends State<NewGroup> {
     final client = Matrix.of(context).client;
 
     try {
+      if (nameController.text.isEmpty) {
+        setState(() => error = L10n.of(context).pleaseEnterName);
+        return;
+      }
+
       setState(() {
         loading = true;
         error = null;
