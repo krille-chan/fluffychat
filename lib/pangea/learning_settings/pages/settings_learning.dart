@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:country_picker/country_picker.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_enum.dart';
@@ -26,6 +27,7 @@ class SettingsLearningController extends State<SettingsLearning> {
   final tts = TtsController();
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  String? languageMatchError;
 
   @override
   void initState() {
@@ -41,6 +43,18 @@ class SettingsLearningController extends State<SettingsLearning> {
   }
 
   Future<void> submit() async {
+    if (selectedSourceLanguage?.langCodeShort ==
+        selectedTargetLanguage?.langCodeShort) {
+      setState(() {
+        languageMatchError = L10n.of(context).noIdenticalLanguages;
+      });
+      return;
+    }
+
+    setState(() {
+      languageMatchError = null; // Clear error if languages don't match
+    });
+
     if (formKey.currentState!.validate()) {
       if (!isTTSSupported) {
         updateToolSetting(ToolSetting.enableTTS, false);

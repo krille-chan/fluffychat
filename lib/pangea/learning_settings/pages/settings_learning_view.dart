@@ -72,15 +72,10 @@ class SettingsLearningView extends StatelessWidget {
                                     .pLanguageStore.baseOptions,
                                 isL2List: false,
                                 decorationText: L10n.of(context).myBaseLanguage,
-                                validator: (lang) {
-                                  if (lang?.langCodeShort ==
-                                      controller.selectedTargetLanguage
-                                          ?.langCodeShort) {
-                                    return L10n.of(context)
-                                        .noIdenticalLanguages;
-                                  }
-                                  return null;
-                                },
+                                hasError: controller.languageMatchError != null,
+                                backgroundColor: Theme.of(context)
+                                    .colorScheme
+                                    .surfaceContainerHigh,
                               ),
                               PLanguageDropdown(
                                 onChange: (lang) =>
@@ -93,15 +88,10 @@ class SettingsLearningView extends StatelessWidget {
                                     .pLanguageStore.targetOptions,
                                 isL2List: true,
                                 decorationText: L10n.of(context).iWantToLearn,
-                                validator: (lang) {
-                                  if (lang?.langCodeShort ==
-                                      controller.selectedSourceLanguage
-                                          ?.langCodeShort) {
-                                    return L10n.of(context)
-                                        .noIdenticalLanguages;
-                                  }
-                                  return null;
-                                },
+                                error: controller.languageMatchError,
+                                backgroundColor: Theme.of(context)
+                                    .colorScheme
+                                    .surfaceContainerHigh,
                               ),
                               CountryPickerDropdown(controller),
                               LanguageLevelDropdown(
