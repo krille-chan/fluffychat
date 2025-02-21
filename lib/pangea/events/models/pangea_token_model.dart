@@ -354,6 +354,14 @@ class PangeaToken {
           return false;
         }
 
+        // if last used less than 1 day ago, return false
+        // this is largely to account for cases of sending a message with some
+        // error that gets you negative points for it
+        if (vocabConstruct.lastUsed != null &&
+            DateTime.now().difference(vocabConstruct.lastUsed!).inDays < 1) {
+          return false;
+        }
+
         if (isContentWord) {
           return vocabConstruct.points < 1;
         } else if (canBeDefined) {
