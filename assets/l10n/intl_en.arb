@@ -4822,5 +4822,7 @@
   "slightlyOffensive": "Slightly offensive",
   "clickOnEmailLink": "Please click on the link in the email and then proceed. In rare cases, the email can be sent to spam or take up to 5 minutes to arrive.",
   "whoIsAllowedToJoinThisChat": "Who is allowed to join this chat",
-  "dontForgetPassword": "Don't forget your password!"
-}
+  "dontForgetPassword": "Don't forget your password!",
+  "enableAutocorrectToolName": "Enable autocorrect",
+  "enableAutocorrectDescription": "Use your keyboard's built-in autocorrect when typing messages"
+} 

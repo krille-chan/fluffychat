@@ -153,6 +153,7 @@ class UserToolSettings {
   bool definitions;
   bool autoIGC;
   bool enableTTS;
+  bool enableAutocorrect;
 
   UserToolSettings({
     this.interactiveTranslator = true,
@@ -161,6 +162,7 @@ class UserToolSettings {
     this.definitions = true,
     this.autoIGC = true,
     this.enableTTS = true,
+    this.enableAutocorrect = false,
   });
 
   factory UserToolSettings.fromJson(Map<String, dynamic> json) =>
@@ -173,6 +175,7 @@ class UserToolSettings {
         definitions: json[ToolSetting.definitions.toString()] ?? true,
         autoIGC: json[ToolSetting.autoIGC.toString()] ?? true,
         enableTTS: json[ToolSetting.enableTTS.toString()] ?? true,
+        enableAutocorrect: json["enableAutocorrect"] ?? false,
       );
 
   Map<String, dynamic> toJson() {
@@ -183,6 +186,7 @@ class UserToolSettings {
     data[ToolSetting.definitions.toString()] = definitions;
     data[ToolSetting.autoIGC.toString()] = autoIGC;
     data[ToolSetting.enableTTS.toString()] = enableTTS;
+    data["enableAutocorrect"] = enableAutocorrect;
     return data;
   }
 
@@ -218,6 +222,7 @@ class UserToolSettings {
       definitions: definitions,
       autoIGC: autoIGC,
       enableTTS: enableTTS,
+      enableAutocorrect: enableAutocorrect,
     );
   }
 }
