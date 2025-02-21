@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+import 'package:get_storage/get_storage.dart';
 import 'package:matrix/matrix.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
@@ -22,6 +23,7 @@ import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
 
 /// A minimized version of AnalyticsController that get the logged in user's analytics
 class GetAnalyticsController extends BaseController {
+  final GetStorage analyticsBox = GetStorage("analytics_storage");
   late PangeaController _pangeaController;
   late MessageAnalyticsController perMessage;
 
@@ -173,7 +175,7 @@ class GetAnalyticsController extends BaseController {
   /// eventID.
   Map<String, List<OneConstructUse>> get messagesSinceUpdate {
     try {
-      final dynamic locallySaved = _pangeaController.pStoreService.read(
+      final dynamic locallySaved = analyticsBox.read(
         PLocalKey.messagesSinceUpdate,
       );
       if (locallySaved == null) return {};

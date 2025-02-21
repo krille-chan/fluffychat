@@ -507,10 +507,10 @@ class ChatListController extends State<ChatList>
             spaceId,
           );
 
+          // #Pangea
           final String? justInputtedCode =
-              MatrixState.pangeaController.pStoreService.read(
+              MatrixState.pangeaController.classController.chatBox.read(
             PLocalKey.justInputtedCode,
-            isAccountData: false,
           );
           final newSpaceCode = space?.classCode(context);
           if (newSpaceCode == justInputtedCode) return;

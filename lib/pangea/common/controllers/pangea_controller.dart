@@ -34,7 +34,6 @@ import 'package:fluffychat/widgets/matrix.dart';
 import '../../../config/app_config.dart';
 import '../../choreographer/controllers/it_feedback_controller.dart';
 import '../utils/firebase_analytics.dart';
-import '../utils/p_store.dart';
 
 class PangeaController {
   ///pangeaControllers
@@ -56,7 +55,6 @@ class PangeaController {
   late PracticeActivityRecordController activityRecordController;
 
   ///store Services
-  late PStore pStoreService;
   final pLanguageStore = PangeaLanguage();
 
   StreamSubscription? _languageStream;
@@ -94,7 +92,6 @@ class PangeaController {
 
   /// Initialize controllers
   _addRefInObjects() {
-    pStoreService = PStore(pangeaController: this);
     userController = UserController(this);
     languageController = LanguageController(this);
     classController = ClassController(this);

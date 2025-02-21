@@ -6,15 +6,16 @@ import 'package:uuid/uuid.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
 
 class BookmarkedActivitiesRepo {
-  static final GetStorage _storage = GetStorage('bookmarked_activities');
   static const Uuid _uuid = Uuid();
+
+  static final GetStorage _bookStorage = GetStorage('bookmarked_activities');
 
   /// save an activity to the list of bookmarked activities
   /// returns the activity with a bookmarkId
   static Future<ActivityPlanModel> save(ActivityPlanModel activity) async {
     activity.bookmarkId ??= _uuid.v4();
 
-    await _storage.write(
+    await _bookStorage.write(
       activity.bookmarkId!,
       activity.toJson(),
     );
@@ -23,15 +24,16 @@ class BookmarkedActivitiesRepo {
     return activity;
   }
 
-  static Future<void> remove(String bookmarkId) => _storage.remove(bookmarkId);
+  static Future<void> remove(String bookmarkId) =>
+      _bookStorage.remove(bookmarkId);
 
   static bool isBookmarked(ActivityPlanModel activity) {
     return activity.bookmarkId != null &&
-        _storage.read(activity.bookmarkId!) != null;
+        _bookStorage.read(activity.bookmarkId!) != null;
   }
 
   static List<ActivityPlanModel> get() {
-    final list = _storage.getValues();
+    final list = _bookStorage.getValues();
 
     if (list == null) return [];
 

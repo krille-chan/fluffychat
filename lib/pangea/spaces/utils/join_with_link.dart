@@ -40,10 +40,9 @@ class _JoinClassWithLinkState extends State<JoinClassWithLink> {
         );
         return;
       }
-      await pangeaController.pStoreService.save(
+      await MatrixState.pangeaController.classController.linkBox.write(
         PLocalKey.cachedClassCodeToJoin,
         classCode,
-        isAccountData: false,
       );
       context.go("/home");
     });

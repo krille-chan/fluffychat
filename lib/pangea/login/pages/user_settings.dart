@@ -80,8 +80,8 @@ class UserSettingsState extends State<UserSettingsPage> {
   }
 
   bool get isSSOSignup {
-    final loginTypeEntry =
-        _pangeaController.pStoreService.read(PLocalKey.loginType);
+    final loginTypeEntry = MatrixState.pangeaController.userController.loginBox
+        .read(PLocalKey.loginType);
     return loginTypeEntry is String && loginTypeEntry == 'sso';
   }
 

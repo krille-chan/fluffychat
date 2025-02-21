@@ -62,6 +62,8 @@ Future<void> pangeaSSOLoginAction(
     token: token,
     initialDeviceDisplayName: PlatformInfos.clientName,
   );
-  MatrixState.pangeaController.pStoreService.save(PLocalKey.loginType, 'sso');
+
+  MatrixState.pangeaController.userController.loginBox
+      .write(PLocalKey.loginType, 'sso');
   GoogleAnalytics.login(provider.name!, loginRes.userId);
 }

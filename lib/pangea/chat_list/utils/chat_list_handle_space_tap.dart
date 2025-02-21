@@ -7,7 +7,6 @@ import 'package:matrix/matrix.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pangea/common/constants/local.key.dart';
-import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
@@ -20,7 +19,6 @@ void chatListHandleSpaceTap(
   ChatListController controller,
   Room space,
 ) {
-  final PangeaController pangeaController = MatrixState.pangeaController;
   void setActiveSpaceAndCloseChat() {
     controller.setActiveSpace(space.id);
 
@@ -102,8 +100,9 @@ void chatListHandleSpaceTap(
             (element) =>
                 element.isSpace && element.membership == Membership.join,
           );
-      final justInputtedCode = pangeaController.pStoreService
-          .read(PLocalKey.justInputtedCode, isAccountData: false);
+      final justInputtedCode = MatrixState
+          .pangeaController.classController.chatBox
+          .read(PLocalKey.justInputtedCode);
       if (rooms.any((s) => s.spaceChildren.any((c) => c.roomId == space.id))) {
         autoJoin(space);
       } else if (justInputtedCode != null &&

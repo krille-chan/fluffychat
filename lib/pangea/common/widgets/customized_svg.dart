@@ -16,14 +16,13 @@ class CustomizedSvg extends StatelessWidget {
   /// Icon to show in case of error
   final Widget errorIcon;
 
+  static final GetStorage _svgStorage = GetStorage('svg_cache');
   const CustomizedSvg({
     super.key,
     required this.svgUrl,
     required this.colorReplacements,
     this.errorIcon = const Icon(Icons.error_outline),
   });
-
-  static final GetStorage _svgStorage = GetStorage('svg_cache');
 
   Future<String?> _fetchSvg() async {
     final cachedSvgEntry = _svgStorage.read(svgUrl);

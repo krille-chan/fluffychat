@@ -79,7 +79,7 @@ Future<void> _loginFuture({
       }
     },
   );
-  MatrixState.pangeaController.pStoreService
-      .save(PLocalKey.loginType, 'password');
+  MatrixState.pangeaController.userController.loginBox
+      .write(PLocalKey.loginType, 'password');
   GoogleAnalytics.login("pangea", loginRes.userId);
 }

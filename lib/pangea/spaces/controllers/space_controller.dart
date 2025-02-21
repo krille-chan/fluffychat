@@ -20,23 +20,25 @@ import '../../common/controllers/base_controller.dart';
 class ClassController extends BaseController {
   late PangeaController _pangeaController;
 
+  //Storage Initialization
+  final GetStorage chatBox = GetStorage("chat_list_storage");
+  final GetStorage linkBox = GetStorage("link_storage");
+  static final GetStorage _classStorage = GetStorage('class_storage');
+
   ClassController(PangeaController pangeaController) : super() {
     _pangeaController = pangeaController;
   }
-
-  static final GetStorage _aliasStorage = GetStorage('alias_storage');
 
   void setActiveSpaceIdInChatListController(String? classId) {
     setState({"activeSpaceId": classId});
   }
 
   Future<void> joinCachedSpaceCode(BuildContext context) async {
-    final String? classCode = _pangeaController.pStoreService.read(
+    final String? classCode = linkBox.read(
       PLocalKey.cachedClassCodeToJoin,
-      isAccountData: false,
     );
 
-    final String? alias = _aliasStorage.read(PLocalKey.cachedAliasToJoin);
+    final String? alias = _classStorage.read(PLocalKey.cachedAliasToJoin);
 
     if (classCode != null) {
       await joinClasswithCode(
@@ -44,13 +46,12 @@ class ClassController extends BaseController {
         classCode,
       );
 
-      await _pangeaController.pStoreService.delete(
+      await linkBox.remove(
         PLocalKey.cachedClassCodeToJoin,
-        isAccountData: false,
       );
     } else if (alias != null) {
       await joinCachedRoomAlias(alias, context);
-      await _aliasStorage.remove(PLocalKey.cachedAliasToJoin);
+      await _classStorage.remove(PLocalKey.cachedAliasToJoin);
     }
   }
 
@@ -65,7 +66,7 @@ class ClassController extends BaseController {
 
     final client = Matrix.of(context).client;
     if (!client.isLogged()) {
-      await _aliasStorage.write(PLocalKey.cachedAliasToJoin, alias);
+      await _classStorage.write(PLocalKey.cachedAliasToJoin, alias);
       context.go("/home");
       return;
     }
@@ -140,10 +141,9 @@ class ClassController extends BaseController {
         }
 
         final chosenClassId = foundClasses.first;
-        await _pangeaController.pStoreService.save(
+        await chatBox.write(
           PLocalKey.justInputtedCode,
           classCode,
-          isAccountData: false,
         );
         return chosenClassId;
       },

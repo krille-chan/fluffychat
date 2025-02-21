@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:collection/collection.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:jwt_decode/jwt_decode.dart';
 import 'package:matrix/matrix.dart' as matrix;
 
@@ -16,6 +17,7 @@ import '../models/user_model.dart';
 
 /// Controller that manages saving and reading of user/profile information
 class UserController extends BaseController {
+  final GetStorage loginBox = GetStorage("login_storage");
   late PangeaController _pangeaController;
   UserController(PangeaController pangeaController) : super() {
     _pangeaController = pangeaController;

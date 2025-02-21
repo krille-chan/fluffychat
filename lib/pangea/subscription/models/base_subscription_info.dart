@@ -92,6 +92,8 @@ class AvailableSubscriptionsInfo {
   List<SubscriptionDetails> availableSubscriptions = [];
   SubscriptionAppIds? appIds;
   List<SubscriptionDetails>? allProducts;
+  final subscriptionBox =
+      MatrixState.pangeaController.subscriptionController.subscriptionBox;
 
   AvailableSubscriptionsInfo({
     this.appIds,
@@ -113,14 +115,14 @@ class AvailableSubscriptionsInfo {
   }
 
   Future<void> _cacheSubscriptionInfo() async {
-    await MatrixState.pangeaController.pStoreService.save(
+    await subscriptionBox.write(
       PLocalKey.availableSubscriptionInfo,
       toJson(),
     );
   }
 
-  static AvailableSubscriptionsInfo? _getCachedSubscriptionInfo() {
-    final json = MatrixState.pangeaController.pStoreService.read(
+  AvailableSubscriptionsInfo? _getCachedSubscriptionInfo() {
+    final json = subscriptionBox.read(
       PLocalKey.availableSubscriptionInfo,
     );
     if (json is! Map<String, dynamic>) {
