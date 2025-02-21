@@ -3417,7 +3417,7 @@
   "understandingMessagesTitle": "Definitions and translations!",
   "understandingMessagesBody": "Click underlined words for definitions. Translate with message options (upper right).",
   "allDone": "All done!",
-  "vocab": "Vocabulary",
+  "vocab": "Vocab",
   "low": "We have evidence the user does not understand these words.",
   "medium": "These words have been used. It is unclear if the words are fully understood or not.",
   "high": "We have evidence the user understands these words.",

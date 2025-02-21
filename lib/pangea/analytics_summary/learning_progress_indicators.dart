@@ -107,7 +107,7 @@ class LearningProgressIndicatorsState
                       context: context,
                       builder: (c) => const SettingsLearning(),
                     ),
-                    l2: userL2?.getDisplayName(context) ?? userL2?.langCode,
+                    l2: userL2?.langCode.toUpperCase(),
                   ),
                   Row(
                     children: ConstructTypeEnum.values
