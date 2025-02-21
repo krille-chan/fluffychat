@@ -3201,5 +3201,6 @@
   "allDevices": "All devices",
   "crossVerifiedDevicesIfEnabled": "Cross verified devices if enabled",
   "crossVerifiedDevices": "Cross verified devices",
-  "verifiedDevicesOnly": "Verified devices only"
+  "verifiedDevicesOnly": "Verified devices only",
+  "pleaseEnterName": "Please enter a name"
 }
