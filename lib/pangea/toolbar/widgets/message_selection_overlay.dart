@@ -109,7 +109,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
       widget.chatController.choreographer.tts.tryToSpeak(
         selectedSpan.content,
         context,
-        pangeaMessageEvent?.eventId,
+        targetID: null,
       );
     }
 

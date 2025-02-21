@@ -4824,5 +4824,7 @@
   "whoIsAllowedToJoinThisChat": "Who is allowed to join this chat",
   "dontForgetPassword": "Don't forget your password!",
   "enableAutocorrectToolName": "Enable autocorrect",
-  "enableAutocorrectDescription": "Use your keyboard's built-in autocorrect when typing messages"
+  "enableAutocorrectDescription": "Use your keyboard's built-in autocorrect when typing messages",
+  "ttsDisbledTitle": "Text-to-speech disabled",
+  "ttsDisabledBody": "You can enable text-to-speech in your learning settings"
 } 

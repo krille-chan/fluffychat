@@ -30,6 +30,8 @@ class OverlayUtil {
     OverlayPositionEnum position = OverlayPositionEnum.transform,
     Offset? offset,
     String? overlayKey,
+    Alignment? targetAnchor,
+    Alignment? followerAnchor,
   }) {
     try {
       if (closePrevOverlay) {
@@ -56,8 +58,9 @@ class OverlayUtil {
                 child: (position != OverlayPositionEnum.transform)
                     ? child
                     : CompositedTransformFollower(
-                        targetAnchor: Alignment.topCenter,
-                        followerAnchor: Alignment.bottomCenter,
+                        targetAnchor: targetAnchor ?? Alignment.topCenter,
+                        followerAnchor:
+                            followerAnchor ?? Alignment.bottomCenter,
                         link: MatrixState.pAnyState
                             .layerLinkAndKey(transformTargetId)
                             .link,
@@ -110,6 +113,8 @@ class OverlayUtil {
       Offset offset = Offset.zero;
       final RenderBox? targetRenderBox =
           layerLinkAndKey.key.currentContext!.findRenderObject() as RenderBox?;
+
+      bool hasTopOverflow = false;
       if (targetRenderBox != null && targetRenderBox.hasSize) {
         final Offset transformTargetOffset =
             (targetRenderBox).localToGlobal(Offset.zero);
@@ -117,10 +122,15 @@ class OverlayUtil {
         final horizontalMidpoint =
             transformTargetOffset.dx + (transformTargetSize.width / 2);
 
+        final verticalMidpoint =
+            transformTargetOffset.dy + (transformTargetSize.height / 2);
+        debugPrint("vertical midpoint $verticalMidpoint");
+
         final halfMaxWidth = maxWidth / 2;
         final hasLeftOverflow = (horizontalMidpoint - halfMaxWidth) < 0;
         final hasRightOverflow = (horizontalMidpoint + halfMaxWidth) >
             MediaQuery.of(context).size.width;
+        hasTopOverflow = (verticalMidpoint - maxHeight) < 0;
 
         double xOffset = 0;
 
@@ -156,6 +166,10 @@ class OverlayUtil {
         closePrevOverlay: closePrevOverlay,
         offset: offset,
         overlayKey: overlayKey,
+        targetAnchor:
+            hasTopOverflow ? Alignment.bottomCenter : Alignment.topCenter,
+        followerAnchor:
+            hasTopOverflow ? Alignment.topCenter : Alignment.bottomCenter,
       );
     } catch (err, stack) {
       debugger(when: kDebugMode);

@@ -69,18 +69,6 @@ class MessageAudioCardState extends State<MessageAudioCard> {
     super.didUpdateWidget(oldWidget);
   }
 
-  Future<void> playSelectionAudio() async {
-    if (widget.selection == null) return;
-    final PangeaTokenText selection = widget.selection!;
-    final tokenText = selection.content;
-
-    await widget.tts.tryToSpeak(
-      tokenText,
-      context,
-      widget.messageEvent.eventId,
-    );
-  }
-
   void setSectionStartAndEnd(int? start, int? end) => mounted
       ? setState(() {
           sectionStartMS = start;

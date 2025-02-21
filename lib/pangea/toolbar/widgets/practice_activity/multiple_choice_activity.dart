@@ -226,7 +226,6 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
           WordAudioButton(
             text: practiceActivity.content.answers.first,
             ttsController: tts,
-            eventID: widget.event.eventId,
           ),
         if (practiceActivity.activityType ==
             ActivityTypeEnum.hiddenWordListening)

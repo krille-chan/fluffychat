@@ -42,6 +42,10 @@ class SettingsLearningController extends State<SettingsLearning> {
 
   Future<void> submit() async {
     if (formKey.currentState!.validate()) {
+      if (!isTTSSupported) {
+        updateToolSetting(ToolSetting.enableTTS, false);
+      }
+
       await showFutureLoadingDialog(
         context: context,
         future: () async => pangeaController.userController.updateProfile(
@@ -62,6 +66,9 @@ class SettingsLearningController extends State<SettingsLearning> {
     }
     if (targetLanguage != null) {
       _profile.userSettings.targetLanguage = targetLanguage.langCode;
+      if (!_profile.toolSettings.enableTTS && isTTSSupported) {
+        updateToolSetting(ToolSetting.enableTTS, true);
+      }
     }
 
     if (mounted) setState(() {});
@@ -123,11 +130,17 @@ class SettingsLearningController extends State<SettingsLearning> {
       case ToolSetting.autoIGC:
         return toolSettings.autoIGC;
       case ToolSetting.enableTTS:
-        return toolSettings.enableTTS;
+        return _profile.userSettings.targetLanguage != null &&
+            tts.isLanguageSupported(_profile.userSettings.targetLanguage!) &&
+            toolSettings.enableTTS;
       case ToolSetting.enableAutocorrect:
         return toolSettings.enableAutocorrect;
     }
   }
+
+  bool get isTTSSupported =>
+      _profile.userSettings.targetLanguage != null &&
+      tts.isLanguageSupported(_profile.userSettings.targetLanguage!);
 
   LanguageModel? get selectedSourceLanguage {
     return userL1 ?? pangeaController.languageController.systemLanguage;

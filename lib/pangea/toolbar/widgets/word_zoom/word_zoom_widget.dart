@@ -237,7 +237,6 @@ class WordZoomWidgetState extends State<WordZoomWidget> {
                               WordTextWithAudioButton(
                                 text: widget.token.text.content,
                                 ttsController: widget.tts,
-                                eventID: widget.messageEvent.eventId,
                               ),
                               // if _selectionType is null, we don't know if the lemma activity
                               // can be shown yet, so we don't show the lemma definition

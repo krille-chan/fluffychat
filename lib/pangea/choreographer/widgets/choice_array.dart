@@ -100,7 +100,11 @@ class ChoicesArrayState extends State<ChoicesArray> {
                             widget.onPressed(value, index);
                             // TODO - what to pass here as eventID?
                             if (widget.enableAudio && widget.tts != null) {
-                              widget.tts?.tryToSpeak(value, context, null);
+                              widget.tts?.tryToSpeak(
+                                value,
+                                context,
+                                targetID: null,
+                              );
                             }
                           }
                         : (String value, int index) {
