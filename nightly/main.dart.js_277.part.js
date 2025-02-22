@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_277",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cyX(){return new A.ER(B.dh("ru"))},
-ER:function ER(d){this.a=d}}
+cyE(){return new A.EQ(B.dh("ru"))},
+EQ:function EQ(d){this.a=d}}
 B=c[0]
 C=c[51]
 A=a.updateHolder(c[41],A)
-A.ER.prototype={
+A.EQ.prototype={
 gnt(){return"\u043d\u0435\u0442"},
 gjK(){return"\u041f\u043e\u0432\u0442\u043e\u0440\u0438\u0442\u0435 \u043f\u0430\u0440\u043e\u043b\u044c"},
 gm_(){return"\u042d\u0442\u043e \u043d\u0435 \u043a\u0430\u0440\u0442\u0438\u043d\u043a\u0430."},
@@ -628,8 +628,8 @@ goa(){return"Cross verified devices"},
 gph(){return"Verified devices only"},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.ER,C.aF)})()
-B.dW(b.typeUniverse,JSON.parse('{"ER":{"aF":[]}}'))};
+y(A.EQ,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"EQ":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_277",e:"endPart",h:b})})($__dart_deferred_initializers__,"w5l2M1PflPhx/s7NsRvZRFYLu9Q=");
+a.eventLog.push({p:"main.dart.js_277",e:"endPart",h:b})})($__dart_deferred_initializers__,"XY0Q9eQDBEThqOcRsTGxeUUIDgg=");
 //# sourceMappingURL=main.dart.js_277.part.js.map
