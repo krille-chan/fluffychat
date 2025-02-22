@@ -1,7 +1,4 @@
-import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cross_file/cross_file.dart';
@@ -219,15 +216,52 @@ class SendFileDialogState extends State<SendFileDialog> {
                                 AppConfig.borderRadius / 2,
                               ),
                               clipBehavior: Clip.hardEdge,
-                              child: kIsWeb
-                                  ? Image.network(
-                                      widget.files[i].path,
-                                      height: 256,
-                                    )
-                                  : Image.file(
-                                      File(widget.files[i].path),
-                                      height: 256,
-                                    ),
+                              child: FutureBuilder(
+                                future: widget.files[i].readAsBytes(),
+                                builder: (context, snapshot) {
+                                  final bytes = snapshot.data;
+                                  if (bytes == null) {
+                                    return const Center(
+                                      child:
+                                          CircularProgressIndicator.adaptive(),
+                                    );
+                                  }
+                                  if (snapshot.error != null) {
+                                    Logs().w(
+                                      'Unable to preview image',
+                                      snapshot.error,
+                                      snapshot.stackTrace,
+                                    );
+                                    return const Center(
+                                      child: SizedBox(
+                                        width: 256,
+                                        height: 256,
+                                        child: Icon(
+                                          Icons.broken_image_outlined,
+                                          size: 64,
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                  return Image.memory(
+                                    bytes,
+                                    height: 256,
+                                    errorBuilder: (context, e, s) {
+                                      Logs().w('Unable to preview image', e, s);
+                                      return const Center(
+                                        child: SizedBox(
+                                          width: 256,
+                                          height: 256,
+                                          child: Icon(
+                                            Icons.broken_image_outlined,
+                                            size: 64,
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  );
+                                },
+                              ),
                             ),
                           ),
                         ),
