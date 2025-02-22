@@ -69,25 +69,29 @@ class ImageViewerView extends StatelessWidget {
         body: HoverBuilder(
           builder: (context, hovered) => Stack(
             children: [
-              PageView.builder(
-                controller: controller.pageController,
-                itemCount: controller.allEvents.length,
-                itemBuilder: (context, i) => InteractiveViewer(
-                  minScale: 1.0,
-                  maxScale: 10.0,
-                  onInteractionEnd: controller.onInteractionEnds,
-                  child: Center(
-                    child: Hero(
-                      tag: controller.allEvents[i].eventId,
-                      child: GestureDetector(
-                        // Ignore taps to not go back here:
-                        onTap: () {},
-                        child: MxcImage(
-                          key: ValueKey(controller.allEvents[i].eventId),
-                          event: controller.allEvents[i],
-                          fit: BoxFit.contain,
-                          isThumbnail: false,
-                          animated: true,
+              KeyboardListener(
+                focusNode: controller.focusNode,
+                onKeyEvent: controller.onKeyEvent,
+                child: PageView.builder(
+                  controller: controller.pageController,
+                  itemCount: controller.allEvents.length,
+                  itemBuilder: (context, i) => InteractiveViewer(
+                    minScale: 1.0,
+                    maxScale: 10.0,
+                    onInteractionEnd: controller.onInteractionEnds,
+                    child: Center(
+                      child: Hero(
+                        tag: controller.allEvents[i].eventId,
+                        child: GestureDetector(
+                          // Ignore taps to not go back here:
+                          onTap: () {},
+                          child: MxcImage(
+                            key: ValueKey(controller.allEvents[i].eventId),
+                            event: controller.allEvents[i],
+                            fit: BoxFit.contain,
+                            isThumbnail: false,
+                            animated: true,
+                          ),
                         ),
                       ),
                     ),
