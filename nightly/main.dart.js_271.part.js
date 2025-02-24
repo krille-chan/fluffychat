@@ -361,7 +361,7 @@ jV(d,e){return d+" nos\u016bt\u012bja notikumu "+e},
 gmI(){return"Neapliecin\u0101ta"},
 gcX(){return"Apliecin\u0101ta"},
 gjY(){return"Uzs\u0101kt apliecin\u0101\u0161anu"},
-gjZ(){return"Apliecin\u0101\u0161ana veiksm\u012bga."},
+gjZ(){return"Apliecin\u0101\u0161ana bija sekm\u012bga."},
 gmU(){return"Apliecina citu kontu"},
 gmV(){return"Videozvans"},
 gmY(){return"T\u0113rz\u0113\u0161anas v\u0113stures redzam\u012bba"},
@@ -423,7 +423,7 @@ l1(d){return""+d+" datnes"},
 gdU(){return"Lietot\u0101js"},
 gik(){return"Piel\u0101gots"},
 gn6(){return"K\u0101d\u0113\u013c \u0161\u012b zi\u0146a ir nelas\u0101ma?"},
-glW(){return"T\u0101 var notikt, ja zi\u0146a tika nos\u016bt\u012bta, pirms pieteicies sav\u0101 kont\u0101 \u0161aj\u0101 ier\u012bc\u0113.\n\nIr ar\u012b iesp\u0113jams, ka s\u016bt\u012bt\u0101js noliedza Tavu ier\u012bci vai kaut kas nog\u0101ja greizi ar interneta savienojumu.\n\nVai zi\u0146as ir las\u0101mas cit\u0101 sesij\u0101? Tad Tu vari p\u0101rs\u016bt\u012bt zi\u0146o no t\u0101s. J\u0101dodas uz Iestat\u012bjumi > Ier\u012bces un j\u0101p\u0101rliecin\u0101s, ka ier\u012bces viena otru ir apliecin\u0101ju\u0161as. Kad n\u0101kamreiz atv\u0113rsi istabu un abas sesijas b\u016bs priek\u0161pl\u0101n\u0101, atsl\u0113gas tiks autom\u0101tiski p\u0101rs\u016bt\u012btas.\n\nVai nev\u0113lies zaud\u0113t atsl\u0113gas, kad atsakies vai maini ier\u012bces? J\u0101p\u0101rliecin\u0101s, ka iestat\u012bjumos ir iesp\u0113jota t\u0113rz\u0113\u0161anu rezerves kopija."},
+glW(){return"T\u0101 var notikt, ja zi\u0146a tika nos\u016bt\u012bta, pirms pieteicies sav\u0101 kont\u0101 \u0161aj\u0101 ier\u012bc\u0113.\n\nIr ar\u012b iesp\u0113jams, ka s\u016bt\u012bt\u0101js noliedza Tavu ier\u012bci vai kaut kas nog\u0101ja greizi ar interneta savienojumu.\n\nVai zi\u0146as ir las\u0101mas cit\u0101 sesij\u0101? Tad Tu vari p\u0101rs\u016bt\u012bt zi\u0146u no t\u0101s. J\u0101dodas uz Iestat\u012bjumi > Ier\u012bces un j\u0101p\u0101rliecin\u0101s, ka ier\u012bces viena otru ir apliecin\u0101ju\u0161as. Kad n\u0101kamreiz atv\u0113rsi istabu un abas sesijas b\u016bs priek\u0161pl\u0101n\u0101, atsl\u0113gas tiks autom\u0101tiski p\u0101rs\u016bt\u012btas.\n\nVai nev\u0113lies zaud\u0113t atsl\u0113gas, kad atsakies vai maini ier\u012bces? J\u0101p\u0101rliecin\u0101s, ka iestat\u012bjumos ir iesp\u0113jota t\u0113rz\u0113\u0161anu rezerves kopija."},
 glT(){return"Jauna vieta"},
 glu(){return"Pasl\u0113pt st\u0101vok\u013cu sarakstu?"},
 ew(d){return"Tuk\u0161a t\u0113rz\u0113\u0161ana (bija "+d+")"},
@@ -501,7 +501,7 @@ gln(){return"Att\u0113lot bag\u0101tin\u0101tu zi\u0146u saturu, piem\u0113ram, 
 gmS(){return"\ud83d\udd10 Apliecin\u0101t otru lietot\u0101ju"},
 gmT(){return"Ar cita lietot\u0101ja apliecin\u0101\u0161anu vari p\u0101rliecin\u0101ties, ka zini, kam Tu tie\u0161\u0101m raksti. \ud83d\udcaa\n\nKad uzs\u0101c apliecin\u0101\u0161anu, Tu un otrs lietot\u0101js lietotn\u0113 redz\u0113s uznirsto\u0161o logu. Taj\u0101 j\u016bs redz\u0113siet da\u017e\u0101das emocijz\u012bmes vai skait\u013cus, kas ir j\u0101sal\u012bdzina sav\u0101 starp\u0101.\n\nLab\u0101kais veids, k\u0101 to izdar\u012bt, ir satikties vai uzs\u0101kt videozvanu. \ud83d\udc6d"},
 gjW(){return"\ud83d\udd10 Apliecin\u0101t otru ier\u012bci"},
-gjX(){return"Kad apliecini citu ier\u012bci, \u0161\u012bs ier\u012bces var apmain\u012bt atsl\u0113gas, palielinot visp\u0101r\u0113jo dro\u0161\u012bbu. \ud83d\udcaa Kad uzs\u0101c apliecin\u0101\u0161anu, ab\u0101s ier\u012bc\u0113s lietotn\u0113 par\u0101d\u012bsies uznirsto\u0161ais logs. Taj\u0101 b\u016bs redzamas da\u017e\u0101das emocijz\u012bmes vai skait\u013ci, kas j\u0101sal\u012bdzina ab\u0101s ier\u012bc\u0113s. Vislab\u0101k, ja abas ier\u012bces ir pieejams, pirms tiek uzs\u0101kta apliecin\u0101\u0161ana. \ud83e\udd33"},
+gjX(){return"Kad apliecini citu ier\u012bci, \u0161\u012bs ier\u012bces var apmain\u012bt atsl\u0113gas, palielinot visp\u0101r\u0113jo dro\u0161\u012bbu. \ud83d\udcaa P\u0113c apliecin\u0101\u0161anas uzs\u0101k\u0161anas ab\u0101s ier\u012bc\u0113s lietotn\u0113 par\u0101d\u012bsies uznirsto\u0161ais logs. Taj\u0101 b\u016bs redzamas da\u017e\u0101das emocijz\u012bmes vai skait\u013ci, kas j\u0101sal\u012bdzina ab\u0101s ier\u012bc\u0113s. Vislab\u0101k, ja abas ier\u012bces ir pieejams, pirms tiek uzs\u0101kta apliecin\u0101\u0161ana. \ud83e\udd33"},
 kE(d){return d+" apstiprin\u0101ja atsl\u0113gas apliecin\u0101\u0161anu"},
 kM(d){return d+" atc\u0113la atsl\u0113gas apliecin\u0101\u0161anu"},
 kY(d){return d+" pabeidza atsl\u0113gas apliecin\u0101\u0161anu"},
@@ -631,5 +631,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.EJ,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"EJ":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_271",e:"endPart",h:b})})($__dart_deferred_initializers__,"u/wsPHm+3K1k7HDWjUTpRlIOMak=");
+a.eventLog.push({p:"main.dart.js_271",e:"endPart",h:b})})($__dart_deferred_initializers__,"DX7WDwEgb6I+TWTzC2elu71Kai8=");
 //# sourceMappingURL=main.dart.js_271.part.js.map
