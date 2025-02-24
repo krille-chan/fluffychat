@@ -228,7 +228,7 @@ class HtmlMessage extends StatelessWidget {
                   if (node.parent?.localName == 'ol')
                     TextSpan(
                       text:
-                          '${(node.parent?.nodes.indexOf(node) ?? 0) + (int.tryParse(node.parent?.attributes['start'] ?? '1') ?? 1)}. ',
+                          '${(node.parent?.nodes.whereType<dom.Element>().toList().indexOf(node) ?? 0) + (int.tryParse(node.parent?.attributes['start'] ?? '1') ?? 1)}. ',
                     ),
                   ..._renderWithLineBreaks(
                     node.nodes,
