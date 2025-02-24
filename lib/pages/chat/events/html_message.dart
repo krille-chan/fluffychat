@@ -415,12 +415,36 @@ class HtmlMessage extends StatelessWidget {
             'strikethrough' =>
               const TextStyle(decoration: TextDecoration.lineThrough),
             'u' => const TextStyle(decoration: TextDecoration.underline),
-            'h1' => TextStyle(fontSize: fontSize * 1.6, height: 2),
-            'h2' => TextStyle(fontSize: fontSize * 1.5, height: 2),
-            'h3' => TextStyle(fontSize: fontSize * 1.4, height: 2),
-            'h4' => TextStyle(fontSize: fontSize * 1.3, height: 1.75),
-            'h5' => TextStyle(fontSize: fontSize * 1.2, height: 1.75),
-            'h6' => TextStyle(fontSize: fontSize * 1.1, height: 1.5),
+            'h1' => TextStyle(
+                fontSize: fontSize * 1.6,
+                height: 2,
+                fontWeight: FontWeight.w700,
+              ),
+            'h2' => TextStyle(
+                fontSize: fontSize * 1.5,
+                height: 2,
+                fontWeight: FontWeight.w700,
+              ),
+            'h3' => TextStyle(
+                fontSize: fontSize * 1.4,
+                height: 2,
+                fontWeight: FontWeight.w700,
+              ),
+            'h4' => TextStyle(
+                fontSize: fontSize * 1.3,
+                height: 1.75,
+                fontWeight: FontWeight.w700,
+              ),
+            'h5' => TextStyle(
+                fontSize: fontSize * 1.2,
+                height: 1.75,
+                fontWeight: FontWeight.w700,
+              ),
+            'h6' => TextStyle(
+                fontSize: fontSize * 1.1,
+                height: 1.5,
+                fontWeight: FontWeight.w700,
+              ),
             'span' => TextStyle(
                 color: node.attributes['color']?.hexToColor ??
                     node.attributes['data-mx-color']?.hexToColor ??
