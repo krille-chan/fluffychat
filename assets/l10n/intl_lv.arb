@@ -205,7 +205,7 @@
       }
     }
   },
-  "verifySuccess": "Apliecināšana veiksmīga.",
+  "verifySuccess": "Apliecināšana bija sekmīga.",
   "@verifySuccess": {
     "type": "String",
     "placeholders": {}
@@ -707,7 +707,7 @@
       }
     }
   },
-  "noKeyForThisMessage": "Tā var notikt, ja ziņa tika nosūtīta, pirms pieteicies savā kontā šajā ierīcē.\n\nIr arī iespējams, ka sūtītājs noliedza Tavu ierīci vai kaut kas nogāja greizi ar interneta savienojumu.\n\nVai ziņas ir lasāmas citā sesijā? Tad Tu vari pārsūtīt ziņo no tās. Jādodas uz Iestatījumi > Ierīces un jāpārliecinās, ka ierīces viena otru ir apliecinājušas. Kad nākamreiz atvērsi istabu un abas sesijas būs priekšplānā, atslēgas tiks automātiski pārsūtītas.\n\nVai nevēlies zaudēt atslēgas, kad atsakies vai maini ierīces? Jāpārliecinās, ka iestatījumos ir iespējota tērzēšanu rezerves kopija.",
+  "noKeyForThisMessage": "Tā var notikt, ja ziņa tika nosūtīta, pirms pieteicies savā kontā šajā ierīcē.\n\nIr arī iespējams, ka sūtītājs noliedza Tavu ierīci vai kaut kas nogāja greizi ar interneta savienojumu.\n\nVai ziņas ir lasāmas citā sesijā? Tad Tu vari pārsūtīt ziņu no tās. Jādodas uz Iestatījumi > Ierīces un jāpārliecinās, ka ierīces viena otru ir apliecinājušas. Kad nākamreiz atvērsi istabu un abas sesijas būs priekšplānā, atslēgas tiks automātiski pārsūtītas.\n\nVai nevēlies zaudēt atslēgas, kad atsakies vai maini ierīces? Jāpārliecinās, ka iestatījumos ir iespējota tērzēšanu rezerves kopija.",
   "@noKeyForThisMessage": {},
   "enableEncryptionWarning": "Vairs nebūs iespējams atspējot šifrēšanu. Vai tiešām to darīt?",
   "@enableEncryptionWarning": {
@@ -2623,7 +2623,7 @@
       }
     }
   },
-  "appLockDescription": "Aizslēgt lietotni ar PIN kodu, kad tā netiek izmantota",
+  "appLockDescription": "Aizslēgt lietotni, kad tā netiek izmantota, ar PIN kodu",
   "@appLockDescription": {},
   "globalChatId": "Vispārējais tērzēšanas Id",
   "@globalChatId": {},
@@ -2932,7 +2932,7 @@
     "type": "String",
     "count": {}
   },
-  "verifyOtherDeviceDescription": "Kad apliecini citu ierīci, šīs ierīces var apmainīt atslēgas, palielinot vispārējo drošību. 💪 Kad uzsāc apliecināšanu, abās ierīcēs lietotnē parādīsies uznirstošais logs. Tajā būs redzamas dažādas emocijzīmes vai skaitļi, kas jāsalīdzina abās ierīcēs. Vislabāk, ja abas ierīces ir pieejams, pirms tiek uzsākta apliecināšana. 🤳",
+  "verifyOtherDeviceDescription": "Kad apliecini citu ierīci, šīs ierīces var apmainīt atslēgas, palielinot vispārējo drošību. 💪 Pēc apliecināšanas uzsākšanas abās ierīcēs lietotnē parādīsies uznirstošais logs. Tajā būs redzamas dažādas emocijzīmes vai skaitļi, kas jāsalīdzina abās ierīcēs. Vislabāk, ja abas ierīces ir pieejams, pirms tiek uzsākta apliecināšana. 🤳",
   "@verifyOtherDeviceDescription": {},
   "swipeRightToLeftToReply": "Pavilkt pa labi, lai atbildētu",
   "@swipeRightToLeftToReply": {},
