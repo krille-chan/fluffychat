@@ -3201,5 +3201,7 @@
   "allDevices": "All devices",
   "crossVerifiedDevicesIfEnabled": "Cross verified devices if enabled",
   "crossVerifiedDevices": "Cross verified devices",
-  "verifiedDevicesOnly": "Verified devices only"
+  "verifiedDevicesOnly": "Verified devices only",
+  "takeAPhoto": "Take a photo",
+  "recordAVideo": "Record a video"
 }

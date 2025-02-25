@@ -548,10 +548,9 @@ class ChatController extends State<ChatPageWithRoom>
   }
 
   void sendImageAction() async {
-    final files = await selectFiles(
-      context,
-      allowMultiple: true,
-      type: FileSelectorType.images,
+    final files = await ImagePicker().pickMultipleMedia(
+      imageQuality: null,
+      requestFullMetadata: false,
     );
     if (files.isEmpty) return;
 
