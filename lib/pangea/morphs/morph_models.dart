@@ -11,7 +11,7 @@ class MorphFeature {
   factory MorphFeature.fromJson(Map<String, dynamic> json) {
     return MorphFeature(
       feature: json['feature'],
-      tags: List<String>.from(json['tag']),
+      tags: List<String>.from(json['tag'] ?? json['tags']),
     );
   }
 
