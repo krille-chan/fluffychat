@@ -63,19 +63,11 @@ Future<String?> showTextInputDialog({
                       return TextField(
                         controller: controller,
                         obscureText: obscureText,
-                        minLines: minLines,
-                        maxLines: maxLines,
-                        maxLength: maxLength,
-                        keyboardType: keyboardType,
-                        autocorrect: autocorrect,
-                        decoration: InputDecoration(
-                          errorText: error,
-                          hintText: hintText,
-                          labelText: labelText,
-                          prefixText: prefixText,
-                          suffixText: suffixText,
-                        ),
                         // #Pangea
+                        // minLines: minLines,
+                        // maxLines: maxLines,
+                        minLines: autoSubmit ? 1 : minLines,
+                        maxLines: autoSubmit ? 1 : maxLines,
                         onSubmitted: autoSubmit
                             ? (_) {
                                 final input = controller.text;
@@ -88,6 +80,16 @@ Future<String?> showTextInputDialog({
                               }
                             : null,
                         // Pangea#
+                        maxLength: maxLength,
+                        keyboardType: keyboardType,
+                        autocorrect: autocorrect,
+                        decoration: InputDecoration(
+                          errorText: error,
+                          hintText: hintText,
+                          labelText: labelText,
+                          prefixText: prefixText,
+                          suffixText: suffixText,
+                        ),
                       );
                     case TargetPlatform.iOS:
                     case TargetPlatform.macOS:
@@ -97,8 +99,23 @@ Future<String?> showTextInputDialog({
                           CupertinoTextField(
                             controller: controller,
                             obscureText: obscureText,
-                            minLines: minLines,
-                            maxLines: maxLines,
+                            // #Pangea
+                            // minLines: minLines,
+                            // maxLines: maxLines,
+                            minLines: autoSubmit ? 1 : minLines,
+                            maxLines: autoSubmit ? 1 : maxLines,
+                            onSubmitted: autoSubmit
+                                ? (_) {
+                                    final input = controller.text;
+                                    final errorText = validator?.call(input);
+                                    if (errorText != null) {
+                                      error = errorText;
+                                      return;
+                                    }
+                                    Navigator.of(context).pop<String>(input);
+                                  }
+                                : null,
+                            // Pangea#
                             maxLength: maxLength,
                             keyboardType: keyboardType,
                             autocorrect: autocorrect,
@@ -110,7 +127,7 @@ Future<String?> showTextInputDialog({
                           ),
                           if (error != null)
                             Text(
-                              error,
+                              error!,
                               style: TextStyle(
                                 fontSize: 11,
                                 color: theme.colorScheme.error,
