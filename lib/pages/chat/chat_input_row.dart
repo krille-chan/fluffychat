@@ -109,109 +109,105 @@ class ChatInputRow extends StatelessWidget {
             ]
           : <Widget>[
               const SizedBox(width: 4),
-              AnimatedSize(
+              AnimatedContainer(
                 duration: FluffyThemes.animationDuration,
                 curve: FluffyThemes.animationCurve,
-                child: controller.sendController.text.isNotEmpty
-                    ? null
-                    : Center(
-                        child: PopupMenuButton<String>(
-                          icon: const Icon(Icons.add_circle_outline),
-                          iconColor: theme.colorScheme.onPrimaryContainer,
-                          onSelected: controller.onAddPopupMenuButtonSelected,
-                          itemBuilder: (BuildContext context) =>
-                              <PopupMenuEntry<String>>[
-                            if (PlatformInfos.isMobile)
-                              PopupMenuItem<String>(
-                                value: 'location',
-                                child: ListTile(
-                                  leading: CircleAvatar(
-                                    backgroundColor:
-                                        theme.colorScheme.onPrimaryContainer,
-                                    foregroundColor:
-                                        theme.colorScheme.primaryContainer,
-                                    child: const Icon(Icons.gps_fixed_outlined),
-                                  ),
-                                  title: Text(L10n.of(context).shareLocation),
-                                  contentPadding: const EdgeInsets.all(0),
-                                ),
-                              ),
-                            PopupMenuItem<String>(
-                              value: 'image',
-                              child: ListTile(
-                                leading: CircleAvatar(
-                                  backgroundColor:
-                                      theme.colorScheme.onPrimaryContainer,
-                                  foregroundColor:
-                                      theme.colorScheme.primaryContainer,
-                                  child: const Icon(Icons.photo_album_outlined),
-                                ),
-                                title: Text(L10n.of(context).openGallery),
-                                contentPadding: const EdgeInsets.all(0),
-                              ),
-                            ),
-                            PopupMenuItem<String>(
-                              value: 'file',
-                              child: ListTile(
-                                leading: CircleAvatar(
-                                  backgroundColor:
-                                      theme.colorScheme.onPrimaryContainer,
-                                  foregroundColor:
-                                      theme.colorScheme.primaryContainer,
-                                  child: const Icon(Icons.attachment_outlined),
-                                ),
-                                title: Text(L10n.of(context).sendFile),
-                                contentPadding: const EdgeInsets.all(0),
-                              ),
-                            ),
-                          ],
+                width: controller.sendController.text.isNotEmpty ? 0 : height,
+                height: height,
+                alignment: Alignment.center,
+                decoration: const BoxDecoration(),
+                child: PopupMenuButton<String>(
+                  icon: const Icon(Icons.add_circle_outline),
+                  iconColor: theme.colorScheme.onPrimaryContainer,
+                  onSelected: controller.onAddPopupMenuButtonSelected,
+                  itemBuilder: (BuildContext context) =>
+                      <PopupMenuEntry<String>>[
+                    if (PlatformInfos.isMobile)
+                      PopupMenuItem<String>(
+                        value: 'location',
+                        child: ListTile(
+                          leading: CircleAvatar(
+                            backgroundColor:
+                                theme.colorScheme.onPrimaryContainer,
+                            foregroundColor: theme.colorScheme.primaryContainer,
+                            child: const Icon(Icons.gps_fixed_outlined),
+                          ),
+                          title: Text(L10n.of(context).shareLocation),
+                          contentPadding: const EdgeInsets.all(0),
                         ),
                       ),
+                    PopupMenuItem<String>(
+                      value: 'image',
+                      child: ListTile(
+                        leading: CircleAvatar(
+                          backgroundColor: theme.colorScheme.onPrimaryContainer,
+                          foregroundColor: theme.colorScheme.primaryContainer,
+                          child: const Icon(Icons.photo_album_outlined),
+                        ),
+                        title: Text(L10n.of(context).openGallery),
+                        contentPadding: const EdgeInsets.all(0),
+                      ),
+                    ),
+                    PopupMenuItem<String>(
+                      value: 'file',
+                      child: ListTile(
+                        leading: CircleAvatar(
+                          backgroundColor: theme.colorScheme.onPrimaryContainer,
+                          foregroundColor: theme.colorScheme.primaryContainer,
+                          child: const Icon(Icons.attachment_outlined),
+                        ),
+                        title: Text(L10n.of(context).sendFile),
+                        contentPadding: const EdgeInsets.all(0),
+                      ),
+                    ),
+                  ],
+                ),
               ),
               if (PlatformInfos.isMobile)
-                AnimatedSize(
+                AnimatedContainer(
                   duration: FluffyThemes.animationDuration,
                   curve: FluffyThemes.animationCurve,
-                  child: controller.sendController.text.isNotEmpty
-                      ? null
-                      : Center(
-                          child: PopupMenuButton(
-                            icon: const Icon(Icons.camera_alt_outlined),
-                            onSelected: controller.onAddPopupMenuButtonSelected,
-                            iconColor: theme.colorScheme.onPrimaryContainer,
-                            itemBuilder: (context) => [
-                              PopupMenuItem<String>(
-                                value: 'camera-video',
-                                child: ListTile(
-                                  leading: CircleAvatar(
-                                    backgroundColor:
-                                        theme.colorScheme.onPrimaryContainer,
-                                    foregroundColor:
-                                        theme.colorScheme.primaryContainer,
-                                    child: const Icon(Icons.videocam_outlined),
-                                  ),
-                                  title: Text(L10n.of(context).recordAVideo),
-                                  contentPadding: const EdgeInsets.all(0),
-                                ),
-                              ),
-                              PopupMenuItem<String>(
-                                value: 'camera',
-                                child: ListTile(
-                                  leading: CircleAvatar(
-                                    backgroundColor:
-                                        theme.colorScheme.onPrimaryContainer,
-                                    foregroundColor:
-                                        theme.colorScheme.primaryContainer,
-                                    child:
-                                        const Icon(Icons.camera_alt_outlined),
-                                  ),
-                                  title: Text(L10n.of(context).takeAPhoto),
-                                  contentPadding: const EdgeInsets.all(0),
-                                ),
-                              ),
-                            ],
+                  width: controller.sendController.text.isNotEmpty ? 0 : height,
+                  height: height,
+                  alignment: Alignment.center,
+                  decoration: const BoxDecoration(),
+                  child: Center(
+                    child: PopupMenuButton(
+                      icon: const Icon(Icons.camera_alt_outlined),
+                      onSelected: controller.onAddPopupMenuButtonSelected,
+                      iconColor: theme.colorScheme.onPrimaryContainer,
+                      itemBuilder: (context) => [
+                        PopupMenuItem<String>(
+                          value: 'camera-video',
+                          child: ListTile(
+                            leading: CircleAvatar(
+                              backgroundColor:
+                                  theme.colorScheme.onPrimaryContainer,
+                              foregroundColor:
+                                  theme.colorScheme.primaryContainer,
+                              child: const Icon(Icons.videocam_outlined),
+                            ),
+                            title: Text(L10n.of(context).recordAVideo),
+                            contentPadding: const EdgeInsets.all(0),
                           ),
                         ),
+                        PopupMenuItem<String>(
+                          value: 'camera',
+                          child: ListTile(
+                            leading: CircleAvatar(
+                              backgroundColor:
+                                  theme.colorScheme.onPrimaryContainer,
+                              foregroundColor:
+                                  theme.colorScheme.primaryContainer,
+                              child: const Icon(Icons.camera_alt_outlined),
+                            ),
+                            title: Text(L10n.of(context).takeAPhoto),
+                            contentPadding: const EdgeInsets.all(0),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               Container(
                 height: height,

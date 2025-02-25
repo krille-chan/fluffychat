@@ -255,8 +255,9 @@ class SendFileDialogState extends State<SendFileDialog> {
                                     return Image.memory(
                                       bytes,
                                       height: 256,
-                                      width:
-                                          widget.files.length == 1 ? 256 : null,
+                                      width: widget.files.length == 1
+                                          ? 256 - 24
+                                          : null,
                                       fit: BoxFit.contain,
                                       errorBuilder: (context, e, s) {
                                         Logs()
