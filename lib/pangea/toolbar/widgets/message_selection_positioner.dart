@@ -155,8 +155,10 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
   double get _messageMaxWidth {
     final double messageMargin =
         widget.event.isActivityMessage ? 0 : Avatar.defaultSize + 16 + 8;
-    final double totalMaxWidth =
-        (FluffyThemes.columnWidth * 2.5) - messageMargin;
+    final bool showingDetails = widget.chatController.displayChatDetailsColumn;
+    final double totalMaxWidth = (FluffyThemes.columnWidth * 2.5) -
+        (showingDetails ? FluffyThemes.columnWidth : 0) -
+        messageMargin;
     double? maxWidth;
 
     if (_mediaQuery != null) {

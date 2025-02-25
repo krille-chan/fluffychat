@@ -1843,6 +1843,15 @@ class ChatController extends State<ChatPageWithRoom>
       setState(() => inputBarHeight = height);
     }
   }
+
+  bool get displayChatDetailsColumn {
+    try {
+      return _displayChatDetailsColumn.value;
+    } catch (e) {
+      // if not set, default to false
+      return false;
+    }
+  }
   // Pangea#
 
   late final ValueNotifier<bool> _displayChatDetailsColumn;
