@@ -186,7 +186,7 @@
       }
     }
   },
-  "changedTheChatDescriptionTo": "{username} ha cambiato la descrizione della chat in: «{description}»",
+  "changedTheChatDescriptionTo": "{username} ha cambiato la descrizione della chat in: '{description}'",
   "@changedTheChatDescriptionTo": {
     "type": "String",
     "placeholders": {
@@ -198,7 +198,7 @@
       }
     }
   },
-  "changedTheChatNameTo": "{username} ha cambiato il nome della discussione in: «{chatname}»",
+  "changedTheChatNameTo": "{username} ha cambiato il nome della discussione in: '{chatname}'",
   "@changedTheChatNameTo": {
     "type": "String",
     "placeholders": {
@@ -303,7 +303,7 @@
       }
     }
   },
-  "changedTheRoomAliases": "{username} ha cambiato il nome delle stanze",
+  "changedTheRoomAliases": "{username} ha modificato gli alias della stanza",
   "@changedTheRoomAliases": {
     "type": "String",
     "placeholders": {
@@ -1629,7 +1629,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "unknownEvent": "Evento sconosciuto «{type}»",
+  "unknownEvent": "Evento sconosciuto '{type}'",
   "@unknownEvent": {
     "type": "String",
     "placeholders": {
@@ -3185,5 +3185,152 @@
     }
   },
   "compress": "Comprimere",
-  "@compress": {}
+  "@compress": {},
+  "contentNotificationSettings": "Impostazioni del contenuto di notifica",
+  "@contentNotificationSettings": {},
+  "generalNotificationSettings": "Impostazioni di notifica generale",
+  "@generalNotificationSettings": {},
+  "roomNotificationSettings": "Impostazioni di notifica della stanza",
+  "@roomNotificationSettings": {},
+  "userSpecificNotificationSettings": "Impostazioni di notifica specifiche dell'utente",
+  "@userSpecificNotificationSettings": {},
+  "otherNotificationSettings": "Altre impostazioni di notifica",
+  "@otherNotificationSettings": {},
+  "notificationRuleContainsUserName": "Contiene il nome utente",
+  "@notificationRuleContainsUserName": {},
+  "notificationRuleContainsUserNameDescription": "Notifica l'utente quando un messaggio contiene il proprio nome utente.",
+  "@notificationRuleContainsUserNameDescription": {},
+  "notificationRuleMaster": "Silenzia tutte le notifiche",
+  "@notificationRuleMaster": {},
+  "notificationRuleMasterDescription": "Sovrascive tutte le altre regole e disabilita tutte le notifiche.",
+  "@notificationRuleMasterDescription": {},
+  "notificationRuleSuppressNotices": "Silenziare i messaggi automatizzati",
+  "@notificationRuleSuppressNotices": {},
+  "notificationRuleSuppressNoticesDescription": "Silenzia le notifiche da client automatizzati come i bot.",
+  "@notificationRuleSuppressNoticesDescription": {},
+  "notificationRuleInviteForMeDescription": "Notifica l'utente quando è invitato in una stanza.",
+  "@notificationRuleInviteForMeDescription": {},
+  "notificationRuleMemberEvent": "Eventi per i membri",
+  "@notificationRuleMemberEvent": {},
+  "notificationRuleInviteForMe": "Inviti per me",
+  "@notificationRuleInviteForMe": {},
+  "notificationRuleIsUserMentionDescription": "Notifica l'utente quando viene menzionato direttamente in un messaggio.",
+  "@notificationRuleIsUserMentionDescription": {},
+  "notificationRuleContainsDisplayNameDescription": "Notifica l'utente quando un messaggio contiene il proprio nome visualizzato.",
+  "@notificationRuleContainsDisplayNameDescription": {},
+  "notificationRuleIsRoomMention": "Menzioni della stanza",
+  "@notificationRuleIsRoomMention": {},
+  "notificationRuleIsUserMention": "Menzioni dell'utente",
+  "@notificationRuleIsUserMention": {},
+  "notificationRuleRoomnotif": "Notifiche della stanza",
+  "@notificationRuleRoomnotif": {},
+  "notificationRuleRoomnotifDescription": "Notifica l'utente quando un messaggio contiene '@room'.",
+  "@notificationRuleRoomnotifDescription": {},
+  "notificationRuleTombstone": "Tombstone",
+  "@notificationRuleTombstone": {},
+  "notificationRuleTombstoneDescription": "Notifica all'utente i messaggi di disattivazione della stanza.",
+  "@notificationRuleTombstoneDescription": {},
+  "notificationRuleReaction": "Reazioni",
+  "@notificationRuleReaction": {},
+  "notificationRuleReactionDescription": "Silenzia le notifiche per le reazioni.",
+  "@notificationRuleReactionDescription": {},
+  "notificationRuleRoomServerAcl": "ACL del server della stanza",
+  "@notificationRuleRoomServerAcl": {},
+  "notificationRuleRoomServerAclDescription": "Silenzia le notifiche per gli elenchi di controllo degli accessi del server della stanza (ACL).",
+  "@notificationRuleRoomServerAclDescription": {},
+  "notificationRuleSuppressEdits": "Silenzia le modifiche",
+  "@notificationRuleSuppressEdits": {},
+  "notificationRuleSuppressEditsDescription": "Silenzia le notifiche per i messaggi modificati.",
+  "@notificationRuleSuppressEditsDescription": {},
+  "notificationRuleCallDescription": "Notifica all'utente le chiamate.",
+  "@notificationRuleCallDescription": {},
+  "notificationRuleEncryptedRoomOneToOne": "Stanze crittografate One-to-One",
+  "@notificationRuleEncryptedRoomOneToOne": {},
+  "notificationRuleRoomOneToOne": "Stanze One-to-One",
+  "@notificationRuleRoomOneToOne": {},
+  "notificationRuleRoomOneToOneDescription": "Notifica all'utente i messaggi nelle stanze one-to-one.",
+  "@notificationRuleRoomOneToOneDescription": {},
+  "notificationRuleMessage": "Messaggi",
+  "@notificationRuleMessage": {},
+  "notificationRuleMessageDescription": "Notifica all'utente i messaggi generali.",
+  "@notificationRuleMessageDescription": {},
+  "notificationRuleEncryptedDescription": "Notifica all'utente i messaggi nelle stanze crittografate.",
+  "@notificationRuleEncryptedDescription": {},
+  "notificationRuleEncrypted": "Crittografate",
+  "@notificationRuleEncrypted": {},
+  "notificationRuleJitsi": "Jitsi",
+  "@notificationRuleJitsi": {},
+  "notificationRuleJitsiDescription": "Notifica all'utente gli eventi del widget Jitsi.",
+  "@notificationRuleJitsiDescription": {},
+  "notificationRuleServerAcl": "Silenziare gli eventi ACL del server",
+  "@notificationRuleServerAcl": {},
+  "notificationRuleServerAclDescription": "Silenzia le notifiche per gli eventi ACL del server.",
+  "@notificationRuleServerAclDescription": {},
+  "unknownPushRule": "Regola push '{rule}' sconosciuta",
+  "@unknownPushRule": {
+    "type": "String",
+    "placeholders": {
+      "rule": {
+        "type": "String"
+      }
+    }
+  },
+  "deletePushRuleCanNotBeUndone": "Se si elimina questa impostazione di notifica, questo non può essere annullato.",
+  "@deletePushRuleCanNotBeUndone": {},
+  "more": "Di più",
+  "@more": {},
+  "newChatRequest": "📩 Nuova richiesta di chat",
+  "@newChatRequest": {},
+  "shareKeysWith": "Condividi le chiavi con...",
+  "@shareKeysWith": {},
+  "shareKeysWithDescription": "Quali dispositivi dovrebbero essere fidati in modo che possano leggere i tuoi messaggi in chat crittografate?",
+  "@shareKeysWithDescription": {},
+  "allDevices": "Tutti i dispositivi",
+  "@allDevices": {},
+  "crossVerifiedDevicesIfEnabled": "Verifica incrociata dei dispositivi, se abilitata",
+  "@crossVerifiedDevicesIfEnabled": {},
+  "crossVerifiedDevices": "Dispositivi con verifica incrociata",
+  "@crossVerifiedDevices": {},
+  "verifiedDevicesOnly": "Solo dispositivi verificati",
+  "@verifiedDevicesOnly": {},
+  "appWantsToUseForLogin": "Usa '{server}' per accedere",
+  "@appWantsToUseForLogin": {
+    "type": "String",
+    "placeholders": {
+      "server": {
+        "type": "String"
+      }
+    }
+  },
+  "open": "Apri",
+  "@open": {},
+  "appWantsToUseForLoginDescription": "Con la presente consenti all'app e al sito web di condividere informazioni su di te.",
+  "@appWantsToUseForLoginDescription": {},
+  "appIntroduction": "FluffyChat ti consente di chattare con i tuoi amici attraverso diverse app di messaggistica. Ulteriori informazioni su https://matrix.org o semplicemente tocca *Continua*.",
+  "@appIntroduction": {},
+  "waitingForServer": "In attesa del server...",
+  "@waitingForServer": {},
+  "synchronizingPleaseWaitCounter": " Sincronizzazione… ({percentage}%)",
+  "@synchronizingPleaseWaitCounter": {
+    "type": "String",
+    "placeholders": {
+      "percentage": {
+        "type": "String"
+      }
+    }
+  },
+  "notificationRuleMemberEventDescription": "Silenzia le notifiche per gli eventi dei membri.",
+  "@notificationRuleMemberEventDescription": {},
+  "notificationRuleContainsDisplayName": "Contiene nome visualizzato",
+  "@notificationRuleContainsDisplayName": {},
+  "notificationRuleIsRoomMentionDescription": "Notifica l'utente quando c'è una menzione della stanza.",
+  "@notificationRuleIsRoomMentionDescription": {},
+  "notificationRuleCall": "Chiamate",
+  "@notificationRuleCall": {},
+  "notificationRuleEncryptedRoomOneToOneDescription": "Notifica all'utente i messaggi in stanze crittografate one-to-one.",
+  "@notificationRuleEncryptedRoomOneToOneDescription": {},
+  "previous": "Precedente",
+  "@previous": {},
+  "otherPartyNotLoggedIn": "L'altra parte non è attualmente connessa e quindi non può ricevere messaggi!",
+  "@otherPartyNotLoggedIn": {}
 }
