@@ -256,7 +256,7 @@ class SendFileDialogState extends State<SendFileDialog> {
                                       bytes,
                                       height: 256,
                                       width: widget.files.length == 1
-                                          ? 256 - 24
+                                          ? 256 - 36
                                           : null,
                                       fit: BoxFit.contain,
                                       errorBuilder: (context, e, s) {
