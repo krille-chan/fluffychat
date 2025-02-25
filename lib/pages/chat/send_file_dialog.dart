@@ -202,63 +202,45 @@ class SendFileDialogState extends State<SendFileDialog> {
           title: Text(sendStr),
           content: SizedBox(
             width: 256,
-            child: ListView(
-              shrinkWrap: true,
-              children: [
-                const SizedBox(height: 12),
-                if (uniqueFileType == 'image')
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 16.0),
-                    child: SizedBox(
-                      height: 256,
-                      child: Center(
-                        child: ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: widget.files.length,
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, i) => Padding(
-                            padding: const EdgeInsets.only(right: 8.0),
-                            child: Material(
-                              borderRadius: BorderRadius.circular(
-                                AppConfig.borderRadius / 2,
-                              ),
-                              color: Colors.black,
-                              clipBehavior: Clip.hardEdge,
-                              child: FutureBuilder(
-                                future: widget.files[i].readAsBytes(),
-                                builder: (context, snapshot) {
-                                  final bytes = snapshot.data;
-                                  if (bytes == null) {
-                                    return const Center(
-                                      child:
-                                          CircularProgressIndicator.adaptive(),
-                                    );
-                                  }
-                                  if (snapshot.error != null) {
-                                    Logs().w(
-                                      'Unable to preview image',
-                                      snapshot.error,
-                                      snapshot.stackTrace,
-                                    );
-                                    return const Center(
-                                      child: SizedBox(
-                                        width: 256,
-                                        height: 256,
-                                        child: Icon(
-                                          Icons.broken_image_outlined,
-                                          size: 64,
-                                        ),
-                                      ),
-                                    );
-                                  }
-                                  return Image.memory(
-                                    bytes,
-                                    height: 256,
-                                    width:
-                                        widget.files.length == 1 ? 256 : null,
-                                    fit: BoxFit.contain,
-                                    errorBuilder: (context, e, s) {
-                                      Logs().w('Unable to preview image', e, s);
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const SizedBox(height: 12),
+                  if (uniqueFileType == 'image')
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 16.0),
+                      child: SizedBox(
+                        height: 256,
+                        child: Center(
+                          child: ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: widget.files.length,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context, i) => Padding(
+                              padding: const EdgeInsets.only(right: 8.0),
+                              child: Material(
+                                borderRadius: BorderRadius.circular(
+                                  AppConfig.borderRadius / 2,
+                                ),
+                                color: Colors.black,
+                                clipBehavior: Clip.hardEdge,
+                                child: FutureBuilder(
+                                  future: widget.files[i].readAsBytes(),
+                                  builder: (context, snapshot) {
+                                    final bytes = snapshot.data;
+                                    if (bytes == null) {
+                                      return const Center(
+                                        child: CircularProgressIndicator
+                                            .adaptive(),
+                                      );
+                                    }
+                                    if (snapshot.error != null) {
+                                      Logs().w(
+                                        'Unable to preview image',
+                                        snapshot.error,
+                                        snapshot.stackTrace,
+                                      );
                                       return const Center(
                                         child: SizedBox(
                                           width: 256,
@@ -269,115 +251,136 @@ class SendFileDialogState extends State<SendFileDialog> {
                                           ),
                                         ),
                                       );
-                                    },
-                                  );
-                                },
+                                    }
+                                    return Image.memory(
+                                      bytes,
+                                      height: 256,
+                                      width:
+                                          widget.files.length == 1 ? 256 : null,
+                                      fit: BoxFit.contain,
+                                      errorBuilder: (context, e, s) {
+                                        Logs()
+                                            .w('Unable to preview image', e, s);
+                                        return const Center(
+                                          child: SizedBox(
+                                            width: 256,
+                                            height: 256,
+                                            child: Icon(
+                                              Icons.broken_image_outlined,
+                                              size: 64,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  },
+                                ),
                               ),
                             ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                if (uniqueFileType != 'image')
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 16.0),
-                    child: Row(
+                  if (uniqueFileType != 'image')
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 16.0),
+                      child: Row(
+                        children: [
+                          Icon(
+                            uniqueFileType == null
+                                ? Icons.description_outlined
+                                : uniqueFileType == 'video'
+                                    ? Icons.video_file_outlined
+                                    : uniqueFileType == 'audio'
+                                        ? Icons.audio_file_outlined
+                                        : Icons.description_outlined,
+                            size: 32,
+                          ),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  fileName,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                Text(
+                                  '$sizeString - $fileTypes',
+                                  style: theme.textTheme.labelSmall,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  if (widget.files.length == 1)
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 8.0),
+                      child: DialogTextField(
+                        controller: _labelTextController,
+                        labelText: L10n.of(context).optionalMessage,
+                        minLines: 1,
+                        maxLines: 3,
+                        maxLength: 255,
+                        counterText: '',
+                      ),
+                    ),
+                  // Workaround for SwitchListTile.adaptive crashes in CupertinoDialog
+                  if ({'image', 'video'}.contains(uniqueFileType))
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Icon(
-                          uniqueFileType == null
-                              ? Icons.description_outlined
-                              : uniqueFileType == 'video'
-                                  ? Icons.video_file_outlined
-                                  : uniqueFileType == 'audio'
-                                      ? Icons.audio_file_outlined
-                                      : Icons.description_outlined,
-                          size: 32,
-                        ),
-                        const SizedBox(width: 8),
+                        if ({TargetPlatform.iOS, TargetPlatform.macOS}
+                            .contains(theme.platform))
+                          CupertinoSwitch(
+                            value: compress,
+                            onChanged: uniqueFileType == 'video' &&
+                                    !PlatformInfos.isMobile
+                                ? null
+                                : (v) => setState(() => compress = v),
+                          )
+                        else
+                          Switch.adaptive(
+                            value: compress,
+                            onChanged: uniqueFileType == 'video' &&
+                                    !PlatformInfos.isMobile
+                                ? null
+                                : (v) => setState(() => compress = v),
+                          ),
+                        const SizedBox(width: 16),
                         Expanded(
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                fileName,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
+                              Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(
+                                    L10n.of(context).compress,
+                                    style: theme.textTheme.titleMedium,
+                                    textAlign: TextAlign.left,
+                                  ),
+                                ],
                               ),
-                              Text(
-                                '$sizeString - $fileTypes',
-                                style: theme.textTheme.labelSmall,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                              ),
+                              if (!compress)
+                                Text(
+                                  ' ($sizeString)',
+                                  style: theme.textTheme.labelSmall,
+                                ),
                             ],
                           ),
                         ),
                       ],
                     ),
-                  ),
-                if (widget.files.length == 1)
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 8.0),
-                    child: DialogTextField(
-                      controller: _labelTextController,
-                      labelText: L10n.of(context).optionalMessage,
-                      minLines: 1,
-                      maxLines: 3,
-                      maxLength: 255,
-                      counterText: '',
-                    ),
-                  ),
-                // Workaround for SwitchListTile.adaptive crashes in CupertinoDialog
-                if ({'image', 'video'}.contains(uniqueFileType))
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      if ({TargetPlatform.iOS, TargetPlatform.macOS}
-                          .contains(theme.platform))
-                        CupertinoSwitch(
-                          value: compress,
-                          onChanged: uniqueFileType == 'video' &&
-                                  !PlatformInfos.isMobile
-                              ? null
-                              : (v) => setState(() => compress = v),
-                        )
-                      else
-                        Switch.adaptive(
-                          value: compress,
-                          onChanged: uniqueFileType == 'video' &&
-                                  !PlatformInfos.isMobile
-                              ? null
-                              : (v) => setState(() => compress = v),
-                        ),
-                      const SizedBox(width: 16),
-                      Expanded(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Text(
-                                  L10n.of(context).compress,
-                                  style: theme.textTheme.titleMedium,
-                                  textAlign: TextAlign.left,
-                                ),
-                              ],
-                            ),
-                            if (!compress)
-                              Text(
-                                ' ($sizeString)',
-                                style: theme.textTheme.labelSmall,
-                              ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-              ],
+                ],
+              ),
             ),
           ),
           actions: <Widget>[
