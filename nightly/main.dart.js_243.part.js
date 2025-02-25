@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_243",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cyo(){return new A.Ev(B.dh("gl"))},
+cyq(){return new A.Ev(B.dh("gl"))},
 Ev:function Ev(d){this.a=d}}
 B=c[0]
 C=c[51]
@@ -528,16 +528,16 @@ go0(){return"Cambiar o enderezo p\xfablico principal da charla"},
 gnG(){return"Enviar notificaci\xf3ns a @room"},
 go2(){return"Cambiar a descrici\xf3n da charla"},
 go5(){return"Define que nivel de permisos son necesarios para realizar certas acci\xf3ns nesta charla. Os niveis de permiso 0, 50 e 100 normalmente representan, usuarias, moderadoras e administradoras, pero son posibles outras escalas."},
-pf(d){return"\ud83c\udf89 Instalouse a actualizaci\xf3n a "+d+"!"},
+pg(d){return"\ud83c\udf89 Instalouse a actualizaci\xf3n a "+d+"!"},
 go4(){return"Novidades na versi\xf3n"},
 gnE(){return"Cancelouse o env\xedo"},
 goj(){return"Acceder co ID-Matrix"},
 god(){return"Atopar servidores"},
-gpm(){return"Que \xe9 un servidor de inicio?"},
+gpn(){return"Que \xe9 un servidor de inicio?"},
 gof(){return"Todos os teus datos quedan gardados no servidor de inicio, igual que co teu provedor de correo electr\xf3nico. Podes elexir o servidor que queres usar e poder\xe1s comunicarte con todos os demais. Aprende m\xe1is en https://matrix.org."},
 goe(){return"Non semella ser un servidor de inicio compatible. \xc9 o URL correcto?"},
 gnZ(){return"Calculando o tama\xf1o do ficheiro\u2026"},
-gpb(){return"Preparando o env\xedo\u2026"},
+gpc(){return"Preparando o env\xedo\u2026"},
 gnH(){return"Enviando o anexo\u2026"},
 nI(d,e){return"Enviando o anexo "+d+" de "+e+"\u2026"},
 nK(d){return"Acadouse o l\xedmite do servidor! Agarda "+d+" segundos\u2026"},
@@ -554,13 +554,13 @@ go8(){return"Contacto con Seguridade do servidor"},
 gnO(){return"P\xe1xina de axuda"},
 gnJ(){return"Informaci\xf3n do servidor:"},
 gbL(d){return"Nome"},
-gpi(d){return"Versi\xf3n"},
-gpl(){return"P\xe1xina web"},
+gpj(d){return"Versi\xf3n"},
+gpm(){return"P\xe1xina web"},
 go6(){return"Comprimir"},
 gnY(){return"Resaltar texto"},
 goi(){return"Cursiva"},
 gnN(){return"Riscar"},
-gpa(){return"Por favor completa"},
+gpb(){return"Por favor completa"},
 gog(){return"URL non v\xe1lido"},
 gnR(){return"Engadir ligaz\xf3n"},
 gnB(){return"Non se puido acceder. Pode que a outra parte xa pechase a conversa."},
@@ -569,14 +569,14 @@ gm2(){return"A outra parte non est\xe1 conectada neste momento e pode que non re
 nU(d){return"Usar '"+d+"' para acceder"},
 gnV(){return"Por tanto permites que a app e o sitio web compartan informaci\xf3n sobre ti."},
 gp8(d){return"Abrir"},
-gpk(){return"Agardando polo servidor\u2026"},
+gpl(){return"Agardando polo servidor\u2026"},
 gnT(){return"FluffyChat perm\xedteche laretar coas t\xfaas amizades entre diferentes mensaxer\xedas. Co\xf1ece m\xe1is en https://matrix.org ou toca en *Continuar*."},
 gon(){return"\ud83d\udce9 Nova solicitude de conversa"},
 go9(){return"Axustes de notificaci\xf3n de contido"},
 gnD(){return"Axustes xerais das notificaci\xf3ns"},
-gpd(){return"Axustes de notificaci\xf3ns da sala"},
-gpg(){return"Axustes de notificaci\xf3n espec\xedficos da usuaria"},
-gp9(){return"Outros axustes das notificaci\xf3ns"},
+gpe(){return"Axustes de notificaci\xf3ns da sala"},
+gph(){return"Axustes de notificaci\xf3n espec\xedficos da usuaria"},
+gpa(){return"Outros axustes das notificaci\xf3ns"},
 gou(){return"Cont\xe9n nome de usuaria"},
 gov(){return"Informa \xe1 usuaria cando unha mensaxe cont\xe9n o seu identificador."},
 goI(){return"Acalar todas as notificaci\xf3ns"},
@@ -617,7 +617,7 @@ goG(){return"Jitsi"},
 goH(){return"Informa \xe1 usuaria sobre eventos do widget Jitsi."},
 goW(){return"Omite eventos do sevidor ACL"},
 goX(){return"Omite notificaci\xf3n sobre eventos do servidor ACL."},
-pe(d){return"Regra push desco\xf1ecida '"+d+"'"},
+pf(d){return"Regra push desco\xf1ecida '"+d+"'"},
 goc(){return"Se omites este axuste de notificaci\xf3ns non poder\xe1s desfacer a acci\xf3n."},
 gom(){return"M\xe1is"},
 gnL(){return"Compartir chaves con\u2026"},
@@ -625,11 +625,12 @@ gnM(){return"En que dispositivos se pode confiar e poden ler as t\xfaas conversa
 gnS(){return"Todos os dispositivos"},
 gob(){return"Dispositivos verificados se est\xe1 activado"},
 goa(){return"Dispositivos verificados"},
-gph(){return"S\xf3 dispositivos verificados"},
+gpi(){return"S\xf3 dispositivos verificados"},
+gp9(){return"(Optional) message..."},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Ev,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"Ev":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_243",e:"endPart",h:b})})($__dart_deferred_initializers__,"KOPbogk1mzq/fAwguDR8J6I4AbE=");
+a.eventLog.push({p:"main.dart.js_243",e:"endPart",h:b})})($__dart_deferred_initializers__,"GJ0IT5EI6fMLTk4P0TdDBQYOVxg=");
 //# sourceMappingURL=main.dart.js_243.part.js.map

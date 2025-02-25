@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_232",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cyh(){return new A.Eo(B.dh("et"))},
+cyj(){return new A.Eo(B.dh("et"))},
 Eo:function Eo(d){this.a=d}}
 B=c[0]
 C=c[51]
@@ -528,16 +528,16 @@ go0(){return"Muuda vestluse p\xf5hilist avalikult n\xe4htavat aadressi"},
 gnG(){return"Saada @jututuba teavitusi"},
 go2(){return"Muuda vestluse kirjeldust"},
 go5(){return"M\xe4\xe4ra erinevatele kasutajatele selles vestluses vajalikud \xf5igused. T\xfc\xfcpiliselt on need 0, 50 ja 100 (vastavalt kasutajad, moderaatorid ja peakasutajad), kuid igasugused vahepealsed variatsioonid on ka v\xf5imalikud."},
-pf(d){return"\ud83c\udf89 Versiooniuuendus "+d+" on paigaldatud!"},
+pg(d){return"\ud83c\udf89 Versiooniuuendus "+d+" on paigaldatud!"},
 go4(){return"Muudatuste logi"},
 gnE(){return"Saatmine on katkestatud"},
 goj(){return"Logi sisse Matrix-ID alusel"},
 god(){return"Leia koduservereid"},
-gpm(){return"Mis on koduserver?"},
+gpn(){return"Mis on koduserver?"},
 gof(){return"Sarnaselt e-postiteenuse pakkujale on k\xf5ik sinu s\xf5numid salvestatud koduserveris. Sa v\xf5id valida sellise koduserveri, nagu sulle meeldib ja nad k\xf5ik suudavad teiste koduserveritega suhelda. Lisateavet leiad veebisaidist https://matrix.org."},
 goe(){return"Ei tundu olema \xfchilduv koduserver. Kas v\xf5rguaadress on ikka \xf5ige?"},
 gnZ(){return"Arvutame faili suurust..."},
-gpb(){return"Valmistume manuse saatmiseks..."},
+gpc(){return"Valmistume manuse saatmiseks..."},
 gnH(){return"Saadame manust..."},
 nI(d,e){return"Saadame manust: "+d+" pikkusega "+e+"..."},
 nK(d){return"Serveri poolt lubatud \xfclempiir on k\xe4es. Ootame "+d+" sekundit..."},
@@ -554,13 +554,13 @@ go8(){return"V\xf5ta \xfchendust serveri andmeturbe eest vastutajaga"},
 gnO(){return"Kasutajatugi"},
 gnJ(){return"Serveri teave:"},
 gbL(d){return"Nimi"},
-gpi(d){return"Versioon"},
-gpl(){return"Veebisait"},
+gpj(d){return"Versioon"},
+gpm(){return"Veebisait"},
 go6(){return"Paki kokku"},
 gnY(){return"Paks kiri"},
 goi(){return"Kaldkiri"},
 gnN(){return"L\xe4bikriipsutatud kiri"},
-gpa(){return"Palun t\xe4ida"},
+gpb(){return"Palun t\xe4ida"},
 gog(){return"Vigane v\xf5rguaadress"},
 gnR(){return"Lisa link"},
 gnB(){return"Vestlusega liitumine ei \xf5nnestu. V\xf5ib-olla on teine osapool juba vestluse sulgenud."},
@@ -569,14 +569,14 @@ gm2(){return"Vestluse teine osapool pole hetkel v\xf5rku loginud ega seega saa n
 nU(d){return"Sisselogimiseks kasuta serverit '"+d+"'"},
 gnV(){return"J\xe4rgnevaga lubad sa, et rakendus ja veebisait jagavad teavet sinu kohta."},
 gp8(d){return"Ava"},
-gpk(){return"Ootame serveri vastust..."},
+gpl(){return"Ootame serveri vastust..."},
 gnT(){return"FluffyChat v\xf5imaldab sul suhelda s\xf5prade ja tuttavatega, kes kasutavad erinevaid s\xf5numikliente. Lisateavet leiad https://matrix.org saidist v\xf5i lihtsalt kl\xf5psi \u201eJ\xe4tka\u201c."},
 gon(){return"\ud83d\udce9 Uus vestluskutse"},
 go9(){return"Sisuteavituste seadistused"},
 gnD(){return"\xdcldised teavituste seadistused"},
-gpd(){return"Jututoa teavituste seadistused"},
-gpg(){return"Kasutajakohaste teavituste seadistused"},
-gp9(){return"Muud teavituste seadistused"},
+gpe(){return"Jututoa teavituste seadistused"},
+gph(){return"Kasutajakohaste teavituste seadistused"},
+gpa(){return"Muud teavituste seadistused"},
 gou(){return"Kasutajanime olemasolul"},
 gov(){return"Teavita kasutajat, kui s\xf5numis on tema kasutajanimi."},
 goI(){return"Summuta k\xf5ik teavitused"},
@@ -617,7 +617,7 @@ goG(){return"Jitsi videok\xf5ned"},
 goH(){return"Teavita kasutajat s\xfcndmustest Jitsi vidinas."},
 goW(){return"Ligip\xe4\xe4su\xf5igused serveris"},
 goX(){return"Peida teavitused ligip\xe4\xe4su\xf5iguste muutuste korral serveris."},
-pe(d){return"T\xf5uketeavituse tundmatu reegel '"+d+"'"},
+pf(d){return"T\xf5uketeavituse tundmatu reegel '"+d+"'"},
 goc(){return"Kui sa kustutad selle teavituse seadistuse, siis seda tegevust tagasi v\xf5tta ei saa."},
 gom(){return"Lisateave"},
 gnL(){return"Jaga v\xf5tmeid seadmega..."},
@@ -625,11 +625,12 @@ gnM(){return"Missuguseid seadmeid sa usaldad, et neist v\xf5iks lugeda kr\xfcpti
 gnS(){return"K\xf5iki seadmeid"},
 gob(){return"Risttunnustatud seadmeid, kui see v\xf5imalus on kasutusel"},
 goa(){return"Risttunnustatud seadmeid"},
-gph(){return"Vaid verifitseeritud seadmeid"},
+gpi(){return"Vaid verifitseeritud seadmeid"},
+gp9(){return"(Optional) message..."},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Eo,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"Eo":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_232",e:"endPart",h:b})})($__dart_deferred_initializers__,"Ef8SaUcGuQ4iXerxBjdW5Gn0kNg=");
+a.eventLog.push({p:"main.dart.js_232",e:"endPart",h:b})})($__dart_deferred_initializers__,"HJAbjs0Hw+JnK0+IWILoNmjdeks=");
 //# sourceMappingURL=main.dart.js_232.part.js.map

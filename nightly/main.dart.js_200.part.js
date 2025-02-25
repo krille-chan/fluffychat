@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_200",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cya(){return new A.Eh(B.dh("ca"))},
+cyc(){return new A.Eh(B.dh("ca"))},
 Eh:function Eh(d){this.a=d}}
 B=c[0]
 C=c[51]
@@ -528,16 +528,16 @@ go0(){return"Canvia l'adre\xe7a principal del xat"},
 gnG(){return"Envia notificacions @room"},
 go2(){return"Canvia la descripci\xf3 del xat"},
 go5(){return"Defineix quin nivell de permisos cal per cada acci\xf3 en aquest xat. Els nivells 0, 50 i 100 normalment representen usu\xe0ri\xefs, mods i admins, per\xf2 es pot canviar."},
-pf(d){return"\ud83c\udf89 S'ha actualitzat a la versi\xf3 "+d+"!"},
+pg(d){return"\ud83c\udf89 S'ha actualitzat a la versi\xf3 "+d+"!"},
 go4(){return"Registre de canvis"},
 gnE(){return"S'ha cance\u0140lat l'enviament"},
 goj(){return"Entra amb l'id de Matrix"},
 god(){return"Descobreix servidors"},
-gpm(){return"Qu\xe8 \xe9s un servidor de Matrix?"},
+gpn(){return"Qu\xe8 \xe9s un servidor de Matrix?"},
 gof(){return"Totes les teves dades s'emmagatzemen al servidor, com passa amb el e-mail. Pots triar quin servidor vols fer servir sense t\xe9mer a no poder comunicar gent d'altres servidors. Llegeix-ne m\xe9s a https://matrix.org."},
 goe(){return"No sembla un servidor compatible. Pot ser que la URL estigui malament?"},
 gnZ(){return"S'est\xe0 calculant la mida de l'arxiu..."},
-gpb(){return"S'est\xe0 preparant per enviar l'adjunt..."},
+gpc(){return"S'est\xe0 preparant per enviar l'adjunt..."},
 gnH(){return"S'est\xe0 enviant l'adjunt..."},
 nI(d,e){return"S'est\xe0 enviant l'adjunt "+d+" de "+e+"..."},
 nK(d){return"S'ha arribat al l\xedmit del servidor! Esperant "+d+" segons..."},
@@ -554,13 +554,13 @@ go8(){return"Contacta l'equip de seguretat del servidor"},
 gnO(){return"P\xe0gina de suport"},
 gnJ(){return"Informaci\xf3 del servidor:"},
 gbL(d){return"Nom"},
-gpi(d){return"Versi\xf3"},
-gpl(){return"Lloc web"},
+gpj(d){return"Versi\xf3"},
+gpm(){return"Lloc web"},
 go6(){return"Comprimeix"},
 gnY(){return"Text en negreta"},
 goi(){return"Text en cursiva"},
 gnN(){return"Text ratllat"},
-gpa(){return"Emplena"},
+gpb(){return"Emplena"},
 gog(){return"URL inv\xe0lida"},
 gnR(){return"Afegeix un enlla\xe7"},
 gnB(){return"No s'ha pogut entrar al xat. Pot ser que l'altri participant hagi tancat la conversa."},
@@ -569,14 +569,14 @@ gm2(){return"L'altra persona no est\xe0 en l\xednia ara mateix i per tant no pot
 nU(d){return"Fes servir '"+d+"' per iniciar sessi\xf3"},
 gnV(){return"Consenteixes que l'app i la web comparteixen informaci\xf3 sobre tu."},
 gp8(d){return"Obre"},
-gpk(){return"S'est\xe0 esperant el servidor..."},
+gpl(){return"S'est\xe0 esperant el servidor..."},
 gnT(){return'El FluffyChat et permet xatejar amb amiguis entre diverses aplicacions. Llegeix-ne m\xe9s a https://matrix.org o pica "Continua".'},
 gon(){return"\ud83d\udce9 So\u0140licitud de missatge"},
 go9(){return"Opcions de notificaci\xf3 de continguts"},
 gnD(){return"Opcions de notificacions generals"},
-gpd(){return"Opcions de notificacions de sales"},
-gpg(){return"Opcions de notificacions d'usu\xe0ri\xef"},
-gp9(){return"Altres opcions de notificacions"},
+gpe(){return"Opcions de notificacions de sales"},
+gph(){return"Opcions de notificacions d'usu\xe0ri\xef"},
+gpa(){return"Altres opcions de notificacions"},
 gou(){return"Cont\xe9 el nom d'usu\xe0ri\xef"},
 gov(){return"Notifica l'usu\xe0ri\xef quan un missatge contingui el seu nom."},
 goI(){return"Silencia totes les notificacions"},
@@ -617,7 +617,7 @@ goG(){return"Jitsi"},
 goH(){return"Notifica l'usu\xe0ri\xef sobre activitat del giny de Jitsi."},
 goW(){return"Ignora canvis en ACL de servidor"},
 goX(){return"Ignora les notificacions per canvis en les regles d'acc\xe9s (ACL) de servidor."},
-pe(d){return"No es coneix la regla push '"+d+"'"},
+pf(d){return"No es coneix la regla push '"+d+"'"},
 goc(){return"Si esborres aquesta opci\xf3 de notificaci\xf3 no ho podr\xe0s tornar a canviar."},
 gom(){return"M\xe9s"},
 gnL(){return"Comparteix les claus amb..."},
@@ -625,11 +625,12 @@ gnM(){return"Quins dispositius vols que puguin llegir els teus missatges xifrats
 gnS(){return"Tots els dispositius"},
 gob(){return"Els dispositius verificats m\xfatuament, si est\xe0 activat"},
 goa(){return"Els dispositius verificats m\xfatuament"},
-gph(){return"Nom\xe9s els dispositius verificats"},
+gpi(){return"Nom\xe9s els dispositius verificats"},
+gp9(){return"(Optional) message..."},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Eh,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"Eh":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_200",e:"endPart",h:b})})($__dart_deferred_initializers__,"BnaEewDsg9A15BrjTF7VCIr8DDI=");
+a.eventLog.push({p:"main.dart.js_200",e:"endPart",h:b})})($__dart_deferred_initializers__,"SRp9YT6P1p8TAIE/qtqo+lKiWTU=");
 //# sourceMappingURL=main.dart.js_200.part.js.map

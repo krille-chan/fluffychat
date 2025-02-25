@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_288",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cyQ(){return new A.EW(B.dh("tr"))},
+cyS(){return new A.EW(B.dh("tr"))},
 EW:function EW(d){this.a=d}}
 B=c[0]
 C=c[51]
@@ -528,16 +528,16 @@ go0(){return"Ana herkese a\xe7\u0131k sohbet adresini de\u011fi\u015ftir"},
 gnG(){return"@oda bildirimleri g\xf6nder"},
 go2(){return"Sohbetin a\xe7\u0131klamas\u0131n\u0131 de\u011fi\u015ftir"},
 go5(){return"Bu sohbette belirli eylemler i\xe7in hangi g\xfc\xe7 d\xfczeyinin gerekli oldu\u011funu tan\u0131mlay\u0131n. 0, 50 ve 100 g\xfc\xe7 d\xfczeyleri genellikle kullan\u0131c\u0131lar\u0131, moderat\xf6rleri ve y\xf6neticileri temsil eder, ancak herhangi bir derecelendirme m\xfcmk\xfcnd\xfcr."},
-pf(d){return"\ud83c\udf89 G\xfcncelleme "+d+" kuruldu!"},
+pg(d){return"\ud83c\udf89 G\xfcncelleme "+d+" kuruldu!"},
 go4(){return"De\u011fi\u015fiklik g\xfcnl\xfc\u011f\xfc"},
 gnE(){return"G\xf6nderme iptal edildi"},
 goj(){return"Matrix kimli\u011fi ile oturum a\xe7"},
 god(){return"Ana sunucular\u0131 ke\u015ffet"},
-gpm(){return"Ana sunucu nedir?"},
+gpn(){return"Ana sunucu nedir?"},
 gof(){return"T\xfcm verileriniz t\u0131pk\u0131 bir e-posta sa\u011flay\u0131c\u0131s\u0131 gibi ana sunucuda saklan\u0131r. Hangi ana sunucuyu kullanmak istedi\u011finizi se\xe7ebilir ve herkesle ileti\u015fim kurmaya devam edebilirsiniz. https://matrix.org adresinden daha fazla bilgi edinin."},
 goe(){return"Uyumlu bir ana sunucu gibi g\xf6r\xfcnm\xfcyor. Yanl\u0131\u015f URL mi?"},
 gnZ(){return"Dosya boyutu hesaplan\u0131yor..."},
-gpb(){return"Ek g\xf6nderilmeye haz\u0131rlan\u0131yor..."},
+gpc(){return"Ek g\xf6nderilmeye haz\u0131rlan\u0131yor..."},
 gnH(){return"Ek g\xf6nderiliyor..."},
 nI(d,e){return"Ek "+d+" / "+e+" g\xf6nderiliyor..."},
 nK(d){return"Sunucu s\u0131n\u0131r\u0131na ula\u015f\u0131ld\u0131! "+d+" saniye bekleniyor..."},
@@ -554,13 +554,13 @@ go8(){return"Sunucu g\xfcvenli\u011fiyle ileti\u015fime ge\xe7in"},
 gnO(){return"Destek sayfas\u0131"},
 gnJ(){return"Sunucu bilgisi:"},
 gbL(d){return"\u0130sim"},
-gpi(d){return"Versiyon"},
-gpl(){return"Web sitesi"},
+gpj(d){return"Versiyon"},
+gpm(){return"Web sitesi"},
 go6(){return"S\u0131k\u0131\u015ft\u0131rma"},
 gnY(){return"Kal\u0131n metin"},
 goi(){return"\u0130talik metin"},
 gnN(){return"\xdcst\xfc \xe7izili"},
-gpa(){return"L\xfctfen doldurun"},
+gpb(){return"L\xfctfen doldurun"},
 gog(){return"Ge\xe7ersiz url"},
 gnR(){return"Link ekle"},
 gnB(){return"Sohbete girilemiyor. Belki ba\u015fka birileri konu\u015fmay\u0131 kapatm\u0131\u015f olabilir."},
@@ -569,14 +569,14 @@ gm2(){return"The other party is currently not logged in and therefore cannot rec
 nU(d){return"Use '"+d+"' to log in"},
 gnV(){return"You hereby allow the app and website to share information about you."},
 gp8(d){return"Open"},
-gpk(){return"Waiting for server..."},
+gpl(){return"Waiting for server..."},
 gnT(){return"FluffyChat lets you chat with your friends across different messengers. Learn more at https://matrix.org or just tap *Continue*."},
 gon(){return"\ud83d\udce9 New chat request"},
 go9(){return"Content notification settings"},
 gnD(){return"General notification settings"},
-gpd(){return"Room notification settings"},
-gpg(){return"User specific notification settings"},
-gp9(){return"Other notification settings"},
+gpe(){return"Room notification settings"},
+gph(){return"User specific notification settings"},
+gpa(){return"Other notification settings"},
 gou(){return"Contains User Name"},
 gov(){return"Notifies the user when a message contains their username."},
 goI(){return"Mute all notifications"},
@@ -617,7 +617,7 @@ goG(){return"Jitsi"},
 goH(){return"Notifies the user about Jitsi widget events."},
 goW(){return"Suppress Server ACL Events"},
 goX(){return"Suppresses notifications for Server ACL events."},
-pe(d){return"Unknown push rule '"+d+"'"},
+pf(d){return"Unknown push rule '"+d+"'"},
 goc(){return"If you delete this notification setting, this can not be undone."},
 gom(){return"More"},
 gnL(){return"Share keys with..."},
@@ -625,12 +625,13 @@ gnM(){return"Which devices should be trusted so that they can read along your me
 gnS(){return"All devices"},
 gob(){return"Cross verified devices if enabled"},
 goa(){return"Cross verified devices"},
-gph(){return"Verified devices only"},
+gpi(){return"Verified devices only"},
+gp9(){return"(Optional) message..."},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.EW,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"EW":{"aF":[]}}'))
 var y={c:" adresinde geli\u015ftiricilere bildirin. Hata mesaj\u0131: "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_288",e:"endPart",h:b})})($__dart_deferred_initializers__,"b7C9hzLbUL0eQFmxJs9syjeXnZ4=");
+a.eventLog.push({p:"main.dart.js_288",e:"endPart",h:b})})($__dart_deferred_initializers__,"osC2QQXE+ei0Ul92wt/vIGUVh4c=");
 //# sourceMappingURL=main.dart.js_288.part.js.map

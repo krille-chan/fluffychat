@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_227",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cyg(){return new A.En(B.dh("es"))},
+cyi(){return new A.En(B.dh("es"))},
 En:function En(d){this.a=d}}
 B=c[0]
 C=c[51]
@@ -528,16 +528,16 @@ go0(){return"Cambiar la direcci\xf3n p\xfablica principal de chat"},
 gnG(){return"Mandar notificaci\xf3n @sala"},
 go2(){return"Cambiar la descripci\xf3n del chat"},
 go5(){return"Definir el nivel necesario para ciertas acciones en este chat. Los niveles 0, 50 y 100 habitualmente representan usuarios, moderadores y administradores, pero se puede establecer cualquier escala."},
-pf(d){return"\xa1\ud83c\udf89 Actualizaci\xf3n "+d+" instalada!"},
+pg(d){return"\xa1\ud83c\udf89 Actualizaci\xf3n "+d+" instalada!"},
 go4(){return"Cambios"},
 gnE(){return"Env\xedo cancelado"},
 goj(){return"Entrar con un ID de Matrix"},
 god(){return"Descubrir homeservers"},
-gpm(){return"\xbfQu\xe9 es un homeserver?"},
+gpn(){return"\xbfQu\xe9 es un homeserver?"},
 gof(){return"Todos tus datos se guardan en el homeserver, como en un proveedor de correo electr\xf3nico. Puedes elegir el homeserver que quieres usar, a la par que te puedes comunicar con todos. M\xe1s en https://matrix.org."},
 goe(){return"No parece ser un homeserver compatible. \xbfURL equivocada?"},
 gnZ(){return"Calculando tama\xf1o de archivo..."},
-gpb(){return"Prepara env\xedo del adjunto..."},
+gpc(){return"Prepara env\xedo del adjunto..."},
 gnH(){return"Enviando adjunto..."},
 nI(d,e){return"Enviando adjunto "+d+" de "+e+"..."},
 nK(d){return"\xa1Alcanzado l\xedmite del servidor! Esperando "+d+" segundos..."},
@@ -554,13 +554,13 @@ go8(){return"Contactar con seguridad del servidor"},
 gnO(){return"P\xe1gina de atenci\xf3n"},
 gnJ(){return"Informaci\xf3n del servidor:"},
 gbL(d){return"Nombre"},
-gpi(d){return"Versi\xf3n"},
-gpl(){return"Web"},
+gpj(d){return"Versi\xf3n"},
+gpm(){return"Web"},
 go6(){return"Comprimir"},
 gnY(){return"Texto en negrita"},
 goi(){return"Texto en cursiva"},
 gnN(){return"Tachado"},
-gpa(){return"Por favor, rellenar"},
+gpb(){return"Por favor, rellenar"},
 gog(){return"URL incorrecta"},
 gnR(){return"A\xf1adir enlace"},
 gnB(){return"No se puede entrar al chat. Puede que la otra parte ya haya cerrado la conversaci\xf3n."},
@@ -569,14 +569,14 @@ gm2(){return"La otra parte ahora mismo no est\xe1 conectada y por tanto \xa1no p
 nU(d){return"Usar '"+d+"' para entrar"},
 gnV(){return"Por la presente permites a la app y web compartir informaci\xf3n sobre ti."},
 gp8(d){return"Abrir"},
-gpk(){return"Esperando al servidor..."},
+gpl(){return"Esperando al servidor..."},
 gnT(){return"FluffyChat te permite chatear con tus amigos con diferentes mensajer\xedas. Aprende m\xe1s en https://matrix.org o simplemente pincha *Continuar*."},
 gon(){return"\ud83d\udce9 Nueva petici\xf3n de chat"},
 go9(){return"Ajustes de notificaci\xf3n de contenido"},
 gnD(){return"Ajustes de notificaci\xf3n generales"},
-gpd(){return"Ajustes de notificaci\xf3n de salas"},
-gpg(){return"Ajustes de notificaci\xf3n por usuario"},
-gp9(){return"Otros ajustes de notificaci\xf3n"},
+gpe(){return"Ajustes de notificaci\xf3n de salas"},
+gph(){return"Ajustes de notificaci\xf3n por usuario"},
+gpa(){return"Otros ajustes de notificaci\xf3n"},
 gou(){return"Contiene nombre de usuario"},
 gov(){return"Notifica al usuario cuando un mensaje contiene su nombre de usuario."},
 goI(){return"Silenciar todas las notificaciones"},
@@ -617,7 +617,7 @@ goG(){return"Jitsi"},
 goH(){return"Notifica al usuario sobre eventos del componente de Jitsi."},
 goW(){return"Suprimir eventos de ACL del servidor"},
 goX(){return"Suprime notificaciones de eventos de ACL del servidor."},
-pe(d){return"Regla de notificaci\xf3n desconocida '"+d+"'"},
+pf(d){return"Regla de notificaci\xf3n desconocida '"+d+"'"},
 goc(){return"Si eliminas este ajuste de notificaci\xf3n, esto no se puede deshacer."},
 gom(){return"M\xe1s"},
 gnL(){return"Compartir claves con..."},
@@ -625,11 +625,12 @@ gnM(){return"\xbfQu\xe9 dispositivos deben ser de confianza para que puedan leer
 gnS(){return"Todos los dispositivos"},
 gob(){return"Dispositivos verificados si est\xe1n habilitados"},
 goa(){return"Dispositivos verificados"},
-gph(){return"Solo dispositivos verificados"},
+gpi(){return"Solo dispositivos verificados"},
+gp9(){return"(Optional) message..."},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.En,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"En":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_227",e:"endPart",h:b})})($__dart_deferred_initializers__,"I1fIQpuDzZS0S8TxhwRyH7y+MZw=");
+a.eventLog.push({p:"main.dart.js_227",e:"endPart",h:b})})($__dart_deferred_initializers__,"JhlG9VLzA+TLYvfyz/n5c2zmWL0=");
 //# sourceMappingURL=main.dart.js_227.part.js.map

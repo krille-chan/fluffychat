@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_215",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cyc(){return new A.Ej(B.dh("de"))},
+cye(){return new A.Ej(B.dh("de"))},
 Ej:function Ej(d){this.a=d}}
 B=c[0]
 C=c[51]
@@ -528,16 +528,16 @@ go0(){return"\xc4ndern der Hauptadresse f\xfcr den \xf6ffentlichen Chat"},
 gnG(){return"Sende eine @room-Benachrichtigung"},
 go2(){return"Chat-Beschreibung \xe4ndern"},
 go5(){return"Einstellen, welches Level f\xfcr bestimmte Aktionen in diesem Chat erforderlich ist. Die Level 0, 50 und 100 stehen \xfcblicherweise f\xfcr Benutzer, Moderatoren und Admins, aber jede Abstufung ist m\xf6glich."},
-pf(d){return"\ud83c\udf89 Update "+d+" installiert!"},
+pg(d){return"\ud83c\udf89 Update "+d+" installiert!"},
 go4(){return"\xc4nderungsprotokoll"},
 gnE(){return"Senden abgebrochen"},
 goj(){return"Mit Matrix-ID anmelden"},
 god(){return"Server suchen"},
-gpm(){return"Was ist ein Homeserver?"},
+gpn(){return"Was ist ein Homeserver?"},
 gof(){return"Alle deine Daten werden auf einem Homeserver gespeichert, so wie bei einem E-Mail Anbieter. Du kannst aussuchen, welchen Homeserver du benutzen willst und kannst trotzdem mit allen kommunizieren. Erfahre mehr auf https://matrix.org."},
 goe(){return"Scheint kein kompatibler Homeserver zu sein. Falsche URL?"},
 gnZ(){return"Dateigr\xf6\xdfe wird berechnet ..."},
-gpb(){return"Anhang zum Senden vorbereiten ..."},
+gpc(){return"Anhang zum Senden vorbereiten ..."},
 gnH(){return"Anhang wird gesendet ..."},
 nI(d,e){return"Sende Anhang "+d+" von "+e+" ..."},
 nK(d){return"Server-Limit erreicht! Warte "+d+" Sekunden ..."},
@@ -554,13 +554,13 @@ go8(){return"Server-Sicherheit kontaktieren"},
 gnO(){return"Support-Seite"},
 gnJ(){return"Server-Informationen:"},
 gbL(d){return"Name"},
-gpi(d){return"Version"},
-gpl(){return"Website"},
+gpj(d){return"Version"},
+gpm(){return"Website"},
 go6(){return"Komprimieren"},
 gnY(){return"Fetter Text"},
 goi(){return"Kursiver Text"},
 gnN(){return"Durchgestrichen"},
-gpa(){return"Bitte ausf\xfcllen"},
+gpb(){return"Bitte ausf\xfcllen"},
 gog(){return"Ung\xfcltige URL"},
 gnR(){return"Link hinzuf\xfcgen"},
 gnB(){return"Chat kann nicht beigetreten werden. M\xf6glicherweise hat die Gegenseite das Gespr\xe4ch bereits beendet."},
@@ -569,14 +569,14 @@ gm2(){return"Der User ist aktuell nicht eingeloggt und kann daher keine Nachrich
 nU(d){return"Nutze '"+d+"' um dich einzuloggen"},
 gnV(){return"Hiermit erlaubst du der App und der Website, Informationen \xfcber dich weiterzugeben."},
 gp8(d){return"Offen"},
-gpk(){return"Auf Server warten..."},
+gpl(){return"Auf Server warten..."},
 gnT(){return"Mit FluffyChat kannst du \xfcber verschiedene Messenger hinweg mit deinen Freunden chatten. Erfahre mehr dazu auf https://matrix.org oder tippe einfach auf *Fortfahren*."},
 gon(){return"\ud83d\udce9 Neue Chat-Anfrage"},
 go9(){return"Einstellungen f\xfcr Inhaltsbenachrichtigungen"},
 gnD(){return"Allgemeine Benachrichtigungseinstellungen"},
-gpd(){return"Einstellungen f\xfcr Raumbenachrichtigungen"},
-gpg(){return"Benutzerspezifische Benachrichtigungseinstellungen"},
-gp9(){return"Andere Benachrichtigungseinstellungen"},
+gpe(){return"Einstellungen f\xfcr Raumbenachrichtigungen"},
+gph(){return"Benutzerspezifische Benachrichtigungseinstellungen"},
+gpa(){return"Andere Benachrichtigungseinstellungen"},
 gou(){return"Enth\xe4lt Benutzernamen"},
 gov(){return"Benachrichtigt den Benutzer, wenn eine Nachricht seinen Benutzernamen enth\xe4lt."},
 goI(){return"Alle Benachrichtigungen stummschalten"},
@@ -617,7 +617,7 @@ goG(){return"Jitsi"},
 goH(){return"Notifies the user about Jitsi widget events."},
 goW(){return"Suppress Server ACL Events"},
 goX(){return"Suppresses notifications for Server ACL events."},
-pe(d){return"Unknown push rule '"+d+"'"},
+pf(d){return"Unknown push rule '"+d+"'"},
 goc(){return"If you delete this notification setting, this can not be undone."},
 gom(){return"More"},
 gnL(){return"Share keys with..."},
@@ -625,12 +625,13 @@ gnM(){return"Which devices should be trusted so that they can read along your me
 gnS(){return"All devices"},
 gob(){return"Cross verified devices if enabled"},
 goa(){return"Cross verified devices"},
-gph(){return"Verified devices only"},
+gpi(){return"Verified devices only"},
+gp9(){return"(Optional) message..."},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.Ej,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"Ej":{"aF":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_215",e:"endPart",h:b})})($__dart_deferred_initializers__,"CK1zcJYyPmRRodYFQ0cndn2rMTw=");
+a.eventLog.push({p:"main.dart.js_215",e:"endPart",h:b})})($__dart_deferred_initializers__,"iRkdODPvvzNNQMqeGg5HT8jQFyo=");
 //# sourceMappingURL=main.dart.js_215.part.js.map

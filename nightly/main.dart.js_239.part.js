@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_239",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cym(){return new A.Et(B.dh("fr"))},
+cyo(){return new A.Et(B.dh("fr"))},
 Et:function Et(d){this.a=d}}
 B=c[0]
 C=c[51]
@@ -528,16 +528,16 @@ go0(){return"Modifier l'adresse publique principale de la discussion"},
 gnG(){return"Send a @room notifications"},
 go2(){return"Modifier la description de la discussion"},
 go5(){return"D\xe9finir quel niveau de pouvoir est n\xe9cessaires pour certaines actions dans cette discussion. Les niveaux de pouvoir 0, 50 et 100 repr\xe9sentent g\xe9n\xe9ralement les membres, la mod\xe9ration et l'administration, mais toute gradation est possible."},
-pf(d){return"\ud83c\udf89 La mise \xe0 niveau "+d+" est install\xe9e\u202f!"},
+pg(d){return"\ud83c\udf89 La mise \xe0 niveau "+d+" est install\xe9e\u202f!"},
 go4(){return"Journal des modifications"},
 gnE(){return"Envoi annul\xe9"},
 goj(){return"Login with Matrix-ID"},
 god(){return"Discover homeservers"},
-gpm(){return"What is a homeserver?"},
+gpn(){return"What is a homeserver?"},
 gof(){return"All your data is stored on the homeserver, just like an email provider. You can choose which homeserver you want to use, while you can still communicate with everyone. Learn more at at https://matrix.org."},
 goe(){return"Doesn't seem to be a compatible homeserver. Wrong URL?"},
 gnZ(){return"Calculating file size..."},
-gpb(){return"Prepare sending attachment..."},
+gpc(){return"Prepare sending attachment..."},
 gnH(){return"Sending attachment..."},
 nI(d,e){return"Sending attachment "+d+" of "+e+"..."},
 nK(d){return"Server limit reached! Waiting "+d+" seconds..."},
@@ -554,13 +554,13 @@ go8(){return"Contact server security"},
 gnO(){return"Support page"},
 gnJ(){return"Server information:"},
 gbL(d){return"Name"},
-gpi(d){return"Version"},
-gpl(){return"Website"},
+gpj(d){return"Version"},
+gpm(){return"Website"},
 go6(){return"Compress"},
 gnY(){return"Bold text"},
 goi(){return"Italic text"},
 gnN(){return"Strikethrough"},
-gpa(){return"Please fill out"},
+gpb(){return"Please fill out"},
 gog(){return"Invalid url"},
 gnR(){return"Add link"},
 gnB(){return"Unable to join chat. Maybe the other party has already closed the conversation."},
@@ -569,14 +569,14 @@ gm2(){return"The other party is currently not logged in and therefore cannot rec
 nU(d){return"Use '"+d+"' to log in"},
 gnV(){return"You hereby allow the app and website to share information about you."},
 gp8(d){return"Open"},
-gpk(){return"Waiting for server..."},
+gpl(){return"Waiting for server..."},
 gnT(){return"FluffyChat lets you chat with your friends across different messengers. Learn more at https://matrix.org or just tap *Continue*."},
 gon(){return"\ud83d\udce9 New chat request"},
 go9(){return"Content notification settings"},
 gnD(){return"General notification settings"},
-gpd(){return"Room notification settings"},
-gpg(){return"User specific notification settings"},
-gp9(){return"Other notification settings"},
+gpe(){return"Room notification settings"},
+gph(){return"User specific notification settings"},
+gpa(){return"Other notification settings"},
 gou(){return"Contains User Name"},
 gov(){return"Notifies the user when a message contains their username."},
 goI(){return"Mute all notifications"},
@@ -617,7 +617,7 @@ goG(){return"Jitsi"},
 goH(){return"Notifies the user about Jitsi widget events."},
 goW(){return"Suppress Server ACL Events"},
 goX(){return"Suppresses notifications for Server ACL events."},
-pe(d){return"Unknown push rule '"+d+"'"},
+pf(d){return"Unknown push rule '"+d+"'"},
 goc(){return"If you delete this notification setting, this can not be undone."},
 gom(){return"More"},
 gnL(){return"Share keys with..."},
@@ -625,11 +625,12 @@ gnM(){return"Which devices should be trusted so that they can read along your me
 gnS(){return"All devices"},
 gob(){return"Cross verified devices if enabled"},
 goa(){return"Cross verified devices"},
-gph(){return"Verified devices only"},
+gpi(){return"Verified devices only"},
+gp9(){return"(Optional) message..."},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Et,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"Et":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_239",e:"endPart",h:b})})($__dart_deferred_initializers__,"x4Ne0hoJejSUZDDeZEeYfI1VKuQ=");
+a.eventLog.push({p:"main.dart.js_239",e:"endPart",h:b})})($__dart_deferred_initializers__,"3308amImMJoqWMCAQfjwsA+sQtc=");
 //# sourceMappingURL=main.dart.js_239.part.js.map

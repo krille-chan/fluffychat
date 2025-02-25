@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_242",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cyn(){return new A.Eu(B.dh("ga"))},
+cyp(){return new A.Eu(B.dh("ga"))},
 Eu:function Eu(d){this.a=d}}
 B=c[0]
 C=c[51]
@@ -528,16 +528,16 @@ go0(){return"Athraigh an pr\xedomhsheoladh comhr\xe1 poibl\xed"},
 gnG(){return"Seol f\xf3gra\xed @room"},
 go2(){return"Athraigh an cur s\xedos ar an gcomhr\xe1"},
 go5(){return"Sainmh\xednigh c\xe9n leibh\xe9al cumhachta is g\xe1 le haghaidh gn\xedomhartha \xe1irithe sa chomhr\xe1 seo. De ghn\xe1th b\xedonn na leibh\xe9il chumhachta 0, 50 agus 100 ag d\xe9anamh ionada\xedochta d'\xfas\xe1ideoir\xed, do mhodhn\xf3ir\xed agus do riarth\xf3ir\xed, ach is f\xe9idir aon ghr\xe1d\xfa a dh\xe9anamh."},
-pf(d){return"\ud83c\udf89 Nuashonraigh "+d+" suite\xe1ilte!"},
+pg(d){return"\ud83c\udf89 Nuashonraigh "+d+" suite\xe1ilte!"},
 go4(){return"ChangelogName"},
 gnE(){return"Ceala\xedodh seoladh"},
 goj(){return"Log\xe1il isteach le Matrix-ID"},
 god(){return"Faigh amach faoi fhreastalaithe baile"},
-gpm(){return"Cad is freastala\xed baile ann?"},
+gpn(){return"Cad is freastala\xed baile ann?"},
 gof(){return"St\xf3r\xe1iltear do chuid sonra\xed go l\xe9ir ar an bhfreastala\xed baile, d\xedreach cos\xfail le sol\xe1thra\xed r\xedomhphoist. Is f\xe9idir leat an freastala\xed baile is mian leat a \xfas\xe1id a roghn\xfa, agus is f\xe9idir leat cumars\xe1id a dh\xe9anamh le gach duine f\xf3s. Foghlaim n\xedos m\xf3 ag https://matrix.org."},
 goe(){return"N\xed cos\xfail gur freastala\xed baile comhoiri\xfanach \xe9. URL m\xedcheart?"},
 gnZ(){return"M\xe9id an chomhaid \xe1 r\xedomh..."},
-gpb(){return"Ullmhaigh an t- iat\xe1n \xe1 sheoladh..."},
+gpc(){return"Ullmhaigh an t- iat\xe1n \xe1 sheoladh..."},
 gnH(){return"Iat\xe1n \xe1 sheoladh..."},
 nI(d,e){return"Ceangalt\xe1n "+d+" de "+e+" \xe1 sheoladh..."},
 nK(d){return"Sroicheadh teorainn an fhreastala\xed! Ag fanacht "+d+" soicind..."},
@@ -554,13 +554,13 @@ go8(){return"D\xe9an teagmh\xe1il le sl\xe1nd\xe1il an fhreastala\xed"},
 gnO(){return"Leathanach taca\xedochta"},
 gnJ(){return"Eolas freastala\xed:"},
 gbL(d){return"Ainm"},
-gpi(d){return"Leagan"},
-gpl(){return"Su\xedomh Gr\xe9as\xe1in"},
+gpj(d){return"Leagan"},
+gpm(){return"Su\xedomh Gr\xe9as\xe1in"},
 go6(){return"Comhbhr\xfaigh"},
 gnY(){return"T\xe9acs trom"},
 goi(){return"T\xe9acs iod\xe1lach"},
 gnN(){return"Stailc tr\xedd"},
-gpa(){return"L\xedon amach le do thoil"},
+gpb(){return"L\xedon amach le do thoil"},
 gog(){return"URL neamhbhail\xed"},
 gnR(){return"Cuir nasc leis"},
 gnB(){return"N\xed f\xe9idir p\xe1irt a ghlacadh sa chomhr\xe1. B\u2019fh\xe9idir go bhfuil an comhr\xe1 d\xfanta cheana f\xe9in ag an bp\xe1irt\xed eile."},
@@ -569,14 +569,14 @@ gm2(){return"N\xedl an p\xe1irt\xed eile log\xe1ilte isteach faoi l\xe1thair agu
 nU(d){return"\xdas\xe1id '"+d+"' chun log\xe1il isteach"},
 gnV(){return"Ligeann t\xfa leis seo don aip agus don su\xedomh Gr\xe9as\xe1in faisn\xe9is a roinnt f\xfat."},
 gp8(d){return"Oscail"},
-gpk(){return"Ag fanacht leis an bhfreastala\xed..."},
+gpl(){return"Ag fanacht leis an bhfreastala\xed..."},
 gnT(){return"Ligeann FluffyChat duit comhr\xe1 a dh\xe9anamh le do chairde thar theachtair\xed \xe9ags\xfala. Foghlaim tuilleadh ag https://matrix.org n\xf3 tap\xe1il *Ar aghaidh*."},
 gon(){return"\ud83d\udce9 Iarratas comhr\xe1 nua"},
 go9(){return"Socruithe f\xf3gra inneachair"},
 gnD(){return"Socruithe ginear\xe1lta f\xf3gra"},
-gpd(){return"Socruithe f\xf3gra seomra"},
-gpg(){return"Socruithe f\xf3gra saini\xfala don \xfas\xe1ideoir"},
-gp9(){return"Socruithe f\xf3gra eile"},
+gpe(){return"Socruithe f\xf3gra seomra"},
+gph(){return"Socruithe f\xf3gra saini\xfala don \xfas\xe1ideoir"},
+gpa(){return"Socruithe f\xf3gra eile"},
 gou(){return"T\xe1 Ainm \xdas\xe1ideora ann"},
 gov(){return"Cuireann s\xe9 sin in i\xfal don \xfas\xe1ideoir nuair a bh\xedonn a ainm \xfas\xe1ideora i dteachtaireacht."},
 goI(){return"Balbhaigh gach f\xf3gra"},
@@ -617,7 +617,7 @@ goG(){return"Jitsi"},
 goH(){return"Cuireann s\xe9 seo in i\xfal don \xfas\xe1ideoir faoi imeachta\xed giuirl\xe9id\xed Jitsi."},
 goW(){return"Seachtaigh Freastala\xed ACL Imeachta\xed"},
 goX(){return"Sochtann f\xf3gra\xed le haghaidh imeachta\xed Freastala\xed ACL."},
-pe(d){return"Riail bhr\xfa anaithnid '"+d+"'"},
+pf(d){return"Riail bhr\xfa anaithnid '"+d+"'"},
 goc(){return"M\xe1 scriosann t\xfa an socr\xfa f\xf3gra seo, n\xed f\xe9idir \xe9 seo a cheal\xfa."},
 gom(){return"Tuilleadh"},
 gnL(){return"Roinn na heochracha le..."},
@@ -625,12 +625,13 @@ gnM(){return"Cad iad na gl\xe9asanna ar cheart muin\xedn a chur iontu ionas gur 
 gnS(){return"Gach gl\xe9asanna"},
 gob(){return"Gl\xe9asanna trasfh\xedoraithe m\xe1 t\xe1 siad cumasaithe"},
 goa(){return"Feist\xed trasfh\xedoraithe"},
-gph(){return"Gl\xe9asanna f\xedoraithe amh\xe1in"},
+gpi(){return"Gl\xe9asanna f\xedoraithe amh\xe1in"},
+gp9(){return"(Optional) message..."},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.Eu,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"Eu":{"aF":[]}}'))
 var y={a:"Cuir cosc ar an \xfas\xe1ideoir \xe1irithe \xf3n seomra seo"}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_242",e:"endPart",h:b})})($__dart_deferred_initializers__,"hqG5j+Y6AYsyGrqh5vM5KSs46X0=");
+a.eventLog.push({p:"main.dart.js_242",e:"endPart",h:b})})($__dart_deferred_initializers__,"b+9PtvibpqLJgKgIAOcJrPTjWm4=");
 //# sourceMappingURL=main.dart.js_242.part.js.map

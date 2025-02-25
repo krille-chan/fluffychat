@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_269",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cyz(){return new A.EG(B.dh("ko"))},
+cyB(){return new A.EG(B.dh("ko"))},
 EG:function EG(d){this.a=d}}
 B=c[0]
 C=c[51]
@@ -528,16 +528,16 @@ go0(){return"\uba54\uc778 \uacf5\uac1c \ub300\ud654 \uc8fc\uc18c \ubcc0\uacbd"},
 gnG(){return"@room \uc54c\ub9bc \ubcf4\ub0b4\uae30"},
 go2(){return"\ub300\ud654\uc758 \uc124\uba85 \ubc14\uafb8\uae30"},
 go5(){return"\uc774 \ub300\ud654\uc5d0\uc11c \ud2b9\uc815 \uc791\uc5c5\uc5d0 \ud544\uc694\ud55c \ud30c\uc6cc \ub808\ubca8\uc744 \uc815\uc758\ud569\ub2c8\ub2e4. \ud30c\uc6cc \ub808\ubca8 0, 50, 100\uc740 \uc77c\ubc18\uc801\uc73c\ub85c \uc0ac\uc6a9\uc790, \uad00\ub9ac\uc790, \uad00\ub9ac\uc790\ub97c \ub098\ud0c0\ub0b4\uc9c0\ub9cc, \ubaa8\ub4e0 \ub4f1\uae09\uc774 \uac00\ub2a5\ud569\ub2c8\ub2e4."},
-pf(d){return"\ud83c\udf89 \uc0c8 "+d+" \uac00 \uc124\uce58\ub418\uc5c8\uc2b5\ub2c8\ub2e4!"},
+pg(d){return"\ud83c\udf89 \uc0c8 "+d+" \uac00 \uc124\uce58\ub418\uc5c8\uc2b5\ub2c8\ub2e4!"},
 go4(){return"\ubcc0\uacbd \uae30\ub85d"},
 gnE(){return"\uc804\uc1a1 \ucd5c\uc18c\ub428"},
 goj(){return"Matrix-ID\ub85c \ub85c\uadf8\uc778"},
 god(){return"Homeserver \ucc3e\uc544\ubcf4\uae30"},
-gpm(){return"Homeserver(\uc774) \uac00 \ubb34\uc5c7\uc778\uac00\uc694?"},
+gpn(){return"Homeserver(\uc774) \uac00 \ubb34\uc5c7\uc778\uac00\uc694?"},
 gof(){return"\ubaa8\ub4e0 \ub370\uc774\ud130\ub294 \uc774\uba54\uc77c \uc81c\uacf5\uc790\uc640 \ub9c8\ucc2c\uac00\uc9c0\ub85c Homeserver(\uc774) \uc5d0 \uc800\uc7a5\ub429\ub2c8\ub2e4. \ubaa8\ub4e0 \uc0ac\ub78c\uacfc \uc5ec\uc804\ud788 \uc18c\ud1b5\ud560 \uc218 \uc788\ub294 \ub3d9\uc548 \uc0ac\uc6a9\ud558\uace0 \uc2f6\uc740 Homeserver(\uc774) \ub97c \uc120\ud0dd\ud560 \uc218 \uc788\uc2b5\ub2c8\ub2e4. https://matrix.org\uc5d0\uc11c \uc790\uc138\ud788 \uc54c\uc544\ubcf4\uc138\uc694."},
 goe(){return"\ud638\ud658\ub418\ub294 Homeserver(\uc774) \uac00 \uc544\ub2cc \uac83 \uac19\uc2b5\ub2c8\ub2e4. URL\uc774 \uc62c\ubc14\ub974\uac8c \uc785\ub825\ub410\ub098\uc694?"},
 gnZ(){return"\ud30c\uc77c \ud06c\uae30 \uacc4\uc0b0 \uc911..."},
-gpb(){return"\ucca8\ubd80\ub41c \ud30c\uc77c \uc804\uc1a1 \uc900\ube44 \uc911..."},
+gpc(){return"\ucca8\ubd80\ub41c \ud30c\uc77c \uc804\uc1a1 \uc900\ube44 \uc911..."},
 gnH(){return"\ucca8\ubd80\ub41c \ud30c\uc77c \uc804\uc1a1 \uc911..."},
 nI(d,e){return"\ucca8\ubd80\ud30c\uc77c "+e+"\uac1c\uc911 "+d+"\ubc88\uc9f8 \uc804\uc1a1 \uc911..."},
 nK(d){return"\uc11c\ubc84 \ud55c\ub3c4\uc5d0 \ub3c4\ub2ec\ud588\uc2b5\ub2c8\ub2e4! "+d+"\ucd08 \uae30\ub2e4\ub9ac\ub294 \uc911..."},
@@ -554,13 +554,13 @@ go8(){return"\uc11c\ubc84 \ubcf4\uc548\uad00 \uc5f0\ub77d\ud558\uae30"},
 gnO(){return"\ud398\uc774\uc9c0 \ub3d5\uae30"},
 gnJ(){return"\uc11c\ubc84 \uc815\ubcf4:"},
 gbL(d){return"\uc774\ub984"},
-gpi(d){return"\ubc84\uc804"},
-gpl(){return"\uc6f9\uc0ac\uc774\ud2b8"},
+gpj(d){return"\ubc84\uc804"},
+gpm(){return"\uc6f9\uc0ac\uc774\ud2b8"},
 go6(){return"\uc555\ucd95"},
 gnY(){return"\ub450\uaebc\uc6b4 \uae00\uaf34"},
 goi(){return"\uae30\uc6b8\uc5b4\uc9c4 \uae00\uaf34"},
 gnN(){return"\ucde8\uc18c\uc120"},
-gpa(){return"\uc791\uc131\ud574\uc8fc\uc138\uc694"},
+gpb(){return"\uc791\uc131\ud574\uc8fc\uc138\uc694"},
 gog(){return"\uc720\ud6a8\ud558\uc9c0 \uc54a\uc740 url"},
 gnR(){return"\ub9c1\ud06c \ucd94\uac00"},
 gnB(){return"\ucc44\ud305\uc5d0 \ucc38\uac00\ud560 \uc218 \uc5c6\uc2b5\ub2c8\ub2e4. \ub2e4\ub978 \uad6c\uc131\uc6d0\uc774 \uc774\ubbf8 \ub300\ud654\ub97c \uc885\ub8cc\ud588\uc744 \uc218 \uc788\uc2b5\ub2c8\ub2e4."},
@@ -569,14 +569,14 @@ gm2(){return"\ub2e4\ub978 \uad6c\uc131\uc6d0\uc774 \ud604\uc7ac \ub85c\uadf8\uc7
 nU(d){return"'"+d+"'\ub85c \ub85c\uadf8\uc778"},
 gnV(){return"\uc6f9\uc0ac\uc774\ud2b8\uc640 \ub2f9\uc2e0\uc5d0 \ub300\ud55c \uc815\ubcf4\ub97c \uacf5\uc720\ud558\uac8c\ub429\ub2c8\ub2e4."},
 gp8(d){return"\uc5f4\uae30"},
-gpk(){return"\uc11c\ubc84\ub97c \uae30\ub2e4\ub9ac\ub294\uc911..."},
+gpl(){return"\uc11c\ubc84\ub97c \uae30\ub2e4\ub9ac\ub294\uc911..."},
 gnT(){return"FluffyChat\ub294 \ub2e4\ub978 \uba54\uc2e0\uc800\ub4e4\uc744 \uc0ac\uc6a9\ud558\ub294 \uce5c\uad6c\ub4e4\uacfc\ub3c4 \ucc44\ud305\ud560 \uc218 \uc788\uc2b5\ub2c8\ub2e4. https://matrix.org\uc5d0 \ubc29\ubb38\ud558\uac70\ub098 *\uacc4\uc18d*\uc744 \ub20c\ub7ec \uc790\uc138\ud55c \uc815\ubcf4\ub97c \ud655\uc778\ud558\uc138\uc694."},
 gon(){return"\ud83d\udce9 \uc0c8 \ucc44\ud305 \uc694\uccad"},
 go9(){return"Content notification settings"},
 gnD(){return"General notification settings"},
-gpd(){return"Room notification settings"},
-gpg(){return"User specific notification settings"},
-gp9(){return"Other notification settings"},
+gpe(){return"Room notification settings"},
+gph(){return"User specific notification settings"},
+gpa(){return"Other notification settings"},
 gou(){return"Contains User Name"},
 gov(){return"Notifies the user when a message contains their username."},
 goI(){return"Mute all notifications"},
@@ -617,7 +617,7 @@ goG(){return"Jitsi"},
 goH(){return"Notifies the user about Jitsi widget events."},
 goW(){return"Suppress Server ACL Events"},
 goX(){return"Suppresses notifications for Server ACL events."},
-pe(d){return"Unknown push rule '"+d+"'"},
+pf(d){return"Unknown push rule '"+d+"'"},
 goc(){return"If you delete this notification setting, this can not be undone."},
 gom(){return"More"},
 gnL(){return"Share keys with..."},
@@ -625,11 +625,12 @@ gnM(){return"Which devices should be trusted so that they can read along your me
 gnS(){return"All devices"},
 gob(){return"Cross verified devices if enabled"},
 goa(){return"Cross verified devices"},
-gph(){return"Verified devices only"},
+gpi(){return"Verified devices only"},
+gp9(){return"(Optional) message..."},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.EG,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"EG":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_269",e:"endPart",h:b})})($__dart_deferred_initializers__,"zpTmFf4EXpGuHdDKCJDXjQXiVho=");
+a.eventLog.push({p:"main.dart.js_269",e:"endPart",h:b})})($__dart_deferred_initializers__,"VtnSZwI+32OrXqdr4p+jwYFdOj8=");
 //# sourceMappingURL=main.dart.js_269.part.js.map
