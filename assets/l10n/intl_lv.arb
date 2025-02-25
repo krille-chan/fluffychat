@@ -1680,7 +1680,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "chooseAStrongPassword": "Jāizvēlas spēcīga parole",
+  "chooseAStrongPassword": "Jāizvēlas stipra parole",
   "@chooseAStrongPassword": {
     "type": "String",
     "placeholders": {}
@@ -2007,7 +2007,7 @@
       }
     }
   },
-  "noChatDescriptionYet": "Vēl nav izveidots tērzēšanas apraksts.",
+  "noChatDescriptionYet": "Tērzēšanas apraksts vēl nav izveidots.",
   "@noChatDescriptionYet": {},
   "defaultPermissionLevel": "Noklusējuma atļauju līmenis jauniem lietotājiem",
   "@defaultPermissionLevel": {
@@ -2082,7 +2082,7 @@
       }
     }
   },
-  "commandHint_op": "Iestatīt norādītā lietotāja spēka līmeni (noklusējums: 50)",
+  "commandHint_op": "Iestatīt norādītā lietotāja pilnvaru līmeni (noklusējums: 50)",
   "@commandHint_op": {
     "type": "String",
     "description": "Usage hint for the command /op"
@@ -2412,7 +2412,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "editBlockedServers": "Labot liegtos serveros",
+  "editBlockedServers": "Labot liegtos serverus",
   "@editBlockedServers": {
     "type": "String",
     "placeholders": {}
@@ -2934,7 +2934,7 @@
   },
   "verifyOtherDeviceDescription": "Kad apliecini citu ierīci, šīs ierīces var apmainīt atslēgas, palielinot vispārējo drošību. 💪 Pēc apliecināšanas uzsākšanas abās ierīcēs lietotnē parādīsies uznirstošais logs. Tajā būs redzamas dažādas emocijzīmes vai skaitļi, kas jāsalīdzina abās ierīcēs. Vislabāk, ja abas ierīces ir pieejams, pirms tiek uzsākta apliecināšana. 🤳",
   "@verifyOtherDeviceDescription": {},
-  "swipeRightToLeftToReply": "Pavilkt pa labi, lai atbildētu",
+  "swipeRightToLeftToReply": "Pavilkt no labās puses uz kreiso, lai atbildētu",
   "@swipeRightToLeftToReply": {},
   "searchIn": "Meklēt tērzēšanā \"{chat}\"...",
   "@searchIn": {
@@ -3052,7 +3052,7 @@
       }
     }
   },
-  "noMoreChatsFound": "Vairs nav tērzēšanu...",
+  "noMoreChatsFound": "Vairs netika atrasta neviena tērzēšana...",
   "@noMoreChatsFound": {},
   "joinedChats": "Tērzēšanas, kurās piedalos",
   "@joinedChats": {},
