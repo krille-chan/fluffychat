@@ -113,7 +113,7 @@ class LoadingDialogState<T> extends State<LoadingDialog> {
       //   stackTrace = s;
       // }),
       (result) {
-        if (mounted) {
+        if (mounted && Navigator.of(context).canPop()) {
           Navigator.of(context).pop<Result<T>>(Result.value(result));
         }
       },
