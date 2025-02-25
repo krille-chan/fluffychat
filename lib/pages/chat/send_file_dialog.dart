@@ -202,8 +202,8 @@ class SendFileDialogState extends State<SendFileDialog> {
           title: Text(sendStr),
           content: SizedBox(
             width: 256,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
+            child: ListView(
+              shrinkWrap: true,
               children: [
                 const SizedBox(height: 12),
                 if (uniqueFileType == 'image')
@@ -222,6 +222,7 @@ class SendFileDialogState extends State<SendFileDialog> {
                               borderRadius: BorderRadius.circular(
                                 AppConfig.borderRadius / 2,
                               ),
+                              color: Colors.black,
                               clipBehavior: Clip.hardEdge,
                               child: FutureBuilder(
                                 future: widget.files[i].readAsBytes(),
@@ -253,6 +254,9 @@ class SendFileDialogState extends State<SendFileDialog> {
                                   return Image.memory(
                                     bytes,
                                     height: 256,
+                                    width:
+                                        widget.files.length == 1 ? 256 : null,
+                                    fit: BoxFit.contain,
                                     errorBuilder: (context, e, s) {
                                       Logs().w('Unable to preview image', e, s);
                                       return const Center(
@@ -315,7 +319,7 @@ class SendFileDialogState extends State<SendFileDialog> {
                   ),
                 if (widget.files.length == 1)
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 12.0),
+                    padding: const EdgeInsets.only(bottom: 8.0),
                     child: DialogTextField(
                       controller: _labelTextController,
                       labelText: L10n.of(context).optionalMessage,
