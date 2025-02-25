@@ -17,8 +17,11 @@ import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class TtsController {
-  String? get targetLanguage =>
+  String? get l2LangCode =>
       MatrixState.pangeaController.languageController.userL2?.langCode;
+
+  String? get l2LangCodeShort =>
+      MatrixState.pangeaController.languageController.userL2?.langCodeShort;
 
   List<String> _availableLangCodes = [];
   final flutter_tts.FlutterTts _tts = flutter_tts.FlutterTts();
@@ -58,61 +61,55 @@ class TtsController {
     );
   }
 
-  Future<void> setupTTS() async {
-    try {
-      if (_useAlternativeTTS) {
-        await _setupAltTTS();
-      } else {
-        _tts.setErrorHandler(_onError);
-        debugger(when: kDebugMode && targetLanguage == null);
+  Future<void> _setAvailableLanguages() async {
+    final voices = (await _tts.getVoices) as List?;
+    _availableLangCodes = (voices ?? [])
+        .map((v) {
+          // on iOS / web, the codes are in 'locale', but on Android, they are in 'name'
+          final nameCode = v['name'];
+          final localeCode = v['locale'];
+          return localeCode.contains("-") ? localeCode : nameCode;
+        })
+        .toSet()
+        .cast<String>()
+        .toList();
+  }
 
-        _tts.setLanguage(
-          targetLanguage ?? "en",
-        );
+  Future<void> _setAvailableAltLanguages() async {
+    final languages = await _alternativeTTS.getLanguages();
+    _availableLangCodes = languages.toSet().toList();
+  }
 
-        await _tts.awaitSpeakCompletion(true);
-
-        final voices = (await _tts.getVoices) as List?;
-        _availableLangCodes = (voices ?? [])
-            .map((v) {
-              // on iOS / web, the codes are in 'locale', but on Android, they are in 'name'
-              final nameCode = v['name']?.split("-").first;
-              final localeCode = v['locale']?.split("-").first;
-              return nameCode.length == 2 ? nameCode : localeCode;
-            })
-            .toSet()
-            .cast<String>()
-            .toList();
-      }
-    } catch (e, s) {
-      debugger(when: kDebugMode);
-      ErrorHandler.logError(
-        e: e,
-        s: s,
-        data: {},
+  void _setLanguage() {
+    if (l2LangCode != null && _availableLangCodes.contains(l2LangCode)) {
+      _useAlternativeTTS
+          ? _alternativeTTS.setLanguage(l2LangCode!)
+          : _tts.setLanguage(l2LangCode!);
+    } else if (l2LangCodeShort != null) {
+      final langCodeShort = l2LangCodeShort!;
+      final langCode = _availableLangCodes.firstWhere(
+        (code) => code.startsWith(langCodeShort),
+        orElse: () => "en",
       );
+      _useAlternativeTTS
+          ? _alternativeTTS.setLanguage(langCode)
+          : _tts.setLanguage(langCode);
     }
   }
 
-  Future<void> _setupAltTTS() async {
+  Future<void> setupTTS() async {
     try {
-      final languages = await _alternativeTTS.getLanguages();
-      _availableLangCodes =
-          languages.map((lang) => lang.split("-").first).toSet().toList();
+      if (_useAlternativeTTS) {
+        await _setAvailableAltLanguages();
+      } else {
+        _tts.setErrorHandler(_onError);
+        debugger(when: kDebugMode && l2LangCode == null);
 
-      debugPrint("availableLangCodes: $_availableLangCodes");
-
-      final langsMatchingTarget = languages
-          .where(
-            (lang) =>
-                targetLanguage != null &&
-                lang.toLowerCase().startsWith(targetLanguage!.toLowerCase()),
-          )
-          .toList();
-
-      if (langsMatchingTarget.isNotEmpty) {
-        await _alternativeTTS.setLanguage(langsMatchingTarget.first);
+        await _tts.awaitSpeakCompletion(true);
+        await _setAvailableLanguages();
       }
+
+      _setLanguage();
     } catch (e, s) {
       debugger(when: kDebugMode);
       ErrorHandler.logError(
@@ -242,8 +239,12 @@ class TtsController {
     }
   }
 
-  bool get _isL2FullySupported => _availableLangCodes.contains(targetLanguage);
+  bool get _isL2FullySupported =>
+      _availableLangCodes.contains(l2LangCode) ||
+      (l2LangCodeShort != null &&
+          _availableLangCodes.any((lang) => lang.startsWith(l2LangCodeShort!)));
 
   bool isLanguageSupported(String langCode) =>
-      _availableLangCodes.contains(langCode);
+      _availableLangCodes.contains(langCode) ||
+      _availableLangCodes.any((lang) => lang.startsWith(langCode));
 }
