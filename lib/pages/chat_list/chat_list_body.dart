@@ -177,16 +177,23 @@ class ChatListViewBody extends StatelessWidget {
                       if (client.rooms.length <= 7 || controller.isSearchMode)
                         const SizedBox(height: 8),
                     if (client.rooms.length > 7 && !controller.isSearchMode)
-                      // Pangea#
-                      SizedBox(
-                        height: 64,
-                        child: ListView(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 12.0,
-                            vertical: 16.0,
-                          ),
-                          shrinkWrap: true,
-                          scrollDirection: Axis.horizontal,
+                      // SizedBox(
+                      //   height: 64,
+                      //   child: ListView(
+                      //     padding: const EdgeInsets.symmetric(
+                      //       horizontal: 12.0,
+                      //       vertical: 16.0,
+                      //     ),
+                      //     shrinkWrap: true,
+                      //     scrollDirection: Axis.horizontal,
+                      SingleChildScrollView(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 12.0,
+                          vertical: 16.0,
+                        ),
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          // Pangea#
                           children: [
                             if (AppConfig.separateChatTypes)
                               ActiveFilter.messages
