@@ -3204,5 +3204,6 @@
   "verifiedDevicesOnly": "Verified devices only",
   "takeAPhoto": "Take a photo",
   "recordAVideo": "Record a video",
-  "optionalMessage": "(Optional) message..."
+  "optionalMessage": "(Optional) message...",
+  "notSupportedOnThisDevice": "Not supported on this device"
 }

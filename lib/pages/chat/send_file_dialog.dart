@@ -192,6 +192,9 @@ class SendFileDialogState extends State<SendFileDialog> {
       sendStr = L10n.of(context).sendVideo;
     }
 
+    final compressionSupported =
+        uniqueFileType != 'video' || PlatformInfos.isMobile;
+
     return FutureBuilder<String>(
       future: _calcCombinedFileSize(),
       builder: (context, snapshot) {
@@ -340,19 +343,17 @@ class SendFileDialogState extends State<SendFileDialog> {
                         if ({TargetPlatform.iOS, TargetPlatform.macOS}
                             .contains(theme.platform))
                           CupertinoSwitch(
-                            value: compress,
-                            onChanged: uniqueFileType == 'video' &&
-                                    !PlatformInfos.isMobile
-                                ? null
-                                : (v) => setState(() => compress = v),
+                            value: compressionSupported && compress,
+                            onChanged: compressionSupported
+                                ? (v) => setState(() => compress = v)
+                                : null,
                           )
                         else
                           Switch.adaptive(
-                            value: compress,
-                            onChanged: uniqueFileType == 'video' &&
-                                    !PlatformInfos.isMobile
-                                ? null
-                                : (v) => setState(() => compress = v),
+                            value: compressionSupported && compress,
+                            onChanged: compressionSupported
+                                ? (v) => setState(() => compress = v)
+                                : null,
                           ),
                         const SizedBox(width: 16),
                         Expanded(
@@ -373,6 +374,11 @@ class SendFileDialogState extends State<SendFileDialog> {
                               if (!compress)
                                 Text(
                                   ' ($sizeString)',
+                                  style: theme.textTheme.labelSmall,
+                                ),
+                              if (!compressionSupported)
+                                Text(
+                                  L10n.of(context).notSupportedOnThisDevice,
                                   style: theme.textTheme.labelSmall,
                                 ),
                             ],
