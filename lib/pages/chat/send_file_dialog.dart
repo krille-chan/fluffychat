@@ -13,6 +13,7 @@ import 'package:fluffychat/utils/other_party_can_receive.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/size_string.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/adaptive_dialog_action.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/dialog_text_field.dart';
 import '../../utils/resize_video.dart';
 
 class SendFileDialog extends StatefulWidget {
@@ -36,6 +37,8 @@ class SendFileDialogState extends State<SendFileDialog> {
 
   /// Images smaller than 20kb don't need compression.
   static const int minSizeToCompress = 20 * 1000;
+
+  final TextEditingController _labelTextController = TextEditingController();
 
   Future<void> _send() async {
     final scaffoldMessenger = ScaffoldMessenger.of(widget.outerContext);
@@ -93,11 +96,14 @@ class SendFileDialogState extends State<SendFileDialog> {
           scaffoldMessenger.clearSnackBars();
         }
 
+        final label = _labelTextController.text.trim();
+
         try {
           await widget.room.sendFileEvent(
             file,
             thumbnail: thumbnail,
             shrinkImageMaxDimension: compress ? 1600 : null,
+            extraContent: label.isEmpty ? null : {'body': label},
           );
         } on MatrixException catch (e) {
           final retryAfterMs = e.retryAfterMs;
@@ -121,7 +127,8 @@ class SendFileDialogState extends State<SendFileDialog> {
           await widget.room.sendFileEvent(
             file,
             thumbnail: thumbnail,
-            shrinkImageMaxDimension: compress ? null : 1600,
+            shrinkImageMaxDimension: compress ? 1600 : null,
+            extraContent: label.isEmpty ? null : {'body': label},
           );
         }
       }
@@ -304,6 +311,18 @@ class SendFileDialogState extends State<SendFileDialog> {
                           ),
                         ),
                       ],
+                    ),
+                  ),
+                if (widget.files.length == 1)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 12.0),
+                    child: DialogTextField(
+                      controller: _labelTextController,
+                      labelText: L10n.of(context).optionalMessage,
+                      minLines: 1,
+                      maxLines: 3,
+                      maxLength: 255,
+                      counterText: '',
                     ),
                   ),
                 // Workaround for SwitchListTile.adaptive crashes in CupertinoDialog

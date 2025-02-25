@@ -3203,5 +3203,6 @@
   "crossVerifiedDevices": "Cross verified devices",
   "verifiedDevicesOnly": "Verified devices only",
   "takeAPhoto": "Take a photo",
-  "recordAVideo": "Record a video"
+  "recordAVideo": "Record a video",
+  "optionalMessage": "(Optional) message..."
 }
