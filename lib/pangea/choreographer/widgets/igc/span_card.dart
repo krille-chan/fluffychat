@@ -16,6 +16,7 @@ import 'package:fluffychat/pangea/choreographer/utils/match_copy.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/igc/card_error_widget.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
+import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
 import '../../../../widgets/matrix.dart';
 import '../../../bot/widgets/bot_face_svg.dart';
 import '../../../common/controllers/pangea_controller.dart';
@@ -62,6 +63,14 @@ class SpanCardState extends State<SpanCard> {
     getSpanDetails();
     fetchSelected();
   }
+
+  @override
+  void dispose() {
+    tts.stop();
+    super.dispose();
+  }
+
+  TtsController get tts => widget.scm.choreographer.tts;
 
   //get selected choice
   SpanChoice? get selectedChoice {
@@ -308,7 +317,7 @@ class WordMatchContent extends StatelessWidget {
                           uniqueKeyForLayerLink: (int index) =>
                               "wordMatch$index",
                           selectedChoiceIndex: controller.selectedChoiceIndex,
-                          tts: controller.widget.scm.choreographer.tts,
+                          tts: controller.tts,
                         ),
                       const SizedBox(height: 12),
                       PromptAndFeedback(controller: controller),

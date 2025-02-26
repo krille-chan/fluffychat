@@ -275,6 +275,7 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
       // wait for savor the joy before popping from the activity queue
       // to keep the completed activity on screen for a moment
       widget.overlayController.onActivityFinish(currentActivity!.activityType);
+      widget.overlayController.widget.chatController.choreographer.tts.stop();
     } catch (e, s) {
       _onError();
       debugger(when: kDebugMode);

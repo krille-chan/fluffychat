@@ -89,7 +89,7 @@ class AlternativeTranslations extends StatelessWidget {
       },
       uniqueKeyForLayerLink: (int index) => "altTranslation$index",
       selectedChoiceIndex: null,
-      tts: controller.choreographer.tts,
+      tts: null,
     );
   }
 }
