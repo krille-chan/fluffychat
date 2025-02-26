@@ -69,6 +69,10 @@ class PublicRoomBottomSheetState extends State<PublicRoomBottomSheet> {
     final client = Matrix.of(outerContext).client;
     final chunk = this.chunk;
     final knock = chunk?.joinRule == 'knock';
+    // #Pangea
+    final wasInRoom =
+        chunk?.roomId != null && client.getRoomById(chunk!.roomId) != null;
+    // Pangea#
     final result = await showFutureLoadingDialog<String>(
       context: context,
       future: () async {
@@ -94,9 +98,12 @@ class PublicRoomBottomSheetState extends State<PublicRoomBottomSheet> {
         return roomId;
       },
     );
-    if (knock) {
-      return;
-    }
+    // #Pangea
+    // if (knock) {
+    //   return;
+    // }
+    if (knock && !wasInRoom) return;
+    // Pangea#
     if (result.error == null) {
       Navigator.of(context).pop<bool>(true);
       // don't open the room if the joined room is a space
