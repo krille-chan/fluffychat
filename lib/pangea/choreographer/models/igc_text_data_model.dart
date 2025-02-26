@@ -175,11 +175,11 @@ class IGCTextData {
 
     final SpanChoice replacement = pangeaMatch.match.choices![choiceIndex];
 
-    originalInput = originalInput.replaceRange(
-      pangeaMatch.match.offset,
-      pangeaMatch.match.offset + pangeaMatch.match.length,
-      replacement.value,
-    );
+    final newStart = originalInput.characters.take(pangeaMatch.match.offset);
+    final newEnd = originalInput.characters
+        .skip(pangeaMatch.match.offset + pangeaMatch.match.length);
+    final fullText = newStart + replacement.value.characters + newEnd;
+    originalInput = fullText.toString();
 
     int startIndex;
     int endIndex;

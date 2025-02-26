@@ -140,7 +140,38 @@ class IgcController {
           filteredMatches.remove(match);
         }
       }
-      igcTextData!.matches = filteredMatches;
+
+      // If there are any matches that don't match up with token offsets,
+      // this indicates and choreographer bug. Remove them.
+      final tokens = igcTextData!.tokens;
+      final List<PangeaMatch> confirmedMatches = List.from(filteredMatches);
+      for (final match in filteredMatches) {
+        final substring = match.match.fullText.characters
+            .skip(match.match.offset)
+            .take(match.match.length);
+        final trimmed = substring.toString().trim().characters;
+        final matchOffset = (match.match.offset + match.match.length) -
+            (substring.length - trimmed.length);
+        final hasStartMatch = tokens.any(
+          (token) => token.text.offset == match.match.offset,
+        );
+        final hasEndMatch = tokens.any(
+          (token) => token.text.offset + token.text.length == matchOffset,
+        );
+        if (!hasStartMatch || !hasEndMatch) {
+          confirmedMatches.clear();
+          ErrorHandler.logError(
+            m: "Match offset and/or length do not tokens with matching offset and length. This is a choreographer bug.",
+            data: {
+              "match": match.toJson(),
+              "tokens": tokens.map((e) => e.toJson()).toList(),
+            },
+          );
+          break;
+        }
+      }
+
+      igcTextData!.matches = confirmedMatches;
 
       // TODO - for each new match,
       // check if existing igcTextData has one and only one match with the same error text and correction
