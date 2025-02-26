@@ -217,19 +217,13 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
         if (question.isNotEmpty)
           Text(
             question,
+            textAlign: TextAlign.center,
             style: AppConfig.messageTextStyle(
               widget.event,
               Theme.of(context).colorScheme.primary,
             ).merge(const TextStyle(fontStyle: FontStyle.italic)),
           ),
-        if (question.isNotEmpty)
-          Text(
-            question,
-            style: AppConfig.messageTextStyle(
-              widget.event,
-              Theme.of(context).colorScheme.primary,
-            ).merge(const TextStyle(fontStyle: FontStyle.italic)),
-          ),
+        if (question.isNotEmpty) const SizedBox(height: 8.0),
         const SizedBox(height: 8),
         if (practiceActivity.activityType ==
             ActivityTypeEnum.wordFocusListening)
