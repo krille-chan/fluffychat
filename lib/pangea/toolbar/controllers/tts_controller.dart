@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import 'package:collection/collection.dart';
 import 'package:flutter_tts/flutter_tts.dart' as flutter_tts;
 import 'package:matrix/matrix_api_lite/utils/logs.dart';
 import 'package:text_to_speech/text_to_speech.dart';
@@ -80,20 +81,21 @@ class TtsController {
     _availableLangCodes = languages.toSet().toList();
   }
 
-  void _setLanguage() {
+  Future<void> _setLanguage() async {
+    String? langCode;
     if (l2LangCode != null && _availableLangCodes.contains(l2LangCode)) {
-      _useAlternativeTTS
-          ? _alternativeTTS.setLanguage(l2LangCode!)
-          : _tts.setLanguage(l2LangCode!);
+      langCode = l2LangCode;
     } else if (l2LangCodeShort != null) {
       final langCodeShort = l2LangCodeShort!;
-      final langCode = _availableLangCodes.firstWhere(
+      langCode = _availableLangCodes.firstWhereOrNull(
         (code) => code.startsWith(langCodeShort),
-        orElse: () => "en",
       );
-      _useAlternativeTTS
+    }
+
+    if (langCode != null) {
+      await (_useAlternativeTTS
           ? _alternativeTTS.setLanguage(langCode)
-          : _tts.setLanguage(langCode);
+          : _tts.setLanguage(langCode));
     }
   }
 
@@ -108,8 +110,6 @@ class TtsController {
         await _tts.awaitSpeakCompletion(true);
         await _setAvailableLanguages();
       }
-
-      _setLanguage();
     } catch (e, s) {
       debugger(when: kDebugMode);
       ErrorHandler.logError(
@@ -181,6 +181,7 @@ class TtsController {
     // Target ID for where to show warning popup
     String? targetID,
   }) async {
+    await _setLanguage();
     final enableTTS = MatrixState
         .pangeaController.userController.profile.toolSettings.enableTTS;
 

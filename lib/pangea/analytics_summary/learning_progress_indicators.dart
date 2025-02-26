@@ -37,6 +37,7 @@ class LearningProgressIndicatorsState
   bool _loading = true;
 
   StreamSubscription<AnalyticsStreamUpdate>? _analyticsSubscription;
+  StreamSubscription? _languageSubscription;
 
   @override
   void initState() {
@@ -50,12 +51,20 @@ class LearningProgressIndicatorsState
     _analyticsSubscription = MatrixState
         .pangeaController.getAnalytics.analyticsStream.stream
         .listen(updateData);
+
+    // rebuild when target language changes
+    _languageSubscription =
+        MatrixState.pangeaController.userController.stateStream.listen((_) {
+      if (mounted) setState(() {});
+    });
   }
 
   @override
   void dispose() {
     _analyticsSubscription?.cancel();
     _analyticsSubscription = null;
+    _languageSubscription?.cancel();
+    _languageSubscription = null;
     super.dispose();
   }
 

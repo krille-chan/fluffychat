@@ -12,6 +12,7 @@ import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/learning_settings/constants/language_constants.dart';
 import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
+import 'package:fluffychat/pangea/learning_settings/utils/language_list_util.dart';
 import 'package:fluffychat/pangea/user/models/profile_model.dart';
 import '../models/user_model.dart';
 
@@ -113,6 +114,13 @@ class UserController extends BaseController {
     try {
       await _initialize();
       addProfileListener();
+      if (profile.userSettings.targetLanguage != null &&
+          profile.userSettings.targetLanguage!.isNotEmpty &&
+          _pangeaController.languageController.userL2 == null) {
+        // update the language list and send an update to refresh analytics summary
+        await PangeaLanguage.initialize(forceRefresh: true);
+        setState(null);
+      }
     } catch (err, s) {
       ErrorHandler.logError(
         e: err,

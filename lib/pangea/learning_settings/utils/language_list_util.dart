@@ -23,10 +23,11 @@ class PangeaLanguage {
 
   List<LanguageModel> get baseOptions => _langList.toList();
 
-  static Future<void> initialize() async {
+  static Future<void> initialize({forceRefresh = false}) async {
     try {
       _langList = await _getCachedLanguages();
-      if (await _shouldFetch ||
+      if (forceRefresh ||
+          await _shouldFetch ||
           _langList.isEmpty ||
           _langList.every((lang) => !lang.l2)) {
         _langList = await LanguageRepo.fetchLanguages();
@@ -66,7 +67,7 @@ class PangeaLanguage {
     }
     // return true;
     final DateTime lastFetchedDate = DateTime.parse(dateString);
-    final DateTime targetDate = DateTime(2025, 2, 12);
+    final DateTime targetDate = DateTime(2025, 2, 26);
     if (lastFetchedDate.isBefore(targetDate)) {
       return true;
     }
