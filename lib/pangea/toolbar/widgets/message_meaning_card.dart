@@ -28,9 +28,14 @@ class MessageMeaningCard extends StatelessWidget {
                 color: Theme.of(context).colorScheme.primary,
               ),
               const SizedBox(width: 8),
-              TextButton(
-                onPressed: () => controller.onRequestForMeaningChallenge(),
-                child: Text(L10n.of(context).clickForMeaningActivity),
+              Flexible(
+                child: TextButton(
+                  onPressed: () => controller.onRequestForMeaningChallenge(),
+                  child: Text(
+                    L10n.of(context).clickForMeaningActivity,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
               ),
             ],
           ),
