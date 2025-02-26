@@ -35,9 +35,6 @@ void chatListHandleSpaceTap(
       context: context,
       future: () async {
         await space.join();
-        if (await space.leaveIfFull()) {
-          throw L10n.of(context).roomFull;
-        }
         setActiveSpaceAndCloseChat();
       },
     );
@@ -65,9 +62,6 @@ void chatListHandleSpaceTap(
         context: context,
         future: () async {
           await space.join();
-          if (await space.leaveIfFull()) {
-            throw L10n.of(context).roomFull;
-          }
           setActiveSpaceAndCloseChat();
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(

@@ -336,10 +336,11 @@ class PangeaChatDetailsView extends StatelessWidget {
                             room.isSpace &&
                             room.spaceParents.isEmpty)
                           Divider(color: theme.dividerColor, height: 1),
-                        RoomCapacityButton(
-                          room: room,
-                          controller: controller,
-                        ),
+                        if (!room.isSpace)
+                          RoomCapacityButton(
+                            room: room,
+                            controller: controller,
+                          ),
                         if (room.isSpace && room.isRoomAdmin && kIsWeb)
                           DownloadAnalyticsButton(space: room),
                         Divider(color: theme.dividerColor, height: 1),

@@ -43,6 +43,7 @@ import '../../widgets/matrix.dart';
 import 'package:fluffychat/utils/tor_stub.dart'
     if (dart.library.html) 'package:tor_detector_web/tor_detector_web.dart';
 
+
 enum PopupMenuAction {
   settings,
   invite,
@@ -441,6 +442,7 @@ class ChatListController extends State<ChatList>
   StreamSubscription? _invitedSpaceSubscription;
   StreamSubscription? _subscriptionStatusStream;
   StreamSubscription? _spaceChildSubscription;
+  StreamSubscription? _roomCapacitySubscription;
   final Set<String> hasUpdates = {};
   //Pangea#
 
@@ -559,7 +561,45 @@ class ChatListController extends State<ChatList>
     }).listen((update) {
       hasUpdates.add(update.roomId);
     });
-    //Pangea#
+
+    // listen for room join events and leave room if over capacity
+    _roomCapacitySubscription ??= client.onSync.stream
+        .where((u) => u.rooms?.join != null)
+        .listen((update) async {
+      final roomUpdates = update.rooms!.join!.entries;
+      for (final entry in roomUpdates) {
+        final roomID = entry.key;
+        final roomUpdate = entry.value;
+        if (roomUpdate.timeline?.events == null) continue;
+        final events = roomUpdate.timeline!.events;
+        final memberEvents = events!.where(
+          (event) =>
+              event.type == EventTypes.RoomMember &&
+              event.senderId == client.userID,
+        );
+        if (memberEvents.isEmpty) continue;
+        final room = client.getRoomById(roomID);
+        if (room == null ||
+            room.isSpace ||
+            room.isAnalyticsRoom ||
+            room.capacity == null ||
+            (room.summary.mJoinedMemberCount ?? 1) <= room.capacity!) {
+          continue;
+        }
+
+        await showFutureLoadingDialog(
+          context: context,
+          future: () async {
+            await room.leave();
+            if (GoRouterState.of(context).uri.toString().contains(roomID)) {
+              context.go("/rooms");
+            }
+            throw L10n.of(context).roomFull;
+          },
+        );
+      }
+    });
+    // Pangea#
 
     super.initState();
   }
@@ -574,6 +614,7 @@ class ChatListController extends State<ChatList>
     _invitedSpaceSubscription?.cancel();
     _subscriptionStatusStream?.cancel();
     _spaceChildSubscription?.cancel();
+    _roomCapacitySubscription?.cancel();
     //Pangea#
     scrollController.removeListener(_onScroll);
     super.dispose();

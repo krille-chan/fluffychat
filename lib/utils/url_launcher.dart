@@ -9,7 +9,6 @@ import 'package:url_launcher/url_launcher_string.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/user_bottom_sheet/user_bottom_sheet.dart';
-import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
@@ -206,19 +205,6 @@ class UrlLauncher {
               serverName: servers.isNotEmpty ? servers.toList() : null,
             ),
           );
-          // #Pangea
-          // if (response.error != null) return;
-          if (response.error != null ||
-              (room != null && (await room.leaveIfFull()))) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                duration: const Duration(seconds: 10),
-                content: Text(L10n.of(context).roomFull),
-              ),
-            );
-            return;
-          }
-          // Pangea#
           // wait for two seconds so that it probably came down /sync
           await showFutureLoadingDialog(
             context: context,

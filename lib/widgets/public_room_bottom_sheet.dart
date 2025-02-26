@@ -7,7 +7,6 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/common/config/environment.dart';
-import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -89,12 +88,6 @@ class PublicRoomBottomSheetState extends State<PublicRoomBottomSheet> {
         if (!knock && client.getRoomById(roomId) == null) {
           await client.waitForRoomInSync(roomId);
         }
-        // #Pangea
-        final room = client.getRoomById(roomId);
-        if (room != null && (await room.leaveIfFull())) {
-          throw L10n.of(context).roomFull;
-        }
-        // Pangea#
         return roomId;
       },
     );

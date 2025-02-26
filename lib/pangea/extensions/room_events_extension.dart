@@ -1,19 +1,6 @@
 part of "pangea_room_extension.dart";
 
 extension EventsRoomExtension on Room {
-  Future<bool> leaveIfFull() async {
-    if (!isRoomAdmin &&
-        (capacity != null) &&
-        (await numNonAdmins) > (capacity!)) {
-      if (!isSpace) {
-        markUnread(false);
-      }
-      await leave();
-      return true;
-    }
-    return false;
-  }
-
   Future<void> leaveSpace() async {
     for (final child in spaceChildren) {
       if (child.roomId == null) continue;
