@@ -12,6 +12,7 @@ import 'package:text_to_speech/text_to_speech.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/instructions/instructions_enum.dart';
 import 'package:fluffychat/pangea/instructions/instructions_show_popup.dart';
+import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/missing_voice_button.dart';
 import 'package:fluffychat/pangea/user/controllers/user_controller.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -240,12 +241,14 @@ class TtsController {
     }
   }
 
-  bool get _isL2FullySupported =>
-      _availableLangCodes.contains(l2LangCode) ||
-      (l2LangCodeShort != null &&
-          _availableLangCodes.any((lang) => lang.startsWith(l2LangCodeShort!)));
+  bool get _isL2FullySupported {
+    return _availableLangCodes.contains(l2LangCode) ||
+        (l2LangCodeShort != null &&
+            _availableLangCodes
+                .any((lang) => lang.startsWith(l2LangCodeShort!)));
+  }
 
-  bool isLanguageSupported(String langCode) =>
-      _availableLangCodes.contains(langCode) ||
-      _availableLangCodes.any((lang) => lang.startsWith(langCode));
+  bool isLanguageSupported(LanguageModel lang) =>
+      _availableLangCodes.contains(lang.langCode) ||
+      _availableLangCodes.any((l) => l.startsWith(lang.langCodeShort));
 }
