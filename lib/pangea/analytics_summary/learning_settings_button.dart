@@ -17,41 +17,41 @@ class LearningSettingsButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Tooltip(
-      message: L10n.of(context).learningSettings,
-      child: PressableButton(
-        buttonHeight: 2.5,
-        borderRadius: BorderRadius.circular(15),
-        onPressed: onTap,
-        color: Theme.of(context).colorScheme.surfaceBright,
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-            color: Theme.of(context).colorScheme.surfaceBright,
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      spacing: 4.0,
+      children: [
+        Text(
+          l2 ?? "?",
+          style: TextStyle(
+            fontSize: 12,
+            fontWeight: FontWeight.bold,
+            color: Theme.of(context).colorScheme.primary,
           ),
-          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Icon(
+        ),
+        Tooltip(
+          message: L10n.of(context).learningSettings,
+          child: PressableButton(
+            buttonHeight: 2.5,
+            borderRadius: BorderRadius.circular(15),
+            onPressed: onTap,
+            color: Theme.of(context).colorScheme.surfaceBright,
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                color: Theme.of(context).colorScheme.surfaceBright,
+              ),
+              padding: const EdgeInsets.all(4.0),
+              child: Icon(
                 size: 14,
-                Icons.language,
+                Icons.settings_outlined,
                 color: Theme.of(context).colorScheme.primary,
                 weight: 1000,
               ),
-              const SizedBox(width: 5),
-              Text(
-                l2 ?? "?",
-                style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.bold,
-                  color: Theme.of(context).colorScheme.primary,
-                ),
-              ),
-            ],
+            ),
           ),
         ),
-      ),
+      ],
     );
   }
 }
