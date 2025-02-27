@@ -3331,5 +3331,13 @@
   "verifiedDevicesOnly": "Egiaztatutako gailuekin soilik",
   "@verifiedDevicesOnly": {},
   "crossVerifiedDevices": "Egiaztapen gurutzatuko gailuekin",
-  "@crossVerifiedDevices": {}
+  "@crossVerifiedDevices": {},
+  "takeAPhoto": "Egin argazkia",
+  "@takeAPhoto": {},
+  "recordAVideo": "Grabatu bideoa",
+  "@recordAVideo": {},
+  "optionalMessage": "Mezua (aukerakoa)…",
+  "@optionalMessage": {},
+  "notSupportedOnThisDevice": "Ez da gailu honekin bateragarria",
+  "@notSupportedOnThisDevice": {}
 }

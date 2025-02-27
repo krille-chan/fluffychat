@@ -3333,5 +3333,13 @@
         "type": "String"
       }
     }
-  }
+  },
+  "optionalMessage": "(Optativo) mensaxe…",
+  "@optionalMessage": {},
+  "notSupportedOnThisDevice": "Non compatible co dispositivo",
+  "@notSupportedOnThisDevice": {},
+  "takeAPhoto": "Facer foto",
+  "@takeAPhoto": {},
+  "recordAVideo": "Gravar vídeo",
+  "@recordAVideo": {}
 }

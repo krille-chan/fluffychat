@@ -18,7 +18,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "passphraseOrKey": "paroles vārdkopa vai atkopšanas atslēga",
+  "passphraseOrKey": "paroles vārdkopa vai atkopes atslēga",
   "@passphraseOrKey": {
     "type": "String",
     "placeholders": {}
@@ -385,7 +385,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "askSSSSSign": "Lai varētu parakstīt otru cilvēku, lūgums ievadīt savu drošo krātuves paroles vārdkopu vai atkopšanas atslēgu.",
+  "askSSSSSign": "Lai varētu parakstīt otru cilvēku, lūgums ievadīt savu drošo krātuves paroles vārdkopu vai atkopes atslēgu.",
   "@askSSSSSign": {
     "type": "String",
     "placeholders": {}
@@ -624,7 +624,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "incorrectPassphraseOrKey": "Nepareiza paroles vārdkopa vai atkopšanas atslēga",
+  "incorrectPassphraseOrKey": "Nepareiza paroles vārdkopa vai atkopes atslēga",
   "@incorrectPassphraseOrKey": {
     "type": "String",
     "placeholders": {}
@@ -636,7 +636,7 @@
   },
   "reopenChat": "Atkārtoti atvērt tērzēšanu",
   "@reopenChat": {},
-  "pleaseEnterRecoveryKey": "Lūgums ievadīt savu atkopšanas atslēgu:",
+  "pleaseEnterRecoveryKey": "Lūgums ievadīt savu atkopes atslēgu:",
   "@pleaseEnterRecoveryKey": {},
   "create": "Izveidot",
   "@create": {
@@ -751,7 +751,7 @@
   "@hydrateTor": {},
   "pushNotificationsNotAvailable": "Pašpiegādes paziņojumi nav pieejami",
   "@pushNotificationsNotAvailable": {},
-  "passwordRecovery": "Paroles atjaunošana",
+  "passwordRecovery": "Paroles atkope",
   "@passwordRecovery": {
     "type": "String",
     "placeholders": {}
@@ -786,7 +786,7 @@
       }
     }
   },
-  "wipeChatBackup": "Notīrīt tērzēšanu rezerves kopiju, lai izveidotu jaunu atkopšanas atslēgu?",
+  "wipeChatBackup": "Notīrīt tērzēšanu rezerves kopiju, lai izveidotu jaunu atkopes atslēgu?",
   "@wipeChatBackup": {
     "type": "String",
     "placeholders": {}
@@ -816,7 +816,7 @@
   },
   "signInWithPassword": "Pieteikties ar paroli",
   "@signInWithPassword": {},
-  "lastActiveAgo": "Pēdējoreiz redzēts: {localizedTimeShort}",
+  "lastActiveAgo": "Pēdējoreiz tiešsaistē: {localizedTimeShort}",
   "@lastActiveAgo": {
     "type": "String",
     "placeholders": {
@@ -864,7 +864,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "noEmotesFound": "Netika atrastas emocijas. 😕",
+  "noEmotesFound": "Netika atrasta neviena emocija. 😕",
   "@noEmotesFound": {
     "type": "String",
     "placeholders": {}
@@ -1429,7 +1429,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "pleaseEnterRecoveryKeyDescription": "Lai atslēgtu savas vecās ziņas, lūgums ievadīt savu atkopšanas atslēgu, kas tika izveidota iepriekšējā sesijā. Atkopšanas atslēga NAV parole.",
+  "pleaseEnterRecoveryKeyDescription": "Lai atslēgtu savas vecās ziņas, lūgums ievadīt savu atkopes atslēgu, kas tika izveidota iepriekšējā sesijā. Atkopes atslēga NAV parole.",
   "@pleaseEnterRecoveryKeyDescription": {},
   "guestsAreForbidden": "Viesi nav ļauti",
   "@guestsAreForbidden": {
@@ -1656,7 +1656,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "recoveryKey": "Atkopšanas atslēga",
+  "recoveryKey": "Atkopes atslēga",
   "@recoveryKey": {},
   "redactMessage": "Labot ziņu",
   "@redactMessage": {
@@ -2214,7 +2214,7 @@
   "@shareInviteLink": {},
   "commandHint_markasdm": "Atzīmēt kā tiešo ziņu istabu norādītajam Matrix Id",
   "@commandHint_markasdm": {},
-  "recoveryKeyLost": "Pazaudēta atkopšanas atslēga?",
+  "recoveryKeyLost": "Pazaudēta atkopes atslēga?",
   "@recoveryKeyLost": {},
   "cuddleContent": "{senderName} samīļo Tevi",
   "@cuddleContent": {
@@ -2348,7 +2348,7 @@
       }
     }
   },
-  "chatBackupDescription": "Iepriekšējās ziņas ir aizsargātas ar atkopšanas atslēgu. Lūgums nodrošināt, ka tā netiek pazaudēta.",
+  "chatBackupDescription": "Iepriekšējās ziņas ir aizsargātas ar atkopes atslēgu. Lūgums nodrošināt, ka tā netiek pazaudēta.",
   "@chatBackupDescription": {
     "type": "String",
     "placeholders": {}
@@ -2561,7 +2561,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "storeInSecureStorageDescription": "Glabāt atkopšanas atslēgu šīs ierīces drošajā krātuvē.",
+  "storeInSecureStorageDescription": "Glabāt atkopes atslēgu šīs ierīces drošajā krātuvē.",
   "@storeInSecureStorageDescription": {},
   "openChat": "Atvērt tērzēšanu",
   "@openChat": {},
@@ -2653,13 +2653,13 @@
   "@overview": {},
   "notifyMeFor": "Paziņot man par",
   "@notifyMeFor": {},
-  "wrongRecoveryKey": "Atvaino... Nešķiet, ka šī būtu pareiza atkopšanas atslēga.",
+  "wrongRecoveryKey": "Atvaino... Nešķiet, ka šī būtu pareiza atkopes atslēga.",
   "@wrongRecoveryKey": {},
   "block": "Izslēgt",
   "@block": {},
   "hideMemberChangesInPublicChats": "Paslēpt dalībnieku izmaiņas publiskajās tērzēšanās",
   "@hideMemberChangesInPublicChats": {},
-  "passwordRecoverySettings": "Paroles atjaunošanas iestatījumi",
+  "passwordRecoverySettings": "Paroles atkopes iestatījumi",
   "@passwordRecoverySettings": {},
   "blockedUsers": "Atslēgtie lietotāji",
   "@blockedUsers": {},
@@ -2932,7 +2932,7 @@
     "type": "String",
     "count": {}
   },
-  "verifyOtherDeviceDescription": "Kad apliecini citu ierīci, šīs ierīces var apmainīt atslēgas, palielinot vispārējo drošību. 💪 Pēc apliecināšanas uzsākšanas abās ierīcēs lietotnē parādīsies uznirstošais logs. Tajā būs redzamas dažādas emocijzīmes vai skaitļi, kas jāsalīdzina abās ierīcēs. Vislabāk, ja abas ierīces ir pieejams, pirms tiek uzsākta apliecināšana. 🤳",
+  "verifyOtherDeviceDescription": "Kad apliecini citu ierīci, šīs ierīces var apmainīt atslēgas, palielinot vispārējo drošību. 💪 Pēc apliecināšanas uzsākšanas abās ierīcēs lietotnē parādīsies uznirstošais logs. Tajā būs redzamas dažādas emocijzīmes vai skaitļi, kas jāsalīdzina abās ierīcēs. Vislabāk, ja abas ierīces ir pieejamas, pirms tiek uzsākta apliecināšana. 🤳",
   "@verifyOtherDeviceDescription": {},
   "swipeRightToLeftToReply": "Pavilkt no labās puses uz kreiso, lai atbildētu",
   "@swipeRightToLeftToReply": {},
@@ -3311,5 +3311,11 @@
   "crossVerifiedDevicesIfEnabled": "Savstarpēji apliecinātas ierīces, ja iespējots",
   "@crossVerifiedDevicesIfEnabled": {},
   "verifiedDevicesOnly": "Tikai apliecinātas ierīces",
-  "@verifiedDevicesOnly": {}
+  "@verifiedDevicesOnly": {},
+  "optionalMessage": "(Pēc izvēles) Ziņojums...",
+  "@optionalMessage": {},
+  "takeAPhoto": "Uzņemt attēlu",
+  "@takeAPhoto": {},
+  "recordAVideo": "Ierakstīt video",
+  "@recordAVideo": {}
 }

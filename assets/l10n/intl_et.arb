@@ -3339,5 +3339,7 @@
   "takeAPhoto": "Pildista",
   "@takeAPhoto": {},
   "optionalMessage": "Sõnum (kui soovid lisada)...",
-  "@optionalMessage": {}
+  "@optionalMessage": {},
+  "notSupportedOnThisDevice": "See pole antud seadmes toetatud",
+  "@notSupportedOnThisDevice": {}
 }
