@@ -3339,5 +3339,7 @@
   "takeAPhoto": "拍照",
   "@takeAPhoto": {},
   "recordAVideo": "录像",
-  "@recordAVideo": {}
+  "@recordAVideo": {},
+  "notSupportedOnThisDevice": "此设备上不受支持",
+  "@notSupportedOnThisDevice": {}
 }
