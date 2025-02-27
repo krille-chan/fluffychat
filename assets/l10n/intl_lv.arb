@@ -3317,5 +3317,7 @@
   "takeAPhoto": "Uzņemt attēlu",
   "@takeAPhoto": {},
   "recordAVideo": "Ierakstīt video",
-  "@recordAVideo": {}
+  "@recordAVideo": {},
+  "notSupportedOnThisDevice": "Šajā ierīcē nav atbalstīts",
+  "@notSupportedOnThisDevice": {}
 }
