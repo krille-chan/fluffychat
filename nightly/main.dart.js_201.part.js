@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_201",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cy6(){return new A.Eh(B.dh("bo"))},
-Eh:function Eh(d){this.a=d}}
+cy5(){return new A.Eg(B.dh("bn"))},
+Eg:function Eg(d){this.a=d}}
 B=c[0]
 C=c[51]
-A=a.updateHolder(c[8],A)
-A.Eh.prototype={
+A=a.updateHolder(c[7],A)
+A.Eg.prototype={
 gnt(){return"false"},
 gjK(){return"Repeat password"},
 gm_(){return"Not an image file."},
@@ -17,11 +17,11 @@ gly(){return"Import Emojis"},
 glz(){return"Import from .zip file"},
 glh(){return"Export Emote pack as .zip"},
 gmn(d){return"Replace"},
-geB(){return"About"},
+geB(){return"\u09b8\u09ae\u09cd\u09aa\u09b0\u09cd\u0995\u09c7"},
 ns(d){return"About "+d},
-gf5(d){return"Accept"},
-hb(d){return"\ud83d\udc4d "+d+" accepted the invitation"},
-ghd(){return"Account"},
+gf5(d){return"\u09b8\u09cd\u09ac\u09c0\u0995\u09be\u09b0 \u0995\u09b0\u09bf"},
+hb(d){return d+" \u0986\u09ae\u09a8\u09cd\u09a4\u09cd\u09b0\u09a3 \u0997\u09cd\u09b0\u09b9\u09a3 \u0995\u09b0\u09c7\u099b\u09c7"},
+ghd(){return"\u0985\u09cd\u09af\u09be\u0995\u09be\u0989\u09a8\u09cd\u099f"},
 he(d){return"\ud83d\udd10 "+d+" activated end to end encryption"},
 ghf(){return"Add email"},
 gl_(){return"Please confirm your Matrix ID in order to delete your account."},
@@ -630,8 +630,8 @@ gpb(){return"(Optional) message..."},
 goq(){return"Not supported on this device"},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Eh,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"Eh":{"aF":[]}}'))};
+y(A.Eg,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"Eg":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_201",e:"endPart",h:b})})($__dart_deferred_initializers__,"lL3de5bP1x9OPn/E2/ZlbtAF6e0=");
+a.eventLog.push({p:"main.dart.js_201",e:"endPart",h:b})})($__dart_deferred_initializers__,"FMNhUwbZJBfFfn8HADo/umealBg=");
 //# sourceMappingURL=main.dart.js_201.part.js.map
