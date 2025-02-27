@@ -494,7 +494,7 @@ class InputBar extends StatelessWidget {
             // fix for issue with typing not working sometimes on Firefox and Safari
             return SelectionArea(
               child: TextField(
-                enableSuggestions: false,
+                enableSuggestions: enableAutocorrect,
                 readOnly:
                     controller != null && controller!.choreographer.isRunningIT,
                 autocorrect: enableAutocorrect,
