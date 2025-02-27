@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart' as sdk;
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/new_group/new_group_view.dart';
 import 'package:fluffychat/pangea/bot/utils/bot_name.dart';
 import 'package:fluffychat/pangea/common/constants/model_keys.dart';
@@ -101,6 +102,10 @@ class NewGroupController extends State<NewGroup> {
           // Pangea#
         );
     if (!mounted) return;
+    // #Pangea
+    // if a timeout happened, don't redirect to the chat
+    if (error != null) return;
+    // Pangea#
     context.go('/rooms/$roomId/invite');
   }
 
@@ -155,6 +160,9 @@ class NewGroupController extends State<NewGroup> {
         data: {"spaceId": spaceId, "error": err},
       );
     }
+
+    // if a timeout happened, don't redirect to the space
+    if (error != null) return;
     MatrixState.pangeaController.classController
         .setActiveSpaceIdInChatListController(spaceId);
     // Pangea#
@@ -206,9 +214,23 @@ class NewGroupController extends State<NewGroup> {
 
       switch (createGroupType) {
         case CreateGroupType.group:
-          await _createGroup();
+          // #Pangea
+          // await _createGroup();
+          await _createGroup().timeout(
+            const Duration(
+              seconds: AppConfig.roomCreationTimeoutSeconds,
+            ),
+          );
+        // Pangea#
         case CreateGroupType.space:
-          await _createSpace();
+          // #Pangea
+          // await _createSpace();
+          await _createSpace().timeout(
+            const Duration(
+              seconds: AppConfig.roomCreationTimeoutSeconds,
+            ),
+          );
+        // Pangea#
       }
     } catch (e, s) {
       sdk.Logs().d('Unable to create group', e, s);
