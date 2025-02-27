@@ -360,9 +360,8 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
           : _downloadAction();
     }
 
-    _onShowToolbar = widget.chatController.showToolbarStream.stream
-        .where((eventID) => eventID == widget.event?.eventId)
-        .listen((eventID) {
+    _onShowToolbar =
+        widget.chatController.showToolbarStream.stream.listen((eventID) {
       audioPlayer?.pause();
       audioPlayer?.seek(Duration.zero);
     });
