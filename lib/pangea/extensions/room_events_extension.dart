@@ -2,10 +2,15 @@ part of "pangea_room_extension.dart";
 
 extension EventsRoomExtension on Room {
   Future<void> leaveSpace() async {
+    if (!isSpace) {
+      debugPrint("room is not a space!");
+      return;
+    }
+
     for (final child in spaceChildren) {
       if (child.roomId == null) continue;
       final Room? room = client.getRoomById(child.roomId!);
-      if (room == null) continue;
+      if (room == null || room.isAnalyticsRoom) continue;
       try {
         await room.leave();
       } catch (e, s) {
