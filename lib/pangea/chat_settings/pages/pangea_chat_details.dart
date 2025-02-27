@@ -239,7 +239,9 @@ class PangeaChatDetailsView extends StatelessWidget {
                               ),
                               child: SelectableLinkify(
                                 text: room.topic.isEmpty
-                                    ? L10n.of(context).noChatDescriptionYet
+                                    ? room.isSpace
+                                        ? L10n.of(context).noSpaceDescriptionYet
+                                        : L10n.of(context).noChatDescriptionYet
                                     : room.topic,
                                 options: const LinkifyOptions(humanize: false),
                                 linkStyle: const TextStyle(
