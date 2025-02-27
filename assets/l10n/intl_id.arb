@@ -3332,5 +3332,13 @@
   "appWantsToUseForLoginDescription": "Anda memperbolehkan aplikasi dan situs web membagikan informasi tentang Anda.",
   "@appWantsToUseForLoginDescription": {},
   "open": "Buka",
-  "@open": {}
+  "@open": {},
+  "takeAPhoto": "Ambil foto",
+  "@takeAPhoto": {},
+  "recordAVideo": "Rekam video",
+  "@recordAVideo": {},
+  "optionalMessage": "Pesan (opsional)...",
+  "@optionalMessage": {},
+  "notSupportedOnThisDevice": "Tidak didukung pada perangkat ini",
+  "@notSupportedOnThisDevice": {}
 }
