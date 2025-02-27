@@ -15,6 +15,8 @@ import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dar
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_representation_event.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_text_model.dart';
+import 'package:fluffychat/pangea/events/models/tokens_event_content_model.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/text_to_speech_controller.dart';
 import 'package:fluffychat/pangea/toolbar/enums/activity_type_enum.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
@@ -179,6 +181,24 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
           widget._event.room,
           MatrixState.pangeaController.languageController.userL1!.langCode,
           MatrixState.pangeaController.languageController.userL2!.langCode,
+        );
+      }
+      // If repEvent is originalSent but it's missing tokens, then fetch tokens.
+      // An edge case, but has happened with some bot message.
+      else if (repEvent != null &&
+          repEvent.tokens == null &&
+          repEvent.content.originalSent) {
+        final tokens = await repEvent.tokensGlobal(
+          pangeaMessageEvent!.senderId,
+          pangeaMessageEvent!.event.originServerTs,
+        );
+        await pangeaMessageEvent!.room.pangeaSendTextEvent(
+          pangeaMessageEvent!.messageDisplayText,
+          editEventId: pangeaMessageEvent!.eventId,
+          originalSent: pangeaMessageEvent!.originalSent?.content,
+          originalWritten: pangeaMessageEvent!.originalWritten?.content,
+          tokensSent: PangeaMessageTokens(tokens: tokens),
+          choreo: pangeaMessageEvent!.originalSent?.choreo,
         );
       }
     } catch (e, s) {
