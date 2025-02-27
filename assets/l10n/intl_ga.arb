@@ -3338,5 +3338,13 @@
   "shareKeysWithDescription": "Cad iad na gléasanna ar cheart muinín a chur iontu ionas gur féidir leo do chuid teachtaireachtaí a léamh i gcomhráite criptithe?",
   "@shareKeysWithDescription": {},
   "verifiedDevicesOnly": "Gléasanna fíoraithe amháin",
-  "@verifiedDevicesOnly": {}
+  "@verifiedDevicesOnly": {},
+  "takeAPhoto": "Glac grianghraf",
+  "@takeAPhoto": {},
+  "recordAVideo": "Taifead físeán",
+  "@recordAVideo": {},
+  "notSupportedOnThisDevice": "Ní thacaítear leis ar an ngléas seo",
+  "@notSupportedOnThisDevice": {},
+  "optionalMessage": "Teachtaireacht (Roghnach)…",
+  "@optionalMessage": {}
 }
