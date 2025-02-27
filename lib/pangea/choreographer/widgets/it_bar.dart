@@ -409,6 +409,7 @@ class ITChoices extends StatelessWidget {
         );
       }
       return ChoicesArray(
+        id: controller.currentITStep.hashCode.toString(),
         isLoading: controller.isLoading ||
             controller.choreographer.isFetching ||
             controller.currentITStep == null,
