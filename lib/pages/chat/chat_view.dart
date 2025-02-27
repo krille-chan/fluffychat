@@ -131,6 +131,7 @@ class ChatView extends StatelessWidget {
         icon: const Icon(Icons.search_outlined),
         tooltip: L10n.of(context).search,
         onPressed: () {
+          controller.stopAudioStream.add(null);
           context.go('/rooms/${controller.room.id}/search');
         },
       ),
@@ -139,6 +140,7 @@ class ChatView extends StatelessWidget {
         icon: const Icon(Icons.settings_outlined),
         tooltip: L10n.of(context).chatDetails,
         onPressed: () {
+          controller.stopAudioStream.add(null);
           if (GoRouterState.of(context).uri.path.endsWith('/details')) {
             context.go('/rooms/${controller.room.id}');
           } else {

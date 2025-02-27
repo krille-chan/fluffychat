@@ -612,6 +612,7 @@ class ChatController extends State<ChatPageWithRoom>
     clearSelectedEvents();
     MatrixState.pAnyState.closeOverlay();
     showToolbarStream.close();
+    stopAudioStream.close();
     hideTextController.dispose();
     _levelSubscription?.cancel();
     //Pangea#
@@ -1771,6 +1772,8 @@ class ChatController extends State<ChatPageWithRoom>
   final StreamController<String> showToolbarStream =
       StreamController.broadcast();
 
+  final StreamController<void> stopAudioStream = StreamController.broadcast();
+
   void showToolbar(
     Event event, {
     PangeaMessageEvent? pangeaMessageEvent,
@@ -1826,6 +1829,8 @@ class ChatController extends State<ChatPageWithRoom>
     if (!kIsWeb) {
       HapticFeedback.mediumImpact();
     }
+
+    stopAudioStream.add(null);
 
     Future.delayed(
         Duration(milliseconds: buttonEventID == event.eventId ? 200 : 0), () {
