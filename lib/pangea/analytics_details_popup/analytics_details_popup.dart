@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -80,11 +81,13 @@ class AnalyticsPopupWrapperState extends State<AnalyticsPopupWrapper> {
     return FullWidthDialog(
       dialogContent: Scaffold(
         appBar: AppBar(
-          title: Text(
-            localView == ConstructTypeEnum.morph
-                ? ConstructTypeEnum.morph.indicator.tooltip(context)
-                : ConstructTypeEnum.vocab.indicator.tooltip(context),
-          ),
+          title: kIsWeb
+              ? Text(
+                  localView == ConstructTypeEnum.morph
+                      ? ConstructTypeEnum.morph.indicator.tooltip(context)
+                      : ConstructTypeEnum.vocab.indicator.tooltip(context),
+                )
+              : null,
           leading: IconButton(
             icon: localConstructZoom == null
                 ? const Icon(Icons.close)
