@@ -89,16 +89,11 @@ extension EventsRoomExtension on Room {
     }
   }
 
-  String sendFakeMessage({
-    required String text,
+  Map<String, dynamic> _getEventContent(
+    Map<String, dynamic> content,
     Event? inReplyTo,
     String? editEventId,
-  }) {
-    final content = <String, dynamic>{
-      'msgtype': MessageTypes.Text,
-      'body': text,
-    };
-
+  ) {
     final html = markdown(
       content['body'],
       getEmotePacks: () => getImagePacksFlat(ImagePackUsage.emoticon),
@@ -110,9 +105,6 @@ extension EventsRoomExtension on Room {
       content['format'] = 'org.matrix.custom.html';
       content['formatted_body'] = html;
     }
-
-    // Create new transaction id
-    final messageID = client.generateUniqueTransactionId();
 
     if (inReplyTo != null) {
       var replyText = '<${inReplyTo.senderId}> ${inReplyTo.body}';
@@ -163,6 +155,23 @@ extension EventsRoomExtension on Room {
       }
     }
 
+    return content;
+  }
+
+  String sendFakeMessage({
+    required String text,
+    Event? inReplyTo,
+    String? editEventId,
+  }) {
+    // Create new transaction id
+    final messageID = client.generateUniqueTransactionId();
+
+    final baseContent = <String, dynamic>{
+      'msgtype': MessageTypes.Text,
+      'body': text,
+    };
+
+    final content = _getEventContent(baseContent, inReplyTo, editEventId);
     final Event event = Event(
       content: content,
       type: EventTypes.Message,
@@ -238,6 +247,15 @@ extension EventsRoomExtension on Room {
         event['formatted_body'] = html;
       }
     }
+
+    final fullBody = _getEventContent(event, inReplyTo, editEventId);
+    final jsonString = jsonEncode(fullBody);
+    final jsonSizeInBytes = utf8.encode(jsonString).length;
+    const maxBodySize = 60000;
+    if (jsonSizeInBytes > maxBodySize) {
+      return Future.error(EventTooLarge(maxBodySize, jsonSizeInBytes));
+    }
+
     return sendEvent(
       event,
       txid: txid,

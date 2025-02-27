@@ -4827,5 +4827,6 @@
   "enableAutocorrectDescription": "Use your keyboard's built-in autocorrect when typing messages",
   "ttsDisbledTitle": "Text-to-speech disabled",
   "ttsDisabledBody": "You can enable text-to-speech in your learning settings",
-  "noSpaceDescriptionYet": "No space description created yet."
+  "noSpaceDescriptionYet": "No space description created yet.",
+  "tooLargeToSend": "This message is too large to send"
 } 
