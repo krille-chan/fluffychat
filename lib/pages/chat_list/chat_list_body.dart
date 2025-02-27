@@ -168,15 +168,8 @@ class ChatListViewBody extends StatelessWidget {
                         ),
                       ),
                     ),
-                    // #Pangea
-                    if (!controller.isSearchMode)
-
-                      // if (client.rooms.isNotEmpty && !controller.isSearchMode)
-                      // let's simplify this UI while the user has less chat than
-                      // can fill this view
-                      if (client.rooms.length <= 7 || controller.isSearchMode)
-                        const SizedBox(height: 8),
-                    if (client.rooms.length > 7 && !controller.isSearchMode)
+                    if (client.rooms.isNotEmpty && !controller.isSearchMode)
+                      // #Pangea
                       // SizedBox(
                       //   height: 64,
                       //   child: ListView(
