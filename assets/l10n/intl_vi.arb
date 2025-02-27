@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2021-08-14 12:41:09.781172",
+  "@@last_modified": "2025-02-27 09:51:45.710355",
   "about": "Giới thiệu",
   "@about": {
     "type": "String",
@@ -3618,5 +3618,97 @@
   "accountInformation": "Thông tin tài khoản",
   "addGroupDescription": "Thêm mô tả cho cuộc trò chuyện",
   "addNewFriend": "Thêm bạn mới",
-  "alreadyHaveAnAccount": "Bạn đã có tài khoản"
+  "alreadyHaveAnAccount": "Bạn đã có tài khoản",
+  "newChatRequest": "📩 Yêu cầu trò chuyện mới",
+  "contentNotificationSettings": "Cài đặt thông báo nội dung",
+  "generalNotificationSettings": "Cài đặt thông báo chung",
+  "roomNotificationSettings": "Cài đặt thông báo phòng",
+  "userSpecificNotificationSettings": "Cài đặt thông báo theo người dùng",
+  "otherNotificationSettings": "Cài đặt thông báo khác",
+  "notificationRuleContainsUserName": "Chứa tên người dùng",
+  "notificationRuleContainsUserNameDescription": "Thông báo cho người dùng khi một tin nhắn chứa tên người dùng của họ.",
+  "notificationRuleMaster": "Tắt tất cả thông báo",
+  "notificationRuleMasterDescription": "Ghi đè tất cả các quy tắc khác và tắt tất cả thông báo.",
+  "notificationRuleSuppressNotices": "Tắt thông báo tự động",
+  "notificationRuleSuppressNoticesDescription": "Tắt thông báo từ các khách hàng tự động như bot.",
+  "notificationRuleInviteForMe": "Mời cho tôi",
+  "notificationRuleInviteForMeDescription": "Thông báo cho người dùng khi họ được mời vào một phòng.",
+  "notificationRuleMemberEvent": "Sự kiện thành viên",
+  "notificationRuleMemberEventDescription": "Tắt thông báo cho các sự kiện thành viên.",
+  "notificationRuleIsUserMention": "Đề cập người dùng",
+  "notificationRuleIsUserMentionDescription": "Thông báo cho người dùng khi họ được đề cập trực tiếp trong một tin nhắn.",
+  "notificationRuleContainsDisplayName": "Chứa tên hiển thị",
+  "notificationRuleContainsDisplayNameDescription": "Thông báo cho người dùng khi một tin nhắn chứa tên hiển thị của họ.",
+  "notificationRuleIsRoomMention": "Đề cập phòng",
+  "notificationRuleIsRoomMentionDescription": "Thông báo cho người dùng khi có đề cập đến phòng.",
+  "notificationRuleRoomnotif": "Thông báo phòng",
+  "notificationRuleRoomnotifDescription": "Thông báo cho người dùng khi một tin nhắn chứa '@room'.",
+  "notificationRuleTombstone": "Tombstone",
+  "notificationRuleTombstoneDescription": "Thông báo cho người dùng về các tin nhắn vô hiệu hóa phòng.",
+  "notificationRuleReaction": "Phản ứng",
+  "notificationRuleReactionDescription": "Ngăn chặn thông báo cho các phản ứng.",
+  "notificationRuleRoomServerAcl": "Danh sách kiểm soát truy cập máy chủ phòng",
+  "notificationRuleRoomServerAclDescription": "Ngăn chặn thông báo cho danh sách kiểm soát truy cập máy chủ phòng (ACL).",
+  "notificationRuleSuppressEdits": "Ngăn chặn chỉnh sửa",
+  "notificationRuleSuppressEditsDescription": "Ngăn chặn thông báo cho các tin nhắn đã chỉnh sửa.",
+  "notificationRuleCall": "Cuộc gọi",
+  "notificationRuleCallDescription": "Thông báo cho người dùng về các cuộc gọi.",
+  "notificationRuleEncryptedRoomOneToOne": "Phòng mã hóa một-một",
+  "notificationRuleEncryptedRoomOneToOneDescription": "Thông báo cho người dùng về các tin nhắn trong các phòng mã hóa một-một.",
+  "notificationRuleRoomOneToOne": "Phòng một-một",
+  "notificationRuleRoomOneToOneDescription": "Thông báo cho người dùng về các tin nhắn trong các phòng một-một.",
+  "notificationRuleMessage": "Tin nhắn",
+  "notificationRuleMessageDescription": "Thông báo cho người dùng về các tin nhắn chung.",
+  "notificationRuleEncrypted": "Mã hóa",
+  "notificationRuleEncryptedDescription": "Thông báo cho người dùng về các tin nhắn trong các phòng mã hóa.",
+  "notificationRuleJitsi": "Jitsi",
+  "notificationRuleJitsiDescription": "Thông báo cho người dùng về các sự kiện của widget Jitsi.",
+  "notificationRuleServerAcl": "Ngăn chặn sự kiện Server ACL",
+  "notificationRuleServerAclDescription": "Ngăn chặn thông báo cho các sự kiện Server ACL.",
+  "unknownPushRule": "Quy tắc đẩy không xác định '{rule}'",
+  "@unknownPushRule": {
+    "type": "String",
+    "placeholders": {
+      "rule": {
+        "type": "String"
+      }
+    }
+  },
+  "deletePushRuleCanNotBeUndone": "Nếu bạn xóa cài đặt thông báo này, điều này sẽ không thể hoàn tác.",
+  "shareKeysWith": "Chia sẻ khóa với...",
+  "shareKeysWithDescription": "Thiết bị nào nên được tin cậy để có thể đọc các tin nhắn của bạn trong các cuộc trò chuyện mã hóa?",
+  "allDevices": "Tất cả các thiết bị",
+  "crossVerifiedDevicesIfEnabled": "Thiết bị đã xác minh chéo nếu được kích hoạt",
+  "crossVerifiedDevices": "Thiết bị đã xác minh chéo",
+  "verifiedDevicesOnly": "Chỉ thiết bị đã xác minh",
+  "writeAMessageLangCodes": "Gõ bằng {l1} hoặc {l2}...",
+  "@writeAMessageLangCodes": {
+    "type": "String",
+    "placeholders": {
+      "l1": {
+        "type": "String"
+      },
+      "l2": {
+        "type": "String"
+      }
+    }
+  },
+  "grammarCopyVERBFORMaux": "Trợ động từ",
+  "chatWith": "Nhóm với {displayname}",
+  "@chatWith": {
+    "type": "String",
+    "placeholders": {
+      "displayname": {
+        "type": "String"
+      }
+    }
+  },
+  "slightlyOffensive": "Hơi xúc phạm",
+  "clickOnEmailLink": "Vui lòng nhấp vào liên kết trong email và sau đó tiếp tục. Trong một số trường hợp hiếm hoi, email có thể bị gửi vào thư rác hoặc mất đến 5 phút để đến nơi.",
+  "whoIsAllowedToJoinThisChat": "Ai được phép tham gia cuộc trò chuyện này",
+  "dontForgetPassword": "Đừng quên mật khẩu của bạn!",
+  "enableAutocorrectToolName": "Bật tự động sửa",
+  "enableAutocorrectDescription": "Sử dụng tính năng tự động sửa tích hợp của bàn phím khi gõ tin nhắn",
+  "ttsDisbledTitle": "Tính năng chuyển văn bản thành giọng nói đã bị tắt",
+  "ttsDisabledBody": "Bạn có thể bật tính năng chuyển văn bản thành giọng nói trong cài đặt học tập của bạn"
 }
