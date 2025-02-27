@@ -49,6 +49,8 @@ extension RoomSettingsRoomExtension on Room {
   }
 
   Text nameAndRoomTypeIcon([TextStyle? textStyle]) => Text.rich(
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
         style: textStyle,
         TextSpan(
           children: [
