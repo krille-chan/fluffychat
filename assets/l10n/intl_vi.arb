@@ -3595,7 +3595,6 @@
   },
   "constructUsePvmDesc": "Đã sử dụng trong tin nhắn thoại",
   "lockedMorphFeature": "Đang đợi mở khóa",
-  "leaveSpaceDescription": "Không gian sẽ được chuyển vào lưu trữ. Người khác vẫn thấy bạn rời không gian.",
   "appWantsToUseForLogin": "Dùng '{server}' để đăng nhập",
   "@appWantsToUseForLogin": {
     "type": "String",

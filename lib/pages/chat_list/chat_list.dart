@@ -927,7 +927,7 @@ class ChatListController extends State<ChatList>
           // message: L10n.of(context).archiveRoomDescription,
           message: room.isSpace
               ? L10n.of(context).leaveSpaceDescription
-              : L10n.of(context).archiveRoomDescription,
+              : L10n.of(context).leaveRoomDescription,
           // Pangea#
           okLabel: L10n.of(context).leave,
           cancelLabel: L10n.of(context).cancel,

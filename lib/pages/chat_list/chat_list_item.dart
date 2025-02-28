@@ -56,7 +56,7 @@ class ChatListItem extends StatelessWidget {
         // message: L10n.of(context).archiveRoomDescription,
         message: room.isSpace
             ? L10n.of(context).leaveSpaceDescription
-            : L10n.of(context).archiveRoomDescription,
+            : L10n.of(context).leaveRoomDescription,
         // Pangea#
         isDestructive: true,
       );

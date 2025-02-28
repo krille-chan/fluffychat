@@ -4803,7 +4803,7 @@
   },
   "constructUsePvmDesc": "Produced in voice message",
   "lockedMorphFeature": "Waiting to be unlocked",
-  "leaveSpaceDescription": "The space will be moved to the archive. Other users will be able to see that you have left the chat.",
+  "leaveSpaceDescription": "By leaving the space, you will leave all of the chats within it. Other users will see that you have left the space.",
   "whatIsLemma": "What is the lemma?",
   "constructUseCorMmDesc": "Correct message meaning",
   "constructUseIncMmDesc": "Incorrect message meaning",
@@ -4828,5 +4828,6 @@
   "ttsDisbledTitle": "Text-to-speech disabled",
   "ttsDisabledBody": "You can enable text-to-speech in your learning settings",
   "noSpaceDescriptionYet": "No space description created yet.",
-  "tooLargeToSend": "This message is too large to send"
+  "tooLargeToSend": "This message is too large to send",
+  "leaveRoomDescription": "You're about to leave this chat. Other users will see that you have left the chat."
 } 
