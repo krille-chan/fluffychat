@@ -933,7 +933,10 @@ class ChatListController extends State<ChatList>
           cancelLabel: L10n.of(context).cancel,
           isDestructive: true,
         );
-        if (confirmed == OkCancelResult.cancel) return;
+        // #Pangea
+        // if (confirmed == OkCancelResult.cancel) return;
+        if (confirmed != OkCancelResult.ok) return;
+        // Pangea#
         if (!mounted) return;
 
         // #Pangea

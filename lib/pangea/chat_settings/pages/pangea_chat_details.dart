@@ -420,7 +420,7 @@ class PangeaChatDetailsView extends StatelessWidget {
                                   : L10n.of(context).leaveRoomDescription,
                               isDestructive: true,
                             );
-                            if (confirmed == OkCancelResult.cancel) return;
+                            if (confirmed != OkCancelResult.ok) return;
                             final resp = await showFutureLoadingDialog(
                               context: context,
                               future:
