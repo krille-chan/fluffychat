@@ -732,7 +732,7 @@ class PangeaMessageEvent {
   List<PracticeActivityEvent> get practiceActivities =>
       l2Code == null ? [] : practiceActivitiesByLangCode(l2Code!);
 
-  bool get shouldShowToolbar => !event.isActivityMessage;
+  bool get shouldShowToolbar => !event.isActivityMessage && !event.redacted;
 
   bool shouldDoActivity({
     required PangeaToken? token,
