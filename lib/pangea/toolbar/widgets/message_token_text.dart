@@ -189,6 +189,15 @@ class MessageTextWidget extends StatelessWidget {
         (messageAnalyticsEntry!.hasHiddenWordActivity ||
             messageAnalyticsEntry!.hasMessageMeaningActivity);
 
+    final theme = Theme.of(context);
+    final ownMessage =
+        pangeaMessageEvent.senderId == Matrix.of(context).client.userID;
+    final linkColor = theme.brightness == Brightness.light
+        ? theme.colorScheme.primary
+        : ownMessage
+            ? theme.colorScheme.onPrimary
+            : theme.colorScheme.onSurface;
+
     return RichText(
       softWrap: softWrap ?? true,
       maxLines: maxLines,
@@ -270,10 +279,7 @@ class MessageTextWidget extends StatelessWidget {
                             style: style,
                             linkStyle: TextStyle(
                               decoration: TextDecoration.underline,
-                              color: Theme.of(context).brightness ==
-                                      Brightness.light
-                                  ? Theme.of(context).colorScheme.primary
-                                  : Theme.of(context).colorScheme.onPrimary,
+                              color: linkColor,
                             ),
                             onOpen: (url) =>
                                 UrlLauncher(context, url.url).launchUrl(),
@@ -287,10 +293,7 @@ class MessageTextWidget extends StatelessWidget {
                           ),
                           linkStyle: TextStyle(
                             decoration: TextDecoration.underline,
-                            color:
-                                Theme.of(context).brightness == Brightness.light
-                                    ? Theme.of(context).colorScheme.primary
-                                    : Theme.of(context).colorScheme.onPrimary,
+                            color: linkColor,
                           ),
                           onOpen: (url) =>
                               UrlLauncher(context, url.url).launchUrl(),
@@ -301,10 +304,7 @@ class MessageTextWidget extends StatelessWidget {
                             style: style,
                             linkStyle: TextStyle(
                               decoration: TextDecoration.underline,
-                              color: Theme.of(context).brightness ==
-                                      Brightness.light
-                                  ? Theme.of(context).colorScheme.primary
-                                  : Theme.of(context).colorScheme.onPrimary,
+                              color: linkColor,
                             ),
                             onOpen: (url) =>
                                 UrlLauncher(context, url.url).launchUrl(),
