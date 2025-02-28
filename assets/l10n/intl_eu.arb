@@ -3218,7 +3218,7 @@
   "@newChatRequest": {},
   "contentNotificationSettings": "Edukiaren jakinarazpenen ezarpenak",
   "@contentNotificationSettings": {},
-  "notificationRuleContainsUserNameDescription": "Jakinarazten du mezuan erabiltzaile-izena aipatzen denean.",
+  "notificationRuleContainsUserNameDescription": "Mezuan erabiltzaile-izena aipatzen denean jakinarazten du.",
   "@notificationRuleContainsUserNameDescription": {},
   "notificationRuleMasterDescription": "Gainerako arauak gainidatzi eta jakinarazpenak ezgaitzen ditu.",
   "@notificationRuleMasterDescription": {},
