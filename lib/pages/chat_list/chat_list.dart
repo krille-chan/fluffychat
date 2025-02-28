@@ -43,6 +43,7 @@ import '../../widgets/matrix.dart';
 import 'package:fluffychat/utils/tor_stub.dart'
     if (dart.library.html) 'package:tor_detector_web/tor_detector_web.dart';
 
+
 enum PopupMenuAction {
   settings,
   invite,
@@ -474,13 +475,15 @@ class ChatListController extends State<ChatList>
     //#Pangea
     classStream = MatrixState.pangeaController.classController.stateStream
         .listen((event) {
-      if (mounted) {
-        event["activeSpaceId"] != null
-            ? setActiveSpace(event["activeSpaceId"])
-            : clearActiveSpace();
-        if (event["activeSpaceId"] != null) {
-          context.push("/rooms/${event["activeSpaceId"]}/details");
+      if (!mounted || event is! Map<String, dynamic>) return;
+      if (event.containsKey("activeSpaceId")) {
+        final setSpaceID = event["activeSpaceId"];
+        setSpaceID != null ? setActiveSpace(setSpaceID) : clearActiveSpace();
+        if (setSpaceID != null) {
+          context.push("/rooms/$setSpaceID/details");
         }
+      } else if (event.containsKey("activeFilter")) {
+        setActiveFilter(event["activeFilter"]);
       }
     });
 
