@@ -171,8 +171,11 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
   void _playAction() async {
     final audioPlayer = this.audioPlayer ??= AudioPlayer();
     // #Pangea
-    // if there's another audio playing, stop it
+    // If there's another audio playing, stop it. Wait for this to come through
+    // the stream so that the listener doesn't stop the audio that just started
+    final future = widget.chatController.stopAudioStream.stream.first;
     widget.chatController.stopAudioStream.add(null);
+    await future;
 
     // if (AudioPlayerWidget.currentId != widget.event.eventId) {
     if (AudioPlayerWidget.currentId != widget.event?.eventId) {
@@ -363,8 +366,7 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
           : _downloadAction();
     }
 
-    _onShowToolbar =
-        widget.chatController.stopAudioStream.stream.listen((eventID) {
+    _onShowToolbar = widget.chatController.stopAudioStream.stream.listen((_) {
       audioPlayer?.pause();
       audioPlayer?.seek(Duration.zero);
     });
