@@ -169,11 +169,15 @@ class UserController extends BaseController {
     }
   }
 
+  void clear() {
+    _profileCompleter = null;
+    _cachedProfile = null;
+  }
+
   /// Reinitializes the user's profile
   /// This method should be called whenever the user's login status changes
   Future<void> reinitialize() async {
-    _profileCompleter = null;
-    _cachedProfile = null;
+    clear();
     await initialize();
   }
 

@@ -157,6 +157,7 @@ class PangeaController {
         // Reset cached analytics data
         putAnalytics.dispose();
         getAnalytics.dispose();
+        userController.clear();
         _languageStream?.cancel();
         break;
       case LoginState.loggedIn:
