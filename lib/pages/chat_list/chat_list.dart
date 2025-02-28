@@ -43,6 +43,7 @@ import '../../widgets/matrix.dart';
 import 'package:fluffychat/utils/tor_stub.dart'
     if (dart.library.html) 'package:tor_detector_web/tor_detector_web.dart';
 
+
 enum PopupMenuAction {
   settings,
   invite,
@@ -131,23 +132,59 @@ class ChatListController extends State<ChatList>
     });
     context.go("/rooms");
   }
+
+  /// show alert dialog prompting user to accept invite or reject invite
+  Future<void> showInviteDialog(Room room) async {
+    final acceptInvite = await showOkCancelAlertDialog(
+      context: context,
+      title: L10n.of(context).youreInvited,
+      message: room.isSpace
+          ? L10n.of(context).invitedToSpace(room.name, room.creatorId ?? "???")
+          : L10n.of(context).invitedToChat(room.name, room.creatorId ?? "???"),
+      okLabel: L10n.of(context).accept,
+      cancelLabel: L10n.of(context).decline,
+    );
+
+    await showFutureLoadingDialog(
+      context: context,
+      future: () async {
+        if (acceptInvite == OkCancelResult.ok) {
+          await room.join();
+          if (room.isSpace) {
+            setActiveSpace(room.id);
+            context.go(
+              FluffyThemes.isColumnMode(context)
+                  ? "/rooms/${room.id}/details"
+                  : "/rooms",
+            );
+            return;
+          }
+          context.go("/rooms/${room.id}");
+          return;
+        }
+        await room.leave();
+      },
+    );
+  }
   // Pangea#
 
   void onChatTap(Room room) async {
     if (room.membership == Membership.invite) {
-      final joinResult = await showFutureLoadingDialog(
-        context: context,
-        future: () async {
-          final waitForRoom = room.client.waitForRoomInSync(
-            room.id,
-            join: true,
-          );
-          await room.join();
-          await waitForRoom;
-        },
-        exceptionContext: ExceptionContext.joinRoom,
-      );
-      if (joinResult.error != null) return;
+      await showInviteDialog(room);
+      return;
+      // final joinResult = await showFutureLoadingDialog(
+      //   context: context,
+      //   future: () async {
+      //     final waitForRoom = room.client.waitForRoomInSync(
+      //       room.id,
+      //       join: true,
+      //     );
+      //     await room.join();
+      //     await waitForRoom;
+      //   },
+      //   exceptionContext: ExceptionContext.joinRoom,
+      // );
+      // if (joinResult.error != null) return;
     }
 
     if (room.membership == Membership.ban) {
