@@ -70,8 +70,11 @@ class LemmaMeaningActivityGenerator {
             .constructList(type: ConstructTypeEnum.vocab)
             .where(
               (c) =>
-                  c.lemma.toLowerCase() != lemma.toLowerCase() &&
-                  c.category.toLowerCase() == pos.toLowerCase(),
+                  c.lemma.isNotEmpty && // must not be empty strings
+                  c.lemma.toLowerCase() !=
+                      lemma.toLowerCase() && // must not be the lemma itself
+                  c.category.toLowerCase() ==
+                      pos.toLowerCase(), // must be same part of speech
             )
             .toList();
 

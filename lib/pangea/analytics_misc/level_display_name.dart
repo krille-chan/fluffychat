@@ -1,6 +1,6 @@
-import 'package:fluffychat/pangea/bot/utils/bot_name.dart';
 import 'package:flutter/material.dart';
 
+import 'package:fluffychat/pangea/bot/utils/bot_name.dart';
 import 'package:fluffychat/pangea/user/models/profile_model.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
@@ -39,7 +39,7 @@ class LevelDisplayNameState extends State<LevelDisplayName> {
 
   @override
   Widget build(BuildContext context) {
-    if(widget.userId == BotName.byEnvironment){
+    if (widget.userId == BotName.byEnvironment) {
       return const SizedBox();
     }
 
