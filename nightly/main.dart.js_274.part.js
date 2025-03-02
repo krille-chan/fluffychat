@@ -627,11 +627,11 @@ goc(){return"Savstarp\u0113ji apliecin\u0101tas ier\u012bces, ja iesp\u0113jots"
 gob(){return"Savstarp\u0113ji apliecin\u0101tas ier\u012bces"},
 gpj(){return"Tikai apliecin\u0101tas ier\u012bces"},
 gpb(){return"(P\u0113c izv\u0113les) Zi\u0146ojums..."},
-goq(){return"Not supported on this device"},
+goq(){return"\u0160aj\u0101 ier\u012bc\u0113 nav atbalst\u012bts"},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.EJ,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"EJ":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_274",e:"endPart",h:b})})($__dart_deferred_initializers__,"kB/eFN/aBu9g0OYUjHvl6uPoI5I=");
+a.eventLog.push({p:"main.dart.js_274",e:"endPart",h:b})})($__dart_deferred_initializers__,"SB7z77pXTSzMhp8FipFcqjdLVr0=");
 //# sourceMappingURL=main.dart.js_274.part.js.map

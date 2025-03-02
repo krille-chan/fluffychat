@@ -578,7 +578,7 @@ gpf(){return"Gelen jakinarazpenen ezarpenak"},
 gpi(){return"Erabiltzaile zehatzen jakinarazpenen ezarpenak"},
 gpc(){return"Beste jakinarazpenen ezarpenak"},
 gow(){return"Erabiltzaile-izena dauka"},
-gox(){return"Jakinarazten du mezuan erabiltzaile-izena aipatzen denean."},
+gox(){return"Mezuan erabiltzaile-izena aipatzen denean jakinarazten du."},
 goK(){return"Isilarazi jakinarazpen guztiak"},
 goL(){return"Gainerako arauak gainidatzi eta jakinarazpenak ezgaitzen ditu."},
 gp5(){return"Ezkutatu mezu automatikoak"},
@@ -634,5 +634,5 @@ x(A.Eq,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"Eq":{"aF":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_237",e:"endPart",h:b})})($__dart_deferred_initializers__,"Wa/NMDmRVwnhIdgPv03wlhuedSg=");
+a.eventLog.push({p:"main.dart.js_237",e:"endPart",h:b})})($__dart_deferred_initializers__,"cum1nHfTgBkZw4SOdgY+zuRHkBs=");
 //# sourceMappingURL=main.dart.js_237.part.js.map

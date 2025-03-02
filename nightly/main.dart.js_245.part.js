@@ -626,13 +626,13 @@ gnT(){return"Gach gl\xe9asanna"},
 goc(){return"Gl\xe9asanna trasfh\xedoraithe m\xe1 t\xe1 siad cumasaithe"},
 gob(){return"Feist\xed trasfh\xedoraithe"},
 gpj(){return"Gl\xe9asanna f\xedoraithe amh\xe1in"},
-gpb(){return"(Optional) message..."},
-goq(){return"Not supported on this device"},
+gpb(){return"Teachtaireacht (Roghnach)\u2026"},
+goq(){return"N\xed thaca\xedtear leis ar an ngl\xe9as seo"},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.Ev,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"Ev":{"aF":[]}}'))
 var y={a:"Cuir cosc ar an \xfas\xe1ideoir \xe1irithe \xf3n seomra seo"}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_245",e:"endPart",h:b})})($__dart_deferred_initializers__,"hOcz5h2NDilqcmzMaFHho5mRhJI=");
+a.eventLog.push({p:"main.dart.js_245",e:"endPart",h:b})})($__dart_deferred_initializers__,"gRlVul1xTHh8CCzb5JPDerrmLxM=");
 //# sourceMappingURL=main.dart.js_245.part.js.map

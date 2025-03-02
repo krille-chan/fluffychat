@@ -626,13 +626,13 @@ gnT(){return"Semua perangkat"},
 goc(){return"Verifikasi silang perangkat jika diaktifkan"},
 gob(){return"Perangkat terverifikasi silang"},
 gpj(){return"Perangkat terverifikasi saja"},
-gpb(){return"(Optional) message..."},
-goq(){return"Not supported on this device"},
+gpb(){return"Pesan (opsional)..."},
+goq(){return"Tidak didukung pada perangkat ini"},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.EC,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"EC":{"aF":[]}}'))
 var y={a:"Memberi tahu pengguna tentang pesan dalam ruangan satu ke satu."}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_261",e:"endPart",h:b})})($__dart_deferred_initializers__,"sQzI3TRZdReK+9jxuvRMEHcr0R0=");
+a.eventLog.push({p:"main.dart.js_261",e:"endPart",h:b})})($__dart_deferred_initializers__,"YSmhGwuecB5bv9M6hyMBipyxAyY=");
 //# sourceMappingURL=main.dart.js_261.part.js.map
