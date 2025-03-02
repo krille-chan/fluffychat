@@ -1,9 +1,9 @@
-import 'package:fluffychat/utils/localized_exception_extension.dart';
-import 'package:fluffychat/utils/room_from_public_rooms_chunk.dart';
 import 'package:flutter/material.dart';
 
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/utils/localized_exception_extension.dart';
+import 'package:fluffychat/utils/room_from_public_rooms_chunk.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class RoomLoader extends StatelessWidget {

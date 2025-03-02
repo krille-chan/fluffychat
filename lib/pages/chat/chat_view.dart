@@ -19,6 +19,7 @@ import 'package:fluffychat/pages/chat/reactions_picker.dart';
 import 'package:fluffychat/pages/chat/reply_display.dart';
 import 'package:fluffychat/utils/account_config.dart';
 import 'package:fluffychat/widgets/chat_settings_popup_menu.dart';
+import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
 import 'package:fluffychat/widgets/unread_rooms_badge.dart';
@@ -125,7 +126,9 @@ class ChatView extends StatelessWidget {
         ChatSettingsPopupMenu(controller.room, true),
       ];
     }
-    return [];
+    return [
+      ChatSettingsPopupMenu(controller.room, true),
+    ];
   }
 
   @override
@@ -292,6 +295,22 @@ class ChatView extends StatelessWidget {
                               child: ChatEventList(controller: controller),
                             ),
                           ),
+                          if (controller.room.membership != Membership.join &&
+                              (controller.room.membership ==
+                                      Membership.invite ||
+                                  controller.room.joinRules ==
+                                      JoinRules.public))
+                            Container(
+                              padding: EdgeInsets.all(bottomSheetPadding),
+                              width: double.infinity,
+                              child: ElevatedButton(
+                                onPressed: () => showFutureLoadingDialog(
+                                  context: context,
+                                  future: controller.room.join,
+                                ),
+                                child: Text(L10n.of(context).joinRoom),
+                              ),
+                            ),
                           if (controller.room.canSendDefaultMessages &&
                               controller.room.membership == Membership.join)
                             Container(

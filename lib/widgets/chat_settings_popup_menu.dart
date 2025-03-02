@@ -107,28 +107,30 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                   ],
                 ),
               ),
-            if (widget.room.pushRuleState == PushRuleState.notify)
-              PopupMenuItem<ChatPopupMenuActions>(
-                value: ChatPopupMenuActions.mute,
-                child: Row(
-                  children: [
-                    const Icon(Icons.notifications_off_outlined),
-                    const SizedBox(width: 12),
-                    Text(L10n.of(context).muteChat),
-                  ],
+            if (widget.room.membership == Membership.join) ...[
+              if (widget.room.pushRuleState == PushRuleState.notify)
+                PopupMenuItem<ChatPopupMenuActions>(
+                  value: ChatPopupMenuActions.mute,
+                  child: Row(
+                    children: [
+                      const Icon(Icons.notifications_off_outlined),
+                      const SizedBox(width: 12),
+                      Text(L10n.of(context).muteChat),
+                    ],
+                  ),
+                )
+              else
+                PopupMenuItem<ChatPopupMenuActions>(
+                  value: ChatPopupMenuActions.unmute,
+                  child: Row(
+                    children: [
+                      const Icon(Icons.notifications_on_outlined),
+                      const SizedBox(width: 12),
+                      Text(L10n.of(context).unmuteChat),
+                    ],
+                  ),
                 ),
-              )
-            else
-              PopupMenuItem<ChatPopupMenuActions>(
-                value: ChatPopupMenuActions.unmute,
-                child: Row(
-                  children: [
-                    const Icon(Icons.notifications_on_outlined),
-                    const SizedBox(width: 12),
-                    Text(L10n.of(context).unmuteChat),
-                  ],
-                ),
-              ),
+            ],
             PopupMenuItem<ChatPopupMenuActions>(
               value: ChatPopupMenuActions.search,
               child: Row(
@@ -139,16 +141,17 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
                 ],
               ),
             ),
-            PopupMenuItem<ChatPopupMenuActions>(
-              value: ChatPopupMenuActions.leave,
-              child: Row(
-                children: [
-                  const Icon(Icons.delete_outlined),
-                  const SizedBox(width: 12),
-                  Text(L10n.of(context).leave),
-                ],
+            if (widget.room.membership == Membership.join)
+              PopupMenuItem<ChatPopupMenuActions>(
+                value: ChatPopupMenuActions.leave,
+                child: Row(
+                  children: [
+                    const Icon(Icons.delete_outlined),
+                    const SizedBox(width: 12),
+                    Text(L10n.of(context).leave),
+                  ],
+                ),
               ),
-            ),
           ],
         ),
       ],

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
+import 'package:matrix/matrix_api_lite.dart';
 
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/archive/archive.dart';
@@ -37,7 +38,6 @@ import 'package:fluffychat/widgets/log_view.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/room_loader.dart';
 import 'package:fluffychat/widgets/share_scaffold_dialog.dart';
-import 'package:matrix/matrix_api_lite.dart';
 
 abstract class AppRoutes {
   static FutureOr<String?> loggedInRedirect(
@@ -390,8 +390,11 @@ abstract class AppRoutes {
                   pageBuilder: (context, state) => defaultPageBuilder(
                     context,
                     state,
-                    ChatDetails(
+                    RoomLoader(
                       roomId: state.pathParameters['roomid']!,
+                      builder: (context, room) => ChatDetails(
+                        room: room,
+                      ),
                     ),
                   ),
                   routes: [

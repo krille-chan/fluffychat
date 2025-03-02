@@ -1295,7 +1295,7 @@ class ChatController extends State<ChatPage> with WidgetsBindingObserver {
                   ),
                 ),
                 child: ChatDetails(
-                  roomId: roomId,
+                  room: room,
                   embeddedCloseButton: IconButton(
                     icon: const Icon(Icons.close),
                     onPressed: toggleDisplayChatDetailsColumn,
