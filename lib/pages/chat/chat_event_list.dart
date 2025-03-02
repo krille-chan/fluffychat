@@ -100,7 +100,10 @@ class ChatEventList extends StatelessWidget {
                   child: CircularProgressIndicator.adaptive(strokeWidth: 2),
                 );
               }
-              if (timeline.canRequestHistory) {
+              if (timeline.canRequestHistory &&
+                  (timeline.room.membership == Membership.join ||
+                      timeline.room.historyVisibility ==
+                          HistoryVisibility.worldReadable)) {
                 return Builder(
                   builder: (context) {
                     WidgetsBinding.instance

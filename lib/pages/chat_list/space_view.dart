@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:collection/collection.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart' as sdk;
@@ -10,7 +9,6 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
 import 'package:fluffychat/pages/chat_list/search_title.dart';
-import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_modal_action_popup.dart';
@@ -19,7 +17,6 @@ import 'package:fluffychat/widgets/adaptive_dialogs/show_text_input_dialog.dart'
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:fluffychat/widgets/public_room_bottom_sheet.dart';
 
 enum AddRoomType { chat, subspace }
 
@@ -92,29 +89,6 @@ class _SpaceViewState extends State<SpaceView> {
           .showSnackBar(SnackBar(content: Text(e.toLocalizedString(context))));
       setState(() {
         _isLoading = false;
-      });
-    }
-  }
-
-  void _joinChildRoom(SpaceRoomsChunk item) async {
-    final client = Matrix.of(context).client;
-    final space = client.getRoomById(widget.spaceId);
-
-    final joined = await showAdaptiveBottomSheet<bool>(
-      context: context,
-      builder: (_) => PublicRoomBottomSheet(
-        outerContext: context,
-        chunk: item,
-        via: space?.spaceChildren
-            .firstWhereOrNull(
-              (child) => child.roomId == item.roomId,
-            )
-            ?.via,
-      ),
-    );
-    if (mounted && joined == true) {
-      setState(() {
-        _discoveredChildren.remove(item);
       });
     }
   }
@@ -499,7 +473,7 @@ class _SpaceViewState extends State<SpaceView> {
                                   const VisualDensity(vertical: -0.5),
                               contentPadding:
                                   const EdgeInsets.symmetric(horizontal: 8),
-                              onTap: () => _joinChildRoom(item),
+                              onTap: () => context.go('/rooms/${item.roomId}'),
                               leading: Avatar(
                                 mxContent: item.avatarUrl,
                                 name: displayname,

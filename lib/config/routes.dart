@@ -35,7 +35,9 @@ import 'package:fluffychat/widgets/layouts/empty_page.dart';
 import 'package:fluffychat/widgets/layouts/two_column_layout.dart';
 import 'package:fluffychat/widgets/log_view.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:fluffychat/widgets/room_loader.dart';
 import 'package:fluffychat/widgets/share_scaffold_dialog.dart';
+import 'package:matrix/matrix_api_lite.dart';
 
 abstract class AppRoutes {
   static FutureOr<String?> loggedInRedirect(
@@ -132,9 +134,15 @@ abstract class AppRoutes {
                   pageBuilder: (context, state) => defaultPageBuilder(
                     context,
                     state,
-                    ChatPage(
+                    RoomLoader(
                       roomId: state.pathParameters['roomid']!,
-                      eventId: state.uri.queryParameters['event'],
+                      chunk: state.extra is PublicRoomsChunk
+                          ? state.extra as PublicRoomsChunk
+                          : null,
+                      builder: (context, room) => ChatPage(
+                        room: room,
+                        eventId: state.uri.queryParameters['event'],
+                      ),
                     ),
                   ),
                   redirect: loggedOutRedirect,
@@ -331,10 +339,16 @@ abstract class AppRoutes {
                 return defaultPageBuilder(
                   context,
                   state,
-                  ChatPage(
+                  RoomLoader(
+                    key: ValueKey(state.pathParameters['roomid']!),
                     roomId: state.pathParameters['roomid']!,
-                    shareItems: shareItems,
-                    eventId: state.uri.queryParameters['event'],
+                    chunk: state.extra is PublicRoomsChunk
+                        ? state.extra as PublicRoomsChunk
+                        : null,
+                    builder: (context, room) => ChatPage(
+                      room: room,
+                      eventId: state.uri.queryParameters['event'],
+                    ),
                   ),
                 );
               },

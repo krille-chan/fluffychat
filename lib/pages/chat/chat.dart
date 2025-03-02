@@ -44,48 +44,12 @@ import '../../utils/localized_exception_extension.dart';
 import 'send_file_dialog.dart';
 import 'send_location_dialog.dart';
 
-class ChatPage extends StatelessWidget {
-  final String roomId;
-  final List<ShareItem>? shareItems;
-  final String? eventId;
-
-  const ChatPage({
-    super.key,
-    required this.roomId,
-    this.eventId,
-    this.shareItems,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final room = Matrix.of(context).client.getRoomById(roomId);
-    if (room == null) {
-      return Scaffold(
-        appBar: AppBar(title: Text(L10n.of(context).oopsSomethingWentWrong)),
-        body: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: Text(L10n.of(context).youAreNoLongerParticipatingInThisChat),
-          ),
-        ),
-      );
-    }
-
-    return ChatPageWithRoom(
-      key: Key('chat_page_${roomId}_$eventId'),
-      room: room,
-      shareItems: shareItems,
-      eventId: eventId,
-    );
-  }
-}
-
-class ChatPageWithRoom extends StatefulWidget {
+class ChatPage extends StatefulWidget {
   final Room room;
   final List<ShareItem>? shareItems;
   final String? eventId;
 
-  const ChatPageWithRoom({
+  const ChatPage({
     super.key,
     required this.room,
     this.shareItems,
@@ -96,8 +60,7 @@ class ChatPageWithRoom extends StatefulWidget {
   ChatController createState() => ChatController();
 }
 
-class ChatController extends State<ChatPageWithRoom>
-    with WidgetsBindingObserver {
+class ChatController extends State<ChatPage> with WidgetsBindingObserver {
   Room get room => sendingClient.getRoomById(roomId) ?? widget.room;
 
   late Client sendingClient;

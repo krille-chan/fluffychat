@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
@@ -16,7 +17,6 @@ import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/hover_builder.dart';
-import 'package:fluffychat/widgets/public_room_bottom_sheet.dart';
 import '../../config/themes.dart';
 import '../../widgets/matrix.dart';
 import 'chat_list_header.dart';
@@ -344,14 +344,9 @@ class PublicRoomsHorizontalList extends StatelessWidget {
                     publicRooms[i].canonicalAlias?.localpart ??
                     L10n.of(context).group,
                 avatar: publicRooms[i].avatarUrl,
-                onPressed: () => showAdaptiveBottomSheet(
-                  context: context,
-                  builder: (c) => PublicRoomBottomSheet(
-                    roomAlias:
-                        publicRooms[i].canonicalAlias ?? publicRooms[i].roomId,
-                    outerContext: context,
-                    chunk: publicRooms[i],
-                  ),
+                onPressed: () => context.go(
+                  '/rooms/${publicRooms[i].roomId}',
+                  extra: publicRooms[i],
                 ),
               ),
             ),

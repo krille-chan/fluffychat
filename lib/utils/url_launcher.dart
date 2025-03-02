@@ -13,7 +13,6 @@ import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:fluffychat/widgets/public_room_bottom_sheet.dart';
 import 'platform_infos.dart';
 
 class UrlLauncher {
@@ -134,92 +133,49 @@ class UrlLauncher {
     if (identityParts == null) {
       return; // no match, nothing to do
     }
-    if (identityParts.primaryIdentifier.sigil == '#' ||
-        identityParts.primaryIdentifier.sigil == '!') {
+
+    if (identityParts.primaryIdentifier.sigil == '!') {
+      final event = identityParts.secondaryIdentifier;
+      context.go(
+        '/${Uri(
+          pathSegments: ['rooms', identityParts.primaryIdentifier],
+          queryParameters: event != null ? {'event': event} : null,
+        )}',
+      );
+    }
+
+    if (identityParts.primaryIdentifier.sigil == '#') {
       // we got a room! Let's open that one
       final roomIdOrAlias = identityParts.primaryIdentifier;
       final event = identityParts.secondaryIdentifier;
-      var room = matrix.client.getRoomByAlias(roomIdOrAlias) ??
-          matrix.client.getRoomById(roomIdOrAlias);
-      var roomId = room?.id;
-      // we make the servers a set and later on convert to a list, so that we can easily
-      // deduplicate servers added via alias lookup and query parameter
-      final servers = <String>{};
-      if (room == null && roomIdOrAlias.sigil == '#') {
+      var roomId = matrix.client.getRoomByAlias(roomIdOrAlias)?.id;
+
+      if (roomId == null && roomIdOrAlias.sigil == '#') {
         // we were unable to find the room locally...so resolve it
         final response = await showFutureLoadingDialog(
           context: context,
           future: () => matrix.client.getRoomIdByAlias(roomIdOrAlias),
         );
-        if (response.error != null) {
-          return; // nothing to do, the alias doesn't exist
-        }
-        roomId = response.result!.roomId;
-        servers.addAll(response.result!.servers!);
-        room = matrix.client.getRoomById(roomId!);
+        roomId = response.result?.roomId;
       }
-      servers.addAll(identityParts.via);
-      if (room != null) {
-        if (room.isSpace) {
-          // TODO: Implement navigate to space
-          context.go('/rooms/${room.id}');
 
-          return;
-        }
-        // we have the room, so....just open it
-        if (event != null) {
-          context.go(
-            '/${Uri(
-              pathSegments: ['rooms', room.id],
-              queryParameters: {'event': event},
-            )}',
-          );
-        } else {
-          context.go('/rooms/${room.id}');
-        }
-        return;
-      } else {
-        await showAdaptiveBottomSheet(
+      if (roomId == null) {
+        await showOkAlertDialog(
           context: context,
-          builder: (c) => PublicRoomBottomSheet(
-            roomAlias: identityParts.primaryIdentifier,
-            outerContext: context,
-          ),
+          message: L10n.of(context)
+              .noRoomFoundForAlias(identityParts.primaryIdentifier),
+          title: L10n.of(context).nothingFound,
         );
+        return;
       }
-      if (roomIdOrAlias.sigil == '!') {
-        if (await showOkCancelAlertDialog(
-              useRootNavigator: false,
-              context: context,
-              title: 'Join room $roomIdOrAlias',
-            ) ==
-            OkCancelResult.ok) {
-          roomId = roomIdOrAlias;
-          final response = await showFutureLoadingDialog(
-            context: context,
-            future: () => matrix.client.joinRoom(
-              roomIdOrAlias,
-              serverName: servers.isNotEmpty ? servers.toList() : null,
-            ),
-          );
-          if (response.error != null) return;
-          // wait for two seconds so that it probably came down /sync
-          await showFutureLoadingDialog(
-            context: context,
-            future: () => Future.delayed(const Duration(seconds: 2)),
-          );
-          if (event != null) {
-            context.go(
-              Uri(
-                pathSegments: ['rooms', response.result!],
-                queryParameters: {'event': event},
-              ).toString(),
-            );
-          } else {
-            context.go('/rooms/${response.result!}');
-          }
-        }
-      }
+      context.go(
+        '/${Uri(
+          pathSegments: ['rooms', roomId],
+          queryParameters: event != null ? {'event': event} : null,
+        )}',
+      );
+
+      return;
     } else if (identityParts.primaryIdentifier.sigil == '@') {
       await showAdaptiveBottomSheet(
         context: context,
