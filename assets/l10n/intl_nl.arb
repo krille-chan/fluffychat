@@ -2896,5 +2896,48 @@
   "hideMemberChangesInPublicChats": "Verberg persoon veranderingen in publieke chats",
   "@hideMemberChangesInPublicChats": {},
   "hideMemberChangesInPublicChatsBody": "Verberg in de tijdlijn van de chat als iemand zich aanmeldt bij een openbare chat of deze verlaat om de leesbaarheid te verbeteren.",
-  "@hideMemberChangesInPublicChatsBody": {}
+  "@hideMemberChangesInPublicChatsBody": {},
+  "startConversation": "Start gesprek",
+  "@startConversation": {},
+  "usersMustKnock": "Personen moeten kloppen",
+  "@usersMustKnock": {},
+  "noUsersFoundWithQuery": "Helaas kan er geen persoon gevonden worden met \"{query}\". Controleer of je een typfout hebt gemaakt.",
+  "@noUsersFoundWithQuery": {
+    "type": "String",
+    "placeholders": {
+      "query": {
+        "type": "String"
+      }
+    }
+  },
+  "createGroupAndInviteUsers": "Maak een groep en nodig personen uit",
+  "@createGroupAndInviteUsers": {},
+  "userWouldLikeToChangeTheChat": "{user} wil graag deelnemen aan de chat.",
+  "@userWouldLikeToChangeTheChat": {
+    "placeholders": {
+      "user": {
+        "type": "String"
+      }
+    }
+  },
+  "chatCanBeDiscoveredViaSearchOnServer": "Chat kan worden gevonden via een zoekopdracht op {server}",
+  "@chatCanBeDiscoveredViaSearchOnServer": {
+    "type": "String",
+    "placeholders": {
+      "server": {
+        "type": "String"
+      }
+    }
+  },
+  "wrongRecoveryKey": "Helaas... dit lijkt niet de correcte herstelsleutel.",
+  "@wrongRecoveryKey": {},
+  "synchronizingPleaseWaitCounter": " Synchroniseren… ({percentage}%)",
+  "@synchronizingPleaseWaitCounter": {
+    "type": "String",
+    "placeholders": {
+      "percentage": {
+        "type": "String"
+      }
+    }
+  }
 }
