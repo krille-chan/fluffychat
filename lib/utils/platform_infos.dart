@@ -54,11 +54,6 @@ abstract class PlatformInfos {
           icon: const Icon(Icons.source_outlined),
           label: Text(L10n.of(context).sourceCode),
         ),
-        TextButton.icon(
-          onPressed: () => launchUrlString(AppConfig.emojiFontUrl),
-          icon: const Icon(Icons.emoji_emotions_outlined),
-          label: const Text(AppConfig.emojiFontName),
-        ),
         Builder(
           builder: (innerContext) {
             return TextButton.icon(
