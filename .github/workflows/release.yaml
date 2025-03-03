@@ -25,10 +25,6 @@ jobs:
           cache: true
       - name: Install dependencies
         run: sudo apt-get update && sudo apt-get install nodejs -y
-      - name: Remove Emoji Font
-        run: |
-          rm -rf fonts/NotoEmoji
-          yq -i 'del( .flutter.fonts[] | select(.family == "NotoEmoji") )' pubspec.yaml
       - run: flutter pub get
       - name: Prepare web
         run: ./scripts/prepare-web.sh
@@ -85,10 +81,6 @@ jobs:
           cache: true
       - name: Apply Google Services Patch
         run: git apply ./scripts/enable-android-google-services.patch
-      - name: Remove Emoji Font
-        run: |
-          rm -rf fonts/NotoEmoji
-          yq -i 'del( .flutter.fonts[] | select(.family == "NotoEmoji") )' pubspec.yaml
       - run: flutter pub get
       - name: Prepare Android Release Build
         env:
@@ -156,10 +148,6 @@ jobs:
         run: gem install fastlane -NV
       - name: Apply Google Services Patch
         run: git apply ./scripts/enable-android-google-services.patch
-      - name: Remove Emoji Font
-        run: |
-          rm -rf fonts/NotoEmoji
-          yq -i 'del( .flutter.fonts[] | select(.family == "NotoEmoji") )' pubspec.yaml
       - run: flutter pub get
       - name: Prepare Android Release Build
         env:
