@@ -1403,7 +1403,7 @@
       }
     }
   },
-  "sentAnAudio": "{username} 傳送了一個音訊",
+  "sentAnAudio": "🎤{username} 傳送了一個音訊",
   "@sentAnAudio": {
     "type": "String",
     "placeholders": {
@@ -1412,7 +1412,7 @@
       }
     }
   },
-  "sentAPicture": "{username} 傳送了一張圖片",
+  "sentAPicture": "🖼️{username} 傳送了一張圖片",
   "@sentAPicture": {
     "type": "String",
     "placeholders": {
@@ -1421,7 +1421,7 @@
       }
     }
   },
-  "sentASticker": "{username} 傳送了貼圖",
+  "sentASticker": "😊{username} 傳送了貼圖",
   "@sentASticker": {
     "type": "String",
     "placeholders": {
@@ -1430,7 +1430,7 @@
       }
     }
   },
-  "sentAVideo": "{username} 傳送了影片",
+  "sentAVideo": "🎥{username} 傳送了影片",
   "@sentAVideo": {
     "type": "String",
     "placeholders": {
@@ -3040,6 +3040,127 @@
   "@invitedBy": {
     "placeholders": {
       "user": {
+        "type": "String"
+      }
+    }
+  },
+  "doesNotSeemToBeAValidHomeserver": "似乎不是能匹配的歸屬伺服器。伺服器域名打錯了嗎？",
+  "@doesNotSeemToBeAValidHomeserver": {},
+  "noticeChatBackupDeviceVerification": "注意：當您將所有裝置連線到聊天備份時，它們會自動驗證。",
+  "@noticeChatBackupDeviceVerification": {},
+  "sendCanceled": "傳送取消",
+  "@sendCanceled": {},
+  "changelog": "變更日誌",
+  "@changelog": {},
+  "changeTheCanonicalRoomAlias": "變更公開聊天室的主要地址",
+  "@changeTheCanonicalRoomAlias": {},
+  "sendImages": "傳送{count}張圖片",
+  "@sendImages": {
+    "type": "String",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "loginWithMatrixId": "以Matrix-ID登入",
+  "@loginWithMatrixId": {},
+  "inviteOtherUsers": "邀請其他用戶進入本聊天",
+  "@inviteOtherUsers": {},
+  "sendRoomNotifications": "傳送一條 @room 群提醒",
+  "@sendRoomNotifications": {},
+  "updateInstalled": "🎉已成功安裝{version}版本!",
+  "@updateInstalled": {
+    "type": "String",
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "oneOfYourDevicesIsNotVerified": "你的其中一個裝置尚未驗證",
+  "@oneOfYourDevicesIsNotVerified": {},
+  "chatPermissionsDescription": "定義此聊天中某些操作需要哪個權限等級。 權限等級0、50和100通常代表使用者、版主和管理員，但任何分級都是可能的。",
+  "@chatPermissionsDescription": {},
+  "changeGeneralChatSettings": "變更一般聊天設定",
+  "@changeGeneralChatSettings": {},
+  "manageAccount": "帳號管理",
+  "@manageAccount": {},
+  "changeTheChatPermissions": "變更聊天室權限",
+  "@changeTheChatPermissions": {},
+  "changeTheVisibilityOfChatHistory": "變更過往聊天記錄可見度",
+  "@changeTheVisibilityOfChatHistory": {},
+  "homeserverDescription": "您的所有資料都儲存在歸屬伺服器上，就像電子郵件提供商一樣。 您可以選擇要使用的歸屬伺服器，同時您仍然可以與每個人溝通。 請訪問https://matrix.org瞭解更多資訊。",
+  "@homeserverDescription": {},
+  "sendingAttachment": "附件傳送中…",
+  "@sendingAttachment": {},
+  "compressVideo": "影片壓縮中…",
+  "@compressVideo": {},
+  "opacity": "不透明度:",
+  "@opacity": {},
+  "aboutHomeserver": "關於{homeserver}",
+  "@aboutHomeserver": {
+    "type": "String",
+    "placeholders": {
+      "homeserver": {
+        "type": "String"
+      }
+    }
+  },
+  "noChatsFoundHere": "還沒開始聊天嗎？點擊下方按鈕找個人聊聊吧⤵",
+  "@noChatsFoundHere": {},
+  "changeTheDescriptionOfTheGroup": "變更聊天室說明",
+  "@changeTheDescriptionOfTheGroup": {},
+  "discoverHomeservers": "探索歸屬伺服器",
+  "@discoverHomeservers": {},
+  "whatIsAHomeserver": "什麼是歸屬伺服器?",
+  "@whatIsAHomeserver": {},
+  "calculatingFileSize": "正在計算檔案大小…",
+  "@calculatingFileSize": {},
+  "prepareSendingAttachment": "準備傳送附件…",
+  "@prepareSendingAttachment": {},
+  "generatingVideoThumbnail": "生成影片縮圖中…",
+  "@generatingVideoThumbnail": {},
+  "sendingAttachmentCountOfCount": "附件傳送中 {index}/{length}…",
+  "@sendingAttachmentCountOfCount": {
+    "type": "integer",
+    "placeholders": {
+      "index": {
+        "type": "int"
+      },
+      "length": {
+        "type": "int"
+      }
+    }
+  },
+  "serverLimitReached": "已達伺服器上限! 請稍等{seconds}秒…",
+  "@serverLimitReached": {
+    "type": "integer",
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "welcomeText": "嘿，嘿👋這是FluffyChat。 您可以登入任何與https://matrix.org相容的歸屬伺服器後和任何人聊天。 這是一個巨大的去中心化訊息網路！",
+  "@welcomeText": {},
+  "setWallpaper": "設定背景樣式",
+  "@setWallpaper": {},
+  "noContactInformationProvided": "伺服器沒有提供任何有效的聯絡資訊",
+  "@noContactInformationProvided": {},
+  "contactServerAdmin": "聯繫伺服器管理員",
+  "@contactServerAdmin": {},
+  "contactServerSecurity": "聯繫伺服器安管",
+  "@contactServerSecurity": {},
+  "continueText": "繼續",
+  "@continueText": {},
+  "blur": "模糊:",
+  "@blur": {},
+  "synchronizingPleaseWaitCounter": " 同步中… ({percentage}%)",
+  "@synchronizingPleaseWaitCounter": {
+    "type": "String",
+    "placeholders": {
+      "percentage": {
         "type": "String"
       }
     }
