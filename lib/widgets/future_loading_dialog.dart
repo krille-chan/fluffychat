@@ -21,7 +21,7 @@ Future<Result<T>> showFutureLoadingDialog<T>({
   bool delay = true,
   ExceptionContext? exceptionContext,
   // #Pangea
-  String Function(Object, StackTrace?)? onError,
+  String? Function(Object, StackTrace?)? onError,
   VoidCallback? onDismiss,
   // Pangea#
 }) async {
@@ -79,7 +79,7 @@ class LoadingDialog<T> extends StatefulWidget {
   final Future<T> future;
   final ExceptionContext? exceptionContext;
   // #Pangea
-  final String Function(Object, StackTrace?)? onError;
+  final String? Function(Object, StackTrace?)? onError;
   final VoidCallback? onDismiss;
   // Pangea#
 

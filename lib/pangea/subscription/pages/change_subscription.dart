@@ -31,24 +31,27 @@ class ChangeSubscription extends StatelessWidget {
               const Divider(height: 1),
               SubscriptionButtons(controller: controller),
               const SizedBox(height: 32),
-              if (controller.selectedSubscription != null)
-                IntrinsicWidth(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      OutlinedButton(
-                        onPressed: () => controller.submitChange(),
-                        child: Text(
-                          controller.selectedSubscription!.isTrial
-                              ? L10n.of(context).activateTrial
-                              : L10n.of(context).pay,
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                    ],
-                  ),
+              IntrinsicWidth(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    OutlinedButton(
+                      onPressed: controller.selectedSubscription != null
+                          ? () => controller.submitChange()
+                          : null,
+                      child: controller.loading
+                          ? const CircularProgressIndicator.adaptive()
+                          : Text(
+                              controller.selectedSubscription?.isTrial ?? false
+                                  ? L10n.of(context).activateTrial
+                                  : L10n.of(context).pay,
+                            ),
+                    ),
+                    const SizedBox(height: 20),
+                  ],
                 ),
+              ),
             ],
           )
         : const Center(
