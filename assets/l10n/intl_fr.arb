@@ -3091,5 +3091,7 @@
         "type": "String"
       }
     }
-  }
+  },
+  "loginWithMatrixId": "Connexion avec l'identifiant Matrix",
+  "@loginWithMatrixId": {}
 }
