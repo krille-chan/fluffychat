@@ -2939,5 +2939,11 @@
         "type": "String"
       }
     }
-  }
+  },
+  "databaseMigrationTitle": "Database is geoptimaliseerd",
+  "@databaseMigrationTitle": {},
+  "databaseMigrationBody": "Een ogenblik. Dit kan even duren.",
+  "@databaseMigrationBody": {},
+  "commandHint_sendraw": "Stuur kale json",
+  "@commandHint_sendraw": {}
 }
