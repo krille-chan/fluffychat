@@ -102,12 +102,15 @@ class SubscriptionManagementController extends State<SubscriptionManagement> {
         .currentSubscriptionInfo!.currentPlatformMatchesPurchasePlatform;
   }
 
-  Future<void> submitChange({bool isPromo = false}) async {
+  Future<void> submitChange(
+    SubscriptionDetails subscription, {
+    bool isPromo = false,
+  }) async {
     setState(() => loading = true);
     await showFutureLoadingDialog(
       context: context,
       future: () async => subscriptionController.submitSubscriptionChange(
-        selectedSubscription,
+        subscription,
         context,
         isPromo: isPromo,
       ),
@@ -170,6 +173,10 @@ class SubscriptionManagementController extends State<SubscriptionManagement> {
   }
 
   void selectSubscription(SubscriptionDetails? subscription) {
+    if (selectedSubscription == subscription) {
+      setState(() => selectedSubscription = null);
+      return;
+    }
     setState(() => selectedSubscription = subscription);
   }
 

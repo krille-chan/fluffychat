@@ -4830,5 +4830,26 @@
   "noSpaceDescriptionYet": "No space description created yet.",
   "tooLargeToSend": "This message is too large to send",
   "leaveRoomDescription": "You're about to leave this chat. Other users will see that you have left the chat.",
-  "confirmUserId": "Please confirm your Pangea Chat username in order to delete your account."
+  "confirmUserId": "Please confirm your Pangea Chat username in order to delete your account.",
+  "startingToday": "Starting today",
+  "oneWeekFreeTrial": "One week free trial",
+  "paidSubscriptionStarts": "Starting {startDate}",
+  "@paidSubscriptionStarts": {
+    "type": "String",
+    "placeholders": {
+      "startDate": {
+        "type": "String"
+      }
+    }
+  },
+  "cancelInSubscriptionSettings": "• Cancel at any time in subscription settings",
+  "cancelToAvoidCharges": "• Cancel before {trialEnds} to avoid charges",
+    "@cancelToAvoidCharges": {
+    "type": "String",
+    "placeholders": {
+      "trialEnds": {
+        "type": "String"
+      }
+    }
+  }
 } 

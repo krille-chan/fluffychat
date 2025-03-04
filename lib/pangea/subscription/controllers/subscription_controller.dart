@@ -147,7 +147,7 @@ class SubscriptionController extends BaseController {
     }
   }
 
-  void submitSubscriptionChange(
+  Future<void> submitSubscriptionChange(
     SubscriptionDetails? selectedSubscription,
     BuildContext context, {
     bool isPromo = false,
@@ -185,11 +185,13 @@ class SubscriptionController extends BaseController {
         return;
       }
       if (selectedSubscription.package == null) {
+        final offerings = await Purchases.getOfferings();
         ErrorHandler.logError(
           m: "Tried to subscribe to SubscriptionDetails with Null revenuecat Package",
           s: StackTrace.current,
           data: {
             "selectedSubscription": selectedSubscription.toJson(),
+            "offerings": offerings.toJson(),
           },
         );
         return;
