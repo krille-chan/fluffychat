@@ -160,7 +160,10 @@ abstract class AppRoutes {
     ),
     // Pangea#
     ShellRoute(
-      pageBuilder: (context, state, child) => defaultPageBuilder(
+      // Never use a transition on the shell route. Changing the PageBuilder
+      // here based on a MediaQuery causes the child to briefly be rendered
+      // twice with the same GlobalKey, blowing up the rendering.
+      pageBuilder: (context, state, child) => noTransitionPageBuilder(
         context,
         state,
         FluffyThemes.isColumnMode(context) &&
@@ -640,17 +643,24 @@ abstract class AppRoutes {
     ),
   ];
 
+  static Page noTransitionPageBuilder(
+    BuildContext context,
+    GoRouterState state,
+    Widget child,
+  ) =>
+      NoTransitionPage(
+        key: state.pageKey,
+        restorationId: state.pageKey.value,
+        child: child,
+      );
+
   static Page defaultPageBuilder(
     BuildContext context,
     GoRouterState state,
     Widget child,
   ) =>
       FluffyThemes.isColumnMode(context)
-          ? NoTransitionPage(
-              key: state.pageKey,
-              restorationId: state.pageKey.value,
-              child: child,
-            )
+          ? noTransitionPageBuilder(context, state, child)
           : MaterialPage(
               key: state.pageKey,
               restorationId: state.pageKey.value,
