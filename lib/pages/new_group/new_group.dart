@@ -11,6 +11,7 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/new_group/new_group_view.dart';
 import 'package:fluffychat/pangea/bot/utils/bot_name.dart';
+import 'package:fluffychat/pangea/chat/constants/default_power_level.dart';
 import 'package:fluffychat/pangea/common/constants/model_keys.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/common/utils/firebase_analytics.dart';
@@ -98,6 +99,13 @@ class NewGroupController extends State<NewGroup> {
                 type: sdk.EventTypes.RoomAvatar,
                 content: {'url': avatarUrl.toString()},
               ),
+            // #Pangea
+            StateEvent(
+              type: EventTypes.RoomPowerLevels,
+              stateKey: '',
+              content: defaultPowerLevels,
+            ),
+            // Pangea#
           ],
           // #Pangea
           enableEncryption: false,
