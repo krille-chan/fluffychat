@@ -10,5 +10,4 @@ class PLocalKey {
   static const String justInputtedCode = 'justInputtedCode';
   static const String availableSubscriptionInfo = 'availableSubscriptionInfo';
   static const String showedUpdateDialog = 'showedUpdateDialog';
-  static const String loginType = 'loginType';
 }

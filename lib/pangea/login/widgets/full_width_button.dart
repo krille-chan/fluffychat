@@ -121,7 +121,7 @@ class FullWidthTextField extends StatelessWidget {
   final bool? showErrorText;
   final String? errorText;
   final Function(String)? onSubmitted;
-  final InputDecoration? decoration;
+  final String? labelText;
 
   const FullWidthTextField({
     required this.hintText,
@@ -134,7 +134,7 @@ class FullWidthTextField extends StatelessWidget {
     this.errorText,
     this.showErrorText,
     this.onSubmitted,
-    this.decoration,
+    this.labelText,
     super.key,
   });
 
@@ -150,6 +150,7 @@ class FullWidthTextField extends StatelessWidget {
         textInputAction: textInputAction,
         keyboardType: keyboardType,
         decoration: InputDecoration(
+          labelText: labelText,
           hintText: hintText,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(36.0),

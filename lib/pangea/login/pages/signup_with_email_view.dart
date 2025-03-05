@@ -7,7 +7,6 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:fluffychat/pangea/common/widgets/pangea_logo_svg.dart';
 import 'package:fluffychat/pangea/login/pages/pangea_login_scaffold.dart';
 import 'package:fluffychat/pangea/login/widgets/full_width_button.dart';
-import 'package:fluffychat/pangea/login/widgets/tos_checkbox.dart';
 import 'signup.dart';
 
 class SignupWithEmailView extends StatelessWidget {
@@ -45,11 +44,6 @@ class SignupWithEmailView extends StatelessWidget {
             validator: controller.password1TextFieldValidator,
             controller: controller.passwordController,
             onSubmitted: controller.enableSignUp ? controller.signup : null,
-          ),
-          TosCheckbox(
-            controller.isTnCChecked,
-            controller.onTncChange,
-            error: controller.signupError,
           ),
           FullWidthButton(
             title: L10n.of(context).signUp,

@@ -47,12 +47,14 @@ class PangeaSsoButton extends StatelessWidget {
 
   final Function(bool, SSOProvider) setLoading;
   final bool loading;
+  final bool? Function()? validator;
 
   const PangeaSsoButton({
     required this.title,
     required this.provider,
     required this.setLoading,
     this.loading = false,
+    this.validator,
     super.key,
   });
 
@@ -94,7 +96,13 @@ class PangeaSsoButton extends StatelessWidget {
           BlendMode.srcIn,
         ),
       ),
-      onPressed: () => _runSSOLogin(context),
+      onPressed: () {
+        if (validator != null) {
+          final valid = validator!.call() ?? false;
+          if (!valid) return;
+        }
+        _runSSOLogin(context);
+      },
     );
   }
 }

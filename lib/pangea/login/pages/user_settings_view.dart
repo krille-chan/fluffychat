@@ -9,7 +9,6 @@ import 'package:fluffychat/pangea/learning_settings/widgets/p_language_dropdown.
 import 'package:fluffychat/pangea/login/pages/pangea_login_scaffold.dart';
 import 'package:fluffychat/pangea/login/pages/user_settings.dart';
 import 'package:fluffychat/pangea/login/widgets/full_width_button.dart';
-import 'package:fluffychat/pangea/login/widgets/tos_checkbox.dart';
 import 'package:fluffychat/pangea/user/utils/p_logout.dart';
 
 class UserSettingsView extends StatelessWidget {
@@ -96,6 +95,17 @@ class UserSettingsView extends StatelessWidget {
             alignment: WrapAlignment.center,
             children: avatarOptions,
           ),
+          FullWidthTextField(
+            labelText: L10n.of(context).displayName,
+            hintText: L10n.of(context).username,
+            validator: (username) {
+              if (username == null || username.isEmpty) {
+                return L10n.of(context).pleaseChooseAUsername;
+              }
+              return null;
+            },
+            controller: controller.displayNameController,
+          ),
           Padding(
             padding: const EdgeInsets.all(8),
             child: PLanguageDropdown(
@@ -114,23 +124,6 @@ class UserSettingsView extends StatelessWidget {
               initialLevel: controller.selectedCefrLevel,
             ),
           ),
-          if (controller.isSSOSignup)
-            FullWidthTextField(
-              hintText: L10n.of(context).username,
-              validator: (username) {
-                if (username == null || username.isEmpty) {
-                  return L10n.of(context).pleaseChooseAUsername;
-                }
-                return null;
-              },
-              controller: controller.displayNameController,
-            ),
-          if (controller.isSSOSignup)
-            TosCheckbox(
-              controller.isTncChecked,
-              controller.setTncChecked,
-              error: controller.tncError,
-            ),
           FullWidthButton(
             title: L10n.of(context).letsStart,
             onPressed: controller.selectedTargetLanguage != null
@@ -138,8 +131,7 @@ class UserSettingsView extends StatelessWidget {
                 : null,
             error: controller.profileCreationError,
             loading: controller.loading,
-            enabled: controller.selectedTargetLanguage != null &&
-                (!controller.isSSOSignup || controller.isTncChecked),
+            enabled: controller.selectedTargetLanguage != null,
           ),
         ],
       ),

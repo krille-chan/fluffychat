@@ -5,7 +5,6 @@ import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pages/login/login.dart';
-import 'package:fluffychat/pangea/common/constants/local.key.dart';
 import 'package:fluffychat/pangea/common/utils/firebase_analytics.dart';
 import 'package:fluffychat/pangea/login/widgets/p_sso_button.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -79,7 +78,5 @@ Future<void> _loginFuture({
       }
     },
   );
-  MatrixState.pangeaController.userController.loginBox
-      .write(PLocalKey.loginType, 'password');
   GoogleAnalytics.login("pangea", loginRes.userId);
 }

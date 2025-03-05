@@ -69,7 +69,8 @@ class TosCheckboxState extends State<TosCheckbox>
                 child: widget.error == null
                     ? const SizedBox.shrink()
                     : Padding(
-                        padding: const EdgeInsets.only(top: 4, left: 30),
+                        padding:
+                            const EdgeInsets.only(top: 4, left: 15, bottom: 8),
                         child: Text(
                           widget.error!,
                           style: TextStyle(

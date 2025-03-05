@@ -79,9 +79,13 @@ class SignupPageController extends State<SignupPage> {
     if (mounted) setState(() {});
   }
 
+  void setSignupError(String? error) {
+    signupError = error;
+    if (mounted) setState(() {});
+  }
+
   bool get enableSignUp =>
       !loadingSignup &&
-      isTnCChecked &&
       emailController.text.isNotEmpty &&
       usernameController.text.isNotEmpty &&
       passwordController.text.isNotEmpty;
@@ -153,10 +157,7 @@ class SignupPageController extends State<SignupPage> {
   void signup([_]) async {
     setState(() => signupError = null);
     final valid = formKey.currentState!.validate();
-    if (!isTnCChecked) {
-      setState(() => signupError = L10n.of(context).pleaseAgreeToTOS);
-    }
-    if (!valid || !isTnCChecked) return;
+    if (!valid) return;
     setState(() => loadingSignup = true);
 
     await showFutureLoadingDialog(
