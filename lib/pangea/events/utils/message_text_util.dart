@@ -36,9 +36,6 @@ class MessageTextUtil {
         final int startIndex = messageCharacters.take(start).length;
         int endIndex = messageCharacters.take(end).length;
 
-        final hideContent =
-            messageAnalyticsEntry?.isTokenInHiddenWordActivity(token) ?? false;
-
         final hasHiddenContent =
             messageAnalyticsEntry?.hasHiddenWordActivity ?? false;
 
@@ -79,6 +76,9 @@ class MessageTextUtil {
           }
           break;
         }
+
+        final hideContent =
+            messageAnalyticsEntry?.isTokenInHiddenWordActivity(token) ?? false;
 
         tokenPositions.add(
           TokenPosition(

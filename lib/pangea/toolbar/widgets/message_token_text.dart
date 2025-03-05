@@ -235,17 +235,6 @@ class MessageTextWidget extends StatelessWidget {
           }
 
           if (tokenPosition.token != null) {
-            if (tokenPosition.hideContent) {
-              return WidgetSpan(
-                child: GestureDetector(
-                  onTap: onClick != null
-                      ? () => onClick?.call(tokenPosition)
-                      : null,
-                  child: HiddenText(text: substring, style: style),
-                ),
-              );
-            }
-
             // if the tokenPosition is a combination of the token and preceding / following punctuation
             // split them so that only the token itself is highlighted when clicked
             String start = '';
@@ -260,7 +249,7 @@ class MessageTextWidget extends StatelessWidget {
             end = substring.characters.skip(endSplitIndex).toString();
             middle = substring.characters
                 .skip(startSplitIndex)
-                .take(endSplitIndex)
+                .take(endSplitIndex - startSplitIndex)
                 .toString();
 
             return WidgetSpan(
@@ -284,20 +273,30 @@ class MessageTextWidget extends StatelessWidget {
                             onOpen: (url) =>
                                 UrlLauncher(context, url.url).launchUrl(),
                           ),
-                        LinkifySpan(
-                          text: middle,
-                          style: style.merge(
-                            TextStyle(
-                              backgroundColor: backgroundColor,
-                            ),
-                          ),
-                          linkStyle: TextStyle(
-                            decoration: TextDecoration.underline,
-                            color: linkColor,
-                          ),
-                          onOpen: (url) =>
-                              UrlLauncher(context, url.url).launchUrl(),
-                        ),
+                        tokenPosition.hideContent
+                            ? WidgetSpan(
+                                alignment: PlaceholderAlignment.middle,
+                                child: GestureDetector(
+                                  onTap: onClick != null
+                                      ? () => onClick?.call(tokenPosition)
+                                      : null,
+                                  child: HiddenText(text: middle, style: style),
+                                ),
+                              )
+                            : LinkifySpan(
+                                text: middle,
+                                style: style.merge(
+                                  TextStyle(
+                                    backgroundColor: backgroundColor,
+                                  ),
+                                ),
+                                linkStyle: TextStyle(
+                                  decoration: TextDecoration.underline,
+                                  color: linkColor,
+                                ),
+                                onOpen: (url) =>
+                                    UrlLauncher(context, url.url).launchUrl(),
+                              ),
                         if (end.isNotEmpty)
                           LinkifySpan(
                             text: end,
