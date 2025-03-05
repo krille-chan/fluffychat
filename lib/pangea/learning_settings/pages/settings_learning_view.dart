@@ -1,6 +1,10 @@
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
+import 'package:app_settings/app_settings.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -20,6 +24,76 @@ import 'package:fluffychat/widgets/matrix.dart';
 class SettingsLearningView extends StatelessWidget {
   final SettingsLearningController controller;
   const SettingsLearningView(this.controller, {super.key});
+
+  void _showKeyboardSettingsDialog(BuildContext context) {
+    String title;
+    String? steps;
+    String? description;
+    String buttonText;
+    VoidCallback buttonAction;
+
+    if (kIsWeb) {
+      title = L10n.of(context).autocorrectNotAvailable; // Default
+      buttonText = 'OK';
+      buttonAction = () {
+        Navigator.of(context).pop();
+      };
+    } else if (Platform.isIOS) {
+      title = L10n.of(context).enableAutocorrectPopupTitle;
+      steps = L10n.of(context).enableAutocorrectPopupSteps;
+      description = L10n.of(context).enableAutocorrectPopupDescription;
+      buttonText = L10n.of(context).settings;
+      buttonAction = () {
+        AppSettings.openAppSettings();
+      };
+    } else {
+      title = L10n.of(context).downloadGboardTitle;
+      steps = L10n.of(context).downloadGboardSteps;
+      description = L10n.of(context).downloadGboardDescription;
+      buttonText = L10n.of(context).downloadGboard;
+      buttonAction = () {
+        launchUrlString(
+          'https://play.google.com/store/apps/details?id=com.google.android.inputmethod.latin',
+        );
+      };
+    }
+
+    showAdaptiveDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog.adaptive(
+          title: Text(L10n.of(context).enableAutocorrectWarning),
+          content: SingleChildScrollView(
+            child: Column(
+              spacing: 8.0,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(title),
+                if (steps != null)
+                  Text(
+                    steps,
+                    textAlign: TextAlign.start,
+                  ),
+                if (description != null) Text(description),
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(
+              child: Text(L10n.of(context).close),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              onPressed: buttonAction,
+              child: Text(buttonText),
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -98,8 +172,59 @@ class SettingsLearningView extends StatelessWidget {
                                 initialLevel: controller.cefrLevel,
                                 onChanged: controller.setCefrLevel,
                               ),
-                              for (final toolSetting in ToolSetting.values
-                                  .where((tool) => tool.isAvailableSetting))
+                              Container(
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: Colors.white54,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  children: [
+                                    ProfileSettingsSwitchListTile.adaptive(
+                                      defaultValue: controller
+                                          .getToolSetting(ToolSetting.autoIGC),
+                                      title:
+                                          ToolSetting.autoIGC.toolName(context),
+                                      subtitle: ToolSetting.autoIGC
+                                          .toolDescription(context),
+                                      onChange: (bool value) =>
+                                          controller.updateToolSetting(
+                                        ToolSetting.autoIGC,
+                                        value,
+                                      ),
+                                      enabled: true,
+                                    ),
+                                    ProfileSettingsSwitchListTile.adaptive(
+                                      defaultValue: controller.getToolSetting(
+                                        ToolSetting.enableAutocorrect,
+                                      ),
+                                      title: ToolSetting.enableAutocorrect
+                                          .toolName(context),
+                                      subtitle: ToolSetting.enableAutocorrect
+                                          .toolDescription(context),
+                                      onChange: (bool value) {
+                                        controller.updateToolSetting(
+                                          ToolSetting.enableAutocorrect,
+                                          value,
+                                        );
+                                        if (value) {
+                                          _showKeyboardSettingsDialog(context);
+                                        }
+                                      },
+                                      enabled: true,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              for (final toolSetting
+                                  in ToolSetting.values.where(
+                                (tool) =>
+                                    tool.isAvailableSetting &&
+                                    tool != ToolSetting.autoIGC &&
+                                    tool != ToolSetting.enableAutocorrect,
+                              ))
                                 Column(
                                   children: [
                                     ProfileSettingsSwitchListTile.adaptive(

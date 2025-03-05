@@ -5154,5 +5154,6 @@
   "invitePeopleChatSubtitle": "Invitar a usuarios o administradores a este chat",
   "invitePeopleSpaceSubtitle": "Invitar a usuarios o administradores a este espacio",
   "noCapacityLimit": "Sin límite de capacidad",
-  "downloadGroupText": "Descargar texto del grupo"
+  "downloadGroupText": "Descargar texto del grupo",
+  "enableAutocorrectWarning": "¡Atención! Es necesario añadir el teclado del idioma de destino"
 }

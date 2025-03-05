@@ -4174,8 +4174,8 @@
   "roomDataMissing": "Some data may be missing from rooms in which you are not a member.",
   "updatePhoneOS": "You may need to update your device's OS version.",
   "wordsPerMinute": "Words per minute",
-  "autoIGCToolName": "Run language assistance automatically",
-  "autoIGCToolDescription": "Automatically run language assistance after typing messages",
+  "autoIGCToolName": "Run Pangea writing assistance automatically",
+  "autoIGCToolDescription": "Automatically run Pangea Chat grammar and translation writing assistance before sending my message.",
   "runGrammarCorrection": "Check message",
   "grammarCorrectionFailed": "Issues to address",
   "grammarCorrectionComplete": "Looks good!",
@@ -4632,7 +4632,7 @@
   "signInWithUsername": "Sign in with username and password",
   "registrationEmailMessage": "Please verify your email with a link sent there. In some cases, the email takes up to 5 minutes to arrive. Please also check your spam folder.",
   "enableTTSToolName": "Enabled text-to-speech",
-  "enableTTSToolDescription": "Allow the app to generate text-to-speech output for portions of text in your target language",
+  "enableTTSToolDescription": "Allow the app to generate text-to-speech output for portions of text in your target language.",
   "couldNotFindTTS": "We couldn't find a text-to-speech engine for your current target language. ",
   "ttsInstructionsHyperlink": "Click here to view instructions for downloading a new voice on your device.",
   "currentVersion": "Current Version",
@@ -4823,11 +4823,18 @@
   "clickOnEmailLink": "Please click on the link in the email and then proceed. In rare cases, the email can be sent to spam or take up to 5 minutes to arrive.",
   "whoIsAllowedToJoinThisChat": "Who is allowed to join this chat",
   "dontForgetPassword": "Don't forget your password!",
-  "enableAutocorrectToolName": "Enable autocorrect",
-  "enableAutocorrectDescription": "Use your keyboard's built-in autocorrect when typing messages",
+  "enableAutocorrectToolName": "Enable device autocorrect",
+  "enableAutocorrectDescription": "If your device supports the language your learning, you can enable device autocorrect to fix common errors as you type.",
   "ttsDisbledTitle": "Text-to-speech disabled",
   "ttsDisabledBody": "You can enable text-to-speech in your learning settings",
   "noSpaceDescriptionYet": "No space description created yet.",
+  "enableAutocorrectPopupTitle": "Add your target language keyboard by going to:",
+  "enableAutocorrectPopupSteps": "  \u2022 Settings\n  \u2022 General\n  \u2022 Keyboard\n  \u2022 Keyboards\n  \u2022 Add New Keyboard",
+  "enableAutocorrectPopupDescription": "Once the language is selected, you can click the small globe icon on the bottom left of your keyboard to activate the newly installed keyboard.",
+  "downloadGboardTitle": "Download Gboard from the Google Play Store to enable autocorrect and other keyboard features:",
+  "downloadGboardSteps": " \u2022 Download Gboard\n  \u2022 Open app\n  \u2022 Languages\n  \u2022 Add keyboard\n  \u2022 Select Language\n  \u2022 Select keyboard type\n  \u2022 Done",
+  "downloadGboardDescription": "Once the language is selected, you can click the small globe icon on the bottom left of your keyboard to activate the newly installed keyboard.",
+  "enableAutocorrectWarning": "Warning! Requires adding your target language keyboard",
   "tooLargeToSend": "This message is too large to send",
   "displayName": "Display name",
   "leaveRoomDescription": "You're about to leave this chat. Other users will see that you have left the chat.",
@@ -4852,5 +4859,7 @@
         "type": "String"
       }
     }
-  }
+  },
+  "downloadGboard": "Download Gboard",
+  "autocorrectNotAvailable": "Unfortunately your platform is not currently supported for this feature. Stay tuned for further development!"
 } 
