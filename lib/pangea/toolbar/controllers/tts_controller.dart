@@ -9,6 +9,7 @@ import 'package:flutter_tts/flutter_tts.dart' as flutter_tts;
 import 'package:matrix/matrix_api_lite/utils/logs.dart';
 import 'package:text_to_speech/text_to_speech.dart';
 
+import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/instructions/instructions_enum.dart';
 import 'package:fluffychat/pangea/instructions/instructions_show_popup.dart';
@@ -19,6 +20,8 @@ import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class TtsController {
+  final ChatController? chatController;
+
   String? get l2LangCode =>
       MatrixState.pangeaController.languageController.userL2?.langCode;
 
@@ -33,7 +36,7 @@ class TtsController {
   UserController get userController =>
       MatrixState.pangeaController.userController;
 
-  TtsController() {
+  TtsController({this.chatController}) {
     setupTTS();
     _languageSubscription =
         userController.stateStream.listen((_) => setupTTS());
@@ -182,6 +185,7 @@ class TtsController {
     // Target ID for where to show warning popup
     String? targetID,
   }) async {
+    chatController?.stopAudioStream.add(null);
     await _setLanguage();
     final enableTTS = MatrixState
         .pangeaController.userController.profile.toolSettings.enableTTS;

@@ -27,7 +27,6 @@ class ActivityPlanPageLaunchIconButton extends StatelessWidget {
           icon: const Icon(Icons.event_note_outlined),
           tooltip: L10n.of(context).activityPlannerTitle,
           onPressed: () {
-            controller.stopAudioStream.add(null);
             context.go('/rooms/${controller.room.id}/planner');
           },
         );

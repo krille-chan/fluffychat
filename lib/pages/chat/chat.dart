@@ -129,6 +129,7 @@ class ChatController extends State<ChatPageWithRoom>
   final PangeaController pangeaController = MatrixState.pangeaController;
   late Choreographer choreographer = Choreographer(pangeaController, this);
   StreamSubscription? _levelSubscription;
+  late GoRouter _router;
   // Pangea#
   Room get room => sendingClient.getRoomById(roomId) ?? widget.room;
 
@@ -619,11 +620,21 @@ class ChatController extends State<ChatPageWithRoom>
     stopAudioStream.close();
     hideTextController.dispose();
     _levelSubscription?.cancel();
+    _router.routeInformationProvider.removeListener(_onRouteChanged);
     //Pangea#
     super.dispose();
   }
 
   // #Pangea
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _router = GoRouter.of(context);
+    _router.routeInformationProvider.addListener(_onRouteChanged);
+  }
+
+  void _onRouteChanged() => stopAudioStream.add(null);
+
   // TextEditingController sendController = TextEditingController();
   PangeaTextController get sendController => choreographer.textController;
 

@@ -43,7 +43,7 @@ class Choreographer {
   late IgcController igc;
   late AlternativeTranslator altTranslator;
   late ErrorService errorService;
-  final tts = TtsController();
+  late TtsController tts;
 
   bool isFetching = false;
   int _timesClicked = 0;
@@ -62,6 +62,7 @@ class Choreographer {
     _initialize();
   }
   _initialize() {
+    tts = TtsController(chatController: chatController);
     _textController = PangeaTextController(choreographer: this);
     InputPasteListener(
       _textController,
