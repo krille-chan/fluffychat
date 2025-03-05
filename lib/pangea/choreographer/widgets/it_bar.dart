@@ -174,6 +174,7 @@ class ITBarState extends State<ITBar> with SingleTickerProviderStateMixin {
                               onPressed: () => showDialog(
                                 context: context,
                                 builder: (c) => const SettingsLearning(),
+                                barrierDismissible: false,
                               ),
                             ),
                           ),

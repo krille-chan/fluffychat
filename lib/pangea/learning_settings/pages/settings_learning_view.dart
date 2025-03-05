@@ -113,7 +113,7 @@ class SettingsLearningView extends StatelessWidget {
             ),
             leading: IconButton(
               icon: const Icon(Icons.close),
-              onPressed: Navigator.of(context).pop,
+              onPressed: controller.onSettingsClose,
             ),
           ),
           body: ListTileTheme(

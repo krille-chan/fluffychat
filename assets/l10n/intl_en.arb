@@ -4828,6 +4828,8 @@
   "ttsDisbledTitle": "Text-to-speech disabled",
   "ttsDisabledBody": "You can enable text-to-speech in your learning settings",
   "noSpaceDescriptionYet": "No space description created yet.",
+  "tooLargeToSend": "This message is too large to send",
+  "exitWithoutSaving": "Are you sure you want to leave without saving?",
   "enableAutocorrectPopupTitle": "Add your target language keyboard by going to:",
   "enableAutocorrectPopupSteps": "  \u2022 Settings\n  \u2022 General\n  \u2022 Keyboard\n  \u2022 Keyboards\n  \u2022 Add New Keyboard",
   "enableAutocorrectPopupDescription": "Once the language is selected, you can click the small globe icon on the bottom left of your keyboard to activate the newly installed keyboard.",

@@ -54,6 +54,7 @@ class LanguagePermissionsButtons extends StatelessWidget {
                   showDialog(
                     context: context,
                     builder: (c) => const SettingsLearning(),
+                    barrierDismissible: false,
                   );
                 },
             ),

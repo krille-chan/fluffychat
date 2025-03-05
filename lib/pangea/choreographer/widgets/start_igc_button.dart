@@ -85,6 +85,7 @@ class StartIGCButtonState extends State<StartIGCButton>
         showDialog(
           context: context,
           builder: (c) => const SettingsLearning(),
+          barrierDismissible: false,
         );
         return;
       case AssistanceState.notFetched:
@@ -112,6 +113,7 @@ class StartIGCButtonState extends State<StartIGCButton>
         onLongPress: () => showDialog(
           context: context,
           builder: (c) => const SettingsLearning(),
+          barrierDismissible: false,
         ),
         child: Stack(
           alignment: Alignment.center,

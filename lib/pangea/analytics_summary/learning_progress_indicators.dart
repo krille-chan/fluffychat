@@ -127,6 +127,7 @@ class LearningProgressIndicatorsState
                     onTap: () => showDialog(
                       context: context,
                       builder: (c) => const SettingsLearning(),
+                      barrierDismissible: false,
                     ),
                     l2: userL2?.langCode.toUpperCase(),
                   ),

@@ -291,6 +291,7 @@ class ClientChooserButton extends StatelessWidget {
           showDialog(
             context: context,
             builder: (c) => const SettingsLearning(),
+            barrierDismissible: false,
           );
           break;
         case SettingsAction.joinWithClassCode:
