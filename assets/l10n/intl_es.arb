@@ -1,6 +1,6 @@
 {
   "@@locale": "es",
-  "@@last_modified": "2021-08-14 12:41:10.097243",
+  "@@last_modified": "2025-03-05 13:07:43.272672",
   "about": "Acerca de",
   "@about": {
     "type": "String",
@@ -5155,5 +5155,313 @@
   "invitePeopleSpaceSubtitle": "Invitar a usuarios o administradores a este espacio",
   "noCapacityLimit": "Sin límite de capacidad",
   "downloadGroupText": "Descargar texto del grupo",
-  "enableAutocorrectWarning": "¡Atención! Es necesario añadir el teclado del idioma de destino"
+  "enableAutocorrectWarning": "¡Atención! Es necesario añadir el teclado del idioma de destino",
+  "writeAMessageLangCodes": "Escribe en {l1} o {l2}...",
+  "@writeAMessageLangCodes": {
+    "type": "String",
+    "placeholders": {
+      "l1": {
+        "type": "String"
+      },
+      "l2": {
+        "type": "String"
+      }
+    }
+  },
+  "botConfigNoPermissionTitle": "Sin permiso",
+  "botConfigNoPermissionMessage": "Contacta al administrador de la sala para cambiar la configuración del bot",
+  "changeContent": "¡Oh no! La IA puede facilitar experiencias de aprendizaje personalizadas pero... también alucina. ¿Qué debería ser?",
+  "grammarCopyVERBFORMaux": "Auxiliar",
+  "levelShort": "NIV {level}",
+  "@levelShort": {
+    "type": "String",
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
+  "spaceDescription": "Descripción del espacio",
+  "addSpaceDescription": "Agregar una descripción del espacio",
+  "notificationsOn": "Notificaciones activadas",
+  "notificationsOff": "Notificaciones desactivadas",
+  "spaceCanBeFoundViaSearch": "El espacio se puede encontrar a través de la búsqueda",
+  "chatCanBeFoundViaSearch": "El chat se puede encontrar a través de la búsqueda",
+  "requireCodeToJoin": "Requiere código para unirse",
+  "canFindInSearch": "Se puede encontrar en la búsqueda",
+  "addSubspaceWarning": "Una vez que agregues esto, no aparecerá en los resultados de búsqueda pública, y será visible para todos los miembros del espacio principal.",
+  "nestedSpaceError": "Los espacios no deben ser añadidos como hijos de otros espacios",
+  "addChatToSpace": "Agregar chat",
+  "createChatAndInviteUsers": "Crear chat e invitar usuarios",
+  "updatedNewSpaceDescription": "Los espacios te permiten consolidar tus chats y construir comunidades privadas o públicas.",
+  "joinWithCode": "Unirse con código",
+  "enterCodeToJoin": "Ingrese el código para unirse",
+  "mandatoryUpdateRequired": "Actualización obligatoria requerida",
+  "mandatoryUpdateRequiredDesc": "Se requiere una nueva versión de la aplicación para continuar. Actualice ahora para proceder.",
+  "updateAvailableDesc": "Una nueva versión de la aplicación está disponible. ¡Actualice ahora para obtener las últimas funciones y mejoras!",
+  "updateLater": "Más tarde",
+  "constructUseWaDesc": "Usado sin ayuda",
+  "constructUseGaDesc": "Error gramatical",
+  "constructUseUnkDesc": "Desconocido",
+  "constructUseCorITDesc": "Correcto en la traducción",
+  "constructUseIgnITDesc": "Ignorado en la traducción",
+  "constructUseIncITDesc": "Incorrecto en la traducción",
+  "constructUseIgnIGCDesc": "Ignorado en la corrección gramatical",
+  "constructUseCorIGCDesc": "Correcto en la corrección gramatical",
+  "constructUseIncIGCDesc": "Incorrecto en la corrección gramatical",
+  "constructUseCorPADesc": "Correcto en la actividad de significado de palabras",
+  "constructUseIgnPADesc": "Ignorado en la actividad de significado de palabras",
+  "constructUseIncPADesc": "Incorrecto en la actividad de significado de palabras",
+  "constructUseCorWLDesc": "Correcto en la actividad de escucha de palabras",
+  "constructUseIncWLDesc": "Incorrecto en la actividad de escucha de palabras",
+  "constructUseIngWLDesc": "Ignorado en la actividad de escucha de palabras",
+  "constructUseCorHWLDesc": "Correcto en la actividad de palabra oculta",
+  "constructUseIncHWLDesc": "Incorrecto en la actividad de palabra oculta",
+  "constructUseIgnHWLDesc": "Ignorado en la actividad de palabra oculta",
+  "constructUseCorLDesc": "Correcto en la actividad de lema",
+  "constructUseIncLDesc": "Incorrecto en la actividad de lema",
+  "constructUseIgnLDesc": "Ignorado en la actividad de lema",
+  "constructUseCorMDesc": "Correcto en la actividad de gramática",
+  "constructUseIncMDesc": "Incorrecto en la actividad de gramática",
+  "constructUseIgnMDesc": "Ignorado en la actividad de gramática",
+  "constructUseEmojiDesc": "Correcto en la actividad de emoji",
+  "constructUseNanDesc": "No aplicable",
+  "xpIntoLevel": "{currentXP} / {maxXP} XP",
+  "@xpIntoLevel": {
+    "type": "String",
+    "placeholders": {
+      "currentXP": {
+        "type": "int"
+      },
+      "maxXP": {
+        "type": "int"
+      }
+    }
+  },
+  "signInWithUsername": "Iniciar sesión con nombre de usuario y contraseña",
+  "registrationEmailMessage": "Por favor verifica tu correo electrónico con un enlace enviado allí. En algunos casos, el correo puede tardar hasta 5 minutos en llegar. También verifica tu carpeta de spam.",
+  "enableTTSToolName": "Texto a voz habilitado",
+  "enableTTSToolDescription": "Permitir que la aplicación genere salida de texto a voz para partes del texto en tu idioma objetivo.",
+  "couldNotFindTTS": "No pudimos encontrar un motor de texto a voz para tu idioma objetivo actual.",
+  "ttsInstructionsHyperlink": "Haz clic aquí para ver las instrucciones para descargar una nueva voz en tu dispositivo.",
+  "currentVersion": "Versión actual",
+  "latestVersion": "Última versión",
+  "createAnAccount": "Crear una cuenta",
+  "signIn": "Iniciar sesión",
+  "signUpWithEmail": "Regístrate con Email",
+  "signUpWithGoogle": "Regístrate con Google",
+  "signUpWithApple": "Regístrate con Apple",
+  "yourUsername": "Tu nombre de usuario",
+  "yourEmail": "Tu correo electrónico",
+  "pleaseEnterAnEmail": "Por favor, introduce una dirección de correo electrónico",
+  "signInWithGoogle": "Iniciar sesión con Google",
+  "signInWithApple": "Iniciar sesión con Apple",
+  "chooseYourAvatar": "Elige tu avatar",
+  "iWantToLearn": "Quiero aprender",
+  "pleaseAgreeToTOS": "Por favor, acepta los Términos y Condiciones",
+  "pleaseEnterEmail": "Por favor, introduce una dirección de correo electrónico válida.",
+  "pleaseSelectALanguage": "Por favor, selecciona un idioma",
+  "myBaseLanguage": "Mi idioma base",
+  "clickWordsInstructions": "Haz clic en una palabra o en los botones de abajo para aprender más",
+  "chooseBestDefinition": "¿Qué significa esta palabra?",
+  "meaningSectionHeader": "Significado:",
+  "formSectionHeader": "Formas utilizadas en los chats:",
+  "noEmojiSelectedTooltip": "No se ha seleccionado ningún emoji",
+  "writingExercisesTooltip": "Actividades de escritura",
+  "listeningExercisesTooltip": "Actividades de escucha",
+  "readingExercisesTooltip": "Actividades de lectura",
+  "meaningNotFound": "No se pudo encontrar el significado.",
+  "formsNotFound": "No se pudieron encontrar las formas.",
+  "chooseBaseForm": "Elige la forma base",
+  "notTheCodeError": "¡Lo siento, ese no es el código!",
+  "totalXP": "XP total",
+  "numLemmas": "Número total de lemas",
+  "listOfLemmas": "Lista de lemas",
+  "numLemmasUsedCorrectly": "Número de lemas utilizados correctamente al menos una vez",
+  "listLemmasUsedCorrectly": "Lista de lemas utilizados correctamente al menos una vez",
+  "numLemmasUsedIncorrectly": "Número de lemas utilizados correctamente 0 veces",
+  "listLemmasUsedIncorrectly": "Número de lemas utilizados correctamente 0 veces",
+  "numLemmasSmallXP": "Número de lemas con 0 - 30 XP",
+  "numLemmasMediumXP": "Número de lemas con 31 - 200 XP",
+  "numLemmasLargeXP": "Número de lemas con > 200 XP",
+  "listLemmasSmallXP": "Lista de lemas con 0 - 30 XP",
+  "listLemmasMediumXP": "Lista de lemas con 31 - 200 XP",
+  "listLemmasLargeXP": "Lista de lemas con > 200 XP",
+  "numGrammarConcepts": "Número de conceptos gramaticales",
+  "listGrammarConcepts": "Conceptos gramaticales",
+  "listGrammarConceptsUsedCorrectly": "Conceptos gramaticales utilizados correctamente en mensajes originales al menos el 80% del tiempo",
+  "listGrammarConceptsUsedIncorrectly": "Conceptos gramaticales utilizados correctamente en mensajes originales menos del 80% del tiempo",
+  "listGrammarConceptsUseCorrectlySystemGenerated": "Conceptos gramaticales elegidos correctamente de sugerencias generadas por el sistema al menos el 80% del tiempo",
+  "listGrammarConceptsUseIncorrectlySystemGenerated": "Conceptos gramaticales elegidos correctamente de sugerencias generadas por el sistema menos del 80% del tiempo",
+  "listGrammarConceptsSmallXP": "Conceptos gramaticales con 0-50 xp",
+  "listGrammarConceptsMediumXP": "Conceptos gramaticales con 51-200 xp",
+  "listGrammarConceptsLargeXP": "Conceptos gramaticales 201-500 xp",
+  "listGrammarConceptsHugeXP": "Conceptos gramaticales >500 xp",
+  "numMessagesSent": "Número de mensajes enviados",
+  "numWordsTyped": "Número de palabras escritas en mensajes originales",
+  "numCorrectChoices": "Número de palabras correctas elegidas de sugerencias generadas por el sistema",
+  "numIncorrectChoices": "Número de palabras incorrectas elegidas de sugerencias generadas por el sistema",
+  "downloadSpaceAnalytics": "Descargar análisis de espacio",
+  "commaSeparatedFile": "CSV",
+  "excelFile": "Excel",
+  "fileType": "Tipo de archivo",
+  "download": "Descargar",
+  "analyticsNotAvailable": "Análisis de usuarios no disponible",
+  "downloading": "Descargando...",
+  "failedFetchUserAnalytics": "Error al descargar el análisis de usuarios",
+  "downloadComplete": "¡Descarga completa!",
+  "whatIsTheMorphTag": "¿Cuál es la {morphologicalFeature} de '{wordForm}'?",
+  "@whatIsTheMorphTag": {
+    "type": "String",
+    "placeholders": {
+      "morphologicalFeature": {
+        "type": "String"
+      },
+      "wordForm": {
+        "type": "String"
+      }
+    }
+  },
+  "dataAvailable": "Disponibilidad de datos",
+  "lemmasNeverUsedCorrectly": "Número de lemas utilizados correctamente 0 veces",
+  "available": "Disponible",
+  "accessingMemberAnalytics": "Accediendo al análisis de miembros...",
+  "pangeaBotIsFallible": "¡El Pangea Bot también comete errores!",
+  "whatIsMeaning": "¿Qué significa '{lemma}'?",
+  "@whatIsMeaning": {
+    "type": "String",
+    "placeholders": {
+      "lemma": {
+        "type": "String"
+      }
+    }
+  },
+  "pickAnEmoji": "¿Cuál es tu emoji favorito para '{lemma}'?",
+  "@pickAnEmoji": {
+    "type": "String",
+    "placeholders": {
+      "lemma": {
+        "type": "String"
+      }
+    }
+  },
+  "lemmaMeaningInstructionsBody": "Arriba está el significado del lema. Haz doble clic para editar.",
+  "doubleClickToEdit": "Haz doble clic para editar.",
+  "removeFeature": "Eliminar {feature}",
+  "@removeFeature": {
+    "type": "String",
+    "placeholders": {
+      "feature": {
+        "type": "String"
+      }
+    }
+  },
+  "notInClass": "¡No está en una clase!",
+  "noClassCode": "¡Sin código de clase!",
+  "chooseCorrectLabel": "Elige la etiqueta correcta.",
+  "levelPopupTitle": "¡Felicidades por alcanzar\nel Nivel {level}!",
+  "@levelPopupTitle": {
+    "type": "String",
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
+  "activityPlannerTitle": "Planificador de Actividades",
+  "topicLabel": "Tema",
+  "topicPlaceholder": "Elige un tema...",
+  "modeLabel": "Modo",
+  "modePlaceholder": "Elige un modo...",
+  "learningObjectiveLabel": "Objetivo de Aprendizaje",
+  "learningObjectivePlaceholder": "Elige un objetivo de aprendizaje...",
+  "mediaLabel": "Medios que los aprendices deben compartir",
+  "languageOfInstructionsLabel": "Idioma de las instrucciones de la actividad",
+  "targetLanguageLabel": "Idioma objetivo",
+  "cefrLevelLabel": "Nivel CEFR",
+  "generateActivitiesButton": "Generar Actividades",
+  "launchActivityButton": "Iniciar Actividad",
+  "image": "Imagen",
+  "video": "Video",
+  "nan": "No aplicable",
+  "activityPlannerOverviewInstructionsBody": "¡Elige un tema, modo, objetivo de aprendizaje y genera una actividad para el chat!",
+  "completeActivitiesToUnlock": "Completa las actividades de palabras resaltadas para desbloquear",
+  "myBookmarkedActivities": "Mis Actividades Marcadas",
+  "noBookmarkedActivities": "No hay actividades marcadas",
+  "activityTitle": "Título de la Actividad",
+  "addVocabulary": "Agregar vocabulario",
+  "instructions": "Instrucciones",
+  "bookmark": "Marcar esta actividad",
+  "numberOfLearners": "Número de aprendices",
+  "mustBeInteger": "Debe ser un número entero, por ejemplo, 1, 2, 3, ...",
+  "noLemmasFound": "No hay vocabulario con más de {xp} XP. ¡Sigue practicando!",
+  "@noLemmasFound": {
+    "type": "String",
+    "placeholders": {
+      "xp": {
+        "type": "int"
+      }
+    }
+  },
+  "constructUsePvmDesc": "Producido en mensaje de voz",
+  "lockedMorphFeature": "Esperando ser desbloqueado",
+  "leaveSpaceDescription": "Al salir del espacio, dejarás todos los chats dentro de él. Otros usuarios verán que has salido del espacio.",
+  "whatIsLemma": "¿Qué es el lema?",
+  "constructUseCorMmDesc": "Significado correcto del mensaje",
+  "constructUseIncMmDesc": "Significado incorrecto del mensaje",
+  "constructUseIgnMmDesc": "Significado del mensaje ignorado",
+  "clickForMeaningActivity": "Haz clic aquí para un Desafío de Significado",
+  "meaning": "Significado",
+  "chatWith": "Grupo con {displayname}",
+  "@chatWith": {
+    "type": "String",
+    "placeholders": {
+      "displayname": {
+        "type": "String"
+      }
+    }
+  },
+  "slightlyOffensive": "Ligeramente ofensivo",
+  "clickOnEmailLink": "Por favor, haz clic en el enlace del correo electrónico y luego procede. En raras ocasiones, el correo electrónico puede ser enviado a spam o tardar hasta 5 minutos en llegar.",
+  "whoIsAllowedToJoinThisChat": "Quién está permitido unirse a este chat",
+  "dontForgetPassword": "¡No olvides tu contraseña!",
+  "enableAutocorrectToolName": "Habilitar autocorrección del dispositivo",
+  "enableAutocorrectDescription": "Si tu dispositivo soporta el idioma que estás aprendiendo, puedes habilitar la autocorrección del dispositivo para corregir errores comunes mientras escribes.",
+  "ttsDisbledTitle": "Texto a voz deshabilitado",
+  "ttsDisabledBody": "Puedes habilitar texto a voz en la configuración de aprendizaje",
+  "noSpaceDescriptionYet": "No se ha creado ninguna descripción de espacio aún.",
+  "tooLargeToSend": "Este mensaje es demasiado grande para enviar",
+  "exitWithoutSaving": "¿Estás seguro de que quieres salir sin guardar?",
+  "enableAutocorrectPopupTitle": "Agrega el teclado de tu idioma objetivo yendo a:",
+  "enableAutocorrectPopupSteps": "  • Configuración\n  • General\n  • Teclado\n  • Teclados\n  • Agregar nuevo teclado",
+  "enableAutocorrectPopupDescription": "Una vez que se seleccione el idioma, puedes hacer clic en el pequeño ícono de globo en la esquina inferior izquierda de tu teclado para activar el teclado recién instalado.",
+  "downloadGboardTitle": "Descarga Gboard desde Google Play Store para habilitar la autocorrección y otras funciones del teclado:",
+  "downloadGboardSteps": " • Descargar Gboard\n  • Abrir la aplicación\n  • Idiomas\n  • Agregar teclado\n  • Seleccionar idioma\n  • Seleccionar tipo de teclado\n  • Listo",
+  "downloadGboardDescription": "Una vez que se seleccione el idioma, puedes hacer clic en el pequeño ícono de globo en la esquina inferior izquierda de tu teclado para activar el teclado recién instalado.",
+  "displayName": "Nombre para mostrar",
+  "leaveRoomDescription": "Estás a punto de salir de este chat. Otros usuarios verán que has salido del chat.",
+  "confirmUserId": "Por favor, confirma tu nombre de usuario de Pangea Chat para poder eliminar tu cuenta.",
+  "startingToday": "A partir de hoy",
+  "oneWeekFreeTrial": "Una semana de prueba gratuita",
+  "paidSubscriptionStarts": "Comenzando {startDate}",
+  "@paidSubscriptionStarts": {
+    "type": "String",
+    "placeholders": {
+      "startDate": {
+        "type": "String"
+      }
+    }
+  },
+  "cancelInSubscriptionSettings": "• Cancela en cualquier momento en la configuración de suscripción",
+  "cancelToAvoidCharges": "• Cancela antes de {trialEnds} para evitar cargos",
+  "@cancelToAvoidCharges": {
+    "type": "String",
+    "placeholders": {
+      "trialEnds": {
+        "type": "String"
+      }
+    }
+  },
+  "downloadGboard": "Descargar Gboard",
+  "autocorrectNotAvailable": "Desafortunadamente, tu plataforma no es compatible actualmente con esta función. ¡Mantente atento a futuros desarrollos!"
 }
