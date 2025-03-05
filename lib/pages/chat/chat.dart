@@ -1792,6 +1792,8 @@ class ChatController extends State<ChatPageWithRoom>
     Event? nextEvent,
     Event? prevEvent,
   }) {
+    if (event.redacted) return;
+
     // Close keyboard, if open
     if (inputFocus.hasFocus && PlatformInfos.isMobile) {
       inputFocus.unfocus();
