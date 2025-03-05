@@ -6,7 +6,6 @@ import 'package:fluffychat/pangea/choreographer/models/language_detection_model.
 import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/pangea/common/network/requests.dart';
 import 'package:fluffychat/pangea/common/network/urls.dart';
-import 'package:fluffychat/pangea/learning_settings/constants/language_constants.dart';
 
 class LanguageDetectionRepo {
   static Future<LanguageDetectionResponse> get(
@@ -78,22 +77,4 @@ class LanguageDetectionResponse {
       'full_text': fullText,
     };
   }
-
-  /// Return the highest confidence detection.
-  /// If there are no detections, the unknown language detection is returned.
-  LanguageDetection get highestConfidenceDetection {
-    detections.sort((a, b) => b.confidence.compareTo(a.confidence));
-    return detections.firstOrNull ?? unknownLanguageDetection;
-  }
-
-  static const double languageDetectionConfidenceThreshold = 0.95;
-
-  /// Returns the highest validated detection based on the confidence threshold.
-  /// If the highest confidence detection is below the threshold, the unknown language
-  /// detection is returned.
-  LanguageDetection highestValidatedDetection({double? threshold}) =>
-      highestConfidenceDetection.confidence >=
-              (threshold ?? languageDetectionConfidenceThreshold)
-          ? highestConfidenceDetection
-          : unknownLanguageDetection;
 }

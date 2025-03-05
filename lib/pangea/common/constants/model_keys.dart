@@ -53,6 +53,7 @@ class ModelKey {
   static const String fullText = "full_text";
   static const String fullTextLang = "full_text_lang";
   static const String tokens = "tokens";
+  static const String allDetections = "all_detections";
   static const String srcLang = "src_lang";
   static const String tgtLang = "tgt_lang";
   static const String word = "word";

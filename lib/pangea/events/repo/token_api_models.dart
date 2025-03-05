@@ -1,5 +1,6 @@
+import 'package:fluffychat/pangea/choreographer/models/language_detection_model.dart';
 import 'package:fluffychat/pangea/common/constants/model_keys.dart';
-import '../models/pangea_token_model.dart';
+import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 
 class TokensRequestModel {
   /// the text to be tokenized
@@ -53,8 +54,13 @@ class TokensRequestModel {
 class TokensResponseModel {
   List<PangeaToken> tokens;
   String lang;
+  List<LanguageDetection> detections;
 
-  TokensResponseModel({required this.tokens, required this.lang});
+  TokensResponseModel({
+    required this.tokens,
+    required this.lang,
+    required this.detections,
+  });
 
   factory TokensResponseModel.fromJson(
     Map<String, dynamic> json,
@@ -67,5 +73,11 @@ class TokensResponseModel {
             .toList()
             .cast<PangeaToken>(),
         lang: json[ModelKey.lang],
+        detections: (json[ModelKey.allDetections] as Iterable)
+            .map<LanguageDetection>(
+              (e) => LanguageDetection.fromJson(e as Map<String, dynamic>),
+            )
+            .toList()
+            .cast<LanguageDetection>(),
       );
 }

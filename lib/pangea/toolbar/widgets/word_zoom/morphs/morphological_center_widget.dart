@@ -114,9 +114,15 @@ class MorphologicalCenterWidgetState extends State<MorphologicalCenterWidget> {
         editEventId: pm.eventId,
         originalSent: pm.originalSent?.content,
         originalWritten: pm.originalWritten?.content,
-        tokensSent: PangeaMessageTokens(tokens: existingTokens),
+        tokensSent: PangeaMessageTokens(
+          tokens: existingTokens,
+          detections: pm.originalSent?.detections,
+        ),
         tokensWritten: pm.originalWritten?.tokens != null
-            ? PangeaMessageTokens(tokens: pm.originalWritten!.tokens!)
+            ? PangeaMessageTokens(
+                tokens: pm.originalWritten!.tokens!,
+                detections: pm.originalWritten?.detections,
+              )
             : null,
         choreo: pm.originalSent?.choreo,
         messageTag: ModelKey.messageTagMorphEdit,

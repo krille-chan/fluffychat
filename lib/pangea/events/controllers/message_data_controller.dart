@@ -7,20 +7,20 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/pangea/choreographer/repo/full_text_translation_repo.dart';
 import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/pangea/common/controllers/base_controller.dart';
 import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/common/network/requests.dart';
 import 'package:fluffychat/pangea/common/network/urls.dart';
+import 'package:fluffychat/pangea/common/utils/error_handler.dart';
+import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/events/models/representation_content_model.dart';
 import 'package:fluffychat/pangea/events/models/tokens_event_content_model.dart';
 import 'package:fluffychat/pangea/events/repo/token_api_models.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
-import '../../choreographer/repo/full_text_translation_repo.dart';
-import '../../common/utils/error_handler.dart';
-import '../constants/pangea_event_types.dart';
 
 // TODO - make this static and take it out of the _pangeaController
 // will need to pass accessToken to the requests
@@ -106,7 +106,10 @@ class MessageDataController extends BaseController {
     if (repEventId != null && room != null) {
       room
           .sendPangeaEvent(
-            content: PangeaMessageTokens(tokens: res.tokens).toJson(),
+            content: PangeaMessageTokens(
+              tokens: res.tokens,
+              detections: res.detections,
+            ).toJson(),
             parentEventId: repEventId,
             type: PangeaEventTypes.tokens,
           )
@@ -238,7 +241,10 @@ class MessageDataController extends BaseController {
 
     try {
       await room.sendPangeaEvent(
-        content: PangeaMessageTokens(tokens: res.tokens).toJson(),
+        content: PangeaMessageTokens(
+          tokens: res.tokens,
+          detections: res.detections,
+        ).toJson(),
         parentEventId: repEventId,
         type: PangeaEventTypes.tokens,
       );

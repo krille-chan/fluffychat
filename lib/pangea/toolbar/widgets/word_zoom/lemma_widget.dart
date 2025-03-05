@@ -72,10 +72,15 @@ class LemmaWidgetState extends State<LemmaWidget> {
         editEventId: widget.pangeaMessageEvent.eventId,
         originalSent: widget.pangeaMessageEvent.originalSent?.content,
         originalWritten: widget.pangeaMessageEvent.originalWritten?.content,
-        tokensSent: PangeaMessageTokens(tokens: existingTokens),
+        tokensSent: PangeaMessageTokens(
+          tokens: existingTokens,
+          detections: widget.pangeaMessageEvent.originalSent!.detections,
+        ),
         tokensWritten: widget.pangeaMessageEvent.originalWritten?.tokens != null
             ? PangeaMessageTokens(
                 tokens: widget.pangeaMessageEvent.originalWritten!.tokens!,
+                detections:
+                    widget.pangeaMessageEvent.originalWritten?.detections,
               )
             : null,
         choreo: widget.pangeaMessageEvent.originalSent?.choreo,

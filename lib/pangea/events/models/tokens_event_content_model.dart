@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:fluffychat/pangea/choreographer/models/language_detection_model.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 
 /// this class lives within a [PangeaTokensEvent]
@@ -8,9 +9,11 @@ import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 /// representation
 class PangeaMessageTokens {
   List<PangeaToken> tokens;
+  List<LanguageDetection>? detections;
 
   PangeaMessageTokens({
     required this.tokens,
+    this.detections,
   });
 
   factory PangeaMessageTokens.fromJson(Map<String, dynamic> json) {
@@ -23,19 +26,32 @@ class PangeaMessageTokens {
         : something is String
             ? jsonDecode(json[_tokensKey])
             : null;
+
+    final Iterable? detectionsIterable = json[_detectionsKey] is Iterable
+        ? json[_detectionsKey]
+        : json[_detectionsKey] is String
+            ? jsonDecode(json[_detectionsKey])
+            : null;
     return PangeaMessageTokens(
       tokens: tokensIterable
           .map((e) => PangeaToken.fromJson(e))
           .toList()
           .cast<PangeaToken>(),
+      detections: detectionsIterable
+          ?.map((e) => LanguageDetection.fromJson(e))
+          .toList()
+          .cast<LanguageDetection>(),
     );
   }
 
   static const _tokensKey = "tkns";
+  static const _detectionsKey = "detections";
 
   Map<String, dynamic> toJson() {
     final data = <String, dynamic>{};
     data[_tokensKey] = jsonEncode(tokens.map((e) => e.toJson()).toList());
+    data[_detectionsKey] =
+        jsonEncode(detections?.map((e) => e.toJson()).toList());
     return data;
   }
 }

@@ -10,16 +10,17 @@ import 'package:matrix/src/utils/markdown.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 import 'package:fluffychat/pangea/choreographer/event_wrappers/pangea_choreo_event.dart';
+import 'package:fluffychat/pangea/choreographer/models/choreo_record.dart';
+import 'package:fluffychat/pangea/choreographer/models/language_detection_model.dart';
+import 'package:fluffychat/pangea/common/utils/error_handler.dart';
+import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/events/extensions/pangea_event_extension.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
+import 'package:fluffychat/pangea/events/models/representation_content_model.dart';
 import 'package:fluffychat/pangea/events/models/tokens_event_content_model.dart';
 import 'package:fluffychat/pangea/events/repo/token_api_models.dart';
-import '../../../widgets/matrix.dart';
-import '../../choreographer/models/choreo_record.dart';
-import '../../common/utils/error_handler.dart';
-import '../../learning_settings/constants/language_constants.dart';
-import '../constants/pangea_event_types.dart';
-import '../models/representation_content_model.dart';
+import 'package:fluffychat/pangea/learning_settings/constants/language_constants.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 
 class RepresentationEvent {
   Event? _event;
@@ -65,6 +66,8 @@ class RepresentationEvent {
 
   bool get botAuthored =>
       content.originalSent == false && content.originalWritten == false;
+
+  List<LanguageDetection>? get detections => _tokens?.detections;
 
   List<PangeaToken>? get tokens {
     if (_tokens != null) return _tokens!.tokens;

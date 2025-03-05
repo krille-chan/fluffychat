@@ -11,12 +11,12 @@ import 'package:fluffychat/pangea/choreographer/models/pangea_match_model.dart';
 import 'package:fluffychat/pangea/choreographer/models/span_card_model.dart';
 import 'package:fluffychat/pangea/choreographer/models/span_data.dart';
 import 'package:fluffychat/pangea/choreographer/repo/language_detection_repo.dart';
+import 'package:fluffychat/pangea/common/constants/model_keys.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_representation_event.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/events/models/representation_content_model.dart';
 import 'package:fluffychat/pangea/learning_settings/constants/language_constants.dart';
-import '../../common/constants/model_keys.dart';
 
 // import 'package:language_tool/language_tool.dart';
 
@@ -102,13 +102,22 @@ class IGCTextData {
       originalInput = matches.first.match.fullText;
     }
 
+    final defaultDetections = LanguageDetectionResponse(
+      detections: [
+        LanguageDetection(langCode: content.langCode, confidence: 1),
+      ],
+      fullText: content.text,
+    );
+
+    final LanguageDetectionResponse detections = event.detections != null
+        ? LanguageDetectionResponse.fromJson({
+            "detections": event.detections,
+            "full_text": content.text,
+          })
+        : defaultDetections;
+
     return IGCTextData(
-      detections: LanguageDetectionResponse(
-        detections: [
-          LanguageDetection(langCode: content.langCode, confidence: 1),
-        ],
-        fullText: content.text,
-      ),
+      detections: detections,
       originalInput: originalInput,
       fullTextCorrection: content.text,
       tokens: tokens,
@@ -143,11 +152,6 @@ class IGCTextData {
   String get detectedLanguage {
     return detections.detections.firstOrNull?.langCode ??
         LanguageKeys.unknownLanguage;
-    // if (!(enableIGC && enableIT) || matches.isNotEmpty) {
-    //   return detections.highestValidatedDetection().langCode;
-    // } else {
-    //   return detections.highestConfidenceDetection.langCode;
-    // }
   }
 
   // reconstruct fullText based on accepted match
