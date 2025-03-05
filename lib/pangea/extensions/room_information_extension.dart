@@ -41,7 +41,9 @@ extension RoomInformationRoomExtension on Room {
     );
   }
 
-  bool get isBotDM => botOptions?.mode == BotMode.directChat;
+  Future<bool> get isBotDM async {
+    return botOptions?.mode == BotMode.directChat && await botIsInRoom;
+  }
 
   bool isAnalyticsRoomOfUser(String userId) =>
       isAnalyticsRoom && isMadeByUser(userId);

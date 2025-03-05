@@ -94,4 +94,8 @@ class Environment {
   static String get supportUserId {
     return isStaging ? '@support:staging.pangea.chat' : '@support:pangea.chat';
   }
+
+  static String? get botName {
+    return dotenv.env["BOT_NAME"];
+  }
 }
