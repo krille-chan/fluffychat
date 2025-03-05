@@ -93,6 +93,8 @@ class SubscriptionController extends BaseController {
         return;
       }
 
+      await _pangeaController.userController.initCompleter.future;
+
       availableSubscriptionInfo = AvailableSubscriptionsInfo();
       await availableSubscriptionInfo!.setAvailableSubscriptions();
 

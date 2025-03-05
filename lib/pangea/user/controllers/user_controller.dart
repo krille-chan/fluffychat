@@ -92,22 +92,18 @@ class UserController extends BaseController {
   }
 
   /// A completer for the profile model of a user.
-  Completer<void>? _profileCompleter;
+  Completer<void> initCompleter = Completer<void>();
+  bool _initializing = false;
 
   /// Initializes the user's profile. Runs a function to wait for account data to load,
   /// read account data into profile, and migrate any missing info from the pangea profile.
   /// Finally, it adds a listen to update the profile data when new account data comes in.
   Future<void> initialize() async {
-    if (_profileCompleter?.isCompleted ?? false) {
-      return _profileCompleter!.future;
+    if (_initializing || initCompleter.isCompleted) {
+      return initCompleter.future;
     }
 
-    if (_profileCompleter != null) {
-      await _profileCompleter!.future;
-      return _profileCompleter!.future;
-    }
-
-    _profileCompleter = Completer<void>();
+    _initializing = true;
 
     try {
       await _initialize();
@@ -126,12 +122,13 @@ class UserController extends BaseController {
         data: {},
       );
     } finally {
-      if (!_profileCompleter!.isCompleted) {
-        _profileCompleter!.complete();
+      if (!initCompleter.isCompleted) {
+        initCompleter.complete();
       }
+      _initializing = false;
     }
 
-    return _profileCompleter!.future;
+    return initCompleter.future;
   }
 
   /// Initializes the user's profile by waiting for account data to load, reading in account
@@ -168,7 +165,8 @@ class UserController extends BaseController {
   }
 
   void clear() {
-    _profileCompleter = null;
+    _initializing = false;
+    initCompleter = Completer<void>();
     _cachedProfile = null;
   }
 

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/subscription/controllers/subscription_controller.dart';
@@ -72,6 +73,7 @@ class MobileSubscriptionInfo extends CurrentSubscriptionInfo {
         s: StackTrace.current,
         data: {},
       );
+      currentSubscriptionId = AppConfig.errorSubscriptionId;
       return;
     }
 
