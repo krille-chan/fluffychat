@@ -56,7 +56,7 @@ void chatListHandleSpaceTap(
       if (rooms.any((s) => s.spaceChildren.any((c) => c.roomId == space.id))) {
         autoJoin(space);
       } else if (justInputtedCode != null &&
-          justInputtedCode == space.classCode) {
+          justInputtedCode == space.classCode(context)) {
         // do nothing
       } else {
         controller.showInviteDialog(space);
