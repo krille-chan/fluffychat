@@ -19,32 +19,39 @@ class PangeaLoginView extends StatelessWidget {
       key: controller.formKey,
       child: PangeaLoginScaffold(
         children: [
-          FullWidthTextField(
-            hintText: L10n.of(context).username,
-            textInputAction: TextInputAction.next,
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return L10n.of(context).pleaseEnterYourUsername;
-              }
-              return null;
-            },
-            controller: controller.usernameController,
-          ),
-          FullWidthTextField(
-            hintText: L10n.of(context).password,
-            obscureText: true,
-            textInputAction: TextInputAction.go,
-            onSubmitted: (_) {
-              controller.enabledSignIn ? controller.login() : null;
-            },
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return L10n.of(context).pleaseEnterYourPassword;
-              }
-              return null;
-            },
-            controller: controller.passwordController,
-          ),
+          AutofillGroup(
+              child: Column(children: [
+            FullWidthTextField(
+              hintText: L10n.of(context).username,
+              autofillHints: const [AutofillHints.username],
+              autoFocus: true,
+              textInputAction: TextInputAction.next,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return L10n.of(context).pleaseEnterYourUsername;
+                }
+                return null;
+              },
+              controller: controller.usernameController,
+            ),
+            FullWidthTextField(
+              hintText: L10n.of(context).password,
+              autofillHints: const [AutofillHints.password],
+              autoFocus: true,
+              obscureText: true,
+              textInputAction: TextInputAction.go,
+              onSubmitted: (_) {
+                controller.enabledSignIn ? controller.login() : null;
+              },
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return L10n.of(context).pleaseEnterYourPassword;
+                }
+                return null;
+              },
+              controller: controller.passwordController,
+            ),
+          ])),
           FullWidthButton(
             title: L10n.of(context).signIn,
             icon: PangeaLogoSvg(
