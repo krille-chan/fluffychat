@@ -66,7 +66,7 @@ class Choreographer {
     InputPasteListener(
       _textController,
       // TODO, do something on paste
-      () {},
+      () => debugPrint("on paste"),
     );
     itController = ITController(this);
     igc = IgcController(this);

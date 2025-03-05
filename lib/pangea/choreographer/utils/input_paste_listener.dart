@@ -17,7 +17,7 @@ class InputPasteListener {
       if (controller.editType != EditType.keyboard) return;
       final difference =
           controller.text.characters.length - _currentText.characters.length;
-      if (difference.abs() > 1) onPaste();
+      if (difference > 1) onPaste();
       _currentText = controller.text;
     });
   }
