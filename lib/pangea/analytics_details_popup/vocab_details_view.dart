@@ -11,14 +11,11 @@ import 'package:fluffychat/pangea/analytics_misc/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/common/widgets/customized_svg.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_text_model.dart';
-import 'package:fluffychat/pangea/learning_settings/constants/language_constants.dart';
 import 'package:fluffychat/pangea/lemmas/lemma.dart';
-import 'package:fluffychat/pangea/lemmas/lemma_info_repo.dart';
-import 'package:fluffychat/pangea/lemmas/lemma_info_request.dart';
-import 'package:fluffychat/pangea/lemmas/lemma_info_response.dart';
 import 'package:fluffychat/pangea/morphs/get_grammar_copy.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/practice_activity/word_audio_button.dart';
+import 'package:fluffychat/pangea/toolbar/widgets/word_zoom/lemma_meaning_widget.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 /// Displays information about selected lemma, and its usage
@@ -67,26 +64,9 @@ class VocabDetailsView extends StatelessWidget {
     return forms.join(", ");
   }
 
-  /// Fetch the meaning of the lemma
-  Future<String?> _getDefinition(BuildContext context) async {
-    final lang2 =
-        MatrixState.pangeaController.languageController.userL2?.langCode;
-    if (lang2 == null) {
-      debugPrint("No lang2, cannot retrieve definition");
-      return L10n.of(context).meaningNotFound;
-    }
-
-    final LemmaInfoRequest lemmaDefReq = LemmaInfoRequest(
-      partOfSpeech: _construct.category,
-      lemmaLang: lang2,
-      userL1:
-          MatrixState.pangeaController.languageController.userL1?.langCode ??
-              LanguageKeys.defaultLanguage,
-      lemma: _construct.lemma,
-    );
-    final LemmaInfoResponse res = await LemmaInfoRepo.get(lemmaDefReq);
-    return res.meaning;
-  }
+  /// Get the language code for the current lemma
+  String? get _userL2 =>
+      MatrixState.pangeaController.languageController.userL2?.langCode;
 
   @override
   Widget build(BuildContext context) {
@@ -158,37 +138,9 @@ class VocabDetailsView extends StatelessWidget {
               padding: const EdgeInsets.all(5.0),
               child: Align(
                 alignment: Alignment.topLeft,
-                child: FutureBuilder(
-                  future: _getDefinition(context),
-                  builder: (
-                    BuildContext context,
-                    AsyncSnapshot<String?> snapshot,
-                  ) {
-                    if (snapshot.hasData) {
-                      return RichText(
-                        text: TextSpan(
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.onSurface,
-                          ),
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: L10n.of(context).meaningSectionHeader,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyLarge
-                                  ?.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                            ),
-                            TextSpan(
-                              text: "  ${snapshot.data!}",
-                              style: Theme.of(context).textTheme.bodyLarge,
-                            ),
-                          ],
-                        ),
-                      );
-                    } else {
-                      return Wrap(
+                child: _userL2 == null
+                    ? Text(L10n.of(context).meaningNotFound)
+                    : Wrap(
                         children: [
                           Text(
                             L10n.of(context).meaningSectionHeader,
@@ -197,39 +149,37 @@ class VocabDetailsView extends StatelessWidget {
                                       fontWeight: FontWeight.bold,
                                     ),
                           ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          const CircularProgressIndicator.adaptive(
-                            strokeWidth: 2,
+                          const SizedBox(width: 8),
+                          // Pass the lemma text and form correctly
+                          // The lemma text is in _construct.lemma
+                          // For the form, we use the same value since we don't have access to PangeaToken's form
+                          LemmaMeaningWidget(
+                            text: _construct.lemma,
+                            pos: _construct.category,
+                            langCode: _userL2!,
+                            style: Theme.of(context).textTheme.bodyLarge,
                           ),
                         ],
-                      );
-                    }
-                  },
-                ),
+                      ),
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(5.0),
               child: Align(
                 alignment: Alignment.topLeft,
-                child: RichText(
-                  text: TextSpan(
-                    style: Theme.of(context).textTheme.bodyLarge,
-                    children: <TextSpan>[
-                      TextSpan(
-                        text: L10n.of(context).formSectionHeader,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      TextSpan(
-                        text:
-                            "  ${_formString ?? L10n.of(context).formsNotFound}",
-                      ),
-                    ],
-                  ),
+                child: Row(
+                  children: [
+                    Text(
+                      L10n.of(context).formSectionHeader,
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
+                    ),
+                    Text(
+                      "  ${_formString ?? L10n.of(context).formsNotFound}",
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
+                  ],
                 ),
               ),
             ),
