@@ -170,31 +170,15 @@ class AppVersionUtil {
     String currentBuildNumber,
     String remoteBuildNumber,
   ) async {
-    final title = mandatoryUpdate
-        ? L10n.of(context).mandatoryUpdateRequired
-        : L10n.of(context).updateAvailable;
-    final message = mandatoryUpdate
-        ? "${L10n.of(context).mandatoryUpdateRequiredDesc}\n\n"
-            "${L10n.of(context).currentVersion}: $currentVersion+$currentBuildNumber\n"
-            "${L10n.of(context).latestVersion}: $remoteVersion+$remoteBuildNumber"
-        : "${L10n.of(context).updateAvailableDesc}\n\n"
-            "${L10n.of(context).currentVersion}: $currentVersion+$currentBuildNumber\n"
-            "${L10n.of(context).latestVersion}: $remoteVersion+$remoteBuildNumber";
     return mandatoryUpdate
         ? showOkAlertDialog(
             context: context,
-            title: title,
-            message: message,
-            // canPop: false,
-            // barrierDismissible: false,
+            title: L10n.of(context).pleaseUpdateApp,
             okLabel: L10n.of(context).updateNow,
           )
         : showOkCancelAlertDialog(
             context: context,
-            title: title,
-            message: message,
-            // canPop: false,
-            // barrierDismissible: false,
+            title: L10n.of(context).pleaseUpdateApp,
             okLabel: L10n.of(context).updateNow,
             cancelLabel: L10n.of(context).updateLater,
           );

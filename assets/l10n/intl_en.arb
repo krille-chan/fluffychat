@@ -3439,7 +3439,6 @@
   "paymentMethod": "Payment Method",
   "paymentHistory": "Payment History",
   "emptyChatDownloadWarning": "Cannot download empty chat",
-  "appUpdateAvailable": "Update Available",
   "update": "Update",
   "updateDesc": "You can now update this app from {localVersion} to {storeVersion}",
   "@updateDesc": {
@@ -4585,10 +4584,6 @@
   "updatedNewSpaceDescription": "Spaces allow you to consolidate your chats and build private or public communities.",
   "joinWithCode": "Join with code",
   "enterCodeToJoin": "Enter code to join",
-  "mandatoryUpdateRequired": "Mandatory Update Required",
-  "updateAvailable": "Update Available",
-  "mandatoryUpdateRequiredDesc": "A new version of the app is required to continue. Please update now to proceed.",
-  "updateAvailableDesc": "A new version of the app is available. Update now for the latest features and improvements!",
   "updateNow": "Update Now",
   "updateLater": "Later",
   "constructUseWaDesc": "Used without help",
@@ -4635,8 +4630,6 @@
   "enableTTSToolDescription": "Allow the app to generate text-to-speech output for portions of text in your target language.",
   "couldNotFindTTS": "We couldn't find a text-to-speech engine for your current target language. ",
   "ttsInstructionsHyperlink": "Click here to view instructions for downloading a new voice on your device.",
-  "currentVersion": "Current Version",
-  "latestVersion": "Latest Version",
   "createAnAccount": "Create an account",
   "signIn": "Sign in",
   "signUpWithEmail": "Sign up with Email",
@@ -4863,5 +4856,6 @@
     }
   },
   "downloadGboard": "Download Gboard",
-  "autocorrectNotAvailable": "Unfortunately your platform is not currently supported for this feature. Stay tuned for further development!"
+  "autocorrectNotAvailable": "Unfortunately your platform is not currently supported for this feature. Stay tuned for further development!",
+  "pleaseUpdateApp": "Please update the app to continue."
 } 
