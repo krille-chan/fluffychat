@@ -1,3 +1,5 @@
+import 'package:shared_preferences/shared_preferences.dart';
+
 abstract class SettingKeys {
   static const String renderHtml = 'chat.fluffy.renderHtml';
   static const String hideRedactedEvents = 'chat.fluffy.hideRedactedEvents';
@@ -35,4 +37,44 @@ abstract class SettingKeys {
   static const String noEncryptionWarningShown =
       'chat.fluffy.no_encryption_warning_shown';
   static const String shareKeysWith = 'chat.fluffy.share_keys_with';
+}
+
+enum AppSettings<T> {
+  audioRecordingNumChannels<int>('audioRecordingNumChannels', 1),
+  audioRecordingAutoGain<bool>('audioRecordingAutoGain', true),
+  audioRecordingEchoCancel<bool>('audioRecordingEchoCancel', true),
+  audioRecordingNoiseSuppress<bool>('audioRecordingNoiseSuppress', true),
+  audioRecordingBitRate<int>('audioRecordingBitRate', 64000),
+  audioRecordingSamplingRate<int>('audioRecordingSamplingRate', 44100);
+
+  final String key;
+  final T defaultValue;
+
+  const AppSettings(this.key, this.defaultValue);
+}
+
+extension AppSettingsBoolExtension on AppSettings<bool> {
+  bool getItem(SharedPreferences store) => store.getBool(key) ?? defaultValue;
+  Future<void> setItem(SharedPreferences store, bool value) =>
+      store.setBool(key, value);
+}
+
+extension AppSettingsStringExtension on AppSettings<String> {
+  String getItem(SharedPreferences store) =>
+      store.getString(key) ?? defaultValue;
+  Future<void> setItem(SharedPreferences store, String value) =>
+      store.setString(key, value);
+}
+
+extension AppSettingsIntExtension on AppSettings<int> {
+  int getItem(SharedPreferences store) => store.getInt(key) ?? defaultValue;
+  Future<void> setItem(SharedPreferences store, int value) =>
+      store.setInt(key, value);
+}
+
+extension AppSettingsDoubleExtension on AppSettings<double> {
+  double getItem(SharedPreferences store) =>
+      store.getDouble(key) ?? defaultValue;
+  Future<void> setItem(SharedPreferences store, double value) =>
+      store.setDouble(key, value);
 }

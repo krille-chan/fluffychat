@@ -66,6 +66,18 @@ abstract class PlatformInfos {
             );
           },
         ),
+        Builder(
+          builder: (innerContext) {
+            return TextButton.icon(
+              onPressed: () {
+                context.go('/configs');
+                Navigator.of(innerContext).pop();
+              },
+              icon: const Icon(Icons.settings_applications_outlined),
+              label: const Text('Advanced Configs'),
+            );
+          },
+        ),
       ],
       applicationIcon: Image.asset(
         'assets/logo.png',
