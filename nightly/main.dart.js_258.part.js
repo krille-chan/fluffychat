@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_258",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cyg(){return new A.EA(B.dh("hu"))},
-EA:function EA(d){this.a=d}}
+cyq(){return new A.EC(B.dh("hu"))},
+EC:function EC(d){this.a=d}}
 B=c[0]
 C=c[51]
 A=a.updateHolder(c[27],A)
-A.EA.prototype={
+A.EC.prototype={
 gnt(){return"true"},
 gjK(){return"Jelsz\xf3 megism\xe9tl\xe9se"},
 gm_(){return"Nem k\xe9p f\xe1jl."},
@@ -123,7 +123,7 @@ gig(){return"V\xe1g\xf3lapra m\xe1solva"},
 geE(d){return"M\xe1sol\xe1s"},
 gih(){return"V\xe1g\xf3lapra m\xe1sol\xe1s"},
 ii(d){return"Nem siker\xfclt visszafejteni az \xfczenetet: "+d},
-dX(d){return""+d+" r\xe9sztvev\u0151"},
+dY(d){return""+d+" r\xe9sztvev\u0151"},
 gfj(d){return"L\xe9trehoz\xe1s"},
 ij(d){return"\ud83d\udcac "+d+" cseveg\xe9st hozott l\xe9tre"},
 gej(){return"Csoport l\xe9trehoz\xe1sa"},
@@ -157,7 +157,7 @@ geG(){return"Egyedi emotikonok \xe9s matric\xe1k"},
 gl5(){return"Egyedi emotikonok \xe9s matric\xe1k l\xe9trehoz\xe1sa, amelyek b\xe1rmely cseveg\xe9sben haszn\xe1lhat\xf3ak."},
 geJ(){return"Emoji r\xf6vidk\xf3d"},
 giE(){return"Az emojihoz egy k\xe9pet \xe9s egy r\xf6vidk\xf3dot kell v\xe1lasztani!"},
-gdY(){return"\xdcres cseveg\xe9s"},
+gdZ(){return"\xdcres cseveg\xe9s"},
 giF(){return"Emoji csomag enged\xe9lyez\xe9se glob\xe1lisan"},
 gem(){return"Titkos\xedt\xe1s enged\xe9lyez\xe9se"},
 giG(){return"T\xf6bb\xe9 nem fogja tudni kikapcsolni a titkos\xedt\xe1st. Biztos benne?"},
@@ -223,7 +223,7 @@ gir(){return"TOR felhaszn\xe1l\xf3knak aj\xe1nlott a munkamenet export\xe1l\xe1s
 giS(){return"TOR felhaszn\xe1l\xf3knak: munkamenet export import\xe1l\xe1sa"},
 giT(){return"Legut\xf3bb TOR seg\xedts\xe9g\xe9vel export\xe1lta kor\xe1bbi munkamenet\xe9t? Gyorsan import\xe1lja \u0151ket vissza, \xe9s folytassa a cseveg\xe9st."},
 giR(){return"Vissza\xe1ll\xedt\xe1s mentett f\xe1jlb\xf3l"},
-ge1(){return"Bet\xf6lt\xe9s\u2026 K\xe9rem, v\xe1rjon."},
+ge2(){return"Bet\xf6lt\xe9s\u2026 K\xe9rem, v\xe1rjon."},
 gj7(){return"Tov\xe1bbiak bet\xf6lt\xe9se\u2026"},
 gj8(){return"A helymeghat\xe1roz\xe1s ki van kapcsolva. K\xe9rem, kapcsolja be, hogy meg tudja osztani helyzet\xe9t."},
 gj9(){return"A helymeghat\xe1roz\xe1s nem enged\xe9lyezett az alkalmaz\xe1s sz\xe1m\xe1ra. K\xe9rem enged\xe9lyezze, hogy meg tudja osztani helyzet\xe9t."},
@@ -300,7 +300,7 @@ gjL(d){return"V\xe1lasz"},
 gfP(){return"\xdczenet jelent\xe9se"},
 gjN(){return"A szoba friss\xedtve lett"},
 gjO(){return"Szoba verzi\xf3"},
-gdW(d){return"Keres\xe9s"},
+gdX(d){return"Keres\xe9s"},
 geZ(){return"Biztons\xe1g"},
 gfM(){return"Vissza\xe1ll\xedt\xf3 kulcs"},
 gjC(){return"Elveszett vissza\xe1ll\xedt\xf3 kulcs?"},
@@ -420,7 +420,7 @@ gmQ(){return"Felhaszn\xe1l\xf3k"},
 gmH(){return"R\xe9gi \xfczenetek felold\xe1sa"},
 gkd(){return"A kulcs manu\xe1lis ment\xe9se rendszer megoszt\xe1s vagy v\xe1g\xf3lap m\xe1sol\xe1s seg\xedts\xe9g\xe9vel."},
 l1(d){return""+d+" f\xe1jl"},
-gdU(){return"Felhaszn\xe1l\xf3"},
+gdV(){return"Felhaszn\xe1l\xf3"},
 gik(){return"Egy\xe9ni"},
 gn6(){return"Mi\xe9rt nem olvashat\xf3 ez az \xfczenet?"},
 glW(){return"Akkor fordulhat el\u0151, ha az \xfczenet az eszk\xf6zre val\xf3 bejelentkez\xe9s el\u0151tt ker\xfclt k\xfcld\xe9sre.\n\nAz is elk\xe9pzelhet\u0151, hogy a k\xfcld\u0151 blokkolta az eszk\xf6z\xe9t, vagy valami probl\xe9ma l\xe9pett fel az internet kapcsolatban.\n\nM\xe1s helyen l\xe1tja az \xfczenetet? Akkor \xe1t tudja m\xe1solni ide is! Menjen a Be\xe1ll\xedt\xe1sok > Eszk\xf6z\xf6k r\xe9szbe, \xe9s gy\u0151z\u0151dj\xf6n meg r\xf3la, hogy az eszk\xf6zei meger\u0151s\xedtett\xe9k egym\xe1st. Legk\xf6zelebb amikor ezt a szob\xe1t megnyitja, \xe9s mind a k\xe9t kliens az el\u0151t\xe9rben van, akkor szikroniz\xe1l\xf3dni fognak.\n\nNem akarja elvesz\xedteni a kulcsokat amikor kijelentkezik, vagy eszk\xf6zt cser\xe9l? Gy\u0151z\u0151dj\xf6n meg r\xf3la, hogy bekapcsolta a chat ment\xe9st a be\xe1ll\xedt\xe1sokban."},
@@ -630,8 +630,8 @@ gpb(){return"(Optional) message..."},
 goq(){return"Not supported on this device"},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.EA,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"EA":{"aF":[]}}'))};
+y(A.EC,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"EC":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_258",e:"endPart",h:b})})($__dart_deferred_initializers__,"2bUMf+2Ee7VmF7r0f5ep+GN9mOI=");
+a.eventLog.push({p:"main.dart.js_258",e:"endPart",h:b})})($__dart_deferred_initializers__,"8oqMSfuhQObLBieHA8itU3tkAJY=");
 //# sourceMappingURL=main.dart.js_258.part.js.map

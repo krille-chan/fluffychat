@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_279",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cyw(){return new A.EP(B.dh("ro"))},
-EP:function EP(d){this.a=d}}
+cyG(){return new A.ER(B.dh("ro"))},
+ER:function ER(d){this.a=d}}
 B=c[0]
 C=c[51]
 A=a.updateHolder(c[40],A)
-A.EP.prototype={
+A.ER.prototype={
 gnt(){return"false"},
 gjK(){return"Repeta\u021bi parola"},
 gm_(){return"Not an image file."},
@@ -123,7 +123,7 @@ gig(){return"Copiat \xeen clipboard"},
 geE(d){return"Copia\u021bi"},
 gih(){return"Copia\u021bi \xeen clipboard"},
 ii(d){return"Dezcriptarea mesajului a e\u0219uat: "+d},
-dX(d){return""+d+" participan\u021bi"},
+dY(d){return""+d+" participan\u021bi"},
 gfj(d){return"Crea\u021bi"},
 ij(d){return"\ud83d\udcac"+d+" a creat chatul"},
 gej(){return"Create group"},
@@ -157,7 +157,7 @@ geG(){return"Custom emojis and stickers"},
 gl5(){return"Add or share custom emojis or stickers which can be used in any chat."},
 geJ(){return"Shortcode de emote"},
 giE(){return"Trebuie s\u0103 alege\u021bi shortcode pentru emote \u0219i o imagine!"},
-gdY(){return"Chat gol"},
+gdZ(){return"Chat gol"},
 giF(){return"Activa\u021bi pachet de emote global"},
 gem(){return"Activa\u021bi criptare"},
 giG(){return"Activ\xe2nd criptare, nu mai pute\u021bi s\u0103 o dezactiva\u021bi \xeen viitor. Sunte\u021bi sigur?"},
@@ -223,7 +223,7 @@ gir(){return"Pentru utilizatori de TOR, este recomandat s\u0103 exporta\u021bi s
 giS(){return"Utilizatori TOR: Importa\u021bi sesiune exportat\u0103"},
 giT(){return"A\u021bi exportat sesiunea vostr\u0103 ultima dat\u0103 pe TOR? Importa\u021bi-o repede \u0219i continua\u021bi s\u0103 conversa\u021bi."},
 giR(){return"Restaura\u021bi din fi\u0219ier backup"},
-ge1(){return"\xcenc\u0103rc\xe2nd... V\u0103 rug\u0103m s\u0103 a\u0219tepta\u021bi."},
+ge2(){return"\xcenc\u0103rc\xe2nd... V\u0103 rug\u0103m s\u0103 a\u0219tepta\u021bi."},
 gj7(){return"\xcencarc\u0103 mai multe\u2026"},
 gj8(){return"Servicile de loca\u021bie sunt dezactivate. V\u0103 rug\u0103m s\u0103 le activa\u021bi s\u0103 \xeemp\u0103r\u021bi\u021bi loca\u021bia voastr\u0103."},
 gj9(){return"Permisiunea loca\u021biei blocat\u0103. V\u0103 rug\u0103m s\u0103 o dezbloca\u021bi s\u0103 \xeemp\u0103r\u021bi\u021bi loca\u021bia voastr\u0103."},
@@ -300,7 +300,7 @@ gjL(d){return"R\u0103spunde\u021bi"},
 gfP(){return"Raporta\u021bi mesajul"},
 gjN(){return"Camera a fost actualizat\u0103"},
 gjO(){return"Versiunea camerei"},
-gdW(d){return"C\u0103uta\u021bi"},
+gdX(d){return"C\u0103uta\u021bi"},
 geZ(){return"Securitate"},
 gfM(){return"Cheie de recuperare"},
 gjC(){return"Cheia de recuperare pierdut\u0103?"},
@@ -420,7 +420,7 @@ gmQ(){return"Utilizatori"},
 gmH(){return"Debloca\u021bi mesajele vechi"},
 gkd(){return"Activa\u021bi dialogul de partajare sistemului sau folosi\u021bi clipboard-ul s\u0103 salva\u021bi manual aceast\u0103 cheie."},
 l1(d){return""+d+" fi\u0219iere"},
-gdU(){return"Utilizator"},
+gdV(){return"Utilizator"},
 gik(){return"Personalizat"},
 gn6(){return"De ce este acest mesaj ilizibil?"},
 glW(){return"Aceast\u0103 chestie poate s\u0103 se \xeent\xe2mple c\xe2nd mesajul a fost trimis \xeenainte s\u0103 v\u0103 conecta\u021bi contul cu acest dispozitiv.\n\nO alt\u0103 explica\u021bie ar fi dac\u0103 trimi\u021b\u0103torul a blocat dispozitivul vostru sau ceva s-a \xeent\xe2mplat cu conexiunea la internet\n\nPute\u021bi s\u0103 citi\u021bi mesajul \xeen o alt\u0103 se\u0219iune? Atunci pute\u021bi s\u0103 transfera\u021bi mesajul de acolo! Merge\u021bi la Configur\u0103ri > Dispozitive \u0219i verifica\u021bi c\u0103 dispozitivele s-au verificat. C\xe2nd deschide\u021bi camera \xeen viitor \u0219i ambele se\u0219iune sunt \xeen foreground, cheile va fi transmise automat. \n\nDori\u021bi s\u0103 \xee\u021bi p\u0103stra\u021bi cheile c\xe2nd deconecta\u021bi sau schimba\u021bi dispozitive? Fi\u021bi aten\u021bi s\u0103 activa\u021bi backup de chat \xeen configur\u0103ri."},
@@ -630,8 +630,8 @@ gpb(){return"(Optional) message..."},
 goq(){return"Not supported on this device"},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.EP,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"EP":{"aF":[]}}'))};
+y(A.ER,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"ER":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_279",e:"endPart",h:b})})($__dart_deferred_initializers__,"HlnpW990L30FG8+HZFp11xzhkJw=");
+a.eventLog.push({p:"main.dart.js_279",e:"endPart",h:b})})($__dart_deferred_initializers__,"ksc3QPuwkYYr8cHq9z1K/GU2a74=");
 //# sourceMappingURL=main.dart.js_279.part.js.map

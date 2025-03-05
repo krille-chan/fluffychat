@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_273",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cyo(){return new A.EI(B.dh("lt"))},
-EI:function EI(d){this.a=d}}
+cyy(){return new A.EK(B.dh("lt"))},
+EK:function EK(d){this.a=d}}
 B=c[0]
 C=c[51]
 A=a.updateHolder(c[35],A)
-A.EI.prototype={
+A.EK.prototype={
 gnt(){return"false"},
 gjK(){return"Pakartokite slapta\u017eod\u012f"},
 gm_(){return"Not an image file."},
@@ -123,7 +123,7 @@ gig(){return"Nukopijuota \u012f i\u0161karpin\u0119"},
 geE(d){return"Kopijuoti"},
 gih(){return"Koipjuoti \u012f i\u0161karpin\u0119"},
 ii(d){return"Nepavyko i\u0161\u0161ifruoti prane\u0161imo: "+d},
-dX(d){return""+d+" dalyviai"},
+dY(d){return""+d+" dalyviai"},
 gfj(d){return"Sukurti"},
 ij(d){return"\ud83d\udcac "+d+" suk\u016br\u0117 pokalb\u012f"},
 gej(){return"Create group"},
@@ -157,7 +157,7 @@ geG(){return"Custom emojis and stickers"},
 gl5(){return"Add or share custom emojis or stickers which can be used in any chat."},
 geJ(){return"Jaustuko trumpasis kodas"},
 giE(){return"Turite pasirinkti jaustuko trump\u0105j\u012f kod\u0105 ir paveiksliuk\u0105!"},
-gdY(){return"Tu\u0161\u010dias pokalbis"},
+gdZ(){return"Tu\u0161\u010dias pokalbis"},
 giF(){return"\u012egalinti jaustuk\u0173 paket\u0105 visur"},
 gem(){return"Aktyvuoti \u0161ifravim\u0105"},
 giG(){return"\u0160ifravimo nebegal\u0117site i\u0161jungti. Ar j\u016bs tuo tikri?"},
@@ -223,7 +223,7 @@ gir(){return"TOR naudotojams rekomenduojama eksportuoti sesij\u0105 prie\u0161 u
 giS(){return"TOR Naudotojai: Importuoti sesijos eksport\u0105"},
 giT(){return"Ar paskutin\u012f kart\u0105 eksportavote savo sesij\u0105 naudodami TOR? Greitai j\u0105 importuokite ir t\u0119skite pokalb\u012f."},
 giR(){return"Atkurti i\u0161 atsargin\u0117s kopijos failo"},
-ge1(){return"Kraunama\u2026 Pra\u0161ome palaukti."},
+ge2(){return"Kraunama\u2026 Pra\u0161ome palaukti."},
 gj7(){return"Rodyti daugiau\u2026"},
 gj8(){return"Vietos nustatymo paslaugos yra i\u0161jungtos. Kad gal\u0117tum\u0117te bendrinti savo buvimo viet\u0105, \u012fjunkite jas."},
 gj9(){return"Vietos leidimas atmestas. Suteikite leidim\u0105 kad gal\u0117tum\u0117te bendrinti savo viet\u0105."},
@@ -300,7 +300,7 @@ gjL(d){return"Atsakyti"},
 gfP(){return"Prane\u0161ti apie \u017einut\u0119"},
 gjN(){return"Kambarys buvo atnaujintas"},
 gjO(){return"Kambario versija"},
-gdW(d){return"Ie\u0161koti"},
+gdX(d){return"Ie\u0161koti"},
 geZ(){return"Apsauga"},
 gfM(){return"Atk\u016brimo raktas"},
 gjC(){return"Pamestas atk\u016brimo raktas?"},
@@ -420,7 +420,7 @@ gmQ(){return"Vartotojai"},
 gmH(){return"Atrakinti senas \u017einutes"},
 gkd(){return"\u012era\u0161ykite \u0161\u012f rakt\u0105 rankiniu b\u016bdu, \u012fjung\u0119 sistemos bendrinimo dialogo lang\u0105 arba i\u0161karpin\u0119."},
 l1(d){return""+d+" failai"},
-gdU(){return"Vartotojas"},
+gdV(){return"Vartotojas"},
 gik(){return"Pasirinktinis"},
 gn6(){return"Kod\u0117l \u0161i \u017einut\u0117 neperskaitoma?"},
 glW(){return"Taip gali atsitikti, jei \u017einut\u0117 buvo i\u0161si\u0173sta prie\u0161 prisijungiant prie paskyros \u0161iame prietaise.\n\nTaip pat gali b\u016bti, kad siunt\u0117jas u\u017eblokavo j\u016bs\u0173 prietais\u0105 arba ka\u017ekas sutriko su interneto ry\u0161iu.\n\nAr galite perskaityti \u017einut\u0119 kitoje sesijoje? Tada galite perkelti \u017einut\u0119 i\u0161 jos! Eikite \u012f Nustatymai > Prietaisai ir \u012fsitikinkite, kad j\u016bs\u0173 prietaisai patvirtino vienas kit\u0105. Kai kit\u0105 kart\u0105 atidarysite kambar\u012f ir abi sesijos bus pirmame plane, raktai bus perduoti automati\u0161kai.\n\nNenorite prarasti rakt\u0173 atsijungdami arba keisdami \u012frenginius? \u012esitikinkite, kad nustatymuose \u012fjung\u0117te pokalbi\u0173 atsargin\u0119 kopij\u0105."},
@@ -630,8 +630,8 @@ gpb(){return"(Optional) message..."},
 goq(){return"Not supported on this device"},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.EI,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"EI":{"aF":[]}}'))};
+y(A.EK,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"EK":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_273",e:"endPart",h:b})})($__dart_deferred_initializers__,"J6Vq4vvZED+wOpLyY4hRGVK9/a0=");
+a.eventLog.push({p:"main.dart.js_273",e:"endPart",h:b})})($__dart_deferred_initializers__,"3NV6SNqBYOUm++2WR9iEHk+Umbw=");
 //# sourceMappingURL=main.dart.js_273.part.js.map

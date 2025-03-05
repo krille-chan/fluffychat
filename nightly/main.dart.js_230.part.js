@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_230",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cy4(){return new A.Eo(B.dh("es"))},
-Eo:function Eo(d){this.a=d}}
+cye(){return new A.Eq(B.dh("es"))},
+Eq:function Eq(d){this.a=d}}
 B=c[0]
 C=c[51]
 A=a.updateHolder(c[15],A)
-A.Eo.prototype={
+A.Eq.prototype={
 gnt(){return"falso"},
 gjK(){return"Repite la contrase\xf1a"},
 gm_(){return"El archivo no es una imagen."},
@@ -123,7 +123,7 @@ gig(){return"Copiado al portapapeles"},
 geE(d){return"Copiar"},
 gih(){return"Copiar al portapapeles"},
 ii(d){return"No se pudo descifrar el mensaje: "+d},
-dX(d){return""+d+" participantes"},
+dY(d){return""+d+" participantes"},
 gfj(d){return"Crear"},
 ij(d){return"\ud83d\udcac"+d+" cre\xf3 el chat"},
 gej(){return"Crear grupo"},
@@ -157,7 +157,7 @@ geG(){return"Emojis y stickers personalizados"},
 gl5(){return"Agrega o comparte emojis y stickers personalizados que se pueden utilizar en cualquier chat."},
 geJ(){return"Atajo de emote"},
 giE(){return"\xa1Debes elegir un atajo de emote y una imagen!"},
-gdY(){return"Chat vac\xedo"},
+gdZ(){return"Chat vac\xedo"},
 giF(){return"Habilitar paquete de emoticonos a nivel general"},
 gem(){return"Habilitar la encriptaci\xf3n"},
 giG(){return"Ya no podr\xe1 deshabilitar el cifrado. \xbfEst\xe1s seguro?"},
@@ -223,7 +223,7 @@ gir(){return"Si est\xe1 usando TOR, es recomendable exportar la sesi\xf3n antes 
 giS(){return"TOR: Importar sesi\xf3n exportada"},
 giT(){return"\xbfExport\xf3 su sesi\xf3n la \xfaltima vez que estuvo en TOR? Imp\xf3rtela r\xe1pidamente y contin\xfae chateando."},
 giR(){return"Restaurar desde fichero de copia de seguridad"},
-ge1(){return"Cargando\u2026 Por favor espere."},
+ge2(){return"Cargando\u2026 Por favor espere."},
 gj7(){return"Mostrar m\xe1s\u2026"},
 gj8(){return"Los servicios de ubicaci\xf3n est\xe1n deshabilitado. Habilite para poder compartir su ubicaci\xf3n."},
 gj9(){return"Permiso de ubicaci\xf3n denegado. Conc\xe9deles que puedan compartir tu ubicaci\xf3n."},
@@ -300,7 +300,7 @@ gjL(d){return"Responder"},
 gfP(){return"Mensaje de informe"},
 gjN(){return"La sala ha subido de categor\xeda"},
 gjO(){return"Versi\xf3n de sala"},
-gdW(d){return"Buscar"},
+gdX(d){return"Buscar"},
 geZ(){return"Seguridad"},
 gfM(){return"Clave de recuperaci\xf3n"},
 gjC(){return"\xbfPerdi\xf3 su clave de recuperaci\xf3n?"},
@@ -420,7 +420,7 @@ gmQ(){return"Usuarios"},
 gmH(){return"Desbloquear mensajes viejos"},
 gkd(){return"Compartir esta clave manualmente usando el di\xe1logo de compartir del sistema o el portapapeles."},
 l1(d){return""+d+" archivos"},
-gdU(){return"Usuario"},
+gdV(){return"Usuario"},
 gik(){return"Personalizado"},
 gn6(){return"\xbfPor qu\xe9 no se puede leer este mensaje?"},
 glW(){return"Esto puede ocurrir si el mensaje se envi\xf3 antes de que entraras en tu cuenta en este dispositivo.\n\nTambi\xe9n puede que el remitente haya bloqueado tu dispositivo o haya fallado algo en la conexi\xf3n a Internet.\n\n\xbfPuedes leer el mensaje en otra sesi\xf3n? Entonces, \xa1puedes transferir el mensaje desde all\xed! Ve a Ajustes > Dispositivos y aseg\xfarate de que tus dispositivos se han verificado mutuamente. Cuando abras la sala la pr\xf3xima vez y ambas sesiones est\xe9n en primer plano, las claves se transmitir\xe1n autom\xe1ticamente.\n\n\xbfNo quieres perder las claves al salir o al cambiar de dispositivo? Aseg\xfarate de que has habilitado la copia de seguridad del chat en los ajustes."},
@@ -630,8 +630,8 @@ gpb(){return"(Optional) message..."},
 goq(){return"Not supported on this device"},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Eo,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"Eo":{"aF":[]}}'))};
+y(A.Eq,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"Eq":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_230",e:"endPart",h:b})})($__dart_deferred_initializers__,"pw7HpaVpLcE6dkXLzXgyxMP5SSE=");
+a.eventLog.push({p:"main.dart.js_230",e:"endPart",h:b})})($__dart_deferred_initializers__,"Skp9vPNoPWPnHo5F/TdXEgzy1s4=");
 //# sourceMappingURL=main.dart.js_230.part.js.map

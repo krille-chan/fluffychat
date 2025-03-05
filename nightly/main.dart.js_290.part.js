@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_290",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cyD(){return new A.EW(B.dh("th"))},
-EW:function EW(d){this.a=d}}
+cyN(){return new A.EY(B.dh("th"))},
+EY:function EY(d){this.a=d}}
 B=c[0]
 C=c[51]
 A=a.updateHolder(c[47],A)
-A.EW.prototype={
+A.EY.prototype={
 gnt(){return"false"},
 gjK(){return"\u0e43\u0e2a\u0e48\u0e23\u0e2b\u0e31\u0e2a\u0e1c\u0e48\u0e32\u0e19\u0e2d\u0e35\u0e01\u0e23\u0e2d\u0e1a"},
 gm_(){return"\u0e44\u0e21\u0e48\u0e43\u0e0a\u0e48\u0e44\u0e1f\u0e25\u0e4c\u0e23\u0e39\u0e1b\u0e20\u0e32\u0e1e"},
@@ -123,7 +123,7 @@ gig(){return"Copied to clipboard"},
 geE(d){return"\u0e04\u0e31\u0e14\u0e25\u0e2d\u0e01"},
 gih(){return"Copy to clipboard"},
 ii(d){return"Could not decrypt message: "+d},
-dX(d){return""+d+" participants"},
+dY(d){return""+d+" participants"},
 gfj(d){return"Create"},
 ij(d){return"\ud83d\udcac "+d+" created the chat"},
 gej(){return"Create group"},
@@ -157,7 +157,7 @@ geG(){return"Custom emojis and stickers"},
 gl5(){return"Add or share custom emojis or stickers which can be used in any chat."},
 geJ(){return"Emote shortcode"},
 giE(){return"You need to pick an emote shortcode and an image!"},
-gdY(){return"Empty chat"},
+gdZ(){return"Empty chat"},
 giF(){return"Enable emote pack globally"},
 gem(){return"Enable encryption"},
 giG(){return"You won't be able to disable the encryption anymore. Are you sure?"},
@@ -223,7 +223,7 @@ gir(){return"For TOR users, it is recommended to export the session before closi
 giS(){return"TOR Users: Import session export"},
 giT(){return"Did you export your session last time on TOR? Quickly import it and continue chatting."},
 giR(){return"Restore from backup file"},
-ge1(){return"Loading\u2026 Please wait."},
+ge2(){return"Loading\u2026 Please wait."},
 gj7(){return"Load more\u2026"},
 gj8(){return"Location services are disabled. Please enable them to be able to share your location."},
 gj9(){return"Location permission denied. Please grant them to be able to share your location."},
@@ -300,7 +300,7 @@ gjL(d){return"Reply"},
 gfP(){return"Report message"},
 gjN(){return"Room has been upgraded"},
 gjO(){return"Room version"},
-gdW(d){return"Search"},
+gdX(d){return"Search"},
 geZ(){return"Security"},
 gfM(){return"Recovery key"},
 gjC(){return"Recovery key lost?"},
@@ -420,7 +420,7 @@ gmQ(){return"Users"},
 gmH(){return"Unlock old messages"},
 gkd(){return"Save this key manually by triggering the system share dialog or clipboard."},
 l1(d){return""+d+" files"},
-gdU(){return"User"},
+gdV(){return"User"},
 gik(){return"Custom"},
 gn6(){return"Why is this message unreadable?"},
 glW(){return"This can happen if the message was sent before you have signed in to your account at this device.\n\nIt is also possible that the sender has blocked your device or something went wrong with the internet connection.\n\nAre you able to read the message on another session? Then you can transfer the message from it! Go to Settings > Devices and make sure that your devices have verified each other. When you open the room the next time and both sessions are in the foreground, the keys will be transmitted automatically.\n\nDo you not want to lose the keys when logging out or switching devices? Make sure that you have enabled the chat backup in the settings."},
@@ -630,8 +630,8 @@ gpb(){return"(Optional) message..."},
 goq(){return"Not supported on this device"},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.EW,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"EW":{"aF":[]}}'))};
+y(A.EY,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"EY":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_290",e:"endPart",h:b})})($__dart_deferred_initializers__,"5ikUtnFmJFefoYGK/8gUFpwt9us=");
+a.eventLog.push({p:"main.dart.js_290",e:"endPart",h:b})})($__dart_deferred_initializers__,"ur4bZ+DjYSPbJwoeVI0t79vqBIQ=");
 //# sourceMappingURL=main.dart.js_290.part.js.map

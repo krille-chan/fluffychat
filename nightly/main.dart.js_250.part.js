@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_250",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cyd(){return new A.Ex(B.dh("he"))},
-Ex:function Ex(d){this.a=d}}
+cyn(){return new A.Ez(B.dh("he"))},
+Ez:function Ez(d){this.a=d}}
 B=c[0]
 C=c[51]
 A=a.updateHolder(c[24],A)
-A.Ex.prototype={
+A.Ez.prototype={
 gnt(){return"false"},
 gjK(){return"\u05db\u05ea\u05d5\u05d1 \u05e9\u05d5\u05d1 \u05d0\u05ea \u05d4\u05e1\u05d9\u05e1\u05de\u05d4"},
 gm_(){return"Not an image file."},
@@ -123,7 +123,7 @@ gig(){return"\u05d4\u05d5\u05e2\u05ea\u05e7 \u05dc\u05dc\u05d5\u05d7 \u05d4\u05d
 geE(d){return"\u05d4\u05e2\u05ea\u05e7"},
 gih(){return"\u05d4\u05e2\u05ea\u05e7 \u05dc\u05dc\u05d5\u05d7"},
 ii(d){return"\u05dc\u05d0 \u05e0\u05d9\u05ea\u05df \u05dc\u05e4\u05e2\u05e0\u05d7 \u05d4\u05d5\u05d3\u05e2\u05d4: "+d},
-dX(d){return""+d+" \u05de\u05e9\u05ea\u05ea\u05e4\u05d9\u05dd"},
+dY(d){return""+d+" \u05de\u05e9\u05ea\u05ea\u05e4\u05d9\u05dd"},
 gfj(d){return"\u05e6\u05d5\u05e8"},
 ij(d){return d+" \u05d9\u05e6\u05e8 \u05d0\u05ea \u05d4\u05e6'\u05d0\u05d8"},
 gej(){return"Create group"},
@@ -157,7 +157,7 @@ geG(){return"Custom emojis and stickers"},
 gl5(){return"Add or share custom emojis or stickers which can be used in any chat."},
 geJ(){return"Emote shortcode"},
 giE(){return"You need to pick an emote shortcode and an image!"},
-gdY(){return"\u05e6'\u05d0\u05d8 \u05e8\u05d9\u05e7"},
+gdZ(){return"\u05e6'\u05d0\u05d8 \u05e8\u05d9\u05e7"},
 giF(){return"Enable emote pack globally"},
 gem(){return"\u05d0\u05e4\u05e9\u05e8 \u05d4\u05e6\u05e4\u05e0\u05d4"},
 giG(){return"\u05dc\u05d0 \u05ea\u05d5\u05db\u05dc \u05dc\u05d1\u05d8\u05dc \u05d0\u05ea \u05d4\u05d4\u05e6\u05e4\u05e0\u05d4 \u05d9\u05d5\u05ea\u05e8. \u05d4\u05d0\u05dd \u05d0\u05ea\u05d4 \u05d1\u05d8\u05d5\u05d7?"},
@@ -223,7 +223,7 @@ gir(){return"For TOR users, it is recommended to export the session before closi
 giS(){return"TOR Users: Import session export"},
 giT(){return"Did you export your session last time on TOR? Quickly import it and continue chatting."},
 giR(){return"Restore from backup file"},
-ge1(){return"\u05d8\u05d5\u05e2\u05df \u05d0\u05e0\u05d0 \u05d4\u05de\u05ea\u05df."},
+ge2(){return"\u05d8\u05d5\u05e2\u05df \u05d0\u05e0\u05d0 \u05d4\u05de\u05ea\u05df."},
 gj7(){return"\u05d8\u05e2\u05df \u05e2\u05d5\u05d3\u2026"},
 gj8(){return"\u05e9\u05d9\u05e8\u05d5\u05ea\u05d9 \u05d4\u05de\u05d9\u05e7\u05d5\u05dd \u05de\u05d5\u05e9\u05d1\u05ea\u05d9\u05dd. \u05d0\u05e0\u05d0 \u05d4\u05e4\u05e2\u05dc \u05d0\u05d5\u05ea\u05dd \u05db\u05d3\u05d9 \u05dc\u05e9\u05ea\u05e3 \u05d0\u05ea \u05d4\u05de\u05d9\u05e7\u05d5\u05dd \u05e9\u05dc\u05da."},
 gj9(){return"\u05d4\u05e8\u05e9\u05d0\u05ea \u05d4\u05de\u05d9\u05e7\u05d5\u05dd \u05e0\u05d3\u05d7\u05ea\u05d4. \u05d0\u05e0\u05d0 \u05d0\u05e4\u05e9\u05e8 \u05d0\u05ea \u05d4\u05d9\u05db\u05d5\u05dc\u05ea \u05dc\u05e9\u05ea\u05e3 \u05d0\u05ea \u05de\u05d9\u05e7\u05d5\u05de\u05da."},
@@ -300,7 +300,7 @@ gjL(d){return"Reply"},
 gfP(){return"Report message"},
 gjN(){return"Room has been upgraded"},
 gjO(){return"Room version"},
-gdW(d){return"Search"},
+gdX(d){return"Search"},
 geZ(){return"Security"},
 gfM(){return"Recovery key"},
 gjC(){return"Recovery key lost?"},
@@ -420,7 +420,7 @@ gmQ(){return"Users"},
 gmH(){return"Unlock old messages"},
 gkd(){return"Save this key manually by triggering the system share dialog or clipboard."},
 l1(d){return""+d+" files"},
-gdU(){return"User"},
+gdV(){return"User"},
 gik(){return"Custom"},
 gn6(){return"Why is this message unreadable?"},
 glW(){return"This can happen if the message was sent before you have signed in to your account at this device.\n\nIt is also possible that the sender has blocked your device or something went wrong with the internet connection.\n\nAre you able to read the message on another session? Then you can transfer the message from it! Go to Settings > Devices and make sure that your devices have verified each other. When you open the room the next time and both sessions are in the foreground, the keys will be transmitted automatically.\n\nDo you not want to lose the keys when logging out or switching devices? Make sure that you have enabled the chat backup in the settings."},
@@ -630,8 +630,8 @@ gpb(){return"(Optional) message..."},
 goq(){return"Not supported on this device"},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Ex,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"Ex":{"aF":[]}}'))};
+y(A.Ez,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"Ez":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_250",e:"endPart",h:b})})($__dart_deferred_initializers__,"qZw8unSfsRUjMkBOVghBCvBWj9A=");
+a.eventLog.push({p:"main.dart.js_250",e:"endPart",h:b})})($__dart_deferred_initializers__,"a1yYZlmvFU9abQN8mxFaPsu58NM=");
 //# sourceMappingURL=main.dart.js_250.part.js.map

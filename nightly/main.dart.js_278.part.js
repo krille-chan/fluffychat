@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_278",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cys(){return new A.EM(B.dh("pl"))},
-EM:function EM(d){this.a=d}}
+cyC(){return new A.EO(B.dh("pl"))},
+EO:function EO(d){this.a=d}}
 B=c[0]
 C=c[51]
 A=a.updateHolder(c[39],A)
-A.EM.prototype={
+A.EO.prototype={
 gnt(){return"false"},
 gjK(){return"Powt\xf3rz has\u0142o"},
 gm_(){return"To nie jest plik obrazu."},
@@ -124,7 +124,7 @@ gig(){return"Skopiowano do schowka"},
 geE(d){return"Kopiuj"},
 gih(){return"Skopiuj do schowka"},
 ii(d){return"Nie mo\u017cna odszyfrowa\u0107 wiadomo\u015bci: "+d},
-dX(d){return""+d+" uczestnik\xf3w"},
+dY(d){return""+d+" uczestnik\xf3w"},
 gfj(d){return"Stw\xf3rz"},
 ij(d){return"\ud83d\udcac "+d+" utworzy\u0142/-a czat"},
 gej(){return"Utw\xf3rz grup\u0119"},
@@ -158,7 +158,7 @@ geG(){return"W\u0142asne emotikony i naklejki"},
 gl5(){return"Dodaj lub podziel si\u0119 w\u0142asnymi emotikonami i naklejkami, kt\xf3re b\u0119d\u0105 mog\u0142y by\u0107 u\u017cyte w dowolnym czacie."},
 geJ(){return"Skr\xf3cony kod emotikonu"},
 giE(){return"Musisz wybra\u0107 kod emotikonu oraz obraz!"},
-gdY(){return"Pusty czat"},
+gdZ(){return"Pusty czat"},
 giF(){return"W\u0142\u0105cz paczk\u0119 emotikon\xf3w globalnie"},
 gem(){return"W\u0142\u0105cz szyfowanie"},
 giG(){return"Nie b\u0119dziesz ju\u017c m\xf3g\u0142 wy\u0142\u0105czy\u0107 szyfrowania. Jeste\u015b pewny?"},
@@ -224,7 +224,7 @@ gir(){return"W przypadku u\u017cytkownik\xf3w sieci TOR zaleca si\u0119 eksporto
 giS(){return"U\u017cytkownicy TOR: Importuj eksport sesji"},
 giT(){return"Czy ostatnio eksportowa\u0142e\u015b/-a\u015b swoj\u0105 sesj\u0119 na TOR? Szybko j\u0105 zaimportuj i kontynuuj rozmowy."},
 giR(){return"Przywracanie z pliku kopii zapasowej"},
-ge1(){return"\u0141adowanie\u2026 Prosz\u0119 czeka\u0107."},
+ge2(){return"\u0141adowanie\u2026 Prosz\u0119 czeka\u0107."},
 gj7(){return"Za\u0142aduj wi\u0119cej\u2026"},
 gj8(){return"Us\u0142ugi lokalizacji s\u0105 wy\u0142\u0105czone. Prosz\u0119 w\u0142\u0105cz je aby m\xf3c udost\u0119pni\u0107 swoj\u0105 lokalizacj\u0119."},
 gj9(){return"Brak uprawnie\u0144. Prosz\u0119 zezw\xf3l aplikacji na dost\u0119p do lokalizacji aby m\xf3c j\u0105 udost\u0119pni\u0107."},
@@ -301,7 +301,7 @@ gjL(d){return"Odpowiedz"},
 gfP(){return"Zg\u0142o\u015b wiadomo\u015b\u0107"},
 gjN(){return"Pok\xf3j zosta\u0107 zaktualizowany"},
 gjO(){return"Wersja pokoju"},
-gdW(d){return"Szukaj"},
+gdX(d){return"Szukaj"},
 geZ(){return"Bezpiecze\u0144stwo"},
 gfM(){return"Klucz odzyskiwania"},
 gjC(){return"Utracono klucz odzyskiwania?"},
@@ -421,7 +421,7 @@ gmQ(){return"U\u017cytkownicy"},
 gmH(){return"Odblokuj stare wiadomo\u015bci"},
 gkd(){return"Zapisz ten klucz r\u0119cznie, uruchamiaj\u0105c systemowe okno dialogowe udost\u0119pniania lub schowek."},
 l1(d){return""+d+" plik\xf3w"},
-gdU(){return"U\u017cytkownik"},
+gdV(){return"U\u017cytkownik"},
 gik(){return"W\u0142asne"},
 gn6(){return"Dlaczego nie mo\u017cna odczyta\u0107 tej wiadomo\u015bci?"},
 glW(){return"Mo\u017ce si\u0119 to zdarzy\u0107, je\u015bli wiadomo\u015b\u0107 zosta\u0142a wys\u0142ana przed zalogowaniem si\u0119 na to konto na tym urz\u0105dzeniu.\n\nMo\u017cliwe jest r\xf3wnie\u017c, \u017ce nadawca zablokowa\u0142 Twoje urz\u0105dzenie lub co\u015b posz\u0142o nie tak z po\u0142\u0105czeniem internetowym.\n\nJeste\u015b w stanie odczyta\u0107 wiadomo\u015b\u0107 na innej sesji? W takim razie mo\u017cesz przenie\u015b\u0107 z niej wiadomo\u015b\u0107! Wejd\u017a w Ustawienia > Urz\u0105dzenia i upewnij si\u0119, \u017ce Twoje urz\u0105dzenia zweryfikowa\u0142y si\u0119 wzajemnie. Gdy nast\u0119pnym razem otworzysz pok\xf3j i obie sesje b\u0119d\u0105 w\u0142\u0105czone, klucze zostan\u0105 przekazane automatycznie.\n\nNie chcesz straci\u0107 kluczy podczas wylogowania lub prze\u0142\u0105czania urz\u0105dze\u0144? Upewnij si\u0119, \u017ce w ustawieniach masz w\u0142\u0105czon\u0105 kopi\u0119 zapasow\u0105 czatu."},
@@ -631,8 +631,8 @@ gpb(){return"(Opcjonalna) wiadomo\u015b\u0107..."},
 goq(){return"Niewspierane na tym urz\u0105dzeniu"},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.EM,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"EM":{"aF":[]}}'))};
+y(A.EO,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"EO":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_278",e:"endPart",h:b})})($__dart_deferred_initializers__,"bRzAto81UprcF/Lz2rBgnpvmPo8=");
+a.eventLog.push({p:"main.dart.js_278",e:"endPart",h:b})})($__dart_deferred_initializers__,"MPdqDpBydoppEoi2gFJbIRTcJYo=");
 //# sourceMappingURL=main.dart.js_278.part.js.map

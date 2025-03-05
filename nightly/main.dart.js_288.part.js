@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_288",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cyB(){return new A.EU(B.dh("sv"))},
-EU:function EU(d){this.a=d}}
+cyL(){return new A.EW(B.dh("sv"))},
+EW:function EW(d){this.a=d}}
 B=c[0]
 C=c[51]
 A=a.updateHolder(c[45],A)
-A.EU.prototype={
+A.EW.prototype={
 gnt(){return"false"},
 gjK(){return"Upprepa l\xf6senord"},
 gm_(){return"Inte en bildfil."},
@@ -123,7 +123,7 @@ gig(){return"Kopierat till urklipp"},
 geE(d){return"Kopiera"},
 gih(){return"Kopiera till urklipp"},
 ii(d){return"Kunde ej avkoda meddelande: "+d},
-dX(d){return""+d+" deltagare"},
+dY(d){return""+d+" deltagare"},
 gfj(d){return"Skapa"},
 ij(d){return"\ud83d\udcac "+d+" skapade chatten"},
 gej(){return"Skapa grupp"},
@@ -157,7 +157,7 @@ geG(){return"Custom emojis and stickers"},
 gl5(){return"Add or share custom emojis or stickers which can be used in any chat."},
 geJ(){return"Dekal kod"},
 giE(){return"Du m\xe5ste v\xe4lja en dekal-kod och en bild!"},
-gdY(){return"Tom chatt"},
+gdZ(){return"Tom chatt"},
 giF(){return"Aktivera dekal-paket globalt"},
 gem(){return"Aktivera kryptering"},
 giG(){return"Du kommer inte ha fortsatt m\xf6jlighet till att inaktivera krypteringen. \xc4r du s\xe4ker?"},
@@ -223,7 +223,7 @@ gir(){return"TOR-anv\xe4ndare rekommenderas att exportera sessionen innan f\xf6n
 giS(){return"TOR-anv\xe4ndare: Importera session fr\xe5n tidigare export"},
 giT(){return"Exporterade du sessionen n\xe4r du senast anv\xe4nde TOR? Importera den enkelt och forts\xe4tt chatta."},
 giR(){return"\xc5terst\xe4ll fr\xe5n s\xe4kerhetskopia"},
-ge1(){return"Laddar... Var god v\xe4nta."},
+ge2(){return"Laddar... Var god v\xe4nta."},
 gj7(){return"Ladda mer\u2026"},
 gj8(){return"Platstj\xe4nster \xe4r inaktiverade. Var god aktivera dom f\xf6r att kunna dela din plats."},
 gj9(){return"Plats \xe5tkomst nekad. Var god godk\xe4n detta f\xf6r att kunna dela din plats."},
@@ -300,7 +300,7 @@ gjL(d){return"Svara"},
 gfP(){return"Rapportera meddelande"},
 gjN(){return"Rummet har blivit uppgraderat"},
 gjO(){return"Rum version"},
-gdW(d){return"S\xf6k"},
+gdX(d){return"S\xf6k"},
 geZ(){return"S\xe4kerhet"},
 gfM(){return"\xc5terst\xe4llningsnyckel"},
 gjC(){return"Borttappad \xe5terst\xe4llningsnyckel?"},
@@ -420,7 +420,7 @@ gmQ(){return"Anv\xe4ndare"},
 gmH(){return"L\xe5s upp \xe4ldre meddelanden"},
 gkd(){return"Spara nyckeln manuellt genom att aktivera dela-funktionen eller urklippshanteraren p\xe5 enheten."},
 l1(d){return""+d+" filer"},
-gdU(){return"Anv\xe4ndare"},
+gdV(){return"Anv\xe4ndare"},
 gik(){return"Anpassad"},
 gn6(){return"Varf\xf6r kan inte detta meddelande l\xe4sas?"},
 glW(){return"Detta kan h\xe4nda om meddelandet skickades innan du loggade in p\xe5 ditt konto i den h\xe4r enheten.\n\nDet kan ocks\xe5 vara s\xe5 att avs\xe4ndaren har blockerat din enhet eller att n\xe5got gick fel med internetanslutningen.\n\nKan du l\xe4sa meddelandet i en annan session? I s\xe5dana fall kan du \xf6verf\xf6ra meddelandet fr\xe5n den sessionen! G\xe5 till Inst\xe4llningar > Enhet och s\xe4kerst\xe4ll att dina enheter har verifierat varandra. N\xe4r du \xf6ppnar rummet n\xe4sta g\xe5ng och b\xe5da sessionerna \xe4r i f\xf6rgrunden, s\xe5 kommer nycklarna att \xf6verf\xf6ras automatiskt.\n\nVill du inte f\xf6rlora nycklarna vid utloggning eller n\xe4r du byter enhet? S\xe4kerst\xe4ll att du har aktiverat s\xe4kerhetskopiering f\xf6r chatten i inst\xe4llningarna."},
@@ -630,8 +630,8 @@ gpb(){return"(Optional) message..."},
 goq(){return"Not supported on this device"},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.EU,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"EU":{"aF":[]}}'))};
+y(A.EW,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"EW":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_288",e:"endPart",h:b})})($__dart_deferred_initializers__,"W5KPHxeX7qdcI1EXeoJepl7/wxI=");
+a.eventLog.push({p:"main.dart.js_288",e:"endPart",h:b})})($__dart_deferred_initializers__,"bmD+w2P8NRul9PsB0HvIhaLOkaY=");
 //# sourceMappingURL=main.dart.js_288.part.js.map

@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_235",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cy5(){return new A.Ep(B.dh("et"))},
-Ep:function Ep(d){this.a=d}}
+cyf(){return new A.Er(B.dh("et"))},
+Er:function Er(d){this.a=d}}
 B=c[0]
 C=c[51]
 A=a.updateHolder(c[16],A)
-A.Ep.prototype={
+A.Er.prototype={
 gnt(){return"false"},
 gjK(){return"Korda salas\xf5na"},
 gm_(){return"See pole pildifail."},
@@ -123,7 +123,7 @@ gig(){return"Kopeerisin l\xf5ikelauale"},
 geE(d){return"Kopeeri"},
 gih(){return"Kopeeri l\xf5ikelauale"},
 ii(d){return"S\xf5numi dekr\xfcptimine ei \xf5nnestunud: "+d},
-dX(d){return""+d+" osalejat"},
+dY(d){return""+d+" osalejat"},
 gfj(d){return"Loo"},
 ij(d){return"\ud83d\udcac "+d+" algatas vestluse"},
 gej(){return"Loo vestlusr\xfchm"},
@@ -157,7 +157,7 @@ geG(){return"Kohandatud emotikonid ja kleepsud"},
 gl5(){return"Lisa v\xf5i jaga kohandatud emotikone v\xf5i kleepsupakke, mida v\xf5iks kasutada igas vestluses."},
 geJ(){return"Emotsioonitegevuse l\xfchikood"},
 giE(){return"Sa pead valima emotsioonitegevuse l\xfchikoodi ja pildi!"},
-gdY(){return"Vestlust pole olnud"},
+gdZ(){return"Vestlust pole olnud"},
 giF(){return"V\xf5ta emotsioonitegevuste pakid l\xe4bivalt kasutusele"},
 gem(){return"Kasuta kr\xfcptimist"},
 giG(){return"Sa ei saa hiljem enam kr\xfcptimist v\xe4lja l\xfclitada. Kas oled kindel?"},
@@ -223,7 +223,7 @@ gir(){return"Kui oled TOR'i v\xf5rgu kasutaja, siis enne akna sulgemist palun ek
 giS(){return"TOR'i kasutajatele: impordi viimati eksporditud sessiooni andmed"},
 giT(){return"Kui viimati TOR'i v\xf5rku kasutasid, siis kas sa eksportisid oma sessiooni andmed? Kui jah, siis impordi nad mugavasti ja j\xe4tka suhtlemist."},
 giR(){return"Taasta varundatud failist"},
-ge1(){return"Laadin andmeid\u2026 Palun oota."},
+ge2(){return"Laadin andmeid\u2026 Palun oota."},
 gj7(){return"Laadi veel\u2026"},
 gj8(){return"Asukohateenused on seadmes v\xe4ljal\xfclitatud. Asukoha jagamiseks palun l\xfclita nad sisse."},
 gj9(){return"Puudub luba asukohateenuste kasutamiseks. Asukoha jagamiseks palun anna rakendusele vastavad \xf5igused."},
@@ -300,7 +300,7 @@ gjL(d){return"Vasta"},
 gfP(){return"Teata s\xf5numist"},
 gjN(){return"Jututoa vesrioon on uuendatud"},
 gjO(){return"Jututoa versioon"},
-gdW(d){return"Otsi"},
+gdX(d){return"Otsi"},
 geZ(){return"Turvalisus"},
 gfM(){return"Taastev\xf5ti"},
 gjC(){return"Kas taasetv\xf5ti on kadunud?"},
@@ -420,7 +420,7 @@ gmQ(){return"Kasutajad"},
 gmH(){return"Muuda vanad s\xf5numid loetavaks"},
 gkd(){return"Salvesta see kr\xfcptov\xf5ti kasutades selle s\xfcsteemi jagamisvalikuid v\xf5i l\xf5ikelauda."},
 l1(d){return""+d+" faili"},
-gdU(){return"Kasutaja"},
+gdV(){return"Kasutaja"},
 gik(){return"Kohandatud"},
 gn6(){return"Miks see s\xf5num pole loetav?"},
 glW(){return"See v\xf5ib juhtuda, kui s\xf5num oli saadetud enne, kui siin seadmes oma kontoga sisse logisid.\n\nSamuti v\xf5ib juhtuda siis, kui saatja on lugemises selles seadmes blokeerinud v\xf5i on tekkinud t\xf5rkeid veebi\xfchenduses.\n\nAga m\xf5nes teises seadmes saad seda s\xf5numit lugeda? Siis sa v\xf5id s\xf5numi sealt \xfcle t\xf5sta. Ava Seadistused -> Seadmed ning kontrolli, et k\xf5ik sinu seadmed on omavahel verifitseeritud. Kui avad selle vestluse v\xf5i jututoa ning m\xf5lemad sessioonid on avatud, siis vajalikud kr\xfcptov\xf5tmed saadetakse automaatset.\n\nKas sa soovid v\xe4ltida kr\xfcptov\xf5tmete kadumist v\xe4ljalogimisel ja seadmete vahetusel? Siis palun kontrolli, et seadistuses on kr\xfcptov\xf5tmete varundus sisse l\xfclitatud."},
@@ -630,8 +630,8 @@ gpb(){return"S\xf5num (kui soovid lisada)..."},
 goq(){return"See pole antud seadmes toetatud"},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Ep,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"Ep":{"aF":[]}}'))};
+y(A.Er,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"Er":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_235",e:"endPart",h:b})})($__dart_deferred_initializers__,"9cdyIVEq29CNJy6kLFFvL+tnm0w=");
+a.eventLog.push({p:"main.dart.js_235",e:"endPart",h:b})})($__dart_deferred_initializers__,"C3MNVq+YDTmqxGHXW2DLTi0gJRc=");
 //# sourceMappingURL=main.dart.js_235.part.js.map

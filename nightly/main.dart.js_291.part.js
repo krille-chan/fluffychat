@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_291",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cyE(){return new A.EX(B.dh("tr"))},
-EX:function EX(d){this.a=d}}
+cyO(){return new A.EZ(B.dh("tr"))},
+EZ:function EZ(d){this.a=d}}
 B=c[0]
 C=c[51]
 A=a.updateHolder(c[48],A)
-A.EX.prototype={
+A.EZ.prototype={
 gnt(){return"false"},
 gjK(){return"Parolay\u0131 tekrarlay\u0131n"},
 gm_(){return"Bir resim dosyas\u0131 de\u011fil."},
@@ -123,7 +123,7 @@ gig(){return"Panoya kopyaland\u0131"},
 geE(d){return"Kopyala"},
 gih(){return"Panoya kopyala"},
 ii(d){return"Mesaj\u0131n \u015fifresi \xe7\xf6z\xfclemedi: "+d},
-dX(d){return""+d+" kat\u0131l\u0131mc\u0131"},
+dY(d){return""+d+" kat\u0131l\u0131mc\u0131"},
 gfj(d){return"Olu\u015ftur"},
 ij(d){return"\ud83d\udcac "+d+" sohbeti olu\u015fturdu"},
 gej(){return"Grup olu\u015ftur"},
@@ -157,7 +157,7 @@ geG(){return"\xd6zel emojiler ve \xe7\u0131kartmalar"},
 gl5(){return"Herhangi bir sohbette kullan\u0131labilecek \xf6zel emojiler veya \xe7\u0131kartmalar ekleyin veya payla\u015f\u0131n."},
 geJ(){return"\u0130fade k\u0131sa kodu"},
 giE(){return"Bir ifade k\u0131sa kodu ve bir resim se\xe7meniz gerekiyor!"},
-gdY(){return"Bo\u015f sohbet"},
+gdZ(){return"Bo\u015f sohbet"},
 giF(){return"\u0130fade paketini k\xfcresel olarak etkinle\u015ftir"},
 gem(){return"\u015eifrelemeyi etkinle\u015ftir"},
 giG(){return"Art\u0131k \u015fifrelemeyi devre d\u0131\u015f\u0131 b\u0131rakamayacaks\u0131n\u0131z. Emin misiniz?"},
@@ -223,7 +223,7 @@ gir(){return"TOR kullan\u0131c\u0131lar\u0131 i\xe7in, pencereyi kapatmadan \xf6
 giS(){return"TOR Kullan\u0131c\u0131lar\u0131: D\u0131\u015fa aktar\u0131lan oturumu i\xe7e aktar"},
 giT(){return"TOR'da en son oturumunuzu d\u0131\u015fa aktard\u0131n\u0131z m\u0131? H\u0131zl\u0131ca i\xe7e aktar\u0131n ve sohbete devam edin."},
 giR(){return"Yedekleme dosyas\u0131ndan geri y\xfckle"},
-ge1(){return"Y\xfckleniyor\u2026 L\xfctfen bekleyin."},
+ge2(){return"Y\xfckleniyor\u2026 L\xfctfen bekleyin."},
 gj7(){return"Daha fazla y\xfckle\u2026"},
 gj8(){return"Konum hizmetleri devre d\u0131\u015f\u0131. L\xfctfen konumunuzu payla\u015fabilmek i\xe7in etkinle\u015ftirin."},
 gj9(){return"Konum izni reddedildi. L\xfctfen konumunuzu payla\u015fabilmek i\xe7in izin verin."},
@@ -300,7 +300,7 @@ gjL(d){return"Yan\u0131tla"},
 gfP(){return"Mesaj\u0131 bildir"},
 gjN(){return"Oda y\xfckseltildi"},
 gjO(){return"Oda s\xfcr\xfcm\xfc"},
-gdW(d){return"Ara"},
+gdX(d){return"Ara"},
 geZ(){return"G\xfcvenlik"},
 gfM(){return"Kurtarma anahtar\u0131"},
 gjC(){return"Kurtarma anahtar\u0131 kay\u0131p m\u0131?"},
@@ -420,7 +420,7 @@ gmQ(){return"Kullan\u0131c\u0131lar"},
 gmH(){return"Eski mesajlar\u0131n kilidini a\xe7"},
 gkd(){return"Sistem payla\u015f\u0131m\u0131 ileti\u015fim kutusunu veya panoyu tetikleyerek bu anahtar\u0131 elle kaydedin."},
 l1(d){return""+d+" dosya"},
-gdU(){return"Kullan\u0131c\u0131"},
+gdV(){return"Kullan\u0131c\u0131"},
 gik(){return"\xd6zel"},
 gn6(){return"Bu mesaj neden okunam\u0131yor?"},
 glW(){return"Bu durum, mesaj siz bu ayg\u0131tta hesab\u0131n\u0131zda oturum a\xe7madan \xf6nce g\xf6nderildiyse meydana gelebilir.\n\nG\xf6nderenin ayg\u0131t\u0131n\u0131z\u0131 engellemi\u015f olmas\u0131 veya internet ba\u011flant\u0131s\u0131nda bir sorun olmas\u0131 da m\xfcmk\xfcnd\xfcr.\n\nMesaj\u0131 ba\u015fka bir oturumda okuyabiliyor musunuz? O zaman mesaj\u0131 oradan aktarabilirsiniz! Ayarlar > Ayg\u0131tlar b\xf6l\xfcm\xfcne gidin ve ayg\u0131tlar\u0131n\u0131z\u0131n birbirini do\u011frulad\u0131\u011f\u0131ndan emin olun. Oday\u0131 bir sonraki sefer a\xe7t\u0131\u011f\u0131n\u0131zda ve her iki oturum da \xf6n planda oldu\u011funda, anahtarlar otomatik olarak iletilecektir.\n\nOturumu kapat\u0131rken veya ayg\u0131t de\u011fi\u015ftirirken anahtarlar\u0131 kaybetmek istemiyor musunuz? Ayarlarda sohbet yedeklemesini etkinle\u015ftirdi\u011finizden emin olun."},
@@ -630,9 +630,9 @@ gpb(){return"(Optional) message..."},
 goq(){return"Not supported on this device"},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.EX,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"EX":{"aF":[]}}'))
+x(A.EZ,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"EZ":{"aF":[]}}'))
 var y={c:" adresinde geli\u015ftiricilere bildirin. Hata mesaj\u0131: "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_291",e:"endPart",h:b})})($__dart_deferred_initializers__,"VKUzFOnZUiwcEvHNa60oAJQPBV0=");
+a.eventLog.push({p:"main.dart.js_291",e:"endPart",h:b})})($__dart_deferred_initializers__,"eQEhCCZbSaptYFFpfsxthHUh/Rg=");
 //# sourceMappingURL=main.dart.js_291.part.js.map

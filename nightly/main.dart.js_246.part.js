@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_246",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cyc(){return new A.Ew(B.dh("gl"))},
-Ew:function Ew(d){this.a=d}}
+cym(){return new A.Ey(B.dh("gl"))},
+Ey:function Ey(d){this.a=d}}
 B=c[0]
 C=c[51]
 A=a.updateHolder(c[23],A)
-A.Ew.prototype={
+A.Ey.prototype={
 gnt(){return"falso"},
 gjK(){return"Repite o contrasinal"},
 gm_(){return"Non \xe9 un ficheiro de imaxe."},
@@ -123,7 +123,7 @@ gig(){return"Copiado ao portapapeis"},
 geE(d){return"Copiar"},
 gih(){return"Copiar ao portapapeis"},
 ii(d){return"Non se descifrou a mensaxe: "+d},
-dX(d){return""+d+" participantes"},
+dY(d){return""+d+" participantes"},
 gfj(d){return"Crear"},
 ij(d){return"\ud83d\udcac "+d+" creou a conversa"},
 gej(){return"Crear grupo"},
@@ -157,7 +157,7 @@ geG(){return"Emojis personais e adhesivos"},
 gl5(){return"Engade ou comparte emojis personais e adhesivos que poden usarse nas charlas."},
 geJ(){return"Atallo de Emote"},
 giE(){return"Escribe un atallo e asocialle unha imaxe!"},
-gdY(){return"Conversa baleira"},
+gdZ(){return"Conversa baleira"},
 giF(){return"Activar paquete emote globalmente"},
 gem(){return"Activar cifraxe"},
 giG(){return"Non poder\xe1s desactivar a cifraxe posteriormente, tes certeza?"},
@@ -223,7 +223,7 @@ gir(){return"Para usuarias de TOR, \xe9 recomendable exportar a sesi\xf3n antes 
 giS(){return"Usuarias TOR: Importar a sesi\xf3n exportada"},
 giT(){return"Exportaches a t\xfaa sesi\xf3n a \xfaltima vez en TOR? Importaa r\xe1pidamente e segue conversando."},
 giR(){return"Restablecer desde copia de apoio"},
-ge1(){return"Cargando... Agarda."},
+ge2(){return"Cargando... Agarda."},
 gj7(){return"Cargar m\xe1is\u2026"},
 gj8(){return"Os servizos de localizaci\xf3n est\xe1n desactivados. Act\xedvaos para poder compartir a localizaci\xf3n."},
 gj9(){return"Permiso de localizaci\xf3n denegado. Concede este permiso para poder compartir a localizaci\xf3n."},
@@ -300,7 +300,7 @@ gjL(d){return"Responder"},
 gfP(){return"Denunciar mensaxe"},
 gjN(){return"A sala foi actualizada"},
 gjO(){return"Versi\xf3n da sala"},
-gdW(d){return"Buscar"},
+gdX(d){return"Buscar"},
 geZ(){return"Seguridade"},
 gfM(){return"Chave de recuperaci\xf3n"},
 gjC(){return"Perdeches a chave de recuperaci\xf3n?"},
@@ -420,7 +420,7 @@ gmQ(){return"Usuarias"},
 gmH(){return"Desbloquear mensaxes antigas"},
 gkd(){return"Garda esta chave manualmente usando o sistema para compartir do dispositivo ou portapapeis."},
 l1(d){return""+d+" ficheiros"},
-gdU(){return"Usuaria"},
+gdV(){return"Usuaria"},
 gik(){return"Personal"},
 gn6(){return"Por que non podo ler esta mensaxe?"},
 glW(){return"Pode ser que a mensaxe fose enviada antes de que ti accedeses \xe1 t\xfaa conta neste dispositivo.\n\nTam\xe9n \xe9 posible que a remitente non validase o teu dispositivo ou tam\xe9n que algo fallase na conexi\xf3n a internet.\n\nPodes ler a mensaxe noutro dispositivo? Ent\xf3n podes transferila desde el! Vai a Axustes > Dispositivos e comproba que tes t\xf3dolos dispositivos verificados. Ent\xf3n cando abras a sala a pr\xf3xima vez a sincronizaci\xf3n realizarase e as chaves transmitiranse autom\xe1ticamente.\n\nNon desexas perder as chaves cando pechas sesi\xf3n ou cambias de dispositivo? Comproba nos axustes que activaches a copia de apoio das conversas."},
@@ -630,8 +630,8 @@ gpb(){return"(Optativo) mensaxe\u2026"},
 goq(){return"Non compatible co dispositivo"},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Ew,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"Ew":{"aF":[]}}'))};
+y(A.Ey,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"Ey":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_246",e:"endPart",h:b})})($__dart_deferred_initializers__,"4YdQUtsG2v6kFXHbTZZV7LzfaLc=");
+a.eventLog.push({p:"main.dart.js_246",e:"endPart",h:b})})($__dart_deferred_initializers__,"nwfFDjjHFKuOxPfl0y7bvXuCbR8=");
 //# sourceMappingURL=main.dart.js_246.part.js.map

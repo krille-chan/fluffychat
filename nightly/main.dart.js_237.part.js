@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_237",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cy6(){return new A.Eq(B.dh("eu"))},
-Eq:function Eq(d){this.a=d}}
+cyg(){return new A.Es(B.dh("eu"))},
+Es:function Es(d){this.a=d}}
 B=c[0]
 C=c[51]
 A=a.updateHolder(c[17],A)
-A.Eq.prototype={
+A.Es.prototype={
 gnt(){return"false"},
 gjK(){return"Idatzi berriro pasahitza"},
 gm_(){return"Ez da irudi-fitxategia."},
@@ -123,7 +123,7 @@ gig(){return"Arbelera kopiatu da"},
 geE(d){return"Kopiatu"},
 gih(){return"Kopiatu arbelera"},
 ii(d){return"Ezin izan da mezua deszifratu: "+d},
-dX(d){return""+d+" partaide"},
+dY(d){return""+d+" partaide"},
 gfj(d){return"Sortu"},
 ij(d){return"\ud83d\udcac "+d+"(e)k txata sortu du"},
 gej(){return"Sortu taldea"},
@@ -157,7 +157,7 @@ geG(){return"Emoji eta pegatina propioak"},
 gl5(){return"Gehitu edo partekatu edozein txatetan erabil daitezkeen emoji edo pegatina propioak."},
 geJ(){return"Laburdura"},
 giE(){return"Emote-laburdura eta irudi bat aukeratu behar dituzu!"},
-gdY(){return"Txata hutsik dago"},
+gdZ(){return"Txata hutsik dago"},
 giF(){return"Gaitu emote-sorta txat guztietarako"},
 gem(){return"Gaitu zifratzea"},
 giG(){return"Ezingo duzu zifratzea ezgaitu. Ziur zaude?"},
@@ -223,7 +223,7 @@ gir(){return"TOR erabiltzaileentzat gomendioa leihoa itxi baino lehen saioa espo
 giS(){return"TOR Erabiltzaileak: Inportatu esportatutako saioa"},
 giT(){return"Esportatu al zenuen zure saioa TOR erabili zenuen azken aldian? Inportatu segidan eta jarraitu txateatzen."},
 giR(){return"Lehengoratu babeskopia bat erabiliz"},
-ge1(){return"Kargatzen\u2026 itxaron."},
+ge2(){return"Kargatzen\u2026 itxaron."},
 gj7(){return"Kargatu gehiago\u2026"},
 gj8(){return"Kokapen zerbitzuak ezgaituta daude. Gaitu zure kokapena partekatu ahal izateko."},
 gj9(){return"Kokapen baimena ukatu da. Eman zure kokapena partekatzeko baimena."},
@@ -300,7 +300,7 @@ gjL(d){return"Erantzun"},
 gfP(){return"Salatu mezua"},
 gjN(){return"Gela bertsio-berritu da"},
 gjO(){return"Gelaren bertsioa"},
-gdW(d){return"Bilatu"},
+gdX(d){return"Bilatu"},
 geZ(){return"Segurtasuna"},
 gfM(){return"Berreskuratze-gakoa"},
 gjC(){return"Berreskuratze-gakoa galdu duzu?"},
@@ -420,7 +420,7 @@ gmQ(){return"Erabiltzaileak"},
 gmH(){return"Desblokeatu mezu zaharrak"},
 gkd(){return"Gorde eskuz gako hau gailuko partekatze-menua edo arbela erabiliz."},
 l1(d){return""+d+" fitxategi"},
-gdU(){return"Erabiltzailea"},
+gdV(){return"Erabiltzailea"},
 gik(){return"Neurrira egindakoa"},
 gn6(){return"Zergatik ezin da mezu hau irakurri?"},
 glW(){return"Mezua gailu honetan saioa hasi baino lehen bidali bazen gertatu daiteke.\n\nBeste aukera bat igorleak zure gailua blokeatu izana da, edo zerbaitek huts egin izana interneteko konexioan.\n\nMezua beste saio batean irakur dezakezu? Hala bada, mezua transferitu dezakezu! Zoaz Ezrpenetara > Gailuak eta baieztatu zure gailuek bata bestea egiaztatu dutela. Gela irekiko duzun hurrengo aldian eta bi saioak aurreko planoan irekita daudenean, gakoak automatikoki partekatuko dira.\n\nEz duzu gakorik galdu nahi saioa amaitu edo gailuak aldatzen dituzunean? Baieztatu ezarpenetan txaten babeskopiak gaituta dituzula."},
@@ -630,9 +630,9 @@ gpb(){return"Mezua (aukerakoa)\u2026"},
 goq(){return"Ez da gailu honekin bateragarria"},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.Eq,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"Eq":{"aF":[]}}'))
+x(A.Es,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"Es":{"aF":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_237",e:"endPart",h:b})})($__dart_deferred_initializers__,"fBQUBrR9wFQiLIkWe6P4zsYAkMY=");
+a.eventLog.push({p:"main.dart.js_237",e:"endPart",h:b})})($__dart_deferred_initializers__,"iKJRjECKCqWnomc3c/EkRzZ/BBY=");
 //# sourceMappingURL=main.dart.js_237.part.js.map

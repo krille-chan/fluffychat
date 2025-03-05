@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_218",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cy0(){return new A.Ek(B.dh("de"))},
-Ek:function Ek(d){this.a=d}}
+cya(){return new A.Em(B.dh("de"))},
+Em:function Em(d){this.a=d}}
 B=c[0]
 C=c[51]
 A=a.updateHolder(c[11],A)
-A.Ek.prototype={
+A.Em.prototype={
 gnt(){return"true"},
 gjK(){return"Passwort wiederholen"},
 gm_(){return"Keine Bilddatei."},
@@ -123,7 +123,7 @@ gig(){return"Wurde in die Zwischenablage kopiert"},
 geE(d){return"Kopieren"},
 gih(){return"In Zwischenablage kopieren"},
 ii(d){return"Nachricht konnte nicht entschl\xfcsselt werden: "+d},
-dX(d){return""+d+" Mitglieder"},
+dY(d){return""+d+" Mitglieder"},
 gfj(d){return"Erstellen"},
 ij(d){return"\ud83d\udcac "+d+" hat den Chat erstellt"},
 gej(){return"Gruppe erstellen"},
@@ -157,7 +157,7 @@ geG(){return"Eigene Emojis und Sticker"},
 gl5(){return"Eigene Emojis oder Sticker zur Nutzung im Chat hinzuf\xfcgen oder teilen."},
 geJ(){return"Emoticon-K\xfcrzel"},
 giE(){return"W\xe4hle ein Emoticon-K\xfcrzel und ein Bild!"},
-gdY(){return"Leerer Chat"},
+gdZ(){return"Leerer Chat"},
 giF(){return"Aktiviere Emoticon-B\xfcndel global"},
 gem(){return"Verschl\xfcsselung anschalten"},
 giG(){return"Du wirst die Verschl\xfcsselung nicht mehr ausstellen k\xf6nnen. Bist Du sicher?"},
@@ -223,7 +223,7 @@ gir(){return"F\xfcr TOR-Benutzer wird empfohlen, die Sitzung zu exportieren, bev
 giS(){return"TOR-Benutzer: Session-Export importieren"},
 giT(){return"Hast du deine Sitzung das letzte Mal auf TOR exportiert? Importiere sie schnell und chatte weiter."},
 giR(){return"Aus Sicherungsdatei wiederherstellen"},
-ge1(){return"Lade \u2026 Bitte warten."},
+ge2(){return"Lade \u2026 Bitte warten."},
 gj7(){return"Mehr laden \u2026"},
 gj8(){return"Standort ist deaktiviert. Bitte aktivieren, um den Standort teilen zu k\xf6nnen."},
 gj9(){return"Standort-Berechtigung wurde abgelehnt. Bitte akzeptieren, um den Standort teilen zu k\xf6nnen."},
@@ -300,7 +300,7 @@ gjL(d){return"Antworten"},
 gfP(){return"Nachricht melden"},
 gjN(){return"Der Raum wurde ge-upgraded"},
 gjO(){return"Raumversion"},
-gdW(d){return"Suchen"},
+gdX(d){return"Suchen"},
 geZ(){return"Sicherheit"},
 gfM(){return"Wiederherstellungs-Schl\xfcssel"},
 gjC(){return"Wiederherstellungsschl\xfcssel verloren?"},
@@ -420,7 +420,7 @@ gmQ(){return"Benutzer"},
 gmH(){return"Entsperre alte Nachrichten"},
 gkd(){return"Speicher diesen Schl\xfcssel manuell, indem du den Systemfreigabedialog oder die Zwischenablage ausl\xf6st."},
 l1(d){return""+d+" Dateien"},
-gdU(){return"Benutzer"},
+gdV(){return"Benutzer"},
 gik(){return"Benutzerdefiniert"},
 gn6(){return"Warum ist diese Nachricht nicht lesbar?"},
 glW(){return"Dies kann passieren, wenn die Nachricht gesendet wurde, bevor du dich auf diesem Ger\xe4t bei deinem Konto angemeldet hast.\n\nEs ist auch m\xf6glich, dass der Absender dein Ger\xe4t blockiert hat oder etwas mit der Internetverbindung schief gelaufen ist.\n\nKannst du die Nachricht in einer anderen Sitzung lesen? Dann kannst du die Nachricht davon \xfcbertragen! Gehe zu den Einstellungen > Ger\xe4te und vergewissere dich, dass sich deine Ger\xe4te gegenseitig verifiziert haben. Wenn du den Raum das n\xe4chste Mal \xf6ffnest und beide Sitzungen im Vordergrund sind, werden die Schl\xfcssel automatisch \xfcbertragen.\n\nDu m\xf6chtest die Schl\xfcssel beim Abmelden oder Ger\xe4tewechsel nicht verlieren? Stelle sicher, dass du das Chat-Backup in den Einstellungen aktiviert hast."},
@@ -630,9 +630,9 @@ gpb(){return"(Optional) message..."},
 goq(){return"Not supported on this device"},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.Ek,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"Ek":{"aF":[]}}'))
+x(A.Em,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"Em":{"aF":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_218",e:"endPart",h:b})})($__dart_deferred_initializers__,"+5hiuRMDn5ArPcC/crplJxXCYXI=");
+a.eventLog.push({p:"main.dart.js_218",e:"endPart",h:b})})($__dart_deferred_initializers__,"1hv70SsCGO12VIJhVtJUb4cdZKc=");
 //# sourceMappingURL=main.dart.js_218.part.js.map

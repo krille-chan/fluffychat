@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_274",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cyp(){return new A.EJ(B.dh("lv"))},
-EJ:function EJ(d){this.a=d}}
+cyz(){return new A.EL(B.dh("lv"))},
+EL:function EL(d){this.a=d}}
 B=c[0]
 C=c[51]
 A=a.updateHolder(c[36],A)
-A.EJ.prototype={
+A.EL.prototype={
 gnt(){return"n\u0113"},
 gjK(){return"Atk\u0101rtot paroli"},
 gm_(){return"Nav att\u0113la datne."},
@@ -123,7 +123,7 @@ gig(){return"Ievietots starpliktuv\u0113"},
 geE(d){return"Ievietot starpliktuv\u0113"},
 gih(){return"Ievietot starpliktuv\u0113"},
 ii(d){return"Nevar\u0113ja at\u0161ifr\u0113t zi\u0146u: "+d},
-dX(d){return""+d+" dal\u012bbnieki"},
+dY(d){return""+d+" dal\u012bbnieki"},
 gfj(d){return"Izveidot"},
 ij(d){return"\ud83d\udcac "+d+" izveidoja t\u0113rz\u0113\u0161anu"},
 gej(){return"Izveidot kopu"},
@@ -157,7 +157,7 @@ geG(){return"Piel\u0101gotas emocijz\u012bmes un uzl\u012bmes"},
 gl5(){return"Pievienot vai kop\u012bgot piel\u0101gotas emocijz\u012bmes vai uzl\u012bmes, kas var tikt izmantotas jebkur\u0101 t\u0113rz\u0113\u0161an\u0101."},
 geJ(){return"Emocijas \u012bskods"},
 giE(){return"Nepiecie\u0161ams izv\u0113l\u0113ties emocijas \u012bskodu un att\u0113lu."},
-gdY(){return"Tuk\u0161a t\u0113rz\u0113\u0161ana"},
+gdZ(){return"Tuk\u0161a t\u0113rz\u0113\u0161ana"},
 giF(){return"Iesp\u0113jot k\u0101 visp\u0101r\u0113ju emociju paku"},
 gem(){return"Iesp\u0113jot \u0161ifr\u0113\u0161anu"},
 giG(){return"Vairs neb\u016bs iesp\u0113jams atsp\u0113jot \u0161ifr\u0113\u0161anu. Vai tie\u0161\u0101m to dar\u012bt?"},
@@ -223,7 +223,7 @@ gir(){return"TOR lietot\u0101jiem ir ieteicams izg\u016bt sesiju pirms loga aizv
 giS(){return"TOR lietot\u0101ji: ievietot sesijas izguvi"},
 giT(){return"Vai sesija p\u0113d\u0113joreiz tika izg\u016bta TOR? \u0100tri ievieto to un turpini t\u0113rz\u0113\u0161anu!"},
 giR(){return"Atjaunot no rezerves kopijas datnes"},
-ge1(){return"Iel\u0101d\u0113... L\u016bgums uzgaid\u012bt."},
+ge2(){return"Iel\u0101d\u0113... L\u016bgums uzgaid\u012bt."},
 gj7(){return"Iel\u0101d\u0113t v\u0113l\u2026"},
 gj8(){return"Atra\u0161an\u0101s vietas pakalpojumi ir atsp\u0113joti. L\u016bgums tos iesp\u0113jot, lai b\u016btu iesp\u0113jams kop\u012bgot savu atra\u0161an\u0101s vietu."},
 gj9(){return"Atra\u0161an\u0101s vietas at\u013cauja noliegta. L\u016bgums nodro\u0161in\u0101t to, lai b\u016btu iesp\u0113jams kop\u012bgot savu atra\u0161an\u0101s vietu."},
@@ -300,7 +300,7 @@ gjL(d){return"Atbild\u0113t"},
 gfP(){return"Zi\u0146ot par zi\u0146u"},
 gjN(){return"Istaba tika atjaunin\u0101ta"},
 gjO(){return"Istabas versija"},
-gdW(d){return"Mekl\u0113t"},
+gdX(d){return"Mekl\u0113t"},
 geZ(){return"Dro\u0161\u012bba"},
 gfM(){return"Atkopes atsl\u0113ga"},
 gjC(){return"Pazaud\u0113ta atkopes atsl\u0113ga?"},
@@ -420,7 +420,7 @@ gmQ(){return"Lietot\u0101ji"},
 gmH(){return"Atsl\u0113gt vec\u0101s zi\u0146as"},
 gkd(){return"\u0160o atsl\u0113gu var pa\u0161roc\u012bgi saglab\u0101t ar sist\u0113mas kop\u012bgo\u0161anas dialogloga vai starpliktuves izsauk\u0161anu."},
 l1(d){return""+d+" datnes"},
-gdU(){return"Lietot\u0101js"},
+gdV(){return"Lietot\u0101js"},
 gik(){return"Piel\u0101gots"},
 gn6(){return"K\u0101d\u0113\u013c \u0161\u012b zi\u0146a ir nelas\u0101ma?"},
 glW(){return"T\u0101 var notikt, ja zi\u0146a tika nos\u016bt\u012bta, pirms pieteicies sav\u0101 kont\u0101 \u0161aj\u0101 ier\u012bc\u0113.\n\nIr ar\u012b iesp\u0113jams, ka s\u016bt\u012bt\u0101js noliedza Tavu ier\u012bci vai kaut kas nog\u0101ja greizi ar interneta savienojumu.\n\nVai zi\u0146as ir las\u0101mas cit\u0101 sesij\u0101? Tad Tu vari p\u0101rs\u016bt\u012bt zi\u0146u no t\u0101s. J\u0101dodas uz Iestat\u012bjumi > Ier\u012bces un j\u0101p\u0101rliecin\u0101s, ka ier\u012bces viena otru ir apliecin\u0101ju\u0161as. Kad n\u0101kamreiz atv\u0113rsi istabu un abas sesijas b\u016bs priek\u0161pl\u0101n\u0101, atsl\u0113gas tiks autom\u0101tiski p\u0101rs\u016bt\u012btas.\n\nVai nev\u0113lies zaud\u0113t atsl\u0113gas, kad atsakies vai maini ier\u012bces? J\u0101p\u0101rliecin\u0101s, ka iestat\u012bjumos ir iesp\u0113jota t\u0113rz\u0113\u0161anu rezerves kopija."},
@@ -630,8 +630,8 @@ gpb(){return"(P\u0113c izv\u0113les) Zi\u0146ojums..."},
 goq(){return"\u0160aj\u0101 ier\u012bc\u0113 nav atbalst\u012bts"},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.EJ,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"EJ":{"aF":[]}}'))};
+y(A.EL,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"EL":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_274",e:"endPart",h:b})})($__dart_deferred_initializers__,"BwQn0VfaEodSa5fV2qyJRrSMJt0=");
+a.eventLog.push({p:"main.dart.js_274",e:"endPart",h:b})})($__dart_deferred_initializers__,"JwYE4kABvdlRBFoZWCvRN5PxJe0=");
 //# sourceMappingURL=main.dart.js_274.part.js.map

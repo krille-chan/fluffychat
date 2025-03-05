@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_286",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cyA(){return new A.ET(B.dh("sr"))},
-ET:function ET(d){this.a=d}}
+cyK(){return new A.EV(B.dh("sr"))},
+EV:function EV(d){this.a=d}}
 B=c[0]
 C=c[51]
 A=a.updateHolder(c[44],A)
-A.ET.prototype={
+A.EV.prototype={
 gnt(){return"false"},
 gjK(){return"Repeat password"},
 gm_(){return"Not an image file."},
@@ -123,7 +123,7 @@ gig(){return"\u041a\u043e\u043f\u0438\u0440\u0430\u043d\u043e \u0443 \u043a\u043
 geE(d){return"\u041a\u043e\u043f\u0438\u0440\u0430\u0458"},
 gih(){return"\u041a\u043e\u043f\u0438\u0440\u0430\u0458 \u0443 \u043a\u043b\u0438\u043f\u0431\u043e\u0440\u0434"},
 ii(d){return"\u041d\u0435 \u043c\u043e\u0433\u0443 \u0434\u0430 \u0434\u0435\u0448\u0438\u0444\u0440\u0443\u0458\u0435\u043c \u043f\u043e\u0440\u0443\u043a\u0443: "+d},
-dX(d){return"\u0443\u0447\u0435\u0441\u043d\u0438\u043a\u0430: "+d},
+dY(d){return"\u0443\u0447\u0435\u0441\u043d\u0438\u043a\u0430: "+d},
 gfj(d){return"\u041d\u0430\u043f\u0440\u0430\u0432\u0438"},
 ij(d){return d+" \u043d\u0430\u043f\u0440\u0430\u0432\u0438 \u045b\u0430\u0441\u043a\u0430\u045a\u0435"},
 gej(){return"Create group"},
@@ -157,7 +157,7 @@ geG(){return"Custom emojis and stickers"},
 gl5(){return"Add or share custom emojis or stickers which can be used in any chat."},
 geJ(){return"\u0441\u043a\u0440\u0430\u045b\u0435\u043d\u0438\u0446\u0430"},
 giE(){return"\u041c\u043e\u0440\u0430\u0442\u0435 \u0434\u0430 \u0438\u0437\u0430\u0431\u0435\u0440\u0435\u0442\u0435 \u0441\u043a\u0440\u0430\u045b\u0435\u043d\u0438\u0446\u0443 \u0438 \u0441\u043b\u0438\u043a\u0443 \u0437\u0430 \u0435\u043c\u043e\u0442\u0438!"},
-gdY(){return"\u043f\u0440\u0430\u0437\u043d\u043e \u045b\u0430\u0441\u043a\u0430\u045a\u0435"},
+gdZ(){return"\u043f\u0440\u0430\u0437\u043d\u043e \u045b\u0430\u0441\u043a\u0430\u045a\u0435"},
 giF(){return"\u0413\u043b\u043e\u0431\u0430\u043b\u043d\u043e \u0443\u043a\u0459\u0443\u0447\u0438 \u043f\u0430\u043a\u0435\u0442 \u0435\u043c\u043e\u0442\u0438\u0458\u0430"},
 gem(){return"\u0423\u043a\u0459\u0443\u0447\u0443\u0458\u0435 \u0448\u0438\u0444\u0440\u043e\u0432\u0430\u045a\u0435"},
 giG(){return"\u0428\u0438\u0444\u0440\u043e\u0432\u0430\u045a\u0435 \u0432\u0438\u0448\u0435 \u043d\u0435\u045b\u0435\u0442\u0435 \u043c\u043e\u045b\u0438 \u0434\u0430 \u0438\u0441\u043a\u0459\u0443\u0447\u0438\u0442\u0435. \u0421\u0438\u0433\u0443\u0440\u043d\u0438 \u0441\u0442\u0435?"},
@@ -223,7 +223,7 @@ gir(){return"For TOR users, it is recommended to export the session before closi
 giS(){return"TOR Users: Import session export"},
 giT(){return"Did you export your session last time on TOR? Quickly import it and continue chatting."},
 giR(){return"Restore from backup file"},
-ge1(){return"\u0423\u0447\u0438\u0442\u0430\u0432\u0430\u043c\u2026 \u0421\u0430\u0447\u0435\u043a\u0430\u0458\u0442\u0435."},
+ge2(){return"\u0423\u0447\u0438\u0442\u0430\u0432\u0430\u043c\u2026 \u0421\u0430\u0447\u0435\u043a\u0430\u0458\u0442\u0435."},
 gj7(){return"\u0423\u0447\u0438\u0442\u0430\u0458 \u0458\u043e\u0448\u2026"},
 gj8(){return"Location services are disabled. Please enable them to be able to share your location."},
 gj9(){return"Location permission denied. Please grant them to be able to share your location."},
@@ -300,7 +300,7 @@ gjL(d){return"\u041e\u0434\u0433\u043e\u0432\u043e\u0440\u0438"},
 gfP(){return"\u041f\u0440\u0438\u0458\u0430\u0432\u0438 \u043f\u043e\u0440\u0443\u043a\u0443"},
 gjN(){return"\u0421\u043e\u0431\u0430 \u0458\u0435 \u043d\u0430\u0434\u043e\u0433\u0440\u0430\u0452\u0435\u043d\u0430"},
 gjO(){return"\u0412\u0435\u0440\u0437\u0438\u0458\u0430 \u0441\u043e\u0431\u0435"},
-gdW(d){return"\u041f\u0440\u0435\u0442\u0440\u0430\u0436\u0438"},
+gdX(d){return"\u041f\u0440\u0435\u0442\u0440\u0430\u0436\u0438"},
 geZ(){return"\u0411\u0435\u0437\u0431\u0435\u0434\u043d\u043e\u0441\u0442"},
 gfM(){return"Recovery key"},
 gjC(){return"Recovery key lost?"},
@@ -420,7 +420,7 @@ gmQ(){return"Users"},
 gmH(){return"Unlock old messages"},
 gkd(){return"Save this key manually by triggering the system share dialog or clipboard."},
 l1(d){return""+d+" files"},
-gdU(){return"User"},
+gdV(){return"User"},
 gik(){return"Custom"},
 gn6(){return"Why is this message unreadable?"},
 glW(){return"This can happen if the message was sent before you have signed in to your account at this device.\n\nIt is also possible that the sender has blocked your device or something went wrong with the internet connection.\n\nAre you able to read the message on another session? Then you can transfer the message from it! Go to Settings > Devices and make sure that your devices have verified each other. When you open the room the next time and both sessions are in the foreground, the keys will be transmitted automatically.\n\nDo you not want to lose the keys when logging out or switching devices? Make sure that you have enabled the chat backup in the settings."},
@@ -630,8 +630,8 @@ gpb(){return"(Optional) message..."},
 goq(){return"Not supported on this device"},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.ET,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"ET":{"aF":[]}}'))};
+y(A.EV,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"EV":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_286",e:"endPart",h:b})})($__dart_deferred_initializers__,"9s60jVCecB+tsu+XNZOPratFzro=");
+a.eventLog.push({p:"main.dart.js_286",e:"endPart",h:b})})($__dart_deferred_initializers__,"+hAQ02v9lnSz2zg8CgkJYn7JYwo=");
 //# sourceMappingURL=main.dart.js_286.part.js.map

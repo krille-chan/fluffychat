@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_203",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cxZ(){return new A.Ei(B.dh("ca"))},
-Ei:function Ei(d){this.a=d}}
+cy8(){return new A.Ek(B.dh("ca"))},
+Ek:function Ek(d){this.a=d}}
 B=c[0]
 C=c[51]
 A=a.updateHolder(c[9],A)
-A.Ei.prototype={
+A.Ek.prototype={
 gnt(){return"true"},
 gjK(){return"Repetiu la contrasenya"},
 gm_(){return"No \xe9s un arxiu d'image."},
@@ -123,7 +123,7 @@ gig(){return"S\u2019ha copiat al porta-retalls"},
 geE(d){return"Copia"},
 gih(){return"Copia al porta-retalls"},
 ii(d){return"No s'ha pogut desxifrar el missatge: "+d},
-dX(d){return""+d+" participants"},
+dY(d){return""+d+" participants"},
 gfj(d){return"Crea"},
 ij(d){return"\ud83d\udcac "+d+" ha creat el xat"},
 gej(){return"Crea un grup"},
@@ -157,7 +157,7 @@ geG(){return"Emojis i stickers propis"},
 gl5(){return"Afegeix o comparteix emojis o stickers. Els podr\xe0s fer servir en qualsevol conversa."},
 geJ(){return"Codi d'emoticona"},
 giE(){return"Has de seleccionar un codi d'emoticona i una imatge!"},
-gdY(){return"Xat buit"},
+gdZ(){return"Xat buit"},
 giF(){return"Activa el paquet d'emoticones global"},
 gem(){return"Activa el xifratge"},
 giG(){return"No podreu desactivar el xifratge mai m\xe9s. N\u2019esteu segur?"},
@@ -223,7 +223,7 @@ gir(){return"Per a lis usu\xe0r\xefis de Tor, es recomana exportar la sessi\xf3 
 giS(){return"Usu\xe0r\xefis de Tor: Importa una sessi\xf3 anterior"},
 giT(){return"Que vas exportar la teva \xfaltima sessi\xf3 a Tor? La pots importar ara i continuar xatejant."},
 giR(){return"Restaura un arxiu de recuperaci\xf3"},
-ge1(){return"S\u2019est\xe0 carregant\u2026 Espereu."},
+ge2(){return"S\u2019est\xe0 carregant\u2026 Espereu."},
 gj7(){return"Carrega\u2019n m\xe9s\u2026"},
 gj8(){return"S\u2019han desactivat els serveis d\u2019ubicaci\xf3. Activeu-los per a compartir la vostra ubicaci\xf3."},
 gj9(){return"S\u2019ha rebutjat el perm\xeds d\u2019ubicaci\xf3. Atorgueu-lo per a poder compartir la vostra ubicaci\xf3."},
@@ -300,7 +300,7 @@ gjL(d){return"Respon"},
 gfP(){return"Denuncia el missatge"},
 gjN(){return"La sala s'ha actualitzat"},
 gjO(){return"Versi\xf3 de la sala"},
-gdW(d){return"Cerca"},
+gdX(d){return"Cerca"},
 geZ(){return"Seguretat"},
 gfM(){return"Clau de recuperaci\xf3"},
 gjC(){return"Que has perdut la clau de recuperaci\xf3?"},
@@ -420,7 +420,7 @@ gmQ(){return"Usu\xe0r\xefis"},
 gmH(){return"Desbloqueja els missatges antics"},
 gkd(){return"Per desar aquesta clau manualment, pica l'eina de compartir o copia-la al porta-retalls."},
 l1(d){return""+d+" arxius"},
-gdU(){return"Usu\xe0r\xefi"},
+gdV(){return"Usu\xe0r\xefi"},
 gik(){return"Personalitzat"},
 gn6(){return"Per qu\xe8 no es pot llegir aquest missatge?"},
 glW(){return"Aix\xf2 pot passar si el missatge es va enviar abans que haguessis iniciat sessi\xf3 al teu compte des d'aquest dispositiu.\n\nTamb\xe9 pot ser que l'emissor hagi bloquejat el teu dispositiu o que la connexi\xf3 a internet an\xe9s malament.\n\nQue pots llegir el missatge des d'una altra sessi\xf3? Si \xe9s aix\xed, llavors pots transferir-lo! Ves a Par\xe0metres \u2192 Dispositius i assegura't que els teus dispositius s'ha verificat m\xfatuament. Quan obris la sala la propera vegada i totes dues sessions estiguin executant-se, en primer pla, llavors les claus es trasnsmetran autom\xe0ticament.\n\nVols evitar perdre les claus en tancar la sessi\xf3 o en canviar de dispositiu? Llavors assegura't que has activat la c\xf2pia de seguretat del xat als par\xe0metres."},
@@ -630,8 +630,8 @@ gpb(){return"(Optional) message..."},
 goq(){return"Not supported on this device"},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Ei,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"Ei":{"aF":[]}}'))};
+y(A.Ek,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"Ek":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_203",e:"endPart",h:b})})($__dart_deferred_initializers__,"aDvYj1KCRV9Mam4PrB1psX9/A6s=");
+a.eventLog.push({p:"main.dart.js_203",e:"endPart",h:b})})($__dart_deferred_initializers__,"5JWXncXz+w5ZBJq9GYsl9XXenVY=");
 //# sourceMappingURL=main.dart.js_203.part.js.map

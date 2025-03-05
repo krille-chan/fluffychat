@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_252",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cyf(){return new A.Ez(B.dh("hr"))},
-Ez:function Ez(d){this.a=d}}
+cyp(){return new A.EB(B.dh("hr"))},
+EB:function EB(d){this.a=d}}
 B=c[0]
 C=c[51]
 A=a.updateHolder(c[26],A)
-A.Ez.prototype={
+A.EB.prototype={
 gnt(){return"true"},
 gjK(){return"Ponovi lozinku"},
 gm_(){return"Nije slikovna datoteka."},
@@ -123,7 +123,7 @@ gig(){return"Kopirano u me\u0111uspremnik"},
 geE(d){return"Kopiraj"},
 gih(){return"Kopiraj u me\u0111uspremnik"},
 ii(d){return"Neuspjelo de\u0161ifriranje poruke: "+d},
-dX(d){return""+d+" sudionika"},
+dY(d){return""+d+" sudionika"},
 gfj(d){return"Stvori"},
 ij(d){return"\ud83d\udcac "+d+" je zapo\u010deo/la razgovor"},
 gej(){return"Stvori grupu"},
@@ -157,7 +157,7 @@ geG(){return"Prilago\u0111eni emojiji i naljepnice"},
 gl5(){return"Dodaj ili dijeli prilago\u0111ene emojije ili naljepnice koje se mogu koristiti u bilo kojem razgovoru."},
 geJ(){return"Kratica emotikona"},
 giE(){return"Mora\u0161 odabrati jednu kraticu emotikona i sliku!"},
-gdY(){return"Prazan razgovor"},
+gdZ(){return"Prazan razgovor"},
 giF(){return"Aktiviraj paket emotikona globalno"},
 gem(){return"Aktiviraj \u0161ifriranje"},
 giG(){return"Vi\u0161e ne\u0107e\u0161 mo\u0107i deaktivirati \u0161ifriranje. Stvarno to \u017eeli\u0161?"},
@@ -223,7 +223,7 @@ gir(){return"Korisnicima TOR-a preporu\u010duje se izvoz sesije prije zatvaranja
 giS(){return"Korisnici TOR-a: Uzvezite izvoz sesije"},
 giT(){return"Je li zadnji izvoz sesije bio na TOR-u? Brzo ga uvezi i nastavi razgovarati."},
 giR(){return"Obnovi pomo\u0107u sigurnosne kopije"},
-ge1(){return"U\u010ditava se \u2026 Pri\u010dekaj."},
+ge2(){return"U\u010ditava se \u2026 Pri\u010dekaj."},
 gj7(){return"U\u010ditaj jo\u0161 \u2026"},
 gj8(){return"Lokacijske usluge su deaktivirane. Za dijeljenje tvoje lokacije aktiviraj ih."},
 gj9(){return"Lokacijske dozvole su odbijene. Za dijeljenje tvoje lokacije dozvoli ih."},
@@ -300,7 +300,7 @@ gjL(d){return"Odgovori"},
 gfP(){return"Prijavi poruku"},
 gjN(){return"Soba je nadogra\u0111ena"},
 gjO(){return"Verzija sobe"},
-gdW(d){return"Tra\u017ei"},
+gdX(d){return"Tra\u017ei"},
 geZ(){return"Sigurnost"},
 gfM(){return"Klju\u010d za obnavljanje"},
 gjC(){return"Izgubio/la si klju\u010d za obnavljanje?"},
@@ -420,7 +420,7 @@ gmQ(){return"Korisnici"},
 gmH(){return"Otklju\u010daj stare poruke"},
 gkd(){return"Spremi ovaj klju\u010d ru\u010dno pokretanjem dijaloga za dijeljenje sustava ili me\u0111uspremnika."},
 l1(d){return"Broj datoteka: "+d},
-gdU(){return"Korisnik"},
+gdV(){return"Korisnik"},
 gik(){return"Prilago\u0111eno"},
 gn6(){return"Za\u0161to nije mogu\u0107e \u010ditati ovu poruku?"},
 glW(){return"To se mo\u017ee dogoditi ako je poruka poslana prije prijave na tvoj ra\u010dun na ovom ure\u0111aju.\n\nTako\u0111er je mogu\u0107e da je po\u0161iljatelj blokirao tvoj ure\u0111aj ili je do\u0161lo do gre\u0161ke s internetskom vezom.\n\nMo\u017ee\u0161 li pro\u010ditati poruku na jednoj drugoj sesiji? U tom slu\u010daju mo\u017ee\u0161 prenijeti poruku iz nje! Idi na Postavke > Ure\u0111aji i uvjeri se da su se tvoji ure\u0111aji me\u0111usobno provjerili. Kada sljede\u0107i put otvori\u0161 sobu i obje sesije su u prednjem planu, klju\u010devi \u0107e se automatski prenijeti.\n\nNe \u017eeli\u0161 izgubiti klju\u010deve kada se odjavi\u0161 ili zamijeni\u0161 ure\u0111aje? Aktiviraj spremanje sigurnosne kopije razgovora u postavkama."},
@@ -630,8 +630,8 @@ gpb(){return"(Optional) message..."},
 goq(){return"Not supported on this device"},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Ez,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"Ez":{"aF":[]}}'))};
+y(A.EB,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"EB":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_252",e:"endPart",h:b})})($__dart_deferred_initializers__,"qOQzzi0B/MNzdCJ0ORbX0NHohVY=");
+a.eventLog.push({p:"main.dart.js_252",e:"endPart",h:b})})($__dart_deferred_initializers__,"PRANiZZuQSQe6zPi0tn4GvnWzp4=");
 //# sourceMappingURL=main.dart.js_252.part.js.map

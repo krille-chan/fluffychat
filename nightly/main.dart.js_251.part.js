@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_251",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cye(){return new A.Ey(B.dh("hi"))},
-Ey:function Ey(d){this.a=d}}
+cyo(){return new A.EA(B.dh("hi"))},
+EA:function EA(d){this.a=d}}
 B=c[0]
 C=c[51]
 A=a.updateHolder(c[25],A)
-A.Ey.prototype={
+A.EA.prototype={
 gnt(){return"false"},
 gjK(){return"\u092a\u093e\u0938\u0935\u0930\u094d\u0921 \u0926\u094b\u0939\u0930\u093e\u090f\u0902"},
 gm_(){return"\u0915\u094b\u0908 \u091b\u0935\u093f \u092b\u093c\u093e\u0907\u0932 \u0928\u0939\u0940\u0902\u0964"},
@@ -123,7 +123,7 @@ gig(){return"Copied to clipboard"},
 geE(d){return"Copy"},
 gih(){return"Copy to clipboard"},
 ii(d){return"Could not decrypt message: "+d},
-dX(d){return""+d+" participants"},
+dY(d){return""+d+" participants"},
 gfj(d){return"Create"},
 ij(d){return"\ud83d\udcac "+d+" created the chat"},
 gej(){return"Create group"},
@@ -157,7 +157,7 @@ geG(){return"Custom emojis and stickers"},
 gl5(){return"Add or share custom emojis or stickers which can be used in any chat."},
 geJ(){return"Emote shortcode"},
 giE(){return"You need to pick an emote shortcode and an image!"},
-gdY(){return"Empty chat"},
+gdZ(){return"Empty chat"},
 giF(){return"Enable emote pack globally"},
 gem(){return"Enable encryption"},
 giG(){return"You won't be able to disable the encryption anymore. Are you sure?"},
@@ -223,7 +223,7 @@ gir(){return"For TOR users, it is recommended to export the session before closi
 giS(){return"TOR Users: Import session export"},
 giT(){return"Did you export your session last time on TOR? Quickly import it and continue chatting."},
 giR(){return"Restore from backup file"},
-ge1(){return"Loading\u2026 Please wait."},
+ge2(){return"Loading\u2026 Please wait."},
 gj7(){return"Load more\u2026"},
 gj8(){return"Location services are disabled. Please enable them to be able to share your location."},
 gj9(){return"Location permission denied. Please grant them to be able to share your location."},
@@ -300,7 +300,7 @@ gjL(d){return"Reply"},
 gfP(){return"Report message"},
 gjN(){return"Room has been upgraded"},
 gjO(){return"Room version"},
-gdW(d){return"Search"},
+gdX(d){return"Search"},
 geZ(){return"Security"},
 gfM(){return"Recovery key"},
 gjC(){return"Recovery key lost?"},
@@ -420,7 +420,7 @@ gmQ(){return"Users"},
 gmH(){return"Unlock old messages"},
 gkd(){return"Save this key manually by triggering the system share dialog or clipboard."},
 l1(d){return""+d+" files"},
-gdU(){return"User"},
+gdV(){return"User"},
 gik(){return"Custom"},
 gn6(){return"Why is this message unreadable?"},
 glW(){return"This can happen if the message was sent before you have signed in to your account at this device.\n\nIt is also possible that the sender has blocked your device or something went wrong with the internet connection.\n\nAre you able to read the message on another session? Then you can transfer the message from it! Go to Settings > Devices and make sure that your devices have verified each other. When you open the room the next time and both sessions are in the foreground, the keys will be transmitted automatically.\n\nDo you not want to lose the keys when logging out or switching devices? Make sure that you have enabled the chat backup in the settings."},
@@ -630,8 +630,8 @@ gpb(){return"(Optional) message..."},
 goq(){return"Not supported on this device"},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Ey,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"Ey":{"aF":[]}}'))};
+y(A.EA,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"EA":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_251",e:"endPart",h:b})})($__dart_deferred_initializers__,"HcQgFm8AxsSGm+AOoUiHjTvlypw=");
+a.eventLog.push({p:"main.dart.js_251",e:"endPart",h:b})})($__dart_deferred_initializers__,"GvCD9l/xgATKLk5KmdrZjZfSDnQ=");
 //# sourceMappingURL=main.dart.js_251.part.js.map

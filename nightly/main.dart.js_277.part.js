@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_277",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cyr(){return new A.EL(B.dh("nl"))},
-EL:function EL(d){this.a=d}}
+cyB(){return new A.EN(B.dh("nl"))},
+EN:function EN(d){this.a=d}}
 B=c[0]
 C=c[51]
 A=a.updateHolder(c[38],A)
-A.EL.prototype={
+A.EN.prototype={
 gnt(){return"true"},
 gjK(){return"Wachtwoord herhalen"},
 gm_(){return"Geen afbeeldingsbestand."},
@@ -123,7 +123,7 @@ gig(){return"Gekopieerd naar klembord"},
 geE(d){return"Bericht kopi\xebren"},
 gih(){return"Kopieer naar klembord"},
 ii(d){return"Kan het bericht niet ontsleutelen: "+d},
-dX(d){return""+d+" personen"},
+dY(d){return""+d+" personen"},
 gfj(d){return"Aanmaken"},
 ij(d){return"\ud83d\udcac "+d+" heeft de chat gemaakt"},
 gej(){return"Groep aanmaken"},
@@ -157,7 +157,7 @@ geG(){return"Aangepaste emojis and stickers"},
 gl5(){return"Voeg toe of deel aangepaste emojis of stickers die gebruikt kunnen worden in elke chat."},
 geJ(){return"Emoticon korte code"},
 giE(){return"Je moet een emoticon korte code en afbeelding kiezen!"},
-gdY(){return"Lege chat"},
+gdZ(){return"Lege chat"},
 giF(){return"Emoticonpakket overal inschakelen"},
 gem(){return"Versleuteling inschakelen"},
 giG(){return"Je kunt de versleuteling hierna niet meer uitschakelen. Weet je het zeker?"},
@@ -223,7 +223,7 @@ gir(){return"Voor TOR-sessies is het aanbevolen de sessie te exporteren alvorens
 giS(){return"TOR-sessie: Importeren sessie export"},
 giT(){return"Heb je de vorige keer jouw sessie ge\xebxporteerd met TOR? Importeer het dan snel en ga verder met chatten."},
 giR(){return"Herstellen vanuit back-upbestand"},
-ge1(){return"Bezig met laden\u2026 Even geduld."},
+ge2(){return"Bezig met laden\u2026 Even geduld."},
 gj7(){return"Meer laden\u2026"},
 gj8(){return"Locatievoorzieningen is uitgeschakeld. Zet dit eerst aan om je locatie te delen."},
 gj9(){return"Locatievoorzieningen is geweigerd. Zet hem aan om locatie delen te gebruiken."},
@@ -300,7 +300,7 @@ gjL(d){return"Antwoord"},
 gfP(){return"Bericht rapporteren"},
 gjN(){return"Kamer is ge\xfcpgrade"},
 gjO(){return"Kamerversie"},
-gdW(d){return"Zoeken"},
+gdX(d){return"Zoeken"},
 geZ(){return"Beveiliging"},
 gfM(){return"Herstelsleutel"},
 gjC(){return"Herstelsleutel verloren?"},
@@ -420,7 +420,7 @@ gmQ(){return"Personen"},
 gmH(){return"Oude berichten ontgrendelen"},
 gkd(){return"Sla deze sleutel handmatig op via delen of het klembord."},
 l1(d){return""+d+" bestanden"},
-gdU(){return"Persoon"},
+gdV(){return"Persoon"},
 gik(){return"Aangepast"},
 gn6(){return"Waarom is dit bericht onleesbaar?"},
 glW(){return"Dit kan gebeuren als het bericht is verzonden voordat je bij je account op dit apparaat hebt aangemeld.\n\nHet is ook mogelijk dat de afzender je apparaat heeft geblokkeerd of dat er iets mis is gegaan met de internetverbinding.\n\nKan je het bericht wel lezen op een andere sessie? Dan kan je het bericht daarvandaan overzetten! Ga naar Instellingen > Apparaten en zorg ervoor dat je apparaten elkaar hebben geverifieerd. Wanneer je de kamer de volgende keer opent en beide sessies op de voorgrond staan, zullen de sleutels automatisch worden verzonden.\n\nWil je de sleutels niet verliezen als je uitlogt of van apparaat wisselt? Zorg er dan voor dat je de chatback-up hebt aangezet in de instellingen."},
@@ -630,8 +630,8 @@ gpb(){return"(Optional) message..."},
 goq(){return"Not supported on this device"},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.EL,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"EL":{"aF":[]}}'))};
+y(A.EN,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"EN":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_277",e:"endPart",h:b})})($__dart_deferred_initializers__,"PICNRMJx2mfLY1xMzTNhRIvAoXM=");
+a.eventLog.push({p:"main.dart.js_277",e:"endPart",h:b})})($__dart_deferred_initializers__,"EWN4ixNrvUbXPCurl062/QwXOqo=");
 //# sourceMappingURL=main.dart.js_277.part.js.map

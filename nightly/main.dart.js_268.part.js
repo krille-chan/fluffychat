@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_268",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cyk(){return new A.EE(B.dh("it"))},
-EE:function EE(d){this.a=d}}
+cyu(){return new A.EG(B.dh("it"))},
+EG:function EG(d){this.a=d}}
 B=c[0]
 C=c[51]
 A=a.updateHolder(c[31],A)
-A.EE.prototype={
+A.EG.prototype={
 gnt(){return"disattivato"},
 gjK(){return"Ripeti password"},
 gm_(){return"Non \xe8 un file immagine."},
@@ -123,7 +123,7 @@ gig(){return"Copiato negli Appunti"},
 geE(d){return"Copia"},
 gih(){return"Copia negli appunti"},
 ii(d){return"Impossibile decriptare messaggio: "+d},
-dX(d){return""+d+" partecipanti"},
+dY(d){return""+d+" partecipanti"},
 gfj(d){return"Crea"},
 ij(d){return"\ud83d\udcac "+d+" ha creato la chat"},
 gej(){return"Crea gruppo"},
@@ -157,7 +157,7 @@ geG(){return"Emoji e adesivi personalizzati"},
 gl5(){return"Aggiungi o condividi emoji o adesivi personalizzati che possono essere utilizzati in qualsiasi chat."},
 geJ(){return"Scorciatoia emote"},
 giE(){return"Devi scegliere una scorciatoia emote e aggiungere un immagine!"},
-gdY(){return"Discussione vuota"},
+gdZ(){return"Discussione vuota"},
 giF(){return"Abilita i pacchetti emotes globalmente"},
 gem(){return"Abilita la crittografia"},
 giG(){return"Non potrai disabilitare la crittografia in futuro. Sei sicuro?"},
@@ -223,7 +223,7 @@ gir(){return"Per gli utenti TOR, \xe8 raccomandato esportare la sessione prima d
 giS(){return"Utenti TOR: Importa l'esportazione della sessione"},
 giT(){return"Hai esportato la tua sessione l'ultima volta con TOR? Importala velocemente e continua a chattare."},
 giR(){return"Ripristina dal file di backup"},
-ge1(){return"Caricamento\u2026 Attendere prego."},
+ge2(){return"Caricamento\u2026 Attendere prego."},
 gj7(){return"Carica di pi\xf9\u2026"},
 gj8(){return"I servizi di localizzazione sono disabilitati. Per favore abilitali per poter condividere la tua posizione."},
 gj9(){return"Permesso per accedere alla posizione negato. Per favore concedilo per essere in grado di condividere la tua posizione."},
@@ -300,7 +300,7 @@ gjL(d){return"Rispondi"},
 gfP(){return"Segnala il messaggio"},
 gjN(){return"La stanza \xe8 stata aggiornata"},
 gjO(){return"Versione della stanza"},
-gdW(d){return"Cerca"},
+gdX(d){return"Cerca"},
 geZ(){return"Sicurezza"},
 gfM(){return"Chiave di recupero"},
 gjC(){return"Chiave di recupero smarrita?"},
@@ -420,7 +420,7 @@ gmQ(){return"Utenti"},
 gmH(){return"Sblocca i vecchi messaggi"},
 gkd(){return"Salva questa chiave manualmente attivando la finestra di condivisione o gli appunti."},
 l1(d){return""+d+" file"},
-gdU(){return"Utente"},
+gdV(){return"Utente"},
 gik(){return"Personalizzato"},
 gn6(){return"Perch\xe9 questo messaggio \xe8 illeggibile?"},
 glW(){return"Questo pu\xf2 accadere se il messaggio \xe8 stato inviato prima che hai fatto l'accesso in questo dispositivo.\n\n\xc8 anche possibile che il mittente abbia bloccato il tuo dispositivo o che qualcosa sia andato storto con la tua connessione ad internet.\n\nSei in grado di leggere il messaggio su altre sessioni? Allora puoi trasferire il messaggio da l\xec! Vai su Impostazioni > Dispositivi e verifica che i tuoi dispositivi siano verificati l'un l'altro. Quando aprirai la stanza la prossima volta ed entrambe le sessioni sono in primo piano, le chiavi saranno trasmesse automaticamente.\n\nNon vuoi perdere le chiavi quando ti disconnetti o cambi dispositivo? Assicurati di aver attivato il backup delle chat nelle impostazioni."},
@@ -630,8 +630,8 @@ gpb(){return"(Optional) message..."},
 goq(){return"Not supported on this device"},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.EE,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"EE":{"aF":[]}}'))};
+y(A.EG,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"EG":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_268",e:"endPart",h:b})})($__dart_deferred_initializers__,"0Ff0bSx6x6hc7uwu6qRKwX0BedY=");
+a.eventLog.push({p:"main.dart.js_268",e:"endPart",h:b})})($__dart_deferred_initializers__,"5Fmuewdyu4wuvQkuDtmQzVJvMnw=");
 //# sourceMappingURL=main.dart.js_268.part.js.map

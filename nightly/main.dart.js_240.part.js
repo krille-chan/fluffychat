@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_240",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cy8(){return new A.Es(B.dh("fi"))},
-Es:function Es(d){this.a=d}}
+cyi(){return new A.Eu(B.dh("fi"))},
+Eu:function Eu(d){this.a=d}}
 B=c[0]
 C=c[51]
 A=a.updateHolder(c[19],A)
-A.Es.prototype={
+A.Eu.prototype={
 gnt(){return"false"},
 gjK(){return"Salasana uudelleen"},
 gm_(){return"T\xe4m\xe4 ei ole kuvatiedosto."},
@@ -123,7 +123,7 @@ gig(){return"Kopioitu leikep\xf6yd\xe4lle"},
 geE(d){return"Kopioi"},
 gih(){return"Kopioi leikep\xf6yd\xe4lle"},
 ii(d){return"Viestin salausta ei voitu purkaa: "+d},
-dX(d){return""+d+" osallistujaa"},
+dY(d){return""+d+" osallistujaa"},
 gfj(d){return"Luo"},
 ij(d){return d+" loi keskustelun"},
 gej(){return"Luo ryhm\xe4"},
@@ -157,7 +157,7 @@ geG(){return"Custom emojis and stickers"},
 gl5(){return"Add or share custom emojis or stickers which can be used in any chat."},
 geJ(){return"Emote-lyhytkoodi"},
 giE(){return"Emote-lyhytkoodi ja kuva on valittava!"},
-gdY(){return"Tyhj\xe4 keskustelu"},
+gdZ(){return"Tyhj\xe4 keskustelu"},
 giF(){return"Ota emote-paketti k\xe4ytt\xf6\xf6n kaikkialla"},
 gem(){return"Ota salaus k\xe4ytt\xf6\xf6n"},
 giG(){return"Et voi poistaa salausta my\xf6hemmin. Oletko varma?"},
@@ -223,7 +223,7 @@ gir(){return"Tor-k\xe4ytt\xe4jille suositellaan istunnon vienti\xe4 ennen ikkuna
 giS(){return"TOR-k\xe4ytt\xe4j\xe4t: tuo viety istunto"},
 giT(){return"Veitk\xf6 edellisen istuntosi k\xe4ytt\xe4ess\xe4si TORia? Tuo se nopeasti ja jatka jutustelua."},
 giR(){return"Palauta varmuuskopiotiedostosta"},
-ge1(){return"Ladataan... Hetkinen."},
+ge2(){return"Ladataan... Hetkinen."},
 gj7(){return"Lataa lis\xe4\xe4\u2026"},
 gj8(){return"Sijaintipalvelut ovat poissa k\xe4yt\xf6st\xe4. Otathan ne k\xe4ytt\xf6\xf6n jakaaksesi sijaintisi."},
 gj9(){return"SIjaintioikeus on estetty. My\xf6nn\xe4th\xe4n sen jakaaksesi sijaintisi."},
@@ -300,7 +300,7 @@ gjL(d){return"Vastaa"},
 gfP(){return"Ilmoita viesti"},
 gjN(){return"Huone on p\xe4ivitetty"},
 gjO(){return"Huoneen versio"},
-gdW(d){return"Hae"},
+gdX(d){return"Hae"},
 geZ(){return"Turvallisuus"},
 gfM(){return"Palautusavain"},
 gjC(){return"Kadonnut palautusavain?"},
@@ -420,7 +420,7 @@ gmQ(){return"K\xe4ytt\xe4j\xe4t"},
 gmH(){return"Pura vanhojen viestien salaus"},
 gkd(){return"Tallenna t\xe4m\xe4 avain manuaalisesti k\xe4ytt\xe4en j\xe4rjestelm\xe4n jakodialogia tai leikep\xf6yt\xe4\xe4."},
 l1(d){return""+d+" tiedostoa"},
-gdU(){return"K\xe4ytt\xe4j\xe4"},
+gdV(){return"K\xe4ytt\xe4j\xe4"},
 gik(){return"Mukautettu"},
 gn6(){return"Miksei t\xe4t\xe4 viesti\xe4 voida lukea?"},
 glW(){return"T\xe4m\xe4 voi tapahtua mik\xe4li viesti l\xe4hetettiin ennen sis\xe4\xe4nkirjautumistasi t\xe4lle laitteelle.\n\nOn my\xf6s mahdollista, ett\xe4 l\xe4hett\xe4j\xe4 on est\xe4nyt t\xe4m\xe4n laitteen tai jokin meni pieleen verkkoyhteyden kanssa.\n\nPystytk\xf6 lukemaan viestin toisella istunnolla? Siin\xe4 tapauksessa voit siirt\xe4\xe4 viestin silt\xe4! Mene Asetukset > Laitteet ja varmista, ett\xe4 laitteesi ovat varmistaneet toisensa. Seuraavankerran avatessasi huoneen ja molempien istuntojen ollessa etualalla, avaimet siirret\xe4\xe4n automaattisesti.\n\nHaluatko varmistaa ettet menet\xe4 avaimia uloskirjautuessa tai laitteita vaihtaessa? Varmista avainvarmuuskopion k\xe4yt\xf6ss\xe4olo asetuksista."},
@@ -630,8 +630,8 @@ gpb(){return"(Optional) message..."},
 goq(){return"Not supported on this device"},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Es,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"Es":{"aF":[]}}'))};
+y(A.Eu,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"Eu":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_240",e:"endPart",h:b})})($__dart_deferred_initializers__,"/lAkl1NB0pkND6Xpo42JNMB0qSk=");
+a.eventLog.push({p:"main.dart.js_240",e:"endPart",h:b})})($__dart_deferred_initializers__,"Q50RLzES3T+M9URYE6Idtg5Wi4M=");
 //# sourceMappingURL=main.dart.js_240.part.js.map

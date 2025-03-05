@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_242",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cya(){return new A.Eu(B.dh("fr"))},
-Eu:function Eu(d){this.a=d}}
+cyk(){return new A.Ew(B.dh("fr"))},
+Ew:function Ew(d){this.a=d}}
 B=c[0]
 C=c[51]
 A=a.updateHolder(c[21],A)
-A.Eu.prototype={
+A.Ew.prototype={
 gnt(){return"true"},
 gjK(){return"R\xe9p\xe9tez le mot de passe"},
 gm_(){return"Pas un fichier image."},
@@ -123,7 +123,7 @@ gig(){return"Copi\xe9 dans le presse-papier"},
 geE(d){return"Copier"},
 gih(){return"Copier dans le presse-papiers"},
 ii(d){return"Impossible de d\xe9chiffrer le message : "+d},
-dX(d){return""+d+" participant(s)"},
+dY(d){return""+d+" participant(s)"},
 gfj(d){return"Cr\xe9er"},
 ij(d){return"\ud83d\udcac "+d+" a cr\xe9\xe9 la discussion"},
 gej(){return"Cr\xe9er un groupe"},
@@ -157,7 +157,7 @@ geG(){return"\xc9motic\xf4nes et autocollants personnalis\xe9s"},
 gl5(){return"Ajoutez ou partagez des \xe9motic\xf4nes ou autocollants personnalis\xe9s qui peuvent \xeatre utilis\xe9s dans n'importe quelle discussion."},
 geJ(){return"Raccourci de l'\xe9motic\xf4ne"},
 giE(){return"Vous devez s\xe9lectionner un raccourci d'\xe9motic\xf4ne et une image\xa0!"},
-gdY(){return"Discussion vide"},
+gdZ(){return"Discussion vide"},
 giF(){return"Activer globalement le pack d'\xe9motic\xf4nes"},
 gem(){return"Activer le chiffrement"},
 giG(){return"Vous ne pourrez plus d\xe9sactiver le chiffrement. \xcates-vous s\xfbr(e)\xa0?"},
@@ -223,7 +223,7 @@ gir(){return"Pour les utilisateurs/trices de TOR, il est recommand\xe9 d'exporte
 giS(){return"Utilisateurs/trices de TOR : Importer une session export\xe9e"},
 giT(){return"Vous avez export\xe9 votre session la derni\xe8re fois sur TOR ? Importez-la rapidement et continuez \xe0 discuter."},
 giR(){return"Restaurer \xe0 partir du fichier de sauvegarde"},
-ge1(){return"Chargement\u2026 Veuillez patienter."},
+ge2(){return"Chargement\u2026 Veuillez patienter."},
 gj7(){return"Charger plus\u2026"},
 gj8(){return"Les services de localisation sont d\xe9sactiv\xe9s. Il est n\xe9cessaire de les activer avant de pouvoir partager votre localisation."},
 gj9(){return"L'application n'a pas la permission d'acc\xe9der \xe0 votre localisation. Merci de l'accorder afin de pouvoir partager votre localisation."},
@@ -300,7 +300,7 @@ gjL(d){return"R\xe9pondre"},
 gfP(){return"Signaler un message"},
 gjN(){return"Le salon a \xe9t\xe9 mis \xe0 niveau"},
 gjO(){return"Version du salon"},
-gdW(d){return"Rechercher"},
+gdX(d){return"Rechercher"},
 geZ(){return"S\xe9curit\xe9"},
 gfM(){return"Cl\xe9 de r\xe9cup\xe9ration"},
 gjC(){return"Cl\xe9 de r\xe9cup\xe9ration perdue ?"},
@@ -420,7 +420,7 @@ gmQ(){return"Utilisateurs/trices"},
 gmH(){return"D\xe9verrouiller les anciens messages"},
 gkd(){return"Enregistrer cette cl\xe9 manuellement en d\xe9clenchant la bo\xeete de dialogue de partage du syst\xe8me ou le presse-papiers."},
 l1(d){return""+d+" fichiers"},
-gdU(){return"Utilisateur/trice"},
+gdV(){return"Utilisateur/trice"},
 gik(){return"Personnalis\xe9"},
 gn6(){return"Pourquoi ce message est-il illisible ?"},
 glW(){return"Cela peut se produire si le message a \xe9t\xe9 envoy\xe9 avant que vous ne vous soyez connect\xe9 \xe0 votre compte sur cet appareil.\n\nIl est \xe9galement possible que l'exp\xe9diteur ait bloqu\xe9 votre appareil ou qu'un probl\xe8me de connexion Internet se soit produit.\n\n\xcates-vous capable de lire le message sur une autre session ? Vous pouvez alors transf\xe9rer le message \xe0 partir de celle-ci ! Allez dans Param\xe8tres > Appareils et assurez-vous que vos appareils se sont v\xe9rifi\xe9s mutuellement. Lorsque vous ouvrirez le salon la fois suivante et que les deux sessions seront au premier plan, les cl\xe9s seront transmises automatiquement.\n\nVous ne voulez pas perdre les cl\xe9s en vous d\xe9connectant ou en changeant d'appareil ? Assurez-vous que vous avez activ\xe9 la sauvegarde de la discussion dans les param\xe8tres."},
@@ -630,8 +630,8 @@ gpb(){return"(Optional) message..."},
 goq(){return"Not supported on this device"},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Eu,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"Eu":{"aF":[]}}'))};
+y(A.Ew,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"Ew":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_242",e:"endPart",h:b})})($__dart_deferred_initializers__,"Z2Ab8QeC34K8iNjjLxsAevKbASQ=");
+a.eventLog.push({p:"main.dart.js_242",e:"endPart",h:b})})($__dart_deferred_initializers__,"mM4Wja+xMX5ivQd7Xfc7n9FWcaI=");
 //# sourceMappingURL=main.dart.js_242.part.js.map

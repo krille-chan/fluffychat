@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_212",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cy_(){return new A.Ej(B.dh("cs"))},
-Ej:function Ej(d){this.a=d}}
+cy9(){return new A.El(B.dh("cs"))},
+El:function El(d){this.a=d}}
 B=c[0]
 C=c[51]
 A=a.updateHolder(c[10],A)
-A.Ej.prototype={
+A.El.prototype={
 gnt(){return"Vypnuto"},
 gjK(){return"Zopakujte heslo"},
 gm_(){return"Nen\xed obr\xe1zek."},
@@ -123,7 +123,7 @@ gig(){return"Zkop\xedrov\xe1no do schr\xe1nky"},
 geE(d){return"Kop\xedrovat"},
 gih(){return"Zkop\xedrovat do schr\xe1nky"},
 ii(d){return"Nebylo mo\u017en\xe9 de\u0161ifrovat zpr\xe1vu: "+d},
-dX(d){return""+d+" \xfa\u010dastn\xedk\u016f"},
+dY(d){return""+d+" \xfa\u010dastn\xedk\u016f"},
 gfj(d){return"Vytvo\u0159it"},
 ij(d){return"\ud83d\udcac "+d+" zalo\u017eil/a chat"},
 gej(){return"Vytvo\u0159it skupinu"},
@@ -157,7 +157,7 @@ geG(){return"Vlastn\xed emoji a n\xe1lepky"},
 gl5(){return"P\u0159idat nebo sd\xedlet vlastn\xed emoji nebo n\xe1lepky, kter\xe9 mohou b\xfdt pou\u017eit\xe9 v konverzaci."},
 geJ(){return"Kl\xe1vesov\xe1 zkratka emotikonu"},
 giE(){return"Mus\xedte si vybrat kl\xe1vesovou zkratku emotikonu a obr\xe1zek!"},
-gdY(){return"Pr\xe1zdn\xfd chat"},
+gdZ(){return"Pr\xe1zdn\xfd chat"},
 giF(){return"Povolit bal\xed\u010dek emotikon v\u0161ude"},
 gem(){return"Povolit \u0161ifrov\xe1n\xed"},
 giG(){return"\u0160ifrov\xe1n\xed ji\u017e nebude mo\u017en\xe9 vypnout. Jste si t\xedm jisti?"},
@@ -223,7 +223,7 @@ gir(){return"U\u017eivatel\u016fm TOR se doporu\u010duje exportovat sezen\xed p\
 giS(){return"TOR u\u017eivatel\xe9: Import exportovan\xe9ho sezen\xed"},
 giT(){return"Exportovali jste va\u0161e posledn\xed sezen\xed na TOR? Rychle jej importujte a pokra\u010dujte v konverzaci."},
 giR(){return"Obnovit ze z\xe1lo\u017en\xedho souboru"},
-ge1(){return"Na\u010d\xedt\xe1n\xed\u2026 Pros\xedme vy\u010dkejte."},
+ge2(){return"Na\u010d\xedt\xe1n\xed\u2026 Pros\xedme vy\u010dkejte."},
 gj7(){return"Na\u010d\xedst dal\u0161\xed\u2026"},
 gj8(){return"Slu\u017eby ur\u010dov\xe1n\xed polohy jsou deaktivov\xe1ny. Povolte jim, aby mohli sd\xedlet va\u0161i polohu."},
 gj9(){return"Opr\xe1vn\u011bn\xed k poloze odep\u0159eno. Ud\u011blte jim pros\xedm mo\u017enost sd\xedlet va\u0161i polohu."},
@@ -300,7 +300,7 @@ gjL(d){return"Odpov\u011bd\u011bt"},
 gfP(){return"Nahl\xe1sit zpr\xe1vu"},
 gjN(){return"M\xedstnost byla upgradov\xe1na"},
 gjO(){return"Verze m\xedstnosti"},
-gdW(d){return"Hledat"},
+gdX(d){return"Hledat"},
 geZ(){return"Bezpe\u010dnostn\xed"},
 gfM(){return"Kl\xed\u010d k obnoven\xed"},
 gjC(){return"Ztracen\xfd kl\xed\u010d k obnoven\xed?"},
@@ -420,7 +420,7 @@ gmQ(){return"U\u017eivatel\xe9"},
 gmH(){return"Odemknout star\xe9 zpr\xe1vy"},
 gkd(){return"Ulo\u017ete tento kl\xed\u010d manu\xe1ln\u011b pomoc\xed syst\xe9mov\xe9ho dialogu sd\xedlen\xed nebo zkop\xedrov\xe1n\xedm do schr\xe1nky."},
 l1(d){return""+d+" soubor\u016f"},
-gdU(){return"U\u017eivatel"},
+gdV(){return"U\u017eivatel"},
 gik(){return"Vlastn\xed"},
 gn6(){return"Pro\u010d nelze p\u0159e\u010d\xedst tuto zpr\xe1vu?"},
 glW(){return"This can happen if the message was sent before you have signed in to your account at this device.\n\nIt is also possible that the sender has blocked your device or something went wrong with the internet connection.\n\nAre you able to read the message on another session? Then you can transfer the message from it! Go to Settings > Devices and make sure that your devices have verified each other. When you open the room the next time and both sessions are in the foreground, the keys will be transmitted automatically.\n\nDo you not want to lose the keys when logging out or switching devices? Make sure that you have enabled the chat backup in the settings."},
@@ -630,8 +630,8 @@ gpb(){return"(Optional) message..."},
 goq(){return"Not supported on this device"},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Ej,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"Ej":{"aF":[]}}'))};
+y(A.El,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"El":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_212",e:"endPart",h:b})})($__dart_deferred_initializers__,"9PxklKJnvYD6moOvcthgp2rydqY=");
+a.eventLog.push({p:"main.dart.js_212",e:"endPart",h:b})})($__dart_deferred_initializers__,"Gpmyq8aeYRAjkMnQ/HmbYAMpm7s=");
 //# sourceMappingURL=main.dart.js_212.part.js.map

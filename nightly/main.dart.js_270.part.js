@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_270",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cyl(){return new A.EF(B.dh("ja"))},
-EF:function EF(d){this.a=d}}
+cyv(){return new A.EH(B.dh("ja"))},
+EH:function EH(d){this.a=d}}
 B=c[0]
 C=c[51]
 A=a.updateHolder(c[32],A)
-A.EF.prototype={
+A.EH.prototype={
 gnt(){return"false"},
 gjK(){return"\u30d1\u30b9\u30ef\u30fc\u30c9\u3092\u7e70\u308a\u8fd4\u305d"},
 gm_(){return"Not an image file."},
@@ -123,7 +123,7 @@ gig(){return"\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u306b\u30b3\u30d4\u30fc\
 geE(d){return"\u30b3\u30d4\u30fc"},
 gih(){return"\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u306b\u30b3\u30d4\u30fc"},
 ii(d){return"\u30e1\u30c3\u30bb\u30fc\u30b8\u3092\u89e3\u8aad\u3067\u304d\u307e\u305b\u3093\u3067\u3057\u305f: "+d},
-dX(d){return""+d+"\u540d\u306e\u53c2\u52a0\u8005"},
+dY(d){return""+d+"\u540d\u306e\u53c2\u52a0\u8005"},
 gfj(d){return"\u4f5c\u6210"},
 ij(d){return"\ud83d\udcac "+d+"\u304c\u30c1\u30e3\u30c3\u30c8\u3092\u4f5c\u6210\u3057\u307e\u3057\u305f"},
 gej(){return"Create group"},
@@ -157,7 +157,7 @@ geG(){return"Custom emojis and stickers"},
 gl5(){return"Add or share custom emojis or stickers which can be used in any chat."},
 geJ(){return"Emote\u30b7\u30e7\u30fc\u30c8\u30b3\u30fc\u30c9"},
 giE(){return"Emote\u30b7\u30e7\u30fc\u30c8\u30b3\u30fc\u30c9\u3068\u753b\u50cf\u3092\u9078\u629e\u3057\u3066\u304f\u3060\u3055\u3044\uff01"},
-gdY(){return"\u7a7a\u306e\u30c1\u30e3\u30c3\u30c8"},
+gdZ(){return"\u7a7a\u306e\u30c1\u30e3\u30c3\u30c8"},
 giF(){return"emote\u3092\u30b0\u30ed\u30fc\u30d0\u30eb\u306b\u6709\u52b9\u306b\u3059\u308b"},
 gem(){return"\u6697\u53f7\u5316\u3092\u6709\u52b9\u306b\u3059\u308b"},
 giG(){return"\u4e00\u5ea6\u6697\u53f7\u5316\u3092\u6709\u52b9\u306b\u3059\u308b\u3068\u3082\u3068\u306b\u623b\u305b\u307e\u305b\u3093\u3002\u3088\u308d\u3057\u3044\u3067\u3059\u304b\uff1f"},
@@ -223,7 +223,7 @@ gir(){return"TOR \u30e6\u30fc\u30b6\u30fc\u306e\u5834\u5408\u3001\u30a6\u30a3\u3
 giS(){return"TOR \u30e6\u30fc\u30b6\u30fc: \u30bb\u30c3\u30b7\u30e7\u30f3\u306e\u30a8\u30af\u30b9\u30dd\u30fc\u30c8\u3092\u30a4\u30f3\u30dd\u30fc\u30c8"},
 giT(){return"\u524d\u56de\u3001TOR \u3067\u30bb\u30c3\u30b7\u30e7\u30f3\u3092\u30a8\u30af\u30b9\u30dd\u30fc\u30c8\u3057\u307e\u3057\u305f\u304b\uff1f\u3059\u3050\u306b\u30a4\u30f3\u30dd\u30fc\u30c8\u3057\u3066\u30c1\u30e3\u30c3\u30c8\u3092\u7d9a\u3051\u307e\u3057\u3087\u3046\u3002"},
 giR(){return"\u30d0\u30c3\u30af\u30a2\u30c3\u30d7\u30d5\u30a1\u30a4\u30eb\u304b\u3089\u5fa9\u5143"},
-ge1(){return"\u8aad\u307f\u8fbc\u307f\u4e2d\u2026\u304a\u5f85\u3061\u304f\u3060\u3055\u3044\u3002"},
+ge2(){return"\u8aad\u307f\u8fbc\u307f\u4e2d\u2026\u304a\u5f85\u3061\u304f\u3060\u3055\u3044\u3002"},
 gj7(){return"\u66f4\u306b\u8aad\u307f\u8fbc\u3080\u2026"},
 gj8(){return"\u4f4d\u7f6e\u60c5\u5831\u30b5\u30fc\u30d3\u30b9\u304c\u7121\u52b9\u306b\u306a\u3063\u3066\u3044\u307e\u3059\u3002\u4f4d\u7f6e\u60c5\u5831\u3092\u5171\u6709\u3067\u304d\u308b\u3088\u3046\u306b\u3059\u308b\u306b\u306f\u3001\u4f4d\u7f6e\u60c5\u5831\u30b5\u30fc\u30d3\u30b9\u3092\u6709\u52b9\u306b\u3057\u3066\u304f\u3060\u3055\u3044\u3002"},
 gj9(){return"\u4f4d\u7f6e\u60c5\u5831\u306e\u6a29\u9650\u304c\u62d2\u5426\u3055\u308c\u307e\u3057\u305f\u3002\u4f4d\u7f6e\u60c5\u5831\u3092\u5171\u6709\u3067\u304d\u308b\u3088\u3046\u306b\u8a31\u53ef\u3057\u3066\u304f\u3060\u3055\u3044\u3002"},
@@ -300,7 +300,7 @@ gjL(d){return"\u8fd4\u4fe1"},
 gfP(){return"\u30e1\u30c3\u30bb\u30fc\u30b8\u3092\u901a\u5831"},
 gjN(){return"\u90e8\u5c4b\u306f\u30a2\u30c3\u30d7\u30b0\u30ec\u30fc\u30c9\u3055\u308c\u307e\u3057\u305f"},
 gjO(){return"\u30eb\u30fc\u30e0\u30d0\u30fc\u30b8\u30e7\u30f3"},
-gdW(d){return"\u691c\u7d22"},
+gdX(d){return"\u691c\u7d22"},
 geZ(){return"\u30bb\u30ad\u30e5\u30ea\u30c6\u30a3"},
 gfM(){return"\u30ea\u30ab\u30d0\u30ea\u30fc\u30ad\u30fc"},
 gjC(){return"\u30ea\u30ab\u30d0\u30ea\u30fc\u30ad\u30fc\u3092\u7d1b\u5931\u3057\u305f\u5834\u5408"},
@@ -420,7 +420,7 @@ gmQ(){return"\u30e6\u30fc\u30b6\u30fc"},
 gmH(){return"\u53e4\u3044\u30e1\u30c3\u30bb\u30fc\u30b8\u306e\u30ed\u30c3\u30af\u3092\u89e3\u9664\u3059\u308b"},
 gkd(){return"Save this key manually by triggering the system share dialog or clipboard."},
 l1(d){return""+d+"\u500b\u306e\u30d5\u30a1\u30a4\u30eb"},
-gdU(){return"\u30e6\u30fc\u30b6\u30fc"},
+gdV(){return"\u30e6\u30fc\u30b6\u30fc"},
 gik(){return"\u30ab\u30b9\u30bf\u30e0"},
 gn6(){return"\u3053\u306e\u30e1\u30c3\u30bb\u30fc\u30b8\u304c\u8aad\u3081\u306a\u3044\u7406\u7531"},
 glW(){return"This can happen if the message was sent before you have signed in to your account at this device.\n\nIt is also possible that the sender has blocked your device or something went wrong with the internet connection.\n\nAre you able to read the message on another session? Then you can transfer the message from it! Go to Settings > Devices and make sure that your devices have verified each other. When you open the room the next time and both sessions are in the foreground, the keys will be transmitted automatically.\n\nDo you not want to lose the keys when logging out or switching devices? Make sure that you have enabled the chat backup in the settings."},
@@ -630,8 +630,8 @@ gpb(){return"(Optional) message..."},
 goq(){return"Not supported on this device"},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.EF,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"EF":{"aF":[]}}'))};
+y(A.EH,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"EH":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_270",e:"endPart",h:b})})($__dart_deferred_initializers__,"E06W6NE3qux5HYqQfbjTy0WQ7d0=");
+a.eventLog.push({p:"main.dart.js_270",e:"endPart",h:b})})($__dart_deferred_initializers__,"1gH1B1B+B5Yv4A2bfUrzZDV0mlA=");
 //# sourceMappingURL=main.dart.js_270.part.js.map

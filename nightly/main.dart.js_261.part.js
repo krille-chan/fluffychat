@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_261",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cyi(){return new A.EC(B.dh("id"))},
-EC:function EC(d){this.a=d}}
+cys(){return new A.EE(B.dh("id"))},
+EE:function EE(d){this.a=d}}
 B=c[0]
 C=c[51]
 A=a.updateHolder(c[29],A)
-A.EC.prototype={
+A.EE.prototype={
 gnt(){return"tidak"},
 gjK(){return"Ulangi kata sandi"},
 gm_(){return"Bukan berkas gambar."},
@@ -123,7 +123,7 @@ gig(){return"Disalin ke papan klip"},
 geE(d){return"Salin"},
 gih(){return"Salin ke papan klip"},
 ii(d){return"Tidak dapat mendekripsikan pesan: "+d},
-dX(d){return""+d+" anggota"},
+dY(d){return""+d+" anggota"},
 gfj(d){return"Buat"},
 ij(d){return"\ud83d\udcac "+d+" membuat obrolan ini"},
 gej(){return"Buat grup"},
@@ -157,7 +157,7 @@ geG(){return"Emoji dan stiker kustom"},
 gl5(){return"Tambakan atau bagikan emoji atau stiker kustom yang dapat digunakan dalam obrolan apa pun."},
 geJ(){return"Shortcode emote"},
 giE(){return"Kamu harus memilih shortcode emote dan gambar!"},
-gdY(){return"Chat kosong"},
+gdZ(){return"Chat kosong"},
 giF(){return"Aktifkan paket emote secara global"},
 gem(){return"Aktifkan enkripsi"},
 giG(){return"Kamu tidak akan bisa menonaktifkan enkripsi. Apakah kamu yakin?"},
@@ -223,7 +223,7 @@ gir(){return"Pengguna Tor disarankan untuk mengekspor sesi sebelum menutup jende
 giS(){return"Pengguna Tor: Impor eksporan sesi"},
 giT(){return"Apakah kamu mengekspor sesimu terakhir kali di Tor? Impor dengan cepat dan lanjut mengobrol."},
 giR(){return"Pulihkan dari file cadangan"},
-ge1(){return"Memuat\u2026 Mohon tunggu."},
+ge2(){return"Memuat\u2026 Mohon tunggu."},
 gj7(){return"Muat lebih banyak\u2026"},
 gj8(){return"Layanan lokasi dinonaktifkan. Mohon diaktifkan untuk bisa membagikan lokasimu."},
 gj9(){return"Izin lokasi ditolak. Mohon memberikan izin untuk bisa membagikan lokasimu."},
@@ -300,7 +300,7 @@ gjL(d){return"Balas"},
 gfP(){return"Laporkan pesan"},
 gjN(){return"Ruangan telah ditingkatkan"},
 gjO(){return"Versi ruangan"},
-gdW(d){return"Cari"},
+gdX(d){return"Cari"},
 geZ(){return"Keamanan"},
 gfM(){return"Kunci pemulihan"},
 gjC(){return"Kunci pemulihan hilang?"},
@@ -420,7 +420,7 @@ gmQ(){return"Pengguna"},
 gmH(){return"Akses pesan lama"},
 gkd(){return"Simpan kunci ini secara manual dengan memicu dialog pembagian atau papan klip sistem."},
 l1(d){return""+d+" file"},
-gdU(){return"Pengguna"},
+gdV(){return"Pengguna"},
 gik(){return"Kustom"},
 gn6(){return"Mengapa pesan ini tidak bisa dibaca?"},
 glW(){return"Hal ini bisa terjadi jika pesan dikirim sebelum kamu masuk ke akunmu di perangkat ini.\n\nMungkin juga pengirim telah memblokir perangkatmu atau ada yang tidak beres dengan koneksi internet.\n\nApakah kamu bisa membaca pesan pada sesi lain? Maka kamu bisa mentransfer pesan dari sesi tersebut! Buka Pengaturan > Perangkat dan pastikan bahwa perangkat Anda telah ditandatangani secara silang. Ketika kamu membuka ruangan di lain waktu dan kedua sesi berada di latar depan, kunci akan ditransmisikan secara otomatis.\n\nApakah kamu tidak mau kehilangan kunci saat keluar atau berpindah perangkat? Pastikan bahwa kamu telah mengaktifkan cadangan obrolan dalam pengaturan."},
@@ -630,9 +630,9 @@ gpb(){return"Pesan (opsional)..."},
 goq(){return"Tidak didukung pada perangkat ini"},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.EC,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"EC":{"aF":[]}}'))
+x(A.EE,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"EE":{"aF":[]}}'))
 var y={a:"Memberi tahu pengguna tentang pesan dalam ruangan satu ke satu."}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_261",e:"endPart",h:b})})($__dart_deferred_initializers__,"SPhX/0DA7E7xxD4BEOPdN8X/I2g=");
+a.eventLog.push({p:"main.dart.js_261",e:"endPart",h:b})})($__dart_deferred_initializers__,"8CzjeUTbvcAzqXJUzGCSVGLzO/c=");
 //# sourceMappingURL=main.dart.js_261.part.js.map
