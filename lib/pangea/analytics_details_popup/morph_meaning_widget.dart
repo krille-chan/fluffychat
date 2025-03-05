@@ -7,39 +7,32 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import 'package:fluffychat/pangea/analytics_misc/text_loading_shimmer.dart';
-import 'package:fluffychat/pangea/learning_settings/constants/language_constants.dart';
-import 'package:fluffychat/pangea/lemmas/lemma_info_repo.dart';
-import 'package:fluffychat/pangea/lemmas/lemma_info_request.dart';
-import 'package:fluffychat/pangea/lemmas/lemma_info_response.dart';
-import 'package:fluffychat/widgets/matrix.dart';
+import 'package:fluffychat/pangea/morphs/get_grammar_copy.dart';
+import 'package:fluffychat/pangea/morphs/morph_meaning/morph_info_repo.dart';
 
-class LemmaMeaningWidget extends StatefulWidget {
-  final String pos;
-  final String text;
-  final String langCode;
+class MorphMeaningWidget extends StatefulWidget {
+  final String feature;
+  final String tag;
   final TextStyle? style;
   final InlineSpan? leading;
 
-  const LemmaMeaningWidget({
+  const MorphMeaningWidget({
     super.key,
-    required this.pos,
-    required this.text,
-    required this.langCode,
+    required this.feature,
+    required this.tag,
     this.style,
     this.leading,
   });
 
   @override
-  LemmaMeaningWidgetState createState() => LemmaMeaningWidgetState();
+  MorphMeaningWidgetState createState() => MorphMeaningWidgetState();
 }
 
-class LemmaMeaningWidgetState extends State<LemmaMeaningWidget> {
+class MorphMeaningWidgetState extends State<MorphMeaningWidget> {
   bool _editMode = false;
   late TextEditingController _controller;
   static const int maxCharacters = 140;
-  LemmaInfoResponse? _cachedResponse;
-
-  String get _lemma => widget.text;
+  String? _cachedResponse;
 
   @override
   void initState() {
@@ -53,44 +46,35 @@ class LemmaMeaningWidgetState extends State<LemmaMeaningWidget> {
     super.dispose();
   }
 
-  LemmaInfoRequest get _request => LemmaInfoRequest(
-        lemma: _lemma,
-        partOfSpeech: widget.pos,
-        lemmaLang: widget.langCode,
-        userL1:
-            MatrixState.pangeaController.languageController.userL1?.langCode ??
-                LanguageKeys.defaultLanguage,
-      );
-
-  Future<LemmaInfoResponse> _lemmaMeaning() async {
+  Future<String> _morphMeaning() async {
     if (_cachedResponse != null) {
       return _cachedResponse!;
     }
 
-    final response = await LemmaInfoRepo.get(_request);
+    final response = await MorphInfoRepo.get(
+      feature: widget.feature,
+      tag: widget.tag,
+    );
     _cachedResponse = response;
-    return response;
+    return response ?? L10n.of(context).meaningNotFound;
   }
 
   void _toggleEditMode(bool value) => setState(() => _editMode = value);
 
-  Future<void> editLemmaMeaning(String userEdit) async {
+  Future<void> editMorphMeaning(String userEdit) async {
     // Truncate to max characters if needed
     final truncatedEdit = userEdit.length > maxCharacters
         ? userEdit.substring(0, maxCharacters)
         : userEdit;
 
-    final originalMeaning = await _lemmaMeaning();
-
-    LemmaInfoRepo.set(
-      _request,
-      LemmaInfoResponse(emoji: originalMeaning.emoji, meaning: truncatedEdit),
+    await MorphInfoRepo.setMorphDefinition(
+      feature: widget.feature,
+      tag: widget.tag,
+      defintion: truncatedEdit,
     );
 
     // Update the cached response
-    _cachedResponse =
-        LemmaInfoResponse(emoji: originalMeaning.emoji, meaning: truncatedEdit);
-
+    _cachedResponse = truncatedEdit;
     _toggleEditMode(false);
   }
 
@@ -103,21 +87,21 @@ class LemmaMeaningWidgetState extends State<LemmaMeaningWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<LemmaInfoResponse>(
-      future: _lemmaMeaning(),
+    return FutureBuilder<String>(
+      future: _morphMeaning(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          _setMeaningText(snapshot.data!.meaning);
+          _setMeaningText(snapshot.data!);
         }
 
         if (_editMode) {
-          return LemmaEditView(
-            lemma: _lemma,
-            pos: widget.pos,
-            meaning: snapshot.data?.meaning ?? "",
+          return MorphEditView(
+            morphFeature: widget.feature,
+            morphTag: widget.tag,
+            meaning: snapshot.data ?? "",
             controller: _controller,
             toggleEditMode: _toggleEditMode,
-            editLemmaMeaning: editLemmaMeaning,
+            editMorphMeaning: editMorphMeaning,
           );
         }
 
@@ -147,7 +131,7 @@ class LemmaMeaningWidgetState extends State<LemmaMeaningWidget> {
                   children: [
                     if (widget.leading != null) widget.leading!,
                     if (widget.leading != null) const TextSpan(text: '  '),
-                    TextSpan(text: snapshot.data!.meaning),
+                    TextSpan(text: snapshot.data!),
                   ],
                 ),
               ),
@@ -159,21 +143,21 @@ class LemmaMeaningWidgetState extends State<LemmaMeaningWidget> {
   }
 }
 
-class LemmaEditView extends StatelessWidget {
-  final String lemma;
-  final String pos;
+class MorphEditView extends StatelessWidget {
+  final String morphFeature;
+  final String morphTag;
   final String meaning;
   final TextEditingController controller;
   final void Function(bool) toggleEditMode;
-  final void Function(String) editLemmaMeaning;
+  final void Function(String) editMorphMeaning;
 
-  const LemmaEditView({
-    required this.lemma,
-    required this.pos,
+  const MorphEditView({
+    required this.morphFeature,
+    required this.morphTag,
     required this.meaning,
     required this.controller,
     required this.toggleEditMode,
-    required this.editLemmaMeaning,
+    required this.editMorphMeaning,
     super.key,
   });
 
@@ -184,7 +168,15 @@ class LemmaEditView extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            "${L10n.of(context).pangeaBotIsFallible} ${L10n.of(context).whatIsMeaning(lemma, pos)}",
+            "${L10n.of(context).pangeaBotIsFallible} ${L10n.of(context).whatIsMeaning(
+              getGrammarCopy(
+                    category: morphFeature,
+                    lemma: morphTag,
+                    context: context,
+                  ) ??
+                  morphTag,
+              '',
+            )}",
             textAlign: TextAlign.center,
             style: const TextStyle(fontStyle: FontStyle.italic),
           ),
@@ -194,11 +186,8 @@ class LemmaEditView extends StatelessWidget {
             child: TextField(
               minLines: 1,
               maxLines: 3,
-              maxLength: LemmaMeaningWidgetState.maxCharacters,
+              maxLength: MorphMeaningWidgetState.maxCharacters,
               controller: controller,
-              // decoration: InputDecoration(
-              //   hintText: data.meaning,
-              // ),
             ),
           ),
           const SizedBox(height: 10),
@@ -219,7 +208,7 @@ class LemmaEditView extends StatelessWidget {
               ElevatedButton(
                 onPressed: () =>
                     controller.text != meaning && controller.text.isNotEmpty
-                        ? editLemmaMeaning(controller.text)
+                        ? editMorphMeaning(controller.text)
                         : null,
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(

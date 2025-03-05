@@ -96,4 +96,33 @@ class MorphInfoRepo {
 
     return res.getFeatureByCode(feature)?.getTagByCode(tag)?.l1Description;
   }
+
+  static Future<void> setMorphDefinition({
+    required String feature,
+    required String tag,
+    required String defintion,
+  }) async {
+    final userL1 =
+        MatrixState.pangeaController.languageController.userL1?.langCode ??
+            LanguageKeys.defaultLanguage;
+    final userL2 =
+        MatrixState.pangeaController.languageController.userL2?.langCode ??
+            LanguageKeys.defaultLanguage;
+    final userL1Short = userL1.split('-').first;
+    final userL2Short = userL2.split('-').first;
+    final cachedJson = _morphMeaningStorage.read(userL1Short + userL2Short);
+
+    MorphInfoResponse? resp = MorphInfoResponse(
+      userL1: userL1,
+      userL2: userL2,
+      features: [],
+    );
+
+    if (cachedJson is Map<String, dynamic>) {
+      resp = MorphInfoResponse.fromJson(cachedJson);
+    }
+
+    resp.setMorphDefinition(feature, tag, defintion);
+    await _morphMeaningStorage.write(userL1Short + userL2Short, resp.toJson());
+  }
 }

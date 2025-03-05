@@ -3,7 +3,7 @@ import 'package:collection/collection.dart';
 class MorphologicalTag {
   final String code;
   final String l1Title;
-  final String l1Description;
+  String l1Description;
 
   MorphologicalTag({
     required this.code,
@@ -102,5 +102,49 @@ class MorphInfoResponse {
     return features.firstWhereOrNull(
       (feature) => feature.code.toLowerCase() == code.toLowerCase(),
     );
+  }
+
+  void setMorphDefinition(
+    String morphFeature,
+    String morphTag,
+    String defintion,
+  ) {
+    final featureIndex = features.indexWhere(
+      (feature) => feature.code.toLowerCase() == morphFeature.toLowerCase(),
+    );
+
+    if (featureIndex == -1) {
+      features.add(
+        MorphologicalFeature(
+          code: morphFeature,
+          l1Title: morphFeature,
+          tags: [
+            MorphologicalTag(
+              code: morphTag,
+              l1Title: morphTag,
+              l1Description: defintion,
+            ),
+          ],
+        ),
+      );
+      return;
+    }
+
+    final tagIndex = features[featureIndex].tags.indexWhere(
+          (tag) => tag.code.toLowerCase() == morphTag.toLowerCase(),
+        );
+
+    if (tagIndex == -1) {
+      features[featureIndex].tags.add(
+            MorphologicalTag(
+              code: morphTag,
+              l1Title: morphTag,
+              l1Description: defintion,
+            ),
+          );
+      return;
+    }
+
+    features[featureIndex].tags[tagIndex].l1Description = defintion;
   }
 }

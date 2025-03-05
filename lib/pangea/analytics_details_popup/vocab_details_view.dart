@@ -140,26 +140,17 @@ class VocabDetailsView extends StatelessWidget {
                 alignment: Alignment.topLeft,
                 child: _userL2 == null
                     ? Text(L10n.of(context).meaningNotFound)
-                    : Wrap(
-                        children: [
-                          Text(
-                            L10n.of(context).meaningSectionHeader,
-                            style:
-                                Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                    : LemmaMeaningWidget(
+                        text: _construct.lemma,
+                        pos: _construct.category,
+                        langCode: _userL2!,
+                        style: Theme.of(context).textTheme.bodyLarge,
+                        leading: TextSpan(
+                          text: L10n.of(context).meaningSectionHeader,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
                           ),
-                          const SizedBox(width: 8),
-                          // Pass the lemma text and form correctly
-                          // The lemma text is in _construct.lemma
-                          // For the form, we use the same value since we don't have access to PangeaToken's form
-                          LemmaMeaningWidget(
-                            text: _construct.lemma,
-                            pos: _construct.category,
-                            langCode: _userL2!,
-                            style: Theme.of(context).textTheme.bodyLarge,
-                          ),
-                        ],
+                        ),
                       ),
               ),
             ),
