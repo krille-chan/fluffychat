@@ -72,8 +72,10 @@ class ITController {
   void closeIT() {
     // if the user hasn't gone through any IT steps, reset the text
     if (completedITSteps.isEmpty && sourceText != null) {
-      choreographer.textController.editType = EditType.itDismissed;
-      choreographer.textController.text = sourceText!;
+      choreographer.textController.setSystemText(
+        sourceText!,
+        EditType.itDismissed,
+      );
     }
     clear();
     dismissed = true;
@@ -273,7 +275,10 @@ class ITController {
       );
     } finally {
       choreographer.stopLoading();
-      choreographer.textController.text = "";
+      choreographer.textController.setSystemText(
+        "",
+        EditType.other,
+      );
     }
   }
 

@@ -32,6 +32,7 @@ import 'package:fluffychat/pangea/analytics_misc/level_up.dart';
 import 'package:fluffychat/pangea/analytics_misc/put_analytics_controller.dart';
 import 'package:fluffychat/pangea/chat/widgets/event_too_large_dialog.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
+import 'package:fluffychat/pangea/choreographer/enums/edit_type.dart';
 import 'package:fluffychat/pangea/choreographer/models/choreo_record.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/igc/pangea_text_controller.dart';
 import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
@@ -269,7 +270,10 @@ class ChatController extends State<ChatPageWithRoom>
     final prefs = await SharedPreferences.getInstance();
     final draft = prefs.getString('draft_$roomId');
     if (draft != null && draft.isNotEmpty) {
-      sendController.text = draft;
+      // #Pangea
+      // sendController.text = draft;
+      sendController.setSystemText(draft, EditType.other);
+      // Pangea#
     }
   }
 
@@ -820,7 +824,10 @@ class ChatController extends State<ChatPageWithRoom>
     );
 
     setState(() {
-      sendController.text = pendingText;
+      // #Pangea
+      // sendController.text = pendingText;
+      sendController.setSystemText(pendingText, EditType.other);
+      // Pangea#
       _inputTextIsEmpty = pendingText.isEmpty;
       replyEvent = null;
       editEvent = null;
@@ -1755,7 +1762,10 @@ class ChatController extends State<ChatPageWithRoom>
 
   void cancelReplyEventAction() => setState(() {
         if (editEvent != null) {
-          sendController.text = pendingText;
+          // #Pangea
+          // sendController.text = pendingText;
+          sendController.setSystemText(pendingText, EditType.other);
+          // Pangea#
           pendingText = '';
         }
         replyEvent = null;

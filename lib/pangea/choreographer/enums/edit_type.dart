@@ -6,4 +6,5 @@ enum EditType {
   itGold,
   itStart,
   itDismissed,
+  other,
 }

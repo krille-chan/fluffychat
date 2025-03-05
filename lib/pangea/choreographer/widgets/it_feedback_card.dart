@@ -68,12 +68,11 @@ class ITFeedbackCardController extends State<ITFeedbackCard> {
           );
         })
         .catchError((e) => error = e)
-        .whenComplete(
-          () => setState(() {
-            // isTranslating = false;
-            isLoadingFeedback = false;
-          }),
-        );
+        .whenComplete(() {
+          if (mounted) {
+            setState(() => isLoadingFeedback = false);
+          }
+        });
   }
 
   @override
