@@ -3205,5 +3205,14 @@
   "takeAPhoto": "Take a photo",
   "recordAVideo": "Record a video",
   "optionalMessage": "(Optional) message...",
-  "notSupportedOnThisDevice": "Not supported on this device"
+  "notSupportedOnThisDevice": "Not supported on this device",
+  "noRoomFoundForAlias": "No room found with the alias {alias} on your server.",
+  "@noRoomFoundForAlias": {
+    "type": "String",
+    "placeholders": {
+      "alias": {
+        "type": "String"
+      }
+    }
+  }
 }

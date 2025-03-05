@@ -18,7 +18,6 @@ import 'package:fluffychat/pages/chat/pinned_events.dart';
 import 'package:fluffychat/pages/chat/reactions_picker.dart';
 import 'package:fluffychat/pages/chat/reply_display.dart';
 import 'package:fluffychat/utils/account_config.dart';
-import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/widgets/chat_settings_popup_menu.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -127,19 +126,15 @@ class ChatView extends StatelessWidget {
         ChatSettingsPopupMenu(controller.room, true),
       ];
     }
-    return [];
+    return [
+      ChatSettingsPopupMenu(controller.room, true),
+    ];
   }
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    if (controller.room.membership == Membership.invite) {
-      showFutureLoadingDialog(
-        context: context,
-        future: () => controller.room.join(),
-        exceptionContext: ExceptionContext.joinRoom,
-      );
-    }
+
     final bottomSheetPadding = FluffyThemes.isColumnMode(context) ? 16.0 : 8.0;
     final scrollUpBannerEventId = controller.scrollUpBannerEventId;
 
@@ -300,6 +295,22 @@ class ChatView extends StatelessWidget {
                               child: ChatEventList(controller: controller),
                             ),
                           ),
+                          if (controller.room.membership != Membership.join &&
+                              (controller.room.membership ==
+                                      Membership.invite ||
+                                  controller.room.joinRules ==
+                                      JoinRules.public))
+                            Container(
+                              padding: EdgeInsets.all(bottomSheetPadding),
+                              width: double.infinity,
+                              child: ElevatedButton(
+                                onPressed: () => showFutureLoadingDialog(
+                                  context: context,
+                                  future: controller.room.join,
+                                ),
+                                child: Text(L10n.of(context).joinRoom),
+                              ),
+                            ),
                           if (controller.room.canSendDefaultMessages &&
                               controller.room.membership == Membership.join)
                             Container(

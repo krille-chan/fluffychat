@@ -12,7 +12,6 @@ import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/chat_settings_popup_menu.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
-import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/url_launcher.dart';
 import '../../widgets/qr_code_viewer.dart';
 
@@ -25,17 +24,7 @@ class ChatDetailsView extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    final room = Matrix.of(context).client.getRoomById(controller.roomId!);
-    if (room == null) {
-      return Scaffold(
-        appBar: AppBar(
-          title: Text(L10n.of(context).oopsSomethingWentWrong),
-        ),
-        body: Center(
-          child: Text(L10n.of(context).youAreNoLongerParticipatingInThisChat),
-        ),
-      );
-    }
+    final room = controller.widget.room;
 
     return StreamBuilder(
       stream: room.client.onRoomState.stream
@@ -163,7 +152,7 @@ class ChatDetailsView extends StatelessWidget {
                                     onPressed: () => room.isDirectChat
                                         ? null
                                         : context.push(
-                                            '/rooms/${controller.roomId}/details/members',
+                                            '/rooms/${controller.widget.room.id}/details/members',
                                           ),
                                     icon: const Icon(
                                       Icons.group_outlined,
@@ -335,7 +324,7 @@ class ChatDetailsView extends StatelessWidget {
                             ),
                           ),
                           onTap: () => context.push(
-                            '/rooms/${controller.roomId!}/details/members',
+                            '/rooms/${controller.widget.room.id}/details/members',
                           ),
                           trailing: const Icon(Icons.chevron_right_outlined),
                         ),

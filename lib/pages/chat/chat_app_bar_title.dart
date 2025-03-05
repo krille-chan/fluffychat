@@ -31,11 +31,9 @@ class ChatAppBarTitle extends StatelessWidget {
       hoverColor: Colors.transparent,
       splashColor: Colors.transparent,
       highlightColor: Colors.transparent,
-      onTap: controller.isArchived
-          ? null
-          : () => FluffyThemes.isThreeColumnMode(context)
-              ? controller.toggleDisplayChatDetailsColumn()
-              : context.go('/rooms/${room.id}/details'),
+      onTap: () => FluffyThemes.isThreeColumnMode(context)
+          ? controller.toggleDisplayChatDetailsColumn()
+          : context.go('/rooms/${room.id}/details'),
       child: Row(
         children: [
           Hero(

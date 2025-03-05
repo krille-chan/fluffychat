@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
+import 'package:matrix/matrix_api_lite.dart';
 
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/archive/archive.dart';
@@ -36,6 +37,7 @@ import 'package:fluffychat/widgets/layouts/empty_page.dart';
 import 'package:fluffychat/widgets/layouts/two_column_layout.dart';
 import 'package:fluffychat/widgets/log_view.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:fluffychat/widgets/room_loader.dart';
 import 'package:fluffychat/widgets/share_scaffold_dialog.dart';
 
 abstract class AppRoutes {
@@ -141,9 +143,15 @@ abstract class AppRoutes {
                   pageBuilder: (context, state) => defaultPageBuilder(
                     context,
                     state,
-                    ChatPage(
+                    RoomLoader(
                       roomId: state.pathParameters['roomid']!,
-                      eventId: state.uri.queryParameters['event'],
+                      chunk: state.extra is PublicRoomsChunk
+                          ? state.extra as PublicRoomsChunk
+                          : null,
+                      builder: (context, room) => ChatPage(
+                        room: room,
+                        eventId: state.uri.queryParameters['event'],
+                      ),
                     ),
                   ),
                   redirect: loggedOutRedirect,
@@ -340,10 +348,16 @@ abstract class AppRoutes {
                 return defaultPageBuilder(
                   context,
                   state,
-                  ChatPage(
+                  RoomLoader(
+                    key: ValueKey(state.pathParameters['roomid']!),
                     roomId: state.pathParameters['roomid']!,
-                    shareItems: shareItems,
-                    eventId: state.uri.queryParameters['event'],
+                    chunk: state.extra is PublicRoomsChunk
+                        ? state.extra as PublicRoomsChunk
+                        : null,
+                    builder: (context, room) => ChatPage(
+                      room: room,
+                      eventId: state.uri.queryParameters['event'],
+                    ),
                   ),
                 );
               },
@@ -385,8 +399,11 @@ abstract class AppRoutes {
                   pageBuilder: (context, state) => defaultPageBuilder(
                     context,
                     state,
-                    ChatDetails(
+                    RoomLoader(
                       roomId: state.pathParameters['roomid']!,
+                      builder: (context, room) => ChatDetails(
+                        room: room,
+                      ),
                     ),
                   ),
                   routes: [

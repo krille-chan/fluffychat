@@ -14,17 +14,16 @@ import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_modal_action_popup.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_text_input_dialog.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
-import 'package:fluffychat/widgets/matrix.dart';
 
 enum AliasActions { copy, delete, setCanonical }
 
 class ChatDetails extends StatefulWidget {
-  final String roomId;
+  final Room room;
   final Widget? embeddedCloseButton;
 
   const ChatDetails({
     super.key,
-    required this.roomId,
+    required this.room,
     this.embeddedCloseButton,
   });
 
@@ -38,10 +37,8 @@ class ChatDetailsController extends State<ChatDetails> {
   void toggleDisplaySettings() =>
       setState(() => displaySettings = !displaySettings);
 
-  String? get roomId => widget.roomId;
-
   void setDisplaynameAction() async {
-    final room = Matrix.of(context).client.getRoomById(roomId!)!;
+    final room = widget.room;
     final input = await showTextInputDialog(
       context: context,
       title: L10n.of(context).changeTheNameOfTheGroup,
@@ -66,7 +63,7 @@ class ChatDetailsController extends State<ChatDetails> {
   }
 
   void setTopicAction() async {
-    final room = Matrix.of(context).client.getRoomById(roomId!)!;
+    final room = widget.room;
     final input = await showTextInputDialog(
       context: context,
       title: L10n.of(context).setChatDescription,
@@ -92,7 +89,7 @@ class ChatDetailsController extends State<ChatDetails> {
   }
 
   void goToEmoteSettings() async {
-    final room = Matrix.of(context).client.getRoomById(roomId!)!;
+    final room = widget.room;
     // okay, we need to test if there are any emote state events other than the default one
     // if so, we need to be directed to a selection screen for which pack we want to look at
     // otherwise, we just open the normal one.
@@ -106,7 +103,7 @@ class ChatDetailsController extends State<ChatDetails> {
   }
 
   void setAvatarAction() async {
-    final room = Matrix.of(context).client.getRoomById(roomId!);
+    final room = widget.room;
     final actions = [
       if (PlatformInfos.isMobile)
         AdaptiveModalAction(
@@ -120,7 +117,7 @@ class ChatDetailsController extends State<ChatDetails> {
         label: L10n.of(context).openGallery,
         icon: const Icon(Icons.photo_outlined),
       ),
-      if (room?.avatar != null)
+      if (room.avatar != null)
         AdaptiveModalAction(
           value: AvatarAction.remove,
           label: L10n.of(context).delete,
@@ -140,7 +137,7 @@ class ChatDetailsController extends State<ChatDetails> {
     if (action == AvatarAction.remove) {
       await showFutureLoadingDialog(
         context: context,
-        future: () => room!.setAvatar(null),
+        future: () => room.setAvatar(null),
       );
       return;
     }
@@ -172,7 +169,7 @@ class ChatDetailsController extends State<ChatDetails> {
     }
     await showFutureLoadingDialog(
       context: context,
-      future: () => room!.setAvatar(file),
+      future: () => room.setAvatar(file),
     );
   }
 

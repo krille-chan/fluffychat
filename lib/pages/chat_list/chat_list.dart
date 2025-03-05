@@ -112,31 +112,6 @@ class ChatListController extends State<ChatList>
       });
 
   void onChatTap(Room room) async {
-    if (room.membership == Membership.invite) {
-      final joinResult = await showFutureLoadingDialog(
-        context: context,
-        future: () async {
-          final waitForRoom = room.client.waitForRoomInSync(
-            room.id,
-            join: true,
-          );
-          await room.join();
-          await waitForRoom;
-        },
-        exceptionContext: ExceptionContext.joinRoom,
-      );
-      if (joinResult.error != null) return;
-    }
-
-    if (room.membership == Membership.ban) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(L10n.of(context).youHaveBeenBannedFromThisChat),
-        ),
-      );
-      return;
-    }
-
     if (room.membership == Membership.leave) {
       context.go('/rooms/archive/${room.id}');
       return;
