@@ -2,6 +2,8 @@ import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
 
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+
 import 'package:fluffychat/pangea/analytics_misc/construct_identifier.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
@@ -79,6 +81,8 @@ class MorphActivityGenerator {
     final List<String> distractors =
         token.morphActivityDistractors(morphFeature, morphTag);
 
+    debugger(when: kDebugMode && distractors.length < 3);
+
     return MessageActivityResponse(
       activity: PracticeActivityModel(
         tgtConstructs: [
@@ -92,11 +96,17 @@ class MorphActivityGenerator {
         langCode: req.userL2,
         activityType: ActivityTypeEnum.morphId,
         content: ActivityContent(
-          question: getMorphologicalCategoryCopy(
-                morphFeature,
-                MatrixState.pangeaController.matrixState.context,
-              ) ??
-              morphFeature,
+          question: MatrixState.pangeaController.matrixState.context.mounted
+              ? L10n.of(MatrixState.pangeaController.matrixState.context)
+                  .whatIsTheMorphTag(
+                  getMorphologicalCategoryCopy(
+                        morphFeature,
+                        MatrixState.pangeaController.matrixState.context,
+                      ) ??
+                      morphFeature,
+                  token.text.content,
+                )
+              : morphFeature,
           choices: distractors + [morphTag],
           answers: [morphTag],
           spanDisplayDetails: null,

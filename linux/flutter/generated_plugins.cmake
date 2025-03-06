@@ -11,6 +11,7 @@ list(APPEND FLUTTER_PLUGIN_LIST
   flutter_webrtc
   gtk
   handy_window
+  open_file_linux
   pasteboard
   record_linux
   sentry_flutter

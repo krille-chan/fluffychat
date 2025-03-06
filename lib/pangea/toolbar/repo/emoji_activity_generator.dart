@@ -2,6 +2,9 @@ import 'dart:developer';
 import 'dart:math';
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/toolbar/enums/activity_type_enum.dart';
@@ -12,6 +15,7 @@ import 'package:fluffychat/pangea/toolbar/models/practice_activity_model.dart';
 class EmojiActivityGenerator {
   Future<MessageActivityResponse> get(
     MessageActivityRequest req,
+    BuildContext context,
   ) async {
     debugger(when: kDebugMode && req.targetTokens.length != 1);
 
@@ -33,7 +37,8 @@ class EmojiActivityGenerator {
         tgtConstructs: [token.vocabConstructID],
         langCode: req.userL2,
         content: ActivityContent(
-          question: "",
+          // TODO: add to L10n
+          question: L10n.of(context).pickAnEmojiFor(token.lemma.text),
           choices: emojis,
           answers: emojis,
           spanDisplayDetails: null,

@@ -29,7 +29,7 @@ import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
 import 'package:fluffychat/pangea/spaces/models/space_model.dart';
 import 'package:fluffychat/pangea/subscription/controllers/subscription_controller.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
-import 'package:fluffychat/widgets/matrix.dart';
+import '../../../widgets/matrix.dart';
 import 'error_service.dart';
 import 'it_controller.dart';
 
@@ -347,6 +347,18 @@ class Choreographer {
     );
     _textController.selection =
         TextSelection.collapsed(offset: _textController.text.length);
+    giveInputFocus();
+  }
+
+  void onPredictorSelect(String text) {
+    //TODO - add some kind of record of this
+    // choreoRecord.addRecord(_textController.text, step: step);
+
+    // TODO - probably give it a different type of edit type
+    _textController.setSystemText(
+      "${_textController.text} $text",
+      EditType.other,
+    );
     giveInputFocus();
   }
 

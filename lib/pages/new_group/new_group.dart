@@ -103,7 +103,7 @@ class NewGroupController extends State<NewGroup> {
             StateEvent(
               type: EventTypes.RoomPowerLevels,
               stateKey: '',
-              content: defaultPowerLevels,
+              content: defaultPowerLevels(Matrix.of(context).client.userID!),
             ),
             // Pangea#
           ],

@@ -7,7 +7,7 @@ import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_enum.dart';
 import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
 import 'package:fluffychat/pangea/learning_settings/pages/settings_learning_view.dart';
-import 'package:fluffychat/pangea/learning_settings/utils/language_list_util.dart';
+import 'package:fluffychat/pangea/learning_settings/utils/p_language_store.dart';
 import 'package:fluffychat/pangea/spaces/models/space_model.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
 import 'package:fluffychat/pangea/user/models/user_model.dart';
@@ -174,7 +174,7 @@ class SettingsLearningController extends State<SettingsLearning> {
 
   LanguageModel? get _targetLanguage =>
       _profile.userSettings.targetLanguage != null
-          ? PangeaLanguage.byLangCode(_profile.userSettings.targetLanguage!)
+          ? PLanguageStore.byLangCode(_profile.userSettings.targetLanguage!)
           : null;
 
   bool getToolSetting(ToolSetting toolSetting) {
@@ -212,15 +212,15 @@ class SettingsLearningController extends State<SettingsLearning> {
   LanguageModel? get selectedTargetLanguage {
     return userL2 ??
         ((selectedSourceLanguage?.langCode != 'en')
-            ? PangeaLanguage.byLangCode('en')
-            : PangeaLanguage.byLangCode('es'));
+            ? PLanguageStore.byLangCode('en')
+            : PLanguageStore.byLangCode('es'));
   }
 
   LanguageModel? get userL1 => _profile.userSettings.sourceLanguage != null
-      ? PangeaLanguage.byLangCode(_profile.userSettings.sourceLanguage!)
+      ? PLanguageStore.byLangCode(_profile.userSettings.sourceLanguage!)
       : null;
   LanguageModel? get userL2 => _profile.userSettings.targetLanguage != null
-      ? PangeaLanguage.byLangCode(_profile.userSettings.targetLanguage!)
+      ? PLanguageStore.byLangCode(_profile.userSettings.targetLanguage!)
       : null;
 
   bool get publicProfile => _profile.userSettings.publicProfile ?? true;

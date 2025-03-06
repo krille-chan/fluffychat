@@ -5,9 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:fluffychat/config/app_config.dart';
 
 class ItShimmer extends StatelessWidget {
-  const ItShimmer({super.key, required this.originalSpan});
+  const ItShimmer({
+    super.key,
+    required this.originalSpan,
+    required this.fontSize,
+  });
 
   final String originalSpan;
+  final double fontSize;
 
   Iterable<Widget> renderShimmerIfListEmpty(
     BuildContext context, {
@@ -20,6 +25,7 @@ class ItShimmer extends StatelessWidget {
     return dummyStrings.map(
       (e) => ITShimmerElement(
         text: e,
+        fontSize: fontSize,
       ),
     );
   }
@@ -38,9 +44,11 @@ class ITShimmerElement extends StatelessWidget {
   const ITShimmerElement({
     super.key,
     required this.text,
+    required this.fontSize,
   });
 
   final String text;
+  final double fontSize;
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +86,7 @@ class ITShimmerElement extends StatelessWidget {
             style: Theme.of(context)
                 .textTheme
                 .bodyMedium!
-                .copyWith(color: Colors.transparent),
+                .copyWith(color: Colors.transparent, fontSize: fontSize),
           ),
         ),
       ),

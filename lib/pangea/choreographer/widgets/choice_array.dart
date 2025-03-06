@@ -7,11 +7,20 @@ import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
 import '../../bot/utils/bot_style.dart';
 import 'it_shimmer.dart';
 
 typedef ChoiceCallback = void Function(String value, int index);
+
+const int choiceArrayAnimationDuration = 300;
+
+enum OverflowMode {
+  wrap,
+  horizontalScroll,
+  verticalScroll,
+}
 
 class ChoicesArray extends StatefulWidget {
   final bool isLoading;
@@ -41,6 +50,10 @@ class ChoicesArray extends StatefulWidget {
   /// select choices once the correct choice has been selected
   final bool enableMultiSelect;
 
+  final double? fontSize;
+
+  final OverflowMode overflowMode;
+
   const ChoicesArray({
     super.key,
     required this.isLoading,
@@ -56,6 +69,8 @@ class ChoicesArray extends StatefulWidget {
     this.getDisplayCopy,
     this.id,
     this.enableMultiSelect = false,
+    this.fontSize,
+    this.overflowMode = OverflowMode.wrap,
   });
 
   @override
@@ -85,42 +100,68 @@ class ChoicesArrayState extends State<ChoicesArray> {
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
+
+    final choices = widget.choices!
+        .mapIndexed(
+          (index, entry) => ChoiceItem(
+            theme: theme,
+            onLongPress: widget.isActive ? widget.onLongPress : null,
+            onPressed: widget.isActive
+                ? (String value, int index) {
+                    widget.onPressed(value, index);
+                    // TODO - what to pass here as eventID?
+                    if (widget.enableAudio && widget.tts != null) {
+                      widget.tts?.tryToSpeak(
+                        value,
+                        context,
+                        targetID: null,
+                      );
+                    }
+                  }
+                : (String value, int index) {
+                    debugger(when: kDebugMode);
+                  },
+            entry: MapEntry(index, entry),
+            interactionDisabled: interactionDisabled,
+            enableInteraction: enableInteractions,
+            disableInteraction: disableInteraction,
+            isSelected: widget.selectedChoiceIndex == index,
+            id: widget.id,
+            getDisplayCopy: widget.getDisplayCopy,
+            fontSize: widget.fontSize,
+          ),
+        )
+        .toList();
+
     return widget.isLoading &&
             (widget.choices == null || widget.choices!.length <= 1)
-        ? ItShimmer(originalSpan: widget.originalSpan)
-        : Wrap(
-            alignment: WrapAlignment.center,
-            children: widget.choices!
-                .mapIndexed(
-                  (index, entry) => ChoiceItem(
-                    theme: theme,
-                    onLongPress: widget.isActive ? widget.onLongPress : null,
-                    onPressed: widget.isActive
-                        ? (String value, int index) {
-                            widget.onPressed(value, index);
-                            // TODO - what to pass here as eventID?
-                            if (widget.enableAudio && widget.tts != null) {
-                              widget.tts?.tryToSpeak(
-                                value,
-                                context,
-                                targetID: null,
-                              );
-                            }
-                          }
-                        : (String value, int index) {
-                            debugger(when: kDebugMode);
-                          },
-                    entry: MapEntry(index, entry),
-                    interactionDisabled: interactionDisabled,
-                    enableInteraction: enableInteractions,
-                    disableInteraction: disableInteraction,
-                    isSelected: widget.selectedChoiceIndex == index,
-                    id: widget.id,
-                    getDisplayCopy: widget.getDisplayCopy,
-                  ),
-                )
-                .toList(),
-          );
+        ? ItShimmer(
+            originalSpan: widget.originalSpan,
+            fontSize: widget.fontSize ??
+                Theme.of(context).textTheme.bodyMedium?.fontSize ??
+                16,
+          )
+        : widget.overflowMode == OverflowMode.wrap
+            ? Wrap(
+                alignment: WrapAlignment.center,
+                spacing: 4.0,
+                children: choices,
+              )
+            : widget.overflowMode == OverflowMode.horizontalScroll
+                ? SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: choices,
+                    ),
+                  )
+                : SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: choices,
+                    ),
+                  );
   }
 }
 
@@ -149,6 +190,7 @@ class ChoiceItem extends StatelessWidget {
     required this.disableInteraction,
     required this.id,
     this.getDisplayCopy,
+    this.fontSize,
   });
 
   final MapEntry<int, Choice> entry;
@@ -161,6 +203,8 @@ class ChoiceItem extends StatelessWidget {
   final VoidCallback disableInteraction;
   final String? id;
   final String Function(String)? getDisplayCopy;
+
+  final double? fontSize;
 
   @override
   Widget build(BuildContext context) {
@@ -180,7 +224,9 @@ class ChoiceItem extends StatelessWidget {
             margin: const EdgeInsets.all(2),
             padding: EdgeInsets.zero,
             decoration: BoxDecoration(
-              borderRadius: const BorderRadius.all(Radius.circular(10)),
+              borderRadius: const BorderRadius.all(
+                Radius.circular(AppConfig.borderRadius),
+              ),
               border: Border.all(
                 color: isSelected
                     ? entry.value.color ?? theme.colorScheme.primary
@@ -192,21 +238,19 @@ class ChoiceItem extends StatelessWidget {
             child: TextButton(
               style: ButtonStyle(
                 padding: WidgetStateProperty.all(
-                  const EdgeInsets.symmetric(horizontal: 7),
+                  const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 ),
                 //if index is selected, then give the background a slight primary color
-                backgroundColor: entry.value.color != null
-                    ? WidgetStateProperty.all<Color>(
-                        entry.value.color!.withAlpha(50),
-                      )
-                    // : theme.colorScheme.primaryFixed,
-                    : null,
+                backgroundColor: WidgetStateProperty.all<Color>(
+                  entry.value.color?.withAlpha(50) ??
+                      theme.colorScheme.primary.withAlpha(10),
+                ),
                 textStyle: WidgetStateProperty.all(
                   BotStyle.text(context),
                 ),
                 shape: WidgetStateProperty.all(
                   RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(AppConfig.borderRadius),
                   ),
                 ),
               ),
@@ -220,7 +264,9 @@ class ChoiceItem extends StatelessWidget {
                 getDisplayCopy != null
                     ? getDisplayCopy!(entry.value.text)
                     : entry.value.text,
-                style: BotStyle.text(context),
+                style: BotStyle.text(context).copyWith(
+                  fontSize: fontSize,
+                ),
                 textAlign: TextAlign.center,
               ),
             ),
@@ -267,7 +313,7 @@ class ChoiceAnimationWidgetState extends State<ChoiceAnimationWidget>
     super.initState();
 
     _controller = AnimationController(
-      duration: const Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: choiceArrayAnimationDuration),
       vsync: this,
     );
 

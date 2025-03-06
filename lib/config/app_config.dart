@@ -24,9 +24,10 @@ abstract class AppConfig {
   static const bool allowOtherHomeservers = true;
   static const bool enableRegistration = true;
   static const double toolbarMaxHeight = 300.0;
-  static const double toolbarMinHeight = 175.0;
+  static const double toolbarMinHeight = 140.0;
   static const double toolbarMinWidth = 350.0;
-  static const double toolbarButtonsHeight = 50.0;
+  static const double toolbarButtonsColumnWidth = 50.0;
+  static const double toolbarButtonAndProgressColumnHeight = 200.0;
   static const double defaultHeaderHeight = 56.0;
   static const double defaultFooterHeight = 48.0;
   static const double toolbarSpacing = 8.0;

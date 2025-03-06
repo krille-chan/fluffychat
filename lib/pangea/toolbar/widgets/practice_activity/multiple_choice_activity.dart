@@ -77,31 +77,6 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
     final bool isCorrect =
         widget.currentActivity.content.isCorrect(value, index);
 
-    // // If the activity is not set to include TTS on click, and the choice is correct, speak the target tokens
-    // // We have to check if tokens
-    // if (!widget.currentActivity.activityType.includeTTSOnClick &&
-    //     isCorrect &&
-    //     mounted) {
-    //   // should be set by now but just in case we make a mistake
-    //   if (widget.practiceCardController.currentActivity?.targetTokens == null) {
-    //     debugger(when: kDebugMode);
-    //     ErrorHandler.logError(
-    //       e: "Missing target tokens in multiple choice activity",
-    //       data: {
-    //         "currentActivity": widget.practiceCardController.currentActivity,
-    //       },
-    //     );
-    //   } else {
-    //     tts.tryToSpeak(
-    //       PangeaToken.reconstructText(
-    //         widget.practiceCardController.currentActivity!.targetTokens!,
-    //       ),
-    //       context,
-    //       null,
-    //     );
-    //   }
-    // }
-
     if (currentRecordModel?.hasTextResponse(value) ?? false) {
       return;
     }
@@ -144,7 +119,7 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
       ),
     );
 
-    // If the selected choice is correct, send the record and get the next activity
+    // If the selected choice is correct, send the record
     if (widget.currentActivity.content.isCorrect(value, index)) {
       // If the activity is an emoji activity, set the emoji value
       if (widget.currentActivity.activityType == ActivityTypeEnum.emoji) {
@@ -210,6 +185,14 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
     final PracticeActivityModel practiceActivity = widget.currentActivity;
     final question = practiceActivity.content.question;
 
+    // if (ActivityTypeEnum.emoji == practiceActivity.activityType) {
+    //   return WordEmojiChoiceRow(
+    //     activity: practiceActivity,
+    //     selectedChoiceIndex: selectedChoiceIndex,
+    //     onTap: updateChoice,
+    //   );
+    // }
+
     final content = Column(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -270,13 +253,13 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
             ),
             child: SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.all(20),
+                padding: const EdgeInsets.all(8),
                 child: content,
               ),
             ),
           )
         : Padding(
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.all(8),
             child: content,
           );
   }

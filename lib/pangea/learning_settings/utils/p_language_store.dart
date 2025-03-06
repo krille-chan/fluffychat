@@ -9,8 +9,8 @@ import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
 import 'package:fluffychat/pangea/learning_settings/repo/language_repo.dart';
 import 'shared_prefs.dart';
 
-class PangeaLanguage {
-  PangeaLanguage() {
+class PLanguageStore {
+  PLanguageStore() {
     initialize();
   }
 

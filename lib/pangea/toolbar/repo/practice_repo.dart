@@ -127,7 +127,7 @@ class PracticeGenerationController {
     // some activities we'll get from the server and others we'll generate locally
     switch (req.targetType) {
       case ActivityTypeEnum.emoji:
-        return _emoji.get(req);
+        return _emoji.get(req, context);
       case ActivityTypeEnum.lemmaId:
         return _lemma.get(req, context);
       case ActivityTypeEnum.morphId:
@@ -151,8 +151,6 @@ class PracticeGenerationController {
     BuildContext context,
   ) async {
     final int cacheKey = req.hashCode;
-
-    // debugger(when: kDebugMode);
 
     if (_cache.containsKey(cacheKey)) {
       return _cache[cacheKey]!.practiceActivity;

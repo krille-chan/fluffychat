@@ -444,6 +444,8 @@ enum AnalyticsUpdateOrigin {
   igc,
   sendMessage,
   practiceActivity,
+  inputBar,
+  wordZoom,
 }
 
 class AnalyticsUpdate {

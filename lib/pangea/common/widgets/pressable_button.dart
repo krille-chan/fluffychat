@@ -24,7 +24,7 @@ class PressableButton extends StatefulWidget {
     required this.child,
     required this.onPressed,
     required this.color,
-    this.buttonHeight = 5,
+    this.buttonHeight = 4,
     this.depressed = false,
     this.triggerAnimation,
     this.isShadow,
@@ -83,8 +83,7 @@ class PressableButtonState extends State<PressableButton>
     }
   }
 
-  bool get _isShadow =>
-      widget.isShadow ?? Theme.of(context).brightness == Brightness.light;
+  // bool get _isLightMode => Theme.of(context).brightness == Brightness.light;
 
   void _onTapDown(TapDownDetails? details) {
     if (_depressed) return;
@@ -152,9 +151,7 @@ class PressableButtonState extends State<PressableButton>
                 Container(
                   decoration: BoxDecoration(
                     color: Color.alphaBlend(
-                      _isShadow
-                          ? Colors.black.withAlpha(65)
-                          : Colors.white.withAlpha(65),
+                      Colors.black.withAlpha(70),
                       widget.color,
                     ),
                     borderRadius: widget.borderRadius,
@@ -171,7 +168,10 @@ class PressableButtonState extends State<PressableButton>
           },
           child: Container(
             decoration: BoxDecoration(
-              color: widget.color,
+              // color: Color.alphaBlend(
+              //         Colors.white.withAlpha(250),
+              //         widget.color,
+              //       ),
               borderRadius: widget.borderRadius,
             ),
             child: widget.child,

@@ -11,7 +11,7 @@ import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_enum.dart';
 import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
-import 'package:fluffychat/pangea/learning_settings/utils/language_list_util.dart';
+import 'package:fluffychat/pangea/learning_settings/utils/p_language_store.dart';
 import 'package:fluffychat/pangea/login/pages/user_settings_view.dart';
 import 'package:fluffychat/utils/file_selector.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
@@ -53,7 +53,7 @@ class UserSettingsState extends State<UserSettingsPage> {
         _pangeaController.languageController.systemLanguage?.langCode;
     return systemLangCode == null
         ? null
-        : PangeaLanguage.byLangCode(systemLangCode);
+        : PLanguageStore.byLangCode(systemLangCode);
   }
 
   TextEditingController displayNameController = TextEditingController();

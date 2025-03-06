@@ -1,7 +1,7 @@
 import 'package:fluffychat/pangea/common/constants/model_keys.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
-import 'package:fluffychat/pangea/learning_settings/utils/language_list_util.dart';
+import 'package:fluffychat/pangea/learning_settings/utils/p_language_store.dart';
 
 class PublicProfileModel {
   LanguageModel? targetLanguage;
@@ -17,14 +17,14 @@ class PublicProfileModel {
     final profileJson = json[PangeaEventTypes.profileAnalytics];
 
     final targetLanguage = profileJson[ModelKey.userTargetLanguage] != null
-        ? PangeaLanguage.byLangCode(profileJson[ModelKey.userTargetLanguage])
+        ? PLanguageStore.byLangCode(profileJson[ModelKey.userTargetLanguage])
         : null;
 
     final languageAnalytics = <LanguageModel, LanguageAnalyticsProfileEntry>{};
     if (profileJson[ModelKey.analytics] != null &&
         profileJson[ModelKey.analytics]!.isNotEmpty) {
       for (final entry in profileJson[ModelKey.analytics].entries) {
-        final lang = PangeaLanguage.byLangCode(entry.key);
+        final lang = PLanguageStore.byLangCode(entry.key);
         if (lang == null) continue;
         final level = entry.value[ModelKey.level];
         final xpOffset = entry.value[ModelKey.xpOffset] ?? 0;

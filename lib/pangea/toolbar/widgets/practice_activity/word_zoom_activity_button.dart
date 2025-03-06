@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class WordZoomActivityButton extends StatelessWidget {
@@ -28,7 +27,7 @@ class WordZoomActivityButton extends StatelessWidget {
       style: IconButton.styleFrom(
         backgroundColor: isSelected
             ? Theme.of(context).colorScheme.primary.withValues(alpha: 0.25)
-            : null,
+            : Colors.transparent,
       ),
     );
 
@@ -46,22 +45,6 @@ class WordZoomActivityButton extends StatelessWidget {
       );
     }
 
-    return Badge(
-      offset: kIsWeb ? null : const Offset(-1, 1),
-      isLabelVisible: isSelected,
-      label: SizedBox(
-        height: 10,
-        width: 10,
-        child: IconButton(
-          onPressed: onPressed,
-          icon: const Icon(Icons.close, size: 10),
-          padding: const EdgeInsets.all(0.0),
-        ),
-      ),
-      backgroundColor:
-          Theme.of(context).colorScheme.primary.withValues(alpha: 0.5),
-      padding: const EdgeInsets.all(0),
-      child: buttonContent,
-    );
+    return buttonContent;
   }
 }

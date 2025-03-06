@@ -87,10 +87,7 @@ class InstructionsInlineTooltipState extends State<InstructionsInlineTooltip>
                   child: Center(
                     child: Text(
                       widget.instructionsEnum.body(L10n.of(context)),
-                      style: TextStyle(
-                        color: Theme.of(context).colorScheme.onSurface,
-                        height: 1.5,
-                      ),
+                      style: Theme.of(context).textTheme.bodyLarge,
                       textAlign: TextAlign.center,
                     ),
                   ),

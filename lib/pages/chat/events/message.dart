@@ -13,7 +13,6 @@ import 'package:fluffychat/pangea/choreographer/enums/use_type.dart';
 import 'package:fluffychat/pangea/common/utils/any_state_holder.dart';
 import 'package:fluffychat/pangea/common/widgets/pressable_button.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
-import 'package:fluffychat/pangea/toolbar/widgets/message_buttons.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/file_description.dart';
@@ -713,14 +712,6 @@ class Message extends StatelessWidget {
                           ? MainAxisAlignment.end
                           : MainAxisAlignment.start,
                       children: [
-                        if (pangeaMessageEvent?.showMessageButtons ?? false)
-                          MessageButtons(
-                            event: event,
-                            controller: controller,
-                            pangeaMessageEvent: pangeaMessageEvent!,
-                            nextEvent: nextEvent,
-                            prevEvent: previousEvent,
-                          ),
                         MessageReactions(event, timeline),
                       ],
                     ),

@@ -76,4 +76,27 @@ class ConstructUses {
     }
     return ConstructLevelEnum.greens;
   }
+
+  String get xpEmoji {
+    if (points < 30) {
+      // bean emoji
+      return AnalyticsConstants.emojiForSeed;
+    } else if (points < 100) {
+      // sprout emoji
+      return AnalyticsConstants.emojiForGreen;
+    } else {
+      // flower emoji
+      return AnalyticsConstants.emojiForFlower;
+    }
+  }
+
+  ConstructLevelEnum get constructLevel {
+    if (points < 30) {
+      return ConstructLevelEnum.seeds;
+    } else if (points < 100) {
+      return ConstructLevelEnum.greens;
+    } else {
+      return ConstructLevelEnum.flowers;
+    }
+  }
 }

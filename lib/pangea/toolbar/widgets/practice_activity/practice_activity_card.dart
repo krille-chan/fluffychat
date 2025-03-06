@@ -34,14 +34,10 @@ class PracticeActivityCard extends StatefulWidget {
   final PangeaMessageEvent pangeaMessageEvent;
   final TargetTokensAndActivityType targetTokensAndActivityType;
   final MessageOverlayController overlayController;
-  final WordZoomWidgetState? wordDetailsController;
+  final WordZoomWidget? wordDetailsController;
+  final AnalyticsUpdateOrigin location;
 
   final String? morphFeature;
-
-  //TODO - modifications
-  // 1) Future<PracticeActivityEvent> and Future<PracticeActivityModel> as parameters
-  // 2) onFinish callback as parameter
-  // 3) take out logic fetching activity
 
   const PracticeActivityCard({
     super.key,
@@ -50,6 +46,7 @@ class PracticeActivityCard extends StatefulWidget {
     required this.overlayController,
     this.morphFeature,
     this.wordDetailsController,
+    required this.location,
   });
 
   @override
@@ -69,8 +66,6 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
 
   PangeaController get pangeaController => MatrixState.pangeaController;
   String? _error;
-
-  String? activityQuestion;
 
   @override
   void initState() {
@@ -262,14 +257,6 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
         return;
       }
 
-      widget.wordDetailsController?.onActivityFinish(
-        savorTheJoyDuration: _savorTheJoyDuration,
-      );
-
-      pangeaController.activityRecordController.completeActivity(
-        widget.pangeaMessageEvent.eventId,
-      );
-
       await _savorTheJoy();
 
       // wait for savor the joy before popping from the activity queue
@@ -352,16 +339,20 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
       alignment: Alignment.center,
       children: [
         // Main content
-        const Positioned(
+        Positioned(
           child: PointsGainedAnimation(
-            origin: AnalyticsUpdateOrigin.practiceActivity,
+            origin: widget.location,
           ),
         ),
         if (activityWidget != null) activityWidget!,
         // Conditionally show the darkening and progress indicator based on the loading state
         if (!savoringTheJoy && fetchingActivity) ...[
           // Circular progress indicator in the center
-          const ToolbarContentLoadingIndicator(),
+          ToolbarContentLoadingIndicator(
+            height: currentActivity?.activityType == ActivityTypeEnum.emoji
+                ? 40
+                : null,
+          ),
         ],
         // Flag button in the top right corner
         // Positioned(

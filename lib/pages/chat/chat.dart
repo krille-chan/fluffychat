@@ -1609,9 +1609,8 @@ class ChatController extends State<ChatPageWithRoom>
   //#Pangea
   void onAddPopupMenuButtonSelected(String? choice) {
     // void onAddPopupMenuButtonSelected(String choice) {
-    if (choice == null) {
-      debugger(when: kDebugMode);
-    }
+    debugger(when: kDebugMode && choice == null);
+
     //Pangea#
     if (choice == 'file') {
       sendFileAction();

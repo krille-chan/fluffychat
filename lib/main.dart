@@ -12,7 +12,7 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/common/utils/firebase_analytics.dart';
-import 'package:fluffychat/pangea/learning_settings/utils/language_list_util.dart';
+import 'package:fluffychat/pangea/learning_settings/utils/p_language_store.dart';
 import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/error_widget.dart';
@@ -34,7 +34,7 @@ void main() async {
 
   await Future.wait([
     ErrorHandler.initialize(),
-    PangeaLanguage.initialize(),
+    PLanguageStore.initialize(),
     GoogleAnalytics.initialize(),
   ]);
 

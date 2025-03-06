@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:material_symbols_icons/symbols.dart';
+
 import 'package:fluffychat/pangea/morphs/get_grammar_copy.dart';
 import 'package:fluffychat/pangea/morphs/morph_categories_enum.dart';
 import 'package:fluffychat/pangea/morphs/morph_icon.dart';
@@ -28,7 +30,14 @@ class MorphologicalListItem extends StatelessWidget {
       width: 40,
       height: 40,
       child: WordZoomActivityButton(
-        icon: MorphIcon(morphFeature: morphFeature, morphTag: morphTag),
+        icon: isUnlocked
+            // if unlocked, we show the specific icon for the morphological feature/tag
+            ? MorphIcon(morphFeature: morphFeature, morphTag: morphTag)
+            // we show general feature icon if the morph is locked
+            // : MorphIcon(morphFeature: morphFeature, morphTag: null),
+            // or maybe we should the general grammar icon to show the
+            // connection between these and the grammar icon in the progress header
+            : const Icon(Symbols.toys_and_games),
         isSelected: isSelected,
         onPressed: () => onPressed(morphFeature),
         tooltip: isUnlocked
@@ -41,7 +50,11 @@ class MorphologicalListItem extends StatelessWidget {
                 morphFeature,
                 context,
               ),
-        opacity: (isSelected || !isUnlocked) ? 1 : 0.5,
+        opacity: isSelected
+            ? 1
+            : !isUnlocked
+                ? 0.2
+                : 1,
       ),
     );
   }

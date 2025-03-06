@@ -188,4 +188,23 @@ extension ActivityTypeExtension on ActivityTypeEnum {
         return Icons.star; // TODO: Add to L10n
     }
   }
+
+  Widget? get contentChallengeWidget {
+    switch (this) {
+      case ActivityTypeEnum.wordMeaning:
+        return null;
+      case ActivityTypeEnum.wordFocusListening:
+        return null;
+      case ActivityTypeEnum.hiddenWordListening:
+        return null;
+      case ActivityTypeEnum.lemmaId:
+        return null;
+      case ActivityTypeEnum.emoji:
+        return null;
+      case ActivityTypeEnum.morphId:
+        return null;
+      case ActivityTypeEnum.messageMeaning:
+        return null; // TODO: Add to L10n
+    }
+  }
 }

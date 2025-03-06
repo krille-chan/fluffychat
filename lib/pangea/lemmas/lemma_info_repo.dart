@@ -16,7 +16,7 @@ class LemmaInfoRepo {
 
   static void set(LemmaInfoRequest request, LemmaInfoResponse response) {
     // set expireAt if not set
-    response.expireAt ??= DateTime.now().add(const Duration(minutes: 1));
+    response.expireAt ??= DateTime.now().add(const Duration(days: 100));
     _lemmaStorage.write(request.storageKey, response.toJson());
   }
 

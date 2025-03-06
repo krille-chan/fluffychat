@@ -7,17 +7,22 @@ import 'package:matrix/matrix.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
-import 'package:fluffychat/pangea/toolbar/widgets/message_meaning_button.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/toolbar_button.dart';
 
-class ToolbarButtonAndProgressRow extends StatelessWidget {
+class ToolbarButtonAndProgressColumn extends StatelessWidget {
   final Event event;
   final MessageOverlayController overlayController;
+  final bool shouldShowToolbarButtons;
+  final double height;
+  final double width;
 
-  const ToolbarButtonAndProgressRow({
+  const ToolbarButtonAndProgressColumn({
     required this.event,
     required this.overlayController,
+    required this.shouldShowToolbarButtons,
+    required this.height,
+    required this.width,
     super.key,
   });
 
@@ -26,78 +31,102 @@ class ToolbarButtonAndProgressRow extends StatelessWidget {
 
   static const double iconWidth = 36.0;
   static const double buttonSize = 40.0;
-  static const double totalRowWidth = 250.0;
+  static const barMargin =
+      EdgeInsets.symmetric(horizontal: iconWidth / 2, vertical: buttonSize / 2);
 
   @override
   Widget build(BuildContext context) {
-    if (event.messageType == MessageTypes.Audio) {
-      return const SizedBox();
-    }
-
-    if (!overlayController.showToolbarButtons) {
-      return const SizedBox();
+    if (event.messageType == MessageTypes.Audio ||
+        !shouldShowToolbarButtons ||
+        !(overlayController.pangeaMessageEvent?.messageDisplayLangIsL2 ??
+            false)) {
+      return SizedBox(height: height, width: width);
     }
 
     return SizedBox(
-      width: totalRowWidth,
-      height: AppConfig.toolbarButtonsHeight,
+      height: height,
+      width: width,
       child: Stack(
-        alignment: Alignment.center,
+        alignment: Alignment.bottomCenter,
         children: [
           Stack(
+            alignment: Alignment.bottomCenter,
             children: [
               Container(
-                width: totalRowWidth,
-                height: 12,
+                width: width,
+                height: height,
                 decoration: BoxDecoration(
-                  color: MessageModeExtension.barAndLockedButtonColor(context),
                   borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+                  color: MessageModeExtension.barAndLockedButtonColor(context),
                 ),
-                margin: const EdgeInsets.symmetric(horizontal: iconWidth / 2),
+                margin: barMargin,
               ),
               AnimatedContainer(
                 duration: FluffyThemes.animationDuration,
-                height: 12,
-                width: overlayController.isPracticeComplete
-                    ? totalRowWidth
+                width: width,
+                height: overlayController.isPracticeComplete
+                    ? height
                     : min(
-                        totalRowWidth,
-                        totalRowWidth * proportionOfActivitiesCompleted!,
+                        height,
+                        height * proportionOfActivitiesCompleted!,
                       ),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-                  color: AppConfig.success,
+                  color: AppConfig.gold,
                 ),
-                margin: const EdgeInsets.symmetric(horizontal: iconWidth / 2),
+                margin: barMargin,
               ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              MessageMeaningButton(
-                buttonSize: buttonSize,
-                overlayController: overlayController,
+              Positioned(
+                bottom:
+                    height * MessageMode.messageMeaning.pointOnBar - buttonSize,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: overlayController.isPracticeComplete
+                        ? AppConfig.gold
+                        : MessageModeExtension.barAndLockedButtonColor(context),
+                    shape: BoxShape.circle,
+                  ),
+                  height: buttonSize,
+                  width: buttonSize,
+                  alignment: Alignment.center,
+                  child: Icon(
+                    Icons.star_rounded,
+                    color: overlayController.isPracticeComplete
+                        ? Colors.white
+                        : Theme.of(context).colorScheme.onSurface,
+                    size: 30,
+                  ),
+                ),
               ),
-              SizedBox(
-                width: MessageMode.textToSpeech.pointOnBar * totalRowWidth -
-                    buttonSize,
+              Positioned(
+                bottom: height * MessageMode.messageTranslation.pointOnBar -
+                    buttonSize / 2,
+                child: ToolbarButton(
+                  mode: MessageMode.messageTranslation,
+                  overlayController: overlayController,
+                  onPressed: overlayController.updateToolbarMode,
+                  buttonSize: buttonSize,
+                ),
               ),
-              ToolbarButton(
-                mode: MessageMode.textToSpeech,
-                overlayController: overlayController,
-                buttonSize: buttonSize,
+              Positioned(
+                bottom: height * MessageMode.messageTextToSpeech.pointOnBar -
+                    buttonSize / 2,
+                child: ToolbarButton(
+                  mode: MessageMode.messageTextToSpeech,
+                  overlayController: overlayController,
+                  onPressed: overlayController.updateToolbarMode,
+                  buttonSize: buttonSize,
+                ),
               ),
-              SizedBox(
-                width: MessageMode.translation.pointOnBar * totalRowWidth -
-                    MessageMode.textToSpeech.pointOnBar * totalRowWidth -
-                    buttonSize -
-                    buttonSize,
-              ),
-              ToolbarButton(
-                mode: MessageMode.translation,
-                overlayController: overlayController,
-                buttonSize: buttonSize,
+              Positioned(
+                bottom: height * MessageMode.practiceActivity.pointOnBar,
+                child: ToolbarButton(
+                  mode: MessageMode.practiceActivity,
+                  overlayController: overlayController,
+                  onPressed: (mode) =>
+                      overlayController.onNextActivityRequest(),
+                  buttonSize: buttonSize,
+                ),
               ),
             ],
           ),

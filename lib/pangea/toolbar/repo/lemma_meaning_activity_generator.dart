@@ -120,14 +120,4 @@ class LemmaMeaningActivityGenerator {
 
     return distractorDefs.toList();
   }
-
-  static bool canGenerateDistractors(String lemma, String pos) {
-    final cacheKey = '${lemma.toLowerCase()}-${pos.toLowerCase()}';
-    if (_hasDistractorsCache.containsKey(cacheKey)) {
-      return _hasDistractorsCache[cacheKey]!;
-    }
-
-    final distractors = eligibleDistractors(lemma, pos);
-    return distractors.isNotEmpty;
-  }
 }

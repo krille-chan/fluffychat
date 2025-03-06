@@ -401,7 +401,7 @@ class _SpaceViewState extends State<SpaceView> {
               StateEvent(
                 type: EventTypes.RoomPowerLevels,
                 stateKey: '',
-                content: defaultPowerLevels,
+                content: defaultPowerLevels(Matrix.of(context).client.userID!),
               ),
             ],
             // Pangea#

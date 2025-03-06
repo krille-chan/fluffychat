@@ -109,4 +109,18 @@ class MorphsRepo {
     shortTermCache[langCodeShort] = _APICallCacheItem(DateTime.now(), future);
     return future;
   }
+
+  static MorphFeaturesAndTags get cached {
+    if (MatrixState.pangeaController.languageController.userL2?.langCodeShort ==
+        null) {
+      return defaultMorphMapping;
+    }
+    final cachedJson = _morphsStorage.read(
+      MatrixState.pangeaController.languageController.userL2!.langCodeShort,
+    );
+    if (cachedJson != null) {
+      return MorphsRepo.fromJson(cachedJson);
+    }
+    return defaultMorphMapping;
+  }
 }

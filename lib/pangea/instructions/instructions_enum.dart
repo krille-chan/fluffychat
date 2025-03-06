@@ -19,10 +19,11 @@ enum InstructionsEnum {
   clickAgainToDeselect,
   missingVoice,
   clickBestOption,
-  unlockedLanguageTools,
+  completeActivitiesToUnlock,
   lemmaMeaning,
   activityPlannerOverview,
   ttsDisabled,
+  chooseEmoji,
 }
 
 extension InstructionsEnumExtension on InstructionsEnum {
@@ -40,13 +41,14 @@ extension InstructionsEnumExtension on InstructionsEnum {
         return l10n.missingVoiceTitle;
       case InstructionsEnum.ttsDisabled:
         return l10n.ttsDisbledTitle;
+      case InstructionsEnum.chooseEmoji:
       case InstructionsEnum.activityPlannerOverview:
       case InstructionsEnum.clickAgainToDeselect:
       case InstructionsEnum.speechToText:
       case InstructionsEnum.l1Translation:
       case InstructionsEnum.translationChoices:
       case InstructionsEnum.clickBestOption:
-      case InstructionsEnum.unlockedLanguageTools:
+      case InstructionsEnum.completeActivitiesToUnlock:
       case InstructionsEnum.lemmaMeaning:
         ErrorHandler.logError(
           e: Exception("No title for this instruction"),
@@ -84,12 +86,14 @@ extension InstructionsEnumExtension on InstructionsEnum {
         return l10n.voiceNotAvailable;
       case InstructionsEnum.clickBestOption:
         return l10n.clickBestOption;
-      case InstructionsEnum.unlockedLanguageTools:
-        return l10n.unlockedLanguageTools;
+      case InstructionsEnum.completeActivitiesToUnlock:
+        return l10n.completeActivitiesToUnlock;
       case InstructionsEnum.lemmaMeaning:
         return l10n.lemmaMeaningInstructionsBody;
       case InstructionsEnum.activityPlannerOverview:
         return l10n.activityPlannerOverviewInstructionsBody;
+      case InstructionsEnum.chooseEmoji:
+        return l10n.chooseEmojiInstructionsBody;
       case InstructionsEnum.ttsDisabled:
         return l10n.ttsDisabledBody;
     }

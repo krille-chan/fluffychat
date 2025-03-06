@@ -5,6 +5,7 @@ import 'package:matrix/matrix_api_lite/model/message_types.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/pangea/analytics_misc/put_analytics_controller.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
@@ -22,11 +23,11 @@ import 'package:fluffychat/widgets/matrix.dart';
 
 const double minCardHeight = 70;
 
-class MessageToolbar extends StatelessWidget {
+class ReadingAssistanceContentCard extends StatelessWidget {
   final PangeaMessageEvent pangeaMessageEvent;
   final MessageOverlayController overlayController;
 
-  const MessageToolbar({
+  const ReadingAssistanceContentCard({
     super.key,
     required this.pangeaMessageEvent,
     required this.overlayController,
@@ -54,6 +55,7 @@ class MessageToolbar extends StatelessWidget {
         overlayController: overlayController,
         targetTokensAndActivityType:
             overlayController.messageAnalyticsEntry!.nextActivity!,
+        location: AnalyticsUpdateOrigin.practiceActivity,
       );
     }
 
@@ -71,12 +73,11 @@ class MessageToolbar extends StatelessWidget {
     }
 
     switch (overlayController.toolbarMode) {
-      case MessageMode.translation:
+      case MessageMode.messageTranslation:
         return MessageTranslationCard(
           messageEvent: pangeaMessageEvent,
-          selection: overlayController.selectedSpan,
         );
-      case MessageMode.textToSpeech:
+      case MessageMode.messageTextToSpeech:
         return MessageAudioCard(
           messageEvent: pangeaMessageEvent,
           overlayController: overlayController,
@@ -84,13 +85,13 @@ class MessageToolbar extends StatelessWidget {
           tts: ttsController,
           setIsPlayingAudio: overlayController.setIsPlayingAudio,
         );
-      case MessageMode.speechToText:
+      case MessageMode.messageSpeechToText:
         return MessageSpeechToTextCard(
           messageEvent: pangeaMessageEvent,
         );
       case MessageMode.noneSelected:
         return Padding(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(8),
           child: Text(
             L10n.of(context).clickWordsInstructions,
             textAlign: TextAlign.center,
@@ -100,6 +101,9 @@ class MessageToolbar extends StatelessWidget {
         return MessageMeaningCard(controller: overlayController);
       case MessageMode.practiceActivity:
       case MessageMode.wordZoom:
+      case MessageMode.wordEmoji:
+      case MessageMode.wordMorph:
+      case MessageMode.wordMeaning:
         if (overlayController.selectedToken == null) {
           return Padding(
             padding: const EdgeInsets.all(16),

@@ -21,11 +21,10 @@ import 'package:fluffychat/pangea/events/controllers/message_data_controller.dar
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/guard/p_vguard.dart';
 import 'package:fluffychat/pangea/learning_settings/controllers/language_controller.dart';
-import 'package:fluffychat/pangea/learning_settings/utils/language_list_util.dart';
+import 'package:fluffychat/pangea/learning_settings/utils/p_language_store.dart';
 import 'package:fluffychat/pangea/spaces/constants/space_constants.dart';
 import 'package:fluffychat/pangea/spaces/controllers/space_controller.dart';
 import 'package:fluffychat/pangea/subscription/controllers/subscription_controller.dart';
-import 'package:fluffychat/pangea/toolbar/controllers/practice_activity_record_controller.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/speech_to_text_controller.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/text_to_speech_controller.dart';
 import 'package:fluffychat/pangea/user/controllers/permissions_controller.dart';
@@ -52,10 +51,9 @@ class PangeaController {
   late SubscriptionController subscriptionController;
   late TextToSpeechController textToSpeech;
   late SpeechToTextController speechToText;
-  late PracticeActivityRecordController activityRecordController;
 
   ///store Services
-  final pLanguageStore = PangeaLanguage();
+  final pLanguageStore = PLanguageStore();
 
   StreamSubscription? _languageStream;
 
@@ -105,7 +103,6 @@ class PangeaController {
     itFeedback = ITFeedbackController(this);
     textToSpeech = TextToSpeechController(this);
     speechToText = SpeechToTextController(this);
-    activityRecordController = PracticeActivityRecordController();
     PAuthGaurd.pController = this;
   }
 
