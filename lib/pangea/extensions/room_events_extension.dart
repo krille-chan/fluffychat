@@ -248,7 +248,7 @@ extension EventsRoomExtension on Room {
       }
     }
 
-    final fullBody = _getEventContent(event, inReplyTo, editEventId);
+    final fullBody = _getEventContent(Map.from(event), inReplyTo, editEventId);
     final jsonString = jsonEncode(fullBody);
     final jsonSizeInBytes = utf8.encode(jsonString).length;
     const maxBodySize = 60000;
