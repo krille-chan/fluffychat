@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -9,13 +10,13 @@ import 'package:pasteboard/pasteboard.dart';
 import 'package:slugify/slugify.dart';
 
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pages/chat/command_hints.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/igc/pangea_text_controller.dart';
 import 'package:fluffychat/utils/markdown_context_builder.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:fluffychat/widgets/avatar.dart';
-import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
+import '../../widgets/avatar.dart';
+import '../../widgets/matrix.dart';
+import 'command_hints.dart';
 
 class InputBar extends StatelessWidget {
   final Room room;
@@ -25,7 +26,7 @@ class InputBar extends StatelessWidget {
   final TextInputAction? textInputAction;
   final ValueChanged<String>? onSubmitted;
   final ValueChanged<Uint8List?>? onSubmitImage;
-  final FocusNode focusNode;
+  final FocusNode? focusNode;
   // #Pangea
   // final TextEditingController? controller;
   final PangeaTextController? controller;
@@ -42,7 +43,7 @@ class InputBar extends StatelessWidget {
     this.keyboardType,
     this.onSubmitted,
     this.onSubmitImage,
-    required this.focusNode,
+    this.focusNode,
     this.controller,
     this.decoration,
     this.onChanged,
@@ -325,16 +326,14 @@ class InputBar extends StatelessWidget {
             ),
             const SizedBox(width: 6),
             // #Pangea
+            // Text(suggestion['displayname'] ?? suggestion['mxid']!),
             Flexible(
-              child:
-                  // Pangea#
-                  Text(
+              child: Text(
                 suggestion['displayname'] ?? suggestion['mxid']!,
-                // #Pangea
                 overflow: TextOverflow.ellipsis,
-                // Pangea#
               ),
             ),
+            // Pangea#
           ],
         ),
       );
@@ -489,87 +488,118 @@ class InputBar extends StatelessWidget {
           debounceDuration: const Duration(milliseconds: 50),
           // show suggestions after 50ms idle time (default is 300)
           // #Pangea
-          // builder: (context, controller, focusNode) => TextField(
           builder: (context, _, focusNode) {
-            // fix for issue with typing not working sometimes on Firefox and Safari
-            return SelectionArea(
-              child: TextField(
-                enableSuggestions: enableAutocorrect,
-                readOnly:
-                    controller != null && controller!.choreographer.isRunningIT,
-                autocorrect: enableAutocorrect,
-                // controller: controller,
-                controller:
-                    (controller?.choreographer.chatController.obscureText) ??
-                            false
-                        ? controller
-                            ?.choreographer.chatController.hideTextController
-                        : controller,
-                // Pangea#
-                focusNode: focusNode,
-                contextMenuBuilder: (c, e) => markdownContextBuilder(
-                  c,
-                  e,
-                  // #Pangea
-                  // controller,
-                  _,
-                  // Pangea#
-                ),
-                contentInsertionConfiguration: ContentInsertionConfiguration(
-                  onContentInserted: (KeyboardInsertedContent content) {
-                    final data = content.data;
-                    if (data == null) return;
+            final textField = TextField(
+              enableSuggestions: enableAutocorrect,
+              readOnly:
+                  controller != null && controller!.choreographer.isRunningIT,
+              autocorrect: enableAutocorrect,
+              controller: (controller
+                          ?.choreographer.chatController.obscureText) ??
+                      false
+                  ? controller?.choreographer.chatController.hideTextController
+                  : controller,
+              focusNode: focusNode,
+              contextMenuBuilder: (c, e) => markdownContextBuilder(
+                c,
+                e,
+                _,
+              ),
+              contentInsertionConfiguration: ContentInsertionConfiguration(
+                onContentInserted: (KeyboardInsertedContent content) {
+                  final data = content.data;
+                  if (data == null) return;
 
-                    final file = MatrixFile(
-                      mimeType: content.mimeType,
-                      bytes: data,
-                      name: content.uri.split('/').last,
-                    );
-                    room.sendFileEvent(
-                      file,
-                      shrinkImageMaxDimension: 1600,
-                    );
-                  },
-                ),
-                minLines: minLines,
-                maxLines: maxLines,
-                keyboardType: keyboardType!,
-                textInputAction: textInputAction,
-                autofocus: autofocus!,
-                inputFormatters: [
-                  //#Pangea
-                  //LengthLimitingTextInputFormatter((maxPDUSize / 3).floor()),
-                  //setting max character count to 1000
-                  //after max, nothing else can be typed
-                  LengthLimitingTextInputFormatter(1000),
-                  //Pangea#
-                ],
-                onSubmitted: (text) {
-                  // fix for library for now
-                  // it sets the types for the callback incorrectly
-                  onSubmitted!(text);
-                },
-                // #Pangea
-                style: controller?.exceededMaxLength ?? false
-                    ? const TextStyle(color: Colors.red)
-                    : null,
-                onTap: () {
-                  controller?.onInputTap(
-                    context,
-                    fNode: focusNode,
+                  final file = MatrixFile(
+                    mimeType: content.mimeType,
+                    bytes: data,
+                    name: content.uri.split('/').last,
+                  );
+                  room.sendFileEvent(
+                    file,
+                    shrinkImageMaxDimension: 1600,
                   );
                 },
-                // Pangea#
-                decoration: decoration!,
-                onChanged: (text) {
-                  // fix for the library for now
-                  // it sets the types for the callback incorrectly
-                  onChanged!(text);
-                },
-                textCapitalization: TextCapitalization.sentences,
               ),
+              minLines: minLines,
+              maxLines: maxLines,
+              keyboardType: keyboardType!,
+              textInputAction: textInputAction,
+              autofocus: autofocus!,
+              inputFormatters: [
+                //LengthLimitingTextInputFormatter((maxPDUSize / 3).floor()),
+                //setting max character count to 1000
+                //after max, nothing else can be typed
+                LengthLimitingTextInputFormatter(1000),
+              ],
+              onSubmitted: (text) {
+                // fix for library for now
+                // it sets the types for the callback incorrectly
+                onSubmitted!(text);
+              },
+              style: controller?.exceededMaxLength ?? false
+                  ? const TextStyle(color: Colors.red)
+                  : null,
+              onTap: () {
+                controller?.onInputTap(
+                  context,
+                  fNode: focusNode,
+                );
+              },
+              decoration: decoration!,
+              onChanged: (text) {
+                // fix for the library for now
+                // it sets the types for the callback incorrectly
+                onChanged!(text);
+              },
+              textCapitalization: TextCapitalization.sentences,
             );
+            // fix for issue with typing not working sometimes on Firefox and Safari
+            return kIsWeb ? SelectionArea(child: textField) : textField;
           },
+          // builder: (context, controller, focusNode) => TextField(
+          //   controller: controller,
+          //   focusNode: focusNode,
+          //   contextMenuBuilder: (c, e) =>
+          //       markdownContextBuilder(c, e, controller),
+          //   contentInsertionConfiguration: ContentInsertionConfiguration(
+          //     onContentInserted: (KeyboardInsertedContent content) {
+          //       final data = content.data;
+          //       if (data == null) return;
+
+          //       final file = MatrixFile(
+          //         mimeType: content.mimeType,
+          //         bytes: data,
+          //         name: content.uri.split('/').last,
+          //       );
+          //       room.sendFileEvent(
+          //         file,
+          //         shrinkImageMaxDimension: 1600,
+          //       );
+          //     },
+          //   ),
+          //   minLines: minLines,
+          //   maxLines: maxLines,
+          //   keyboardType: keyboardType!,
+          //   textInputAction: textInputAction,
+          //   autofocus: autofocus!,
+          //   inputFormatters: [
+          //     LengthLimitingTextInputFormatter((maxPDUSize / 3).floor()),
+          //   ],
+          //   onSubmitted: (text) {
+          //     // fix for library for now
+          //     // it sets the types for the callback incorrectly
+          //     onSubmitted!(text);
+          //   },
+          //   decoration: decoration!,
+          //   onChanged: (text) {
+          //     // fix for the library for now
+          //     // it sets the types for the callback incorrectly
+          //     onChanged!(text);
+          //   },
+          //   textCapitalization: TextCapitalization.sentences,
+          // ),
+          // Pangea#
           suggestionsCallback: getSuggestions,
           itemBuilder: (c, s) =>
               buildSuggestion(c, s, Matrix.of(context).client),
@@ -581,15 +611,7 @@ class InputBar extends StatelessWidget {
           // fix loading briefly flickering a dark box
           emptyBuilder: (BuildContext context) => const SizedBox
               .shrink(), // fix loading briefly showing no suggestions
-          // If we ever want to change the suggestion background color
-          // here is the code for it
-          // decorationBuilder: (context, child) => Material(
-          //   borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-          //   color: Theme.of(context).colorScheme.surfaceContainerHigh,
-          //   child: child,
-          // ),
         ),
-        // Pangea#
       ),
     );
   }
