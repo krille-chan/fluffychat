@@ -7,7 +7,7 @@ import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_list/client_chooser_button.dart';
 import 'package:fluffychat/utils/sync_status_localization.dart';
-import 'package:fluffychat/widgets/matrix.dart';
+import '../../widgets/matrix.dart';
 
 class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
   final ChatListController controller;
@@ -79,12 +79,21 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                             color: theme.colorScheme.onPrimaryContainer,
                           ),
                         )
-                  : Icon(
-                      status.icon,
-                      color: status.error != null
-                          ? theme.colorScheme.error
-                          : theme.colorScheme.onPrimaryContainer,
-                      size: 18,
+                  : Container(
+                      margin: const EdgeInsets.all(12),
+                      width: 8,
+                      height: 8,
+                      child: Center(
+                        child: CircularProgressIndicator.adaptive(
+                          strokeWidth: 2,
+                          value: status.progress,
+                          valueColor: status.error != null
+                              ? AlwaysStoppedAnimation<Color>(
+                                  theme.colorScheme.error,
+                                )
+                              : null,
+                        ),
+                      ),
                     ),
               suffixIcon: controller.isSearchMode && globalSearch
                   ? controller.isSearching
@@ -115,14 +124,16 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                             maxLines: 2,
                           ),
                         )
+                  // #Pangea
+                  // : SizedBox(
+                  //     width: 0,
+                  //     child: ClientChooserButton(controller),
+                  //   ),
                   : const SizedBox(
                       width: 0,
-                      child: ClientChooserButton(
-                          // #Pangea
-                          // controller,
-                          // Pangea#
-                          ),
+                      child: ClientChooserButton(),
                     ),
+              // Pangea#
             ),
           );
         },

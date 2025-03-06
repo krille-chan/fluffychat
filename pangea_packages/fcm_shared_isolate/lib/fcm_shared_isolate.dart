@@ -31,10 +31,6 @@ class FcmSharedIsolate {
   }
 
   Future<String> getToken() async {
-    // if (Platform.isAndroid) {
-    //   await Firebase.initializeApp();
-    //   return (await FirebaseMessaging.instance.getToken())!;
-    // }
     return await _channel.invokeMethod('getToken');
   }
 
@@ -54,7 +50,7 @@ class FcmSharedIsolate {
       {bool sound = true,
       bool alert = true,
       bool badge = true,
-      bool provisional = false}) async {
+      bool provisional = false,}) async {
     if (kIsWeb || !Platform.isIOS) {
       return true;
     }

@@ -9,10 +9,8 @@ Pod::Spec.new do |s|
   s.source_files = 'Classes/**/*'
   s.public_header_files = 'Classes/**/*.h'
   s.dependency 'Flutter'
-  s.dependency 'FirebaseCore'
-  s.dependency 'FirebaseMessaging'
+  s.dependency 'Firebase/Messaging'
   s.swift_version = '5.2'
-  s.ios.deployment_target = '11.0'
+  s.ios.deployment_target = '10.0'
   s.static_framework = true
-
 end

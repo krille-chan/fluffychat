@@ -28,11 +28,10 @@ extension RoomStatusExtension on Room {
         typingUsers[1].calcDisplayname(),
       );
     } else if (typingUsers.length > 2) {
-      typingText = L10n.of(context).isTyping;
-      if (typingUsers.first.id != directChatMatrixID) {
-        typingText =
-            L10n.of(context).userIsTyping(typingUsers.first.calcDisplayname());
-      }
+      typingText = L10n.of(context).userAndOthersAreTyping(
+        typingUsers.first.calcDisplayname(),
+        (typingUsers.length - 1),
+      );
     }
     return typingText;
   }

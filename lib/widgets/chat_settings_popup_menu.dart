@@ -56,15 +56,14 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
             switch (choice) {
               case ChatPopupMenuActions.leave:
                 final confirmed = await showOkCancelAlertDialog(
-                  useRootNavigator: false,
                   context: context,
                   title: L10n.of(context).areYouSure,
-                  okLabel: L10n.of(context).ok,
-                  cancelLabel: L10n.of(context).cancel,
                   // #Pangea
                   // message: L10n.of(context).archiveRoomDescription,
                   message: L10n.of(context).leaveRoomDescription,
                   // Pangea#
+                  okLabel: L10n.of(context).leave,
+                  cancelLabel: L10n.of(context).cancel,
                   isDestructive: true,
                 );
                 if (confirmed == OkCancelResult.ok) {

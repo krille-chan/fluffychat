@@ -207,14 +207,6 @@ class SettingsController extends State<Settings> {
     // Pangea#
   }
 
-  Future<String?> getOidcAccountManageUrl() async {
-    final client = Matrix.of(context).client;
-    final wellKnown = client.wellKnown ?? await client.getWellknown();
-    return wellKnown.additionalProperties
-        .tryGetMap<String, Object?>('org.matrix.msc2965.authentication')
-        ?.tryGet<String>('account');
-  }
-
   @override
   Widget build(BuildContext context) {
     final client = Matrix.of(context).client;

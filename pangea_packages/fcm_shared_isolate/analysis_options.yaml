@@ -1,5 +1,3 @@
-include: package:pedantic/analysis_options.yaml
-
 linter:
   rules:
     - camel_case_types
@@ -7,3 +5,11 @@ linter:
     - constant_identifier_names
     - prefer_final_locals
     - prefer_final_in_for_each
+    - prefer_relative_imports
+    - unawaited_futures
+    - require_trailing_commas
+
+analyzer:
+  errors:
+    todo: ignore
+    fixme: ignore

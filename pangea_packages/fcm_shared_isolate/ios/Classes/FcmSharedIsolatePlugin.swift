@@ -6,7 +6,7 @@ import FirebaseMessaging
     internal init(channel: FlutterMethodChannel) {
         self.channel = channel
     }
-    
+
     public static func register(with registrar: FlutterPluginRegistrar) {
         let channel = FlutterMethodChannel(name: "fcm_shared_isolate", binaryMessenger: registrar.messenger())
         let instance = FcmSharedIsolatePlugin(channel: channel)
@@ -86,7 +86,6 @@ import FirebaseMessaging
     }
 
     public func messaging(_ messaging: Messaging, didReceiveRegistrationToken token: String?) {
-
         channel.invokeMethod("token", arguments: [token])
     }
 }

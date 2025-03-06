@@ -1306,7 +1306,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "openCamera": "Pildista",
+  "openCamera": "Ava kaamera",
   "@openCamera": {
     "type": "String",
     "placeholders": {}
@@ -3333,5 +3333,13 @@
   "crossVerifiedDevices": "Risttunnustatud seadmeid",
   "@crossVerifiedDevices": {},
   "verifiedDevicesOnly": "Vaid verifitseeritud seadmeid",
-  "@verifiedDevicesOnly": {}
+  "@verifiedDevicesOnly": {},
+  "recordAVideo": "Salvesta video",
+  "@recordAVideo": {},
+  "takeAPhoto": "Pildista",
+  "@takeAPhoto": {},
+  "optionalMessage": "Sõnum (kui soovid lisada)...",
+  "@optionalMessage": {},
+  "notSupportedOnThisDevice": "See pole antud seadmes toetatud",
+  "@notSupportedOnThisDevice": {}
 }

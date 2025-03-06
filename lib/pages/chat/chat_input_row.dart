@@ -38,6 +38,10 @@ class ChatInputRow extends StatelessWidget {
         controller.emojiPickerType == EmojiPickerType.reaction) {
       return const SizedBox.shrink();
     }
+    // #Pangea
+    // const height = 48.0;
+    const height = AppConfig.defaultFooterHeight;
+    // Pangea#
 
     if (!controller.room.otherPartyCanReceiveMessages) {
       return Center(
@@ -53,9 +57,6 @@ class ChatInputRow extends StatelessWidget {
     }
 
     // #Pangea
-    // const height = 48.0;
-    const height = AppConfig.defaultFooterHeight;
-
     final activel1 =
         controller.pangeaController.languageController.activeL1Model();
     final activel2 =
@@ -109,18 +110,18 @@ class ChatInputRow extends StatelessWidget {
                       ),
                     // #Pangea
                     // else
-                    //   SizedBox(
-                    //     height: height,
-                    //     child: TextButton(
-                    //       onPressed: controller.forwardEventsAction,
-                    //       child: Row(
-                    //         children: <Widget>[
-                    //           const Icon(Icons.keyboard_arrow_left_outlined),
-                    //           Text(L10n.of(context).forward),
-                    //         ],
-                    //       ),
+                    // SizedBox(
+                    //   height: height,
+                    //   child: TextButton(
+                    //     onPressed: controller.forwardEventsAction,
+                    //     child: Row(
+                    //       children: <Widget>[
+                    //         const Icon(Icons.keyboard_arrow_left_outlined),
+                    //         Text(L10n.of(context).forward),
+                    //       ],
                     //     ),
                     //   ),
+                    // ),
                     // controller.selectedEvents.length == 1
                     //     ? controller.selectedEvents.first
                     //             .getDisplayEvent(controller.timeline!)
@@ -374,8 +375,8 @@ class ChatInputRow extends StatelessWidget {
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(height),
                               ),
-                              backgroundColor: theme.colorScheme.primary,
-                              foregroundColor: theme.colorScheme.onPrimary,
+                              backgroundColor: theme.bubbleColor,
+                              foregroundColor: theme.onBubbleColor,
                               child: const Icon(Icons.mic_none_outlined),
                             )
                           // #Pangea

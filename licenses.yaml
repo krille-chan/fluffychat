@@ -25,6 +25,7 @@ packageLicenseOverride:
   latlong2: Apache-2.0
   platform_detect: Apache-2.0
   rxdart: Apache-2.0
+  flutter_new_badger: MIT
 
   # flutter's internal packages
   flutter_driver: BSD-3-Clause

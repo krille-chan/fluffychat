@@ -169,6 +169,7 @@ class ChatListController extends State<ChatList>
 
   void onChatTap(Room room) async {
     if (room.membership == Membership.invite) {
+      // #Pangea
       await showInviteDialog(room);
       return;
       // final joinResult = await showFutureLoadingDialog(
@@ -184,6 +185,7 @@ class ChatListController extends State<ChatList>
       //   exceptionContext: ExceptionContext.joinRoom,
       // );
       // if (joinResult.error != null) return;
+      // Pangea#
     }
 
     if (room.membership == Membership.ban) {

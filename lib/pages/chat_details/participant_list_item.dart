@@ -94,7 +94,11 @@ class ParticipantListItem extends StatelessWidget {
                   ),
           ],
         ),
-        subtitle: Text(user.id),
+        subtitle: Text(
+          user.id,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
         leading: Avatar(
           mxContent: user.avatarUrl,
           name: user.calcDisplayname(),

@@ -44,10 +44,6 @@
   <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" type="text/css" href="splash/style.css">
 
-  <script>
-    // The value below is injected by flutter build, do not touch.
-    const serviceWorkerVersion = null;
-  </script>
   <!-- This script adds the flutter initialization JS code -->
   <script src="flutter.js" defer></script>
   <script src="assets/assets/js/package/olm.js"></script>
@@ -56,19 +52,21 @@
 <body>
   <script>
     window.addEventListener('load', function (ev) {
-      // Download main.dart.js
-      _flutter.loader.loadEntrypoint({
+      {{flutter_js}}
+      {{flutter_build_config}}
+
+      _flutter.loader.load({
         // #Pangea
-        entrypointUrl: "main.dart.js?v=" + serviceWorkerVersion,
+        entrypointUrl: "main.dart.js?v=" + {{flutter_service_worker_version}},
         // Pangea#
         serviceWorker: {
-          serviceWorkerVersion: serviceWorkerVersion,
+          serviceWorkerVersion: {{flutter_service_worker_version}},
         },
-        onEntrypointLoaded: function (engineInitializer) {
-          engineInitializer.initializeEngine({ useColorEmoji: true }).then(function (appRunner) {
-            appRunner.runApp();
-          });
-        }
+      onEntrypointLoaded: function (engineInitializer) {
+        engineInitializer.initializeEngine({ useColorEmoji: true }).then(function (appRunner) {
+          appRunner.runApp();
+        });
+      }
       });
     });
   </script>

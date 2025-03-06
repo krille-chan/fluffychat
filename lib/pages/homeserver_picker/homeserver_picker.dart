@@ -218,8 +218,8 @@ class HomeserverPickerController extends State<HomeserverPicker> {
 
   void onMoreAction(MoreLoginActions action) {
     switch (action) {
-      case MoreLoginActions.passwordLogin:
-        checkHomeserverAction(legacyPasswordLogin: true);
+      case MoreLoginActions.importBackup:
+        restoreBackup();
       case MoreLoginActions.privacy:
         launchUrlString(AppConfig.privacyUrl);
       case MoreLoginActions.about:
@@ -228,7 +228,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
   }
 }
 
-enum MoreLoginActions { passwordLogin, privacy, about }
+enum MoreLoginActions { importBackup, privacy, about }
 
 class IdentityProvider {
   final String? id;

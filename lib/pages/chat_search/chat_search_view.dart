@@ -59,7 +59,7 @@ class ChatSearchView extends StatelessWidget {
                 enabled: controller.tabController.index == 0,
                 decoration: InputDecoration(
                   hintText: L10n.of(context).search,
-                  suffixIcon: const Icon(Icons.search_outlined),
+                  prefixIcon: const Icon(Icons.search_outlined),
                   filled: true,
                   fillColor: theme.colorScheme.secondaryContainer,
                   border: OutlineInputBorder(

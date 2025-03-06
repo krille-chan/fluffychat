@@ -185,20 +185,20 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
           ],
         );
         buttons.add(
-          TextButton.icon(
-            icon: const Icon(Icons.close),
-            style: TextButton.styleFrom(foregroundColor: Colors.red),
-            label: Text(L10n.of(context).reject),
+          AdaptiveDialogAction(
             onPressed: () => widget.request
                 .rejectVerification()
                 .then((_) => Navigator.of(context, rootNavigator: false).pop()),
+            child: Text(
+              L10n.of(context).reject,
+              style: TextStyle(color: theme.colorScheme.error),
+            ),
           ),
         );
         buttons.add(
-          TextButton.icon(
-            icon: const Icon(Icons.check),
-            label: Text(L10n.of(context).accept),
+          AdaptiveDialogAction(
             onPressed: () => widget.request.acceptVerification(),
+            child: Text(L10n.of(context).accept),
           ),
         );
         break;
@@ -207,6 +207,7 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
         body = Center(
           child: Column(
             children: <Widget>[
+              const SizedBox(height: 16),
               Stack(
                 alignment: Alignment.center,
                 children: [
@@ -230,10 +231,9 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
           ),
         );
         buttons.add(
-          TextButton.icon(
-            icon: const Icon(Icons.close),
-            label: Text(L10n.of(context).cancel),
+          AdaptiveDialogAction(
             onPressed: () => widget.request.cancel(),
+            child: Text(L10n.of(context).cancel),
           ),
         );
 
@@ -271,20 +271,18 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
           ],
         );
         buttons.add(
-          TextButton.icon(
-            icon: const Icon(Icons.close),
-            style: TextButton.styleFrom(
-              foregroundColor: Colors.red,
-            ),
-            label: Text(L10n.of(context).theyDontMatch),
+          AdaptiveDialogAction(
             onPressed: () => widget.request.rejectSas(),
+            child: Text(
+              L10n.of(context).theyDontMatch,
+              style: TextStyle(color: theme.colorScheme.error),
+            ),
           ),
         );
         buttons.add(
-          TextButton.icon(
-            icon: const Icon(Icons.check_outlined),
-            label: Text(L10n.of(context).theyMatch),
+          AdaptiveDialogAction(
             onPressed: () => widget.request.acceptSas(),
+            child: Text(L10n.of(context).theyMatch),
           ),
         );
         break;
@@ -295,8 +293,9 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
         body = Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
+            const SizedBox(height: 16),
             const CircularProgressIndicator.adaptive(strokeWidth: 2),
-            const SizedBox(height: 10),
+            const SizedBox(height: 16),
             Text(
               acceptText,
               textAlign: TextAlign.center,
@@ -305,20 +304,14 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
         );
         break;
       case KeyVerificationState.done:
-        body = Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            const Icon(
-              Icons.check_circle_outlined,
-              color: Colors.green,
-              size: 128.0,
-            ),
-            const SizedBox(height: 10),
-            Text(
-              L10n.of(context).verifySuccess,
-              textAlign: TextAlign.center,
-            ),
-          ],
+        title = Text(L10n.of(context).verifySuccess);
+        body = const Padding(
+          padding: EdgeInsets.all(16.0),
+          child: Icon(
+            Icons.verified_outlined,
+            color: Colors.green,
+            size: 128.0,
+          ),
         );
         buttons.add(
           AdaptiveDialogAction(
@@ -334,7 +327,8 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
         body = Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            const Icon(Icons.cancel, color: Colors.red, size: 128.0),
+            const SizedBox(height: 16),
+            Icon(Icons.cancel, color: theme.colorScheme.error, size: 64.0),
             const SizedBox(height: 16),
             // TODO: Add better error UI to user
             Text(

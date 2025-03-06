@@ -20,7 +20,12 @@ class ChatAppBarTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     final room = controller.room;
     if (controller.selectedEvents.isNotEmpty) {
-      return Text(controller.selectedEvents.length.toString());
+      return Text(
+        controller.selectedEvents.length.toString(),
+        style: TextStyle(
+          color: Theme.of(context).colorScheme.tertiary,
+        ),
+      );
     }
     return InkWell(
       hoverColor: Colors.transparent,
@@ -98,12 +103,17 @@ class ChatAppBarTitle extends StatelessWidget {
                             )
                           : Row(
                               children: [
-                                Icon(
-                                  status.icon,
-                                  size: 12,
-                                  color: status.error != null
-                                      ? Theme.of(context).colorScheme.error
-                                      : null,
+                                SizedBox.square(
+                                  dimension: 10,
+                                  child: CircularProgressIndicator.adaptive(
+                                    strokeWidth: 1,
+                                    value: status.progress,
+                                    valueColor: status.error != null
+                                        ? AlwaysStoppedAnimation<Color>(
+                                            Theme.of(context).colorScheme.error,
+                                          )
+                                        : null,
+                                  ),
                                 ),
                                 const SizedBox(width: 4),
                                 Expanded(

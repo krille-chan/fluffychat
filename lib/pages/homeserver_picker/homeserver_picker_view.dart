@@ -38,13 +38,13 @@ class HomeserverPickerView extends StatelessWidget {
             onSelected: controller.onMoreAction,
             itemBuilder: (_) => [
               PopupMenuItem(
-                value: MoreLoginActions.passwordLogin,
+                value: MoreLoginActions.importBackup,
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Icon(Icons.login_outlined),
+                    const Icon(Icons.import_export_outlined),
                     const SizedBox(width: 12),
-                    Text(L10n.of(context).loginWithMatrixId),
+                    Text(L10n.of(context).hydrate),
                   ],
                 ),
               ),
@@ -122,10 +122,6 @@ class HomeserverPickerView extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 32.0),
                       child: SelectableLinkify(
                         text: L10n.of(context).appIntroduction,
-                        style: TextStyle(
-                          color: theme.colorScheme.onSecondaryContainer,
-                          fontWeight: FontWeight.w500,
-                        ),
                         textAlign: TextAlign.center,
                         linkStyle: TextStyle(
                           color: theme.colorScheme.secondary,
@@ -216,8 +212,10 @@ class HomeserverPickerView extends StatelessWidget {
                             ),
                             onPressed: controller.isLoading
                                 ? null
-                                : controller.restoreBackup,
-                            child: Text(L10n.of(context).hydrate),
+                                : () => controller.checkHomeserverAction(
+                                      legacyPasswordLogin: true,
+                                    ),
+                            child: Text(L10n.of(context).loginWithMatrixId),
                           ),
                         ],
                       ),

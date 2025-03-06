@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:matrix/matrix.dart';
 
@@ -26,6 +27,8 @@ class ImageViewer extends StatefulWidget {
 }
 
 class ImageViewerController extends State<ImageViewer> {
+  final FocusNode focusNode = FocusNode();
+
   @override
   void initState() {
     super.initState();
@@ -44,6 +47,17 @@ class ImageViewerController extends State<ImageViewer> {
   late final PageController pageController;
 
   late final List<Event> allEvents;
+
+  void onKeyEvent(KeyEvent event) {
+    switch (event.logicalKey) {
+      case LogicalKeyboardKey.arrowLeft:
+        if (canGoBack) prevImage();
+        break;
+      case LogicalKeyboardKey.arrowRight:
+        if (canGoNext) nextImage();
+        break;
+    }
+  }
 
   void prevImage() async {
     await pageController.previousPage(

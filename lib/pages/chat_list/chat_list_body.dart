@@ -251,7 +251,7 @@ class ChatListViewBody extends StatelessWidget {
                                               style: TextStyle(
                                                 fontWeight: filter ==
                                                         controller.activeFilter
-                                                    ? FontWeight.bold
+                                                    ? FontWeight.w500
                                                     : FontWeight.normal,
                                                 color: filter ==
                                                         controller.activeFilter
@@ -320,15 +320,6 @@ class ChatListViewBody extends StatelessWidget {
                           ),
                         ],
                       ),
-                      // Padding(
-                      //   padding: const EdgeInsets.all(32.0),
-                      //   child: Icon(
-                      //     CupertinoIcons.chat_bubble_2,
-                      //     size: 128,
-                      //     color: theme.colorScheme.secondary,
-                      //   ),
-                      // ),
-                      // Pangea#
                     ],
                   ],
                 ),

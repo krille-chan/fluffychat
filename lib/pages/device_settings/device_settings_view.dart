@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
+import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/device_settings/device_settings.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'user_device_list_item.dart';
@@ -15,7 +16,8 @@ class DevicesSettingsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const Center(child: BackButton()),
+        automaticallyImplyLeading: !FluffyThemes.isColumnMode(context),
+        centerTitle: FluffyThemes.isColumnMode(context),
         title: Text(L10n.of(context).devices),
       ),
       body: MaxWidthBody(

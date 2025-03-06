@@ -169,8 +169,6 @@ abstract class AppRoutes {
         FluffyThemes.isColumnMode(context) &&
                 state.fullPath?.startsWith('/rooms/settings') == false
             ? TwoColumnLayout(
-                displayNavigationRail:
-                    state.path?.startsWith('/rooms/settings') != true,
                 mainView: ChatList(
                   activeChat: state.pathParameters['roomid'],
                   displayNavigationRail:
@@ -319,9 +317,8 @@ abstract class AppRoutes {
                 state,
                 FluffyThemes.isColumnMode(context)
                     ? TwoColumnLayout(
-                        mainView: const Settings(),
+                        mainView: Settings(key: state.pageKey),
                         sideView: child,
-                        displayNavigationRail: false,
                       )
                     : child,
               ),

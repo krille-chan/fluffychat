@@ -1,4 +1,3 @@
-
 package com.famedly.fcm_shared_isolate
 
 import androidx.annotation.NonNull
@@ -12,7 +11,7 @@ import io.flutter.plugin.common.MethodChannel.Result
 class FcmSharedIsolatePlugin : FlutterPlugin, MethodCallHandler {
     private lateinit var channel: MethodChannel
 
-    private val fcm = FirebaseMessaging.getInstance()
+    private val fcm = try { FirebaseMessaging.getInstance() } catch (e: Exception) { null }
 
     override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
         channel = MethodChannel(flutterPluginBinding.binaryMessenger, "fcm_shared_isolate")
@@ -26,7 +25,7 @@ class FcmSharedIsolatePlugin : FlutterPlugin, MethodCallHandler {
         }
 
         if (call.method == "getToken") {
-            val getToken = FirebaseMessaging.getInstance().getToken()
+            val getToken = fcm.getToken()
             getToken.addOnSuccessListener { result.success(it) }
             getToken.addOnFailureListener { result.error("unknown", null, null) }
         } else {
