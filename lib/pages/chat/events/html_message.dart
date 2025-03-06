@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
@@ -285,16 +284,31 @@ class HtmlMessage extends StatelessWidget {
               : AppConfig.gold.withAlpha(60);
         }
 
-        return TextSpan(
-          recognizer: TapGestureRecognizer()
-            ..onTap = onClick != null && token != null
-                ? () => onClick?.call(token)
-                : null,
-          text: node.innerHtml,
-          style: AppConfig.messageTextStyle(
-            pangeaMessageEvent!.event,
-            textColor,
-          ).merge(TextStyle(backgroundColor: backgroundColor)),
+        return WidgetSpan(
+          child: MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: GestureDetector(
+              onTap: onClick != null && token != null
+                  ? () => onClick?.call(token)
+                  : null,
+              child: RichText(
+                text: TextSpan(
+                  children: [
+                    LinkifySpan(
+                      text: node.innerHtml,
+                      style: AppConfig.messageTextStyle(
+                        pangeaMessageEvent!.event,
+                        textColor,
+                      ).merge(TextStyle(backgroundColor: backgroundColor)),
+                      linkStyle: linkStyle,
+                      onOpen: (url) =>
+                          UrlLauncher(context, url.url).launchUrl(),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
         );
       // Pangea#
       case 'br':
