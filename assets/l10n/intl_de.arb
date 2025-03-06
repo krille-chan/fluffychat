@@ -238,7 +238,7 @@
       }
     }
   },
-  "changedTheDisplaynameTo": "{username} hat den Spitznamen geändert zu: '{displayname}'",
+  "changedTheDisplaynameTo": "{username} hat den Spitznamen geändert in: '{displayname}'",
   "@changedTheDisplaynameTo": {
     "type": "String",
     "placeholders": {
