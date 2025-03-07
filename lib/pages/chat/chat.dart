@@ -526,6 +526,9 @@ class ChatController extends State<ChatPageWithRoom>
     if (state == AppLifecycleState.paused) {
       clearSelectedEvents();
     }
+    if (state == AppLifecycleState.hidden) {
+      stopAudioStream.add(null);
+    }
     // Pangea#
     if (state != AppLifecycleState.resumed) return;
     setReadMarker();
@@ -925,6 +928,9 @@ class ChatController extends State<ChatPageWithRoom>
   }
 
   void voiceMessageAction() async {
+    // #Pangea
+    stopAudioStream.add(null);
+    // Pangea#
     final scaffoldMessenger = ScaffoldMessenger.of(context);
     if (PlatformInfos.isAndroid) {
       final info = await DeviceInfoPlugin().androidInfo;
