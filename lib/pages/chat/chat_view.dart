@@ -402,31 +402,33 @@ class ChatView extends StatelessWidget {
                               ),
                             // #Pangea
                             // Keep messages above minimum input bar height
-                            SizedBox(height: controller.inputBarHeight),
+                            if (!controller.room.isAbandonedDMRoom)
+                              SizedBox(height: controller.inputBarHeight),
                             // Pangea#
                           ],
                         ),
                         // #Pangea
                         ChatViewBackground(controller.choreographer),
-                        Positioned(
-                          left: 0,
-                          right: 0,
-                          bottom: 16,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              ChatInputBarHeader(
-                                controller: controller,
-                                padding: bottomSheetPadding,
-                              ),
-                              ChatInputBar(
-                                controller: controller,
-                                padding: bottomSheetPadding,
-                              ),
-                            ],
+                        if (!controller.room.isAbandonedDMRoom)
+                          Positioned(
+                            left: 0,
+                            right: 0,
+                            bottom: 16,
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                ChatInputBarHeader(
+                                  controller: controller,
+                                  padding: bottomSheetPadding,
+                                ),
+                                ChatInputBar(
+                                  controller: controller,
+                                  padding: bottomSheetPadding,
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
                         // Pangea#
                       ],
                     ),
