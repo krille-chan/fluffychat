@@ -90,6 +90,10 @@ class PublicRoomBottomSheetState extends State<PublicRoomBottomSheet> {
         }
         return roomId;
       },
+      // #Pangea
+      onSuccess: wasInRoom ? null : () => L10n.of(context).knockSpaceSuccess,
+      delay: false,
+      // Pangea#
     );
     // #Pangea
     // if (knock) {

@@ -22,6 +22,7 @@ Future<Result<T>> showFutureLoadingDialog<T>({
   ExceptionContext? exceptionContext,
   // #Pangea
   String? Function(Object, StackTrace?)? onError,
+  String? Function()? onSuccess,
   VoidCallback? onDismiss,
   // Pangea#
 }) async {
@@ -55,6 +56,7 @@ Future<Result<T>> showFutureLoadingDialog<T>({
         // #Pangea
         onError: onError,
         onDismiss: onDismiss,
+        onSuccess: onSuccess,
         // Pangea#
       ),
     );
@@ -80,6 +82,7 @@ class LoadingDialog<T> extends StatefulWidget {
   final ExceptionContext? exceptionContext;
   // #Pangea
   final String? Function(Object, StackTrace?)? onError;
+  final String? Function()? onSuccess;
   final VoidCallback? onDismiss;
   // Pangea#
 
@@ -91,6 +94,7 @@ class LoadingDialog<T> extends StatefulWidget {
     this.exceptionContext,
     // #Pangea
     this.onError,
+    this.onSuccess,
     this.onDismiss,
     // Pangea#
   });
@@ -101,40 +105,57 @@ class LoadingDialog<T> extends StatefulWidget {
 class LoadingDialogState<T> extends State<LoadingDialog> {
   Object? exception;
   StackTrace? stackTrace;
+  // #Pangea
+  Object? _result;
+  String? _successMessage;
+  // Pangea#
 
   @override
   void initState() {
     super.initState();
-    widget.future.then(
-      // #Pangea
-      // (result) => Navigator.of(context).pop<Result<T>>(Result.value(result)),
-      // onError: (e, s) => setState(() {
-      //   exception = e;
-      //   stackTrace = s;
-      // }),
-      (result) {
-        if (mounted && Navigator.of(context).canPop()) {
-          Navigator.of(context).pop<Result<T>>(Result.value(result));
-        }
-      },
-      onError: (e, s) {
-        if (mounted) {
-          setState(() {
-            exception = widget.onError?.call(e, s) ?? e;
-            stackTrace = s;
-          });
-        }
-      },
-      // Pangea#
+    // #Pangea
+    // widget.future.then(
+    //   (result) => Navigator.of(context).pop<Result<T>>(Result.value(result)),
+    //   onError: (e, s) => setState(() {
+    //     exception = e;
+    //     stackTrace = s;
+    //   }),
+    // );
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) => widget.future.then(
+        (result) {
+          if (mounted && widget.onSuccess != null) {
+            _successMessage = widget.onSuccess!();
+            _result = result;
+            setState(() {});
+          } else if (mounted && Navigator.of(context).canPop()) {
+            Navigator.of(context).pop<Result<T>>(Result.value(result));
+          }
+        },
+        onError: (e, s) {
+          if (mounted) {
+            setState(() {
+              exception = widget.onError?.call(e, s) ?? e;
+              stackTrace = s;
+            });
+          }
+        },
+      ),
     );
+    // Pangea#
   }
 
   @override
   Widget build(BuildContext context) {
     final exception = this.exception;
+    // #Pangea
+    // final titleLabel = exception != null
+    //     ? exception.toLocalizedString(context, widget.exceptionContext)
+    //     : widget.title ?? L10n.of(context).loadingPleaseWait;
     final titleLabel = exception != null
         ? exception.toLocalizedString(context, widget.exceptionContext)
-        : widget.title ?? L10n.of(context).loadingPleaseWait;
+        : _successMessage ?? widget.title ?? L10n.of(context).loadingPleaseWait;
+    // Pangea#
 
     return AlertDialog.adaptive(
       title: exception == null
@@ -149,7 +170,10 @@ class LoadingDialogState<T> extends State<LoadingDialog> {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            if (exception == null) ...[
+            // #Pangea
+            // if (exception == null) ...[
+            if (exception == null && _successMessage == null) ...[
+              // Pangea#
               const CircularProgressIndicator.adaptive(),
               const SizedBox(width: 20),
             ],
@@ -157,39 +181,65 @@ class LoadingDialogState<T> extends State<LoadingDialog> {
               child: Text(
                 titleLabel,
                 maxLines: 4,
-                textAlign: exception == null ? TextAlign.left : null,
+                // #Pangea
+                // textAlign: exception == null ? TextAlign.left : null,
+                textAlign: exception == null && _successMessage == null
+                    ? TextAlign.left
+                    : null,
+                // Pangea#
                 overflow: TextOverflow.ellipsis,
               ),
             ),
           ],
         ),
       ),
-      actions: exception == null
-          // #Pangea
-          // ? null
-          ? widget.onDismiss != null
-              ? [
-                  AdaptiveDialogAction(
-                    onPressed: () {
-                      widget.onDismiss!();
-                      Navigator.of(context).pop();
-                    },
-                    child: Text(L10n.of(context).cancel),
-                  ),
-                ]
-              : null
-          // Pangea#
-          : [
+      // #Pangea
+      // actions: exception == null
+      //     ? null
+      //     : [
+      //         AdaptiveDialogAction(
+      //           onPressed: () => Navigator.of(context).pop<Result<T>>(
+      //             Result.error(
+      //               exception,
+      //               stackTrace,
+      //             ),
+      //           ),
+      //           child: Text(widget.backLabel ?? L10n.of(context).close),
+      //         ),
+      //       ],
+      actions: _successMessage != null
+          ? [
               AdaptiveDialogAction(
                 onPressed: () => Navigator.of(context).pop<Result<T>>(
-                  Result.error(
-                    exception,
-                    stackTrace,
-                  ),
+                  Result.value(_result as T),
                 ),
-                child: Text(widget.backLabel ?? L10n.of(context).close),
+                child: Text(L10n.of(context).close),
               ),
-            ],
+            ]
+          : exception == null
+              ? widget.onDismiss != null
+                  ? [
+                      AdaptiveDialogAction(
+                        onPressed: () {
+                          widget.onDismiss!();
+                          Navigator.of(context).pop();
+                        },
+                        child: Text(L10n.of(context).cancel),
+                      ),
+                    ]
+                  : null
+              : [
+                  AdaptiveDialogAction(
+                    onPressed: () => Navigator.of(context).pop<Result<T>>(
+                      Result.error(
+                        exception,
+                        stackTrace,
+                      ),
+                    ),
+                    child: Text(widget.backLabel ?? L10n.of(context).close),
+                  ),
+                ],
+      // Pangea#
     );
   }
 }

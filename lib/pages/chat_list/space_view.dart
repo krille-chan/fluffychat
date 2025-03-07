@@ -16,6 +16,7 @@ import 'package:fluffychat/pages/chat_list/search_title.dart';
 import 'package:fluffychat/pangea/chat/constants/default_power_level.dart';
 import 'package:fluffychat/pangea/chat_settings/constants/pangea_room_types.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/spaces/widgets/knocking_users_indicator.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
@@ -717,6 +718,9 @@ class _SpaceViewState extends State<SpaceView> {
                         );
                       },
                     ),
+                    // #Pangea
+                    KnockingUsersIndicator(room: room),
+                    // Pangea#
                     SliverList.builder(
                       itemCount: joinedRooms.length,
                       itemBuilder: (context, i) {
