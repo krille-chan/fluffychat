@@ -1050,35 +1050,23 @@ class ChatController extends State<ChatPageWithRoom>
   }
 
   void goToNewRoomAction() async {
-    if (OkCancelResult.ok !=
-        await showOkCancelAlertDialog(
-          context: context,
-          title: L10n.of(context).goToTheNewRoom,
-          message: room
-              .getState(EventTypes.RoomTombstone)!
-              .parsedTombstoneContent
-              .body,
-          okLabel: L10n.of(context).ok,
-          cancelLabel: L10n.of(context).cancel,
-        )) {
-      return;
-    }
     final result = await showFutureLoadingDialog(
       context: context,
-      future: () async {
-        final roomId = room.client.joinRoom(
-          room
-              .getState(EventTypes.RoomTombstone)!
-              .parsedTombstoneContent
-              .replacementRoom,
-        );
-        await room.leave();
-        return roomId;
-      },
+      future: () => room.client.joinRoom(
+        room
+            .getState(EventTypes.RoomTombstone)!
+            .parsedTombstoneContent
+            .replacementRoom,
+      ),
     );
-    if (result.error == null) {
-      context.go('/rooms/${result.result!}');
-    }
+    if (result.error != null) return;
+    if (!mounted) return;
+    context.go('/rooms/${result.result!}');
+
+    await showFutureLoadingDialog(
+      context: context,
+      future: room.leave,
+    );
   }
 
   void onSelectMessage(Event event) {

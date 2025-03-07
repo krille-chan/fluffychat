@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart' hide Visibility;
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pages/chat_access_settings/chat_access_settings_page.dart';
@@ -179,10 +180,13 @@ class ChatAccessSettingsController extends State<ChatAccessSettings> {
             )) {
       return;
     }
-    await showFutureLoadingDialog(
+    final result = await showFutureLoadingDialog(
       context: context,
       future: () => room.client.upgradeRoom(room.id, newVersion),
     );
+    if (result.error != null) return;
+    if (!mounted) return;
+    context.go('/rooms/${room.id}');
   }
 
   Future<void> addAlias() async {

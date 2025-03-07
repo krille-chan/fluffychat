@@ -3205,5 +3205,6 @@
   "takeAPhoto": "Take a photo",
   "recordAVideo": "Record a video",
   "optionalMessage": "(Optional) message...",
-  "notSupportedOnThisDevice": "Not supported on this device"
+  "notSupportedOnThisDevice": "Not supported on this device",
+  "enterNewChat": "Enter new chat"
 }
