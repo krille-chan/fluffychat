@@ -99,7 +99,7 @@ class SignupPageController extends State<SignupPage> {
     }
   }
 
-  static const int minPassLength = 8;
+  static const int minPassLength = 6;
 
   void toggleShowPassword() => setState(() => showPassword = !showPassword);
 
