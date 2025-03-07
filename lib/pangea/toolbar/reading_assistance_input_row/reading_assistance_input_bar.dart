@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/analytics_misc/message_analytics_controller.dart';
 import 'package:fluffychat/pangea/analytics_misc/put_analytics_controller.dart';
@@ -15,8 +16,6 @@ import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart
 import 'package:fluffychat/pangea/toolbar/widgets/practice_activity/practice_activity_card.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/word_zoom/morphs/morphological_center_widget.dart';
 import 'message_emoji_choice.dart';
-
-const double readingAssistanceInputBarHeight = 150;
 
 class ReadingAssistanceInputBar extends StatelessWidget {
   final ChatController controller;
@@ -159,7 +158,7 @@ class ReadingAssistanceInputBar extends StatelessWidget {
 
     return Flexible(
       child: Container(
-        height: readingAssistanceInputBarHeight,
+        height: AppConfig.readingAssistanceInputBarHeight,
         decoration: BoxDecoration(
           color: Theme.of(context).cardColor,
           borderRadius: const BorderRadius.all(

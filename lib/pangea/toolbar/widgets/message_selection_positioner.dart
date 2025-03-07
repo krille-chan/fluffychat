@@ -14,7 +14,6 @@ import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dar
 import 'package:fluffychat/pangea/events/extensions/pangea_event_extension.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/toolbar/reading_assistance_input_row/overlay_footer.dart';
-import 'package:fluffychat/pangea/toolbar/reading_assistance_input_row/reading_assistance_input_bar.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/overlay_center_content.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/overlay_header.dart';
@@ -294,11 +293,7 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
   }
 
   double get _footerHeight {
-    return ((widget.overlayController.pangeaMessageEvent
-                    ?.messageDisplayLangIsL2 ??
-                false)
-            ? readingAssistanceInputBarHeight
-            : AppConfig.defaultFooterHeight) +
+    return AppConfig.readingAssistanceInputBarHeight +
         (FluffyThemes.isColumnMode(context) ? 16.0 : 8.0) +
         (_mediaQuery?.padding.bottom ?? 0);
   }

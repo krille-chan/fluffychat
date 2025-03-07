@@ -38,10 +38,7 @@ class ChatInputRow extends StatelessWidget {
         controller.emojiPickerType == EmojiPickerType.reaction) {
       return const SizedBox.shrink();
     }
-    // #Pangea
-    // const height = 48.0;
-    const height = AppConfig.defaultFooterHeight;
-    // Pangea#
+    const height = 48.0;
 
     if (!controller.room.otherPartyCanReceiveMessages) {
       return Center(
