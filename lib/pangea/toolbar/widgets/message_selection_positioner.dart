@@ -113,18 +113,16 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
           // one for within the toolbar itself, one for the top, and one for the bottom
           ((AppConfig.toolbarSpacing * 3) +
               _reactionsHeight +
-              _toolbarButtonsHeight +
               AppConfig.toolbarMaxHeight);
+      _adjustedMessageHeight = max(_adjustedMessageHeight!, 0);
     }
 
     // if the overlay could have header overflow if the message wasn't shifted, we want to shift
     // it down so the bottom to give it enough space.
     if (hasHeaderOverflow) {
       // what is the distance between the current top offset of the toolbar and the desired top offset?
-      final double currentTopOffset =
-          _messageTopOffset - AppConfig.toolbarMaxHeight;
       final double neededShift =
-          (_headerHeight - currentTopOffset) + AppConfig.toolbarSpacing;
+          (_headerHeight - _totalToolbarTopOffset) + AppConfig.toolbarSpacing;
       adjustedBottomOffset = _totalToolbarBottomOffset - neededShift;
     } else if (hasFooterOverflow) {
       adjustedBottomOffset = _footerHeight + AppConfig.toolbarSpacing;
@@ -259,10 +257,11 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
     );
   }
 
-  double get _messageTopOffset =>
-      _messageOffset.dy -
-      (_mediaQuery?.padding.top ?? 0) +
-      (_mediaQuery?.viewPadding.top ?? 0);
+  double get _messageTopOffset {
+    return _messageOffset.dy -
+        (_mediaQuery?.padding.top ?? 0) +
+        (_mediaQuery?.viewPadding.top ?? 0);
+  }
 
   double get _messageBottomOffset =>
       _mediaQuery!.size.height - _messageOffset.dy - _messageHeight;
@@ -312,9 +311,6 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
       widget.pangeaMessageEvent!.shouldShowToolbar &&
       widget.pangeaMessageEvent!.event.messageType == MessageTypes.Text;
 
-  double get _toolbarButtonsHeight =>
-      showToolbarButtons ? AppConfig.toolbarButtonsColumnWidth : 0;
-
   bool get _hasReactions {
     final reactionsEvents = widget.event.aggregatedEvents(
       widget.chatController.timeline!,
@@ -325,16 +321,23 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
 
   double get _reactionsHeight => _hasReactions ? 28 : 0;
 
-  double get _maxTotalToolbarHeight =>
-      _toolbarButtonsHeight +
+  double get _maxTotalCenterHeight =>
       _reactionsHeight +
       _messageHeight +
       AppConfig.toolbarSpacing +
       AppConfig.toolbarMaxHeight;
 
-  double get _totalToolbarTopOffset =>
-      _messageTopOffset -
-      (AppConfig.toolbarSpacing + AppConfig.toolbarMaxHeight);
+  double get _maxTotalToolbarHeight {
+    return max(AppConfig.toolbarButtonsColumnHeight, _maxTotalCenterHeight);
+  }
+
+  double get _totalToolbarTopOffset {
+    final topOffset = _messageTopOffset -
+        (AppConfig.toolbarSpacing + AppConfig.toolbarMaxHeight);
+    final addedColumnOffset =
+        max(AppConfig.toolbarButtonsColumnHeight - _maxTotalCenterHeight, 0);
+    return topOffset - addedColumnOffset;
+  }
 
   double get _totalToolbarBottomOffset =>
       _messageBottomOffset - _reactionsHeight;
@@ -391,7 +394,7 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
                       overlayController: widget.overlayController,
                       shouldShowToolbarButtons: showToolbarButtons,
                       width: AppConfig.toolbarButtonsColumnWidth,
-                      height: 100 + AppConfig.toolbarMinHeight,
+                      height: AppConfig.toolbarButtonsColumnHeight,
                     ),
                     OverlayCenterContent(
                       messageHeight: _messageHeight,
