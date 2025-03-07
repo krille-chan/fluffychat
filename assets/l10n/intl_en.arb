@@ -4872,5 +4872,7 @@
       }
     }
   },
-  "knockSpaceSuccess": "You have requested to join this space! An admin will respond to your request when they receive it 😀"
+  "knockSpaceSuccess": "You have requested to join this space! An admin will respond to your request when they receive it 😀",
+  "joinByCode": "Join by code",
+  "createASpace": "Create a space"
 } 

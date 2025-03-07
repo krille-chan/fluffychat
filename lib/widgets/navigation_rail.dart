@@ -7,6 +7,7 @@ import 'package:matrix/matrix.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat_list/navi_rail_item.dart';
+import 'package:fluffychat/pangea/spaces/utils/space_code.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -58,7 +59,10 @@ class SpacesNavigationRail extends StatelessWidget {
               Expanded(
                 child: ListView.builder(
                   scrollDirection: Axis.vertical,
-                  itemCount: rootSpaces.length + 2,
+                  // #Pangea
+                  // itemCount: rootSpaces.length + 2,
+                  itemCount: rootSpaces.length + 3,
+                  // Pangea#
                   itemBuilder: (context, i) {
                     if (i == 0) {
                       return NaviRailItem(
@@ -78,6 +82,20 @@ class SpacesNavigationRail extends StatelessWidget {
                     }
                     i--;
                     if (i == rootSpaces.length) {
+                      // #Pangea
+                      return NaviRailItem(
+                        isSelected: false,
+                        onTap: () =>
+                            SpaceCodeUtil.joinWithSpaceCodeDialog(context),
+                        icon: const Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Icon(Icons.join_right_outlined),
+                        ),
+                        toolTip: L10n.of(context).joinByCode,
+                      );
+                    }
+                    if (i == rootSpaces.length + 1) {
+                      // Pangea#
                       return NaviRailItem(
                         isSelected: false,
                         onTap: () => context.go('/rooms/newspace'),

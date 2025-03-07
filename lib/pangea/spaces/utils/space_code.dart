@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_text_input_dialog.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 
 class SpaceCodeUtil {
   static const codeLength = 7;
@@ -39,7 +39,6 @@ class SpaceCodeUtil {
 
   static Future<void> joinWithSpaceCodeDialog(
     BuildContext context,
-    PangeaController pangeaController,
   ) async {
     final String? spaceCode = await showTextInputDialog(
       context: context,
@@ -50,7 +49,7 @@ class SpaceCodeUtil {
       autoSubmit: true,
     );
     if (spaceCode == null || spaceCode.isEmpty) return;
-    await pangeaController.classController.joinClasswithCode(
+    await MatrixState.pangeaController.classController.joinClasswithCode(
       context,
       spaceCode,
     );

@@ -13,6 +13,7 @@ import 'package:fluffychat/pages/chat_list/search_title.dart';
 import 'package:fluffychat/pages/chat_list/space_view.dart';
 import 'package:fluffychat/pages/user_bottom_sheet/user_bottom_sheet.dart';
 import 'package:fluffychat/pangea/chat_list/widgets/pangea_chat_list_header.dart';
+import 'package:fluffychat/pangea/spaces/widgets/space_filter_buttons.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -170,8 +171,9 @@ class ChatListViewBody extends StatelessWidget {
                         ),
                       ),
                     ),
-                    if (client.rooms.isNotEmpty && !controller.isSearchMode)
-                      // #Pangea
+                    // #Pangea
+                    // if (client.rooms.isNotEmpty && !controller.isSearchMode)
+                    if (!controller.isSearchMode)
                       // SizedBox(
                       //   height: 64,
                       //   child: ListView(
@@ -199,8 +201,7 @@ class ChatListViewBody extends StatelessWidget {
                             // #Pangea
                             // if (spaceDelegateCandidates.isNotEmpty &&
                             //     !controller.widget.displayNavigationRail)
-                            if (spaces.isNotEmpty &&
-                                !controller.widget.displayNavigationRail)
+                            if (!controller.widget.displayNavigationRail)
                               // Pangea#
                               ActiveFilter.spaces,
                           ]
@@ -352,6 +353,10 @@ class ChatListViewBody extends StatelessWidget {
                     );
                   },
                 ),
+              // #Pangea
+              if (controller.activeFilter == ActiveFilter.spaces)
+                const SpaceFilterButtons(),
+              // Pangea#
             ],
           ),
         );
