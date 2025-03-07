@@ -60,7 +60,7 @@ class LevelDisplayNameState extends State<LevelDisplayName> {
               children: [
                 if (_profile?.targetLanguage != null)
                   Text(
-                    _profile!.targetLanguage!.langCode.toUpperCase(),
+                    _profile!.targetLanguage!.langCodeShort.toUpperCase(),
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Theme.of(context).colorScheme.primary,

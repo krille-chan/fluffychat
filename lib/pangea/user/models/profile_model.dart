@@ -43,7 +43,7 @@ class PublicProfileModel {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (targetLanguage != null) {
-      json[ModelKey.userTargetLanguage] = targetLanguage!.langCode;
+      json[ModelKey.userTargetLanguage] = targetLanguage!.langCodeShort;
     }
 
     final analytics = {};

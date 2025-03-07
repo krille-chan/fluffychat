@@ -144,6 +144,13 @@ class GetAnalyticsController extends BaseController {
     if (oldLevel < constructListModel.level) _onLevelUp();
     if (oldLevel > constructListModel.level) await _onLevelDown(oldLevel);
     _updateAnalyticsStream(origin: analyticsUpdate.origin);
+    // Update public profile each time that new analytics are added.
+    // If the level hasn't changed, this will not send an update to the server.
+    // Do this on all updates (not just on level updates) to account for cases
+    // of target language updates being missed (https://github.com/pangeachat/client/issues/2006)
+    _pangeaController.userController.updatePublicProfile(
+      level: constructListModel.level,
+    );
   }
 
   void _updateAnalyticsStream({
@@ -152,10 +159,6 @@ class GetAnalyticsController extends BaseController {
       analyticsStream.add(AnalyticsStreamUpdate(origin: origin));
 
   void _onLevelUp() {
-    _pangeaController.userController.updatePublicProfile(
-      level: constructListModel.level,
-    );
-
     setState({'level_up': constructListModel.level});
   }
 

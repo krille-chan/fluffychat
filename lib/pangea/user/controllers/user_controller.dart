@@ -178,8 +178,8 @@ class UserController extends BaseController {
   }
 
   Future<void> updatePublicProfile({
+    required int level,
     LanguageModel? targetLanguage,
-    int? level,
   }) async {
     targetLanguage ??= _pangeaController.languageController.userL2;
     if (targetLanguage == null || publicProfile == null) return;
@@ -190,10 +190,7 @@ class UserController extends BaseController {
     }
 
     publicProfile!.targetLanguage = targetLanguage;
-    if (level != null) {
-      publicProfile!.setLevel(targetLanguage, level);
-    }
-
+    publicProfile!.setLevel(targetLanguage, level);
     await _savePublicProfile();
   }
 
