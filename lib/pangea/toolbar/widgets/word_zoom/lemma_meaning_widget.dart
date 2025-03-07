@@ -176,7 +176,7 @@ class LemmaMeaningWidgetState extends State<LemmaMeaningWidget> {
         if (snapshot.hasError || snapshot.data == null) {
           debugger(when: kDebugMode);
           return Text(
-            snapshot.error.toString(),
+            L10n.of(context).oopsSomethingWentWrong,
             textAlign: TextAlign.center,
           );
         }

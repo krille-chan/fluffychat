@@ -112,7 +112,7 @@ class MorphMeaningWidgetState extends State<MorphMeaningWidget> {
         if (snapshot.hasError || snapshot.data == null) {
           debugger(when: kDebugMode);
           return Text(
-            snapshot.error.toString(),
+            L10n.of(context).oopsSomethingWentWrong,
             textAlign: TextAlign.center,
             style: widget.style,
           );
