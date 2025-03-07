@@ -118,25 +118,29 @@ class MorphMeaningWidgetState extends State<MorphMeaningWidget> {
           );
         }
 
-        return Flexible(
-          child: Tooltip(
-            triggerMode: TooltipTriggerMode.tap,
-            message: L10n.of(context).doubleClickToEdit,
-            child: GestureDetector(
-              onLongPress: () => _toggleEditMode(true),
-              onDoubleTap: () => _toggleEditMode(true),
-              child: RichText(
-                text: TextSpan(
-                  style: widget.style,
-                  children: [
-                    if (widget.leading != null) widget.leading!,
-                    if (widget.leading != null) const TextSpan(text: '  '),
-                    TextSpan(text: snapshot.data!),
-                  ],
+        return Row(
+          children: [
+            Flexible(
+              child: Tooltip(
+                triggerMode: TooltipTriggerMode.tap,
+                message: L10n.of(context).doubleClickToEdit,
+                child: GestureDetector(
+                  onLongPress: () => _toggleEditMode(true),
+                  onDoubleTap: () => _toggleEditMode(true),
+                  child: RichText(
+                    text: TextSpan(
+                      style: widget.style,
+                      children: [
+                        if (widget.leading != null) widget.leading!,
+                        if (widget.leading != null) const TextSpan(text: '  '),
+                        TextSpan(text: snapshot.data!),
+                      ],
+                    ),
+                  ),
                 ),
               ),
             ),
-          ),
+          ],
         );
       },
     );
@@ -163,65 +167,63 @@ class MorphEditView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            "${L10n.of(context).pangeaBotIsFallible} ${L10n.of(context).whatIsMeaning(
-              getGrammarCopy(
-                    category: morphFeature,
-                    lemma: morphTag,
-                    context: context,
-                  ) ??
-                  morphTag,
-              '',
-            )}",
-            textAlign: TextAlign.center,
-            style: const TextStyle(fontStyle: FontStyle.italic),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          "${L10n.of(context).pangeaBotIsFallible} ${L10n.of(context).whatIsMeaning(
+            getGrammarCopy(
+                  category: morphFeature,
+                  lemma: morphTag,
+                  context: context,
+                ) ??
+                morphTag,
+            '',
+          )}",
+          textAlign: TextAlign.center,
+          style: const TextStyle(fontStyle: FontStyle.italic),
+        ),
+        const SizedBox(height: 10),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: TextField(
+            minLines: 1,
+            maxLines: 3,
+            maxLength: MorphMeaningWidgetState.maxCharacters,
+            controller: controller,
           ),
-          const SizedBox(height: 10),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: TextField(
-              minLines: 1,
-              maxLines: 3,
-              maxLength: MorphMeaningWidgetState.maxCharacters,
-              controller: controller,
+        ),
+        const SizedBox(height: 10),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () => toggleEditMode(false),
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+              ),
+              child: Text(L10n.of(context).cancel),
             ),
-          ),
-          const SizedBox(height: 10),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ElevatedButton(
-                onPressed: () => toggleEditMode(false),
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
+            const SizedBox(width: 10),
+            ElevatedButton(
+              onPressed: () =>
+                  controller.text != meaning && controller.text.isNotEmpty
+                      ? editMorphMeaning(controller.text)
+                      : null,
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
                 ),
-                child: Text(L10n.of(context).cancel),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
               ),
-              const SizedBox(width: 10),
-              ElevatedButton(
-                onPressed: () =>
-                    controller.text != meaning && controller.text.isNotEmpty
-                        ? editMorphMeaning(controller.text)
-                        : null,
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                ),
-                child: Text(L10n.of(context).saveChanges),
-              ),
-            ],
-          ),
-        ],
-      ),
+              child: Text(L10n.of(context).saveChanges),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
