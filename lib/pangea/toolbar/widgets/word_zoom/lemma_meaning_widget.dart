@@ -181,25 +181,30 @@ class LemmaMeaningWidgetState extends State<LemmaMeaningWidget> {
           );
         }
 
-        return Flexible(
-          child: Tooltip(
-            triggerMode: TooltipTriggerMode.tap,
-            message: L10n.of(context).doubleClickToEdit,
-            child: GestureDetector(
-              onLongPress: () => _toggleEditMode(true),
-              onDoubleTap: () => _toggleEditMode(true),
-              child: RichText(
-                text: TextSpan(
-                  style: widget.style,
-                  children: [
-                    if (widget.leading != null) widget.leading!,
-                    if (widget.leading != null) const TextSpan(text: '  '),
-                    TextSpan(text: snapshot.data!.meaning),
-                  ],
+        return Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Flexible(
+              child: Tooltip(
+                triggerMode: TooltipTriggerMode.tap,
+                message: L10n.of(context).doubleClickToEdit,
+                child: GestureDetector(
+                  onLongPress: () => _toggleEditMode(true),
+                  onDoubleTap: () => _toggleEditMode(true),
+                  child: RichText(
+                    text: TextSpan(
+                      style: widget.style,
+                      children: [
+                        if (widget.leading != null) widget.leading!,
+                        if (widget.leading != null) const TextSpan(text: '  '),
+                        TextSpan(text: snapshot.data!.meaning),
+                      ],
+                    ),
+                  ),
                 ),
               ),
             ),
-          ),
+          ],
         );
       },
     );
