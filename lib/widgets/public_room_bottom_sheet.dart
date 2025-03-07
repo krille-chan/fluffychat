@@ -44,6 +44,13 @@ class PublicRoomBottomSheetState extends State<PublicRoomBottomSheet> {
   List<String>? get via => widget.via;
 
   final TextEditingController _codeController = TextEditingController();
+  late Client client;
+
+  @override
+  void initState() {
+    super.initState();
+    client = Matrix.of(outerContext).client;
+  }
 
   @override
   void dispose() {
@@ -60,12 +67,13 @@ class PublicRoomBottomSheetState extends State<PublicRoomBottomSheet> {
   }
 
   bool get _isRoomMember =>
-      chunk != null &&
-      Matrix.of(outerContext).client.getRoomById(chunk!.roomId) != null;
+      chunk != null && client.getRoomById(chunk!.roomId) != null;
   // Pangea#
 
   void _joinRoom(BuildContext context) async {
-    final client = Matrix.of(outerContext).client;
+    // #Pangea
+    // final client = Matrix.of(outerContext).client;
+    // Pangea#
     final chunk = this.chunk;
     final knock = chunk?.joinRule == 'knock';
     // #Pangea
@@ -192,7 +200,10 @@ class PublicRoomBottomSheetState extends State<PublicRoomBottomSheet> {
                               child: CircularProgressIndicator.adaptive(),
                             )
                           : Avatar(
-                              client: Matrix.of(outerContext).client,
+                              // #Pangea
+                              // client: Matrix.of(outerContext).client,
+                              client: client,
+                              // Pangea#
                               mxContent: profile.avatarUrl,
                               name: profile.name ?? roomAlias,
                               size: Avatar.defaultSize * 3,
@@ -331,11 +342,15 @@ class PublicRoomBottomSheetState extends State<PublicRoomBottomSheet> {
                   child: ElevatedButton.icon(
                     onPressed: () => _joinRoom(context),
                     label: Text(
+                      // #Pangea
+                      // chunk?.joinRule == 'knock' &&
+                      //         Matrix.of(outerContext)
+                      //                 .client
+                      //                 .getRoomById(chunk!.roomId) ==
+                      //             null
                       chunk?.joinRule == 'knock' &&
-                              Matrix.of(outerContext)
-                                      .client
-                                      .getRoomById(chunk!.roomId) ==
-                                  null
+                              client.getRoomById(chunk!.roomId) == null
+                          // Pangea#
                           ? L10n.of(context).knock
                           : chunk?.roomType == 'm.space'
                               ? L10n.of(context).joinSpace
