@@ -3344,5 +3344,7 @@
   "optionalMessage": "(Opcional) mensaje...",
   "@optionalMessage": {},
   "notSupportedOnThisDevice": "No es compatible con este dispositivo",
-  "@notSupportedOnThisDevice": {}
+  "@notSupportedOnThisDevice": {},
+  "enterNewChat": "Ingresar a nuevo chat",
+  "@enterNewChat": {}
 }
