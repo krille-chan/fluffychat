@@ -2320,7 +2320,7 @@
   "@enterSpace": {},
   "pleaseEnterRecoveryKey": "Por favor, introduzca su clave de recuperación:",
   "@pleaseEnterRecoveryKey": {},
-  "widgetNameError": "Por favor, introduzca un nombre a mostrar.",
+  "widgetNameError": "Por favor, proporciona un nombre para mostrar.",
   "@widgetNameError": {},
   "addWidget": "Añadir widget",
   "@addWidget": {},
