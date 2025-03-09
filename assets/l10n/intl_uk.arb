@@ -3232,5 +3232,7 @@
   "contentNotificationSettings": "Налаштування сповіщень про вміст",
   "@contentNotificationSettings": {},
   "generalNotificationSettings": "Загальні налаштування сповіщень",
-  "@generalNotificationSettings": {}
+  "@generalNotificationSettings": {},
+  "roomNotificationSettings": "Налаштування сповіщень кімнати",
+  "@roomNotificationSettings": {}
 }

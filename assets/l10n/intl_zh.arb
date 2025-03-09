@@ -3341,5 +3341,7 @@
   "recordAVideo": "录像",
   "@recordAVideo": {},
   "notSupportedOnThisDevice": "此设备上不受支持",
-  "@notSupportedOnThisDevice": {}
+  "@notSupportedOnThisDevice": {},
+  "enterNewChat": "进入新聊天",
+  "@enterNewChat": {}
 }

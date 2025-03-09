@@ -3340,5 +3340,7 @@
   "optionalMessage": "Pesan (opsional)...",
   "@optionalMessage": {},
   "notSupportedOnThisDevice": "Tidak didukung pada perangkat ini",
-  "@notSupportedOnThisDevice": {}
+  "@notSupportedOnThisDevice": {},
+  "enterNewChat": "Masuk ke obrolan baru",
+  "@enterNewChat": {}
 }
