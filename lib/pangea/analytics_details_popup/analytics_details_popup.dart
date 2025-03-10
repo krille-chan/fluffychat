@@ -4,15 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
-import 'package:fluffychat/pangea/analytics_details_popup/morph_analytics_view.dart';
+import 'package:fluffychat/pangea/analytics_details_popup/morph_analytics_list_view.dart';
 import 'package:fluffychat/pangea/analytics_details_popup/morph_details_view.dart';
-import 'package:fluffychat/pangea/analytics_details_popup/vocab_analytics_view.dart';
-import 'package:fluffychat/pangea/analytics_details_popup/vocab_details_view.dart';
-import 'package:fluffychat/pangea/analytics_misc/construct_identifier.dart';
+import 'package:fluffychat/pangea/analytics_details_popup/vocab_analytics_details_view.dart';
+import 'package:fluffychat/pangea/analytics_details_popup/vocab_analytics_list_view.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_summary/progress_indicators_enum.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/common/widgets/full_width_dialog.dart';
+import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
 import 'package:fluffychat/pangea/morphs/default_morph_mapping.dart';
 import 'package:fluffychat/pangea/morphs/morph_models.dart';
 import 'package:fluffychat/pangea/morphs/morph_repo.dart';
@@ -135,13 +135,13 @@ class AnalyticsPopupWrapperState extends State<AnalyticsPopupWrapper> {
         ),
         body: localView == ConstructTypeEnum.morph
             ? localConstructZoom == null
-                ? MorphAnalyticsView(
+                ? MorphAnalyticsListView(
                     onConstructZoom: _setConstructZoom,
                     controller: this,
                   )
                 : MorphDetailsView(constructId: localConstructZoom!)
             : localConstructZoom == null
-                ? VocabAnalyticsView(onConstructZoom: _setConstructZoom)
+                ? VocabAnalyticsListView(onConstructZoom: _setConstructZoom)
                 : VocabDetailsView(constructId: localConstructZoom!),
       ),
       maxWidth: 600,

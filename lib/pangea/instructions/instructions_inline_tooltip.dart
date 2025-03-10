@@ -69,7 +69,7 @@ class InstructionsInlineTooltipState extends State<InstructionsInlineTooltip>
         child: DecoratedBox(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-            color: Theme.of(context).colorScheme.primary.withAlpha(20),
+            color: Theme.of(context).colorScheme.primary.withAlpha(5),
           ),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),

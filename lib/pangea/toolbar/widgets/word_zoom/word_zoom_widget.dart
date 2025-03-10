@@ -63,8 +63,6 @@ class WordZoomWidget extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               mainAxisSize: MainAxisSize.min,
-              // crossAxisAlignment: CrossAxisAlignment.stretch,
-              // spacing: 4.0,
               children: [
                 Container(
                   constraints: const BoxConstraints(

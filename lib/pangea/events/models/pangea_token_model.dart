@@ -5,19 +5,14 @@ import 'package:flutter/foundation.dart';
 import 'package:collection/collection.dart';
 
 import 'package:fluffychat/pangea/analytics_misc/analytics_constants.dart';
-import 'package:fluffychat/pangea/analytics_misc/client_analytics_extension.dart';
-import 'package:fluffychat/pangea/analytics_misc/construct_identifier.dart';
-import 'package:fluffychat/pangea/analytics_misc/construct_level_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_use_model.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/constructs_model.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
-import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
+import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
+import 'package:fluffychat/pangea/constructs/construct_level_enum.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_text_model.dart';
-import 'package:fluffychat/pangea/learning_settings/constants/language_constants.dart';
-import 'package:fluffychat/pangea/lemmas/lemma_info_repo.dart';
-import 'package:fluffychat/pangea/lemmas/lemma_info_request.dart';
 import 'package:fluffychat/pangea/morphs/morph_repo.dart';
 import 'package:fluffychat/pangea/toolbar/enums/activity_type_enum.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
@@ -543,18 +538,7 @@ class PangeaToken {
       .cast<ConstructUses>()
       .toList();
 
-  Future<List<String>> getEmojiChoices() => LemmaInfoRepo.get(
-        LemmaInfoRequest(
-          lemma: lemma.text,
-          partOfSpeech: pos,
-          lemmaLang: MatrixState
-                  .pangeaController.languageController.userL2?.langCode ??
-              LanguageKeys.unknownLanguage,
-          userL1: MatrixState
-                  .pangeaController.languageController.userL1?.langCode ??
-              LanguageKeys.defaultLanguage,
-        ),
-      ).then((onValue) => onValue.emoji);
+  Future<List<String>> getEmojiChoices() => vocabConstructID.getEmojiChoices();
 
   ConstructIdentifier get vocabConstructID => ConstructIdentifier(
         lemma: lemma.text,
@@ -562,37 +546,7 @@ class PangeaToken {
         category: pos,
       );
 
-  /// [setEmoji] sets the emoji for the lemma
-  /// NOTE: assumes that the language of the lemma is the same as the user's current l2
-  Future<void> setEmoji(String emoji) async {
-    final analyticsRoom =
-        MatrixState.pangeaController.matrixState.client.analyticsRoomLocal();
-    if (analyticsRoom == null) return;
-    try {
-      final client = MatrixState.pangeaController.matrixState.client;
-      final syncFuture = client.onRoomState.stream.firstWhere((event) {
-        return event.roomId == analyticsRoom.id &&
-            event.state.type == PangeaEventTypes.userChosenEmoji;
-      });
-      client.setRoomStateWithKey(
-        analyticsRoom.id,
-        PangeaEventTypes.userChosenEmoji,
-        vocabConstructID.string,
-        {ModelKey.emoji: emoji},
-      );
-      await syncFuture;
-    } catch (err, s) {
-      debugger(when: kDebugMode);
-      ErrorHandler.logError(
-        e: err,
-        data: {
-          "construct": vocabConstructID.string,
-          "emoji": emoji,
-        },
-        s: s,
-      );
-    }
-  }
+  Future<void> setEmoji(String emoji) => vocabConstructID.setEmoji(emoji);
 
   /// [getEmoji] gets the emoji for the lemma
   /// NOTE: assumes that the language of the lemma is the same as the user's current l2

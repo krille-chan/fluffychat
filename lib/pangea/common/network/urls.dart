@@ -72,6 +72,8 @@ class PApiUrls {
   static String activityModeList = "${PApiUrls.choreoEndpoint}/modes";
   static String objectiveList = "${PApiUrls.choreoEndpoint}/objectives";
   static String topicList = "${PApiUrls.choreoEndpoint}/topics";
+  static String activityPlanSearch =
+      "${PApiUrls.choreoEndpoint}/activity_plan/search";
 
   static String morphFeaturesAndTags = "${PApiUrls.choreoEndpoint}/morphs";
 

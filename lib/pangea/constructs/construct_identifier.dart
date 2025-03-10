@@ -12,6 +12,9 @@ import 'package:fluffychat/pangea/analytics_misc/construct_use_model.dart';
 import 'package:fluffychat/pangea/common/constants/model_keys.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
+import 'package:fluffychat/pangea/learning_settings/constants/language_constants.dart';
+import 'package:fluffychat/pangea/lemmas/lemma_info_repo.dart';
+import 'package:fluffychat/pangea/lemmas/lemma_info_request.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class ConstructIdentifier {
@@ -126,4 +129,51 @@ class ConstructIdentifier {
     }
     return null;
   }
+
+  /// [setEmoji] sets the emoji for the lemma
+  /// NOTE: assumes that the language of the lemma is the same as the user's current l2
+  Future<void> setEmoji(String emoji) async {
+    final analyticsRoom =
+        MatrixState.pangeaController.matrixState.client.analyticsRoomLocal();
+    if (analyticsRoom == null) return;
+    try {
+      final client = MatrixState.pangeaController.matrixState.client;
+      final syncFuture = client.onRoomState.stream.firstWhere((event) {
+        return event.roomId == analyticsRoom.id &&
+            event.state.type == PangeaEventTypes.userChosenEmoji;
+      });
+      client.setRoomStateWithKey(
+        analyticsRoom.id,
+        PangeaEventTypes.userChosenEmoji,
+        string,
+        {ModelKey.emoji: emoji},
+      );
+      await syncFuture;
+    } catch (err, s) {
+      debugger(when: kDebugMode);
+      ErrorHandler.logError(
+        e: err,
+        data: {
+          "construct": string,
+          "emoji": emoji,
+        },
+        s: s,
+      );
+    }
+  }
+
+  // [getEmojiChoices] gets the emoji choices for the lemma
+  // assumes that the language of the lemma is the same as the user's current l2
+  Future<List<String>> getEmojiChoices() => LemmaInfoRepo.get(
+        LemmaInfoRequest(
+          lemma: lemma,
+          partOfSpeech: category,
+          lemmaLang: MatrixState
+                  .pangeaController.languageController.userL2?.langCode ??
+              LanguageKeys.unknownLanguage,
+          userL1: MatrixState
+                  .pangeaController.languageController.userL1?.langCode ??
+              LanguageKeys.defaultLanguage,
+        ),
+      ).then((onValue) => onValue.emoji);
 }

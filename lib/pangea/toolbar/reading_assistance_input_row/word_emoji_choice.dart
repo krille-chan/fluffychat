@@ -9,22 +9,26 @@ import 'package:fluffychat/pangea/analytics_misc/constructs_model.dart';
 import 'package:fluffychat/pangea/analytics_misc/put_analytics_controller.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/choice_array.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/it_shimmer.dart';
-import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
+import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
 import 'package:fluffychat/pangea/instructions/instructions_enum.dart';
 import 'package:fluffychat/pangea/instructions/instructions_inline_tooltip.dart';
-import 'package:fluffychat/pangea/toolbar/enums/activity_type_enum.dart';
-import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class WordEmojiChoice extends StatefulWidget {
   const WordEmojiChoice({
     super.key,
-    required this.overlayController,
-    required this.token,
+    required this.constructID,
+    required this.onEmojiChosen,
+    required this.form,
+    this.roomId,
+    this.eventId,
   });
 
-  final MessageOverlayController overlayController;
-  final PangeaToken token;
+  final ConstructIdentifier constructID;
+  final String form;
+  final String? roomId;
+  final String? eventId;
+  final void Function() onEmojiChosen;
 
   @override
   WordEmojiChoiceState createState() => WordEmojiChoiceState();
@@ -36,7 +40,7 @@ class WordEmojiChoiceState extends State<WordEmojiChoice> {
   @override
   void initState() {
     super.initState();
-    localSelected = widget.token.getEmoji();
+    localSelected = widget.constructID.userSetEmoji;
   }
 
   Future<void> onChoice(BuildContext context, emoji) async {
@@ -44,33 +48,33 @@ class WordEmojiChoiceState extends State<WordEmojiChoice> {
 
     MatrixState.pangeaController.putAnalytics.setState(
       AnalyticsStream(
-        eventId: widget.overlayController.pangeaMessageEvent!.eventId,
-        roomId: widget.overlayController.pangeaMessageEvent!.room.id,
+        eventId: widget.eventId,
+        roomId: widget.roomId,
         constructs: [
           OneConstructUse(
             useType: ConstructUseTypeEnum.em,
-            lemma: widget.token.text.content,
+            lemma: widget.constructID.lemma,
             constructType: ConstructTypeEnum.vocab,
             metadata: ConstructUseMetaData(
-              roomId: widget.overlayController.pangeaMessageEvent!.room.id,
+              roomId: widget.roomId,
               timeStamp: DateTime.now(),
-              eventId: widget.overlayController.pangeaMessageEvent!.eventId,
+              eventId: widget.eventId,
             ),
-            category: widget.token.pos,
-            form: widget.token.text.content,
+            category: widget.constructID.category,
+            form: widget.form,
           ),
         ],
         origin: AnalyticsUpdateOrigin.wordZoom,
       ),
     );
 
-    await widget.token.setEmoji(emoji);
+    await widget.constructID.setEmoji(emoji);
 
     await Future.delayed(
       const Duration(milliseconds: choiceArrayAnimationDuration),
     );
 
-    widget.overlayController.onActivityFinish(ActivityTypeEnum.emoji);
+    widget.onEmojiChosen();
 
     setState(() => {});
   }
@@ -83,7 +87,7 @@ class WordEmojiChoiceState extends State<WordEmojiChoice> {
         mainAxisSize: MainAxisSize.max,
         children: [
           FutureBuilder(
-            future: widget.token.getEmojiChoices(),
+            future: widget.constructID.getEmojiChoices(),
             builder: (context, snapshot) {
               if (snapshot.hasError) {
                 return Text(L10n.of(context).oopsSomethingWentWrong);
@@ -111,7 +115,7 @@ class WordEmojiChoiceState extends State<WordEmojiChoice> {
                 originalSpan: "😀",
                 uniqueKeyForLayerLink: (int index) => "emojiChoice$index",
                 selectedChoiceIndex: snapshot.data!.indexWhere(
-                  (element) => element == widget.token.getEmoji(),
+                  (element) => element == widget.constructID.userSetEmoji,
                 ),
                 tts: null,
                 fontSize: 26,

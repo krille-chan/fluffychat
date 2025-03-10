@@ -4,11 +4,10 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 import 'package:fluffychat/pangea/analytics_details_popup/analytics_details_popup_content.dart';
-import 'package:fluffychat/pangea/analytics_misc/construct_identifier.dart';
-import 'package:fluffychat/pangea/analytics_misc/construct_level_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_use_model.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_use_type_enum.dart';
-import 'package:fluffychat/pangea/common/widgets/customized_svg.dart';
+import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
+import 'package:fluffychat/pangea/constructs/construct_level_enum.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_text_model.dart';
 import 'package:fluffychat/pangea/lemmas/lemma.dart';
@@ -178,16 +177,7 @@ class VocabDetailsView extends StatelessWidget {
           ],
         ),
       ),
-      xpIcon: CustomizedSvg(
-        svgUrl: _construct.lemmaCategory.svgURL,
-        colorReplacements: const {},
-        errorIcon: Text(
-          _construct.lemmaCategory.emoji,
-          style: const TextStyle(
-            fontSize: 20,
-          ),
-        ),
-      ),
+      xpIcon: _construct.lemmaCategory.icon(12),
       constructId: constructId,
     );
   }

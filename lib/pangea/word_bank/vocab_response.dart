@@ -1,4 +1,4 @@
-import 'package:fluffychat/pangea/analytics_misc/construct_identifier.dart';
+import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
 
 class VocabResponse {
   List<ConstructIdentifier> vocab;

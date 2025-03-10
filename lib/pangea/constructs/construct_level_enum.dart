@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/analytics_misc/analytics_constants.dart';
+import 'package:fluffychat/pangea/common/widgets/customized_svg.dart';
 
 enum ConstructLevelEnum {
   flowers,
@@ -79,4 +80,17 @@ extension ConstructLevelEnumExt on ConstructLevelEnum {
         return 0;
     }
   }
+
+  Widget icon([double? size]) => CustomizedSvg(
+        svgUrl: svgURL,
+        colorReplacements: const {},
+        errorIcon: Text(
+          emoji,
+          style: TextStyle(
+            fontSize: size ?? 24,
+          ),
+        ),
+        width: size,
+        height: size,
+      );
 }

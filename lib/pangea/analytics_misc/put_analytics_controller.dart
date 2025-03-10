@@ -119,12 +119,15 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
   /// the data locally and reset the update timer
   /// Decide whether to update the analytics room
   void _onNewAnalyticsData(AnalyticsStream data) {
-    final List<OneConstructUse> constructs = _getDraftUses(data.roomId);
+    final String? eventID = data.eventId;
+    final String? roomID = data.roomId;
+
+    List<OneConstructUse> constructs = [];
+    if (roomID != null) {
+      constructs = _getDraftUses(roomID);
+    }
 
     constructs.addAll(data.constructs);
-
-    final String eventID = data.eventId;
-    final String roomID = data.roomId;
 
     if (kDebugMode) {
       for (final use in constructs) {
@@ -138,7 +141,7 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
 
     _addLocalMessage(eventID, constructs).then(
       (_) {
-        _clearDraftUses(roomID);
+        if (roomID != null) _clearDraftUses(roomID);
         _decideWhetherToUpdateAnalyticsRoom(
           level,
           data.origin,
@@ -245,7 +248,7 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
   /// Add a list of construct uses for a new message to the local
   /// cache of recently sent messages
   Future<void> _addLocalMessage(
-    String cacheKey,
+    String? cacheKey,
     List<OneConstructUse> constructs,
   ) async {
     try {
@@ -254,7 +257,7 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
 
       // if this is not a draft message, add the eventId to the metadata
       // if it's missing (it will be missing for draft constructs)
-      if (!cacheKey.startsWith('draft')) {
+      if (cacheKey != null && !cacheKey.startsWith('draft')) {
         constructs = constructs.map((construct) {
           if (construct.metadata.eventId != null) return construct;
           construct.metadata.eventId = cacheKey;
@@ -262,6 +265,7 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
         }).toList();
       }
 
+      cacheKey ??= Object.hashAll(constructs).toString();
       currentCache[cacheKey] = constructs;
 
       await _setMessagesSinceUpdate(currentCache);
@@ -425,8 +429,8 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
 }
 
 class AnalyticsStream {
-  final String eventId;
-  final String roomId;
+  final String? eventId;
+  final String? roomId;
   final AnalyticsUpdateOrigin? origin;
 
   final List<OneConstructUse> constructs;

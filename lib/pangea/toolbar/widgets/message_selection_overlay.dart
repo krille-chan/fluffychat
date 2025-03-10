@@ -65,14 +65,6 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   bool initialized = false;
   bool isPlayingAudio = false;
 
-  /// If non-null and not complete, the activity will be shown regardless of shouldDoActivity.
-  /// Used to show the practice activity card's savor the joy animation.
-  /// (Analytics sending triggers the point gain animation, do also
-  /// causes shouldDoActivity to be false. This is a workaround.)
-  Completer<void>? _activityLock;
-
-  // final bool _hideCenterContent = false;
-
   /// The text that the toolbar should target
   /// If there is no selectedSpan, then the whole message is the target
   /// If there is a selectedSpan, then the target is the selected text
@@ -326,10 +318,6 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
               selectedMorphFeature = null;
               break;
             case MessageMode.practiceActivity:
-              if (messageAnalyticsEntry?.nextActivity?.activityType ==
-                  ActivityTypeEnum.hiddenWordListening) {
-                _lockActivity();
-              }
               break;
             case MessageMode.messageTextToSpeech:
               if (isPlayingAudio) {
@@ -432,18 +420,6 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   /// Functions
   /////////////////////////////////////
 
-  ///@ggurdin - is this still needed?
-  void _lockActivity() {
-    if (mounted) setState(() => _activityLock = Completer());
-  }
-
-  void _unlockActivity() {
-    if (_activityLock == null) return;
-    _activityLock!.complete();
-    _activityLock = null;
-    if (mounted) setState(() {});
-  }
-
   /// If sentence TTS is playing a word, highlight that word in message overlay
   void highlightCurrentText(int currentPosition, List<TTSToken> ttsTokens) {
     final List<TTSToken> textToSelect = [];
@@ -485,10 +461,6 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   /// When an activity is completed, we need to update the state
   /// and check if the toolbar should be unlocked
   void onActivityFinish(ActivityTypeEnum activityType) {
-    if (activityType == ActivityTypeEnum.hiddenWordListening) {
-      _unlockActivity();
-    }
-
     messageAnalyticsEntry!.onActivityComplete();
 
     if (selectedToken == null) {

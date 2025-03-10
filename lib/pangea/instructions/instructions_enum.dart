@@ -24,6 +24,8 @@ enum InstructionsEnum {
   activityPlannerOverview,
   ttsDisabled,
   chooseEmoji,
+  analyticsVocabList,
+  morphAnalyticsList,
 }
 
 extension InstructionsEnumExtension on InstructionsEnum {
@@ -50,6 +52,8 @@ extension InstructionsEnumExtension on InstructionsEnum {
       case InstructionsEnum.clickBestOption:
       case InstructionsEnum.completeActivitiesToUnlock:
       case InstructionsEnum.lemmaMeaning:
+      case InstructionsEnum.analyticsVocabList:
+      case InstructionsEnum.morphAnalyticsList:
         ErrorHandler.logError(
           e: Exception("No title for this instruction"),
           m: 'InstructionsEnumExtension.title',
@@ -96,6 +100,10 @@ extension InstructionsEnumExtension on InstructionsEnum {
         return l10n.chooseEmojiInstructionsBody;
       case InstructionsEnum.ttsDisabled:
         return l10n.ttsDisabledBody;
+      case InstructionsEnum.analyticsVocabList:
+        return l10n.analyticsVocabListBody;
+      case InstructionsEnum.morphAnalyticsList:
+        return l10n.morphAnalyticsListBody;
     }
   }
 
