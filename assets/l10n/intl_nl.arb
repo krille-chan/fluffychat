@@ -2939,5 +2939,311 @@
         "type": "String"
       }
     }
-  }
+  },
+  "databaseMigrationTitle": "Database is geoptimaliseerd",
+  "@databaseMigrationTitle": {},
+  "databaseMigrationBody": "Een ogenblik. Dit kan even duren.",
+  "@databaseMigrationBody": {},
+  "commandHint_sendraw": "Stuur kale json",
+  "@commandHint_sendraw": {},
+  "passwordIsWrong": "Je ingevoerd wachtwoord is onjuist",
+  "@passwordIsWrong": {},
+  "newPassword": "Nieuw wachtwoord",
+  "@newPassword": {},
+  "pleaseChooseAStrongPassword": "Kies een sterk wachtwoord",
+  "@pleaseChooseAStrongPassword": {},
+  "publicLink": "Publieke link",
+  "@publicLink": {},
+  "select": "Selecteer",
+  "@select": {},
+  "leaveEmptyToClearStatus": "Laat leeg om je status te resetten.",
+  "@leaveEmptyToClearStatus": {},
+  "addChatOrSubSpace": "Voeg chat of subspace toe",
+  "@addChatOrSubSpace": {},
+  "subspace": "Subspace",
+  "@subspace": {},
+  "pleaseEnterYourCurrentPassword": "Vul je huidige wachtwoord in",
+  "@pleaseEnterYourCurrentPassword": {},
+  "passwordsDoNotMatch": "Wachtwoorden komen niet overeen",
+  "@passwordsDoNotMatch": {},
+  "decline": "Weiger",
+  "@decline": {},
+  "thisDevice": "Dit apparaat:",
+  "@thisDevice": {},
+  "contentNotificationSettings": "Content notificatie instellingen",
+  "@contentNotificationSettings": {},
+  "roomNotificationSettings": "Kamer notificatie instellingen",
+  "@roomNotificationSettings": {},
+  "userSpecificNotificationSettings": "Persoon specifieke notificatie instellingen",
+  "@userSpecificNotificationSettings": {},
+  "otherNotificationSettings": "Andere notificatie instellingen",
+  "@otherNotificationSettings": {},
+  "notificationRuleContainsUserName": "Bevat naam van persoon",
+  "@notificationRuleContainsUserName": {},
+  "notificationRuleContainsUserNameDescription": "Stuurt een notificatie als een bericht de persoon vermeld.",
+  "@notificationRuleContainsUserNameDescription": {},
+  "notificationRuleMaster": "Demp alle notificaties",
+  "@notificationRuleMaster": {},
+  "notificationRuleMasterDescription": "Overschrijf alle andere regels en schakel alle notificaties uit.",
+  "@notificationRuleMasterDescription": {},
+  "notificationRuleMemberEventDescription": "Verberg notificaties voor een kamer-gebeurtenissen.",
+  "@notificationRuleMemberEventDescription": {},
+  "notificationRuleIsUserMention": "Persoon vermelding",
+  "@notificationRuleIsUserMention": {},
+  "initAppError": "Er is een fout opgetreden bij het laden van de app",
+  "@initAppError": {},
+  "requestedKeyVerification": "{sender} vraagt een sleutelverificatie",
+  "@requestedKeyVerification": {
+    "type": "String",
+    "placeholders": {
+      "sender": {
+        "type": "String"
+      }
+    }
+  },
+  "sessionLostBody": "Je sessie is verlopen. Meldt alsjeblieft deze fout aan de ontwikkelaars via deze link {url}. De foutmelding is: {error}",
+  "@sessionLostBody": {
+    "type": "String",
+    "placeholders": {
+      "url": {
+        "type": "String"
+      },
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "sendTypingNotificationsDescription": "Andere deelnemers in de chat kunnen zien wanneer je een bericht aan het typen bent.",
+  "@sendTypingNotificationsDescription": {},
+  "sendCanceled": "Versturen geannuleerd",
+  "@sendCanceled": {},
+  "opacity": "Doorzichtigheid:",
+  "@opacity": {},
+  "verifyOtherUserDescription": "Als je een persoon verifieert ben je er zeker van dat je echt met haar contact hebt. 💪\n\nWanneer je een verificatie start ziet de persoon een popup in de app. Hier staat een serie van emoji's of getallen die je met elkaar moet vergelijken.\n\nDe beste manier om dit te doen is in persoon of met een videogesprek. 👭",
+  "@verifyOtherUserDescription": {},
+  "changeTheVisibilityOfChatHistory": "Wijzig de zichtbaarheid van de chat-geschiedenis",
+  "@changeTheVisibilityOfChatHistory": {},
+  "whatIsAHomeserver": "Wat is een server?",
+  "@whatIsAHomeserver": {},
+  "sendRoomNotifications": "Een @room-notificatie versturen",
+  "@sendRoomNotifications": {},
+  "noticeChatBackupDeviceVerification": "Opmerking: Als al je apparaten zijn verbonden met de chat back-up worden ze automatisch geverifieerd.",
+  "@noticeChatBackupDeviceVerification": {},
+  "notificationRuleMemberEvent": "Kamer-gebeurtenis",
+  "@notificationRuleMemberEvent": {},
+  "notificationRuleSuppressNotices": "Verberg automatische berichten",
+  "@notificationRuleSuppressNotices": {},
+  "setWallpaper": "Wallpaper instellen",
+  "@setWallpaper": {},
+  "oneOfYourDevicesIsNotVerified": "Een van jouw apparaten is niet geverifieerd",
+  "@oneOfYourDevicesIsNotVerified": {},
+  "contactServerAdmin": "Contact opnemen met serverbeheerder",
+  "@contactServerAdmin": {},
+  "manageAccount": "Account beheren",
+  "@manageAccount": {},
+  "noContactInformationProvided": "Server geeft geen geldige contactinformatie",
+  "@noContactInformationProvided": {},
+  "waitingForServer": "Wachten op server...",
+  "@waitingForServer": {},
+  "generalNotificationSettings": "Algemene notificatie instellingen",
+  "@generalNotificationSettings": {},
+  "notificationRuleInviteForMeDescription": "Stuur een notificatie wanneer een persoon wordt uitgenodigd voor een kamer.",
+  "@notificationRuleInviteForMeDescription": {},
+  "notificationRuleSuppressNoticesDescription": "Verberg notificaties van automatische accounts zoals bots.",
+  "@notificationRuleSuppressNoticesDescription": {},
+  "notificationRuleInviteForMe": "Uitnodiging voor mij",
+  "@notificationRuleInviteForMe": {},
+  "inviteOtherUsers": "Andere personen uitnodigen voor deze chat",
+  "@inviteOtherUsers": {},
+  "changeTheChatPermissions": "Chat-rechten wijzigen",
+  "@changeTheChatPermissions": {},
+  "changeTheCanonicalRoomAlias": "Het standaard publieke chat-adres veranderen",
+  "@changeTheCanonicalRoomAlias": {},
+  "blur": "Vervaag:",
+  "@blur": {},
+  "isReadyForKeyVerification": "{sender} is klaar voor de sleutelverificatie",
+  "@isReadyForKeyVerification": {
+    "type": "String",
+    "placeholders": {
+      "sender": {
+        "type": "String"
+      }
+    }
+  },
+  "startedKeyVerification": "{sender} start een sleutelverificatie",
+  "@startedKeyVerification": {
+    "type": "String",
+    "placeholders": {
+      "sender": {
+        "type": "String"
+      }
+    }
+  },
+  "acceptedKeyVerification": "{sender} accepteerde de sleutelverificatie",
+  "@acceptedKeyVerification": {
+    "type": "String",
+    "placeholders": {
+      "sender": {
+        "type": "String"
+      }
+    }
+  },
+  "canceledKeyVerification": "{sender} annuleerde de sleutelverificatie",
+  "@canceledKeyVerification": {
+    "type": "String",
+    "placeholders": {
+      "sender": {
+        "type": "String"
+      }
+    }
+  },
+  "knockRestricted": "Kloppen is beperkt",
+  "@knockRestricted": {},
+  "goToSpace": "Ga naar space: {space}",
+  "@goToSpace": {
+    "type": "String",
+    "space": {}
+  },
+  "contactServerSecurity": "Contact opnemen met serverbeveiliger",
+  "@contactServerSecurity": {},
+  "newChatRequest": "📩 Nieuw chat verzoek",
+  "@newChatRequest": {},
+  "updateInstalled": "🎉 Update {version} geïnstalleerd!",
+  "@updateInstalled": {
+    "type": "String",
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "discoverHomeservers": "Ontdek servers",
+  "@discoverHomeservers": {},
+  "changelog": "Wijzigingengeschiedenis",
+  "@changelog": {},
+  "loginWithMatrixId": "Inloggen met Matrix ID",
+  "@loginWithMatrixId": {},
+  "calculatingFileSize": "Bestandsgrootte berekenen...",
+  "@calculatingFileSize": {},
+  "sendingAttachment": "Bijlage versturen...",
+  "@sendingAttachment": {},
+  "generatingVideoThumbnail": "Video-voorbeeld genereren...",
+  "@generatingVideoThumbnail": {},
+  "prepareSendingAttachment": "Bijlage versturen voorbereiden...",
+  "@prepareSendingAttachment": {},
+  "compressVideo": "Video comprimeren...",
+  "@compressVideo": {},
+  "serverLimitReached": "Server limiet bereikt! Wacht {seconds} seconden...",
+  "@serverLimitReached": {
+    "type": "integer",
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "version": "Versie",
+  "@version": {},
+  "supportPage": "Supportpagina",
+  "@supportPage": {},
+  "serverInformation": "Server-informatie:",
+  "@serverInformation": {},
+  "name": "Naam",
+  "@name": {},
+  "verifyOtherDeviceDescription": "Een geverifieerd ander apparaat zorgt ervoor dat de apparaten sleutels uitwisselen, wat je beveiliging versterkt. 💪 Als je de verificatie start verschijnt er een popup op beide apparaten. Hier staat een reeks emoji's of getallen die je met elkaar moet vergelijken. Het is handig om beide apparaten bij de hand te hebben voordat je de verificatie start. 🤳",
+  "@verifyOtherDeviceDescription": {},
+  "commandHint_unignore": "Herstel de negeerde Matrix ID",
+  "@commandHint_unignore": {},
+  "forwardMessageTo": "Bericht doorsturen naar {roomName}?",
+  "@forwardMessageTo": {
+    "type": "String",
+    "placeholders": {
+      "roomName": {
+        "type": "String"
+      }
+    }
+  },
+  "restoreSessionBody": "De app probeert nu je sessie te herstellen van een back-up. Meldt alsjeblieft deze fout aan de ontwikkelaars via deze link {url}. De foutmelding is: {error}",
+  "@restoreSessionBody": {
+    "type": "String",
+    "placeholders": {
+      "url": {
+        "type": "String"
+      },
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "sendReadReceipts": "Ontvangstbevestigingen versturen",
+  "@sendReadReceipts": {},
+  "formattedMessages": "Bericht opmaken",
+  "@formattedMessages": {},
+  "chatPermissionsDescription": "Stel het gewenste rechten-niveau in voor bepaalde acties in deze chat. Het rechten-niveau 0, 50 en 100 zijn gebruikelijk voor deelnemer, moderator en beheerder, maar elke verdeling is mogelijk.",
+  "@chatPermissionsDescription": {},
+  "changeTheDescriptionOfTheGroup": "De omschrijving van de chat veranderen",
+  "@changeTheDescriptionOfTheGroup": {},
+  "userRole": "Rol",
+  "@userRole": {},
+  "minimumPowerLevel": "{level} is het minimale rechten-niveau.",
+  "@minimumPowerLevel": {
+    "type": "String",
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
+  "sendReadReceiptsDescription": "Andere deelnemers van de chat kunnen zien of je een bericht hebt gelezen.",
+  "@sendReadReceiptsDescription": {},
+  "formattedMessagesDescription": "Geef rijke berichtinhoud weer zoals vetgedrukte tekst met markdown.",
+  "@formattedMessagesDescription": {},
+  "verifyOtherUser": "🔐 Persoon verifiëren",
+  "@verifyOtherUser": {},
+  "verifyOtherDevice": "🔐 Ander apparaat verifiëren",
+  "@verifyOtherDevice": {},
+  "doesNotSeemToBeAValidHomeserver": "Dit lijkt geen ondersteunde server. Verkeerde URL?",
+  "@doesNotSeemToBeAValidHomeserver": {},
+  "sendingAttachmentCountOfCount": "Bijlage versturen {index} van {length}...",
+  "@sendingAttachmentCountOfCount": {
+    "type": "integer",
+    "placeholders": {
+      "index": {
+        "type": "int"
+      },
+      "length": {
+        "type": "int"
+      }
+    }
+  },
+  "continueText": "Doorgaan",
+  "@continueText": {},
+  "welcomeText": "Hallo hallo 👋 Dit is FluffyChat. Je kan inloggen op elke server die werkt met https://matrix.org. En dan chat je met iedereen. Het is een groot decentraal chat-netwerk!",
+  "@welcomeText": {},
+  "appWantsToUseForLogin": "Inloggen met '{server}'",
+  "@appWantsToUseForLogin": {
+    "type": "String",
+    "placeholders": {
+      "server": {
+        "type": "String"
+      }
+    }
+  },
+  "appWantsToUseForLoginDescription": "Hierbij sta je toe dat de app en website informatie over je delen.",
+  "@appWantsToUseForLoginDescription": {},
+  "open": "Open",
+  "@open": {},
+  "appIntroduction": "FluffyChat laat je chatten met je vrienden tussen verschillende chat-netwerken. Lees meer op https://matrix.org of tik *Continue*.",
+  "@appIntroduction": {},
+  "completedKeyVerification": "{sender} ronde de sleutelverificatie af",
+  "@completedKeyVerification": {
+    "type": "String",
+    "placeholders": {
+      "sender": {
+        "type": "String"
+      }
+    }
+  },
+  "homeserverDescription": "Al je data is opgeslagen op de server, net als bij een email-leverancier. Je kan kiezen welke server je gebruikt en toch communiceren met iedereen. Lees meer op https://matrix.org.",
+  "@homeserverDescription": {}
 }
