@@ -3346,5 +3346,7 @@
   "notSupportedOnThisDevice": "Ní thacaítear leis ar an ngléas seo",
   "@notSupportedOnThisDevice": {},
   "optionalMessage": "Teachtaireacht (Roghnach)…",
-  "@optionalMessage": {}
+  "@optionalMessage": {},
+  "enterNewChat": "Cuir isteach comhrá nua",
+  "@enterNewChat": {}
 }

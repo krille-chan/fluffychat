@@ -3319,5 +3319,7 @@
   "recordAVideo": "Ierakstīt video",
   "@recordAVideo": {},
   "notSupportedOnThisDevice": "Šajā ierīcē nav atbalstīts",
-  "@notSupportedOnThisDevice": {}
+  "@notSupportedOnThisDevice": {},
+  "enterNewChat": "Ieiet jaunajā tērzēšanā",
+  "@enterNewChat": {}
 }
