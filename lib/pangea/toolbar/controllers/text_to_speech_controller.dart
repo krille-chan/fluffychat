@@ -7,9 +7,9 @@ import 'package:http/http.dart';
 import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/pangea/common/constants/model_keys.dart';
 import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
+import 'package:fluffychat/pangea/common/network/requests.dart';
 import 'package:fluffychat/pangea/common/network/urls.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_text_model.dart';
-import '../../common/network/requests.dart';
 
 class PangeaAudioEventData {
   final String text;

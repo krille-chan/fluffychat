@@ -193,7 +193,6 @@ class SettingsLearningController extends State<SettingsLearning> {
       case ToolSetting.enableTTS:
         return _profile.userSettings.targetLanguage != null &&
             _targetLanguage != null &&
-            tts.isLanguageSupported(_targetLanguage!) &&
             toolSettings.enableTTS;
       case ToolSetting.enableAutocorrect:
         return toolSettings.enableAutocorrect;
@@ -201,9 +200,7 @@ class SettingsLearningController extends State<SettingsLearning> {
   }
 
   bool get isTTSSupported =>
-      _profile.userSettings.targetLanguage != null &&
-      _targetLanguage != null &&
-      tts.isLanguageSupported(_targetLanguage!);
+      _profile.userSettings.targetLanguage != null && _targetLanguage != null;
 
   LanguageModel? get selectedSourceLanguage {
     return userL1 ?? pangeaController.languageController.systemLanguage;

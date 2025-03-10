@@ -22,6 +22,26 @@ class WordTextWithAudioButton extends StatefulWidget {
 
 class WordAudioButtonState extends State<WordTextWithAudioButton> {
   bool _isPlaying = false;
+  // initialize as null because we don't know if we need to load
+  // audio from choreo yet. This shall remain null if user device support
+  // text to speech
+  final bool? _isLoadingAudio = null;
+
+  @override
+  void initState() {
+    super.initState();
+    widget.ttsController.addListener(_onTtsControllerChange);
+  }
+
+  @override
+  void dispose() {
+    widget.ttsController.removeListener(_onTtsControllerChange);
+    super.dispose();
+  }
+
+  void _onTtsControllerChange() {
+    setState(() {});
+  }
 
   double get textSize =>
       widget.textSize ?? Theme.of(context).textTheme.titleLarge?.fontSize ?? 16;
@@ -41,6 +61,9 @@ class WordAudioButtonState extends State<WordTextWithAudioButton> {
         onExit: (event) => setState(() {}),
         child: GestureDetector(
           onTap: () async {
+            if (_isLoadingAudio == true) {
+              return;
+            }
             if (_isPlaying) {
               await widget.ttsController.stop();
               if (mounted) {
@@ -95,10 +118,24 @@ class WordAudioButtonState extends State<WordTextWithAudioButton> {
                   ),
                 ),
                 const SizedBox(width: 4),
-                Icon(
-                  _isPlaying ? Icons.play_arrow : Icons.play_arrow_outlined,
-                  size: textSize,
-                ),
+                if (widget.ttsController.hasLoadedTextToSpeech == false)
+                  const Padding(
+                    padding: EdgeInsets.only(
+                      left: 4,
+                    ), // Adds 20 pixels of left padding
+                    child: SizedBox(
+                      width: 16,
+                      height: 16,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 3,
+                      ),
+                    ),
+                  )
+                else
+                  Icon(
+                    _isPlaying ? Icons.play_arrow : Icons.play_arrow_outlined,
+                    size: textSize,
+                  ),
               ],
             ),
           ),

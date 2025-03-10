@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import 'package:app_settings/app_settings.dart';
@@ -18,7 +17,6 @@ import 'package:fluffychat/pangea/learning_settings/widgets/country_picker_tile.
 import 'package:fluffychat/pangea/learning_settings/widgets/p_language_dropdown.dart';
 import 'package:fluffychat/pangea/learning_settings/widgets/p_settings_switch_list_tile.dart';
 import 'package:fluffychat/pangea/spaces/models/space_model.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class SettingsLearningView extends StatelessWidget {
@@ -242,67 +240,7 @@ class SettingsLearningView extends StatelessWidget {
                                         toolSetting,
                                         value,
                                       ),
-                                      enabled:
-                                          toolSetting == ToolSetting.enableTTS
-                                              ? controller.isTTSSupported
-                                              : true,
                                     ),
-                                    if (toolSetting == ToolSetting.enableTTS &&
-                                        !controller.isTTSSupported)
-                                      Row(
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                              right: 16.0,
-                                            ),
-                                            child: Icon(
-                                              Icons.info_outlined,
-                                              color: Theme.of(context)
-                                                  .disabledColor,
-                                            ),
-                                          ),
-                                          Flexible(
-                                            child: RichText(
-                                              text: TextSpan(
-                                                text: L10n.of(context)
-                                                    .couldNotFindTTS,
-                                                style: TextStyle(
-                                                  color: Theme.of(context)
-                                                      .disabledColor,
-                                                ),
-                                                children: [
-                                                  if (PlatformInfos.isWindows ||
-                                                      PlatformInfos.isAndroid)
-                                                    TextSpan(
-                                                      text: L10n.of(context)
-                                                          .ttsInstructionsHyperlink,
-                                                      style: const TextStyle(
-                                                        color: Colors.blue,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        decoration:
-                                                            TextDecoration
-                                                                .underline,
-                                                      ),
-                                                      recognizer:
-                                                          TapGestureRecognizer()
-                                                            ..onTap = () {
-                                                              launchUrlString(
-                                                                PlatformInfos
-                                                                        .isWindows
-                                                                    ? AppConfig
-                                                                        .windowsTTSDownloadInstructions
-                                                                    : AppConfig
-                                                                        .androidTTSDownloadInstructions,
-                                                              );
-                                                            },
-                                                    ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
                                   ],
                                 ),
                               SwitchListTile.adaptive(

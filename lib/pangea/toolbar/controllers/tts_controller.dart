@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
@@ -6,20 +7,22 @@ import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
 import 'package:flutter_tts/flutter_tts.dart' as flutter_tts;
+import 'package:just_audio/just_audio.dart';
 import 'package:matrix/matrix_api_lite/utils/logs.dart';
 import 'package:text_to_speech/text_to_speech.dart';
 
 import 'package:fluffychat/pages/chat/chat.dart';
+import 'package:fluffychat/pages/chat/events/audio_player.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/instructions/instructions_enum.dart';
 import 'package:fluffychat/pangea/instructions/instructions_show_popup.dart';
-import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
-import 'package:fluffychat/pangea/toolbar/widgets/missing_voice_button.dart';
+import 'package:fluffychat/pangea/learning_settings/constants/language_constants.dart';
+import 'package:fluffychat/pangea/toolbar/controllers/text_to_speech_controller.dart';
 import 'package:fluffychat/pangea/user/controllers/user_controller.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
-class TtsController {
+class TtsController extends ChangeNotifier {
   final ChatController? chatController;
 
   String? get l2LangCode =>
@@ -46,9 +49,20 @@ class TtsController {
     return PlatformInfos.isWindows;
   }
 
+  bool _hasLoadedTextToSpeech = false;
+  bool get hasLoadedTextToSpeech => _hasLoadedTextToSpeech;
+  set hasLoadedTextToSpeech(bool value) {
+    if (_hasLoadedTextToSpeech != value) {
+      _hasLoadedTextToSpeech = value;
+      notifyListeners();
+    }
+  }
+
+  @override
   Future<void> dispose() async {
     await _tts.stop();
     await _languageSubscription?.cancel();
+    super.dispose();
   }
 
   void _onError(dynamic message) {
@@ -149,22 +163,6 @@ class TtsController {
     }
   }
 
-  Future<void> _showMissingVoicePopup(
-    BuildContext context,
-    String targetID,
-  ) async =>
-      instructionsShowPopup(
-        context,
-        InstructionsEnum.missingVoice,
-        targetID,
-        showToggle: false,
-        customContent: const Padding(
-          padding: EdgeInsets.only(top: 12),
-          child: MissingVoiceButton(),
-        ),
-        forceShow: true,
-      );
-
   Future<void> _showTTSDisabledPopup(
     BuildContext context,
     String targetID,
@@ -189,12 +187,13 @@ class TtsController {
     await _setLanguage();
     final enableTTS = MatrixState
         .pangeaController.userController.profile.toolSettings.enableTTS;
-
-    if (_isL2FullySupported && enableTTS) {
-      await _speak(text);
-    } else if (!_isL2FullySupported && targetID != null) {
-      await _showMissingVoicePopup(context, targetID);
-    } else if (!enableTTS && targetID != null) {
+    if (enableTTS) {
+      if (_isL2FullySupported) {
+        await _speak(text);
+      } else {
+        await _speakFromChoreo(text);
+      }
+    } else if (targetID != null) {
       await _showTTSDisabledPopup(context, targetID);
     }
   }
@@ -242,6 +241,23 @@ class TtsController {
           'text': text,
         },
       );
+      await _speakFromChoreo(text);
+    }
+  }
+
+  Future<void> playAudio(Uint8List audioContent, String mimeType) async {
+    final audioPlayer = AudioPlayer();
+    try {
+      await audioPlayer
+          .setAudioSource(BytesAudioSource(audioContent, mimeType));
+      await audioPlayer.play();
+    } catch (e) {
+      ErrorHandler.logError(
+        e: 'Error playing audio',
+        data: {
+          'error': e.toString(),
+        },
+      );
     }
   }
 
@@ -252,7 +268,31 @@ class TtsController {
                 .any((lang) => lang.startsWith(l2LangCodeShort!)));
   }
 
-  bool isLanguageSupported(LanguageModel lang) =>
-      _availableLangCodes.contains(lang.langCode) ||
-      _availableLangCodes.any((l) => l.startsWith(lang.langCodeShort));
+  Future<void> _speakFromChoreo(String text) async {
+    try {
+      hasLoadedTextToSpeech = false;
+      final ttsRes = await chatController?.pangeaController.textToSpeech.get(
+        TextToSpeechRequest(
+          text: text,
+          langCode: l2LangCode ?? LanguageKeys.unknownLanguage,
+          tokens: [], // TODO: Somehow bring existing tokens to avoid extra choreo token requests
+          userL1: LanguageKeys.unknownLanguage,
+          userL2: LanguageKeys.unknownLanguage,
+        ),
+      );
+      hasLoadedTextToSpeech = true;
+      if (ttsRes != null) {
+        final audioContent = base64Decode(ttsRes.audioContent);
+        await playAudio(audioContent, ttsRes.mimeType);
+      }
+    } catch (e, s) {
+      ErrorHandler.logError(
+        e: e,
+        s: s,
+        data: {
+          'text': text,
+        },
+      );
+    }
+  }
 }
