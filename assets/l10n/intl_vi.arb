@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2025-03-05 13:01:52.197829",
+  "@@last_modified": "2025-03-10 10:26:28.474786",
   "about": "Giới thiệu",
   "@about": {
     "type": "String",
@@ -3304,7 +3304,7 @@
   },
   "botModeValidation": "Vui lòng chọn một chế độ trò chuyện",
   "clickBestOption": "Chọn phương án tốt nhất để dịch tin nhắn của bạn!",
-  "completeActivitiesToUnlock": "Hoàn thành các hoạt động từ vựng để mở khóa phần âm thanh và bản dịch!",
+  "completeActivitiesToUnlock": "Hoàn thành các hoạt động từ vựng được đánh dấu để mở khóa",
   "botSettingsSubtitle": "Mời bot kiểm duyệt hoặc khởi tạo hoạt động trò chuyện",
   "invitePeople": "Mời người dùng",
   "invitePeopleChatSubtitle": "Mời người dùng hoặc quản trị viên đến cuộc trò chuyện này",
@@ -3568,7 +3568,6 @@
   "video": "Video",
   "nan": "Không áp dụng",
   "activityPlannerOverviewInstructionsBody": "Chọn chủ đề, chế độ, mục tiêu học tập và tạo hoạt động cho cuộc trò chuyện!",
-  "completeActivitiesToUnlock": "Hoàn thành các hoạt động từ vựng được đánh dấu để mở khóa",
   "myBookmarkedActivities": "Hoạt động đã đánh dấu",
   "noBookmarkedActivities": "Chưa có hoạt động nào được đánh dấu",
   "activityTitle": "Tiêu đề hoạt động",
@@ -3739,5 +3738,60 @@
     }
   },
   "downloadGboard": "Tải Gboard",
-  "autocorrectNotAvailable": "Rất tiếc, nền tảng của bạn hiện không được hỗ trợ cho tính năng này. Hãy theo dõi để biết thêm thông tin phát triển!"
+  "autocorrectNotAvailable": "Rất tiếc, nền tảng của bạn hiện không được hỗ trợ cho tính năng này. Hãy theo dõi để biết thêm thông tin phát triển!",
+  "takeAPhoto": "Chụp một bức ảnh",
+  "recordAVideo": "Ghi lại một video",
+  "optionalMessage": "(Tùy chọn) tin nhắn...",
+  "notSupportedOnThisDevice": "Không được hỗ trợ trên thiết bị này",
+  "pleaseUpdateApp": "Vui lòng cập nhật ứng dụng để tiếp tục.",
+  "chooseEmojiInstructionsBody": "Chọn một biểu tượng cảm xúc cho từ này! Không có câu trả lời sai và bạn có thể chuyển đổi bất cứ lúc nào! 😄",
+  "pickAnEmojiFor": "Chọn một biểu tượng cảm xúc cho ${lemma}",
+  "knockSpaceSuccess": "Bạn đã yêu cầu tham gia không gian này! Một quản trị viên sẽ phản hồi yêu cầu của bạn khi họ nhận được nó 😄",
+  "joinByCode": "Tham gia bằng mã",
+  "createASpace": "Tạo một không gian",
+  "@@locale": "vi",
+  "@takeAPhoto": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@recordAVideo": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@optionalMessage": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@notSupportedOnThisDevice": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@pleaseUpdateApp": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@chooseEmojiInstructionsBody": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@pickAnEmojiFor": {
+    "type": "String",
+    "placeholders": {
+      "lemma": {
+        "type": "String"
+      }
+    }
+  },
+  "@knockSpaceSuccess": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@joinByCode": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@createASpace": {
+    "type": "String",
+    "placeholders": {}
+  }
 }

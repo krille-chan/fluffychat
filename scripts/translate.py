@@ -8,6 +8,8 @@ Usage:
 python scripts/translate.py
 """
 
+from typing import Any
+
 
 def load_needed_translations() -> dict[str, list[str]]:
     import json
@@ -78,7 +80,11 @@ def save_translations(lang_code: str, translations: dict[str, str]) -> None:
         f.write(json.dumps(existing_data, indent=2, ensure_ascii=False))
 
 
-def reconcile_metadata(lang_code: str, translation_keys: list[str]) -> None:
+def reconcile_metadata(
+    lang_code: str,
+    translation_keys: list[str],
+    english_translations_dict: dict[str, Any],
+) -> None:
     """
     For each translation key, update its metadata (the key prefixed with '@') by merging
     any existing metadata with computed metadata. For basic translations, if no metadata exists,
@@ -95,7 +101,7 @@ def reconcile_metadata(lang_code: str, translation_keys: list[str]) -> None:
         # Case 1: Basic translations, no placeholders.
         if "{" not in translation:
             if not existing_meta:
-                translations[meta_key] = {"type": "text", "placeholders": {}}
+                translations[meta_key] = {"type": "String", "placeholders": {}}
             # if metadata exists, leave it as is.
 
         # Case 2: Translations with placeholders (no pluralization).
@@ -109,14 +115,27 @@ def reconcile_metadata(lang_code: str, translation_keys: list[str]) -> None:
             for placeholder in translation.split("{")[1:]:
                 placeholder_name = placeholder.split("}")[0]
                 computed_placeholders[placeholder_name] = {}
+                # Obtain placeholder type from english translation or default to {}
+                placeholder_type = (
+                    english_translations_dict.get(meta_key, {})
+                    .get("placeholders", {})
+                    .get(placeholder_name, {})
+                    .get("type")
+                )
+                if placeholder_type:
+                    computed_placeholders[placeholder_name]["type"] = placeholder_type
             if existing_meta:
                 # Merge computed placeholders into existing metadata.
-                existing_meta.setdefault("type", "text")
+                existing_meta.setdefault("type", "String")
                 existing_meta["placeholders"] = computed_placeholders
                 translations[meta_key] = existing_meta
             else:
+                # Obtain type from english translation or default to "String".
+                translation_type = english_translations_dict.get(meta_key, {}).get(
+                    "type", "String"
+                )
                 translations[meta_key] = {
-                    "type": "text",
+                    "type": translation_type,
                     "placeholders": computed_placeholders,
                 }
 
@@ -130,13 +149,27 @@ def reconcile_metadata(lang_code: str, translation_keys: list[str]) -> None:
                 p.strip() for p in prefix.split(",") if p.strip() != ""
             ]
             computed_placeholders = {ph: {} for ph in placeholders_list}
+            for ph in placeholders_list:
+                # Obtain placeholder type from english translation or default to {}
+                placeholder_type = (
+                    english_translations_dict.get(meta_key, {})
+                    .get("placeholders", {})
+                    .get(placeholder_name, {})
+                    .get("type")
+                )
+                if placeholder_type:
+                    computed_placeholders[ph]["type"] = placeholder_type
             if existing_meta:
-                existing_meta.setdefault("type", "text")
+                existing_meta.setdefault("type", "String")
                 existing_meta["placeholders"] = computed_placeholders
                 translations[meta_key] = existing_meta
             else:
+                # Obtain type from english translation or default to "String".
+                translation_type = english_translations_dict.get(meta_key, {}).get(
+                    "type", "String"
+                )
                 translations[meta_key] = {
-                    "type": "text",
+                    "type": "String",
                     "placeholders": computed_placeholders,
                 }
 
@@ -259,7 +292,7 @@ def translate(lang_code: str, lang_display_name: str) -> None:
     save_translations(lang_code, current_translations)
 
     # reconcile metadata
-    reconcile_metadata(lang_code, needed_translations)
+    reconcile_metadata(lang_code, needed_translations, english_translations_dict)
 
 
 """Example usage:
