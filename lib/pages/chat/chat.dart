@@ -110,7 +110,7 @@ class ChatController extends State<ChatPageWithRoom>
 
   final AutoScrollController scrollController = AutoScrollController();
 
-  FocusNode inputFocus = FocusNode();
+  late final FocusNode inputFocus;
   StreamSubscription<html.Event>? onFocusSub;
 
   Timer? typingCoolDown;
@@ -275,8 +275,26 @@ class ChatController extends State<ChatPageWithRoom>
     );
   }
 
+  KeyEventResult _shiftEnterKeyHandling(FocusNode node, KeyEvent evt) {
+    if (!HardwareKeyboard.instance.isShiftPressed &&
+        evt.logicalKey.keyLabel == 'Enter') {
+      if (evt is KeyDownEvent) {
+        send();
+      }
+      return KeyEventResult.handled;
+    } else {
+      return KeyEventResult.ignored;
+    }
+  }
+
   @override
   void initState() {
+    inputFocus = FocusNode(
+      onKeyEvent: (AppConfig.sendOnEnter ?? !PlatformInfos.isMobile)
+          ? _shiftEnterKeyHandling
+          : null,
+    );
+
     scrollController.addListener(_updateScrollController);
     inputFocus.addListener(_inputFocusListener);
 

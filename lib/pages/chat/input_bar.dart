@@ -5,12 +5,9 @@ import 'package:emojis/emoji.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:matrix/matrix.dart';
-import 'package:pasteboard/pasteboard.dart';
 import 'package:slugify/slugify.dart';
 
-import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/markdown_context_builder.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
 import '../../widgets/avatar.dart';
 import '../../widgets/matrix.dart';
@@ -397,125 +394,66 @@ class InputBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final useShortCuts = (AppConfig.sendOnEnter ?? !PlatformInfos.isMobile);
-    return Shortcuts(
-      shortcuts: !useShortCuts
-          ? {}
-          : {
-              LogicalKeySet(LogicalKeyboardKey.shift, LogicalKeyboardKey.enter):
-                  NewLineIntent(),
-              LogicalKeySet(LogicalKeyboardKey.enter): SubmitLineIntent(),
-              LogicalKeySet(
-                LogicalKeyboardKey.controlLeft,
-                LogicalKeyboardKey.keyM,
-              ): PasteLineIntent(),
-            },
-      child: Actions(
-        actions: !useShortCuts
-            ? {}
-            : {
-                NewLineIntent: CallbackAction(
-                  onInvoke: (i) {
-                    final val = controller!.value;
-                    final selection = val.selection.start;
-                    final messageWithoutNewLine =
-                        '${controller!.text.substring(0, val.selection.start)}\n${controller!.text.substring(val.selection.end)}';
-                    controller!.value = TextEditingValue(
-                      text: messageWithoutNewLine,
-                      selection: TextSelection.fromPosition(
-                        TextPosition(offset: selection + 1),
-                      ),
-                    );
-                    return null;
-                  },
-                ),
-                SubmitLineIntent: CallbackAction(
-                  onInvoke: (i) {
-                    onSubmitted!(controller!.text);
-                    return null;
-                  },
-                ),
-                PasteLineIntent: CallbackAction(
-                  onInvoke: (i) async {
-                    final image = await Pasteboard.image;
-                    if (image != null) {
-                      onSubmitImage!(image);
-                      return null;
-                    }
-                    return null;
-                  },
-                ),
-              },
-        child: TypeAheadField<Map<String, String?>>(
-          direction: VerticalDirection.up,
-          hideOnEmpty: true,
-          hideOnLoading: true,
-          controller: controller,
-          focusNode: focusNode,
-          hideOnSelect: false,
-          debounceDuration: const Duration(milliseconds: 50),
-          // show suggestions after 50ms idle time (default is 300)
-          builder: (context, controller, focusNode) => TextField(
-            controller: controller,
-            focusNode: focusNode,
-            contextMenuBuilder: (c, e) =>
-                markdownContextBuilder(c, e, controller),
-            contentInsertionConfiguration: ContentInsertionConfiguration(
-              onContentInserted: (KeyboardInsertedContent content) {
-                final data = content.data;
-                if (data == null) return;
+    return TypeAheadField<Map<String, String?>>(
+      direction: VerticalDirection.up,
+      hideOnEmpty: true,
+      hideOnLoading: true,
+      controller: controller,
+      focusNode: focusNode,
+      hideOnSelect: false,
+      debounceDuration: const Duration(milliseconds: 50),
+      // show suggestions after 50ms idle time (default is 300)
+      builder: (context, controller, focusNode) => TextField(
+        controller: controller,
+        focusNode: focusNode,
+        contextMenuBuilder: (c, e) => markdownContextBuilder(c, e, controller),
+        contentInsertionConfiguration: ContentInsertionConfiguration(
+          onContentInserted: (KeyboardInsertedContent content) {
+            final data = content.data;
+            if (data == null) return;
 
-                final file = MatrixFile(
-                  mimeType: content.mimeType,
-                  bytes: data,
-                  name: content.uri.split('/').last,
-                );
-                room.sendFileEvent(
-                  file,
-                  shrinkImageMaxDimension: 1600,
-                );
-              },
-            ),
-            minLines: minLines,
-            maxLines: maxLines,
-            keyboardType: keyboardType!,
-            textInputAction: textInputAction,
-            autofocus: autofocus!,
-            inputFormatters: [
-              LengthLimitingTextInputFormatter((maxPDUSize / 3).floor()),
-            ],
-            onSubmitted: (text) {
-              // fix for library for now
-              // it sets the types for the callback incorrectly
-              onSubmitted!(text);
-            },
-            decoration: decoration!,
-            onChanged: (text) {
-              // fix for the library for now
-              // it sets the types for the callback incorrectly
-              onChanged!(text);
-            },
-            textCapitalization: TextCapitalization.sentences,
-          ),
-          suggestionsCallback: getSuggestions,
-          itemBuilder: (c, s) =>
-              buildSuggestion(c, s, Matrix.of(context).client),
-          onSelected: (Map<String, String?> suggestion) =>
-              insertSuggestion(context, suggestion),
-          errorBuilder: (BuildContext context, Object? error) =>
-              const SizedBox.shrink(),
-          loadingBuilder: (BuildContext context) => const SizedBox.shrink(),
-          // fix loading briefly flickering a dark box
-          emptyBuilder: (BuildContext context) => const SizedBox
-              .shrink(), // fix loading briefly showing no suggestions
+            final file = MatrixFile(
+              mimeType: content.mimeType,
+              bytes: data,
+              name: content.uri.split('/').last,
+            );
+            room.sendFileEvent(
+              file,
+              shrinkImageMaxDimension: 1600,
+            );
+          },
         ),
+        minLines: minLines,
+        maxLines: maxLines,
+        keyboardType: keyboardType!,
+        textInputAction: textInputAction,
+        autofocus: autofocus!,
+        inputFormatters: [
+          LengthLimitingTextInputFormatter((maxPDUSize / 3).floor()),
+        ],
+        onSubmitted: (text) {
+          // fix for library for now
+          // it sets the types for the callback incorrectly
+          onSubmitted!(text);
+        },
+        decoration: decoration!,
+        onChanged: (text) {
+          // fix for the library for now
+          // it sets the types for the callback incorrectly
+          onChanged!(text);
+        },
+        textCapitalization: TextCapitalization.sentences,
       ),
+      suggestionsCallback: getSuggestions,
+      itemBuilder: (c, s) => buildSuggestion(c, s, Matrix.of(context).client),
+      onSelected: (Map<String, String?> suggestion) =>
+          insertSuggestion(context, suggestion),
+      errorBuilder: (BuildContext context, Object? error) =>
+          const SizedBox.shrink(),
+      loadingBuilder: (BuildContext context) => const SizedBox.shrink(),
+      // fix loading briefly flickering a dark box
+      emptyBuilder: (BuildContext context) =>
+          const SizedBox.shrink(), // fix loading briefly showing no suggestions
     );
   }
 }
-
-class NewLineIntent extends Intent {}
-
-class SubmitLineIntent extends Intent {}
-
-class PasteLineIntent extends Intent {}
