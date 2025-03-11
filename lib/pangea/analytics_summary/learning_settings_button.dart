@@ -44,7 +44,7 @@ class LearningSettingsButton extends StatelessWidget {
               padding: const EdgeInsets.all(4.0),
               child: Icon(
                 size: 14,
-                Icons.settings_outlined,
+                Icons.language_outlined,
                 color: Theme.of(context).colorScheme.primary,
                 weight: 1000,
               ),

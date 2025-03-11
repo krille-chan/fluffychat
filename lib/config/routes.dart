@@ -181,8 +181,10 @@ abstract class AppRoutes {
               )
             // #Pangea
             // : child,
-            : state.fullPath?.split("/").reversed.elementAt(1) == 'rooms' &&
-                    state.pathParameters['roomid'] != null
+            : FluffyThemes.isColumnMode(context) ||
+                    (state.fullPath?.split("/").reversed.elementAt(1) ==
+                            'rooms' &&
+                        state.pathParameters['roomid'] != null)
                 ? child
                 : BottomNavLayout(mainView: child),
         // Pangea#
