@@ -627,11 +627,11 @@ gon(){return"Savstarp\u0113ji apliecin\u0101tas ier\u012bces"},
 gpk(){return"Tikai apliecin\u0101tas ier\u012bces"},
 gpe(){return"(P\u0113c izv\u0113les) Zi\u0146ojums..."},
 gov(){return"\u0160aj\u0101 ier\u012bc\u0113 nav atbalst\u012bts"},
-goq(){return"Enter new chat"},
+goq(){return"Ieiet jaunaj\u0101 t\u0113rz\u0113\u0161an\u0101"},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.EK,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"EK":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_274",e:"endPart",h:b})})($__dart_deferred_initializers__,"gxIw13MzRf5s6gyHzTJddWwbZt0=");
+a.eventLog.push({p:"main.dart.js_274",e:"endPart",h:b})})($__dart_deferred_initializers__,"lf5V/vakE5xDOznyuW+T7lh2EMQ=");
 //# sourceMappingURL=main.dart.js_274.part.js.map

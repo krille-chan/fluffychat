@@ -627,12 +627,12 @@ gon(){return"Feist\xed trasfh\xedoraithe"},
 gpk(){return"Gl\xe9asanna f\xedoraithe amh\xe1in"},
 gpe(){return"Teachtaireacht (Roghnach)\u2026"},
 gov(){return"N\xed thaca\xedtear leis ar an ngl\xe9as seo"},
-goq(){return"Enter new chat"},
+goq(){return"Cuir isteach comhr\xe1 nua"},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.Ew,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"Ew":{"aF":[]}}'))
 var y={a:"Cuir cosc ar an \xfas\xe1ideoir \xe1irithe \xf3n seomra seo"}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_245",e:"endPart",h:b})})($__dart_deferred_initializers__,"eaOctTXBg5D+9H5ZhVNC57jwOwU=");
+a.eventLog.push({p:"main.dart.js_245",e:"endPart",h:b})})($__dart_deferred_initializers__,"DpOEq4pOmWKzZ1nyLmPc3ZP4ZCw=");
 //# sourceMappingURL=main.dart.js_245.part.js.map

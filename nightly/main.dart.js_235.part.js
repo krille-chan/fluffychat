@@ -627,11 +627,11 @@ gon(){return"Risttunnustatud seadmeid"},
 gpk(){return"Vaid verifitseeritud seadmeid"},
 gpe(){return"S\xf5num (kui soovid lisada)..."},
 gov(){return"See pole antud seadmes toetatud"},
-goq(){return"Enter new chat"},
+goq(){return"Liitu uue vestlusega"},
 D(d,e){return this.gbe(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Eq,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"Eq":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_235",e:"endPart",h:b})})($__dart_deferred_initializers__,"qu184j3DGoTmfXRSvOvvZKTSOcQ=");
+a.eventLog.push({p:"main.dart.js_235",e:"endPart",h:b})})($__dart_deferred_initializers__,"AUpdkI9y7EM8ZR+YUxWSNyCKjTg=");
 //# sourceMappingURL=main.dart.js_235.part.js.map
