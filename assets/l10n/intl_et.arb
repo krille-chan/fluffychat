@@ -3341,5 +3341,7 @@
   "optionalMessage": "Sõnum (kui soovid lisada)...",
   "@optionalMessage": {},
   "notSupportedOnThisDevice": "See pole antud seadmes toetatud",
-  "@notSupportedOnThisDevice": {}
+  "@notSupportedOnThisDevice": {},
+  "enterNewChat": "Liitu uue vestlusega",
+  "@enterNewChat": {}
 }
