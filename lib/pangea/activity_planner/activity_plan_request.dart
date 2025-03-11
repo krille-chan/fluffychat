@@ -10,7 +10,7 @@ class ActivityPlanRequest {
   final String languageOfInstructions;
   final String targetLanguage;
   final int count;
-  final int numberOfParticipants;
+  int numberOfParticipants;
 
   ActivityPlanRequest({
     required this.topic,
@@ -57,4 +57,32 @@ class ActivityPlanRequest {
 
   String get storageKey =>
       '$topic-$mode-$objective-${media.string}-$cefrLevel-$languageOfInstructions-$targetLanguage-$numberOfParticipants';
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is ActivityPlanRequest &&
+        other.topic == topic &&
+        other.mode == mode &&
+        other.objective == objective &&
+        other.media == media &&
+        other.cefrLevel == cefrLevel &&
+        other.languageOfInstructions == languageOfInstructions &&
+        other.targetLanguage == targetLanguage &&
+        other.count == count &&
+        other.numberOfParticipants == numberOfParticipants;
+  }
+
+  @override
+  int get hashCode =>
+      topic.hashCode ^
+      mode.hashCode ^
+      objective.hashCode ^
+      media.hashCode ^
+      cefrLevel.hashCode ^
+      languageOfInstructions.hashCode ^
+      targetLanguage.hashCode ^
+      count.hashCode ^
+      numberOfParticipants.hashCode;
 }

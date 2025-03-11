@@ -53,16 +53,18 @@ class SettingsView extends StatelessWidget {
         ],
         Expanded(
           child: Scaffold(
-            appBar: FluffyThemes.isColumnMode(context)
-                ? null
-                : AppBar(
-                    title: Text(L10n.of(context).settings),
-                    leading: Center(
-                      child: BackButton(
-                        onPressed: () => context.go('/rooms'),
-                      ),
-                    ),
-                  ),
+            // #Pangea
+            // appBar: FluffyThemes.isColumnMode(context)
+            //     ? null
+            //     : AppBar(
+            //         title: Text(L10n.of(context).settings),
+            //         leading: Center(
+            //           child: BackButton(
+            //             onPressed: () => context.go('/rooms'),
+            //           ),
+            //         ),
+            //       ),
+            // Pangea#
             body: ListTileTheme(
               iconColor: theme.colorScheme.onSurface,
               child: ListView(

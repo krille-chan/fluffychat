@@ -111,7 +111,11 @@ class CustomizedSvg extends StatelessWidget {
   Widget build(BuildContext context) {
     final cached = _getSvgFromCache();
     if (cached != null) {
-      return SvgPicture.string(cached);
+      return SvgPicture.string(
+        cached,
+        width: width,
+        height: height,
+      );
     }
 
     return FutureBuilder<String?>(

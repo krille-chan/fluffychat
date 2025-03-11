@@ -1,11 +1,14 @@
+import 'package:flutter/foundation.dart';
+
 import 'package:fluffychat/pangea/activity_planner/activity_plan_request.dart';
 
 class ActivityPlanModel {
   final ActivityPlanRequest req;
-  final String title;
-  final String learningObjective;
-  final String instructions;
-  final List<Vocab> vocab;
+  String title;
+  String learningObjective;
+  String instructions;
+  List<Vocab> vocab;
+  String? imageURL;
   String? bookmarkId;
 
   ActivityPlanModel({
@@ -14,6 +17,7 @@ class ActivityPlanModel {
     required this.learningObjective,
     required this.instructions,
     required this.vocab,
+    this.imageURL,
     this.bookmarkId,
   });
 
@@ -27,6 +31,7 @@ class ActivityPlanModel {
         json['vocab'].map((vocab) => Vocab.fromJson(vocab)),
       ),
       bookmarkId: json['bookmark_id'],
+      imageURL: json['image_url'],
     );
   }
 
@@ -38,6 +43,7 @@ class ActivityPlanModel {
       'instructions': instructions,
       'vocab': vocab.map((vocab) => vocab.toJson()).toList(),
       'bookmark_id': bookmarkId,
+      'image_url': imageURL,
     };
   }
 
@@ -63,6 +69,28 @@ class ActivityPlanModel {
   bool get isBookmarked {
     return bookmarkId != null;
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is ActivityPlanModel &&
+        other.req == req &&
+        other.title == title &&
+        other.learningObjective == learningObjective &&
+        other.instructions == instructions &&
+        listEquals(other.vocab, vocab) &&
+        other.bookmarkId == bookmarkId;
+  }
+
+  @override
+  int get hashCode =>
+      req.hashCode ^
+      title.hashCode ^
+      learningObjective.hashCode ^
+      instructions.hashCode ^
+      Object.hashAll(vocab) ^
+      bookmarkId.hashCode;
 }
 
 class Vocab {
@@ -87,4 +115,14 @@ class Vocab {
       'pos': pos,
     };
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is Vocab && other.lemma == lemma && other.pos == pos;
+  }
+
+  @override
+  int get hashCode => lemma.hashCode ^ pos.hashCode;
 }

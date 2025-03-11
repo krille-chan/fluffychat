@@ -4715,7 +4715,7 @@
   "myBookmarkedActivities": "My Bookmarked Activities",
   "noBookmarkedActivities": "No bookmarked activities",
   "activityTitle": "Activity Title",
-  "addVocabulary": "Add Vocabulary",
+  "addVocabulary": "Add vocabulary",
   "instructions": "Instructions",
   "bookmark": "Bookmark this activity",
   "numberOfLearners": "Number of learners",
@@ -4807,5 +4807,9 @@
   "morphAnalyticsListBody": "These are all the grammar concepts in the language you're learning! You'll unlock them as you encounter them while chatting. Click for details.",
   "knockSpaceSuccess": "You have requested to join this space! An admin will respond to your request when they receive it 😀",
   "joinByCode": "Join by code",
-  "createASpace": "Create a space"
+  "createASpace": "Create a space",
+  "inviteAndLaunch": "Invite and launch",
+  "createOwnChat": "Create your own chat",
+  "pleaseEnterInt": "Please enter a number",
+  "home": "Home"
 } 
