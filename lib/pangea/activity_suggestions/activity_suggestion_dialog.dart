@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -241,7 +242,6 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
                               decoration: InputDecoration(
                                 labelText: L10n.of(context).activityTitle,
                               ),
-                              style: theme.textTheme.bodySmall,
                               maxLines: 2,
                               minLines: 1,
                             ),
@@ -251,10 +251,9 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
                             icon: Icons.event_note_outlined,
                             child: Text(
                               widget.activity.title,
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                              ),
-                              maxLines: 1,
+                              style: theme.textTheme.titleMedium
+                                  ?.copyWith(fontWeight: FontWeight.bold),
+                              maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
@@ -262,7 +261,6 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
                           ActivitySuggestionCardRow(
                             icon: Symbols.target,
                             child: TextFormField(
-                              style: theme.textTheme.bodySmall,
                               controller: _learningObjectivesController,
                               decoration: InputDecoration(
                                 labelText:
@@ -277,16 +275,14 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
                             icon: Symbols.target,
                             child: Text(
                               widget.activity.learningObjective,
-                              style: theme.textTheme.bodySmall,
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
                         if (_isEditing)
                           ActivitySuggestionCardRow(
-                            icon: Symbols.target,
+                            icon: Symbols.steps,
                             child: TextFormField(
-                              style: theme.textTheme.bodySmall,
                               controller: _instructionsController,
                               decoration: InputDecoration(
                                 labelText: L10n.of(context).instructions,
@@ -297,10 +293,9 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
                           )
                         else
                           ActivitySuggestionCardRow(
-                            icon: Symbols.target,
+                            icon: Symbols.steps,
                             child: Text(
                               widget.activity.instructions,
-                              style: theme.textTheme.bodySmall,
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                             ),
@@ -310,7 +305,6 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
                             icon: Icons.group_outlined,
                             child: TextFormField(
                               controller: _participantsController,
-                              style: theme.textTheme.bodySmall,
                               decoration: InputDecoration(
                                 labelText: L10n.of(context).classRoster,
                               ),
@@ -340,7 +334,6 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
                               L10n.of(context).countParticipants(
                                 widget.activity.req.numberOfParticipants,
                               ),
-                              style: theme.textTheme.bodySmall,
                             ),
                           ),
                         if (_isEditing)
@@ -348,7 +341,7 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
                             icon: Symbols.dictionary,
                             child: ConstrainedBox(
                               constraints:
-                                  const BoxConstraints(maxHeight: 54.0),
+                                  const BoxConstraints(maxHeight: 60.0),
                               child: SingleChildScrollView(
                                 child: Wrap(
                                   spacing: 4.0,
@@ -374,11 +367,7 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
                                                 spacing: 4.0,
                                                 mainAxisSize: MainAxisSize.min,
                                                 children: [
-                                                  Text(
-                                                    vocab.lemma,
-                                                    style: theme
-                                                        .textTheme.bodySmall,
-                                                  ),
+                                                  Text(vocab.lemma),
                                                   const Icon(
                                                     Icons.close,
                                                     size: 12.0,
@@ -399,7 +388,7 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
                             icon: Symbols.dictionary,
                             child: ConstrainedBox(
                               constraints:
-                                  const BoxConstraints(maxHeight: 54.0),
+                                  const BoxConstraints(maxHeight: 60.0),
                               child: SingleChildScrollView(
                                 child: Wrap(
                                   spacing: 4.0,
@@ -417,10 +406,7 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
                                             borderRadius:
                                                 BorderRadius.circular(24.0),
                                           ),
-                                          child: Text(
-                                            vocab.lemma,
-                                            style: theme.textTheme.bodySmall,
-                                          ),
+                                          child: Text(vocab.lemma),
                                         ),
                                       )
                                       .toList(),
@@ -437,7 +423,6 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
                                 Expanded(
                                   child: TextFormField(
                                     controller: _vocabController,
-                                    style: theme.textTheme.bodySmall,
                                     decoration: InputDecoration(
                                       hintText: L10n.of(context).addVocabulary,
                                     ),
@@ -505,9 +490,7 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
                         ),
                         child: Text(
                           L10n.of(context).inviteAndLaunch,
-                          style: theme.textTheme.bodyMedium?.copyWith(
-                            color: theme.colorScheme.onPrimary,
-                          ),
+                          style: TextStyle(color: theme.colorScheme.onPrimary),
                         ),
                       ),
                     ),
@@ -574,8 +557,11 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
       ),
     );
 
-    return FluffyThemes.isColumnMode(context)
-        ? Dialog(child: content)
-        : Dialog.fullscreen(child: content);
+    return BackdropFilter(
+      filter: ImageFilter.blur(sigmaX: 2.5, sigmaY: 2.5),
+      child: FluffyThemes.isColumnMode(context)
+          ? Dialog(child: content)
+          : Dialog.fullscreen(child: content),
+    );
   }
 }
