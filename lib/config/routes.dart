@@ -41,7 +41,6 @@ import 'package:fluffychat/pangea/spaces/utils/join_with_alias.dart';
 import 'package:fluffychat/pangea/spaces/utils/join_with_link.dart';
 import 'package:fluffychat/pangea/subscription/pages/settings_subscription.dart';
 import 'package:fluffychat/pangea/user/pages/find_partner.dart';
-import 'package:fluffychat/widgets/layouts/empty_page.dart';
 import 'package:fluffychat/widgets/layouts/two_column_layout.dart';
 import 'package:fluffychat/widgets/log_view.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -352,7 +351,10 @@ abstract class AppRoutes {
                     context,
                     state,
                     FluffyThemes.isColumnMode(context)
-                        ? const EmptyPage()
+                        // #Pangea
+                        // ? const EmptyPage()
+                        ? const ActivitySuggestionsArea()
+                        // Pangea#
                         : const Settings(),
                   ),
                   routes: [
