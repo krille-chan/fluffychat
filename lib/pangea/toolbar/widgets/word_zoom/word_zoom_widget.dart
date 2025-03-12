@@ -78,18 +78,20 @@ class WordZoomWidget extends StatelessWidget {
                         ),
                         isSelected: _mode == MessageMode.wordEmoji,
                       ),
-                      LemmaWidget(
-                        token: _selectedToken,
-                        pangeaMessageEvent: messageEvent,
-                        // onEdit: () => _setHideCenterContent(true),
-                        onEdit: () {
-                          debugPrint("what are we doing edits with?");
-                        },
-                        onEditDone: () {
-                          debugPrint("what are we doing edits with?");
-                          onEditDone();
-                        },
-                        tts: tts,
+                      Expanded(
+                        child: LemmaWidget(
+                          token: _selectedToken,
+                          pangeaMessageEvent: messageEvent,
+                          // onEdit: () => _setHideCenterContent(true),
+                          onEdit: () {
+                            debugPrint("what are we doing edits with?");
+                          },
+                          onEditDone: () {
+                            debugPrint("what are we doing edits with?");
+                            onEditDone();
+                          },
+                          tts: tts,
+                        ),
                       ),
                       ConstructXpWidget(
                         id: token.vocabConstructID,
@@ -129,7 +131,6 @@ class WordZoomWidget extends StatelessWidget {
                     if (!_selectedToken.doesLemmaTextMatchTokenText)
                       WordTextWithAudioButton(
                         text: _selectedToken.text.content,
-                        ttsController: tts,
                         textSize:
                             Theme.of(context).textTheme.titleMedium?.fontSize,
                       ),

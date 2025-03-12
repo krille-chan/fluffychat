@@ -8,13 +8,11 @@ import 'package:fluffychat/widgets/matrix.dart';
 
 class WordAudioButton extends StatefulWidget {
   final String text;
-  final TtsController ttsController;
   final double size;
 
   const WordAudioButton({
     super.key,
     required this.text,
-    required this.ttsController,
     this.size = 24,
   });
 
@@ -23,7 +21,14 @@ class WordAudioButton extends StatefulWidget {
 }
 
 class WordAudioButtonState extends State<WordAudioButton> {
+  final TtsController tts = TtsController();
   bool _isPlaying = false;
+
+  @override
+  void dispose() {
+    tts.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +45,7 @@ class WordAudioButtonState extends State<WordAudioButton> {
         iconSize: widget.size,
         onPressed: () async {
           if (_isPlaying) {
-            await widget.ttsController.stop();
+            await tts.stop();
             if (mounted) {
               setState(() => _isPlaying = false);
             }
@@ -49,7 +54,7 @@ class WordAudioButtonState extends State<WordAudioButton> {
               setState(() => _isPlaying = true);
             }
             try {
-              await widget.ttsController.tryToSpeak(
+              await tts.tryToSpeak(
                 widget.text,
                 context,
                 targetID: 'word-audio-button',

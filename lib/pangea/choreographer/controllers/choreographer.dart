@@ -77,9 +77,6 @@ class Choreographer {
     trialStream = pangeaController
         .subscriptionController.trialActivationStream.stream
         .listen((_) => _onChangeListener);
-
-    tts.setupTTS();
-
     clear();
   }
 

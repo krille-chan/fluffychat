@@ -212,7 +212,6 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
             ActivityTypeEnum.wordFocusListening)
           WordAudioButton(
             text: practiceActivity.content.answers.first,
-            ttsController: tts,
           ),
         if (practiceActivity.activityType ==
             ActivityTypeEnum.hiddenWordListening)
@@ -242,25 +241,18 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
       ],
     );
 
-    return practiceActivity.activityType ==
-                ActivityTypeEnum.hiddenWordListening ||
-            practiceActivity.activityType == ActivityTypeEnum.messageMeaning
-        ? ConstrainedBox(
-            constraints: const BoxConstraints(
-              // see https://github.com/pangeachat/client/issues/1422
-              maxWidth: AppConfig.toolbarMinWidth,
-              maxHeight: AppConfig.toolbarMaxHeight,
-            ),
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(8),
-                child: content,
-              ),
-            ),
-          )
-        : Padding(
-            padding: const EdgeInsets.all(8),
-            child: content,
-          );
+    return ConstrainedBox(
+      constraints: const BoxConstraints(
+        // see https://github.com/pangeachat/client/issues/1422
+        maxWidth: AppConfig.toolbarMinWidth,
+        maxHeight: AppConfig.toolbarMaxHeight,
+      ),
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(8),
+          child: content,
+        ),
+      ),
+    );
   }
 }

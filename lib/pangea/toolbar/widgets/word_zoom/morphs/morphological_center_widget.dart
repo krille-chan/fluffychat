@@ -211,7 +211,6 @@ class MorphFocusWidgetState extends State<MorphFocusWidget> {
       child: Padding(
         padding: const EdgeInsets.all(4.0),
         child: Column(
-          spacing: 4.0,
           children: [
             Text(
               "${L10n.of(context).pangeaBotIsFallible} ${L10n.of(context).chooseCorrectLabel}",
@@ -219,13 +218,13 @@ class MorphFocusWidgetState extends State<MorphFocusWidget> {
               style: const TextStyle(fontStyle: FontStyle.italic),
             ),
             Container(
-              constraints: const BoxConstraints(maxHeight: 70),
+              constraints: const BoxConstraints(maxHeight: 50),
               child: Scrollbar(
                 controller: _scrollController,
                 thumbVisibility: true,
                 child: SingleChildScrollView(
                   controller: _scrollController,
-                  scrollDirection: Axis.vertical,
+                  scrollDirection: Axis.horizontal,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 4),
                     child: FutureBuilder(
@@ -237,8 +236,7 @@ class MorphFocusWidgetState extends State<MorphFocusWidget> {
                                 .getDisplayTags(widget.morphFeature);
 
                         return snapshot.connectionState == ConnectionState.done
-                            ? Wrap(
-                                alignment: WrapAlignment.center,
+                            ? Row(
                                 children: allMorphTagsForEdit.map((tag) {
                                   return Container(
                                     margin: const EdgeInsets.all(2),

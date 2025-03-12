@@ -162,17 +162,14 @@ class LemmaWidgetState extends State<LemmaWidget> {
       );
     }
 
-    return Flexible(
-      child: Tooltip(
-        triggerMode: TooltipTriggerMode.tap,
-        message: L10n.of(context).doubleClickToEdit,
-        child: GestureDetector(
-          onLongPress: () => _toggleEditMode(true),
-          onDoubleTap: () => _toggleEditMode(true),
-          child: WordTextWithAudioButton(
-            text: widget.token.lemma.text,
-            ttsController: widget.tts,
-          ),
+    return Tooltip(
+      triggerMode: TooltipTriggerMode.tap,
+      message: L10n.of(context).doubleClickToEdit,
+      child: GestureDetector(
+        onLongPress: () => _toggleEditMode(true),
+        onDoubleTap: () => _toggleEditMode(true),
+        child: WordTextWithAudioButton(
+          text: widget.token.lemma.text,
         ),
       ),
     );

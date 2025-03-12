@@ -22,7 +22,7 @@ import 'package:fluffychat/pangea/user/controllers/user_controller.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
-class TtsController extends ChangeNotifier {
+class TtsController {
   final ChatController? chatController;
 
   String? get l2LangCode =>
@@ -35,6 +35,8 @@ class TtsController extends ChangeNotifier {
   final flutter_tts.FlutterTts _tts = flutter_tts.FlutterTts();
   final TextToSpeech _alternativeTTS = TextToSpeech();
   StreamSubscription? _languageSubscription;
+  final StreamController<bool> loadingChoreoStream =
+      StreamController<bool>.broadcast();
 
   UserController get userController =>
       MatrixState.pangeaController.userController;
@@ -49,20 +51,10 @@ class TtsController extends ChangeNotifier {
     return PlatformInfos.isWindows;
   }
 
-  bool? _hasLoadedTextToSpeech;
-  bool? get hasLoadedTextToSpeech => _hasLoadedTextToSpeech;
-  set hasLoadedTextToSpeech(bool? value) {
-    if (_hasLoadedTextToSpeech != value) {
-      _hasLoadedTextToSpeech = value;
-      notifyListeners();
-    }
-  }
-
-  @override
   Future<void> dispose() async {
     await _tts.stop();
     await _languageSubscription?.cancel();
-    super.dispose();
+    await loadingChoreoStream.close();
   }
 
   void _onError(dynamic message) {
@@ -269,9 +261,10 @@ class TtsController extends ChangeNotifier {
   }
 
   Future<void> _speakFromChoreo(String text) async {
+    TextToSpeechResponse? ttsRes;
     try {
-      hasLoadedTextToSpeech = false;
-      final ttsRes = await chatController?.pangeaController.textToSpeech.get(
+      loadingChoreoStream.add(true);
+      ttsRes = await chatController?.pangeaController.textToSpeech.get(
         TextToSpeechRequest(
           text: text,
           langCode: l2LangCode ?? LanguageKeys.unknownLanguage,
@@ -280,11 +273,23 @@ class TtsController extends ChangeNotifier {
           userL2: LanguageKeys.unknownLanguage,
         ),
       );
-      hasLoadedTextToSpeech = true;
-      if (ttsRes != null) {
-        final audioContent = base64Decode(ttsRes.audioContent);
-        await playAudio(audioContent, ttsRes.mimeType);
-      }
+    } catch (e, s) {
+      ErrorHandler.logError(
+        e: e,
+        s: s,
+        data: {
+          'text': text,
+        },
+      );
+    } finally {
+      loadingChoreoStream.add(false);
+    }
+
+    if (ttsRes == null) return;
+
+    try {
+      final audioContent = base64Decode(ttsRes.audioContent);
+      await playAudio(audioContent, ttsRes.mimeType);
     } catch (e, s) {
       ErrorHandler.logError(
         e: e,

@@ -12,7 +12,6 @@ import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_text_model.dart';
 import 'package:fluffychat/pangea/lemmas/lemma.dart';
 import 'package:fluffychat/pangea/morphs/get_grammar_copy.dart';
-import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/practice_activity/word_audio_button.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/word_zoom/lemma_meaning_widget.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -98,7 +97,6 @@ class VocabDetailsView extends StatelessWidget {
           const SizedBox(width: 10.0),
           WordAudioButton(
             text: _construct.lemma,
-            ttsController: TtsController(),
             size: 24,
           ),
         ],
