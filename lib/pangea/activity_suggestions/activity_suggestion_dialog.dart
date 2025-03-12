@@ -1,0 +1,581 @@
+import 'dart:developer';
+
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
+import 'package:collection/collection.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:go_router/go_router.dart';
+import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
+import 'package:material_symbols_icons/symbols.dart';
+import 'package:matrix/matrix.dart';
+import 'package:matrix/matrix_api_lite/generated/model.dart' as sdk;
+
+import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
+import 'package:fluffychat/pangea/activity_suggestions/activity_suggestion_card_row.dart';
+import 'package:fluffychat/pangea/chat/constants/default_power_level.dart';
+import 'package:fluffychat/pangea/common/constants/model_keys.dart';
+import 'package:fluffychat/pangea/common/utils/error_handler.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/utils/file_selector.dart';
+import 'package:fluffychat/widgets/future_loading_dialog.dart';
+import 'package:fluffychat/widgets/matrix.dart';
+
+class ActivitySuggestionDialog extends StatefulWidget {
+  final ActivityPlanModel activity;
+  const ActivitySuggestionDialog({
+    required this.activity,
+    super.key,
+  });
+
+  @override
+  ActivitySuggestionDialogState createState() =>
+      ActivitySuggestionDialogState();
+}
+
+class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
+  bool _isEditing = false;
+
+  Uint8List? _avatar;
+  String? _avatarURL;
+
+  final TextEditingController _titleController = TextEditingController();
+  final TextEditingController _instructionsController = TextEditingController();
+  final TextEditingController _vocabController = TextEditingController();
+  final TextEditingController _participantsController = TextEditingController();
+  final TextEditingController _learningObjectivesController =
+      TextEditingController();
+
+  // storing this separately so that we can dismiss edits,
+  // rather than directly modifying the activity with each change
+  final List<Vocab> _vocab = [];
+
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    super.initState();
+    _titleController.text = widget.activity.title;
+    _learningObjectivesController.text = widget.activity.learningObjective;
+    _instructionsController.text = widget.activity.instructions;
+    _participantsController.text =
+        widget.activity.req.numberOfParticipants.toString();
+    _vocab.addAll(widget.activity.vocab);
+  }
+
+  @override
+  void dispose() {
+    _titleController.dispose();
+    _learningObjectivesController.dispose();
+    _instructionsController.dispose();
+    _vocabController.dispose();
+    _participantsController.dispose();
+    super.dispose();
+  }
+
+  void _setEditing(bool editting) {
+    _isEditing = editting;
+    if (mounted) setState(() {});
+  }
+
+  void _setAvatar() async {
+    final photo = await selectFiles(
+      context,
+      type: FileSelectorType.images,
+      allowMultiple: false,
+    );
+    final bytes = await photo.singleOrNull?.readAsBytes();
+    if (mounted) setState(() => _avatar = bytes);
+  }
+
+  Future<void> _setAvatarURL() async {
+    if (widget.activity.imageURL == null && _avatar == null) return;
+    try {
+      if (_avatar == null) {
+        final Response response =
+            await http.get(Uri.parse(widget.activity.imageURL!));
+        _avatar = response.bodyBytes;
+      }
+      final resp = await Matrix.of(context).client.uploadContent(_avatar!);
+      if (mounted) setState(() => _avatarURL = resp.toString());
+      widget.activity.imageURL = _avatarURL;
+    } catch (err, s) {
+      ErrorHandler.logError(
+        e: err,
+        s: s,
+        data: {
+          "imageURL": widget.activity.imageURL,
+        },
+      );
+    }
+  }
+
+  void _clearEdits() {
+    _avatar = null;
+    _avatarURL = null;
+    _vocab.clear();
+    _vocab.addAll(widget.activity.vocab);
+    if (mounted) setState(() {});
+  }
+
+  Future<void> _updateTextFields() async {
+    widget.activity.title = _titleController.text;
+    widget.activity.learningObjective = _learningObjectivesController.text;
+    widget.activity.instructions = _instructionsController.text;
+    widget.activity.req.numberOfParticipants =
+        int.tryParse(_participantsController.text) ?? 3;
+    widget.activity.vocab = _vocab;
+  }
+
+  void _addVocab() {
+    _vocab.insert(
+      0,
+      Vocab(
+        lemma: _vocabController.text.trim(),
+        pos: "",
+      ),
+    );
+    _vocabController.clear();
+    if (mounted) setState(() {});
+  }
+
+  void _removeVocab(int index) {
+    _vocab.removeAt(index);
+    if (mounted) setState(() {});
+  }
+
+  Future<void> _launch() async {
+    final client = Matrix.of(context).client;
+
+    final resp = await showFutureLoadingDialog(
+      context: context,
+      future: () async {
+        await _setAvatarURL();
+        final roomId = await client.createGroupChat(
+          preset: CreateRoomPreset.publicChat,
+          visibility: sdk.Visibility.private,
+          groupName: widget.activity.title,
+          initialState: [
+            if (_avatarURL != null)
+              StateEvent(
+                type: EventTypes.RoomAvatar,
+                content: {'url': _avatarURL.toString()},
+              ),
+            StateEvent(
+              type: EventTypes.RoomPowerLevels,
+              stateKey: '',
+              content: defaultPowerLevels(client.userID!),
+            ),
+          ],
+          enableEncryption: false,
+        );
+
+        Room? room = Matrix.of(context).client.getRoomById(roomId);
+        if (room == null) {
+          await client.waitForRoomInSync(roomId);
+          room = Matrix.of(context).client.getRoomById(roomId);
+          if (room == null) return;
+        }
+
+        final eventId = await room.pangeaSendTextEvent(
+          widget.activity.markdown,
+          messageTag: ModelKey.messageTagActivityPlan,
+        );
+
+        if (eventId == null) {
+          debugger(when: kDebugMode);
+          return;
+        }
+
+        await room.setPinnedEvents([eventId]);
+        context.go("/rooms/$roomId/invite");
+      },
+    );
+
+    if (!resp.isError) {
+      Navigator.of(context).pop();
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final body = Stack(
+      alignment: Alignment.topCenter,
+      children: [
+        Form(
+          key: _formKey,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                height: 200,
+                decoration: BoxDecoration(
+                  image: widget.activity.imageURL != null || _avatar != null
+                      ? DecorationImage(
+                          image: _avatar != null
+                              ? MemoryImage(_avatar!)
+                              : NetworkImage(widget.activity.imageURL!)
+                                  as ImageProvider<Object>,
+                        )
+                      : null,
+                  borderRadius: BorderRadius.circular(24.0),
+                ),
+              ),
+              Flexible(
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      spacing: 8.0,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        if (_isEditing)
+                          ActivitySuggestionCardRow(
+                            icon: Icons.event_note_outlined,
+                            child: TextFormField(
+                              controller: _titleController,
+                              decoration: InputDecoration(
+                                labelText: L10n.of(context).activityTitle,
+                              ),
+                              style: theme.textTheme.bodySmall,
+                              maxLines: 2,
+                              minLines: 1,
+                            ),
+                          )
+                        else
+                          ActivitySuggestionCardRow(
+                            icon: Icons.event_note_outlined,
+                            child: Text(
+                              widget.activity.title,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        if (_isEditing)
+                          ActivitySuggestionCardRow(
+                            icon: Symbols.target,
+                            child: TextFormField(
+                              style: theme.textTheme.bodySmall,
+                              controller: _learningObjectivesController,
+                              decoration: InputDecoration(
+                                labelText:
+                                    L10n.of(context).learningObjectiveLabel,
+                              ),
+                              maxLines: 4,
+                              minLines: 1,
+                            ),
+                          )
+                        else
+                          ActivitySuggestionCardRow(
+                            icon: Symbols.target,
+                            child: Text(
+                              widget.activity.learningObjective,
+                              style: theme.textTheme.bodySmall,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        if (_isEditing)
+                          ActivitySuggestionCardRow(
+                            icon: Symbols.target,
+                            child: TextFormField(
+                              style: theme.textTheme.bodySmall,
+                              controller: _instructionsController,
+                              decoration: InputDecoration(
+                                labelText: L10n.of(context).instructions,
+                              ),
+                              maxLines: 8,
+                              minLines: 1,
+                            ),
+                          )
+                        else
+                          ActivitySuggestionCardRow(
+                            icon: Symbols.target,
+                            child: Text(
+                              widget.activity.instructions,
+                              style: theme.textTheme.bodySmall,
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        if (_isEditing)
+                          ActivitySuggestionCardRow(
+                            icon: Icons.group_outlined,
+                            child: TextFormField(
+                              controller: _participantsController,
+                              style: theme.textTheme.bodySmall,
+                              decoration: InputDecoration(
+                                labelText: L10n.of(context).classRoster,
+                              ),
+                              maxLines: 1,
+                              keyboardType: TextInputType.number,
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return null;
+                                }
+
+                                try {
+                                  final val = int.parse(value);
+                                  if (val <= 0) {
+                                    return L10n.of(context).pleaseEnterInt;
+                                  }
+                                } catch (e) {
+                                  return L10n.of(context).pleaseEnterANumber;
+                                }
+                                return null;
+                              },
+                            ),
+                          )
+                        else
+                          ActivitySuggestionCardRow(
+                            icon: Icons.group_outlined,
+                            child: Text(
+                              L10n.of(context).countParticipants(
+                                widget.activity.req.numberOfParticipants,
+                              ),
+                              style: theme.textTheme.bodySmall,
+                            ),
+                          ),
+                        if (_isEditing)
+                          ActivitySuggestionCardRow(
+                            icon: Symbols.dictionary,
+                            child: ConstrainedBox(
+                              constraints:
+                                  const BoxConstraints(maxHeight: 54.0),
+                              child: SingleChildScrollView(
+                                child: Wrap(
+                                  spacing: 4.0,
+                                  runSpacing: 4.0,
+                                  children: _vocab
+                                      .mapIndexed(
+                                        (i, vocab) => Container(
+                                          padding: const EdgeInsets.symmetric(
+                                            vertical: 4.0,
+                                            horizontal: 8.0,
+                                          ),
+                                          decoration: BoxDecoration(
+                                            color: theme.colorScheme.primary
+                                                .withAlpha(50),
+                                            borderRadius:
+                                                BorderRadius.circular(24.0),
+                                          ),
+                                          child: MouseRegion(
+                                            cursor: SystemMouseCursors.click,
+                                            child: GestureDetector(
+                                              onTap: () => _removeVocab(i),
+                                              child: Row(
+                                                spacing: 4.0,
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  Text(
+                                                    vocab.lemma,
+                                                    style: theme
+                                                        .textTheme.bodySmall,
+                                                  ),
+                                                  const Icon(
+                                                    Icons.close,
+                                                    size: 12.0,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      )
+                                      .toList(),
+                                ),
+                              ),
+                            ),
+                          )
+                        else
+                          ActivitySuggestionCardRow(
+                            icon: Symbols.dictionary,
+                            child: ConstrainedBox(
+                              constraints:
+                                  const BoxConstraints(maxHeight: 54.0),
+                              child: SingleChildScrollView(
+                                child: Wrap(
+                                  spacing: 4.0,
+                                  runSpacing: 4.0,
+                                  children: _vocab
+                                      .map(
+                                        (vocab) => Container(
+                                          padding: const EdgeInsets.symmetric(
+                                            vertical: 4.0,
+                                            horizontal: 8.0,
+                                          ),
+                                          decoration: BoxDecoration(
+                                            color: theme.colorScheme.primary
+                                                .withAlpha(50),
+                                            borderRadius:
+                                                BorderRadius.circular(24.0),
+                                          ),
+                                          child: Text(
+                                            vocab.lemma,
+                                            style: theme.textTheme.bodySmall,
+                                          ),
+                                        ),
+                                      )
+                                      .toList(),
+                                ),
+                              ),
+                            ),
+                          ),
+                        if (_isEditing)
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 4.0),
+                            child: Row(
+                              spacing: 4.0,
+                              children: [
+                                Expanded(
+                                  child: TextFormField(
+                                    controller: _vocabController,
+                                    style: theme.textTheme.bodySmall,
+                                    decoration: InputDecoration(
+                                      hintText: L10n.of(context).addVocabulary,
+                                    ),
+                                    maxLines: 1,
+                                    onFieldSubmitted: (_) => _addVocab(),
+                                  ),
+                                ),
+                                IconButton(
+                                  padding: const EdgeInsets.all(0.0),
+                                  constraints:
+                                      const BoxConstraints(), // override default min size of 48px
+                                  iconSize: 16.0,
+                                  icon: const Icon(Icons.add_outlined),
+                                  onPressed: _addVocab,
+                                ),
+                              ],
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Row(
+                  spacing: 6.0,
+                  children: [
+                    if (_isEditing)
+                      GestureDetector(
+                        child: const Icon(Icons.save_outlined, size: 16.0),
+                        onTap: () {
+                          if (!_formKey.currentState!.validate()) {
+                            return;
+                          }
+                          _updateTextFields();
+                          _setEditing(false);
+                        },
+                      ),
+                    if (_isEditing)
+                      GestureDetector(
+                        child: const Icon(Icons.close_outlined, size: 16.0),
+                        onTap: () {
+                          _clearEdits();
+                          _setEditing(false);
+                        },
+                      ),
+                    Expanded(
+                      child: ElevatedButton(
+                        onPressed: () {
+                          if (!_formKey.currentState!.validate()) {
+                            return;
+                          }
+                          _updateTextFields();
+                          _launch();
+                        },
+                        style: ElevatedButton.styleFrom(
+                          minimumSize: Size.zero,
+                          padding: const EdgeInsets.all(4.0),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          backgroundColor: theme.colorScheme.primary,
+                          foregroundColor: theme.colorScheme.onPrimary,
+                        ),
+                        child: Text(
+                          L10n.of(context).inviteAndLaunch,
+                          style: theme.textTheme.bodyMedium?.copyWith(
+                            color: theme.colorScheme.onPrimary,
+                          ),
+                        ),
+                      ),
+                    ),
+                    if (!_isEditing)
+                      IconButton.filled(
+                        style: IconButton.styleFrom(
+                          backgroundColor: theme.colorScheme.primary,
+                        ),
+                        padding: const EdgeInsets.all(6.0),
+                        constraints:
+                            const BoxConstraints(), // override default min size of 48px
+                        iconSize: 16.0,
+                        icon: const Icon(Icons.edit_outlined),
+                        onPressed: () => _setEditing(true),
+                      ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+        Positioned(
+          top: 4.0,
+          left: 4.0,
+          child: IconButton(
+            icon: const Icon(Icons.close_outlined),
+            onPressed: Navigator.of(context).pop,
+            tooltip: L10n.of(context).close,
+          ),
+        ),
+        if (_isEditing)
+          Positioned(
+            top: 160.0,
+            child: InkWell(
+              borderRadius: BorderRadius.circular(90),
+              onTap: _setAvatar,
+              child: const CircleAvatar(
+                radius: 24.0,
+                child: Icon(
+                  Icons.add_a_photo_outlined,
+                  size: 24.0,
+                ),
+              ),
+            ),
+          ),
+      ],
+    );
+
+    final content = AnimatedSize(
+      duration: FluffyThemes.animationDuration,
+      child: ConstrainedBox(
+        constraints: FluffyThemes.isColumnMode(context)
+            ? const BoxConstraints(
+                maxWidth: 400.0,
+              )
+            : BoxConstraints(
+                maxWidth: MediaQuery.of(context).size.width,
+                maxHeight: MediaQuery.of(context).size.height,
+              ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(20.0),
+          child: body,
+        ),
+      ),
+    );
+
+    return FluffyThemes.isColumnMode(context)
+        ? Dialog(child: content)
+        : Dialog.fullscreen(child: content);
+  }
+}

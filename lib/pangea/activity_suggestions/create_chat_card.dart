@@ -11,10 +11,12 @@ import 'package:fluffychat/pangea/common/widgets/pressable_button.dart';
 class CreateChatCard extends StatelessWidget {
   final double width;
   final double height;
+  final double padding;
 
   const CreateChatCard({
     required this.width,
     required this.height,
+    required this.padding,
     super.key,
   });
 
@@ -22,7 +24,7 @@ class CreateChatCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: EdgeInsets.all(padding),
       child: PressableButton(
         onPressed: () => context.go('/rooms/newgroup'),
         borderRadius: BorderRadius.circular(24.0),
@@ -46,11 +48,15 @@ class CreateChatCard extends StatelessWidget {
                   width: 80,
                 ),
               ),
-              const SizedBox(height: 24.0),
-              Text(
-                L10n.of(context).createOwnChat,
-                style: theme.textTheme.bodyLarge
-                    ?.copyWith(color: theme.colorScheme.secondary),
+              const SizedBox(height: 16.0),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Text(
+                  L10n.of(context).createOwnChat,
+                  style: theme.textTheme.bodyLarge
+                      ?.copyWith(color: theme.colorScheme.secondary),
+                  textAlign: TextAlign.center,
+                ),
               ),
             ],
           ),

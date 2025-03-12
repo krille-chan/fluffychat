@@ -1,47 +1,39 @@
 import 'package:flutter/material.dart';
 
-import 'package:fluffychat/config/themes.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
-import 'package:fluffychat/pangea/activity_suggestions/activity_suggestion_card_content.dart';
-import 'package:fluffychat/pangea/activity_suggestions/activity_suggestion_edit_card.dart';
-import 'package:fluffychat/pangea/activity_suggestions/activity_suggestions_area.dart';
+import 'package:fluffychat/pangea/activity_suggestions/activity_suggestion_card_row.dart';
 import 'package:fluffychat/pangea/common/widgets/pressable_button.dart';
 
 class ActivitySuggestionCard extends StatelessWidget {
   final ActivityPlanModel activity;
-  final ActivitySuggestionsAreaState controller;
   final VoidCallback onPressed;
 
   final double width;
   final double height;
+  final double padding;
 
   const ActivitySuggestionCard({
     super.key,
     required this.activity,
-    required this.controller,
     required this.onPressed,
     required this.width,
     required this.height,
+    required this.padding,
   });
-
-  bool get _isSelected => controller.selectedActivity == activity;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: EdgeInsets.all(padding),
       child: PressableButton(
         onPressed: onPressed,
         borderRadius: BorderRadius.circular(24.0),
         color: theme.colorScheme.primary,
-        child: AnimatedContainer(
-          duration: FluffyThemes.animationDuration,
-          height: controller.isEditing && _isSelected
-              ? 675
-              : _isSelected
-                  ? 400
-                  : height,
+        child: SizedBox(
+          height: height,
           width: width,
           child: Stack(
             alignment: Alignment.topCenter,
@@ -62,10 +54,7 @@ class ActivitySuggestionCard extends StatelessWidget {
                     decoration: BoxDecoration(
                       image: activity.imageURL != null
                           ? DecorationImage(
-                              image: controller.avatar == null || !_isSelected
-                                  ? NetworkImage(activity.imageURL!)
-                                  : MemoryImage(controller.avatar!)
-                                      as ImageProvider<Object>,
+                              image: NetworkImage(activity.imageURL!),
                             )
                           : null,
                       borderRadius: BorderRadius.circular(24.0),
@@ -74,40 +63,74 @@ class ActivitySuggestionCard extends StatelessWidget {
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.only(
-                        top: 16.0,
+                        top: 12.0,
                         left: 12.0,
                         right: 12.0,
                         bottom: 12.0,
                       ),
-                      child: controller.isEditing && _isSelected
-                          ? ActivitySuggestionEditCard(
-                              activity: activity,
-                              controller: controller,
-                            )
-                          : ActivitySuggestionCardContent(
-                              activity: activity,
-                              isSelected: _isSelected,
-                              controller: controller,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          ActivitySuggestionCardRow(
+                            icon: Icons.event_note_outlined,
+                            child: Text(
+                              activity.title,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
                             ),
+                          ),
+                          ConstrainedBox(
+                            constraints: const BoxConstraints(maxHeight: 54.0),
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.vertical,
+                              child: Align(
+                                alignment: Alignment.topLeft,
+                                child: Wrap(
+                                  spacing: 4.0,
+                                  runSpacing: 4.0,
+                                  children: activity.vocab
+                                      .map(
+                                        (vocab) => Container(
+                                          padding: const EdgeInsets.symmetric(
+                                            vertical: 4.0,
+                                            horizontal: 8.0,
+                                          ),
+                                          decoration: BoxDecoration(
+                                            color: theme.colorScheme.primary
+                                                .withAlpha(50),
+                                            borderRadius:
+                                                BorderRadius.circular(24.0),
+                                          ),
+                                          child: Text(
+                                            vocab.lemma,
+                                            style: theme.textTheme.bodySmall,
+                                          ),
+                                        ),
+                                      )
+                                      .toList(),
+                                ),
+                              ),
+                            ),
+                          ),
+                          ActivitySuggestionCardRow(
+                            icon: Icons.group_outlined,
+                            child: Text(
+                              L10n.of(context).countParticipants(
+                                activity.req.numberOfParticipants,
+                              ),
+                              style: theme.textTheme.bodySmall,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],
               ),
-              if (controller.isEditing && _isSelected)
-                Positioned(
-                  top: 75.0,
-                  child: InkWell(
-                    borderRadius: BorderRadius.circular(90),
-                    onTap: controller.selectPhoto,
-                    child: const CircleAvatar(
-                      radius: 16.0,
-                      child: Icon(
-                        Icons.add_a_photo_outlined,
-                        size: 16.0,
-                      ),
-                    ),
-                  ),
-                ),
             ],
           ),
         ),

@@ -1,5 +1,6 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+import 'package:fluffychat/config/themes.dart';
 
 class FullWidthDialog extends StatelessWidget {
   final Widget dialogContent;
@@ -16,7 +17,7 @@ class FullWidthDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final content = ConstrainedBox(
-      constraints: kIsWeb
+      constraints: FluffyThemes.isColumnMode(context)
           ? BoxConstraints(
               maxWidth: maxWidth,
               maxHeight: maxHeight,
@@ -31,6 +32,8 @@ class FullWidthDialog extends StatelessWidget {
       ),
     );
 
-    return kIsWeb ? Dialog(child: content) : Dialog.fullscreen(child: content);
+    return FluffyThemes.isColumnMode(context)
+        ? Dialog(child: content)
+        : Dialog.fullscreen(child: content);
   }
 }
