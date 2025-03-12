@@ -49,9 +49,9 @@ class TtsController extends ChangeNotifier {
     return PlatformInfos.isWindows;
   }
 
-  bool _hasLoadedTextToSpeech = false;
-  bool get hasLoadedTextToSpeech => _hasLoadedTextToSpeech;
-  set hasLoadedTextToSpeech(bool value) {
+  bool? _hasLoadedTextToSpeech;
+  bool? get hasLoadedTextToSpeech => _hasLoadedTextToSpeech;
+  set hasLoadedTextToSpeech(bool? value) {
     if (_hasLoadedTextToSpeech != value) {
       _hasLoadedTextToSpeech = value;
       notifyListeners();
