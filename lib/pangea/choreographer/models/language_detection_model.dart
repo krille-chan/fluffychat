@@ -10,9 +10,20 @@ class LanguageDetection {
   });
 
   factory LanguageDetection.fromJson(Map<String, dynamic> json) {
+    final dynamic confValue = json[ModelKey.confidence];
+    double confidence;
+    if (confValue is String) {
+      confidence = double.parse(confValue);
+    } else if (confValue is double) {
+      confidence = confValue;
+    } else if (confValue is int) {
+      confidence = confValue.toDouble();
+    } else {
+      throw TypeError();
+    }
     return LanguageDetection(
       langCode: json[ModelKey.langCode],
-      confidence: json[ModelKey.confidence],
+      confidence: confidence,
     );
   }
 

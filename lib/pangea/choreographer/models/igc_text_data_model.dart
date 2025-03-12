@@ -109,12 +109,25 @@ class IGCTextData {
       fullText: content.text,
     );
 
-    final LanguageDetectionResponse detections = event.detections != null
-        ? LanguageDetectionResponse.fromJson({
+    LanguageDetectionResponse detections = defaultDetections;
+    if (event.detections != null) {
+      try {
+        detections = LanguageDetectionResponse.fromJson({
+          "detections": event.detections,
+          "full_text": content.text,
+        });
+      } catch (e, s) {
+        ErrorHandler.logError(
+          e: e,
+          s: s,
+          m: "Error parsing detections in IGCTextData.fromRepresentationEvent",
+          data: {
             "detections": event.detections,
             "full_text": content.text,
-          })
-        : defaultDetections;
+          },
+        );
+      }
+    }
 
     return IGCTextData(
       detections: detections,

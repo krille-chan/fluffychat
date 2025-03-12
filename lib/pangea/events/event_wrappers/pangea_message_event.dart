@@ -510,14 +510,26 @@ class PangeaMessageEvent {
   }
 
   Future<String?> representationByDetectedLanguage() async {
-    final resp = await LanguageDetectionRepo.get(
-      MatrixState.pangeaController.userController.accessToken,
-      request: LanguageDetectionRequest(
-        text: _latestEdit.body,
-        senderl1: l1Code,
-        senderl2: l2Code,
-      ),
-    );
+    LanguageDetectionResponse? resp;
+    try {
+      resp = await LanguageDetectionRepo.get(
+        MatrixState.pangeaController.userController.accessToken,
+        request: LanguageDetectionRequest(
+          text: _latestEdit.body,
+          senderl1: l1Code,
+          senderl2: l2Code,
+        ),
+      );
+    } catch (e, s) {
+      ErrorHandler.logError(
+        e: e,
+        s: s,
+        data: {
+          "event": _event.toJson(),
+        },
+      );
+      return null;
+    }
 
     final langCode = resp.detections.firstOrNull?.langCode;
     if (langCode == null) return null;
