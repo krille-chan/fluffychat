@@ -202,11 +202,19 @@ class BackgroundPush {
       final unreadCount = client.rooms
           .where((room) => room.isUnreadOrInvited && room.id != roomId)
           .length;
-      if (unreadCount == 0) {
-        FlutterNewBadger.removeBadge();
-      } else {
-        FlutterNewBadger.setBadge(unreadCount);
+      // #Pangea
+      try {
+        // Pangea#
+        if (unreadCount == 0) {
+          FlutterNewBadger.removeBadge();
+        } else {
+          FlutterNewBadger.setBadge(unreadCount);
+        }
+        // #Pangea
+      } catch (e, s) {
+        ErrorHandler.logError(data: {}, e: e, s: s);
       }
+      // Pangea#
       return;
     }
   }
