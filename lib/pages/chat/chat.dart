@@ -878,7 +878,10 @@ class ChatController extends State<ChatPageWithRoom>
     final files = await selectFiles(
       context,
       allowMultiple: true,
-      type: FileSelectorType.images,
+      // #Pangea
+      // type: FileSelectorType.images,
+      type: FileSelectorType.media,
+      // Pangea#
     );
     if (files.isEmpty) return;
 

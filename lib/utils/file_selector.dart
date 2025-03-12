@@ -75,7 +75,10 @@ enum FileSelectorType {
     ],
     FileType.custom,
     ['zip', 'ZIP'],
-  );
+  ),
+  // #Pangea
+  media([], FileType.media, null);
+  // Pangea#
 
   const FileSelectorType(this.groups, this.filePickerType, this.extensions);
   final List<XTypeGroup> groups;
