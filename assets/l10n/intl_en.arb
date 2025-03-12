@@ -4811,5 +4811,6 @@
   "inviteAndLaunch": "Invite and launch",
   "createOwnChat": "Create your own chat",
   "pleaseEnterInt": "Please enter a number",
-  "home": "Home"
+  "home": "Home",
+  "join": "Join"
 } 
