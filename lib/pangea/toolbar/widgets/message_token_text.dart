@@ -234,6 +234,10 @@ class MessageTextWidget extends StatelessWidget {
             }
           }
 
+          if (tokenPosition.token?.pos == 'SPACE') {
+            return const TextSpan(text: '\n');
+          }
+
           if (tokenPosition.token != null) {
             // if the tokenPosition is a combination of the token and preceding / following punctuation
             // split them so that only the token itself is highlighted when clicked
@@ -280,7 +284,10 @@ class MessageTextWidget extends StatelessWidget {
                                   onTap: onClick != null
                                       ? () => onClick?.call(tokenPosition)
                                       : null,
-                                  child: HiddenText(text: middle, style: style),
+                                  child: HiddenText(
+                                    text: middle,
+                                    style: style,
+                                  ),
                                 ),
                               )
                             : LinkifySpan(
