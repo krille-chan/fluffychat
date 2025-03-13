@@ -42,7 +42,7 @@ abstract class SettingKeys {
 enum AppSettings<T> {
   audioRecordingNumChannels<int>('audioRecordingNumChannels', 1),
   audioRecordingAutoGain<bool>('audioRecordingAutoGain', true),
-  audioRecordingEchoCancel<bool>('audioRecordingEchoCancel', true),
+  audioRecordingEchoCancel<bool>('audioRecordingEchoCancel', false),
   audioRecordingNoiseSuppress<bool>('audioRecordingNoiseSuppress', true),
   audioRecordingBitRate<int>('audioRecordingBitRate', 64000),
   audioRecordingSamplingRate<int>('audioRecordingSamplingRate', 44100);
