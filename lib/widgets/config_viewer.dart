@@ -1,11 +1,9 @@
-import 'package:flutter/material.dart';
-
-import 'package:go_router/go_router.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_text_input_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ConfigViewer extends StatelessWidget {
   const ConfigViewer({super.key});
@@ -15,19 +13,22 @@ class ConfigViewer extends StatelessWidget {
     AppSettings appSetting,
     SharedPreferences store,
     Function setState,
+    String initialValue,
   ) async {
+    if (appSetting is AppSettings<bool>) {
+      appSetting.setItem(store, !(initialValue == 'true'));
+    }
+
     final value = await showTextInputDialog(
       context: context,
       title: appSetting.name,
-      initialText: appSetting.defaultValue.toString(),
+      hintText: appSetting.defaultValue.toString(),
+      initialText: initialValue,
     );
     if (value == null) return;
 
     if (appSetting is AppSettings<String>) {
       appSetting.setItem(store, value);
-    }
-    if (appSetting is AppSettings<bool>) {
-      appSetting.setItem(store, value == 'true');
     }
     if (appSetting is AppSettings<int>) {
       appSetting.setItem(store, int.parse(value));
@@ -91,6 +92,7 @@ class ConfigViewer extends StatelessWidget {
                         appSetting,
                         store,
                         setState,
+                        value,
                       ),
                     );
                   },
