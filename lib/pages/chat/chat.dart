@@ -1070,7 +1070,7 @@ class ChatController extends State<ChatPageWithRoom>
   void goToNewRoomAction() async {
     final result = await showFutureLoadingDialog(
       context: context,
-      future: () => room.client.joinRoom(
+      future: () => room.client.joinRoomById(
         room
             .getState(EventTypes.RoomTombstone)!
             .parsedTombstoneContent
