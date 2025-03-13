@@ -17,6 +17,7 @@ class ConfigViewer extends StatelessWidget {
   ) async {
     if (appSetting is AppSettings<bool>) {
       appSetting.setItem(store, !(initialValue == 'true'));
+      return;
     }
 
     final value = await showTextInputDialog(
