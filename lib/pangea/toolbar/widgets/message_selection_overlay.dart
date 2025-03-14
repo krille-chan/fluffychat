@@ -148,7 +148,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
   Future<void> _setInitialToolbarMode() async {
     if (pangeaMessageEvent?.isAudioMessage ?? false) {
-      updateToolbarMode(MessageMode.messageTextToSpeech);
+      updateToolbarMode(MessageMode.messageSpeechToText);
       return;
     }
 
