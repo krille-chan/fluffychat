@@ -51,7 +51,7 @@ class CardHeader extends StatelessWidget {
             },
             color: Theme.of(context).brightness == Brightness.dark
                 ? AppConfig.primaryColorLight
-                : AppConfig.primaryColor,
+                : Theme.of(context).colorScheme.primary,
           ),
         ],
       ),

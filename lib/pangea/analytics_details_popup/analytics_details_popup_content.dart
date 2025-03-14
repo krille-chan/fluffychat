@@ -33,9 +33,9 @@ class AnalyticsDetailsViewContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color textColor = Theme.of(context).brightness != Brightness.light
+    final Color textColor = (Theme.of(context).brightness != Brightness.light
         ? construct.lemmaCategory.color
-        : construct.lemmaCategory.darkColor;
+        : construct.lemmaCategory.darkColor) as Color;
 
     return SingleChildScrollView(
       child: Column(

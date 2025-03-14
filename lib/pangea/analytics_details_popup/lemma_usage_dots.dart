@@ -54,9 +54,9 @@ class LemmaUsageDots extends StatelessWidget {
       );
     }
 
-    final Color textColor = Theme.of(context).brightness != Brightness.light
+    final Color textColor = (Theme.of(context).brightness != Brightness.light
         ? construct.lemmaCategory.color
-        : construct.lemmaCategory.darkColor;
+        : construct.lemmaCategory.darkColor) as Color;
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 20),

@@ -2,8 +2,6 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-import 'package:fluffychat/config/app_config.dart';
-
 class ItShimmer extends StatelessWidget {
   const ItShimmer({
     super.key,
@@ -77,7 +75,7 @@ class ITShimmerElement extends StatelessWidget {
               ),
             ),
             backgroundColor: WidgetStateProperty.all<Color>(
-              AppConfig.primaryColor.withAlpha(50),
+              Theme.of(context).colorScheme.primary.withAlpha(50),
             ),
           ),
           onPressed: () {},

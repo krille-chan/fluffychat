@@ -106,7 +106,7 @@ class LemmaUseExampleMessages extends StatelessWidget {
               children: snapshot.data!.map((example) {
                 return Container(
                   decoration: BoxDecoration(
-                    color: construct.lemmaCategory.color,
+                    color: construct.lemmaCategory.color(context),
                     borderRadius: BorderRadius.circular(4),
                   ),
                   padding: const EdgeInsets.symmetric(

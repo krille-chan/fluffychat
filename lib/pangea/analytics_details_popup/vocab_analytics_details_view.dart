@@ -68,9 +68,9 @@ class VocabDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color textColor = Theme.of(context).brightness != Brightness.light
+    final Color textColor = (Theme.of(context).brightness != Brightness.light
         ? _construct.lemmaCategory.color
-        : _construct.lemmaCategory.darkColor;
+        : _construct.lemmaCategory.darkColor) as Color;
 
     return AnalyticsDetailsViewContent(
       title: Row(

@@ -102,7 +102,7 @@ class MorphFeatureBox extends StatelessWidget {
         border: Border.all(
           color: Theme.of(context).brightness == Brightness.dark
               ? AppConfig.primaryColorLight
-              : AppConfig.primaryColor,
+              : Theme.of(context).colorScheme.primary,
           width: 2,
         ),
       ),
@@ -211,7 +211,7 @@ class MorphTagChip extends StatelessWidget {
                     end: Alignment.centerRight,
                     colors: <Color>[
                       Colors.transparent,
-                      constructAnalytics.lemmaCategory.color,
+                      constructAnalytics.lemmaCategory.color(context),
                     ],
                   )
                 : null,

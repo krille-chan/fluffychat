@@ -33,8 +33,8 @@ class MorphDetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Color textColor = Theme.of(context).brightness != Brightness.light
-        ? _construct.lemmaCategory.color
-        : _construct.lemmaCategory.darkColor;
+        ? _construct.lemmaCategory.color(context)
+        : _construct.lemmaCategory.darkColor(context);
 
     return AnalyticsDetailsViewContent(
       title:

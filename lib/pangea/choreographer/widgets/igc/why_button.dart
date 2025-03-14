@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-import '../../../../config/app_config.dart';
-
 class WhyButton extends StatelessWidget {
   const WhyButton({
     super.key,
@@ -20,13 +18,15 @@ class WhyButton extends StatelessWidget {
       onPressed: loading ? null : onPress,
       style: ButtonStyle(
         backgroundColor: WidgetStateProperty.all<Color>(
-          AppConfig.primaryColor.withAlpha(25),
+          Theme.of(context).colorScheme.primary.withAlpha(25),
         ),
         shape: WidgetStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10), // Border radius
-            side: const BorderSide(
-              color: AppConfig.primaryColor, // Replace with your color
+            side: BorderSide(
+              color: Theme.of(context)
+                  .colorScheme
+                  .primary, // Replace with your color
               style: BorderStyle.solid,
               width: 2.0,
             ),

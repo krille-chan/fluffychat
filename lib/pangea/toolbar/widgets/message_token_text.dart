@@ -226,7 +226,8 @@ class MessageTextWidget extends StatelessWidget {
           Color backgroundColor = Colors.transparent;
           if (!hideTokenHighlights) {
             if (tokenPosition.selected) {
-              backgroundColor = AppConfig.primaryColor.withAlpha(80);
+              backgroundColor =
+                  Theme.of(context).colorScheme.primary.withAlpha(80);
             } else if (isSelected != null && shouldDo) {
               backgroundColor = !didMeaningActivity
                   ? AppConfig.success.withAlpha(60)

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/bot/utils/bot_style.dart';
 import 'package:fluffychat/pangea/bot/widgets/bot_face_svg.dart';
@@ -62,7 +61,7 @@ class PaywallCard extends StatelessWidget {
                     },
                     style: ButtonStyle(
                       backgroundColor: WidgetStateProperty.all<Color>(
-                        (AppConfig.primaryColor).withAlpha(25),
+                        (Theme.of(context).colorScheme.primary).withAlpha(25),
                       ),
                     ),
                     child: Text(L10n.of(context).activateTrial),
@@ -80,7 +79,7 @@ class PaywallCard extends StatelessWidget {
                   },
                   style: ButtonStyle(
                     backgroundColor: WidgetStateProperty.all<Color>(
-                      (AppConfig.primaryColor).withAlpha(25),
+                      (Theme.of(context).colorScheme.primary).withAlpha(25),
                     ),
                   ),
                   child: Text(L10n.of(context).getAccess),

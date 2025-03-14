@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 
-import 'package:fluffychat/config/app_config.dart';
-
 void showSubscribedSnackbar(BuildContext context) {
   final Widget text = RichText(
     text: TextSpan(
@@ -21,7 +19,7 @@ void showSubscribedSnackbar(BuildContext context) {
         const TextSpan(text: " "),
         TextSpan(
           text: L10n.of(context).clickToManageSubscription,
-          style: const TextStyle(color: AppConfig.primaryColor),
+          style: TextStyle(color: Theme.of(context).colorScheme.primary),
           recognizer: TapGestureRecognizer()
             ..onTap = () => context.go('/rooms/settings/subscription'),
         ),

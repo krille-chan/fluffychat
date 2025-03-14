@@ -85,7 +85,7 @@ class SubscriptionCard extends StatelessWidget {
     final ButtonStyle buttonStyle = OutlinedButton.styleFrom(
       side: enabled ? null : BorderSide(color: Colors.grey[600]!),
       foregroundColor: Colors.white,
-      backgroundColor: AppConfig.primaryColor,
+      backgroundColor: Theme.of(context).colorScheme.primary,
       disabledForegroundColor: const Color.fromARGB(255, 200, 200, 200),
       disabledBackgroundColor: Colors.grey[600],
     );

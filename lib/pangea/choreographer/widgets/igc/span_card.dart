@@ -335,7 +335,7 @@ class WordMatchContent extends StatelessWidget {
                       child: TextButton(
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(
-                            AppConfig.primaryColor.withAlpha(25),
+                            Theme.of(context).colorScheme.primary.withAlpha(25),
                           ),
                         ),
                         onPressed: controller.onIgnoreMatch,
@@ -359,7 +359,7 @@ class WordMatchContent extends StatelessWidget {
                             backgroundColor: WidgetStateProperty.all<Color>(
                               (controller.selectedChoice != null
                                       ? controller.selectedChoice!.color
-                                      : AppConfig.primaryColor)
+                                      : Theme.of(context).colorScheme.primary)
                                   .withAlpha(50),
                             ),
                             // Outline if Replace button enabled
@@ -390,7 +390,8 @@ class WordMatchContent extends StatelessWidget {
                         },
                         style: ButtonStyle(
                           backgroundColor: WidgetStateProperty.all<Color>(
-                            (AppConfig.primaryColor).withAlpha(25),
+                            (Theme.of(context).colorScheme.primary)
+                                .withAlpha(25),
                           ),
                         ),
                         child: Text(L10n.of(context).helpMeTranslate),

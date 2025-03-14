@@ -65,7 +65,9 @@ abstract class FluffyThemes {
   ]) {
     final colorScheme = ColorScheme.fromSeed(
       brightness: brightness,
-      seedColor: seed ?? AppConfig.colorSchemeSeed ?? AppConfig.primaryColor,
+      seedColor: seed ??
+          AppConfig.colorSchemeSeed ??
+          Theme.of(context).colorScheme.primary,
     );
     final isColumnMode = FluffyThemes.isColumnMode(context);
     return ThemeData(
