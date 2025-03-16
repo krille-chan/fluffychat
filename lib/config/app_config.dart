@@ -4,10 +4,13 @@ import 'package:matrix/matrix.dart';
 
 abstract class AppConfig {
   static String _applicationName = 'FluffyChat';
+
   static String get applicationName => _applicationName;
   static String? _applicationWelcomeMessage;
+
   static String? get applicationWelcomeMessage => _applicationWelcomeMessage;
   static String _defaultHomeserver = 'matrix.org';
+
   static String get defaultHomeserver => _defaultHomeserver;
   static double fontSizeFactor = 1;
   static const Color chatColor = primaryColor;
@@ -20,6 +23,7 @@ abstract class AppConfig {
   static const Color secondaryColor = Color(0xFF41a2bc);
   static String _privacyUrl =
       'https://github.com/krille-chan/fluffychat/blob/main/PRIVACY.md';
+
   static String get privacyUrl => _privacyUrl;
   static const String website = 'https://fluffychat.im';
   static const String enablePushTutorial =
@@ -31,6 +35,7 @@ abstract class AppConfig {
   static const String appId = 'im.fluffychat.FluffyChat';
   static const String appOpenUrlScheme = 'im.fluffychat';
   static String _webBaseUrl = 'https://fluffychat.im/web';
+
   static String get webBaseUrl => _webBaseUrl;
   static const String sourceCodeUrl =
       'https://github.com/krille-chan/fluffychat';
@@ -62,9 +67,6 @@ abstract class AppConfig {
   static const String schemePrefix = 'matrix:';
   static const String pushNotificationsChannelId = 'fluffychat_push';
   static const String pushNotificationsAppId = 'chat.fluffy.fluffychat';
-  static const String pushNotificationsGatewayUrl =
-      'https://push.fluffychat.im/_matrix/push/v1/notify';
-  static const String pushNotificationsPusherFormat = 'event_id_only';
   static const double borderRadius = 18.0;
   static const double columnWidth = 360.0;
   static final Uri homeserverList = Uri(
