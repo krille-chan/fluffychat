@@ -3273,5 +3273,21 @@
   "notificationRuleJitsi": "Jitsi",
   "@notificationRuleJitsi": {},
   "allDevices": "Alle Geräte",
-  "@allDevices": {}
+  "@allDevices": {},
+  "enterNewChat": "Neuen Chat starten",
+  "@enterNewChat": {},
+  "shareKeysWith": "Schlüssel teilen mit...",
+  "@shareKeysWith": {},
+  "shareKeysWithDescription": "Welchen Geräten sollte vertraut werden, damit sie deine Nachrichten in verschlüsselten Chats mitlesen können?",
+  "@shareKeysWithDescription": {},
+  "verifiedDevicesOnly": "Nur verifizierte Geräte",
+  "@verifiedDevicesOnly": {},
+  "takeAPhoto": "Foto aufnehmen",
+  "@takeAPhoto": {},
+  "recordAVideo": "Video aufnehmen",
+  "@recordAVideo": {},
+  "optionalMessage": "(Optionale) Nachricht...",
+  "@optionalMessage": {},
+  "notSupportedOnThisDevice": "Nicht unterstützt auf diesem Gerät",
+  "@notSupportedOnThisDevice": {}
 }
