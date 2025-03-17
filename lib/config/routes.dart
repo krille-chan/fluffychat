@@ -30,7 +30,6 @@ import 'package:fluffychat/pages/settings_password/settings_password.dart';
 import 'package:fluffychat/pages/settings_security/settings_security.dart';
 import 'package:fluffychat/pages/settings_style/settings_style.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_planner_page.dart';
-import 'package:fluffychat/pangea/activity_suggestions/activity_suggestions_area.dart';
 import 'package:fluffychat/pangea/activity_suggestions/suggestions_page.dart';
 import 'package:fluffychat/pangea/guard/p_vguard.dart';
 import 'package:fluffychat/pangea/layouts/bottom_nav_layout.dart';
@@ -198,7 +197,7 @@ abstract class AppRoutes {
             FluffyThemes.isColumnMode(context)
                 // #Pangea
                 // ? const EmptyPage()
-                ? const ActivitySuggestionsArea()
+                ? const SuggestionsPage()
                 // Pangea#
                 : ChatList(
                     activeChat: state.pathParameters['roomid'],
@@ -353,7 +352,7 @@ abstract class AppRoutes {
                     FluffyThemes.isColumnMode(context)
                         // #Pangea
                         // ? const EmptyPage()
-                        ? const ActivitySuggestionsArea()
+                        ? const SuggestionsPage()
                         // Pangea#
                         : const Settings(),
                   ),

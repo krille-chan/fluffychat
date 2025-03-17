@@ -38,15 +38,17 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
     super.dispose();
   }
 
+  bool get _isColumnMode => FluffyThemes.isColumnMode(context);
+
   final List<ActivityPlanModel> _activityItems = [];
   final ScrollController _scrollController = ScrollController();
   final double cardHeight = 235.0;
   final double cardPadding = 8.0;
-  double get cardWidth => FluffyThemes.isColumnMode(context) ? 225.0 : 160.0;
+  double get cardWidth => _isColumnMode ? 225.0 : 160.0;
 
   void _scrollToItem(int index) {
     final viewportDimension = _scrollController.position.viewportDimension;
-    final double scrollOffset = FluffyThemes.isColumnMode(context)
+    final double scrollOffset = _isColumnMode
         ? index * cardWidth - (viewportDimension / 2) + (cardWidth / 2)
         : (index + 1) * (cardHeight + 8.0);
     final maxScrollExtent = _scrollController.position.maxScrollExtent;
@@ -63,8 +65,7 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
 
   void _scrollToNextItem(AxisDirection direction) {
     final currentOffset = _scrollController.offset;
-    final scrollAmount =
-        FluffyThemes.isColumnMode(context) ? cardWidth : cardHeight;
+    final scrollAmount = _isColumnMode ? cardWidth : cardHeight;
 
     _scrollController.animateTo(
       (direction == AxisDirection.left
@@ -133,16 +134,13 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
       alignment: Alignment.topCenter,
       padding: EdgeInsets.symmetric(
         vertical: 16.0,
-        horizontal: FluffyThemes.isColumnMode(context) ? 16.0 : 0.0,
+        horizontal: _isColumnMode ? 16.0 : 0.0,
       ),
-      height: FluffyThemes.isColumnMode(context)
-          ? cardHeight + 2 * cardPadding + 16.0
-          : null,
-      child: FluffyThemes.isColumnMode(context)
+      height: _isColumnMode ? cardHeight * 1.5 : null,
+      child: _isColumnMode
           ? Stack(
               alignment: Alignment.center,
               children: [
-                // Main content
                 Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 45.0,
@@ -158,7 +156,7 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
                 // Left button
                 Positioned(
                   left: 0,
-                  top: cardHeight / 2 - 20.0,
+                  top: cardHeight / 1.5 - 20.0,
                   child: Container(
                     decoration: BoxDecoration(
                       color: Theme.of(context)
@@ -179,7 +177,7 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
                 // Right button
                 Positioned(
                   right: 0,
-                  top: cardHeight / 2 - 20.0,
+                  top: cardHeight / 1.5 - 20.0,
                   child: Container(
                     decoration: BoxDecoration(
                       color: Theme.of(context)
@@ -200,7 +198,7 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
                 // Create Chat button
                 Positioned(
                   right: 0,
-                  top: cardHeight / 2 + 30.0,
+                  top: cardHeight / 1.5 + 30.0,
                   child: Container(
                     decoration: BoxDecoration(
                       color: Theme.of(context)

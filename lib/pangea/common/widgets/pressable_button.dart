@@ -144,34 +144,42 @@ class PressableButtonState extends State<PressableButton>
         child: AnimatedBuilder(
           animation: _tweenAnimation,
           builder: (context, child) {
-            return Column(
+            return Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                SizedBox(height: _tweenAnimation.value),
-                Container(
-                  decoration: BoxDecoration(
-                    color: Color.alphaBlend(
-                      Colors.black.withAlpha(70),
-                      widget.color,
-                    ),
-                    borderRadius: widget.borderRadius,
+                Flexible(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      SizedBox(height: _tweenAnimation.value),
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Color.alphaBlend(
+                            Colors.black.withAlpha(70),
+                            widget.color,
+                          ),
+                          borderRadius: widget.borderRadius,
+                        ),
+                        padding: EdgeInsets.only(
+                          bottom: !_depressed
+                              ? widget.buttonHeight - _tweenAnimation.value
+                              : 0,
+                          right: !_depressed
+                              ? (widget.buttonHeight - _tweenAnimation.value) /
+                                  2
+                              : 0,
+                        ),
+                        child: child,
+                      ),
+                    ],
                   ),
-                  padding: EdgeInsets.only(
-                    bottom: !_depressed
-                        ? widget.buttonHeight - _tweenAnimation.value
-                        : 0,
-                  ),
-                  child: child,
                 ),
+                SizedBox(height: _tweenAnimation.value / 2),
               ],
             );
           },
           child: Container(
             decoration: BoxDecoration(
-              // color: Color.alphaBlend(
-              //         Colors.white.withAlpha(250),
-              //         widget.color,
-              //       ),
               borderRadius: widget.borderRadius,
             ),
             child: widget.child,

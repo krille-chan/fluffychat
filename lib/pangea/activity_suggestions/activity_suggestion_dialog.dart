@@ -355,7 +355,7 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
                                           ),
                                           decoration: BoxDecoration(
                                             color: theme.colorScheme.primary
-                                                .withAlpha(50),
+                                                .withAlpha(20),
                                             borderRadius:
                                                 BorderRadius.circular(24.0),
                                           ),
@@ -402,7 +402,7 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
                                           ),
                                           decoration: BoxDecoration(
                                             color: theme.colorScheme.primary
-                                                .withAlpha(50),
+                                                .withAlpha(20),
                                             borderRadius:
                                                 BorderRadius.circular(24.0),
                                           ),

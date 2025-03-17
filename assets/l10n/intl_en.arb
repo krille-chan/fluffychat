@@ -4812,5 +4812,6 @@
   "createOwnChat": "Create your own chat",
   "pleaseEnterInt": "Please enter a number",
   "home": "Home",
-  "join": "Join"
+  "join": "Join",
+  "learnByTexting": "Learn by texting"
 } 

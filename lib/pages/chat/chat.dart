@@ -526,7 +526,7 @@ class ChatController extends State<ChatPageWithRoom>
     if (state == AppLifecycleState.paused) {
       clearSelectedEvents();
     }
-    if (state == AppLifecycleState.hidden) {
+    if (state == AppLifecycleState.hidden && !stopAudioStream.isClosed) {
       stopAudioStream.add(null);
     }
     // Pangea#
