@@ -46,7 +46,7 @@ class ITBarState extends State<ITBar> with SingleTickerProviderStateMixin {
     super.initState();
 
     // Rebuild the widget each time there's an update from choreo.
-    _choreoSub = widget.choreographer.stateListener.stream.listen((_) {
+    _choreoSub = widget.choreographer.stateStream.stream.listen((_) {
       if (itController.willOpen != wasOpen) {
         itController.willOpen ? _controller.forward() : _controller.reverse();
       }

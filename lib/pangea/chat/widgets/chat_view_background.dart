@@ -19,7 +19,7 @@ class ChatViewBackgroundState extends State<ChatViewBackground> {
   @override
   void initState() {
     // Rebuild the widget each time there's an update from choreo
-    _choreoSub = widget.choreographer.stateListener.stream.listen((_) {
+    _choreoSub = widget.choreographer.stateStream.stream.listen((_) {
       setState(() {});
     });
     super.initState();

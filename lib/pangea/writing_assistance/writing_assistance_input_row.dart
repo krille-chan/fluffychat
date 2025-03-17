@@ -41,7 +41,7 @@ class WritingAssistanceInputRowState extends State<WritingAssistanceInputRow> {
   @override
   void initState() {
     // Rebuild the widget each time there's an update from choreo
-    _choreoSub = choreographer.stateListener.stream.listen((_) {
+    _choreoSub = choreographer.stateStream.stream.listen((_) {
       setSuggestions();
     });
     setSuggestions();

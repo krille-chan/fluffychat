@@ -26,8 +26,7 @@ class ChoreographerSendButtonState extends State<ChoreographerSendButton> {
   void initState() {
     // Rebuild the widget each time there's an update from
     // choreo. This keeps the spin up-to-date.
-    _choreoSub =
-        widget.controller.choreographer.stateListener.stream.listen((_) {
+    _choreoSub = widget.controller.choreographer.stateStream.stream.listen((_) {
       setState(() {});
     });
     super.initState();

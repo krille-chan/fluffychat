@@ -615,7 +615,7 @@ class ChatController extends State<ChatPageWithRoom>
     inputFocus.removeListener(_inputFocusListener);
     onFocusSub?.cancel();
     //#Pangea
-    choreographer.stateListener.close();
+    choreographer.stateStream.close();
     choreographer.dispose();
     clearSelectedEvents();
     MatrixState.pAnyState.closeOverlay();

@@ -85,10 +85,11 @@ class UserController extends BaseController {
 
     final Profile updatedProfile = update(profile);
     await updatedProfile.saveProfileData(waitForDataInSync: waitForDataInSync);
-
-    if (prevTargetLang != _pangeaController.languageController.userL2) {
-      setState({'prev_target_lang': prevTargetLang});
-    }
+    setState(
+      prevTargetLang != _pangeaController.languageController.userL2
+          ? {'prev_target_lang': prevTargetLang}
+          : null,
+    );
   }
 
   /// A completer for the profile model of a user.

@@ -35,7 +35,7 @@ class StartIGCButtonState extends State<StartIGCButton>
       vsync: this,
       duration: const Duration(seconds: 2),
     );
-    _choreoListener = widget.controller.choreographer.stateListener.stream
+    _choreoListener = widget.controller.choreographer.stateStream.stream
         .listen(_updateSpinnerState);
     super.initState();
   }

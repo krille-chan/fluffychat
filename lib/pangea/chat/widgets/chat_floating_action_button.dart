@@ -48,8 +48,7 @@ class ChatFloatingActionButtonState extends State<ChatFloatingActionButton> {
     }
 
     // Rebuild the widget each time there's an update from choreo (i.e., an error).
-    _choreoSub =
-        widget.controller.choreographer.stateListener.stream.listen((_) {
+    _choreoSub = widget.controller.choreographer.stateStream.stream.listen((_) {
       setState(() {});
     });
 

@@ -55,8 +55,10 @@ class Choreographer {
   // last checked by IGC or translation
   String? _lastChecked;
   ChoreoMode choreoMode = ChoreoMode.igc;
-  final StreamController stateListener = StreamController.broadcast();
-  StreamSubscription? trialStream;
+
+  final StreamController stateStream = StreamController.broadcast();
+  StreamSubscription? _trialStream;
+  StreamSubscription? _languageStream;
 
   Choreographer(this.pangeaController, this.chatController) {
     _initialize();
@@ -74,9 +76,20 @@ class Choreographer {
     errorService = ErrorService(this);
     altTranslator = AlternativeTranslator(this);
     _textController.addListener(_onChangeListener);
-    trialStream = pangeaController
+    _trialStream = pangeaController
         .subscriptionController.trialActivationStream.stream
         .listen((_) => _onChangeListener);
+    _languageStream =
+        pangeaController.userController.stateStream.listen((update) {
+      if (update is Map<String, dynamic> &&
+          update['prev_target_lang'] is LanguageModel) {
+        clear();
+      }
+
+      // refresh on any profile update, to account
+      // for changes like enabling autocorrect
+      setState();
+    });
     clear();
   }
 
@@ -560,7 +573,9 @@ class Choreographer {
 
   dispose() {
     _textController.dispose();
-    trialStream?.cancel();
+    _trialStream?.cancel();
+    _languageStream?.cancel();
+    stateStream.close();
     tts.dispose();
   }
 
@@ -617,8 +632,8 @@ class Choreographer {
   bool get editTypeIsKeyboard => EditType.keyboard == _textController.editType;
 
   setState() {
-    if (!stateListener.isClosed) {
-      stateListener.add(0);
+    if (!stateStream.isClosed) {
+      stateStream.add(0);
     }
   }
 
