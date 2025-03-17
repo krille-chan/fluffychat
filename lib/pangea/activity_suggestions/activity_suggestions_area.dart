@@ -43,8 +43,8 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
   final List<ActivityPlanModel> _activityItems = [];
   final ScrollController _scrollController = ScrollController();
   final double cardHeight = 235.0;
-  final double cardPadding = 8.0;
-  double get cardWidth => _isColumnMode ? 225.0 : 160.0;
+  double get cardPadding => _isColumnMode ? 8.0 : 0.0;
+  double get cardWidth => _isColumnMode ? 225.0 : 150.0;
 
   void _scrollToItem(int index) {
     final viewportDimension = _scrollController.position.viewportDimension;
@@ -133,8 +133,7 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
     return Container(
       alignment: Alignment.topCenter,
       padding: EdgeInsets.symmetric(
-        vertical: 16.0,
-        horizontal: _isColumnMode ? 16.0 : 0.0,
+        horizontal: FluffyThemes.isColumnMode(context) ? 16.0 : 4.0,
       ),
       height: _isColumnMode ? cardHeight * 1.5 : null,
       child: _isColumnMode
@@ -218,12 +217,14 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
                 ),
               ],
             )
-          : SingleChildScrollView(
-              controller: _scrollController,
-              child: Wrap(
-                spacing: 8.0,
-                runSpacing: 8.0,
-                children: cards,
+          : SizedBox.expand(
+              child: SingleChildScrollView(
+                controller: _scrollController,
+                child: Wrap(
+                  alignment: WrapAlignment.spaceBetween,
+                  runSpacing: 8.0,
+                  children: cards,
+                ),
               ),
             ),
     );

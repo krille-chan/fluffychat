@@ -16,62 +16,62 @@ class SuggestionsPage extends StatelessWidget {
     final theme = Theme.of(context);
     return Padding(
       padding: EdgeInsets.symmetric(
-        horizontal: FluffyThemes.isColumnMode(context) ? 36.0 : 8.0,
-        vertical: 24.0,
+        horizontal: FluffyThemes.isColumnMode(context) ? 36.0 : 16.0,
+        vertical: FluffyThemes.isColumnMode(context) ? 24.0 : 16.0,
       ),
-      child: Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                L10n.of(context).learnByTexting,
-                style: const TextStyle(fontWeight: FontWeight.bold),
+      child: SafeArea(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (!FluffyThemes.isColumnMode(context))
+              const LearningProgressIndicators(),
+            Padding(
+              padding: EdgeInsets.only(
+                left: FluffyThemes.isColumnMode(context) ? 12.0 : 4.0,
+                right: FluffyThemes.isColumnMode(context) ? 12.0 : 4.0,
+                top: 16.0,
+                bottom: 8.0,
               ),
-              Container(
-                decoration: BoxDecoration(
-                  color: theme.colorScheme.surfaceContainerHighest,
-                  borderRadius: BorderRadius.circular(36.0),
-                ),
-                padding: const EdgeInsets.symmetric(
-                  vertical: 8.0,
-                  horizontal: 16.0,
-                ),
-                child: Row(
-                  spacing: 8.0,
-                  children: [
-                    PangeaLogoSvg(
-                      width: 24.0,
-                      forceColor: theme.colorScheme.primary,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    L10n.of(context).learnByTexting,
+                    style: theme.textTheme.titleLarge
+                        ?.copyWith(fontWeight: FontWeight.bold),
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: theme.colorScheme.surfaceContainerHighest,
+                      borderRadius: BorderRadius.circular(36.0),
                     ),
-                    Text(
-                      AppConfig.applicationName,
-                      style: theme.textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 6.0,
+                      horizontal: 10.0,
                     ),
-                  ],
-                ),
+                    child: Row(
+                      spacing: 8.0,
+                      children: [
+                        PangeaLogoSvg(
+                          width: 16.0,
+                          forceColor: theme.colorScheme.primary,
+                        ),
+                        Text(
+                          AppConfig.applicationName,
+                          style: theme.textTheme.titleSmall?.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
-        ),
-        body: SafeArea(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              if (!FluffyThemes.isColumnMode(context))
-                const Padding(
-                  padding: EdgeInsets.all(24.0),
-                  child: LearningProgressIndicators(),
-                ),
-              const SizedBox(height: 16.0),
-              const Flexible(
-                child: ActivitySuggestionsArea(),
-              ),
-            ],
-          ),
+            ),
+            const Flexible(
+              child: ActivitySuggestionsArea(),
+            ),
+          ],
         ),
       ),
     );
