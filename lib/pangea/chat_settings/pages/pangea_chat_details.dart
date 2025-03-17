@@ -338,7 +338,7 @@ class PangeaChatDetailsView extends StatelessWidget {
                             room.isSpace &&
                             room.spaceParents.isEmpty)
                           Divider(color: theme.dividerColor, height: 1),
-                        if (!room.isSpace)
+                        if (!room.isSpace && !room.isDirectChat)
                           RoomCapacityButton(
                             room: room,
                             controller: controller,
