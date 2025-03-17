@@ -120,7 +120,8 @@ class NewGroupView extends StatelessWidget {
                 // onChanged:
                 //     controller.loading ? null : controller.setPublicGroup,
                 value: controller.requiredCodeToJoin,
-                onChanged: controller.setRequireCode,
+                onChanged:
+                    controller.loading ? null : controller.setRequireCode,
                 // Pangea#
               ),
             // #Pangea
