@@ -185,7 +185,10 @@ class MorphFocusWidgetState extends State<MorphFocusWidget> {
                     onDoubleTap: enterEditMode,
                     child: MorphTagDisplay(
                       morphFeature: widget.morphFeature,
-                      textColor: id.constructUses.lemmaCategory.color(context),
+                      textColor: Theme.of(context).brightness ==
+                              Brightness.light
+                          ? id.constructUses.lemmaCategory.darkColor(context)
+                          : id.constructUses.lemmaCategory.color(context),
                     ),
                   ),
                 ),

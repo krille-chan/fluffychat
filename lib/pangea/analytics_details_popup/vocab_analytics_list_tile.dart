@@ -73,7 +73,9 @@ class VocabAnalyticsListTileState extends State<VocabAnalyticsListTile> {
                   maxWidth: maxWidth - padding * 2,
                   style: TextStyle(
                     fontSize: 16,
-                    color: widget.constructUse.constructLevel.color(context),
+                    color: Theme.of(context).brightness == Brightness.light
+                        ? widget.constructUse.constructLevel.darkColor(context)
+                        : widget.constructUse.constructLevel.color(context),
                   ),
                 ),
               ),
