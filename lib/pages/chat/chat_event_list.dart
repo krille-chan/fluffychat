@@ -189,6 +189,8 @@ class ChatEventList extends StatelessWidget {
                           resetAnimateIn: () {
                             controller.animateInEventIndex = null;
                           },
+                          highlightMarker:
+                              controller.scrollToEventIdMarker == event.eventId,
                         )
                       :
                       // Pangea#

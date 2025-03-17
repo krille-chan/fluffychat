@@ -17,13 +17,15 @@ class ActivityPlanMessage extends StatelessWidget {
   final bool animateIn;
   final void Function()? resetAnimateIn;
   final ChatController controller;
+  final bool highlightMarker;
 
   const ActivityPlanMessage(
     this.event, {
     required this.timeline,
+    required this.controller,
     this.animateIn = false,
     this.resetAnimateIn,
-    required this.controller,
+    this.highlightMarker = false,
     super.key,
   });
 
@@ -65,114 +67,146 @@ class ActivityPlanMessage extends StatelessWidget {
           alignment: Alignment.bottomLeft,
           child: animateIn
               ? const SizedBox(height: 0, width: double.infinity)
-              : Container(
-                  alignment: Alignment.center,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      AnimatedOpacity(
-                        opacity: animateIn
-                            ? 0
-                            : event.messageType == MessageTypes.BadEncrypted ||
-                                    event.status.isSending
-                                ? 0.5
-                                : 1,
-                        duration: FluffyThemes.animationDuration,
-                        curve: FluffyThemes.animationCurve,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: color,
-                            borderRadius: borderRadius,
-                          ),
-                          clipBehavior: Clip.antiAlias,
-                          child: CompositedTransformTarget(
-                            link: MatrixState.pAnyState
-                                .layerLinkAndKey(
-                                  event.eventId,
-                                )
-                                .link,
-                            child: Container(
-                              key: MatrixState.pAnyState
-                                  .layerLinkAndKey(
-                                    event.eventId,
-                                  )
-                                  .key,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(
-                                  AppConfig.borderRadius,
+              : Stack(
+                  children: [
+                    Positioned(
+                      top: 0,
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      child: InkWell(
+                        onTap: () => controller.showToolbar(event),
+                        onLongPress: () => controller.showToolbar(event),
+                        borderRadius:
+                            BorderRadius.circular(AppConfig.borderRadius / 2),
+                        child: Material(
+                          borderRadius:
+                              BorderRadius.circular(AppConfig.borderRadius / 2),
+                          color: highlightMarker
+                              ? theme.colorScheme.secondaryContainer
+                                  .withAlpha(128)
+                              : Colors.transparent,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment.center,
+                      child: GestureDetector(
+                        onTap: () => controller.showToolbar(event),
+                        onLongPress: () => controller.showToolbar(event),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            AnimatedOpacity(
+                              opacity: animateIn
+                                  ? 0
+                                  : event.messageType ==
+                                              MessageTypes.BadEncrypted ||
+                                          event.status.isSending
+                                      ? 0.5
+                                      : 1,
+                              duration: FluffyThemes.animationDuration,
+                              curve: FluffyThemes.animationCurve,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: color,
+                                  borderRadius: borderRadius,
                                 ),
-                              ),
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 16,
-                                vertical: 8,
-                              ),
-                              constraints: const BoxConstraints(
-                                maxWidth: FluffyThemes.columnWidth * 1.5,
-                              ),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  MessageContent(
-                                    displayEvent,
-                                    textColor: textColor,
-                                    borderRadius: borderRadius,
-                                    controller: controller,
-                                    immersionMode: false,
-                                    timeline: timeline,
-                                    linkColor:
-                                        theme.brightness == Brightness.light
-                                            ? theme.colorScheme.primary
-                                            : theme.colorScheme.onPrimary,
-                                  ),
-                                  if (event.hasAggregatedEvents(
-                                    timeline,
-                                    RelationshipTypes.edit,
-                                  ))
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                        top: 4.0,
-                                      ),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          if (event.hasAggregatedEvents(
-                                            timeline,
-                                            RelationshipTypes.edit,
-                                          )) ...[
-                                            Icon(
-                                              Icons.edit_outlined,
-                                              color: textColor.withAlpha(164),
-                                              size: 14,
-                                            ),
-                                            Text(
-                                              ' - ${displayEvent.originServerTs.localizedTimeShort(context)}',
-                                              style: TextStyle(
-                                                color: textColor.withAlpha(
-                                                  164,
-                                                ),
-                                                fontSize: 12,
-                                              ),
-                                            ),
-                                          ],
-                                        ],
+                                clipBehavior: Clip.antiAlias,
+                                child: CompositedTransformTarget(
+                                  link: MatrixState.pAnyState
+                                      .layerLinkAndKey(
+                                        event.eventId,
+                                      )
+                                      .link,
+                                  child: Container(
+                                    key: MatrixState.pAnyState
+                                        .layerLinkAndKey(
+                                          event.eventId,
+                                        )
+                                        .key,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(
+                                        AppConfig.borderRadius,
                                       ),
                                     ),
-                                ],
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 16,
+                                      vertical: 8,
+                                    ),
+                                    constraints: const BoxConstraints(
+                                      maxWidth: FluffyThemes.columnWidth * 1.5,
+                                    ),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        MessageContent(
+                                          displayEvent,
+                                          textColor: textColor,
+                                          borderRadius: borderRadius,
+                                          controller: controller,
+                                          immersionMode: false,
+                                          timeline: timeline,
+                                          linkColor: theme.brightness ==
+                                                  Brightness.light
+                                              ? theme.colorScheme.primary
+                                              : theme.colorScheme.onPrimary,
+                                        ),
+                                        if (event.hasAggregatedEvents(
+                                          timeline,
+                                          RelationshipTypes.edit,
+                                        ))
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                              top: 4.0,
+                                            ),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                if (event.hasAggregatedEvents(
+                                                  timeline,
+                                                  RelationshipTypes.edit,
+                                                )) ...[
+                                                  Icon(
+                                                    Icons.edit_outlined,
+                                                    color: textColor
+                                                        .withAlpha(164),
+                                                    size: 14,
+                                                  ),
+                                                  Text(
+                                                    ' - ${displayEvent.originServerTs.localizedTimeShort(context)}',
+                                                    style: TextStyle(
+                                                      color:
+                                                          textColor.withAlpha(
+                                                        164,
+                                                      ),
+                                                      fontSize: 12,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ],
+                                            ),
+                                          ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                top: 4.0,
+                                right: 4.0,
+                              ),
+                              child: MessageReactions(event, timeline),
+                            ),
+                          ],
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          top: 4.0,
-                          right: 4.0,
-                        ),
-                        child: MessageReactions(event, timeline),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
         );
       },
