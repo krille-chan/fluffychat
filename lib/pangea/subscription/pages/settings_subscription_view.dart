@@ -67,11 +67,16 @@ class SettingsSubscriptionView extends StatelessWidget {
         child: MaxWidthBody(
           child: Column(
             children: [
-              if (isSubscribed && !controller.showManagementOptions)
+              if (isSubscribed == null)
+                const Center(child: CircularProgressIndicator.adaptive()),
+              if (isSubscribed != null &&
+                  isSubscribed &&
+                  !controller.showManagementOptions)
                 ManagementNotAvailableWarning(
                   controller: controller,
                 ),
-              if (!isSubscribed || controller.isNewUserTrial)
+              if (isSubscribed != null && !isSubscribed ||
+                  controller.isNewUserTrial)
                 ChangeSubscription(controller: controller),
               if (controller.showManagementOptions) ...managementButtons,
             ],

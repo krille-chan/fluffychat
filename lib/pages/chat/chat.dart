@@ -1870,8 +1870,6 @@ class ChatController extends State<ChatPageWithRoom>
         child: overlayEntry!,
         transformTargetId: "",
         backgroundColor: Colors.black,
-        closePrevOverlay:
-            MatrixState.pangeaController.subscriptionController.isSubscribed,
         position: OverlayPositionEnum.centered,
         onDismiss: clearSelectedEvents,
         blurBackground: true,

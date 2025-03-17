@@ -4,8 +4,6 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 
 enum AssistanceState {
@@ -29,21 +27,6 @@ extension AssistanceStateExtension on AssistanceState {
         return AppConfig.error;
       case AssistanceState.complete:
         return AppConfig.success;
-    }
-  }
-
-  String tooltip(L10n l10n) {
-    switch (this) {
-      case AssistanceState.noMessage:
-      case AssistanceState.notFetched:
-        return l10n.runGrammarCorrection;
-      case AssistanceState.noSub:
-      case AssistanceState.fetching:
-        return "";
-      case AssistanceState.fetched:
-        return l10n.grammarCorrectionFailed;
-      case AssistanceState.complete:
-        return l10n.grammarCorrectionComplete;
     }
   }
 }

@@ -97,11 +97,12 @@ class Choreographer {
       return;
     }
 
-    if (!pangeaController.subscriptionController.isSubscribed) {
+    final isSubscribed = pangeaController.subscriptionController.isSubscribed;
+    if (isSubscribed != null && !isSubscribed) {
       // don't want to run IGC if user isn't subscribed, so either
       // show the paywall if applicable or just send the message
       final status = pangeaController.subscriptionController.subscriptionStatus;
-      status == SubscriptionStatus.showPaywall
+      status == SubscriptionStatus.shouldShowPaywall
           ? OverlayUtil.showPositionedCard(
               context: context,
               cardToShow: PaywallCard(
@@ -680,7 +681,8 @@ class Choreographer {
       );
 
   AssistanceState get assistanceState {
-    if (!pangeaController.subscriptionController.isSubscribed) {
+    final isSubscribed = pangeaController.subscriptionController.isSubscribed;
+    if (isSubscribed != null && !isSubscribed) {
       return AssistanceState.noSub;
     }
 

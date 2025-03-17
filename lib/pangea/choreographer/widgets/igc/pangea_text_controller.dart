@@ -45,7 +45,7 @@ class PangeaTextController extends TextEditingController {
     // show the paywall if appropriate
     if (choreographer
                 .pangeaController.subscriptionController.subscriptionStatus ==
-            SubscriptionStatus.showPaywall &&
+            SubscriptionStatus.shouldShowPaywall &&
         !choreographer.isFetching &&
         text.isNotEmpty) {
       OverlayUtil.showPositionedCard(
@@ -155,7 +155,7 @@ class PangeaTextController extends TextEditingController {
 
     final SubscriptionStatus canSendStatus = choreographer
         .pangeaController.subscriptionController.subscriptionStatus;
-    if (canSendStatus == SubscriptionStatus.showPaywall &&
+    if (canSendStatus == SubscriptionStatus.shouldShowPaywall &&
         !choreographer.isFetching &&
         text.isNotEmpty) {
       return TextSpan(

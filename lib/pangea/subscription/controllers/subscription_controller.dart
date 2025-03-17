@@ -29,9 +29,10 @@ import 'package:fluffychat/pangea/user/controllers/user_controller.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 
 enum SubscriptionStatus {
+  loading,
   subscribed,
   dimissedPaywall,
-  showPaywall,
+  shouldShowPaywall,
 }
 
 class SubscriptionController extends BaseController {
@@ -50,7 +51,9 @@ class SubscriptionController extends BaseController {
   UserController get _userController => _pangeaController.userController;
   String? get _userID => _pangeaController.matrixState.client.userID;
 
-  bool get isSubscribed {
+  bool? get isSubscribed {
+    if (!initCompleter.isCompleted) return null;
+
     final bool hasSubscription =
         currentSubscriptionInfo?.currentSubscriptionId != null;
 
@@ -63,22 +66,22 @@ class SubscriptionController extends BaseController {
   }
 
   bool _isInitializing = false;
-  Completer<void> initialized = Completer<void>();
+  Completer<void> initCompleter = Completer<void>();
 
   Future<void> initialize() async {
-    if (initialized.isCompleted) return;
+    if (initCompleter.isCompleted) return;
     if (_isInitializing) {
-      await initialized.future;
+      await initCompleter.future;
       return;
     }
     _isInitializing = true;
     await _initialize();
     _isInitializing = false;
-    initialized.complete();
+    initCompleter.complete();
   }
 
   Future<void> reinitialize() async {
-    initialized = Completer<void>();
+    initCompleter = Completer<void>();
     _isInitializing = false;
     await initialize();
   }
@@ -117,9 +120,9 @@ class SubscriptionController extends BaseController {
       if (!kIsWeb) {
         Purchases.addCustomerInfoUpdateListener(
           (CustomerInfo info) async {
-            final bool wasSubscribed = isSubscribed;
+            final bool wasSubscribed = isSubscribed != null && isSubscribed!;
             await updateCustomerInfo();
-            if (!wasSubscribed && isSubscribed) {
+            if (!wasSubscribed && (isSubscribed != null && isSubscribed!)) {
               subscriptionStream.add(true);
             }
           },
@@ -131,7 +134,7 @@ class SubscriptionController extends BaseController {
           await subscriptionBox.remove(
             PLocalKey.beganWebPayment,
           );
-          if (isSubscribed) {
+          if (isSubscribed != null && isSubscribed!) {
             subscriptionStream.add(true);
           }
         }
@@ -245,7 +248,7 @@ class SubscriptionController extends BaseController {
   }
 
   Future<void> updateCustomerInfo() async {
-    if (!initialized.isCompleted) {
+    if (!initCompleter.isCompleted) {
       await initialize();
     }
     await currentSubscriptionInfo!.setCurrentSubscription();
@@ -254,11 +257,17 @@ class SubscriptionController extends BaseController {
 
   /// if the user is subscribed, returns subscribed
   /// if the user has dismissed the paywall, returns dismissed
-  SubscriptionStatus get subscriptionStatus => isSubscribed
-      ? SubscriptionStatus.subscribed
-      : _shouldShowPaywall
-          ? SubscriptionStatus.showPaywall
-          : SubscriptionStatus.dimissedPaywall;
+  SubscriptionStatus get subscriptionStatus {
+    if (isSubscribed == null) {
+      return SubscriptionStatus.loading;
+    }
+
+    return isSubscribed!
+        ? SubscriptionStatus.subscribed
+        : _shouldShowPaywall
+            ? SubscriptionStatus.shouldShowPaywall
+            : SubscriptionStatus.dimissedPaywall;
+  }
 
   DateTime? get _lastDismissedPaywall {
     final lastDismissed = subscriptionBox.read(
@@ -278,8 +287,9 @@ class SubscriptionController extends BaseController {
 
   /// whether or not the paywall should be shown
   bool get _shouldShowPaywall {
-    return initialized.isCompleted &&
-        !isSubscribed &&
+    return initCompleter.isCompleted &&
+        isSubscribed != null &&
+        !isSubscribed! &&
         (_lastDismissedPaywall == null ||
             DateTime.now().difference(_lastDismissedPaywall!).inHours >
                 (1 * (_paywallBackoff ?? 1)));
@@ -306,13 +316,13 @@ class SubscriptionController extends BaseController {
 
   Future<void> showPaywall(BuildContext context) async {
     try {
-      if (!initialized.isCompleted) {
+      if (!initCompleter.isCompleted) {
         await initialize();
       }
       if (availableSubscriptionInfo?.availableSubscriptions.isEmpty ?? true) {
         return;
       }
-      if (isSubscribed) return;
+      if (isSubscribed == null || isSubscribed!) return;
       await showModalBottomSheet(
         isScrollControlled: true,
         useRootNavigator: !PlatformInfos.isMobile,

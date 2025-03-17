@@ -34,7 +34,7 @@ class SubscriptionManagementController extends State<SubscriptionManagement> {
 
   @override
   void initState() {
-    if (!subscriptionController.initialized.isCompleted) {
+    if (!subscriptionController.initCompleter.isCompleted) {
       subscriptionController.initialize().then((_) => setState(() {}));
     }
 
@@ -66,7 +66,8 @@ class SubscriptionManagementController extends State<SubscriptionManagement> {
       false;
 
   bool get currentSubscriptionAvailable =>
-      subscriptionController.isSubscribed &&
+      subscriptionController.isSubscribed != null &&
+      subscriptionController.isSubscribed! &&
       subscriptionController.currentSubscriptionInfo?.currentSubscription !=
           null;
 
