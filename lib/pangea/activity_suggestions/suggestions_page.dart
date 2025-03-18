@@ -14,21 +14,21 @@ class SuggestionsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final isColumnMode = FluffyThemes.isColumnMode(context);
     return Padding(
       padding: EdgeInsets.symmetric(
-        horizontal: FluffyThemes.isColumnMode(context) ? 36.0 : 8.0,
-        vertical: FluffyThemes.isColumnMode(context) ? 24.0 : 8.0,
+        horizontal: isColumnMode ? 36.0 : 8.0,
+        vertical: isColumnMode ? 24.0 : 8.0,
       ),
       child: SafeArea(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            if (!FluffyThemes.isColumnMode(context))
-              const LearningProgressIndicators(),
+            if (!isColumnMode) const LearningProgressIndicators(),
             Padding(
               padding: EdgeInsets.only(
-                left: FluffyThemes.isColumnMode(context) ? 12.0 : 4.0,
-                right: FluffyThemes.isColumnMode(context) ? 12.0 : 4.0,
+                left: isColumnMode ? 12.0 : 4.0,
+                right: isColumnMode ? 12.0 : 4.0,
                 top: 16.0,
                 bottom: 16.0,
               ),
@@ -37,8 +37,12 @@ class SuggestionsPage extends StatelessWidget {
                 children: [
                   Text(
                     L10n.of(context).learnByTexting,
-                    style: theme.textTheme.titleLarge
-                        ?.copyWith(fontWeight: FontWeight.bold),
+                    style: isColumnMode
+                        ? theme.textTheme.titleLarge
+                            ?.copyWith(fontWeight: FontWeight.bold)
+                        : theme.textTheme.titleMedium?.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
                   ),
                   Container(
                     decoration: BoxDecoration(
