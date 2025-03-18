@@ -61,19 +61,19 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
     );
   }
 
-  void _scrollToNextItem(AxisDirection direction) {
-    final currentOffset = _scrollController.offset;
-    final scrollAmount = _isColumnMode ? cardWidth : cardHeight;
+  // void _scrollToNextItem(AxisDirection direction) {
+  //   final currentOffset = _scrollController.offset;
+  //   final scrollAmount = _isColumnMode ? cardWidth : cardHeight;
 
-    _scrollController.animateTo(
-      (direction == AxisDirection.left
-              ? currentOffset - scrollAmount
-              : currentOffset + scrollAmount)
-          .clamp(0.0, _scrollController.position.maxScrollExtent),
-      duration: FluffyThemes.animationDuration,
-      curve: FluffyThemes.animationCurve,
-    );
-  }
+  //   _scrollController.animateTo(
+  //     (direction == AxisDirection.left
+  //             ? currentOffset - scrollAmount
+  //             : currentOffset + scrollAmount)
+  //         .clamp(0.0, _scrollController.position.maxScrollExtent),
+  //     duration: FluffyThemes.animationDuration,
+  //     curve: FluffyThemes.animationCurve,
+  //   );
+  // }
 
   Future<void> _setActivityItems() async {
     final ActivityPlanRequest request = ActivityPlanRequest(

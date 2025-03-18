@@ -107,7 +107,10 @@ class PublicRoomBottomSheetState extends State<PublicRoomBottomSheet> {
     // if (knock) {
     //   return;
     // }
-    if (knock && !wasInRoom) return;
+    if (knock && !wasInRoom) {
+      Navigator.of(context).pop();
+      return;
+    }
     // Pangea#
     if (result.error == null) {
       Navigator.of(context).pop<bool>(true);
