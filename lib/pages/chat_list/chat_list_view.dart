@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pangea/chat_list/widgets/chat_list_view_body_wrapper.dart';
+import 'package:fluffychat/pangea/spaces/widgets/space_floating_actions_buttons.dart';
 import 'package:fluffychat/widgets/navigation_rail.dart';
 
 class ChatListView extends StatelessWidget {
@@ -53,19 +54,25 @@ class ChatListView extends StatelessWidget {
                 body: ChatListViewBodyWrapper(controller: controller),
                 // Pangea#
                 floatingActionButton:
-                    !controller.isSearchMode && controller.activeSpaceId == null
-                        ? FloatingActionButton.extended(
-                            // #Pangea
-                            // onPressed: () => context.go('/rooms/newprivatechat'),
-                            onPressed: () => context.go('/rooms/newgroup'),
+                    // #Pangea
+                    // !controller.isSearchMode && controller.activeSpaceId == null
+                    controller.activeFilter == ActiveFilter.spaces
+                        ? const SpaceFloatingActionButtons()
+                        : !controller.isSearchMode &&
+                                controller.activeSpaceId == null
                             // Pangea#
-                            icon: const Icon(Icons.add_outlined),
-                            label: Text(
-                              L10n.of(context).chat,
-                              overflow: TextOverflow.fade,
-                            ),
-                          )
-                        : const SizedBox.shrink(),
+                            ? FloatingActionButton.extended(
+                                // #Pangea
+                                // onPressed: () => context.go('/rooms/newprivatechat'),
+                                onPressed: () => context.go('/rooms/newgroup'),
+                                // Pangea#
+                                icon: const Icon(Icons.add_outlined),
+                                label: Text(
+                                  L10n.of(context).chat,
+                                  overflow: TextOverflow.fade,
+                                ),
+                              )
+                            : const SizedBox.shrink(),
               ),
             ),
           ),

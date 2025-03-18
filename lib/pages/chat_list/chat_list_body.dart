@@ -13,7 +13,6 @@ import 'package:fluffychat/pages/chat_list/search_title.dart';
 import 'package:fluffychat/pages/chat_list/space_view.dart';
 import 'package:fluffychat/pages/user_bottom_sheet/user_bottom_sheet.dart';
 import 'package:fluffychat/pangea/chat_list/widgets/pangea_chat_list_header.dart';
-import 'package:fluffychat/pangea/spaces/widgets/space_filter_buttons.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -353,10 +352,6 @@ class ChatListViewBody extends StatelessWidget {
                     );
                   },
                 ),
-              // #Pangea
-              if (controller.activeFilter == ActiveFilter.spaces)
-                const SpaceFilterButtons(),
-              // Pangea#
             ],
           ),
         );
