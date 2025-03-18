@@ -4,8 +4,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:go_router/go_router.dart';
 
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
@@ -130,103 +128,29 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
       ),
     );
 
-    return Container(
-      alignment: Alignment.topCenter,
-      padding: EdgeInsets.symmetric(
-        horizontal: FluffyThemes.isColumnMode(context) ? 16.0 : 4.0,
-      ),
-      height: _isColumnMode ? cardHeight * 1.5 : null,
-      child: _isColumnMode
-          ? Stack(
-              alignment: Alignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 45.0,
-                  ), // Space for buttons
-                  child: ListView(
-                    controller: _scrollController,
-                    scrollDirection: Axis.horizontal,
-                    padding: const EdgeInsets.symmetric(vertical: 4.0),
-                    children: cards,
-                  ),
-                ),
-
-                // Left button
-                Positioned(
-                  left: 0,
-                  top: cardHeight / 1.5 - 20.0,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Theme.of(context)
-                          .cardColor
-                          .withAlpha((0.8 * 255).toInt()),
-                      borderRadius: BorderRadius.circular(25),
-                    ),
-                    child: IconButton(
-                      icon: const Icon(Icons.chevron_left),
-                      onPressed: () => _scrollToNextItem(AxisDirection.left),
-                      iconSize: 24.0,
-                      padding: const EdgeInsets.all(8.0),
-                      constraints: const BoxConstraints(),
-                    ),
-                  ),
-                ),
-
-                // Right button
-                Positioned(
-                  right: 0,
-                  top: cardHeight / 1.5 - 20.0,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Theme.of(context)
-                          .cardColor
-                          .withAlpha((0.8 * 255).toInt()),
-                      borderRadius: BorderRadius.circular(25),
-                    ),
-                    child: IconButton(
-                      icon: const Icon(Icons.chevron_right),
-                      onPressed: () => _scrollToNextItem(AxisDirection.right),
-                      iconSize: 24.0,
-                      padding: const EdgeInsets.all(8.0),
-                      constraints: const BoxConstraints(),
-                    ),
-                  ),
-                ),
-
-                // Create Chat button
-                Positioned(
-                  right: 0,
-                  top: cardHeight / 1.5 + 30.0,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Theme.of(context)
-                          .primaryColor
-                          .withAlpha((0.9 * 255).toInt()),
-                      borderRadius: BorderRadius.circular(25),
-                    ),
-                    child: IconButton(
-                      icon: const Icon(Icons.add_comment, color: Colors.white),
-                      tooltip: L10n.of(context).createOwnChat,
-                      onPressed: () => context.go('/rooms/newgroup'),
-                      iconSize: 24.0,
-                      padding: const EdgeInsets.all(8.0),
-                      constraints: const BoxConstraints(),
-                    ),
-                  ),
-                ),
-              ],
-            )
-          : SizedBox.expand(
-              child: SingleChildScrollView(
+    return _isColumnMode
+        ? ConstrainedBox(
+            constraints: BoxConstraints(maxHeight: cardHeight + 36.0),
+            child: Scrollbar(
+              controller: _scrollController,
+              thumbVisibility: true,
+              child: ListView(
                 controller: _scrollController,
-                child: Wrap(
-                  alignment: WrapAlignment.spaceBetween,
-                  runSpacing: 8.0,
-                  children: cards,
-                ),
+                scrollDirection: Axis.horizontal,
+                padding: const EdgeInsets.symmetric(vertical: 4.0),
+                children: cards,
               ),
             ),
-    );
+          )
+        : SizedBox.expand(
+            child: SingleChildScrollView(
+              controller: _scrollController,
+              child: Wrap(
+                alignment: WrapAlignment.spaceEvenly,
+                runSpacing: 16.0,
+                children: cards,
+              ),
+            ),
+          );
   }
 }

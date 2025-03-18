@@ -16,8 +16,8 @@ class SuggestionsPage extends StatelessWidget {
     final theme = Theme.of(context);
     return Padding(
       padding: EdgeInsets.symmetric(
-        horizontal: FluffyThemes.isColumnMode(context) ? 36.0 : 16.0,
-        vertical: FluffyThemes.isColumnMode(context) ? 24.0 : 16.0,
+        horizontal: FluffyThemes.isColumnMode(context) ? 36.0 : 8.0,
+        vertical: FluffyThemes.isColumnMode(context) ? 24.0 : 8.0,
       ),
       child: SafeArea(
         child: Column(
@@ -30,7 +30,7 @@ class SuggestionsPage extends StatelessWidget {
                 left: FluffyThemes.isColumnMode(context) ? 12.0 : 4.0,
                 right: FluffyThemes.isColumnMode(context) ? 12.0 : 4.0,
                 top: 16.0,
-                bottom: 8.0,
+                bottom: 16.0,
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
