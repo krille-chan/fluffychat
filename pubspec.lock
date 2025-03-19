@@ -556,26 +556,34 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_local_notifications
-      sha256: "49eeef364fddb71515bc78d5a8c51435a68bccd6e4d68e25a942c5e47761ae71"
+      sha256: d59eeafd6df92174b1d5f68fc9d66634c97ce2e7cfe2293476236547bb19bbbd
       url: "https://pub.dev"
     source: hosted
-    version: "17.2.3"
+    version: "19.0.0"
   flutter_local_notifications_linux:
     dependency: transitive
     description:
       name: flutter_local_notifications_linux
-      sha256: c49bd06165cad9beeb79090b18cd1eb0296f4bf4b23b84426e37dd7c027fc3af
+      sha256: e3c277b2daab8e36ac5a6820536668d07e83851aeeb79c446e525a70710770a5
       url: "https://pub.dev"
     source: hosted
-    version: "4.0.1"
+    version: "6.0.0"
   flutter_local_notifications_platform_interface:
     dependency: transitive
     description:
       name: flutter_local_notifications_platform_interface
-      sha256: "85f8d07fe708c1bdcf45037f2c0109753b26ae077e9d9e899d55971711a4ea66"
+      sha256: "2569b973fc9d1f63a37410a9f7c1c552081226c597190cb359ef5d5762d1631c"
       url: "https://pub.dev"
     source: hosted
-    version: "7.2.0"
+    version: "9.0.0"
+  flutter_local_notifications_windows:
+    dependency: transitive
+    description:
+      name: flutter_local_notifications_windows
+      sha256: f8fc0652a601f83419d623c85723a3e82ad81f92b33eaa9bcc21ea1b94773e6e
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   flutter_localizations:
     dependency: "direct main"
     description: flutter
@@ -617,10 +625,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_openssl_crypto
-      sha256: "6dcecf6f7c1804ae6f5d73ee05df8af72ea8133bf2447d25979d739503186c96"
+      sha256: "293b4fcda13ab0710645a16e82f3d5b7de19bfc0ab2d06bcdb87637222eda5e1"
       url: "https://pub.dev"
     source: hosted
-    version: "0.3.0"
+    version: "0.5.0"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:
@@ -810,10 +818,10 @@ packages:
     dependency: "direct main"
     description:
       name: go_router
-      sha256: "6f1b756f6e863259a99135ff3c95026c3cdca17d10ebef2bba2261a25ddc8bbc"
+      sha256: f02fd7d2a4dc512fec615529824fdd217fecb3a3d3de68360293a551f21634b3
       url: "https://pub.dev"
     source: hosted
-    version: "14.3.0"
+    version: "14.8.1"
   gtk:
     dependency: transitive
     description:
@@ -1151,10 +1159,10 @@ packages:
     dependency: "direct main"
     description:
       name: matrix
-      sha256: d0da69e5ee8dfc1692c02e4b460a1bc136120f0dcf5e02cf604b23cd39d76903
+      sha256: "23e87bb625c53f06568ae3a68badf31e95fbfd0f97f8a6781b9685dd207c9add"
       url: "https://pub.dev"
     source: hosted
-    version: "0.38.0"
+    version: "0.38.1"
   meta:
     dependency: transitive
     description:
@@ -1932,10 +1940,10 @@ packages:
     dependency: transitive
     description:
       name: timezone
-      sha256: "2236ec079a174ce07434e89fcd3fcda430025eb7692244139a9cf54fdcf1fc7d"
+      sha256: ffc9d5f4d1193534ef051f9254063fa53d588609418c84299956c3db9383587d
       url: "https://pub.dev"
     source: hosted
-    version: "0.9.4"
+    version: "0.10.0"
   tint:
     dependency: transitive
     description:

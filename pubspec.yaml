@@ -33,13 +33,13 @@ dependencies:
   flutter_foreground_task: ^6.1.3
   flutter_highlighter: ^0.1.1
   flutter_linkify: ^6.0.0
-  flutter_local_notifications: ^17.2.3
+  flutter_local_notifications: ^19.0.0
   flutter_localizations:
     sdk: flutter
   flutter_map: ^6.1.0
   flutter_new_badger: ^1.1.1
   flutter_olm: 2.0.0
-  flutter_openssl_crypto: ^0.3.0
+  flutter_openssl_crypto: ^0.5.0
   flutter_secure_storage: ^9.2.2
   flutter_shortcuts_new: ^2.0.0
   flutter_typeahead: ## Custom fork from flutter_typeahead since the package is not maintain well.
@@ -49,7 +49,7 @@ dependencies:
   flutter_web_auth_2: ^3.1.1 # Version 4 blocked by https://github.com/MixinNetwork/flutter-plugins/issues/379
   flutter_webrtc: ^0.12.9
   geolocator: ^13.0.1
-  go_router: ^14.3.0
+  go_router: ^14.8.1
   handy_window: ^0.4.0
   hive: ^2.2.3
   hive_flutter: ^1.1.0
@@ -61,7 +61,7 @@ dependencies:
   just_audio: ^0.9.39
   latlong2: ^0.9.1
   linkify: ^5.0.0
-  matrix: ^0.38.0
+  matrix: ^0.38.1
   mime: ^1.0.6
   native_imaging: ^0.2.0
   opus_caf_converter_dart: ^1.0.1
