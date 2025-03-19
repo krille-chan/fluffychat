@@ -60,7 +60,11 @@ class FullTextTranslationRepo {
 
     // check cache first
     if (_cache.containsKey(cacheKey)) {
-      return _cache[cacheKey]!;
+      if (_cache[cacheKey] == null) {
+        _cache.remove(cacheKey);
+      } else {
+        return _cache[cacheKey]!;
+      }
     }
 
     final Requests req = Requests(

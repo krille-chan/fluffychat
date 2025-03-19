@@ -6,6 +6,7 @@ import 'package:http/http.dart';
 
 import 'package:fluffychat/pangea/analytics_misc/text_loading_shimmer.dart';
 import 'package:fluffychat/pangea/choreographer/repo/full_text_translation_repo.dart';
+import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import '../../../widgets/matrix.dart';
 import '../../bot/utils/bot_style.dart';
 import '../../common/controllers/pangea_controller.dart';
@@ -50,29 +51,37 @@ class ITFeedbackCardController extends State<ITFeedbackCard> {
       isLoadingFeedback = true;
     });
 
-    FullTextTranslationRepo.translate(
-      accessToken: controller.userController.accessToken,
-      request: FullTextTranslationRequestModel(
-        text: widget.req.chosenContinuance,
-        tgtLang: controller.languageController.userL1?.langCode ??
-            widget.req.sourceTextLang,
-        userL1: controller.languageController.userL1?.langCode ??
-            widget.req.sourceTextLang,
-        userL2: controller.languageController.userL2?.langCode ??
-            widget.req.targetLang,
-      ),
-    )
-        .then((translationResponse) {
-          res = ITFeedbackResponseModel(
-            text: translationResponse.bestTranslation,
-          );
-        })
-        .catchError((e) => error = e)
-        .whenComplete(() {
-          if (mounted) {
-            setState(() => isLoadingFeedback = false);
-          }
+    try {
+      final resp = await FullTextTranslationRepo.translate(
+        accessToken: controller.userController.accessToken,
+        request: FullTextTranslationRequestModel(
+          text: widget.req.chosenContinuance,
+          tgtLang: controller.languageController.userL1?.langCode ??
+              widget.req.sourceTextLang,
+          userL1: controller.languageController.userL1?.langCode ??
+              widget.req.sourceTextLang,
+          userL2: controller.languageController.userL2?.langCode ??
+              widget.req.targetLang,
+        ),
+      );
+      res = ITFeedbackResponseModel(text: resp.bestTranslation);
+    } catch (e, s) {
+      error = e;
+      ErrorHandler.logError(
+        e: e,
+        s: s,
+        data: {
+          "req": widget.req.toJson(),
+          "choiceFeedback": widget.choiceFeedback,
+        },
+      );
+    } finally {
+      if (mounted) {
+        setState(() {
+          isLoadingFeedback = false;
         });
+      }
+    }
   }
 
   @override
