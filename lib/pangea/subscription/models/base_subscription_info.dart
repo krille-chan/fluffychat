@@ -115,10 +115,22 @@ class AvailableSubscriptionsInfo {
   }
 
   Future<void> _cacheSubscriptionInfo() async {
-    await subscriptionBox.write(
-      PLocalKey.availableSubscriptionInfo,
-      toJson(),
-    );
+    try {
+      final json = toJson();
+      await subscriptionBox.write(
+        PLocalKey.availableSubscriptionInfo,
+        json,
+      );
+    } catch (e, s) {
+      ErrorHandler.logError(
+        e: e,
+        s: s,
+        data: {
+          "appIds": appIds,
+          "allProducts": allProducts,
+        },
+      );
+    }
   }
 
   AvailableSubscriptionsInfo? _getCachedSubscriptionInfo() {
@@ -144,6 +156,14 @@ class AvailableSubscriptionsInfo {
   }
 
   factory AvailableSubscriptionsInfo.fromJson(Map<String, dynamic> json) {
+    if (!json.containsKey('app_ids') || !json.containsKey('all_products')) {
+      throw "Cached subscription info is missing required fields";
+    }
+
+    if (json['all_products'] is! List<dynamic> || json['app_ids'] is! Map) {
+      throw "Cached subscription info contains incorrect data type(s)";
+    }
+
     final appIds = SubscriptionAppIds.fromJson(json['app_ids']);
     final allProducts = (json['all_products'] as List<dynamic>)
         .map((product) => SubscriptionDetails.fromJson(product))
@@ -155,7 +175,11 @@ class AvailableSubscriptionsInfo {
     );
   }
 
-  Map<String, dynamic> toJson() {
+  Map<String, dynamic> toJson({validate = true}) {
+    if (validate && (appIds == null || allProducts == null)) {
+      throw "appIds or allProducts is null in AvailableSubscriptionsInfo";
+    }
+
     final data = <String, dynamic>{};
     data['app_ids'] = appIds?.toJson();
     data['all_products'] =

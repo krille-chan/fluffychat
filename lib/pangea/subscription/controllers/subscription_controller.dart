@@ -146,7 +146,9 @@ class SubscriptionController extends BaseController {
         e: e,
         s: s,
         data: {
-          "availableSubscriptionInfo": availableSubscriptionInfo?.toJson(),
+          "availableSubscriptionInfo": availableSubscriptionInfo?.toJson(
+            validate: false,
+          ),
         },
       );
     }
@@ -345,7 +347,9 @@ class SubscriptionController extends BaseController {
         e: e,
         s: s,
         data: {
-          "availableSubscriptionInfo": availableSubscriptionInfo?.toJson(),
+          "availableSubscriptionInfo": availableSubscriptionInfo?.toJson(
+            validate: false,
+          ),
         },
       );
     }
