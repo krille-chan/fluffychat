@@ -617,10 +617,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_openssl_crypto
-      sha256: "6dcecf6f7c1804ae6f5d73ee05df8af72ea8133bf2447d25979d739503186c96"
+      sha256: "293b4fcda13ab0710645a16e82f3d5b7de19bfc0ab2d06bcdb87637222eda5e1"
       url: "https://pub.dev"
     source: hosted
-    version: "0.3.0"
+    version: "0.5.0"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:
