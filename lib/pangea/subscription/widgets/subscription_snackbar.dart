@@ -19,7 +19,7 @@ void showSubscribedSnackbar(BuildContext context) {
         const TextSpan(text: " "),
         TextSpan(
           text: L10n.of(context).clickToManageSubscription,
-          style: TextStyle(color: Theme.of(context).colorScheme.primary),
+          style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary),
           recognizer: TapGestureRecognizer()
             ..onTap = () => context.go('/rooms/settings/subscription'),
         ),
