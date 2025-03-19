@@ -16,6 +16,10 @@ class ActivityPlanPageLaunchIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (!controller.room.canSendDefaultStates) {
+      return const SizedBox();
+    }
+
     return FutureBuilder<bool>(
       future: controller.room.isBotDM,
       builder: (BuildContext context, snapshot) {

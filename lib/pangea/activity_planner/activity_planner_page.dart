@@ -90,7 +90,7 @@ class ActivityPlannerPageState extends State<ActivityPlannerPage> {
   Future<List<ActivitySettingResponseSchema>> get _topicItems =>
       TopicListRepo.get(req);
 
-  Future<List<ActivitySettingResponseSchema>> get _modeItems =>
+  Future<List<ActivitySettingResponseSchema>> get modeItems =>
       ActivityModeListRepo.get(req);
 
   Future<List<ActivitySettingResponseSchema>> get _objectiveItems =>
@@ -112,7 +112,7 @@ class ActivityPlannerPageState extends State<ActivityPlannerPage> {
   }
 
   Future<String> _randomMode() async {
-    final modes = await _modeItems;
+    final modes = await modeItems;
     return (modes..shuffle()).first.name;
   }
 
@@ -197,6 +197,7 @@ class ActivityPlannerPageState extends State<ActivityPlannerPage> {
                       cefrLevel: _selectedCefrLevel!,
                       numberOfParticipants: _selectedNumberOfParticipants!,
                     ),
+              controller: this,
             )
           : Center(
               child: ConstrainedBox(
@@ -233,7 +234,7 @@ class ActivityPlannerPageState extends State<ActivityPlannerPage> {
                                 ),
                                 const SizedBox(height: 24),
                                 SuggestionFormField(
-                                  suggestions: _modeItems,
+                                  suggestions: modeItems,
                                   validator: _validateNotNull,
                                   label: l10n.modeLabel,
                                   placeholder: l10n.modePlaceholder,

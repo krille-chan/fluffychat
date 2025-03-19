@@ -3,17 +3,26 @@ import 'dart:developer';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:http/http.dart' as http;
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_generation_repo.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_request.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_response.dart';
+import 'package:fluffychat/pangea/activity_planner/activity_planner_page.dart';
 import 'package:fluffychat/pangea/activity_planner/bookmarked_activities_repo.dart';
+import 'package:fluffychat/pangea/activity_planner/list_request_schema.dart';
+import 'package:fluffychat/pangea/activity_suggestions/activity_suggestions_constants.dart';
 import 'package:fluffychat/pangea/common/constants/model_keys.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/utils/file_selector.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'activity_plan_card.dart';
 
@@ -23,10 +32,13 @@ class ActivityListView extends StatefulWidget {
   /// if null, show saved activities
   final ActivityPlanRequest? activityPlanRequest;
 
+  final ActivityPlannerPageState controller;
+
   const ActivityListView({
     super.key,
     required this.room,
     required this.activityPlanRequest,
+    required this.controller,
   });
 
   @override
@@ -41,10 +53,15 @@ class ActivityListViewState extends State<ActivityListView> {
   bool _isLoading = true;
   Object? _error;
 
+  Uint8List? _avatar;
+  String? _avatarURL;
+  String? _filename;
+
   @override
   void initState() {
     super.initState();
     _loadActivities();
+    _setModeImageURL();
   }
 
   Future<void> _loadActivities() async {
@@ -108,11 +125,78 @@ class ActivityListViewState extends State<ActivityListView> {
             return;
           }
 
-          await widget.room?.setPinnedEvents([eventId]);
+          Uint8List? bytes = _avatar;
+          if (_avatarURL != null && bytes == null) {
+            final resp = await http
+                .get(Uri.parse(_avatarURL!))
+                .timeout(const Duration(seconds: 5));
+            bytes = resp.bodyBytes;
+          }
+
+          if (bytes != null && _filename != null) {
+            final file = MatrixFile(
+              bytes: bytes,
+              name: _filename!,
+            );
+
+            await widget.room?.sendFileEvent(
+              file,
+              shrinkImageMaxDimension: 1600,
+              extraContent: {
+                ModelKey.messageTags: ModelKey.messageTagActivityPlan,
+              },
+            );
+          }
+
+          if (widget.room != null && widget.room!.canSendDefaultStates) {
+            await widget.room?.setPinnedEvents([eventId]);
+          }
 
           Navigator.of(context).pop();
         },
       );
+
+  Future<ActivitySettingResponseSchema?> get _selectedMode async {
+    final modes = await widget.controller.modeItems;
+    return modes.firstWhereOrNull(
+      (element) =>
+          element.name.toLowerCase() ==
+          widget.activityPlanRequest?.mode.toLowerCase(),
+    );
+  }
+
+  Future<void> _setModeImageURL() async {
+    final mode = await _selectedMode;
+    if (mode == null) return;
+
+    final modeName =
+        mode.defaultName.toLowerCase().replaceAll(RegExp(r'\s+'), '');
+    final filename =
+        "${ActivitySuggestionsConstants.modeImageFileStart}$modeName.jpg";
+
+    if (!mounted) return;
+    setState(() {
+      _avatarURL = "${AppConfig.assetsBaseURL}/$filename";
+      _filename = filename;
+    });
+  }
+
+  void selectPhoto() async {
+    final resp = await selectFiles(
+      context,
+      type: FileSelectorType.images,
+      allowMultiple: false,
+    );
+
+    final photo = resp.singleOrNull;
+    if (photo == null) return;
+    final bytes = await photo.readAsBytes();
+
+    setState(() {
+      _avatar = bytes;
+      _filename = photo.name;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -152,8 +236,66 @@ class ActivityListViewState extends State<ActivityListView> {
         padding: const EdgeInsets.all(16),
         itemCount: widget.activityPlanRequest == null
             ? _bookmarkedActivities.length
-            : _activities!.length,
+            : _activities!.length + 1,
         itemBuilder: (context, index) {
+          if (index == 0) {
+            return Center(
+              child: Stack(
+                alignment: Alignment.bottomCenter,
+                children: [
+                  Column(
+                    children: [
+                      AnimatedSize(
+                        duration: FluffyThemes.animationDuration,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12.0),
+                          ),
+                          width: 400.0,
+                          clipBehavior: Clip.hardEdge,
+                          child: _avatarURL != null || _avatar != null
+                              ? ClipRRect(
+                                  child: _avatar == null
+                                      ? CachedNetworkImage(
+                                          fit: BoxFit.cover,
+                                          imageUrl: _avatarURL!,
+                                          placeholder: (context, url) {
+                                            return const Center(
+                                              child:
+                                                  CircularProgressIndicator(),
+                                            );
+                                          },
+                                          errorWidget: (context, url, error) =>
+                                              const SizedBox(),
+                                        )
+                                      : Image.memory(
+                                          _avatar!,
+                                          fit: BoxFit.cover,
+                                        ),
+                                )
+                              : const Padding(
+                                  padding: EdgeInsets.all(16.0),
+                                ),
+                        ),
+                      ),
+                      const SizedBox(height: 16.0),
+                    ],
+                  ),
+                  InkWell(
+                    borderRadius: BorderRadius.circular(90),
+                    onTap: _isLoading ? null : selectPhoto,
+                    child: const CircleAvatar(
+                      radius: 32.0,
+                      child: Icon(Icons.add_a_photo_outlined),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          }
+
+          index--;
+
           return ActivityPlanCard(
             activity: widget.activityPlanRequest == null
                 ? _bookmarkedActivities[index]

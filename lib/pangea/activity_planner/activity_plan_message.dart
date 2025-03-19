@@ -130,10 +130,13 @@ class ActivityPlanMessage extends StatelessWidget {
                                         AppConfig.borderRadius,
                                       ),
                                     ),
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 16,
-                                      vertical: 8,
-                                    ),
+                                    padding:
+                                        event.messageType == MessageTypes.Image
+                                            ? EdgeInsets.zero
+                                            : const EdgeInsets.symmetric(
+                                                horizontal: 16,
+                                                vertical: 8,
+                                              ),
                                     constraints: const BoxConstraints(
                                       maxWidth: FluffyThemes.columnWidth * 1.5,
                                     ),
@@ -218,32 +221,34 @@ class ActivityPlanMessage extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0),
-          child: Center(
-            child: Padding(
-              padding: const EdgeInsets.only(top: 4.0),
-              child: Material(
-                borderRadius: BorderRadius.circular(AppConfig.borderRadius * 2),
-                color: theme.colorScheme.surface.withAlpha(128),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 8.0,
-                    vertical: 2.0,
-                  ),
-                  child: Text(
-                    event.originServerTs.localizedTime(context),
-                    style: TextStyle(
-                      fontSize: 12 * AppConfig.fontSizeFactor,
-                      fontWeight: FontWeight.bold,
-                      color: theme.colorScheme.secondary,
+        if (event.messageType == MessageTypes.Text)
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 4.0),
+                child: Material(
+                  borderRadius:
+                      BorderRadius.circular(AppConfig.borderRadius * 2),
+                  color: theme.colorScheme.surface.withAlpha(128),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8.0,
+                      vertical: 2.0,
+                    ),
+                    child: Text(
+                      event.originServerTs.localizedTime(context),
+                      style: TextStyle(
+                        fontSize: 12 * AppConfig.fontSizeFactor,
+                        fontWeight: FontWeight.bold,
+                        color: theme.colorScheme.secondary,
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
           ),
-        ),
         row,
       ],
     );
