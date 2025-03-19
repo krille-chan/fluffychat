@@ -34,8 +34,6 @@ class ConversationBotModeDynamicZone extends StatelessWidget {
           decoration: InputDecoration(
             hintText: L10n.of(context)
                 .conversationBotDiscussionZone_discussionTopicPlaceholder,
-            contentPadding:
-                const EdgeInsets.symmetric(horizontal: 28.0, vertical: 12.0),
           ),
           controller: discussionTopicController,
           validator: (value) => enabled &&
@@ -57,7 +55,6 @@ class ConversationBotModeDynamicZone extends StatelessWidget {
           decoration: InputDecoration(
             hintText: L10n.of(context)
                 .conversationBotDiscussionZone_discussionKeywordsPlaceholder,
-            contentPadding: const EdgeInsets.symmetric(horizontal: 28.0),
           ),
           controller: discussionKeywordsController,
           enabled: hasPermission && enabled,

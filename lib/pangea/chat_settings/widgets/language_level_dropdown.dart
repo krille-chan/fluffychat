@@ -5,6 +5,7 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import 'package:fluffychat/pangea/chat_settings/utils/language_level_copy.dart';
+import 'package:fluffychat/pangea/common/widgets/dropdown_text_button.dart';
 import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_enum.dart';
 
 class LanguageLevelDropdown extends StatelessWidget {
@@ -26,39 +27,47 @@ class LanguageLevelDropdown extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DropdownButtonFormField2<LanguageLevelTypeEnum>(
-      decoration: InputDecoration(labelText: L10n.of(context).cefrLevelLabel),
-      hint: Text(
-        L10n.of(context).selectLanguageLevel,
-        overflow: TextOverflow.clip,
-        textAlign: TextAlign.center,
+      customButton: initialLevel != null &&
+              LanguageLevelTypeEnum.values.contains(initialLevel)
+          ? CustomDropdownTextButton(
+              text: LanguageLevelTextPicker.languageLevelText(
+                context,
+                initialLevel!,
+              ),
+            )
+          : null,
+      menuItemStyleData: const MenuItemStyleData(
+        padding: EdgeInsets.zero, // Remove default padding
       ),
-      value: initialLevel,
+      decoration: InputDecoration(
+        labelText: L10n.of(context).cefrLevelLabel,
+      ),
+      isExpanded: true,
+      dropdownStyleData: DropdownStyleData(
+        maxHeight: kIsWeb ? 500 : null,
+        decoration: BoxDecoration(
+          color: backgroundColor ??
+              Theme.of(context).colorScheme.surfaceContainerHigh,
+        ),
+      ),
       items:
           LanguageLevelTypeEnum.values.map((LanguageLevelTypeEnum levelOption) {
         return DropdownMenuItem(
           value: levelOption,
-          child: Text(
-            LanguageLevelTextPicker.languageLevelText(
+          child: DropdownTextButton(
+            text: LanguageLevelTextPicker.languageLevelText(
               context,
               levelOption,
             ),
-            overflow: TextOverflow.clip,
-            textAlign: TextAlign.center,
+            isSelected: initialLevel == levelOption,
           ),
         );
       }).toList(),
       onChanged: enabled
           ? (value) => onChanged?.call(value as LanguageLevelTypeEnum)
           : null,
+      value: initialLevel,
       validator: validator,
-      dropdownStyleData: DropdownStyleData(
-        maxHeight: kIsWeb ? 500 : null,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(14),
-          color: backgroundColor ??
-              Theme.of(context).colorScheme.surfaceContainerHigh,
-        ),
-      ),
     );
   }
 }

@@ -43,6 +43,9 @@ class CountryPickerDropdownState extends State<CountryPickerDropdown> {
               isDropdown: true,
             )
           : null,
+      menuItemStyleData: const MenuItemStyleData(
+        padding: EdgeInsets.zero,
+      ),
       isExpanded: true,
       decoration: InputDecoration(
         labelText: L10n.of(context).countryInformation,
@@ -50,7 +53,7 @@ class CountryPickerDropdownState extends State<CountryPickerDropdown> {
       dropdownStyleData: DropdownStyleData(
         maxHeight: kIsWeb ? 500 : null,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(14),
+          // borderRadius: BorderRadius.circular(14),
           color: Theme.of(context).colorScheme.surfaceContainerHigh,
         ),
       ),
@@ -58,7 +61,16 @@ class CountryPickerDropdownState extends State<CountryPickerDropdown> {
         ...countries.map(
           (country) => DropdownMenuItem(
             value: country,
-            child: CountryPickerTile(country),
+            child: Container(
+              color: widget.learningController.country == country
+                  ? Theme.of(context).colorScheme.primary.withAlpha(20)
+                  : Colors.transparent,
+              padding: const EdgeInsets.symmetric(
+                vertical: 8,
+                horizontal: 12,
+              ),
+              child: CountryPickerTile(country),
+            ),
           ),
         ),
       ],

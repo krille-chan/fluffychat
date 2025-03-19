@@ -16,7 +16,7 @@ class PLanguageDropdown extends StatefulWidget {
   final Function(LanguageModel) onChange;
   final bool showMultilingual;
   final bool isL2List;
-  final String decorationText;
+  final String? decorationText;
   final String? error;
   final String? Function(LanguageModel?)? validator;
   final Color? backgroundColor;
@@ -28,7 +28,7 @@ class PLanguageDropdown extends StatefulWidget {
     required this.onChange,
     required this.initialLanguage,
     this.showMultilingual = false,
-    required this.decorationText,
+    this.decorationText,
     this.isL2List = false,
     this.error,
     this.validator,
@@ -95,21 +95,19 @@ class PLanguageDropdownState extends State<PLanguageDropdown> {
                   isDropdown: true,
                 )
               : null,
+          menuItemStyleData: const MenuItemStyleData(
+            padding: EdgeInsets.zero,
+          ),
           decoration: InputDecoration(
             labelText: widget.decorationText,
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(36.0),
-            ),
             enabledBorder: hasError
                 ? OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(36.0),
                     borderSide:
                         BorderSide(color: Theme.of(context).colorScheme.error),
                   )
                 : null,
             focusedBorder: hasError
                 ? OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(36.0),
                     borderSide: BorderSide(
                       color: Theme.of(context).colorScheme.error,
                       width: 2,
@@ -138,9 +136,18 @@ class PLanguageDropdownState extends State<PLanguageDropdown> {
             ...sortedLanguages.map(
               (languageModel) => DropdownMenuItem(
                 value: languageModel,
-                child: LanguageDropDownEntry(
-                  languageModel: languageModel,
-                  isL2List: widget.isL2List,
+                child: Container(
+                  color: widget.initialLanguage == languageModel
+                      ? Theme.of(context).colorScheme.primary.withAlpha(20)
+                      : Colors.transparent,
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 8,
+                    horizontal: 12,
+                  ),
+                  child: LanguageDropDownEntry(
+                    languageModel: languageModel,
+                    isL2List: widget.isL2List,
+                  ),
                 ),
               ),
             ),
