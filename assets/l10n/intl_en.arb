@@ -102,6 +102,7 @@
     "type": "String",
     "placeholders": {}
   },
+  "commandHint_roomupgrade": "Upgrade this room to the given room version",
   "commandHint_googly": "Send some googly eyes",
   "@commandHint_googly": {},
   "commandHint_cuddle": "Send a cuddle",
