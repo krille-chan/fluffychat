@@ -251,9 +251,9 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
                             icon: Icons.event_note_outlined,
                             child: Text(
                               widget.activity.title,
-                              style: theme.textTheme.titleMedium
+                              style: theme.textTheme.titleLarge
                                   ?.copyWith(fontWeight: FontWeight.bold),
-                              maxLines: 2,
+                              maxLines: 6,
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
@@ -275,8 +275,9 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
                             icon: Symbols.target,
                             child: Text(
                               widget.activity.learningObjective,
-                              maxLines: 2,
+                              maxLines: 6,
                               overflow: TextOverflow.ellipsis,
+                              style: theme.textTheme.bodyLarge,
                             ),
                           ),
                         if (_isEditing)
@@ -296,8 +297,9 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
                             icon: Symbols.steps,
                             child: Text(
                               widget.activity.instructions,
-                              maxLines: 2,
+                              maxLines: 8,
                               overflow: TextOverflow.ellipsis,
+                              style: theme.textTheme.bodyLarge,
                             ),
                           ),
                         if (_isEditing)
@@ -334,6 +336,7 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
                               L10n.of(context).countParticipants(
                                 widget.activity.req.numberOfParticipants,
                               ),
+                              style: theme.textTheme.bodyLarge,
                             ),
                           ),
                         if (_isEditing)
@@ -406,7 +409,10 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
                                             borderRadius:
                                                 BorderRadius.circular(24.0),
                                           ),
-                                          child: Text(vocab.lemma),
+                                          child: Text(
+                                            vocab.lemma,
+                                            style: theme.textTheme.bodyMedium,
+                                          ),
                                         ),
                                       )
                                       .toList(),
@@ -481,7 +487,7 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
                         },
                         style: ElevatedButton.styleFrom(
                           minimumSize: Size.zero,
-                          padding: const EdgeInsets.all(4.0),
+                          padding: const EdgeInsets.all(6.0),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12.0),
                           ),
@@ -490,7 +496,8 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
                         ),
                         child: Text(
                           L10n.of(context).inviteAndLaunch,
-                          style: TextStyle(color: theme.colorScheme.onPrimary),
+                          style: theme.textTheme.bodyLarge
+                              ?.copyWith(color: theme.colorScheme.onPrimary),
                         ),
                       ),
                     ),
@@ -502,7 +509,7 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
                         padding: const EdgeInsets.all(6.0),
                         constraints:
                             const BoxConstraints(), // override default min size of 48px
-                        iconSize: 16.0,
+                        iconSize: 24.0,
                         icon: const Icon(Icons.edit_outlined),
                         onPressed: () => _setEditing(true),
                       ),
