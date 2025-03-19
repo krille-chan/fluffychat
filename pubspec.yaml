@@ -33,13 +33,13 @@ dependencies:
   flutter_foreground_task: ^6.1.3
   flutter_highlighter: ^0.1.1
   flutter_linkify: ^6.0.0
-  flutter_local_notifications: ^19.0.0
+  flutter_local_notifications: ^17.2.3
   flutter_localizations:
     sdk: flutter
   flutter_map: ^6.1.0
   flutter_new_badger: ^1.1.1
   flutter_olm: 2.0.0
-  flutter_openssl_crypto: ^0.5.0
+  flutter_openssl_crypto: ^0.3.0
   flutter_secure_storage: ^9.2.2
   flutter_shortcuts_new: ^2.0.0
   flutter_typeahead: ## Custom fork from flutter_typeahead since the package is not maintain well.
