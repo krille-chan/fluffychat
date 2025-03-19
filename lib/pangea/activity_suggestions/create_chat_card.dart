@@ -43,7 +43,10 @@ class CreateChatCard extends StatelessWidget {
                 child: CustomizedSvg(
                   svgUrl:
                       "${AppConfig.assetsBaseURL}/${ActivitySuggestionsConstants.plusIconPath}",
-                  colorReplacements: const {},
+                  colorReplacements: {
+                    "#CDBEF9":
+                        colorToHex(Theme.of(context).colorScheme.secondary),
+                  },
                   height: 80,
                   width: 80,
                 ),

@@ -138,3 +138,10 @@ class CustomizedSvg extends StatelessWidget {
     );
   }
 }
+
+String colorToHex(Color color) {
+  return '#'
+      '${(color.r * 255).toInt().toRadixString(16).padLeft(2, '0')}'
+      '${(color.g * 255).toInt().toRadixString(16).padLeft(2, '0')}'
+      '${(color.b * 255).toInt().toRadixString(16).padLeft(2, '0')}';
+}
