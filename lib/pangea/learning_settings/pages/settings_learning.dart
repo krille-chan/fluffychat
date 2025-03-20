@@ -16,7 +16,12 @@ import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class SettingsLearning extends StatefulWidget {
-  const SettingsLearning({super.key});
+  final bool isDialog;
+
+  const SettingsLearning({
+    this.isDialog = true,
+    super.key,
+  });
 
   @override
   SettingsLearningController createState() => SettingsLearningController();

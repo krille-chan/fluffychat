@@ -33,6 +33,7 @@ import 'package:fluffychat/pangea/activity_planner/activity_planner_page.dart';
 import 'package:fluffychat/pangea/activity_suggestions/suggestions_page.dart';
 import 'package:fluffychat/pangea/guard/p_vguard.dart';
 import 'package:fluffychat/pangea/layouts/bottom_nav_layout.dart';
+import 'package:fluffychat/pangea/learning_settings/pages/settings_learning.dart';
 import 'package:fluffychat/pangea/login/pages/login_or_signup_view.dart';
 import 'package:fluffychat/pangea/login/pages/signup.dart';
 import 'package:fluffychat/pangea/login/pages/user_settings.dart';
@@ -492,6 +493,17 @@ abstract class AppRoutes {
                       ],
                     ),
                     // #Pangea
+                    GoRoute(
+                      path: 'learning',
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        state,
+                        const SettingsLearning(
+                          isDialog: false,
+                        ),
+                      ),
+                      redirect: loggedOutRedirect,
+                    ),
                     GoRoute(
                       path: 'subscription',
                       pageBuilder: (context, state) => defaultPageBuilder(

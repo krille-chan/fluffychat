@@ -188,6 +188,15 @@ class SettingsView extends StatelessWidget {
                   // Divider(
                   //   color: theme.dividerColor,
                   // ),
+                  ListTile(
+                    leading: const Icon(Icons.language_outlined),
+                    title: Text(L10n.of(context).learningSettings),
+                    tileColor:
+                        activeRoute.startsWith('/rooms/settings/learning')
+                            ? theme.colorScheme.surfaceContainerHigh
+                            : null,
+                    onTap: () => context.go('/rooms/settings/learning'),
+                  ),
                   // Pangea#
                   ListTile(
                     leading: const Icon(Icons.format_paint_outlined),

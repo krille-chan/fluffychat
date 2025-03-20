@@ -17,6 +17,7 @@ import 'package:fluffychat/pangea/learning_settings/widgets/country_picker_tile.
 import 'package:fluffychat/pangea/learning_settings/widgets/p_language_dropdown.dart';
 import 'package:fluffychat/pangea/learning_settings/widgets/p_settings_switch_list_tile.dart';
 import 'package:fluffychat/pangea/spaces/models/space_model.dart';
+import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class SettingsLearningView extends StatelessWidget {
@@ -105,158 +106,156 @@ class SettingsLearningView extends StatelessWidget {
       builder: (context, _) {
         final dialogContent = Scaffold(
           appBar: AppBar(
+            automaticallyImplyLeading: false,
             centerTitle: true,
             title: Text(
               L10n.of(context).learningSettings,
             ),
-            leading: IconButton(
-              icon: const Icon(Icons.close),
-              onPressed: controller.onSettingsClose,
-            ),
+            leading: controller.widget.isDialog
+                ? IconButton(
+                    icon: const Icon(Icons.close),
+                    onPressed: controller.onSettingsClose,
+                  )
+                : null,
           ),
-          body: ListTileTheme(
-            iconColor: Theme.of(context).textTheme.bodyLarge!.color,
-            child: Form(
-              key: controller.formKey,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 16.0,
-                  horizontal: 8.0,
-                ),
+          body: Form(
+            key: controller.formKey,
+            child: ListTileTheme(
+              iconColor: Theme.of(context).textTheme.bodyLarge!.color,
+              child: MaxWidthBody(
                 child: Column(
                   children: [
-                    Expanded(
-                      child: SingleChildScrollView(
-                        child: Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Column(
-                            spacing: 16.0,
-                            children: [
-                              PLanguageDropdown(
-                                onChange: (lang) =>
-                                    controller.setSelectedLanguage(
-                                  sourceLanguage: lang,
-                                ),
-                                initialLanguage:
-                                    controller.selectedSourceLanguage ??
-                                        LanguageModel.unknown,
-                                languages: MatrixState.pangeaController
-                                    .pLanguageStore.baseOptions,
-                                isL2List: false,
-                                decorationText: L10n.of(context).myBaseLanguage,
-                                hasError: controller.languageMatchError != null,
-                                backgroundColor: Theme.of(context)
-                                    .colorScheme
-                                    .surfaceContainerHigh,
+                    SingleChildScrollView(
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Column(
+                          spacing: 16.0,
+                          children: [
+                            PLanguageDropdown(
+                              onChange: (lang) =>
+                                  controller.setSelectedLanguage(
+                                sourceLanguage: lang,
                               ),
-                              PLanguageDropdown(
-                                onChange: (lang) =>
-                                    controller.setSelectedLanguage(
-                                  targetLanguage: lang,
-                                ),
-                                initialLanguage:
-                                    controller.selectedTargetLanguage,
-                                languages: MatrixState.pangeaController
-                                    .pLanguageStore.targetOptions,
-                                isL2List: true,
-                                decorationText: L10n.of(context).iWantToLearn,
-                                error: controller.languageMatchError,
-                                backgroundColor: Theme.of(context)
-                                    .colorScheme
-                                    .surfaceContainerHigh,
+                              initialLanguage:
+                                  controller.selectedSourceLanguage ??
+                                      LanguageModel.unknown,
+                              languages: MatrixState
+                                  .pangeaController.pLanguageStore.baseOptions,
+                              isL2List: false,
+                              decorationText: L10n.of(context).myBaseLanguage,
+                              hasError: controller.languageMatchError != null,
+                              backgroundColor: Theme.of(context)
+                                  .colorScheme
+                                  .surfaceContainerHigh,
+                            ),
+                            PLanguageDropdown(
+                              onChange: (lang) =>
+                                  controller.setSelectedLanguage(
+                                targetLanguage: lang,
                               ),
-                              CountryPickerDropdown(controller),
-                              LanguageLevelDropdown(
-                                initialLevel: controller.cefrLevel,
-                                onChanged: controller.setCefrLevel,
-                              ),
-                              Container(
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color: Colors.white54,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8.0),
+                              initialLanguage:
+                                  controller.selectedTargetLanguage,
+                              languages: MatrixState.pangeaController
+                                  .pLanguageStore.targetOptions,
+                              isL2List: true,
+                              decorationText: L10n.of(context).iWantToLearn,
+                              error: controller.languageMatchError,
+                              backgroundColor: Theme.of(context)
+                                  .colorScheme
+                                  .surfaceContainerHigh,
+                            ),
+                            CountryPickerDropdown(controller),
+                            LanguageLevelDropdown(
+                              initialLevel: controller.cefrLevel,
+                              onChanged: controller.setCefrLevel,
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: Colors.white54,
                                 ),
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  children: [
-                                    ProfileSettingsSwitchListTile.adaptive(
-                                      defaultValue: controller
-                                          .getToolSetting(ToolSetting.autoIGC),
-                                      title:
-                                          ToolSetting.autoIGC.toolName(context),
-                                      subtitle: ToolSetting.autoIGC
-                                          .toolDescription(context),
-                                      onChange: (bool value) =>
-                                          controller.updateToolSetting(
-                                        ToolSetting.autoIGC,
-                                        value,
-                                      ),
-                                      enabled: true,
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                children: [
+                                  ProfileSettingsSwitchListTile.adaptive(
+                                    defaultValue: controller.getToolSetting(
+                                      ToolSetting.autoIGC,
                                     ),
-                                    ProfileSettingsSwitchListTile.adaptive(
-                                      defaultValue: controller.getToolSetting(
-                                        ToolSetting.enableAutocorrect,
-                                      ),
-                                      title: ToolSetting.enableAutocorrect
-                                          .toolName(context),
-                                      subtitle: ToolSetting.enableAutocorrect
-                                          .toolDescription(context),
-                                      onChange: (bool value) {
+                                    title:
+                                        ToolSetting.autoIGC.toolName(context),
+                                    subtitle: ToolSetting.autoIGC
+                                        .toolDescription(context),
+                                    onChange: (bool value) =>
                                         controller.updateToolSetting(
-                                          ToolSetting.enableAutocorrect,
-                                          value,
-                                        );
-                                        if (value) {
-                                          _showKeyboardSettingsDialog(context);
-                                        }
-                                      },
-                                      enabled: true,
+                                      ToolSetting.autoIGC,
+                                      value,
                                     ),
-                                  ],
-                                ),
-                              ),
-                              for (final toolSetting
-                                  in ToolSetting.values.where(
-                                (tool) =>
-                                    tool.isAvailableSetting &&
-                                    tool != ToolSetting.autoIGC &&
-                                    tool != ToolSetting.enableAutocorrect,
-                              ))
-                                Column(
-                                  children: [
-                                    ProfileSettingsSwitchListTile.adaptive(
-                                      defaultValue: controller
-                                          .getToolSetting(toolSetting),
-                                      title: toolSetting.toolName(context),
-                                      subtitle: toolSetting ==
-                                                  ToolSetting.enableTTS &&
-                                              !controller.isTTSSupported
-                                          ? null
-                                          : toolSetting
-                                              .toolDescription(context),
-                                      onChange: (bool value) =>
-                                          controller.updateToolSetting(
-                                        toolSetting,
+                                    enabled: true,
+                                  ),
+                                  ProfileSettingsSwitchListTile.adaptive(
+                                    defaultValue: controller.getToolSetting(
+                                      ToolSetting.enableAutocorrect,
+                                    ),
+                                    title: ToolSetting.enableAutocorrect
+                                        .toolName(context),
+                                    subtitle: ToolSetting.enableAutocorrect
+                                        .toolDescription(context),
+                                    onChange: (bool value) {
+                                      controller.updateToolSetting(
+                                        ToolSetting.enableAutocorrect,
                                         value,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              SwitchListTile.adaptive(
-                                value: controller.publicProfile,
-                                onChanged: controller.setPublicProfile,
-                                title: Text(
-                                  L10n.of(context).publicProfileTitle,
-                                ),
-                                subtitle: Text(
-                                  L10n.of(context).publicProfileDesc,
-                                ),
-                                activeColor: AppConfig.activeToggleColor,
-                                contentPadding: EdgeInsets.zero,
+                                      );
+                                      if (value) {
+                                        _showKeyboardSettingsDialog(
+                                          context,
+                                        );
+                                      }
+                                    },
+                                    enabled: true,
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
+                            ),
+                            for (final toolSetting in ToolSetting.values.where(
+                              (tool) =>
+                                  tool.isAvailableSetting &&
+                                  tool != ToolSetting.autoIGC &&
+                                  tool != ToolSetting.enableAutocorrect,
+                            ))
+                              Column(
+                                children: [
+                                  ProfileSettingsSwitchListTile.adaptive(
+                                    defaultValue:
+                                        controller.getToolSetting(toolSetting),
+                                    title: toolSetting.toolName(context),
+                                    subtitle: toolSetting ==
+                                                ToolSetting.enableTTS &&
+                                            !controller.isTTSSupported
+                                        ? null
+                                        : toolSetting.toolDescription(context),
+                                    onChange: (bool value) =>
+                                        controller.updateToolSetting(
+                                      toolSetting,
+                                      value,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            SwitchListTile.adaptive(
+                              value: controller.publicProfile,
+                              onChanged: controller.setPublicProfile,
+                              title: Text(
+                                L10n.of(context).publicProfileTitle,
+                              ),
+                              subtitle: Text(
+                                L10n.of(context).publicProfileDesc,
+                              ),
+                              activeColor: AppConfig.activeToggleColor,
+                              contentPadding: EdgeInsets.zero,
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -276,6 +275,8 @@ class SettingsLearningView extends StatelessWidget {
             ),
           ),
         );
+
+        if (!controller.widget.isDialog) return dialogContent;
 
         return FullWidthDialog(
           dialogContent: dialogContent,
