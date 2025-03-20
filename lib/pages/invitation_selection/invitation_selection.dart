@@ -34,13 +34,82 @@ class InvitationSelectionController extends State<InvitationSelection> {
 
   String? get roomId => widget.roomId;
 
+  // #Pangea
+  List<User>? get participants {
+    final room = Matrix.of(context).client.getRoomById(roomId!);
+    return room?.getParticipants();
+  }
+
+  List<Membership> get _membershipOrder => [
+        Membership.join,
+        Membership.invite,
+        Membership.knock,
+        Membership.leave,
+        Membership.ban,
+      ];
+
+  String? membershipCopy(Membership? membership) => switch (membership) {
+        Membership.ban => L10n.of(context).banned,
+        Membership.invite => L10n.of(context).invited,
+        Membership.join => null,
+        Membership.knock => L10n.of(context).knocking,
+        Membership.leave => L10n.of(context).leftTheChat,
+        null => null,
+      };
+
+  int _sortUsers(User a, User b) {
+    // sort yourself to the top
+    final client = Matrix.of(context).client;
+    if (a.id == client.userID) return -1;
+    if (b.id == client.userID) return 1;
+
+    // sort the bot to the bottom
+    if (a.id == BotName.byEnvironment) return 1;
+    if (b.id == BotName.byEnvironment) return -1;
+
+    if (participants != null) {
+      final participantA = participants!.firstWhereOrNull((u) => u.id == a.id);
+      final participantB = participants!.firstWhereOrNull((u) => u.id == b.id);
+      // sort all participants first, with admins first, then moderators, then the rest
+      if (participantA?.membership == null &&
+          participantB?.membership != null) {
+        return 1;
+      }
+      if (participantA?.membership != null &&
+          participantB?.membership == null) {
+        return -1;
+      }
+      if (participantA?.membership != null &&
+          participantB?.membership != null) {
+        final aIndex = _membershipOrder.indexOf(participantA!.membership);
+        final bIndex = _membershipOrder.indexOf(participantB!.membership);
+        if (aIndex != bIndex) {
+          return aIndex.compareTo(bIndex);
+        }
+      }
+    }
+
+    // finally, sort by displayname
+    final aName = a.calcDisplayname().toLowerCase();
+    final bName = b.calcDisplayname().toLowerCase();
+    return aName.compareTo(bName);
+  }
+  // Pangea#
+
   Future<List<User>> getContacts(BuildContext context) async {
     final client = Matrix.of(context).client;
     final room = client.getRoomById(roomId!)!;
 
     final participants = (room.summary.mJoinedMemberCount ?? 0) > 100
         ? room.getParticipants()
-        : await room.requestParticipants();
+        // #Pangea
+        // : await room.requestParticipants();
+        : await room.requestParticipants(
+            [Membership.join, Membership.invite, Membership.knock],
+            false,
+            true,
+          );
+    // Pangea#
     participants.removeWhere(
       (u) => ![Membership.join, Membership.invite].contains(u.membership),
     );
@@ -53,16 +122,26 @@ class InvitationSelectionController extends State<InvitationSelection> {
               .getParticipants()
               .firstWhereOrNull((u) => u.id != client.userID),
         )
+        .where((u) => u != null)
+        .cast<User>()
         // Pangea#
         .toList();
     // #Pangea
-    contacts.removeWhere((u) => u == null || u.id != BotName.byEnvironment);
-    contacts.sort(
-      (a, b) => a!.calcDisplayname().toLowerCase().compareTo(
-            b!.calcDisplayname().toLowerCase(),
-          ),
-    );
-    return contacts.cast<User>();
+    final mutuals = client.rooms
+        .where((r) => r.isSpace)
+        .map((r) => r.getParticipants())
+        .expand((element) => element)
+        .toList();
+
+    for (final user in mutuals) {
+      final index = contacts.indexWhere((u) => u.id == user.id);
+      if (index == -1) {
+        contacts.add(user);
+      }
+    }
+
+    contacts.sort(_sortUsers);
+    return contacts;
     // contacts.sort(
     //   (a, b) => a.calcDisplayname().toLowerCase().compareTo(
     //         b.calcDisplayname().toLowerCase(),
@@ -71,72 +150,6 @@ class InvitationSelectionController extends State<InvitationSelection> {
     // return contacts;
     //Pangea#
   }
-
-  //#Pangea
-  // // add all students (already local) from spaceParents who aren't already in room to eligibleStudents
-  // // use room.members to get all users in room
-  // bool _initialized = false;
-  // Future<List<User>> eligibleStudents(
-  //   BuildContext context,
-  //   String text,
-  // ) async {
-  //   if (!_initialized) {
-  //     _initialized = true;
-  //     await requestParentSpaceParticipants();
-  //   }
-
-  //   final eligibleStudents = <User>[];
-  //   final spaceParents = room?.pangeaSpaceParents;
-  //   if (spaceParents == null) return eligibleStudents;
-
-  //   final userId = Matrix.of(context).client.userID;
-  //   for (final Room space in spaceParents) {
-  //     eligibleStudents.addAll(
-  //       space.getParticipants().where(
-  //             (spaceUser) =>
-  //                 spaceUser.id != BotName.byEnvironment &&
-  //                 spaceUser.id != "@support:staging.pangea.chat" &&
-  //                 spaceUser.id != userId &&
-  //                 (text.isEmpty ||
-  //                     (spaceUser.displayName
-  //                             ?.toLowerCase()
-  //                             .contains(text.toLowerCase()) ??
-  //                         false) ||
-  //                     spaceUser.id.toLowerCase().contains(text.toLowerCase())),
-  //           ),
-  //     );
-  //   }
-  //   return eligibleStudents;
-  // }
-
-  // Future<SearchUserDirectoryResponse>
-  //     eligibleStudentsAsSearchUserDirectoryResponse(
-  //   BuildContext context,
-  //   String text,
-  // ) async {
-  //   return SearchUserDirectoryResponse(
-  //     results: (await eligibleStudents(context, text))
-  //         .map(
-  //           (e) => Profile(
-  //             userId: e.id,
-  //             avatarUrl: e.avatarUrl,
-  //             displayName: e.displayName,
-  //           ),
-  //         )
-  //         .toList(),
-  //     limited: false,
-  //   );
-  // }
-
-  // List<User?> studentsInRoom(BuildContext context) =>
-  //     room
-  //         ?.getParticipants()
-  //         .where(
-  //           (u) => [Membership.join, Membership.invite].contains(u.membership),
-  //         )
-  //         .toList() ??
-  //     <User>[];
-  //Pangea#
 
   void inviteAction(BuildContext context, String id, String displayname) async {
     final room = Matrix.of(context).client.getRoomById(roomId!)!;
