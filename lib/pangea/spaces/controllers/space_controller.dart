@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 
+import 'package:collection/collection.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:go_router/go_router.dart';
@@ -170,8 +171,20 @@ class ClassController extends BaseController {
 
       GoogleAnalytics.joinClass(classCode);
 
-      if (room.client.getRoomById(room.id)?.membership != Membership.join) {
+      if (room.membership != Membership.join) {
         await room.client.waitForRoomInSync(room.id, join: true);
+      }
+
+      // Sometimes, the invite event comes through after the join event and
+      // replaces it, so membership gets out of sync. In this case,
+      // load the true value from the server.
+      // Related github issue: https://github.com/pangeachat/client/issues/2098
+      if (room.membership !=
+          room
+              .getParticipants()
+              .firstWhereOrNull((u) => u.id == room?.client.userID)
+              ?.membership) {
+        await room.requestParticipants();
       }
 
       context.push("/rooms/${room.id}/details");
