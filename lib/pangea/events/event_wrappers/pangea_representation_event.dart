@@ -91,27 +91,44 @@ class RepresentationEvent {
 
     if (tokenEvents.length > 1) {
       debugger(when: kDebugMode);
-      ErrorHandler.logError(
-        m: 'should not have more than one tokenEvent per representation ${_event?.eventId}',
-        s: StackTrace.current,
-        data: {
-          "eventID": _event?.eventId,
-          "content": tokenEvents.map((e) => e.content).toString(),
-          "type": tokenEvents.map((e) => e.type).toString(),
-        },
+      Sentry.addBreadcrumb(
+        Breadcrumb(
+          message:
+              'should not have more than one tokenEvent per representation ${_event?.eventId}',
+          data: {
+            "eventID": _event?.eventId,
+            "content": tokenEvents.map((e) => e.content).toString(),
+            "type": tokenEvents.map((e) => e.type).toString(),
+          },
+        ),
       );
     }
 
-    final PangeaMessageTokens storedTokens =
-        tokenEvents.first.getPangeaContent<PangeaMessageTokens>();
+    PangeaMessageTokens? storedTokens;
+    for (final tokenEvent in tokenEvents) {
+      final tokenPangeaEvent =
+          tokenEvent.getPangeaContent<PangeaMessageTokens>();
+      if (PangeaToken.reconstructText(tokenPangeaEvent.tokens) != text) {
+        Sentry.addBreadcrumb(
+          Breadcrumb(
+            message: 'Stored tokens do not match text for representation',
+            data: {
+              'text': text,
+              'tokens': tokenPangeaEvent.tokens,
+            },
+          ),
+        );
+        continue;
+      }
+      storedTokens = tokenPangeaEvent;
+      break;
+    }
 
-    if (PangeaToken.reconstructText(storedTokens.tokens) != text) {
+    if (storedTokens == null) {
       ErrorHandler.logError(
-        m: 'Stored tokens do not match text for representation',
-        s: StackTrace.current,
+        e: "No tokens found for representation",
         data: {
-          'text': text,
-          'tokens': storedTokens.tokens,
+          "event": _event?.toJson(),
         },
       );
       return null;
