@@ -304,18 +304,13 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
       sendLocalAnalyticsToAnalyticsRoom();
       return;
     }
-
-    final int newLevel =
-        _pangeaController.getAnalytics.constructListModel.level;
-    newLevel > prevLevel
-        ? sendLocalAnalyticsToAnalyticsRoom()
-        : analyticsUpdateStream.add(
-            AnalyticsUpdate(
-              AnalyticsUpdateType.local,
-              newConstructs,
-              origin: origin,
-            ),
-          );
+    analyticsUpdateStream.add(
+      AnalyticsUpdate(
+        AnalyticsUpdateType.local,
+        newConstructs,
+        origin: origin,
+      ),
+    );
   }
 
   /// Clears the local cache of recently sent constructs. Called before updating analytics

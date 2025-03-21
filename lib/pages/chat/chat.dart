@@ -365,18 +365,30 @@ class ChatController extends State<ChatPageWithRoom>
 
     _levelSubscription = pangeaController.getAnalytics.stateStream
         .where(
-          (update) =>
-              update is Map<String, dynamic> && update['level_up'] != null,
-        )
+      (update) => update is Map<String, dynamic> && update['level_up'] != null,
+    )
+        // .listen(
+        //   (update) => Future.delayed(
+        //     const Duration(milliseconds: 500),
+        //     () => LevelUpUtil.showLevelUpDialog(
+        //       update['level_up'],
+        //       context,
+        //     ),
+        //   ),
+        // )
         .listen(
-          (update) => Future.delayed(
-            const Duration(milliseconds: 500),
-            () => LevelUpUtil.showLevelUpDialog(
-              update['level_up'],
-              context,
-            ),
-          ),
+      // remove delay now that GetAnalyticsController._onLevelUp
+      // is async is should take roughly 500ms to make requests anyway
+      (update) {
+        LevelUpUtil.showLevelUpDialog(
+          update['level_up'],
+          update['analytics_room_id'],
+          update["construct_summary_state_event_id"],
+          update['construct_summary'],
+          context,
         );
+      },
+    );
     // Pangea#
     _tryLoadTimeline();
     if (kIsWeb) {

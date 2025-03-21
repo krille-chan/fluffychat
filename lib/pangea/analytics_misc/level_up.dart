@@ -9,10 +9,15 @@ import 'package:http/http.dart' as http;
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/analytics_misc/analytics_constants.dart';
+import 'package:fluffychat/pangea/constructs/construct_repo.dart';
+import 'level_summary.dart';
 
 class LevelUpUtil {
   static void showLevelUpDialog(
     int level,
+    String? analyticsRoomId,
+    String? summaryStateEventId,
+    ConstructSummary? constructSummary,
     BuildContext context,
   ) {
     final player = AudioPlayer();
@@ -26,6 +31,9 @@ class LevelUpUtil {
       context: context,
       builder: (context) => LevelUpAnimation(
         level: level,
+        analyticsRoomId: analyticsRoomId,
+        summaryStateEventId: summaryStateEventId,
+        constructSummary: constructSummary,
       ),
     ).then((_) => player.dispose());
   }
@@ -33,9 +41,17 @@ class LevelUpUtil {
 
 class LevelUpAnimation extends StatefulWidget {
   final int level;
+  final String? analyticsRoomId;
+  final String? summary;
+  final String? summaryStateEventId;
+  final ConstructSummary? constructSummary;
 
   const LevelUpAnimation({
     required this.level,
+    required this.analyticsRoomId,
+    this.summary,
+    this.summaryStateEventId,
+    this.constructSummary,
     super.key,
   });
 
@@ -43,11 +59,7 @@ class LevelUpAnimation extends StatefulWidget {
   LevelUpAnimationState createState() => LevelUpAnimationState();
 }
 
-class LevelUpAnimationState extends State<LevelUpAnimation>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _animationController;
-  late Animation<Offset> _slideAnimation;
-
+class LevelUpAnimationState extends State<LevelUpAnimation> {
   Uint8List? bytes;
   final imageURL =
       "${AppConfig.assetsBaseURL}/${AnalyticsConstants.levelUpImageFileName}";
@@ -55,52 +67,13 @@ class LevelUpAnimationState extends State<LevelUpAnimation>
   @override
   void initState() {
     super.initState();
-    _loadImageData().then((resp) {
-      if (bytes == null) return;
-      _animationController.forward().then((_) {
-        if (mounted) Navigator.of(context).pop();
-      });
-    }).catchError((e) {
+    _loadImageData().catchError((e) {
       if (mounted) Navigator.of(context).pop();
     });
-
-    _animationController = AnimationController(
-      duration: const Duration(milliseconds: 2500),
-      vsync: this,
-    );
-
-    _slideAnimation = TweenSequence<Offset>(
-      <TweenSequenceItem<Offset>>[
-        // Slide up from the bottom of the screen to the middle
-        TweenSequenceItem<Offset>(
-          tween: Tween<Offset>(begin: const Offset(0, 2), end: Offset.zero)
-              .chain(CurveTween(curve: Curves.easeInOut)),
-          weight: 2.0, // Adjust weight for the duration of the slide-up
-        ),
-        // Pause in the middle
-        TweenSequenceItem<Offset>(
-          tween: Tween<Offset>(begin: Offset.zero, end: Offset.zero)
-              .chain(CurveTween(curve: Curves.linear)),
-          weight: 8.0, // Adjust weight for the pause duration
-        ),
-        // Slide up and off the screen
-        TweenSequenceItem<Offset>(
-          tween: Tween<Offset>(begin: Offset.zero, end: const Offset(0, -2))
-              .chain(CurveTween(curve: Curves.easeInOut)),
-          weight: 2.0, // Adjust weight for the slide-off duration
-        ),
-      ],
-    ).animate(
-      CurvedAnimation(
-        parent: _animationController,
-        curve: Curves.linear, // Keep overall animation smooth
-      ),
-    );
   }
 
   @override
   void dispose() {
-    _animationController.dispose();
     super.dispose();
   }
 
@@ -119,45 +92,67 @@ class LevelUpAnimationState extends State<LevelUpAnimation>
       return const SizedBox();
     }
 
-    Widget content = Image.memory(
-      bytes!,
-      height: kIsWeb ? 350 : 250,
-    );
-
-    if (!kIsWeb) {
-      content = OverflowBox(
-        maxWidth: double.infinity,
-        child: content,
-      );
-    }
-
-    return GestureDetector(
-      onDoubleTap: Navigator.of(context).pop,
-      child: Dialog.fullscreen(
-        backgroundColor: Colors.transparent,
-        child: Center(
-          child: SlideTransition(
-            position: _slideAnimation,
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                content,
-                Padding(
-                  padding: const EdgeInsets.only(top: 100),
-                  child: Text(
-                    L10n.of(context).levelPopupTitle(widget.level),
-                    style: const TextStyle(
-                      fontSize: kIsWeb ? 40 : 24,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ],
-            ),
+    return Dialog(
+      backgroundColor: Colors.transparent,
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          // Banner image
+          Image.memory(
+            bytes!,
+            height: kIsWeb ? 350 : 250,
+            width: double.infinity,
+            fit: BoxFit.cover,
           ),
-        ),
+          // Overlay: centered title and close button
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: kIsWeb ? 200 : 100,
+                ), // Added hardcoded padding above the text
+                child: Text(
+                  L10n.of(context).levelPopupTitle(widget.level),
+                  style: const TextStyle(
+                    fontSize: kIsWeb ? 40 : 24,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              const SizedBox(height: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: () => Navigator.of(context).pop(),
+                    child: Text(L10n.of(context).close),
+                  ),
+                  const SizedBox(width: 16),
+                  if (widget.summaryStateEventId != null &&
+                      widget.analyticsRoomId != null)
+                    // Show summary button
+                    ElevatedButton(
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) => LevelSummaryDialog(
+                            level: widget.level,
+                            analyticsRoomId: widget.analyticsRoomId!,
+                            summaryStateEventId: widget.summaryStateEventId!,
+                            constructSummary: widget.constructSummary,
+                          ),
+                        );
+                      },
+                      child: Text(L10n.of(context).levelSummaryTrigger),
+                    ),
+                ],
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

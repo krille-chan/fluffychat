@@ -3793,5 +3793,15 @@
   "@createASpace": {
     "type": "String",
     "placeholders": {}
+  },
+  "levelSummaryTrigger": "Đọc báo cáo",
+  "levelSummaryPopupTitle": "Tóm tắt cấp {level}",
+  "@levelSummaryPopupTitle": {
+    "type": "String",
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
   }
 }

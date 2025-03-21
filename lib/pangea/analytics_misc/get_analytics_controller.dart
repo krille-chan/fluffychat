@@ -18,6 +18,8 @@ import 'package:fluffychat/pangea/common/constants/local.key.dart';
 import 'package:fluffychat/pangea/common/controllers/base_controller.dart';
 import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
+import 'package:fluffychat/pangea/constructs/construct_repo.dart';
+import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
 
@@ -141,8 +143,12 @@ class GetAnalyticsController extends BaseController {
     if (analyticsUpdate.type == AnalyticsUpdateType.server) {
       await _getConstructs(forceUpdate: true);
     }
-    if (oldLevel < constructListModel.level) _onLevelUp();
-    if (oldLevel > constructListModel.level) await _onLevelDown(oldLevel);
+    if (oldLevel < constructListModel.level) {
+      await _onLevelUp(oldLevel, constructListModel.level);
+    }
+    if (oldLevel > constructListModel.level) {
+      await _onLevelDown(constructListModel.level, oldLevel);
+    }
     _updateAnalyticsStream(origin: analyticsUpdate.origin);
     // Update public profile each time that new analytics are added.
     // If the level hasn't changed, this will not send an update to the server.
@@ -158,13 +164,22 @@ class GetAnalyticsController extends BaseController {
   }) =>
       analyticsStream.add(AnalyticsStreamUpdate(origin: origin));
 
-  void _onLevelUp() {
-    setState({'level_up': constructListModel.level});
+  Future<void> _onLevelUp(final int lowerLevel, final int upperLevel) async {
+    final result = await _generateLevelUpAnalyticsAndSaveToStateEvent(
+      lowerLevel,
+      upperLevel,
+    );
+    setState({
+      'level_up': constructListModel.level,
+      'analytics_room_id': _client.analyticsRoomLocal(_l2!)?.id,
+      "construct_summary_state_event_id": result?.stateEventId,
+      "construct_summary": result?.summary,
+    });
   }
 
-  Future<void> _onLevelDown(final prevLevel) async {
+  Future<void> _onLevelDown(final int lowerLevel, final int upperLevel) async {
     final offset =
-        _calculateMinXpForLevel(prevLevel) - constructListModel.totalXP;
+        _calculateMinXpForLevel(lowerLevel) - constructListModel.totalXP;
     await _pangeaController.userController.addXPOffset(offset);
     constructListModel.updateConstructs(
       [],
@@ -343,6 +358,90 @@ class GetAnalyticsController extends BaseController {
       langCode: _l2!.langCodeShort,
     );
     _cache.add(entry);
+  }
+
+  Future<GenerateConstructSummaryResult?>
+      _generateLevelUpAnalyticsAndSaveToStateEvent(
+    final int lowerLevel,
+    final int upperLevel,
+  ) async {
+    // generate level up analytics as a construct summary
+    ConstructSummary summary;
+    try {
+      final int maxXP = _calculateMinXpForLevel(upperLevel);
+      final int minXP = _calculateMinXpForLevel(lowerLevel);
+      int diffXP = maxXP - minXP;
+      if (diffXP < 0) diffXP = 0;
+
+      // compute construct use of current level
+      final List<OneConstructUse> constructUseOfCurrentLevel = [];
+      int score = 0;
+      for (final use in constructListModel.uses) {
+        constructUseOfCurrentLevel.add(use);
+        score += use.pointValue;
+        if (score >= diffXP) break;
+      }
+
+      // extract construct use message bodies for analytics
+      List<String?>? constructUseMessageContentBodies = [];
+      for (final use in constructUseOfCurrentLevel) {
+        try {
+          final useMessage = await use.getEvent(_client);
+          final useMessageBody = useMessage?.content["body"];
+          if (useMessageBody is String) {
+            constructUseMessageContentBodies.add(useMessageBody);
+          } else {
+            constructUseMessageContentBodies.add(null);
+          }
+        } catch (e) {
+          constructUseMessageContentBodies.add(null);
+        }
+      }
+      if (constructUseMessageContentBodies.length !=
+          constructUseOfCurrentLevel.length) {
+        constructUseMessageContentBodies = null;
+      }
+
+      final request = ConstructSummaryRequest(
+        constructs: constructUseOfCurrentLevel,
+        constructUseMessageContentBodies: constructUseMessageContentBodies,
+        language: _l2!.langCodeShort,
+        upperLevel: upperLevel,
+        lowerLevel: lowerLevel,
+      );
+
+      final response = await ConstructRepo.generateConstructSummary(request);
+      summary = response.summary;
+    } catch (e) {
+      debugPrint("Error generating level up analytics: $e");
+      ErrorHandler.logError(e: e, data: {'e': e});
+      return null;
+    }
+    String stateEventId;
+    try {
+      final Room? analyticsRoom = _client.analyticsRoomLocal(_l2!);
+      if (analyticsRoom == null) {
+        ErrorHandler.logError(
+          e: e,
+          data: {'e': e, 'message': "Analytics room not found for user"},
+        );
+        return null;
+      }
+      stateEventId = await _client.setRoomStateWithKey(
+        analyticsRoom.id,
+        PangeaEventTypes.constructSummary,
+        '',
+        summary.toJson(),
+      );
+    } catch (e) {
+      debugPrint("Error saving construct summary room: $e");
+      ErrorHandler.logError(e: e, data: {'e': e});
+      return null;
+    }
+    return GenerateConstructSummaryResult(
+      stateEventId: stateEventId,
+      summary: summary,
+    );
   }
 }
 
