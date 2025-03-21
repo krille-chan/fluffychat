@@ -120,9 +120,11 @@ class SubscriptionController extends BaseController {
       if (!kIsWeb) {
         Purchases.addCustomerInfoUpdateListener(
           (CustomerInfo info) async {
-            final bool wasSubscribed = isSubscribed != null && isSubscribed!;
+            final bool? wasSubscribed = isSubscribed;
             await updateCustomerInfo();
-            if (!wasSubscribed && (isSubscribed != null && isSubscribed!)) {
+            if (wasSubscribed != null &&
+                !wasSubscribed &&
+                (isSubscribed != null && isSubscribed!)) {
               subscriptionStream.add(true);
             }
           },
