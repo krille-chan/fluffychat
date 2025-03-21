@@ -18,6 +18,7 @@ import 'package:fluffychat/pangea/common/constants/local.key.dart';
 import 'package:fluffychat/pangea/common/controllers/base_controller.dart';
 import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
+import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
 import 'package:fluffychat/pangea/constructs/construct_repo.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
@@ -139,7 +140,12 @@ class GetAnalyticsController extends BaseController {
 
     final offset =
         _pangeaController.userController.publicProfile?.xpOffset ?? 0;
+    final prevUnlockedMorphs = constructListModel.unlockedGrammarLemmas.toSet();
     constructListModel.updateConstructs(analyticsUpdate.newConstructs, offset);
+    final newUnlockedMorphs = constructListModel.unlockedGrammarLemmas
+        .toSet()
+        .difference(prevUnlockedMorphs);
+
     if (analyticsUpdate.type == AnalyticsUpdateType.server) {
       await _getConstructs(forceUpdate: true);
     }
@@ -148,6 +154,9 @@ class GetAnalyticsController extends BaseController {
     }
     if (oldLevel > constructListModel.level) {
       await _onLevelDown(constructListModel.level, oldLevel);
+    }
+    if (newUnlockedMorphs.isNotEmpty) {
+      _onUnlockMorphLemmas(newUnlockedMorphs);
     }
     _updateAnalyticsStream(origin: analyticsUpdate.origin);
     // Update public profile each time that new analytics are added.
@@ -185,6 +194,10 @@ class GetAnalyticsController extends BaseController {
       [],
       _pangeaController.userController.publicProfile!.xpOffset!,
     );
+  }
+
+  void _onUnlockMorphLemmas(Set<ConstructIdentifier> unlocked) {
+    setState({'unlocked_constructs': unlocked});
   }
 
   /// A local cache of eventIds and construct uses for messages sent since the last update.

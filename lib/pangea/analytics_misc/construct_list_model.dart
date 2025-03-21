@@ -36,6 +36,22 @@ class ConstructListModel {
   /// A list of unique grammar lemmas
   List<String> grammarLemmasList = [];
 
+  List<ConstructIdentifier> get unlockedGrammarLemmas {
+    final morphs = constructList(type: ConstructTypeEnum.morph);
+    final List<ConstructIdentifier> unlocked = [];
+    for (final morph in grammarLemmasList) {
+      final matches = morphs.where((m) => m.lemma == morph);
+      final totalPoints = matches.fold<int>(
+        0,
+        (total, match) => total + match.points,
+      );
+      if (totalPoints > 10) {
+        unlocked.add(matches.first.id);
+      }
+    }
+    return unlocked;
+  }
+
   /// Analytics data consumed by widgets. Updated each time new analytics come in.
   int prevXP = 0;
   int totalXP = 0;

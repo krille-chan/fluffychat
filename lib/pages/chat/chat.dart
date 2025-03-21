@@ -30,6 +30,7 @@ import 'package:fluffychat/pages/chat_details/chat_details.dart';
 import 'package:fluffychat/pangea/analytics_misc/constructs_model.dart';
 import 'package:fluffychat/pangea/analytics_misc/level_up.dart';
 import 'package:fluffychat/pangea/analytics_misc/put_analytics_controller.dart';
+import 'package:fluffychat/pangea/chat/utils/unlocked_morphs_snackbar.dart';
 import 'package:fluffychat/pangea/chat/widgets/event_too_large_dialog.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
 import 'package:fluffychat/pangea/choreographer/enums/edit_type.dart';
@@ -365,7 +366,9 @@ class ChatController extends State<ChatPageWithRoom>
 
     _levelSubscription = pangeaController.getAnalytics.stateStream
         .where(
-      (update) => update is Map<String, dynamic> && update['level_up'] != null,
+      (update) =>
+          update is Map<String, dynamic> &&
+          (update['level_up'] != null || update['unlocked_constructs'] != null),
     )
         // .listen(
         //   (update) => Future.delayed(
@@ -380,13 +383,20 @@ class ChatController extends State<ChatPageWithRoom>
       // remove delay now that GetAnalyticsController._onLevelUp
       // is async is should take roughly 500ms to make requests anyway
       (update) {
-        LevelUpUtil.showLevelUpDialog(
-          update['level_up'],
-          update['analytics_room_id'],
-          update["construct_summary_state_event_id"],
-          update['construct_summary'],
-          context,
-        );
+        if (update['level_up'] != null) {
+          LevelUpUtil.showLevelUpDialog(
+            update['level_up'],
+            update['analytics_room_id'],
+            update["construct_summary_state_event_id"],
+            update['construct_summary'],
+            context,
+          );
+        } else if (update['unlocked_constructs'] != null) {
+          showUnlockedMorphsSnackbar(
+            update['unlocked_constructs'],
+            context,
+          );
+        }
       },
     );
     // Pangea#
