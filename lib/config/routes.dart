@@ -692,11 +692,14 @@ abstract class AppRoutes {
     GoRouterState state,
     Widget child,
   ) =>
-      FluffyThemes.isColumnMode(context)
-          ? noTransitionPageBuilder(context, state, child)
-          : MaterialPage(
-              key: state.pageKey,
-              restorationId: state.pageKey.value,
-              child: child,
-            );
+      // #Pangea
+      noTransitionPageBuilder(context, state, child);
+  // FluffyThemes.isColumnMode(context)
+  //     ? noTransitionPageBuilder(context, state, child)
+  //     : MaterialPage(
+  //         key: state.pageKey,
+  //         restorationId: state.pageKey.value,
+  //         child: child,
+  //       );
+  // Pangea#
 }

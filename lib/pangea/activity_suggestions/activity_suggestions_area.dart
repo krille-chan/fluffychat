@@ -3,8 +3,6 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:collection/collection.dart';
-
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_request.dart';
@@ -44,37 +42,6 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
   double get cardPadding => _isColumnMode ? 8.0 : 0.0;
   double get cardWidth => _isColumnMode ? 225.0 : 150.0;
 
-  void _scrollToItem(int index) {
-    final viewportDimension = _scrollController.position.viewportDimension;
-    final double scrollOffset = _isColumnMode
-        ? index * cardWidth - (viewportDimension / 2) + (cardWidth / 2)
-        : (index + 1) * (cardHeight + 8.0);
-    final maxScrollExtent = _scrollController.position.maxScrollExtent;
-    final safeOffset = scrollOffset.clamp(0.0, maxScrollExtent);
-    if (safeOffset == _scrollController.offset) {
-      return;
-    }
-    _scrollController.animateTo(
-      safeOffset,
-      duration: FluffyThemes.animationDuration,
-      curve: FluffyThemes.animationCurve,
-    );
-  }
-
-  // void _scrollToNextItem(AxisDirection direction) {
-  //   final currentOffset = _scrollController.offset;
-  //   final scrollAmount = _isColumnMode ? cardWidth : cardHeight;
-
-  //   _scrollController.animateTo(
-  //     (direction == AxisDirection.left
-  //             ? currentOffset - scrollAmount
-  //             : currentOffset + scrollAmount)
-  //         .clamp(0.0, _scrollController.position.maxScrollExtent),
-  //     duration: FluffyThemes.animationDuration,
-  //     curve: FluffyThemes.animationCurve,
-  //   );
-  // }
-
   Future<void> _setActivityItems() async {
     final ActivityPlanRequest request = ActivityPlanRequest(
       topic: "",
@@ -91,17 +58,16 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
     );
     final resp = await ActivitySearchRepo.get(request);
     _activityItems.addAll(resp.activityPlans);
-    setState(() {});
+    if (mounted) setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
     final List<Widget> cards = _activityItems
-        .mapIndexed((i, activity) {
+        .map((activity) {
           return ActivitySuggestionCard(
             activity: activity,
             onPressed: () {
-              _scrollToItem(i);
               showDialog(
                 context: context,
                 builder: (context) {
@@ -142,14 +108,13 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
               ),
             ),
           )
-        : SizedBox.expand(
-            child: SingleChildScrollView(
-              controller: _scrollController,
-              child: Wrap(
-                alignment: WrapAlignment.spaceEvenly,
-                runSpacing: 16.0,
-                children: cards,
-              ),
+        : SizedBox(
+            width: MediaQuery.of(context).size.width,
+            child: Wrap(
+              alignment: WrapAlignment.spaceEvenly,
+              runSpacing: 16.0,
+              spacing: 4.0,
+              children: cards,
             ),
           );
   }

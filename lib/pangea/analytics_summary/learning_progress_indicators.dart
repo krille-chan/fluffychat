@@ -113,44 +113,51 @@ class LearningProgressIndicatorsState
             cursor: SystemMouseCursors.click,
             child: GestureDetector(
               onTap: () => context.go("/rooms/settings"),
-              child: Stack(
-                children: [
-                  FutureBuilder<Profile>(
-                    future: client.fetchOwnProfile(),
-                    builder: (context, snapshot) => Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        Material(
-                          color: Colors.transparent,
-                          borderRadius: BorderRadius.circular(99),
-                          child: Avatar(
-                            mxContent: snapshot.data?.avatarUrl,
-                            name: snapshot.data?.displayName ??
-                                client.userID!.localpart,
-                            size: 60,
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  bottom: 8.0,
+                  right: 8.0,
+                ),
+                child: Stack(
+                  clipBehavior: Clip.none, // Allow overflow
+                  children: [
+                    FutureBuilder<Profile>(
+                      future: client.fetchOwnProfile(),
+                      builder: (context, snapshot) => Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          Material(
+                            color: Colors.transparent,
+                            borderRadius: BorderRadius.circular(99),
+                            child: Avatar(
+                              mxContent: snapshot.data?.avatarUrl,
+                              name: snapshot.data?.displayName ??
+                                  client.userID!.localpart,
+                              size: 60,
+                            ),
                           ),
+                        ],
+                      ),
+                    ),
+                    Positioned(
+                      bottom: -3,
+                      right: -3,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: Theme.of(context).colorScheme.surfaceBright,
                         ),
-                      ],
-                    ),
-                  ),
-                  Positioned(
-                    bottom: -3,
-                    right: -3,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: Theme.of(context).colorScheme.surfaceBright,
-                      ),
-                      padding: const EdgeInsets.all(4.0),
-                      child: Icon(
-                        size: 14,
-                        Icons.settings_outlined,
-                        color: Theme.of(context).colorScheme.primary,
-                        weight: 1000,
+                        padding: const EdgeInsets.all(4.0),
+                        child: Icon(
+                          size: 14,
+                          Icons.settings_outlined,
+                          color: Theme.of(context).colorScheme.primary,
+                          weight: 1000,
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
