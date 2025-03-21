@@ -88,9 +88,7 @@ class ActivityListViewState extends State<ActivityListView> {
         },
       );
     } finally {
-      setState(() {
-        _isLoading = false;
-      });
+      if (mounted) setState(() => _isLoading = false);
     }
   }
 
