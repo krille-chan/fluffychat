@@ -3348,5 +3348,7 @@
   "optionalMessage": "Teachtaireacht (Roghnach)…",
   "@optionalMessage": {},
   "enterNewChat": "Cuir isteach comhrá nua",
-  "@enterNewChat": {}
+  "@enterNewChat": {},
+  "commandHint_roomupgrade": "Uasghrádaigh an seomra seo go dtí an leagan seomra a thugtar",
+  "@commandHint_roomupgrade": {}
 }
