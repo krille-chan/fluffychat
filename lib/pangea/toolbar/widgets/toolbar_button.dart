@@ -1,8 +1,9 @@
+import 'package:flutter/material.dart';
+
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/common/widgets/pressable_button.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
-import 'package:flutter/material.dart';
 
 class ToolbarButton extends StatelessWidget {
   final MessageMode mode;

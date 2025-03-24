@@ -1,12 +1,14 @@
 import 'dart:developer';
 
+import 'package:flutter/foundation.dart';
+
 import 'package:collection/collection.dart';
+
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/morphs/morph_features_enum.dart';
 import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
 import 'package:fluffychat/pangea/practice_activities/target_tokens_and_activity_type.dart';
-import 'package:flutter/foundation.dart';
 
 class MessageAnalyticsEntry {
   final DateTime createdAt = DateTime.now();
@@ -42,14 +44,6 @@ class MessageAnalyticsEntry {
         _activityQueue.length,
       );
     }
-  }
-
-  void _filterActivityQueue(ActivityTypeEnum activityType) {
-    _activityQueue[activityType]?.clear();
-  }
-
-  void _clearAllQueue() {
-    _activityQueue.clear();
   }
 
   TargetTokensAndActivityType? nextActivity(ActivityTypeEnum a) =>

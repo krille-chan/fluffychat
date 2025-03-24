@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 import 'package:fluffychat/pangea/analytics_details_popup/analytics_details_popup_content.dart';
 import 'package:fluffychat/pangea/analytics_details_popup/morph_meaning_widget.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_use_model.dart';
@@ -6,10 +8,7 @@ import 'package:fluffychat/pangea/constructs/construct_level_enum.dart';
 import 'package:fluffychat/pangea/lemmas/construct_xp_widget.dart';
 import 'package:fluffychat/pangea/morphs/morph_feature_display.dart';
 import 'package:fluffychat/pangea/morphs/morph_features_enum.dart';
-import 'package:fluffychat/pangea/morphs/morph_meaning/morph_info_repo.dart';
 import 'package:fluffychat/pangea/morphs/morph_tag_display.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class MorphDetailsView extends StatelessWidget {
   final ConstructIdentifier constructId;
@@ -22,11 +21,6 @@ class MorphDetailsView extends StatelessWidget {
   ConstructUses get _construct => constructId.constructUses;
   String get _morphFeature => constructId.category;
   String get _morphTag => constructId.lemma;
-
-  Future<String> _getDefinition(BuildContext context) => MorphInfoRepo.get(
-        feature: _construct.category,
-        tag: _construct.lemma,
-      ).then((value) => value ?? L10n.of(context).meaningNotFound);
 
   @override
   Widget build(BuildContext context) {

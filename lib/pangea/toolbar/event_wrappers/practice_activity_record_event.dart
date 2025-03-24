@@ -1,7 +1,7 @@
-import 'package:fluffychat/pangea/events/extensions/pangea_event_extension.dart';
-import 'package:fluffychat/pangea/practice_activities/practice_activity_record_model.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/pangea/events/extensions/pangea_event_extension.dart';
+import 'package:fluffychat/pangea/practice_activities/practice_activity_record_model.dart';
 import '../../events/constants/pangea_event_types.dart';
 
 class PracticeActivityRecordEvent {

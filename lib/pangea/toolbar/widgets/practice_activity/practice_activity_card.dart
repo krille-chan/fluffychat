@@ -1,7 +1,11 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
 import 'package:collection/collection.dart';
+
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/constructs_model.dart';
 import 'package:fluffychat/pangea/analytics_misc/gain_points_animation.dart';
@@ -23,8 +27,6 @@ import 'package:fluffychat/pangea/toolbar/widgets/practice_activity/multiple_cho
 import 'package:fluffychat/pangea/toolbar/widgets/toolbar_content_loading_indicator.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/word_zoom/word_zoom_widget.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 
 /// The wrapper for practice activity content.
 /// Handles the activities associated with a message,

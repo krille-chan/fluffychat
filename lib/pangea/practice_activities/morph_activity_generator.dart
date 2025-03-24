@@ -1,5 +1,9 @@
 import 'dart:developer';
 
+import 'package:flutter/foundation.dart';
+
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
@@ -10,8 +14,6 @@ import 'package:fluffychat/pangea/practice_activities/message_activity_request.d
 import 'package:fluffychat/pangea/practice_activities/multiple_choice_activity_model.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_activity_model.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 typedef MorphActivitySequence = Map<String, POSActivitySequence>;
 

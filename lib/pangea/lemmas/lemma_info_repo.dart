@@ -1,6 +1,11 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:flutter/foundation.dart';
+
+import 'package:get_storage/get_storage.dart';
+import 'package:http/http.dart';
+
 import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/pangea/common/network/requests.dart';
 import 'package:fluffychat/pangea/common/network/urls.dart';
@@ -10,9 +15,6 @@ import 'package:fluffychat/pangea/lemmas/lemma_info_response.dart';
 import 'package:fluffychat/pangea/lemmas/user_set_lemma_info.dart';
 import 'package:fluffychat/pangea/message_token_text/message_token_button.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/foundation.dart';
-import 'package:get_storage/get_storage.dart';
-import 'package:http/http.dart';
 
 class LemmaInfoRepo {
   static final GetStorage _lemmaStorage = GetStorage('lemma_storage');

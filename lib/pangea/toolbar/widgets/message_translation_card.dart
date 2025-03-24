@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/igc/card_error_widget.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
@@ -7,7 +9,6 @@ import 'package:fluffychat/pangea/instructions/instructions_enum.dart';
 import 'package:fluffychat/pangea/instructions/instructions_inline_tooltip.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/toolbar_content_loading_indicator.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/material.dart';
 
 class MessageTranslationCard extends StatefulWidget {
   final PangeaMessageEvent messageEvent;

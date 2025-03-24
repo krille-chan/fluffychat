@@ -1,5 +1,9 @@
 import 'dart:developer';
 
+import 'package:flutter/foundation.dart';
+
+import 'package:matrix/matrix.dart';
+
 import 'package:fluffychat/pangea/choreographer/models/choreo_record.dart';
 import 'package:fluffychat/pangea/common/constants/model_keys.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
@@ -10,8 +14,6 @@ import 'package:fluffychat/pangea/practice_activities/practice_activity_model.da
 import 'package:fluffychat/pangea/practice_activities/practice_activity_record_model.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/text_to_speech_controller.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_audio_card.dart';
-import 'package:flutter/foundation.dart';
-import 'package:matrix/matrix.dart';
 
 extension PangeaEvent on Event {
   V getPangeaContent<V>() {

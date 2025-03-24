@@ -1,4 +1,8 @@
+import 'package:flutter/material.dart';
+
 import 'package:collection/collection.dart';
+import 'package:flutter_linkify/flutter_linkify.dart';
+
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/common/utils/any_state_holder.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
@@ -10,8 +14,6 @@ import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_linkify/flutter_linkify.dart';
 
 /// Question - does this need to be stateful or does this work?
 /// Need to test.
@@ -243,21 +245,6 @@ class MessageTextWidget extends StatelessWidget {
               .take(tokenPosition.end - tokenPosition.start)
               .toString();
 
-<<<<<<< HEAD
-=======
-          Color backgroundColor = Colors.transparent;
-          if (!hideTokenHighlights) {
-            if (tokenPosition.selected) {
-              backgroundColor =
-                  Theme.of(context).colorScheme.primary.withAlpha(80);
-            } else if (isSelected != null && shouldDo) {
-              backgroundColor = !didMeaningActivity
-                  ? AppConfig.success.withAlpha(60)
-                  : AppConfig.gold.withAlpha(60);
-            }
-          }
-
->>>>>>> main
           if (tokenPosition.token?.pos == 'SPACE') {
             return const TextSpan(text: '\n');
           }
