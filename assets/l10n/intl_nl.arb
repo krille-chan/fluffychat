@@ -2431,7 +2431,7 @@
       }
     }
   },
-  "commandHint_googly": "Wat wiebelogen versturen",
+  "commandHint_googly": "Wiebel-ogen versturen",
   "@commandHint_googly": {},
   "commandHint_cuddle": "Een knuffel versturen",
   "@commandHint_cuddle": {},
@@ -3338,5 +3338,7 @@
   "optionalMessage": "(Optioneel) bericht...",
   "@optionalMessage": {},
   "notSupportedOnThisDevice": "Niet ondersteund op dit apparaat",
-  "@notSupportedOnThisDevice": {}
+  "@notSupportedOnThisDevice": {},
+  "commandHint_roomupgrade": "Upgradeer deze kamer naar de aangegeven kamerversie",
+  "@commandHint_roomupgrade": {}
 }
