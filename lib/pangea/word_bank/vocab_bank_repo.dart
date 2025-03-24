@@ -102,7 +102,7 @@ class VocabRepo {
     return VocabResponse(vocab: deduped);
   }
 
-  Future<VocabResponse> getSemanticallySimilarWords(
+  static Future<VocabResponse> getSemanticallySimilarWords(
     VocabRequest request,
   ) async {
     // Pull from a list of semantically similar words
@@ -114,10 +114,8 @@ class VocabRepo {
     final sharingPos = candidates
         .where(
           (element) =>
-              request.token == null ||
-              (element.category.toLowerCase() ==
-                      request.token?.pos.toLowerCase() &&
-                  element.lemma != request.token?.lemma.text),
+              (element.category.toLowerCase() == request.pos?.toLowerCase() &&
+                  element.lemma.toLowerCase() != request.lemma?.toLowerCase()),
         )
         .toList();
 
@@ -138,10 +136,8 @@ class VocabRepo {
     final sharingPos = candidates
         .where(
           (element) =>
-              request.token == null ||
-              (element.category.toLowerCase() !=
-                      request.token?.pos.toLowerCase() &&
-                  element.lemma != request.token?.lemma.text),
+              element.category.toLowerCase() != request.pos?.toLowerCase() &&
+              element.lemma.toLowerCase() != request.lemma?.toLowerCase(),
         )
         .toList();
 
@@ -170,6 +166,7 @@ class VocabRepo {
         ? PLanguageStore.byLangCode(LanguageKeys.defaultLanguage)
         : MatrixState.pangeaController.languageController.userL2!;
 
+    //TODO - move this to the server and fill out all our languages
     final Map<String, VocabResponse> placeholder = {
       "es": VocabResponse(
         vocab: [

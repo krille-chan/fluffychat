@@ -113,7 +113,7 @@ class WordAudioButtonState extends State<WordTextWithAudioButton> {
                     widget.text,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           color: _isPlaying
-                              ? Theme.of(context).colorScheme.secondary
+                              ? Theme.of(context).colorScheme.primary
                               : null,
                           fontSize: textSize,
                         ),
@@ -136,8 +136,11 @@ class WordAudioButtonState extends State<WordTextWithAudioButton> {
                   )
                 else
                   Icon(
-                    _isPlaying ? Icons.play_arrow : Icons.play_arrow_outlined,
+                    _isPlaying ? Icons.volume_up : Icons.pause_outlined,
                     size: textSize,
+                    color: _isPlaying
+                        ? Theme.of(context).colorScheme.primary
+                        : null,
                   ),
               ],
             ),

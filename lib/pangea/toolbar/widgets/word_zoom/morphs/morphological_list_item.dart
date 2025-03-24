@@ -1,28 +1,37 @@
+import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
+import 'package:fluffychat/pangea/morphs/get_grammar_copy.dart';
+import 'package:fluffychat/pangea/morphs/morph_features_enum.dart';
+import 'package:fluffychat/pangea/morphs/morph_icon.dart';
+import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
+import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
+import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
+import 'package:fluffychat/pangea/toolbar/widgets/practice_activity/word_zoom_activity_button.dart';
 import 'package:flutter/material.dart';
-
 import 'package:material_symbols_icons/symbols.dart';
 
-import 'package:fluffychat/pangea/morphs/get_grammar_copy.dart';
-import 'package:fluffychat/pangea/morphs/morph_categories_enum.dart';
-import 'package:fluffychat/pangea/morphs/morph_icon.dart';
-import 'package:fluffychat/pangea/toolbar/widgets/practice_activity/word_zoom_activity_button.dart';
-
 class MorphologicalListItem extends StatelessWidget {
-  final Function(String) onPressed;
-  final String morphFeature;
-  final String morphTag;
-
-  final bool isUnlocked;
-  final bool isSelected;
+  final MorphFeaturesEnum morphFeature;
+  final PangeaToken token;
+  final MessageOverlayController overlayController;
 
   const MorphologicalListItem({
-    required this.onPressed,
     required this.morphFeature,
-    required this.morphTag,
-    this.isUnlocked = true,
-    this.isSelected = false,
+    required this.token,
+    required this.overlayController,
     super.key,
   });
+
+  bool get shouldDoActivity =>
+      overlayController.messageAnalyticsEntry?.hasActivity(
+        ActivityTypeEnum.morphId,
+        token,
+        morphFeature,
+      ) ==
+      true;
+
+  bool get isSelected => overlayController.toolbarMode == MessageMode.wordMorph;
+
+  String get morphTag => token.getMorphTag(morphFeature.name) ?? "X";
 
   @override
   Widget build(BuildContext context) {
@@ -30,30 +39,36 @@ class MorphologicalListItem extends StatelessWidget {
       width: 40,
       height: 40,
       child: WordZoomActivityButton(
-        icon: isUnlocked
-            // if unlocked, we show the specific icon for the morphological feature/tag
-            ? MorphIcon(morphFeature: morphFeature, morphTag: morphTag)
-            // we show general feature icon if the morph is locked
-            // : MorphIcon(morphFeature: morphFeature, morphTag: null),
-            // or maybe we should the general grammar icon to show the
-            // connection between these and the grammar icon in the progress header
-            : const Icon(Symbols.toys_and_games),
+        icon: shouldDoActivity
+            ? const Icon(Symbols.toys_and_games)
+            : MorphIcon(
+                morphFeature: morphFeature,
+                morphTag: token.getMorphTag(morphFeature.name),
+                size: const Size(24, 24),
+              ),
         isSelected: isSelected,
-        onPressed: () => onPressed(morphFeature),
-        tooltip: isUnlocked
-            ? getGrammarCopy(
-                category: morphFeature,
+        // onPressed: shouldDoActivity
+        //     ? () => overlayController.updateToolbarMode(MessageMode.wordMorph)
+        //     : () => (feature) => showDialog<AnalyticsPopupWrapper>(
+        //           context: context,
+        //           builder: (context) => AnalyticsPopupWrapper(
+        //             constructZoom: token.morphIdByFeature(feature),
+        //             view: ConstructTypeEnum.vocab,
+        //           ),
+        //         ),
+        onPressed: () =>
+            overlayController.onMorphActivitySelect(token, morphFeature),
+        tooltip: shouldDoActivity
+            ? morphFeature.getDisplayCopy(context)
+            : getGrammarCopy(
+                category: morphFeature.name,
                 lemma: morphTag,
                 context: context,
-              )
-            : getMorphologicalCategoryCopy(
-                morphFeature,
-                context,
               ),
         opacity: isSelected
             ? 1
-            : !isUnlocked
-                ? 0.2
+            : shouldDoActivity
+                ? 0.4
                 : 1,
       ),
     );

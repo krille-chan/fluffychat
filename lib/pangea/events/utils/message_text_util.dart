@@ -1,16 +1,45 @@
-import 'package:flutter/material.dart';
-
-import 'package:fluffychat/pangea/analytics_misc/message_analytics_controller.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
-import 'package:fluffychat/pangea/toolbar/widgets/message_token_text.dart';
+import 'package:fluffychat/pangea/practice_activities/message_analytics_controller.dart';
+import 'package:flutter/material.dart';
+
+class TokenPosition {
+  /// Start index of the full substring in the message
+  final int start;
+
+  /// End index of the full substring in the message
+  final int end;
+
+  /// Start index of the token in the message
+  final int tokenStart;
+
+  /// End index of the token in the message
+  final int tokenEnd;
+
+  final bool selected;
+  final bool hideContent;
+  final PangeaToken? token;
+  final bool isHighlighted;
+
+  const TokenPosition({
+    required this.start,
+    required this.end,
+    required this.tokenStart,
+    required this.tokenEnd,
+    required this.hideContent,
+    required this.selected,
+    required this.isHighlighted,
+    this.token,
+  });
+}
 
 class MessageTextUtil {
   static List<TokenPosition>? getTokenPositions(
     PangeaMessageEvent pangeaMessageEvent, {
     MessageAnalyticsEntry? messageAnalyticsEntry,
     bool Function(PangeaToken)? isSelected,
+    bool Function(PangeaToken)? isHighlighted,
   }) {
     try {
       if (pangeaMessageEvent.messageDisplayRepresentation?.tokens == null) {
@@ -49,6 +78,7 @@ class MessageTextUtil {
               tokenEnd: startIndex,
               hideContent: false,
               selected: (isSelected?.call(token) ?? false) && !hasHiddenContent,
+              isHighlighted: isHighlighted?.call(token) ?? false,
             ),
           );
         }
@@ -91,6 +121,7 @@ class MessageTextUtil {
             selected: (isSelected?.call(token) ?? false) &&
                 !hideContent &&
                 !hasHiddenContent,
+            isHighlighted: isHighlighted?.call(token) ?? false,
           ),
         );
 

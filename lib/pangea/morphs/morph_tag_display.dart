@@ -1,18 +1,19 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
-import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
+import 'package:fluffychat/pangea/morphs/get_grammar_copy.dart';
+import 'package:fluffychat/pangea/morphs/morph_features_enum.dart';
 import 'package:fluffychat/pangea/morphs/morph_icon.dart';
+import 'package:flutter/material.dart';
 
 class MorphTagDisplay extends StatelessWidget {
   const MorphTagDisplay({
     super.key,
-    required String morphFeature,
+    required MorphFeaturesEnum morphFeature,
+    required String morphTag,
     required this.textColor,
-  }) : _morphFeature = morphFeature;
+  })  : _morphFeature = morphFeature,
+        _morphTag = morphTag;
 
-  final String _morphFeature;
+  final MorphFeaturesEnum _morphFeature;
+  final String _morphTag;
   final Color textColor;
 
   @override
@@ -22,20 +23,19 @@ class MorphTagDisplay extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         SizedBox(
-          width: 24.0,
-          height: 24.0,
-          child: MorphIcon(morphFeature: _morphFeature, morphTag: null),
+          width: 32.0,
+          height: 32.0,
+          child: MorphIcon(morphFeature: _morphFeature, morphTag: _morphTag),
         ),
         const SizedBox(width: 10.0),
         Text(
-          _morphFeature.toLowerCase() == "other"
-              ? L10n.of(context).other
-              : ConstructTypeEnum.morph.getDisplayCopy(
-                    _morphFeature,
-                    context,
-                  ) ??
-                  _morphFeature,
-          style: Theme.of(context).textTheme.titleMedium?.copyWith(
+          getGrammarCopy(
+                category: _morphFeature.name,
+                lemma: _morphTag,
+                context: context,
+              ) ??
+              _morphTag,
+          style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 color: textColor,
               ),
         ),

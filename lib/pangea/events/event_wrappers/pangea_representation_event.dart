@@ -2,13 +2,7 @@
 
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-
 import 'package:collection/collection.dart';
-import 'package:matrix/matrix.dart';
-import 'package:matrix/src/utils/markdown.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
-
 import 'package:fluffychat/pangea/choreographer/event_wrappers/pangea_choreo_event.dart';
 import 'package:fluffychat/pangea/choreographer/models/choreo_record.dart';
 import 'package:fluffychat/pangea/choreographer/models/language_detection_model.dart';
@@ -20,7 +14,14 @@ import 'package:fluffychat/pangea/events/models/representation_content_model.dar
 import 'package:fluffychat/pangea/events/models/tokens_event_content_model.dart';
 import 'package:fluffychat/pangea/events/repo/token_api_models.dart';
 import 'package:fluffychat/pangea/learning_settings/constants/language_constants.dart';
+import 'package:fluffychat/pangea/morphs/morph_features_enum.dart';
+import 'package:fluffychat/pangea/morphs/parts_of_speech_enum.dart';
+import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/foundation.dart';
+import 'package:matrix/matrix.dart';
+import 'package:matrix/src/utils/markdown.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 class RepresentationEvent {
   Event? _event;
@@ -282,5 +283,43 @@ class RepresentationEvent {
       }
     }
     return null;
+  }
+
+  List<PangeaToken> get tokensToSave =>
+      tokens?.where((token) => token.lemma.saveVocab).toList() ?? [];
+
+  // List<ConstructIdentifier> get allTokenMorphsToConstructIdentifiers => tokens?.map((t) => t.morphConstructIds).toList() ??
+  //     [];
+
+  /// get allTokenMorphsToConstructIdentifiers
+  Set<MorphFeaturesEnum> get morphFeatureSetToPractice =>
+      MorphFeaturesEnum.values.where((feature) {
+        // pos is always included
+        if (feature == MorphFeaturesEnum.Pos) {
+          return true;
+        }
+        return tokens?.any((token) => token.morph.containsKey(feature.name)) ??
+            false;
+      }).toSet();
+
+  Set<PartOfSpeechEnum> posSetToPractice(ActivityTypeEnum a) =>
+      PartOfSpeechEnum.values.where((pos) {
+        // some pos are not eligible for practice at all
+        if (!pos.eligibleForPractice(a)) {
+          return false;
+        }
+        return tokens?.any(
+              (token) => token.pos.toLowerCase() == pos.name.toLowerCase(),
+            ) ??
+            false;
+      }).toSet();
+
+  List<String> tagsByFeature(MorphFeaturesEnum feature) {
+    return tokens
+            ?.where((t) => t.morph.containsKey(feature.name))
+            .map((t) => t.morph[feature.name])
+            .cast<String>()
+            .toList() ??
+        [];
   }
 }

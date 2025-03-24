@@ -5144,7 +5144,6 @@
   "other": "Otros",
   "botModeValidation": "Seleccione un modo de chat",
   "clickBestOption": "Elija las mejores opciones para traducir su mensaje",
-  "completeActivitiesToUnlock": "¡Completa actividades de palabras para desbloquear audio y traducción!",
   "botSettingsSubtitle": "Invitar a un bot a moderar la actividad del chat",
   "invitePeople": "Invitar a usuarios",
   "noCapacityLimit": "Sin límite de capacidad",
@@ -5334,7 +5333,6 @@
       }
     }
   },
-  "lemmaMeaningInstructionsBody": "Arriba está el significado del lema. Haz doble clic para editar.",
   "doubleClickToEdit": "Haz doble clic para editar.",
   "removeFeature": "Eliminar {feature}",
   "@removeFeature": {
@@ -5374,7 +5372,6 @@
   "video": "Video",
   "nan": "No aplicable",
   "activityPlannerOverviewInstructionsBody": "¡Elige un tema, modo, objetivo de aprendizaje y genera una actividad para el chat!",
-  "completeActivitiesToUnlock": "Completa las actividades de palabras resaltadas para desbloquear",
   "myBookmarkedActivities": "Mis Actividades Marcadas",
   "noBookmarkedActivities": "No hay actividades marcadas",
   "activityTitle": "Título de la Actividad",

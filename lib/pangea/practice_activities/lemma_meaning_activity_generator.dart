@@ -1,24 +1,20 @@
 import 'dart:async';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
-import 'package:fluffychat/pangea/analytics_misc/construct_use_model.dart';
 import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
 import 'package:fluffychat/pangea/lemmas/lemma_info_repo.dart';
 import 'package:fluffychat/pangea/lemmas/lemma_info_request.dart';
 import 'package:fluffychat/pangea/lemmas/lemma_info_response.dart';
-import 'package:fluffychat/pangea/toolbar/enums/activity_type_enum.dart';
-import 'package:fluffychat/pangea/toolbar/models/message_activity_request.dart';
-import 'package:fluffychat/pangea/toolbar/models/multiple_choice_activity_model.dart';
-import 'package:fluffychat/pangea/toolbar/models/practice_activity_model.dart';
+import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
+import 'package:fluffychat/pangea/practice_activities/message_activity_request.dart';
+import 'package:fluffychat/pangea/practice_activities/multiple_choice_activity_model.dart';
+import 'package:fluffychat/pangea/practice_activities/practice_activity_model.dart';
+import 'package:fluffychat/pangea/word_bank/vocab_bank_repo.dart';
+import 'package:fluffychat/pangea/word_bank/vocab_request.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class LemmaMeaningActivityGenerator {
-  /// Cache whether a lemma has distractors for a given part of speech
-  static final Map<String, bool> _hasDistractorsCache = {};
-  static Timer? _cacheClearTimer;
-
   Future<MessageActivityResponse> get(
     MessageActivityRequest req,
   ) async {
@@ -38,7 +34,7 @@ class LemmaMeaningActivityGenerator {
       userL1: req.userL1,
     );
 
-    final res = await LemmaInfoRepo.get(lemmaDefReq, null, true);
+    final res = await LemmaInfoRepo.get(lemmaDefReq);
 
     final choices = await getDistractorMeanings(lemmaDefReq, 3);
 
@@ -64,40 +60,25 @@ class LemmaMeaningActivityGenerator {
     );
   }
 
-  static List<ConstructUses> eligibleDistractors(String lemma, String pos) {
-    final distractors =
-        MatrixState.pangeaController.getAnalytics.constructListModel
-            .constructList(type: ConstructTypeEnum.vocab)
-            .where(
-              (c) =>
-                  c.lemma.isNotEmpty && // must not be empty strings
-                  c.lemma.toLowerCase() !=
-                      lemma.toLowerCase() && // must not be the lemma itself
-                  c.category.toLowerCase() ==
-                      pos.toLowerCase(), // must be same part of speech
-            )
-            .toList();
-
-    _hasDistractorsCache['${lemma.toLowerCase()}-${pos.toLowerCase()}'] =
-        distractors.isNotEmpty;
-
-    _cacheClearTimer ??= Timer.periodic(const Duration(minutes: 2), (Timer t) {
-      _hasDistractorsCache.clear();
-    });
-
-    return distractors;
-  }
-
   /// From the cache, get a random set of cached definitions that are not for a specific lemma
   static Future<List<String>> getDistractorMeanings(
     LemmaInfoRequest req,
     int count,
   ) async {
-    final eligible = eligibleDistractors(req.lemma, req.partOfSpeech);
-    eligible.shuffle();
+    final eligible = await VocabRepo.getSemanticallySimilarWords(
+      VocabRequest(
+        langCode: req.lemmaLang,
+        level: MatrixState
+            .pangeaController.userController.profile.userSettings.cefrLevel,
+        lemma: req.lemma,
+        pos: req.partOfSpeech,
+        count: count,
+      ),
+    );
+    eligible.vocab.shuffle();
 
-    final List<ConstructUses> distractorConstructUses =
-        eligible.take(count).toList();
+    final List<ConstructIdentifier> distractorConstructUses =
+        eligible.vocab.take(count).toList();
 
     final List<Future<LemmaInfoResponse>> futureDefs = [];
     for (final construct in distractorConstructUses) {

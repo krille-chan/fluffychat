@@ -1,8 +1,4 @@
-import 'package:flutter/material.dart';
-
 import 'package:collection/collection.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/analytics_details_popup/analytics_details_popup.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
@@ -12,9 +8,11 @@ import 'package:fluffychat/pangea/constructs/construct_level_enum.dart';
 import 'package:fluffychat/pangea/instructions/instructions_enum.dart';
 import 'package:fluffychat/pangea/instructions/instructions_inline_tooltip.dart';
 import 'package:fluffychat/pangea/morphs/get_grammar_copy.dart';
+import 'package:fluffychat/pangea/morphs/morph_features_enum.dart';
 import 'package:fluffychat/pangea/morphs/morph_icon.dart';
 import 'package:fluffychat/pangea/user/client_extension.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
 
 class MorphAnalyticsListView extends StatelessWidget {
   final void Function(ConstructIdentifier) onConstructZoom;
@@ -75,20 +73,8 @@ class MorphFeatureBox extends StatelessWidget {
     required this.onConstructZoom,
   });
 
-  String _categoryCopy(
-    String category,
-    BuildContext context,
-  ) {
-    if (category.toLowerCase() == "other") {
-      return L10n.of(context).other;
-    }
-
-    return ConstructTypeEnum.morph.getDisplayCopy(
-          category,
-          context,
-        ) ??
-        category;
-  }
+  MorphFeaturesEnum get feature =>
+      MorphFeaturesEnumExtension.fromString(morphFeature);
 
   @override
   Widget build(BuildContext context) {
@@ -98,7 +84,7 @@ class MorphFeatureBox extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16.0),
+        borderRadius: BorderRadius.circular(AppConfig.borderRadius),
         border: Border.all(
           color: Theme.of(context).brightness == Brightness.dark
               ? AppConfig.primaryColorLight
@@ -116,10 +102,10 @@ class MorphFeatureBox extends StatelessWidget {
               SizedBox(
                 height: 30.0,
                 width: 30.0,
-                child: MorphIcon(morphFeature: morphFeature, morphTag: null),
+                child: MorphIcon(morphFeature: feature, morphTag: null),
               ),
               Text(
-                _categoryCopy(morphFeature, context),
+                feature.getDisplayCopy(context),
                 style: theme.textTheme.bodyLarge?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
@@ -193,13 +179,16 @@ class MorphTagChip extends StatelessWidget {
     this.onTap,
   });
 
+  MorphFeaturesEnum get feature =>
+      MorphFeaturesEnumExtension.fromString(morphFeature);
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final unlocked = constructAnalytics.points > 10;
 
     return InkWell(
-      borderRadius: BorderRadius.circular(32.0),
+      borderRadius: BorderRadius.circular(AppConfig.borderRadius),
       onTap: onTap,
       child: Opacity(
         opacity: unlocked ? 1.0 : 0.3,
@@ -231,7 +220,7 @@ class MorphTagChip extends StatelessWidget {
                 height: 28.0,
                 child: unlocked || Matrix.of(context).client.isSupportAccount
                     ? MorphIcon(
-                        morphFeature: morphFeature,
+                        morphFeature: feature,
                         morphTag: morphTag,
                       )
                     : const Icon(

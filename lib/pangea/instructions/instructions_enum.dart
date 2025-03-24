@@ -20,12 +20,15 @@ enum InstructionsEnum {
   missingVoice,
   clickBestOption,
   completeActivitiesToUnlock,
-  lemmaMeaning,
+  chooseLemmaMeaning,
   activityPlannerOverview,
   ttsDisabled,
   chooseEmoji,
+  chooseWordAudio,
+  chooseMorphs,
   analyticsVocabList,
   morphAnalyticsList,
+  readingAssistanceOverview,
 }
 
 extension InstructionsEnumExtension on InstructionsEnum {
@@ -43,6 +46,7 @@ extension InstructionsEnumExtension on InstructionsEnum {
         return l10n.missingVoiceTitle;
       case InstructionsEnum.ttsDisabled:
         return l10n.ttsDisbledTitle;
+      case InstructionsEnum.chooseWordAudio:
       case InstructionsEnum.chooseEmoji:
       case InstructionsEnum.activityPlannerOverview:
       case InstructionsEnum.clickAgainToDeselect:
@@ -51,9 +55,11 @@ extension InstructionsEnumExtension on InstructionsEnum {
       case InstructionsEnum.translationChoices:
       case InstructionsEnum.clickBestOption:
       case InstructionsEnum.completeActivitiesToUnlock:
-      case InstructionsEnum.lemmaMeaning:
+      case InstructionsEnum.chooseLemmaMeaning:
+      case InstructionsEnum.chooseMorphs:
       case InstructionsEnum.analyticsVocabList:
       case InstructionsEnum.morphAnalyticsList:
+      case InstructionsEnum.readingAssistanceOverview:
         ErrorHandler.logError(
           e: Exception("No title for this instruction"),
           m: 'InstructionsEnumExtension.title',
@@ -65,6 +71,21 @@ extension InstructionsEnumExtension on InstructionsEnum {
         return "";
     }
   }
+
+  // IconData? get icon {
+  //   switch (this) {
+  //     case InstructionsEnum.itInstructions:
+  //       return Icons.translate;
+  //     case InstructionsEnum.clickMessage:
+  //       return Icons.touch_app;
+  //     case InstructionsEnum.blurMeansTranslate:
+  //       return Icons.blur_on;
+  //     case InstructionsEnum.tooltipInstructions:
+  //       return Icons.help;
+  //     case InstructionsEnum.missingVoice:
+  //       return Icons.mic_off;
+  //   }
+  // }
 
   String body(L10n l10n) {
     switch (this) {
@@ -92,18 +113,24 @@ extension InstructionsEnumExtension on InstructionsEnum {
         return l10n.clickBestOption;
       case InstructionsEnum.completeActivitiesToUnlock:
         return l10n.completeActivitiesToUnlock;
-      case InstructionsEnum.lemmaMeaning:
-        return l10n.lemmaMeaningInstructionsBody;
+      case InstructionsEnum.chooseLemmaMeaning:
+        return l10n.chooseLemmaMeaningInstructionsBody;
       case InstructionsEnum.activityPlannerOverview:
         return l10n.activityPlannerOverviewInstructionsBody;
       case InstructionsEnum.chooseEmoji:
         return l10n.chooseEmojiInstructionsBody;
       case InstructionsEnum.ttsDisabled:
         return l10n.ttsDisabledBody;
+      case InstructionsEnum.chooseWordAudio:
+        return l10n.chooseWordAudioInstructionsBody;
+      case InstructionsEnum.chooseMorphs:
+        return l10n.chooseMorphsInstructionsBody;
       case InstructionsEnum.analyticsVocabList:
         return l10n.analyticsVocabListBody;
       case InstructionsEnum.morphAnalyticsList:
         return l10n.morphAnalyticsListBody;
+      case InstructionsEnum.readingAssistanceOverview:
+        return l10n.readingAssistanceOverviewBody;
     }
   }
 

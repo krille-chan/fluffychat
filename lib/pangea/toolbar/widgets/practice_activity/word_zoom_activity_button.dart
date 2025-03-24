@@ -24,11 +24,12 @@ class WordZoomActivityButton extends StatelessWidget {
       icon: icon,
       iconSize: 24,
       color: isSelected ? Theme.of(context).colorScheme.primary : null,
-      style: IconButton.styleFrom(
-        backgroundColor: isSelected
-            ? Theme.of(context).colorScheme.primary.withValues(alpha: 0.25)
-            : Colors.transparent,
-      ),
+      visualDensity: VisualDensity.compact,
+      // style: IconButton.styleFrom(
+      //   backgroundColor: isSelected
+      //       ? Theme.of(context).colorScheme.primary.withValues(alpha: 0.25)
+      //       : Colors.transparent,
+      // ),
     );
 
     if (opacity != null) {

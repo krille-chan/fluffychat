@@ -38,6 +38,12 @@ class PangeaAnyState {
   }
 
   void disposeByWidgetKey(String transformTargetId) {
+    final index =
+        entries.indexWhere((element) => element.key == transformTargetId);
+    if (index != -1) {
+      entries[index].entry.remove();
+      entries.removeAt(index);
+    }
     _layerLinkAndKeys.remove(transformTargetId);
   }
 

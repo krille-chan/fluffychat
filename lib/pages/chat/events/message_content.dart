@@ -1,21 +1,21 @@
 import 'dart:math';
 
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:flutter_linkify/flutter_linkify.dart';
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/events/video_player.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/igc/pangea_rich_text.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/events/extensions/pangea_event_extension.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
+import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_token_text.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_toolbar_selection_area.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:flutter_linkify/flutter_linkify.dart';
+import 'package:matrix/matrix.dart';
+
 import '../../../config/app_config.dart';
 import '../../../utils/platform_infos.dart';
 import '../../../utils/url_launcher.dart';
@@ -42,6 +42,7 @@ class MessageContent extends StatelessWidget {
   final ChatController controller;
   final Event? nextEvent;
   final Event? prevEvent;
+  final bool isTransitionAnimation;
   // Pangea#
   final Timeline timeline;
 
@@ -58,6 +59,7 @@ class MessageContent extends StatelessWidget {
     required this.controller,
     this.nextEvent,
     this.prevEvent,
+    this.isTransitionAnimation = false,
     // Pangea#
     required this.linkColor,
     required this.borderRadius,
@@ -377,6 +379,18 @@ class MessageContent extends StatelessWidget {
                 style: messageTextStyle,
                 onClick: onClick,
                 isSelected: overlayController != null ? isSelected : null,
+                messageMode: overlayController?.toolbarMode,
+                isHighlighted: (PangeaToken token) =>
+                    overlayController!.toolbarMode.associatedActivityType !=
+                        null &&
+                    overlayController?.messageAnalyticsEntry?.hasActivity(
+                          overlayController!
+                              .toolbarMode.associatedActivityType!,
+                          token,
+                        ) ==
+                        true,
+                overlayController: overlayController,
+                isTransitionAnimation: isTransitionAnimation,
               );
             }
 

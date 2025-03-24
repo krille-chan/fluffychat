@@ -124,7 +124,7 @@ abstract class ClientManager {
         PangeaEventTypes.botOptions,
         PangeaEventTypes.capacity,
         EventTypes.RoomPowerLevels,
-        PangeaEventTypes.userChosenEmoji,
+        PangeaEventTypes.userSetLemmaInfo,
         EventTypes.RoomJoinRules,
         // Pangea#
       },

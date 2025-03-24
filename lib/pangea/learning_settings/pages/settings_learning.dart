@@ -4,6 +4,7 @@ import 'package:country_picker/country_picker.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
+import 'package:fluffychat/pangea/instructions/instruction_settings.dart';
 import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_enum.dart';
 import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
 import 'package:fluffychat/pangea/learning_settings/pages/settings_learning_view.dart';
@@ -116,6 +117,20 @@ class SettingsLearningController extends State<SettingsLearning> {
       );
       Navigator.of(context).pop();
     }
+  }
+
+  Future<void> resetInstructionTooltips() async {
+    await showFutureLoadingDialog(
+      context: context,
+      future: () async => pangeaController.userController.updateProfile(
+        (profile) {
+          profile.instructionSettings = InstructionSettings();
+          return profile;
+        },
+        waitForDataInSync: true,
+      ),
+    );
+    if (mounted) setState(() {});
   }
 
   Future<void> setSelectedLanguage({

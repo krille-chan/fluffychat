@@ -1,4 +1,3 @@
-import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_enum.dart';
 
 class VocabRequest {
@@ -6,14 +5,16 @@ class VocabRequest {
   LanguageLevelTypeEnum level;
   String? prefix;
   String? suffix;
-  PangeaToken? token;
+  String? lemma;
+  String? pos;
 
   int count;
 
   VocabRequest({
     required this.langCode,
     required this.level,
-    this.token,
+    this.lemma,
+    this.pos,
     this.prefix,
     this.suffix,
     this.count = 10,
@@ -25,15 +26,16 @@ class VocabRequest {
         prefix = json['prefix'],
         suffix = json['suffix'],
         count = json['count'],
-        token =
-            json['token'] != null ? PangeaToken.fromJson(json['token']) : null;
+        lemma = json['lemma'],
+        pos = json['pos'];
 
   Map<String, dynamic> toJson() => {
         'langCode': langCode,
         'level': level.index,
         'prefix': prefix,
         'suffix': suffix,
-        'token': token?.toJson(),
+        'lemma': lemma,
+        'pos': pos,
         'count': count,
       };
 
@@ -47,7 +49,9 @@ class VocabRequest {
           level == other.level &&
           prefix == other.prefix &&
           suffix == other.suffix &&
-          count == other.count;
+          count == other.count &&
+          lemma == other.lemma &&
+          pos == other.pos;
     }
     return false;
   }
@@ -58,5 +62,7 @@ class VocabRequest {
       level.hashCode ^
       prefix.hashCode ^
       suffix.hashCode ^
-      count.hashCode;
+      count.hashCode ^
+      lemma.hashCode ^
+      pos.hashCode;
 }

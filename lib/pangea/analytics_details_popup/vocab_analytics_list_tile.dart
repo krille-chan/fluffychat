@@ -1,9 +1,8 @@
-import 'package:flutter/material.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_use_model.dart';
 import 'package:fluffychat/pangea/constructs/construct_level_enum.dart';
 import 'package:fluffychat/pangea/toolbar/utils/shrinkable_text.dart';
+import 'package:flutter/material.dart';
 
 class VocabAnalyticsListTile extends StatefulWidget {
   const VocabAnalyticsListTile({
@@ -53,10 +52,10 @@ class VocabAnalyticsListTileState extends State<VocabAnalyticsListTile> {
                 height: (maxWidth - padding * 2) * 0.6,
                 child: Opacity(
                   opacity:
-                      widget.constructUse.id.userSetEmoji == null ? 0.2 : 1,
-                  child: widget.constructUse.id.userSetEmoji != null
+                      widget.constructUse.id.userSetEmoji.isEmpty ? 0.2 : 1,
+                  child: widget.constructUse.id.userSetEmoji.isNotEmpty
                       ? Text(
-                          widget.constructUse.id.userSetEmoji!,
+                          widget.constructUse.id.userSetEmoji.first,
                           style: const TextStyle(
                             fontSize: 22,
                           ),

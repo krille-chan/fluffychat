@@ -8,19 +8,16 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
-import 'package:fluffychat/pangea/toolbar/widgets/toolbar_button.dart';
 
 class ToolbarButtonAndProgressColumn extends StatelessWidget {
   final Event event;
   final MessageOverlayController overlayController;
-  final bool shouldShowToolbarButtons;
   final double height;
   final double width;
 
   const ToolbarButtonAndProgressColumn({
     required this.event,
     required this.overlayController,
-    required this.shouldShowToolbarButtons,
     required this.height,
     required this.width,
     super.key,
@@ -37,7 +34,6 @@ class ToolbarButtonAndProgressColumn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (event.messageType == MessageTypes.Audio ||
-        !shouldShowToolbarButtons ||
         !(overlayController.pangeaMessageEvent?.messageDisplayLangIsL2 ??
             false)) {
       return SizedBox(height: height, width: width);
@@ -77,8 +73,9 @@ class ToolbarButtonAndProgressColumn extends StatelessWidget {
                 margin: barMargin,
               ),
               Positioned(
-                bottom:
-                    height * MessageMode.messageMeaning.pointOnBar - buttonSize,
+                bottom: height * MessageMode.noneSelected.pointOnBar -
+                    buttonSize / 2 -
+                    barMargin.vertical / 2,
                 child: Container(
                   decoration: BoxDecoration(
                     color: overlayController.isPracticeComplete
@@ -96,36 +93,6 @@ class ToolbarButtonAndProgressColumn extends StatelessWidget {
                         : Theme.of(context).colorScheme.onSurface,
                     size: 30,
                   ),
-                ),
-              ),
-              Positioned(
-                bottom: height * MessageMode.messageTranslation.pointOnBar -
-                    buttonSize / 2,
-                child: ToolbarButton(
-                  mode: MessageMode.messageTranslation,
-                  overlayController: overlayController,
-                  onPressed: overlayController.updateToolbarMode,
-                  buttonSize: buttonSize,
-                ),
-              ),
-              Positioned(
-                bottom: height * MessageMode.messageTextToSpeech.pointOnBar -
-                    buttonSize / 2,
-                child: ToolbarButton(
-                  mode: MessageMode.messageTextToSpeech,
-                  overlayController: overlayController,
-                  onPressed: overlayController.updateToolbarMode,
-                  buttonSize: buttonSize,
-                ),
-              ),
-              Positioned(
-                bottom: height * MessageMode.practiceActivity.pointOnBar,
-                child: ToolbarButton(
-                  mode: MessageMode.practiceActivity,
-                  overlayController: overlayController,
-                  onPressed: (mode) =>
-                      overlayController.onNextActivityRequest(),
-                  buttonSize: buttonSize,
                 ),
               ),
             ],

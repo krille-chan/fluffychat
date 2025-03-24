@@ -36,6 +36,8 @@ class AnalyticsPopupWrapperState extends State<AnalyticsPopupWrapper> {
   ConstructIdentifier? localConstructZoom;
   ConstructTypeEnum localView = ConstructTypeEnum.vocab;
 
+  // @ggurdin
+  //TODO: make language-specific
   MorphFeaturesAndTags morphs = defaultMorphMapping;
   List<MorphFeature> features = defaultMorphMapping.displayFeatures;
 

@@ -1,17 +1,17 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/instructions/instructions_enum.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class InstructionsInlineTooltip extends StatefulWidget {
   final InstructionsEnum instructionsEnum;
+  final bool bold;
 
   const InstructionsInlineTooltip({
     super.key,
     required this.instructionsEnum,
+    this.bold = false,
   });
 
   @override
@@ -20,14 +20,27 @@ class InstructionsInlineTooltip extends StatefulWidget {
 }
 
 class InstructionsInlineTooltipState extends State<InstructionsInlineTooltip>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin {
   bool _isToggledOff = true;
   late AnimationController _controller;
   late Animation<double> _animation;
 
   @override
+  void didUpdateWidget(covariant InstructionsInlineTooltip oldWidget) {
+    debugPrint("InstructionsInlineTooltip didUpdateWidget");
+    if (oldWidget.instructionsEnum != widget.instructionsEnum) {
+      setToggled();
+    }
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
   void initState() {
     super.initState();
+    setToggled();
+  }
+
+  void setToggled() {
     _isToggledOff = widget.instructionsEnum.isToggledOff;
 
     // Initialize AnimationController and Animation
@@ -43,6 +56,8 @@ class InstructionsInlineTooltipState extends State<InstructionsInlineTooltip>
 
     // Start in correct state
     if (!_isToggledOff) _controller.forward();
+
+    setState(() {});
   }
 
   @override
@@ -69,7 +84,7 @@ class InstructionsInlineTooltipState extends State<InstructionsInlineTooltip>
         child: DecoratedBox(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-            color: Theme.of(context).colorScheme.primary.withAlpha(5),
+            color: AppConfig.gold.withAlpha(widget.bold ? 80 : 10),
           ),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
@@ -87,7 +102,8 @@ class InstructionsInlineTooltipState extends State<InstructionsInlineTooltip>
                   child: Center(
                     child: Text(
                       widget.instructionsEnum.body(L10n.of(context)),
-                      style: Theme.of(context).textTheme.bodyLarge,
+                      style: Theme.of(context).textTheme.titleLarge ??
+                          Theme.of(context).textTheme.bodyLarge,
                       textAlign: TextAlign.center,
                     ),
                   ),

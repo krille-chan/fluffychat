@@ -42,4 +42,6 @@ class PangeaTokenText {
 
   @override
   int get hashCode => offset.hashCode ^ content.hashCode ^ length.hashCode;
+
+  String get uniqueKey => "$content-$offset-$length";
 }

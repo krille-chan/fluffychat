@@ -1,7 +1,3 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
 import 'package:fluffychat/pangea/common/constants/model_keys.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
@@ -9,8 +5,12 @@ import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/events/models/tokens_event_content_model.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
-import 'package:fluffychat/pangea/toolbar/widgets/practice_activity/word_text_with_audio_button.dart';
+import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
+import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
+import 'package:fluffychat/pangea/toolbar/widgets/practice_activity/word_audio_button.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class LemmaWidget extends StatefulWidget {
   final PangeaToken token;
@@ -18,6 +18,7 @@ class LemmaWidget extends StatefulWidget {
   final VoidCallback onEdit;
   final VoidCallback onEditDone;
   final TtsController tts;
+  final MessageOverlayController? overlayController;
 
   const LemmaWidget({
     super.key,
@@ -26,6 +27,7 @@ class LemmaWidget extends StatefulWidget {
     required this.onEdit,
     required this.onEditDone,
     required this.tts,
+    required this.overlayController,
   });
 
   @override
@@ -162,16 +164,39 @@ class LemmaWidgetState extends State<LemmaWidget> {
       );
     }
 
-    return Tooltip(
-      triggerMode: TooltipTriggerMode.tap,
-      message: L10n.of(context).doubleClickToEdit,
-      child: GestureDetector(
-        onLongPress: () => _toggleEditMode(true),
-        onDoubleTap: () => _toggleEditMode(true),
-        child: WordTextWithAudioButton(
-          text: widget.token.lemma.text,
+    return Row(
+      children: [
+        Tooltip(
+          triggerMode: TooltipTriggerMode.tap,
+          message: L10n.of(context).doubleClickToEdit,
+          child: GestureDetector(
+            onLongPress: () => _toggleEditMode(true),
+            onDoubleTap: () => _toggleEditMode(true),
+            child: Text(
+              widget.token.lemma.text,
+              style: Theme.of(context).textTheme.headlineSmall,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
         ),
-      ),
+        if (widget.token.lemma.text.toLowerCase() ==
+            widget.token.text.content.toLowerCase())
+          WordAudioButton(
+            text: widget.token.text.content,
+            isSelected:
+                MessageMode.listening == widget.overlayController?.toolbarMode,
+            baseOpacity: 0.4,
+            callbackOverride:
+                widget.overlayController?.messageAnalyticsEntry?.hasActivity(
+                          MessageMode.listening.associatedActivityType!,
+                          widget.token,
+                        ) ==
+                        true
+                    ? () => widget.overlayController
+                        ?.updateToolbarMode(MessageMode.listening)
+                    : null,
+          ),
+      ],
     );
   }
 }

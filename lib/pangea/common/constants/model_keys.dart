@@ -151,6 +151,7 @@ class ModelKey {
   static const String latestBuildNumber = "latest_build_number";
   static const String mandatoryUpdate = "mandatory_update";
   static const String emoji = "emoji";
+  static const String emojiList = "emoji_list";
 
   static const String analytics = "analytics";
   static const String level = "level";

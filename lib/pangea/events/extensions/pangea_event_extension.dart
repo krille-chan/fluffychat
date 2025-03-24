@@ -1,19 +1,17 @@
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/pangea/choreographer/models/choreo_record.dart';
 import 'package:fluffychat/pangea/common/constants/model_keys.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/events/models/representation_content_model.dart';
 import 'package:fluffychat/pangea/events/models/tokens_event_content_model.dart';
+import 'package:fluffychat/pangea/practice_activities/practice_activity_model.dart';
+import 'package:fluffychat/pangea/practice_activities/practice_activity_record_model.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/text_to_speech_controller.dart';
-import 'package:fluffychat/pangea/toolbar/models/practice_activity_model.dart';
-import 'package:fluffychat/pangea/toolbar/models/practice_activity_record_model.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_audio_card.dart';
+import 'package:flutter/foundation.dart';
+import 'package:matrix/matrix.dart';
 
 extension PangeaEvent on Event {
   V getPangeaContent<V>() {

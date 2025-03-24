@@ -1,18 +1,14 @@
+import 'package:fluffychat/pangea/morphs/morph_features_enum.dart';
+import 'package:fluffychat/pangea/morphs/morph_icon.dart';
 import 'package:flutter/material.dart';
 
-import 'package:fluffychat/pangea/morphs/get_grammar_copy.dart';
-import 'package:fluffychat/pangea/morphs/morph_icon.dart';
-
 class MorphFeatureDisplay extends StatelessWidget {
-  const MorphFeatureDisplay({
+  MorphFeatureDisplay({
     super.key,
     required String morphFeature,
-    required String morphTag,
-  })  : _morphFeature = morphFeature,
-        _morphTag = morphTag;
+  }) : _morphFeature = MorphFeaturesEnumExtension.fromString(morphFeature);
 
-  final String _morphFeature;
-  final String _morphTag;
+  final MorphFeaturesEnum _morphFeature;
 
   @override
   Widget build(BuildContext context) {
@@ -20,22 +16,17 @@ class MorphFeatureDisplay extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SizedBox(
-          width: 32.0,
-          height: 32.0,
+          width: 24.0,
+          height: 24.0,
           child: MorphIcon(
             morphFeature: _morphFeature,
-            morphTag: _morphTag,
+            morphTag: null,
           ),
         ),
         const SizedBox(width: 10.0),
         Text(
-          getGrammarCopy(
-                category: _morphFeature,
-                lemma: _morphTag,
-                context: context,
-              ) ??
-              _morphTag,
-          style: Theme.of(context).textTheme.titleLarge,
+          _morphFeature.getDisplayCopy(context),
+          style: Theme.of(context).textTheme.titleMedium,
         ),
       ],
     );

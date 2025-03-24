@@ -85,7 +85,7 @@ class AnalyticsDetailsViewContent extends StatelessWidget {
                   construct: construct,
                   category: LearningSkillsEnum.hearing,
                   tooltip: L10n.of(context).listeningExercisesTooltip,
-                  icon: Symbols.hearing,
+                  icon: Icons.volume_up,
                 ),
                 // Reading exercise section
                 LemmaUsageDots(

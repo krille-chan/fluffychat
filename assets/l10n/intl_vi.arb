@@ -3304,7 +3304,6 @@
   },
   "botModeValidation": "Vui lòng chọn một chế độ trò chuyện",
   "clickBestOption": "Chọn phương án tốt nhất để dịch tin nhắn của bạn!",
-  "completeActivitiesToUnlock": "Hoàn thành các hoạt động từ vựng được đánh dấu để mở khóa",
   "botSettingsSubtitle": "Mời bot kiểm duyệt hoặc khởi tạo hoạt động trò chuyện",
   "invitePeople": "Mời người dùng",
   "invitePeopleChatSubtitle": "Mời người dùng hoặc quản trị viên đến cuộc trò chuyện này",
@@ -3527,7 +3526,6 @@
       }
     }
   },
-  "lemmaMeaningInstructionsBody": "Ở trên là nghĩa của mục từ. Nhấp đúp để chỉnh sửa.",
   "doubleClickToEdit": "Nhấp đúp để chỉnh sửa.",
   "removeFeature": "Xóa {feature}",
   "@removeFeature": {

@@ -1,11 +1,8 @@
 // stateful widget that displays morphological label and a shimmer effect while the text is loading
 // takes a token and morphological feature as input
 
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
 import 'package:fluffychat/pangea/analytics_details_popup/analytics_details_popup.dart';
+import 'package:fluffychat/pangea/analytics_details_popup/morph_meaning_widget.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/common/constants/model_keys.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
@@ -19,10 +16,13 @@ import 'package:fluffychat/pangea/lemmas/construct_xp_widget.dart';
 import 'package:fluffychat/pangea/morphs/default_morph_mapping.dart';
 import 'package:fluffychat/pangea/morphs/get_grammar_copy.dart';
 import 'package:fluffychat/pangea/morphs/morph_feature_display.dart';
+import 'package:fluffychat/pangea/morphs/morph_features_enum.dart';
 import 'package:fluffychat/pangea/morphs/morph_repo.dart';
 import 'package:fluffychat/pangea/morphs/morph_tag_display.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class MorphFocusWidget extends StatefulWidget {
   final PangeaToken token;
@@ -54,17 +54,18 @@ class MorphFocusWidgetState extends State<MorphFocusWidget> {
   final ScrollController _scrollController = ScrollController();
 
   void resetMorphTag() => setState(
-        () => selectedMorphTag = widget.token.morph[widget.morphFeature]!,
+        () => selectedMorphTag =
+            widget.token.getMorphTag(widget.morphFeature) ?? "X",
       );
 
   @override
   void didUpdateWidget(MorphFocusWidget oldWidget) {
-    super.didUpdateWidget(oldWidget);
     if (widget.token != oldWidget.token ||
         widget.morphFeature != oldWidget.morphFeature) {
       resetMorphTag();
       setState(() => editMode = false);
     }
+    super.didUpdateWidget(oldWidget);
   }
 
   @override
@@ -171,40 +172,51 @@ class MorphFocusWidgetState extends State<MorphFocusWidget> {
           children: [
             MorphFeatureDisplay(
               morphFeature: widget.morphFeature,
-              morphTag: selectedMorphTag,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Tooltip(
-                  triggerMode: TooltipTriggerMode.tap,
-                  message: L10n.of(context).doubleClickToEdit,
-                  child: GestureDetector(
-                    onLongPress: enterEditMode,
-                    onDoubleTap: enterEditMode,
-                    child: MorphTagDisplay(
-                      morphFeature: widget.morphFeature,
-                      textColor: Theme.of(context).brightness ==
-                              Brightness.light
-                          ? id.constructUses.lemmaCategory.darkColor(context)
-                          : id.constructUses.lemmaCategory.color(context),
+            if (widget.token.getMorphTag(widget.morphFeature) != null) ...[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Tooltip(
+                    triggerMode: TooltipTriggerMode.tap,
+                    message: L10n.of(context).doubleClickToEdit,
+                    child: GestureDetector(
+                      onLongPress: enterEditMode,
+                      onDoubleTap: enterEditMode,
+                      child: MorphTagDisplay(
+                        morphFeature: MorphFeaturesEnumExtension.fromString(
+                          widget.morphFeature,
+                        ),
+                        morphTag:
+                            widget.token.getMorphTag(widget.morphFeature) ??
+                                L10n.of(context).nan,
+                        textColor: Theme.of(context).brightness ==
+                                Brightness.light
+                            ? id.constructUses.lemmaCategory.darkColor(context)
+                            : id.constructUses.lemmaCategory.color(context),
+                      ),
                     ),
                   ),
-                ),
-                const SizedBox(width: 6),
-                ConstructXpWidget(
-                  id: id,
-                  onTap: () => showDialog<AnalyticsPopupWrapper>(
-                    context: context,
-                    builder: (context) => AnalyticsPopupWrapper(
-                      constructZoom: id,
-                      view: ConstructTypeEnum.morph,
+                  const SizedBox(width: 6),
+                  ConstructXpWidget(
+                    id: id,
+                    onTap: () => showDialog<AnalyticsPopupWrapper>(
+                      context: context,
+                      builder: (context) => AnalyticsPopupWrapper(
+                        constructZoom: id,
+                        view: ConstructTypeEnum.morph,
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
+                ],
+              ),
+              MorphMeaningWidget(
+                feature: widget.morphFeature,
+                tag: widget.token.getMorphTag(widget.morphFeature)!,
+              ),
+            ] else
+              Text(L10n.of(context).nan),
           ],
         ),
       );
@@ -220,91 +232,72 @@ class MorphFocusWidgetState extends State<MorphFocusWidget> {
               textAlign: TextAlign.center,
               style: const TextStyle(fontStyle: FontStyle.italic),
             ),
-            Container(
-              constraints: const BoxConstraints(maxHeight: 50),
-              child: Scrollbar(
-                controller: _scrollController,
-                thumbVisibility: true,
-                child: SingleChildScrollView(
-                  controller: _scrollController,
-                  scrollDirection: Axis.horizontal,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 4),
-                    child: FutureBuilder(
-                      future: MorphsRepo.get(),
-                      builder: (context, snapshot) {
-                        final allMorphTagsForEdit = snapshot.data
-                                ?.getDisplayTags(widget.morphFeature) ??
-                            defaultMorphMapping
-                                .getDisplayTags(widget.morphFeature);
+            FutureBuilder(
+              future: MorphsRepo.get(),
+              builder: (context, snapshot) {
+                final allMorphTagsForEdit =
+                    snapshot.data?.getDisplayTags(widget.morphFeature) ??
+                        defaultMorphMapping.getDisplayTags(widget.morphFeature);
 
-                        return snapshot.connectionState == ConnectionState.done
-                            ? Row(
-                                children: allMorphTagsForEdit.map((tag) {
-                                  return Container(
-                                    margin: const EdgeInsets.all(2),
-                                    padding: EdgeInsets.zero,
-                                    decoration: BoxDecoration(
-                                      borderRadius: const BorderRadius.all(
-                                        Radius.circular(10),
-                                      ),
-                                      border: Border.all(
-                                        color: selectedMorphTag == tag
-                                            ? Theme.of(context)
-                                                .colorScheme
-                                                .primary
-                                            : Colors.transparent,
-                                        style: BorderStyle.solid,
-                                        width: 2.0,
-                                      ),
-                                    ),
-                                    child: TextButton(
-                                      style: ButtonStyle(
-                                        padding: WidgetStateProperty.all(
-                                          const EdgeInsets.symmetric(
-                                            horizontal: 7,
-                                          ),
-                                        ),
-                                        backgroundColor:
-                                            WidgetStateProperty.all<Color>(
-                                          selectedMorphTag == tag
-                                              ? Theme.of(context)
-                                                  .colorScheme
-                                                  .primary
-                                                  .withAlpha(50)
-                                              : Colors.transparent,
-                                        ),
-                                        shape: WidgetStateProperty.all(
-                                          RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                          ),
-                                        ),
-                                      ),
-                                      onPressed: () {
-                                        setState(() => selectedMorphTag = tag);
-                                      },
-                                      child: Text(
-                                        getGrammarCopy(
-                                              category: widget.morphFeature,
-                                              lemma: tag,
-                                              context: context,
-                                            ) ??
-                                            tag,
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    ),
-                                  );
-                                }).toList(),
-                              )
-                            : const Center(
-                                child: CircularProgressIndicator(),
-                              );
-                      },
-                    ),
-                  ),
-                ),
-              ),
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const CircularProgressIndicator();
+                }
+
+                return Wrap(
+                  children: allMorphTagsForEdit.map((tag) {
+                    return Container(
+                      margin: const EdgeInsets.all(2),
+                      padding: EdgeInsets.zero,
+                      decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                        border: Border.all(
+                          color: selectedMorphTag == tag
+                              ? Theme.of(context).colorScheme.primary
+                              : Colors.transparent,
+                          style: BorderStyle.solid,
+                          width: 2.0,
+                        ),
+                      ),
+                      child: TextButton(
+                        style: ButtonStyle(
+                          padding: WidgetStateProperty.all(
+                            const EdgeInsets.symmetric(
+                              horizontal: 7,
+                            ),
+                          ),
+                          backgroundColor: WidgetStateProperty.all<Color>(
+                            selectedMorphTag == tag
+                                ? Theme.of(context)
+                                    .colorScheme
+                                    .primary
+                                    .withAlpha(50)
+                                : Colors.transparent,
+                          ),
+                          shape: WidgetStateProperty.all(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                        ),
+                        onPressed: () {
+                          setState(() => selectedMorphTag = tag);
+                        },
+                        child: Text(
+                          getGrammarCopy(
+                                category: widget.morphFeature,
+                                lemma: tag,
+                                context: context,
+                              ) ??
+                              tag,
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                );
+              },
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

@@ -1,4 +1,4 @@
-import 'package:fluffychat/pangea/toolbar/enums/activity_type_enum.dart';
+import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
 
 enum WordZoomSelection {
   meaning,

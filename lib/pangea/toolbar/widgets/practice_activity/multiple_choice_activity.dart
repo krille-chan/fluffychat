@@ -1,24 +1,22 @@
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/analytics_misc/put_analytics_controller.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/choice_array.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/morphs/get_grammar_copy.dart';
+import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
+import 'package:fluffychat/pangea/practice_activities/practice_activity_model.dart';
+import 'package:fluffychat/pangea/practice_activities/practice_activity_record_model.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
-import 'package:fluffychat/pangea/toolbar/enums/activity_type_enum.dart';
-import 'package:fluffychat/pangea/toolbar/models/practice_activity_model.dart';
-import 'package:fluffychat/pangea/toolbar/models/practice_activity_record_model.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_audio_card.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/practice_activity/practice_activity_card.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/practice_activity/word_audio_button.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:matrix/matrix.dart';
 
 /// The multiple choice activity view
 class MultipleChoiceActivity extends StatefulWidget {
@@ -122,13 +120,15 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
     // If the selected choice is correct, send the record
     if (widget.currentActivity.content.isCorrect(value, index)) {
       // If the activity is an emoji activity, set the emoji value
-      if (widget.currentActivity.activityType == ActivityTypeEnum.emoji) {
-        if (widget.currentActivity.targetTokens?.length != 1) {
-          debugger(when: kDebugMode);
-        } else {
-          widget.currentActivity.targetTokens!.first.setEmoji(value);
-        }
-      }
+
+      // TODO: this widget is deprecated for use with emoji activities
+      // if (widget.currentActivity.activityType == ActivityTypeEnum.emoji) {
+      //   if (widget.currentActivity.targetTokens?.length != 1) {
+      //     debugger(when: kDebugMode);
+      //   } else {
+      //     widget.currentActivity.targetTokens!.first.setEmoji(value);
+      //   }
+      // }
 
       // The next entry in the analytics stream should be from the above putAnalytics.setState.
       // So we can wait for the stream to update before calling onActivityFinish.
@@ -219,7 +219,6 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
             messageEvent:
                 widget.practiceCardController.widget.pangeaMessageEvent,
             overlayController: widget.overlayController,
-            tts: tts,
             setIsPlayingAudio: widget.overlayController.setIsPlayingAudio,
             onError: widget.onError,
           ),

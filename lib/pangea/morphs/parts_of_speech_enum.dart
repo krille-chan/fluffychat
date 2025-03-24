@@ -1,20 +1,27 @@
-import 'package:flutter/material.dart';
+import 'dart:developer';
 
 import 'package:collection/collection.dart';
+import 'package:fluffychat/pangea/common/utils/error_handler.dart';
+import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-import 'package:fluffychat/pangea/common/utils/error_handler.dart';
+/// list ordered by priority
+enum PartOfSpeechEnum {
+  //Content tokens
+  noun,
+  verb,
+  adj,
+  adv,
 
-enum GrammarCopyPOS {
+  //Function tokens
   sconj,
   num,
-  verb,
   affix,
   part,
-  adj,
   cconj,
   punct,
-  adv,
   aux,
   space,
   sym,
@@ -22,19 +29,18 @@ enum GrammarCopyPOS {
   pron,
   adp,
   propn,
-  noun,
   intj,
   x,
 }
 
-extension GrammarCopyPOSExtension on GrammarCopyPOS {
+extension PartOfSpeechEnumExtensions on PartOfSpeechEnum {
   /// Convert enum to string
   String toShortString() {
     return toString().split('.').last.toLowerCase();
   }
 
-  GrammarCopyPOS? fromString(String categoryName) {
-    final pos = GrammarCopyPOS.values.firstWhereOrNull(
+  static PartOfSpeechEnum? fromString(String categoryName) {
+    final pos = PartOfSpeechEnum.values.firstWhereOrNull(
       (pos) => pos.toShortString() == categoryName.toLowerCase(),
     );
     if (pos == null) {
@@ -49,50 +55,103 @@ extension GrammarCopyPOSExtension on GrammarCopyPOS {
 
   String getDisplayCopy(BuildContext context) {
     switch (this) {
-      case GrammarCopyPOS.sconj:
+      case PartOfSpeechEnum.sconj:
         return L10n.of(context).grammarCopyPOSsconj;
-      case GrammarCopyPOS.num:
+      case PartOfSpeechEnum.num:
         return L10n.of(context).grammarCopyPOSnum;
-      case GrammarCopyPOS.verb:
+      case PartOfSpeechEnum.verb:
         return L10n.of(context).grammarCopyPOSverb;
-      case GrammarCopyPOS.affix:
+      case PartOfSpeechEnum.affix:
         return L10n.of(context).grammarCopyPOSaffix;
-      case GrammarCopyPOS.part:
+      case PartOfSpeechEnum.part:
         return L10n.of(context).grammarCopyPOSpart;
-      case GrammarCopyPOS.adj:
+      case PartOfSpeechEnum.adj:
         return L10n.of(context).grammarCopyPOSadj;
-      case GrammarCopyPOS.cconj:
+      case PartOfSpeechEnum.cconj:
         return L10n.of(context).grammarCopyPOScconj;
-      case GrammarCopyPOS.punct:
+      case PartOfSpeechEnum.punct:
         return L10n.of(context).grammarCopyPOSpunct;
-      case GrammarCopyPOS.adv:
+      case PartOfSpeechEnum.adv:
         return L10n.of(context).grammarCopyPOSadv;
-      case GrammarCopyPOS.aux:
+      case PartOfSpeechEnum.aux:
         return L10n.of(context).grammarCopyPOSaux;
-      case GrammarCopyPOS.space:
+      case PartOfSpeechEnum.space:
         return L10n.of(context).grammarCopyPOSspace;
-      case GrammarCopyPOS.sym:
+      case PartOfSpeechEnum.sym:
         return L10n.of(context).grammarCopyPOSsym;
-      case GrammarCopyPOS.det:
+      case PartOfSpeechEnum.det:
         return L10n.of(context).grammarCopyPOSdet;
-      case GrammarCopyPOS.pron:
+      case PartOfSpeechEnum.pron:
         return L10n.of(context).grammarCopyPOSpron;
-      case GrammarCopyPOS.adp:
+      case PartOfSpeechEnum.adp:
         return L10n.of(context).grammarCopyPOSadp;
-      case GrammarCopyPOS.propn:
+      case PartOfSpeechEnum.propn:
         return L10n.of(context).grammarCopyPOSpropn;
-      case GrammarCopyPOS.noun:
+      case PartOfSpeechEnum.noun:
         return L10n.of(context).grammarCopyPOSnoun;
-      case GrammarCopyPOS.intj:
+      case PartOfSpeechEnum.intj:
         return L10n.of(context).grammarCopyPOSintj;
-      case GrammarCopyPOS.x:
+      case PartOfSpeechEnum.x:
         return L10n.of(context).grammarCopyPOSx;
+    }
+  }
+
+  bool get isContentWord => [
+        PartOfSpeechEnum.noun,
+        PartOfSpeechEnum.verb,
+        PartOfSpeechEnum.adj,
+        PartOfSpeechEnum.adv,
+      ].contains(this);
+
+  bool get canBeDefined => [
+        PartOfSpeechEnum.noun,
+        PartOfSpeechEnum.verb,
+        PartOfSpeechEnum.adj,
+        PartOfSpeechEnum.adv,
+        PartOfSpeechEnum.propn,
+        PartOfSpeechEnum.intj,
+        PartOfSpeechEnum.det,
+        PartOfSpeechEnum.pron,
+        PartOfSpeechEnum.sconj,
+        PartOfSpeechEnum.cconj,
+        PartOfSpeechEnum.adp,
+        PartOfSpeechEnum.aux,
+        PartOfSpeechEnum.num,
+      ].contains(this);
+
+  bool get canBeHeard => [
+        PartOfSpeechEnum.noun,
+        PartOfSpeechEnum.verb,
+        PartOfSpeechEnum.adj,
+        PartOfSpeechEnum.adv,
+        PartOfSpeechEnum.propn,
+        PartOfSpeechEnum.intj,
+        PartOfSpeechEnum.det,
+        PartOfSpeechEnum.pron,
+        PartOfSpeechEnum.sconj,
+        PartOfSpeechEnum.cconj,
+        PartOfSpeechEnum.adp,
+        PartOfSpeechEnum.aux,
+        PartOfSpeechEnum.num,
+      ].contains(this);
+
+  bool eligibleForPractice(ActivityTypeEnum activityType) {
+    switch (activityType) {
+      case ActivityTypeEnum.emoji:
+      case ActivityTypeEnum.wordMeaning:
+      case ActivityTypeEnum.morphId:
+        return canBeDefined;
+      case ActivityTypeEnum.wordFocusListening:
+        return canBeHeard;
+      default:
+        debugger(when: kDebugMode);
+        return false;
     }
   }
 }
 
 String? getVocabCategoryName(String category, BuildContext context) {
-  return GrammarCopyPOS.values
+  return PartOfSpeechEnum.values
       .firstWhereOrNull((pos) => pos.toShortString() == category.toLowerCase())
       ?.getDisplayCopy(context);
 }

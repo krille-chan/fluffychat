@@ -2,12 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
-import 'package:http/http.dart';
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/common/network/requests.dart';
@@ -15,15 +9,19 @@ import 'package:fluffychat/pangea/common/network/urls.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
-import 'package:fluffychat/pangea/toolbar/enums/activity_type_enum.dart';
+import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
+import 'package:fluffychat/pangea/practice_activities/emoji_activity_generator.dart';
+import 'package:fluffychat/pangea/practice_activities/lemma_activity_generator.dart';
+import 'package:fluffychat/pangea/practice_activities/lemma_meaning_activity_generator.dart';
+import 'package:fluffychat/pangea/practice_activities/message_activity_request.dart';
+import 'package:fluffychat/pangea/practice_activities/morph_activity_generator.dart';
+import 'package:fluffychat/pangea/practice_activities/practice_activity_model.dart';
 import 'package:fluffychat/pangea/toolbar/event_wrappers/practice_activity_event.dart';
-import 'package:fluffychat/pangea/toolbar/models/message_activity_request.dart';
-import 'package:fluffychat/pangea/toolbar/models/practice_activity_model.dart';
-import 'package:fluffychat/pangea/toolbar/repo/emoji_activity_generator.dart';
-import 'package:fluffychat/pangea/toolbar/repo/lemma_activity_generator.dart';
-import 'package:fluffychat/pangea/toolbar/repo/lemma_meaning_activity_generator.dart';
-import 'package:fluffychat/pangea/toolbar/repo/morph_activity_generator.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+import 'package:matrix/matrix.dart';
 
 /// Represents an item in the completion cache.
 class _RequestCacheItem {

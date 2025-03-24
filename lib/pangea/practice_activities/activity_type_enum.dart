@@ -1,10 +1,6 @@
-import 'package:flutter/material.dart';
-
-import 'package:material_symbols_icons/symbols.dart';
-
-import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_use_type_enum.dart';
-import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
+import 'package:flutter/material.dart';
+import 'package:material_symbols_icons/symbols.dart';
 
 enum ActivityTypeEnum {
   wordMeaning,
@@ -156,18 +152,22 @@ extension ActivityTypeExtension on ActivityTypeEnum {
     }
   }
 
-  /// Filters out constructs that are not relevant to the activity type
-  bool Function(ConstructIdentifier) get constructFilter {
+  ConstructUseTypeEnum? get incorrectUse {
     switch (this) {
       case ActivityTypeEnum.wordMeaning:
+        return ConstructUseTypeEnum.incPA;
       case ActivityTypeEnum.wordFocusListening:
+        return ConstructUseTypeEnum.incWL;
       case ActivityTypeEnum.hiddenWordListening:
+        return ConstructUseTypeEnum.incHWL;
       case ActivityTypeEnum.lemmaId:
+        return ConstructUseTypeEnum.incL;
       case ActivityTypeEnum.emoji:
-      case ActivityTypeEnum.messageMeaning:
-        return (id) => id.type == ConstructTypeEnum.vocab;
+        return null;
       case ActivityTypeEnum.morphId:
-        return (id) => id.type == ConstructTypeEnum.morph;
+        return ConstructUseTypeEnum.incM;
+      case ActivityTypeEnum.messageMeaning:
+        return ConstructUseTypeEnum.incMM;
     }
   }
 
@@ -177,7 +177,7 @@ extension ActivityTypeExtension on ActivityTypeEnum {
         return Icons.translate;
       case ActivityTypeEnum.wordFocusListening:
       case ActivityTypeEnum.hiddenWordListening:
-        return Icons.hearing;
+        return Icons.volume_up;
       case ActivityTypeEnum.lemmaId:
         return Symbols.dictionary;
       case ActivityTypeEnum.emoji:

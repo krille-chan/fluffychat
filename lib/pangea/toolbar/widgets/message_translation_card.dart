@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/igc/card_error_widget.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
@@ -9,6 +7,7 @@ import 'package:fluffychat/pangea/instructions/instructions_enum.dart';
 import 'package:fluffychat/pangea/instructions/instructions_inline_tooltip.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/toolbar_content_loading_indicator.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
 
 class MessageTranslationCard extends StatefulWidget {
   final PangeaMessageEvent messageEvent;
@@ -28,7 +27,6 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
 
   @override
   void initState() {
-    debugPrint('MessageTranslationCard initState');
     super.initState();
     loadTranslation();
   }
@@ -99,42 +97,24 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
       return const ToolbarContentLoadingIndicator();
     }
 
-    return ConstrainedBox(
-      constraints: const BoxConstraints(
-        maxWidth: AppConfig.toolbarMinWidth,
-        maxHeight: AppConfig.toolbarMaxHeight,
-      ),
-      child: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(16, 20, 16, 16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                repEvent!.text,
-                style: AppConfig.messageTextStyle(
-                  widget.messageEvent.event,
-                  Theme.of(context).colorScheme.primary,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              if (notGoingToTranslate &&
-                  !InstructionsEnum.l1Translation.isToggledOff)
-                const Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Expanded(
-                      child: InstructionsInlineTooltip(
-                        instructionsEnum: InstructionsEnum.l1Translation,
-                      ),
-                    ),
-                  ],
-                ),
-            ],
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisSize: MainAxisSize.max,
+      children: [
+        Text(
+          repEvent!.text,
+          style: AppConfig.messageTextStyle(
+            widget.messageEvent.event,
+            Theme.of(context).colorScheme.primary,
           ),
+          textAlign: TextAlign.center,
         ),
-      ),
+        if (notGoingToTranslate)
+          const InstructionsInlineTooltip(
+            instructionsEnum: InstructionsEnum.l1Translation,
+          ),
+      ],
     );
   }
 }

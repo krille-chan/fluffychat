@@ -1,40 +1,42 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:matrix/matrix_api_lite/model/message_types.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/analytics_misc/put_analytics_controller.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
+import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
-import 'package:fluffychat/pangea/toolbar/widgets/message_audio_card.dart';
-import 'package:fluffychat/pangea/toolbar/widgets/message_meaning_card.dart';
-import 'package:fluffychat/pangea/toolbar/widgets/message_mode_locked_card.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
-import 'package:fluffychat/pangea/toolbar/widgets/message_speech_to_text_card.dart';
-import 'package:fluffychat/pangea/toolbar/widgets/message_translation_card.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_unsubscribed_card.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/practice_activity/practice_activity_card.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/toolbar_content_loading_indicator.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/word_zoom/word_zoom_widget.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:matrix/matrix_api_lite/model/message_types.dart';
 
 const double minCardHeight = 70;
 
-class ReadingAssistanceContentCard extends StatelessWidget {
+class ReadingAssistanceContent extends StatefulWidget {
   final PangeaMessageEvent pangeaMessageEvent;
   final MessageOverlayController overlayController;
+  final Duration animationDuration;
 
-  const ReadingAssistanceContentCard({
+  const ReadingAssistanceContent({
     super.key,
     required this.pangeaMessageEvent,
     required this.overlayController,
+    this.animationDuration = FluffyThemes.animationDuration,
   });
 
+  @override
+  ReadingAssistanceContentState createState() =>
+      ReadingAssistanceContentState();
+}
+
+class ReadingAssistanceContentState extends State<ReadingAssistanceContent> {
   TtsController get ttsController =>
-      overlayController.widget.chatController.choreographer.tts;
+      widget.overlayController.widget.chatController.choreographer.tts;
 
   Widget? toolbarContent(BuildContext context) {
     final bool? subscribed =
@@ -42,69 +44,76 @@ class ReadingAssistanceContentCard extends StatelessWidget {
 
     if (subscribed != null && !subscribed) {
       return MessageUnsubscribedCard(
-        controller: overlayController,
+        controller: widget.overlayController,
       );
     }
 
-    if ((overlayController.messageAnalyticsEntry?.hasHiddenWordActivity ??
-            false) ||
-        (overlayController.messageAnalyticsEntry?.hasMessageMeaningActivity ??
-            false)) {
+    if (widget.overlayController.messageAnalyticsEntry?.hasHiddenWordActivity ??
+        false) {
       return PracticeActivityCard(
-        pangeaMessageEvent: pangeaMessageEvent,
-        overlayController: overlayController,
-        targetTokensAndActivityType:
-            overlayController.messageAnalyticsEntry!.nextActivity!,
+        pangeaMessageEvent: widget.pangeaMessageEvent,
+        overlayController: widget.overlayController,
+        targetTokensAndActivityType: widget
+            .overlayController.messageAnalyticsEntry!
+            .nextActivity(ActivityTypeEnum.hiddenWordListening)!,
         location: AnalyticsUpdateOrigin.practiceActivity,
       );
     }
 
-    if (!overlayController.initialized) {
+    if (widget.overlayController.messageAnalyticsEntry
+            ?.hasMessageMeaningActivity ??
+        false) {
+      return PracticeActivityCard(
+        pangeaMessageEvent: widget.pangeaMessageEvent,
+        overlayController: widget.overlayController,
+        targetTokensAndActivityType: widget
+            .overlayController.messageAnalyticsEntry!
+            .nextActivity(ActivityTypeEnum.messageMeaning)!,
+        location: AnalyticsUpdateOrigin.practiceActivity,
+      );
+    }
+
+    if (!widget.overlayController.initialized) {
       return const ToolbarContentLoadingIndicator();
     }
 
-    final unlocked = overlayController.toolbarMode.isUnlocked(
-      overlayController.pangeaMessageEvent!.proportionOfActivitiesCompleted,
-      overlayController.isPracticeComplete,
-    );
+    // final unlocked = widget.overlayController.toolbarMode
+    //     .isUnlocked(widget.overlayController);
 
-    if (!unlocked) {
-      return MessageModeLockedCard(controller: overlayController);
-    }
+    // if (!unlocked) {
+    //   return MessageModeLockedCard(controller: widget.overlayController);
+    // }
 
-    switch (overlayController.toolbarMode) {
+    switch (widget.overlayController.toolbarMode) {
       case MessageMode.messageTranslation:
-        return MessageTranslationCard(
-          messageEvent: pangeaMessageEvent,
-        );
-      case MessageMode.messageTextToSpeech:
-        return MessageAudioCard(
-          messageEvent: pangeaMessageEvent,
-          overlayController: overlayController,
-          selection: overlayController.selectedSpan,
-          tts: ttsController,
-          setIsPlayingAudio: overlayController.setIsPlayingAudio,
-        );
+      // return MessageTranslationCard(
+      //   messageEvent: widget.pangeaMessageEvent,
+      // );
       case MessageMode.messageSpeechToText:
-        return MessageSpeechToTextCard(
-          messageEvent: pangeaMessageEvent,
-        );
+      // return MessageSpeechToTextCard(
+      //   messageEvent: widget.pangeaMessageEvent,
+      // );
       case MessageMode.noneSelected:
-        return Padding(
-          padding: const EdgeInsets.all(8),
-          child: Text(
-            L10n.of(context).clickWordsInstructions,
-            textAlign: TextAlign.center,
-          ),
-        );
+      // return Padding(
+      //   padding: const EdgeInsets.all(8),
+      //   child: Text(
+      //     L10n.of(context).clickWordsInstructions,
+      //     textAlign: TextAlign.center,
+      //   ),
+      // );
       case MessageMode.messageMeaning:
-        return MessageMeaningCard(controller: overlayController);
+      // return MessageMeaningCard(controller: widget.overlayController);
+      case MessageMode.listening:
+      // return MessageAudioCard(
+      //     messageEvent: widget.overlayController.pangeaMessageEvent!,
+      //     overlayController: widget.overlayController,
+      //     setIsPlayingAudio: widget.overlayController.setIsPlayingAudio);
       case MessageMode.practiceActivity:
       case MessageMode.wordZoom:
       case MessageMode.wordEmoji:
       case MessageMode.wordMorph:
       case MessageMode.wordMeaning:
-        if (overlayController.selectedToken == null) {
+        if (widget.overlayController.selectedToken == null) {
           return Padding(
             padding: const EdgeInsets.all(16),
             child: Text(
@@ -114,10 +123,10 @@ class ReadingAssistanceContentCard extends StatelessWidget {
           );
         }
         return WordZoomWidget(
-          token: overlayController.selectedToken!,
-          messageEvent: overlayController.pangeaMessageEvent!,
+          token: widget.overlayController.selectedToken!,
+          messageEvent: widget.overlayController.pangeaMessageEvent!,
           tts: ttsController,
-          overlayController: overlayController,
+          overlayController: widget.overlayController,
         );
     }
   }
@@ -125,7 +134,7 @@ class ReadingAssistanceContentCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (![MessageTypes.Text, MessageTypes.Audio].contains(
-      pangeaMessageEvent.event.messageType,
+      widget.pangeaMessageEvent.event.messageType,
     )) {
       return const SizedBox();
     }
@@ -149,7 +158,7 @@ class ReadingAssistanceContentCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             AnimatedSize(
-              duration: FluffyThemes.animationDuration,
+              duration: widget.animationDuration,
               child: toolbarContent(context),
             ),
           ],
