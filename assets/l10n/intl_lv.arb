@@ -1680,7 +1680,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "chooseAStrongPassword": "Jāizvēlas stipra parole",
+  "chooseAStrongPassword": "Jāizvēlas droša parole",
   "@chooseAStrongPassword": {
     "type": "String",
     "placeholders": {}
