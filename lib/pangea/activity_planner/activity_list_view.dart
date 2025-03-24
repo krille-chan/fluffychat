@@ -1,12 +1,9 @@
-import 'dart:developer';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:http/http.dart' as http;
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
@@ -19,7 +16,6 @@ import 'package:fluffychat/pangea/activity_planner/activity_planner_page.dart';
 import 'package:fluffychat/pangea/activity_planner/bookmarked_activities_repo.dart';
 import 'package:fluffychat/pangea/activity_planner/list_request_schema.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_suggestions_constants.dart';
-import 'package:fluffychat/pangea/common/constants/model_keys.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/utils/file_selector.dart';
@@ -112,43 +108,12 @@ class ActivityListViewState extends State<ActivityListView> {
         future: () async {
           final activity = _activities![index];
 
-          final eventId = await widget.room?.pangeaSendTextEvent(
-            activity.markdown,
-            messageTag: ModelKey.messageTagActivityPlan,
-            //include full model or should we move to a state event for this?
+          await widget.room?.sendActivityPlan(
+            activity,
+            avatar: _avatar,
+            avatarURL: _avatarURL,
+            filename: _filename,
           );
-
-          if (eventId == null) {
-            debugger(when: kDebugMode);
-            return;
-          }
-
-          Uint8List? bytes = _avatar;
-          if (_avatarURL != null && bytes == null) {
-            final resp = await http
-                .get(Uri.parse(_avatarURL!))
-                .timeout(const Duration(seconds: 5));
-            bytes = resp.bodyBytes;
-          }
-
-          if (bytes != null && _filename != null) {
-            final file = MatrixFile(
-              bytes: bytes,
-              name: _filename!,
-            );
-
-            await widget.room?.sendFileEvent(
-              file,
-              shrinkImageMaxDimension: 1600,
-              extraContent: {
-                ModelKey.messageTags: ModelKey.messageTagActivityPlan,
-              },
-            );
-          }
-
-          if (widget.room != null && widget.room!.canSendDefaultStates) {
-            await widget.room?.setPinnedEvents([eventId]);
-          }
 
           Navigator.of(context).pop();
         },

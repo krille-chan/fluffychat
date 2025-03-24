@@ -70,4 +70,23 @@ extension RoomSettingsRoomExtension on Room {
     if (stateEvent == null) return null;
     return BotOptionsModel.fromJson(stateEvent.content);
   }
+
+  ActivityPlanModel? get activityPlan {
+    final stateEvent = getState(PangeaEventTypes.activityPlan);
+    if (stateEvent == null) return null;
+
+    try {
+      return ActivityPlanModel.fromJson(stateEvent.content);
+    } catch (e, s) {
+      ErrorHandler.logError(
+        e: e,
+        s: s,
+        data: {
+          "roomID": id,
+          "stateEvent": stateEvent.content,
+        },
+      );
+      return null;
+    }
+  }
 }

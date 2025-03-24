@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
@@ -17,7 +16,6 @@ import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_suggestion_card_row.dart';
 import 'package:fluffychat/pangea/chat/constants/default_power_level.dart';
-import 'package:fluffychat/pangea/common/constants/model_keys.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/utils/file_selector.dart';
@@ -180,17 +178,7 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
           if (room == null) return;
         }
 
-        final eventId = await room.pangeaSendTextEvent(
-          widget.activity.markdown,
-          messageTag: ModelKey.messageTagActivityPlan,
-        );
-
-        if (eventId == null) {
-          debugger(when: kDebugMode);
-          return;
-        }
-
-        await room.setPinnedEvents([eventId]);
+        await room.sendActivityPlan(widget.activity);
         context.go("/rooms/$roomId/invite");
       },
     );

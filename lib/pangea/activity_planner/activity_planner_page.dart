@@ -8,6 +8,7 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pangea/activity_planner/activity_list_view.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_mode_list_repo.dart';
+import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_request.dart';
 import 'package:fluffychat/pangea/activity_planner/learning_objective_list_repo.dart';
 import 'package:fluffychat/pangea/activity_planner/list_request_schema.dart';
@@ -16,6 +17,7 @@ import 'package:fluffychat/pangea/activity_planner/suggestion_form_field.dart';
 import 'package:fluffychat/pangea/activity_planner/topic_list_repo.dart';
 import 'package:fluffychat/pangea/chat_settings/widgets/language_level_dropdown.dart';
 import 'package:fluffychat/pangea/common/widgets/dropdown_text_button.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/instructions/instructions_enum.dart';
 import 'package:fluffychat/pangea/instructions/instructions_inline_tooltip.dart';
 import 'package:fluffychat/pangea/learning_settings/constants/language_constants.dart';
@@ -54,6 +56,8 @@ class ActivityPlannerPageState extends State<ActivityPlannerPage> {
 
   Room? get room => Matrix.of(context).client.getRoomById(widget.roomID);
 
+  ActivityPlanModel? get _initialActivity => room?.activityPlan;
+
   @override
   void initState() {
     super.initState();
@@ -62,12 +66,26 @@ class ActivityPlannerPageState extends State<ActivityPlannerPage> {
       return;
     }
 
-    _selectedLanguageOfInstructions =
-        MatrixState.pangeaController.languageController.userL1?.langCode;
-    _selectedTargetLanguage =
-        MatrixState.pangeaController.languageController.userL2?.langCode;
-    _selectedCefrLevel = LanguageLevelTypeEnum.a1;
-    _selectedNumberOfParticipants = max(room?.getParticipants().length ?? 1, 1);
+    if (_initialActivity == null) {
+      _selectedLanguageOfInstructions =
+          MatrixState.pangeaController.languageController.userL1?.langCode;
+      _selectedTargetLanguage =
+          MatrixState.pangeaController.languageController.userL2?.langCode;
+      _selectedCefrLevel = LanguageLevelTypeEnum.a1;
+      _selectedNumberOfParticipants =
+          max(room?.getParticipants().length ?? 1, 1);
+    } else {
+      _selectedMedia = _initialActivity!.req.media;
+      _selectedLanguageOfInstructions =
+          _initialActivity!.req.languageOfInstructions;
+      _selectedTargetLanguage = _initialActivity!.req.targetLanguage;
+      _selectedCefrLevel = _initialActivity!.req.cefrLevel;
+      _selectedNumberOfParticipants =
+          _initialActivity!.req.numberOfParticipants;
+      _topicController.text = _initialActivity!.req.topic;
+      _objectiveController.text = _initialActivity!.req.objective;
+      _modeController.text = _initialActivity!.req.mode;
+    }
   }
 
   final _topicController = TextEditingController();

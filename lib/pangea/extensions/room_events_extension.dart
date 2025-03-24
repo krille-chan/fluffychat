@@ -266,6 +266,56 @@ extension EventsRoomExtension on Room {
     );
   }
 
+  Future<void> sendActivityPlan(
+    ActivityPlanModel activity, {
+    Uint8List? avatar,
+    String? avatarURL,
+    String? filename,
+  }) async {
+    Uint8List? bytes = avatar;
+    if (avatarURL != null && bytes == null) {
+      final resp = await http
+          .get(Uri.parse(avatarURL))
+          .timeout(const Duration(seconds: 5));
+      bytes = resp.bodyBytes;
+    }
+
+    MatrixFile? file;
+    if (filename != null && bytes != null) {
+      file = MatrixFile(
+        bytes: bytes,
+        name: filename,
+      );
+    }
+    final eventId = await pangeaSendTextEvent(
+      activity.markdown,
+      messageTag: ModelKey.messageTagActivityPlan,
+    );
+
+    if (file != null) {
+      await sendFileEvent(
+        file,
+        shrinkImageMaxDimension: 1600,
+        extraContent: {
+          ModelKey.messageTags: ModelKey.messageTagActivityPlan,
+        },
+      );
+    }
+
+    if (canSendDefaultStates) {
+      await client.setRoomStateWithKey(
+        id,
+        PangeaEventTypes.activityPlan,
+        "",
+        activity.toJson(),
+      );
+
+      if (eventId != null) {
+        await setPinnedEvents([eventId]);
+      }
+    }
+  }
+
   /// Get a list of events in the room that are of type [PangeaEventTypes.construct]
   /// and have the sender as [userID]. If [count] is provided, the function will
   /// return at most [count] events.

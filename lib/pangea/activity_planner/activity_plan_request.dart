@@ -1,4 +1,5 @@
 import 'package:fluffychat/pangea/activity_planner/media_enum.dart';
+import 'package:fluffychat/pangea/common/constants/model_keys.dart';
 import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_enum.dart';
 
 class ActivityPlanRequest {
@@ -26,33 +27,35 @@ class ActivityPlanRequest {
 
   Map<String, dynamic> toJson() {
     return {
-      'topic': topic,
-      'mode': mode,
-      'objective': objective,
-      'media': media.string,
-      'activity_cefr_level': cefrLevel.string,
-      'language_of_instructions': languageOfInstructions,
-      'target_language': targetLanguage,
-      'count': count,
-      'number_of_participants': numberOfParticipants,
+      ModelKey.activityRequestTopic: topic,
+      ModelKey.activityRequestMode: mode,
+      ModelKey.activityRequestObjective: objective,
+      ModelKey.activityRequestMedia: media.string,
+      ModelKey.activityRequestCefrLevel: cefrLevel.string,
+      ModelKey.activityRequestLanguageOfInstructions: languageOfInstructions,
+      ModelKey.activityRequestTargetLanguage: targetLanguage,
+      ModelKey.activityRequestCount: count,
+      ModelKey.activityRequestNumberOfParticipants: numberOfParticipants,
     };
   }
 
   factory ActivityPlanRequest.fromJson(Map<String, dynamic> json) =>
       ActivityPlanRequest(
-        topic: json['topic'],
-        mode: json['mode'],
-        objective: json['objective'],
-        media: MediaEnum.nan.fromString(json['media']),
-        cefrLevel: json['activity_cefr_level'] != null
+        topic: json[ModelKey.activityRequestTopic],
+        mode: json[ModelKey.activityRequestMode],
+        objective: json[ModelKey.activityRequestObjective],
+        media: MediaEnum.nan.fromString(json[ModelKey.activityRequestMedia]),
+        cefrLevel: json[ModelKey.activityRequestCefrLevel] != null
             ? LanguageLevelTypeEnumExtension.fromString(
-                json['activity_cefr_level'],
+                json[ModelKey.activityRequestCefrLevel],
               )
             : LanguageLevelTypeEnum.a1,
-        languageOfInstructions: json['language_of_instructions'],
-        targetLanguage: json['target_language'],
-        count: json['count'],
-        numberOfParticipants: json['number_of_participants'],
+        languageOfInstructions:
+            json[ModelKey.activityRequestLanguageOfInstructions],
+        targetLanguage: json[ModelKey.activityRequestTargetLanguage],
+        count: json[ModelKey.activityRequestCount],
+        numberOfParticipants:
+            json[ModelKey.activityRequestNumberOfParticipants],
       );
 
   String get storageKey =>

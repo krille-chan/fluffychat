@@ -24,6 +24,8 @@ class PangeaEventTypes {
   static const botOptions = "pangea.bot_options";
   static const capacity = "pangea.capacity";
 
+  static const activityPlan = "pangea.activity_plan";
+
   static const userAge = "pangea.user_age";
 
   static const String report = 'm.report';
