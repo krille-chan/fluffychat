@@ -8,6 +8,7 @@ import 'package:http/http.dart';
 import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/pangea/common/network/urls.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
+import 'package:fluffychat/pangea/learning_settings/constants/language_constants.dart';
 import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
 import '../../common/network/requests.dart';
 
@@ -16,11 +17,16 @@ class LanguageRepo {
     final Requests req = Requests(
       choreoApiKey: Environment.choreoApiKey,
     );
-    final Response res = await req.get(url: PApiUrls.getLanguages);
 
-    final decodedBody =
-        jsonDecode(utf8.decode(res.bodyBytes).toString()) as List;
-    final List<LanguageModel> langFlag = decodedBody.map((e) {
+    List<dynamic> languageResp = [];
+    try {
+      final Response res = await req.get(url: PApiUrls.getLanguages);
+      languageResp = jsonDecode(utf8.decode(res.bodyBytes).toString()) as List;
+    } catch (e) {
+      languageResp = FallbackLanguage.languageList;
+    }
+
+    final List<LanguageModel> langFlag = languageResp.map((e) {
       try {
         return LanguageModel.fromJson(e);
       } catch (err, stack) {
