@@ -10,6 +10,7 @@ import 'package:material_symbols_icons/symbols.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/constructs/construct_form.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
+import 'package:fluffychat/pangea/message_token_text/dotted_border_painter.dart';
 import 'package:fluffychat/pangea/practice_activities/target_tokens_and_activity_type.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/utils/shrinkable_text.dart';
@@ -181,7 +182,8 @@ class MessageTokenButtonState extends State<MessageTokenButton>
     return DragTarget<ConstructForm>(
       builder: (BuildContext context, accepted, rejected) {
         final double colorAlpha = 0.3 +
-            (widget.overlayController?.selectedChoice != null ? 0.3 : 0.0);
+            (widget.overlayController?.selectedChoice != null ? 0.4 : 0.0) +
+            (accepted.isNotEmpty || _isHovered ? 0.3 : 0.0);
 
         return InkWell(
           onHover: (isHovered) => setState(() => _isHovered = isHovered),
@@ -192,28 +194,29 @@ class MessageTokenButtonState extends State<MessageTokenButton>
                   )
               : null,
           borderRadius: borderRadius,
-          child: Container(
-            height: height,
-            padding: EdgeInsets.only(top: topPadding),
-            width:
-                MessageMode.wordMeaning == widget.overlayController?.toolbarMode
-                    ? widget.width
-                    : min(widget.width, height),
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
+          child: CustomPaint(
+            painter: DottedBorderPainter(
               color: Theme.of(context)
                   .colorScheme
                   .primary
                   .withAlpha((colorAlpha * 255).toInt()),
               borderRadius: borderRadius,
-              border: accepted.isNotEmpty ||
-                      (widget.overlayController?.selectedChoice != null &&
-                          _isHovered)
-                  ? Border.all(
-                      color: Theme.of(context).colorScheme.primary,
-                      width: 2,
-                    )
-                  : null,
+            ),
+            child: Container(
+              height: height,
+              padding: EdgeInsets.only(top: topPadding),
+              width: MessageMode.wordMeaning ==
+                      widget.overlayController?.toolbarMode
+                  ? widget.width
+                  : min(widget.width, height),
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color: Theme.of(context)
+                    .colorScheme
+                    .primary
+                    .withAlpha((max(0, colorAlpha - 0.7) * 255).toInt()),
+                borderRadius: borderRadius,
+              ),
             ),
           ),
         );

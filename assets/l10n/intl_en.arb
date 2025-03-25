@@ -4671,7 +4671,7 @@
       }
     }
   },
-  "chooseLemmaMeaningInstructionsBody": "Match the meanings below with the underlined words in the message.",
+  "chooseLemmaMeaningInstructionsBody": "Match the meanings to the words in the message!",
   "doubleClickToEdit": "Double-click to edit.",
   "removeFeature": "Remove {feature}",
   "@removeFeature": {
@@ -4808,7 +4808,7 @@
   "joinByCode": "Join by code",
   "createASpace": "Create a space",
   "chooseWordAudioInstructionsBody": "Listen to the full message then match the word audios to the right blanks!",
-  "chooseMorphsInstructionsBody": "Match the grammar tags with the words in the message. Click and hold an option for a hint!",
+  "chooseMorphsInstructionsBody": "Click the puzzle pieces for grammar questions!",
   "inviteAndLaunch": "Launch and invite",
   "createOwnChat": "Create your own chat",
   "pleaseEnterInt": "Please enter a number",
@@ -4830,5 +4830,6 @@
   "referFriends": "Refer friends",
   "referFriendDialogTitle": "Invite a friend to your conversation",
   "referFriendDialogDesc": "Do you have a friend who is excited to learn a new language with you? Then copy and send this invitation link to join and start chatting with you today.",
-  "youUnlocked": "You've unlocked"
+  "youUnlocked": "You've unlocked",
+  "selectForGrammar": "Select a grammar icon for activities and details."
 }

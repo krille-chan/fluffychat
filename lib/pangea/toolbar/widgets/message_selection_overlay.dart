@@ -377,6 +377,20 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
     if (isCorrect) {
       messageAnalyticsEntry?.onActivityComplete(activityType, token);
+
+      if (activityType == ActivityTypeEnum.emoji &&
+          !token.vocabConstructID.userSetEmoji.contains(choice.form)) {
+        final allEmojis = token.vocabConstructID.userSetEmoji + [choice.form];
+        token.setEmoji(allEmojis).then((_) async {
+          setState(() {});
+        });
+      }
+
+      if (activityType == ActivityTypeEnum.wordMeaning) {
+        token.setMeaning(choice.form).then((_) async {
+          setState(() {});
+        });
+      }
     }
 
     feedbackStates.removeWhere((e) => e.form == choice);

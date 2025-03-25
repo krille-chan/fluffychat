@@ -168,19 +168,20 @@ class LemmaWidgetState extends State<LemmaWidget> {
 
     return Row(
       children: [
-        Tooltip(
-          triggerMode: TooltipTriggerMode.tap,
-          message: L10n.of(context).doubleClickToEdit,
-          child: GestureDetector(
-            onLongPress: () => _toggleEditMode(true),
-            onDoubleTap: () => _toggleEditMode(true),
-            child: Text(
-              widget.token.lemma.text,
-              style: Theme.of(context).textTheme.headlineSmall,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ),
+        // Tooltip(
+        //   triggerMode: TooltipTriggerMode.tap,
+        //   message: L10n.of(context).doubleClickToEdit,
+        //   child: GestureDetector(
+        //     onLongPress: () => _toggleEditMode(true),
+        //     onDoubleTap: () => _toggleEditMode(true),
+        //     child:
+        Text(
+          widget.token.lemma.text,
+          style: Theme.of(context).textTheme.headlineSmall,
+          overflow: TextOverflow.ellipsis,
         ),
+        //   ),
+        // ),
         if (widget.token.lemma.text.toLowerCase() ==
             widget.token.text.content.toLowerCase())
           WordAudioButton(

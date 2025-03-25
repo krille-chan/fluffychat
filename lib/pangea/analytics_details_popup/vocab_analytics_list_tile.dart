@@ -53,7 +53,7 @@ class VocabAnalyticsListTileState extends State<VocabAnalyticsListTile> {
                 height: (maxWidth - padding * 2) * 0.6,
                 child: Opacity(
                   opacity:
-                      widget.constructUse.id.userSetEmoji.isEmpty ? 0.2 : 1,
+                      widget.constructUse.id.userSetEmoji.isEmpty ? 0.5 : 1,
                   child: widget.constructUse.id.userSetEmoji.isNotEmpty
                       ? Text(
                           widget.constructUse.id.userSetEmoji.first,

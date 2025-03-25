@@ -26,6 +26,27 @@ class MorphIcon extends StatelessWidget {
 
     final ThemeData theme = Theme.of(context);
 
+    final content = CustomizedSvg(
+      svgUrl: getMorphSvgLink(
+        morphFeature: morphFeature.name,
+        morphTag: morphTag,
+        context: context,
+      ),
+      colorReplacements: theme.brightness == Brightness.dark
+          ? {
+              "white": theme.cardColor.hexValue.toString(),
+              "black": "white",
+            }
+          : {},
+      errorIcon: Icon(morphFeature.fallbackIcon),
+      width: size?.width,
+      height: size?.height,
+    );
+
+    if (!showTooltip) {
+      return content;
+    }
+
     return Tooltip(
       message: morphTag == null
           ? morphFeature.getDisplayCopy(context)
@@ -35,22 +56,7 @@ class MorphIcon extends StatelessWidget {
               context: context,
             ),
       triggerMode: TooltipTriggerMode.tap,
-      child: CustomizedSvg(
-        svgUrl: getMorphSvgLink(
-          morphFeature: morphFeature.name,
-          morphTag: morphTag,
-          context: context,
-        ),
-        colorReplacements: theme.brightness == Brightness.dark
-            ? {
-                "white": theme.cardColor.hexValue.toString(),
-                "black": "white",
-              }
-            : {},
-        errorIcon: Icon(morphFeature.fallbackIcon),
-        width: size?.width,
-        height: size?.height,
-      ),
+      child: content,
     );
   }
 }

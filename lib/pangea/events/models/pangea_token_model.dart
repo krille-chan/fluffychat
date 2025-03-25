@@ -489,6 +489,9 @@ class PangeaToken {
   Future<void> setEmoji(List<String> emojis) =>
       vocabConstructID.setUserLemmaInfo(UserSetLemmaInfo(emojis: emojis));
 
+  Future<void> setMeaning(String meaning) =>
+      vocabConstructID.setUserLemmaInfo(UserSetLemmaInfo(meaning: meaning));
+
   /// [getEmoji] gets the emoji for the lemma
   /// NOTE: assumes that the language of the lemma is the same as the user's current l2
   List<String> getEmoji() => vocabConstructID.userSetEmoji;

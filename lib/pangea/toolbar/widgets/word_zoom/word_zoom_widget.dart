@@ -17,7 +17,7 @@ import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart
 import 'package:fluffychat/pangea/toolbar/widgets/practice_activity/word_audio_button.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/word_zoom/lemma_meaning_widget.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/word_zoom/lemma_widget.dart';
-import 'package:fluffychat/pangea/toolbar/widgets/word_zoom/morphs/morphological_list_item.dart';
+import 'package:fluffychat/pangea/toolbar/widgets/word_zoom/morphological_list_item.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class WordZoomWidget extends StatelessWidget {
@@ -114,12 +114,21 @@ class WordZoomWidget extends StatelessWidget {
                       alignment: Alignment.center,
                       child: LemmaEmojiRow(
                         cId: _selectedToken.vocabConstructID,
-                        onTap: () => overlayController.updateToolbarMode(
+                        onTapOverride: () =>
+                            overlayController.updateToolbarMode(
                           MessageMode.wordEmoji,
                         ),
                         isSelected: overlayController.toolbarMode ==
                             MessageMode.wordEmoji,
-                        removeCallback: () => overlayController.setState(() {}),
+                        emojiSetCallback: () =>
+                            overlayController.setState(() {}),
+                        shouldShowEmojis: overlayController
+                                .messageAnalyticsEntry
+                                ?.hasActivity(
+                              MessageMode.wordEmoji.associatedActivityType!,
+                              _selectedToken,
+                            ) ==
+                            false,
                       ),
                     ),
                   ],

@@ -6,6 +6,7 @@ import 'package:collection/collection.dart';
 
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
+import 'package:fluffychat/pangea/lemmas/lemma_info_response.dart';
 import 'package:fluffychat/pangea/morphs/morph_features_enum.dart';
 import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
 import 'package:fluffychat/pangea/practice_activities/target_tokens_and_activity_type.dart';
@@ -217,6 +218,29 @@ class MessageAnalyticsEntry {
 
   bool isTokenInHiddenWordActivity(PangeaToken token) =>
       _activityQueue[ActivityTypeEnum.hiddenWordListening]?.isNotEmpty ?? false;
+
+  Future<List<LemmaInfoResponse>> getLemmaInfoForActivityTokens() async {
+    // make a list of unique tokens in emoji and wordMeaning activities
+    final List<PangeaToken> uniqueTokens = [];
+    for (final t in _activityQueue[ActivityTypeEnum.emoji] ?? []) {
+      if (!uniqueTokens.contains(t.tokens.first)) {
+        uniqueTokens.add(t.tokens.first);
+      }
+    }
+    for (final t in _activityQueue[ActivityTypeEnum.wordMeaning] ?? []) {
+      if (!uniqueTokens.contains(t.tokens.first)) {
+        uniqueTokens.add(t.tokens.first);
+      }
+    }
+
+    // get the lemma info for each token
+    final List<Future<LemmaInfoResponse>> lemmaInfoFutures = [];
+    for (final t in uniqueTokens) {
+      lemmaInfoFutures.add(t.vocabConstructID.getLemmaInfo());
+    }
+
+    return Future.wait(lemmaInfoFutures);
+  }
 }
 
 /// computes TokenWithXP for given a pangeaMessageEvent and caches the result, according to the full text of the message

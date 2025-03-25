@@ -53,31 +53,52 @@ class ToolbarButtonRow extends StatelessWidget {
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
-          spacing: 4.0,
           children: [
-            ToolbarButton(
-              mode: MessageMode.wordMorph,
-              overlayController: overlayController,
-              onPressed: overlayController.updateToolbarMode,
-              buttonSize: buttonSize,
+            // wrapping these with a container to prevent the buttons from
+            // moving around when they press and depress
+            Container(
+              width: buttonSize + 4,
+              height: buttonSize + 4,
+              alignment: Alignment.center,
+              child: ToolbarButton(
+                mode: MessageMode.wordMorph,
+                overlayController: overlayController,
+                onPressed: overlayController.updateToolbarMode,
+                buttonSize: buttonSize,
+              ),
             ),
-            ToolbarButton(
-              mode: MessageMode.wordMeaning,
-              overlayController: overlayController,
-              onPressed: overlayController.updateToolbarMode,
-              buttonSize: buttonSize,
+            Container(
+              width: buttonSize + 4,
+              height: buttonSize + 4,
+              alignment: Alignment.center,
+              child: ToolbarButton(
+                mode: MessageMode.wordMeaning,
+                overlayController: overlayController,
+                onPressed: overlayController.updateToolbarMode,
+                buttonSize: buttonSize,
+              ),
             ),
-            ToolbarButton(
-              mode: MessageMode.listening,
-              overlayController: overlayController,
-              onPressed: overlayController.updateToolbarMode,
-              buttonSize: buttonSize,
+            Container(
+              width: buttonSize + 4,
+              height: buttonSize + 4,
+              alignment: Alignment.center,
+              child: ToolbarButton(
+                mode: MessageMode.listening,
+                overlayController: overlayController,
+                onPressed: overlayController.updateToolbarMode,
+                buttonSize: buttonSize,
+              ),
             ),
-            ToolbarButton(
-              mode: MessageMode.wordEmoji,
-              overlayController: overlayController,
-              onPressed: overlayController.updateToolbarMode,
-              buttonSize: buttonSize,
+            Container(
+              width: buttonSize + 4,
+              height: buttonSize + 4,
+              alignment: Alignment.center,
+              child: ToolbarButton(
+                mode: MessageMode.wordEmoji,
+                overlayController: overlayController,
+                onPressed: overlayController.updateToolbarMode,
+                buttonSize: buttonSize,
+              ),
             ),
           ],
         ),

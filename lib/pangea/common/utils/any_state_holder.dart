@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:collection/collection.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
@@ -65,20 +66,24 @@ class PangeaAnyState {
     Overlay.of(context).insert(entry);
   }
 
-  void closeOverlay() {
-    if (entries.isNotEmpty) {
+  void closeOverlay([String? overlayKey]) {
+    final entry = overlayKey != null
+        ? entries.firstWhereOrNull((element) => element.key == overlayKey)
+        : entries.lastOrNull;
+
+    if (entry != null) {
       try {
-        entries.last.entry.remove();
+        entry.entry.remove();
       } catch (err, s) {
         ErrorHandler.logError(
           e: err,
           s: s,
           data: {
-            "overlay": entries.last,
+            "overlay": entry,
           },
         );
       }
-      entries.removeLast();
+      entries.remove(entry);
     }
   }
 
@@ -124,4 +129,16 @@ class LayerLinkAndKey {
         "link": link.toString(),
         "transformTargetId": transformTargetId,
       };
+
+  @override
+  operator ==(Object other) =>
+      identical(this, other) ||
+      other is LayerLinkAndKey &&
+          runtimeType == other.runtimeType &&
+          key == other.key &&
+          link == other.link &&
+          transformTargetId == other.transformTargetId;
+
+  @override
+  int get hashCode => key.hashCode ^ link.hashCode ^ transformTargetId.hashCode;
 }

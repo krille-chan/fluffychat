@@ -123,6 +123,7 @@ extension MessageModeExtension on MessageMode {
       case MessageMode.noneSelected:
         return InstructionsEnum.readingAssistanceOverview;
       case MessageMode.messageTranslation:
+        return InstructionsEnum.completeActivitiesToUnlock;
       case MessageMode.messageMeaning:
       case MessageMode.wordZoom:
       case MessageMode.practiceActivity:

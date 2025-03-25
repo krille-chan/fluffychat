@@ -98,7 +98,7 @@ class VocabAnalyticsListViewState extends State<VocabAnalyticsListView> {
               padding: const EdgeInsets.all(8.0),
               child: Badge(
                 label: Text(count.toString()),
-                child: constructLevelCategory.icon(24),
+                child: constructLevelCategory.icon(40),
               ),
             ),
           );
@@ -125,50 +125,54 @@ class VocabAnalyticsListViewState extends State<VocabAnalyticsListView> {
             curve: Curves.easeInOut,
             padding:
                 EdgeInsets.symmetric(horizontal: _isSearching ? 8.0 : 24.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 225.0),
-                  child: AnimatedSwitcher(
-                    duration: const Duration(milliseconds: 300),
-                    transitionBuilder: (child, animation) => FadeTransition(
-                      opacity: animation,
-                      child: child,
-                    ),
-                    child: _isSearching
-                        ? Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            key: const ValueKey('search'),
-                            children: [
-                              Expanded(
-                                child: TextField(
-                                  autofocus: true,
-                                  controller: _searchController,
-                                  decoration: const InputDecoration(
-                                    contentPadding: EdgeInsets.symmetric(
-                                      vertical: 6.0,
-                                      horizontal: 12.0,
+            child: Container(
+              height: 60,
+              alignment: Alignment.center,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ConstrainedBox(
+                    constraints: const BoxConstraints(maxWidth: 225.0),
+                    child: AnimatedSwitcher(
+                      duration: const Duration(milliseconds: 300),
+                      transitionBuilder: (child, animation) => FadeTransition(
+                        opacity: animation,
+                        child: child,
+                      ),
+                      child: _isSearching
+                          ? Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              key: const ValueKey('search'),
+                              children: [
+                                Expanded(
+                                  child: TextField(
+                                    autofocus: true,
+                                    controller: _searchController,
+                                    decoration: const InputDecoration(
+                                      contentPadding: EdgeInsets.symmetric(
+                                        vertical: 6.0,
+                                        horizontal: 12.0,
+                                      ),
+                                      isDense: true,
+                                      border: OutlineInputBorder(),
                                     ),
-                                    isDense: true,
-                                    border: OutlineInputBorder(),
                                   ),
                                 ),
-                              ),
-                              IconButton(
-                                icon: const Icon(Icons.close),
-                                onPressed: _toggleSearching,
-                              ),
-                            ],
-                          )
-                        : Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            key: const ValueKey('filters'),
-                            children: filters,
-                          ),
+                                IconButton(
+                                  icon: const Icon(Icons.close),
+                                  onPressed: _toggleSearching,
+                                ),
+                              ],
+                            )
+                          : Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              key: const ValueKey('filters'),
+                              children: filters,
+                            ),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

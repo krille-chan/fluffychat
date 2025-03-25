@@ -78,9 +78,13 @@ class VocabDetailsView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 LemmaEmojiRow(
+                  isSelected: false,
+                  shouldShowEmojis: true,
                   cId: constructId,
-                  onTap: () => {},
-                  removeCallback: null,
+                  onTapOverride: null,
+                  emojiSetCallback: () {
+                    debugPrint('Emoji set callback');
+                  },
                 ),
               ],
             ),

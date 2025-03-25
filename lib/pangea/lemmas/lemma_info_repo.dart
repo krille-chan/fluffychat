@@ -12,8 +12,6 @@ import 'package:fluffychat/pangea/common/network/urls.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/lemmas/lemma_info_request.dart';
 import 'package:fluffychat/pangea/lemmas/lemma_info_response.dart';
-import 'package:fluffychat/pangea/lemmas/user_set_lemma_info.dart';
-import 'package:fluffychat/pangea/message_token_text/message_token_button.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class LemmaInfoRepo {
@@ -69,33 +67,34 @@ class LemmaInfoRepo {
   /// Get lemma info, prefering user set data over fetched data
   static Future<LemmaInfoResponse> get(LemmaInfoRequest request) async {
     try {
+      return await _fetch(request);
       // if the user has either emojis or meaning in the past, use those first
-      final UserSetLemmaInfo? userSetLemmaInfo = request.cId.userLemmaInfo;
+      // final UserSetLemmaInfo? userSetLemmaInfo = request.cId.userLemmaInfo;
 
-      final List<String> emojis = userSetLemmaInfo?.emojis ?? [];
-      String? meaning = userSetLemmaInfo?.meaning;
+      // final List<String> emojis = userSetLemmaInfo?.emojis ?? [];
+      // String? meaning = userSetLemmaInfo?.meaning;
 
       // if the user has not set these, fetch from the server
-      if (emojis.length < maxEmojisPerLemma || meaning == null) {
-        final LemmaInfoResponse fetched = await _fetch(request);
+      // if (emojis.length < maxEmojisPerLemma || meaning == null) {
+      // final LemmaInfoResponse fetched = await _fetch(request);
 
-        while (emojis.length < maxEmojisPerLemma && fetched.emoji.isNotEmpty) {
-          final maybeToAdd = fetched.emoji.removeAt(0);
-          if (!emojis.contains(maybeToAdd)) {
-            emojis.add(maybeToAdd);
-          }
-        }
-        meaning ??= fetched.meaning;
-      } else {
-        // debugPrint(
-        //   'using user set data for ${request.lemma} ${userSetLemmaInfo?.toJson()}',
-        // );
-      }
+      //   while (emojis.length < maxEmojisPerLemma && fetched.emoji.isNotEmpty) {
+      //     final maybeToAdd = fetched.emoji.removeAt(0);
+      //     if (!emojis.contains(maybeToAdd)) {
+      //       emojis.add(maybeToAdd);
+      //     }
+      //   }
+      //   meaning ??= fetched.meaning;
+      // } else {
+      //   // debugPrint(
+      //   //   'using user set data for ${request.lemma} ${userSetLemmaInfo?.toJson()}',
+      //   // );
+      // }
 
-      return LemmaInfoResponse(
-        emoji: emojis,
-        meaning: meaning,
-      );
+      // return LemmaInfoResponse(
+      //   emoji: emojis,
+      //   meaning: meaning,
+      // );
     } catch (e) {
       debugger(when: kDebugMode);
       ErrorHandler.logError(e: e, data: request.toJson());

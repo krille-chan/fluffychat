@@ -1,5 +1,4 @@
 import 'package:fluffychat/pangea/events/models/content_feedback.dart';
-import 'package:fluffychat/pangea/message_token_text/message_token_button.dart';
 
 class LemmaInfoResponse implements JsonSerializable {
   final List<String> emoji;
@@ -15,11 +14,7 @@ class LemmaInfoResponse implements JsonSerializable {
   factory LemmaInfoResponse.fromJson(Map<String, dynamic> json) {
     return LemmaInfoResponse(
       // NOTE: This is a workaround for the fact that the server sometimes sends more than 3 emojis
-      emoji: (json['emoji'] as List<dynamic>)
-          .map((e) => e as String)
-          .toList()
-          .take(maxEmojisPerLemma)
-          .toList(),
+      emoji: (json['emoji'] as List<dynamic>).map((e) => e as String).toList(),
       meaning: json['meaning'] as String,
       expireAt: json['expireAt'] == null
           ? null

@@ -21,7 +21,7 @@ import 'package:fluffychat/pangea/morphs/morph_repo.dart';
 import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
 import 'package:fluffychat/pangea/toolbar/reading_assistance_input_row/message_morph_choice_item.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
-import 'package:fluffychat/pangea/toolbar/widgets/word_zoom/morphs/morphological_center_widget.dart';
+import 'package:fluffychat/pangea/toolbar/widgets/word_zoom/morph_focus_widget.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 // this widget will handle the content of the input bar when mode == MessageMode.wordMorph
@@ -133,7 +133,7 @@ class MessageMorphInputBarContentState
                 ? ConstructUseTypeEnum.corM
                 : ConstructUseTypeEnum.incM,
             lemma: choice,
-            constructType: ConstructTypeEnum.vocab,
+            constructType: ConstructTypeEnum.morph,
             metadata: ConstructUseMetaData(
               roomId: overlay.pangeaMessageEvent!.room.id,
               timeStamp: DateTime.now(),
@@ -181,6 +181,7 @@ class MessageMorphInputBarContentState
                 morphFeature: morph!,
                 morphTag: null,
                 size: const Size(30, 30),
+                showTooltip: false,
               ),
               Text(
                 L10n.of(context).whatIsTheMorphTag(
@@ -227,8 +228,11 @@ class MessageMorphInputBarContentState
       );
     }
 
-    return const Center(
-      child: Text("Select a grammar icon for activities and details."),
+    return Center(
+      child: Text(
+        L10n.of(context).selectForGrammar,
+        style: Theme.of(context).textTheme.bodyLarge,
+      ),
     );
   }
 }
