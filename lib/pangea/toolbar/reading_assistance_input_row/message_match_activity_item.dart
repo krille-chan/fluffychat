@@ -1,16 +1,14 @@
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
 import 'package:collection/collection.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/constructs/construct_form.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
 import 'package:fluffychat/pangea/toolbar/reading_assistance_input_row/match_feedback_model.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
 class MessageMatchActivityItem extends StatefulWidget {
   const MessageMatchActivityItem({
@@ -88,14 +86,14 @@ class MessageMatchActivityItemState extends State<MessageMatchActivityItem> {
     }
 
     if (isSelected) {
-      return AppConfig.primaryColor;
+      return Theme.of(context).colorScheme.primaryContainer;
     }
 
     if (_isHovered) {
-      return Theme.of(context).colorScheme.primary;
+      return Theme.of(context).colorScheme.primaryContainer;
     }
 
-    return Colors.transparent;
+    return Theme.of(context).colorScheme.surface;
   }
 
   @override
@@ -147,12 +145,6 @@ class MessageMatchActivityItemState extends State<MessageMatchActivityItem> {
       onDragStarted: () {
         widget.overlayController.onChoiceSelect(widget.constructForm, true);
       },
-      // onDragCompleted: () {
-      //   debugger(when: kDebugMode);
-      // },
-      // onDragEnd: (details) {
-      //   // debugger(when: kDebugMode);
-      // },
       child: InkWell(
         onHover: (isHovered) => setState(() => _isHovered = isHovered),
         borderRadius: BorderRadius.circular(AppConfig.borderRadius),

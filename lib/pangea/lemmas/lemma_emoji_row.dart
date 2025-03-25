@@ -1,9 +1,6 @@
 import 'dart:developer';
 import 'dart:math';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/app_emojis.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
@@ -13,6 +10,8 @@ import 'package:fluffychat/pangea/lemmas/user_set_lemma_info.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/practice_activity/word_zoom_activity_button.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
 class LemmaEmojiRow extends StatefulWidget {
   final ConstructIdentifier cId;
@@ -89,6 +88,7 @@ class LemmaEmojiRowState extends State<LemmaEmojiRow> {
         blurBackground: false,
         borderColor: Theme.of(context).colorScheme.primary,
         closePrevOverlay: false,
+        offset: const Offset(0, 60),
       );
     } catch (e, s) {
       debugger(when: kDebugMode);
@@ -109,6 +109,11 @@ class LemmaEmojiRowState extends State<LemmaEmojiRow> {
           .catchError((e, s) {
         debugger(when: kDebugMode);
         ErrorHandler.logError(data: widget.cId.toJson(), e: e, s: s);
+      }).then((_) {
+        if (mounted) {
+          widget.emojiSetCallback?.call();
+          setState(() {});
+        }
       });
 
       MatrixState.pAnyState.closeOverlay();
@@ -124,46 +129,49 @@ class LemmaEmojiRowState extends State<LemmaEmojiRow> {
 
   @override
   Widget build(BuildContext context) {
-    return CompositedTransformTarget(
-      link: MatrixState.pAnyState
-          .layerLinkAndKey(
-            widget.cId.string,
-          )
-          .link,
-      child: Container(
-        key: MatrixState.pAnyState
+    return Material(
+      child: CompositedTransformTarget(
+        link: MatrixState.pAnyState
             .layerLinkAndKey(
               widget.cId.string,
             )
-            .key,
-        height: 50,
-        width: 50,
-        alignment: Alignment.center,
-        child: displayEmoji != null && widget.shouldShowEmojis
-            ? InkWell(
-                hoverColor: Theme.of(context).colorScheme.primary.withAlpha(50),
-                onTap: widget.onTapOverride ?? openEmojiSetOverlay,
-                borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    displayEmoji!,
-                    style: Theme.of(context).textTheme.headlineSmall,
-                  ),
-                ),
+            .link,
+        child: Container(
+          key: MatrixState.pAnyState
+              .layerLinkAndKey(
+                widget.cId.string,
               )
-            : WordZoomActivityButton(
-                icon: Icon(
-                  Icons.add_reaction_outlined,
-                  color: widget.isSelected
-                      ? Theme.of(context).colorScheme.primary
-                      : null,
+              .key,
+          height: 50,
+          width: 50,
+          alignment: Alignment.center,
+          child: displayEmoji != null && widget.shouldShowEmojis
+              ? InkWell(
+                  hoverColor:
+                      Theme.of(context).colorScheme.primary.withAlpha(50),
+                  onTap: widget.onTapOverride ?? openEmojiSetOverlay,
+                  borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      displayEmoji!,
+                      style: Theme.of(context).textTheme.headlineSmall,
+                    ),
+                  ),
+                )
+              : WordZoomActivityButton(
+                  icon: Icon(
+                    Icons.add_reaction_outlined,
+                    color: widget.isSelected
+                        ? Theme.of(context).colorScheme.primary
+                        : null,
+                  ),
+                  isSelected: widget.isSelected,
+                  onPressed: widget.onTapOverride ?? openEmojiSetOverlay,
+                  opacity: widget.isSelected ? 1 : 0.4,
+                  tooltip: MessageMode.wordEmoji.title(context),
                 ),
-                isSelected: widget.isSelected,
-                onPressed: widget.onTapOverride ?? openEmojiSetOverlay,
-                opacity: widget.isSelected ? 1 : 0.4,
-                tooltip: MessageMode.wordEmoji.title(context),
-              ),
+        ),
       ),
     );
   }
@@ -184,6 +192,7 @@ class EmojiEditOverlay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
+      borderRadius: BorderRadius.circular(AppConfig.borderRadius),
       child: Container(
         padding: const EdgeInsets.all(8),
         height: 70,

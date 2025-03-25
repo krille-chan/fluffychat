@@ -1,9 +1,8 @@
-import 'package:flutter/material.dart';
-
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
-import 'package:fluffychat/pangea/practice_activities/message_analytics_controller.dart';
+import 'package:fluffychat/pangea/practice_activities/message_analytics_entry.dart';
+import 'package:flutter/material.dart';
 
 class TokenPosition {
   /// Start index of the full substring in the message

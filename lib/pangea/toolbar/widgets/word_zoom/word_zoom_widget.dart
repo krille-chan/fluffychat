@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/analytics_details_popup/analytics_details_popup.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
@@ -11,6 +9,7 @@ import 'package:fluffychat/pangea/learning_settings/constants/language_constants
 import 'package:fluffychat/pangea/lemmas/construct_xp_widget.dart';
 import 'package:fluffychat/pangea/lemmas/lemma_emoji_row.dart';
 import 'package:fluffychat/pangea/morphs/morph_features_enum.dart';
+import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
@@ -19,6 +18,7 @@ import 'package:fluffychat/pangea/toolbar/widgets/word_zoom/lemma_meaning_widget
 import 'package:fluffychat/pangea/toolbar/widgets/word_zoom/lemma_widget.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/word_zoom/morphological_list_item.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
 
 class WordZoomWidget extends StatelessWidget {
   final PangeaToken token;
@@ -37,6 +37,13 @@ class WordZoomWidget extends StatelessWidget {
   PangeaToken get _selectedToken => overlayController.selectedToken!;
 
   void onEditDone() => overlayController.initializeTokensAndMode();
+
+  bool get hasEmojiActivity =>
+      overlayController.messageAnalyticsEntry?.hasActivity(
+        ActivityTypeEnum.emoji,
+        _selectedToken,
+      ) ==
+      true;
 
   @override
   Widget build(BuildContext context) {
@@ -64,6 +71,7 @@ class WordZoomWidget extends StatelessWidget {
                   constraints: const BoxConstraints(
                     minHeight: 40,
                   ),
+                  color: Theme.of(context).colorScheme.surface,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -114,21 +122,16 @@ class WordZoomWidget extends StatelessWidget {
                       alignment: Alignment.center,
                       child: LemmaEmojiRow(
                         cId: _selectedToken.vocabConstructID,
-                        onTapOverride: () =>
-                            overlayController.updateToolbarMode(
-                          MessageMode.wordEmoji,
-                        ),
+                        onTapOverride: hasEmojiActivity
+                            ? () => overlayController.updateToolbarMode(
+                                  MessageMode.wordEmoji,
+                                )
+                            : null,
                         isSelected: overlayController.toolbarMode ==
                             MessageMode.wordEmoji,
                         emojiSetCallback: () =>
                             overlayController.setState(() {}),
-                        shouldShowEmojis: overlayController
-                                .messageAnalyticsEntry
-                                ?.hasActivity(
-                              MessageMode.wordEmoji.associatedActivityType!,
-                              _selectedToken,
-                            ) ==
-                            false,
+                        shouldShowEmojis: !hasEmojiActivity,
                       ),
                     ),
                   ],

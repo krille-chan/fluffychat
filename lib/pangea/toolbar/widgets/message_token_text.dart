@@ -1,8 +1,4 @@
-import 'package:flutter/material.dart';
-
 import 'package:collection/collection.dart';
-import 'package:flutter_linkify/flutter_linkify.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/common/utils/any_state_holder.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
@@ -10,10 +6,13 @@ import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/events/utils/message_text_util.dart';
 import 'package:fluffychat/pangea/message_token_text/message_token_button.dart';
 import 'package:fluffychat/pangea/practice_activities/message_analytics_controller.dart';
+import 'package:fluffychat/pangea/practice_activities/message_analytics_entry.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_linkify/flutter_linkify.dart';
 
 /// Question - does this need to be stateful or does this work?
 /// Need to test.
@@ -56,7 +55,6 @@ class MessageTokenText extends StatelessWidget {
   MessageAnalyticsEntry? get messageAnalyticsEntry => _tokens != null
       ? MessageAnalyticsController.get(
           _tokens!,
-          _pangeaMessageEvent,
         )
       : null;
 
@@ -184,7 +182,7 @@ class MessageTextWidget extends StatelessWidget {
     return textPainter.width;
   }
 
-  Color backgroundColor(TokenPosition tokenPosition) {
+  Color backgroundColor(BuildContext context, TokenPosition tokenPosition) {
     final hideTokenHighlights = messageAnalyticsEntry != null &&
         (messageAnalyticsEntry!.hasHiddenWordActivity ||
             messageAnalyticsEntry!.hasMessageMeaningActivity);
@@ -193,7 +191,7 @@ class MessageTextWidget extends StatelessWidget {
 
     if (!hideTokenHighlights) {
       if (tokenPosition.selected) {
-        backgroundColor = AppConfig.primaryColor;
+        backgroundColor = Theme.of(context).colorScheme.primary;
       }
       // else if (tokenPosition.isHighlighted) {
       //   backgroundColor = AppConfig.success.withAlpha(80);
@@ -378,7 +376,7 @@ class MessageTextWidget extends StatelessWidget {
                               : 0,
                       width: tokenWidth,
                       child: Container(
-                        color: backgroundColor(tokenPosition),
+                        color: backgroundColor(context, tokenPosition),
                       ),
                     ),
                   ],

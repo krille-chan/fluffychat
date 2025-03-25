@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
-
-import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/bot/utils/bot_style.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
+
 import '../../../bot/widgets/bot_face_svg.dart';
 
 class CardHeader extends StatelessWidget {
@@ -49,9 +48,6 @@ class CardHeader extends StatelessWidget {
               if (onClose != null) onClose!();
               MatrixState.pAnyState.closeOverlay();
             },
-            color: Theme.of(context).brightness == Brightness.dark
-                ? AppConfig.primaryColorLight
-                : Theme.of(context).colorScheme.primary,
           ),
         ],
       ),

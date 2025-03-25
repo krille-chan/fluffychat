@@ -1,13 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-
 import 'package:collection/collection.dart';
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
@@ -25,15 +19,20 @@ import 'package:fluffychat/pangea/events/models/pangea_token_text_model.dart';
 import 'package:fluffychat/pangea/events/models/tokens_event_content_model.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/lemmas/lemma_info_response.dart';
-import 'package:fluffychat/pangea/morphs/morph_features_enum.dart';
 import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
 import 'package:fluffychat/pangea/practice_activities/message_analytics_controller.dart';
+import 'package:fluffychat/pangea/practice_activities/message_analytics_entry.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/text_to_speech_controller.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/reading_assistance_input_row/match_feedback_model.dart';
+import 'package:fluffychat/pangea/toolbar/reading_assistance_input_row/morph_selection.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_positioner.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/reading_assistance_content.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:matrix/matrix.dart';
 
 /// Controls data at the top level of the toolbar (mainly token / toolbar mode selection)
 class MessageSelectionOverlay extends StatefulWidget {
@@ -72,7 +71,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
   Map<ConstructIdentifier, LemmaInfoResponse>? messageLemmaInfos;
 
-  MorphFeaturesEnum? selectedMorph;
+  MorphSelection? selectedMorph;
   ConstructForm? selectedChoice;
   PangeaTokenText? _selectedSpan;
 
@@ -108,7 +107,6 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
   Future<void> initializeTokensAndMode() async {
     try {
-      debugPrint("what");
       RepresentationEvent? repEvent =
           pangeaMessageEvent?.messageDisplayRepresentation;
       repEvent ??= await _fetchNewRepEvent();
@@ -323,12 +321,12 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     setState(() {});
   }
 
-  void onMorphActivitySelect(PangeaToken token, MorphFeaturesEnum morph) {
+  void onMorphActivitySelect(MorphSelection newMorph) {
     if (toolbarMode != MessageMode.wordMorph) {
       updateToolbarMode(MessageMode.wordMorph);
     }
-    selectedMorph = morph;
-    _updateSelectedSpan(token.text, true);
+    selectedMorph = newMorph;
+    setState(() {});
   }
 
   // only used for word meaning, emoji, and word focus listening atm
@@ -338,6 +336,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   ) async {
     final ActivityTypeEnum activityType = toolbarMode.associatedActivityType!;
 
+    //TODO - account for some emojis being the same for multiple words
     final bool isCorrect = token.vocabConstructID == choice.cId;
 
     final ConstructUseTypeEnum? useType =
@@ -457,7 +456,6 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
       pangeaMessageEvent?.messageDisplayRepresentation?.tokens != null
           ? MessageAnalyticsController.get(
               pangeaMessageEvent!.messageDisplayRepresentation!.tokens!,
-              pangeaMessageEvent!,
             )
           : null;
 

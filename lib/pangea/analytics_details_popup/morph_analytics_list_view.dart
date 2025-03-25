@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-
 import 'package:collection/collection.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/analytics_details_popup/analytics_details_popup.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
@@ -15,6 +12,7 @@ import 'package:fluffychat/pangea/morphs/morph_features_enum.dart';
 import 'package:fluffychat/pangea/morphs/morph_icon.dart';
 import 'package:fluffychat/pangea/user/client_extension.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
 
 class MorphAnalyticsListView extends StatelessWidget {
   final void Function(ConstructIdentifier) onConstructZoom;
@@ -88,9 +86,7 @@ class MorphFeatureBox extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(AppConfig.borderRadius),
         border: Border.all(
-          color: Theme.of(context).brightness == Brightness.dark
-              ? AppConfig.primaryColorLight
-              : Theme.of(context).colorScheme.primary,
+          color: Theme.of(context).colorScheme.primary,
           width: 2,
         ),
       ),

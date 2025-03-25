@@ -4814,7 +4814,7 @@
   "pleaseEnterInt": "Please enter a number",
   "home": "Home",
   "join": "Join",
-  "readingAssistanceOverviewBody": "Click the buttons below for mini-games on visualizing vocab, practice listening, meaning, and grammar concepts. Click any word for details.",
+  "readingAssistanceOverviewBody": "Click the buttons below for mini-games on matching emojis, audios, word meanings, and grammar concepts. Or click on any word for details.",
   "learnByTexting": "Learn by texting",
   "levelSummaryTrigger": "View summary",
   "levelSummaryPopupTitle": "Level {level} Summary",

@@ -1,20 +1,19 @@
 import 'dart:developer';
 import 'dart:math';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
 import 'package:collection/collection.dart';
-import 'package:material_symbols_icons/symbols.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/constructs/construct_form.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/message_token_text/dotted_border_painter.dart';
 import 'package:fluffychat/pangea/practice_activities/target_tokens_and_activity_type.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
+import 'package:fluffychat/pangea/toolbar/reading_assistance_input_row/morph_selection.dart';
 import 'package:fluffychat/pangea/toolbar/utils/shrinkable_text.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:material_symbols_icons/symbols.dart';
 
 const double tokenButtonHeight = 40.0;
 const double tokenButtonDefaultFontSize = 10;
@@ -155,23 +154,26 @@ class MessageTokenButtonState extends State<MessageTokenButton>
       }
       return InkWell(
         onHover: (isHovered) => setState(() => _isHovered = isHovered),
-        onTap: () => widget.overlayController!
-            .onMorphActivitySelect(widget.token, activity!.morphFeature!),
+        onTap: () => widget.overlayController!.onMorphActivitySelect(
+          MorphSelection(widget.token, activity!.morphFeature!),
+        ),
         borderRadius: borderRadius,
         child: Container(
           height: height,
           width: min(widget.width, height),
           alignment: Alignment.center,
           child: Opacity(
-            opacity: (widget.overlayController?.selectedToken == widget.token &&
-                        widget.overlayController?.selectedMorph ==
+            opacity: (widget.overlayController?.selectedMorph?.token ==
+                            widget.token &&
+                        widget.overlayController?.selectedMorph?.morph ==
                             activity?.morphFeature) ||
                     _isHovered
                 ? 1.0
-                : 0.5,
+                : 0.4,
             child: Icon(
               Symbols.toys_and_games,
               color: Theme.of(context).colorScheme.primary,
+              size: min(24, widget.width),
             ),
             // MorphIcon(morphFeature: activity!.morphFeature!, morphTag: null),
           ),

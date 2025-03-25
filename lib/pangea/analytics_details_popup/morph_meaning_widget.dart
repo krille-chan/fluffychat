@@ -1,14 +1,12 @@
 import 'dart:developer';
 import 'dart:math';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
 import 'package:fluffychat/pangea/analytics_misc/text_loading_shimmer.dart';
 import 'package:fluffychat/pangea/morphs/get_grammar_copy.dart';
 import 'package:fluffychat/pangea/morphs/morph_meaning/morph_info_repo.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class MorphMeaningWidget extends StatefulWidget {
   final String feature;
@@ -33,17 +31,43 @@ class MorphMeaningWidgetState extends State<MorphMeaningWidget> {
   late TextEditingController _controller;
   static const int maxCharacters = 140;
   String? _cachedResponse;
+  bool _isLoading = true;
+  String? _error;
+
+  @override
+  void didUpdateWidget(covariant MorphMeaningWidget oldWidget) {
+    if (oldWidget.tag != widget.tag || oldWidget.feature != widget.feature) {
+      _cachedResponse = null;
+      _isLoading = true;
+      _loadMorphMeaning();
+    }
+    super.didUpdateWidget(oldWidget);
+  }
 
   @override
   void initState() {
     super.initState();
     _controller = TextEditingController();
+    _loadMorphMeaning();
   }
 
   @override
   void dispose() {
     _controller.dispose();
     super.dispose();
+  }
+
+  Future<void> _loadMorphMeaning() async {
+    try {
+      final response = await _morphMeaning();
+      _setMeaningText(response);
+    } catch (e) {
+      _error = e.toString();
+    } finally {
+      setState(() {
+        _isLoading = false;
+      });
+    }
   }
 
   Future<String> _morphMeaning() async {
@@ -87,62 +111,56 @@ class MorphMeaningWidgetState extends State<MorphMeaningWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<String>(
-      future: _morphMeaning(),
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          _setMeaningText(snapshot.data!);
-        }
+    if (_isLoading) {
+      return const TextLoadingShimmer();
+    }
 
-        if (_editMode) {
-          return MorphEditView(
-            morphFeature: widget.feature,
-            morphTag: widget.tag,
-            meaning: snapshot.data ?? "",
-            controller: _controller,
-            toggleEditMode: _toggleEditMode,
-            editMorphMeaning: editMorphMeaning,
-          );
-        }
+    if (_error != null) {
+      debugger(when: kDebugMode);
+      return Text(
+        L10n.of(context).oopsSomethingWentWrong,
+        textAlign: TextAlign.center,
+        style: widget.style,
+      );
+    }
 
-        if (snapshot.connectionState != ConnectionState.done) {
-          return const TextLoadingShimmer();
-        }
+    if (_editMode) {
+      return MorphEditView(
+        morphFeature: widget.feature,
+        morphTag: widget.tag,
+        meaning: _cachedResponse ?? "",
+        controller: _controller,
+        toggleEditMode: _toggleEditMode,
+        editMorphMeaning: editMorphMeaning,
+      );
+    }
 
-        if (snapshot.hasError || snapshot.data == null) {
-          debugger(when: kDebugMode);
-          return Text(
-            L10n.of(context).oopsSomethingWentWrong,
-            textAlign: TextAlign.center,
-            style: widget.style,
-          );
-        }
-
-        return Row(
-          children: [
-            Flexible(
-              child: Tooltip(
-                triggerMode: TooltipTriggerMode.tap,
-                message: L10n.of(context).doubleClickToEdit,
-                child: GestureDetector(
-                  onLongPress: () => _toggleEditMode(true),
-                  onDoubleTap: () => _toggleEditMode(true),
-                  child: RichText(
-                    text: TextSpan(
-                      style: widget.style,
-                      children: [
-                        if (widget.leading != null) widget.leading!,
-                        if (widget.leading != null) const TextSpan(text: '  '),
-                        TextSpan(text: snapshot.data!),
-                      ],
-                    ),
-                  ),
+    return Row(
+      mainAxisAlignment: widget.leading != null
+          ? MainAxisAlignment.start
+          : MainAxisAlignment.center,
+      children: [
+        Flexible(
+          child: Tooltip(
+            triggerMode: TooltipTriggerMode.tap,
+            message: L10n.of(context).doubleClickToEdit,
+            child: GestureDetector(
+              onLongPress: () => _toggleEditMode(true),
+              onDoubleTap: () => _toggleEditMode(true),
+              child: RichText(
+                text: TextSpan(
+                  style: widget.style,
+                  children: [
+                    if (widget.leading != null) widget.leading!,
+                    if (widget.leading != null) const TextSpan(text: '  '),
+                    TextSpan(text: _cachedResponse!),
+                  ],
                 ),
               ),
             ),
-          ],
-        );
-      },
+          ),
+        ),
+      ],
     );
   }
 }

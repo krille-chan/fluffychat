@@ -170,6 +170,7 @@ class MorphFocusWidgetState extends State<MorphFocusWidget> {
       return Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
+        spacing: 8.0,
         children: [
           MorphFeatureDisplay(
             morphFeature: widget.morphFeature,
@@ -214,6 +215,7 @@ class MorphFocusWidgetState extends State<MorphFocusWidget> {
             MorphMeaningWidget(
               feature: widget.morphFeature,
               tag: widget.token.getMorphTag(widget.morphFeature)!,
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
           ] else
             Text(L10n.of(context).nan),

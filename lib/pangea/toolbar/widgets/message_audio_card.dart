@@ -1,19 +1,17 @@
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat/events/audio_player.dart';
+import 'package:fluffychat/pangea/analytics_misc/text_loading_shimmer.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/igc/card_error_widget.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/events/extensions/pangea_event_extension.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/text_to_speech_controller.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
-import 'package:fluffychat/pangea/toolbar/widgets/toolbar_content_loading_indicator.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:matrix/matrix.dart';
 
 class MessageAudioCard extends StatefulWidget {
   final PangeaMessageEvent messageEvent;
@@ -86,8 +84,9 @@ class MessageAudioCardState extends State<MessageAudioCard> {
       children: [
         Container(
           alignment: Alignment.center,
+          height: 40,
           child: _isLoading
-              ? const ToolbarContentLoadingIndicator()
+              ? const TextLoadingShimmer(width: 200)
               : audioFile != null
                   ? AudioPlayerWidget(
                       null,

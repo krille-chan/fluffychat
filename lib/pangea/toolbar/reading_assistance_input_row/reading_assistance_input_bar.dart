@@ -1,8 +1,5 @@
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/analytics_misc/put_analytics_controller.dart';
@@ -17,6 +14,10 @@ import 'package:fluffychat/pangea/toolbar/widgets/message_mode_locked_card.dart'
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_translation_card.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/practice_activity/practice_activity_card.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
+const double minContentHeight = 120;
 
 class ReadingAssistanceInputBar extends StatelessWidget {
   final ChatController controller;
@@ -56,6 +57,7 @@ class ReadingAssistanceInputBar extends StatelessWidget {
   }
 
   Widget barContent(BuildContext context) {
+    Widget? content;
     switch (overlayController.toolbarMode) {
       // message meaning will not use the input bar (for now at least)
       // maybe we move some choices there later
@@ -64,7 +66,7 @@ class ReadingAssistanceInputBar extends StatelessWidget {
       case MessageMode.wordZoom:
       case MessageMode.noneSelected:
         //TODO: show all emojis for the lemmas and allow sending normal reactions
-        return const SizedBox.shrink();
+        break;
       // return MessageEmojiChoice(
       //   controller: controller,
       //   overlayController: overlayController,
@@ -72,27 +74,38 @@ class ReadingAssistanceInputBar extends StatelessWidget {
 
       case MessageMode.messageTranslation:
         if (overlayController.isTranslationUnlocked) {
-          return MessageTranslationCard(
+          content = MessageTranslationCard(
             messageEvent: overlayController.pangeaMessageEvent!,
           );
         } else {
-          return MessageModeLockedCard(controller: overlayController);
+          content = MessageModeLockedCard(controller: overlayController);
         }
 
       case MessageMode.wordEmoji:
       case MessageMode.messageMeaning:
       case MessageMode.wordMeaning:
       case MessageMode.listening:
-        return MessageMatchActivity(
+        content = MessageMatchActivity(
           overlayController: overlayController,
         );
 
       case MessageMode.wordMorph:
-        return MessageMorphInputBarContent(
+        content = MessageMorphInputBarContent(
           overlayController: overlayController,
           pangeaMessageEvent: overlayController.pangeaMessageEvent!,
         );
     }
+
+    if (content == null) {
+      return const SizedBox();
+    }
+
+    return Container(
+      constraints: const BoxConstraints(
+        minHeight: minContentHeight,
+      ),
+      child: content,
+    );
   }
 
   @override

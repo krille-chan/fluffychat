@@ -1,10 +1,6 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:flutter/material.dart';
-
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/config/themes.dart';
@@ -23,6 +19,8 @@ import 'package:fluffychat/pangea/toolbar/widgets/overlay_center_content.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/overlay_header.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
+import 'package:matrix/matrix.dart';
 
 /// Controls positioning of the message overlay.
 class MessageSelectionPositioner extends StatefulWidget {
@@ -552,9 +550,9 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
                 _headerHeight,
               ),
               child: Container(
-                constraints: const BoxConstraints(
+                constraints: BoxConstraints(
                   minWidth: 200.0,
-                  maxWidth: 400.0,
+                  maxWidth: _toolbarMaxWidth,
                 ),
                 child: InstructionsInlineTooltip(
                   instructionsEnum:

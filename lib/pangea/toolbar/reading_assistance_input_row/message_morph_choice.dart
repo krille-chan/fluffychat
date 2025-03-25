@@ -1,11 +1,6 @@
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
 import 'package:collection/collection.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/constructs_model.dart';
@@ -23,6 +18,9 @@ import 'package:fluffychat/pangea/toolbar/reading_assistance_input_row/message_m
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/word_zoom/morph_focus_widget.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 // this widget will handle the content of the input bar when mode == MessageMode.wordMorph
 
@@ -63,8 +61,8 @@ class MessageMorphInputBarContentState
   // }
 
   MessageOverlayController get overlay => widget.overlayController;
-  PangeaToken? get token => overlay.selectedToken;
-  MorphFeaturesEnum? get morph => overlay.selectedMorph;
+  PangeaToken? get token => overlay.selectedMorph?.token;
+  MorphFeaturesEnum? get morph => overlay.selectedMorph?.morph;
 
   // void init() async {
   //   initialized = false;

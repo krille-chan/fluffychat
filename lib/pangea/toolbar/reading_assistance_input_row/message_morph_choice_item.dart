@@ -1,10 +1,9 @@
-import 'package:flutter/material.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
 import 'package:fluffychat/pangea/morphs/get_grammar_copy.dart';
 import 'package:fluffychat/pangea/morphs/morph_features_enum.dart';
 import 'package:fluffychat/pangea/morphs/morph_icon.dart';
+import 'package:flutter/material.dart';
 
 class MessageMorphChoiceItem extends StatefulWidget {
   const MessageMorphChoiceItem({
@@ -47,10 +46,13 @@ class MessageMorphChoiceItemState extends State<MessageMorphChoiceItem> {
           : AppConfig.warning.withAlpha((0.4 * 255).toInt());
     }
     if (widget.isSelected) {
-      return AppConfig.primaryColor.withAlpha((0.4 * 255).toInt());
+      return Theme.of(context)
+          .colorScheme
+          .primary
+          .withAlpha((0.4 * 255).toInt());
     }
     return _isHovered
-        ? AppConfig.primaryColor.withAlpha((0.2 * 255).toInt())
+        ? Theme.of(context).colorScheme.primary.withAlpha((0.2 * 255).toInt())
         : Colors.transparent;
   }
 
