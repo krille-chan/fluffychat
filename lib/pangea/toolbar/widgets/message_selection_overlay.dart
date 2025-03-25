@@ -290,20 +290,22 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
         pangeaMessageEvent: pangeaMessageEvent!,
         overlayController: this,
       );
-      OverlayUtil.showPositionedCard(
-        context: context,
-        cardToShow: entry,
-        transformTargetId: selectedToken!.text.uniqueKey,
-        closePrevOverlay: false,
-        backDropToDismiss: false,
-        addBorder: false,
-        overlayKey: selectedToken!.text.uniqueKey,
-        maxHeight: AppConfig.toolbarMaxHeight,
-        maxWidth: AppConfig.toolbarMinWidth,
-      );
+      if (context.mounted) {
+        OverlayUtil.showPositionedCard(
+          context: context,
+          cardToShow: entry,
+          transformTargetId: selectedToken!.text.uniqueKey,
+          closePrevOverlay: false,
+          backDropToDismiss: false,
+          addBorder: false,
+          overlayKey: selectedToken!.text.uniqueKey,
+          maxHeight: AppConfig.toolbarMaxHeight,
+          maxWidth: AppConfig.toolbarMinWidth,
+        );
+      }
     }
 
-    setState(() {});
+    if (mounted) setState(() {});
   }
 
   void updateToolbarMode(MessageMode mode) => setState(() {

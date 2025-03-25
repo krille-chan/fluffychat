@@ -38,6 +38,14 @@ class MeasureRenderBoxState extends State<MeasureRenderBox> {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) => _updateOffset());
-    return widget.child;
+    return NotificationListener<SizeChangedLayoutNotification>(
+      onNotification: (notification) {
+        WidgetsBinding.instance.addPostFrameCallback((_) => _updateOffset());
+        return true;
+      },
+      child: SizeChangedLayoutNotifier(
+        child: widget.child,
+      ),
+    );
   }
 }

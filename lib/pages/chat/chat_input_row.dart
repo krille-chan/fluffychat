@@ -75,6 +75,9 @@ class ChatInputRow extends StatelessWidget {
     }
 
     return Column(
+      // #Pangea
+      mainAxisSize: MainAxisSize.min,
+      // Pangea#
       children: [
         // if (!controller.selectMode) WritingAssistanceInputRow(controller),
         CompositedTransformTarget(

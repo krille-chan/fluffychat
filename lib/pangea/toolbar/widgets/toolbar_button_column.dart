@@ -2,17 +2,16 @@ import 'package:flutter/material.dart';
 
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/toolbar_button.dart';
 
 class ToolbarButtonRow extends StatelessWidget {
-  final Event event;
   final MessageOverlayController overlayController;
   final bool shouldShowToolbarButtons;
 
   const ToolbarButtonRow({
-    required this.event,
     required this.overlayController,
     required this.shouldShowToolbarButtons,
     super.key,
@@ -25,84 +24,85 @@ class ToolbarButtonRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (event.messageType == MessageTypes.Audio ||
+    if (overlayController.event.messageType == MessageTypes.Audio ||
         !shouldShowToolbarButtons ||
         !(overlayController.pangeaMessageEvent?.messageDisplayLangIsL2 ??
             false)) {
       return const SizedBox(
-        height: 50.0,
+        height: AppConfig.toolbarButtonsHeight,
       );
     }
 
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ToolbarButton(
-              mode: MessageMode.messageTranslation,
-              overlayController: overlayController,
-              onPressed: overlayController.updateToolbarMode,
-              buttonSize: buttonSize,
-            ),
-          ],
-        ),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            // wrapping these with a container to prevent the buttons from
-            // moving around when they press and depress
-            Container(
-              width: buttonSize + 4,
-              height: buttonSize + 4,
-              alignment: Alignment.center,
-              child: ToolbarButton(
-                mode: MessageMode.wordMorph,
+    return SizedBox(
+      height: AppConfig.toolbarButtonsHeight,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ToolbarButton(
+                mode: MessageMode.messageTranslation,
                 overlayController: overlayController,
                 onPressed: overlayController.updateToolbarMode,
                 buttonSize: buttonSize,
               ),
-            ),
-            Container(
-              width: buttonSize + 4,
-              height: buttonSize + 4,
-              alignment: Alignment.center,
-              child: ToolbarButton(
-                mode: MessageMode.wordMeaning,
-                overlayController: overlayController,
-                onPressed: overlayController.updateToolbarMode,
-                buttonSize: buttonSize,
+            ],
+          ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            spacing: 4.0,
+            children: [
+              Container(
+                width: buttonSize + 4,
+                height: buttonSize + 4,
+                alignment: Alignment.center,
+                child: ToolbarButton(
+                  mode: MessageMode.wordMorph,
+                  overlayController: overlayController,
+                  onPressed: overlayController.updateToolbarMode,
+                  buttonSize: buttonSize,
+                ),
               ),
-            ),
-            Container(
-              width: buttonSize + 4,
-              height: buttonSize + 4,
-              alignment: Alignment.center,
-              child: ToolbarButton(
-                mode: MessageMode.listening,
-                overlayController: overlayController,
-                onPressed: overlayController.updateToolbarMode,
-                buttonSize: buttonSize,
+              Container(
+                width: buttonSize + 4,
+                height: buttonSize + 4,
+                alignment: Alignment.center,
+                child: ToolbarButton(
+                  mode: MessageMode.wordMeaning,
+                  overlayController: overlayController,
+                  onPressed: overlayController.updateToolbarMode,
+                  buttonSize: buttonSize,
+                ),
               ),
-            ),
-            Container(
-              width: buttonSize + 4,
-              height: buttonSize + 4,
-              alignment: Alignment.center,
-              child: ToolbarButton(
-                mode: MessageMode.wordEmoji,
-                overlayController: overlayController,
-                onPressed: overlayController.updateToolbarMode,
-                buttonSize: buttonSize,
+              Container(
+                width: buttonSize + 4,
+                height: buttonSize + 4,
+                alignment: Alignment.center,
+                child: ToolbarButton(
+                  mode: MessageMode.listening,
+                  overlayController: overlayController,
+                  onPressed: overlayController.updateToolbarMode,
+                  buttonSize: buttonSize,
+                ),
               ),
-            ),
-          ],
-        ),
-      ],
+              Container(
+                width: buttonSize + 4,
+                height: buttonSize + 4,
+                alignment: Alignment.center,
+                child: ToolbarButton(
+                  mode: MessageMode.wordEmoji,
+                  overlayController: overlayController,
+                  onPressed: overlayController.updateToolbarMode,
+                  buttonSize: buttonSize,
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

@@ -110,17 +110,24 @@ class ReadingAssistanceInputBar extends StatelessWidget {
 
     return Expanded(
       child: Container(
-        height: AppConfig.readingAssistanceInputBarHeight,
-        padding: const EdgeInsets.all(8.0),
+        constraints: BoxConstraints(
+          maxHeight: (MediaQuery.of(context).size.height / 2) -
+              AppConfig.toolbarButtonsHeight,
+        ),
+        padding: const EdgeInsets.all(16.0),
         decoration: BoxDecoration(
           color: Theme.of(context).cardColor,
           borderRadius: const BorderRadius.all(
             Radius.circular(8.0),
           ),
         ),
-        alignment: Alignment.center,
-        child: SingleChildScrollView(
-          child: barContent(context),
+        child: AnimatedSize(
+          duration: const Duration(
+            milliseconds: AppConfig.overlayAnimationDuration,
+          ),
+          child: SingleChildScrollView(
+            child: barContent(context),
+          ),
         ),
       ),
     );

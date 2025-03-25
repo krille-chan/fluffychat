@@ -382,7 +382,7 @@ class MessageContent extends StatelessWidget {
                 isSelected: overlayController != null ? isSelected : null,
                 messageMode: overlayController?.toolbarMode,
                 isHighlighted: (PangeaToken token) =>
-                    overlayController!.toolbarMode.associatedActivityType !=
+                    overlayController?.toolbarMode.associatedActivityType !=
                         null &&
                     overlayController?.messageAnalyticsEntry?.hasActivity(
                           overlayController!

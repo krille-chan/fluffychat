@@ -137,7 +137,10 @@ class SettingsLearningController extends State<SettingsLearning> {
         debugPrint("Error resetting instruction tooltips: $e");
         debugger(when: kDebugMode);
         ErrorHandler.logError(
-            e: e, s: s, data: {"resetInstructionTooltips": true});
+          e: e,
+          s: s,
+          data: {"resetInstructionTooltips": true},
+        );
         return null;
       },
     );

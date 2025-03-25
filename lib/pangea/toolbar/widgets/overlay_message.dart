@@ -27,6 +27,7 @@ class OverlayMessage extends StatelessWidget {
   final Animation<Size>? sizeAnimation;
   final double? messageWidth;
   final double? messageHeight;
+  final double maxHeight;
 
   final bool isTransitionAnimation;
 
@@ -38,6 +39,7 @@ class OverlayMessage extends StatelessWidget {
     required this.timeline,
     required this.messageWidth,
     required this.messageHeight,
+    required this.maxHeight,
     this.pangeaMessageEvent,
     this.nextEvent,
     this.prevEvent,
@@ -119,22 +121,25 @@ class OverlayMessage extends StatelessWidget {
             ? ThemeData.dark().colorScheme.onPrimary
             : theme.colorScheme.onSurface;
 
-    final content = SingleChildScrollView(
-      dragStartBehavior: DragStartBehavior.down,
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(
-            AppConfig.borderRadius,
-          ),
+    final content = Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(
+          AppConfig.borderRadius,
         ),
-        padding: noBubble || noPadding
-            ? EdgeInsets.zero
-            : const EdgeInsets.symmetric(
-                horizontal: 16,
-                vertical: 8,
-              ),
-        width: messageWidth,
-        height: messageHeight,
+      ),
+      padding: noBubble || noPadding
+          ? EdgeInsets.zero
+          : const EdgeInsets.symmetric(
+              horizontal: 16,
+              vertical: 8,
+            ),
+      width: messageWidth,
+      height: messageHeight,
+      constraints: BoxConstraints(
+        maxHeight: maxHeight,
+      ),
+      child: SingleChildScrollView(
+        dragStartBehavior: DragStartBehavior.down,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,

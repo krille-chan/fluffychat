@@ -24,7 +24,8 @@ class DottedBorderPainter extends CustomPainter {
 
     final path = Path()
       ..addRRect(
-          borderRadius.toRRect(Rect.fromLTWH(0, 0, size.width, size.height)));
+        borderRadius.toRRect(Rect.fromLTWH(0, 0, size.width, size.height)),
+      );
 
     final dashPath = Path();
     final pathMetrics = path.computeMetrics();

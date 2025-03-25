@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+
 import 'package:fluffychat/pangea/learning_settings/pages/settings_learning.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 
 class ResetInstructionsListTile extends StatelessWidget {
   const ResetInstructionsListTile({
@@ -15,37 +18,21 @@ class ResetInstructionsListTile extends StatelessWidget {
     //TODO: add to L10n
     return ListTile(
       leading: const Icon(Icons.lightbulb),
-      title: const Text(
-        "Reset instruction tooltips",
+      title: Text(
+        L10n.of(context).resetInstructionTooltipsTitle,
       ),
-      subtitle: const Text(
-        "Click to show instruction tooltips like for a brand new user.",
+      subtitle: Text(
+        L10n.of(context).resetInstructionTooltipsDesc,
       ),
-      onTap: () => showAdaptiveDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: const Text(
-              "Reset instruction tooltips?",
-            ),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  controller.resetInstructionTooltips();
-                  Navigator.of(context).pop();
-                },
-                child: const Text("Reset"),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Text("Cancel"),
-              ),
-            ],
-          );
-        },
-      ),
+      onTap: () async {
+        final resp = await showOkCancelAlertDialog(
+          context: context,
+          title: L10n.of(context).areYouSure,
+        );
+        if (resp == OkCancelResult.ok) {
+          controller.resetInstructionTooltips();
+        }
+      },
     );
   }
 }
