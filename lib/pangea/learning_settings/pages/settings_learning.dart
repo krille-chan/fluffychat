@@ -124,6 +124,7 @@ class SettingsLearningController extends State<SettingsLearning> {
   }
 
   Future<void> resetInstructionTooltips() async {
+    _profile.instructionSettings = InstructionSettings();
     await showFutureLoadingDialog(
       context: context,
       future: () async => pangeaController.userController.updateProfile(

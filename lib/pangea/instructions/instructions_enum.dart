@@ -138,9 +138,14 @@ extension InstructionsEnumExtension on InstructionsEnum {
       MatrixState.pangeaController.userController.profile.instructionSettings
           .getStatus(this);
 
-  void setToggledOff(bool value) =>
-      MatrixState.pangeaController.userController.updateProfile((profile) {
-        profile.instructionSettings.setStatus(this, value);
-        return profile;
-      });
+  void setToggledOff(bool value) {
+    final userController = MatrixState.pangeaController.userController;
+    final instructionSettings = userController.profile.instructionSettings;
+    if (instructionSettings.getStatus(this) == value) return;
+
+    userController.updateProfile((profile) {
+      profile.instructionSettings.setStatus(this, value);
+      return profile;
+    });
+  }
 }
