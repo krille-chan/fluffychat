@@ -1,6 +1,9 @@
 import 'dart:developer';
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/app_emojis.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
@@ -10,8 +13,6 @@ import 'package:fluffychat/pangea/lemmas/user_set_lemma_info.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/practice_activity/word_zoom_activity_button.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 
 class LemmaEmojiRow extends StatefulWidget {
   final ConstructIdentifier cId;

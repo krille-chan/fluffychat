@@ -1,7 +1,7 @@
-import 'package:fluffychat/pangea/bot/utils/bot_style.dart';
-import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 
+import 'package:fluffychat/pangea/bot/utils/bot_style.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import '../../../bot/widgets/bot_face_svg.dart';
 
 class CardHeader extends StatelessWidget {

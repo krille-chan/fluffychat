@@ -1,7 +1,9 @@
+import 'package:flutter/material.dart';
+
+import 'package:get_storage/get_storage.dart';
+
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/practice_activities/message_analytics_entry.dart';
-import 'package:flutter/material.dart';
-import 'package:get_storage/get_storage.dart';
 
 class MessageAnalyticsController {
   static final GetStorage _storage = GetStorage('message_analytics_cache');
