@@ -10,7 +10,7 @@ import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/constructs_model.dart';
 import 'package:fluffychat/pangea/analytics_misc/put_analytics_controller.dart';
-import 'package:fluffychat/pangea/choreographer/widgets/choice_array.dart';
+import 'package:fluffychat/pangea/choreographer/widgets/choice_animation.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
@@ -204,15 +204,19 @@ class MessageMorphInputBarContentState
             runSpacing: 8.0, // Adjust spacing between rows
             children: choices!
                 .mapIndexed(
-                  (index, choice) => MessageMorphChoiceItem(
-                    cId: ConstructIdentifier(
-                      lemma: choice,
-                      type: ConstructTypeEnum.morph,
-                      category: morph!.name,
-                    ),
-                    onTap: () => onActivityChoice(choice),
+                  (index, choice) => ChoiceAnimationWidget(
                     isSelected: selectedTag == choice,
-                    isGold: selectedTag != null ? isCorrect(choice) : null,
+                    isCorrect: isCorrect(choice),
+                    child: MessageMorphChoiceItem(
+                      cId: ConstructIdentifier(
+                        lemma: choice,
+                        type: ConstructTypeEnum.morph,
+                        category: morph!.name,
+                      ),
+                      onTap: () => onActivityChoice(choice),
+                      isSelected: selectedTag == choice,
+                      isGold: selectedTag != null ? isCorrect(choice) : null,
+                    ),
                   ),
                 )
                 .toList(),

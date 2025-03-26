@@ -78,11 +78,11 @@ class MessageMatchActivityItemState extends State<MessageMatchActivityItem> {
     }
   }
 
-  MatchFeedback? get wasChosen => widget.overlayController.feedbackStates
+  MatchFeedback? get choiceFeedback => widget.overlayController.feedbackStates
       .firstWhereOrNull((e) => e.form == widget.constructForm);
 
   Color color(BuildContext context) {
-    final feedback = wasChosen;
+    final feedback = choiceFeedback;
     if (feedback != null) {
       return feedback.isCorrect ? AppConfig.success : AppConfig.warning;
     }

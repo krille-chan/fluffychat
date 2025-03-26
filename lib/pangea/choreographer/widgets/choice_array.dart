@@ -1,5 +1,4 @@
 import 'dart:developer';
-import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -8,14 +7,13 @@ import 'package:collection/collection.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pangea/choreographer/widgets/choice_animation.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../bot/utils/bot_style.dart';
 import 'it_shimmer.dart';
 
 typedef ChoiceCallback = void Function(String value, int index);
-
-const int choiceArrayAnimationDuration = 300;
 
 enum OverflowMode {
   wrap,
@@ -218,13 +216,11 @@ class ChoiceItem extends StatelessWidget {
               .layerLinkAndKey("${entry.value.text}$id")
               .link,
           child: ChoiceAnimationWidget(
+            isSelected: isSelected,
+            isCorrect: entry.value.isGold,
             key: MatrixState.pAnyState
                 .layerLinkAndKey("${entry.value.text}$id")
                 .key,
-            selected: entry.value.color != null,
-            isGold: entry.value.isGold,
-            enableInteraction: enableInteraction,
-            disableInteraction: disableInteraction,
             child: Container(
               margin: const EdgeInsets.all(2),
               padding: EdgeInsets.zero,
@@ -284,132 +280,5 @@ class ChoiceItem extends StatelessWidget {
       debugger(when: kDebugMode);
       return Container();
     }
-  }
-}
-
-class ChoiceAnimationWidget extends StatefulWidget {
-  final Widget child;
-  final bool selected;
-  final bool isGold;
-  final VoidCallback enableInteraction;
-  final VoidCallback disableInteraction;
-
-  const ChoiceAnimationWidget({
-    super.key,
-    required this.child,
-    required this.selected,
-    required this.enableInteraction,
-    required this.disableInteraction,
-    this.isGold = false,
-  });
-
-  @override
-  ChoiceAnimationWidgetState createState() => ChoiceAnimationWidgetState();
-}
-
-enum AnimationState { ready, forward, reverse, finished }
-
-class ChoiceAnimationWidgetState extends State<ChoiceAnimationWidget>
-    with SingleTickerProviderStateMixin {
-  late final AnimationController _controller;
-  late final Animation<double> _animation;
-  AnimationState animationState = AnimationState.ready;
-
-  @override
-  void initState() {
-    super.initState();
-
-    _controller = AnimationController(
-      duration: const Duration(milliseconds: choiceArrayAnimationDuration),
-      vsync: this,
-    );
-
-    _animation = widget.isGold
-        ? Tween<double>(begin: 1.0, end: 1.2).animate(_controller)
-        : TweenSequence<double>([
-            TweenSequenceItem<double>(
-              tween: Tween<double>(begin: 0, end: -8 * pi / 180),
-              weight: 1.0,
-            ),
-            TweenSequenceItem<double>(
-              tween: Tween<double>(begin: -8 * pi / 180, end: 16 * pi / 180),
-              weight: 2.0,
-            ),
-            TweenSequenceItem<double>(
-              tween: Tween<double>(begin: 16 * pi / 180, end: 0),
-              weight: 1.0,
-            ),
-          ]).animate(_controller);
-
-    widget.enableInteraction();
-
-    if (widget.selected && animationState == AnimationState.ready) {
-      widget.disableInteraction();
-      _controller.forward();
-      setState(() {
-        animationState = AnimationState.forward;
-      });
-    }
-    _controller.addStatusListener((status) {
-      if (status == AnimationStatus.completed &&
-          animationState == AnimationState.forward) {
-        _controller.reverse();
-        setState(() {
-          animationState = AnimationState.reverse;
-        });
-      }
-      if (status == AnimationStatus.dismissed &&
-          animationState == AnimationState.reverse) {
-        widget.enableInteraction();
-        setState(() {
-          animationState = AnimationState.finished;
-        });
-      }
-    });
-  }
-
-  @override
-  void didUpdateWidget(ChoiceAnimationWidget oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (widget.selected && animationState == AnimationState.ready) {
-      widget.disableInteraction();
-      _controller.forward();
-      setState(() {
-        animationState = AnimationState.forward;
-      });
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return widget.isGold
-        ? AnimatedBuilder(
-            key: UniqueKey(),
-            animation: _animation,
-            builder: (context, child) {
-              return Transform.scale(
-                scale: _animation.value,
-                child: child,
-              );
-            },
-            child: widget.child,
-          )
-        : AnimatedBuilder(
-            key: UniqueKey(),
-            animation: _animation,
-            builder: (context, child) {
-              return Transform.rotate(
-                angle: _animation.value,
-                child: child,
-              );
-            },
-            child: widget.child,
-          );
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
   }
 }

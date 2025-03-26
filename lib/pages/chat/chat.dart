@@ -404,19 +404,21 @@ class ChatController extends State<ChatPageWithRoom>
     );
 
     _analyticsSubscription =
-        pangeaController.getAnalytics.analyticsStream.stream.listen((u) {
-      if (u.targetID == null) return;
+        pangeaController.getAnalytics.analyticsStream.stream.listen((update) {
+      if (update.targetID == null) return;
       OverlayUtil.showOverlay(
-        overlayKey: u.targetID,
+        overlayKey: update.targetID,
         followerAnchor: Alignment.bottomCenter,
         targetAnchor: Alignment.bottomCenter,
         context: context,
         child: PointsGainedAnimation(
-          points: u.points,
-          targetID: u.targetID!,
+          points: update.points,
+          targetID: update.targetID!,
         ),
-        transformTargetId: u.targetID ?? "",
+        transformTargetId: update.targetID ?? "",
         closePrevOverlay: false,
+        backDropToDismiss: false,
+        ignorePointer: true,
       );
     });
     // Pangea#
@@ -659,7 +661,6 @@ class ChatController extends State<ChatPageWithRoom>
     //#Pangea
     choreographer.stateStream.close();
     choreographer.dispose();
-    clearSelectedEvents();
     MatrixState.pAnyState.closeOverlay();
     showToolbarStream.close();
     stopAudioStream.close();

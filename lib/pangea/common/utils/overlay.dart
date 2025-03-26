@@ -32,6 +32,7 @@ class OverlayUtil {
     String? overlayKey,
     Alignment? targetAnchor,
     Alignment? followerAnchor,
+    bool ignorePointer = false,
   }) {
     try {
       if (closePrevOverlay) {
@@ -42,34 +43,37 @@ class OverlayUtil {
         builder: (context) => AnimatedContainer(
           duration: FluffyThemes.animationDuration,
           curve: FluffyThemes.animationCurve,
-          child: Stack(
-            children: [
-              if (backDropToDismiss)
-                TransparentBackdrop(
-                  backgroundColor: backgroundColor,
-                  onDismiss: onDismiss,
-                  blurBackground: blurBackground,
+          child: IgnorePointer(
+            ignoring: ignorePointer,
+            child: Stack(
+              children: [
+                if (backDropToDismiss)
+                  TransparentBackdrop(
+                    backgroundColor: backgroundColor,
+                    onDismiss: onDismiss,
+                    blurBackground: blurBackground,
+                  ),
+                Positioned(
+                  top: (position == OverlayPositionEnum.centered) ? 0 : null,
+                  right: (position == OverlayPositionEnum.centered) ? 0 : null,
+                  left: (position == OverlayPositionEnum.centered) ? 0 : null,
+                  bottom: (position == OverlayPositionEnum.centered) ? 0 : null,
+                  child: (position != OverlayPositionEnum.transform)
+                      ? child
+                      : CompositedTransformFollower(
+                          targetAnchor: targetAnchor ?? Alignment.topCenter,
+                          followerAnchor:
+                              followerAnchor ?? Alignment.bottomCenter,
+                          link: MatrixState.pAnyState
+                              .layerLinkAndKey(transformTargetId)
+                              .link,
+                          showWhenUnlinked: false,
+                          offset: offset ?? Offset.zero,
+                          child: child,
+                        ),
                 ),
-              Positioned(
-                top: (position == OverlayPositionEnum.centered) ? 0 : null,
-                right: (position == OverlayPositionEnum.centered) ? 0 : null,
-                left: (position == OverlayPositionEnum.centered) ? 0 : null,
-                bottom: (position == OverlayPositionEnum.centered) ? 0 : null,
-                child: (position != OverlayPositionEnum.transform)
-                    ? child
-                    : CompositedTransformFollower(
-                        targetAnchor: targetAnchor ?? Alignment.topCenter,
-                        followerAnchor:
-                            followerAnchor ?? Alignment.bottomCenter,
-                        link: MatrixState.pAnyState
-                            .layerLinkAndKey(transformTargetId)
-                            .link,
-                        showWhenUnlinked: false,
-                        offset: offset ?? Offset.zero,
-                        child: child,
-                      ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       );

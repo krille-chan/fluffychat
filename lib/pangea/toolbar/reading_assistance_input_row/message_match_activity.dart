@@ -3,6 +3,9 @@ import 'dart:developer';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import 'package:collection/collection.dart';
+
+import 'package:fluffychat/pangea/choreographer/widgets/choice_animation.dart';
 import 'package:fluffychat/pangea/constructs/construct_form.dart';
 import 'package:fluffychat/pangea/message_token_text/message_token_button.dart';
 import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
@@ -98,23 +101,32 @@ class MessageMatchActivity extends StatelessWidget {
               .activities(activityType!)
               .expand(
             (TargetTokensAndActivityType a) {
-              return choices(a).map(
-                (choice) => MessageMatchActivityItem(
-                  constructForm: ConstructForm(
-                    choice,
-                    a.tokens.first.vocabConstructID,
+              return choices(a).map((choice) {
+                final form = ConstructForm(
+                  choice,
+                  a.tokens.first.vocabConstructID,
+                );
+                return ChoiceAnimationWidget(
+                  isSelected: overlayController.feedbackStates
+                      .any((e) => e.form == form),
+                  isCorrect: overlayController.feedbackStates
+                          .firstWhereOrNull((e) => e.form == form)
+                          ?.isCorrect ??
+                      false,
+                  child: MessageMatchActivityItem(
+                    constructForm: form,
+                    content: choiceDisplayContent(a, choice),
+                    audioContent:
+                        overlayController.toolbarMode == MessageMode.listening
+                            ? a.tokens.first.text.content
+                            : null,
+                    overlayController: overlayController,
+                    fixedSize: a.activityType == ActivityTypeEnum.wordMeaning
+                        ? null
+                        : 60,
                   ),
-                  content: choiceDisplayContent(a, choice),
-                  audioContent:
-                      overlayController.toolbarMode == MessageMode.listening
-                          ? a.tokens.first.text.content
-                          : null,
-                  overlayController: overlayController,
-                  fixedSize: a.activityType == ActivityTypeEnum.wordMeaning
-                      ? null
-                      : 60,
-                ),
-              );
+                );
+              });
             },
           ).toList(),
         ),
