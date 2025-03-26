@@ -167,6 +167,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     } finally {
       _initializeSelectedToken();
       _setInitialToolbarMode();
+      messageLemmaInfos ??= {};
       initialized = true;
       if (mounted) setState(() {});
     }
@@ -290,7 +291,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
         pangeaMessageEvent: pangeaMessageEvent!,
         overlayController: this,
       );
-      if (context.mounted) {
+      if (mounted) {
         OverlayUtil.showPositionedCard(
           context: context,
           cardToShow: entry,
@@ -363,7 +364,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
               form: token.text.content,
             ),
           ],
-          origin: AnalyticsUpdateOrigin.wordZoom,
+          targetID: token.text.uniqueKey,
         ),
       );
     }

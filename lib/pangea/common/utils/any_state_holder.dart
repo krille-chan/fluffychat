@@ -51,7 +51,6 @@ class PangeaAnyState {
   void openOverlay(
     OverlayEntry entry,
     BuildContext context, {
-    bool closePrevOverlay = true,
     String? overlayKey,
   }) {
     if (overlayKey != null &&
@@ -59,9 +58,6 @@ class PangeaAnyState {
       return;
     }
 
-    if (closePrevOverlay) {
-      closeOverlay();
-    }
     entries.add(OverlayListEntry(entry, key: overlayKey));
     Overlay.of(context).insert(entry);
   }

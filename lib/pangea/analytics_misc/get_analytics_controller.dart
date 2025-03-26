@@ -109,7 +109,7 @@ class GetAnalyticsController extends BaseController {
         data: {},
       );
     } finally {
-      _updateAnalyticsStream();
+      _updateAnalyticsStream(points: 0);
       if (!initCompleter.isCompleted) initCompleter.complete();
       _initializing = false;
     }
@@ -154,7 +154,13 @@ class GetAnalyticsController extends BaseController {
     if (newUnlockedMorphs.isNotEmpty) {
       _onUnlockMorphLemmas(newUnlockedMorphs);
     }
-    _updateAnalyticsStream(origin: analyticsUpdate.origin);
+    _updateAnalyticsStream(
+      points: analyticsUpdate.newConstructs.fold<int>(
+        0,
+        (previousValue, element) => previousValue + element.pointValue,
+      ),
+      targetID: analyticsUpdate.targetID,
+    );
     // Update public profile each time that new analytics are added.
     // If the level hasn't changed, this will not send an update to the server.
     // Do this on all updates (not just on level updates) to account for cases
@@ -165,9 +171,15 @@ class GetAnalyticsController extends BaseController {
   }
 
   void _updateAnalyticsStream({
-    AnalyticsUpdateOrigin? origin,
+    required int points,
+    String? targetID,
   }) =>
-      analyticsStream.add(AnalyticsStreamUpdate(origin: origin));
+      analyticsStream.add(
+        AnalyticsStreamUpdate(
+          points: points,
+          targetID: targetID,
+        ),
+      );
 
   Future<void> _onLevelUp(final int lowerLevel, final int upperLevel) async {
     final result = await _generateLevelUpAnalyticsAndSaveToStateEvent(
@@ -484,9 +496,11 @@ class AnalyticsCacheEntry {
 }
 
 class AnalyticsStreamUpdate {
-  final AnalyticsUpdateOrigin? origin;
+  final int points;
+  final String? targetID;
 
   AnalyticsStreamUpdate({
-    this.origin,
+    required this.points,
+    this.targetID,
   });
 }

@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
-import 'package:fluffychat/pangea/analytics_misc/put_analytics_controller.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
@@ -53,7 +52,6 @@ class ReadingAssistanceInputBar extends StatelessWidget {
       ),
       overlayController: overlayController,
       morphFeature: morphFeature,
-      location: AnalyticsUpdateOrigin.inputBar,
     );
   }
 

@@ -5,7 +5,6 @@ import 'package:matrix/matrix_api_lite/model/message_types.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
-import 'package:fluffychat/pangea/analytics_misc/put_analytics_controller.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
@@ -58,7 +57,6 @@ class ReadingAssistanceContentState extends State<ReadingAssistanceContent> {
         targetTokensAndActivityType: widget
             .overlayController.messageAnalyticsEntry!
             .nextActivity(ActivityTypeEnum.hiddenWordListening)!,
-        location: AnalyticsUpdateOrigin.practiceActivity,
       );
     }
 
@@ -71,7 +69,6 @@ class ReadingAssistanceContentState extends State<ReadingAssistanceContent> {
         targetTokensAndActivityType: widget
             .overlayController.messageAnalyticsEntry!
             .nextActivity(ActivityTypeEnum.messageMeaning)!,
-        location: AnalyticsUpdateOrigin.practiceActivity,
       );
     }
 

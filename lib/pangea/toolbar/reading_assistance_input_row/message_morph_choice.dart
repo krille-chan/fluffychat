@@ -143,7 +143,7 @@ class MessageMorphInputBarContentState
             form: token!.text.content,
           ),
         ],
-        origin: AnalyticsUpdateOrigin.wordZoom,
+        targetID: token!.text.uniqueKey,
       ),
     );
 
@@ -183,14 +183,17 @@ class MessageMorphInputBarContentState
                 size: const Size(30, 30),
                 showTooltip: false,
               ),
-              Text(
-                L10n.of(context).whatIsTheMorphTag(
-                  morph!.getDisplayCopy(context),
-                  token!.text.content,
+              Flexible(
+                child: Text(
+                  L10n.of(context).whatIsTheMorphTag(
+                    morph!.getDisplayCopy(context),
+                    token!.text.content,
+                  ),
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                  textAlign: TextAlign.center,
                 ),
-                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
               ),
             ],
           ),

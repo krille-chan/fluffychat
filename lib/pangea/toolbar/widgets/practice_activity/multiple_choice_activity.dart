@@ -115,7 +115,6 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
           widget.practiceCardController.currentActivity!,
           widget.practiceCardController.metadata,
         ),
-        origin: AnalyticsUpdateOrigin.practiceActivity,
       ),
     );
 
@@ -226,7 +225,6 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
           ),
         ChoicesArray(
           isLoading: false,
-          uniqueKeyForLayerLink: (index) => "multiple_choice_$index",
           originalSpan: "placeholder",
           onPressed: updateChoice,
           selectedChoiceIndex: selectedChoiceIndex,

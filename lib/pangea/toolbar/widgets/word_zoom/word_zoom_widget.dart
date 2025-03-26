@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/analytics_details_popup/analytics_details_popup.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
-import 'package:fluffychat/pangea/analytics_misc/gain_points_animation.dart';
-import 'package:fluffychat/pangea/analytics_misc/put_analytics_controller.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/learning_settings/constants/language_constants.dart';
@@ -54,136 +52,126 @@ class WordZoomWidget extends StatelessWidget {
         maxHeight: AppConfig.toolbarMaxHeight,
         maxWidth: AppConfig.toolbarMinWidth,
       ),
-      child: Stack(
-        alignment: Alignment.topCenter,
-        children: [
-          const Positioned(
-            child: PointsGainedAnimation(
-              origin: AnalyticsUpdateOrigin.wordZoom,
+      child: SingleChildScrollView(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              constraints: const BoxConstraints(
+                minHeight: 40,
+              ),
+              color: Theme.of(context).colorScheme.surface,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  //@ggurdin - might need to play with size to properly center
+                  IconButton(
+                    onPressed: () =>
+                        overlayController.onClickOverlayMessageToken(token),
+                    icon: const Icon(Icons.close),
+                  ),
+                  LemmaWidget(
+                    token: _selectedToken,
+                    pangeaMessageEvent: messageEvent,
+                    // onEdit: () => _setHideCenterContent(true),
+                    onEdit: () {
+                      debugPrint("what are we doing edits with?");
+                    },
+                    onEditDone: () {
+                      debugPrint("what are we doing edits with?");
+                      onEditDone();
+                    },
+                    tts: tts,
+                    overlayController: overlayController,
+                  ),
+                  ConstructXpWidget(
+                    id: token.vocabConstructID,
+                    onTap: () => showDialog<AnalyticsPopupWrapper>(
+                      context: context,
+                      builder: (context) => AnalyticsPopupWrapper(
+                        constructZoom: token.vocabConstructID,
+                        view: ConstructTypeEnum.vocab,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-          SingleChildScrollView(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              mainAxisSize: MainAxisSize.min,
+            const SizedBox(
+              height: 8.0,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
                   constraints: const BoxConstraints(
                     minHeight: 40,
                   ),
-                  color: Theme.of(context).colorScheme.surface,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      //@ggurdin - might need to play with size to properly center
-                      IconButton(
-                        onPressed: () =>
-                            overlayController.onClickOverlayMessageToken(token),
-                        icon: const Icon(Icons.close),
-                      ),
-                      LemmaWidget(
-                        token: _selectedToken,
-                        pangeaMessageEvent: messageEvent,
-                        // onEdit: () => _setHideCenterContent(true),
-                        onEdit: () {
-                          debugPrint("what are we doing edits with?");
-                        },
-                        onEditDone: () {
-                          debugPrint("what are we doing edits with?");
-                          onEditDone();
-                        },
-                        tts: tts,
-                        overlayController: overlayController,
-                      ),
-                      ConstructXpWidget(
-                        id: token.vocabConstructID,
-                        onTap: () => showDialog<AnalyticsPopupWrapper>(
-                          context: context,
-                          builder: (context) => AnalyticsPopupWrapper(
-                            constructZoom: token.vocabConstructID,
-                            view: ConstructTypeEnum.vocab,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(
-                  height: 8.0,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      constraints: const BoxConstraints(
-                        minHeight: 40,
-                      ),
-                      alignment: Alignment.center,
-                      child: LemmaEmojiRow(
-                        cId: _selectedToken.vocabConstructID,
-                        onTapOverride: hasEmojiActivity
-                            ? () => overlayController.updateToolbarMode(
-                                  MessageMode.wordEmoji,
-                                )
-                            : null,
-                        isSelected: overlayController.toolbarMode ==
-                            MessageMode.wordEmoji,
-                        emojiSetCallback: () =>
-                            overlayController.setState(() {}),
-                        shouldShowEmojis: !hasEmojiActivity,
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 8.0,
-                ),
-                Container(
-                  constraints: const BoxConstraints(
-                    minHeight: 40,
-                  ),
                   alignment: Alignment.center,
-                  child: Wrap(
-                    alignment: WrapAlignment.center,
-                    runAlignment: WrapAlignment.center,
-                    crossAxisAlignment: WrapCrossAlignment.center,
-                    spacing: 8,
-                    children: [
-                      LemmaMeaningWidget(
-                        constructUse: token.vocabConstructID.constructUses,
-                        langCode: MatrixState.pangeaController
-                                .languageController.userL2?.langCodeShort ??
-                            LanguageKeys.defaultLanguage,
-                        token: overlayController.selectedToken!,
-                        controller: overlayController,
-                        style: Theme.of(context).textTheme.bodyLarge,
-                      ),
-                    ],
+                  child: LemmaEmojiRow(
+                    cId: _selectedToken.vocabConstructID,
+                    onTapOverride: hasEmojiActivity
+                        ? () => overlayController.updateToolbarMode(
+                              MessageMode.wordEmoji,
+                            )
+                        : null,
+                    isSelected:
+                        overlayController.toolbarMode == MessageMode.wordEmoji,
+                    emojiSetCallback: () => overlayController.setState(() {}),
+                    shouldShowEmojis: !hasEmojiActivity,
                   ),
                 ),
-                const SizedBox(
-                  height: 8.0,
-                ),
-                Wrap(
-                  alignment: WrapAlignment.center,
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  children: [
-                    if (!_selectedToken.doesLemmaTextMatchTokenText) ...[
-                      Text(
-                        _selectedToken.text.content,
-                        style: Theme.of(context).textTheme.bodyLarge,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                      WordAudioButton(
-                        text: _selectedToken.text.content,
-                        isSelected: MessageMode.listening ==
-                            overlayController.toolbarMode,
-                        baseOpacity: 0.4,
-                        callbackOverride: overlayController
-                                    .messageAnalyticsEntry
-                                    ?.hasActivity(
+              ],
+            ),
+            const SizedBox(
+              height: 8.0,
+            ),
+            Container(
+              constraints: const BoxConstraints(
+                minHeight: 40,
+              ),
+              alignment: Alignment.center,
+              child: Wrap(
+                alignment: WrapAlignment.center,
+                runAlignment: WrapAlignment.center,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                spacing: 8,
+                children: [
+                  LemmaMeaningWidget(
+                    constructUse: token.vocabConstructID.constructUses,
+                    langCode: MatrixState.pangeaController.languageController
+                            .userL2?.langCodeShort ??
+                        LanguageKeys.defaultLanguage,
+                    token: overlayController.selectedToken!,
+                    controller: overlayController,
+                    style: Theme.of(context).textTheme.bodyLarge,
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 8.0,
+            ),
+            Wrap(
+              alignment: WrapAlignment.center,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                if (!_selectedToken.doesLemmaTextMatchTokenText) ...[
+                  Text(
+                    _selectedToken.text.content,
+                    style: Theme.of(context).textTheme.bodyLarge,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  WordAudioButton(
+                    text: _selectedToken.text.content,
+                    isSelected:
+                        MessageMode.listening == overlayController.toolbarMode,
+                    baseOpacity: 0.4,
+                    callbackOverride:
+                        overlayController.messageAnalyticsEntry?.hasActivity(
                                   MessageMode.listening.associatedActivityType!,
                                   _selectedToken,
                                 ) ==
@@ -191,33 +179,30 @@ class WordZoomWidget extends StatelessWidget {
                             ? () => overlayController
                                 .updateToolbarMode(MessageMode.listening)
                             : null,
-                      ),
-                    ],
-                    ..._selectedToken
-                        .morphsBasicallyEligibleForPracticeByPriority
-                        .map(
-                      (cId) => MorphologicalListItem(
-                        morphFeature: MorphFeaturesEnumExtension.fromString(
-                          cId.category,
-                        ),
-                        token: _selectedToken,
-                        overlayController: overlayController,
-                      ),
+                  ),
+                ],
+                ..._selectedToken.morphsBasicallyEligibleForPracticeByPriority
+                    .map(
+                  (cId) => MorphologicalListItem(
+                    morphFeature: MorphFeaturesEnumExtension.fromString(
+                      cId.category,
                     ),
-                  ],
+                    token: _selectedToken,
+                    overlayController: overlayController,
+                  ),
                 ),
-                // if (_selectedMorphFeature != null)
-                //   MorphologicalCenterWidget(
-                //     token: token,
-                //     morphFeature: _selectedMorphFeature!,
-                //     pangeaMessageEvent: messageEvent,
-                //     overlayController: overlayController,
-                //     onEditDone: onEditDone,
-                //   ),
               ],
             ),
-          ),
-        ],
+            // if (_selectedMorphFeature != null)
+            //   MorphologicalCenterWidget(
+            //     token: token,
+            //     morphFeature: _selectedMorphFeature!,
+            //     pangeaMessageEvent: messageEvent,
+            //     overlayController: overlayController,
+            //     onEditDone: onEditDone,
+            //   ),
+          ],
+        ),
       ),
     );
   }

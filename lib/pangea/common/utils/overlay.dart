@@ -77,7 +77,6 @@ class OverlayUtil {
       MatrixState.pAnyState.openOverlay(
         entry,
         context,
-        closePrevOverlay: closePrevOverlay,
         overlayKey: overlayKey,
       );
     } catch (err, stack) {

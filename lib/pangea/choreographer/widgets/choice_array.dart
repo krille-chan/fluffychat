@@ -9,6 +9,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import '../../bot/utils/bot_style.dart';
 import 'it_shimmer.dart';
 
@@ -29,7 +30,6 @@ class ChoicesArray extends StatefulWidget {
   final ChoiceCallback? onLongPress;
   final int? selectedChoiceIndex;
   final String originalSpan;
-  final String Function(int) uniqueKeyForLayerLink;
 
   /// If null then should not be used
   /// We don't want tts in the case of L1 options
@@ -60,7 +60,6 @@ class ChoicesArray extends StatefulWidget {
     required this.choices,
     required this.onPressed,
     required this.originalSpan,
-    required this.uniqueKeyForLayerLink,
     required this.selectedChoiceIndex,
     required this.tts,
     this.enableAudio = true,
@@ -214,60 +213,68 @@ class ChoiceItem extends StatelessWidget {
         waitDuration: onLongPress != null
             ? const Duration(milliseconds: 500)
             : const Duration(days: 1),
-        child: ChoiceAnimationWidget(
-          key: ValueKey("${entry.value.text}$id"),
-          selected: entry.value.color != null,
-          isGold: entry.value.isGold,
-          enableInteraction: enableInteraction,
-          disableInteraction: disableInteraction,
-          child: Container(
-            margin: const EdgeInsets.all(2),
-            padding: EdgeInsets.zero,
-            decoration: BoxDecoration(
-              borderRadius: const BorderRadius.all(
-                Radius.circular(AppConfig.borderRadius),
+        child: CompositedTransformTarget(
+          link: MatrixState.pAnyState
+              .layerLinkAndKey("${entry.value.text}$id")
+              .link,
+          child: ChoiceAnimationWidget(
+            key: MatrixState.pAnyState
+                .layerLinkAndKey("${entry.value.text}$id")
+                .key,
+            selected: entry.value.color != null,
+            isGold: entry.value.isGold,
+            enableInteraction: enableInteraction,
+            disableInteraction: disableInteraction,
+            child: Container(
+              margin: const EdgeInsets.all(2),
+              padding: EdgeInsets.zero,
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(AppConfig.borderRadius),
+                ),
+                border: Border.all(
+                  color: isSelected
+                      ? entry.value.color ?? theme.colorScheme.primary
+                      : Colors.transparent,
+                  style: BorderStyle.solid,
+                  width: 2.0,
+                ),
               ),
-              border: Border.all(
-                color: isSelected
-                    ? entry.value.color ?? theme.colorScheme.primary
-                    : Colors.transparent,
-                style: BorderStyle.solid,
-                width: 2.0,
-              ),
-            ),
-            child: TextButton(
-              style: ButtonStyle(
-                padding: WidgetStateProperty.all(
-                  const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                ),
-                //if index is selected, then give the background a slight primary color
-                backgroundColor: WidgetStateProperty.all<Color>(
-                  entry.value.color?.withAlpha(50) ??
-                      theme.colorScheme.primary.withAlpha(10),
-                ),
-                textStyle: WidgetStateProperty.all(
-                  BotStyle.text(context),
-                ),
-                shape: WidgetStateProperty.all(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+              child: TextButton(
+                style: ButtonStyle(
+                  padding: WidgetStateProperty.all(
+                    const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  ),
+                  //if index is selected, then give the background a slight primary color
+                  backgroundColor: WidgetStateProperty.all<Color>(
+                    entry.value.color?.withAlpha(50) ??
+                        theme.colorScheme.primary.withAlpha(10),
+                  ),
+                  textStyle: WidgetStateProperty.all(
+                    BotStyle.text(context),
+                  ),
+                  shape: WidgetStateProperty.all(
+                    RoundedRectangleBorder(
+                      borderRadius:
+                          BorderRadius.circular(AppConfig.borderRadius),
+                    ),
                   ),
                 ),
-              ),
-              onLongPress: onLongPress != null && !interactionDisabled
-                  ? () => onLongPress!(entry.value.text, entry.key)
-                  : null,
-              onPressed: interactionDisabled
-                  ? null
-                  : () => onPressed(entry.value.text, entry.key),
-              child: Text(
-                getDisplayCopy != null
-                    ? getDisplayCopy!(entry.value.text)
-                    : entry.value.text,
-                style: BotStyle.text(context).copyWith(
-                  fontSize: fontSize,
+                onLongPress: onLongPress != null && !interactionDisabled
+                    ? () => onLongPress!(entry.value.text, entry.key)
+                    : null,
+                onPressed: interactionDisabled
+                    ? null
+                    : () => onPressed(entry.value.text, entry.key),
+                child: Text(
+                  getDisplayCopy != null
+                      ? getDisplayCopy!(entry.value.text)
+                      : entry.value.text,
+                  style: BotStyle.text(context).copyWith(
+                    fontSize: fontSize,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,
               ),
             ),
           ),

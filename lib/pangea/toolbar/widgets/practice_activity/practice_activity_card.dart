@@ -8,8 +8,6 @@ import 'package:collection/collection.dart';
 
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/constructs_model.dart';
-import 'package:fluffychat/pangea/analytics_misc/gain_points_animation.dart';
-import 'package:fluffychat/pangea/analytics_misc/put_analytics_controller.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/igc/card_error_widget.dart';
 import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
@@ -36,7 +34,6 @@ class PracticeActivityCard extends StatefulWidget {
   final TargetTokensAndActivityType targetTokensAndActivityType;
   final MessageOverlayController overlayController;
   final WordZoomWidget? wordDetailsController;
-  final AnalyticsUpdateOrigin location;
 
   final String? morphFeature;
 
@@ -47,7 +44,6 @@ class PracticeActivityCard extends StatefulWidget {
     required this.overlayController,
     this.morphFeature,
     this.wordDetailsController,
-    required this.location,
   });
 
   @override
@@ -341,12 +337,6 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
     return Stack(
       alignment: Alignment.center,
       children: [
-        // Main content
-        Positioned(
-          child: PointsGainedAnimation(
-            origin: widget.location,
-          ),
-        ),
         if (activityWidget != null) activityWidget!,
         // Conditionally show the darkening and progress indicator based on the loading state
         if (!savoringTheJoy && fetchingActivity) ...[

@@ -142,7 +142,10 @@ class MessageMatchActivityItemState extends State<MessageMatchActivityItem> {
   Widget build(BuildContext context) {
     return LongPressDraggable<ConstructForm>(
       data: widget.constructForm,
-      feedback: content(context),
+      feedback: Material(
+        type: MaterialType.transparency,
+        child: content(context),
+      ),
       delay: const Duration(milliseconds: 100),
       onDragStarted: () {
         widget.overlayController.onChoiceSelect(widget.constructForm, true);

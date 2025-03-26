@@ -69,10 +69,13 @@ class MessageMatchActivity extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (overlayController.messageAnalyticsEntry == null ||
-        overlayController.messageLemmaInfos == null ||
         activityType == null) {
       debugger(when: kDebugMode);
       return const SizedBox();
+    }
+
+    if (overlayController.messageLemmaInfos == null) {
+      return const CircularProgressIndicator.adaptive();
     }
 
     return Column(

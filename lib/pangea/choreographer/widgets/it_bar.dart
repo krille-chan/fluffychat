@@ -5,8 +5,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:fluffychat/pangea/analytics_misc/construct_use_type_enum.dart';
-import 'package:fluffychat/pangea/analytics_misc/gain_points_animation.dart';
-import 'package:fluffychat/pangea/analytics_misc/put_analytics_controller.dart';
 import 'package:fluffychat/pangea/choreographer/constants/choreo_constants.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/it_controller.dart';
@@ -111,142 +109,130 @@ class ITBarState extends State<ITBar> with SingleTickerProviderStateMixin {
                 : Colors.black,
           ),
           padding: const EdgeInsets.fromLTRB(0, 3, 3, 3),
-          child: Stack(
-            alignment: Alignment.topCenter,
-            children: [
-              SingleChildScrollView(
-                child: Column(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        if (itController.isEditingSourceText)
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                left: 20,
-                                right: 10,
-                                top: 10,
-                              ),
-                              child: TextField(
-                                controller: TextEditingController(
-                                  text: itController.sourceText,
-                                ),
-                                autofocus: true,
-                                enableSuggestions: false,
-                                maxLines: null,
-                                textInputAction: TextInputAction.send,
-                                onSubmitted:
-                                    itController.onEditSourceTextSubmit,
-                                obscureText: false,
-                                decoration: const InputDecoration(
-                                  border: OutlineInputBorder(),
-                                ),
-                              ),
-                            ),
+                    if (itController.isEditingSourceText)
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                            left: 20,
+                            right: 10,
+                            top: 10,
                           ),
-                        if (!itController.isEditingSourceText &&
-                            itController.sourceText != null)
-                          SizedBox(
-                            width: iconDimension,
-                            height: iconDimension,
-                            child: IconButton(
-                              iconSize: iconSize,
-                              color: Theme.of(context).colorScheme.primary,
-                              onPressed: () {
-                                if (itController.nextITStep != null) {
-                                  itController.setIsEditingSourceText(true);
-                                }
-                              },
-                              icon: const Icon(Icons.edit_outlined),
-                              // iconSize: 20,
+                          child: TextField(
+                            controller: TextEditingController(
+                              text: itController.sourceText,
                             ),
-                          ),
-                        if (!itController.isEditingSourceText)
-                          SizedBox(
-                            width: iconDimension,
-                            height: iconDimension,
-                            child: IconButton(
-                              iconSize: iconSize,
-                              color: Theme.of(context).colorScheme.primary,
-                              icon: const Icon(Icons.settings_outlined),
-                              onPressed: () => showDialog(
-                                context: context,
-                                builder: (c) => const SettingsLearning(),
-                                barrierDismissible: false,
-                              ),
+                            autofocus: true,
+                            enableSuggestions: false,
+                            maxLines: null,
+                            textInputAction: TextInputAction.send,
+                            onSubmitted: itController.onEditSourceTextSubmit,
+                            obscureText: false,
+                            decoration: const InputDecoration(
+                              border: OutlineInputBorder(),
                             ),
-                          ),
-                        SizedBox(
-                          width: iconDimension,
-                          height: iconDimension,
-                          child: IconButton(
-                            iconSize: iconSize,
-                            color: Theme.of(context).colorScheme.primary,
-                            icon: const Icon(Icons.close_outlined),
-                            onPressed: () {
-                              itController.isEditingSourceText
-                                  ? itController.setIsEditingSourceText(false)
-                                  : itController.closeIT();
-                            },
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    if (!itController.isEditingSourceText &&
+                        itController.sourceText != null)
+                      SizedBox(
+                        width: iconDimension,
+                        height: iconDimension,
+                        child: IconButton(
+                          iconSize: iconSize,
+                          color: Theme.of(context).colorScheme.primary,
+                          onPressed: () {
+                            if (itController.nextITStep != null) {
+                              itController.setIsEditingSourceText(true);
+                            }
+                          },
+                          icon: const Icon(Icons.edit_outlined),
+                          // iconSize: 20,
+                        ),
+                      ),
                     if (!itController.isEditingSourceText)
-                      Padding(
-                        padding: const EdgeInsets.only(top: 8.0),
-                        child: itController.sourceText != null
-                            ? Text(
-                                itController.sourceText!,
-                                textAlign: TextAlign.center,
-                              )
-                            : const LinearProgressIndicator(),
-                      ),
-                    const SizedBox(height: 8.0),
-                    if (showITInstructionsTooltip)
-                      const InstructionsInlineTooltip(
-                        instructionsEnum: InstructionsEnum.clickBestOption,
-                      ),
-                    if (showTranslationsChoicesTooltip)
-                      const InstructionsInlineTooltip(
-                        instructionsEnum: InstructionsEnum.translationChoices,
-                      ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                      constraints: const BoxConstraints(minHeight: 80),
-                      child: AnimatedSize(
-                        duration: itController.animationSpeed,
-                        child: Center(
-                          child: itController.choreographer.errorService.isError
-                              ? ITError(
-                                  error: itController
-                                      .choreographer.errorService.error!,
-                                  controller: itController,
-                                )
-                              : itController.showChoiceFeedback
-                                  ? ChoiceFeedbackText(
-                                      controller: itController,
-                                    )
-                                  : itController.isTranslationDone
-                                      ? TranslationFeedback(
-                                          controller: itController,
-                                        )
-                                      : ITChoices(controller: itController),
+                      SizedBox(
+                        width: iconDimension,
+                        height: iconDimension,
+                        child: IconButton(
+                          iconSize: iconSize,
+                          color: Theme.of(context).colorScheme.primary,
+                          icon: const Icon(Icons.settings_outlined),
+                          onPressed: () => showDialog(
+                            context: context,
+                            builder: (c) => const SettingsLearning(),
+                            barrierDismissible: false,
+                          ),
                         ),
+                      ),
+                    SizedBox(
+                      width: iconDimension,
+                      height: iconDimension,
+                      child: IconButton(
+                        iconSize: iconSize,
+                        color: Theme.of(context).colorScheme.primary,
+                        icon: const Icon(Icons.close_outlined),
+                        onPressed: () {
+                          itController.isEditingSourceText
+                              ? itController.setIsEditingSourceText(false)
+                              : itController.closeIT();
+                        },
                       ),
                     ),
                   ],
                 ),
-              ),
-              const Positioned(
-                top: 60,
-                child: PointsGainedAnimation(
-                  origin: AnalyticsUpdateOrigin.it,
+                if (!itController.isEditingSourceText)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8.0),
+                    child: itController.sourceText != null
+                        ? Text(
+                            itController.sourceText!,
+                            textAlign: TextAlign.center,
+                          )
+                        : const LinearProgressIndicator(),
+                  ),
+                const SizedBox(height: 8.0),
+                if (showITInstructionsTooltip)
+                  const InstructionsInlineTooltip(
+                    instructionsEnum: InstructionsEnum.clickBestOption,
+                  ),
+                if (showTranslationsChoicesTooltip)
+                  const InstructionsInlineTooltip(
+                    instructionsEnum: InstructionsEnum.translationChoices,
+                  ),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                  constraints: const BoxConstraints(minHeight: 80),
+                  child: AnimatedSize(
+                    duration: itController.animationSpeed,
+                    child: Center(
+                      child: itController.choreographer.errorService.isError
+                          ? ITError(
+                              error: itController
+                                  .choreographer.errorService.error!,
+                              controller: itController,
+                            )
+                          : itController.showChoiceFeedback
+                              ? ChoiceFeedbackText(
+                                  controller: itController,
+                                )
+                              : itController.isTranslationDone
+                                  ? TranslationFeedback(
+                                      controller: itController,
+                                    )
+                                  : ITChoices(controller: itController),
+                    ),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
@@ -390,7 +376,8 @@ class ITChoices extends StatelessWidget {
         continuance.level > 1
             ? ConstructUseTypeEnum.incIt
             : ConstructUseTypeEnum.corIt,
-        AnalyticsUpdateOrigin.it,
+        targetID:
+            "${continuance.text.trim()}${controller.currentITStep.hashCode.toString()}",
       );
     }
     controller.currentITStep!.continuances[index].wasClicked = true;
@@ -430,7 +417,6 @@ class ITChoices extends StatelessWidget {
         }).toList(),
         onPressed: (value, index) => selectContinuance(index, context),
         onLongPress: (value, index) => showCard(context, index),
-        uniqueKeyForLayerLink: (int index) => "itChoices$index",
         selectedChoiceIndex: null,
         tts: controller.choreographer.tts,
       );

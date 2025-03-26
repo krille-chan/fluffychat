@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
-import 'package:fluffychat/pangea/analytics_misc/gain_points_animation.dart';
-import 'package:fluffychat/pangea/analytics_misc/put_analytics_controller.dart';
 import 'package:fluffychat/pangea/chat/widgets/chat_floating_action_button.dart';
 
 class ChatInputBarHeader extends StatelessWidget {
@@ -35,11 +32,6 @@ class ChatInputBarHeader extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          const PointsGainedAnimation(
-            gainColor: AppConfig.gold,
-            origin: AnalyticsUpdateOrigin.sendMessage,
-          ),
-          const SizedBox(width: 100),
           ChatFloatingActionButton(
             controller: controller,
           ),

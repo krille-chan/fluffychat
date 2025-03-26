@@ -144,7 +144,7 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
         if (roomID != null) _clearDraftUses(roomID);
         _decideWhetherToUpdateAnalyticsRoom(
           level,
-          data.origin,
+          data.targetID,
           data.constructs,
         );
       },
@@ -164,9 +164,9 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
   void addDraftUses(
     List<PangeaToken> tokens,
     String roomID,
-    ConstructUseTypeEnum useType,
-    AnalyticsUpdateOrigin origin,
-  ) {
+    ConstructUseTypeEnum useType, {
+    String? targetID,
+  }) {
     final metadata = ConstructUseMetaData(
       roomId: roomID,
       timeStamp: DateTime.now(),
@@ -230,7 +230,11 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
     // so copy it here to that the list of new uses is accurate
     final List<OneConstructUse> newUses = List.from(uses);
     _addLocalMessage('draft$roomID', uses).then(
-      (_) => _decideWhetherToUpdateAnalyticsRoom(level, origin, newUses),
+      (_) => _decideWhetherToUpdateAnalyticsRoom(
+        level,
+        targetID,
+        newUses,
+      ),
     );
   }
 
@@ -287,7 +291,7 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
   /// Otherwise, add a local update to the alert stream.
   void _decideWhetherToUpdateAnalyticsRoom(
     int prevLevel,
-    AnalyticsUpdateOrigin? origin,
+    String? targetID,
     List<OneConstructUse> newConstructs,
   ) {
     // cancel the last timer that was set on message event and
@@ -308,7 +312,7 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
       AnalyticsUpdate(
         AnalyticsUpdateType.local,
         newConstructs,
-        origin: origin,
+        targetID: targetID,
       ),
     );
   }
@@ -426,7 +430,7 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
 class AnalyticsStream {
   final String? eventId;
   final String? roomId;
-  final AnalyticsUpdateOrigin? origin;
+  final String? targetID;
 
   final List<OneConstructUse> constructs;
 
@@ -434,29 +438,20 @@ class AnalyticsStream {
     required this.eventId,
     required this.roomId,
     required this.constructs,
-    this.origin,
+    this.targetID,
   });
-}
-
-enum AnalyticsUpdateOrigin {
-  it,
-  igc,
-  sendMessage,
-  practiceActivity,
-  inputBar,
-  wordZoom,
 }
 
 class AnalyticsUpdate {
   final AnalyticsUpdateType type;
-  final AnalyticsUpdateOrigin? origin;
   final List<OneConstructUse> newConstructs;
   final bool isLogout;
+  final String? targetID;
 
   AnalyticsUpdate(
     this.type,
     this.newConstructs, {
     this.isLogout = false,
-    this.origin,
+    this.targetID,
   });
 }
