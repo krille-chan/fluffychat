@@ -1,13 +1,10 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_generation_repo.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_request.dart';
@@ -17,9 +14,6 @@ import 'package:fluffychat/pangea/activity_planner/bookmarked_activities_repo.da
 import 'package:fluffychat/pangea/activity_planner/list_request_schema.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_suggestions_constants.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
-import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
-import 'package:fluffychat/utils/file_selector.dart';
-import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'activity_plan_card.dart';
 
 class ActivityListView extends StatefulWidget {
@@ -49,7 +43,6 @@ class ActivityListViewState extends State<ActivityListView> {
   bool _isLoading = true;
   Object? _error;
 
-  Uint8List? _avatar;
   String? _avatarURL;
   String? _filename;
 
@@ -103,22 +96,6 @@ class ActivityListViewState extends State<ActivityListView> {
     setState(() {});
   }
 
-  Future<void> _onLaunch(int index) => showFutureLoadingDialog(
-        context: context,
-        future: () async {
-          final activity = _activities![index];
-
-          await widget.room?.sendActivityPlan(
-            activity,
-            avatar: _avatar,
-            avatarURL: _avatarURL,
-            filename: _filename,
-          );
-
-          Navigator.of(context).pop();
-        },
-      );
-
   Future<ActivitySettingResponseSchema?> get _selectedMode async {
     final modes = await widget.controller.modeItems;
     return modes.firstWhereOrNull(
@@ -141,23 +118,6 @@ class ActivityListViewState extends State<ActivityListView> {
     setState(() {
       _avatarURL = "${AppConfig.assetsBaseURL}/$filename";
       _filename = filename;
-    });
-  }
-
-  void selectPhoto() async {
-    final resp = await selectFiles(
-      context,
-      type: FileSelectorType.images,
-      allowMultiple: false,
-    );
-
-    final photo = resp.singleOrNull;
-    if (photo == null) return;
-    final bytes = await photo.readAsBytes();
-
-    setState(() {
-      _avatar = bytes;
-      _filename = photo.name;
     });
   }
 
@@ -199,72 +159,16 @@ class ActivityListViewState extends State<ActivityListView> {
         padding: const EdgeInsets.all(16),
         itemCount: widget.activityPlanRequest == null
             ? _bookmarkedActivities.length
-            : _activities!.length + 1,
+            : _activities!.length,
         itemBuilder: (context, index) {
-          if (index == 0) {
-            return Center(
-              child: Stack(
-                alignment: Alignment.bottomCenter,
-                children: [
-                  Column(
-                    children: [
-                      AnimatedSize(
-                        duration: FluffyThemes.animationDuration,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          width: 400.0,
-                          clipBehavior: Clip.hardEdge,
-                          child: _avatarURL != null || _avatar != null
-                              ? ClipRRect(
-                                  child: _avatar == null
-                                      ? CachedNetworkImage(
-                                          fit: BoxFit.cover,
-                                          imageUrl: _avatarURL!,
-                                          placeholder: (context, url) {
-                                            return const Center(
-                                              child:
-                                                  CircularProgressIndicator(),
-                                            );
-                                          },
-                                          errorWidget: (context, url, error) =>
-                                              const SizedBox(),
-                                        )
-                                      : Image.memory(
-                                          _avatar!,
-                                          fit: BoxFit.cover,
-                                        ),
-                                )
-                              : const Padding(
-                                  padding: EdgeInsets.all(16.0),
-                                ),
-                        ),
-                      ),
-                      const SizedBox(height: 16.0),
-                    ],
-                  ),
-                  InkWell(
-                    borderRadius: BorderRadius.circular(90),
-                    onTap: _isLoading ? null : selectPhoto,
-                    child: const CircleAvatar(
-                      radius: 32.0,
-                      child: Icon(Icons.add_a_photo_outlined),
-                    ),
-                  ),
-                ],
-              ),
-            );
-          }
-
-          index--;
-
           return ActivityPlanCard(
             activity: widget.activityPlanRequest == null
                 ? _bookmarkedActivities[index]
                 : _activities![index],
-            onLaunch: () => _onLaunch(index),
+            room: widget.room,
             onEdit: (updatedActivity) => _onEdit(index, updatedActivity),
+            avatarURL: _avatarURL,
+            initialFilename: _filename,
           );
         },
       );
