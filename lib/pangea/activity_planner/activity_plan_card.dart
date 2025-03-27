@@ -5,16 +5,20 @@ import 'package:flutter/material.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:go_router/go_router.dart';
 import 'package:material_symbols_icons/symbols.dart';
+import 'package:matrix/matrix.dart' as sdk;
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
 import 'package:fluffychat/pangea/activity_planner/bookmarked_activities_repo.dart';
+import 'package:fluffychat/pangea/chat/constants/default_power_level.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/utils/file_selector.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 
 class ActivityPlanCard extends StatefulWidget {
   final ActivityPlanModel activity;
@@ -149,9 +153,11 @@ class ActivityPlanCardState extends State<ActivityPlanCard> {
     });
   }
 
-  Future<void> _onLaunch() => showFutureLoadingDialog(
-        context: context,
-        future: () async {
+  Future<void> _onLaunch() async {
+    await showFutureLoadingDialog(
+      context: context,
+      future: () async {
+        if (widget.room != null) {
           await widget.room?.sendActivityPlan(
             widget.activity,
             avatar: _avatar,
@@ -160,8 +166,43 @@ class ActivityPlanCardState extends State<ActivityPlanCard> {
           );
 
           Navigator.of(context).pop();
-        },
-      );
+          return;
+        }
+
+        final client = Matrix.of(context).client;
+        final roomId = await client.createGroupChat(
+          preset: CreateRoomPreset.publicChat,
+          visibility: sdk.Visibility.private,
+          groupName:
+              widget.activity.title.isNotEmpty ? widget.activity.title : null,
+          initialState: [
+            StateEvent(
+              type: EventTypes.RoomPowerLevels,
+              stateKey: '',
+              content: defaultPowerLevels(client.userID!),
+            ),
+          ],
+          enableEncryption: false,
+        );
+
+        Room? room = client.getRoomById(roomId);
+        if (room == null) {
+          await client.waitForRoomInSync(roomId);
+          room = client.getRoomById(roomId);
+        }
+        if (room == null) return;
+
+        await room.sendActivityPlan(
+          widget.activity,
+          avatar: _avatar,
+          avatarURL: _avatarURL,
+          filename: _filename,
+        );
+
+        context.go("/rooms/$roomId");
+      },
+    );
+  }
 
   bool get isBookmarked =>
       BookmarkedActivitiesRepo.isBookmarked(widget.activity);

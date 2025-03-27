@@ -29,6 +29,7 @@ import 'package:fluffychat/pages/settings_notifications/settings_notifications.d
 import 'package:fluffychat/pages/settings_password/settings_password.dart';
 import 'package:fluffychat/pages/settings_security/settings_security.dart';
 import 'package:fluffychat/pages/settings_style/settings_style.dart';
+import 'package:fluffychat/pangea/activity_generator/activity_generator.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_planner_page.dart';
 import 'package:fluffychat/pangea/activity_suggestions/suggestions_page.dart';
 import 'package:fluffychat/pangea/guard/p_vguard.dart';
@@ -253,6 +254,15 @@ abstract class AppRoutes {
                 context,
                 state,
                 const SuggestionsPage(),
+              ),
+            ),
+            GoRoute(
+              path: '/planner',
+              redirect: loggedOutRedirect,
+              pageBuilder: (context, state) => defaultPageBuilder(
+                context,
+                state,
+                const ActivityGenerator(),
               ),
             ),
             // Pangea#

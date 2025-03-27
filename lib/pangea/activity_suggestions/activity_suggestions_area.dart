@@ -11,13 +11,19 @@ import 'package:fluffychat/pangea/activity_suggestions/activity_plan_search_repo
 import 'package:fluffychat/pangea/activity_suggestions/activity_suggestion_card.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_suggestion_dialog.dart';
 import 'package:fluffychat/pangea/activity_suggestions/create_chat_card.dart';
+import 'package:fluffychat/pangea/activity_suggestions/make_activity_card.dart';
 import 'package:fluffychat/pangea/learning_settings/constants/language_constants.dart';
 import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_enum.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class ActivitySuggestionsArea extends StatefulWidget {
   final Axis? scrollDirection;
-  const ActivitySuggestionsArea({super.key, this.scrollDirection});
+  final bool includeCustomCards;
+  const ActivitySuggestionsArea({
+    super.key,
+    this.scrollDirection,
+    this.includeCustomCards = true,
+  });
   @override
   ActivitySuggestionsAreaState createState() => ActivitySuggestionsAreaState();
 }
@@ -89,14 +95,25 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
         .cast<Widget>()
         .toList();
 
-    cards.insert(
-      0,
-      CreateChatCard(
-        width: cardWidth,
-        height: cardHeight,
-        padding: cardPadding,
-      ),
-    );
+    if (widget.includeCustomCards) {
+      cards.insert(
+        0,
+        CreateChatCard(
+          width: cardWidth,
+          height: cardHeight,
+          padding: cardPadding,
+        ),
+      );
+
+      cards.insert(
+        1,
+        MakeActivityCard(
+          width: cardWidth,
+          height: cardHeight,
+          padding: cardPadding,
+        ),
+      );
+    }
 
     final scrollDirection = widget.scrollDirection ??
         (_isColumnMode ? Axis.horizontal : Axis.vertical);
