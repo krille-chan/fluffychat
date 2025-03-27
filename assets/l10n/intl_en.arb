@@ -4833,5 +4833,8 @@
   "youUnlocked": "You've unlocked",
   "resetInstructionTooltipsTitle": "Reset instruction tooltips",
   "resetInstructionTooltipsDesc": "Click to show instruction tooltips like for a brand new user.",
-  "selectForGrammar": "Select a grammar icon for activities and details."
+  "selectForGrammar": "Select a grammar icon for activities and details.",
+  "newChatActivityTitle": "Add a fun activity",
+  "newChatActivityDesc": "Make every group chat an adventure with Activity Planner! Set captivating topics and objectives for the group, and bring conversations to life with stunning images. Spark imaginative discussions and keep the fun flowing effortlessly!",
+  "exploreMore": "Explore more"
 }

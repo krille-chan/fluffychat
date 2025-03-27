@@ -8,12 +8,18 @@ class MaxWidthBody extends StatelessWidget {
   final double maxWidth;
   final bool withScrolling;
   final EdgeInsets? innerPadding;
+  // #Pangea
+  final bool showBorder;
+  // Pangea#
 
   const MaxWidthBody({
     required this.child,
     this.maxWidth = 600,
     this.withScrolling = true,
     this.innerPadding,
+    // #Pangea
+    this.showBorder = true,
+    // Pangea#
     super.key,
   });
   @override
@@ -38,7 +44,12 @@ class MaxWidthBody extends StatelessWidget {
                         borderRadius:
                             BorderRadius.circular(AppConfig.borderRadius),
                         side: BorderSide(
-                          color: theme.dividerColor,
+                          // #Pangea
+                          // color: theme.dividerColor,
+                          color: showBorder
+                              ? theme.dividerColor
+                              : Colors.transparent,
+                          // Pangea#
                         ),
                       ),
                       clipBehavior: Clip.hardEdge,

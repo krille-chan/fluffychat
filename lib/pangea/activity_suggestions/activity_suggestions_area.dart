@@ -38,7 +38,7 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
 
   final List<ActivityPlanModel> _activityItems = [];
   final ScrollController _scrollController = ScrollController();
-  final double cardHeight = 235.0;
+  final double cardHeight = 250.0;
   double get cardPadding => _isColumnMode ? 8.0 : 0.0;
   double get cardWidth => _isColumnMode ? 225.0 : 150.0;
 

@@ -4,6 +4,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/new_group/new_group.dart';
+import 'package:fluffychat/pangea/activity_suggestions/activity_suggestion_carousel.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
@@ -36,6 +37,9 @@ class NewGroupView extends StatelessWidget {
         ),
       ),
       body: MaxWidthBody(
+        // #Pangea
+        showBorder: false,
+        // Pangea#
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
@@ -171,6 +175,13 @@ class NewGroupView extends StatelessWidget {
             //           onChanged: null,
             //         ),
             // ),
+            if (controller.createGroupType == CreateGroupType.group)
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                child: ActivitySuggestionCarousel(
+                  onActivitySelected: controller.setSelectedActivity,
+                ),
+              ),
             // Pangea#
             AnimatedSize(
               duration: FluffyThemes.animationDuration,
