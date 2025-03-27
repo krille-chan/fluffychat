@@ -19,6 +19,7 @@ import 'package:fluffychat/widgets/future_loading_dialog.dart';
 class ActivityPlanCard extends StatefulWidget {
   final ActivityPlanModel activity;
   final Room? room;
+  final VoidCallback onChange;
   final ValueChanged<ActivityPlanModel> onEdit;
   final double maxWidth;
   final String? avatarURL;
@@ -28,6 +29,7 @@ class ActivityPlanCard extends StatefulWidget {
     super.key,
     required this.activity,
     required this.room,
+    required this.onChange,
     required this.onEdit,
     this.maxWidth = 400,
     this.avatarURL,
@@ -47,6 +49,7 @@ class ActivityPlanCardState extends State<ActivityPlanCard> {
   final TextEditingController _newVocabController = TextEditingController();
   final FocusNode _vocabFocusNode = FocusNode();
 
+  String? _avatarURL;
   Uint8List? _avatar;
   String? _filename;
 
@@ -60,6 +63,7 @@ class ActivityPlanCardState extends State<ActivityPlanCard> {
     _instructionsController =
         TextEditingController(text: _tempActivity.instructions);
     _filename = widget.initialFilename;
+    _avatarURL = widget.avatarURL ?? widget.activity.imageURL;
   }
 
   static const double itemPadding = 12;
@@ -81,13 +85,10 @@ class ActivityPlanCardState extends State<ActivityPlanCard> {
       learningObjective: _learningObjectiveController.text,
       instructions: _instructionsController.text,
       vocab: _tempActivity.vocab,
+      imageURL: _avatarURL,
     );
 
-    final activityWithBookmarkId = await _addBookmark(updatedActivity);
-
-    // need to save in the repo as well
-    widget.onEdit(activityWithBookmarkId);
-
+    widget.onEdit(updatedActivity);
     setState(() {
       _isEditing = false;
     });
@@ -99,16 +100,22 @@ class ActivityPlanCardState extends State<ActivityPlanCard> {
         ErrorHandler.logError(e: e, s: stack, data: activity.toJson());
         return activity; // Return the original activity in case of error
       }).whenComplete(() {
-        setState(() {});
+        if (mounted) {
+          setState(() {});
+          widget.onChange();
+        }
       });
 
   Future<void> _removeBookmark() =>
-      BookmarkedActivitiesRepo.remove(widget.activity.bookmarkId!)
+      BookmarkedActivitiesRepo.remove(widget.activity.bookmarkId)
           .catchError((e, stack) {
         debugger(when: kDebugMode);
         ErrorHandler.logError(e: e, s: stack, data: widget.activity.toJson());
       }).whenComplete(() {
-        setState(() {});
+        if (mounted) {
+          setState(() {});
+          widget.onChange();
+        }
       });
 
   void _addVocab() {
@@ -148,7 +155,7 @@ class ActivityPlanCardState extends State<ActivityPlanCard> {
           await widget.room?.sendActivityPlan(
             widget.activity,
             avatar: _avatar,
-            avatarURL: widget.avatarURL,
+            avatarURL: _avatarURL,
             filename: _filename,
           );
 
@@ -179,12 +186,12 @@ class ActivityPlanCardState extends State<ActivityPlanCard> {
                       ),
                       clipBehavior: Clip.hardEdge,
                       alignment: Alignment.center,
-                      child: widget.avatarURL != null || _avatar != null
+                      child: _avatarURL != null || _avatar != null
                           ? ClipRRect(
                               child: _avatar == null
                                   ? CachedNetworkImage(
                                       fit: BoxFit.cover,
-                                      imageUrl: widget.avatarURL!,
+                                      imageUrl: _avatarURL!,
                                       placeholder: (context, url) {
                                         return const Center(
                                           child: CircularProgressIndicator(),

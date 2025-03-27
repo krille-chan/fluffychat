@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
+import 'package:fluffychat/pangea/activity_planner/bookmarked_activities_repo.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_suggestion_card_row.dart';
 import 'package:fluffychat/pangea/common/widgets/pressable_button.dart';
 
@@ -14,6 +15,8 @@ class ActivitySuggestionCard extends StatelessWidget {
   final double height;
   final double padding;
 
+  final VoidCallback onChange;
+
   const ActivitySuggestionCard({
     super.key,
     required this.activity,
@@ -21,11 +24,14 @@ class ActivitySuggestionCard extends StatelessWidget {
     required this.width,
     required this.height,
     required this.padding,
+    required this.onChange,
   });
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final isBookmarked = BookmarkedActivitiesRepo.isBookmarked(activity);
+
     return Padding(
       padding: EdgeInsets.all(padding),
       child: PressableButton(
@@ -130,6 +136,21 @@ class ActivitySuggestionCard extends StatelessWidget {
                     ),
                   ),
                 ],
+              ),
+              Positioned(
+                top: 4.0,
+                right: 4.0,
+                child: IconButton(
+                  icon: Icon(
+                    isBookmarked ? Icons.bookmark : Icons.bookmark_border,
+                  ),
+                  onPressed: () => isBookmarked
+                      ? BookmarkedActivitiesRepo.remove(activity.bookmarkId)
+                          .then((_) => onChange())
+                      : BookmarkedActivitiesRepo.save(activity)
+                          .then((_) => onChange()),
+                  iconSize: 24.0,
+                ),
               ),
             ],
           ),

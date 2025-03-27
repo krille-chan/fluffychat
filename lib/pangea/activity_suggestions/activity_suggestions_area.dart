@@ -16,7 +16,8 @@ import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_en
 import 'package:fluffychat/widgets/matrix.dart';
 
 class ActivitySuggestionsArea extends StatefulWidget {
-  const ActivitySuggestionsArea({super.key});
+  final Axis? scrollDirection;
+  const ActivitySuggestionsArea({super.key, this.scrollDirection});
   @override
   ActivitySuggestionsAreaState createState() => ActivitySuggestionsAreaState();
 }
@@ -80,6 +81,9 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
             width: cardWidth,
             height: cardHeight,
             padding: cardPadding,
+            onChange: () {
+              if (mounted) setState(() {});
+            },
           );
         })
         .cast<Widget>()
@@ -94,7 +98,10 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
       ),
     );
 
-    return _isColumnMode
+    final scrollDirection = widget.scrollDirection ??
+        (_isColumnMode ? Axis.horizontal : Axis.vertical);
+
+    return scrollDirection == Axis.horizontal
         ? ConstrainedBox(
             constraints: BoxConstraints(maxHeight: cardHeight + 36.0),
             child: Scrollbar(

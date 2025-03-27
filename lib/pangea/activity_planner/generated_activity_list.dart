@@ -2,44 +2,31 @@ import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_generation_repo.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
-import 'package:fluffychat/pangea/activity_planner/activity_plan_request.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_response.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_planner_page.dart';
-import 'package:fluffychat/pangea/activity_planner/bookmarked_activities_repo.dart';
 import 'package:fluffychat/pangea/activity_planner/list_request_schema.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_suggestions_constants.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'activity_plan_card.dart';
 
-class ActivityListView extends StatefulWidget {
-  final Room? room;
-
-  /// if null, show saved activities
-  final ActivityPlanRequest? activityPlanRequest;
-
+class GeneratedActivitiesList extends StatefulWidget {
   final ActivityPlannerPageState controller;
 
-  const ActivityListView({
+  const GeneratedActivitiesList({
     super.key,
-    required this.room,
-    required this.activityPlanRequest,
     required this.controller,
   });
 
   @override
-  ActivityListViewState createState() => ActivityListViewState();
+  GeneratedActivitiesListState createState() => GeneratedActivitiesListState();
 }
 
-class ActivityListViewState extends State<ActivityListView> {
+class GeneratedActivitiesListState extends State<GeneratedActivitiesList> {
   List<ActivityPlanModel>? _activities;
-  List<ActivityPlanModel> get _bookmarkedActivities =>
-      BookmarkedActivitiesRepo.get();
-
   bool _isLoading = true;
   Object? _error;
 
@@ -60,49 +47,22 @@ class ActivityListViewState extends State<ActivityListView> {
     });
 
     try {
-      if (widget.activityPlanRequest != null) {
-        final resp = await ActivityPlanGenerationRepo.get(
-          widget.activityPlanRequest!,
-        );
-        _activities = resp.activityPlans;
-      }
+      final resp = await ActivityPlanGenerationRepo.get(
+        widget.controller.planRequest,
+      );
+      _activities = resp.activityPlans;
     } catch (e, s) {
       _error = e;
       ErrorHandler.logError(
         e: e,
         s: s,
         data: {
-          'room': widget.room,
-          'activityPlanRequest': widget.activityPlanRequest,
+          'activityPlanRequest': widget.controller.planRequest,
         },
       );
     } finally {
       if (mounted) setState(() => _isLoading = false);
     }
-  }
-
-  Future<void> _onEdit(int index, ActivityPlanModel updatedActivity) async {
-    // in this case we're editing an activity plan that was generated recently
-    // via the repo and should be updated in the cached response
-    if (widget.activityPlanRequest != null && _activities != null) {
-      final activities = _activities;
-      activities?[index] = updatedActivity;
-      ActivityPlanGenerationRepo.set(
-        widget.activityPlanRequest!,
-        ActivityPlanResponse(activityPlans: _activities!),
-      );
-    }
-
-    setState(() {});
-  }
-
-  Future<ActivitySettingResponseSchema?> get _selectedMode async {
-    final modes = await widget.controller.modeItems;
-    return modes.firstWhereOrNull(
-      (element) =>
-          element.name.toLowerCase() ==
-          widget.activityPlanRequest?.mode.toLowerCase(),
-    );
   }
 
   Future<void> _setModeImageURL() async {
@@ -121,11 +81,38 @@ class ActivityListViewState extends State<ActivityListView> {
     });
   }
 
+  Future<void> _onEdit(int index, ActivityPlanModel updatedActivity) async {
+    // in this case we're editing an activity plan that was generated recently
+    // via the repo and should be updated in the cached response
+    if (_activities != null) {
+      final activities = _activities;
+      activities?[index] = updatedActivity;
+      ActivityPlanGenerationRepo.set(
+        widget.controller.planRequest,
+        ActivityPlanResponse(activityPlans: _activities!),
+      );
+    }
+
+    setState(() {});
+  }
+
+  Future<ActivitySettingResponseSchema?> get _selectedMode async {
+    final modes = await widget.controller.modeItems;
+    return modes.firstWhereOrNull(
+      (element) =>
+          element.name.toLowerCase() ==
+          widget.controller.planRequest.mode.toLowerCase(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = L10n.of(context);
     if (_isLoading) {
-      return const Center(child: CircularProgressIndicator());
+      return const Padding(
+        padding: EdgeInsets.all(32.0),
+        child: Center(child: CircularProgressIndicator()),
+      );
     } else if (_error != null) {
       return Center(
         child: Column(
@@ -140,37 +127,24 @@ class ActivityListViewState extends State<ActivityListView> {
           ],
         ),
       );
-    } else if (widget.activityPlanRequest != null &&
-        (_activities == null || _activities!.isEmpty)) {
+    } else if (_activities == null || _activities!.isEmpty) {
       return Center(child: Text(l10n.noDataFound));
-    } else if (widget.activityPlanRequest == null &&
-        (_bookmarkedActivities.isEmpty)) {
-      return Center(
-        child: Container(
-          constraints: const BoxConstraints(maxWidth: 200),
-          child: Text(
-            l10n.noBookmarkedActivities,
-            textAlign: TextAlign.center,
-          ),
-        ),
-      );
     } else {
-      return ListView.builder(
-        padding: const EdgeInsets.all(16),
-        itemCount: widget.activityPlanRequest == null
-            ? _bookmarkedActivities.length
-            : _activities!.length,
-        itemBuilder: (context, index) {
-          return ActivityPlanCard(
-            activity: widget.activityPlanRequest == null
-                ? _bookmarkedActivities[index]
-                : _activities![index],
-            room: widget.room,
-            onEdit: (updatedActivity) => _onEdit(index, updatedActivity),
-            avatarURL: _avatarURL,
-            initialFilename: _filename,
-          );
-        },
+      return Expanded(
+        child: ListView.builder(
+          padding: const EdgeInsets.all(16),
+          itemCount: _activities!.length,
+          itemBuilder: (context, index) {
+            return ActivityPlanCard(
+              activity: _activities![index],
+              room: widget.controller.room,
+              onEdit: (updatedActivity) => _onEdit(index, updatedActivity),
+              avatarURL: _avatarURL,
+              initialFilename: _filename,
+              onChange: () => setState(() {}),
+            );
+          },
+        ),
       );
     }
   }

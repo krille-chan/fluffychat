@@ -197,6 +197,9 @@ class ActivitySuggestionCarouselState
                                     width: _cardWidth,
                                     height: _cardHeight,
                                     padding: 0.0,
+                                    onChange: () {
+                                      if (mounted) setState(() {});
+                                    },
                                   ),
                       ),
                       MouseRegion(

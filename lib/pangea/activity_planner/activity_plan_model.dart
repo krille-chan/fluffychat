@@ -10,7 +10,6 @@ class ActivityPlanModel {
   String instructions;
   List<Vocab> vocab;
   String? imageURL;
-  String? bookmarkId;
 
   ActivityPlanModel({
     required this.req,
@@ -19,7 +18,6 @@ class ActivityPlanModel {
     required this.instructions,
     required this.vocab,
     this.imageURL,
-    this.bookmarkId,
   });
 
   factory ActivityPlanModel.fromJson(Map<String, dynamic> json) {
@@ -31,7 +29,6 @@ class ActivityPlanModel {
       vocab: List<Vocab>.from(
         json[ModelKey.activityPlanVocab].map((vocab) => Vocab.fromJson(vocab)),
       ),
-      bookmarkId: json[ModelKey.activityPlanBookmarkId],
       imageURL: json[ModelKey.activityPlanImageURL],
     );
   }
@@ -67,10 +64,6 @@ class ActivityPlanModel {
     return markdown;
   }
 
-  bool get isBookmarked {
-    return bookmarkId != null;
-  }
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
@@ -90,8 +83,15 @@ class ActivityPlanModel {
       title.hashCode ^
       learningObjective.hashCode ^
       instructions.hashCode ^
-      Object.hashAll(vocab) ^
-      bookmarkId.hashCode;
+      Object.hashAll(vocab);
+
+  String get bookmarkId {
+    return (title.hashCode ^
+            learningObjective.hashCode ^
+            instructions.hashCode ^
+            Object.hashAll(vocab))
+        .toString();
+  }
 }
 
 class Vocab {
