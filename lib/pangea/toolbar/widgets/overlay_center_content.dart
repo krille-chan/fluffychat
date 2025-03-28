@@ -26,7 +26,6 @@ class OverlayCenterContent extends StatelessWidget {
   final double maxWidth;
   final double maxHeight;
 
-  final bool showToolbarButtons;
   final bool hasReactions;
 
   final bool isTransitionAnimation;
@@ -43,7 +42,6 @@ class OverlayCenterContent extends StatelessWidget {
     required this.pangeaMessageEvent,
     required this.nextEvent,
     required this.prevEvent,
-    required this.showToolbarButtons,
     required this.hasReactions,
     this.onChangeMessageSize,
     this.sizeAnimation,

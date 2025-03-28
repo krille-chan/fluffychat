@@ -103,7 +103,7 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
 
     Future.wait([
       _centeredMessageCompleter.future,
-      _tooltipCompleter.future,
+      if (showToolbarButtons) _tooltipCompleter.future,
     ]).then((_) => _startAnimation());
   }
 
@@ -386,7 +386,8 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
   bool get showToolbarButtons =>
       widget.pangeaMessageEvent != null &&
       widget.pangeaMessageEvent!.shouldShowToolbar &&
-      widget.pangeaMessageEvent!.event.messageType == MessageTypes.Text;
+      widget.pangeaMessageEvent!.event.messageType == MessageTypes.Text &&
+      widget.pangeaMessageEvent!.messageDisplayLangIsL2;
 
   bool get _hasReactions {
     final reactionsEvents = widget.event.aggregatedEvents(
@@ -444,7 +445,6 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
                   pangeaMessageEvent: widget.pangeaMessageEvent,
                   nextEvent: widget.nextEvent,
                   prevEvent: widget.prevEvent,
-                  showToolbarButtons: showToolbarButtons,
                   hasReactions: _hasReactions,
                   onChangeMessageSize: _setCenteredMessageSize,
                   isTransitionAnimation: false,
@@ -471,6 +471,7 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
                           child: OverlayFooter(
                             controller: widget.chatController,
                             overlayController: widget.overlayController,
+                            showToolbarButtons: showToolbarButtons,
                           ),
                         ),
                         SizedBox(height: _mediaQuery?.padding.bottom ?? 0),
@@ -510,7 +511,6 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
                     pangeaMessageEvent: widget.pangeaMessageEvent,
                     nextEvent: widget.nextEvent,
                     prevEvent: widget.prevEvent,
-                    showToolbarButtons: showToolbarButtons,
                     hasReactions: _hasReactions,
                     sizeAnimation: _messageSizeAnimation,
                     isTransitionAnimation: true,
@@ -523,30 +523,31 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
                 );
               },
             ),
-          Positioned(
-            top: 0,
-            child: IgnorePointer(
-              child: MeasureRenderBox(
-                onChange: _setTooltipSize,
-                child: Opacity(
-                  opacity: 0.0,
-                  child: Container(
-                    constraints: const BoxConstraints(
-                      minWidth: 200.0,
-                      maxWidth: 400.0,
-                    ),
-                    child: InstructionsInlineTooltip(
-                      instructionsEnum: widget
-                              .overlayController.toolbarMode.instructionsEnum ??
-                          InstructionsEnum.readingAssistanceOverview,
-                      bold: true,
+          if (showToolbarButtons)
+            Positioned(
+              top: 0,
+              child: IgnorePointer(
+                child: MeasureRenderBox(
+                  onChange: _setTooltipSize,
+                  child: Opacity(
+                    opacity: 0.0,
+                    child: Container(
+                      constraints: BoxConstraints(
+                        minWidth: 200.0,
+                        maxWidth: _toolbarMaxWidth,
+                      ),
+                      child: InstructionsInlineTooltip(
+                        instructionsEnum: widget.overlayController.toolbarMode
+                                .instructionsEnum ??
+                            InstructionsEnum.readingAssistanceOverview,
+                        bold: true,
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
-          ),
-          if (_centeredMessageTopOffset != null && _finishedAnimation)
+          if (_centeredMessageTopOffset != null && _tooltipSize != null)
             Positioned(
               top: max(
                 ((_headerHeight + _centeredMessageTopOffset!) / 2) -
