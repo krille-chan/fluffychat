@@ -155,7 +155,9 @@ class MorphMeaningWidgetState extends State<MorphMeaningWidget> {
                   children: [
                     if (widget.leading != null) widget.leading!,
                     if (widget.leading != null) const TextSpan(text: '  '),
-                    TextSpan(text: _cachedResponse!),
+                    TextSpan(
+                      text: _cachedResponse ?? L10n.of(context).meaningNotFound,
+                    ),
                   ],
                 ),
               ),
