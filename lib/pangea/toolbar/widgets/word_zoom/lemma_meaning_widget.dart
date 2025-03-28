@@ -225,7 +225,8 @@ class LemmaMeaningWidgetState extends State<LemmaMeaningWidget> {
                   ),
                   children: [
                     if (widget.leading != null) widget.leading!,
-                    if (widget.leading != null) const TextSpan(text: '  '),
+                    if (widget.leading != null)
+                      const WidgetSpan(child: SizedBox(width: 6.0)),
                     TextSpan(
                       text: _lemmaInfo?.meaning,
                     ),

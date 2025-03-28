@@ -40,16 +40,18 @@ class MorphDetailsView extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            MorphMeaningWidget(
-              feature: _morphFeature,
-              tag: _morphTag,
-              style: Theme.of(context).textTheme.bodyLarge,
-              // leading: TextSpan(
-              //   text: L10n.of(context).meaningSectionHeader,
-              //   style: const TextStyle(
-              //     fontWeight: FontWeight.bold,
-              //   ),
-              // ),
+            Expanded(
+              child: MorphMeaningWidget(
+                feature: _morphFeature,
+                tag: _morphTag,
+                style: Theme.of(context).textTheme.bodyLarge,
+                // leading: TextSpan(
+                //   text: L10n.of(context).meaningSectionHeader,
+                //   style: const TextStyle(
+                //     fontWeight: FontWeight.bold,
+                //   ),
+                // ),
+              ),
             ),
           ],
         ),

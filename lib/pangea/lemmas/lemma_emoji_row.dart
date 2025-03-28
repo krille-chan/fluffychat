@@ -19,6 +19,7 @@ class LemmaEmojiRow extends StatefulWidget {
   final VoidCallback? onTapOverride;
   final bool isSelected;
   final bool shouldShowEmojis;
+  final double? iconSize;
 
   /// if a setState is defined then we're in a context where
   /// we allow removing an emoji
@@ -32,6 +33,7 @@ class LemmaEmojiRow extends StatefulWidget {
     required this.isSelected,
     required this.shouldShowEmojis,
     this.emojiSetCallback,
+    this.iconSize,
   });
 
   @override
@@ -89,7 +91,8 @@ class LemmaEmojiRowState extends State<LemmaEmojiRow> {
         blurBackground: false,
         borderColor: Theme.of(context).colorScheme.primary,
         closePrevOverlay: false,
-        offset: const Offset(0, 60),
+        followerAnchor: Alignment.topCenter,
+        targetAnchor: Alignment.bottomCenter,
       );
     } catch (e, s) {
       debugger(when: kDebugMode);
@@ -156,7 +159,7 @@ class LemmaEmojiRowState extends State<LemmaEmojiRow> {
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       displayEmoji!,
-                      style: Theme.of(context).textTheme.headlineSmall,
+                      style: TextStyle(fontSize: widget.iconSize ?? 20),
                     ),
                   ),
                 )

@@ -8,12 +8,14 @@ import 'package:fluffychat/widgets/matrix.dart';
 
 class WordTextWithAudioButton extends StatefulWidget {
   final String text;
-  final double? textSize;
+  final TextStyle? style;
+  final double? iconSize;
 
   const WordTextWithAudioButton({
     super.key,
     required this.text,
-    this.textSize,
+    this.style,
+    this.iconSize,
   });
 
   @override
@@ -46,9 +48,6 @@ class WordAudioButtonState extends State<WordTextWithAudioButton> {
     super.dispose();
   }
 
-  double get textSize =>
-      widget.textSize ?? Theme.of(context).textTheme.titleLarge?.fontSize ?? 16;
-
   @override
   Widget build(BuildContext context) {
     return CompositedTransformTarget(
@@ -80,7 +79,7 @@ class WordAudioButtonState extends State<WordTextWithAudioButton> {
                 await tts.tryToSpeak(
                   widget.text,
                   context,
-                  targetID: 'text-audio-button',
+                  targetID: 'text-audio-button ${widget.text}',
                 );
               } catch (e, s) {
                 ErrorHandler.logError(
@@ -97,53 +96,34 @@ class WordAudioButtonState extends State<WordTextWithAudioButton> {
               }
             }
           },
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
-            decoration: BoxDecoration(
-              color: Colors.transparent,
-              borderRadius: BorderRadius.circular(4),
-            ),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 180),
-                  child: Text(
-                    widget.text,
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: _isPlaying
-                              ? Theme.of(context).colorScheme.primary
-                              : null,
-                          fontSize: textSize,
-                        ),
-                    overflow: TextOverflow.ellipsis,
-                  ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            spacing: 8.0,
+            children: [
+              ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 180),
+                child: Text(
+                  widget.text,
+                  style: widget.style ?? Theme.of(context).textTheme.bodyMedium,
+                  overflow: TextOverflow.ellipsis,
                 ),
-                const SizedBox(width: 4),
-                if (_isLoading)
-                  const Padding(
-                    padding: EdgeInsets.only(
-                      left: 4,
-                    ), // Adds 20 pixels of left padding
-                    child: SizedBox(
-                      width: 16,
-                      height: 16,
-                      child: CircularProgressIndicator(
-                        strokeWidth: 3,
-                      ),
-                    ),
-                  )
-                else
-                  Icon(
-                    _isPlaying ? Icons.volume_up : Icons.pause_outlined,
-                    size: textSize,
-                    color: _isPlaying
-                        ? Theme.of(context).colorScheme.primary
-                        : null,
+              ),
+              if (_isLoading)
+                const SizedBox(
+                  width: 16,
+                  height: 16,
+                  child: CircularProgressIndicator(
+                    strokeWidth: 3,
                   ),
-              ],
-            ),
+                )
+              else
+                Icon(
+                  _isPlaying ? Icons.pause_outlined : Icons.volume_up,
+                  color:
+                      _isPlaying ? Theme.of(context).colorScheme.primary : null,
+                  size: widget.iconSize,
+                ),
+            ],
           ),
         ),
       ),
