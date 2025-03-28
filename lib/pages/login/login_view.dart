@@ -55,7 +55,7 @@ class LoginView extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
                   child: TextField(
                     readOnly: controller.loading,
                     autocorrect: false,
@@ -77,7 +77,7 @@ class LoginView extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
                   child: TextField(
                     readOnly: controller.loading,
                     autocorrect: false,
@@ -107,7 +107,7 @@ class LoginView extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: theme.colorScheme.primary,
@@ -121,7 +121,7 @@ class LoginView extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
                   child: TextButton(
                     onPressed: controller.loading
                         ? () {}
