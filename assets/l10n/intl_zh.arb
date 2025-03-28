@@ -3343,5 +3343,7 @@
   "notSupportedOnThisDevice": "此设备上不受支持",
   "@notSupportedOnThisDevice": {},
   "enterNewChat": "进入新聊天",
-  "@enterNewChat": {}
+  "@enterNewChat": {},
+  "commandHint_roomupgrade": "将此聊天室升级到给定的聊天室版本",
+  "@commandHint_roomupgrade": {}
 }

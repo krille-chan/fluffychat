@@ -1680,7 +1680,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "chooseAStrongPassword": "Jāizvēlas stipra parole",
+  "chooseAStrongPassword": "Jāizvēlas droša parole",
   "@chooseAStrongPassword": {
     "type": "String",
     "placeholders": {}
@@ -3321,5 +3321,7 @@
   "notSupportedOnThisDevice": "Šajā ierīcē nav atbalstīts",
   "@notSupportedOnThisDevice": {},
   "enterNewChat": "Ieiet jaunajā tērzēšanā",
-  "@enterNewChat": {}
+  "@enterNewChat": {},
+  "commandHint_roomupgrade": "Uzlabot šo istabu uz norādīto istabas versiju",
+  "@commandHint_roomupgrade": {}
 }
