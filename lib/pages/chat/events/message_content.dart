@@ -372,7 +372,8 @@ class MessageContent extends StatelessWidget {
               );
             }
 
-            if (pangeaMessageEvent != null) {
+            if (pangeaMessageEvent != null &&
+                pangeaMessageEvent!.shouldShowToolbar) {
               return MessageTokenText(
                 pangeaMessageEvent: pangeaMessageEvent!,
                 tokens:
