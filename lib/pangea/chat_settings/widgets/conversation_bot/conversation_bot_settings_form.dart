@@ -50,6 +50,7 @@ class ConversationBotSettingsForm extends StatelessWidget {
         InkWell(
           onTap: hasPermission ? null : () => showNoPermissionDialog(context),
           child: PLanguageDropdown(
+            decorationText: L10n.of(context).targetLanguage,
             languages:
                 MatrixState.pangeaController.pLanguageStore.targetOptions,
             onChange: (lang) => hasPermission && enabled
