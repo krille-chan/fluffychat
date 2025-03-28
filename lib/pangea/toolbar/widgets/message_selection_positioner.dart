@@ -525,20 +525,22 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
             ),
           Positioned(
             top: 0,
-            child: MeasureRenderBox(
-              onChange: _setTooltipSize,
-              child: Opacity(
-                opacity: 0.0,
-                child: Container(
-                  constraints: const BoxConstraints(
-                    minWidth: 200.0,
-                    maxWidth: 400.0,
-                  ),
-                  child: InstructionsInlineTooltip(
-                    instructionsEnum:
-                        widget.overlayController.toolbarMode.instructionsEnum ??
-                            InstructionsEnum.readingAssistanceOverview,
-                    bold: true,
+            child: IgnorePointer(
+              child: MeasureRenderBox(
+                onChange: _setTooltipSize,
+                child: Opacity(
+                  opacity: 0.0,
+                  child: Container(
+                    constraints: const BoxConstraints(
+                      minWidth: 200.0,
+                      maxWidth: 400.0,
+                    ),
+                    child: InstructionsInlineTooltip(
+                      instructionsEnum: widget
+                              .overlayController.toolbarMode.instructionsEnum ??
+                          InstructionsEnum.readingAssistanceOverview,
+                      bold: true,
+                    ),
                   ),
                 ),
               ),
