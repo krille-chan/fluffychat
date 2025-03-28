@@ -45,7 +45,7 @@ class ConstructListModel {
         0,
         (total, match) => total + match.points,
       );
-      if (totalPoints > 10) {
+      if (totalPoints > 25) {
         unlocked.add(matches.first.id);
       }
     }

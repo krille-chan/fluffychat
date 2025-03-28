@@ -115,7 +115,7 @@ class SpanCardState extends State<SpanCard> {
     }
   }
 
-  Future<void> getSpanDetails() async {
+  Future<void> getSpanDetails({bool force = false}) async {
     try {
       if (widget.scm.pangeaMatch?.isITStart ?? false) return;
 
@@ -124,8 +124,10 @@ class SpanCardState extends State<SpanCard> {
         fetchingData = true;
       });
 
-      await widget.scm.choreographer.igc.spanDataController
-          .getSpanDetails(widget.scm.matchIndex);
+      await widget.scm.choreographer.igc.spanDataController.getSpanDetails(
+        widget.scm.matchIndex,
+        force: force,
+      );
 
       if (mounted) {
         setState(() => fetchingData = false);
@@ -450,7 +452,7 @@ class PromptAndFeedback extends StatelessWidget {
               WhyButton(
                 onPress: () {
                   if (!controller.fetchingData) {
-                    controller.getSpanDetails();
+                    controller.getSpanDetails(force: true);
                   }
                 },
                 loading: controller.fetchingData,

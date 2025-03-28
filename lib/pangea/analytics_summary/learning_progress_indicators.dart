@@ -85,7 +85,7 @@ class LearningProgressIndicatorsState
   int uniqueLemmas(ProgressIndicatorEnum indicator) {
     switch (indicator) {
       case ProgressIndicatorEnum.morphsUsed:
-        return _constructsModel.unlockedGrammarLemmas.length;
+        return _constructsModel.grammarLemmas;
       case ProgressIndicatorEnum.wordsUsed:
         return _constructsModel.vocabLemmas;
       default:

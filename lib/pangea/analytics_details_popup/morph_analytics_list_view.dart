@@ -144,9 +144,7 @@ class MorphFeatureBox extends StatelessWidget {
                             morphFeature: morphFeature,
                             morphTag: morphTag,
                             constructAnalytics: analytics,
-                            onTap: analytics.points > 10
-                                ? () => onConstructZoom(id)
-                                : null,
+                            onTap: () => onConstructZoom(id),
                           );
                         },
                       )
@@ -185,7 +183,7 @@ class MorphTagChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final unlocked = constructAnalytics.points > 10;
+    final unlocked = constructAnalytics.points > 0;
 
     return InkWell(
       borderRadius: BorderRadius.circular(AppConfig.borderRadius),

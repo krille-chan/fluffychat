@@ -166,7 +166,7 @@ class ITController {
       } else {
         nextITStep = Completer<CurrentITStep?>();
         final nextStep = await getNextTranslationData();
-        nextITStep!.complete(nextStep);
+        nextITStep?.complete(nextStep);
       }
     } catch (e, s) {
       debugger(when: kDebugMode);

@@ -73,9 +73,12 @@ class SpanDataController {
         normalizeString(correctChoice) == normalizeString(errorSpan);
   }
 
-  Future<void> getSpanDetails(int matchIndex) async {
+  Future<void> getSpanDetails(
+    int matchIndex, {
+    bool force = false,
+  }) async {
     final SpanData? span = _getSpan(matchIndex);
-    if (span == null || isNormalizationError(matchIndex)) return;
+    if (span == null || (isNormalizationError(matchIndex) && !force)) return;
 
     final req = SpanDetailsRepoReqAndRes(
       userL1: choreographer.l1LangCode!,
