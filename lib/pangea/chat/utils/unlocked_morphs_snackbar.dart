@@ -38,6 +38,7 @@ void showUnlockedMorphsSnackbar(
           child: Wrap(
             spacing: 16.0,
             alignment: WrapAlignment.center,
+            crossAxisAlignment: WrapCrossAlignment.center,
             children: [
               Text(
                 L10n.of(context).youUnlocked,
