@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/activity_generator/activity_generator_view.dart';
@@ -21,7 +22,11 @@ import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_en
 import 'package:fluffychat/widgets/matrix.dart';
 
 class ActivityGenerator extends StatefulWidget {
-  const ActivityGenerator({super.key});
+  final String? roomID;
+  const ActivityGenerator({
+    this.roomID,
+    super.key,
+  });
 
   @override
   ActivityGeneratorState createState() => ActivityGeneratorState();
@@ -92,6 +97,10 @@ class ActivityGeneratorState extends State<ActivityGenerator> {
 
   Future<List<ActivitySettingResponseSchema>> get objectiveItems =>
       LearningObjectiveListRepo.get(req);
+
+  Room? get room => widget.roomID != null
+      ? Matrix.of(context).client.getRoomById(widget.roomID!)
+      : null;
 
   String? validateNotNull(String? value) {
     if (value == null || value.isEmpty) {

@@ -12,11 +12,13 @@ class MakeActivityCard extends StatelessWidget {
   final double width;
   final double height;
   final double padding;
+  final String? roomID;
 
   const MakeActivityCard({
     required this.width,
     required this.height,
     required this.padding,
+    this.roomID,
     super.key,
   });
 
@@ -26,7 +28,11 @@ class MakeActivityCard extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.all(padding),
       child: PressableButton(
-        onPressed: () => context.go('/rooms/planner'),
+        onPressed: () {
+          roomID == null
+              ? context.go('/rooms/planner')
+              : context.go('/rooms/${roomID!}/planner/generator');
+        },
         borderRadius: BorderRadius.circular(24.0),
         color: theme.colorScheme.primary,
         child: Container(
@@ -55,7 +61,7 @@ class MakeActivityCard extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Text(
-                  L10n.of(context).makeYourOwn,
+                  L10n.of(context).makeYourOwnActivity,
                   style: theme.textTheme.bodyLarge
                       ?.copyWith(color: theme.colorScheme.secondary),
                   textAlign: TextAlign.center,

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:go_router/go_router.dart';
 
-import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_planner_page.dart';
 
 class ActivityPlannerPageAppBar extends StatelessWidget
@@ -23,14 +21,9 @@ class ActivityPlannerPageAppBar extends StatelessWidget
   Widget build(BuildContext context) {
     final l10n = L10n.of(context);
     return AppBar(
-      leadingWidth: FluffyThemes.isColumnMode(context) ? 150.0 : 50.0,
-      leading: Container(
-        padding: const EdgeInsets.only(left: 16.0),
-        alignment: Alignment.centerLeft,
-        child: IconButton(
-          icon: const Icon(Icons.close),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
+      leading: IconButton(
+        icon: const Icon(Icons.close),
+        onPressed: () => Navigator.of(context).pop(),
       ),
       title: pageMode == PageMode.savedActivities
           ? Center(
@@ -60,27 +53,6 @@ class ActivityPlannerPageAppBar extends StatelessWidget
                 ],
               ),
             ),
-      actions: [
-        FluffyThemes.isColumnMode(context)
-            ? Container(
-                width: 150.0,
-                alignment: Alignment.centerRight,
-                child: ElevatedButton(
-                  onPressed: () => context.go("/rooms/planner"),
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 16.0,
-                      vertical: 0.0,
-                    ),
-                  ),
-                  child: Text(
-                    L10n.of(context).makeYourOwn,
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  ),
-                ),
-              )
-            : const SizedBox(width: 50.0),
-      ],
     );
   }
 }

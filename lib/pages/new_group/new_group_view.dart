@@ -39,6 +39,11 @@ class NewGroupView extends StatelessWidget {
       body: MaxWidthBody(
         // #Pangea
         showBorder: false,
+        padding: const EdgeInsets.only(
+          left: 32.0,
+          right: 32.0,
+          bottom: 32.0,
+        ),
         // Pangea#
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -180,6 +185,9 @@ class NewGroupView extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 24.0),
                 child: ActivitySuggestionCarousel(
                   onActivitySelected: controller.setSelectedActivity,
+                  enabled: controller.nameController.text.isNotEmpty,
+                  selectedActivity: controller.selectedActivity,
+                  selectedActivityImage: controller.selectedActivityImage,
                 ),
               ),
             // Pangea#

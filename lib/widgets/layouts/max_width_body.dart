@@ -10,6 +10,7 @@ class MaxWidthBody extends StatelessWidget {
   final EdgeInsets? innerPadding;
   // #Pangea
   final bool showBorder;
+  final EdgeInsets? padding;
   // Pangea#
 
   const MaxWidthBody({
@@ -19,6 +20,7 @@ class MaxWidthBody extends StatelessWidget {
     this.innerPadding,
     // #Pangea
     this.showBorder = true,
+    this.padding,
     // Pangea#
     super.key,
   });
@@ -34,7 +36,10 @@ class MaxWidthBody extends StatelessWidget {
               ? child
               : Container(
                   alignment: Alignment.topCenter,
-                  padding: const EdgeInsets.all(32),
+                  // #Pangea
+                  // padding: const EdgeInsets.all(32),
+                  padding: padding ?? const EdgeInsets.all(32),
+                  // Pangea#
                   child: ConstrainedBox(
                     constraints: const BoxConstraints(
                       maxWidth: FluffyThemes.columnWidth * 1.5,

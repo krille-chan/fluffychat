@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_planner_page_appbar.dart';
 import 'package:fluffychat/pangea/activity_planner/bookmarked_activity_list.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_suggestions_area.dart';
@@ -43,11 +41,12 @@ class ActivityPlannerPageState extends State<ActivityPlannerPage> {
         );
         break;
       case PageMode.featuredActivities:
-        body = const Expanded(
+        body = Expanded(
           child: SingleChildScrollView(
             child: ActivitySuggestionsArea(
               scrollDirection: Axis.vertical,
-              includeCustomCards: false,
+              showCreateChatCard: false,
+              room: room,
             ),
           ),
         );
@@ -90,28 +89,6 @@ class ActivityPlannerPageState extends State<ActivityPlannerPage> {
                   ],
                 ),
               body,
-              if (!FluffyThemes.isColumnMode(context))
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: ElevatedButton(
-                    onPressed: () => context.go("/rooms/planner"),
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 16.0,
-                        vertical: 0.0,
-                      ),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          L10n.of(context).makeYourOwn,
-                          style: Theme.of(context).textTheme.bodyMedium,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
             ],
           ),
         ),

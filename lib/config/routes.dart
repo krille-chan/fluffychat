@@ -574,6 +574,19 @@ abstract class AppRoutes {
                     ),
                   ),
                   redirect: loggedOutRedirect,
+                  routes: [
+                    GoRoute(
+                      path: '/generator',
+                      redirect: loggedOutRedirect,
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        state,
+                        ActivityGenerator(
+                          roomID: state.pathParameters['roomid']!,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 // GoRoute(
                 //   path: 'encryption',

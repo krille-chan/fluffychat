@@ -165,7 +165,7 @@ class ActivityPlanCardState extends State<ActivityPlanCard> {
             filename: _filename,
           );
 
-          Navigator.of(context).pop();
+          context.go("/rooms/${widget.room?.id}");
           return;
         }
 
@@ -199,7 +199,7 @@ class ActivityPlanCardState extends State<ActivityPlanCard> {
           filename: _filename,
         );
 
-        context.go("/rooms/$roomId");
+        context.go("/rooms/$roomId/invite");
       },
     );
   }

@@ -55,7 +55,7 @@ class ActivityGeneratorView extends StatelessWidget {
         itemBuilder: (context, index) {
           return ActivityPlanCard(
             activity: controller.activities![index],
-            room: null,
+            room: controller.room,
             onEdit: (updatedActivity) =>
                 controller.onEdit(index, updatedActivity),
             onChange: controller.update,

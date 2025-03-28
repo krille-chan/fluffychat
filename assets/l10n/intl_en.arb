@@ -4826,7 +4826,6 @@
       }
     }
   },
-  "startChatting": "Start chatting",
   "referFriends": "Refer friends",
   "referFriendDialogTitle": "Invite a friend to your conversation",
   "referFriendDialogDesc": "Do you have a friend who is excited to learn a new language with you? Then copy and send this invitation link to join and start chatting with you today.",
@@ -4835,12 +4834,14 @@
   "resetInstructionTooltipsDesc": "Click to show instruction tooltips like for a brand new user.",
   "selectForGrammar": "Select a grammar icon for activities and details.",
   "newChatActivityTitle": "Add a fun activity",
-  "newChatActivityDesc": "Make every group chat an adventure with Activity Planner! Set captivating topics and objectives for the group, and bring conversations to life with stunning images. Spark imaginative discussions and keep the fun flowing effortlessly!",
+  "newChatActivityDesc": "Choose one of the activities below to add to your chat or skip this step and create an activity later.",
   "exploreMore": "Explore more",
   "randomize": "Randomize",
   "clear": "Clear",
   "makeYourOwnActivity": "Make your own activity",
-  "makeYourOwn": "Make your own",
   "featuredActivities": "Featured activities",
-  "yourBookmarks": "Your bookmarks"
+  "yourBookmarks": "Your bookmarks",
+  "goToChat": "Go to chat",
+  "save": "Save",
+  "selectActivity": "Select activity"
 }

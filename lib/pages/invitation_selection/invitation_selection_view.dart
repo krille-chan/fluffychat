@@ -281,7 +281,7 @@ class InvitationSelectionView extends StatelessWidget {
                               color: DefaultTextStyle.of(context).style.color,
                             ),
                             Text(
-                              L10n.of(context).startChatting,
+                              L10n.of(context).goToChat,
                               style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                               ),

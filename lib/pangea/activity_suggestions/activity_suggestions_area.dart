@@ -3,6 +3,9 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:matrix/matrix.dart';
+
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_request.dart';
@@ -18,11 +21,17 @@ import 'package:fluffychat/widgets/matrix.dart';
 
 class ActivitySuggestionsArea extends StatefulWidget {
   final Axis? scrollDirection;
-  final bool includeCustomCards;
+  final bool showCreateChatCard;
+  final bool showMakeActivityCard;
+
+  final Room? room;
+
   const ActivitySuggestionsArea({
     super.key,
     this.scrollDirection,
-    this.includeCustomCards = true,
+    this.showCreateChatCard = true,
+    this.showMakeActivityCard = true,
+    this.room,
   });
   @override
   ActivitySuggestionsAreaState createState() => ActivitySuggestionsAreaState();
@@ -80,6 +89,8 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
                 builder: (context) {
                   return ActivitySuggestionDialog(
                     activity: activity,
+                    buttonText: L10n.of(context).inviteAndLaunch,
+                    room: widget.room,
                   );
                 },
               );
@@ -95,19 +106,22 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
         .cast<Widget>()
         .toList();
 
-    if (widget.includeCustomCards) {
+    if (widget.showMakeActivityCard) {
       cards.insert(
         0,
-        CreateChatCard(
+        MakeActivityCard(
           width: cardWidth,
           height: cardHeight,
           padding: cardPadding,
+          roomID: widget.room?.id,
         ),
       );
+    }
 
+    if (widget.showCreateChatCard) {
       cards.insert(
-        1,
-        MakeActivityCard(
+        0,
+        CreateChatCard(
           width: cardWidth,
           height: cardHeight,
           padding: cardPadding,
