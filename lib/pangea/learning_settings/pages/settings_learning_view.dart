@@ -107,7 +107,7 @@ class SettingsLearningView extends StatelessWidget {
       builder: (context, _) {
         final dialogContent = Scaffold(
           appBar: AppBar(
-            automaticallyImplyLeading: false,
+            automaticallyImplyLeading: !controller.widget.isDialog,
             centerTitle: true,
             title: Text(
               L10n.of(context).learningSettings,
