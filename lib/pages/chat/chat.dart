@@ -302,8 +302,7 @@ class ChatController extends State<ChatPageWithRoom>
     WidgetsBinding.instance.addPostFrameCallback(_shareItems);
     super.initState();
     _displayChatDetailsColumn = ValueNotifier(
-      Matrix.of(context).store.getBool(SettingKeys.displayChatDetailsColumn) ??
-          false,
+      AppSettings.displayChatDetailsColumn.getItem(Matrix.of(context).store),
     );
 
     sendingClient = Matrix.of(context).client;
@@ -1297,10 +1296,10 @@ class ChatController extends State<ChatPageWithRoom>
   late final ValueNotifier<bool> _displayChatDetailsColumn;
 
   void toggleDisplayChatDetailsColumn() async {
-    await Matrix.of(context).store.setBool(
-          SettingKeys.displayChatDetailsColumn,
-          !_displayChatDetailsColumn.value,
-        );
+    await AppSettings.displayChatDetailsColumn.setItem(
+      Matrix.of(context).store,
+      !_displayChatDetailsColumn.value,
+    );
     _displayChatDetailsColumn.value = !_displayChatDetailsColumn.value;
   }
 
