@@ -32,11 +32,6 @@ abstract class SettingKeys {
       'chat.fluffy.swipeRightToLeftToReply';
   static const String experimentalVoip = 'chat.fluffy.experimental_voip';
   static const String showPresences = 'chat.fluffy.show_presences';
-  static const String displayChatDetailsColumn =
-      'chat.fluffy.display_chat_details_column';
-  static const String noEncryptionWarningShown =
-      'chat.fluffy.no_encryption_warning_shown';
-  static const String shareKeysWith = 'chat.fluffy.share_keys_with_2';
 }
 
 enum AppSettings<T> {
@@ -53,6 +48,15 @@ enum AppSettings<T> {
   pushNotificationsPusherFormat<String>(
     'pushNotificationsPusherFormat',
     'event_id_only',
+  ),
+  shareKeysWith<String>('chat.fluffy.share_keys_with_2', 'all'),
+  noEncryptionWarningShown<bool>(
+    'chat.fluffy.no_encryption_warning_shown',
+    false,
+  ),
+  displayChatDetailsColumn(
+    'chat.fluffy.display_chat_details_column',
+    false,
   );
 
   final String key;
