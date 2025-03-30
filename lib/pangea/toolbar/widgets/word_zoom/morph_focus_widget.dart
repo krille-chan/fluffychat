@@ -1,10 +1,6 @@
 // stateful widget that displays morphological label and a shimmer effect while the text is loading
 // takes a token and morphological feature as input
 
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
 import 'package:fluffychat/pangea/analytics_details_popup/analytics_details_popup.dart';
 import 'package:fluffychat/pangea/analytics_details_popup/morph_meaning_widget.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
@@ -25,10 +21,12 @@ import 'package:fluffychat/pangea/morphs/morph_repo.dart';
 import 'package:fluffychat/pangea/morphs/morph_tag_display.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class MorphFocusWidget extends StatefulWidget {
   final PangeaToken token;
-  final String morphFeature;
+  final MorphFeaturesEnum morphFeature;
   final PangeaMessageEvent pangeaMessageEvent;
   final MessageOverlayController overlayController;
 
@@ -160,7 +158,7 @@ class MorphFocusWidgetState extends State<MorphFocusWidget> {
     return ConstructIdentifier(
       lemma: selectedMorphTag,
       type: ConstructTypeEnum.morph,
-      category: widget.morphFeature,
+      category: widget.morphFeature.name,
     );
   }
 
@@ -187,9 +185,7 @@ class MorphFocusWidgetState extends State<MorphFocusWidget> {
                     onLongPress: enterEditMode,
                     onDoubleTap: enterEditMode,
                     child: MorphTagDisplay(
-                      morphFeature: MorphFeaturesEnumExtension.fromString(
-                        widget.morphFeature,
-                      ),
+                      morphFeature: widget.morphFeature,
                       morphTag: widget.token.getMorphTag(widget.morphFeature) ??
                           L10n.of(context).nan,
                       textColor: Theme.of(context).brightness ==
@@ -235,9 +231,9 @@ class MorphFocusWidgetState extends State<MorphFocusWidget> {
           FutureBuilder(
             future: MorphsRepo.get(),
             builder: (context, snapshot) {
-              final allMorphTagsForEdit =
-                  snapshot.data?.getDisplayTags(widget.morphFeature) ??
-                      defaultMorphMapping.getDisplayTags(widget.morphFeature);
+              final allMorphTagsForEdit = snapshot.data
+                      ?.getDisplayTags(widget.morphFeature.name) ??
+                  defaultMorphMapping.getDisplayTags(widget.morphFeature.name);
 
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return const CircularProgressIndicator();
@@ -286,7 +282,7 @@ class MorphFocusWidgetState extends State<MorphFocusWidget> {
                       },
                       child: Text(
                         getGrammarCopy(
-                              category: widget.morphFeature,
+                              category: widget.morphFeature.name,
                               lemma: tag,
                               context: context,
                             ) ??
@@ -324,22 +320,23 @@ class MorphFocusWidgetState extends State<MorphFocusWidget> {
                   ),
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                 ),
-                onPressed: selectedMorphTag ==
-                        widget.token.morph[widget.morphFeature]
-                    ? null
-                    : () => showFutureLoadingDialog(
-                          context: context,
-                          future: () => saveChanges(
-                            (token) {
-                              token.morph[widget.morphFeature] =
-                                  selectedMorphTag;
-                              if (widget.morphFeature.toLowerCase() == 'pos') {
-                                token.pos = selectedMorphTag;
-                              }
-                              return token;
-                            },
-                          ),
-                        ),
+                onPressed:
+                    selectedMorphTag == widget.token.morph[widget.morphFeature]
+                        ? null
+                        : () => showFutureLoadingDialog(
+                              context: context,
+                              future: () => saveChanges(
+                                (token) {
+                                  token.morph[widget.morphFeature] =
+                                      selectedMorphTag;
+                                  if (widget.morphFeature.name.toLowerCase() ==
+                                      'pos') {
+                                    token.pos = selectedMorphTag;
+                                  }
+                                  return token;
+                                },
+                              ),
+                            ),
                 child: Text(L10n.of(context).saveChanges),
               ),
             ],

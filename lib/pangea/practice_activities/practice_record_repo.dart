@@ -1,13 +1,13 @@
+import 'package:fluffychat/pangea/practice_activities/practice_record.dart';
+import 'package:fluffychat/pangea/practice_activities/practice_target.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get_storage/get_storage.dart';
 
-import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
-import 'package:fluffychat/pangea/practice_activities/message_analytics_entry.dart';
-
-class MessageAnalyticsController {
-  static final GetStorage _storage = GetStorage('message_analytics_cache');
-  static final Map<String, MessageAnalyticsEntry> _memoryCache = {};
+/// Controller for handling activity completions.
+class PracticeRecordRepo {
+  static final GetStorage _storage = GetStorage('practice_record_cache');
+  static final Map<String, PracticeRecord> _memoryCache = {};
   static const int _maxMemoryCacheSize = 50;
 
   void dispose() {
@@ -15,10 +15,12 @@ class MessageAnalyticsController {
     _memoryCache.clear();
   }
 
-  static void save(MessageAnalyticsEntry entry) {
-    final key = _key(entry.tokens);
-    _storage.write(key, entry.toJson());
-    _memoryCache[key] = entry;
+  static void save(
+    PracticeTarget selection,
+    PracticeRecord entry,
+  ) {
+    _storage.write(selection.storageKey, entry.toJson());
+    _memoryCache[selection.storageKey] = entry;
   }
 
   static void clean() {
@@ -26,10 +28,10 @@ class MessageAnalyticsController {
     if (keys.length > 300) {
       final entries = keys
           .map((key) {
-            final entry = MessageAnalyticsEntry.fromJson(_storage.read(key));
+            final entry = PracticeRecord.fromJson(_storage.read(key));
             return MapEntry(key, entry);
           })
-          .cast<MapEntry<String, MessageAnalyticsEntry>>()
+          .cast<MapEntry<String, PracticeRecord>>()
           .toList()
         ..sort((a, b) => a.value.createdAt.compareTo(b.value.createdAt));
       for (var i = 0; i < 5; i++) {
@@ -41,20 +43,17 @@ class MessageAnalyticsController {
     }
   }
 
-  static String _key(List<PangeaToken> tokens) =>
-      tokens.map((t) => t.text.content).join(' ');
-
-  static MessageAnalyticsEntry? get(
-    List<PangeaToken> tokens,
+  static PracticeRecord get(
+    PracticeTarget target,
   ) {
-    final String key = _key(tokens);
+    final String key = target.storageKey;
     if (_memoryCache.containsKey(key)) {
-      return _memoryCache[key];
+      return _memoryCache[key]!;
     }
 
     final entryJson = _storage.read(key);
     if (entryJson != null) {
-      final entry = MessageAnalyticsEntry.fromJson(entryJson);
+      final entry = PracticeRecord.fromJson(entryJson);
       if (DateTime.now().difference(entry.createdAt).inDays > 1) {
         debugPrint('removing old entry ${entry.createdAt}');
         _storage.remove(key);
@@ -64,9 +63,8 @@ class MessageAnalyticsController {
       }
     }
 
-    final newEntry = MessageAnalyticsEntry(
-      tokens: tokens,
-    );
+    debugPrint('creating new practice record for $key');
+    final newEntry = PracticeRecord();
 
     _storage.write(key, newEntry.toJson());
     _memoryCache[key] = newEntry;

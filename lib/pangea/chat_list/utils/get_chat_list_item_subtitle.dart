@@ -1,13 +1,12 @@
+import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
+import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
+import 'package:fluffychat/pangea/practice_activities/practice_selection_repo.dart';
+import 'package:fluffychat/pangea/toolbar/widgets/message_token_text.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
-import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
-import 'package:fluffychat/pangea/practice_activities/message_analytics_controller.dart';
-import 'package:fluffychat/pangea/toolbar/widgets/message_token_text.dart';
-import 'package:fluffychat/widgets/matrix.dart';
 import '../../../utils/matrix_sdk_extensions/matrix_locals.dart';
 
 class ChatListItemSubtitle extends StatelessWidget {
@@ -89,7 +88,7 @@ class ChatListItemSubtitle extends StatelessWidget {
           final tokens = messageEventAndTokens.tokens;
 
           final analyticsEntry = tokens != null
-              ? MessageAnalyticsController.get(
+              ? PracticeSelectionRepo.get(
                   tokens,
                 )
               : null;

@@ -1,10 +1,8 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
 import 'package:fluffychat/pangea/analytics_downloads/analytics_summary_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/learning_skills_enum.dart';
 import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 enum ConstructUseTypeEnum {
   /// produced in chat by user, igc was run, and we've judged it to be a correct use
@@ -193,23 +191,23 @@ extension ConstructUseTypeExtension on ConstructUseTypeEnum {
   int get pointValue {
     switch (this) {
       case ConstructUseTypeEnum.corPA:
+      case ConstructUseTypeEnum.corWL:
+      case ConstructUseTypeEnum.corM:
         return 5;
 
       case ConstructUseTypeEnum.pvm:
         return 4;
 
       case ConstructUseTypeEnum.wa:
-      case ConstructUseTypeEnum.corWL:
       case ConstructUseTypeEnum.corHWL:
+      case ConstructUseTypeEnum.em:
         return 3;
 
       case ConstructUseTypeEnum.corIGC:
       case ConstructUseTypeEnum.corL:
-      case ConstructUseTypeEnum.corM:
         return 2;
 
       case ConstructUseTypeEnum.corIt:
-      case ConstructUseTypeEnum.em:
       case ConstructUseTypeEnum.corMM:
         return 1;
 

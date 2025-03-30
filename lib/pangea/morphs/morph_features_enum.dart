@@ -1,12 +1,10 @@
 // ignore_for_file: constant_identifier_names
 
-import 'package:flutter/material.dart';
-
 import 'package:collection/collection.dart';
+import 'package:fluffychat/pangea/common/utils/error_handler.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:material_symbols_icons/symbols.dart';
-
-import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 
 enum MorphFeaturesEnum {
   Pos,
@@ -214,13 +212,4 @@ extension MorphFeaturesEnumExtension on MorphFeaturesEnum {
         return Icons.help_outline;
     }
   }
-}
-
-String? getMorphologicalCategoryCopy(
-  String categoryName,
-  BuildContext context,
-) {
-  final MorphFeaturesEnum category =
-      MorphFeaturesEnumExtension.fromString(categoryName);
-  return category.getDisplayCopy(context);
 }

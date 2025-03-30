@@ -1,22 +1,20 @@
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
-import 'package:collection/collection.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/constructs/construct_form.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
-import 'package:fluffychat/pangea/toolbar/reading_assistance_input_row/match_feedback_model.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
-class MessageMatchActivityItem extends StatefulWidget {
-  const MessageMatchActivityItem({
+class PracticeMatchItem extends StatefulWidget {
+  const PracticeMatchItem({
     super.key,
     required this.content,
     required this.constructForm,
+    required this.isCorrect,
+    required this.isSelected,
     this.audioContent,
     required this.overlayController,
     required this.fixedSize,
@@ -27,21 +25,23 @@ class MessageMatchActivityItem extends StatefulWidget {
   final String? audioContent;
   final MessageOverlayController overlayController;
   final double? fixedSize;
+  final bool? isCorrect;
+  final bool isSelected;
 
   @override
-  MessageMatchActivityItemState createState() =>
-      MessageMatchActivityItemState();
+  PracticeMatchItemState createState() => PracticeMatchItemState();
 }
 
-class MessageMatchActivityItemState extends State<MessageMatchActivityItem> {
+class PracticeMatchItemState extends State<PracticeMatchItem> {
   bool _isHovered = false;
   bool _isPlaying = false;
 
   TtsController get tts =>
       widget.overlayController.widget.chatController.choreographer.tts;
 
-  bool get isSelected =>
-      widget.overlayController.selectedChoice == widget.constructForm;
+  bool get isSelected => widget.isSelected;
+
+  bool? get isCorrect => widget.isCorrect;
 
   Future<void> play() async {
     if (widget.audioContent == null) {
@@ -78,13 +78,9 @@ class MessageMatchActivityItemState extends State<MessageMatchActivityItem> {
     }
   }
 
-  MatchFeedback? get choiceFeedback => widget.overlayController.feedbackStates
-      .firstWhereOrNull((e) => e.form == widget.constructForm);
-
   Color color(BuildContext context) {
-    final feedback = choiceFeedback;
-    if (feedback != null) {
-      return feedback.isCorrect ? AppConfig.success : AppConfig.warning;
+    if (isCorrect != null) {
+      return isCorrect! ? AppConfig.success : AppConfig.warning;
     }
 
     if (isSelected) {
@@ -99,16 +95,10 @@ class MessageMatchActivityItemState extends State<MessageMatchActivityItem> {
   }
 
   @override
-  didUpdateWidget(MessageMatchActivityItem oldWidget) {
+  didUpdateWidget(PracticeMatchItem oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.overlayController.selectedChoice !=
-            widget.overlayController.selectedChoice ||
-        oldWidget.overlayController.selectedToken !=
-            widget.overlayController.selectedToken ||
-        widget.overlayController.feedbackStates
-                .any((e) => e.form == widget.constructForm) !=
-            oldWidget.overlayController.feedbackStates
-                .any((e) => e.form == widget.constructForm)) {
+    if (oldWidget.isSelected != widget.isSelected ||
+        oldWidget.isCorrect != widget.isCorrect) {
       setState(() {});
     }
   }
@@ -146,7 +136,7 @@ class MessageMatchActivityItemState extends State<MessageMatchActivityItem> {
         type: MaterialType.transparency,
         child: content(context),
       ),
-      delay: const Duration(milliseconds: 100),
+      delay: const Duration(milliseconds: 50),
       onDragStarted: () {
         widget.overlayController.onChoiceSelect(widget.constructForm, true);
       },

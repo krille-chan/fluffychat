@@ -5,22 +5,26 @@
 
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/constructs_model.dart';
+import 'package:fluffychat/pangea/common/utils/error_handler.dart';
+import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
 import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_activity_model.dart';
+import 'package:fluffychat/pangea/practice_activities/practice_record_repo.dart';
+import 'package:fluffychat/pangea/practice_activities/practice_target.dart';
+import 'package:flutter/foundation.dart';
 
-class PracticeActivityRecordModel {
-  final String? question;
+class PracticeRecord {
+  late DateTime createdAt;
   late List<ActivityRecordResponse> responses;
 
-  PracticeActivityRecordModel({
-    required this.question,
+  PracticeRecord({
     List<ActivityRecordResponse>? responses,
+    DateTime? timestamp,
   }) {
+    createdAt = timestamp ?? DateTime.now();
     if (responses == null) {
       this.responses = List<ActivityRecordResponse>.empty(growable: true);
     } else {
@@ -28,25 +32,30 @@ class PracticeActivityRecordModel {
     }
   }
 
-  factory PracticeActivityRecordModel.fromJson(
+  factory PracticeRecord.fromJson(
     Map<String, dynamic> json,
   ) {
-    return PracticeActivityRecordModel(
-      question: json['question'] as String,
+    return PracticeRecord(
       responses: (json['responses'] as List)
           .map(
             (e) => ActivityRecordResponse.fromJson(e as Map<String, dynamic>),
           )
           .toList(),
+      timestamp: json['createdAt'] != null
+          ? DateTime.parse(json['createdAt'] as String)
+          : null,
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'question': question,
       'responses': responses.map((e) => e.toJson()).toList(),
+      'createdAt': createdAt.toIso8601String(),
     };
   }
+
+  int get completeResponses =>
+      responses.where((element) => element.isCorrect).length;
 
   /// get the latest response index according to the response timeStamp
   /// sort the responses by timestamp and get the index of the last response
@@ -62,15 +71,38 @@ class PracticeActivityRecordModel {
     return responses.any((element) => element.text == text);
   }
 
+  /// [target] needed for saving the record, little funky
+  /// [cId] identifies the construct in the case of match activities which have multiple
+  /// [text] is the user's response
+  /// [audioBytes] is the user's audio response
+  /// [imageBytes] is the user's image response
+  /// [score] > 0 means correct, otherwise is incorrect
   void addResponse({
+    required ConstructIdentifier cId,
+    required PracticeTarget target,
     String? text,
     Uint8List? audioBytes,
     Uint8List? imageBytes,
     required double score,
   }) {
     try {
+      if (text == null && audioBytes == null && imageBytes == null) {
+        debugger(when: kDebugMode);
+        ErrorHandler.logError(
+          m: "No response data provided",
+          data: {
+            'cId': cId.toJson(),
+            'text': text,
+            'audioBytes': audioBytes,
+            'imageBytes': imageBytes,
+            'score': score,
+          },
+        );
+        return;
+      }
       responses.add(
         ActivityRecordResponse(
+          cId: cId,
           text: text,
           audioBytes: audioBytes,
           imageBytes: imageBytes,
@@ -78,6 +110,8 @@ class PracticeActivityRecordModel {
           score: score,
         ),
       );
+
+      PracticeRecordRepo.save(target, this);
     } catch (e) {
       debugger(when: kDebugMode);
     }
@@ -108,8 +142,7 @@ class PracticeActivityRecordModel {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is PracticeActivityRecordModel &&
-        other.question == question &&
+    return other is PracticeRecord &&
         other.responses.length == responses.length &&
         List.generate(
           responses.length,
@@ -118,10 +151,11 @@ class PracticeActivityRecordModel {
   }
 
   @override
-  int get hashCode => question.hashCode ^ responses.hashCode;
+  int get hashCode => responses.hashCode;
 }
 
 class ActivityRecordResponse {
+  ConstructIdentifier cId;
   // the user's response
   // has nullable string, nullable audio bytes, nullable image bytes, and timestamp
   final String? text;
@@ -131,6 +165,7 @@ class ActivityRecordResponse {
   final double score;
 
   ActivityRecordResponse({
+    required this.cId,
     this.text,
     this.audioBytes,
     this.imageBytes,
@@ -138,52 +173,30 @@ class ActivityRecordResponse {
     required this.timestamp,
   });
 
+  bool get isCorrect => score > 0;
+
   //TODO - differentiate into different activity types
-  ConstructUseTypeEnum useType(ActivityTypeEnum aType) {
-    switch (aType) {
-      case ActivityTypeEnum.wordMeaning:
-        return score > 0
-            ? ConstructUseTypeEnum.corPA
-            : ConstructUseTypeEnum.incPA;
-      case ActivityTypeEnum.wordFocusListening:
-        return score > 0
-            ? ConstructUseTypeEnum.corWL
-            : ConstructUseTypeEnum.incWL;
-      case ActivityTypeEnum.emoji:
-        return ConstructUseTypeEnum.em;
-      case ActivityTypeEnum.lemmaId:
-        return score > 0
-            ? ConstructUseTypeEnum.corL
-            : ConstructUseTypeEnum.incL;
-      case ActivityTypeEnum.morphId:
-        return score > 0
-            ? ConstructUseTypeEnum.corM
-            : ConstructUseTypeEnum.incM;
-      case ActivityTypeEnum.hiddenWordListening:
-        return score > 0
-            ? ConstructUseTypeEnum.corHWL
-            : ConstructUseTypeEnum.incHWL;
-      case ActivityTypeEnum.messageMeaning:
-        return score > 0
-            ? ConstructUseTypeEnum.corMM
-            : ConstructUseTypeEnum.incMM;
-    }
-  }
+  ConstructUseTypeEnum useType(ActivityTypeEnum aType) =>
+      isCorrect ? aType.correctUse : aType.incorrectUse;
 
   // for each target construct create a OneConstructUse object
   List<OneConstructUse> toUses(
     PracticeActivityModel practiceActivity,
     ConstructUseMetaData metadata,
   ) {
-    if (practiceActivity.tgtConstructs.isEmpty ||
-        practiceActivity.targetTokens == null) {
-      return [];
-    }
-
     // if the emoji is already set, don't give points
     // IMPORTANT: This assumes that scoring is happening before saving of the user's emoji choice.
     if (practiceActivity.activityType == ActivityTypeEnum.emoji &&
-        practiceActivity.targetTokens?.first.getEmoji() != null) {
+        practiceActivity.targetTokens.first.getEmoji().isNotEmpty) {
+      return [];
+    }
+
+    if (practiceActivity.targetTokens.isEmpty) {
+      debugger(when: kDebugMode);
+      ErrorHandler.logError(
+        m: "null targetTokens in practice activity",
+        data: practiceActivity.toJson(),
+      );
       return [];
     }
 
@@ -192,7 +205,7 @@ class ActivityRecordResponse {
       case ActivityTypeEnum.wordMeaning:
       case ActivityTypeEnum.wordFocusListening:
       case ActivityTypeEnum.lemmaId:
-        final token = practiceActivity.targetTokens!.first;
+        final token = practiceActivity.targetTokens.first;
         return [
           OneConstructUse(
             lemma: token.lemma.text,
@@ -204,7 +217,7 @@ class ActivityRecordResponse {
           ),
         ];
       case ActivityTypeEnum.messageMeaning:
-        return practiceActivity.targetTokens!
+        return practiceActivity.targetTokens
             .expand(
               (t) => t.allUses(
                 useType(practiceActivity.activityType),
@@ -213,7 +226,7 @@ class ActivityRecordResponse {
             )
             .toList();
       case ActivityTypeEnum.hiddenWordListening:
-        return practiceActivity.targetTokens!
+        return practiceActivity.targetTokens
             .map(
               (token) => OneConstructUse(
                 lemma: token.lemma.text,
@@ -226,23 +239,45 @@ class ActivityRecordResponse {
             )
             .toList();
       case ActivityTypeEnum.morphId:
-        return practiceActivity.tgtConstructs
+        if (practiceActivity.morphFeature == null) {
+          debugger(when: kDebugMode);
+          ErrorHandler.logError(
+            m: "null morphFeature in morph activity",
+            data: practiceActivity.toJson(),
+          );
+          return [];
+        }
+        return practiceActivity.targetTokens
             .map(
-              (c) => OneConstructUse(
-                lemma: c.lemma,
-                form: practiceActivity.targetTokens!.first.text.content,
-                constructType: c.type,
-                useType: useType(practiceActivity.activityType),
-                metadata: metadata,
-                category: c.category,
-              ),
+              (t) {
+                final tag = t.getMorphTag(practiceActivity.morphFeature!);
+                if (tag == null) {
+                  debugger(when: kDebugMode);
+                  ErrorHandler.logError(
+                    m: "null tag in morph activity",
+                    data: practiceActivity.toJson(),
+                  );
+                  return null;
+                }
+                return OneConstructUse(
+                  lemma: tag,
+                  form: practiceActivity.targetTokens.first.text.content,
+                  constructType: ConstructTypeEnum.morph,
+                  useType: useType(practiceActivity.activityType),
+                  metadata: metadata,
+                  category: practiceActivity.morphFeature!,
+                );
+              },
             )
+            .where((c) => c != null)
+            .cast<OneConstructUse>()
             .toList();
     }
   }
 
   factory ActivityRecordResponse.fromJson(Map<String, dynamic> json) {
     return ActivityRecordResponse(
+      cId: ConstructIdentifier.fromJson(json['cId'] as Map<String, dynamic>),
       text: json['text'] as String?,
       audioBytes: json['audio'] as Uint8List?,
       imageBytes: json['image'] as Uint8List?,
@@ -256,6 +291,7 @@ class ActivityRecordResponse {
 
   Map<String, dynamic> toJson() {
     return {
+      'cId': cId.toJson(),
       'text': text,
       'audio': audioBytes,
       'image': imageBytes,
@@ -272,7 +308,9 @@ class ActivityRecordResponse {
         other.text == text &&
         other.audioBytes == audioBytes &&
         other.imageBytes == imageBytes &&
-        other.timestamp == timestamp;
+        other.timestamp == timestamp &&
+        other.score == score &&
+        other.cId == cId;
   }
 
   @override
@@ -280,5 +318,7 @@ class ActivityRecordResponse {
       text.hashCode ^
       audioBytes.hashCode ^
       imageBytes.hashCode ^
-      timestamp.hashCode;
+      timestamp.hashCode ^
+      score.hashCode ^
+      cId.hashCode;
 }

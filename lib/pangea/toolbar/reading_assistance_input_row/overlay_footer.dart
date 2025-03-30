@@ -1,11 +1,10 @@
-import 'package:flutter/material.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/chat/widgets/pangea_chat_input_row.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/toolbar_button_column.dart';
+import 'package:flutter/material.dart';
 
 class OverlayFooter extends StatelessWidget {
   final ChatController controller;
@@ -30,9 +29,9 @@ class OverlayFooter extends StatelessWidget {
         left: bottomSheetPadding,
         right: bottomSheetPadding,
       ),
-      constraints: const BoxConstraints(
-        maxWidth: FluffyThemes.columnWidth * 2.5,
-      ),
+      // constraints: const BoxConstraints(
+      //   maxWidth: FluffyThemes.columnWidth * 2.5,
+      // ),
       alignment: Alignment.center,
       child: Column(
         children: [
@@ -40,7 +39,7 @@ class OverlayFooter extends StatelessWidget {
             ToolbarButtonRow(overlayController: overlayController),
           Material(
             clipBehavior: Clip.hardEdge,
-            color: Theme.of(context).colorScheme.surfaceContainerHighest,
+            color: Colors.transparent,
             borderRadius: const BorderRadius.all(
               Radius.circular(AppConfig.borderRadius),
             ),

@@ -1,17 +1,17 @@
 import 'dart:convert';
-
-import 'package:flutter/foundation.dart';
-
-import 'package:get_storage/get_storage.dart';
-import 'package:http/http.dart';
+import 'dart:developer';
 
 import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/pangea/common/network/requests.dart';
 import 'package:fluffychat/pangea/common/network/urls.dart';
 import 'package:fluffychat/pangea/learning_settings/constants/language_constants.dart';
+import 'package:fluffychat/pangea/morphs/morph_features_enum.dart';
 import 'package:fluffychat/pangea/morphs/morph_meaning/morph_info_request.dart';
 import 'package:fluffychat/pangea/morphs/morph_meaning/morph_info_response.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/foundation.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:http/http.dart';
 
 class _APICallCacheItem {
   final DateTime time;
@@ -80,7 +80,7 @@ class MorphInfoRepo {
   }
 
   static Future<String?> get({
-    required String feature,
+    required MorphFeaturesEnum feature,
     required String tag,
   }) async {
     final res = await _get(
@@ -93,12 +93,16 @@ class MorphInfoRepo {
                 LanguageKeys.defaultLanguage,
       ),
     );
+    debugger(when: kDebugMode);
+    final morph = res.getFeatureByCode(feature.name);
 
-    return res.getFeatureByCode(feature)?.getTagByCode(tag)?.l1Description;
+    final data = morph?.getTagByCode(tag);
+
+    return data?.l1Description;
   }
 
   static Future<void> setMorphDefinition({
-    required String feature,
+    required MorphFeaturesEnum feature,
     required String tag,
     required String defintion,
   }) async {
@@ -122,7 +126,7 @@ class MorphInfoRepo {
       resp = MorphInfoResponse.fromJson(cachedJson);
     }
 
-    resp.setMorphDefinition(feature, tag, defintion);
+    resp.setMorphDefinition(feature.name, tag, defintion);
     await _morphMeaningStorage.write(userL1Short + userL2Short, resp.toJson());
   }
 }

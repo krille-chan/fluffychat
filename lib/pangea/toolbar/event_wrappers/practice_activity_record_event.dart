@@ -1,13 +1,13 @@
+import 'package:fluffychat/pangea/events/extensions/pangea_event_extension.dart';
+import 'package:fluffychat/pangea/practice_activities/practice_record.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/pangea/events/extensions/pangea_event_extension.dart';
-import 'package:fluffychat/pangea/practice_activities/practice_activity_record_model.dart';
 import '../../events/constants/pangea_event_types.dart';
 
 class PracticeActivityRecordEvent {
   Event event;
 
-  PracticeActivityRecordModel? _content;
+  PracticeRecord? _content;
 
   PracticeActivityRecordEvent({required this.event}) {
     if (event.type != PangeaEventTypes.activityRecord) {
@@ -17,8 +17,8 @@ class PracticeActivityRecordEvent {
     }
   }
 
-  PracticeActivityRecordModel get record {
-    _content ??= event.getPangeaContent<PracticeActivityRecordModel>();
+  PracticeRecord get record {
+    _content ??= event.getPangeaContent<PracticeRecord>();
     return _content!;
   }
 }

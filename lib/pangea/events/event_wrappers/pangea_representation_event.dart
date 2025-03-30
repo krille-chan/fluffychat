@@ -2,13 +2,7 @@
 
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-
 import 'package:collection/collection.dart';
-import 'package:matrix/matrix.dart';
-import 'package:matrix/src/utils/markdown.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
-
 import 'package:fluffychat/pangea/choreographer/event_wrappers/pangea_choreo_event.dart';
 import 'package:fluffychat/pangea/choreographer/models/choreo_record.dart';
 import 'package:fluffychat/pangea/choreographer/models/language_detection_model.dart';
@@ -24,6 +18,10 @@ import 'package:fluffychat/pangea/morphs/morph_features_enum.dart';
 import 'package:fluffychat/pangea/morphs/parts_of_speech_enum.dart';
 import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/foundation.dart';
+import 'package:matrix/matrix.dart';
+import 'package:matrix/src/utils/markdown.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 class RepresentationEvent {
   Event? _event;
@@ -300,7 +298,7 @@ class RepresentationEvent {
         if (feature == MorphFeaturesEnum.Pos) {
           return true;
         }
-        return tokens?.any((token) => token.morph.containsKey(feature.name)) ??
+        return tokens?.any((token) => token.morph.containsKey(feature)) ??
             false;
       }).toSet();
 
@@ -318,8 +316,8 @@ class RepresentationEvent {
 
   List<String> tagsByFeature(MorphFeaturesEnum feature) {
     return tokens
-            ?.where((t) => t.morph.containsKey(feature.name))
-            .map((t) => t.morph[feature.name])
+            ?.where((t) => t.morph.containsKey(feature))
+            .map((t) => t.morph[feature])
             .cast<String>()
             .toList() ??
         [];

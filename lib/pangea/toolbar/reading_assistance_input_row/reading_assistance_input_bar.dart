@@ -1,21 +1,13 @@
-import 'dart:developer';
-
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
-import 'package:fluffychat/pangea/common/utils/error_handler.dart';
-import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
-import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
-import 'package:fluffychat/pangea/practice_activities/target_tokens_and_activity_type.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
-import 'package:fluffychat/pangea/toolbar/reading_assistance_input_row/message_match_activity.dart';
-import 'package:fluffychat/pangea/toolbar/reading_assistance_input_row/message_morph_choice.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_mode_locked_card.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_translation_card.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/practice_activity/practice_activity_card.dart';
+import 'package:fluffychat/pangea/toolbar/widgets/word_zoom/morph_focus_widget.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 const double minContentHeight = 120;
 
@@ -29,47 +21,26 @@ class ReadingAssistanceInputBar extends StatelessWidget {
     super.key,
   });
 
-  PangeaToken? get token => overlayController.selectedToken;
-
-  PracticeActivityCard getPracticeActivityCard(
-    ActivityTypeEnum a, [
-    String? morphFeature,
-  ]) {
-    if (a == ActivityTypeEnum.morphId && morphFeature == null) {
-      debugger(when: kDebugMode);
-      ErrorHandler.logError(
-        m: "morphFeature null with activityType of morphId in getPracticeActivityCard",
-        s: StackTrace.current,
-        data: token?.toJson() ?? {},
-      );
-      morphFeature = "pos";
-    }
-    return PracticeActivityCard(
-      pangeaMessageEvent: overlayController.pangeaMessageEvent!,
-      targetTokensAndActivityType: TargetTokensAndActivityType(
-        tokens: [token!],
-        activityType: a,
-      ),
-      overlayController: overlayController,
-      morphFeature: morphFeature,
-    );
-  }
-
   Widget barContent(BuildContext context) {
     Widget? content;
+    final target =
+        overlayController.toolbarMode.associatedActivityType != null &&
+                overlayController.pangeaMessageEvent != null
+            ? overlayController.practiceSelection?.getSelection(
+                overlayController.toolbarMode.associatedActivityType!,
+                overlayController.selectedMorph?.token,
+                overlayController.selectedMorph?.morph,
+              )
+            : null;
+
     switch (overlayController.toolbarMode) {
-      // message meaning will not use the input bar (for now at least)
-      // maybe we move some choices there later
       case MessageMode.messageSpeechToText:
       case MessageMode.practiceActivity:
       case MessageMode.wordZoom:
       case MessageMode.noneSelected:
+      case MessageMode.messageMeaning:
         //TODO: show all emojis for the lemmas and allow sending normal reactions
         break;
-      // return MessageEmojiChoice(
-      //   controller: controller,
-      //   overlayController: overlayController,
-      // );
 
       case MessageMode.messageTranslation:
         if (overlayController.isTranslationUnlocked) {
@@ -81,18 +52,44 @@ class ReadingAssistanceInputBar extends StatelessWidget {
         }
 
       case MessageMode.wordEmoji:
-      case MessageMode.messageMeaning:
       case MessageMode.wordMeaning:
       case MessageMode.listening:
-        content = MessageMatchActivity(
-          overlayController: overlayController,
+        debugPrint(
+          "reading_assistance_input_bar: wordEmoji or wordMeaning with target: $target",
         );
 
+        if (target != null) {
+          content = PracticeActivityCard(
+            pangeaMessageEvent: overlayController.pangeaMessageEvent!,
+            targetTokensAndActivityType: target,
+            overlayController: overlayController,
+          );
+        } else {
+          content = const Text("All done!");
+        }
       case MessageMode.wordMorph:
-        content = MessageMorphInputBarContent(
-          overlayController: overlayController,
-          pangeaMessageEvent: overlayController.pangeaMessageEvent!,
-        );
+        if (target != null) {
+          content = PracticeActivityCard(
+            pangeaMessageEvent: overlayController.pangeaMessageEvent!,
+            targetTokensAndActivityType: target,
+            overlayController: overlayController,
+          );
+        } else if (overlayController.selectedMorph != null) {
+          content = MorphFocusWidget(
+            token: overlayController.selectedMorph!.token,
+            morphFeature: overlayController.selectedMorph!.morph,
+            pangeaMessageEvent: overlayController.pangeaMessageEvent!,
+            overlayController: overlayController,
+            onEditDone: () => overlayController.setState(() {}),
+          );
+        } else {
+          content = Center(
+            child: Text(
+              L10n.of(context).selectForGrammar,
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
+          );
+        }
     }
 
     if (content == null) {
@@ -103,7 +100,7 @@ class ReadingAssistanceInputBar extends StatelessWidget {
       constraints: const BoxConstraints(
         minHeight: minContentHeight,
       ),
-      child: content,
+      child: Center(child: content),
     );
   }
 
@@ -122,11 +119,12 @@ class ReadingAssistanceInputBar extends StatelessWidget {
 
     return Expanded(
       child: Container(
+        width: overlayController.maxWidth,
         constraints: BoxConstraints(
           maxHeight: (MediaQuery.of(context).size.height / 2) -
               AppConfig.toolbarButtonsHeight,
         ),
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(8.0),
         decoration: BoxDecoration(
           color: Theme.of(context).cardColor,
           borderRadius: const BorderRadius.all(

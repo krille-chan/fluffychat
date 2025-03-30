@@ -1,10 +1,5 @@
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/analytics_misc/put_analytics_controller.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/choice_array.dart';
@@ -12,13 +7,16 @@ import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/morphs/get_grammar_copy.dart';
 import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_activity_model.dart';
-import 'package:fluffychat/pangea/practice_activities/practice_activity_record_model.dart';
+import 'package:fluffychat/pangea/practice_activities/practice_record.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_audio_card.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/practice_activity/practice_activity_card.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/practice_activity/word_audio_button.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:matrix/matrix.dart';
 
 /// The multiple choice activity view
 class MultipleChoiceActivity extends StatefulWidget {
@@ -48,14 +46,24 @@ class MultipleChoiceActivity extends StatefulWidget {
 class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
   int? selectedChoiceIndex;
 
-  PracticeActivityRecordModel? get currentRecordModel =>
+  PracticeRecord? get currentRecordModel =>
       widget.practiceCardController.currentCompletionRecord;
 
   @override
   void initState() {
     super.initState();
+    if (widget.currentActivity.multipleChoiceContent == null) {
+      throw Exception(
+        "MultipleChoiceActivityState: currentActivity.multipleChoiceContent is null",
+      );
+    }
     if (widget.initialSelectedChoice != null) {
       currentRecordModel?.addResponse(
+        target: widget.currentActivity.practiceTarget,
+        cId: widget.currentActivity.morphFeature == null
+            ? widget.currentActivity.targetTokens.first.vocabConstructID
+            : widget.currentActivity.targetTokens.first
+                .morphIdByFeature(widget.currentActivity.morphFeature!)!,
         text: widget.initialSelectedChoice,
         score: 1,
       );
@@ -75,7 +83,7 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
 
   void updateChoice(String value, int index) {
     final bool isCorrect =
-        widget.currentActivity.content.isCorrect(value, index);
+        widget.currentActivity.multipleChoiceContent!.isCorrect(value, index);
 
     if (currentRecordModel?.hasTextResponse(value) ?? false) {
       return;
@@ -86,6 +94,11 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
     }
 
     currentRecordModel?.addResponse(
+      target: widget.currentActivity.practiceTarget,
+      cId: widget.currentActivity.morphFeature == null
+          ? widget.currentActivity.targetTokens.first.vocabConstructID
+          : widget.currentActivity.targetTokens.first
+              .morphIdByFeature(widget.currentActivity.morphFeature!)!,
       text: value,
       score: isCorrect ? 1 : 0,
     );
@@ -119,7 +132,7 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
     );
 
     // If the selected choice is correct, send the record
-    if (widget.currentActivity.content.isCorrect(value, index)) {
+    if (widget.currentActivity.multipleChoiceContent!.isCorrect(value, index)) {
       // If the activity is an emoji activity, set the emoji value
 
       // TODO: this widget is deprecated for use with emoji activities
@@ -148,9 +161,9 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
   }
 
   List<Choice> choices(BuildContext context) {
-    final activity = widget.currentActivity.content;
+    final activity = widget.currentActivity.multipleChoiceContent;
     final List<Choice> choices = [];
-    for (int i = 0; i < activity.choices.length; i++) {
+    for (int i = 0; i < activity!.choices.length; i++) {
       final String value = activity.choices[i];
       final color = currentRecordModel?.hasTextResponse(value) ?? false
           ? activity.choiceColor(i)
@@ -171,10 +184,12 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
     if (widget.currentActivity.activityType != ActivityTypeEnum.morphId) {
       return value;
     }
-    final morphFeature = widget.practiceCardController.widget.morphFeature;
+    final morphFeature = widget
+        .practiceCardController.widget.targetTokensAndActivityType.morphFeature;
     if (morphFeature == null) return value;
+
     return getGrammarCopy(
-          category: morphFeature,
+          category: morphFeature.name,
           lemma: value,
           context: context,
         ) ??
@@ -184,7 +199,7 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
   @override
   Widget build(BuildContext context) {
     final PracticeActivityModel practiceActivity = widget.currentActivity;
-    final question = practiceActivity.content.question;
+    final question = practiceActivity.multipleChoiceContent!.question;
 
     // if (ActivityTypeEnum.emoji == practiceActivity.activityType) {
     //   return WordEmojiChoiceRow(
@@ -212,7 +227,7 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
         if (practiceActivity.activityType ==
             ActivityTypeEnum.wordFocusListening)
           WordAudioButton(
-            text: practiceActivity.content.answers.first,
+            text: practiceActivity.multipleChoiceContent!.answers.first,
           ),
         if (practiceActivity.activityType ==
             ActivityTypeEnum.hiddenWordListening)

@@ -1,12 +1,6 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
-import 'package:collection/collection.dart';
-
-import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/constructs_model.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/igc/card_error_widget.dart';
 import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
@@ -15,35 +9,32 @@ import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dar
 import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
 import 'package:fluffychat/pangea/practice_activities/message_activity_request.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_activity_model.dart';
-import 'package:fluffychat/pangea/practice_activities/practice_activity_record_model.dart';
-import 'package:fluffychat/pangea/practice_activities/practice_repo.dart';
-import 'package:fluffychat/pangea/practice_activities/target_tokens_and_activity_type.dart';
-import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
+import 'package:fluffychat/pangea/practice_activities/practice_generation_repo.dart';
+import 'package:fluffychat/pangea/practice_activities/practice_record.dart';
+import 'package:fluffychat/pangea/practice_activities/practice_target.dart';
 import 'package:fluffychat/pangea/toolbar/event_wrappers/practice_activity_event.dart';
+import 'package:fluffychat/pangea/toolbar/reading_assistance_input_row/message_morph_choice.dart';
+import 'package:fluffychat/pangea/toolbar/reading_assistance_input_row/practice_match_card.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/practice_activity/multiple_choice_activity.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/toolbar_content_loading_indicator.dart';
-import 'package:fluffychat/pangea/toolbar/widgets/word_zoom/word_zoom_widget.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
 /// The wrapper for practice activity content.
 /// Handles the activities associated with a message,
 /// their navigation, and the management of completion records
 class PracticeActivityCard extends StatefulWidget {
   final PangeaMessageEvent pangeaMessageEvent;
-  final TargetTokensAndActivityType targetTokensAndActivityType;
+  final PracticeTarget targetTokensAndActivityType;
   final MessageOverlayController overlayController;
-  final WordZoomWidget? wordDetailsController;
-
-  final String? morphFeature;
 
   const PracticeActivityCard({
     super.key,
     required this.pangeaMessageEvent,
     required this.targetTokensAndActivityType,
     required this.overlayController,
-    this.morphFeature,
-    this.wordDetailsController,
   });
 
   @override
@@ -51,31 +42,32 @@ class PracticeActivityCard extends StatefulWidget {
 }
 
 class PracticeActivityCardState extends State<PracticeActivityCard> {
-  PracticeActivityModel? currentActivity;
   bool fetchingActivity = false;
   bool savoringTheJoy = false;
 
-  PracticeActivityRecordModel? currentCompletionRecord;
   Completer<PracticeActivityEvent?>? currentActivityCompleter;
 
-  PracticeGenerationController practiceGenerationController =
-      PracticeGenerationController();
+  PracticeRepo practiceGenerationController = PracticeRepo();
 
   PangeaController get pangeaController => MatrixState.pangeaController;
   String? _error;
 
+  PracticeActivityModel? get currentActivity =>
+      widget.overlayController.activity;
+
+  PracticeRecord? get currentCompletionRecord => currentActivity?.record;
+
   @override
   void initState() {
-    super.initState();
     _fetchActivity();
+    super.initState();
   }
 
   @override
   void didUpdateWidget(PracticeActivityCard oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.targetTokensAndActivityType !=
-            widget.targetTokensAndActivityType ||
-        oldWidget.morphFeature != widget.morphFeature) {
+        widget.targetTokensAndActivityType) {
       _fetchActivity();
     }
   }
@@ -97,7 +89,7 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
     _error = null;
     if (!mounted ||
         !pangeaController.languageController.languagesSet ||
-        widget.overlayController.messageAnalyticsEntry == null) {
+        widget.overlayController.practiceSelection == null) {
       _updateFetchingActivity(false);
       return;
     }
@@ -108,18 +100,17 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
         activityFeedback: activityFeedback,
       );
 
-      currentActivity = activity;
       if (activity == null) {
         widget.overlayController.exitPracticeFlow();
         return;
       }
 
-      currentCompletionRecord = PracticeActivityRecordModel(
-        question: mounted
-            ? currentActivity?.question(context, widget.morphFeature)
-            : currentActivity?.content.question,
-      );
+      widget.overlayController
+          .setState(() => widget.overlayController.activity = activity);
     } catch (e, s) {
+      debugPrint(
+        "Error fetching activity: $e",
+      );
       ErrorHandler.logError(
         e: e,
         s: s,
@@ -130,7 +121,7 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
               .map((token) => token.toJson())
               .toList(),
           'activityType': widget.targetTokensAndActivityType.activityType,
-          'morphFeature': widget.morphFeature,
+          'morphFeature': widget.targetTokensAndActivityType.morphFeature,
         },
       );
       debugger(when: kDebugMode);
@@ -146,47 +137,27 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
     debugPrint(
       "fetching activity model of type: ${widget.targetTokensAndActivityType.activityType}",
     );
+    debugger(when: kDebugMode);
     // check if we already have an activity matching the specs
     final tokens = widget.targetTokensAndActivityType.tokens;
     final type = widget.targetTokensAndActivityType.activityType;
+    final morph = widget.targetTokensAndActivityType.morphFeature;
 
-    final existingActivity =
-        widget.pangeaMessageEvent.practiceActivities.firstWhereOrNull(
-      (activity) {
-        final sameActivity =
-            activity.practiceActivity.content.choices.toSet().containsAll(
-                      activity.practiceActivity.content.answers.toSet(),
-                    ) &&
-                activity.practiceActivity.targetTokens != null &&
-                activity.practiceActivity.activityType == type &&
-                activity.practiceActivity.targetTokens!
-                    .map((t) => t.vocabConstructID.string)
-                    .toSet()
-                    .containsAll(
-                      tokens.map((t) => t.vocabConstructID.string).toSet(),
-                    );
-        if (type != ActivityTypeEnum.morphId || sameActivity == false) {
-          return sameActivity;
-        }
+    // final existingActivity =
+    //     widget.pangeaMessageEvent.practiceActivities.firstWhereOrNull(
+    //   (activity) =>
+    //       activity.practiceActivity.activityType == type &&
+    //       const ListEquality()
+    //           .equals(widget.targetTokensAndActivityType.tokens, tokens) &&
+    //       activity.practiceActivity.morphFeature == morph,
+    // );
 
-        return widget.morphFeature ==
-            activity.practiceActivity.tgtConstructs
-                .firstWhereOrNull(
-                  (c) => c.type == ConstructTypeEnum.morph,
-                )
-                ?.category;
-      },
-    );
-
-    if (existingActivity != null &&
-        existingActivity.practiceActivity.content.answers.isNotEmpty &&
-        !(existingActivity.practiceActivity.content.answers.length == 1 &&
-            existingActivity.practiceActivity.content.answers.first.isEmpty)) {
-      currentActivityCompleter = Completer();
-      currentActivityCompleter!.complete(existingActivity);
-      existingActivity.practiceActivity.targetTokens = tokens;
-      return existingActivity.practiceActivity;
-    }
+    // if (existingActivity != null) {
+    //   currentActivityCompleter = Completer();
+    //   currentActivityCompleter!.complete(existingActivity);
+    //   existingActivity.practiceActivity.targetTokens = tokens;
+    //   return existingActivity.practiceActivity;
+    // }
 
     final req = MessageActivityRequest(
       userL1: MatrixState.pangeaController.languageController.userL1!.langCode,
@@ -197,7 +168,7 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
       activityQualityFeedback: activityFeedback,
       targetTokens: tokens,
       targetType: type,
-      targetMorphFeature: widget.morphFeature,
+      targetMorphFeature: morph,
     );
 
     final PracticeActivityModelResponse activityResponse =
@@ -224,8 +195,6 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
 
   Future<void> _savorTheJoy() async {
     try {
-      debugger(when: savoringTheJoy && kDebugMode);
-
       if (mounted) setState(() => savoringTheJoy = true);
       await Future.delayed(_savorTheJoyDuration);
       if (mounted) setState(() => savoringTheJoy = false);
@@ -260,6 +229,7 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
       // to keep the completed activity on screen for a moment
       widget.overlayController
           .onActivityFinish(currentActivity!.activityType, null);
+
       widget.overlayController.widget.chatController.choreographer.tts.stop();
     } catch (e, s) {
       _onError();
@@ -276,9 +246,9 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
   }
 
   void _onError() {
-    widget.overlayController.messageAnalyticsEntry?.revealAllTokens();
-    currentActivity = null;
-    widget.overlayController.exitPracticeFlow();
+    // widget.overlayController.practiceSelection?.revealAllTokens();
+    // widget.overlayController.activity = null;
+    // widget.overlayController.exitPracticeFlow();
   }
 
   // /// The widget that displays the current activity.
@@ -286,33 +256,37 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
   // /// If the activity type is multiple choice, the widget returns a MultipleChoiceActivity.
   // /// If the activity type is unknown, the widget logs an error and returns a text widget with an error message.
   Widget? get activityWidget {
-    switch (currentActivity?.activityType) {
-      case null:
-        return null;
-      case ActivityTypeEnum.wordFocusListening:
-      case ActivityTypeEnum.hiddenWordListening:
-      case ActivityTypeEnum.wordMeaning:
-      case ActivityTypeEnum.lemmaId:
-      case ActivityTypeEnum.emoji:
-      case ActivityTypeEnum.morphId:
-      case ActivityTypeEnum.messageMeaning:
-        // final selectedChoice =
-        //     currentActivity?.activityType == ActivityTypeEnum.emoji &&
-        //             (currentActivity?.targetTokens?.isNotEmpty ?? false)
-        //         ? currentActivity?.targetTokens?.first.getEmoji()
-        //         : null;
-        return MultipleChoiceActivity(
-          practiceCardController: this,
-          currentActivity: currentActivity!,
-          event: widget.pangeaMessageEvent.event,
-          onError: _onError,
-          overlayController: widget.overlayController,
-          // initialSelectedChoice: selectedChoice,
-          initialSelectedChoice: null,
-          clearResponsesOnUpdate:
-              currentActivity?.activityType == ActivityTypeEnum.emoji,
-        );
+    if (currentActivity == null) {
+      return null;
     }
+    if (currentActivity!.multipleChoiceContent != null) {
+      if (currentActivity!.activityType == ActivityTypeEnum.morphId) {
+        return MessageMorphInputBarContent(
+          overlayController: widget.overlayController,
+          activity: currentActivity!,
+          pangeaMessageEvent: widget.overlayController.pangeaMessageEvent!,
+        );
+      }
+      return MultipleChoiceActivity(
+        practiceCardController: this,
+        currentActivity: currentActivity!,
+        event: widget.pangeaMessageEvent.event,
+        onError: _onError,
+        overlayController: widget.overlayController,
+        // initialSelectedChoice: selectedChoice,
+        initialSelectedChoice: null,
+        clearResponsesOnUpdate:
+            currentActivity?.activityType == ActivityTypeEnum.emoji,
+      );
+    }
+    if (currentActivity!.matchContent != null) {
+      return MatchActivityCard(
+        currentActivity: currentActivity!,
+        overlayController: widget.overlayController,
+      );
+    }
+    debugger(when: kDebugMode);
+    return const Text("No activity found");
   }
 
   @override
@@ -334,37 +308,17 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
       );
     }
 
-    return Stack(
-      alignment: Alignment.center,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         if (activityWidget != null) activityWidget!,
         // Conditionally show the darkening and progress indicator based on the loading state
         if (!savoringTheJoy && fetchingActivity) ...[
           // Circular progress indicator in the center
-          ToolbarContentLoadingIndicator(
-            height: currentActivity?.activityType == ActivityTypeEnum.emoji
-                ? 40
-                : null,
+          const ToolbarContentLoadingIndicator(
+            height: 40,
           ),
         ],
-        Positioned(
-          left: 0,
-          top: 0,
-          child: IconButton(
-            onPressed: () => widget.overlayController
-                .updateToolbarMode(MessageMode.wordEmoji),
-            icon: const Icon(Icons.lightbulb),
-          ),
-        ),
-        // Flag button in the top right corner
-        // Positioned(
-        //   top: 0,
-        //   right: 0,
-        //   child: ContentIssueButton(
-        //     isActive: currentActivity != null,
-        //     submitFeedback: submitFeedback,
-        //   ),
-        // ),
       ],
     );
   }

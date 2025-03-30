@@ -1,7 +1,3 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
 import 'package:fluffychat/pangea/common/constants/model_keys.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
@@ -13,6 +9,8 @@ import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/practice_activity/word_audio_button.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class LemmaWidget extends StatefulWidget {
   final PangeaToken token;
@@ -190,7 +188,7 @@ class LemmaWidgetState extends State<LemmaWidget> {
                 MessageMode.listening == widget.overlayController?.toolbarMode,
             baseOpacity: 0.4,
             callbackOverride:
-                widget.overlayController?.messageAnalyticsEntry?.hasActivity(
+                widget.overlayController?.practiceSelection?.hasActivity(
                           MessageMode.listening.associatedActivityType!,
                           widget.token,
                         ) ==

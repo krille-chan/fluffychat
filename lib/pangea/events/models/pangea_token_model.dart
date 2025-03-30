@@ -1,9 +1,6 @@
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-
 import 'package:collection/collection.dart';
-
 import 'package:fluffychat/pangea/analytics_misc/analytics_constants.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_use_model.dart';
@@ -22,7 +19,10 @@ import 'package:fluffychat/pangea/morphs/morph_repo.dart';
 import 'package:fluffychat/pangea/morphs/parts_of_speech_enum.dart';
 import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
+import 'package:fluffychat/pangea/toolbar/reading_assistance_input_row/message_morph_choice.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/foundation.dart';
+
 import '../../common/constants/model_keys.dart';
 import '../../lemmas/lemma.dart';
 
@@ -39,13 +39,13 @@ class PangeaToken {
 
   /// [_morph] ex {} - morphological features of the token
   /// https://universaldependencies.org/u/feat/
-  final Map<String, dynamic> _morph;
+  final Map<MorphFeaturesEnum, String> _morph;
 
   PangeaToken({
     required this.text,
     required this.lemma,
     required this.pos,
-    required Map<String, dynamic> morph,
+    required Map<MorphFeaturesEnum, String> morph,
   }) : _morph = morph;
 
   @override
@@ -60,12 +60,15 @@ class PangeaToken {
   @override
   int get hashCode => text.content.hashCode ^ text.offset.hashCode;
 
-  Map<String, dynamic> get morph {
-    if (_morph.keys.map((key) => key.toLowerCase()).contains("pos")) {
+  /// [morph] - morphological features of the token
+  /// includes the part of speech if it is not already included
+  /// https://universaldependencies.org/u/feat/
+  Map<MorphFeaturesEnum, String> get morph {
+    if (_morph.keys.contains(MorphFeaturesEnum.Pos)) {
       return _morph;
     }
-    final morphWithPos = Map<String, dynamic>.from(_morph);
-    morphWithPos["pos"] = pos;
+    final morphWithPos = Map<MorphFeaturesEnum, String>.from(_morph);
+    morphWithPos[MorphFeaturesEnum.Pos] = pos;
     return morphWithPos;
   }
 
@@ -139,7 +142,14 @@ class PangeaToken {
       text: text,
       lemma: _getLemmas(text.content, json[_lemmaKey]),
       pos: json['pos'] ?? '',
-      morph: json['morph'] ?? {},
+      morph: json['morph'] != null
+          ? (json['morph'] as Map<String, dynamic>).map(
+              (key, value) => MapEntry(
+                MorphFeaturesEnumExtension.fromString(key),
+                value as String,
+              ),
+            )
+          : {},
     );
   }
 
@@ -150,7 +160,10 @@ class PangeaToken {
         _textKey: text.toJson(),
         _lemmaKey: [lemma.toJson()],
         'pos': pos,
-        'morph': morph,
+        // store morph as a map of strings ie Map<feature.name,tag>
+        'morph': morph.map(
+          (key, value) => MapEntry(key.name, value),
+        ),
       };
 
   /// alias for the offset
@@ -197,7 +210,7 @@ class PangeaToken {
       uses.add(
         OneConstructUse(
           useType: type,
-          lemma: morph[morphFeature],
+          lemma: morph[morphFeature]!,
           form: text.content,
           constructType: ConstructTypeEnum.morph,
           metadata: metadata,
@@ -211,7 +224,7 @@ class PangeaToken {
 
   bool isActivityBasicallyEligible(
     ActivityTypeEnum a, [
-    String? morphFeature,
+    MorphFeaturesEnum? morphFeature,
     String? morphTag,
   ]) {
     if (!lemma.saveVocab) {
@@ -270,7 +283,7 @@ class PangeaToken {
 
   bool didActivitySuccessfully(
     ActivityTypeEnum a, [
-    String? morphFeature,
+    MorphFeaturesEnum? morphFeature,
     String? morphTag,
   ]) {
     if ((morphFeature == null || morphTag == null) &&
@@ -310,7 +323,7 @@ class PangeaToken {
 
   bool _isActivityProbablyLevelAppropriate(
     ActivityTypeEnum a, [
-    String? morphFeature,
+    MorphFeaturesEnum? morphFeature,
   ]) {
     switch (a) {
       case ActivityTypeEnum.wordMeaning:
@@ -354,25 +367,17 @@ class PangeaToken {
   }
 
   /// Safely get morph tag for a given feature without regard for case
-  String? getMorphTag(String feature) {
+  String? getMorphTag(MorphFeaturesEnum feature) {
+    // if the morph contains the feature, return it
     if (morph.containsKey(feature)) return morph[feature];
-    if (morph.containsKey(feature.toLowerCase())) {
-      return morph[feature.toLowerCase()];
-    }
-    final lowerCaseEntries = morph.entries.map(
-      (e) => MapEntry(e.key.toLowerCase(), e.value),
-    );
-    return lowerCaseEntries
-        .firstWhereOrNull(
-          (e) => e.key == feature.toLowerCase(),
-        )
-        ?.value;
+
+    return null;
   }
 
   // maybe for every 5 points of xp for a particular activity, increment the days between uses by 2
   bool shouldDoActivity({
     required ActivityTypeEnum a,
-    required String? feature,
+    required MorphFeaturesEnum? feature,
     required String? tag,
   }) {
     return isActivityBasicallyEligible(a, feature, tag) &&
@@ -391,21 +396,24 @@ class PangeaToken {
         uses: [],
       );
 
-  ConstructUses? morphConstruct(String morphFeature) =>
+  ConstructUses? morphConstruct(MorphFeaturesEnum morphFeature) =>
       morphIdByFeature(morphFeature)?.constructUses;
 
-  ConstructIdentifier? morphIdByFeature(String feature) {
+  ConstructIdentifier? morphIdByFeature(MorphFeaturesEnum feature) {
     final tag = getMorphTag(feature);
     if (tag == null) return null;
     return ConstructIdentifier(
       lemma: tag,
       type: ConstructTypeEnum.morph,
-      category: feature,
+      category: feature.name,
     );
   }
 
   /// lastUsed by activity type, construct and form
-  DateTime? _lastUsedByActivityType(ActivityTypeEnum a, String? feature) {
+  DateTime? _lastUsedByActivityType(
+    ActivityTypeEnum a,
+    MorphFeaturesEnum? feature,
+  ) {
     if (a == ActivityTypeEnum.morphId && feature == null) {
       debugger(when: kDebugMode);
       return null;
@@ -429,9 +437,9 @@ class PangeaToken {
 
   /// daysSinceLastUse by activity type
   /// returns 1000 if there is no last use
-  int daysSinceLastUseByType(ActivityTypeEnum a, String? feature) {
+  int daysSinceLastUseByType(ActivityTypeEnum a, MorphFeaturesEnum? feature) {
     final lastUsed = _lastUsedByActivityType(a, feature);
-    if (lastUsed == null) return 1000;
+    if (lastUsed == null) return 20;
     return DateTime.now().difference(lastUsed).inDays;
   }
 
@@ -449,7 +457,7 @@ class PangeaToken {
         ConstructIdentifier(
           lemma: morph.value,
           type: ConstructTypeEnum.morph,
-          category: morph.key,
+          category: morph.key.name,
         ),
       );
     }
@@ -509,10 +517,11 @@ class PangeaToken {
   }
 
   List<String> morphActivityDistractors(
-    String morphFeature,
+    MorphFeaturesEnum morphFeature,
     String morphTag,
   ) {
-    final List<String> allTags = MorphsRepo.cached.getAllTags(morphFeature);
+    final List<String> allTags =
+        MorphsRepo.cached.getDisplayTags(morphFeature.name);
 
     final List<String> possibleDistractors = allTags
         .where(
@@ -521,7 +530,7 @@ class PangeaToken {
         .toList();
 
     possibleDistractors.shuffle();
-    return possibleDistractors.take(3).toList();
+    return possibleDistractors.take(numberOfMorphDistractors).toList();
   }
 
   /// initial default input mode for a token
@@ -547,26 +556,18 @@ class PangeaToken {
     return MessageMode.wordZoom;
   }
 
+  List<MorphFeaturesEnum> get allMorphFeatures => morph.keys.toList();
+
   /// cycle through morphs to get the next one where should do morph activity is true
   /// if none are found, return null
-  String? get nextMorphFeatureEligibleForActivity {
-    final morphFeatures = morph.keys.toList();
-
-    if (shouldDoActivity(
-      a: ActivityTypeEnum.morphId,
-      feature: "pos",
-      tag: morph["pos"],
-    )) {
-      return "pos";
-    }
-
-    for (final feature in morphFeatures.where((f) => f != "pos").toList()) {
+  MorphFeaturesEnum? get nextMorphFeatureEligibleForActivity {
+    for (final m in morph.entries) {
       if (shouldDoActivity(
         a: ActivityTypeEnum.morphId,
-        feature: feature,
-        tag: morph[feature],
+        feature: m.key,
+        tag: m.value,
       )) {
-        return feature;
+        return m.key;
       }
     }
 
@@ -575,17 +576,6 @@ class PangeaToken {
 
   bool get doesLemmaTextMatchTokenText {
     return lemma.text.toLowerCase() == text.content.toLowerCase();
-  }
-
-  // put "pos" first in the list
-  List<MapEntry<String, dynamic>> get sortedMorphs {
-    final List<MapEntry<String, dynamic>> morphEntries = morph.entries.toList();
-    morphEntries.sort((a, b) {
-      if (a.key.toLowerCase() == "pos") return -1;
-      if (b.key.toLowerCase() == "pos") return 1;
-      return a.key.toLowerCase().compareTo(b.key.toLowerCase());
-    });
-    return morphEntries;
   }
 
   bool shouldDoActivityByMessageMode(MessageMode mode) {
@@ -601,47 +591,30 @@ class PangeaToken {
 
   List<ConstructIdentifier> get allConstructIds => _constructIDs;
 
-  List<ConstructIdentifier> get morphConstructIds => morph.entries
-      .map(
-        (e) => ConstructIdentifier(
-          lemma: e.key,
-          type: ConstructTypeEnum.morph,
-          category: e.value,
-        ),
-      )
-      .toList();
-
   List<ConstructIdentifier> get morphsBasicallyEligibleForPracticeByPriority =>
       MorphFeaturesEnumExtension.eligibleForPractice.where((f) {
-        return f == MorphFeaturesEnum.Pos || getMorphTag(f.name) != null;
+        return morph.containsKey(f);
       }).map((f) {
-        if (f == MorphFeaturesEnum.Pos) {
-          return ConstructIdentifier(
-            lemma: pos,
-            type: ConstructTypeEnum.morph,
-            category: f.name,
-          );
-        }
         return ConstructIdentifier(
-          lemma: getMorphTag(f.name)!,
+          lemma: getMorphTag(f)!,
           type: ConstructTypeEnum.morph,
           category: f.name,
         );
       }).toList();
 
   bool hasMorph(ConstructIdentifier cId) {
-    if (cId.category == "pos") {
-      return morph["pos"].toString().toLowerCase() == cId.lemma.toLowerCase();
-    }
     return morph.entries.any(
       (e) =>
-          e.key.toLowerCase() == cId.lemma.toLowerCase() &&
+          e.key.name == cId.lemma.toLowerCase() &&
           e.value.toString().toLowerCase() == cId.category.toLowerCase(),
     );
   }
 
   /// [0,infinity) - a higher number means higher priority
-  int activityPriorityScore(ActivityTypeEnum a, String? morphFeature) {
+  int activityPriorityScore(
+    ActivityTypeEnum a,
+    MorphFeaturesEnum? morphFeature,
+  ) {
     return daysSinceLastUseByType(a, morphFeature) *
         (vocabConstructID.isContentWord ? 10 : 9);
   }

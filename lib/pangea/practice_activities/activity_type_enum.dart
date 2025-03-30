@@ -154,7 +154,7 @@ extension ActivityTypeExtension on ActivityTypeEnum {
     }
   }
 
-  ConstructUseTypeEnum? get incorrectUse {
+  ConstructUseTypeEnum get incorrectUse {
     switch (this) {
       case ActivityTypeEnum.wordMeaning:
         return ConstructUseTypeEnum.incPA;
@@ -165,7 +165,7 @@ extension ActivityTypeExtension on ActivityTypeEnum {
       case ActivityTypeEnum.lemmaId:
         return ConstructUseTypeEnum.incL;
       case ActivityTypeEnum.emoji:
-        return null;
+        return ConstructUseTypeEnum.em;
       case ActivityTypeEnum.morphId:
         return ConstructUseTypeEnum.incM;
       case ActivityTypeEnum.messageMeaning:

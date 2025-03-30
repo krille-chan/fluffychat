@@ -1,11 +1,5 @@
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:material_symbols_icons/symbols.dart';
-
 import 'package:fluffychat/pangea/analytics_misc/construct_use_model.dart';
 import 'package:fluffychat/pangea/analytics_misc/text_loading_shimmer.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
@@ -18,6 +12,10 @@ import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/practice_activity/word_zoom_activity_button.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:material_symbols_icons/symbols.dart';
 
 class LemmaMeaningWidget extends StatefulWidget {
   final ConstructUses constructUse;
@@ -120,8 +118,8 @@ class LemmaMeaningWidgetState extends State<LemmaMeaningWidget> {
   @override
   Widget build(BuildContext context) {
     if (widget.token != null &&
-        widget.controller?.messageAnalyticsEntry != null &&
-        widget.controller!.messageAnalyticsEntry!
+        widget.controller?.practiceSelection != null &&
+        widget.controller!.practiceSelection!
             .hasActivity(ActivityTypeEnum.wordMeaning, widget.token!)) {
       return WordZoomActivityButton(
         icon: const Icon(Symbols.dictionary),

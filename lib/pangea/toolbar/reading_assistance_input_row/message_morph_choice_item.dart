@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
-
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
 import 'package:fluffychat/pangea/morphs/get_grammar_copy.dart';
 import 'package:fluffychat/pangea/morphs/morph_features_enum.dart';
 import 'package:fluffychat/pangea/morphs/morph_icon.dart';
+import 'package:flutter/material.dart';
 
 class MessageMorphChoiceItem extends StatefulWidget {
   const MessageMorphChoiceItem({
@@ -41,7 +41,7 @@ class MessageMorphChoiceItemState extends State<MessageMorphChoiceItem> {
   }
 
   Color get _color {
-    if (widget.isSelected && widget.isGold != null) {
+    if (widget.isGold != null) {
       return widget.isGold!
           ? AppConfig.success.withAlpha((0.4 * 255).toInt())
           : AppConfig.warning.withAlpha((0.4 * 255).toInt());
@@ -59,6 +59,11 @@ class MessageMorphChoiceItemState extends State<MessageMorphChoiceItem> {
 
   @override
   Widget build(BuildContext context) {
+    final color = _color;
+    final iconSize = FluffyThemes.isColumnMode(context) ? 40.0 : 24.0;
+    final style = FluffyThemes.isColumnMode(context)
+        ? Theme.of(context).textTheme.bodyLarge
+        : Theme.of(context).textTheme.bodySmall;
     return InkWell(
       onHover: (isHovered) => setState(() => _isHovered = isHovered),
       borderRadius: BorderRadius.circular(AppConfig.borderRadius),
@@ -67,8 +72,13 @@ class MessageMorphChoiceItemState extends State<MessageMorphChoiceItem> {
         child: Container(
           alignment: Alignment.center,
           decoration: BoxDecoration(
-            color: _color,
+            color: color,
             borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+            border: Border.all(
+              color:
+                  widget.isSelected || _isHovered ? color : Colors.transparent,
+              width: 2.0,
+            ),
           ),
           padding: const EdgeInsets.symmetric(
             vertical: 8.0,
@@ -80,14 +90,14 @@ class MessageMorphChoiceItemState extends State<MessageMorphChoiceItem> {
             spacing: 8.0,
             children: [
               SizedBox(
-                width: 40,
-                height: 40,
+                width: iconSize,
+                height: iconSize,
                 child: MorphIcon(
                   morphFeature: MorphFeaturesEnumExtension.fromString(
                     widget.cId.category,
                   ),
                   morphTag: widget.cId.lemma,
-                  size: const Size(40, 40),
+                  size: Size(iconSize, iconSize),
                   showTooltip: false,
                 ),
               ),
@@ -98,7 +108,7 @@ class MessageMorphChoiceItemState extends State<MessageMorphChoiceItem> {
                       context: context,
                     ) ??
                     widget.cId.lemma,
-                style: Theme.of(context).textTheme.bodyLarge,
+                style: style,
               ),
             ],
           ),

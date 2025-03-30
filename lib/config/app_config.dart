@@ -1,8 +1,6 @@
-import 'package:flutter/material.dart';
-
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/pangea/common/config/environment.dart';
+import 'package:flutter/material.dart';
+import 'package:matrix/matrix.dart';
 
 abstract class AppConfig {
   // #Pangea
@@ -60,6 +58,8 @@ abstract class AppConfig {
   static const Color success = Color(0xFF33D057);
   static const Color warning = Color.fromARGB(255, 210, 124, 12);
   static const Color gold = Color.fromARGB(255, 253, 191, 1);
+  static const Color silver = Color.fromARGB(255, 192, 192, 192);
+  static const Color bronze = Color.fromARGB(255, 205, 127, 50);
   static const Color goldLight = Color.fromARGB(255, 254, 223, 73);
   static const Color error = Colors.red;
   static const int overlayAnimationDuration = 250;

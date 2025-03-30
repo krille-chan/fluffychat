@@ -1,20 +1,18 @@
-import 'package:flutter/material.dart';
-
 import 'package:collection/collection.dart';
-import 'package:flutter_linkify/flutter_linkify.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/common/utils/any_state_holder.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/events/utils/message_text_util.dart';
 import 'package:fluffychat/pangea/message_token_text/message_token_button.dart';
-import 'package:fluffychat/pangea/practice_activities/message_analytics_controller.dart';
-import 'package:fluffychat/pangea/practice_activities/message_analytics_entry.dart';
+import 'package:fluffychat/pangea/practice_activities/practice_selection.dart';
+import 'package:fluffychat/pangea/practice_activities/practice_selection_repo.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_linkify/flutter_linkify.dart';
 
 /// Question - does this need to be stateful or does this work?
 /// Need to test.
@@ -54,8 +52,8 @@ class MessageTokenText extends StatelessWidget {
   List<PangeaToken>? get _tokens =>
       _pangeaMessageEvent.messageDisplayRepresentation?.tokens;
 
-  MessageAnalyticsEntry? get messageAnalyticsEntry => _tokens != null
-      ? MessageAnalyticsController.get(
+  PracticeSelection? get messageAnalyticsEntry => _tokens != null
+      ? PracticeSelectionRepo.get(
           _tokens!,
         )
       : null;
@@ -137,7 +135,7 @@ class HiddenText extends StatelessWidget {
 class MessageTextWidget extends StatelessWidget {
   final PangeaMessageEvent pangeaMessageEvent;
   final TextStyle existingStyle;
-  final MessageAnalyticsEntry? messageAnalyticsEntry;
+  final PracticeSelection? messageAnalyticsEntry;
   final bool Function(PangeaToken)? isSelected;
   final void Function(TokenPosition tokenPosition)? onClick;
   final bool Function(PangeaToken)? isHighlighted;
@@ -168,16 +166,19 @@ class MessageTextWidget extends StatelessWidget {
     this.isTransitionAnimation = false,
   });
 
-  TextStyle get style => overlayController != null
-      ? existingStyle.copyWith(
-          fontSize: 22,
-        )
-      : existingStyle;
+  TextStyle style(BuildContext context) =>
+      overlayController != null && overlayController!.maxWidth > 600
+          ? existingStyle.copyWith(
+              fontSize: Theme.of(context).textTheme.titleLarge?.fontSize,
+            )
+          : existingStyle.copyWith(
+              fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize,
+            );
 
   /// for some reason, this isn't the same as tokenTextWidth
-  double tokenTextWidthForContainer(PangeaToken token) {
+  double tokenTextWidthForContainer(BuildContext context, PangeaToken token) {
     final textPainter = TextPainter(
-      text: TextSpan(text: token.text.content, style: style),
+      text: TextSpan(text: token.text.content, style: style(context)),
       maxLines: 1,
       textDirection: TextDirection.ltr,
     )..layout();
@@ -217,7 +218,7 @@ class MessageTextWidget extends StatelessWidget {
     if (tokenPositions == null) {
       return Text(
         pangeaMessageEvent.messageDisplayText,
-        style: style,
+        style: style(context),
         softWrap: softWrap,
         maxLines: maxLines,
         overflow: overflow,
@@ -269,7 +270,7 @@ class MessageTextWidget extends StatelessWidget {
 
             final token = tokenPosition.token!;
 
-            final tokenWidth = tokenTextWidthForContainer(token);
+            final tokenWidth = tokenTextWidthForContainer(context, token);
 
             return WidgetSpan(
               child: CompositedTransformTarget(
@@ -288,13 +289,13 @@ class MessageTextWidget extends StatelessWidget {
                     MessageTokenButton(
                       token: token,
                       overlayController: overlayController,
-                      textStyle: style,
+                      textStyle: style(context),
                       width: tokenWidth,
                       animate: isTransitionAnimation,
-                      activity: overlayController
+                      practiceTarget: overlayController
                                   ?.toolbarMode.associatedActivityType !=
                               null
-                          ? overlayController?.messageAnalyticsEntry
+                          ? overlayController?.practiceSelection
                               ?.activities(
                                 overlayController!
                                     .toolbarMode.associatedActivityType!,
@@ -315,7 +316,7 @@ class MessageTextWidget extends StatelessWidget {
                               if (start.isNotEmpty)
                                 LinkifySpan(
                                   text: start,
-                                  style: style,
+                                  style: style(context),
                                   linkStyle: TextStyle(
                                     decoration: TextDecoration.underline,
                                     color: linkColor,
@@ -332,7 +333,7 @@ class MessageTextWidget extends StatelessWidget {
                                             : null,
                                         child: HiddenText(
                                           text: middle,
-                                          style: style,
+                                          style: style(context),
                                         ),
                                       ),
                                     )
@@ -343,7 +344,7 @@ class MessageTextWidget extends StatelessWidget {
                                       //     backgroundColor: backgroundColor(tokenPosition)
                                       //   ),
                                       // ),
-                                      style: style,
+                                      style: style(context),
                                       linkStyle: TextStyle(
                                         decoration: TextDecoration.underline,
                                         color: linkColor,
@@ -355,7 +356,7 @@ class MessageTextWidget extends StatelessWidget {
                               if (end.isNotEmpty)
                                 LinkifySpan(
                                   text: end,
-                                  style: style,
+                                  style: style(context),
                                   linkStyle: TextStyle(
                                     decoration: TextDecoration.underline,
                                     color: linkColor,
@@ -394,13 +395,13 @@ class MessageTextWidget extends StatelessWidget {
                   onTap: onClick != null
                       ? () => onClick?.call(tokenPosition)
                       : null,
-                  child: HiddenText(text: substring, style: style),
+                  child: HiddenText(text: substring, style: style(context)),
                 ),
               );
             }
             return LinkifySpan(
               text: substring,
-              style: style,
+              style: style(context),
               options: const LinkifyOptions(humanize: false),
               linkStyle: TextStyle(
                 decoration: TextDecoration.underline,

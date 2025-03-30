@@ -1,21 +1,21 @@
 import 'dart:developer';
 import 'dart:math';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
 import 'package:collection/collection.dart';
-import 'package:material_symbols_icons/symbols.dart';
-
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/constructs/construct_form.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/message_token_text/dotted_border_painter.dart';
-import 'package:fluffychat/pangea/practice_activities/target_tokens_and_activity_type.dart';
+import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
+import 'package:fluffychat/pangea/practice_activities/practice_target.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/reading_assistance_input_row/morph_selection.dart';
 import 'package:fluffychat/pangea/toolbar/utils/shrinkable_text.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:material_symbols_icons/symbols.dart';
 
 const double tokenButtonHeight = 40.0;
 const double tokenButtonDefaultFontSize = 10;
@@ -29,7 +29,7 @@ class MessageTokenButton extends StatefulWidget {
   final TextStyle textStyle;
   final double width;
   final bool animate;
-  final TargetTokensAndActivityType? activity;
+  final PracticeTarget? practiceTarget;
 
   const MessageTokenButton({
     super.key,
@@ -37,7 +37,7 @@ class MessageTokenButton extends StatefulWidget {
     required this.token,
     required this.textStyle,
     required this.width,
-    required this.activity,
+    required this.practiceTarget,
     this.animate = false,
   });
 
@@ -46,9 +46,14 @@ class MessageTokenButton extends StatefulWidget {
 }
 
 class MessageTokenButtonState extends State<MessageTokenButton>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _heightAnimation;
+
+  // New controller and animation for icon size
+  late AnimationController _iconSizeController;
+  late Animation<double> _iconSizeAnimation;
+
   bool _isHovered = false;
 
   @override
@@ -58,7 +63,6 @@ class MessageTokenButtonState extends State<MessageTokenButton>
       vsync: this,
       duration: const Duration(
         milliseconds: AppConfig.overlayAnimationDuration,
-        // seconds: 5,
       ),
     );
 
@@ -66,6 +70,19 @@ class MessageTokenButtonState extends State<MessageTokenButton>
       begin: 0,
       end: tokenButtonHeight,
     ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOut));
+
+    // Initialize the new icon size controller and animation
+    _iconSizeController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 200),
+    );
+
+    _iconSizeAnimation = Tween<double>(
+      begin: 24, // Default icon size
+      end: 30, // Enlarged icon size
+    ).animate(
+      CurvedAnimation(parent: _iconSizeController, curve: Curves.easeInOut),
+    );
 
     if (widget.animate) {
       _controller.forward();
@@ -85,7 +102,8 @@ class MessageTokenButtonState extends State<MessageTokenButton>
             widget.overlayController?.selectedToken ||
         oldWidget.overlayController?.selectedMorph !=
             widget.overlayController?.selectedMorph ||
-        oldWidget.activity != widget.activity) {
+        widget.token.vocabConstructID.constructUses.points !=
+            widget.token.vocabConstructID.constructUses.points) {
       setState(() {});
     }
     super.didUpdateWidget(oldWidget);
@@ -94,6 +112,7 @@ class MessageTokenButtonState extends State<MessageTokenButton>
   @override
   void dispose() {
     _controller.dispose();
+    _iconSizeController.dispose(); // Dispose the new controller
     super.dispose();
   }
 
@@ -106,7 +125,27 @@ class MessageTokenButtonState extends State<MessageTokenButton>
         fontSize: textSize + 4,
       );
 
-  TargetTokensAndActivityType? get activity => widget.activity;
+  PracticeTarget? get activity => widget.practiceTarget;
+
+  onMatch(ConstructForm form) {
+    if (widget.overlayController?.activity == null) {
+      debugger(when: kDebugMode);
+      ErrorHandler.logError(
+        m: "should not be in onAcceptWithDetails with null activity",
+        data: {"details": form},
+      );
+      return;
+    }
+    widget.overlayController!.selectedChoice = null;
+    widget.overlayController!.setState(() {});
+
+    widget.overlayController!.activity!.onMatch(
+      widget.token,
+      form,
+      widget.overlayController!.pangeaMessageEvent,
+      () => widget.overlayController!.setState(() {}),
+    );
+  }
 
   Widget get emojiView {
     // if (widget.token.text.content.length == 1 || maxEmojisPerLemma == 1) {
@@ -140,9 +179,31 @@ class MessageTokenButtonState extends State<MessageTokenButton>
     // );
   }
 
+  bool get isActivityCompleteForToken {
+    if (activity?.activityType == ActivityTypeEnum.morphId) {
+      return (activity?.record.completeResponses ?? 0) > 0;
+    }
+    for (final response in activity!.record.responses) {
+      if (response.cId == widget.token.vocabConstructID && response.isCorrect) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  Color get color {
+    if (activity == null) {
+      return Theme.of(context).colorScheme.primary;
+    }
+    if (isActivityCompleteForToken) {
+      return AppConfig.gold;
+    }
+    return Theme.of(context).colorScheme.primary;
+  }
+
   Widget get content {
     final tokenActivity = activity;
-    if (tokenActivity == null) {
+    if (tokenActivity == null || isActivityCompleteForToken) {
       if (MessageMode.wordEmoji == widget.overlayController?.toolbarMode) {
         return SizedBox(height: height, child: emojiView);
       }
@@ -151,9 +212,21 @@ class MessageTokenButtonState extends State<MessageTokenButton>
 
     if (MessageMode.wordMorph == widget.overlayController?.toolbarMode) {
       if (activity?.morphFeature == null) {
-        debugger(when: kDebugMode);
         return SizedBox(height: height);
       }
+      final bool isSelected =
+          (widget.overlayController?.selectedMorph?.token == widget.token &&
+                  widget.overlayController?.selectedMorph?.morph ==
+                      activity?.morphFeature) ||
+              _isHovered;
+
+      // Trigger the icon size animation based on hover or selection
+      if (isSelected) {
+        _iconSizeController.forward();
+      } else {
+        _iconSizeController.reverse();
+      }
+
       return InkWell(
         onHover: (isHovered) => setState(() => _isHovered = isHovered),
         onTap: () => widget.overlayController!.onMorphActivitySelect(
@@ -165,19 +238,17 @@ class MessageTokenButtonState extends State<MessageTokenButton>
           width: min(widget.width, height),
           alignment: Alignment.center,
           child: Opacity(
-            opacity: (widget.overlayController?.selectedMorph?.token ==
-                            widget.token &&
-                        widget.overlayController?.selectedMorph?.morph ==
-                            activity?.morphFeature) ||
-                    _isHovered
-                ? 1.0
-                : 0.4,
-            child: Icon(
-              Symbols.toys_and_games,
-              color: Theme.of(context).colorScheme.primary,
-              size: min(24, widget.width),
+            opacity: isSelected ? 1.0 : 0.4,
+            child: AnimatedBuilder(
+              animation: _iconSizeAnimation,
+              builder: (context, child) {
+                return Icon(
+                  Symbols.toys_and_games,
+                  color: color,
+                  size: _iconSizeAnimation.value, // Use the new animation
+                );
+              },
             ),
-            // MorphIcon(morphFeature: activity!.morphFeature!, morphTag: null),
           ),
         ),
       );
@@ -192,10 +263,7 @@ class MessageTokenButtonState extends State<MessageTokenButton>
         return InkWell(
           onHover: (isHovered) => setState(() => _isHovered = isHovered),
           onTap: widget.overlayController?.selectedChoice != null
-              ? () => widget.overlayController!.onMatchAttempt(
-                    widget.token,
-                    widget.overlayController!.selectedChoice!,
-                  )
+              ? () => onMatch(widget.overlayController!.selectedChoice!)
               : null,
           borderRadius: borderRadius,
           child: CustomPaint(
@@ -225,8 +293,7 @@ class MessageTokenButtonState extends State<MessageTokenButton>
           ),
         );
       },
-      onAcceptWithDetails: (details) =>
-          widget.overlayController!.onMatchAttempt(widget.token, details.data),
+      onAcceptWithDetails: (details) => onMatch(details.data),
     );
   }
 

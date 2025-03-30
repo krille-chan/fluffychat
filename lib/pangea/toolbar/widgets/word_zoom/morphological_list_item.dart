@@ -1,7 +1,3 @@
-import 'package:flutter/material.dart';
-
-import 'package:material_symbols_icons/symbols.dart';
-
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/morphs/get_grammar_copy.dart';
 import 'package:fluffychat/pangea/morphs/morph_features_enum.dart';
@@ -11,6 +7,8 @@ import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/reading_assistance_input_row/morph_selection.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/practice_activity/word_zoom_activity_button.dart';
+import 'package:flutter/material.dart';
+import 'package:material_symbols_icons/symbols.dart';
 
 class MorphologicalListItem extends StatelessWidget {
   final MorphFeaturesEnum morphFeature;
@@ -25,7 +23,7 @@ class MorphologicalListItem extends StatelessWidget {
   });
 
   bool get shouldDoActivity =>
-      overlayController.messageAnalyticsEntry?.hasActivity(
+      overlayController.practiceSelection?.hasActivity(
         ActivityTypeEnum.morphId,
         token,
         morphFeature,
@@ -36,7 +34,7 @@ class MorphologicalListItem extends StatelessWidget {
       overlayController.toolbarMode == MessageMode.wordMorph &&
       overlayController.selectedMorph?.morph == morphFeature;
 
-  String get morphTag => token.getMorphTag(morphFeature.name) ?? "X";
+  String get morphTag => token.getMorphTag(morphFeature) ?? "X";
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +46,7 @@ class MorphologicalListItem extends StatelessWidget {
             ? const Icon(Symbols.toys_and_games)
             : MorphIcon(
                 morphFeature: morphFeature,
-                morphTag: token.getMorphTag(morphFeature.name),
+                morphTag: token.getMorphTag(morphFeature),
                 size: const Size(24, 24),
               ),
         isSelected: isSelected,

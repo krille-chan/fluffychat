@@ -1,14 +1,12 @@
 import 'dart:developer';
 
+import 'package:collection/collection.dart';
+import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pangea/practice_activities/relevant_span_display_details.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:collection/collection.dart';
-
-import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pangea/practice_activities/practice_activity_model.dart';
-
-class ActivityContent {
+class MultipleChoiceActivity {
   final String question;
 
   /// choices, including the correct answer
@@ -16,7 +14,7 @@ class ActivityContent {
   final List<String> answers;
   final RelevantSpanDisplayDetails? spanDisplayDetails;
 
-  ActivityContent({
+  MultipleChoiceActivity({
     required this.question,
     required this.choices,
     required this.answers,
@@ -51,7 +49,7 @@ class ActivityContent {
       ? AppConfig.success
       : AppConfig.warning;
 
-  factory ActivityContent.fromJson(Map<String, dynamic> json) {
+  factory MultipleChoiceActivity.fromJson(Map<String, dynamic> json) {
     final spanDisplay = json['span_display_details'] != null &&
             json['span_display_details'] is Map
         ? RelevantSpanDisplayDetails.fromJson(json['span_display_details'])
@@ -65,7 +63,7 @@ class ActivityContent {
       answers = answerEntry.map((e) => e as String).toList();
     }
 
-    return ActivityContent(
+    return MultipleChoiceActivity(
       question: json['question'] as String,
       choices: (json['choices'] as List).map((e) => e as String).toList(),
       answers: answers,
@@ -87,7 +85,7 @@ class ActivityContent {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is ActivityContent &&
+    return other is MultipleChoiceActivity &&
         other.question == question &&
         other.choices == choices &&
         const ListEquality().equals(other.answers.sorted(), answers.sorted());
