@@ -29,8 +29,8 @@ const RESOURCES = {"main.dart.js_283.part.js": "37050134410def714dc66c45dbecd7d2
 "splash/img/dark-2x.png": "9371a9e18df59f2bbe9b32e04c3fc5d4",
 "splash/img/dark-4x.png": "e0346148103c17a87682a35525499afe",
 "main.dart.js_291.part.js": "4325fc63c7288859764754c1e3ed4df4",
-"index.html": "42407304198125c98b5e5f8f5f8bded3",
-"/": "42407304198125c98b5e5f8f5f8bded3",
+"index.html": "ac4eeaa118883a3f30981ec1824d7fa6",
+"/": "ac4eeaa118883a3f30981ec1824d7fa6",
 "assets/NOTICES": "2491914354abed5de92dc774322c614f",
 "assets/assets/banner_transparent.png": "364e2030f739bf0c7ed1c061c4cb5901",
 "assets/assets/banner.png": "4a005db27a8787aea061537223dabb7d",
@@ -110,7 +110,7 @@ const RESOURCES = {"main.dart.js_283.part.js": "37050134410def714dc66c45dbecd7d2
 "main.dart.js_256.part.js": "b7eb9e32c2533a3055d0bdabc71af339",
 "main.dart.js_201.part.js": "dab39da1fcedd45a88ea299e922bc423",
 "main.dart.js_1.part.js": "c305226ceb5787a6e27f8a8cd0f1711e",
-"flutter_bootstrap.js": "fd897edb85a3f2247d8ab794ab5a79c5",
+"flutter_bootstrap.js": "d10f509bf391c9eac98158431ae789ad",
 "main.dart.js_15.part.js": "6f7946b1ad537764f547a3782e414fbc",
 "main.dart.js_226.part.js": "9ebfc0b16012035bfd53c430b01ea7ba"};
 // The application shell files that are downloaded before a service worker can
