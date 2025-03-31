@@ -1,13 +1,16 @@
 import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
 
 class ConstructForm {
-  String form;
-  ConstructIdentifier cId;
+  /// Form of the construct
+  final String form;
 
-  ConstructForm(
-    this.form,
-    this.cId,
-  );
+  /// The constructIdenfifier
+  final ConstructIdentifier cId;
+
+  ConstructForm({
+    required this.form,
+    required this.cId,
+  });
 
   @override
   bool operator ==(Object other) {
@@ -18,4 +21,18 @@ class ConstructForm {
 
   @override
   int get hashCode => form.hashCode ^ cId.hashCode;
+
+  factory ConstructForm.fromJson(Map<String, dynamic> json) {
+    return ConstructForm(
+      form: json['form'],
+      cId: ConstructIdentifier.fromJson(json['cId']),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'form': form,
+      'cId': cId.toJson(),
+    };
+  }
 }

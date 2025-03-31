@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-
 import 'package:collection/collection.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/analytics_details_popup/analytics_details_popup.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
@@ -15,6 +12,7 @@ import 'package:fluffychat/pangea/morphs/morph_features_enum.dart';
 import 'package:fluffychat/pangea/morphs/morph_icon.dart';
 import 'package:fluffychat/pangea/user/client_extension.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
 
 class MorphAnalyticsListView extends StatelessWidget {
   final void Function(ConstructIdentifier) onConstructZoom;
@@ -29,10 +27,10 @@ class MorphAnalyticsListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
+      padding: const EdgeInsets.all(16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        // spacing: 16.0,
+        spacing: 16.0,
         children: [
           // Add your text widget here
           const InstructionsInlineTooltip(
@@ -84,7 +82,6 @@ class MorphFeatureBox extends StatelessWidget {
 
     return Container(
       padding: const EdgeInsets.all(16.0),
-      margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(AppConfig.borderRadius),
         border: Border.all(

@@ -1,16 +1,16 @@
 import 'package:collection/collection.dart';
 
 import 'package:fluffychat/pangea/constructs/construct_form.dart';
-import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
+import 'package:fluffychat/pangea/practice_activities/practice_choice.dart';
 
-class PracticeMatch {
+class PracticeMatchActivity {
   /// The constructIdenfifiers involved in the activity
   /// and the forms that are acceptable answers
-  final Map<ConstructIdentifier, List<String>> matchInfo;
+  final Map<ConstructForm, List<String>> matchInfo;
 
-  List<ConstructForm> displayForms = List.empty(growable: true);
+  List<PracticeChoice> choices = List.empty(growable: true);
 
-  PracticeMatch({
+  PracticeMatchActivity({
     required this.matchInfo,
   }) {
     // if there are multiple forms for a construct, pick one to display
@@ -21,38 +21,40 @@ class PracticeMatch {
     // either from that construct's options, or returning to the previous construct
     // and picking a different form from there
     for (final ith in matchInfo.entries) {
-      for (final form in ith.value) {
-        if (!displayForms.any((element) => element.form == form)) {
-          displayForms.add(ConstructForm(form, ith.key));
+      for (final acceptableAnswer in ith.value) {
+        if (!choices
+            .any((element) => element.choiceContent == acceptableAnswer)) {
+          choices.add(
+            PracticeChoice(choiceContent: acceptableAnswer, form: ith.key),
+          );
           break;
         }
         // TODO: if none found, we can probably pick a different form for the other one
       }
     }
 
-    // remove any items from matchInfo that don't have an item in displayForms
+    // remove any items from matchInfo that don't have an item in choices
     for (final ith in matchInfo.keys) {
-      if (!displayForms.any((element) => element.cId == ith)) {
+      if (!choices.any((choice) => choice.form == ith)) {
         matchInfo.remove(ith);
       }
     }
   }
 
-  bool isCorrect(ConstructIdentifier cId, String value) {
-    return matchInfo[cId]!.contains(value);
+  bool isCorrect(ConstructForm form, String value) {
+    return matchInfo[form]!.contains(value);
   }
 
-  factory PracticeMatch.fromJson(Map<String, dynamic> json) {
-    final Map<ConstructIdentifier, List<String>> matchInfo = {};
+  factory PracticeMatchActivity.fromJson(Map<String, dynamic> json) {
+    final Map<ConstructForm, List<String>> matchInfo = {};
     for (final constructJson in json['match_info']) {
-      final ConstructIdentifier cId =
-          ConstructIdentifier.fromJson(constructJson['cId']);
+      final ConstructForm cId = ConstructForm.fromJson(constructJson['cId']);
       final List<String> surfaceForms =
           List<String>.from(constructJson['forms']);
       matchInfo[cId] = surfaceForms;
     }
 
-    return PracticeMatch(
+    return PracticeMatchActivity(
       matchInfo: matchInfo,
     );
   }
@@ -75,7 +77,7 @@ class PracticeMatch {
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
-    return other is PracticeMatch &&
+    return other is PracticeMatchActivity &&
         const MapEquality().equals(other.matchInfo, matchInfo);
   }
 

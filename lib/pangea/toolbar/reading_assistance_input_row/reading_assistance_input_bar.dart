@@ -7,6 +7,7 @@ import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_mode_locked_card.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
+import 'package:fluffychat/pangea/toolbar/widgets/message_speech_to_text_card.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_translation_card.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/practice_activity/practice_activity_card.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/word_zoom/morph_focus_widget.dart';
@@ -35,63 +36,65 @@ class ReadingAssistanceInputBar extends StatelessWidget {
               )
             : null;
 
-    switch (overlayController.toolbarMode) {
-      case MessageMode.messageSpeechToText:
-      case MessageMode.practiceActivity:
-      case MessageMode.wordZoom:
-      case MessageMode.noneSelected:
-      case MessageMode.messageMeaning:
-        //TODO: show all emojis for the lemmas and allow sending normal reactions
-        break;
+    if (overlayController.pangeaMessageEvent?.isAudioMessage == true) {
+      return MessageSpeechToTextCard(
+        messageEvent: overlayController.pangeaMessageEvent!,
+      );
+    } else {
+      switch (overlayController.toolbarMode) {
+        case MessageMode.messageSpeechToText:
+        case MessageMode.practiceActivity:
+        case MessageMode.wordZoom:
+        case MessageMode.noneSelected:
+        case MessageMode.messageMeaning:
+          //TODO: show all emojis for the lemmas and allow sending normal reactions
+          break;
 
-      case MessageMode.messageTranslation:
-        if (overlayController.isTranslationUnlocked) {
-          content = MessageTranslationCard(
-            messageEvent: overlayController.pangeaMessageEvent!,
-          );
-        } else {
-          content = MessageModeLockedCard(controller: overlayController);
-        }
+        case MessageMode.messageTranslation:
+          if (overlayController.isTranslationUnlocked) {
+            content = MessageTranslationCard(
+              messageEvent: overlayController.pangeaMessageEvent!,
+            );
+          } else {
+            content = MessageModeLockedCard(controller: overlayController);
+          }
 
-      case MessageMode.wordEmoji:
-      case MessageMode.wordMeaning:
-      case MessageMode.listening:
-        debugPrint(
-          "reading_assistance_input_bar: wordEmoji or wordMeaning with target: $target",
-        );
-
-        if (target != null) {
-          content = PracticeActivityCard(
-            pangeaMessageEvent: overlayController.pangeaMessageEvent!,
-            targetTokensAndActivityType: target,
-            overlayController: overlayController,
-          );
-        } else {
-          content = const Text("All done!");
-        }
-      case MessageMode.wordMorph:
-        if (target != null) {
-          content = PracticeActivityCard(
-            pangeaMessageEvent: overlayController.pangeaMessageEvent!,
-            targetTokensAndActivityType: target,
-            overlayController: overlayController,
-          );
-        } else if (overlayController.selectedMorph != null) {
-          content = MorphFocusWidget(
-            token: overlayController.selectedMorph!.token,
-            morphFeature: overlayController.selectedMorph!.morph,
-            pangeaMessageEvent: overlayController.pangeaMessageEvent!,
-            overlayController: overlayController,
-            onEditDone: () => overlayController.setState(() {}),
-          );
-        } else {
-          content = Center(
-            child: Text(
-              L10n.of(context).selectForGrammar,
-              style: Theme.of(context).textTheme.bodyLarge,
-            ),
-          );
-        }
+        case MessageMode.wordEmoji:
+        case MessageMode.wordMeaning:
+        case MessageMode.listening:
+          if (target != null) {
+            content = PracticeActivityCard(
+              pangeaMessageEvent: overlayController.pangeaMessageEvent!,
+              targetTokensAndActivityType: target,
+              overlayController: overlayController,
+            );
+          } else {
+            content = const Text("All done!");
+          }
+        case MessageMode.wordMorph:
+          if (target != null) {
+            content = PracticeActivityCard(
+              pangeaMessageEvent: overlayController.pangeaMessageEvent!,
+              targetTokensAndActivityType: target,
+              overlayController: overlayController,
+            );
+          } else if (overlayController.selectedMorph != null) {
+            content = MorphFocusWidget(
+              token: overlayController.selectedMorph!.token,
+              morphFeature: overlayController.selectedMorph!.morph,
+              pangeaMessageEvent: overlayController.pangeaMessageEvent!,
+              overlayController: overlayController,
+              onEditDone: () => overlayController.setState(() {}),
+            );
+          } else {
+            content = Center(
+              child: Text(
+                L10n.of(context).selectForGrammar,
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+            );
+          }
+      }
     }
 
     if (content == null) {
@@ -108,17 +111,6 @@ class ReadingAssistanceInputBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (controller.showEmojiPicker) return const SizedBox.shrink();
-
-    final display = controller.editEvent == null &&
-        controller.replyEvent == null &&
-        controller.room.canSendDefaultMessages &&
-        controller.selectedEvents.isNotEmpty;
-
-    if (!display) {
-      return const SizedBox.shrink();
-    }
-
     return Expanded(
       child: Container(
         width: overlayController.maxWidth,

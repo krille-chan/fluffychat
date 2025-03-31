@@ -12,6 +12,7 @@ import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/morphs/morph_features_enum.dart';
 import 'package:fluffychat/pangea/morphs/morph_icon.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_activity_model.dart';
+import 'package:fluffychat/pangea/practice_activities/practice_choice.dart';
 import 'package:fluffychat/pangea/toolbar/reading_assistance_input_row/message_morph_choice_item.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 
@@ -126,11 +127,15 @@ class MessageMorphInputBarContentState
 
                       widget.activity.onMultipleChoiceSelect(
                         token,
-                        ConstructForm(
-                          choice,
-                          widget.activity.targetTokens.first.morphIdByFeature(
-                            widget.activity.morphFeature!,
-                          )!,
+                        PracticeChoice(
+                          choiceContent: choice,
+                          form: ConstructForm(
+                            cId: widget.activity.targetTokens.first
+                                .morphIdByFeature(
+                              widget.activity.morphFeature!,
+                            )!,
+                            form: token.text.content,
+                          ),
                         ),
                         widget.pangeaMessageEvent,
                         () => overlay.setState(() {}),

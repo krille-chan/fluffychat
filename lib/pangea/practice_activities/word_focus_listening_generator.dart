@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
+import 'package:fluffychat/pangea/constructs/construct_form.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
 import 'package:fluffychat/pangea/practice_activities/message_activity_request.dart';
@@ -55,10 +56,16 @@ class WordFocusListeningGenerator {
         activityType: ActivityTypeEnum.wordFocusListening,
         targetTokens: req.targetTokens,
         langCode: req.userL2,
-        matchContent: PracticeMatch(
+        matchContent: PracticeMatchActivity(
           matchInfo: Map.fromEntries(
             req.targetTokens.map(
-              (token) => MapEntry(token.vocabConstructID, [token.text.content]),
+              (token) => MapEntry(
+                ConstructForm(
+                  cId: token.vocabConstructID,
+                  form: token.text.content,
+                ),
+                [token.text.content],
+              ),
             ),
           ),
         ),

@@ -10,6 +10,7 @@ import 'package:fluffychat/pangea/analytics_misc/construct_use_model.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/constructs_model.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
+import 'package:fluffychat/pangea/constructs/construct_form.dart';
 import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
 import 'package:fluffychat/pangea/constructs/construct_level_enum.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_text_model.dart';
@@ -492,6 +493,9 @@ class PangeaToken {
         type: ConstructTypeEnum.vocab,
         category: pos,
       );
+
+  ConstructForm get vocabForm =>
+      ConstructForm(form: text.content, cId: vocabConstructID);
 
   /// [setEmoji] sets the emoji for the lemma
   /// NOTE: assumes that the language of the lemma is the same as the user's current l2

@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/choice_animation.dart';
-import 'package:fluffychat/pangea/constructs/construct_form.dart';
 import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_activity_model.dart';
+import 'package:fluffychat/pangea/practice_activities/practice_choice.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/reading_assistance_input_row/practice_match_item.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_audio_card.dart';
@@ -81,8 +81,8 @@ class MatchActivityCard extends StatelessWidget {
           alignment: WrapAlignment.center,
           spacing: 4.0,
           runSpacing: 4.0,
-          children: activity.matchContent!.displayForms.map(
-            (ConstructForm cf) {
+          children: activity.matchContent!.choices.map(
+            (PracticeChoice cf) {
               return ChoiceAnimationWidget(
                 isSelected: overlayController.selectedChoice == cf,
                 isCorrect: currentActivity.wasCorrectMatch(cf) ?? false,
@@ -90,10 +90,10 @@ class MatchActivityCard extends StatelessWidget {
                   isSelected: overlayController.selectedChoice == cf,
                   isCorrect: currentActivity.wasCorrectMatch(cf),
                   constructForm: cf,
-                  content: choiceDisplayContent(cf.form, fontSize),
+                  content: choiceDisplayContent(cf.choiceContent, fontSize),
                   audioContent:
                       activityType == ActivityTypeEnum.wordFocusListening
-                          ? cf.form
+                          ? cf.choiceContent
                           : null,
                   overlayController: overlayController,
                   fixedSize: activityType == ActivityTypeEnum.wordMeaning

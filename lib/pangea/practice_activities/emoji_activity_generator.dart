@@ -1,8 +1,4 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
-import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
+import 'package:fluffychat/pangea/constructs/construct_form.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/lemmas/lemma_info_response.dart';
 import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
@@ -10,6 +6,8 @@ import 'package:fluffychat/pangea/practice_activities/message_activity_request.d
 import 'package:fluffychat/pangea/practice_activities/multiple_choice_activity_model.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_activity_model.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_match.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class EmojiActivityGenerator {
   Future<MessageActivityResponse> get(
@@ -57,8 +55,8 @@ class EmojiActivityGenerator {
     final List<LemmaInfoResponse> lemmaInfos =
         await Future.wait(lemmaInfoFutures);
 
-    final Map<ConstructIdentifier, List<String>> matchInfo = Map.fromIterables(
-      req.targetTokens.map((token) => token.vocabConstructID),
+    final Map<ConstructForm, List<String>> matchInfo = Map.fromIterables(
+      req.targetTokens.map((token) => token.vocabForm),
       lemmaInfos.map((e) => e.emoji),
     );
 
@@ -67,7 +65,7 @@ class EmojiActivityGenerator {
         activityType: ActivityTypeEnum.emoji,
         targetTokens: req.targetTokens,
         langCode: req.userL2,
-        matchContent: PracticeMatch(
+        matchContent: PracticeMatchActivity(
           matchInfo: matchInfo,
         ),
       ),

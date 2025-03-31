@@ -9,10 +9,10 @@ import 'package:material_symbols_icons/symbols.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
-import 'package:fluffychat/pangea/constructs/construct_form.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/message_token_text/dotted_border_painter.dart';
 import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
+import 'package:fluffychat/pangea/practice_activities/practice_choice.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_target.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/reading_assistance_input_row/morph_selection.dart';
@@ -129,7 +129,7 @@ class MessageTokenButtonState extends State<MessageTokenButton>
 
   PracticeTarget? get activity => widget.practiceTarget;
 
-  onMatch(ConstructForm form) {
+  onMatch(PracticeChoice form) {
     if (widget.overlayController?.activity == null) {
       debugger(when: kDebugMode);
       ErrorHandler.logError(
@@ -256,7 +256,7 @@ class MessageTokenButtonState extends State<MessageTokenButton>
       );
     }
 
-    return DragTarget<ConstructForm>(
+    return DragTarget<PracticeChoice>(
       builder: (BuildContext context, accepted, rejected) {
         final double colorAlpha = 0.3 +
             (widget.overlayController?.selectedChoice != null ? 0.4 : 0.0) +

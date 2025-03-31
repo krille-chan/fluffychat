@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
+import 'package:fluffychat/pangea/constructs/construct_form.dart';
 import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
 import 'package:fluffychat/pangea/lemmas/lemma_info_repo.dart';
 import 'package:fluffychat/pangea/lemmas/lemma_info_request.dart';
@@ -80,8 +81,8 @@ class LemmaMeaningActivityGenerator {
     final List<LemmaInfoResponse> lemmaInfos =
         await Future.wait(lemmaInfoFutures);
 
-    final Map<ConstructIdentifier, List<String>> matchInfo = Map.fromIterables(
-      req.targetTokens.map((token) => token.vocabConstructID),
+    final Map<ConstructForm, List<String>> matchInfo = Map.fromIterables(
+      req.targetTokens.map((token) => token.vocabForm),
       lemmaInfos.map((lemmaInfo) => [lemmaInfo.meaning]),
     );
 
@@ -90,7 +91,7 @@ class LemmaMeaningActivityGenerator {
         activityType: ActivityTypeEnum.wordMeaning,
         targetTokens: req.targetTokens,
         langCode: req.userL2,
-        matchContent: PracticeMatch(
+        matchContent: PracticeMatchActivity(
           matchInfo: matchInfo,
         ),
       ),

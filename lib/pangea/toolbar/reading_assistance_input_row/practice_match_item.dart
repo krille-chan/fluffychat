@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
-import 'package:fluffychat/pangea/constructs/construct_form.dart';
+import 'package:fluffychat/pangea/practice_activities/practice_choice.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 
@@ -22,7 +22,7 @@ class PracticeMatchItem extends StatefulWidget {
   });
 
   final Widget content;
-  final ConstructForm constructForm;
+  final PracticeChoice constructForm;
   final String? audioContent;
   final MessageOverlayController overlayController;
   final double? fixedSize;
@@ -129,9 +129,14 @@ class PracticeMatchItemState extends State<PracticeMatchItem> {
     );
   }
 
+  void onTap() {
+    play();
+    widget.overlayController.onChoiceSelect(widget.constructForm);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return LongPressDraggable<ConstructForm>(
+    return LongPressDraggable<PracticeChoice>(
       data: widget.constructForm,
       feedback: Material(
         type: MaterialType.transparency,
@@ -144,10 +149,7 @@ class PracticeMatchItemState extends State<PracticeMatchItem> {
       child: InkWell(
         onHover: (isHovered) => setState(() => _isHovered = isHovered),
         borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-        onTap: () {
-          play();
-          widget.overlayController.onChoiceSelect(widget.constructForm);
-        },
+        onTap: onTap,
         child: content(context),
       ),
     );

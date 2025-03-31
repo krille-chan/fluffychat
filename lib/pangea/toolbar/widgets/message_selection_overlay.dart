@@ -12,7 +12,6 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/common/utils/overlay.dart';
-import 'package:fluffychat/pangea/constructs/construct_form.dart';
 import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_representation_event.dart';
@@ -23,6 +22,7 @@ import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/lemmas/lemma_info_response.dart';
 import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_activity_model.dart';
+import 'package:fluffychat/pangea/practice_activities/practice_choice.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_selection.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_selection_repo.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/text_to_speech_controller.dart';
@@ -77,7 +77,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   MorphSelection? selectedMorph;
 
   /// tracks selected choice
-  ConstructForm? selectedChoice;
+  PracticeChoice? selectedChoice;
 
   PangeaTokenText? _selectedSpan;
 
@@ -336,7 +336,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     }
   }
 
-  void onChoiceSelect(ConstructForm choice, [bool force = false]) {
+  void onChoiceSelect(PracticeChoice choice, [bool force = false]) {
     if (selectedChoice == choice && !force) {
       selectedChoice = null;
     } else {
@@ -399,6 +399,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
   /// you have to complete one of the mode mini-games to unlock translation
   bool get isTranslationUnlocked =>
+      pangeaMessageEvent?.ownMessage == true ||
       !messageInUserL2 ||
       (messageLemmaInfos?.isEmpty ?? false) ||
       isEmojiDone ||

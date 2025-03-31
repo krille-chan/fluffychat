@@ -9,11 +9,15 @@ import 'package:fluffychat/pangea/instructions/instructions_enum.dart';
 class InstructionsInlineTooltip extends StatefulWidget {
   final InstructionsEnum instructionsEnum;
   final bool bold;
+  final bool animate;
+  final double padding;
 
   const InstructionsInlineTooltip({
     super.key,
     required this.instructionsEnum,
     this.bold = false,
+    this.animate = true,
+    this.padding = 0.0,
   });
 
   @override
@@ -24,8 +28,8 @@ class InstructionsInlineTooltip extends StatefulWidget {
 class InstructionsInlineTooltipState extends State<InstructionsInlineTooltip>
     with TickerProviderStateMixin {
   bool _isToggledOff = true;
-  late AnimationController _controller;
-  late Animation<double> _animation;
+  AnimationController? _controller;
+  Animation<double>? _animation;
 
   @override
   void didUpdateWidget(covariant InstructionsInlineTooltip oldWidget) {
@@ -44,26 +48,28 @@ class InstructionsInlineTooltipState extends State<InstructionsInlineTooltip>
   void setToggled() {
     _isToggledOff = widget.instructionsEnum.isToggledOff;
 
-    // Initialize AnimationController and Animation
-    _controller = AnimationController(
-      duration: FluffyThemes.animationDuration,
-      vsync: this,
-    );
+    if (widget.animate) {
+      // Initialize AnimationController and Animation only if animate is true
+      _controller = AnimationController(
+        duration: FluffyThemes.animationDuration,
+        vsync: this,
+      );
 
-    _animation = CurvedAnimation(
-      parent: _controller,
-      curve: Curves.easeInOut,
-    );
+      _animation = CurvedAnimation(
+        parent: _controller!,
+        curve: Curves.easeInOut,
+      );
 
-    // Start in correct state
-    if (!_isToggledOff) _controller.forward();
+      // Start in correct state
+      if (!_isToggledOff) _controller!.forward();
+    }
 
     setState(() {});
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+    _controller?.dispose();
     super.dispose();
   }
 
@@ -71,15 +77,28 @@ class InstructionsInlineTooltipState extends State<InstructionsInlineTooltip>
     widget.instructionsEnum.setToggledOff(true);
     setState(() {
       _isToggledOff = true;
-      _controller.reverse();
+      if (widget.animate) {
+        _controller?.reverse();
+      }
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return SizeTransition(
-      sizeFactor: _animation,
-      axisAlignment: -1.0,
+    return widget.animate
+        ? SizeTransition(
+            sizeFactor: _animation!,
+            axisAlignment: -1.0,
+            child: _buildTooltipContent(context),
+          )
+        : (_isToggledOff
+            ? const SizedBox.shrink()
+            : _buildTooltipContent(context));
+  }
+
+  Widget _buildTooltipContent(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.all(widget.padding),
       child: DecoratedBox(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(AppConfig.borderRadius),

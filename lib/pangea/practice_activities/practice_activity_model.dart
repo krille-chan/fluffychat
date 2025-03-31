@@ -11,13 +11,13 @@ import 'package:fluffychat/pangea/analytics_misc/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/constructs_model.dart';
 import 'package:fluffychat/pangea/analytics_misc/put_analytics_controller.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
-import 'package:fluffychat/pangea/constructs/construct_form.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/lemmas/user_set_lemma_info.dart';
 import 'package:fluffychat/pangea/morphs/morph_features_enum.dart';
 import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
 import 'package:fluffychat/pangea/practice_activities/multiple_choice_activity_model.dart';
+import 'package:fluffychat/pangea/practice_activities/practice_choice.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_match.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_record.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_target.dart';
@@ -32,7 +32,7 @@ class PracticeActivityModel {
   final String langCode;
 
   final MultipleChoiceActivity? multipleChoiceContent;
-  final PracticeMatch? matchContent;
+  final PracticeMatchActivity? matchContent;
 
   PracticeActivityModel({
     required this.targetTokens,
@@ -60,7 +60,7 @@ class PracticeActivityModel {
 
   void onMultipleChoiceSelect(
     PangeaToken token,
-    ConstructForm choice,
+    PracticeChoice choice,
     PangeaMessageEvent? event,
     void Function() callback,
   ) {
@@ -74,23 +74,24 @@ class PracticeActivityModel {
       return;
     }
 
-    if (practiceTarget.record.hasTextResponse(choice.form) || isComplete) {
+    if (practiceTarget.record.hasTextResponse(choice.choiceContent) ||
+        isComplete) {
       // the user has already selected this choice
       // so we don't want to record it again
       return;
     }
 
     final bool isCorrect = multipleChoiceContent!.answers.any(
-      (answer) => answer.toLowerCase() == choice.form.toLowerCase(),
+      (answer) => answer.toLowerCase() == choice.choiceContent.toLowerCase(),
     );
 
     // NOTE: the response is associated with the contructId of the choice, not the selected token
     // example: the user selects the word "cat" to match with the emoji 🐶
     // the response is associated with correct word "dog", not the word "cat"
     practiceTarget.record.addResponse(
-      cId: choice.cId,
+      cId: choice.form.cId,
       target: practiceTarget,
-      text: choice.form,
+      text: choice.choiceContent,
       score: isCorrect ? 1 : 0,
     );
 
@@ -105,15 +106,15 @@ class PracticeActivityModel {
         constructs: [
           OneConstructUse(
             useType: responseUseType(choice)!,
-            lemma: choice.cId.lemma,
-            constructType: choice.cId.type,
+            lemma: choice.form.cId.lemma,
+            constructType: choice.form.cId.type,
             metadata: ConstructUseMetaData(
               roomId: event?.room.id,
               timeStamp: DateTime.now(),
               eventId: event?.eventId,
             ),
-            category: choice.cId.category,
-            form: choice.form,
+            category: choice.form.cId.category,
+            form: choice.form.form,
           ),
         ],
         targetID: targetTokens.first.text.uniqueKey,
@@ -126,24 +127,25 @@ class PracticeActivityModel {
   /// only set up for vocab constructs atm
   void onMatch(
     PangeaToken token,
-    ConstructForm choice,
+    PracticeChoice choice,
     PangeaMessageEvent? event,
     void Function() callback,
   ) {
     // the user has already selected this choice
     // so we don't want to record it again
-    if (practiceTarget.record.hasTextResponse(choice.form) || isComplete) {
+    if (practiceTarget.record.hasTextResponse(choice.choiceContent) ||
+        isComplete) {
       return;
     }
 
     bool isCorrect = false;
     if (multipleChoiceContent != null) {
       isCorrect = multipleChoiceContent!.answers.any(
-        (answer) => answer.toLowerCase() == choice.form.toLowerCase(),
+        (answer) => answer.toLowerCase() == choice.choiceContent.toLowerCase(),
       );
     } else if (matchContent != null) {
-      isCorrect = matchContent!.matchInfo[token.vocabConstructID]!
-          .contains(choice.form);
+      isCorrect = matchContent!.matchInfo[token.vocabForm]!
+          .contains(choice.choiceContent);
     } else {
       debugger(when: kDebugMode);
       ErrorHandler.logError(
@@ -158,8 +160,8 @@ class PracticeActivityModel {
     // example: the user selects the word "cat" to match with the emoji 🐶
     // the response is associated with correct word "dog", not the word "cat"
     practiceTarget.record.addResponse(
-      cId: choice.cId,
-      text: choice.form,
+      cId: choice.form.cId,
+      text: choice.choiceContent,
       target: practiceTarget,
       score: isCorrect ? 1 : 0,
     );
@@ -173,14 +175,14 @@ class PracticeActivityModel {
           constructs: [
             OneConstructUse(
               useType: responseUseType(choice)!,
-              lemma: choice.cId.lemma,
-              constructType: choice.cId.type,
+              lemma: choice.form.cId.lemma,
+              constructType: choice.form.cId.type,
               metadata: ConstructUseMetaData(
                 roomId: event?.room.id,
                 timeStamp: DateTime.now(),
                 eventId: event?.eventId,
               ),
-              category: choice.cId.category,
+              category: choice.form.cId.category,
               // in the case of a wrong answer, the cId doesn't match the token
               form: token.text.content,
             ),
@@ -193,16 +195,16 @@ class PracticeActivityModel {
       if (activityType == ActivityTypeEnum.emoji) {
         // final allEmojis = ;
 
-        choice.cId
-            .setUserLemmaInfo(UserSetLemmaInfo(emojis: [choice.form]))
+        choice.form.cId
+            .setUserLemmaInfo(UserSetLemmaInfo(emojis: [choice.choiceContent]))
             .then((value) {
           callback();
         });
       }
 
       if (activityType == ActivityTypeEnum.wordMeaning) {
-        choice.cId
-            .setUserLemmaInfo(UserSetLemmaInfo(meaning: choice.form))
+        choice.form.cId
+            .setUserLemmaInfo(UserSetLemmaInfo(meaning: choice.choiceContent))
             .then((value) {
           callback();
         });
@@ -222,23 +224,23 @@ class PracticeActivityModel {
   }
 
   /// if null, it means the user has not yet responded with that choice
-  bool? wasCorrectMatch(ConstructForm choice) {
+  bool? wasCorrectMatch(PracticeChoice choice) {
     for (final response in practiceTarget.record.responses) {
-      if (response.cId == choice.cId && response.isCorrect) {
+      if (response.cId == choice.form.cId && response.isCorrect) {
         return true;
       }
     }
     for (final response in practiceTarget.record.responses) {
-      if (response.cId == choice.cId) {
+      if (response.cId == choice.form.cId) {
         return false;
       }
     }
     return null;
   }
 
-  ConstructUseTypeEnum? responseUseType(ConstructForm choice) {
+  ConstructUseTypeEnum? responseUseType(PracticeChoice choice) {
     for (final response in practiceTarget.record.responses) {
-      if (response.cId == choice.cId) {
+      if (response.cId == choice.form.cId) {
         return response.useType(activityType);
       }
     }
@@ -324,7 +326,7 @@ class PracticeActivityModel {
           .map((e) => PangeaToken.fromJson(e as Map<String, dynamic>))
           .toList(),
       matchContent: json['match_content'] != null
-          ? PracticeMatch.fromJson(contentMap)
+          ? PracticeMatchActivity.fromJson(contentMap)
           : null,
       morphFeature: json['morph_feature'] != null
           ? MorphFeaturesEnumExtension.fromString(
