@@ -69,7 +69,7 @@
       }
     }
   },
-  "anyoneCanJoin": "Iedereen kan deelnemen",
+  "anyoneCanJoin": "Iedereen kan toetreden",
   "@anyoneCanJoin": {
     "type": "String",
     "placeholders": {}
@@ -294,7 +294,7 @@
       }
     }
   },
-  "changedTheJoinRules": "{username} heeft de deelnameregels gewijzigd",
+  "changedTheJoinRules": "{username} heeft de toetredingsregels gewijzigd",
   "@changedTheJoinRules": {
     "type": "String",
     "placeholders": {
@@ -303,7 +303,7 @@
       }
     }
   },
-  "changedTheJoinRulesTo": "{username} heeft de deelnameregels gewijzigd in: {joinRules}",
+  "changedTheJoinRulesTo": "{username} heeft de toetredingsregels gewijzigd in: {joinRules}",
   "@changedTheJoinRulesTo": {
     "type": "String",
     "placeholders": {
@@ -426,7 +426,7 @@
     "type": "String",
     "description": "Usage hint for the command /invite"
   },
-  "commandHint_join": "Deelnemen aan de kamer",
+  "commandHint_join": "Toetreden tot de vermelde kamer",
   "@commandHint_join": {
     "type": "String",
     "description": "Usage hint for the command /join"
@@ -530,7 +530,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "containsUserName": "Bevat gebruikersnaam",
+  "containsUserName": "Bevat inlognaam",
   "@containsUserName": {
     "type": "String",
     "placeholders": {}
@@ -844,7 +844,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "fromJoining": "Vanaf deelname",
+  "fromJoining": "Vanaf toetreden",
   "@fromJoining": {
     "type": "String",
     "placeholders": {}
@@ -1027,7 +1027,7 @@
       }
     }
   },
-  "joinRoom": "Deelnemen",
+  "joinRoom": "Toetreden tot de kamer",
   "@joinRoom": {
     "type": "String",
     "placeholders": {}
@@ -1938,7 +1938,7 @@
       }
     }
   },
-  "username": "Gebruikersnaam",
+  "username": "Inlognaam",
   "@username": {
     "type": "String",
     "placeholders": {}
@@ -2648,7 +2648,7 @@
   "@alwaysUse24HourFormat": {
     "description": "Set to true to always display time of day in 24 hour format."
   },
-  "joinSpace": "Deelname aan space",
+  "joinSpace": "Toetreden tot de space",
   "@joinSpace": {},
   "block": "Blokkeren",
   "@block": {},
@@ -2667,7 +2667,7 @@
   "@calls": {},
   "customEmojisAndStickers": "Aangepaste emoticons en stickers",
   "@customEmojisAndStickers": {},
-  "accessAndVisibilityDescription": "Wie mag meedoen in deze chat en hoe de chat ontdekt kan worden.",
+  "accessAndVisibilityDescription": "Wie mag toetreden tot deze chat en hoe de chat ontdekt kan worden.",
   "@accessAndVisibilityDescription": {},
   "customEmojisAndStickersBody": "Voeg toe of deel aangepaste emoji's of stickers die gebruikt kunnen worden in elke chat.",
   "@customEmojisAndStickersBody": {},
@@ -2677,7 +2677,7 @@
   "@hideRedactedMessagesBody": {},
   "hideInvalidOrUnknownMessageFormats": "Verberg ongeldige of onbekende berichtformaten",
   "@hideInvalidOrUnknownMessageFormats": {},
-  "passwordRecoverySettings": "Wachtwoord herstel instellingen",
+  "passwordRecoverySettings": "Wachtwoordherstel-instellingen",
   "@passwordRecoverySettings": {},
   "youInvitedToBy": "📩 Je bent uitgenodigd via een link voor:\n{alias}",
   "@youInvitedToBy": {
@@ -2687,11 +2687,11 @@
       }
     }
   },
-  "knock": "Kloppen",
+  "knock": "Klop",
   "@knock": {},
   "overview": "Overzicht",
   "@overview": {},
-  "hidePresences": "Verberg Status Lijst?",
+  "hidePresences": "Verberg statuslijst?",
   "@hidePresences": {},
   "noOneCanJoin": "Niemand kan deelnemen",
   "@noOneCanJoin": {},
@@ -2713,7 +2713,7 @@
   },
   "publicSpaces": "Openbare spaces",
   "@publicSpaces": {},
-  "blockUsername": "Negeer gebruikersnaam",
+  "blockUsername": "Negeer inlognaam",
   "@blockUsername": {},
   "publicChatAddresses": "Openbare chat adressen",
   "@publicChatAddresses": {},
@@ -2733,7 +2733,7 @@
   },
   "noMoreChatsFound": "Geen chats gevonden...",
   "@noMoreChatsFound": {},
-  "joinedChats": "Deelnemende chats",
+  "joinedChats": "Chats waaraan je deelneemt",
   "@joinedChats": {},
   "knocking": "Kloppen",
   "@knocking": {},
@@ -2832,7 +2832,7 @@
   "@stickers": {},
   "nothingFound": "Niets gevonden...",
   "@nothingFound": {},
-  "gallery": "Gallerij",
+  "gallery": "Galerij",
   "@gallery": {},
   "transparent": "Transparant",
   "@transparent": {},
@@ -2840,11 +2840,11 @@
   "@incomingMessages": {},
   "discover": "Ontdek",
   "@discover": {},
-  "commandHint_ignore": "Negeer de gegeven matrix ID",
+  "commandHint_ignore": "Negeer de gegeven Matrix ID",
   "@commandHint_ignore": {},
   "noChatsFoundHere": "Hier zijn nog geen chats. Begin een nieuwe chat met iemand door op de onderstaande knop te klikken. ⤵️",
   "@noChatsFoundHere": {},
-  "unableToJoinChat": "Kan niet deelnemen aan chat. Misschien heeft de andere partij het gesprek al afgesloten.",
+  "unableToJoinChat": "Kan niet toetreden tot de chat. Misschien heeft de andere partij het gesprek al afgesloten.",
   "@unableToJoinChat": {},
   "aboutHomeserver": "Over {homeserver}",
   "@aboutHomeserver": {
