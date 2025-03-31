@@ -1,8 +1,6 @@
-import 'package:flutter/material.dart';
-
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/pangea/common/config/environment.dart';
+import 'package:flutter/material.dart';
+import 'package:matrix/matrix.dart';
 
 abstract class AppConfig {
   // #Pangea
@@ -55,7 +53,8 @@ abstract class AppConfig {
   // static const Color primaryColorLight = Color(0xFFCCBDEA);
   static const Color primaryColor = Color(0xFF8560E0);
   static const Color primaryColorLight = Color(0xFFDBC9FF);
-  static const Color secondaryColor = Color(0xFF41a2bc);
+  // static const Color secondaryColor = Color(0xFF41a2bc);
+  static const Color secondaryColor = Color.fromARGB(255, 253, 191, 1);
   static const Color activeToggleColor = Color(0xFF33D057);
   static const Color success = Color(0xFF33D057);
   static const Color warning = Color.fromARGB(255, 210, 124, 12);

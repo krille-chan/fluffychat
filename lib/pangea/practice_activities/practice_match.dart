@@ -1,7 +1,7 @@
 import 'package:collection/collection.dart';
-
 import 'package:fluffychat/pangea/constructs/construct_form.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_choice.dart';
+import 'package:flutter/material.dart';
 
 class PracticeMatchActivity {
   /// The constructIdenfifiers involved in the activity
@@ -13,6 +13,11 @@ class PracticeMatchActivity {
   PracticeMatchActivity({
     required this.matchInfo,
   }) {
+    for (final ith in matchInfo.entries) {
+      debugPrint(
+        'Construct: ${ith.key}, Forms: ${ith.value}',
+      );
+    }
     // if there are multiple forms for a construct, pick one to display
     // each cosntruct will have ~3 forms
     // sometimes a form could be in multiple constructs
@@ -21,13 +26,17 @@ class PracticeMatchActivity {
     // either from that construct's options, or returning to the previous construct
     // and picking a different form from there
     for (final ith in matchInfo.entries) {
-      for (final acceptableAnswer in ith.value) {
+      for (int i = 0; i < ith.value.length; i++) {
+        final String acceptableAnswer = ith.value[i];
         if (!choices
             .any((element) => element.choiceContent == acceptableAnswer)) {
           choices.add(
             PracticeChoice(choiceContent: acceptableAnswer, form: ith.key),
           );
-          break;
+          debugPrint(
+            'Added choice: ${choices.last.choiceContent} for form: ${choices.last.form.form}',
+          );
+          i = ith.value.length; // break out of the loop
         }
         // TODO: if none found, we can probably pick a different form for the other one
       }

@@ -1,10 +1,8 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/instructions/instructions_enum.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class InstructionsInlineTooltip extends StatefulWidget {
   final InstructionsEnum instructionsEnum;
@@ -103,7 +101,7 @@ class InstructionsInlineTooltipState extends State<InstructionsInlineTooltip>
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(AppConfig.borderRadius),
           color: Color.alphaBlend(
-            Colors.black.withAlpha(70),
+            Theme.of(context).colorScheme.surface.withAlpha(70),
             AppConfig.gold,
           ),
         ),

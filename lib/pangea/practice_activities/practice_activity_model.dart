@@ -1,13 +1,7 @@
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
 import 'package:collection/collection.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
-
-import 'package:fluffychat/pangea/analytics_misc/construct_use_type_enum.dart';
+import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/constructs_model.dart';
 import 'package:fluffychat/pangea/analytics_misc/put_analytics_controller.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
@@ -23,6 +17,10 @@ import 'package:fluffychat/pangea/practice_activities/practice_record.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_target.dart';
 import 'package:fluffychat/pangea/practice_activities/relevant_span_display_details.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 class PracticeActivityModel {
   List<PangeaToken> targetTokens;
@@ -95,9 +93,9 @@ class PracticeActivityModel {
       score: isCorrect ? 1 : 0,
     );
 
-    debugPrint(
-      "onMultipleChoiceSelect: ${choice.form} ${responseUseType(choice)}",
-    );
+    // debugPrint(
+    //   "onMultipleChoiceSelect: ${choice.form} ${responseUseType(choice)}",
+    // );
 
     MatrixState.pangeaController.putAnalytics.setState(
       AnalyticsStream(
@@ -105,7 +103,7 @@ class PracticeActivityModel {
         roomId: event?.room.id,
         constructs: [
           OneConstructUse(
-            useType: responseUseType(choice)!,
+            useType: practiceTarget.record.responses.last.useType(activityType),
             lemma: choice.form.cId.lemma,
             constructType: choice.form.cId.type,
             metadata: ConstructUseMetaData(
@@ -133,8 +131,12 @@ class PracticeActivityModel {
   ) {
     // the user has already selected this choice
     // so we don't want to record it again
-    if (practiceTarget.record.hasTextResponse(choice.choiceContent) ||
+    if (practiceTarget.record.alreadyHasMatchResponse(
+          token.vocabConstructID,
+          choice.choiceContent,
+        ) ||
         isComplete) {
+      debugger(when: kDebugMode);
       return;
     }
 
@@ -144,8 +146,12 @@ class PracticeActivityModel {
         (answer) => answer.toLowerCase() == choice.choiceContent.toLowerCase(),
       );
     } else if (matchContent != null) {
-      isCorrect = matchContent!.matchInfo[token.vocabForm]!
-          .contains(choice.choiceContent);
+      // we check to see if it's in the list of acceptable answers
+      // rather than if the vocabForm is the same because an emoji
+      // could be in multiple constructs so there could be multiple answers
+      final answers = matchContent!.matchInfo[token.vocabForm];
+      debugger(when: answers == null && kDebugMode);
+      isCorrect = answers!.contains(choice.choiceContent);
     } else {
       debugger(when: kDebugMode);
       ErrorHandler.logError(
@@ -156,11 +162,11 @@ class PracticeActivityModel {
       return;
     }
 
-    // NOTE: the response is associated with the contructId of the choice, not the selected token
+    // NOTE: the response is associated with the contructId of the selected token, not the choice
     // example: the user selects the word "cat" to match with the emoji 🐶
-    // the response is associated with correct word "dog", not the word "cat"
+    // the response is associated with incorrect word "cat", not the word "dog"
     practiceTarget.record.addResponse(
-      cId: choice.form.cId,
+      cId: token.vocabConstructID,
       text: choice.choiceContent,
       target: practiceTarget,
       score: isCorrect ? 1 : 0,
@@ -174,15 +180,16 @@ class PracticeActivityModel {
           roomId: event?.room.id,
           constructs: [
             OneConstructUse(
-              useType: responseUseType(choice)!,
-              lemma: choice.form.cId.lemma,
-              constructType: choice.form.cId.type,
+              useType:
+                  practiceTarget.record.responses.last.useType(activityType),
+              lemma: token.lemma.text,
+              constructType: ConstructTypeEnum.vocab,
               metadata: ConstructUseMetaData(
                 roomId: event?.room.id,
                 timeStamp: DateTime.now(),
                 eventId: event?.eventId,
               ),
-              category: choice.form.cId.category,
+              category: token.pos,
               // in the case of a wrong answer, the cId doesn't match the token
               form: token.text.content,
             ),
@@ -226,22 +233,13 @@ class PracticeActivityModel {
   /// if null, it means the user has not yet responded with that choice
   bool? wasCorrectMatch(PracticeChoice choice) {
     for (final response in practiceTarget.record.responses) {
-      if (response.cId == choice.form.cId && response.isCorrect) {
+      if (response.text == choice.choiceContent && response.isCorrect) {
         return true;
       }
     }
     for (final response in practiceTarget.record.responses) {
-      if (response.cId == choice.form.cId) {
+      if (response.text == choice.choiceContent) {
         return false;
-      }
-    }
-    return null;
-  }
-
-  ConstructUseTypeEnum? responseUseType(PracticeChoice choice) {
-    for (final response in practiceTarget.record.responses) {
-      if (response.cId == choice.form.cId) {
-        return response.useType(activityType);
       }
     }
     return null;

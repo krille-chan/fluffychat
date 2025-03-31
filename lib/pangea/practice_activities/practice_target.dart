@@ -1,10 +1,9 @@
-import 'package:flutter/foundation.dart';
-
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/morphs/morph_features_enum.dart';
 import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_record.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_record_repo.dart';
+import 'package:flutter/foundation.dart';
 
 /// Picks which tokens to do activities on and what types of activities to do
 /// Caches result so that we don't have to recompute it
@@ -90,7 +89,8 @@ class PracticeTarget {
     }
 
     return tokens.every(
-      (t) => record.responses.any((res) => res.cId == t.vocabConstructID),
+      (t) => record.responses
+          .any((res) => res.cId == t.vocabConstructID && res.isCorrect),
     );
   }
 }

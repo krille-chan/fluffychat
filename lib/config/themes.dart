@@ -68,6 +68,8 @@ abstract class FluffyThemes {
       seedColor: seed ??
           AppConfig.colorSchemeSeed ??
           Theme.of(context).colorScheme.primary,
+      // primary: AppConfig.primaryColor,
+      // secondary: AppConfig.gold,
     );
     final isColumnMode = FluffyThemes.isColumnMode(context);
     return ThemeData(

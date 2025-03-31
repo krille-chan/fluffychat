@@ -5,8 +5,6 @@
 
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/constructs_model.dart';
@@ -16,6 +14,7 @@ import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_activity_model.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_record_repo.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_target.dart';
+import 'package:flutter/foundation.dart';
 
 class PracticeRecord {
   late DateTime createdAt;
@@ -72,6 +71,15 @@ class PracticeRecord {
     return responses.any((element) => element.text == text);
   }
 
+  bool alreadyHasMatchResponse(
+    ConstructIdentifier cId,
+    String text,
+  ) {
+    return responses.any(
+      (element) => element.cId == cId && element.text == text,
+    );
+  }
+
   /// [target] needed for saving the record, little funky
   /// [cId] identifies the construct in the case of match activities which have multiple
   /// [text] is the user's response
@@ -111,6 +119,7 @@ class PracticeRecord {
           score: score,
         ),
       );
+      debugPrint("responses: ${responses.map((r) => r.toJson())}");
 
       PracticeRecordRepo.save(target, this);
     } catch (e) {
@@ -156,6 +165,9 @@ class PracticeRecord {
 }
 
 class ActivityRecordResponse {
+  /// the cId of the construct that the user attached their response to
+  /// ie. in the "I like the dog" if the user erroneously attaches a dog emoji to the word like
+  /// then the cId is that of 'like
   ConstructIdentifier cId;
   // the user's response
   // has nullable string, nullable audio bytes, nullable image bytes, and timestamp

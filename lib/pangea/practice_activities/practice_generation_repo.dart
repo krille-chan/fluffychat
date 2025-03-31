@@ -2,12 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
-import 'package:http/http.dart';
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/common/network/requests.dart';
@@ -25,6 +19,10 @@ import 'package:fluffychat/pangea/practice_activities/practice_activity_model.da
 import 'package:fluffychat/pangea/practice_activities/word_focus_listening_generator.dart';
 import 'package:fluffychat/pangea/toolbar/event_wrappers/practice_activity_event.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+import 'package:matrix/matrix.dart';
 
 /// Represents an item in the completion cache.
 class _RequestCacheItem {
@@ -173,7 +171,6 @@ class PracticeRepo {
     // TODO resolve some wierdness here whereby the activity can be null but then... it's not
     final eventCompleter = Completer<PracticeActivityEvent?>();
 
-    debugPrint('Activity generated: ${res.activity.toJson()}');
     if (event != null) {
       _sendAndPackageEvent(res.activity, event).then((event) {
         eventCompleter.complete(event);
