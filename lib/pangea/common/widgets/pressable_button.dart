@@ -17,7 +17,7 @@ class PressableButton extends StatefulWidget {
   final Stream? triggerAnimation;
   final bool playSound;
 
-  final bool? isShadow;
+  final double colorFactor;
 
   const PressableButton({
     required this.borderRadius,
@@ -27,8 +27,8 @@ class PressableButton extends StatefulWidget {
     this.buttonHeight = 4,
     this.depressed = false,
     this.triggerAnimation,
-    this.isShadow,
     this.playSound = false,
+    this.colorFactor = 0.3,
     super.key,
   });
 
@@ -155,7 +155,9 @@ class PressableButtonState extends State<PressableButton>
                       Container(
                         decoration: BoxDecoration(
                           color: Color.alphaBlend(
-                            Colors.black.withAlpha(70),
+                            Colors.black.withAlpha(
+                              (255 * widget.colorFactor).round(),
+                            ),
                             widget.color,
                           ),
                           borderRadius: widget.borderRadius,

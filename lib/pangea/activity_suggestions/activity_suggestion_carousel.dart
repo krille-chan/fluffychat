@@ -302,18 +302,6 @@ class ActivitySuggestionCarouselState
                         );
                       }).toList(),
                     ),
-                    ElevatedButton(
-                      onPressed: widget.enabled ? _close : null,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: theme.colorScheme.primaryContainer,
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(L10n.of(context).skip),
-                        ],
-                      ),
-                    ),
                   ],
                 ),
               ),

@@ -28,7 +28,10 @@ class CreateChatCard extends StatelessWidget {
       child: PressableButton(
         onPressed: () => context.go('/rooms/newgroup'),
         borderRadius: BorderRadius.circular(24.0),
-        color: theme.colorScheme.primary,
+        color: theme.brightness == Brightness.dark
+            ? theme.colorScheme.primary
+            : theme.colorScheme.surfaceContainerHighest,
+        colorFactor: theme.brightness == Brightness.dark ? 0.6 : 0.2,
         child: Container(
           decoration: BoxDecoration(
             color: theme.colorScheme.surfaceContainer,

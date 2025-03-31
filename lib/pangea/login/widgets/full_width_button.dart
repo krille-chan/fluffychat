@@ -44,7 +44,6 @@ class FullWidthButtonState extends State<FullWidthButton> {
               onPressed: widget.onPressed,
               borderRadius: BorderRadius.circular(36),
               color: Theme.of(context).colorScheme.primary,
-              isShadow: true,
               child: Container(
                 // internal padding
                 padding: const EdgeInsets.symmetric(horizontal: 16),

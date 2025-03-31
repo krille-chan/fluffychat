@@ -46,7 +46,10 @@ class ActivitySuggestionCard extends StatelessWidget {
         depressed: selected || onPressed == null,
         onPressed: onPressed,
         borderRadius: BorderRadius.circular(24.0),
-        color: theme.colorScheme.primary,
+        color: theme.brightness == Brightness.dark
+            ? theme.colorScheme.primary
+            : theme.colorScheme.surfaceContainerHighest,
+        colorFactor: theme.brightness == Brightness.dark ? 0.6 : 0.2,
         child: Container(
           decoration: BoxDecoration(
             border: selected

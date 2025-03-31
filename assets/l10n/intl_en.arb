@@ -4833,7 +4833,7 @@
   "resetInstructionTooltipsTitle": "Reset instruction tooltips",
   "resetInstructionTooltipsDesc": "Click to show instruction tooltips like for a brand new user.",
   "selectForGrammar": "Select a grammar icon for activities and details.",
-  "newChatActivityTitle": "Add a fun activity",
+  "newChatActivityTitle": "Add a fun activity?",
   "newChatActivityDesc": "Choose one of the activities below to add to your chat or skip this step and create an activity later.",
   "exploreMore": "Explore more",
   "randomize": "Randomize",

@@ -5,7 +5,6 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/new_group/new_group.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_suggestion_carousel.dart';
-import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 
@@ -16,10 +15,14 @@ class NewGroupView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    // #Pangea
+    // final theme = Theme.of(context);
+    // Pangea#
 
     final avatar = controller.avatar;
-    final error = controller.error;
+    // #Pangea
+    // final error = controller.error;
+    // Pangea#
     return Scaffold(
       appBar: AppBar(
         leading: Center(
@@ -90,25 +93,36 @@ class NewGroupView extends StatelessWidget {
             const SizedBox(height: 32),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
-              child: TextField(
-                autofocus: true,
-                controller: controller.nameController,
-                autocorrect: false,
-                readOnly: controller.loading,
-                decoration: InputDecoration(
-                  prefixIcon: const Icon(Icons.people_outlined),
-                  labelText: controller.createGroupType == CreateGroupType.space
-                      ? L10n.of(context).spaceName
-                      // #Pangea
-                      // : L10n.of(context).groupName,
-                      : L10n.of(context).chatName,
+              // #Pangea
+              // child: TextField(
+              child: Form(
+                key: controller.formKey,
+                child: TextFormField(
+                  // Pangea#
+                  autofocus: true,
+                  controller: controller.nameController,
+                  autocorrect: false,
+                  readOnly: controller.loading,
+                  decoration: InputDecoration(
+                    prefixIcon: const Icon(Icons.people_outlined),
+                    labelText:
+                        controller.createGroupType == CreateGroupType.space
+                            ? L10n.of(context).spaceName
+                            // #Pangea
+                            // : L10n.of(context).groupName,
+                            : L10n.of(context).chatName,
+                    // Pangea#
+                  ),
+                  // #Pangea
+                  onFieldSubmitted: (value) {
+                    controller.loading ? null : controller.submitAction();
+                  },
+                  validator: (value) => value == null || value.isEmpty
+                      ? L10n.of(context).pleaseFillOut
+                      : null,
+                  focusNode: controller.focusNode,
                   // Pangea#
                 ),
-                // #Pangea
-                onSubmitted: (value) {
-                  controller.loading ? null : controller.submitAction();
-                },
-                // Pangea#
               ),
             ),
             const SizedBox(height: 16),
@@ -230,24 +244,26 @@ class NewGroupView extends StatelessWidget {
                 ),
               ),
             ),
-            AnimatedSize(
-              duration: FluffyThemes.animationDuration,
-              curve: FluffyThemes.animationCurve,
-              child: error == null
-                  ? const SizedBox.shrink()
-                  : ListTile(
-                      leading: Icon(
-                        Icons.warning_outlined,
-                        color: theme.colorScheme.error,
-                      ),
-                      title: Text(
-                        error.toLocalizedString(context),
-                        style: TextStyle(
-                          color: theme.colorScheme.error,
-                        ),
-                      ),
-                    ),
-            ),
+            // #Pangea
+            // AnimatedSize(
+            //   duration: FluffyThemes.animationDuration,
+            //   curve: FluffyThemes.animationCurve,
+            //   child: error == null
+            //       ? const SizedBox.shrink()
+            //       : ListTile(
+            //           leading: Icon(
+            //             Icons.warning_outlined,
+            //             color: theme.colorScheme.error,
+            //           ),
+            //           title: Text(
+            //             error.toLocalizedString(context),
+            //             style: TextStyle(
+            //               color: theme.colorScheme.error,
+            //             ),
+            //           ),
+            //         ),
+            // ),
+            // Pangea#
           ],
         ),
       ),
