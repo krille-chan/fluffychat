@@ -67,9 +67,7 @@ class MorphMeaningWidgetState extends State<MorphMeaningWidget> {
     } catch (e) {
       _error = e.toString();
     } finally {
-      setState(() {
-        _isLoading = false;
-      });
+      if (mounted) setState(() => _isLoading = false);
     }
   }
 
