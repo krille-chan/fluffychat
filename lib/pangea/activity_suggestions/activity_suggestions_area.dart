@@ -13,8 +13,6 @@ import 'package:fluffychat/pangea/activity_planner/media_enum.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_plan_search_repo.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_suggestion_card.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_suggestion_dialog.dart';
-import 'package:fluffychat/pangea/activity_suggestions/create_chat_card.dart';
-import 'package:fluffychat/pangea/activity_suggestions/make_activity_card.dart';
 import 'package:fluffychat/pangea/learning_settings/constants/language_constants.dart';
 import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_enum.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -54,7 +52,7 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
 
   final List<ActivityPlanModel> _activityItems = [];
   final ScrollController _scrollController = ScrollController();
-  final double cardHeight = 250.0;
+  double get cardHeight => _isColumnMode ? 315.0 : 240.0;
   double get cardPadding => _isColumnMode ? 8.0 : 0.0;
   double get cardWidth => _isColumnMode ? 225.0 : 150.0;
 
@@ -105,29 +103,6 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
         })
         .cast<Widget>()
         .toList();
-
-    if (widget.showMakeActivityCard) {
-      cards.insert(
-        0,
-        MakeActivityCard(
-          width: cardWidth,
-          height: cardHeight,
-          padding: cardPadding,
-          roomID: widget.room?.id,
-        ),
-      );
-    }
-
-    if (widget.showCreateChatCard) {
-      cards.insert(
-        0,
-        CreateChatCard(
-          width: cardWidth,
-          height: cardHeight,
-          padding: cardPadding,
-        ),
-      );
-    }
 
     final scrollDirection = widget.scrollDirection ??
         (_isColumnMode ? Axis.horizontal : Axis.vertical);

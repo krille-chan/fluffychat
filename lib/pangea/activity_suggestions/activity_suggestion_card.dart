@@ -3,11 +3,9 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
 import 'package:fluffychat/pangea/activity_planner/bookmarked_activities_repo.dart';
-import 'package:fluffychat/pangea/activity_suggestions/activity_suggestion_card_row.dart';
 import 'package:fluffychat/pangea/common/widgets/pressable_button.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
 
@@ -75,11 +73,12 @@ class ActivitySuggestionCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    height: 100,
-                    width: width,
+                    height: width - 16.0,
+                    width: width - 16.0,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(24.0),
                     ),
+                    margin: const EdgeInsets.only(top: 8.0),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(24.0),
                       child: image != null
@@ -88,8 +87,8 @@ class ActivitySuggestionCard extends StatelessWidget {
                               ? activity.imageURL!.startsWith("mxc")
                                   ? MxcImage(
                                       uri: Uri.parse(activity.imageURL!),
-                                      width: width,
-                                      height: 100,
+                                      width: width - 16.0,
+                                      height: width - 16.0,
                                       cacheKey: activity.bookmarkId,
                                     )
                                   : CachedNetworkImage(
@@ -109,68 +108,73 @@ class ActivitySuggestionCard extends StatelessWidget {
                   ),
                   Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.only(
-                        top: 12.0,
-                        left: 12.0,
-                        right: 12.0,
-                        bottom: 12.0,
-                      ),
+                      padding: const EdgeInsets.all(12.0),
                       child: Column(
-                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        spacing: 8.0,
                         children: [
-                          ActivitySuggestionCardRow(
-                            icon: Icons.event_note_outlined,
-                            child: Text(
-                              activity.title,
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                              ),
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                          ConstrainedBox(
-                            constraints: const BoxConstraints(maxHeight: 54.0),
-                            child: SingleChildScrollView(
-                              scrollDirection: Axis.vertical,
-                              child: Align(
-                                alignment: Alignment.topLeft,
-                                child: Wrap(
-                                  spacing: 4.0,
-                                  runSpacing: 4.0,
-                                  children: activity.vocab
-                                      .map(
-                                        (vocab) => Container(
-                                          padding: const EdgeInsets.symmetric(
-                                            vertical: 4.0,
-                                            horizontal: 8.0,
-                                          ),
-                                          decoration: BoxDecoration(
-                                            color: theme.colorScheme.primary
-                                                .withAlpha(50),
-                                            borderRadius:
-                                                BorderRadius.circular(24.0),
-                                          ),
-                                          child: Text(
-                                            vocab.lemma,
-                                            style: theme.textTheme.bodySmall,
-                                          ),
-                                        ),
-                                      )
-                                      .toList(),
+                          Row(
+                            children: [
+                              Flexible(
+                                child: Text(
+                                  activity.title,
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
                                 ),
                               ),
-                            ),
+                            ],
                           ),
-                          ActivitySuggestionCardRow(
-                            icon: Icons.group_outlined,
-                            child: Text(
-                              L10n.of(context).countParticipants(
-                                activity.req.numberOfParticipants,
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            spacing: 8.0,
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                  color: theme.colorScheme.primaryContainer,
+                                  borderRadius: BorderRadius.circular(24.0),
+                                ),
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 4.0,
+                                  horizontal: 8.0,
+                                ),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  spacing: 8.0,
+                                  children: [
+                                    const Icon(
+                                      Icons.group_outlined,
+                                      size: 16.0,
+                                    ),
+                                    Text(
+                                      "${activity.req.numberOfParticipants}",
+                                      style: theme.textTheme.bodySmall,
+                                    ),
+                                  ],
+                                ),
                               ),
-                              style: theme.textTheme.bodySmall,
-                            ),
+                              if (activity.req.mode.isNotEmpty)
+                                Flexible(
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: theme.colorScheme.primaryContainer,
+                                      borderRadius: BorderRadius.circular(24.0),
+                                    ),
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 4.0,
+                                      horizontal: 8.0,
+                                    ),
+                                    child: Text(
+                                      activity.req.mode,
+                                      style: theme.textTheme.bodySmall,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                ),
+                            ],
                           ),
                         ],
                       ),
@@ -200,7 +204,9 @@ class ActivitySuggestionCard extends StatelessWidget {
                           onChange();
                         }
                       : null,
-                  iconSize: 24.0,
+                  style: IconButton.styleFrom(
+                    backgroundColor: Colors.black.withAlpha(200),
+                  ),
                 ),
               ),
             ],

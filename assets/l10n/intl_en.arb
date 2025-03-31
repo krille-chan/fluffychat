@@ -4846,5 +4846,7 @@
   "selectActivity": "Select activity",
   "newChatActivityDesc": "Make every group chat an adventure with Activity Planner! Set captivating topics and objectives for the group, and bring conversations to life with stunning images. Spark imaginative discussions and keep the fun flowing effortlessly!",
   "exploreMore": "Explore more",
-  "wordFocusListeningMultipleChoice": "Which audio matches the word?"
+  "wordFocusListeningMultipleChoice": "Which audio matches the word?",
+  "createActivity": "Create activity",
+  "startChat": "Start a chat"
 }

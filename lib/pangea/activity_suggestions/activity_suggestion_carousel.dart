@@ -48,8 +48,8 @@ class ActivitySuggestionCarouselState
   bool _loading = true;
   String? _error;
 
-  double get _cardWidth => _isColumnMode ? 250.0 : 200.0;
-  final double _cardHeight = 275.0;
+  double get _cardWidth => _isColumnMode ? 250.0 : 175.0;
+  double get _cardHeight => _isColumnMode ? 350.0 : 265.0;
 
   ActivityPlanModel? _currentActivity;
   final List<ActivityPlanModel> _activityItems = [];
@@ -161,24 +161,33 @@ class ActivitySuggestionCarouselState
                   border: Border.all(color: theme.dividerColor),
                   borderRadius: BorderRadius.circular(24.0),
                 ),
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.symmetric(
+                  vertical: 16.0,
+                  horizontal: 4.0,
+                ),
                 child: Column(
                   spacing: 16.0,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          L10n.of(context).newChatActivityTitle,
-                          style: theme.textTheme.titleLarge,
-                        ),
-                        IconButton(
-                          icon: const Icon(Icons.close),
-                          onPressed: widget.enabled ? _close : null,
-                        ),
-                      ],
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            L10n.of(context).newChatActivityTitle,
+                            style: theme.textTheme.titleLarge,
+                          ),
+                          IconButton(
+                            icon: const Icon(Icons.close),
+                            onPressed: widget.enabled ? _close : null,
+                          ),
+                        ],
+                      ),
                     ),
-                    Text(L10n.of(context).newChatActivityDesc),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                      child: Text(L10n.of(context).newChatActivityDesc),
+                    ),
                     Row(
                       spacing: _isColumnMode ? 16.0 : 4.0,
                       mainAxisAlignment: MainAxisAlignment.center,
