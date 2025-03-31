@@ -115,7 +115,7 @@ class InstructionsInlineTooltipState extends State<InstructionsInlineTooltip>
             children: [
               Icon(
                 Icons.lightbulb,
-                size: _isToggledOff ? 0 : 20,
+                size: 20,
                 color: Theme.of(context).colorScheme.onSurface,
               ),
               const SizedBox(width: 8),
@@ -134,7 +134,7 @@ class InstructionsInlineTooltipState extends State<InstructionsInlineTooltip>
                 constraints: const BoxConstraints(),
                 icon: Icon(
                   Icons.close_outlined,
-                  size: _isToggledOff ? 0 : 20,
+                  size: 20,
                   color: Theme.of(context).colorScheme.onSurface,
                 ),
                 onPressed: _closeTooltip,
