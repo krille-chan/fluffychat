@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -9,6 +11,7 @@ import 'package:fluffychat/pangea/activity_planner/activity_planner_page.dart';
 import 'package:fluffychat/pangea/activity_planner/bookmarked_activities_repo.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_suggestion_card.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_suggestion_dialog.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 
 class BookmarkedActivitiesList extends StatefulWidget {
   final Room? room;
@@ -35,6 +38,29 @@ class BookmarkedActivitiesListState extends State<BookmarkedActivitiesList> {
   final double cardHeight = 250.0;
   double get cardPadding => _isColumnMode ? 8.0 : 0.0;
   double get cardWidth => _isColumnMode ? 225.0 : 150.0;
+
+  Future<void> _onEdit(
+    ActivityPlanModel activity,
+    Uint8List? avatar,
+    String? filename,
+  ) async {
+    if (avatar != null) {
+      final url = await Matrix.of(context).client.uploadContent(
+            avatar,
+            filename: filename,
+          );
+      activity.imageURL = url.toString();
+    }
+
+    final uniqueID =
+        "${activity.title.replaceAll(RegExp(r'\s+'), '-')}-${DateTime.now().millisecondsSinceEpoch}";
+
+    if (activity.bookmarkId != null) {
+      await BookmarkedActivitiesRepo.remove(activity.bookmarkId!);
+    }
+    await BookmarkedActivitiesRepo.save(activity, uniqueID);
+    if (mounted) setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,6 +96,7 @@ class BookmarkedActivitiesListState extends State<BookmarkedActivitiesList> {
                         activity: activity,
                         buttonText: L10n.of(context).inviteAndLaunch,
                         room: widget.room,
+                        onEdit: _onEdit,
                       );
                     },
                   );

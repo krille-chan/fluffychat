@@ -98,29 +98,37 @@ class ActivityPlanCardState extends State<ActivityPlanCard> {
     });
   }
 
-  Future<ActivityPlanModel> _addBookmark(ActivityPlanModel activity) =>
-      BookmarkedActivitiesRepo.save(activity).catchError((e, stack) {
-        debugger(when: kDebugMode);
-        ErrorHandler.logError(e: e, s: stack, data: activity.toJson());
-        return activity; // Return the original activity in case of error
-      }).whenComplete(() {
-        if (mounted) {
-          setState(() {});
-          widget.onChange();
-        }
-      });
+  Future<ActivityPlanModel> _addBookmark(ActivityPlanModel activity) async {
+    try {
+      final uniqueID =
+          "${activity.title.replaceAll(RegExp(r'\s+'), '-')}-${DateTime.now().millisecondsSinceEpoch}";
+      return BookmarkedActivitiesRepo.save(activity, uniqueID);
+    } catch (e, stack) {
+      debugger(when: kDebugMode);
+      ErrorHandler.logError(e: e, s: stack, data: activity.toJson());
+      return activity; // Return the original activity in case of error
+    } finally {
+      if (mounted) {
+        setState(() {});
+        widget.onChange();
+      }
+    }
+  }
 
-  Future<void> _removeBookmark() =>
-      BookmarkedActivitiesRepo.remove(widget.activity.bookmarkId)
-          .catchError((e, stack) {
-        debugger(when: kDebugMode);
-        ErrorHandler.logError(e: e, s: stack, data: widget.activity.toJson());
-      }).whenComplete(() {
-        if (mounted) {
-          setState(() {});
-          widget.onChange();
-        }
-      });
+  Future<void> _removeBookmark() async {
+    if (widget.activity.bookmarkId == null) return;
+    try {
+      BookmarkedActivitiesRepo.remove(widget.activity.bookmarkId!);
+    } catch (e, stack) {
+      debugger(when: kDebugMode);
+      ErrorHandler.logError(e: e, s: stack, data: widget.activity.toJson());
+    } finally {
+      if (mounted) {
+        setState(() {});
+        widget.onChange();
+      }
+    }
+  }
 
   void _addVocab() {
     setState(() {

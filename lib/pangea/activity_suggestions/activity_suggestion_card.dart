@@ -9,6 +9,7 @@ import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
 import 'package:fluffychat/pangea/activity_planner/bookmarked_activities_repo.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_suggestion_card_row.dart';
 import 'package:fluffychat/pangea/common/widgets/pressable_button.dart';
+import 'package:fluffychat/widgets/mxc_image.dart';
 
 class ActivitySuggestionCard extends StatelessWidget {
   final ActivityPlanModel activity;
@@ -81,16 +82,25 @@ class ActivitySuggestionCard extends StatelessWidget {
                       child: image != null
                           ? Image.memory(image!)
                           : activity.imageURL != null
-                              ? CachedNetworkImage(
-                                  imageUrl: activity.imageURL!,
-                                  placeholder: (context, url) => const Center(
-                                    child: CircularProgressIndicator(),
-                                  ),
-                                  errorWidget: (context, url, error) => Icon(
-                                    Icons.error,
-                                    color: theme.colorScheme.error,
-                                  ),
-                                )
+                              ? activity.imageURL!.startsWith("mxc")
+                                  ? MxcImage(
+                                      uri: Uri.parse(activity.imageURL!),
+                                      width: width,
+                                      height: 100,
+                                      cacheKey: activity.bookmarkId,
+                                    )
+                                  : CachedNetworkImage(
+                                      imageUrl: activity.imageURL!,
+                                      placeholder: (context, url) =>
+                                          const Center(
+                                        child: CircularProgressIndicator(),
+                                      ),
+                                      errorWidget: (context, url, error) =>
+                                          Icon(
+                                        Icons.error,
+                                        color: theme.colorScheme.error,
+                                      ),
+                                    )
                               : null,
                     ),
                   ),
@@ -173,11 +183,19 @@ class ActivitySuggestionCard extends StatelessWidget {
                     isBookmarked ? Icons.bookmark : Icons.bookmark_border,
                   ),
                   onPressed: onPressed != null
-                      ? () => isBookmarked
-                          ? BookmarkedActivitiesRepo.remove(activity.bookmarkId)
-                              .then((_) => onChange())
-                          : BookmarkedActivitiesRepo.save(activity)
-                              .then((_) => onChange())
+                      ? () async {
+                          final uniqueID =
+                              "${activity.title.replaceAll(RegExp(r'\s+'), '-')}-${DateTime.now().millisecondsSinceEpoch}";
+                          await (isBookmarked
+                              ? BookmarkedActivitiesRepo.remove(
+                                  activity.bookmarkId!,
+                                )
+                              : BookmarkedActivitiesRepo.save(
+                                  activity,
+                                  uniqueID,
+                                ));
+                          onChange();
+                        }
                       : null,
                   iconSize: 24.0,
                 ),

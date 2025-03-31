@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
@@ -21,6 +22,7 @@ import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/utils/file_selector.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:fluffychat/widgets/mxc_image.dart';
 
 class ActivitySuggestionDialog extends StatefulWidget {
   final ActivityPlanModel activity;
@@ -29,14 +31,21 @@ class ActivitySuggestionDialog extends StatefulWidget {
 
   final Function(
     ActivityPlanModel,
-    Uint8List? avatar,
-    String? filename,
-  )? launch;
+    Uint8List?,
+    String?,
+  )? onLaunch;
+
+  final Future<void> Function(
+    ActivityPlanModel,
+    Uint8List?,
+    String?,
+  )? onEdit;
 
   const ActivitySuggestionDialog({
     required this.activity,
     required this.buttonText,
-    this.launch,
+    this.onLaunch,
+    this.onEdit,
     this.room,
     super.key,
   });
@@ -204,6 +213,26 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
     context.go("/rooms/$roomId/invite");
   }
 
+  Future<void> _saveEdits() async {
+    if (!_formKey.currentState!.validate()) return;
+    await _updateTextFields();
+    _setEditing(false);
+    if (widget.onEdit != null) {
+      await widget.onEdit!(
+        widget.activity,
+        _avatar,
+        _filename,
+      );
+    }
+  }
+
+  double get width {
+    if (FluffyThemes.isColumnMode(context)) {
+      return 400.0;
+    }
+    return MediaQuery.of(context).size.width;
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -219,15 +248,31 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
               Container(
                 height: 200,
                 decoration: BoxDecoration(
-                  image: widget.activity.imageURL != null || _avatar != null
-                      ? DecorationImage(
-                          image: _avatar != null
-                              ? MemoryImage(_avatar!)
-                              : NetworkImage(widget.activity.imageURL!)
-                                  as ImageProvider<Object>,
-                        )
-                      : null,
                   borderRadius: BorderRadius.circular(24.0),
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(24.0),
+                  child: _avatar != null
+                      ? Image.memory(_avatar!)
+                      : widget.activity.imageURL != null
+                          ? widget.activity.imageURL!.startsWith("mxc")
+                              ? MxcImage(
+                                  uri: Uri.parse(widget.activity.imageURL!),
+                                  width: width,
+                                  height: 200,
+                                  cacheKey: widget.activity.bookmarkId,
+                                )
+                              : CachedNetworkImage(
+                                  imageUrl: widget.activity.imageURL!,
+                                  placeholder: (context, url) => const Center(
+                                    child: CircularProgressIndicator(),
+                                  ),
+                                  errorWidget: (context, url, error) => Icon(
+                                    Icons.error,
+                                    color: theme.colorScheme.error,
+                                  ),
+                                )
+                          : null,
                 ),
               ),
               Flexible(
@@ -469,16 +514,10 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
                           _setEditing(false);
                         },
                       ),
-                    if (_isEditing)
+                    if (_isEditing && widget.onEdit != null)
                       Expanded(
                         child: ElevatedButton(
-                          onPressed: () async {
-                            if (!_formKey.currentState!.validate()) {
-                              return;
-                            }
-                            await _updateTextFields();
-                            _setEditing(false);
-                          },
+                          onPressed: _saveEdits,
                           style: ElevatedButton.styleFrom(
                             minimumSize: Size.zero,
                             padding: const EdgeInsets.all(6.0),
@@ -494,8 +533,8 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
                                 ?.copyWith(color: theme.colorScheme.onPrimary),
                           ),
                         ),
-                      ),
-                    if (!_isEditing)
+                      )
+                    else
                       Expanded(
                         child: ElevatedButton(
                           onPressed: () async {
@@ -505,8 +544,8 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
                             final resp = await showFutureLoadingDialog(
                               context: context,
                               future: () async {
-                                if (widget.launch != null) {
-                                  return widget.launch?.call(
+                                if (widget.onLaunch != null) {
+                                  return widget.onLaunch?.call(
                                     widget.activity,
                                     _avatar,
                                     _filename,
@@ -584,11 +623,9 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
       duration: FluffyThemes.animationDuration,
       child: ConstrainedBox(
         constraints: FluffyThemes.isColumnMode(context)
-            ? const BoxConstraints(
-                maxWidth: 400.0,
-              )
+            ? BoxConstraints(maxWidth: width)
             : BoxConstraints(
-                maxWidth: MediaQuery.of(context).size.width,
+                maxWidth: width,
                 maxHeight: MediaQuery.of(context).size.height,
               ),
         child: ClipRRect(

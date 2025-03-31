@@ -10,6 +10,7 @@ class ActivityPlanModel {
   String instructions;
   List<Vocab> vocab;
   String? imageURL;
+  String? bookmarkId;
 
   ActivityPlanModel({
     required this.req,
@@ -17,6 +18,7 @@ class ActivityPlanModel {
     required this.learningObjective,
     required this.instructions,
     required this.vocab,
+    this.bookmarkId,
     this.imageURL,
   });
 
@@ -30,6 +32,7 @@ class ActivityPlanModel {
         json[ModelKey.activityPlanVocab].map((vocab) => Vocab.fromJson(vocab)),
       ),
       imageURL: json[ModelKey.activityPlanImageURL],
+      bookmarkId: json[ModelKey.activityPlanBookmarkId],
     );
   }
 
@@ -40,8 +43,8 @@ class ActivityPlanModel {
       ModelKey.activityPlanLearningObjective: learningObjective,
       ModelKey.activityPlanInstructions: instructions,
       ModelKey.activityPlanVocab: vocab.map((vocab) => vocab.toJson()).toList(),
-      ModelKey.activityPlanBookmarkId: bookmarkId,
       ModelKey.activityPlanImageURL: imageURL,
+      ModelKey.activityPlanBookmarkId: bookmarkId,
     };
   }
 
@@ -74,6 +77,7 @@ class ActivityPlanModel {
         other.learningObjective == learningObjective &&
         other.instructions == instructions &&
         listEquals(other.vocab, vocab) &&
+        other.imageURL == imageURL &&
         other.bookmarkId == bookmarkId;
   }
 
@@ -83,15 +87,9 @@ class ActivityPlanModel {
       title.hashCode ^
       learningObjective.hashCode ^
       instructions.hashCode ^
-      Object.hashAll(vocab);
-
-  String get bookmarkId {
-    return (title.hashCode ^
-            learningObjective.hashCode ^
-            instructions.hashCode ^
-            Object.hashAll(vocab))
-        .toString();
-  }
+      Object.hashAll(vocab) ^
+      imageURL.hashCode ^
+      bookmarkId.hashCode;
 }
 
 class Vocab {

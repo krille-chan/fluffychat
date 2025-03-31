@@ -124,6 +124,17 @@ class _MxcImageState extends State<MxcImage> {
     WidgetsBinding.instance.addPostFrameCallback(_tryLoad);
   }
 
+  // #Pangea
+  @override
+  void didUpdateWidget(covariant MxcImage oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.uri != widget.uri || oldWidget.cacheKey != widget.cacheKey) {
+      _imageData = null;
+      WidgetsBinding.instance.addPostFrameCallback(_tryLoad);
+    }
+  }
+  // Pangea#
+
   Widget placeholder(BuildContext context) =>
       widget.placeholder?.call(context) ??
       Container(

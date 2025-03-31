@@ -140,7 +140,7 @@ class ActivitySuggestionCarouselState
         return ActivitySuggestionDialog(
           activity: _currentActivity!,
           buttonText: L10n.of(context).selectActivity,
-          launch: widget.onActivitySelected,
+          onLaunch: widget.onActivitySelected,
         );
       },
     );
