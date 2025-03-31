@@ -8,12 +8,14 @@ import 'package:fluffychat/widgets/matrix.dart';
 
 class WordTextWithAudioButton extends StatefulWidget {
   final String text;
+  final String uniqueID;
   final TextStyle? style;
   final double? iconSize;
 
   const WordTextWithAudioButton({
     super.key,
     required this.text,
+    required this.uniqueID,
     this.style,
     this.iconSize,
   });
@@ -52,11 +54,11 @@ class WordAudioButtonState extends State<WordTextWithAudioButton> {
   Widget build(BuildContext context) {
     return CompositedTransformTarget(
       link: MatrixState.pAnyState
-          .layerLinkAndKey('text-audio-button ${widget.text}')
+          .layerLinkAndKey('text-audio-button-${widget.uniqueID}')
           .link,
       child: MouseRegion(
         key: MatrixState.pAnyState
-            .layerLinkAndKey('text-audio-button ${widget.text}')
+            .layerLinkAndKey('text-audio-button-${widget.uniqueID}')
             .key,
         cursor: SystemMouseCursors.click,
         onEnter: (event) => setState(() {}),
@@ -79,7 +81,7 @@ class WordAudioButtonState extends State<WordTextWithAudioButton> {
                 await tts.tryToSpeak(
                   widget.text,
                   context,
-                  targetID: 'text-audio-button ${widget.text}',
+                  targetID: 'text-audio-button-${widget.uniqueID}',
                 );
               } catch (e, s) {
                 ErrorHandler.logError(

@@ -11,6 +11,7 @@ class WordAudioButton extends StatefulWidget {
   final double size;
   final bool isSelected;
   final double baseOpacity;
+  final String uniqueID;
 
   /// If defined, this callback will be called instead of the default one
   final void Function()? callbackOverride;
@@ -18,6 +19,7 @@ class WordAudioButton extends StatefulWidget {
   const WordAudioButton({
     super.key,
     required this.text,
+    required this.uniqueID,
     this.size = 24,
     this.isSelected = false,
     this.baseOpacity = 1,
@@ -51,13 +53,13 @@ class WordAudioButtonState extends State<WordAudioButton> {
   Widget build(BuildContext context) {
     return CompositedTransformTarget(
       link: MatrixState.pAnyState
-          .layerLinkAndKey('word-audio-butto${widget.text}')
+          .layerLinkAndKey('word-audio-button-${widget.uniqueID}')
           .link,
       child: Opacity(
         opacity: !widget.isSelected ? widget.baseOpacity : 1,
         child: IconButton(
           key: MatrixState.pAnyState
-              .layerLinkAndKey('word-audio-butto${widget.text}')
+              .layerLinkAndKey('word-audio-button-${widget.uniqueID}')
               .key,
           icon: const Icon(Icons.volume_up),
           isSelected: _isPlaying,
@@ -82,7 +84,7 @@ class WordAudioButtonState extends State<WordAudioButton> {
                     await tts.tryToSpeak(
                       widget.text,
                       context,
-                      targetID: 'word-audio-button',
+                      targetID: 'word-audio-button-${widget.uniqueID}',
                     );
                   } catch (e, s) {
                     ErrorHandler.logError(

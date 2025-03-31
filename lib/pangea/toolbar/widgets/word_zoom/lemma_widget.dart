@@ -198,6 +198,7 @@ class LemmaWidgetState extends State<LemmaWidget> {
                     ? () => widget.overlayController
                         ?.updateToolbarMode(MessageMode.listening)
                     : null,
+            uniqueID: "lemma-content-${widget.token.text.content}",
           ),
       ],
     );

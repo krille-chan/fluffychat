@@ -15,11 +15,11 @@ extension ConstructLevelEnumExt on ConstructLevelEnum {
     switch (this) {
       case ConstructLevelEnum.flowers:
         return Color.lerp(
-              Theme.of(context).colorScheme.primary,
+              AppConfig.primaryColor,
               Colors.white,
               0.6,
             ) ??
-            Theme.of(context).colorScheme.primary;
+            AppConfig.primaryColor;
       case ConstructLevelEnum.greens:
         return Color.lerp(AppConfig.success, Colors.white, 0.6) ??
             AppConfig.success;
@@ -32,11 +32,11 @@ extension ConstructLevelEnumExt on ConstructLevelEnum {
     switch (this) {
       case ConstructLevelEnum.flowers:
         return Color.lerp(
-              Theme.of(context).colorScheme.primary,
+              AppConfig.primaryColor,
               Colors.white,
               0.3,
             ) ??
-            Theme.of(context).colorScheme.primary;
+            AppConfig.primaryColor;
       case ConstructLevelEnum.greens:
         return Color.lerp(AppConfig.success, Colors.black, 0.3) ??
             AppConfig.success;

@@ -90,6 +90,7 @@ class PracticeTarget {
     }
 
     return tokens.every(
-        (t) => record.responses.any((res) => res.cId == t.vocabConstructID));
+      (t) => record.responses.any((res) => res.cId == t.vocabConstructID),
+    );
   }
 }

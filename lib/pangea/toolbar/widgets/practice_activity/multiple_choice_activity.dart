@@ -230,6 +230,7 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
             ActivityTypeEnum.wordFocusListening)
           WordAudioButton(
             text: practiceActivity.multipleChoiceContent!.answers.first,
+            uniqueID: "audio-activity-${widget.event.eventId}",
           ),
         if (practiceActivity.activityType ==
             ActivityTypeEnum.hiddenWordListening)

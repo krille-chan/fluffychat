@@ -55,6 +55,7 @@ class VocabDetailsView extends StatelessWidget {
               color: textColor,
             ),
         iconSize: _iconSize,
+        uniqueID: "${_construct.lemma}-${_construct.category}",
       ),
       subtitle: Column(
         children: [
@@ -140,6 +141,7 @@ class VocabDetailsView extends StatelessWidget {
                         WordTextWithAudioButton(
                           text: form,
                           style: Theme.of(context).textTheme.bodyLarge,
+                          uniqueID: "$form-${_construct.lemma}-$i",
                         ),
                         if (i != forms.length - 1) const Text(",  "),
                       ],

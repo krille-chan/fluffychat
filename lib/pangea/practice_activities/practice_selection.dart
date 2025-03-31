@@ -14,7 +14,6 @@ import 'package:fluffychat/pangea/practice_activities/practice_target.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class PracticeSelection {
-  late String _userL1;
   late String _userL2;
   final DateTime createdAt = DateTime.now();
 
@@ -29,9 +28,6 @@ class PracticeSelection {
     String? userL1,
     String? userL2,
   }) {
-    _userL1 = userL1 ??
-        MatrixState.pangeaController.languageController.userL1?.langCode ??
-        LanguageKeys.defaultLanguage;
     _userL2 = userL2 ??
         MatrixState.pangeaController.languageController.userL2?.langCode ??
         LanguageKeys.defaultLanguage;

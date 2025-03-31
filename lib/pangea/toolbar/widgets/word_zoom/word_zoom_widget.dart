@@ -179,6 +179,7 @@ class WordZoomWidget extends StatelessWidget {
                             ? () => overlayController
                                 .updateToolbarMode(MessageMode.listening)
                             : null,
+                    uniqueID: "word-zoom-audio-${_selectedToken.text.content}",
                   ),
                 ],
                 ..._selectedToken.morphsBasicallyEligibleForPracticeByPriority
