@@ -91,21 +91,31 @@ class TtsController {
     _availableLangCodes = languages.toSet().toList();
   }
 
-  Future<void> _setLanguage() async {
-    String? langCode;
-    if (l2LangCode != null && _availableLangCodes.contains(l2LangCode)) {
-      langCode = l2LangCode;
-    } else if (l2LangCodeShort != null) {
-      final langCodeShort = l2LangCodeShort!;
-      langCode = _availableLangCodes.firstWhereOrNull(
-        (code) => code.startsWith(langCodeShort),
-      );
+  Future<void> _setLanguage(String? langCode) async {
+    String? selectedLangCode;
+    if (langCode != null) {
+      final langCodeShort = langCode.split("-").first;
+      if (_availableLangCodes.contains(langCode)) {
+        selectedLangCode = langCode;
+      } else {
+        selectedLangCode = _availableLangCodes.firstWhereOrNull(
+          (code) => code.startsWith(langCodeShort),
+        );
+      }
+    } else {
+      if (_availableLangCodes.contains(l2LangCode)) {
+        selectedLangCode = l2LangCode;
+      } else if (l2LangCodeShort != null) {
+        selectedLangCode = _availableLangCodes.firstWhereOrNull(
+          (code) => code.startsWith(l2LangCodeShort!),
+        );
+      }
     }
 
-    if (langCode != null) {
+    if (selectedLangCode != null) {
       await (_useAlternativeTTS
-          ? _alternativeTTS.setLanguage(langCode)
-          : _tts.setLanguage(langCode));
+          ? _alternativeTTS.setLanguage(selectedLangCode)
+          : _tts.setLanguage(selectedLangCode));
     }
   }
 
@@ -174,9 +184,10 @@ class TtsController {
     BuildContext context, {
     // Target ID for where to show warning popup
     String? targetID,
+    String? langCode,
   }) async {
     chatController?.stopAudioStream.add(null);
-    await _setLanguage();
+    await _setLanguage(langCode);
     final enableTTS = MatrixState
         .pangeaController.userController.profile.toolSettings.enableTTS;
     if (enableTTS) {

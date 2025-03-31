@@ -1,11 +1,12 @@
 import 'dart:developer';
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
 import 'package:fluffychat/pangea/analytics_misc/analytics_constants.dart';
 import 'package:fluffychat/pangea/analytics_summary/progress_indicators_enum.dart';
 import 'package:fluffychat/pangea/morphs/morph_features_enum.dart';
 import 'package:fluffychat/pangea/morphs/parts_of_speech_enum.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 
 enum ConstructTypeEnum {
   /// for vocabulary words

@@ -1,7 +1,12 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:flutter/foundation.dart';
+
 import 'package:collection/collection.dart';
+import 'package:matrix/matrix.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
+
 import 'package:fluffychat/pangea/choreographer/models/choreo_record.dart';
 import 'package:fluffychat/pangea/choreographer/models/pangea_match_model.dart';
 import 'package:fluffychat/pangea/choreographer/repo/full_text_translation_repo.dart';
@@ -20,10 +25,6 @@ import 'package:fluffychat/pangea/toolbar/enums/audio_encoding_enum.dart';
 import 'package:fluffychat/pangea/toolbar/event_wrappers/practice_activity_event.dart';
 import 'package:fluffychat/pangea/toolbar/models/speech_to_text_models.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_audio_card.dart';
-import 'package:flutter/foundation.dart';
-import 'package:matrix/matrix.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
-
 import '../../../widgets/matrix.dart';
 import '../../choreographer/enums/use_type.dart';
 import '../../common/utils/error_handler.dart';

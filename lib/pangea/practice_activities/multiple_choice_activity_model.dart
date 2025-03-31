@@ -1,10 +1,12 @@
 import 'dart:developer';
 
-import 'package:collection/collection.dart';
-import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pangea/practice_activities/relevant_span_display_details.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+import 'package:collection/collection.dart';
+
+import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pangea/practice_activities/relevant_span_display_details.dart';
 
 class MultipleChoiceActivity {
   final String question;

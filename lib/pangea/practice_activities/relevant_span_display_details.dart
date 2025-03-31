@@ -1,8 +1,10 @@
 import 'dart:developer';
 
-import 'package:collection/collection.dart';
-import 'package:fluffychat/pangea/practice_activities/activity_display_instructions_enum.dart';
 import 'package:flutter/foundation.dart';
+
+import 'package:collection/collection.dart';
+
+import 'package:fluffychat/pangea/practice_activities/activity_display_instructions_enum.dart';
 
 /// For those activities with a relevant span, this class will hold the details
 /// of the span and how it should be displayed

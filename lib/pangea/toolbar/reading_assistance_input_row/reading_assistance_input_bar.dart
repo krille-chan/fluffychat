@@ -1,3 +1,7 @@
+import 'package:flutter/material.dart';
+
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
@@ -6,8 +10,6 @@ import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart
 import 'package:fluffychat/pangea/toolbar/widgets/message_translation_card.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/practice_activity/practice_activity_card.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/word_zoom/morph_focus_widget.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 const double minContentHeight = 120;
 

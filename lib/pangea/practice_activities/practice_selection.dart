@@ -1,6 +1,9 @@
 import 'dart:developer';
 
+import 'package:flutter/foundation.dart';
+
 import 'package:collection/collection.dart';
+
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/learning_settings/constants/language_constants.dart';
 import 'package:fluffychat/pangea/lemmas/lemma_info_response.dart';
@@ -9,7 +12,6 @@ import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_selection_repo.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_target.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/foundation.dart';
 
 class PracticeSelection {
   late String _userL1;

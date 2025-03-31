@@ -5,6 +5,8 @@
 
 import 'dart:developer';
 
+import 'package:flutter/foundation.dart';
+
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/constructs_model.dart';
@@ -14,7 +16,6 @@ import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_activity_model.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_record_repo.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_target.dart';
-import 'package:flutter/foundation.dart';
 
 class PracticeRecord {
   late DateTime createdAt;

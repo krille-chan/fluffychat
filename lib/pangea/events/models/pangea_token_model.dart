@@ -1,6 +1,9 @@
 import 'dart:developer';
 
+import 'package:flutter/foundation.dart';
+
 import 'package:collection/collection.dart';
+
 import 'package:fluffychat/pangea/analytics_misc/analytics_constants.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_use_model.dart';
@@ -21,8 +24,6 @@ import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/reading_assistance_input_row/message_morph_choice.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/foundation.dart';
-
 import '../../common/constants/model_keys.dart';
 import '../../lemmas/lemma.dart';
 

@@ -1,7 +1,12 @@
 import 'dart:developer';
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
 import 'package:collection/collection.dart';
+import 'package:material_symbols_icons/symbols.dart';
+
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/constructs/construct_form.dart';
@@ -13,9 +18,6 @@ import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/reading_assistance_input_row/morph_selection.dart';
 import 'package:fluffychat/pangea/toolbar/utils/shrinkable_text.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:material_symbols_icons/symbols.dart';
 
 const double tokenButtonHeight = 40.0;
 const double tokenButtonDefaultFontSize = 10;
