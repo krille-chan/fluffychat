@@ -1,8 +1,4 @@
-import 'package:flutter/material.dart';
-
 import 'package:collection/collection.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/choice_animation.dart';
 import 'package:fluffychat/pangea/constructs/construct_form.dart';
@@ -15,6 +11,8 @@ import 'package:fluffychat/pangea/practice_activities/practice_activity_model.da
 import 'package:fluffychat/pangea/practice_activities/practice_choice.dart';
 import 'package:fluffychat/pangea/toolbar/reading_assistance_input_row/message_morph_choice_item.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 // this widget will handle the content of the input bar when mode == MessageMode.wordMorph
 
@@ -111,42 +109,45 @@ class MessageMorphInputBarContentState
           runAlignment: WrapAlignment.center,
           spacing: spacing,
           runSpacing: spacing,
-          children: widget.activity.multipleChoiceContent!.choices
-              .mapIndexed(
-                (index, choice) => ChoiceAnimationWidget(
-                  isSelected: selectedTag == choice,
-                  isCorrect: widget.activity.wasCorrectChoice(choice) ?? false,
-                  child: MessageMorphChoiceItem(
-                    cId: ConstructIdentifier(
-                      lemma: choice,
-                      type: ConstructTypeEnum.morph,
-                      category: morph.name,
-                    ),
-                    onTap: () {
-                      setState(() => selectedTag = choice);
+          children: widget.activity.multipleChoiceContent!.choices.mapIndexed(
+            (index, choice) {
+              final wasCorrect =
+                  widget.activity.practiceTarget.wasCorrectChoice(choice);
 
-                      widget.activity.onMultipleChoiceSelect(
-                        token,
-                        PracticeChoice(
-                          choiceContent: choice,
-                          form: ConstructForm(
-                            cId: widget.activity.targetTokens.first
-                                .morphIdByFeature(
-                              widget.activity.morphFeature!,
-                            )!,
-                            form: token.text.content,
-                          ),
-                        ),
-                        widget.pangeaMessageEvent,
-                        () => overlay.setState(() {}),
-                      );
-                    },
-                    isSelected: selectedTag == choice,
-                    isGold: widget.activity.wasCorrectChoice(choice),
+              return ChoiceAnimationWidget(
+                isSelected: selectedTag == choice,
+                isCorrect: wasCorrect,
+                child: MessageMorphChoiceItem(
+                  cId: ConstructIdentifier(
+                    lemma: choice,
+                    type: ConstructTypeEnum.morph,
+                    category: morph.name,
                   ),
+                  onTap: () {
+                    setState(() => selectedTag = choice);
+
+                    widget.activity.onMultipleChoiceSelect(
+                      token,
+                      PracticeChoice(
+                        choiceContent: choice,
+                        form: ConstructForm(
+                          cId: widget.activity.targetTokens.first
+                              .morphIdByFeature(
+                            widget.activity.morphFeature!,
+                          )!,
+                          form: token.text.content,
+                        ),
+                      ),
+                      widget.pangeaMessageEvent,
+                      () => overlay.setState(() {}),
+                    );
+                  },
+                  isSelected: selectedTag == choice,
+                  isGold: wasCorrect,
                 ),
-              )
-              .toList(),
+              );
+            },
+          ).toList(),
         ),
         // SizedBox(
         //   height: 50,

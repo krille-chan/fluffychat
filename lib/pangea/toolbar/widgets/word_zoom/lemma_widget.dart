@@ -191,15 +191,15 @@ class LemmaWidgetState extends State<LemmaWidget> {
             isSelected:
                 MessageMode.listening == widget.overlayController?.toolbarMode,
             baseOpacity: 0.4,
-            callbackOverride:
-                widget.overlayController?.practiceSelection?.hasActivity(
-                          MessageMode.listening.associatedActivityType!,
-                          widget.token,
-                        ) ==
-                        true
-                    ? () => widget.overlayController
-                        ?.updateToolbarMode(MessageMode.listening)
-                    : null,
+            callbackOverride: widget.overlayController?.practiceSelection
+                        ?.hasActiveActivityByToken(
+                      MessageMode.listening.associatedActivityType!,
+                      widget.token,
+                    ) ==
+                    true
+                ? () => widget.overlayController
+                    ?.updateToolbarMode(MessageMode.listening)
+                : null,
             uniqueID: "lemma-content-${widget.token.text.content}",
           ),
       ],

@@ -225,12 +225,12 @@ class PracticeSelection {
     );
   }
 
-  bool hasActivity(
-    ActivityTypeEnum a, [
-    PangeaToken? t,
+  bool hasActiveActivityByToken(
+    ActivityTypeEnum a,
+    PangeaToken t, [
     MorphFeaturesEnum? morph,
   ]) =>
-      getSelection(a, t, morph) != null;
+      getSelection(a, t, morph)?.isCompleteByToken(t, morph) == false;
 
   /// Add a message meaning activity to the front of the queue
   /// And limits to _maxQueueLength activities

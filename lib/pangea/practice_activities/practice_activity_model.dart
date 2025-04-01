@@ -74,6 +74,10 @@ class PracticeActivityModel {
       return;
     }
 
+    // final ConstructIdentifier? cId = activityType == ActivityTypeEnum.morphId
+    //     ? morphFeature ?= null ? token.getMorphTag(morphFeature) : null
+    //     : choice.form.cId;
+
     if (practiceTarget.record.hasTextResponse(choice.choiceContent) ||
         isComplete) {
       // the user has already selected this choice
@@ -219,31 +223,6 @@ class PracticeActivityModel {
       }
     }
     callback();
-  }
-
-  bool? wasCorrectChoice(String choice) {
-    for (final response in practiceTarget.record.responses) {
-      if (response.text == choice) {
-        return multipleChoiceContent?.answers
-            .any((answer) => answer.toLowerCase() == choice.toLowerCase());
-      }
-    }
-    return null;
-  }
-
-  /// if null, it means the user has not yet responded with that choice
-  bool? wasCorrectMatch(PracticeChoice choice) {
-    for (final response in practiceTarget.record.responses) {
-      if (response.text == choice.choiceContent && response.isCorrect) {
-        return true;
-      }
-    }
-    for (final response in practiceTarget.record.responses) {
-      if (response.text == choice.choiceContent) {
-        return false;
-      }
-    }
-    return null;
   }
 
   PracticeRecord get record => practiceTarget.record;

@@ -83,12 +83,14 @@ class MatchActivityCard extends StatelessWidget {
           runSpacing: 4.0,
           children: activity.matchContent!.choices.map(
             (PracticeChoice cf) {
+              final bool? wasCorrect =
+                  currentActivity.practiceTarget.wasCorrectMatch(cf);
               return ChoiceAnimationWidget(
                 isSelected: overlayController.selectedChoice == cf,
-                isCorrect: currentActivity.wasCorrectMatch(cf),
+                isCorrect: wasCorrect,
                 child: PracticeMatchItem(
                   isSelected: overlayController.selectedChoice == cf,
-                  isCorrect: currentActivity.wasCorrectMatch(cf),
+                  isCorrect: wasCorrect,
                   constructForm: cf,
                   content: choiceDisplayContent(cf.choiceContent, fontSize),
                   audioContent:
