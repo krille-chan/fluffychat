@@ -11,11 +11,9 @@ class BookmarkedActivitiesRepo {
   /// returns the activity with a bookmarkId
   static Future<ActivityPlanModel> save(
     ActivityPlanModel activity,
-    String bookmarkID,
   ) async {
-    activity.bookmarkId = bookmarkID;
     await _bookStorage.write(
-      bookmarkID,
+      activity.bookmarkId,
       activity.toJson(),
     );
 
@@ -27,8 +25,7 @@ class BookmarkedActivitiesRepo {
       _bookStorage.remove(bookmarkId);
 
   static bool isBookmarked(ActivityPlanModel activity) {
-    return activity.bookmarkId != null &&
-        _bookStorage.read(activity.bookmarkId!) != null;
+    return _bookStorage.read(activity.bookmarkId) != null;
   }
 
   static List<ActivityPlanModel> get() {

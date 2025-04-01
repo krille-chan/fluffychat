@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
+import 'package:shimmer/shimmer.dart';
 
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
@@ -48,6 +49,7 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
     super.dispose();
   }
 
+  bool _loading = true;
   bool get _isColumnMode => FluffyThemes.isColumnMode(context);
 
   final List<ActivityPlanModel> _activityItems = [];
@@ -57,52 +59,72 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
   double get cardWidth => _isColumnMode ? 225.0 : 150.0;
 
   Future<void> _setActivityItems() async {
-    final ActivityPlanRequest request = ActivityPlanRequest(
-      topic: "",
-      mode: "",
-      objective: "",
-      media: MediaEnum.nan,
-      cefrLevel: LanguageLevelTypeEnum.a1,
-      languageOfInstructions: LanguageKeys.defaultLanguage,
-      targetLanguage:
-          MatrixState.pangeaController.languageController.userL2?.langCode ??
-              LanguageKeys.defaultLanguage,
-      numberOfParticipants: 3,
-      count: 5,
-    );
-    final resp = await ActivitySearchRepo.get(request);
-    _activityItems.addAll(resp.activityPlans);
-    if (mounted) setState(() {});
+    try {
+      final ActivityPlanRequest request = ActivityPlanRequest(
+        topic: "",
+        mode: "",
+        objective: "",
+        media: MediaEnum.nan,
+        cefrLevel: LanguageLevelTypeEnum.a1,
+        languageOfInstructions: LanguageKeys.defaultLanguage,
+        targetLanguage:
+            MatrixState.pangeaController.languageController.userL2?.langCode ??
+                LanguageKeys.defaultLanguage,
+        numberOfParticipants: 3,
+        count: 5,
+      );
+      final resp = await ActivitySearchRepo.get(request);
+      _activityItems.addAll(resp.activityPlans);
+    } finally {
+      if (mounted) setState(() => _loading = false);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> cards = _activityItems
-        .map((activity) {
-          return ActivitySuggestionCard(
-            activity: activity,
-            onPressed: () {
-              showDialog(
-                context: context,
-                builder: (context) {
-                  return ActivitySuggestionDialog(
-                    activity: activity,
-                    buttonText: L10n.of(context).inviteAndLaunch,
-                    room: widget.room,
+    final theme = Theme.of(context);
+    final List<Widget> cards = _loading
+        ? List.generate(5, (i) {
+            return Shimmer.fromColors(
+              baseColor: theme.colorScheme.primary.withAlpha(20),
+              highlightColor: theme.colorScheme.primary.withAlpha(50),
+              child: Container(
+                height: cardHeight,
+                width: cardWidth,
+                margin: EdgeInsets.all(cardPadding),
+                decoration: BoxDecoration(
+                  color: theme.colorScheme.surfaceContainer,
+                  borderRadius: BorderRadius.circular(24.0),
+                ),
+              ),
+            );
+          })
+        : _activityItems
+            .map((activity) {
+              return ActivitySuggestionCard(
+                activity: activity,
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return ActivitySuggestionDialog(
+                        activity: activity,
+                        buttonText: L10n.of(context).inviteAndLaunch,
+                        room: widget.room,
+                      );
+                    },
                   );
                 },
+                width: cardWidth,
+                height: cardHeight,
+                padding: cardPadding,
+                onChange: () {
+                  if (mounted) setState(() {});
+                },
               );
-            },
-            width: cardWidth,
-            height: cardHeight,
-            padding: cardPadding,
-            onChange: () {
-              if (mounted) setState(() {});
-            },
-          );
-        })
-        .cast<Widget>()
-        .toList();
+            })
+            .cast<Widget>()
+            .toList();
 
     final scrollDirection = widget.scrollDirection ??
         (_isColumnMode ? Axis.horizontal : Axis.vertical);

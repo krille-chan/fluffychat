@@ -189,16 +189,11 @@ class ActivitySuggestionCard extends StatelessWidget {
                   ),
                   onPressed: onPressed != null
                       ? () async {
-                          final uniqueID =
-                              "${activity.title.replaceAll(RegExp(r'\s+'), '-')}-${DateTime.now().millisecondsSinceEpoch}";
                           await (isBookmarked
                               ? BookmarkedActivitiesRepo.remove(
-                                  activity.bookmarkId!,
+                                  activity.bookmarkId,
                                 )
-                              : BookmarkedActivitiesRepo.save(
-                                  activity,
-                                  uniqueID,
-                                ));
+                              : BookmarkedActivitiesRepo.save(activity));
                           onChange();
                         }
                       : null,

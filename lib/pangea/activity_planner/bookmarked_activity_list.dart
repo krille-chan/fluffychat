@@ -52,13 +52,8 @@ class BookmarkedActivitiesListState extends State<BookmarkedActivitiesList> {
       activity.imageURL = url.toString();
     }
 
-    final uniqueID =
-        "${activity.title.replaceAll(RegExp(r'\s+'), '-')}-${DateTime.now().millisecondsSinceEpoch}";
-
-    if (activity.bookmarkId != null) {
-      await BookmarkedActivitiesRepo.remove(activity.bookmarkId!);
-    }
-    await BookmarkedActivitiesRepo.save(activity, uniqueID);
+    await BookmarkedActivitiesRepo.remove(activity.bookmarkId);
+    await BookmarkedActivitiesRepo.save(activity);
     if (mounted) setState(() {});
   }
 

@@ -4,13 +4,13 @@ import 'package:fluffychat/pangea/activity_planner/activity_plan_request.dart';
 import 'package:fluffychat/pangea/common/constants/model_keys.dart';
 
 class ActivityPlanModel {
+  final String bookmarkId;
   final ActivityPlanRequest req;
   String title;
   String learningObjective;
   String instructions;
   List<Vocab> vocab;
   String? imageURL;
-  String? bookmarkId;
 
   ActivityPlanModel({
     required this.req,
@@ -18,9 +18,8 @@ class ActivityPlanModel {
     required this.learningObjective,
     required this.instructions,
     required this.vocab,
-    this.bookmarkId,
     this.imageURL,
-  });
+  }) : bookmarkId = req.hashCode.toString();
 
   factory ActivityPlanModel.fromJson(Map<String, dynamic> json) {
     return ActivityPlanModel(
@@ -32,7 +31,6 @@ class ActivityPlanModel {
         json[ModelKey.activityPlanVocab].map((vocab) => Vocab.fromJson(vocab)),
       ),
       imageURL: json[ModelKey.activityPlanImageURL],
-      bookmarkId: json[ModelKey.activityPlanBookmarkId],
     );
   }
 
@@ -77,8 +75,7 @@ class ActivityPlanModel {
         other.learningObjective == learningObjective &&
         other.instructions == instructions &&
         listEquals(other.vocab, vocab) &&
-        other.imageURL == imageURL &&
-        other.bookmarkId == bookmarkId;
+        other.imageURL == imageURL;
   }
 
   @override
@@ -88,8 +85,7 @@ class ActivityPlanModel {
       learningObjective.hashCode ^
       instructions.hashCode ^
       Object.hashAll(vocab) ^
-      imageURL.hashCode ^
-      bookmarkId.hashCode;
+      imageURL.hashCode;
 }
 
 class Vocab {

@@ -100,9 +100,7 @@ class ActivityPlanCardState extends State<ActivityPlanCard> {
 
   Future<ActivityPlanModel> _addBookmark(ActivityPlanModel activity) async {
     try {
-      final uniqueID =
-          "${activity.title.replaceAll(RegExp(r'\s+'), '-')}-${DateTime.now().millisecondsSinceEpoch}";
-      return BookmarkedActivitiesRepo.save(activity, uniqueID);
+      return BookmarkedActivitiesRepo.save(activity);
     } catch (e, stack) {
       debugger(when: kDebugMode);
       ErrorHandler.logError(e: e, s: stack, data: activity.toJson());
@@ -116,9 +114,8 @@ class ActivityPlanCardState extends State<ActivityPlanCard> {
   }
 
   Future<void> _removeBookmark() async {
-    if (widget.activity.bookmarkId == null) return;
     try {
-      BookmarkedActivitiesRepo.remove(widget.activity.bookmarkId!);
+      BookmarkedActivitiesRepo.remove(widget.activity.bookmarkId);
     } catch (e, stack) {
       debugger(when: kDebugMode);
       ErrorHandler.logError(e: e, s: stack, data: widget.activity.toJson());
