@@ -285,13 +285,8 @@ class ActivitySuggestionCarouselState
                                   child: activity.imageURL != null
                                       ? CachedNetworkImage(
                                           imageUrl: activity.imageURL!,
-                                          errorWidget: (context, url, error) {
-                                            return CircleAvatar(
-                                              backgroundColor:
-                                                  theme.colorScheme.secondary,
-                                              radius: 12.0,
-                                            );
-                                          },
+                                          errorWidget: (context, url, error) =>
+                                              const SizedBox(),
                                           progressIndicatorBuilder:
                                               (context, url, progress) {
                                             return CircularProgressIndicator(

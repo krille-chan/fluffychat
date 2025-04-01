@@ -98,10 +98,7 @@ class ActivitySuggestionCard extends StatelessWidget {
                                         child: CircularProgressIndicator(),
                                       ),
                                       errorWidget: (context, url, error) =>
-                                          Icon(
-                                        Icons.error,
-                                        color: theme.colorScheme.error,
-                                      ),
+                                          const SizedBox(),
                                     )
                               : null,
                     ),

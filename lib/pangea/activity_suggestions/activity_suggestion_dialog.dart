@@ -267,10 +267,8 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
                                   placeholder: (context, url) => const Center(
                                     child: CircularProgressIndicator(),
                                   ),
-                                  errorWidget: (context, url, error) => Icon(
-                                    Icons.error,
-                                    color: theme.colorScheme.error,
-                                  ),
+                                  errorWidget: (context, url, error) =>
+                                      const SizedBox(),
                                 )
                           : null,
                 ),
