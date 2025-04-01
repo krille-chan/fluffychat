@@ -7,6 +7,7 @@ import 'package:matrix/matrix.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/events/extensions/pangea_event_extension.dart';
+import 'package:fluffychat/pangea/events/utils/report_message.dart';
 
 class OverlayHeader extends StatelessWidget {
   final ChatController controller;
@@ -80,7 +81,11 @@ class OverlayHeader extends StatelessWidget {
             IconButton(
               icon: const Icon(Icons.shield_outlined),
               tooltip: L10n.of(context).reportMessage,
-              onPressed: controller.reportEventAction,
+              onPressed: () => reportEvent(
+                controller.selectedEvents.first,
+                controller,
+                context,
+              ),
               color: Theme.of(context).colorScheme.primary,
             ),
           if (controller.selectedEvents.length == 1)

@@ -45,7 +45,6 @@ import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dar
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/events/models/representation_content_model.dart';
 import 'package:fluffychat/pangea/events/models/tokens_event_content_model.dart';
-import 'package:fluffychat/pangea/events/utils/report_message.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/instructions/instructions_enum.dart';
 import 'package:fluffychat/pangea/learning_settings/widgets/p_language_dialog.dart';
@@ -1119,9 +1118,6 @@ class ChatController extends State<ChatPageWithRoom>
 
   void reportEventAction() async {
     final event = selectedEvents.single;
-    // #Pangea
-    clearSelectedEvents();
-    // Pangea#
     final score = await showModalActionPopup<int>(
       context: context,
       title: L10n.of(context).reportMessage,
@@ -1138,10 +1134,7 @@ class ChatController extends State<ChatPageWithRoom>
         ),
         AdaptiveModalAction(
           value: 0,
-          // #Pangea
-          // label: L10n.of(context).inoffensive,
-          label: L10n.of(context).slightlyOffensive,
-          // Pangea#
+          label: L10n.of(context).inoffensive,
         ),
       ],
     );
@@ -1152,50 +1145,18 @@ class ChatController extends State<ChatPageWithRoom>
       okLabel: L10n.of(context).ok,
       cancelLabel: L10n.of(context).cancel,
       hintText: L10n.of(context).reason,
-      // #Pangea
-      autoSubmit: true,
-      // Pangea#
     );
     if (reason == null || reason.isEmpty) return;
-    // #Pangea
-    try {
-      await reportMessage(
-        context,
-        roomId,
-        reason,
-        event.senderId,
-        event.content['body'].toString(),
-      );
-    } catch (err) {
-      ErrorHandler.logError(
-        e: err,
-        s: StackTrace.current,
-        data: {
-          'roomId': roomId,
-          'reason': reason,
-          'senderId': event.senderId,
-          'content': event.content['body'].toString(),
-        },
-      );
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            L10n.of(context).oopsSomethingWentWrong,
+    final result = await showFutureLoadingDialog(
+      context: context,
+      future: () => Matrix.of(context).client.reportEvent(
+            event.roomId!,
+            event.eventId,
+            reason: reason,
+            score: score,
           ),
-        ),
-      );
-    }
-    // final result = await showFutureLoadingDialog(
-    //   context: context,
-    //   future: () => Matrix.of(context).client.reportEvent(
-    //         event.roomId!,
-    //         event.eventId,
-    //         reason: reason,
-    //         score: score,
-    //       ),
-    // );
-    // if (result.error != null) return;
-    // Pangea#
+    );
+    if (result.error != null) return;
     setState(() {
       showEmojiPicker = false;
       selectedEvents.clear();

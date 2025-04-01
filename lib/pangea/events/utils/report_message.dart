@@ -3,8 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/pages/chat/chat.dart';
+import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/show_modal_action_popup.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/show_text_input_dialog.dart';
+import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 Future<Room> getReportsDM(User teacher, Room space) async {
@@ -18,7 +23,72 @@ Future<Room> getReportsDM(User teacher, Room space) async {
   return space.client.getRoomById(roomId)!;
 }
 
-Future<void> reportMessage(
+void reportEvent(
+  Event event,
+  ChatController controller,
+  BuildContext context,
+) async {
+  final score = await showModalActionPopup<int>(
+    context: context,
+    title: L10n.of(context).reportMessage,
+    message: "Why do you want to report this message?",
+    cancelLabel: L10n.of(context).cancel,
+    actions: [
+      AdaptiveModalAction(
+        value: 1,
+        label: L10n.of(context).offensive,
+      ),
+      AdaptiveModalAction(
+        value: 2,
+        label: "Translation problem",
+      ),
+      AdaptiveModalAction(
+        value: 3,
+        label: "Other",
+      ),
+    ],
+  );
+  if (score == null) return;
+
+  final reason = await showTextInputDialog(
+    context: context,
+    title: L10n.of(context).whyDoYouWantToReportThis,
+    okLabel: L10n.of(context).ok,
+    cancelLabel: L10n.of(context).cancel,
+    hintText: L10n.of(context).reason,
+    autoSubmit: true,
+  );
+  if (reason == null || reason.isEmpty) return;
+
+  if (score == 1) {
+    await showFutureLoadingDialog(
+      context: context,
+      future: () async => reportOffensiveMessage(
+        context,
+        event.room.id,
+        reason,
+        event.senderId,
+        event.content['body'].toString(),
+      ),
+    );
+    controller.clearSelectedEvents();
+    return;
+  }
+
+  ErrorHandler.logError(
+    e: "User reported message",
+    data: {
+      "content": event.content['body'],
+      "eventID": event.eventId,
+      "roomID": event.room.id,
+      "userID": event.senderId,
+      "reason": reason,
+    },
+  );
+  controller.clearSelectedEvents();
+}
+
+Future<void> reportOffensiveMessage(
   BuildContext context,
   String roomId,
   String reason,
