@@ -1,6 +1,12 @@
 import 'dart:developer';
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
 import 'package:collection/collection.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
+
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/constructs_model.dart';
 import 'package:fluffychat/pangea/analytics_misc/put_analytics_controller.dart';
@@ -17,10 +23,6 @@ import 'package:fluffychat/pangea/practice_activities/practice_record.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_target.dart';
 import 'package:fluffychat/pangea/practice_activities/relevant_span_display_details.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 
 class PracticeActivityModel {
   List<PangeaToken> targetTokens;

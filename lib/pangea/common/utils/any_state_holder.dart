@@ -8,18 +8,18 @@ import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 class OverlayListEntry {
   final OverlayEntry entry;
   final String? key;
+  final bool canPop;
 
-  OverlayListEntry(this.entry, {this.key});
+  OverlayListEntry(
+    this.entry, {
+    this.key,
+    this.canPop = true,
+  });
 }
 
 class PangeaAnyState {
   final Map<String, LayerLinkAndKey> _layerLinkAndKeys = {};
   List<OverlayListEntry> entries = [];
-
-  dispose() {
-    closeOverlay();
-    _layerLinkAndKeys.clear();
-  }
 
   LayerLinkAndKey layerLinkAndKey(
     String transformTargetId, [
@@ -38,34 +38,34 @@ class PangeaAnyState {
     return _layerLinkAndKeys[transformTargetId]!;
   }
 
-  void disposeByWidgetKey(String transformTargetId) {
-    final index =
-        entries.indexWhere((element) => element.key == transformTargetId);
-    if (index != -1) {
-      entries[index].entry.remove();
-      entries.removeAt(index);
-    }
-    _layerLinkAndKeys.remove(transformTargetId);
-  }
-
   void openOverlay(
     OverlayEntry entry,
     BuildContext context, {
     String? overlayKey,
+    bool canPop = true,
   }) {
     if (overlayKey != null &&
         entries.any((element) => element.key == overlayKey)) {
       return;
     }
 
-    entries.add(OverlayListEntry(entry, key: overlayKey));
+    entries.add(
+      OverlayListEntry(
+        entry,
+        key: overlayKey,
+        canPop: canPop,
+      ),
+    );
     Overlay.of(context).insert(entry);
   }
 
   void closeOverlay([String? overlayKey]) {
+    debugPrint("CLOSE OVERLAY WITH KEY: $overlayKey");
     final entry = overlayKey != null
         ? entries.firstWhereOrNull((element) => element.key == overlayKey)
-        : entries.lastOrNull;
+        : entries.lastWhereOrNull(
+            (element) => element.canPop,
+          );
 
     if (entry != null) {
       try {
@@ -84,27 +84,23 @@ class PangeaAnyState {
   }
 
   void closeAllOverlays() {
-    for (int i = 0; i < entries.length; i++) {
+    final shouldRemove = entries.where((element) => element.canPop).toList();
+    if (shouldRemove.isEmpty) return;
+    for (int i = 0; i < shouldRemove.length; i++) {
       try {
-        entries.last.entry.remove();
+        shouldRemove[i].entry.remove();
       } catch (err, s) {
         ErrorHandler.logError(
           e: err,
           s: s,
           data: {
-            "overlay": entries.last,
+            "overlay": shouldRemove[i],
           },
         );
       }
-      entries.removeLast();
+      entries.remove(shouldRemove[i]);
     }
   }
-
-  LayerLinkAndKey messageLinkAndKey(String eventId) => layerLinkAndKey(eventId);
-
-  // String chatViewTargetKey(String? roomId) => "chatViewKey$roomId";
-  // LayerLinkAndKey chatViewLinkAndKey(String? roomId) =>
-  //     layerLinkAndKey(chatViewTargetKey(roomId));
 
   RenderBox? getRenderBox(String key) =>
       layerLinkAndKey(key).key.currentContext?.findRenderObject() as RenderBox?;

@@ -60,7 +60,7 @@ class LemmaEmojiRowState extends State<LemmaEmojiRow> {
 
   @override
   void dispose() {
-    MatrixState.pAnyState.disposeByWidgetKey(widget.cId.string);
+    MatrixState.pAnyState.closeOverlay(widget.cId.string);
     super.dispose();
   }
 

@@ -395,8 +395,8 @@ class ChatController extends State<ChatPageWithRoom>
             context,
           );
         } else if (update['unlocked_constructs'] != null) {
-          showUnlockedMorphsSnackbar(
-            update['unlocked_constructs'],
+          ConstructNotificationUtil.addUnlockedConstruct(
+            List.from(update['unlocked_constructs']),
             context,
           );
         }

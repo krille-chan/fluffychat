@@ -274,7 +274,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     }
     // close overlay of previous token
     if (selectedToken != null) {
-      MatrixState.pAnyState.disposeByWidgetKey(
+      MatrixState.pAnyState.closeOverlay(
         selectedToken!.text.uniqueKey,
       );
     }
