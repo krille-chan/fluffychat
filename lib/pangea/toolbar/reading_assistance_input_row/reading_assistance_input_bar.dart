@@ -112,18 +112,10 @@ class ReadingAssistanceInputBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Container(
-        width: overlayController.maxWidth,
+      child: ConstrainedBox(
         constraints: BoxConstraints(
           maxHeight: (MediaQuery.of(context).size.height / 2) -
               AppConfig.toolbarButtonsHeight,
-        ),
-        padding: const EdgeInsets.all(8.0),
-        decoration: BoxDecoration(
-          color: Theme.of(context).cardColor,
-          borderRadius: const BorderRadius.all(
-            Radius.circular(8.0),
-          ),
         ),
         child: AnimatedSize(
           duration: const Duration(
