@@ -4848,5 +4848,6 @@
   "exploreMore": "Explore more",
   "wordFocusListeningMultipleChoice": "Which audio matches the word?",
   "createActivity": "Create activity",
-  "startChat": "Start a chat"
+  "startChat": "Start a chat",
+  "translationProblem": "Translation problem"
 }

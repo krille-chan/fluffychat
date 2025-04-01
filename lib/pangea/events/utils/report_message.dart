@@ -31,7 +31,7 @@ void reportEvent(
   final score = await showModalActionPopup<int>(
     context: context,
     title: L10n.of(context).reportMessage,
-    message: "Why do you want to report this message?",
+    message: L10n.of(context).whyDoYouWantToReportThis,
     cancelLabel: L10n.of(context).cancel,
     actions: [
       AdaptiveModalAction(
@@ -40,11 +40,11 @@ void reportEvent(
       ),
       AdaptiveModalAction(
         value: 2,
-        label: "Translation problem",
+        label: L10n.of(context).translationProblem,
       ),
       AdaptiveModalAction(
         value: 3,
-        label: "Other",
+        label: L10n.of(context).other,
       ),
     ],
   );
