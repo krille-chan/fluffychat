@@ -188,6 +188,7 @@ class ActivitySuggestionCard extends StatelessWidget {
                 child: IconButton(
                   icon: Icon(
                     isBookmarked ? Icons.bookmark : Icons.bookmark_border,
+                    color: Theme.of(context).colorScheme.onPrimaryContainer,
                   ),
                   onPressed: onPressed != null
                       ? () async {
@@ -205,7 +206,10 @@ class ActivitySuggestionCard extends StatelessWidget {
                         }
                       : null,
                   style: IconButton.styleFrom(
-                    backgroundColor: Colors.black.withAlpha(200),
+                    backgroundColor: Theme.of(context)
+                        .colorScheme
+                        .primaryContainer
+                        .withAlpha(180),
                   ),
                 ),
               ),
