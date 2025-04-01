@@ -179,15 +179,15 @@ class GetAnalyticsController extends BaseController {
       );
 
   Future<void> _onLevelUp(final int lowerLevel, final int upperLevel) async {
-    final result = await _generateLevelUpAnalyticsAndSaveToStateEvent(
-      lowerLevel,
-      upperLevel,
-    );
+    // final result = await _generateLevelUpAnalyticsAndSaveToStateEvent(
+    //   lowerLevel,
+    //   upperLevel,
+    // );
     setState({
       'level_up': constructListModel.level,
-      'analytics_room_id': _client.analyticsRoomLocal(_l2!)?.id,
-      "construct_summary_state_event_id": result?.stateEventId,
-      "construct_summary": result?.summary,
+      // 'analytics_room_id': _client.analyticsRoomLocal(_l2!)?.id,
+      // "construct_summary_state_event_id": result?.stateEventId,
+      // "construct_summary": result?.summary,
     });
   }
 
