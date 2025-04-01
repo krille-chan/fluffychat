@@ -1,9 +1,6 @@
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-
 import 'package:collection/collection.dart';
-
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/learning_settings/constants/language_constants.dart';
 import 'package:fluffychat/pangea/lemmas/lemma_info_response.dart';
@@ -12,6 +9,7 @@ import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_selection_repo.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_target.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/foundation.dart';
 
 class PracticeSelection {
   late String _userL2;
@@ -19,12 +17,15 @@ class PracticeSelection {
 
   late final List<PangeaToken> _tokens;
 
+  final String langCode;
+
   final Map<ActivityTypeEnum, List<PracticeTarget>> _activityQueue = {};
 
   final int _maxQueueLength = 5;
 
   PracticeSelection({
     required List<PangeaToken> tokens,
+    required this.langCode,
     String? userL1,
     String? userL2,
   }) {
@@ -37,10 +38,14 @@ class PracticeSelection {
 
   List<PangeaToken> get tokens => _tokens;
 
+  bool get eligibleForPractice =>
+      _tokens.any((t) => t.lemma.saveVocab) && langCode == _userL2;
+
   String get messageText => PangeaToken.reconstructText(tokens);
 
   Map<String, dynamic> toJson() => {
         'createdAt': createdAt.toIso8601String(),
+        'lang_code': langCode,
         'tokens': _tokens.map((t) => t.toJson()).toList(),
         'activityQueue': _activityQueue.map(
           (key, value) => MapEntry(
@@ -52,6 +57,7 @@ class PracticeSelection {
 
   static PracticeSelection fromJson(Map<String, dynamic> json) {
     return PracticeSelection(
+      langCode: json['lang_code'] as String,
       tokens:
           (json['tokens'] as List).map((t) => PangeaToken.fromJson(t)).toList(),
     ).._activityQueue.addAll(
@@ -82,7 +88,10 @@ class PracticeSelection {
   }
 
   PracticeTarget? nextActivity(ActivityTypeEnum a) =>
-      _activityQueue[a]?.firstOrNull;
+      MatrixState.pangeaController.languageController.userL2?.langCode ==
+              _userL2
+          ? _activityQueue[a]?.firstOrNull
+          : null;
 
   bool get hasHiddenWordActivity =>
       activities(ActivityTypeEnum.hiddenWordListening).isNotEmpty;
@@ -100,57 +109,32 @@ class PracticeSelection {
   // bool get canDoWordFocusListening =>
   //     _tokens.where((t) => t.canBeHeard).length > 4;
 
-  PracticeTarget buildActivity(ActivityTypeEnum activityType) {
+  List<PracticeTarget> buildActivity(ActivityTypeEnum activityType) {
+    if (!eligibleForPractice) {
+      return [];
+    }
+
     final List<PangeaToken> tokens =
         _tokens.where((t) => t.lemma.saveVocab).sorted(
               (a, b) => b.activityPriorityScore(activityType, null).compareTo(
                     a.activityPriorityScore(activityType, null),
                   ),
             );
-    // debugPrint('emoji activity priority score: ${tokens.map(
-    //   (e) => e.activityPriorityScore(activityType, null),
-    // )}');
 
-    return PracticeTarget(
-      activityType: activityType,
-      tokens: tokens.take(_maxQueueLength).shuffled().toList(),
-      userL2: _userL2,
-    );
+    return [
+      PracticeTarget(
+        activityType: activityType,
+        tokens: tokens.take(_maxQueueLength).shuffled().toList(),
+        userL2: _userL2,
+      ),
+    ];
   }
 
-  /// On initialization, we pick which tokens to do activities on and what types of activities to do
-  void initialize() {
+  List<PracticeTarget> buildMorphActivity() {
     final eligibleTokens = _tokens.where((t) => t.lemma.saveVocab);
-
-    // EMOJI
-    // sort the tokens by the preference of them for an emoji activity
-    // order from least to most recent
-    // words that have never been used are counted as 1000 days
-    // we preference content words over function words by multiplying the days since last use by 2
-    // NOTE: for now, we put it at the end if it has no uses and basically just give them the answer
-    // later on, we may introduce an emoji activity that is easier than the current matching one
-    // i.e. we show them 3 good emojis and 1 bad one and ask them to pick the bad one
-    _activityQueue[ActivityTypeEnum.emoji] = [
-      buildActivity(ActivityTypeEnum.emoji),
-    ];
-
-    // WORD MEANING
-    // make word meaning activities
-    // same as emojis for now
-    _activityQueue[ActivityTypeEnum.wordMeaning] = [
-      buildActivity(ActivityTypeEnum.wordMeaning),
-    ];
-
-    // WORD FOCUS LISTENING
-    // make word focus listening activities
-    // same as emojis for now
-    _activityQueue[ActivityTypeEnum.wordFocusListening] = [
-      buildActivity(ActivityTypeEnum.wordFocusListening),
-    ];
-
-    // GRAMMAR
-    // build a list of TargetTokensAndActivityType for all tokens and all features in the message
-    // limits to _maxQueueLength activities and only one per token
+    if (!eligibleForPractice) {
+      return [];
+    }
     final List<PracticeTarget> candidates = eligibleTokens.expand(
       (t) {
         return t.morphsBasicallyEligibleForPracticeByPriority.map(
@@ -176,18 +160,50 @@ class PracticeSelection {
           ),
     );
     //pick from the top 5, only including one per token
-    _activityQueue[ActivityTypeEnum.morphId] = [];
+    final List<PracticeTarget> finalSelection = [];
     for (final candidate in candidates) {
-      if (_activityQueue[ActivityTypeEnum.morphId]!.length >= _maxQueueLength) {
+      if (finalSelection.length >= _maxQueueLength) {
         break;
       }
-      if (_activityQueue[ActivityTypeEnum.morphId]?.any(
+      if (finalSelection.any(
             (entry) => entry.tokens.contains(candidate.tokens.first),
           ) ==
           false) {
-        _activityQueue[ActivityTypeEnum.morphId]?.add(candidate);
+        finalSelection.add(candidate);
       }
     }
+    return finalSelection;
+  }
+
+  /// On initialization, we pick which tokens to do activities on and what types of activities to do
+  void initialize() {
+    // EMOJI
+    // sort the tokens by the preference of them for an emoji activity
+    // order from least to most recent
+    // words that have never been used are counted as 1000 days
+    // we preference content words over function words by multiplying the days since last use by 2
+    // NOTE: for now, we put it at the end if it has no uses and basically just give them the answer
+    // later on, we may introduce an emoji activity that is easier than the current matching one
+    // i.e. we show them 3 good emojis and 1 bad one and ask them to pick the bad one
+    _activityQueue[ActivityTypeEnum.emoji] =
+        buildActivity(ActivityTypeEnum.emoji);
+
+    // WORD MEANING
+    // make word meaning activities
+    // same as emojis for now
+    _activityQueue[ActivityTypeEnum.wordMeaning] =
+        buildActivity(ActivityTypeEnum.wordMeaning);
+
+    // WORD FOCUS LISTENING
+    // make word focus listening activities
+    // same as emojis for now
+    _activityQueue[ActivityTypeEnum.wordFocusListening] =
+        buildActivity(ActivityTypeEnum.wordFocusListening);
+
+    // GRAMMAR
+    // build a list of TargetTokensAndActivityType for all tokens and all features in the message
+    // limits to _maxQueueLength activities and only one per token
+    _activityQueue[ActivityTypeEnum.morphId] = buildMorphActivity();
 
     PracticeSelectionRepo.save(this);
   }
@@ -200,7 +216,7 @@ class PracticeSelection {
     if (a == ActivityTypeEnum.morphId && (t == null || morph == null)) {
       return null;
     }
-    return _activityQueue[a]?.firstWhereOrNull(
+    return activities(a).firstWhereOrNull(
       (entry) =>
           (t == null || entry.tokens.contains(t)) &&
           (morph == null || entry.morphFeature == morph),

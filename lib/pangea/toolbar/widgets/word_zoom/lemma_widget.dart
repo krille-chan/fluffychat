@@ -1,7 +1,3 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
 import 'package:fluffychat/pangea/common/constants/model_keys.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
@@ -13,6 +9,8 @@ import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/practice_activity/word_audio_button.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class LemmaWidget extends StatefulWidget {
   final PangeaToken token;
@@ -112,56 +110,58 @@ class LemmaWidgetState extends State<LemmaWidget> {
   Widget build(BuildContext context) {
     if (_editMode) {
       _controller.text = widget.token.lemma.text;
-      return Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          spacing: 10.0,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              "${L10n.of(context).pangeaBotIsFallible} ${L10n.of(context).whatIsLemma}",
-              textAlign: TextAlign.center,
-              style: const TextStyle(fontStyle: FontStyle.italic),
-            ),
-            TextField(
-              minLines: 1,
-              maxLines: 3,
-              controller: _controller,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                  onPressed: () => _toggleEditMode(false),
-                  style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
+      return Material(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            spacing: 10.0,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                "${L10n.of(context).pangeaBotIsFallible} ${L10n.of(context).whatIsLemma}",
+                textAlign: TextAlign.center,
+                style: const TextStyle(fontStyle: FontStyle.italic),
+              ),
+              TextField(
+                minLines: 1,
+                maxLines: 3,
+                controller: _controller,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: () => _toggleEditMode(false),
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
                     ),
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Text(L10n.of(context).cancel),
                   ),
-                  child: Text(L10n.of(context).cancel),
-                ),
-                const SizedBox(width: 10),
-                ElevatedButton(
-                  onPressed: () {
-                    _controller.text != widget.token.lemma.text
-                        ? showFutureLoadingDialog(
-                            context: context,
-                            future: () async => _editLemma(),
-                          )
-                        : null;
-                  },
-                  style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
+                  const SizedBox(width: 10),
+                  ElevatedButton(
+                    onPressed: () {
+                      _controller.text != widget.token.lemma.text
+                          ? showFutureLoadingDialog(
+                              context: context,
+                              future: () async => _editLemma(),
+                            )
+                          : null;
+                    },
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
                     ),
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Text(L10n.of(context).saveChanges),
                   ),
-                  child: Text(L10n.of(context).saveChanges),
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       );
     }

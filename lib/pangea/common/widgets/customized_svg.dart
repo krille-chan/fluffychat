@@ -1,12 +1,10 @@
+import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 
-import 'package:fluffychat/pangea/common/utils/error_handler.dart';
-
-class CustomizedSvg extends StatelessWidget {
+class CustomizedSvg extends StatefulWidget {
   /// URL of the SVG file
   final String svgUrl;
 
@@ -27,6 +25,7 @@ class CustomizedSvg extends StatelessWidget {
   final double? height;
 
   static final GetStorage _svgStorage = GetStorage('svg_cache');
+
   const CustomizedSvg({
     super.key,
     required this.svgUrl,
@@ -36,8 +35,68 @@ class CustomizedSvg extends StatelessWidget {
     this.height = 24,
   });
 
+  @override
+  State<CustomizedSvg> createState() => _CustomizedSvgState();
+}
+
+class _CustomizedSvgState extends State<CustomizedSvg> {
+  String? _svgContent;
+  bool _isLoading = true;
+  bool _hasError = false;
+  bool _showProgressIndicator = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _startLoadingTimer();
+    _loadSvg();
+  }
+
+  void _startLoadingTimer() {
+    Future.delayed(const Duration(seconds: 1), () {
+      if (_isLoading) {
+        setState(() {
+          _showProgressIndicator = true;
+        });
+      }
+    });
+  }
+
+  Future<void> _loadSvg() async {
+    try {
+      final cached = _getSvgFromCache();
+      if (cached != null) {
+        setState(() {
+          _svgContent = cached;
+          _isLoading = false;
+        });
+        return;
+      }
+
+      final modifiedSvg = await _getModifiedSvg();
+      setState(() {
+        _svgContent = modifiedSvg;
+        _isLoading = false;
+        _hasError = modifiedSvg == null;
+      });
+    } catch (_) {
+      setState(() {
+        _isLoading = false;
+        _hasError = true;
+      });
+    }
+  }
+
+  Future<String?> _getModifiedSvg() async {
+    final svgContent = await _fetchSvg();
+    if (svgContent == null) {
+      return null;
+    }
+    return _modifySVG(svgContent);
+  }
+
   Future<String?> _fetchSvg() async {
-    final cachedSvgEntry = _svgStorage.read(svgUrl);
+    final cachedSvgEntry = CustomizedSvg._svgStorage.read(widget.svgUrl);
     if (cachedSvgEntry != null && cachedSvgEntry is Map<String, dynamic>) {
       final cachedSvg = cachedSvgEntry['svg'] as String?;
       final timestamp = cachedSvgEntry['timestamp'] as int?;
@@ -54,24 +113,24 @@ class CustomizedSvg extends StatelessWidget {
       }
     }
 
-    final response = await http.get(Uri.parse(svgUrl));
+    final response = await http.get(Uri.parse(widget.svgUrl));
     if (response.statusCode != 200) {
       final e = Exception('Failed to load SVG: ${response.statusCode}');
       ErrorHandler.logError(
         e: e,
         data: {
-          "svgUrl": svgUrl,
+          "svgUrl": widget.svgUrl,
         },
       );
-      await _svgStorage.write(
-        svgUrl,
+      await CustomizedSvg._svgStorage.write(
+        widget.svgUrl,
         {'timestamp': DateTime.now().millisecondsSinceEpoch},
       );
       throw e;
     }
 
     final String svgContent = response.body;
-    await _svgStorage.write(svgUrl, {
+    await CustomizedSvg._svgStorage.write(widget.svgUrl, {
       'svg': svgContent,
       'timestamp': DateTime.now().millisecondsSinceEpoch,
     });
@@ -79,26 +138,16 @@ class CustomizedSvg extends StatelessWidget {
     return svgContent;
   }
 
-  Future<String?> _getModifiedSvg() async {
-    final svgContent = await _fetchSvg();
-    final String? modifiedSvg = svgContent;
-    if (modifiedSvg == null) {
-      return null;
-    }
-
-    return _modifySVG(modifiedSvg);
-  }
-
   String _modifySVG(String svgContent) {
     String modifiedSvg = svgContent.replaceAll("fill=\"none\"", '');
-    for (final entry in colorReplacements.entries) {
+    for (final entry in widget.colorReplacements.entries) {
       modifiedSvg = modifiedSvg.replaceAll(entry.key, entry.value);
     }
     return modifiedSvg;
   }
 
   String? _getSvgFromCache() {
-    final cachedSvgEntry = _svgStorage.read(svgUrl);
+    final cachedSvgEntry = CustomizedSvg._svgStorage.read(widget.svgUrl);
     if (cachedSvgEntry != null &&
         cachedSvgEntry is Map<String, dynamic> &&
         cachedSvgEntry['svg'] is String) {
@@ -109,33 +158,30 @@ class CustomizedSvg extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cached = _getSvgFromCache();
-    if (cached != null) {
+    if (_isLoading) {
+      if (_showProgressIndicator) {
+        return SizedBox(
+          width: widget.width,
+          height: widget.height,
+          child: const Center(
+            child: CircularProgressIndicator(),
+          ),
+        );
+      } else {
+        return SizedBox(
+          width: widget.width,
+          height: widget.height,
+        );
+      }
+    } else if (_hasError || _svgContent == null) {
+      return widget.errorIcon;
+    } else {
       return SvgPicture.string(
-        cached,
-        width: width,
-        height: height,
+        _svgContent!,
+        width: widget.width,
+        height: widget.height,
       );
     }
-
-    return FutureBuilder<String?>(
-      future: _getModifiedSvg(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const CircularProgressIndicator();
-        } else if (snapshot.hasError || snapshot.data == null) {
-          return errorIcon;
-        } else if (snapshot.hasData) {
-          return SvgPicture.string(
-            snapshot.data!,
-            width: width,
-            height: height,
-          );
-        } else {
-          return const SizedBox.shrink();
-        }
-      },
-    );
   }
 }
 

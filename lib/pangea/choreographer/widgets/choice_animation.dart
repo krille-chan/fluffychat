@@ -6,7 +6,7 @@ const int choiceArrayAnimationDuration = 500;
 
 class ChoiceAnimationWidget extends StatefulWidget {
   final bool isSelected;
-  final bool isCorrect;
+  final bool? isCorrect;
   final Widget child;
 
   const ChoiceAnimationWidget({
@@ -41,8 +41,8 @@ class ChoiceAnimationWidgetState extends State<ChoiceAnimationWidget>
   @override
   void didUpdateWidget(ChoiceAnimationWidget oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.isSelected &&
-        (!oldWidget.isSelected || widget.isCorrect != oldWidget.isCorrect)) {
+    if ((widget.isSelected && widget.isSelected != oldWidget.isSelected) ||
+        widget.isCorrect != oldWidget.isCorrect) {
       _controller.forward().then((_) => _controller.reset());
     }
   }
@@ -53,7 +53,7 @@ class ChoiceAnimationWidgetState extends State<ChoiceAnimationWidget>
     super.dispose();
   }
 
-  Animation<double> get _animation => widget.isCorrect
+  Animation<double> get _animation => widget.isCorrect == true
       ? TweenSequence<double>([
           TweenSequenceItem<double>(
             tween: Tween<double>(begin: 1.0, end: 1.2),
@@ -81,7 +81,7 @@ class ChoiceAnimationWidgetState extends State<ChoiceAnimationWidget>
 
   @override
   Widget build(BuildContext context) {
-    return widget.isCorrect
+    return widget.isCorrect == true
         ? AnimatedBuilder(
             animation: _animation,
             builder: (context, child) {

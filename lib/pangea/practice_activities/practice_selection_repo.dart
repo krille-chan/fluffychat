@@ -1,9 +1,7 @@
-import 'package:flutter/material.dart';
-
-import 'package:get_storage/get_storage.dart';
-
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_selection.dart';
+import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 
 class PracticeSelectionRepo {
   static final GetStorage _storage = GetStorage('practice_selection_cache');
@@ -45,6 +43,7 @@ class PracticeSelectionRepo {
       tokens.map((t) => t.text.content).join(' ');
 
   static PracticeSelection? get(
+    String messageLanguage,
     List<PangeaToken> tokens,
   ) {
     final String key = _key(tokens);
@@ -65,6 +64,7 @@ class PracticeSelectionRepo {
     }
 
     final newEntry = PracticeSelection(
+      langCode: messageLanguage,
       tokens: tokens,
     );
 

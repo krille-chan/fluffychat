@@ -417,6 +417,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   PracticeSelection? get practiceSelection =>
       pangeaMessageEvent?.messageDisplayRepresentation?.tokens != null
           ? PracticeSelectionRepo.get(
+              pangeaMessageEvent!.messageDisplayLangCode,
               pangeaMessageEvent!.messageDisplayRepresentation!.tokens!,
             )
           : null;
