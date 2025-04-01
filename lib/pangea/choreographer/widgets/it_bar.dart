@@ -230,6 +230,15 @@ class ITBarState extends State<ITBar> with SingleTickerProviderStateMixin {
                                   : itController.isTranslationDone
                                       ? TranslationFeedback(
                                           controller: itController,
+                                          vocabCount: itController
+                                              .choreographer.altTranslator
+                                              .countVocabularyWordsFromSteps(),
+                                          grammarCount: itController
+                                              .choreographer.altTranslator
+                                              .countGrammarConstructsFromSteps(),
+                                          feedbackText: itController
+                                              .choreographer.altTranslator
+                                              .getDefaultFeedback(context),
                                         )
                                       : ITChoices(controller: itController),
                         ),

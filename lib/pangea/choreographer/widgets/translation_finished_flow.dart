@@ -1,94 +1,99 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:material_symbols_icons/symbols.dart';
+
+import 'package:fluffychat/pangea/analytics_summary/progress_indicators_enum.dart';
+import 'package:fluffychat/pangea/choreographer/widgets/it_feedback_stars.dart';
 import '../../bot/utils/bot_style.dart';
 import '../../common/utils/error_handler.dart';
 import '../controllers/it_controller.dart';
-import 'choice_array.dart';
 
 class TranslationFeedback extends StatelessWidget {
+  final int vocabCount;
+  final int grammarCount;
+  final String feedbackText;
+
   final ITController controller;
-  const TranslationFeedback({super.key, required this.controller});
+  const TranslationFeedback({
+    super.key,
+    required this.controller,
+    required this.vocabCount,
+    required this.grammarCount,
+    required this.feedbackText,
+  });
 
   @override
   Widget build(BuildContext context) {
-    String feedbackText;
-    TextStyle? style;
+    final altTranslator = controller.choreographer.altTranslator;
     try {
-      feedbackText =
-          controller.choreographer.altTranslator.translationFeedback(context);
-      style = BotStyle.text(context);
+      return Column(
+        spacing: 16.0,
+        children: [
+          FillingStars(rating: altTranslator.starRating),
+          if (vocabCount > 0 || grammarCount > 0)
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              spacing: 16.0,
+              children: [
+                if (vocabCount > 0)
+                  Row(
+                    spacing: 8.0,
+                    children: [
+                      Icon(
+                        Symbols.dictionary,
+                        color: ProgressIndicatorEnum.wordsUsed.color(context),
+                        size: 24,
+                      ),
+                      Text(
+                        "+ $vocabCount",
+                        style: TextStyle(
+                          color: ProgressIndicatorEnum.wordsUsed.color(context),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                if (grammarCount > 0)
+                  Row(
+                    spacing: 8.0,
+                    children: [
+                      Icon(
+                        Symbols.toys_and_games,
+                        color: ProgressIndicatorEnum.morphsUsed.color(context),
+                        size: 24,
+                      ),
+                      Text(
+                        "+ $grammarCount",
+                        style: TextStyle(
+                          color:
+                              ProgressIndicatorEnum.morphsUsed.color(context),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+              ],
+            )
+          else
+            Text(
+              feedbackText,
+              textAlign: TextAlign.center,
+              style: BotStyle.text(context),
+            ),
+          const SizedBox(height: 16.0),
+        ],
+      );
     } catch (err, stack) {
-      feedbackText = "Nice job!";
-      style = null;
-      debugPrint("error getting copy and styles");
+      debugPrint("Error in TranslationFeedback: $err");
       ErrorHandler.logError(
         e: err,
         s: stack,
-        data: {
-          "feedbackText": controller.choreographer.altTranslator
-              .translationFeedback(context),
-        },
+        data: {},
       );
+
+      // Fallback to a simple message if anything goes wrong
+      return Center(child: Text(L10n.of(context).niceJob));
     }
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Column(
-        children: [
-          if (controller.choreographer.altTranslator.showTranslationFeedback)
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
-              child: RichText(
-                textAlign: TextAlign.center,
-                text: TextSpan(
-                  children: [
-                    TextSpan(
-                      text: "$feedbackText ",
-                      style: style,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          const SizedBox(height: 6),
-          if (controller
-              .choreographer.altTranslator.showAlternativeTranslations)
-            AlternativeTranslations(controller: controller),
-          // if (!controller
-          //         .choreographer.altTranslator.showAlternativeTranslations &&
-          //     !controller.choreographer.isFetching)
-          //   ITRestartButton(controller: controller),
-        ],
-      ),
-    );
-  }
-}
-
-class AlternativeTranslations extends StatelessWidget {
-  const AlternativeTranslations({
-    super.key,
-    required this.controller,
-  });
-
-  final ITController controller;
-
-  @override
-  Widget build(BuildContext context) {
-    return ChoicesArray(
-      originalSpan: controller.sourceText ?? "dummy",
-      isLoading:
-          controller.choreographer.altTranslator.loadingAlternativeTranslations,
-      // choices: controller.choreographer.altTranslator.similarityResponse.scores
-      choices: [
-        Choice(text: controller.choreographer.altTranslator.translations.first),
-      ],
-      // choices: controller.choreographer.altTranslator.translations,
-      onPressed: (String value, int index) {
-        controller.choreographer.onSelectAlternativeTranslation(
-          controller.choreographer.altTranslator.translations[index],
-        );
-      },
-      selectedChoiceIndex: null,
-      tts: null,
-    );
   }
 }

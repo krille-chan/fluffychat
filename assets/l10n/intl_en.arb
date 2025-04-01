@@ -4849,5 +4849,11 @@
   "wordFocusListeningMultipleChoice": "Which audio matches the word?",
   "createActivity": "Create activity",
   "startChat": "Start a chat",
-  "translationProblem": "Translation problem"
+  "translationProblem": "Translation problem",
+  "perfectTranslation": "Perfect translation!",
+  "greatJobTranslation": "Great job with this translation!",
+  "goodJobTranslation": "Good work on this translation.",
+  "makingProgress": "You're making progress!",
+  "keepPracticing": "Keep practicing!",
+  "niceJob": "Nice job!"
 }

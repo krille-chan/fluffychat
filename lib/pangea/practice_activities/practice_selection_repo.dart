@@ -1,7 +1,9 @@
+import 'package:flutter/material.dart';
+
+import 'package:get_storage/get_storage.dart';
+
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_selection.dart';
-import 'package:flutter/material.dart';
-import 'package:get_storage/get_storage.dart';
 
 class PracticeSelectionRepo {
   static final GetStorage _storage = GetStorage('practice_selection_cache');
