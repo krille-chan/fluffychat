@@ -56,7 +56,7 @@ class ActivityPlannerPageState extends State<ActivityPlannerPage> {
     return Scaffold(
       appBar: ActivityPlannerPageAppBar(
         pageMode: pageMode,
-        setPageMode: _setPageMode,
+        roomID: widget.roomID,
       ),
       body: Center(
         child: ConstrainedBox(
