@@ -151,6 +151,7 @@ class MessageTextWidget extends StatelessWidget {
   final Animation<double>? contentSizeAnimation;
   final MessageOverlayController? overlayController;
   final bool isTransitionAnimation;
+  final bool isMessage;
 
   const MessageTextWidget({
     super.key,
@@ -167,10 +168,12 @@ class MessageTextWidget extends StatelessWidget {
     this.contentSizeAnimation,
     this.overlayController,
     this.isTransitionAnimation = false,
+    this.isMessage = true,
   });
 
-  TextStyle style(BuildContext context) =>
-      overlayController != null && overlayController!.maxWidth > 600
+  TextStyle style(BuildContext context) => isMessage
+      ? existingStyle
+      : overlayController != null && overlayController!.maxWidth > 600
           ? existingStyle.copyWith(
               fontSize: Theme.of(context).textTheme.titleLarge?.fontSize,
             )
