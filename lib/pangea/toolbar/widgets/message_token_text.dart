@@ -171,7 +171,7 @@ class MessageTextWidget extends StatelessWidget {
     this.isMessage = true,
   });
 
-  TextStyle style(BuildContext context) => isMessage
+  TextStyle style(BuildContext context) => !isMessage
       ? existingStyle
       : overlayController != null && overlayController!.maxWidth > 600
           ? existingStyle.copyWith(
