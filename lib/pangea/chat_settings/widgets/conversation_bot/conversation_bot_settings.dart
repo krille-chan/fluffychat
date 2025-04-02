@@ -131,6 +131,9 @@ class ConversationBotSettingsDialogState
         ? BotOptionsModel.fromJson(widget.room.botOptions?.toJson())
         : BotOptionsModel();
 
+    botOptions.targetLanguage ??=
+        MatrixState.pangeaController.languageController.userL2?.langCode;
+
     widget.room.botIsInRoom.then((bool isBotRoom) {
       setState(() => addBot = isBotRoom);
     });
@@ -297,7 +300,7 @@ class ConversationBotSettingsDialogState
     return FullWidthDialog(
       dialogContent: dialogContent,
       maxWidth: 450,
-      maxHeight: 725,
+      maxHeight: 400,
     );
   }
 }
