@@ -237,19 +237,17 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
         Container(
           decoration: const BoxDecoration(),
           child: scrollDirection == Axis.horizontal
-              ? Expanded(
-                  child: Scrollbar(
-                    thumbVisibility: true,
-                    controller: _scrollController,
-                    child: Padding(
-                      padding: const EdgeInsets.only(bottom: 16.0),
-                      child: SingleChildScrollView(
-                        controller: _scrollController,
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          spacing: 8.0,
-                          children: cards,
-                        ),
+              ? Scrollbar(
+                  thumbVisibility: true,
+                  controller: _scrollController,
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 16.0),
+                    child: SingleChildScrollView(
+                      controller: _scrollController,
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        spacing: 8.0,
+                        children: cards,
                       ),
                     ),
                   ),

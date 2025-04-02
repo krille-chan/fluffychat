@@ -193,19 +193,17 @@ class PublicSpacesAreaState extends State<PublicSpacesArea> {
         ),
         Container(
           decoration: const BoxDecoration(),
-          child: Expanded(
-            child: Scrollbar(
-              thumbVisibility: true,
-              controller: _scrollController,
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 16.0),
-                child: SingleChildScrollView(
-                  controller: _scrollController,
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    spacing: 8.0,
-                    children: cards,
-                  ),
+          child: Scrollbar(
+            thumbVisibility: true,
+            controller: _scrollController,
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 16.0),
+              child: SingleChildScrollView(
+                controller: _scrollController,
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  spacing: 8.0,
+                  children: cards,
                 ),
               ),
             ),
