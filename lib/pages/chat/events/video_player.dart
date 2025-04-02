@@ -37,22 +37,30 @@ class EventVideoPlayer extends StatefulWidget {
 }
 
 class EventVideoPlayerState extends State<EventVideoPlayer> {
-  ChewieController? _chewieManager;
+  ChewieController? _chewieController;
+  VideoPlayerController? _videoPlayerController;
   bool _isDownloading = false;
-  String? _networkUri;
-  File? _tmpFile;
 
   void _downloadAction() async {
     if (PlatformInfos.isDesktop) {
       widget.event.saveFile(context);
       return;
     }
+
     setState(() => _isDownloading = true);
+
     try {
       final videoFile = await widget.event.downloadAndDecryptAttachment();
+
+      // Dispose the controllers if we already have them.
+      _disposeControllers();
+      late VideoPlayerController videoPlayerController;
+
+      // Create the VideoPlayerController from the contents of videoFile.
       if (kIsWeb) {
         final blob = html.Blob([videoFile.bytes]);
-        _networkUri = html.Url.createObjectUrlFromBlob(blob);
+        final networkUri = Uri.parse(html.Url.createObjectUrlFromBlob(blob));
+        videoPlayerController = VideoPlayerController.networkUrl(networkUri);
       } else {
         final tempDir = await getTemporaryDirectory();
         final fileName = Uri.encodeComponent(
@@ -62,25 +70,19 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
         if (await file.exists() == false) {
           await file.writeAsBytes(videoFile.bytes);
         }
-        _tmpFile = file;
+        videoPlayerController = VideoPlayerController.file(file);
       }
-      final tmpFile = _tmpFile;
-      final networkUri = _networkUri;
-      if (kIsWeb && networkUri != null && _chewieManager == null) {
-        _chewieManager ??= ChewieController(
-          videoPlayerController:
-              VideoPlayerController.networkUrl(Uri.parse(networkUri)),
-          autoPlay: true,
-          autoInitialize: true,
-        );
-      } else if (!kIsWeb && tmpFile != null && _chewieManager == null) {
-        _chewieManager ??= ChewieController(
-          useRootNavigator: false,
-          videoPlayerController: VideoPlayerController.file(tmpFile),
-          autoPlay: true,
-          autoInitialize: true,
-        );
-      }
+      _videoPlayerController = videoPlayerController;
+
+      await videoPlayerController.initialize();
+
+      // Create a ChewieController on top.
+      _chewieController = ChewieController(
+        videoPlayerController: videoPlayerController,
+        useRootNavigator: !kIsWeb,
+        autoPlay: true,
+        autoInitialize: true,
+      );
     } on IOException catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -90,15 +92,20 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
     } catch (e, s) {
       ErrorReporter(context, 'Unable to play video').onErrorCallback(e, s);
     } finally {
-      // Workaround for Chewie needs time to get the aspectRatio
-      await Future.delayed(const Duration(milliseconds: 100));
       setState(() => _isDownloading = false);
     }
   }
 
+  void _disposeControllers() {
+    _chewieController?.dispose();
+    _videoPlayerController?.dispose();
+    _chewieController = null;
+    _videoPlayerController = null;
+  }
+
   @override
   void dispose() {
-    _chewieManager?.dispose();
+    _disposeControllers();
     super.dispose();
   }
 
@@ -118,7 +125,7 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
 
     const width = 300.0;
 
-    final chewieManager = _chewieManager;
+    final chewieController = _chewieController;
     return Column(
       mainAxisSize: MainAxisSize.min,
       spacing: 8,
@@ -128,8 +135,8 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
           borderRadius: BorderRadius.circular(AppConfig.borderRadius),
           child: SizedBox(
             height: width,
-            child: chewieManager != null
-                ? Center(child: Chewie(controller: chewieManager))
+            child: chewieController != null
+                ? Center(child: Chewie(controller: chewieController))
                 : Stack(
                     children: [
                       if (hasThumbnail)
