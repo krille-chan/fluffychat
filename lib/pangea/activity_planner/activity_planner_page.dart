@@ -45,7 +45,6 @@ class ActivityPlannerPageState extends State<ActivityPlannerPage> {
           child: SingleChildScrollView(
             child: ActivitySuggestionsArea(
               scrollDirection: Axis.vertical,
-              showCreateChatCard: false,
               room: room,
             ),
           ),

@@ -236,7 +236,6 @@ class ActivitySuggestionCarouselState
                                           widget.enabled ? _onClickCard : null,
                                       width: _cardWidth,
                                       height: _cardHeight,
-                                      padding: 0.0,
                                       image: _currentActivity ==
                                               widget.selectedActivity
                                           ? widget.selectedActivityImage

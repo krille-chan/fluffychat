@@ -4,9 +4,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 import 'package:shimmer/shimmer.dart';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_request.dart';
@@ -14,22 +16,22 @@ import 'package:fluffychat/pangea/activity_planner/media_enum.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_plan_search_repo.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_suggestion_card.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_suggestion_dialog.dart';
+import 'package:fluffychat/pangea/activity_suggestions/activity_suggestions_constants.dart';
+import 'package:fluffychat/pangea/common/widgets/customized_svg.dart';
 import 'package:fluffychat/pangea/learning_settings/constants/language_constants.dart';
 import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_enum.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class ActivitySuggestionsArea extends StatefulWidget {
   final Axis? scrollDirection;
-  final bool showCreateChatCard;
-  final bool showMakeActivityCard;
+  final bool showTitle;
 
   final Room? room;
 
   const ActivitySuggestionsArea({
     super.key,
     this.scrollDirection,
-    this.showCreateChatCard = true,
-    this.showMakeActivityCard = true,
+    this.showTitle = false,
     this.room,
   });
   @override
@@ -55,7 +57,6 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
   final List<ActivityPlanModel> _activityItems = [];
   final ScrollController _scrollController = ScrollController();
   double get cardHeight => _isColumnMode ? 315.0 : 240.0;
-  double get cardPadding => _isColumnMode ? 8.0 : 0.0;
   double get cardWidth => _isColumnMode ? 225.0 : 150.0;
 
   Future<void> _setActivityItems() async {
@@ -83,6 +84,8 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final isColumnMode = FluffyThemes.isColumnMode(context);
+
     final List<Widget> cards = _loading
         ? List.generate(5, (i) {
             return Shimmer.fromColors(
@@ -91,7 +94,6 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
               child: Container(
                 height: cardHeight,
                 width: cardWidth,
-                margin: EdgeInsets.all(cardPadding),
                 decoration: BoxDecoration(
                   color: theme.colorScheme.surfaceContainer,
                   borderRadius: BorderRadius.circular(24.0),
@@ -117,7 +119,6 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
                 },
                 width: cardWidth,
                 height: cardHeight,
-                padding: cardPadding,
                 onChange: () {
                   if (mounted) setState(() {});
                 },
@@ -129,28 +130,141 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
     final scrollDirection = widget.scrollDirection ??
         (_isColumnMode ? Axis.horizontal : Axis.vertical);
 
-    return scrollDirection == Axis.horizontal
-        ? ConstrainedBox(
-            constraints: BoxConstraints(maxHeight: cardHeight + 36.0),
-            child: Scrollbar(
-              controller: _scrollController,
-              thumbVisibility: true,
-              child: ListView(
-                controller: _scrollController,
-                scrollDirection: Axis.horizontal,
-                padding: const EdgeInsets.symmetric(vertical: 4.0),
-                children: cards,
+    return Column(
+      spacing: 8.0,
+      children: [
+        if (widget.showTitle)
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Flexible(
+                child: Text(
+                  L10n.of(context).startChat,
+                  style: isColumnMode
+                      ? theme.textTheme.titleLarge
+                          ?.copyWith(fontWeight: FontWeight.bold)
+                      : theme.textTheme.titleMedium?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
-            ),
-          )
-        : SizedBox(
-            width: MediaQuery.of(context).size.width,
-            child: Wrap(
-              alignment: WrapAlignment.spaceEvenly,
-              runSpacing: 16.0,
-              spacing: 4.0,
-              children: cards,
-            ),
-          );
+              Row(
+                spacing: 8.0,
+                children: [
+                  InkWell(
+                    customBorder: const CircleBorder(),
+                    onTap: () => context.go('/rooms/newgroup'),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: theme.colorScheme.surfaceContainerHighest,
+                        borderRadius: BorderRadius.circular(36.0),
+                      ),
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 6.0,
+                        horizontal: 10.0,
+                      ),
+                      child: Row(
+                        spacing: 8.0,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          CustomizedSvg(
+                            svgUrl:
+                                "${AppConfig.assetsBaseURL}/${ActivitySuggestionsConstants.plusIconPath}",
+                            colorReplacements: {
+                              "#CDBEF9": colorToHex(
+                                Theme.of(context).colorScheme.secondary,
+                              ),
+                            },
+                            height: 16.0,
+                            width: 16.0,
+                          ),
+                          Text(
+                            isColumnMode
+                                ? L10n.of(context).createOwnChat
+                                : L10n.of(context).chat,
+                            style: theme.textTheme.titleSmall?.copyWith(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  InkWell(
+                    customBorder: const CircleBorder(),
+                    onTap: () => context.go('/rooms/planner'),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: theme.colorScheme.surfaceContainerHighest,
+                        borderRadius: BorderRadius.circular(36.0),
+                      ),
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 6.0,
+                        horizontal: 10.0,
+                      ),
+                      child: Row(
+                        spacing: 8.0,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          CustomizedSvg(
+                            svgUrl:
+                                "${AppConfig.assetsBaseURL}/${ActivitySuggestionsConstants.crayonIconPath}",
+                            colorReplacements: {
+                              "#CDBEF9": colorToHex(
+                                Theme.of(context).colorScheme.secondary,
+                              ),
+                            },
+                            height: 16.0,
+                            width: 16.0,
+                          ),
+                          Text(
+                            isColumnMode
+                                ? L10n.of(context).makeYourOwnActivity
+                                : L10n.of(context).createActivity,
+                            style: theme.textTheme.titleSmall?.copyWith(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        Container(
+          decoration: const BoxDecoration(),
+          child: scrollDirection == Axis.horizontal
+              ? Expanded(
+                  child: Scrollbar(
+                    thumbVisibility: true,
+                    controller: _scrollController,
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 16.0),
+                      child: SingleChildScrollView(
+                        controller: _scrollController,
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          spacing: 8.0,
+                          children: cards,
+                        ),
+                      ),
+                    ),
+                  ),
+                )
+              : SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  child: Wrap(
+                    alignment: WrapAlignment.spaceEvenly,
+                    runSpacing: 16.0,
+                    spacing: 4.0,
+                    children: cards,
+                  ),
+                ),
+        ),
+      ],
+    );
   }
 }
