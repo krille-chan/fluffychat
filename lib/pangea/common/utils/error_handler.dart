@@ -7,6 +7,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:http/http.dart' as http;
 import 'package:sentry_flutter/sentry_flutter.dart';
 
+import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 
 class PangeaWarningError implements Exception {
@@ -21,18 +22,18 @@ class ErrorHandler {
   ErrorHandler();
 
   static Future<void> initialize() async {
-    // await SentryFlutter.init(
-    //   (options) {
-    //     options.dsn = Environment.sentryDsn;
-    //     options.tracesSampleRate = 0.1;
-    //     options.debug = kDebugMode;
-    //     options.environment = kDebugMode
-    //         ? "debug"
-    //         : Environment.isStaging
-    //             ? "staging"
-    //             : "productionC";
-    //   },
-    // );
+    await SentryFlutter.init(
+      (options) {
+        options.dsn = Environment.sentryDsn;
+        options.tracesSampleRate = 0.1;
+        options.debug = kDebugMode;
+        options.environment = kDebugMode
+            ? "debug"
+            : Environment.isStaging
+                ? "staging"
+                : "productionC";
+      },
+    );
 
     // Error handling
     FlutterError.onError = (FlutterErrorDetails details) async {
