@@ -128,81 +128,83 @@ class ConstructNotificationOverlayState
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      type: MaterialType.transparency,
-      child: SizeTransition(
-        sizeFactor: _animation!,
-        axisAlignment: -1.0,
-        child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 16.0),
-          decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.surface,
-            border: Border(
-              bottom: BorderSide(
-                color: Theme.of(context).colorScheme.onSurface.withAlpha(50),
+    return SafeArea(
+      child: Material(
+        type: MaterialType.transparency,
+        child: SizeTransition(
+          sizeFactor: _animation!,
+          axisAlignment: -1.0,
+          child: Container(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.surface,
+              border: Border(
+                bottom: BorderSide(
+                  color: Theme.of(context).colorScheme.onSurface.withAlpha(50),
+                ),
               ),
             ),
-          ),
-          child: Row(
-            children: [
-              const SizedBox(
-                width: 50.0,
-                height: 50.0,
-              ),
-              Expanded(
-                child: Wrap(
-                  spacing: 16.0,
-                  alignment: WrapAlignment.center,
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  children: [
-                    Text(
-                      L10n.of(context).youUnlocked,
-                      style: TextStyle(
-                        fontSize:
-                            FluffyThemes.isColumnMode(context) ? 32.0 : 16.0,
-                        color: Theme.of(context).colorScheme.onSurface,
-                        fontWeight: FontWeight.bold,
+            child: Row(
+              children: [
+                const SizedBox(
+                  width: 50.0,
+                  height: 50.0,
+                ),
+                Expanded(
+                  child: Wrap(
+                    spacing: 16.0,
+                    alignment: WrapAlignment.center,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    children: [
+                      Text(
+                        L10n.of(context).youUnlocked,
+                        style: TextStyle(
+                          fontSize:
+                              FluffyThemes.isColumnMode(context) ? 32.0 : 16.0,
+                          color: Theme.of(context).colorScheme.onSurface,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      spacing: 16.0,
-                      children: [
-                        Flexible(
-                          child: Text(
-                            widget.copy ?? widget.construct.lemma,
-                            style: TextStyle(
-                              fontSize: FluffyThemes.isColumnMode(context)
-                                  ? 32.0
-                                  : 16.0,
-                              color: AppConfig.gold,
-                              fontWeight: FontWeight.bold,
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        spacing: 16.0,
+                        children: [
+                          Flexible(
+                            child: Text(
+                              widget.copy ?? widget.construct.lemma,
+                              style: TextStyle(
+                                fontSize: FluffyThemes.isColumnMode(context)
+                                    ? 32.0
+                                    : 16.0,
+                                color: AppConfig.gold,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              overflow: TextOverflow.ellipsis,
                             ),
-                            overflow: TextOverflow.ellipsis,
                           ),
-                        ),
-                        MorphIcon(
-                          morphFeature: MorphFeaturesEnumExtension.fromString(
-                            widget.construct.category,
+                          MorphIcon(
+                            morphFeature: MorphFeaturesEnumExtension.fromString(
+                              widget.construct.category,
+                            ),
+                            morphTag: widget.construct.lemma,
                           ),
-                          morphTag: widget.construct.lemma,
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                alignment: Alignment.center,
-                width: 50.0,
-                child: IconButton(
-                  icon: const Icon(
-                    Icons.close,
+                        ],
+                      ),
+                    ],
                   ),
-                  onPressed: _close,
                 ),
-              ),
-            ],
+                Container(
+                  alignment: Alignment.center,
+                  width: 50.0,
+                  child: IconButton(
+                    icon: const Icon(
+                      Icons.close,
+                    ),
+                    onPressed: _close,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

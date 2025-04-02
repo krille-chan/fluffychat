@@ -153,57 +153,60 @@ class LemmaMeaningWidgetState extends State<LemmaMeaningWidget> {
 
     if (_editMode) {
       _controller.text = _lemmaInfo?.meaning ?? "";
-      return Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            "${L10n.of(context).pangeaBotIsFallible} ${L10n.of(context).whatIsMeaning(_lemma, widget.constructUse.category)}",
-            textAlign: TextAlign.center,
-            style: const TextStyle(fontStyle: FontStyle.italic),
-          ),
-          const SizedBox(height: 10),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: TextField(
-              minLines: 1,
-              maxLines: 3,
-              controller: _controller,
-              decoration: InputDecoration(
-                hintText: _lemmaInfo?.meaning,
+      return Material(
+        type: MaterialType.transparency,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              "${L10n.of(context).pangeaBotIsFallible} ${L10n.of(context).whatIsMeaning(_lemma, widget.constructUse.category)}",
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontStyle: FontStyle.italic),
+            ),
+            const SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: TextField(
+                minLines: 1,
+                maxLines: 3,
+                controller: _controller,
+                decoration: InputDecoration(
+                  hintText: _lemmaInfo?.meaning,
+                ),
               ),
             ),
-          ),
-          const SizedBox(height: 10),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ElevatedButton(
-                onPressed: () => _toggleEditMode(false),
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: () => _toggleEditMode(false),
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
                   ),
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Text(L10n.of(context).cancel),
                 ),
-                child: Text(L10n.of(context).cancel),
-              ),
-              const SizedBox(width: 10),
-              ElevatedButton(
-                onPressed: () => _controller.text != _lemmaInfo?.meaning &&
-                        _controller.text.isNotEmpty
-                    ? editLemmaMeaning(_controller.text)
-                    : null,
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
+                const SizedBox(width: 10),
+                ElevatedButton(
+                  onPressed: () => _controller.text != _lemmaInfo?.meaning &&
+                          _controller.text.isNotEmpty
+                      ? editLemmaMeaning(_controller.text)
+                      : null,
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
                   ),
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Text(L10n.of(context).saveChanges),
                 ),
-                child: Text(L10n.of(context).saveChanges),
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+          ],
+        ),
       );
     }
 
