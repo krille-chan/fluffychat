@@ -170,7 +170,9 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
                                     strokeWidth: 2,
                                   ),
                                 )
-                              : const Icon(Icons.play_circle_outlined),
+                              : _supportsVideoPlayer
+                                  ? const Icon(Icons.play_circle_outlined)
+                                  : const Icon(Icons.file_download_outlined),
                           tooltip: _isDownloading
                               ? L10n.of(context).loadingPleaseWait
                               : L10n.of(context).videoWithSize(
