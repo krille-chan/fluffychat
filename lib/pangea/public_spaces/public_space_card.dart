@@ -4,7 +4,9 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pangea/common/widgets/pressable_button.dart';
+import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
+import 'package:fluffychat/widgets/public_room_bottom_sheet.dart';
 
 class PublicSpaceCard extends StatelessWidget {
   final PublicRoomsChunk space;
@@ -23,7 +25,14 @@ class PublicSpaceCard extends StatelessWidget {
     final theme = Theme.of(context);
 
     return PressableButton(
-      onPressed: () {},
+      onPressed: () => showAdaptiveBottomSheet(
+        context: context,
+        builder: (c) => PublicRoomBottomSheet(
+          roomAlias: space.canonicalAlias ?? space.roomId,
+          outerContext: context,
+          chunk: space,
+        ),
+      ),
       borderRadius: BorderRadius.circular(24.0),
       color: theme.brightness == Brightness.dark
           ? theme.colorScheme.primary
@@ -47,19 +56,19 @@ class PublicSpaceCard extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Container(
-                  height: height - 16.0,
-                  width: height - 16.0,
+                  height: height,
+                  width: height,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(24.0),
                   ),
-                  margin: const EdgeInsets.all(8.0),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(24.0),
                     child: space.avatarUrl != null
                         ? MxcImage(
                             uri: space.avatarUrl!,
-                            width: width - 16.0,
-                            height: width - 16.0,
+                            width: width,
+                            height: width,
+                            fit: BoxFit.cover,
                           )
                         : const SizedBox(),
                   ),
@@ -125,7 +134,7 @@ class PublicSpaceCard extends StatelessWidget {
                               style: theme.textTheme.bodySmall,
                               overflow: TextOverflow.ellipsis,
                               textAlign: TextAlign.start,
-                              maxLines: 4,
+                              maxLines: 5,
                             ),
                           ),
                       ],

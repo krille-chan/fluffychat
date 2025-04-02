@@ -49,7 +49,7 @@ class ActivitySuggestionCarouselState
   String? _error;
 
   double get _cardWidth => _isColumnMode ? 250.0 : 175.0;
-  double get _cardHeight => _isColumnMode ? 350.0 : 265.0;
+  double get _cardHeight => _isColumnMode ? 360.0 : 275.0;
 
   ActivityPlanModel? _currentActivity;
   final List<ActivityPlanModel> _activityItems = [];

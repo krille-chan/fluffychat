@@ -35,7 +35,7 @@ class BookmarkedActivitiesListState extends State<BookmarkedActivitiesList> {
 
   bool get _isColumnMode => FluffyThemes.isColumnMode(context);
 
-  double get cardHeight => _isColumnMode ? 315.0 : 240.0;
+  double get cardHeight => _isColumnMode ? 325.0 : 250.0;
   double get cardWidth => _isColumnMode ? 225.0 : 150.0;
 
   Future<void> _onEdit(

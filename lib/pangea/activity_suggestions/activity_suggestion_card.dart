@@ -69,23 +69,23 @@ class ActivitySuggestionCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  height: width - 16.0,
-                  width: width - 16.0,
+                  height: width,
+                  width: width,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(24.0),
                   ),
-                  margin: const EdgeInsets.only(top: 8.0),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(24.0),
                     child: image != null
-                        ? Image.memory(image!)
+                        ? Image.memory(image!, fit: BoxFit.cover)
                         : activity.imageURL != null
                             ? activity.imageURL!.startsWith("mxc")
                                 ? MxcImage(
                                     uri: Uri.parse(activity.imageURL!),
-                                    width: width - 16.0,
-                                    height: width - 16.0,
+                                    width: width,
+                                    height: width,
                                     cacheKey: activity.bookmarkId,
+                                    fit: BoxFit.cover,
                                   )
                                 : CachedNetworkImage(
                                     imageUrl: activity.imageURL!,
@@ -94,6 +94,7 @@ class ActivitySuggestionCard extends StatelessWidget {
                                     ),
                                     errorWidget: (context, url, error) =>
                                         const SizedBox(),
+                                    fit: BoxFit.cover,
                                   )
                             : null,
                   ),

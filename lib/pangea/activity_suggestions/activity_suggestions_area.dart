@@ -56,7 +56,7 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
 
   final List<ActivityPlanModel> _activityItems = [];
   final ScrollController _scrollController = ScrollController();
-  double get cardHeight => _isColumnMode ? 315.0 : 240.0;
+  double get cardHeight => _isColumnMode ? 325.0 : 250.0;
   double get cardWidth => _isColumnMode ? 225.0 : 150.0;
 
   Future<void> _setActivityItems() async {
