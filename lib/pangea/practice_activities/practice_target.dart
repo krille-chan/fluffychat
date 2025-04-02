@@ -1,5 +1,7 @@
 import 'dart:developer';
 
+import 'package:flutter/foundation.dart';
+
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
@@ -8,7 +10,6 @@ import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_choice.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_record.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_record_repo.dart';
-import 'package:flutter/foundation.dart';
 
 /// Picks which tokens to do activities on and what types of activities to do
 /// Caches result so that we don't have to recompute it
