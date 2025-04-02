@@ -17,11 +17,9 @@ import 'package:fluffychat/pangea/user/client_extension.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class MorphAnalyticsListView extends StatelessWidget {
-  final void Function(ConstructIdentifier) onConstructZoom;
   final AnalyticsPopupWrapperState controller;
 
   const MorphAnalyticsListView({
-    required this.onConstructZoom,
     required this.controller,
     super.key,
   });
@@ -51,7 +49,7 @@ class MorphAnalyticsListView extends StatelessWidget {
                             .getDisplayTags(feature.feature)
                             .map((tag) => tag.toLowerCase())
                             .toSet(),
-                        onConstructZoom: onConstructZoom,
+                        onConstructZoom: controller.setConstructZoom,
                       )
                     : const SizedBox.shrink();
               },

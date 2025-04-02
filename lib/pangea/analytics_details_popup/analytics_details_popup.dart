@@ -13,6 +13,7 @@ import 'package:fluffychat/pangea/analytics_summary/progress_indicators_enum.dar
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/common/widgets/full_width_dialog.dart';
 import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
+import 'package:fluffychat/pangea/constructs/construct_level_enum.dart';
 import 'package:fluffychat/pangea/morphs/default_morph_mapping.dart';
 import 'package:fluffychat/pangea/morphs/morph_models.dart';
 import 'package:fluffychat/pangea/morphs/morph_repo.dart';
@@ -36,17 +37,28 @@ class AnalyticsPopupWrapperState extends State<AnalyticsPopupWrapper> {
   ConstructIdentifier? localConstructZoom;
   ConstructTypeEnum localView = ConstructTypeEnum.vocab;
 
-  // @ggurdin
-  //TODO: make language-specific
   MorphFeaturesAndTags morphs = defaultMorphMapping;
   List<MorphFeature> features = defaultMorphMapping.displayFeatures;
+
+  bool isSearching = false;
+  final TextEditingController searchController = TextEditingController();
+  ConstructLevelEnum? selectedConstructLevel;
 
   @override
   void initState() {
     super.initState();
     localView = widget.view;
-    _setConstructZoom(widget.constructZoom);
+    setConstructZoom(widget.constructZoom);
     _setMorphs();
+    searchController.addListener(() {
+      if (mounted) setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
   }
 
   Future<void> _setMorphs() async {
@@ -70,12 +82,26 @@ class AnalyticsPopupWrapperState extends State<AnalyticsPopupWrapper> {
     }
   }
 
-  void _setConstructZoom(ConstructIdentifier? id) {
+  void setConstructZoom(ConstructIdentifier? id) {
     if (id != null && id.type != localView) {
       localView = id.type;
     }
     localConstructZoom = id;
     setState(() => {});
+  }
+
+  void setSelectedConstructLevel(ConstructLevelEnum level) {
+    setState(() {
+      selectedConstructLevel = selectedConstructLevel == level ? null : level;
+    });
+  }
+
+  void toggleSearching() {
+    setState(() {
+      isSearching = !isSearching;
+      selectedConstructLevel = null;
+      searchController.clear();
+    });
   }
 
   @override
@@ -96,7 +122,7 @@ class AnalyticsPopupWrapperState extends State<AnalyticsPopupWrapper> {
                 : const Icon(Icons.arrow_back),
             onPressed: localConstructZoom == null
                 ? () => Navigator.of(context).pop()
-                : () => _setConstructZoom(null),
+                : () => setConstructZoom(null),
           ),
           actions: [
             TextButton.icon(
@@ -137,13 +163,10 @@ class AnalyticsPopupWrapperState extends State<AnalyticsPopupWrapper> {
         ),
         body: localView == ConstructTypeEnum.morph
             ? localConstructZoom == null
-                ? MorphAnalyticsListView(
-                    onConstructZoom: _setConstructZoom,
-                    controller: this,
-                  )
+                ? MorphAnalyticsListView(controller: this)
                 : MorphDetailsView(constructId: localConstructZoom!)
             : localConstructZoom == null
-                ? VocabAnalyticsListView(onConstructZoom: _setConstructZoom)
+                ? VocabAnalyticsListView(controller: this)
                 : VocabDetailsView(constructId: localConstructZoom!),
       ),
       maxWidth: 600,

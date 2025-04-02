@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
 
+import 'package:fluffychat/pangea/analytics_details_popup/analytics_details_popup.dart';
 import 'package:fluffychat/pangea/analytics_details_popup/vocab_analytics_list_tile.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_use_model.dart';
-import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
 import 'package:fluffychat/pangea/constructs/construct_level_enum.dart';
 import 'package:fluffychat/pangea/instructions/instructions_enum.dart';
 import 'package:fluffychat/pangea/instructions/instructions_inline_tooltip.dart';
@@ -13,50 +13,13 @@ import 'package:fluffychat/widgets/matrix.dart';
 
 /// Displays vocab analytics, sorted into categories
 /// (flowers, greens, and seeds) by points
-class VocabAnalyticsListView extends StatefulWidget {
-  final void Function(ConstructIdentifier) onConstructZoom;
+class VocabAnalyticsListView extends StatelessWidget {
+  final AnalyticsPopupWrapperState controller;
 
   const VocabAnalyticsListView({
     super.key,
-    required this.onConstructZoom,
+    required this.controller,
   });
-
-  @override
-  VocabAnalyticsListViewState createState() => VocabAnalyticsListViewState();
-}
-
-class VocabAnalyticsListViewState extends State<VocabAnalyticsListView> {
-  bool _isSearching = false;
-  final TextEditingController _searchController = TextEditingController();
-  ConstructLevelEnum? _selectedConstructLevel;
-
-  @override
-  void initState() {
-    super.initState();
-    _searchController.addListener(() {
-      if (mounted) setState(() {});
-    });
-  }
-
-  @override
-  void dispose() {
-    _searchController.dispose();
-    super.dispose();
-  }
-
-  void _setSelectedConstructLevel(ConstructLevelEnum level) {
-    setState(() {
-      _selectedConstructLevel = _selectedConstructLevel == level ? null : level;
-    });
-  }
-
-  void _toggleSearching() {
-    setState(() {
-      _isSearching = !_isSearching;
-      _selectedConstructLevel = null;
-      _searchController.clear();
-    });
-  }
 
   List<ConstructUses> get _vocab => MatrixState
       .pangeaController.getAnalytics.constructListModel
@@ -67,13 +30,13 @@ class VocabAnalyticsListViewState extends State<VocabAnalyticsListView> {
       .where(
         (use) =>
             use.lemma.isNotEmpty &&
-            (_selectedConstructLevel == null
+            (controller.selectedConstructLevel == null
                 ? true
-                : use.lemmaCategory == _selectedConstructLevel) &&
-            (_isSearching
+                : use.lemmaCategory == controller.selectedConstructLevel) &&
+            (controller.isSearching
                 ? use.lemma
                     .toLowerCase()
-                    .contains(_searchController.text.toLowerCase())
+                    .contains(controller.searchController.text.toLowerCase())
                 : true),
       )
       .toList();
@@ -86,14 +49,16 @@ class VocabAnalyticsListViewState extends State<VocabAnalyticsListView> {
               .where((e) => e.lemmaCategory == constructLevelCategory)
               .length;
           return InkWell(
-            onTap: () => _setSelectedConstructLevel(constructLevelCategory),
+            onTap: () =>
+                controller.setSelectedConstructLevel(constructLevelCategory),
             customBorder: const CircleBorder(),
             child: Container(
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: _selectedConstructLevel == constructLevelCategory
-                    ? constructLevelCategory.color(context).withAlpha(50)
-                    : null,
+                color:
+                    controller.selectedConstructLevel == constructLevelCategory
+                        ? constructLevelCategory.color(context).withAlpha(50)
+                        : null,
               ),
               padding: const EdgeInsets.all(8.0),
               child: Badge(
@@ -109,7 +74,7 @@ class VocabAnalyticsListViewState extends State<VocabAnalyticsListView> {
     filters.add(
       IconButton(
         icon: const Icon(Icons.search_outlined),
-        onPressed: _toggleSearching,
+        onPressed: controller.toggleSearching,
       ),
     );
 
@@ -123,8 +88,9 @@ class VocabAnalyticsListViewState extends State<VocabAnalyticsListView> {
           AnimatedContainer(
             duration: const Duration(milliseconds: 300),
             curve: Curves.easeInOut,
-            padding:
-                EdgeInsets.symmetric(horizontal: _isSearching ? 8.0 : 24.0),
+            padding: EdgeInsets.symmetric(
+              horizontal: controller.isSearching ? 8.0 : 24.0,
+            ),
             child: Container(
               height: 60,
               alignment: Alignment.center,
@@ -139,7 +105,7 @@ class VocabAnalyticsListViewState extends State<VocabAnalyticsListView> {
                         opacity: animation,
                         child: child,
                       ),
-                      child: _isSearching
+                      child: controller.isSearching
                           ? Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               key: const ValueKey('search'),
@@ -147,7 +113,7 @@ class VocabAnalyticsListViewState extends State<VocabAnalyticsListView> {
                                 Expanded(
                                   child: TextField(
                                     autofocus: true,
-                                    controller: _searchController,
+                                    controller: controller.searchController,
                                     decoration: const InputDecoration(
                                       contentPadding: EdgeInsets.symmetric(
                                         vertical: 6.0,
@@ -160,7 +126,7 @@ class VocabAnalyticsListViewState extends State<VocabAnalyticsListView> {
                                 ),
                                 IconButton(
                                   icon: const Icon(Icons.close),
-                                  onPressed: _toggleSearching,
+                                  onPressed: controller.toggleSearching,
                                 ),
                               ],
                             )
@@ -189,7 +155,7 @@ class VocabAnalyticsListViewState extends State<VocabAnalyticsListView> {
                 itemBuilder: (context, index) {
                   final vocabItem = _filteredVocab[index];
                   return VocabAnalyticsListTile(
-                    onTap: () => widget.onConstructZoom(vocabItem.id),
+                    onTap: () => controller.setConstructZoom(vocabItem.id),
                     constructUse: vocabItem,
                   );
                 },
