@@ -154,7 +154,7 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
                 children: [
                   InkWell(
                     customBorder: const CircleBorder(),
-                    onTap: () => context.go('/rooms/newgroup'),
+                    onTap: () => context.go('/homepage/newgroup'),
                     child: Container(
                       decoration: BoxDecoration(
                         color: theme.colorScheme.surfaceContainerHighest,
@@ -193,7 +193,7 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
                   ),
                   InkWell(
                     customBorder: const CircleBorder(),
-                    onTap: () => context.go('/rooms/planner'),
+                    onTap: () => context.go('/homepage/planner'),
                     child: Container(
                       decoration: BoxDecoration(
                         color: theme.colorScheme.surfaceContainerHighest,

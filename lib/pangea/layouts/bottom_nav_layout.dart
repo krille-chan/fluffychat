@@ -43,7 +43,7 @@ class BottomNavBarState extends State<BottomNavBar> {
   void onItemTapped(int index) {
     switch (index) {
       case 0:
-        context.go('/rooms/homepage');
+        context.go('/homepage');
         break;
       case 1:
         context.go('/rooms');
