@@ -29,6 +29,7 @@ enum InstructionsEnum {
   analyticsVocabList,
   morphAnalyticsList,
   readingAssistanceOverview,
+  emptyChatWarning,
 }
 
 extension InstructionsEnumExtension on InstructionsEnum {
@@ -69,6 +70,8 @@ extension InstructionsEnumExtension on InstructionsEnum {
         );
         debugger(when: kDebugMode);
         return "";
+      case InstructionsEnum.emptyChatWarning:
+        return l10n.emptyChatWarningTitle;
     }
   }
 
@@ -131,6 +134,8 @@ extension InstructionsEnumExtension on InstructionsEnum {
         return l10n.morphAnalyticsListBody;
       case InstructionsEnum.readingAssistanceOverview:
         return l10n.readingAssistanceOverviewBody;
+      case InstructionsEnum.emptyChatWarning:
+        return l10n.emptyChatWarningDesc;
     }
   }
 
