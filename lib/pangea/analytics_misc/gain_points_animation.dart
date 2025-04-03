@@ -25,9 +25,9 @@ class PointsGainedAnimationState extends State<PointsGainedAnimation>
   final Color? gainColor = AppConfig.gold;
   final Color? loseColor = Colors.red;
 
-  late AnimationController _controller;
-  late Animation<double> _offsetAnimation;
-  late Animation<double> _fadeAnimation;
+  AnimationController? _controller;
+  Animation<double>? _offsetAnimation;
+  Animation<double>? _fadeAnimation;
   final List<Animation<double>> _swayAnimation = [];
   final List<Offset> _initialVelocities = [];
 
@@ -53,7 +53,7 @@ class PointsGainedAnimationState extends State<PointsGainedAnimation>
       end: 3.0,
     ).animate(
       CurvedAnimation(
-        parent: _controller,
+        parent: _controller!,
         curve: Curves.easeOut,
       ),
     );
@@ -63,7 +63,7 @@ class PointsGainedAnimationState extends State<PointsGainedAnimation>
       end: 0.0,
     ).animate(
       CurvedAnimation(
-        parent: _controller,
+        parent: _controller!,
         curve: Curves.easeIn,
       ),
     );
@@ -88,6 +88,7 @@ class PointsGainedAnimationState extends State<PointsGainedAnimation>
   }
 
   void initSwayAnimations() {
+    if (_controller == null) return;
     _swayAnimation.clear();
     initParticleTrajectories();
 
@@ -98,7 +99,7 @@ class PointsGainedAnimationState extends State<PointsGainedAnimation>
           end: 2 * pi,
         ).animate(
           CurvedAnimation(
-            parent: _controller,
+            parent: _controller!,
             curve: Curves.linear,
           ),
         ),
@@ -108,14 +109,14 @@ class PointsGainedAnimationState extends State<PointsGainedAnimation>
 
   @override
   void dispose() {
-    _controller.dispose();
+    _controller?.dispose();
     super.dispose();
   }
 
   void _showPointsGained() {
     initSwayAnimations();
-    _controller.reset();
-    _controller.forward().then(
+    _controller?.reset();
+    _controller?.forward().then(
       (_) {
         if (!mounted) return;
         MatrixState.pAnyState.closeOverlay(widget.targetID);
@@ -125,7 +126,10 @@ class PointsGainedAnimationState extends State<PointsGainedAnimation>
 
   @override
   Widget build(BuildContext context) {
-    if (widget.points == 0) {
+    if (widget.points == 0 ||
+        _controller == null ||
+        _fadeAnimation == null ||
+        _offsetAnimation == null) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (mounted) {
           MatrixState.pAnyState.closeOverlay(widget.targetID);
@@ -151,15 +155,15 @@ class PointsGainedAnimationState extends State<PointsGainedAnimation>
     return Material(
       type: MaterialType.transparency,
       child: FadeTransition(
-        opacity: _fadeAnimation,
+        opacity: _fadeAnimation!,
         child: IgnorePointer(
-          ignoring: _controller.isAnimating,
+          ignoring: _controller!.isAnimating,
           child: Stack(
             children: List.generate(widget.points.abs(), (index) {
               return AnimatedBuilder(
-                animation: _controller,
+                animation: _controller!,
                 builder: (context, child) {
-                  final progress = _offsetAnimation.value;
+                  final progress = _offsetAnimation!.value;
                   final trajectory = _initialVelocities[index];
                   return Transform.translate(
                     offset: Offset(

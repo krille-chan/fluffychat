@@ -383,10 +383,9 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
   // measurement for items in the toolbar
 
   bool get showToolbarButtons =>
-      widget.pangeaMessageEvent != null &&
-      widget.pangeaMessageEvent!.shouldShowToolbar &&
-      widget.pangeaMessageEvent!.event.messageType == MessageTypes.Text &&
-      widget.pangeaMessageEvent!.messageDisplayLangIsL2;
+      (widget.pangeaMessageEvent?.shouldShowToolbar ?? false) &&
+      widget.pangeaMessageEvent?.event.messageType == MessageTypes.Text &&
+      (widget.pangeaMessageEvent?.messageDisplayLangIsL2 ?? false);
 
   bool get _hasReactions {
     final reactionsEvents = widget.event.aggregatedEvents(

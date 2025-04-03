@@ -60,7 +60,6 @@ class PangeaAnyState {
   }
 
   void closeOverlay([String? overlayKey]) {
-    debugPrint("CLOSE OVERLAY WITH KEY: $overlayKey");
     final entry = overlayKey != null
         ? entries.firstWhereOrNull((element) => element.key == overlayKey)
         : entries.lastWhereOrNull(

@@ -56,7 +56,7 @@ class _CustomizedSvgState extends State<CustomizedSvg> {
 
   void _startLoadingTimer() {
     Future.delayed(const Duration(seconds: 1), () {
-      if (_isLoading) {
+      if (_isLoading && mounted) {
         setState(() {
           _showProgressIndicator = true;
         });
