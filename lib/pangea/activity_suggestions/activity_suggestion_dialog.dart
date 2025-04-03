@@ -246,15 +246,14 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Container(
-                height: 200,
+              DecoratedBox(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(24.0),
                 ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(24.0),
                   child: _avatar != null
-                      ? Image.memory(_avatar!)
+                      ? Image.memory(_avatar!, fit: BoxFit.cover)
                       : widget.activity.imageURL != null
                           ? widget.activity.imageURL!.startsWith("mxc")
                               ? MxcImage(
@@ -262,9 +261,11 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
                                   width: width,
                                   height: 200,
                                   cacheKey: widget.activity.bookmarkId,
+                                  fit: BoxFit.cover,
                                 )
                               : CachedNetworkImage(
                                   imageUrl: widget.activity.imageURL!,
+                                  fit: BoxFit.cover,
                                   placeholder: (context, url) => const Center(
                                     child: CircularProgressIndicator(),
                                   ),
