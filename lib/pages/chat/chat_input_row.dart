@@ -262,6 +262,9 @@ class ChatInputRow extends StatelessWidget {
                       filled: false,
                     ),
                     onChanged: controller.onInputBarChanged,
+                    // #Pangea
+                    hintText: "",
+                    // Pangea#
                   ),
                 ),
               ),

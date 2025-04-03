@@ -210,7 +210,8 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
       avatar: _avatar,
       filename: _filename,
     );
-    context.go("/rooms/$roomId/invite");
+
+    context.go("/rooms/$roomId/invite?filter=groups");
   }
 
   Future<void> _saveEdits() async {

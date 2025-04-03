@@ -204,7 +204,7 @@ class ActivityPlanCardState extends State<ActivityPlanCard> {
           filename: _filename,
         );
 
-        context.go("/rooms/$roomId/invite");
+        context.go("/rooms/$roomId/invite?filter=groups");
       },
     );
   }
