@@ -64,6 +64,19 @@ class _CustomizedSvgState extends State<CustomizedSvg> {
     });
   }
 
+  @override
+  void didUpdateWidget(covariant CustomizedSvg oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.svgUrl != widget.svgUrl) {
+      setState(() {
+        _isLoading = true;
+        _hasError = false;
+        _showProgressIndicator = false;
+      });
+      _loadSvg();
+    }
+  }
+
   Future<void> _loadSvg() async {
     try {
       final cached = _getSvgFromCache();
