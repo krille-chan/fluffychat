@@ -45,7 +45,7 @@ class PublicSpacesAreaState extends State<PublicSpacesArea> {
   Timer? _coolDown;
 
   final double cardHeight = 150.0;
-  final double cardWidth = 450.0;
+  final double cardWidth = 325.0;
 
   Future<void> _setSpaceItems() async {
     _spaceItems.clear();
