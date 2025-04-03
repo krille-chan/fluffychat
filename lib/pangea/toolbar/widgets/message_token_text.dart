@@ -188,7 +188,9 @@ class MessageTextWidget extends StatelessWidget {
       maxLines: 1,
       textDirection: TextDirection.ltr,
     )..layout();
-    return textPainter.width;
+    final width = textPainter.width;
+    textPainter.dispose();
+    return width;
   }
 
   Color backgroundColor(BuildContext context, TokenPosition tokenPosition) {
