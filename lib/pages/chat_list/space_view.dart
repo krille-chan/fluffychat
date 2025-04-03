@@ -16,6 +16,7 @@ import 'package:fluffychat/pages/chat_list/search_title.dart';
 import 'package:fluffychat/pangea/chat/constants/default_power_level.dart';
 import 'package:fluffychat/pangea/chat_settings/constants/pangea_room_types.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/public_spaces/pangea_public_room_bottom_sheet.dart';
 import 'package:fluffychat/pangea/spaces/widgets/knocking_users_indicator.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
@@ -25,7 +26,6 @@ import 'package:fluffychat/widgets/adaptive_dialogs/show_text_input_dialog.dart'
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:fluffychat/widgets/public_room_bottom_sheet.dart';
 
 enum AddRoomType {
   chat,
@@ -266,7 +266,10 @@ class _SpaceViewState extends State<SpaceView> {
 
     final joined = await showAdaptiveBottomSheet<bool>(
       context: context,
-      builder: (_) => PublicRoomBottomSheet(
+      // #Pangea
+      // builder: (_) => PublicRoomBottomSheet(
+      builder: (_) => PangeaPublicRoomBottomSheet(
+        // Pangea#
         outerContext: context,
         chunk: item,
         via: space?.spaceChildren
