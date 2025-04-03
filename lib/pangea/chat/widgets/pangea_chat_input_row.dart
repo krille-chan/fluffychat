@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:animations/animations.dart';
@@ -69,8 +68,8 @@ class PangeaChatInputRowState extends State<PangeaChatInputRow> {
             activel1!.langCode != LanguageKeys.unknownLanguage &&
             activel2!.langCode != LanguageKeys.unknownLanguage
         ? L10n.of(context).writeAMessageLangCodes(
-            activel1!.langCodeShort.toUpperCase(),
-            activel2!.langCodeShort.toUpperCase(),
+            activel1!.displayName,
+            activel2!.displayName,
           )
         : L10n.of(context).writeAMessage;
   }
@@ -281,7 +280,7 @@ class PangeaChatInputRowState extends State<PangeaChatInputRow> {
                           ],
                         ),
                       ),
-                      if (kIsWeb)
+                      if (FluffyThemes.isColumnMode(context))
                         Container(
                           height: height,
                           width: height,
@@ -331,14 +330,13 @@ class PangeaChatInputRowState extends State<PangeaChatInputRow> {
                             onSubmitImage: _controller.sendImageFromClipBoard,
                             focusNode: _controller.inputFocus,
                             controller: _controller.sendController,
-                            decoration: InputDecoration(
-                              contentPadding: const EdgeInsets.only(
+                            decoration: const InputDecoration(
+                              contentPadding: EdgeInsets.only(
                                 left: 6.0,
                                 right: 6.0,
                                 bottom: 6.0,
                                 top: 3.0,
                               ),
-                              hintText: hintText(),
                               disabledBorder: InputBorder.none,
                               hintMaxLines: 1,
                               border: InputBorder.none,
@@ -346,6 +344,7 @@ class PangeaChatInputRowState extends State<PangeaChatInputRow> {
                               filled: false,
                             ),
                             onChanged: _controller.onInputBarChanged,
+                            hintText: hintText(),
                           ),
                         ),
                       ),

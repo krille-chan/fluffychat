@@ -11,6 +11,7 @@ import 'package:slugify/slugify.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/igc/pangea_text_controller.dart';
+import 'package:fluffychat/pangea/toolbar/utils/shrinkable_text.dart';
 import 'package:fluffychat/utils/markdown_context_builder.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
@@ -30,6 +31,7 @@ class InputBar extends StatelessWidget {
   // #Pangea
   // final TextEditingController? controller;
   final PangeaTextController? controller;
+  final String hintText;
   // Pangea#
   final InputDecoration? decoration;
   final ValueChanged<String>? onChanged;
@@ -50,6 +52,9 @@ class InputBar extends StatelessWidget {
     this.autofocus,
     this.textInputAction,
     this.readOnly = false,
+    // #Pangea
+    required this.hintText,
+    // Pangea#
     super.key,
   });
 
@@ -555,7 +560,23 @@ class InputBar extends StatelessWidget {
               textCapitalization: TextCapitalization.sentences,
             );
             // fix for issue with typing not working sometimes on Firefox and Safari
-            return kIsWeb ? SelectionArea(child: textField) : textField;
+            return Stack(
+              alignment: Alignment.centerLeft,
+              children: [
+                if (controller != null && controller!.text.isEmpty)
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0),
+                    child: ShrinkableText(
+                      text: hintText,
+                      maxWidth: double.infinity,
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                            color: Theme.of(context).disabledColor,
+                          ),
+                    ),
+                  ),
+                kIsWeb ? SelectionArea(child: textField) : textField,
+              ],
+            );
           },
           // builder: (context, controller, focusNode) => TextField(
           //   controller: controller,
