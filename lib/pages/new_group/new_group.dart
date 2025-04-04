@@ -22,8 +22,14 @@ import 'package:fluffychat/utils/file_selector.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class NewGroup extends StatefulWidget {
+  // #Pangea
+  final String? spaceId;
+  // Pangea#
   final CreateGroupType createGroupType;
   const NewGroup({
+    // #Pangea
+    this.spaceId,
+    // Pangea#
     this.createGroupType = CreateGroupType.group,
     super.key,
   });
@@ -149,18 +155,39 @@ class NewGroupController extends State<NewGroup> {
         );
     if (!mounted) return;
     // #Pangea
-    if (selectedActivity != null) {
-      Room? room = Matrix.of(context).client.getRoomById(roomId);
-      if (room == null) {
-        await Matrix.of(context).client.waitForRoomInSync(roomId);
-        room = Matrix.of(context).client.getRoomById(roomId);
+    final client = Matrix.of(context).client;
+    Room? room = client.getRoomById(roomId);
+    if (room == null) {
+      await client.waitForRoomInSync(roomId);
+      room = client.getRoomById(roomId);
+    }
+    if (room == null) return;
+
+    if (widget.spaceId != null) {
+      try {
+        final space = client.getRoomById(widget.spaceId!);
+        await space?.pangeaSetSpaceChild(room.id);
+      } catch (err) {
+        ErrorHandler.logError(
+          e: "Failed to add room to space",
+          data: {"spaceId": widget.spaceId, "error": err},
+        );
       }
-      if (room == null) return;
-      await room.sendActivityPlan(
-        selectedActivity!,
-        avatar: selectedActivityImage,
-        filename: selectedActivityImageFilename,
-      );
+    }
+
+    if (selectedActivity != null) {
+      try {
+        await room.sendActivityPlan(
+          selectedActivity!,
+          avatar: selectedActivityImage,
+          filename: selectedActivityImageFilename,
+        );
+      } catch (err) {
+        ErrorHandler.logError(
+          e: "Failed to send activity plan",
+          data: {"roomId": roomId, "error": err},
+        );
+      }
     }
     // if a timeout happened, don't redirect to the chat
     if (error != null) return;

@@ -269,17 +269,17 @@ abstract class AppRoutes {
               ),
               redirect: loggedOutRedirect,
               // #Pangea
-              // routes: [
-              //   GoRoute(
-              //     path: ':spaceid',
-              //     pageBuilder: (context, state) => defaultPageBuilder(
-              //       context,
-              //       state,
-              //       const NewGroup(),
-              //     ),
-              //     redirect: loggedOutRedirect,
-              //   ),
-              // ],
+              routes: [
+                GoRoute(
+                  path: ':spaceid',
+                  pageBuilder: (context, state) => defaultPageBuilder(
+                    context,
+                    state,
+                    NewGroup(spaceId: state.pathParameters['spaceid']!),
+                  ),
+                  redirect: loggedOutRedirect,
+                ),
+              ],
               // Pangea#
             ),
             GoRoute(

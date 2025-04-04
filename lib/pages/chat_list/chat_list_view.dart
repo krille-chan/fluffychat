@@ -56,7 +56,8 @@ class ChatListView extends StatelessWidget {
                 floatingActionButton:
                     // #Pangea
                     // !controller.isSearchMode && controller.activeSpaceId == null
-                    controller.activeFilter == ActiveFilter.spaces
+                    controller.activeFilter == ActiveFilter.spaces &&
+                            controller.activeSpaceId == null
                         ? const SpaceFloatingActionButtons()
                         : !controller.isSearchMode &&
                                 controller.activeSpaceId == null
@@ -64,7 +65,9 @@ class ChatListView extends StatelessWidget {
                             ? FloatingActionButton.extended(
                                 // #Pangea
                                 // onPressed: () => context.go('/rooms/newprivatechat'),
-                                onPressed: () => context.go('/rooms/newgroup'),
+                                onPressed: () => context.go(
+                                  '/rooms/newgroup/${controller.activeSpaceId ?? ''}',
+                                ),
                                 // Pangea#
                                 icon: const Icon(Icons.add_outlined),
                                 label: Text(

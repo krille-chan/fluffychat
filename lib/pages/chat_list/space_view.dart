@@ -13,7 +13,6 @@ import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
 import 'package:fluffychat/pages/chat_list/search_title.dart';
-import 'package:fluffychat/pangea/chat/constants/default_power_level.dart';
 import 'package:fluffychat/pangea/chat_settings/constants/pangea_room_types.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/public_spaces/pangea_public_room_bottom_sheet.dart';
@@ -22,7 +21,6 @@ import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
-import 'package:fluffychat/widgets/adaptive_dialogs/show_text_input_dialog.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -326,96 +324,77 @@ class _SpaceViewState extends State<SpaceView> {
     }
   }
 
-  void _addChatOrSubspace() async {
-    // #Pangea
-    // final roomType = await showModalActionPopup(
-    //   context: context,
-    //   title: L10n.of(context).addChatOrSubSpace,
-    //   actions: [
-    //     AdaptiveModalAction(
-    //       value: AddRoomType.subspace,
-    //       label: L10n.of(context).createNewSpace,
-    //     ),
-    //     AdaptiveModalAction(
-    //       value: AddRoomType.chat,
-    //       label: L10n.of(context).createGroup,
-    //     ),
-    //   ],
-    // );
-    // if (roomType == null) return;
-    const roomType = AddRoomType.chat;
-    // Pangea#
+  // #Pangea
+  // void _addChatOrSubspace() async {
+  //   final roomType = await showModalActionPopup(
+  //     context: context,
+  //     title: L10n.of(context).addChatOrSubSpace,
+  //     actions: [
+  //       AdaptiveModalAction(
+  //         value: AddRoomType.subspace,
+  //         label: L10n.of(context).createNewSpace,
+  //       ),
+  //       AdaptiveModalAction(
+  //         value: AddRoomType.chat,
+  //         label: L10n.of(context).createGroup,
+  //       ),
+  //     ],
+  //   );
+  //   if (roomType == null) return;
 
-    final names = await showTextInputDialog(
-      context: context,
-      // #Pangea
-      // title: roomType == AddRoomType.subspace
-      //     ? L10n.of(context).createNewSpace
-      //     : L10n.of(context).createGroup,
-      // hintText: roomType == AddRoomType.subspace
-      //     ? L10n.of(context).spaceName
-      //     : L10n.of(context).groupName,
-      title: L10n.of(context).createChat,
-      hintText: L10n.of(context).chatName,
-      // Pangea#
-      minLines: 1,
-      maxLines: 1,
-      maxLength: 64,
-      validator: (text) {
-        if (text.isEmpty) {
-          return L10n.of(context).pleaseChoose;
-        }
-        return null;
-      },
-      okLabel: L10n.of(context).create,
-      cancelLabel: L10n.of(context).cancel,
-    );
-    if (names == null) return;
-    final client = Matrix.of(context).client;
-    final result = await showFutureLoadingDialog(
-      context: context,
-      future: () async {
-        late final String roomId;
-        final activeSpace = client.getRoomById(widget.spaceId)!;
-        await activeSpace.postLoad();
+  //   final names = await showTextInputDialog(
+  //     context: context,
+  //     title: roomType == AddRoomType.subspace
+  //         ? L10n.of(context).createNewSpace
+  //         : L10n.of(context).createGroup,
+  //     hintText: roomType == AddRoomType.subspace
+  //         ? L10n.of(context).spaceName
+  //         : L10n.of(context).groupName,
+  //     minLines: 1,
+  //     maxLines: 1,
+  //     maxLength: 64,
+  //     validator: (text) {
+  //       if (text.isEmpty) {
+  //         return L10n.of(context).pleaseChoose;
+  //       }
+  //       return null;
+  //     },
+  //     okLabel: L10n.of(context).create,
+  //     cancelLabel: L10n.of(context).cancel,
+  //   );
+  //   if (names == null) return;
+  //   final client = Matrix.of(context).client;
+  //   final result = await showFutureLoadingDialog(
+  //     context: context,
+  //     future: () async {
+  //       late final String roomId;
+  //       final activeSpace = client.getRoomById(widget.spaceId)!;
+  //       await activeSpace.postLoad();
 
-        if (roomType == AddRoomType.subspace) {
-          // #Pangea
-          // roomId = await client.createSpace(
-          //   name: names,
-          //   visibility: activeSpace.joinRules == JoinRules.public
-          //       ? sdk.Visibility.public
-          //       : sdk.Visibility.private,
-          // );
-          // Pangea#
-        } else {
-          roomId = await client.createGroupChat(
-            groupName: names,
-            // #Pangea
-            // preset: activeSpace.joinRules == JoinRules.public
-            //     ? CreateRoomPreset.publicChat
-            //     : CreateRoomPreset.privateChat,
-            // visibility: activeSpace.joinRules == JoinRules.public
-            //     ? sdk.Visibility.public
-            //     : sdk.Visibility.private,
-            preset: sdk.CreateRoomPreset.publicChat,
-            visibility: sdk.Visibility.private,
-            enableEncryption: false,
-            initialState: [
-              StateEvent(
-                type: EventTypes.RoomPowerLevels,
-                stateKey: '',
-                content: defaultPowerLevels(Matrix.of(context).client.userID!),
-              ),
-            ],
-            // Pangea#
-          );
-        }
-        await activeSpace.setSpaceChild(roomId);
-      },
-    );
-    if (result.error != null) return;
-  }
+  //       if (roomType == AddRoomType.subspace) {
+  //         roomId = await client.createSpace(
+  //           name: names,
+  //           visibility: activeSpace.joinRules == JoinRules.public
+  //               ? sdk.Visibility.public
+  //               : sdk.Visibility.private,
+  //         );
+  //       } else {
+  //         roomId = await client.createGroupChat(
+  //           groupName: names,
+  //           preset: activeSpace.joinRules == JoinRules.public
+  //               ? CreateRoomPreset.publicChat
+  //               : CreateRoomPreset.privateChat,
+  //           visibility: activeSpace.joinRules == JoinRules.public
+  //               ? sdk.Visibility.public
+  //               : sdk.Visibility.private,
+  //         );
+  //       }
+  //       await activeSpace.setSpaceChild(roomId);
+  //     },
+  //   );
+  //   if (result.error != null) return;
+  // }
+  // Pangea#
 
   // #Pangea
   bool includeSpaceChild(
@@ -599,9 +578,10 @@ class _SpaceViewState extends State<SpaceView> {
               ) ==
               true
           ? FloatingActionButton.extended(
-              onPressed: _addChatOrSubspace,
               // #Pangea
+              // onPressed: _addChatOrSubspace,
               // label: Text(L10n.of(context).group),
+              onPressed: () => context.go("/rooms/newgroup/${widget.spaceId}"),
               label: Text(L10n.of(context).chat),
               // Pangea#
               icon: const Icon(Icons.group_add_outlined),
