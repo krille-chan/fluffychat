@@ -186,7 +186,7 @@
       }
     }
   },
-  "changedTheChatDescriptionTo": "{username} 變更了聊天室介紹為：「{description}」",
+  "changedTheChatDescriptionTo": "{username} 把聊天室介紹變更為：「{description}」",
   "@changedTheChatDescriptionTo": {
     "type": "String",
     "placeholders": {
@@ -198,7 +198,7 @@
       }
     }
   },
-  "changedTheChatNameTo": "{username} 變更了聊天室名稱為：「{chatname}」",
+  "changedTheChatNameTo": "{username} 把聊天室名稱變更為：「{chatname}」",
   "@changedTheChatNameTo": {
     "type": "String",
     "placeholders": {
@@ -2750,7 +2750,7 @@
   "@disableEncryptionWarning": {},
   "deviceKeys": "裝置密鑰：",
   "@deviceKeys": {},
-  "fileIsTooBigForServer": "伺服器報告該文件太大，無法傳送。",
+  "fileIsTooBigForServer": "無法發送！該伺服器僅支援最大到 {max} 的附件。",
   "@fileIsTooBigForServer": {},
   "fileHasBeenSavedAt": "文件已保存在 {path}",
   "@fileHasBeenSavedAt": {
@@ -3244,6 +3244,10 @@
   "@appIntroduction": {},
   "previous": "上一個",
   "@previous": {},
-  "otherPartyNotLoggedIn": "對方現未登入，未能接收訊息。",
-  "@otherPartyNotLoggedIn": {}
+  "otherPartyNotLoggedIn": "對方現未登入，未能接收訊息 !",
+  "@otherPartyNotLoggedIn": {},
+  "supportPage": "幫助頁面",
+  "@supportPage": {},
+  "addLink": "插入連結",
+  "@addLink": {}
 }
