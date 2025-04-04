@@ -436,9 +436,11 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   }
 
   void initSettings() {
-    AppConfig.fontSizeFactor =
-        double.tryParse(store.getString(SettingKeys.fontSizeFactor) ?? '') ??
-            AppConfig.fontSizeFactor;
+    // #Pangea
+    // AppConfig.fontSizeFactor =
+    //     double.tryParse(store.getString(SettingKeys.fontSizeFactor) ?? '') ??
+    //         AppConfig.fontSizeFactor;
+    // Pangea#
 
     AppConfig.renderHtml =
         store.getBool(SettingKeys.renderHtml) ?? AppConfig.renderHtml;

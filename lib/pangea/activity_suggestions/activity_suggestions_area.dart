@@ -175,88 +175,91 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
-              Row(
-                spacing: 8.0,
-                children: [
-                  InkWell(
-                    customBorder: const CircleBorder(),
-                    onTap: () => context.go('/homepage/newgroup'),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: theme.colorScheme.surfaceContainerHighest,
-                        borderRadius: BorderRadius.circular(36.0),
-                      ),
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 6.0,
-                        horizontal: 10.0,
-                      ),
-                      child: Row(
-                        spacing: 8.0,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          CustomizedSvg(
-                            svgUrl:
-                                "${AppConfig.assetsBaseURL}/${ActivitySuggestionsConstants.plusIconPath}",
-                            colorReplacements: {
-                              "#CDBEF9": colorToHex(
-                                Theme.of(context).colorScheme.secondary,
-                              ),
-                            },
-                            height: 16.0,
-                            width: 16.0,
-                          ),
-                          Text(
-                            isColumnMode
-                                ? L10n.of(context).createOwnChat
-                                : L10n.of(context).chat,
-                            style: theme.textTheme.titleSmall?.copyWith(
-                              fontWeight: FontWeight.bold,
+              Material(
+                type: MaterialType.transparency,
+                child: Row(
+                  spacing: 8.0,
+                  children: [
+                    InkWell(
+                      customBorder: const CircleBorder(),
+                      onTap: () => context.go('/homepage/newgroup'),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: theme.colorScheme.surfaceContainerHighest,
+                          borderRadius: BorderRadius.circular(36.0),
+                        ),
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 6.0,
+                          horizontal: 10.0,
+                        ),
+                        child: Row(
+                          spacing: 8.0,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            CustomizedSvg(
+                              svgUrl:
+                                  "${AppConfig.assetsBaseURL}/${ActivitySuggestionsConstants.plusIconPath}",
+                              colorReplacements: {
+                                "#CDBEF9": colorToHex(
+                                  Theme.of(context).colorScheme.secondary,
+                                ),
+                              },
+                              height: 16.0,
+                              width: 16.0,
                             ),
-                          ),
-                        ],
+                            Text(
+                              isColumnMode
+                                  ? L10n.of(context).createOwnChat
+                                  : L10n.of(context).chat,
+                              style: theme.textTheme.titleSmall?.copyWith(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  InkWell(
-                    customBorder: const CircleBorder(),
-                    onTap: () => context.go('/homepage/planner'),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: theme.colorScheme.surfaceContainerHighest,
-                        borderRadius: BorderRadius.circular(36.0),
-                      ),
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 6.0,
-                        horizontal: 10.0,
-                      ),
-                      child: Row(
-                        spacing: 8.0,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          CustomizedSvg(
-                            svgUrl:
-                                "${AppConfig.assetsBaseURL}/${ActivitySuggestionsConstants.crayonIconPath}",
-                            colorReplacements: {
-                              "#CDBEF9": colorToHex(
-                                Theme.of(context).colorScheme.secondary,
-                              ),
-                            },
-                            height: 16.0,
-                            width: 16.0,
-                          ),
-                          Text(
-                            isColumnMode
-                                ? L10n.of(context).makeYourOwnActivity
-                                : L10n.of(context).createActivity,
-                            style: theme.textTheme.titleSmall?.copyWith(
-                              fontWeight: FontWeight.bold,
+                    InkWell(
+                      customBorder: const CircleBorder(),
+                      onTap: () => context.go('/homepage/planner'),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: theme.colorScheme.surfaceContainerHighest,
+                          borderRadius: BorderRadius.circular(36.0),
+                        ),
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 6.0,
+                          horizontal: 10.0,
+                        ),
+                        child: Row(
+                          spacing: 8.0,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            CustomizedSvg(
+                              svgUrl:
+                                  "${AppConfig.assetsBaseURL}/${ActivitySuggestionsConstants.crayonIconPath}",
+                              colorReplacements: {
+                                "#CDBEF9": colorToHex(
+                                  Theme.of(context).colorScheme.secondary,
+                                ),
+                              },
+                              height: 16.0,
+                              width: 16.0,
                             ),
-                          ),
-                        ],
+                            Text(
+                              isColumnMode
+                                  ? L10n.of(context).makeYourOwnActivity
+                                  : L10n.of(context).createActivity,
+                              style: theme.textTheme.titleSmall?.copyWith(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ],
           ),
