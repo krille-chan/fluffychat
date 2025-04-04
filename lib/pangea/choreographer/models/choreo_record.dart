@@ -16,9 +16,9 @@ class ChoreoRecord {
   /// there is not a 1-to-1 map from steps to matches
   List<ChoreoRecordStep> choreoSteps;
 
-  // String current;
-
   List<PangeaMatch> openMatches;
+
+  final Set<String> pastedStrings = {};
 
   ChoreoRecord({
     required this.choreoSteps,

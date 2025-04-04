@@ -5,7 +5,7 @@ import 'package:fluffychat/pangea/choreographer/widgets/igc/pangea_text_controll
 
 class InputPasteListener {
   final PangeaTextController controller;
-  final VoidCallback onPaste;
+  final Function(String) onPaste;
 
   String _currentText = '';
 
@@ -14,10 +14,18 @@ class InputPasteListener {
     this.onPaste,
   ) {
     controller.addListener(() {
-      if (controller.editType != EditType.keyboard) return;
       final difference =
           controller.text.characters.length - _currentText.characters.length;
-      if (difference > 1) onPaste();
+      if (difference > 1 && controller.editType == EditType.keyboard) {
+        onPaste(
+          controller.text.characters
+              .getRange(
+                _currentText.characters.length,
+                controller.text.characters.length,
+              )
+              .join(),
+        );
+      }
       _currentText = controller.text;
     });
   }

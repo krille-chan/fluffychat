@@ -66,11 +66,7 @@ class Choreographer {
   _initialize() {
     tts = TtsController(chatController: chatController);
     _textController = PangeaTextController(choreographer: this);
-    InputPasteListener(
-      _textController,
-      // TODO, do something on paste
-      () => debugPrint("on paste"),
-    );
+    InputPasteListener(_textController, onPaste);
     itController = ITController(this);
     igc = IgcController(this);
     errorService = ErrorService(this);
@@ -569,6 +565,10 @@ class Choreographer {
 
     setState();
     giveInputFocus();
+  }
+
+  Future<void> onPaste(value) async {
+    choreoRecord.pastedStrings.add(value);
   }
 
   dispose() {
