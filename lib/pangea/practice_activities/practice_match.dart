@@ -1,9 +1,8 @@
-import 'package:flutter/material.dart';
-
 import 'package:collection/collection.dart';
-
+import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/constructs/construct_form.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_choice.dart';
+import 'package:flutter/material.dart';
 
 class PracticeMatchActivity {
   /// The constructIdenfifiers involved in the activity
@@ -20,35 +19,50 @@ class PracticeMatchActivity {
         'Construct: ${ith.key}, Forms: ${ith.value}',
       );
     }
-    // if there are multiple forms for a construct, pick one to display
-    // each cosntruct will have ~3 forms
-    // sometimes a form could be in multiple constructs
-    // so we need to make sure we don't display the same form twice
-    // if we get to one that is already displayed, we can pick a different form
-    // either from that construct's options, or returning to the previous construct
-    // and picking a different form from there
+    // for all the entries in matchInfo, remove an Strings that appear in multiple entries
+    final Map<String, int> allForms = {};
     for (final ith in matchInfo.entries) {
-      for (int i = 0; i < ith.value.length; i++) {
-        final String acceptableAnswer = ith.value[i];
-        if (!choices
-            .any((element) => element.choiceContent == acceptableAnswer)) {
-          choices.add(
-            PracticeChoice(choiceContent: acceptableAnswer, form: ith.key),
-          );
-          debugPrint(
-            'Added choice: ${choices.last.choiceContent} for form: ${choices.last.form.form}',
-          );
-          i = ith.value.length; // break out of the loop
+      for (final form in ith.value) {
+        if (allForms.containsKey(form)) {
+          allForms[form] = allForms[form]! + 1;
+        } else {
+          allForms[form] = 1;
         }
-        // TODO: if none found, we can probably pick a different form for the other one
       }
     }
 
-    // remove any items from matchInfo that don't have an item in choices
-    for (final ith in matchInfo.keys) {
-      if (!choices.any((choice) => choice.form == ith)) {
-        matchInfo.remove(ith);
+    for (final ith in matchInfo.entries) {
+      if (ith.value.isEmpty) {
+        matchInfo.remove(ith.key);
+        continue;
       }
+      choices.add(
+        PracticeChoice(
+          choiceContent: ith.value.firstWhere(
+            (element) => allForms[element] == 1,
+            orElse: () {
+              ErrorHandler.logError(
+                m: "no unique emoji for construct",
+                data: {
+                  'construct': ith.key,
+                  'forms': ith.value,
+                  "practice_match": toJson(),
+                },
+              );
+              final String first = ith.value.first;
+              // remove the element from the other entry to avoid duplicates
+              for (final ith in matchInfo.entries) {
+                ith.value.removeWhere((choice) => choice == first);
+              }
+              return ith.value.first;
+            },
+          ),
+          form: ith.key,
+        ),
+      );
+      debugPrint(
+        'Added PracticeChoice Construct: ${ith.key}, Forms: ${ith.value}',
+      );
     }
   }
 

@@ -1,9 +1,8 @@
-import 'package:flutter/material.dart';
-
-import 'package:get_storage/get_storage.dart';
-
+import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_selection.dart';
+import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 
 class PracticeSelectionRepo {
   static final GetStorage _storage = GetStorage('practice_selection_cache');
@@ -21,18 +20,39 @@ class PracticeSelectionRepo {
     _memoryCache[key] = entry;
   }
 
+  static MapEntry<String, PracticeSelection>? _parsePracticeSelection(
+      String key) {
+    if (!_storage.hasData(key)) {
+      return null;
+    }
+    try {
+      final entry = PracticeSelection.fromJson(_storage.read(key));
+      return MapEntry(key, entry);
+    } catch (e, s) {
+      ErrorHandler.logError(
+        m: 'Failed to parse PracticeSelection from JSON',
+        e: e,
+        s: s,
+        data: {
+          'key': key,
+          'json': _storage.read(key),
+        },
+      );
+      _storage.remove(key);
+      return null;
+    }
+  }
+
   static void clean() {
     final Iterable<String> keys = _storage.getKeys();
     if (keys.length > 300) {
       final entries = keys
-          .map((key) {
-            final entry = PracticeSelection.fromJson(_storage.read(key));
-            return MapEntry(key, entry);
-          })
+          .map((key) => _parsePracticeSelection(key))
+          .where((entry) => entry != null)
           .cast<MapEntry<String, PracticeSelection>>()
           .toList()
         ..sort((a, b) => a.value.createdAt.compareTo(b.value.createdAt));
-      for (var i = 0; i < 5; i++) {
+      for (var i = 0; i < 5 && i < entries.length; i++) {
         _storage.remove(entries[i].key);
       }
     }
@@ -53,9 +73,9 @@ class PracticeSelectionRepo {
       return _memoryCache[key];
     }
 
-    final entryJson = _storage.read(key);
-    if (entryJson != null) {
-      final entry = PracticeSelection.fromJson(entryJson);
+    final stored = _parsePracticeSelection(key);
+    if (stored != null) {
+      final entry = stored.value;
       if (DateTime.now().difference(entry.createdAt).inDays > 1) {
         debugPrint('removing old entry ${entry.createdAt}');
         _storage.remove(key);
