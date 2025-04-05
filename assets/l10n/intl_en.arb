@@ -4671,7 +4671,7 @@
       }
     }
   },
-  "chooseLemmaMeaningInstructionsBody": "Match the meanings to the words in the message!",
+  "chooseLemmaMeaningInstructionsBody": "Match meanings with the words in the message!",
   "doubleClickToEdit": "Double-click to edit.",
   "removeFeature": "Remove {feature}",
   "@removeFeature": {
@@ -4807,7 +4807,7 @@
   "knockSpaceSuccess": "You have requested to join this space! An admin will respond to your request when they receive it 😀",
   "joinByCode": "Join by code",
   "createASpace": "Create a space",
-  "chooseWordAudioInstructionsBody": "Listen to the full message then match the word audios to the right blanks!",
+  "chooseWordAudioInstructionsBody": "Listen to the complete message. Then match the audios with the words.",
   "chooseMorphsInstructionsBody": "Click the puzzle pieces for grammar questions!",
   "inviteAndLaunch": "Launch and invite",
   "createOwnChat": "Create your own chat",
