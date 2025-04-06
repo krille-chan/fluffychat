@@ -1,7 +1,3 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
@@ -11,6 +7,8 @@ import 'package:fluffychat/pangea/toolbar/widgets/message_speech_to_text_card.da
 import 'package:fluffychat/pangea/toolbar/widgets/message_translation_card.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/practice_activity/practice_activity_card.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/word_zoom/morph_focus_widget.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 const double minContentHeight = 120;
 
@@ -116,6 +114,7 @@ class ReadingAssistanceInputBar extends StatelessWidget {
         constraints: BoxConstraints(
           maxHeight: (MediaQuery.of(context).size.height / 2) -
               AppConfig.toolbarButtonsHeight,
+          maxWidth: overlayController.maxWidth,
         ),
         child: AnimatedSize(
           duration: const Duration(
