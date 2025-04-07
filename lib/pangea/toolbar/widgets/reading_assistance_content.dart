@@ -135,29 +135,32 @@ class ReadingAssistanceContentState extends State<ReadingAssistanceContent> {
       return const SizedBox();
     }
 
-    return SelectionArea(
-      child: Container(
-        decoration: BoxDecoration(
-          color: Theme.of(context).cardColor,
-          borderRadius: const BorderRadius.all(
-            Radius.circular(AppConfig.borderRadius),
-          ),
-        ),
-        constraints: const BoxConstraints(
-          maxHeight: AppConfig.toolbarMaxHeight,
-          minWidth: AppConfig.toolbarMinWidth,
-          minHeight: AppConfig.toolbarMinHeight,
-          // maxWidth is set by MessageSelectionOverlay
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            AnimatedSize(
-              duration: widget.animationDuration,
-              child: toolbarContent(context),
+    return Material(
+      type: MaterialType.transparency,
+      child: SelectionArea(
+        child: Container(
+          decoration: BoxDecoration(
+            color: Theme.of(context).cardColor,
+            borderRadius: const BorderRadius.all(
+              Radius.circular(AppConfig.borderRadius),
             ),
-          ],
+          ),
+          constraints: BoxConstraints(
+            maxHeight: AppConfig.toolbarMaxHeight,
+            minWidth: AppConfig.toolbarMinWidth,
+            minHeight: AppConfig.toolbarMinHeight,
+            maxWidth: widget.overlayController.maxWidth,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              AnimatedSize(
+                duration: widget.animationDuration,
+                child: toolbarContent(context),
+              ),
+            ],
+          ),
         ),
       ),
     );
