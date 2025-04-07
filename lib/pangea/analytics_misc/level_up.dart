@@ -130,7 +130,9 @@ class LevelUpAnimationState extends State<LevelUpAnimation> {
                     onPressed: () => Navigator.of(context).pop(),
                     child: Text(L10n.of(context).close),
                   ),
-                  const SizedBox(width: 16),
+                  if (widget.summaryStateEventId != null &&
+                      widget.analyticsRoomId != null)
+                    const SizedBox(width: 16),
                   if (widget.summaryStateEventId != null &&
                       widget.analyticsRoomId != null)
                     // Show summary button
