@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
+import 'package:http/http.dart' as http;
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:matrix/matrix.dart' as sdk;
 import 'package:matrix/matrix.dart';
@@ -26,7 +27,6 @@ class ActivityPlanCard extends StatefulWidget {
   final VoidCallback onChange;
   final ValueChanged<ActivityPlanModel> onEdit;
   final double maxWidth;
-  final String? avatarURL;
   final String? initialFilename;
 
   const ActivityPlanCard({
@@ -36,7 +36,6 @@ class ActivityPlanCard extends StatefulWidget {
     required this.onChange,
     required this.onEdit,
     this.maxWidth = 400,
-    this.avatarURL,
     this.initialFilename,
   });
 
@@ -53,7 +52,6 @@ class ActivityPlanCardState extends State<ActivityPlanCard> {
   final TextEditingController _newVocabController = TextEditingController();
   final FocusNode _vocabFocusNode = FocusNode();
 
-  String? _avatarURL;
   Uint8List? _avatar;
   String? _filename;
 
@@ -67,7 +65,6 @@ class ActivityPlanCardState extends State<ActivityPlanCard> {
     _instructionsController =
         TextEditingController(text: _tempActivity.instructions);
     _filename = widget.initialFilename;
-    _avatarURL = widget.avatarURL ?? widget.activity.imageURL;
   }
 
   static const double itemPadding = 12;
@@ -89,7 +86,7 @@ class ActivityPlanCardState extends State<ActivityPlanCard> {
       learningObjective: _learningObjectiveController.text,
       instructions: _instructionsController.text,
       vocab: _tempActivity.vocab,
-      imageURL: _avatarURL,
+      imageURL: widget.activity.imageURL,
     );
 
     widget.onEdit(updatedActivity);
@@ -162,11 +159,27 @@ class ActivityPlanCardState extends State<ActivityPlanCard> {
     await showFutureLoadingDialog(
       context: context,
       future: () async {
+        if (_avatar == null && widget.activity.imageURL != null) {
+          final resp = await http
+              .get(Uri.parse(widget.activity.imageURL!))
+              .timeout(const Duration(seconds: 5));
+          _avatar = resp.bodyBytes;
+        }
+
+        String? avatarUrl;
+        if (_avatar != null) {
+          final client = Matrix.of(context).client;
+          final url = await client.uploadContent(
+            _avatar!,
+            filename: _filename,
+          );
+          avatarUrl = url.toString();
+        }
+
         if (widget.room != null) {
           await widget.room?.sendActivityPlan(
             widget.activity,
             avatar: _avatar,
-            avatarURL: _avatarURL,
             filename: _filename,
           );
 
@@ -181,6 +194,15 @@ class ActivityPlanCardState extends State<ActivityPlanCard> {
           groupName:
               widget.activity.title.isNotEmpty ? widget.activity.title : null,
           initialState: [
+            if (_avatar != null) ...[
+              StateEvent(
+                type: EventTypes.RoomAvatar,
+                stateKey: '',
+                content: {
+                  "url": avatarUrl,
+                },
+              ),
+            ],
             StateEvent(
               type: EventTypes.RoomPowerLevels,
               stateKey: '',
@@ -200,7 +222,6 @@ class ActivityPlanCardState extends State<ActivityPlanCard> {
         await room.sendActivityPlan(
           widget.activity,
           avatar: _avatar,
-          avatarURL: _avatarURL,
           filename: _filename,
         );
 
@@ -232,12 +253,12 @@ class ActivityPlanCardState extends State<ActivityPlanCard> {
                       ),
                       clipBehavior: Clip.hardEdge,
                       alignment: Alignment.center,
-                      child: _avatarURL != null || _avatar != null
+                      child: widget.activity.imageURL != null || _avatar != null
                           ? ClipRRect(
                               child: _avatar == null
                                   ? CachedNetworkImage(
                                       fit: BoxFit.cover,
-                                      imageUrl: _avatarURL!,
+                                      imageUrl: widget.activity.imageURL!,
                                       placeholder: (context, url) {
                                         return const Center(
                                           child: CircularProgressIndicator(),

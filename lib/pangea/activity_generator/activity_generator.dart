@@ -49,7 +49,6 @@ class ActivityGeneratorState extends State<ActivityGenerator> {
   LanguageLevelTypeEnum? selectedCefrLevel;
   int? selectedNumberOfParticipants;
 
-  String? avatarURL;
   String? filename;
 
   @override
@@ -186,11 +185,15 @@ class ActivityGeneratorState extends State<ActivityGenerator> {
     final modeName =
         mode.defaultName.toLowerCase().replaceAll(RegExp(r'\s+'), '');
 
-    if (!mounted) return;
+    if (!mounted || activities == null) return;
+    final imageUrl =
+        "${AppConfig.assetsBaseURL}/${ActivitySuggestionsConstants.modeImageFileStart}$modeName.jpg";
     setState(() {
       filename =
           "${ActivitySuggestionsConstants.modeImageFileStart}$modeName.jpg";
-      avatarURL = "${AppConfig.assetsBaseURL}/$filename";
+      for (final activity in activities!) {
+        activity.imageURL = imageUrl;
+      }
     });
   }
 
@@ -217,12 +220,9 @@ class ActivityGeneratorState extends State<ActivityGenerator> {
     });
 
     try {
-      await _setModeImageURL();
       final resp = await ActivityPlanGenerationRepo.get(planRequest);
-      for (final activity in resp.activityPlans) {
-        activity.imageURL = avatarURL;
-      }
       activities = resp.activityPlans;
+      await _setModeImageURL();
     } catch (e, s) {
       error = e.toString();
       ErrorHandler.logError(

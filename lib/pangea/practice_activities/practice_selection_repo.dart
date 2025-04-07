@@ -1,8 +1,10 @@
+import 'package:flutter/material.dart';
+
+import 'package:get_storage/get_storage.dart';
+
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_selection.dart';
-import 'package:flutter/material.dart';
-import 'package:get_storage/get_storage.dart';
 
 class PracticeSelectionRepo {
   static final GetStorage _storage = GetStorage('practice_selection_cache');
@@ -21,7 +23,8 @@ class PracticeSelectionRepo {
   }
 
   static MapEntry<String, PracticeSelection>? _parsePracticeSelection(
-      String key) {
+    String key,
+  ) {
     if (!_storage.hasData(key)) {
       return null;
     }

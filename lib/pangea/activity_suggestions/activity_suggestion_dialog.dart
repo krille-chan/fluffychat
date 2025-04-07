@@ -19,6 +19,7 @@ import 'package:fluffychat/pangea/activity_suggestions/activity_suggestion_card_
 import 'package:fluffychat/pangea/chat/constants/default_power_level.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/utils/client_download_content_extension.dart';
 import 'package:fluffychat/utils/file_selector.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -119,12 +120,22 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
     if (widget.activity.imageURL == null) return;
     try {
       if (_avatar == null) {
-        final Response response =
-            await http.get(Uri.parse(widget.activity.imageURL!));
-        _avatar = response.bodyBytes;
-        _filename = Uri.encodeComponent(
-          Uri.parse(widget.activity.imageURL!).pathSegments.last,
-        );
+        if (widget.activity.imageURL!.startsWith("mxc")) {
+          final client = Matrix.of(context).client;
+          final mxcUri = Uri.parse(widget.activity.imageURL!);
+          final data = await client.downloadMxcCached(mxcUri);
+          _avatar = data;
+          _filename = Uri.encodeComponent(
+            mxcUri.pathSegments.last,
+          );
+        } else {
+          final Response response =
+              await http.get(Uri.parse(widget.activity.imageURL!));
+          _avatar = response.bodyBytes;
+          _filename = Uri.encodeComponent(
+            Uri.parse(widget.activity.imageURL!).pathSegments.last,
+          );
+        }
       }
     } catch (err, s) {
       ErrorHandler.logError(
@@ -183,12 +194,29 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
       return;
     }
 
+    String? avatarUrl;
+    if (_avatar != null) {
+      final url = await Matrix.of(context).client.uploadContent(
+            _avatar!,
+            filename: _filename,
+          );
+      avatarUrl = url.toString();
+    }
+
     final client = Matrix.of(context).client;
     final roomId = await client.createGroupChat(
       preset: CreateRoomPreset.publicChat,
       visibility: sdk.Visibility.private,
       groupName: widget.activity.title,
       initialState: [
+        if (avatarUrl != null)
+          StateEvent(
+            type: EventTypes.RoomAvatar,
+            stateKey: '',
+            content: {
+              "url": avatarUrl,
+            },
+          ),
         StateEvent(
           type: EventTypes.RoomPowerLevels,
           stateKey: '',
@@ -246,34 +274,55 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              DecoratedBox(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(24.0),
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(24.0),
-                  child: _avatar != null
-                      ? Image.memory(_avatar!, fit: BoxFit.cover)
-                      : widget.activity.imageURL != null
-                          ? widget.activity.imageURL!.startsWith("mxc")
-                              ? MxcImage(
-                                  uri: Uri.parse(widget.activity.imageURL!),
-                                  width: width,
-                                  height: 200,
-                                  cacheKey: widget.activity.bookmarkId,
-                                  fit: BoxFit.cover,
-                                )
-                              : CachedNetworkImage(
-                                  imageUrl: widget.activity.imageURL!,
-                                  fit: BoxFit.cover,
-                                  placeholder: (context, url) => const Center(
-                                    child: CircularProgressIndicator(),
-                                  ),
-                                  errorWidget: (context, url, error) =>
-                                      const SizedBox(),
-                                )
-                          : null,
-                ),
+              Stack(
+                alignment: Alignment.center,
+                children: [
+                  DecoratedBox(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(24.0),
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(24.0),
+                      child: _avatar != null
+                          ? Image.memory(_avatar!, fit: BoxFit.cover)
+                          : widget.activity.imageURL != null
+                              ? widget.activity.imageURL!.startsWith("mxc")
+                                  ? MxcImage(
+                                      uri: Uri.parse(widget.activity.imageURL!),
+                                      width: width,
+                                      height: 200,
+                                      cacheKey: widget.activity.bookmarkId,
+                                      fit: BoxFit.cover,
+                                    )
+                                  : CachedNetworkImage(
+                                      imageUrl: widget.activity.imageURL!,
+                                      fit: BoxFit.cover,
+                                      placeholder: (context, url) =>
+                                          const Center(
+                                        child: CircularProgressIndicator(),
+                                      ),
+                                      errorWidget: (context, url, error) =>
+                                          const SizedBox(),
+                                    )
+                              : null,
+                    ),
+                  ),
+                  if (_isEditing)
+                    Positioned(
+                      bottom: 8.0,
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(90),
+                        onTap: _setAvatar,
+                        child: const CircleAvatar(
+                          radius: 24.0,
+                          child: Icon(
+                            Icons.add_a_photo_outlined,
+                            size: 24.0,
+                          ),
+                        ),
+                      ),
+                    ),
+                ],
               ),
               Flexible(
                 child: SingleChildScrollView(
@@ -601,21 +650,6 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
             tooltip: L10n.of(context).close,
           ),
         ),
-        if (_isEditing)
-          Positioned(
-            top: 160.0,
-            child: InkWell(
-              borderRadius: BorderRadius.circular(90),
-              onTap: _setAvatar,
-              child: const CircleAvatar(
-                radius: 24.0,
-                child: Icon(
-                  Icons.add_a_photo_outlined,
-                  size: 24.0,
-                ),
-              ),
-            ),
-          ),
       ],
     );
 
