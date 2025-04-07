@@ -46,8 +46,8 @@ import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/events/models/representation_content_model.dart';
 import 'package:fluffychat/pangea/events/models/tokens_event_content_model.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/instructions/empty_chat_popup.dart';
 import 'package:fluffychat/pangea/instructions/instructions_enum.dart';
-import 'package:fluffychat/pangea/instructions/instructions_show_popup.dart';
 import 'package:fluffychat/pangea/learning_settings/widgets/p_language_dialog.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
@@ -421,16 +421,6 @@ class ChatController extends State<ChatPageWithRoom>
         ignorePointer: true,
       );
     });
-
-    if (room.summary.mJoinedMemberCount == 1) {
-      WidgetsBinding.instance.addPostFrameCallback(
-        (_) => instructionsShowPopup(
-          context,
-          InstructionsEnum.emptyChatWarning,
-          choreographer.inputLayerLinkAndKey.transformTargetId,
-        ),
-      );
-    }
     // Pangea#
     _tryLoadTimeline();
     if (kIsWeb) {
@@ -1934,6 +1924,13 @@ class ChatController extends State<ChatPageWithRoom>
     final theme = Theme.of(context);
     return Row(
       children: [
+        // #Pangea
+        EmptyChatPopup(
+          room: room,
+          transformTargetId:
+              choreographer.inputLayerLinkAndKey.transformTargetId,
+        ),
+        // Pangea#
         Expanded(
           child: ChatView(this),
         ),
