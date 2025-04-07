@@ -55,7 +55,7 @@ class OverlayMessage extends StatelessWidget {
 
     final displayTime = event.type == EventTypes.RoomCreate ||
         nextEvent == null ||
-        event.originServerTs.sameEnvironment(nextEvent!.originServerTs);
+        !event.originServerTs.sameEnvironment(nextEvent!.originServerTs);
 
     final nextEventSameSender = nextEvent != null &&
         {
