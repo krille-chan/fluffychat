@@ -116,7 +116,10 @@ class Avatar extends StatelessWidget {
                           ),
           ),
         ),
-        if (presenceUserId != null)
+        // #Pangea
+        // if (presenceUserId != null)
+        if (presenceUserId != null && size >= 32.0)
+          // Pangea#
           PresenceBuilder(
             client: client,
             userId: presenceUserId,
