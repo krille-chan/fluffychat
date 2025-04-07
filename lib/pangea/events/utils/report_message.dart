@@ -58,18 +58,14 @@ void reportEvent(
     hintText: L10n.of(context).reason,
     autoSubmit: true,
   );
-  if (reason == null || reason.isEmpty) return;
 
   if (score == 1) {
-    await showFutureLoadingDialog(
-      context: context,
-      future: () async => reportOffensiveMessage(
-        context,
-        event.room.id,
-        reason,
-        event.senderId,
-        event.content['body'].toString(),
-      ),
+    await reportOffensiveMessage(
+      context,
+      event.room.id,
+      reason,
+      event.senderId,
+      event.content['body'].toString(),
     );
     controller.clearSelectedEvents();
     return;
@@ -85,13 +81,12 @@ void reportEvent(
       "reason": reason,
     },
   );
-  controller.clearSelectedEvents();
 }
 
 Future<void> reportOffensiveMessage(
   BuildContext context,
   String roomId,
-  String reason,
+  String? reason,
   String reportedUserId,
   String reportedMessage,
 ) async {
@@ -100,57 +95,66 @@ Future<void> reportOffensiveMessage(
     throw ("Null room with id $roomId in reportMessage");
   }
 
-  final List<SpaceTeacher> teachers =
-      await getReportTeachers(context, reportedInRoom);
-  if (teachers.isEmpty) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-          L10n.of(context).noTeachersFound,
-        ),
-      ),
-    );
+  final resp = await showFutureLoadingDialog<List<SpaceTeacher>>(
+    context: context,
+    future: () async {
+      final List<SpaceTeacher> teachers =
+          await getReportTeachers(context, reportedInRoom);
+      if (teachers.isEmpty) {
+        throw L10n.of(context).noTeachersFound;
+      }
+      return teachers;
+    },
+  );
+
+  if (resp.isError || resp.result == null || resp.result!.isEmpty) {
     return;
   }
 
   final List<SpaceTeacher>? selectedTeachers = await showDialog(
     context: context,
     useRootNavigator: false,
-    builder: (BuildContext context) => TeacherSelectDialog(teachers: teachers),
+    builder: (BuildContext context) =>
+        TeacherSelectDialog(teachers: resp.result!),
   );
 
   if (selectedTeachers == null || selectedTeachers.isEmpty) {
     return;
   }
 
-  final List<Room> reportDMs = [];
-  for (final SpaceTeacher teacher in selectedTeachers) {
-    final Room reportDM = await getReportsDM(
-      teacher.teacher,
-      teacher.space,
-    );
-    reportDMs.add(reportDM);
-  }
+  await showFutureLoadingDialog(
+    context: context,
+    future: () async {
+      final List<Room> reportDMs = [];
+      for (final SpaceTeacher teacher in selectedTeachers) {
+        final Room reportDM = await getReportsDM(
+          teacher.teacher,
+          teacher.space,
+        );
+        reportDMs.add(reportDM);
+      }
 
-  final String reportingUserId = Matrix.of(context).client.userID ?? "";
-  final String roomName = reportedInRoom.getLocalizedDisplayname();
-  final String messageTitle = L10n.of(context).reportMessageTitle(
-    reportingUserId,
-    reportedUserId,
-    roomName,
+      final String reportingUserId = Matrix.of(context).client.userID ?? "";
+      final String roomName = reportedInRoom.getLocalizedDisplayname();
+      final String messageTitle = L10n.of(context).reportMessageTitle(
+        reportingUserId,
+        reportedUserId,
+        roomName,
+      );
+      final String messageBody = L10n.of(context).reportMessageBody(
+        reportedMessage,
+        reason ?? L10n.of(context).none,
+      );
+      final String message = "$messageTitle\n\n$messageBody";
+      for (final Room reportDM in reportDMs) {
+        final event = <String, dynamic>{
+          'msgtype': PangeaEventTypes.report,
+          'body': message,
+        };
+        await reportDM.sendEvent(event);
+      }
+    },
   );
-  final String messageBody = L10n.of(context).reportMessageBody(
-    reportedMessage,
-    reason,
-  );
-  final String message = "$messageTitle\n\n$messageBody";
-  for (final Room reportDM in reportDMs) {
-    final event = <String, dynamic>{
-      'msgtype': PangeaEventTypes.report,
-      'body': message,
-    };
-    await reportDM.sendEvent(event);
-  }
 }
 
 Future<List<SpaceTeacher>> getReportTeachers(

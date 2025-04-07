@@ -28,7 +28,9 @@ class EmptyChatPopupState extends State<EmptyChatPopup> {
   @override
   void initState() {
     super.initState();
-    if (widget.room.summary.mJoinedMemberCount == 1) {
+    if ((widget.room.summary.mJoinedMemberCount ?? 0) +
+            (widget.room.summary.mInvitedMemberCount ?? 0) ==
+        1) {
       WidgetsBinding.instance.addPostFrameCallback(
         (_) => instructionsShowPopup(
           context,
@@ -44,8 +46,9 @@ class EmptyChatPopupState extends State<EmptyChatPopup> {
             u.state.type == EventTypes.RoomMember;
       },
     ).listen((event) {
-      final members = widget.room.summary.mJoinedMemberCount;
-      if (members != null && members > 1) {
+      final members = (widget.room.summary.mJoinedMemberCount ?? 0) +
+          (widget.room.summary.mInvitedMemberCount ?? 0);
+      if (members > 1) {
         MatrixState.pAnyState.closeOverlay(
           InstructionsEnum.emptyChatWarning.toString(),
         );
