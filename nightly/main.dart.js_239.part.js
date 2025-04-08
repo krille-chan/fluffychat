@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_239",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cyJ(){return new A.EB(B.dj("eu"))},
+cyJ(){return new A.EB(B.di("eu"))},
 EB:function EB(d){this.a=d}}
 B=c[0]
 C=c[52]
@@ -634,5 +634,5 @@ x(A.EB,C.aG)})()
 B.dX(b.typeUniverse,JSON.parse('{"EB":{"aG":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_239",e:"endPart",h:b})})($__dart_deferred_initializers__,"UpKYNXSg8ID5C5eMv/OhatfxJBE=");
+a.eventLog.push({p:"main.dart.js_239",e:"endPart",h:b})})($__dart_deferred_initializers__,"3uDqBcHkHyyxjq+7n8fV7RItDrs=");
 //# sourceMappingURL=main.dart.js_239.part.js.map
