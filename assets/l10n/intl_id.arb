@@ -3342,5 +3342,7 @@
   "notSupportedOnThisDevice": "Tidak didukung pada perangkat ini",
   "@notSupportedOnThisDevice": {},
   "enterNewChat": "Masuk ke obrolan baru",
-  "@enterNewChat": {}
+  "@enterNewChat": {},
+  "commandHint_roomupgrade": "Tingkatkan ruangan ini ke versi ruangan yang ditentukan",
+  "@commandHint_roomupgrade": {}
 }

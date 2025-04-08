@@ -3341,5 +3341,9 @@
   "takeAPhoto": "Facer foto",
   "@takeAPhoto": {},
   "recordAVideo": "Gravar vídeo",
-  "@recordAVideo": {}
+  "@recordAVideo": {},
+  "enterNewChat": "Entrar na nova conversa",
+  "@enterNewChat": {},
+  "commandHint_roomupgrade": "Actualizar esta sala á versión de sala indicada",
+  "@commandHint_roomupgrade": {}
 }
