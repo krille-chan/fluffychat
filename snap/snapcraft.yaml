@@ -99,6 +99,7 @@ parts:
     stage-packages:
       - libsecret-1-0
       - libjsoncpp25
+      - libpciaccess0
 
 slots:
   dbus-svc:
