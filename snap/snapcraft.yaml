@@ -73,6 +73,7 @@ parts:
       - libjsoncpp-dev
       - libssl-dev
       - curl
+      - libpciaccess-dev
     stage-packages:
       - libsecret-1-0
       - libjsoncpp25
