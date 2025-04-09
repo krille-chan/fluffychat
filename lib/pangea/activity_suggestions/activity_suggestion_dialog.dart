@@ -277,10 +277,14 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
               Stack(
                 alignment: Alignment.center,
                 children: [
-                  DecoratedBox(
+                  Container(
+                    constraints: const BoxConstraints(
+                      maxHeight: 400.0,
+                    ),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(24.0),
                     ),
+                    width: width,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(24.0),
                       child: _avatar != null
