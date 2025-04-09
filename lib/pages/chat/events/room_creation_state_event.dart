@@ -38,11 +38,13 @@ class RoomCreationStateEvent extends StatelessWidget {
                   Text(
                     roomName,
                     style: theme.textTheme.bodyLarge,
+                    textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 8),
                   Text(
                     '${event.originServerTs.localizedTime(context)} | ${l10n.countParticipants((event.room.summary.mJoinedMemberCount ?? 1) + (event.room.summary.mInvitedMemberCount ?? 0))}',
                     style: theme.textTheme.labelSmall,
+                    textAlign: TextAlign.center,
                   ),
                 ],
               ),
