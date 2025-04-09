@@ -70,7 +70,8 @@ class PangeaPublicRoomBottomSheetState
     if (chunk?.roomType != 'm.space' && !client.getRoomById(roomID)!.isSpace) {
       outerContext.go("/rooms/$roomID");
     } else {
-      outerContext.push('/rooms/$roomID/details');
+      MatrixState.pangeaController.classController
+          .setActiveSpaceIdInChatListController(roomID);
     }
   }
 

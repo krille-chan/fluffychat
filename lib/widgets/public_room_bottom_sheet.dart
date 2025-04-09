@@ -5,18 +5,14 @@ import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:fluffychat/widgets/qr_code_viewer.dart';
 
-// #Pangea
-// class PublicRoomBottomSheet extends StatelessWidget {
-class PublicRoomBottomSheet extends StatefulWidget {
-  // Pangea#
+class PublicRoomBottomSheet extends StatelessWidget {
   final String? roomAlias;
   final BuildContext outerContext;
   final PublicRoomsChunk? chunk;
@@ -32,54 +28,10 @@ class PublicRoomBottomSheet extends StatefulWidget {
     assert(roomAlias != null || chunk != null);
   }
 
-  // #Pangea
-  @override
-  State<StatefulWidget> createState() => PublicRoomBottomSheetState();
-}
-
-class PublicRoomBottomSheetState extends State<PublicRoomBottomSheet> {
-  BuildContext get outerContext => widget.outerContext;
-  String? get roomAlias => widget.roomAlias;
-  PublicRoomsChunk? get chunk => widget.chunk;
-  List<String>? get via => widget.via;
-
-  final TextEditingController _codeController = TextEditingController();
-  late Client client;
-
-  @override
-  void initState() {
-    super.initState();
-    client = Matrix.of(outerContext).client;
-  }
-
-  @override
-  void dispose() {
-    _codeController.dispose();
-    super.dispose();
-  }
-
-  Future<void> _joinWithCode(String code) async {
-    await MatrixState.pangeaController.classController.joinClasswithCode(
-      context,
-      _codeController.text,
-      notFoundError: L10n.of(context).notTheCodeError,
-    );
-  }
-
-  bool get _isRoomMember =>
-      chunk != null && client.getRoomById(chunk!.roomId) != null;
-  // Pangea#
-
   void _joinRoom(BuildContext context) async {
-    // #Pangea
-    // final client = Matrix.of(outerContext).client;
-    // Pangea#
+    final client = Matrix.of(outerContext).client;
     final chunk = this.chunk;
     final knock = chunk?.joinRule == 'knock';
-    // #Pangea
-    final wasInRoom =
-        chunk?.roomId != null && client.getRoomById(chunk!.roomId) != null;
-    // Pangea#
     final result = await showFutureLoadingDialog<String>(
       context: context,
       future: () async {
@@ -98,20 +50,10 @@ class PublicRoomBottomSheetState extends State<PublicRoomBottomSheet> {
         }
         return roomId;
       },
-      // #Pangea
-      onSuccess: wasInRoom ? null : () => L10n.of(context).knockSpaceSuccess,
-      delay: false,
-      // Pangea#
     );
-    // #Pangea
-    // if (knock) {
-    //   return;
-    // }
-    if (knock && !wasInRoom) {
-      Navigator.of(context).pop();
+    if (knock) {
       return;
     }
-    // Pangea#
     if (result.error == null) {
       Navigator.of(context).pop<bool>(true);
       // don't open the room if the joined room is a space
@@ -119,11 +61,6 @@ class PublicRoomBottomSheetState extends State<PublicRoomBottomSheet> {
           !client.getRoomById(result.result!)!.isSpace) {
         outerContext.go('/rooms/${result.result!}');
       }
-      // #Pangea
-      else {
-        outerContext.push('/rooms/${result.result!}/details');
-      }
-      // Pangea#
       return;
     }
   }
@@ -168,19 +105,10 @@ class PublicRoomBottomSheetState extends State<PublicRoomBottomSheet> {
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                     child: IconButton(
                       icon: const Icon(Icons.qr_code_rounded),
-                      // #Pangea
-                      // onPressed: () => showQrCodeViewer(
-                      //   context,
-                      //   roomAlias,
-                      // ),
-                      onPressed: () {
-                        FluffyShare.share(
-                          "${Environment.frontendURL}/#/join_with_alias?alias=${Uri.encodeComponent(roomAlias)}",
-                          context,
-                        );
-                        Navigator.of(context).pop();
-                      },
-                      // Pangea#
+                      onPressed: () => showQrCodeViewer(
+                        context,
+                        roomAlias,
+                      ),
                     ),
                   ),
                 ],
@@ -203,10 +131,7 @@ class PublicRoomBottomSheetState extends State<PublicRoomBottomSheet> {
                               child: CircularProgressIndicator.adaptive(),
                             )
                           : Avatar(
-                              // #Pangea
-                              // client: Matrix.of(outerContext).client,
-                              client: client,
-                              // Pangea#
+                              client: Matrix.of(outerContext).client,
                               mxContent: profile.avatarUrl,
                               name: profile.name ?? roomAlias,
                               size: Avatar.defaultSize * 3,
@@ -262,98 +187,16 @@ class PublicRoomBottomSheetState extends State<PublicRoomBottomSheet> {
                     ),
                   ],
                 ),
-                // #Pangea
-                if (!_isRoomMember &&
-                    chunk?.roomType == 'm.space' &&
-                    chunk?.joinRule != 'public')
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    child: TextField(
-                      controller: _codeController,
-                      onSubmitted: (value) => _joinWithCode(value).then(
-                        (value) => Navigator.of(context).pop(),
-                      ),
-                      minLines: 1,
-                      maxLines: 1,
-                      decoration: InputDecoration(
-                        hintText: L10n.of(context).enterCodeToJoin,
-                      ),
-                    ),
-                  ),
-                if (!_isRoomMember &&
-                    chunk?.roomType == 'm.space' &&
-                    chunk?.joinRule != 'public')
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 16.0,
-                      vertical: 8,
-                    ),
-                    child: ElevatedButton.icon(
-                      onPressed: () => _joinWithCode(_codeController.text).then(
-                        (_) => Navigator.of(context).pop(),
-                      ),
-                      label: Text(L10n.of(context).joinWithCode),
-                      icon: const Icon(Icons.navigate_next),
-                    ),
-                  ),
-                if (!_isRoomMember &&
-                    chunk?.roomType == 'm.space' &&
-                    chunk?.joinRule != 'public')
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Divider(
-                            color: theme.colorScheme.surfaceContainerHighest,
-                          ),
-                        ),
-                        Container(
-                          margin: const EdgeInsets.symmetric(
-                            horizontal: 4,
-                            vertical: 16.0,
-                          ),
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 8,
-                            vertical: 2,
-                          ),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(
-                              AppConfig.borderRadius / 3,
-                            ),
-                            color: theme.colorScheme.surface.withAlpha(128),
-                          ),
-                          child: Text(
-                            L10n.of(context).or,
-                            style: TextStyle(
-                              fontSize: AppConfig.fontSizeFactor *
-                                  AppConfig.messageFontSize,
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: Divider(
-                            color: theme.colorScheme.surfaceContainerHighest,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                // Pangea#
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: ElevatedButton.icon(
                     onPressed: () => _joinRoom(context),
                     label: Text(
-                      // #Pangea
-                      // chunk?.joinRule == 'knock' &&
-                      //         Matrix.of(outerContext)
-                      //                 .client
-                      //                 .getRoomById(chunk!.roomId) ==
-                      //             null
                       chunk?.joinRule == 'knock' &&
-                              client.getRoomById(chunk!.roomId) == null
-                          // Pangea#
+                              Matrix.of(outerContext)
+                                      .client
+                                      .getRoomById(chunk!.roomId) ==
+                                  null
                           ? L10n.of(context).knock
                           : chunk?.roomType == 'm.space'
                               ? L10n.of(context).joinSpace

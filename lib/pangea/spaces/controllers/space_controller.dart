@@ -79,7 +79,7 @@ class ClassController extends BaseController {
     Room? room = client.getRoomByAlias(alias) ?? client.getRoomById(alias);
     if (room != null) {
       room.isSpace
-          ? context.push("/rooms/${room.id}/details")
+          ? setActiveSpaceIdInChatListController(room.id)
           : context.go("/rooms/${room.id}");
       return;
     }
@@ -96,7 +96,7 @@ class ClassController extends BaseController {
     }
 
     room.isSpace
-        ? context.push("/rooms/${room.id}/details")
+        ? setActiveSpaceIdInChatListController(room.id)
         : context.go("/rooms/${room.id}");
   }
 
@@ -137,8 +137,8 @@ class ClassController extends BaseController {
             );
 
         if (alreadyJoined.isNotEmpty || inFoundClass) {
-          context.push("/rooms/${alreadyJoined.first}/details");
-          throw L10n.of(context).alreadyInClass;
+          setActiveSpaceIdInChatListController(alreadyJoined.first);
+          return null;
         }
 
         if (foundClasses.isEmpty) {
@@ -187,7 +187,7 @@ class ClassController extends BaseController {
         await room.requestParticipants();
       }
 
-      context.push("/rooms/${room.id}/details");
+      setActiveSpaceIdInChatListController(spaceID.result!);
     } catch (e, s) {
       ErrorHandler.logError(
         e: e,
