@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_247",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cyO(){return new A.EG(B.di("ga"))},
-EG:function EG(d){this.a=d}}
+cyQ(){return new A.EF(B.di("ga"))},
+EF:function EF(d){this.a=d}}
 B=c[0]
 C=c[52]
 A=a.updateHolder(c[22],A)
-A.EG.prototype={
+A.EF.prototype={
 gnA(){return"br\xe9agach"},
 gjI(){return"Scr\xedobh an pasfhocal ar\xeds"},
 glY(){return"N\xed comhad \xedomh\xe1 \xe9."},
@@ -630,9 +630,9 @@ goH(){return"N\xed thaca\xedtear leis ar an ngl\xe9as seo"},
 gnV(){return"Cuir isteach comhr\xe1 nua"},
 C(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.EG,C.aG)})()
-B.dX(b.typeUniverse,JSON.parse('{"EG":{"aG":[]}}'))
+x(A.EF,C.aG)})()
+B.dX(b.typeUniverse,JSON.parse('{"EF":{"aG":[]}}'))
 var y={a:"Cuir cosc ar an \xfas\xe1ideoir \xe1irithe \xf3n seomra seo"}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_247",e:"endPart",h:b})})($__dart_deferred_initializers__,"f+rOOJl4jN4U0kH55zAZChSEi4w=");
+a.eventLog.push({p:"main.dart.js_247",e:"endPart",h:b})})($__dart_deferred_initializers__,"U6HV3JKe6YwoVBQmswMpKW2KSpY=");
 //# sourceMappingURL=main.dart.js_247.part.js.map

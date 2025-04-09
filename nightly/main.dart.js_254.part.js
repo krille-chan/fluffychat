@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_254",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cyS(){return new A.EK(B.di("hr"))},
-EK:function EK(d){this.a=d}}
+cyU(){return new A.EJ(B.di("hr"))},
+EJ:function EJ(d){this.a=d}}
 B=c[0]
 C=c[52]
 A=a.updateHolder(c[26],A)
-A.EK.prototype={
+A.EJ.prototype={
 gnA(){return"true"},
 gjI(){return"Ponovi lozinku"},
 glY(){return"Nije slikovna datoteka."},
@@ -630,8 +630,8 @@ goH(){return"Not supported on this device"},
 gnV(){return"Enter new chat"},
 C(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.EK,C.aG)})()
-B.dX(b.typeUniverse,JSON.parse('{"EK":{"aG":[]}}'))};
+y(A.EJ,C.aG)})()
+B.dX(b.typeUniverse,JSON.parse('{"EJ":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_254",e:"endPart",h:b})})($__dart_deferred_initializers__,"S7s2BcZOKf3zwweviX6O2OUjcI4=");
+a.eventLog.push({p:"main.dart.js_254",e:"endPart",h:b})})($__dart_deferred_initializers__,"Uhf3dxqmhKYiEtDnOtIFua+h6x4=");
 //# sourceMappingURL=main.dart.js_254.part.js.map

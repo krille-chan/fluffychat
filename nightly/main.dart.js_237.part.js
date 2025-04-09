@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_237",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cyI(){return new A.EA(B.di("et"))},
-EA:function EA(d){this.a=d}}
+cyK(){return new A.Ez(B.di("et"))},
+Ez:function Ez(d){this.a=d}}
 B=c[0]
 C=c[52]
 A=a.updateHolder(c[16],A)
-A.EA.prototype={
+A.Ez.prototype={
 gnA(){return"false"},
 gjI(){return"Korda salas\xf5na"},
 glY(){return"See pole pildifail."},
@@ -630,8 +630,8 @@ goH(){return"See pole antud seadmes toetatud"},
 gnV(){return"Liitu uue vestlusega"},
 C(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.EA,C.aG)})()
-B.dX(b.typeUniverse,JSON.parse('{"EA":{"aG":[]}}'))};
+y(A.Ez,C.aG)})()
+B.dX(b.typeUniverse,JSON.parse('{"Ez":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_237",e:"endPart",h:b})})($__dart_deferred_initializers__,"1E1Rky7ybGDl0xmIL7Ll+pH5JD8=");
+a.eventLog.push({p:"main.dart.js_237",e:"endPart",h:b})})($__dart_deferred_initializers__,"zwNrpV/YmiMRkd2gGLZOQEkpqE4=");
 //# sourceMappingURL=main.dart.js_237.part.js.map
