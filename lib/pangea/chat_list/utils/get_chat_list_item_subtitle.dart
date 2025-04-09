@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_selection_repo.dart';
@@ -24,7 +25,8 @@ class ChatListItemSubtitle extends StatelessWidget {
     return MatrixState.pangeaController.languageController.languagesSet &&
         !event.redacted &&
         event.type == EventTypes.Message &&
-        event.messageType == MessageTypes.Text;
+        event.messageType == MessageTypes.Text &&
+        !(AppConfig.renderHtml && !event.redacted && event.isRichMessage);
   }
 
   Future<MessageEventAndTokens> _getPangeaMessageEvent(
