@@ -1,10 +1,8 @@
-import 'package:flutter/material.dart';
-
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/utils/string_color.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
 import 'package:fluffychat/widgets/presence_builder.dart';
+import 'package:flutter/material.dart';
+import 'package:matrix/matrix.dart';
 
 class Avatar extends StatelessWidget {
   final Uri? mxContent;
@@ -37,31 +35,13 @@ class Avatar extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    var fallbackLetters = '@';
     final name = this.name;
-    if (name != null) {
-      if (name.runes.length >= 2) {
-        fallbackLetters = String.fromCharCodes(name.runes, 0, 2);
-      } else if (name.runes.length == 1) {
-        fallbackLetters = name;
-      }
-    }
+    final fallbackLetters =
+        name == null || name.isEmpty ? '@' : name.substring(0, 1);
+
     final noPic = mxContent == null ||
         mxContent.toString().isEmpty ||
         mxContent.toString() == 'null';
-    final textColor = name?.lightColorAvatar;
-    final textWidget = Container(
-      color: textColor,
-      alignment: Alignment.center,
-      child: Text(
-        fallbackLetters,
-        style: TextStyle(
-          color: Colors.white,
-          fontWeight: FontWeight.bold,
-          fontSize: (size / 3).roundToDouble(),
-        ),
-      ),
-    );
     final borderRadius = this.borderRadius ?? BorderRadius.circular(size / 2);
     final presenceUserId = this.presenceUserId;
     final container = Stack(
@@ -79,7 +59,25 @@ class Avatar extends StatelessWidget {
             ),
             clipBehavior: Clip.hardEdge,
             child: noPic
-                ? textWidget
+                ? Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [name!.lightColorAvatar, name.color],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ),
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      fallbackLetters,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: (size / 2.5).roundToDouble(),
+                      ),
+                    ),
+                  )
                 : MxcImage(
                     client: client,
                     key: ValueKey(mxContent.toString()),
