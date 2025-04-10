@@ -69,12 +69,15 @@ abstract class FluffyThemes {
         selectionColor: colorScheme.onSurface.withAlpha(128),
         selectionHandleColor: colorScheme.secondary,
       ),
-      inputDecorationTheme: InputDecorationTheme(
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+      inputDecorationTheme: const InputDecorationTheme(
+        border: UnderlineInputBorder(
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(AppConfig.borderRadius),
+            topLeft: Radius.circular(AppConfig.borderRadius),
+          ),
         ),
-        contentPadding: const EdgeInsets.all(12),
-        filled: false,
+        //contentPadding: EdgeInsets.all(12),
+        filled: true,
       ),
       appBarTheme: AppBarTheme(
         toolbarHeight: isColumnMode ? 72 : 56,
@@ -130,6 +133,7 @@ extension BubbleColorTheme on ThemeData {
   Color get bubbleColor => brightness == Brightness.light
       ? colorScheme.primary
       : colorScheme.primaryContainer;
+
   Color get onBubbleColor => brightness == Brightness.light
       ? colorScheme.onPrimary
       : colorScheme.onPrimaryContainer;

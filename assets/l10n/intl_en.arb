@@ -9,6 +9,10 @@
   "@repeatPassword": {},
   "notAnImage": "Not an image file.",
   "@notAnImage": {},
+  "setCustomPermissionLevel": "Set custom permission level",
+  "setPermissionsLevelDescription": "Please choose a predefined role below or enter a custom permission level between 0 and 100.",
+  "ignoreUser": "Ignore user",
+  "normalUser": "Normal user",
   "remove": "Remove",
   "@remove": {
     "type": "String",

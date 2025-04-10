@@ -20,6 +20,7 @@ Future<Result<T>> showFutureLoadingDialog<T>({
   bool barrierDismissible = false,
   bool delay = true,
   ExceptionContext? exceptionContext,
+  bool ignoreError = false,
 }) async {
   final futureExec = future();
   final resultFuture = ResultFuture(futureExec);
@@ -67,6 +68,7 @@ class LoadingDialog<T> extends StatefulWidget {
     this.backLabel,
     this.exceptionContext,
   });
+
   @override
   LoadingDialogState<T> createState() => LoadingDialogState<T>();
 }

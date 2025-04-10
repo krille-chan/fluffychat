@@ -1,10 +1,3 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:flutter_linkify/flutter_linkify.dart';
-import 'package:go_router/go_router.dart';
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/pages/chat_details/chat_details.dart';
 import 'package:fluffychat/pages/chat_details/participant_list_item.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
@@ -13,6 +6,12 @@ import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/chat_settings_popup_menu.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:flutter_linkify/flutter_linkify.dart';
+import 'package:go_router/go_router.dart';
+import 'package:matrix/matrix.dart';
+
 import '../../utils/url_launcher.dart';
 import '../../widgets/qr_code_viewer.dart';
 
@@ -37,6 +36,8 @@ class ChatDetailsView extends StatelessWidget {
       );
     }
 
+    final directChatMatrixID = room.directChatMatrixID;
+
     return StreamBuilder(
       stream: room.client.onRoomState.stream
           .where((update) => update.roomId == room.id),
@@ -57,7 +58,7 @@ class ChatDetailsView extends StatelessWidget {
                 const Center(child: BackButton()),
             elevation: theme.appBarTheme.elevation,
             actions: <Widget>[
-              if (room.canonicalAlias.isNotEmpty) ...[
+              if (room.canonicalAlias.isNotEmpty)
                 IconButton(
                   tooltip: L10n.of(context).share,
                   icon: const Icon(Icons.qr_code_rounded),
@@ -65,8 +66,16 @@ class ChatDetailsView extends StatelessWidget {
                     context,
                     room.canonicalAlias,
                   ),
+                )
+              else if (directChatMatrixID != null)
+                IconButton(
+                  tooltip: L10n.of(context).share,
+                  icon: const Icon(Icons.qr_code_rounded),
+                  onPressed: () => showQrCodeViewer(
+                    context,
+                    directChatMatrixID,
+                  ),
                 ),
-              ],
               if (controller.widget.embeddedCloseButton == null)
                 ChatSettingsPopupMenu(room, false),
             ],

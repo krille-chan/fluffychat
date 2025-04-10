@@ -1,12 +1,5 @@
 import 'dart:ui' as ui;
 
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:matrix/matrix.dart';
-import 'package:swipe_to_action/swipe_to_action.dart';
-
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/events/room_creation_state_event.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
@@ -14,6 +7,13 @@ import 'package:fluffychat/utils/file_description.dart';
 import 'package:fluffychat/utils/string_color.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:fluffychat/widgets/member_actions_popup_menu_button.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:matrix/matrix.dart';
+import 'package:swipe_to_action/swipe_to_action.dart';
+
 import '../../../config/app_config.dart';
 import 'message_content.dart';
 import 'message_reactions.dart';
@@ -27,10 +27,10 @@ class Message extends StatelessWidget {
   final Event? previousEvent;
   final bool displayReadMarker;
   final void Function(Event) onSelect;
-  final void Function(Event) onAvatarTab;
   final void Function(Event) onInfoTab;
   final void Function(String) scrollToEventId;
   final void Function() onSwipe;
+  final void Function() onMention;
   final bool longPressSelect;
   final bool selected;
   final Timeline timeline;
@@ -49,7 +49,6 @@ class Message extends StatelessWidget {
     this.longPressSelect = false,
     required this.onSelect,
     required this.onInfoTab,
-    required this.onAvatarTab,
     required this.scrollToEventId,
     required this.onSwipe,
     this.selected = false,
@@ -58,6 +57,7 @@ class Message extends StatelessWidget {
     this.animateIn = false,
     this.resetAnimateIn,
     this.wallpaperMode = false,
+    required this.onMention,
     required this.scrollController,
     required this.colors,
     super.key,
@@ -236,13 +236,16 @@ class Message extends StatelessWidget {
                             builder: (context, snapshot) {
                               final user = snapshot.data ??
                                   event.senderFromMemoryOrFallback;
-                              return Avatar(
-                                mxContent: user.avatarUrl,
-                                name: user.calcDisplayname(),
-                                presenceUserId: user.stateKey,
-                                presenceBackgroundColor:
-                                    wallpaperMode ? Colors.transparent : null,
-                                onTap: () => onAvatarTab(event),
+                              return MemberActionsPopupMenuButton(
+                                onMention: onMention,
+                                user: user,
+                                child: Avatar(
+                                  mxContent: user.avatarUrl,
+                                  name: user.calcDisplayname(),
+                                  presenceUserId: user.stateKey,
+                                  presenceBackgroundColor:
+                                      wallpaperMode ? Colors.transparent : null,
+                                ),
                               );
                             },
                           ),
