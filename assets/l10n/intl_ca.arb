@@ -2150,7 +2150,7 @@
   "@widgetUrlError": {},
   "emailOrUsername": "Email o nom d'usuàrïi",
   "@emailOrUsername": {},
-  "newSpaceDescription": "Els espais et permeten consolidar ls por",
+  "newSpaceDescription": "Els espais et permeten consolidar els teus xats i construir comunitats públiques o privades.",
   "@newSpaceDescription": {},
   "chatDescription": "Descripció del xat",
   "@chatDescription": {},
@@ -3328,5 +3328,17 @@
   "shareKeysWith": "Comparteix les claus amb...",
   "@shareKeysWith": {},
   "crossVerifiedDevicesIfEnabled": "Els dispositius verificats mútuament, si està activat",
-  "@crossVerifiedDevicesIfEnabled": {}
+  "@crossVerifiedDevicesIfEnabled": {},
+  "commandHint_roomupgrade": "Actualitza aquesta sala a la versió indicada",
+  "@commandHint_roomupgrade": {},
+  "takeAPhoto": "Fes una foto",
+  "@takeAPhoto": {},
+  "recordAVideo": "Grava un vídeo",
+  "@recordAVideo": {},
+  "optionalMessage": "(Opcional) missatge...",
+  "@optionalMessage": {},
+  "enterNewChat": "Entra al nou xat",
+  "@enterNewChat": {},
+  "notSupportedOnThisDevice": "No suportat en aquest dispositiu",
+  "@notSupportedOnThisDevice": {}
 }
