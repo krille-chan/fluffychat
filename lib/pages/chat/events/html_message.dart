@@ -10,10 +10,16 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
+import 'package:fluffychat/pangea/common/utils/any_state_holder.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
-import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
+import 'package:fluffychat/pangea/message_token_text/message_token_button.dart';
+import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
+import 'package:fluffychat/pangea/toolbar/enums/reading_assistance_mode_enum.dart';
+import 'package:fluffychat/pangea/toolbar/utils/token_rendering_util.dart';
+import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/widgets/avatar.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
 import '../../../utils/url_launcher.dart';
 
@@ -25,12 +31,14 @@ class HtmlMessage extends StatelessWidget {
   final TextStyle linkStyle;
   final void Function(LinkableElement) onOpen;
   // #Pangea
-  final bool isOverlay;
+  final MessageOverlayController? overlayController;
   final PangeaMessageEvent? pangeaMessageEvent;
   final ChatController controller;
   final Event event;
   final Event? nextEvent;
   final Event? prevEvent;
+  final bool isTransitionAnimation;
+  final ReadingAssistanceMode? readingAssistanceMode;
 
   final bool Function(PangeaToken)? isSelected;
   final void Function(PangeaToken)? onClick;
@@ -45,7 +53,7 @@ class HtmlMessage extends StatelessWidget {
     this.textColor = Colors.black,
     required this.onOpen,
     // #Pangea
-    required this.isOverlay,
+    this.overlayController,
     required this.event,
     this.pangeaMessageEvent,
     required this.controller,
@@ -53,6 +61,8 @@ class HtmlMessage extends StatelessWidget {
     this.prevEvent,
     this.isSelected,
     this.onClick,
+    this.isTransitionAnimation = false,
+    this.readingAssistanceMode,
     // Pangea#
   });
 
@@ -262,53 +272,91 @@ class HtmlMessage extends StatelessWidget {
             ? isSelected!.call(token)
             : false;
 
-        final shouldDo = pangeaMessageEvent?.shouldDoActivity(
-              token: token,
-              a: ActivityTypeEnum.wordMeaning,
-              feature: null,
-              tag: null,
-            ) ??
-            false;
+        final renderer = TokenRenderingUtil(
+          pangeaMessageEvent: pangeaMessageEvent,
+          readingAssistanceMode: readingAssistanceMode,
+          existingStyle: AppConfig.messageTextStyle(
+            pangeaMessageEvent!.event,
+            textColor,
+          ),
+          overlayController: overlayController,
+          isTransitionAnimation: isTransitionAnimation,
+        );
 
-        // @ggurdin: probably changing this, not sure when it shows up
-        final didMeaningActivity = token?.didActivitySuccessfully(
-              ActivityTypeEnum.wordMeaning,
-            ) ??
-            true;
-
-        Color backgroundColor = Colors.transparent;
-        if (selected) {
-          backgroundColor = Theme.of(context).colorScheme.primary.withAlpha(80);
-        } else if (isSelected != null && shouldDo) {
-          backgroundColor = !didMeaningActivity
-              ? AppConfig.success.withAlpha(60)
-              : AppConfig.gold.withAlpha(60);
-        }
+        final tokenWidth = renderer.tokenTextWidthForContainer(
+          context,
+          node.innerHtml,
+        );
 
         return WidgetSpan(
           alignment: PlaceholderAlignment.middle,
-          child: MouseRegion(
-            cursor: SystemMouseCursors.click,
-            child: GestureDetector(
-              onTap: onClick != null && token != null
-                  ? () => onClick?.call(token)
+          child: CompositedTransformTarget(
+            link: token != null && renderer.assignTokenKey
+                ? MatrixState.pAnyState
+                    .layerLinkAndKey(token.text.uniqueKey)
+                    .link
+                : LayerLinkAndKey(token.hashCode.toString()).link,
+            child: Column(
+              key: token != null && renderer.assignTokenKey
+                  ? MatrixState.pAnyState
+                      .layerLinkAndKey(token.text.uniqueKey)
+                      .key
                   : null,
-              child: Text.rich(
-                TextSpan(
-                  children: [
-                    LinkifySpan(
-                      text: node.innerHtml,
-                      style: AppConfig.messageTextStyle(
-                        pangeaMessageEvent!.event,
-                        textColor,
-                      ).merge(TextStyle(backgroundColor: backgroundColor)),
-                      linkStyle: linkStyle,
-                      onOpen: (url) =>
-                          UrlLauncher(context, url.url).launchUrl(),
+              children: [
+                if (renderer.showCenterStyling && token != null)
+                  MessageTokenButton(
+                    token: token,
+                    overlayController: overlayController,
+                    textStyle: renderer.style(
+                      context,
+                      color: renderer.backgroundColor(
+                        context,
+                        selected,
+                      ),
                     ),
-                  ],
+                    width: tokenWidth,
+                    animate: isTransitionAnimation,
+                    practiceTarget:
+                        overlayController?.toolbarMode.associatedActivityType !=
+                                null
+                            ? overlayController?.practiceSelection
+                                ?.activities(
+                                  overlayController!
+                                      .toolbarMode.associatedActivityType!,
+                                )
+                                .firstWhereOrNull(
+                                  (a) => a.tokens.contains(token),
+                                )
+                            : null,
+                  ),
+                MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: GestureDetector(
+                    onTap: onClick != null && token != null
+                        ? () => onClick?.call(token)
+                        : null,
+                    child: Text.rich(
+                      TextSpan(
+                        children: [
+                          LinkifySpan(
+                            text: node.innerHtml,
+                            style: renderer.style(
+                              context,
+                              color: renderer.backgroundColor(
+                                context,
+                                selected,
+                              ),
+                            ),
+                            linkStyle: linkStyle,
+                            onOpen: (url) =>
+                                UrlLauncher(context, url.url).launchUrl(),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
           ),
         );
@@ -611,7 +659,7 @@ class HtmlMessage extends StatelessWidget {
     return SelectionArea(
       child: GestureDetector(
         onTap: () {
-          if (!isOverlay) {
+          if (overlayController == null) {
             controller.showToolbar(
               pangeaMessageEvent?.event ?? event,
               pangeaMessageEvent: pangeaMessageEvent,

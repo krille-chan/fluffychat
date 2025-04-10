@@ -95,10 +95,12 @@ class _CustomizedSvgState extends State<CustomizedSvg> {
         _hasError = modifiedSvg == null;
       });
     } catch (_) {
-      setState(() {
-        _isLoading = false;
-        _hasError = true;
-      });
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+          _hasError = true;
+        });
+      }
     }
   }
 

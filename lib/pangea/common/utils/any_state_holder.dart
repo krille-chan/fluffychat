@@ -103,6 +103,10 @@ class PangeaAnyState {
 
   RenderBox? getRenderBox(String key) =>
       layerLinkAndKey(key).key.currentContext?.findRenderObject() as RenderBox?;
+
+  bool isOverlayOpen(String overlayKey) {
+    return entries.any((element) => element.key == overlayKey);
+  }
 }
 
 class LayerLinkAndKey {

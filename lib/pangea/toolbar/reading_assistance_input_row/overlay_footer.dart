@@ -33,8 +33,12 @@ class OverlayFooter extends StatelessWidget {
       // constraints: const BoxConstraints(
       //   maxWidth: FluffyThemes.columnWidth * 2.5,
       // ),
+      height: AppConfig.readingAssistanceInputBarHeight +
+          AppConfig.toolbarButtonsHeight +
+          20.0,
       alignment: Alignment.center,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
           if (showToolbarButtons)
             ToolbarButtonRow(overlayController: overlayController),

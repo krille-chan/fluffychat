@@ -142,16 +142,22 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
           .messageDisplayRepresentation!.tokensToSave
           .map((e) => e.vocabConstructID)
           .toList();
+
       final List<Future<LemmaInfoResponse>> lemmaInfoFutures =
           messageVocabConstructIds
               .map((token) => token.getLemmaInfo())
               .toList();
-      final List<LemmaInfoResponse> lemmaInfos =
-          await Future.wait(lemmaInfoFutures);
-      messageLemmaInfos = Map.fromIterables(
-        messageVocabConstructIds,
-        lemmaInfos,
-      );
+
+      Future.wait(lemmaInfoFutures).then((resp) {
+        if (mounted) {
+          setState(
+            () => messageLemmaInfos = Map.fromIterables(
+              messageVocabConstructIds,
+              resp,
+            ),
+          );
+        }
+      });
     } catch (e, s) {
       debugger(when: kDebugMode);
       ErrorHandler.logError(
@@ -285,28 +291,38 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
       _selectedSpan = selectedSpan;
     }
 
-    if (selectedToken != null) {
-      final entry = ReadingAssistanceContent(
-        key: wordZoomKey,
-        pangeaMessageEvent: pangeaMessageEvent!,
-        overlayController: this,
-      );
-      if (mounted) {
-        OverlayUtil.showPositionedCard(
-          context: context,
-          cardToShow: entry,
-          transformTargetId: selectedToken!.text.uniqueKey,
-          closePrevOverlay: false,
-          backDropToDismiss: false,
-          addBorder: false,
-          overlayKey: selectedToken!.text.uniqueKey,
-          maxHeight: AppConfig.toolbarMaxHeight,
-          maxWidth: AppConfig.toolbarMinWidth,
-        );
-      }
+    if (mounted) setState(() {});
+    Future.delayed(const Duration(milliseconds: 10), () {
+      _showReadingAssistanceContent();
+    });
+  }
+
+  void _showReadingAssistanceContent() {
+    if (selectedToken == null) return;
+    if (MatrixState.pAnyState.isOverlayOpen(
+      selectedToken!.text.uniqueKey,
+    )) {
+      return;
     }
 
-    if (mounted) setState(() {});
+    final entry = ReadingAssistanceContent(
+      key: wordZoomKey,
+      pangeaMessageEvent: pangeaMessageEvent!,
+      overlayController: this,
+    );
+    if (mounted) {
+      OverlayUtil.showPositionedCard(
+        context: context,
+        cardToShow: entry,
+        transformTargetId: selectedToken!.text.uniqueKey,
+        closePrevOverlay: false,
+        backDropToDismiss: false,
+        addBorder: false,
+        overlayKey: selectedToken!.text.uniqueKey,
+        maxHeight: AppConfig.toolbarMaxHeight,
+        maxWidth: AppConfig.toolbarMinWidth,
+      );
+    }
   }
 
   void updateToolbarMode(MessageMode mode) => setState(() {

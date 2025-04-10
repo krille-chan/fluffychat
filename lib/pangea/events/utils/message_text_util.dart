@@ -18,10 +18,10 @@ class TokenPosition {
   /// End index of the token in the message
   final int tokenEnd;
 
-  final bool selected;
   final bool hideContent;
   final PangeaToken? token;
   final bool isHighlighted;
+  final bool selected;
 
   const TokenPosition({
     required this.start,
@@ -36,6 +36,8 @@ class TokenPosition {
 }
 
 class MessageTextUtil {
+  static final Map<String, List<TokenPosition>> _tokenPositionsCache = {};
+
   static List<TokenPosition>? getTokenPositions(
     PangeaMessageEvent pangeaMessageEvent, {
     PracticeSelection? messageAnalyticsEntry,
@@ -45,6 +47,27 @@ class MessageTextUtil {
     try {
       if (pangeaMessageEvent.messageDisplayRepresentation?.tokens == null) {
         return null;
+      }
+
+      if (_tokenPositionsCache.containsKey(pangeaMessageEvent.eventId)) {
+        return _tokenPositionsCache[pangeaMessageEvent.eventId]!
+            .map(
+              (t) => TokenPosition(
+                start: t.start,
+                end: t.end,
+                tokenStart: t.tokenStart,
+                tokenEnd: t.tokenEnd,
+                hideContent: t.hideContent,
+                selected: t.token != null
+                    ? isSelected?.call(t.token!) ?? false
+                    : false,
+                isHighlighted: t.token != null
+                    ? isHighlighted?.call(t.token!) ?? false
+                    : false,
+                token: t.token,
+              ),
+            )
+            .toList();
       }
 
       // Convert the entire message into a list of characters
@@ -131,6 +154,7 @@ class MessageTextUtil {
         continue;
       }
 
+      _tokenPositionsCache[pangeaMessageEvent.eventId] = tokenPositions;
       return tokenPositions;
     } catch (err, s) {
       ErrorHandler.logError(

@@ -4,6 +4,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
+import 'package:fluffychat/pages/chat/reactions_picker.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_mode_locked_card.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
@@ -48,7 +49,7 @@ class ReadingAssistanceInputBar extends StatelessWidget {
         case MessageMode.noneSelected:
         case MessageMode.messageMeaning:
           //TODO: show all emojis for the lemmas and allow sending normal reactions
-          break;
+          return ReactionsPicker(controller);
 
         case MessageMode.messageTranslation:
           if (overlayController.isTranslationUnlocked) {
@@ -97,10 +98,6 @@ class ReadingAssistanceInputBar extends StatelessWidget {
       }
     }
 
-    if (content == null) {
-      return const SizedBox();
-    }
-
     return Container(
       constraints: const BoxConstraints(
         minHeight: minContentHeight,
@@ -114,8 +111,7 @@ class ReadingAssistanceInputBar extends StatelessWidget {
     return Expanded(
       child: ConstrainedBox(
         constraints: BoxConstraints(
-          maxHeight: (MediaQuery.of(context).size.height / 2) -
-              AppConfig.toolbarButtonsHeight,
+          maxHeight: AppConfig.readingAssistanceInputBarHeight,
           maxWidth: overlayController.maxWidth,
         ),
         child: AnimatedSize(

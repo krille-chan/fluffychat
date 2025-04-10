@@ -41,6 +41,18 @@ enum MorphFeaturesEnum {
   Unknown,
 }
 
+class MorphFeatureUtil {
+  static final Map<String, MorphFeaturesEnum> _morphFeatureCache = {};
+
+  static void set(String key, MorphFeaturesEnum value) {
+    _morphFeatureCache[key] = value;
+  }
+
+  static MorphFeaturesEnum? get(String key) {
+    return _morphFeatureCache[key];
+  }
+}
+
 extension MorphFeaturesEnumExtension on MorphFeaturesEnum {
   /// Convert enum to string
   String toShortString() {
@@ -49,6 +61,12 @@ extension MorphFeaturesEnumExtension on MorphFeaturesEnum {
 
   /// Convert string to enum
   static MorphFeaturesEnum fromString(String category) {
+    // Repeated regex operations are causing performance issues,
+    // so we cache the results in a static map
+    if (MorphFeatureUtil.get(category) != null) {
+      return MorphFeatureUtil.get(category)!;
+    }
+
     final morph = MorphFeaturesEnum.values.firstWhereOrNull(
       (e) =>
           e.toShortString() ==
@@ -62,6 +80,8 @@ extension MorphFeaturesEnumExtension on MorphFeaturesEnum {
       );
       return MorphFeaturesEnum.Unknown;
     }
+
+    MorphFeatureUtil.set(category, morph);
     return morph;
   }
 

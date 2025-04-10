@@ -9,6 +9,7 @@ import 'package:fluffychat/pages/chat/events/message_content.dart';
 import 'package:fluffychat/pages/chat/events/reply_content.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/events/extensions/pangea_event_extension.dart';
+import 'package:fluffychat/pangea/toolbar/enums/reading_assistance_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -30,6 +31,7 @@ class OverlayMessage extends StatelessWidget {
   final double maxHeight;
 
   final bool isTransitionAnimation;
+  final ReadingAssistanceMode? readingAssistanceMode;
 
   const OverlayMessage(
     this.event, {
@@ -45,6 +47,7 @@ class OverlayMessage extends StatelessWidget {
     this.prevEvent,
     this.sizeAnimation,
     this.isTransitionAnimation = false,
+    this.readingAssistanceMode,
     super.key,
   });
 
@@ -204,6 +207,7 @@ class OverlayMessage extends StatelessWidget {
                       ? theme.colorScheme.onPrimary
                       : theme.colorScheme.onSurface,
               isTransitionAnimation: isTransitionAnimation,
+              readingAssistanceMode: readingAssistanceMode,
             ),
             if (event.hasAggregatedEvents(
               timeline,
