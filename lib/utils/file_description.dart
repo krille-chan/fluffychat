@@ -2,6 +2,9 @@ import 'package:matrix/matrix.dart';
 
 extension FileDescriptionExtension on Event {
   String? get fileDescription {
+    final description = content.tryGet<String>('description');
+    if (description != null) return description;
+
     if (!{
       MessageTypes.File,
       MessageTypes.Image,
