@@ -566,6 +566,13 @@ class Message extends StatelessWidget {
             ? SwipeDirection.endToStart
             : SwipeDirection.startToEnd,
         onSwipe: (_) => onSwipe(),
+        onThreshold: (_) {
+          HapticFeedback.lightImpact();
+        },
+        dismissThresholds: const {
+          SwipeDirection.endToStart: 0.3,
+          SwipeDirection.startToEnd: 0.3,
+        },
         child: Container(
           constraints: const BoxConstraints(
             maxWidth: FluffyThemes.columnWidth * 2.5,
