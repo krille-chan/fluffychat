@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:math';
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
@@ -69,7 +68,6 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
 
   Animation<Offset>? _overlayOffsetAnimation;
   Animation<Size>? _messageSizeAnimation;
-  Animation<double>? _blurAnimation;
   Offset? _currentOffset;
 
   StreamSubscription? _reactionSubscription;
@@ -108,18 +106,9 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
       },
     ).listen((_) => setState(() {}));
 
-    _blurAnimation = Tween<double>(begin: 0.0, end: 2.5).animate(
-      CurvedAnimation(
-        parent: _animationController,
-        curve: FluffyThemes.animationCurve,
-      ),
-    );
-
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await _centeredMessageCompleter.future;
       if (!mounted) return;
-
-      _animationController.forward(from: 0);
 
       setState(() {
         _currentOffset = Offset(
@@ -524,36 +513,19 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
 
     return Stack(
       children: [
-        if (_blurAnimation != null)
-          IgnorePointer(
+        Positioned.fill(
+          child: IgnorePointer(
             child: AnimatedOpacity(
               duration: _animationDuration,
               opacity: _readingAssistanceModeOpacity,
-              child: Positioned.fill(
-                child: DecoratedBox(
-                  decoration: const BoxDecoration(
-                    color: Colors.black,
-                  ),
-                  child: AnimatedBuilder(
-                    animation: _blurAnimation!,
-                    builder: (context, _) {
-                      return BackdropFilter(
-                        filter: ImageFilter.blur(
-                          sigmaX: _blurAnimation!.value,
-                          sigmaY: _blurAnimation!.value,
-                        ),
-                        child: Container(
-                          height: double.infinity,
-                          width: double.infinity,
-                          color: Colors.transparent,
-                        ),
-                      );
-                    },
-                  ),
-                ),
+              child: Container(
+                height: double.infinity,
+                width: double.infinity,
+                color: Colors.black,
               ),
             ),
           ),
+        ),
         Padding(
           padding: EdgeInsets.only(
             left: _horizontalPadding,
