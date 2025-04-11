@@ -7,9 +7,9 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
+import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:fluffychat/widgets/mxc_image.dart';
 
 class PangeaPublicRoomBottomSheet extends StatefulWidget {
   final String? roomAlias;
@@ -171,14 +171,11 @@ class PangeaPublicRoomBottomSheetState
                   Row(
                     spacing: 16.0,
                     children: [
-                      ClipRRect(
+                      Avatar(
+                        mxContent: chunk?.avatarUrl,
+                        name: chunk?.name,
+                        size: 160.0,
                         borderRadius: BorderRadius.circular(24.0),
-                        child: MxcImage(
-                          uri: chunk?.avatarUrl,
-                          width: 160.0,
-                          height: 160.0,
-                          fit: BoxFit.cover,
-                        ),
                       ),
                       Expanded(
                         child: SizedBox(
@@ -188,6 +185,7 @@ class PangeaPublicRoomBottomSheetState
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Row(
+                                spacing: 8.0,
                                 children: [
                                   const Icon(Icons.group),
                                   Text(
