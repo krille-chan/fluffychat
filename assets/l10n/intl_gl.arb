@@ -3345,5 +3345,13 @@
   "enterNewChat": "Entrar na nova conversa",
   "@enterNewChat": {},
   "commandHint_roomupgrade": "Actualizar esta sala á versión de sala indicada",
-  "@commandHint_roomupgrade": {}
+  "@commandHint_roomupgrade": {},
+  "setCustomPermissionLevel": "Establecer nivel personalizado dos permisos",
+  "@setCustomPermissionLevel": {},
+  "setPermissionsLevelDescription": "Elixe un rol predefinido dos indicados ou escribe un nivel personalizado entre 0 e 100.",
+  "@setPermissionsLevelDescription": {},
+  "ignoreUser": "Ignorar usuaria",
+  "@ignoreUser": {},
+  "normalUser": "Usuaria corrente",
+  "@normalUser": {}
 }
