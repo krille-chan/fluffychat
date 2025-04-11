@@ -69,15 +69,11 @@ abstract class FluffyThemes {
         selectionColor: colorScheme.onSurface.withAlpha(128),
         selectionHandleColor: colorScheme.secondary,
       ),
-      inputDecorationTheme: const InputDecorationTheme(
-        border: UnderlineInputBorder(
-          borderRadius: BorderRadius.only(
-            topRight: Radius.circular(AppConfig.borderRadius),
-            topLeft: Radius.circular(AppConfig.borderRadius),
-          ),
+      inputDecorationTheme: InputDecorationTheme(
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(AppConfig.borderRadius),
         ),
-        //contentPadding: EdgeInsets.all(12),
-        filled: true,
+        contentPadding: const EdgeInsets.all(12),
       ),
       appBarTheme: AppBarTheme(
         toolbarHeight: isColumnMode ? 72 : 56,
