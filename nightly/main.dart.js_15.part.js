@@ -2,16 +2,16 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_15",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cyW(d){return new A.zG(B.di(d))},
-cyX(){return new A.ET(B.di("pt_BR"))},
-cyY(){return new A.EU(B.di("pt_PT"))},
-zG:function zG(d){this.a=d},
-ET:function ET(d){this.a=d},
-EU:function EU(d){this.a=d}},C
+cyW(d){return new A.zH(B.di(d))},
+cyX(){return new A.EU(B.di("pt_BR"))},
+cyY(){return new A.EV(B.di("pt_PT"))},
+zH:function zH(d){this.a=d},
+EU:function EU(d){this.a=d},
+EV:function EV(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[4],A)
 C=c[52]
-A.zG.prototype={
+A.zH.prototype={
 gnu(){return"false"},
 gjH(){return"Repeat password"},
 glU(){return"Not an image file."},
@@ -632,7 +632,7 @@ gpd(){return"(Optional) message..."},
 goG(){return"Not supported on this device"},
 gnP(){return"Enter new chat"},
 C(d,e){return this.gbc(this).$1(e)}}
-A.ET.prototype={
+A.EU.prototype={
 gjH(){return"Repita a senha"},
 glU(){return"N\xe3o \xe9 uma imagem."},
 gbc(d){return"Remover"},
@@ -1123,7 +1123,7 @@ mn(d){return"Nesse momento, h\xe1 "+d+" usu\xe1rios bloqueados."},
 gml(){return"Restrito"},
 glE(){return"Bater na porta restrito"},
 C(d,e){return this.gbc(this).$1(e)}}
-A.EU.prototype={
+A.EV.prototype={
 gjH(){return"Repete a palavra-passe"},
 gbc(d){return"Remover"},
 geA(){return"Acerca de"},
@@ -1371,10 +1371,10 @@ eX(d){return d+" enviou um autocolante"},
 h1(d){return d+" enviou um v\xeddeo"},
 C(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit,w=a.inheritMany
-x(A.zG,C.aG)
-w(A.zG,[A.ET,A.EU])})()
-B.dV(b.typeUniverse,JSON.parse('{"zG":{"aG":[]},"ET":{"aG":[]},"EU":{"aG":[]}}'))
+x(A.zH,C.aG)
+w(A.zH,[A.EU,A.EV])})()
+B.dV(b.typeUniverse,JSON.parse('{"zH":{"aG":[]},"EU":{"aG":[]},"EV":{"aG":[]}}'))
 var y={d:" alterou a visibilidade do hist\xf3rico para: "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_15",e:"endPart",h:b})})($__dart_deferred_initializers__,"Vzq0lTj6JRW9Hz1wTjkurVtVCco=");
+a.eventLog.push({p:"main.dart.js_15",e:"endPart",h:b})})($__dart_deferred_initializers__,"AapiHsqbAw6ofMB6eS5pY/D7/Fc=");
 //# sourceMappingURL=main.dart.js_15.part.js.map

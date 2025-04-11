@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_282",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cz_(){return new A.EW(B.di("ru"))},
-EW:function EW(d){this.a=d}}
+cz_(){return new A.EX(B.di("ru"))},
+EX:function EX(d){this.a=d}}
 B=c[0]
 C=c[52]
 A=a.updateHolder(c[41],A)
-A.EW.prototype={
+A.EX.prototype={
 gnu(){return"\u043d\u0435\u0442"},
 gjH(){return"\u041f\u043e\u0432\u0442\u043e\u0440\u0438\u0442\u0435 \u043f\u0430\u0440\u043e\u043b\u044c"},
 glU(){return"\u042d\u0442\u043e \u043d\u0435 \u043a\u0430\u0440\u0442\u0438\u043d\u043a\u0430."},
@@ -629,8 +629,8 @@ goG(){return"Not supported on this device"},
 gnP(){return"\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u043d\u043e\u0432\u044b\u0439 \u0447\u0430\u0442"},
 C(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.EW,C.aG)})()
-B.dV(b.typeUniverse,JSON.parse('{"EW":{"aG":[]}}'))};
+y(A.EX,C.aG)})()
+B.dV(b.typeUniverse,JSON.parse('{"EX":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_282",e:"endPart",h:b})})($__dart_deferred_initializers__,"gSzJua6/jr+AQRdg9A6KOp6J108=");
+a.eventLog.push({p:"main.dart.js_282",e:"endPart",h:b})})($__dart_deferred_initializers__,"0BPoGEFdCSC4NuLcyYMSaio7aoc=");
 //# sourceMappingURL=main.dart.js_282.part.js.map

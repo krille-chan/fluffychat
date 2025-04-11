@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_276",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cyS(){return new A.EP(B.di("lv"))},
-EP:function EP(d){this.a=d}}
+cyS(){return new A.EQ(B.di("lv"))},
+EQ:function EQ(d){this.a=d}}
 B=c[0]
 C=c[52]
 A=a.updateHolder(c[36],A)
-A.EP.prototype={
+A.EQ.prototype={
 gnu(){return"n\u0113"},
 gjH(){return"Atk\u0101rtot paroli"},
 glU(){return"Nav att\u0113la datne."},
@@ -629,8 +629,8 @@ goG(){return"\u0160aj\u0101 ier\u012bc\u0113 nav atbalst\u012bts"},
 gnP(){return"Ieiet jaunaj\u0101 t\u0113rz\u0113\u0161an\u0101"},
 C(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.EP,C.aG)})()
-B.dV(b.typeUniverse,JSON.parse('{"EP":{"aG":[]}}'))};
+y(A.EQ,C.aG)})()
+B.dV(b.typeUniverse,JSON.parse('{"EQ":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_276",e:"endPart",h:b})})($__dart_deferred_initializers__,"aXhpLgmk8DKdL0me8lrjRuJ2gFA=");
+a.eventLog.push({p:"main.dart.js_276",e:"endPart",h:b})})($__dart_deferred_initializers__,"137rk1gMp6uporTwMRUrfgLg+30=");
 //# sourceMappingURL=main.dart.js_276.part.js.map

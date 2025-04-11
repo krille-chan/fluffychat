@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_295",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cz8(){return new A.F4(B.di("uk"))},
-F4:function F4(d){this.a=d}}
+cz8(){return new A.F5(B.di("uk"))},
+F5:function F5(d){this.a=d}}
 B=c[0]
 C=c[52]
 A=a.updateHolder(c[50],A)
-A.F4.prototype={
+A.F5.prototype={
 gnu(){return"\u043d\u0456"},
 gjH(){return"\u041f\u043e\u0432\u0442\u043e\u0440\u0456\u0442\u044c \u043f\u0430\u0440\u043e\u043b\u044c"},
 glU(){return"\u041d\u0435 \u0444\u0430\u0439\u043b \u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u043d\u044f."},
@@ -629,8 +629,8 @@ goG(){return"Not supported on this device"},
 gnP(){return"Enter new chat"},
 C(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.F4,C.aG)})()
-B.dV(b.typeUniverse,JSON.parse('{"F4":{"aG":[]}}'))};
+y(A.F5,C.aG)})()
+B.dV(b.typeUniverse,JSON.parse('{"F5":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_295",e:"endPart",h:b})})($__dart_deferred_initializers__,"NzYzJNcWjBR85/1BO8m6PvWuNEo=");
+a.eventLog.push({p:"main.dart.js_295",e:"endPart",h:b})})($__dart_deferred_initializers__,"vI7L7SXAjmGqBVDetguroauiuNo=");
 //# sourceMappingURL=main.dart.js_295.part.js.map
