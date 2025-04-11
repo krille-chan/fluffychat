@@ -38,6 +38,7 @@ class CardErrorWidget extends StatelessWidget {
           ),
           const SizedBox(height: 6.0),
           Row(
+            mainAxisSize: MainAxisSize.min,
             children: [
               const BotFace(
                 width: 50.0,

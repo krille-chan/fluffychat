@@ -38,7 +38,12 @@ class ReadingAssistanceInputBar extends StatelessWidget {
             : null;
 
     if (overlayController.pangeaMessageEvent?.isAudioMessage == true) {
-      return MessageSpeechToTextCard(
+      if (!['audio/wav', 'audio/x-wav']
+          .contains(overlayController.pangeaMessageEvent!.mimetype)) {
+        return ReactionsPicker(controller);
+      }
+
+      content = MessageSpeechToTextCard(
         messageEvent: overlayController.pangeaMessageEvent!,
       );
     } else {

@@ -70,6 +70,14 @@ class PangeaMessageEvent {
 
   bool get isAudioMessage => _event.messageType == MessageTypes.Audio;
 
+  String? get mimetype {
+    if (!isAudioMessage) return null;
+    final Map<String, dynamic>? info = _event.content.tryGetMap("info");
+    debugPrint("INFO: $info");
+    if (info == null) return null;
+    return info["mime_type"] ?? info["mimetype"];
+  }
+
   Event? _latestEditCache;
   Event get _latestEdit => _latestEditCache ??= _event
           .aggregatedEvents(
