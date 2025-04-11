@@ -1881,7 +1881,6 @@ class ChatController extends State<ChatPageWithRoom>
         context: context,
         child: overlayEntry!,
         transformTargetId: "",
-        backgroundColor: Colors.black,
         position: OverlayPositionEnum.centered,
         onDismiss: clearSelectedEvents,
         blurBackground: true,

@@ -205,7 +205,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
   /// Decides whether an _initialSelectedToken should be used
   /// for a first practice activity on the word meaning
-  void _initializeSelectedToken() {
+  Future<void> _initializeSelectedToken() async {
     // if there is no initial selected token, then we don't need to do anything
     if (widget._initialSelectedToken == null || practiceSelection == null) {
       return;
@@ -223,6 +223,17 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     }
 
     _updateSelectedSpan(widget._initialSelectedToken!.text);
+
+    int retries = 0;
+    while (retries < 5 &&
+        selectedToken != null &&
+        !MatrixState.pAnyState.isOverlayOpen(
+          selectedToken!.text.uniqueKey,
+        )) {
+      await Future.delayed(const Duration(milliseconds: 100));
+      _showReadingAssistanceContent();
+      retries++;
+    }
   }
 
   /////////////////////////////////////

@@ -136,8 +136,11 @@ class PangeaChatInputRowState extends State<PangeaChatInputRow> {
         CompositedTransformTarget(
           link: _controller.choreographer.inputLayerLinkAndKey.link,
           child: Container(
-            padding:
-                EdgeInsets.all(widget.overlayController != null ? 8.0 : 0.0),
+            padding: EdgeInsets.all(
+              widget.overlayController != null
+                  ? AppConfig.chatInputRowOverlayPadding
+                  : 0.0,
+            ),
             decoration: BoxDecoration(
               color: widget.overlayController != null
                   ? Theme.of(context).cardColor

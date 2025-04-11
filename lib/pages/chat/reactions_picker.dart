@@ -24,7 +24,10 @@ class ReactionsPicker extends StatelessWidget {
     return AnimatedContainer(
       duration: FluffyThemes.animationDuration,
       curve: FluffyThemes.animationCurve,
-      height: (display) ? 56 : 0,
+      // #Pangea
+      // height: (display) ? 56 : 0,
+      height: (display) ? AppConfig.reactionsPickerHeight : 0,
+      // Pangea#
       child: Material(
         color: Colors.transparent,
         child: Builder(
@@ -69,12 +72,19 @@ class ReactionsPicker extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8),
                         onTap: () => controller.sendEmojiAction(emojis[i]),
                         child: Container(
-                          width: 56,
-                          height: 56,
+                          // #Pangea
+                          // width: 56,
+                          // height: 56,
+                          width: AppConfig.reactionsPickerHeight,
+                          height: AppConfig.reactionsPickerHeight,
+                          // Pangea#
                           alignment: Alignment.center,
                           child: Text(
                             emojis[i],
-                            style: const TextStyle(fontSize: 30),
+                            // #Pangea
+                            // style: const TextStyle(fontSize: 30),
+                            style: const TextStyle(fontSize: 20),
+                            // Pangea#
                           ),
                         ),
                       ),
@@ -86,7 +96,10 @@ class ReactionsPicker extends StatelessWidget {
                   child: Container(
                     margin: const EdgeInsets.symmetric(horizontal: 8),
                     width: 36,
-                    height: 56,
+                    // #Pangea
+                    // height: 56,
+                    height: AppConfig.reactionsPickerHeight,
+                    // Pangea#
                     decoration: BoxDecoration(
                       color: theme.colorScheme.onInverseSurface,
                       shape: BoxShape.circle,
