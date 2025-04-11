@@ -229,12 +229,21 @@ class PangeaPublicRoomBottomSheetState
                                   Expanded(
                                     child: TextField(
                                       controller: _codeController,
-                                      decoration: const InputDecoration(
+                                      decoration: InputDecoration(
                                         border: InputBorder.none,
                                         focusedBorder: InputBorder.none,
                                         enabledBorder: InputBorder.none,
                                         errorBorder: InputBorder.none,
                                         disabledBorder: InputBorder.none,
+                                        hintText:
+                                            L10n.of(context).enterSpaceCode,
+                                        contentPadding:
+                                            const EdgeInsets.symmetric(
+                                          horizontal: 16.0,
+                                        ),
+                                        hintStyle: TextStyle(
+                                          color: Theme.of(context).hintColor,
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -294,12 +303,12 @@ class PangeaPublicRoomBottomSheetState
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     const Icon(
-                                      Icons.copy_outlined,
+                                      Icons.share_outlined,
                                       size: 20.0,
                                     ),
                                     Flexible(
                                       child: Text(
-                                        roomAlias,
+                                        L10n.of(context).shareSpaceLink,
                                         overflow: TextOverflow.ellipsis,
                                       ),
                                     ),
@@ -336,12 +345,12 @@ class PangeaPublicRoomBottomSheetState
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     const Icon(
-                                      Icons.copy_outlined,
+                                      Icons.share_outlined,
                                       size: 20.0,
                                     ),
                                     Flexible(
                                       child: Text(
-                                        roomAlias,
+                                        L10n.of(context).shareSpaceLink,
                                         overflow: TextOverflow.ellipsis,
                                       ),
                                     ),

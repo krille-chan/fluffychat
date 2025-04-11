@@ -4861,5 +4861,7 @@
   "emptyChatWarningTitle": "Chat is empty",
   "emptyChatWarningDesc": "You haven't invited anyone to your chat. Go to Chat settings to invite your contacts or the Bot. You can also do this later.",
   "areYouLikeMe": "Are you like me?",
-  "tryAgainLater": "Too many attempts made. Please try again in 5 minutes."
+  "tryAgainLater": "Too many attempts made. Please try again in 5 minutes.",
+  "enterSpaceCode": "Enter the Space Code",
+  "shareSpaceLink": "Share link to space"
 }
