@@ -101,7 +101,7 @@ class GetAnalyticsController extends BaseController {
         data: {},
       );
     } finally {
-      _updateAnalyticsStream(points: 0);
+      _updateAnalyticsStream(points: 0, newConstructs: []);
       if (!initCompleter.isCompleted) initCompleter.complete();
       _initializing = false;
     }
@@ -128,11 +128,31 @@ class GetAnalyticsController extends BaseController {
 
     final offset =
         _pangeaController.userController.publicProfile?.xpOffset ?? 0;
-    final prevUnlockedMorphs = constructListModel.unlockedGrammarLemmas.toSet();
+
+    final prevUnlockedMorphs = constructListModel
+        .unlockedLemmas(
+          ConstructTypeEnum.morph,
+          threshold: 25,
+        )
+        .toSet();
+
+    final prevUnlockedVocab =
+        constructListModel.unlockedLemmas(ConstructTypeEnum.vocab).toSet();
+
     constructListModel.updateConstructs(analyticsUpdate.newConstructs, offset);
-    final newUnlockedMorphs = constructListModel.unlockedGrammarLemmas
+
+    final newUnlockedMorphs = constructListModel
+        .unlockedLemmas(
+          ConstructTypeEnum.morph,
+          threshold: 25,
+        )
         .toSet()
         .difference(prevUnlockedMorphs);
+
+    final newUnlockedVocab = constructListModel
+        .unlockedLemmas(ConstructTypeEnum.vocab)
+        .toSet()
+        .difference(prevUnlockedVocab);
 
     if (analyticsUpdate.type == AnalyticsUpdateType.server) {
       await _getConstructs(forceUpdate: true);
@@ -154,6 +174,7 @@ class GetAnalyticsController extends BaseController {
         (previousValue, element) => previousValue + element.pointValue,
       ),
       targetID: analyticsUpdate.targetID,
+      newConstructs: [...newUnlockedMorphs, ...newUnlockedVocab],
     );
     // Update public profile each time that new analytics are added.
     // If the level hasn't changed, this will not send an update to the server.
@@ -166,11 +187,13 @@ class GetAnalyticsController extends BaseController {
 
   void _updateAnalyticsStream({
     required int points,
+    required List<ConstructIdentifier> newConstructs,
     String? targetID,
   }) =>
       analyticsStream.add(
         AnalyticsStreamUpdate(
           points: points,
+          newConstructs: newConstructs,
           targetID: targetID,
         ),
       );
@@ -491,10 +514,12 @@ class AnalyticsCacheEntry {
 
 class AnalyticsStreamUpdate {
   final int points;
+  final List<ConstructIdentifier> newConstructs;
   final String? targetID;
 
   AnalyticsStreamUpdate({
     required this.points,
+    required this.newConstructs,
     this.targetID,
   });
 }
