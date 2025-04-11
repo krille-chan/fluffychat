@@ -23,6 +23,7 @@ class UserDialog extends StatelessWidget {
   }) =>
       showAdaptiveDialog(
         context: context,
+        barrierDismissible: true,
         builder: (context) => UserDialog(
           profile,
           noProfileWarning: noProfileWarning,
@@ -49,34 +50,35 @@ class UserDialog extends StatelessWidget {
         child: Center(child: Text(displayname, textAlign: TextAlign.center)),
       ),
       content: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 256),
+        constraints: const BoxConstraints(maxWidth: 256, maxHeight: 256),
         child: SelectionArea(
-          child: Center(
-            child: PresenceBuilder(
-              userId: profile.userId,
-              client: Matrix.of(context).client,
-              builder: (context, presence) {
-                if (presence == null) return const SizedBox.shrink();
-                final statusMsg = presence.statusMsg;
-                final lastActiveTimestamp = presence.lastActiveTimestamp;
-                final presenceText = presence.currentlyActive == true
-                    ? L10n.of(context).currentlyActive
-                    : lastActiveTimestamp != null
-                        ? L10n.of(context).lastActiveAgo(
-                            lastActiveTimestamp.localizedTimeShort(context),
-                          )
-                        : null;
-                return Column(
+          child: PresenceBuilder(
+            userId: profile.userId,
+            client: Matrix.of(context).client,
+            builder: (context, presence) {
+              if (presence == null) return const SizedBox.shrink();
+              final statusMsg = presence.statusMsg;
+              final lastActiveTimestamp = presence.lastActiveTimestamp;
+              final presenceText = presence.currentlyActive == true
+                  ? L10n.of(context).currentlyActive
+                  : lastActiveTimestamp != null
+                      ? L10n.of(context).lastActiveAgo(
+                          lastActiveTimestamp.localizedTimeShort(context),
+                        )
+                      : null;
+              return SingleChildScrollView(
+                child: Column(
                   spacing: 8,
                   mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     HoverBuilder(
                       builder: (context, hovered) => StatefulBuilder(
                         builder: (context, setState) => GestureDetector(
                           onTap: () {
                             Clipboard.setData(
-                                ClipboardData(text: profile.userId));
+                              ClipboardData(text: profile.userId),
+                            );
                             setState(() {
                               copied = true;
                             });
@@ -115,15 +117,18 @@ class UserDialog extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Avatar(
-                      mxContent: profile.avatarUrl,
-                      name: displayname,
-                      size: Avatar.defaultSize * 2,
+                    Center(
+                      child: Avatar(
+                        mxContent: profile.avatarUrl,
+                        name: displayname,
+                        size: Avatar.defaultSize * 2,
+                      ),
                     ),
                     if (presenceText != null)
                       Text(
                         presenceText,
                         style: const TextStyle(fontSize: 10),
+                        textAlign: TextAlign.center,
                       ),
                     if (statusMsg != null)
                       Linkify(
@@ -139,48 +144,49 @@ class UserDialog extends StatelessWidget {
                             UrlLauncher(context, url.url).launchUrl(),
                       ),
                   ],
-                );
-              },
-            ),
+                ),
+              );
+            },
           ),
         ),
       ),
       actions: [
-        if (client.userID != profile.userId) ...[],
-        AdaptiveDialogAction(
-          bigButtons: true,
-          onPressed: () async {
-            final router = GoRouter.of(context);
-            Navigator.of(context).pop();
-            final roomIdResult = await showFutureLoadingDialog(
-              context: context,
-              future: () => client.startDirectChat(profile.userId),
-            );
-            final roomId = roomIdResult.result;
-            if (roomId == null) return;
-            router.go('/rooms/$roomId');
-          },
-          child: Text(
-            dmRoomId == null
-                ? L10n.of(context).startConversation
-                : L10n.of(context).sendAMessage,
+        if (client.userID != profile.userId) ...[
+          AdaptiveDialogAction(
+            bigButtons: true,
+            onPressed: () async {
+              final router = GoRouter.of(context);
+              Navigator.of(context).pop();
+              final roomIdResult = await showFutureLoadingDialog(
+                context: context,
+                future: () => client.startDirectChat(profile.userId),
+              );
+              final roomId = roomIdResult.result;
+              if (roomId == null) return;
+              router.go('/rooms/$roomId');
+            },
+            child: Text(
+              dmRoomId == null
+                  ? L10n.of(context).startConversation
+                  : L10n.of(context).sendAMessage,
+            ),
           ),
-        ),
-        AdaptiveDialogAction(
-          bigButtons: true,
-          onPressed: () {
-            final router = GoRouter.of(context);
-            Navigator.of(context).pop();
-            router.go(
-              '/rooms/settings/security/ignorelist',
-              extra: profile.userId,
-            );
-          },
-          child: Text(
-            L10n.of(context).ignoreUser,
-            style: TextStyle(color: theme.colorScheme.error),
+          AdaptiveDialogAction(
+            bigButtons: true,
+            onPressed: () {
+              final router = GoRouter.of(context);
+              Navigator.of(context).pop();
+              router.go(
+                '/rooms/settings/security/ignorelist',
+                extra: profile.userId,
+              );
+            },
+            child: Text(
+              L10n.of(context).ignoreUser,
+              style: TextStyle(color: theme.colorScheme.error),
+            ),
           ),
-        ),
+        ],
         AdaptiveDialogAction(
           bigButtons: true,
           onPressed: Navigator.of(context).pop,
