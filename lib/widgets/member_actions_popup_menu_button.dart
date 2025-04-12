@@ -41,32 +41,35 @@ void showMemberActionsPopupMenu({
     items: <PopupMenuEntry<_MemberActions>>[
       PopupMenuItem(
         value: _MemberActions.info,
-        child: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Avatar(
-                name: displayname,
-                mxContent: user.avatarUrl,
-                presenceUserId: user.id,
-                presenceBackgroundColor: theme.colorScheme.surfaceContainer,
-              ),
-              const SizedBox(height: 8),
-              Text(
-                displayname,
-                textAlign: TextAlign.center,
-                style: theme.textTheme.labelLarge,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-              Text(
-                user.id,
-                textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: 10),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-            ],
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8.0),
+          child: Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Avatar(
+                  name: displayname,
+                  mxContent: user.avatarUrl,
+                  presenceUserId: user.id,
+                  presenceBackgroundColor: theme.colorScheme.surfaceContainer,
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  displayname,
+                  textAlign: TextAlign.center,
+                  style: theme.textTheme.labelLarge,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                Text(
+                  user.id,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(fontSize: 10),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -74,85 +77,99 @@ void showMemberActionsPopupMenu({
       if (onMention != null)
         PopupMenuItem(
           value: _MemberActions.mention,
-          child: ListTile(
-            leading: const Icon(Icons.alternate_email_outlined),
-            title: Text(L10n.of(context).mention),
+          child: Row(
+            children: [
+              const Icon(Icons.alternate_email_outlined),
+              const SizedBox(width: 18),
+              Text(L10n.of(context).mention),
+            ],
           ),
         ),
       PopupMenuItem(
         enabled: user.room.canChangePowerLevel && user.canChangeUserPowerLevel,
         value: _MemberActions.setRole,
-        child: ListTile(
-          leading: const Icon(Icons.admin_panel_settings_outlined),
-          title: Text(L10n.of(context).chatPermissions),
-          subtitle: Text(
-            user.powerLevel < 50
-                ? L10n.of(context).userLevel(user.powerLevel)
-                : user.powerLevel < 100
-                    ? L10n.of(context).moderatorLevel(user.powerLevel)
-                    : L10n.of(context).adminLevel(user.powerLevel),
-            style: const TextStyle(fontSize: 10),
-          ),
+        child: Row(
+          children: [
+            const Icon(Icons.admin_panel_settings_outlined),
+            const SizedBox(width: 18),
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(L10n.of(context).chatPermissions),
+                Text(
+                  user.powerLevel < 50
+                      ? L10n.of(context).userLevel(user.powerLevel)
+                      : user.powerLevel < 100
+                          ? L10n.of(context).moderatorLevel(user.powerLevel)
+                          : L10n.of(context).adminLevel(user.powerLevel),
+                  style: const TextStyle(fontSize: 10),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
       if (user.canKick)
         PopupMenuItem(
           value: _MemberActions.kick,
-          child: ListTile(
-            leading: Icon(
-              Icons.person_remove_outlined,
-              color: theme.colorScheme.onErrorContainer,
-            ),
-            title: Text(
-              L10n.of(context).kickFromChat,
-              style: TextStyle(color: theme.colorScheme.onErrorContainer),
-            ),
+          child: Row(
+            children: [
+              Icon(
+                Icons.person_remove_outlined,
+                color: theme.colorScheme.onErrorContainer,
+              ),
+              const SizedBox(width: 18),
+              Text(
+                L10n.of(context).kickFromChat,
+                style: TextStyle(color: theme.colorScheme.onErrorContainer),
+              ),
+            ],
           ),
         ),
       if (user.canBan)
         PopupMenuItem(
           value: _MemberActions.ban,
-          child: ListTile(
-            leading: Icon(
-              Icons.block_outlined,
-              color: theme.colorScheme.onErrorContainer,
-            ),
-            title: Text(
-              L10n.of(context).banFromChat,
-              style: TextStyle(color: theme.colorScheme.onErrorContainer),
-            ),
-          ),
-        ),
-      if (user.canBan && user.membership == Membership.ban)
-        PopupMenuItem(
-          value: _MemberActions.ban,
-          child: ListTile(
-            leading: const Icon(Icons.warning),
-            title: Text(
-              L10n.of(context).unbanFromChat,
-            ),
+          child: Row(
+            children: [
+              Icon(
+                Icons.block_outlined,
+                color: theme.colorScheme.onErrorContainer,
+              ),
+              const SizedBox(width: 18),
+              Text(
+                L10n.of(context).banFromChat,
+                style: TextStyle(color: theme.colorScheme.onErrorContainer),
+              ),
+            ],
           ),
         ),
       if (user.canBan && user.membership == Membership.ban)
         PopupMenuItem(
           value: _MemberActions.unban,
-          child: ListTile(
-            leading: const Icon(Icons.warning_outlined),
-            title: Text(L10n.of(context).unbanFromChat),
+          child: Row(
+            children: [
+              const Icon(Icons.warning),
+              const SizedBox(width: 18),
+              Text(L10n.of(context).unbanFromChat),
+            ],
           ),
         ),
       if (!isMe)
         PopupMenuItem(
           value: _MemberActions.report,
-          child: ListTile(
-            leading: Icon(
-              Icons.gavel_outlined,
-              color: theme.colorScheme.onErrorContainer,
-            ),
-            title: Text(
-              L10n.of(context).reportUser,
-              style: TextStyle(color: theme.colorScheme.onErrorContainer),
-            ),
+          child: Row(
+            children: [
+              Icon(
+                Icons.gavel_outlined,
+                color: theme.colorScheme.onErrorContainer,
+              ),
+              const SizedBox(width: 18),
+              Text(
+                L10n.of(context).reportUser,
+                style: TextStyle(color: theme.colorScheme.onErrorContainer),
+              ),
+            ],
           ),
         ),
     ],
@@ -219,32 +236,10 @@ void showMemberActionsPopupMenu({
       }
       return;
     case _MemberActions.report:
-      final score = await showModalActionPopup<int>(
-        context: context,
-        title: L10n.of(context).reportUser,
-        message: L10n.of(context).howOffensiveIsThisContent,
-        cancelLabel: L10n.of(context).cancel,
-        actions: [
-          AdaptiveModalAction(
-            value: -100,
-            label: L10n.of(context).extremeOffensive,
-          ),
-          AdaptiveModalAction(
-            value: -50,
-            label: L10n.of(context).offensive,
-          ),
-          AdaptiveModalAction(
-            value: 0,
-            label: L10n.of(context).inoffensive,
-          ),
-        ],
-      );
-      if (score == null) return;
       final reason = await showTextInputDialog(
-        useRootNavigator: false,
         context: context,
         title: L10n.of(context).whyDoYouWantToReportThis,
-        okLabel: L10n.of(context).ok,
+        okLabel: L10n.of(context).report,
         cancelLabel: L10n.of(context).cancel,
         hintText: L10n.of(context).reason,
       );
@@ -252,11 +247,9 @@ void showMemberActionsPopupMenu({
 
       final result = await showFutureLoadingDialog(
         context: context,
-        future: () => user.room.client.reportEvent(
-          user.room.id,
+        future: () => user.room.client.reportUser(
           user.id,
-          reason: reason,
-          score: score,
+          reason,
         ),
       );
       if (result.error != null) return;
