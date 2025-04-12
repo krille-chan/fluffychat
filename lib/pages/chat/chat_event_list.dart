@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:scroll_to_index/scroll_to_index.dart';
@@ -22,14 +23,10 @@ class ChatEventList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final timeline = controller.timeline;
-    if (timeline == null) {
-      return const Center(
-        child: CircularProgressIndicator.adaptive(
-          strokeWidth: 2,
-        ),
-      );
-    }
 
+    if (timeline == null) {
+      return const Center(child: CupertinoActivityIndicator());
+    }
     final theme = Theme.of(context);
 
     final colors = [
