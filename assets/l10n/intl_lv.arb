@@ -3323,5 +3323,13 @@
   "enterNewChat": "Ieiet jaunajā tērzēšanā",
   "@enterNewChat": {},
   "commandHint_roomupgrade": "Uzlabot šo istabu uz norādīto istabas versiju",
-  "@commandHint_roomupgrade": {}
+  "@commandHint_roomupgrade": {},
+  "setCustomPermissionLevel": "Iestatīt pielāgotu atļauju līmeni",
+  "@setCustomPermissionLevel": {},
+  "setPermissionsLevelDescription": "Lūgums zemāk izvēlēties iepriekšizveidotu lomu vai ievadīt pielāgotu atļauju līmeni starp 0 un 100.",
+  "@setPermissionsLevelDescription": {},
+  "ignoreUser": "Neņemt vērā lietotāju",
+  "@ignoreUser": {},
+  "normalUser": "Parasts lietotājs",
+  "@normalUser": {}
 }
