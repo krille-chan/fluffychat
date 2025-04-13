@@ -8,12 +8,11 @@ import 'package:punycode/punycode.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/user_dialog.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:fluffychat/widgets/public_room_bottom_sheet.dart';
+import '../widgets/adaptive_dialogs/public_room_dialog.dart';
 import 'platform_infos.dart';
 
 class UrlLauncher {
@@ -179,11 +178,10 @@ class UrlLauncher {
         }
         return;
       } else {
-        await showAdaptiveBottomSheet(
+        await showAdaptiveDialog(
           context: context,
-          builder: (c) => PublicRoomBottomSheet(
+          builder: (c) => PublicRoomDialog(
             roomAlias: identityParts.primaryIdentifier,
-            outerContext: context,
           ),
         );
       }

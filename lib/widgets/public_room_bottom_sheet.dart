@@ -12,6 +12,7 @@ import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/qr_code_viewer.dart';
 
+@Deprecated('')
 class PublicRoomBottomSheet extends StatelessWidget {
   final String? roomAlias;
   final BuildContext outerContext;

@@ -62,7 +62,7 @@ class Avatar extends StatelessWidget {
             clipBehavior: Clip.hardEdge,
             child: noPic
                 ? Container(
-                    decoration: BoxDecoration(color: name!.lightColorAvatar),
+                    decoration: BoxDecoration(color: name?.lightColorAvatar),
                     alignment: Alignment.center,
                     child: Text(
                       fallbackLetters,

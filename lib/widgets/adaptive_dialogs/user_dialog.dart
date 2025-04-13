@@ -54,114 +54,110 @@ class UserDialog extends StatelessWidget {
       ),
       content: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 256, maxHeight: 256),
-        child: SelectionArea(
-          child: PresenceBuilder(
-            userId: profile.userId,
-            client: Matrix.of(context).client,
-            builder: (context, presence) {
-              if (presence == null) return const SizedBox.shrink();
-              final statusMsg = presence.statusMsg;
-              final lastActiveTimestamp = presence.lastActiveTimestamp;
-              final presenceText = presence.currentlyActive == true
-                  ? L10n.of(context).currentlyActive
-                  : lastActiveTimestamp != null
-                      ? L10n.of(context).lastActiveAgo(
-                          lastActiveTimestamp.localizedTimeShort(context),
-                        )
-                      : null;
-              return SingleChildScrollView(
-                child: Column(
-                  spacing: 8,
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    HoverBuilder(
-                      builder: (context, hovered) => StatefulBuilder(
-                        builder: (context, setState) => MouseRegion(
-                          cursor: SystemMouseCursors.click,
-                          child: GestureDetector(
-                            onTap: () {
-                              Clipboard.setData(
-                                ClipboardData(text: profile.userId),
-                              );
-                              setState(() {
-                                copied = true;
-                              });
-                            },
-                            child: RichText(
-                              text: TextSpan(
-                                children: [
-                                  WidgetSpan(
-                                    child: Padding(
-                                      padding:
-                                          const EdgeInsets.only(right: 4.0),
-                                      child: AnimatedScale(
-                                        duration:
-                                            FluffyThemes.animationDuration,
-                                        curve: FluffyThemes.animationCurve,
-                                        scale: hovered
-                                            ? 1.33
-                                            : copied
-                                                ? 1.25
-                                                : 1.0,
-                                        child: Icon(
-                                          copied
-                                              ? Icons.check_circle
-                                              : Icons.copy,
-                                          size: 12,
-                                          color: copied ? Colors.green : null,
-                                        ),
+        child: PresenceBuilder(
+          userId: profile.userId,
+          client: Matrix.of(context).client,
+          builder: (context, presence) {
+            if (presence == null) return const SizedBox.shrink();
+            final statusMsg = presence.statusMsg;
+            final lastActiveTimestamp = presence.lastActiveTimestamp;
+            final presenceText = presence.currentlyActive == true
+                ? L10n.of(context).currentlyActive
+                : lastActiveTimestamp != null
+                    ? L10n.of(context).lastActiveAgo(
+                        lastActiveTimestamp.localizedTimeShort(context),
+                      )
+                    : null;
+            return SingleChildScrollView(
+              child: Column(
+                spacing: 8,
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  HoverBuilder(
+                    builder: (context, hovered) => StatefulBuilder(
+                      builder: (context, setState) => MouseRegion(
+                        cursor: SystemMouseCursors.click,
+                        child: GestureDetector(
+                          onTap: () {
+                            Clipboard.setData(
+                              ClipboardData(text: profile.userId),
+                            );
+                            setState(() {
+                              copied = true;
+                            });
+                          },
+                          child: RichText(
+                            text: TextSpan(
+                              children: [
+                                WidgetSpan(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(right: 4.0),
+                                    child: AnimatedScale(
+                                      duration: FluffyThemes.animationDuration,
+                                      curve: FluffyThemes.animationCurve,
+                                      scale: hovered
+                                          ? 1.33
+                                          : copied
+                                              ? 1.25
+                                              : 1.0,
+                                      child: Icon(
+                                        copied
+                                            ? Icons.check_circle
+                                            : Icons.copy,
+                                        size: 12,
+                                        color: copied ? Colors.green : null,
                                       ),
                                     ),
                                   ),
-                                  TextSpan(text: profile.userId),
-                                ],
-                                style: theme.textTheme.bodyMedium
-                                    ?.copyWith(fontSize: 10),
-                              ),
-                              textAlign: TextAlign.center,
+                                ),
+                                TextSpan(text: profile.userId),
+                              ],
+                              style: theme.textTheme.bodyMedium
+                                  ?.copyWith(fontSize: 10),
                             ),
+                            textAlign: TextAlign.center,
                           ),
                         ),
                       ),
                     ),
-                    Center(
-                      child: Avatar(
-                        mxContent: avatar,
-                        name: displayname,
-                        size: Avatar.defaultSize * 2,
-                        onTap: avatar != null
-                            ? () => showDialog(
-                                  context: context,
-                                  builder: (_) => MxcImageViewer(avatar),
-                                )
-                            : null,
-                      ),
+                  ),
+                  Center(
+                    child: Avatar(
+                      mxContent: avatar,
+                      name: displayname,
+                      size: Avatar.defaultSize * 2,
+                      onTap: avatar != null
+                          ? () => showDialog(
+                                context: context,
+                                builder: (_) => MxcImageViewer(avatar),
+                              )
+                          : null,
                     ),
-                    if (presenceText != null)
-                      Text(
-                        presenceText,
-                        style: const TextStyle(fontSize: 10),
-                        textAlign: TextAlign.center,
+                  ),
+                  if (presenceText != null)
+                    Text(
+                      presenceText,
+                      style: const TextStyle(fontSize: 10),
+                      textAlign: TextAlign.center,
+                    ),
+                  if (statusMsg != null)
+                    SelectableLinkify(
+                      text: statusMsg,
+                      textAlign: TextAlign.center,
+                      options: const LinkifyOptions(humanize: false),
+                      linkStyle: TextStyle(
+                        color: theme.colorScheme.primary,
+                        decoration: TextDecoration.underline,
+                        decorationColor: theme.colorScheme.primary,
                       ),
-                    if (statusMsg != null)
-                      Linkify(
-                        text: statusMsg,
-                        textAlign: TextAlign.center,
-                        options: const LinkifyOptions(humanize: false),
-                        linkStyle: TextStyle(
-                          color: theme.colorScheme.primary,
-                          decoration: TextDecoration.underline,
-                          decorationColor: theme.colorScheme.primary,
-                        ),
-                        onOpen: (url) =>
-                            UrlLauncher(context, url.url).launchUrl(),
-                      ),
-                  ],
-                ),
-              );
-            },
-          ),
+                      onOpen: (url) =>
+                          UrlLauncher(context, url.url).launchUrl(),
+                    ),
+                ],
+              ),
+            );
+          },
         ),
       ),
       actions: [

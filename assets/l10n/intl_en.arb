@@ -3212,5 +3212,7 @@
   "optionalMessage": "(Optional) message...",
   "notSupportedOnThisDevice": "Not supported on this device",
   "enterNewChat": "Enter new chat",
-  "approve": "Approve"
+  "approve": "Approve",
+  "youHaveKnocked": "You have knocked",
+  "pleaseWaitUntilInvited": "Please wait now, until someone from the room invites you."
 }

@@ -11,10 +11,9 @@ import 'package:fluffychat/pages/chat_list/dummy_chat_list_item.dart';
 import 'package:fluffychat/pages/chat_list/search_title.dart';
 import 'package:fluffychat/pages/chat_list/space_view.dart';
 import 'package:fluffychat/pages/chat_list/status_msg_list.dart';
-import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/public_room_dialog.dart';
 import 'package:fluffychat/widgets/avatar.dart';
-import 'package:fluffychat/widgets/public_room_bottom_sheet.dart';
 import '../../config/themes.dart';
 import '../../widgets/adaptive_dialogs/user_dialog.dart';
 import '../../widgets/matrix.dart';
@@ -302,12 +301,11 @@ class PublicRoomsHorizontalList extends StatelessWidget {
                     publicRooms[i].canonicalAlias?.localpart ??
                     L10n.of(context).group,
                 avatar: publicRooms[i].avatarUrl,
-                onPressed: () => showAdaptiveBottomSheet(
+                onPressed: () => showAdaptiveDialog(
                   context: context,
-                  builder: (c) => PublicRoomBottomSheet(
+                  builder: (c) => PublicRoomDialog(
                     roomAlias:
                         publicRooms[i].canonicalAlias ?? publicRooms[i].roomId,
-                    outerContext: context,
                     chunk: publicRooms[i],
                   ),
                 ),
