@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_242",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cz1(){return new A.EA(B.di("fi"))},
+cz4(){return new A.EA(B.dj("fi"))},
 EA:function EA(d){this.a=d}}
 B=c[0]
 C=c[52]
@@ -95,7 +95,7 @@ gfc(){return"Keskustelun tiedot"},
 gfd(){return"Keskustelut"},
 ghP(){return"Valitse vahva salasana"},
 gfe(){return"Tyhjenn\xe4 arkisto"},
-gcu(d){return"Sulje"},
+gct(d){return"Sulje"},
 gkR(){return"Merkitse yksityiskeskusteluksi sy\xf6tetyn Matrix IDn kanssa"},
 gkS(){return"Merkitse ryhm\xe4ksi"},
 ghQ(){return"Anna sy\xf6tetylle k\xe4ytt\xe4j\xe4lle porttikielto t\xe4h\xe4n huoneeseen"},
@@ -255,7 +255,7 @@ gjj(){return"Paikannetaan sijantia\u2026"},
 gjk(){return"Loukkaava"},
 gcA(){return"ok"},
 gjm(){return"Verkkkoavainvarmuuskopio on k\xe4yt\xf6ss\xe4"},
-gdv(){return"Hups, jotakin meni pieleen\u2026"},
+gdw(){return"Hups, jotakin meni pieleen\u2026"},
 gjl(){return"Yksi tunnuksistasi on kirjattu ulos"},
 geD(){return"Lis\xe4\xe4 tili"},
 giz(){return"Muokkaa t\xe4m\xe4n tilin k\xe4\xe4r\xf6j\xe4"},
@@ -615,7 +615,7 @@ goV(){return"Jitsi"},
 goW(){return"Notifies the user about Jitsi widget events."},
 gpa(){return"Suppress Server ACL Events"},
 gpb(){return"Suppresses notifications for Server ACL events."},
-pi(d){return"Unknown push rule '"+d+"'"},
+pj(d){return"Unknown push rule '"+d+"'"},
 goD(){return"If you delete this notification setting, this can not be undone."},
 goH(){return"More"},
 gov(){return"Share keys with..."},
@@ -623,15 +623,17 @@ gow(){return"Which devices should be trusted so that they can read along your me
 goz(){return"All devices"},
 goC(){return"Cross verified devices if enabled"},
 goB(){return"Cross verified devices"},
-gpj(){return"Verified devices only"},
+gpk(){return"Verified devices only"},
 gpg(){return"(Optional) message..."},
 goJ(){return"Not supported on this device"},
 gnR(){return"Enter new chat"},
 goA(){return"Approve"},
+gpl(){return"You have knocked"},
+gph(){return"Please wait now, until someone from the room invites you."},
 C(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.EA,C.aG)})()
 B.dX(b.typeUniverse,JSON.parse('{"EA":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_242",e:"endPart",h:b})})($__dart_deferred_initializers__,"F5BjFCSAcHNknRCZ2b/r/vno0KM=");
+a.eventLog.push({p:"main.dart.js_242",e:"endPart",h:b})})($__dart_deferred_initializers__,"U6+tobrVPP18DicAqn3RrQa+L9c=");
 //# sourceMappingURL=main.dart.js_242.part.js.map

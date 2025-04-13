@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_275",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czh(){return new A.EQ(B.di("lt"))},
+czk(){return new A.EQ(B.dj("lt"))},
 EQ:function EQ(d){this.a=d}}
 B=c[0]
 C=c[52]
@@ -95,7 +95,7 @@ gfc(){return"Pokalbio detal\u0117s"},
 gfd(){return"Pokalbiai"},
 ghP(){return"Pasirinkite saug\u0173 slapta\u017eod\u012f"},
 gfe(){return"I\u0161valyti archyv\u0105"},
-gcu(d){return"U\u017edaryti"},
+gct(d){return"U\u017edaryti"},
 gkR(){return"Pa\u017eym\u0117ti kaip tiesioginio pokalbio kambar\u012f"},
 gkS(){return"Pa\u017eym\u0117ti kaip grup\u0119"},
 ghQ(){return"U\u017eblokuoti vartotoj\u0105 \u0161iame kambaryje"},
@@ -255,7 +255,7 @@ gjj(){return"Gaunama vieta\u2026"},
 gjk(){return"Agresyvus"},
 gcA(){return"OK"},
 gjm(){return"Internetin\u0117 atsargin\u0117 rakt\u0173 kopija \u012fjungta"},
-gdv(){return"Oi, ka\u017ekas nutiko ne taip\u2026"},
+gdw(){return"Oi, ka\u017ekas nutiko ne taip\u2026"},
 gjl(){return"Vienas i\u0161 j\u016bs\u0173 klient\u0173 atsijung\u0117"},
 geD(){return"Prid\u0117ti paskyr\u0105"},
 giz(){return"Redaguoti \u0161ios paskyros paketus"},
@@ -615,7 +615,7 @@ goV(){return"Jitsi"},
 goW(){return"Notifies the user about Jitsi widget events."},
 gpa(){return"Suppress Server ACL Events"},
 gpb(){return"Suppresses notifications for Server ACL events."},
-pi(d){return"Unknown push rule '"+d+"'"},
+pj(d){return"Unknown push rule '"+d+"'"},
 goD(){return"If you delete this notification setting, this can not be undone."},
 goH(){return"More"},
 gov(){return"Share keys with..."},
@@ -623,15 +623,17 @@ gow(){return"Which devices should be trusted so that they can read along your me
 goz(){return"All devices"},
 goC(){return"Cross verified devices if enabled"},
 goB(){return"Cross verified devices"},
-gpj(){return"Verified devices only"},
+gpk(){return"Verified devices only"},
 gpg(){return"(Optional) message..."},
 goJ(){return"Not supported on this device"},
 gnR(){return"Enter new chat"},
 goA(){return"Approve"},
+gpl(){return"You have knocked"},
+gph(){return"Please wait now, until someone from the room invites you."},
 C(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.EQ,C.aG)})()
 B.dX(b.typeUniverse,JSON.parse('{"EQ":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_275",e:"endPart",h:b})})($__dart_deferred_initializers__,"uMllknmgXlTdMCDdi05wXB6DbGA=");
+a.eventLog.push({p:"main.dart.js_275",e:"endPart",h:b})})($__dart_deferred_initializers__,"V5cAUKA2I9H+/3OUJ9Zw+g9pPBo=");
 //# sourceMappingURL=main.dart.js_275.part.js.map

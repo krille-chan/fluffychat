@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_268",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czc(){return new A.EL(B.di("ie"))},
+czf(){return new A.EL(B.dj("ie"))},
 EL:function EL(d){this.a=d}}
 B=c[0]
 C=c[52]
@@ -95,7 +95,7 @@ gfc(){return"Detallies del conversation"},
 gfd(){return"Conversationes"},
 ghP(){return"Choose a strong password"},
 gfe(){return"Vacuar li archive"},
-gcu(d){return"Cluder"},
+gct(d){return"Cluder"},
 gkR(){return"Mark as direct message room for the giving Matrix ID"},
 gkS(){return"Marcar quam gruppe"},
 ghQ(){return"Ban the given user from this room"},
@@ -255,7 +255,7 @@ gjj(){return"Obtenente li localisation\u2026"},
 gjk(){return"Offensiv"},
 gcA(){return"OK"},
 gjm(){return"Online Key Backup is enabled"},
-gdv(){return"Oops, something went wrong\u2026"},
+gdw(){return"Oops, something went wrong\u2026"},
 gjl(){return"One of your clients has been logged out"},
 geD(){return"Adjunter un conto"},
 giz(){return"Edit bundles for this account"},
@@ -615,7 +615,7 @@ goV(){return"Jitsi"},
 goW(){return"Notifies the user about Jitsi widget events."},
 gpa(){return"Suppress Server ACL Events"},
 gpb(){return"Suppresses notifications for Server ACL events."},
-pi(d){return"Unknown push rule '"+d+"'"},
+pj(d){return"Unknown push rule '"+d+"'"},
 goD(){return"If you delete this notification setting, this can not be undone."},
 goH(){return"More"},
 gov(){return"Share keys with..."},
@@ -623,15 +623,17 @@ gow(){return"Which devices should be trusted so that they can read along your me
 goz(){return"All devices"},
 goC(){return"Cross verified devices if enabled"},
 goB(){return"Cross verified devices"},
-gpj(){return"Verified devices only"},
+gpk(){return"Verified devices only"},
 gpg(){return"(Optional) message..."},
 goJ(){return"Not supported on this device"},
 gnR(){return"Enter new chat"},
 goA(){return"Approve"},
+gpl(){return"You have knocked"},
+gph(){return"Please wait now, until someone from the room invites you."},
 C(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.EL,C.aG)})()
 B.dX(b.typeUniverse,JSON.parse('{"EL":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_268",e:"endPart",h:b})})($__dart_deferred_initializers__,"gLmA2Qr+Z3AaZ1MFzs9tPlfTI00=");
+a.eventLog.push({p:"main.dart.js_268",e:"endPart",h:b})})($__dart_deferred_initializers__,"UccT/82GtoCITD05CPVcIHZrRl0=");
 //# sourceMappingURL=main.dart.js_268.part.js.map

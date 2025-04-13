@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_288",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czt(){return new A.F0(B.di("sr"))},
+czw(){return new A.F0(B.dj("sr"))},
 F0:function F0(d){this.a=d}}
 B=c[0]
 C=c[52]
@@ -95,7 +95,7 @@ gfc(){return"\u0414\u0435\u0442\u0430\u0459\u0438 \u045b\u0430\u0441\u043a\u0430
 gfd(){return"\u040b\u0430\u0441\u043a\u0430\u045a\u0430"},
 ghP(){return"\u0418\u0437\u0430\u0431\u0435\u0440\u0438\u0442\u0435 \u0458\u0430\u043a\u0443 \u043b\u043e\u0437\u0438\u043d\u043a\u0443"},
 gfe(){return"\u041e\u0447\u0438\u0441\u0442\u0438 \u0430\u0440\u0445\u0438\u0432\u0443"},
-gcu(d){return"\u0417\u0430\u0442\u0432\u043e\u0440\u0438"},
+gct(d){return"\u0417\u0430\u0442\u0432\u043e\u0440\u0438"},
 gkR(){return"Mark as direct message room for the giving Matrix ID"},
 gkS(){return"Mark as group"},
 ghQ(){return"\u0411\u043b\u043e\u043a\u0438\u0440\u0430\u0458 \u0437\u0430\u0434\u0430\u0442\u043e\u0433 \u043a\u043e\u0440\u0438\u0441\u043d\u0438\u043a\u0430 \u0437\u0430 \u043e\u0432\u0443 \u0441\u043e\u0431\u0443"},
@@ -255,7 +255,7 @@ gjj(){return"Obtaining location\u2026"},
 gjk(){return"\u0423\u0432\u0440\u0435\u0434\u0459\u0438\u0432"},
 gcA(){return"\u0443 \u0440\u0435\u0434\u0443"},
 gjm(){return"\u0420\u0435\u0437\u0435\u0440\u0432\u0430 \u043a\u0459\u0443\u0447\u0435\u0432\u0430 \u043d\u0430 \u043c\u0440\u0435\u0436\u0438 \u0458\u0435 \u0443\u043a\u0459\u0443\u0447\u0435\u043d\u0430"},
-gdv(){return"\u041d\u0435\u0448\u0442\u043e \u0458\u0435 \u043f\u043e\u0448\u043b\u043e \u043d\u0430\u043e\u043f\u0430\u043a\u043e\u2026"},
+gdw(){return"\u041d\u0435\u0448\u0442\u043e \u0458\u0435 \u043f\u043e\u0448\u043b\u043e \u043d\u0430\u043e\u043f\u0430\u043a\u043e\u2026"},
 gjl(){return"One of your clients has been logged out"},
 geD(){return"Add account"},
 giz(){return"Edit bundles for this account"},
@@ -615,7 +615,7 @@ goV(){return"Jitsi"},
 goW(){return"Notifies the user about Jitsi widget events."},
 gpa(){return"Suppress Server ACL Events"},
 gpb(){return"Suppresses notifications for Server ACL events."},
-pi(d){return"Unknown push rule '"+d+"'"},
+pj(d){return"Unknown push rule '"+d+"'"},
 goD(){return"If you delete this notification setting, this can not be undone."},
 goH(){return"More"},
 gov(){return"Share keys with..."},
@@ -623,15 +623,17 @@ gow(){return"Which devices should be trusted so that they can read along your me
 goz(){return"All devices"},
 goC(){return"Cross verified devices if enabled"},
 goB(){return"Cross verified devices"},
-gpj(){return"Verified devices only"},
+gpk(){return"Verified devices only"},
 gpg(){return"(Optional) message..."},
 goJ(){return"Not supported on this device"},
 gnR(){return"Enter new chat"},
 goA(){return"Approve"},
+gpl(){return"You have knocked"},
+gph(){return"Please wait now, until someone from the room invites you."},
 C(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.F0,C.aG)})()
 B.dX(b.typeUniverse,JSON.parse('{"F0":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_288",e:"endPart",h:b})})($__dart_deferred_initializers__,"drChERogPjl25Sy0/6Iwns8v5q4=");
+a.eventLog.push({p:"main.dart.js_288",e:"endPart",h:b})})($__dart_deferred_initializers__,"djZ+jLAm1AWAs+KwDt2EmJCyUbc=");
 //# sourceMappingURL=main.dart.js_288.part.js.map

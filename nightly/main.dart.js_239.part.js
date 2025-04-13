@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_239",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cz_(){return new A.Ey(B.di("eu"))},
+cz2(){return new A.Ey(B.dj("eu"))},
 Ey:function Ey(d){this.a=d}}
 B=c[0]
 C=c[52]
@@ -95,7 +95,7 @@ gfc(){return"Txataren xehetasunak"},
 gfd(){return"Txatak"},
 ghP(){return"Aukeratu pasahitz sendo bat"},
 gfe(){return"Ezabatu artxiboa"},
-gcu(d){return"Itxi"},
+gct(d){return"Itxi"},
 gkR(){return"Markatu mezu-zuzen gela bezala Matrix ID jakin honentzat"},
 gkS(){return"Markatu talde bezala"},
 ghQ(){return"Debekatu erabiltzailea gela honetan"},
@@ -255,7 +255,7 @@ gjj(){return"Kokapena atzitzen\u2026"},
 gjk(){return"Iraingarria"},
 gcA(){return"Ados"},
 gjm(){return"Gakoen online babeskopia gaituta dago"},
-gdv(){return"Hara, zerbaitek huts egin du\u2026"},
+gdw(){return"Hara, zerbaitek huts egin du\u2026"},
 gjl(){return"Zure gailuetako batek saioa amaitu du"},
 geD(){return"Gehitu kontua"},
 giz(){return"Editatu kontu honetarako sortak"},
@@ -615,7 +615,7 @@ goV(){return"Jitsi"},
 goW(){return"Erabiltzailea jakinarazten du Jitsi widgetaren gertaerei buruz."},
 gpa(){return"Ezkutatu zerbitzariaren ACL gertaerak"},
 gpb(){return"Zerbitzariaren ACL gertaerak ezkutatzen ditu."},
-pi(d){return"Push arau ezezaguna '"+d+"'"},
+pj(d){return"Push arau ezezaguna '"+d+"'"},
 goD(){return"Jakinarazpen ezarpen hau ezabatzen baduzu, ezin da desegin."},
 goH(){return"Gehiago"},
 gov(){return"Partekatu gakoak\u2026"},
@@ -623,16 +623,18 @@ gow(){return"Zein gailu hartu beharko litzateke fidagarritzat zifratutako txaten
 goz(){return"Gailu guztiekin"},
 goC(){return"Egiaztapen gurutzatuko gailuekin, gaituta badaude"},
 goB(){return"Egiaztapen gurutzatuko gailuekin"},
-gpj(){return"Egiaztatutako gailuekin soilik"},
+gpk(){return"Egiaztatutako gailuekin soilik"},
 gpg(){return"Mezua (aukerakoa)\u2026"},
 goJ(){return"Ez da gailu honekin bateragarria"},
 gnR(){return"Enter new chat"},
 goA(){return"Approve"},
+gpl(){return"You have knocked"},
+gph(){return"Please wait now, until someone from the room invites you."},
 C(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.Ey,C.aG)})()
 B.dX(b.typeUniverse,JSON.parse('{"Ey":{"aG":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_239",e:"endPart",h:b})})($__dart_deferred_initializers__,"ZnX48VMUJpJG8woTlgHkiFOd/nE=");
+a.eventLog.push({p:"main.dart.js_239",e:"endPart",h:b})})($__dart_deferred_initializers__,"O7Br0kb5NF2VRvgJiyG6qoiddNk=");
 //# sourceMappingURL=main.dart.js_239.part.js.map

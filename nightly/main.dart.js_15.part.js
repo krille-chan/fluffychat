@@ -2,16 +2,16 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_15",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-czm(d){return new A.zI(B.di(d))},
-czn(){return new A.EV(B.di("pt_BR"))},
-czo(){return new A.EW(B.di("pt_PT"))},
-zI:function zI(d){this.a=d},
+czp(d){return new A.zJ(B.dj(d))},
+czq(){return new A.EV(B.dj("pt_BR"))},
+czr(){return new A.EW(B.dj("pt_PT"))},
+zJ:function zJ(d){this.a=d},
 EV:function EV(d){this.a=d},
 EW:function EW(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[4],A)
 C=c[52]
-A.zI.prototype={
+A.zJ.prototype={
 gnw(){return"false"},
 gjJ(){return"Repeat password"},
 glV(){return"Not an image file."},
@@ -99,7 +99,7 @@ gfc(){return"Chat details"},
 gfd(){return"Chats"},
 ghP(){return"Choose a strong password"},
 gfe(){return"Clear archive"},
-gcu(d){return"Fechar"},
+gct(d){return"Fechar"},
 gkR(){return"Mark as direct message room for the giving Matrix ID"},
 gkS(){return"Mark as group"},
 ghQ(){return"Ban the given user from this room"},
@@ -259,7 +259,7 @@ gjj(){return"Obtaining location\u2026"},
 gjk(){return"Offensive"},
 gcA(){return"Ok"},
 gjm(){return"Online Key Backup is enabled"},
-gdv(){return"Oops, something went wrong\u2026"},
+gdw(){return"Oops, something went wrong\u2026"},
 gjl(){return"One of your clients has been logged out"},
 geD(){return"Add account"},
 giz(){return"Edit bundles for this account"},
@@ -619,7 +619,7 @@ goV(){return"Jitsi"},
 goW(){return"Notifies the user about Jitsi widget events."},
 gpa(){return"Suppress Server ACL Events"},
 gpb(){return"Suppresses notifications for Server ACL events."},
-pi(d){return"Unknown push rule '"+d+"'"},
+pj(d){return"Unknown push rule '"+d+"'"},
 goD(){return"If you delete this notification setting, this can not be undone."},
 goH(){return"More"},
 gov(){return"Share keys with..."},
@@ -627,11 +627,13 @@ gow(){return"Which devices should be trusted so that they can read along your me
 goz(){return"All devices"},
 goC(){return"Cross verified devices if enabled"},
 goB(){return"Cross verified devices"},
-gpj(){return"Verified devices only"},
+gpk(){return"Verified devices only"},
 gpg(){return"(Optional) message..."},
 goJ(){return"Not supported on this device"},
 gnR(){return"Enter new chat"},
 goA(){return"Approve"},
+gpl(){return"You have knocked"},
+gph(){return"Please wait now, until someone from the room invites you."},
 C(d,e){return this.gbd(this).$1(e)}}
 A.EV.prototype={
 gjJ(){return"Repita a senha"},
@@ -707,7 +709,7 @@ gfc(){return"Detalhes da conversa"},
 gfd(){return"Conversas"},
 ghP(){return"Escolha uma senha forte"},
 gfe(){return"Limpar arquivo"},
-gcu(d){return"Fechar"},
+gct(d){return"Fechar"},
 gkR(){return"Marcar como conversa direta para o ID Matrix dado"},
 gkS(){return"Marcar como grupo"},
 ghQ(){return"Banir um(a) usu\xe1rio(a) desta sala"},
@@ -867,7 +869,7 @@ gjj(){return"Obtendo localiza\xe7\xe3o\u2026"},
 gjk(){return"Ofensivo"},
 gcA(){return"Ok"},
 gjm(){return"Backup de chaves est\xe1 ativado"},
-gdv(){return"Opa, algo deu errado\u2026"},
+gdw(){return"Opa, algo deu errado\u2026"},
 gjl(){return"Um dos seus clientes foi desvinculado"},
 geD(){return"Adicionar conta"},
 giz(){return"Editar cole\xe7\xf5es para esta conta"},
@@ -1183,7 +1185,7 @@ gfc(){return"Detalhes de conversa"},
 gfd(){return"Conversas"},
 ghP(){return"Escolhe uma palavra-passe forte"},
 gfe(){return"Limpar arquivo"},
-gcu(d){return"Fechar"},
+gct(d){return"Fechar"},
 ghQ(){return"Banir o utilizador dado desta sala"},
 ghR(){return"Limpar cache"},
 ghS(){return"Criar uma conversa de grupo vazia\nUsa --no-encryption para desativar a encripta\xe7\xe3o"},
@@ -1314,7 +1316,7 @@ gjj(){return"A obter localiza\xe7\xe3o\u2026"},
 gjk(){return"Offensivo"},
 gcA(){return"ok"},
 gjm(){return"A c\xf3pia de seguran\xe7a online de chaves est\xe1 ativada"},
-gdv(){return"Ups, algo correu mal\u2026"},
+gdw(){return"Ups, algo correu mal\u2026"},
 gjl(){return"Um dos teus clientes terminou sess\xe3o"},
 geD(){return"Adicionar conta"},
 giz(){return"Editar pacotes para esta conta"},
@@ -1372,10 +1374,10 @@ f_(d){return d+" enviou um autocolante"},
 h2(d){return d+" enviou um v\xeddeo"},
 C(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit,w=a.inheritMany
-x(A.zI,C.aG)
-w(A.zI,[A.EV,A.EW])})()
-B.dX(b.typeUniverse,JSON.parse('{"zI":{"aG":[]},"EV":{"aG":[]},"EW":{"aG":[]}}'))
+x(A.zJ,C.aG)
+w(A.zJ,[A.EV,A.EW])})()
+B.dX(b.typeUniverse,JSON.parse('{"zJ":{"aG":[]},"EV":{"aG":[]},"EW":{"aG":[]}}'))
 var y={d:" alterou a visibilidade do hist\xf3rico para: "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_15",e:"endPart",h:b})})($__dart_deferred_initializers__,"JsGVWuTf7gAlrMNwVgh3w0kC8rA=");
+a.eventLog.push({p:"main.dart.js_15",e:"endPart",h:b})})($__dart_deferred_initializers__,"SuDv5Hgrt0sYfkErnRGDZyX6r3E=");
 //# sourceMappingURL=main.dart.js_15.part.js.map

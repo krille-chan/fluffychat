@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_230",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cyX(){return new A.Ev(B.di("eo"))},
+cz_(){return new A.Ev(B.dj("eo"))},
 Ev:function Ev(d){this.a=d}}
 B=c[0]
 C=c[52]
@@ -95,7 +95,7 @@ gfc(){return"Detaloj pri babilo"},
 gfd(){return"Babiloj"},
 ghP(){return"Elektu fortan pasvorton"},
 gfe(){return"Vakigi ar\u0125ivon"},
-gcu(d){return"Fermi"},
+gct(d){return"Fermi"},
 gkR(){return"Mark as direct message room for the giving Matrix ID"},
 gkS(){return"Mark as group"},
 ghQ(){return"Forbari la donitan uzanton de \u0109i tiu \u0109ambro"},
@@ -255,7 +255,7 @@ gjj(){return"Akirante lokon\u2026"},
 gjk(){return"Ofenda"},
 gcA(){return"bone"},
 gjm(){return"Enreta savkopiado de \u015dlosiloj estas \u015daltita"},
-gdv(){return"Oj! Io misokazis\u2026"},
+gdw(){return"Oj! Io misokazis\u2026"},
 gjl(){return"One of your clients has been logged out"},
 geD(){return"Add account"},
 giz(){return"Edit bundles for this account"},
@@ -615,7 +615,7 @@ goV(){return"Jitsi"},
 goW(){return"Notifies the user about Jitsi widget events."},
 gpa(){return"Suppress Server ACL Events"},
 gpb(){return"Suppresses notifications for Server ACL events."},
-pi(d){return"Unknown push rule '"+d+"'"},
+pj(d){return"Unknown push rule '"+d+"'"},
 goD(){return"If you delete this notification setting, this can not be undone."},
 goH(){return"More"},
 gov(){return"Share keys with..."},
@@ -623,15 +623,17 @@ gow(){return"Which devices should be trusted so that they can read along your me
 goz(){return"All devices"},
 goC(){return"Cross verified devices if enabled"},
 goB(){return"Cross verified devices"},
-gpj(){return"Verified devices only"},
+gpk(){return"Verified devices only"},
 gpg(){return"(Optional) message..."},
 goJ(){return"Not supported on this device"},
 gnR(){return"Enter new chat"},
 goA(){return"Approve"},
+gpl(){return"You have knocked"},
+gph(){return"Please wait now, until someone from the room invites you."},
 C(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Ev,C.aG)})()
 B.dX(b.typeUniverse,JSON.parse('{"Ev":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_230",e:"endPart",h:b})})($__dart_deferred_initializers__,"+ZukPV+mH2k8B4ylB1AlT0fgi34=");
+a.eventLog.push({p:"main.dart.js_230",e:"endPart",h:b})})($__dart_deferred_initializers__,"EaGlCuuipDf/38JNaxV4w1B5CQ0=");
 //# sourceMappingURL=main.dart.js_230.part.js.map

@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_254",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cz8(){return new A.EH(B.di("hr"))},
+czb(){return new A.EH(B.dj("hr"))},
 EH:function EH(d){this.a=d}}
 B=c[0]
 C=c[52]
@@ -95,7 +95,7 @@ gfc(){return"Detalji razgovora"},
 gfd(){return"Razgovori"},
 ghP(){return"Odaberi sna\u017enu lozinku"},
 gfe(){return"Isprazni arhiv"},
-gcu(d){return"Zatvori"},
+gct(d){return"Zatvori"},
 gkR(){return"Ozna\u010di kao sobu za izravnu razmjenu poruka za zadani Matrix ID"},
 gkS(){return"Ozna\u010di kao grupu"},
 ghQ(){return"Isklju\u010di navedenog korisnika iz ove sobe"},
@@ -255,7 +255,7 @@ gjj(){return"Dohva\u0107anje lokacije \u2026"},
 gjk(){return"Uvredljiv"},
 gcA(){return"U redu"},
 gjm(){return"Internetski klju\u010d sigurnosnih kopija je aktiviran"},
-gdv(){return"Ups, dogodila se gre\u0161ka \u2026"},
+gdw(){return"Ups, dogodila se gre\u0161ka \u2026"},
 gjl(){return"Jedan od tvojih klijenata je odjavljen"},
 geD(){return"Dodaj ra\u010dun"},
 giz(){return"Uredi pakete za ovaj ra\u010dun"},
@@ -615,7 +615,7 @@ goV(){return"Jitsi"},
 goW(){return"Notifies the user about Jitsi widget events."},
 gpa(){return"Suppress Server ACL Events"},
 gpb(){return"Suppresses notifications for Server ACL events."},
-pi(d){return"Unknown push rule '"+d+"'"},
+pj(d){return"Unknown push rule '"+d+"'"},
 goD(){return"If you delete this notification setting, this can not be undone."},
 goH(){return"More"},
 gov(){return"Share keys with..."},
@@ -623,15 +623,17 @@ gow(){return"Which devices should be trusted so that they can read along your me
 goz(){return"All devices"},
 goC(){return"Cross verified devices if enabled"},
 goB(){return"Cross verified devices"},
-gpj(){return"Verified devices only"},
+gpk(){return"Verified devices only"},
 gpg(){return"(Optional) message..."},
 goJ(){return"Not supported on this device"},
 gnR(){return"Enter new chat"},
 goA(){return"Approve"},
+gpl(){return"You have knocked"},
+gph(){return"Please wait now, until someone from the room invites you."},
 C(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.EH,C.aG)})()
 B.dX(b.typeUniverse,JSON.parse('{"EH":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_254",e:"endPart",h:b})})($__dart_deferred_initializers__,"B0w0M1x14mQEmkimCEG65c0oMtw=");
+a.eventLog.push({p:"main.dart.js_254",e:"endPart",h:b})})($__dart_deferred_initializers__,"SKPgP1HRKrddijmtpsn6cIStLOs=");
 //# sourceMappingURL=main.dart.js_254.part.js.map

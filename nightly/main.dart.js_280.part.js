@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_280",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czl(){return new A.EU(B.di("pl"))},
+czo(){return new A.EU(B.dj("pl"))},
 EU:function EU(d){this.a=d}}
 B=c[0]
 C=c[52]
@@ -96,7 +96,7 @@ gfc(){return"Szczeg\xf3\u0142y czatu"},
 gfd(){return"Czaty"},
 ghP(){return"Wybierz silne has\u0142o"},
 gfe(){return"Wyczy\u015b\u0107 archiwum"},
-gcu(d){return"Zamknij"},
+gct(d){return"Zamknij"},
 gkR(){return"Oznacz jako pok\xf3j wiadomo\u015bci bezpo\u015brednich dla podanego Matrix ID"},
 gkS(){return"Oznacz jako grup\u0119"},
 ghQ(){return"Zbanuj u\u017cytkownika w tym pokoju"},
@@ -256,7 +256,7 @@ gjj(){return"Uzyskiwanie lokalizacji\u2026"},
 gjk(){return"Obra\u017aliwe"},
 gcA(){return"Ok"},
 gjm(){return"Kopia zapasowa kluczy online jest w\u0142\u0105czona"},
-gdv(){return"Ojej! Co\u015b posz\u0142o nie tak\u2026"},
+gdw(){return"Ojej! Co\u015b posz\u0142o nie tak\u2026"},
 gjl(){return"Jedno z twoich urz\u0105dze\u0144 zosta\u0142o wylogowane"},
 geD(){return"Dodaj konto"},
 giz(){return"Edytuj pakiety dla tego konta"},
@@ -616,7 +616,7 @@ goV(){return"Jitsi"},
 goW(){return"Powiadamia o komunikatach wid\u017cet\xf3w Jitsi."},
 gpa(){return"St\u0142um komunikaty o listach kontroli dost\u0119pu serwer\xf3w pokoj\xf3w"},
 gpb(){return"T\u0142umi powiadomienia o komunikatach o listach kontroli dost\u0119pu (ACL) serwer\xf3w pokoj\xf3w."},
-pi(d){return"Nieznana regu\u0142a: '"+d+"'"},
+pj(d){return"Nieznana regu\u0142a: '"+d+"'"},
 goD(){return"Je\u015bli skasujesz to ustawienie powiadomie\u0144, nie b\u0119dzie si\u0119 da\u0142o tego cofn\u0105\u0107."},
 goH(){return"Wi\u0119cej"},
 gov(){return"Udost\u0119pnij klucze..."},
@@ -624,15 +624,17 @@ gow(){return"Kt\xf3re urz\u0105dzenia powinny by\u0107 zaufane, aby mog\u0142y o
 goz(){return"Wszystkie urz\u0105dzenia"},
 goC(){return"Urz\u0105dzenia zweryfikowane krzy\u017cowo, je\u015bli w\u0142\u0105czone"},
 goB(){return"Urz\u0105dzenia zweryfikowane krzy\u017cowo"},
-gpj(){return"Tylko zweryfikowane urz\u0105dzenia"},
+gpk(){return"Tylko zweryfikowane urz\u0105dzenia"},
 gpg(){return"(Opcjonalna) wiadomo\u015b\u0107..."},
 goJ(){return"Niewspierane na tym urz\u0105dzeniu"},
 gnR(){return"Enter new chat"},
 goA(){return"Approve"},
+gpl(){return"You have knocked"},
+gph(){return"Please wait now, until someone from the room invites you."},
 C(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.EU,C.aG)})()
 B.dX(b.typeUniverse,JSON.parse('{"EU":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_280",e:"endPart",h:b})})($__dart_deferred_initializers__,"Hu0FCTQRgvMkmumINYmIY3T3A1Q=");
+a.eventLog.push({p:"main.dart.js_280",e:"endPart",h:b})})($__dart_deferred_initializers__,"fBtU14FfWZp+xxJINnSEzPq1zog=");
 //# sourceMappingURL=main.dart.js_280.part.js.map

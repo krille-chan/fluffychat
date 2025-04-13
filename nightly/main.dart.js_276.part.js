@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_276",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czi(){return new A.ER(B.di("lv"))},
+czl(){return new A.ER(B.dj("lv"))},
 ER:function ER(d){this.a=d}}
 B=c[0]
 C=c[52]
@@ -95,7 +95,7 @@ gfc(){return"T\u0113rz\u0113\u0161anas izv\u0113rsums"},
 gfd(){return"T\u0113rz\u0113\u0161anas"},
 ghP(){return"J\u0101izv\u0113las dro\u0161a parole"},
 gfe(){return"Izt\u012br\u012bt arh\u012bvu"},
-gcu(d){return"Aizv\u0113rt"},
+gct(d){return"Aizv\u0113rt"},
 gkR(){return"Atz\u012bm\u0113t k\u0101 tie\u0161o zi\u0146u istabu nor\u0101d\u012btajam Matrix Id"},
 gkS(){return"Atz\u012bm\u0113t k\u0101 kopu"},
 ghQ(){return"Izsl\u0113gt nor\u0101d\u012bto lietot\u0101ju no \u0161\u012bs istabas"},
@@ -255,7 +255,7 @@ gjj(){return"Ieg\u016bst atra\u0161an\u0101s vietu\u2026"},
 gjk(){return"Aizskaro\u0161s"},
 gcA(){return"Labi"},
 gjm(){return"Tie\u0161saistes atsl\u0113gas rezerves kop\u0113\u0161ana ir iesp\u0113jota"},
-gdv(){return"Ups! Kaut kas nog\u0101ja greizi\u2026"},
+gdw(){return"Ups! Kaut kas nog\u0101ja greizi\u2026"},
 gjl(){return"Viens no klientiem ir atteicies"},
 geD(){return"Pievienot kontu"},
 giz(){return"Labot \u0161\u012b konta komplektus"},
@@ -615,7 +615,7 @@ goV(){return"Jitsi"},
 goW(){return"Pazi\u0146o lietot\u0101jam par Jitsi logr\u012bka notikumiem."},
 gpa(){return"Apspiest servera ACL notikumus"},
 gpb(){return"Apspie\u017e notikumus par servera ACL notikumiem."},
-pi(d){return"Nezin\u0101ma pa\u0161pieg\u0101des k\u0101rtula '"+d+"'"},
+pj(d){return"Nezin\u0101ma pa\u0161pieg\u0101des k\u0101rtula '"+d+"'"},
 goD(){return"Ja tiek izdz\u0113sts \u0161is pazi\u0146ojuma iestat\u012bjums, to nevar atsaukt."},
 goH(){return"Vair\u0101k"},
 gov(){return"Kop\u012bgot atsl\u0113gas ar..."},
@@ -623,15 +623,17 @@ gow(){return"Kur\u0101m ier\u012bc\u0113m vajadz\u0113tu uztic\u0113ties, lai ta
 goz(){return"Visas ier\u012bces"},
 goC(){return"Savstarp\u0113ji apliecin\u0101tas ier\u012bces, ja iesp\u0113jots"},
 goB(){return"Savstarp\u0113ji apliecin\u0101tas ier\u012bces"},
-gpj(){return"Tikai apliecin\u0101tas ier\u012bces"},
+gpk(){return"Tikai apliecin\u0101tas ier\u012bces"},
 gpg(){return"(P\u0113c izv\u0113les) Zi\u0146ojums..."},
 goJ(){return"\u0160aj\u0101 ier\u012bc\u0113 nav atbalst\u012bts"},
 gnR(){return"Ieiet jaunaj\u0101 t\u0113rz\u0113\u0161an\u0101"},
 goA(){return"Approve"},
+gpl(){return"You have knocked"},
+gph(){return"Please wait now, until someone from the room invites you."},
 C(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.ER,C.aG)})()
 B.dX(b.typeUniverse,JSON.parse('{"ER":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_276",e:"endPart",h:b})})($__dart_deferred_initializers__,"vG8vD8k30MYg+O4DrJdRhFz3OlI=");
+a.eventLog.push({p:"main.dart.js_276",e:"endPart",h:b})})($__dart_deferred_initializers__,"Mq5Z0P6d6A62ndiVH2oEZMnFyOo=");
 //# sourceMappingURL=main.dart.js_276.part.js.map

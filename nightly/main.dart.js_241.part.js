@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_241",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cz0(){return new A.Ez(B.di("fa"))},
+cz3(){return new A.Ez(B.dj("fa"))},
 Ez:function Ez(d){this.a=d}}
 B=c[0]
 C=c[52]
@@ -95,7 +95,7 @@ gfc(){return"\u062c\u0632\u0626\u06cc\u0627\u062a \u06af\u067e"},
 gfd(){return"\u06af\u067e\u200c\u0647\u0627"},
 ghP(){return"\u0631\u0645\u0632 \u0639\u0628\u0648\u0631 \u0642\u0648\u06cc \u0627\u0646\u062a\u062e\u0627\u0628 \u06a9\u0646\u06cc\u062f"},
 gfe(){return"\u0628\u0627\u06cc\u06af\u0627\u0646\u06cc \u0631\u0627 \u067e\u0627\u06a9 \u06a9\u0646\u06cc\u062f"},
-gcu(d){return"\u0628\u0633\u062a\u0646"},
+gct(d){return"\u0628\u0633\u062a\u0646"},
 gkR(){return"\u0628\u0631\u0627\u06cc \u062f\u0627\u062f\u0646 \u0634\u0646\u0627\u0633\u0647 \u0645\u0627\u062a\u0631\u06cc\u06a9\u0633 \u0628\u0647 \u0639\u0646\u0648\u0627\u0646 \u0627\u062a\u0627\u0642 \u067e\u06cc\u0627\u0645\u200c\u0647\u0627\u06cc \u0645\u0633\u062a\u0642\u06cc\u0645 \u0639\u0644\u0627\u0645\u062a \u0628\u06af\u0630\u0627\u0631\u06cc\u062f"},
 gkS(){return"\u0628\u0647 \u0639\u0646\u0648\u0627\u0646 \u06af\u0631\u0648\u0647 \u0639\u0644\u0627\u0645\u062a \u0628\u06af\u0630\u0627\u0631\u06cc\u062f"},
 ghQ(){return"\u06a9\u0627\u0631\u0628\u0631 \u0645\u0634\u062e\u0635 \u0634\u062f\u0647 \u0631\u0627 \u0627\u0632 \u0627\u06cc\u0646 \u0627\u062a\u0627\u0642 \u0645\u062d\u0631\u0648\u0645 \u06a9\u0646\u06cc\u062f"},
@@ -255,7 +255,7 @@ gjj(){return"\u0628\u0647 \u062f\u0633\u062a \u0622\u0648\u0631\u062f\u0646 \u06
 gjk(){return"\u062a\u0648\u0647\u06cc\u0646 \u0622\u0645\u06cc\u0632"},
 gcA(){return"\u062a\u0627\u06cc\u06cc\u062f"},
 gjm(){return"\u067e\u0634\u062a\u06cc\u0628\u0627\u0646\u200c\u06af\u06cc\u0631\u06cc \u0622\u0646\u0644\u0627\u06cc\u0646 \u0627\u0632 \u06a9\u0644\u06cc\u062f \u0641\u0639\u0627\u0644 \u0627\u0633\u062a"},
-gdv(){return"\u0627\u0648\u0647\u060c \u0645\u0634\u06a9\u0644\u06cc \u067e\u06cc\u0634 \u0622\u0645\u062f\u2026"},
+gdw(){return"\u0627\u0648\u0647\u060c \u0645\u0634\u06a9\u0644\u06cc \u067e\u06cc\u0634 \u0622\u0645\u062f\u2026"},
 gjl(){return"\u06cc\u06a9\u06cc \u0627\u0632 \u06a9\u0644\u0627\u06cc\u0646\u062a(\u0628\u0631\u0646\u0627\u0645\u0647)\u0647\u0627\u06cc \u0634\u0645\u0627 \u0627\u0632 \u0633\u06cc\u0633\u062a\u0645 \u062e\u0627\u0631\u062c \u0634\u062f\u0647 \u0627\u0633\u062a"},
 geD(){return"\u0627\u0636\u0627\u0641\u0647 \u06a9\u0631\u062f\u0646 \u062d\u0633\u0627\u0628 \u06a9\u0627\u0631\u0628\u0631\u06cc"},
 giz(){return"\u0628\u0633\u062a\u0647\u200c\u0647\u0627\u06cc \u0627\u06cc\u0646 \u062d\u0633\u0627\u0628 \u0631\u0627 \u0648\u06cc\u0631\u0627\u06cc\u0634 \u06a9\u0646\u06cc\u062f"},
@@ -615,7 +615,7 @@ goV(){return"Jitsi"},
 goW(){return"Notifies the user about Jitsi widget events."},
 gpa(){return"Suppress Server ACL Events"},
 gpb(){return"Suppresses notifications for Server ACL events."},
-pi(d){return"Unknown push rule '"+d+"'"},
+pj(d){return"Unknown push rule '"+d+"'"},
 goD(){return"If you delete this notification setting, this can not be undone."},
 goH(){return"More"},
 gov(){return"Share keys with..."},
@@ -623,15 +623,17 @@ gow(){return"Which devices should be trusted so that they can read along your me
 goz(){return"All devices"},
 goC(){return"Cross verified devices if enabled"},
 goB(){return"Cross verified devices"},
-gpj(){return"Verified devices only"},
+gpk(){return"Verified devices only"},
 gpg(){return"(Optional) message..."},
 goJ(){return"Not supported on this device"},
 gnR(){return"Enter new chat"},
 goA(){return"Approve"},
+gpl(){return"You have knocked"},
+gph(){return"Please wait now, until someone from the room invites you."},
 C(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Ez,C.aG)})()
 B.dX(b.typeUniverse,JSON.parse('{"Ez":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_241",e:"endPart",h:b})})($__dart_deferred_initializers__,"eTvvsW3hmhEhidejZurZelAHNIo=");
+a.eventLog.push({p:"main.dart.js_241",e:"endPart",h:b})})($__dart_deferred_initializers__,"3OssPQ6ayj7CQAtEMoN/YO+kX20=");
 //# sourceMappingURL=main.dart.js_241.part.js.map

@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_214",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cyT(){return new A.Er(B.di("cs"))},
+cyW(){return new A.Er(B.dj("cs"))},
 Er:function Er(d){this.a=d}}
 B=c[0]
 C=c[52]
@@ -95,7 +95,7 @@ gfc(){return"Bli\u017e\u0161\xed \xfadaje o chatu"},
 gfd(){return"Chaty"},
 ghP(){return"Vyberte siln\xe9 heslo"},
 gfe(){return"Vymazat archiv"},
-gcu(d){return"Zav\u0159\xedt"},
+gct(d){return"Zav\u0159\xedt"},
 gkR(){return"Ozna\u010dit jako m\xedstnost p\u0159\xedm\xe9 konverzace s dan\xfdm Matrix ID"},
 gkS(){return"Ozna\u010dit jako skupinu"},
 ghQ(){return"Zak\xe1zat dan\xe9mu u\u017eivateli p\u0159\xedstup do t\xe9to m\xedstnosti"},
@@ -255,7 +255,7 @@ gjj(){return"Z\xedsk\xe1v\xe1n\xed polohy\u2026"},
 gjk(){return"Ur\xe1\u017eliv\xe9"},
 gcA(){return"Ok"},
 gjm(){return"Online z\xe1loha k\xed\u010d\u016f je zapnuta"},
-gdv(){return"Jejda, n\u011bco se pokazilo\u2026"},
+gdw(){return"Jejda, n\u011bco se pokazilo\u2026"},
 gjl(){return"Jeden z va\u0161ich klient\u016f byl odhl\xe1\u0161en"},
 geD(){return"P\u0159idat \xfa\u010det"},
 giz(){return"Upravit bal\xed\u010dky pro tento \xfa\u010det"},
@@ -615,7 +615,7 @@ goV(){return"Jitsi"},
 goW(){return"Notifies the user about Jitsi widget events."},
 gpa(){return"Suppress Server ACL Events"},
 gpb(){return"Suppresses notifications for Server ACL events."},
-pi(d){return"Unknown push rule '"+d+"'"},
+pj(d){return"Unknown push rule '"+d+"'"},
 goD(){return"If you delete this notification setting, this can not be undone."},
 goH(){return"More"},
 gov(){return"Share keys with..."},
@@ -623,15 +623,17 @@ gow(){return"Which devices should be trusted so that they can read along your me
 goz(){return"All devices"},
 goC(){return"Cross verified devices if enabled"},
 goB(){return"Cross verified devices"},
-gpj(){return"Verified devices only"},
+gpk(){return"Verified devices only"},
 gpg(){return"(Optional) message..."},
 goJ(){return"Not supported on this device"},
 gnR(){return"Enter new chat"},
 goA(){return"Approve"},
+gpl(){return"You have knocked"},
+gph(){return"Please wait now, until someone from the room invites you."},
 C(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Er,C.aG)})()
 B.dX(b.typeUniverse,JSON.parse('{"Er":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_214",e:"endPart",h:b})})($__dart_deferred_initializers__,"ZhY2UL5sWr3aapGdsCvDg+zvusE=");
+a.eventLog.push({p:"main.dart.js_214",e:"endPart",h:b})})($__dart_deferred_initializers__,"+UJULqwaVxfIwOR07DJMpEGj/b8=");
 //# sourceMappingURL=main.dart.js_214.part.js.map

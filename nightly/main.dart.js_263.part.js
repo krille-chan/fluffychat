@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_263",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czb(){return new A.EK(B.di("id"))},
+cze(){return new A.EK(B.dj("id"))},
 EK:function EK(d){this.a=d}}
 B=c[0]
 C=c[52]
@@ -95,7 +95,7 @@ gfc(){return"Detail obrolan"},
 gfd(){return"Obrolan"},
 ghP(){return"Pilih kata sandi yang kuat"},
 gfe(){return"Bersihkan arsip"},
-gcu(d){return"Tutup"},
+gct(d){return"Tutup"},
 gkR(){return"Tandai sebagai ruangan pesan langsung untuk ID Matrix yang ditentukan"},
 gkS(){return"Tandai sebagai grup"},
 ghQ(){return"Cekal pengguna yang dicantumkan dari ruangan ini"},
@@ -255,7 +255,7 @@ gjj(){return"Mendapatkan lokasi\u2026"},
 gjk(){return"Menyinggung"},
 gcA(){return"Ok"},
 gjm(){return"Cadangan Kunci Online dinyalakan"},
-gdv(){return"Ups, ada yang salah\u2026"},
+gdw(){return"Ups, ada yang salah\u2026"},
 gjl(){return"Salah satu klienmu telah keluar"},
 geD(){return"Tambah akun"},
 giz(){return"Edit bundel untuk akun ini"},
@@ -615,7 +615,7 @@ goV(){return"Jitsi"},
 goW(){return"Memberi tahu pengguna tentang peristiwa widget Jitsi."},
 gpa(){return"Diamkan Peristiwa ACL Server"},
 gpb(){return"Mendiamkan notifikasi peristiwa ACL server."},
-pi(d){return"Aturan dorongan '"+d+"' tidak diketahui"},
+pj(d){return"Aturan dorongan '"+d+"' tidak diketahui"},
 goD(){return"Jika kamu menghapus pengaturan notifikasi ini, maka tidak dapat diurungkan."},
 goH(){return"Tambahan"},
 gov(){return"Bagikan kunci dengan..."},
@@ -623,16 +623,18 @@ gow(){return"Perangkat apa saja yang dipercayai supaya mereka bisa membaca bersa
 goz(){return"Semua perangkat"},
 goC(){return"Verifikasi silang perangkat jika diaktifkan"},
 goB(){return"Perangkat terverifikasi silang"},
-gpj(){return"Perangkat terverifikasi saja"},
+gpk(){return"Perangkat terverifikasi saja"},
 gpg(){return"Pesan (opsional)..."},
 goJ(){return"Tidak didukung pada perangkat ini"},
 gnR(){return"Masuk ke obrolan baru"},
 goA(){return"Approve"},
+gpl(){return"You have knocked"},
+gph(){return"Please wait now, until someone from the room invites you."},
 C(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.EK,C.aG)})()
 B.dX(b.typeUniverse,JSON.parse('{"EK":{"aG":[]}}'))
 var y={a:"Memberi tahu pengguna tentang pesan dalam ruangan satu ke satu."}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_263",e:"endPart",h:b})})($__dart_deferred_initializers__,"R5XmVd07bg79//hiPu0kshnswRI=");
+a.eventLog.push({p:"main.dart.js_263",e:"endPart",h:b})})($__dart_deferred_initializers__,"9pflQlyTH5/phz/2i4BcFMpWEMw=");
 //# sourceMappingURL=main.dart.js_263.part.js.map

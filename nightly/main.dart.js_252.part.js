@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_252",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cz6(){return new A.EF(B.di("he"))},
+cz9(){return new A.EF(B.dj("he"))},
 EF:function EF(d){this.a=d}}
 B=c[0]
 C=c[52]
@@ -95,7 +95,7 @@ gfc(){return"\u05e4\u05e8\u05d8\u05d9 \u05e6'\u05d0\u05d8"},
 gfd(){return"\u05e6'\u05d0\u05d8\u05d9\u05dd"},
 ghP(){return"\u05d1\u05d7\u05e8 \u05e1\u05d9\u05e1\u05de\u05d4 \u05d7\u05d6\u05e7\u05d4"},
 gfe(){return"\u05e0\u05e7\u05d4 \u05d0\u05e8\u05db\u05d9\u05d5\u05df"},
-gcu(d){return"\u05e1\u05d2\u05d5\u05e8"},
+gct(d){return"\u05e1\u05d2\u05d5\u05e8"},
 gkR(){return"Mark as direct message room for the giving Matrix ID"},
 gkS(){return"Mark as group"},
 ghQ(){return"\u05d7\u05e1\u05d5\u05dd \u05d0\u05ea \u05d4\u05de\u05e9\u05ea\u05de\u05e9 \u05d4\u05e0\u05ea\u05d5\u05df \u05de\u05d4\u05d7\u05d3\u05e8 \u05d4\u05d6\u05d4"},
@@ -255,7 +255,7 @@ gjj(){return"\u05de\u05e9\u05d9\u05d2 \u05de\u05d9\u05e7\u05d5\u05dd\u2026"},
 gjk(){return"\u05e4\u05d5\u05d2\u05e2\u05e0\u05d9"},
 gcA(){return"Ok"},
 gjm(){return"\u05d2\u05d9\u05d1\u05d5\u05d9 \u05de\u05e4\u05ea\u05d7 \u05de\u05e7\u05d5\u05d5\u05df \u05de\u05d5\u05e4\u05e2\u05dc"},
-gdv(){return"\u05d0\u05d5\u05e4\u05e1, \u05de\u05e9\u05d4\u05d5 \u05d4\u05e9\u05ea\u05d1\u05e9\u2026"},
+gdw(){return"\u05d0\u05d5\u05e4\u05e1, \u05de\u05e9\u05d4\u05d5 \u05d4\u05e9\u05ea\u05d1\u05e9\u2026"},
 gjl(){return"\u05d0\u05d7\u05d3 \u05de\u05d4\u05de\u05db\u05e9\u05d9\u05e8\u05d9\u05dd \u05e9\u05dc\u05da \u05d4\u05ea\u05e0\u05ea\u05e7"},
 geD(){return"\u05d4\u05d5\u05e1\u05e3 \u05d7\u05e9\u05d1\u05d5\u05df"},
 giz(){return"\u05e2\u05e8\u05d5\u05da \u05d7\u05d1\u05d9\u05dc\u05d5\u05ea \u05e2\u05d1\u05d5\u05e8 \u05d7\u05e9\u05d1\u05d5\u05df \u05d6\u05d4"},
@@ -615,7 +615,7 @@ goV(){return"Jitsi"},
 goW(){return"Notifies the user about Jitsi widget events."},
 gpa(){return"Suppress Server ACL Events"},
 gpb(){return"Suppresses notifications for Server ACL events."},
-pi(d){return"Unknown push rule '"+d+"'"},
+pj(d){return"Unknown push rule '"+d+"'"},
 goD(){return"If you delete this notification setting, this can not be undone."},
 goH(){return"More"},
 gov(){return"Share keys with..."},
@@ -623,15 +623,17 @@ gow(){return"Which devices should be trusted so that they can read along your me
 goz(){return"All devices"},
 goC(){return"Cross verified devices if enabled"},
 goB(){return"Cross verified devices"},
-gpj(){return"Verified devices only"},
+gpk(){return"Verified devices only"},
 gpg(){return"(Optional) message..."},
 goJ(){return"Not supported on this device"},
 gnR(){return"Enter new chat"},
 goA(){return"Approve"},
+gpl(){return"You have knocked"},
+gph(){return"Please wait now, until someone from the room invites you."},
 C(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.EF,C.aG)})()
 B.dX(b.typeUniverse,JSON.parse('{"EF":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_252",e:"endPart",h:b})})($__dart_deferred_initializers__,"Ri5wn4pd96MyA+y5H9YdRoeicOY=");
+a.eventLog.push({p:"main.dart.js_252",e:"endPart",h:b})})($__dart_deferred_initializers__,"m7Tz9MNGZJ4otsEWq1t+GSsanmc=");
 //# sourceMappingURL=main.dart.js_252.part.js.map

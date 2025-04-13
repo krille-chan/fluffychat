@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_232",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cyY(){return new A.Ew(B.di("es"))},
+cz0(){return new A.Ew(B.dj("es"))},
 Ew:function Ew(d){this.a=d}}
 B=c[0]
 C=c[52]
@@ -95,7 +95,7 @@ gfc(){return"Detalles del chat"},
 gfd(){return"Conversaciones"},
 ghP(){return"Elija una contrase\xf1a segura"},
 gfe(){return"Borrar archivo"},
-gcu(d){return"Cerrar"},
+gct(d){return"Cerrar"},
 gkR(){return"Marcar como sala de mensajes directos para el ID de Matrix"},
 gkS(){return"Marcar como grupo"},
 ghQ(){return"Prohibir al usuario dado en esta sala"},
@@ -255,7 +255,7 @@ gjj(){return"Obteniendo ubicaci\xf3n\u2026"},
 gjk(){return"Ofensiva"},
 gcA(){return"Ok"},
 gjm(){return"La copia de seguridad de la clave en l\xednea est\xe1 habilitada"},
-gdv(){return"Ups, algo sali\xf3 mal\u2026"},
+gdw(){return"Ups, algo sali\xf3 mal\u2026"},
 gjl(){return"Se ha cerrado en la sesi\xf3n de uno de sus clientes"},
 geD(){return"A\xf1adir cuenta"},
 giz(){return"Editar paquetes para esta cuenta"},
@@ -615,7 +615,7 @@ goV(){return"Jitsi"},
 goW(){return"Notifica al usuario sobre eventos del componente de Jitsi."},
 gpa(){return"Suprimir eventos de ACL del servidor"},
 gpb(){return"Suprime notificaciones de eventos de ACL del servidor."},
-pi(d){return"Regla de notificaci\xf3n desconocida '"+d+"'"},
+pj(d){return"Regla de notificaci\xf3n desconocida '"+d+"'"},
 goD(){return"Si eliminas este ajuste de notificaci\xf3n, esto no se puede deshacer."},
 goH(){return"M\xe1s"},
 gov(){return"Compartir claves con..."},
@@ -623,15 +623,17 @@ gow(){return"\xbfQu\xe9 dispositivos deben ser de confianza para que puedan leer
 goz(){return"Todos los dispositivos"},
 goC(){return"Dispositivos verificados si est\xe1n habilitados"},
 goB(){return"Dispositivos verificados"},
-gpj(){return"Solo dispositivos verificados"},
+gpk(){return"Solo dispositivos verificados"},
 gpg(){return"(Opcional) mensaje..."},
 goJ(){return"No es compatible con este dispositivo"},
 gnR(){return"Ingresar a nuevo chat"},
 goA(){return"Approve"},
+gpl(){return"You have knocked"},
+gph(){return"Please wait now, until someone from the room invites you."},
 C(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Ew,C.aG)})()
 B.dX(b.typeUniverse,JSON.parse('{"Ew":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_232",e:"endPart",h:b})})($__dart_deferred_initializers__,"2YerQNoX8mW0pWaCwfKYLW+8Z34=");
+a.eventLog.push({p:"main.dart.js_232",e:"endPart",h:b})})($__dart_deferred_initializers__,"Jy+KlZpW9W4vGOajwlvkcgV2eGk=");
 //# sourceMappingURL=main.dart.js_232.part.js.map

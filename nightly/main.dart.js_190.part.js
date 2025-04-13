@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_190",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cyO(){return new A.Em(B.di("ar"))},
+cyR(){return new A.Em(B.dj("ar"))},
 Em:function Em(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[5],A)
@@ -95,7 +95,7 @@ gfc(){return"\u062a\u0641\u0627\u0635\u064a\u0644 \u0627\u0644\u0645\u062d\u0627
 gfd(){return"\u0627\u0644\u0645\u062d\u0627\u062f\u062b\u0627\u062a"},
 ghP(){return"\u0627\u062e\u062a\u0631 \u0643\u0644\u0645\u0629 \u0633\u0631 \u0642\u0648\u064a\u0629"},
 gfe(){return"\u0627\u0645\u0633\u062d \u0627\u0644\u0623\u0631\u0634\u064a\u0641"},
-gcu(d){return"\u0627\u063a\u0644\u0642"},
+gct(d){return"\u0627\u063a\u0644\u0642"},
 gkR(){return"\u0648\u0636\u0639 \u0639\u0644\u0627\u0645\u0629 \u0639\u0644\u0649 \u0623\u0646\u0647\u0627 \u063a\u0631\u0641\u0629 \u0631\u0633\u0627\u0626\u0644 \u0645\u0628\u0627\u0634\u0631\u0629 \u0644\u0645\u0639\u0631\u0641 \u0627\u0644\u0645\u0635\u0641\u0648\u0641\u0629"},
 gkS(){return"\u0648\u0636\u0639 \u0639\u0644\u0627\u0645\u0629 \u0643\u0645\u062c\u0645\u0648\u0639\u0629"},
 ghQ(){return"\u064a\u062d\u0638\u0631 \u0627\u0644\u0645\u0633\u062a\u062e\u062f\u0645 \u0627\u0644\u0645\u0630\u0643\u0648\u0631 \u0645\u0646 \u0647\u0630\u0647 \u0627\u0644\u063a\u0631\u0641\u0629"},
@@ -255,7 +255,7 @@ gjj(){return"\u064a\u062d\u0635\u0644 \u0639\u0644\u0649 \u0627\u0644\u0645\u064
 gjk(){return"\u0639\u062f\u0648\u0627\u0646\u064a"},
 gcA(){return"\u0645\u0648\u0627\u0641\u0642"},
 gjm(){return"\u062a\u0645 \u062a\u0641\u0639\u064a\u0644 \u0627\u0644\u0646\u0633\u062e \u0627\u0644\u0627\u062d\u062a\u064a\u0627\u0637\u064a \u0644\u0644\u0645\u0641\u0627\u062a\u064a\u062d \u0639\u0628\u0631 \u0627\u0644\u0625\u0646\u062a\u0631\u0646\u062a"},
-gdv(){return"\u0639\u0641\u0648\u064b\u0627\u060c \u062d\u062f\u062b \u062e\u0637\u0623 \u0645\u0627\u2026"},
+gdw(){return"\u0639\u0641\u0648\u064b\u0627\u060c \u062d\u062f\u062b \u062e\u0637\u0623 \u0645\u0627\u2026"},
 gjl(){return"\u0623\u064f \u062e\u0631\u062c \u0623\u062d\u062f \u0627\u0644\u0639\u0645\u0644\u0627\u0621 \u0627\u0644\u0630\u064a \u062a\u0633\u062e\u062a\u062f\u0645\u0647\u0627"},
 geD(){return"\u0623\u0636\u0641 \u062d\u0633\u0627\u0628\u064b\u0627"},
 giz(){return"\u0639\u062f\u0651\u0644 \u062d\u0632\u0645 \u0647\u0630\u0627 \u0627\u0644\u062d\u0633\u0627\u0628"},
@@ -615,7 +615,7 @@ goV(){return"Jitsi"},
 goW(){return"Notifies the user about Jitsi widget events."},
 gpa(){return"Suppress Server ACL Events"},
 gpb(){return"Suppresses notifications for Server ACL events."},
-pi(d){return"Unknown push rule '"+d+"'"},
+pj(d){return"Unknown push rule '"+d+"'"},
 goD(){return"If you delete this notification setting, this can not be undone."},
 goH(){return"More"},
 gov(){return"Share keys with..."},
@@ -623,15 +623,17 @@ gow(){return"Which devices should be trusted so that they can read along your me
 goz(){return"All devices"},
 goC(){return"Cross verified devices if enabled"},
 goB(){return"Cross verified devices"},
-gpj(){return"Verified devices only"},
+gpk(){return"Verified devices only"},
 gpg(){return"(Optional) message..."},
 goJ(){return"Not supported on this device"},
 gnR(){return"Enter new chat"},
 goA(){return"Approve"},
+gpl(){return"You have knocked"},
+gph(){return"Please wait now, until someone from the room invites you."},
 C(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Em,C.aG)})()
 B.dX(b.typeUniverse,JSON.parse('{"Em":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_190",e:"endPart",h:b})})($__dart_deferred_initializers__,"J6AhE6672bgPgq4+avDaBDRVW2k=");
+a.eventLog.push({p:"main.dart.js_190",e:"endPart",h:b})})($__dart_deferred_initializers__,"JCTwJBUbkHfYUNYvMcpH2vmjU+I=");
 //# sourceMappingURL=main.dart.js_190.part.js.map

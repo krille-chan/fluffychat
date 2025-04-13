@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_248",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cz5(){return new A.EE(B.di("gl"))},
+cz8(){return new A.EE(B.dj("gl"))},
 EE:function EE(d){this.a=d}}
 B=c[0]
 C=c[52]
@@ -95,7 +95,7 @@ gfc(){return"Detalles da conversa"},
 gfd(){return"Conversas"},
 ghP(){return"Escolle un contrasinal forte"},
 gfe(){return"Baleirar arquivo"},
-gcu(d){return"Pechar"},
+gct(d){return"Pechar"},
 gkR(){return"Marcar como sala de mensaxe directa para o ID Matrix indicado"},
 gkS(){return"Marcar como grupo"},
 ghQ(){return"Vetar a usuaria indicada desta sala"},
@@ -255,7 +255,7 @@ gjj(){return"Obtendo a localizaci\xf3n\u2026"},
 gjk(){return"Ofensivo"},
 gcA(){return"Ok"},
 gjm(){return"Copia de Apoio en li\xf1a das Chaves activada"},
-gdv(){return"Ooooi, algo fallou\u2026"},
+gdw(){return"Ooooi, algo fallou\u2026"},
 gjl(){return"Un dos teus clientes foi desconectado"},
 geD(){return"Engadir conta"},
 giz(){return"Editar os feixes desta conta"},
@@ -615,7 +615,7 @@ goV(){return"Jitsi"},
 goW(){return"Informa \xe1 usuaria sobre eventos do widget Jitsi."},
 gpa(){return"Omite eventos do sevidor ACL"},
 gpb(){return"Omite notificaci\xf3n sobre eventos do servidor ACL."},
-pi(d){return"Regra push desco\xf1ecida '"+d+"'"},
+pj(d){return"Regra push desco\xf1ecida '"+d+"'"},
 goD(){return"Se omites este axuste de notificaci\xf3ns non poder\xe1s desfacer a acci\xf3n."},
 goH(){return"M\xe1is"},
 gov(){return"Compartir chaves con\u2026"},
@@ -623,15 +623,17 @@ gow(){return"En que dispositivos se pode confiar e poden ler as t\xfaas conversa
 goz(){return"Todos os dispositivos"},
 goC(){return"Dispositivos verificados se est\xe1 activado"},
 goB(){return"Dispositivos verificados"},
-gpj(){return"S\xf3 dispositivos verificados"},
+gpk(){return"S\xf3 dispositivos verificados"},
 gpg(){return"(Optativo) mensaxe\u2026"},
 goJ(){return"Non compatible co dispositivo"},
 gnR(){return"Entrar na nova conversa"},
 goA(){return"Approve"},
+gpl(){return"You have knocked"},
+gph(){return"Please wait now, until someone from the room invites you."},
 C(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.EE,C.aG)})()
 B.dX(b.typeUniverse,JSON.parse('{"EE":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_248",e:"endPart",h:b})})($__dart_deferred_initializers__,"U7Dyngqu2YmQTNeP47dF7fTo0Zo=");
+a.eventLog.push({p:"main.dart.js_248",e:"endPart",h:b})})($__dart_deferred_initializers__,"XWXI9V7XfRlo+ypkmLqJk+6lxrU=");
 //# sourceMappingURL=main.dart.js_248.part.js.map

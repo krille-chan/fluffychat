@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_237",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cyZ(){return new A.Ex(B.di("et"))},
+cz1(){return new A.Ex(B.dj("et"))},
 Ex:function Ex(d){this.a=d}}
 B=c[0]
 C=c[52]
@@ -95,7 +95,7 @@ gfc(){return"Vestluse teave"},
 gfd(){return"Vestlused"},
 ghP(){return"Vali korralik salas\xf5na"},
 gfe(){return"Kustuta arhiiv"},
-gcu(d){return"Sulge"},
+gct(d){return"Sulge"},
 gkR(){return"M\xe4rgi otsevestusluseks antud Matrixi ID jaoks"},
 gkS(){return"M\xe4rgi vestlusr\xfchmaks"},
 ghQ(){return"Sea sellele kasutajale antud jututoas suhtluskeeld"},
@@ -255,7 +255,7 @@ gjj(){return"Tuvastan asukohta\u2026"},
 gjk(){return"Solvav"},
 gcA(){return"Sobib"},
 gjm(){return"Kr\xfcptov\xf5tmete veebip\xf5hine varundus on kasutusel"},
-gdv(){return"Hopsti! Midagi l\xe4ks n\xfc\xfcd viltu\u2026"},
+gdw(){return"Hopsti! Midagi l\xe4ks n\xfc\xfcd viltu\u2026"},
 gjl(){return"\xdcks sinu klientrakendustest on Matrix'i v\xf5rgust v\xe4lja loginud"},
 geD(){return"Lisa kasutajakonto"},
 giz(){return"Muuda selle kasutajakonto k\xf6iteid"},
@@ -615,7 +615,7 @@ goV(){return"Jitsi videok\xf5ned"},
 goW(){return"Teavita kasutajat s\xfcndmustest Jitsi vidinas."},
 gpa(){return"Ligip\xe4\xe4su\xf5igused serveris"},
 gpb(){return"Peida teavitused ligip\xe4\xe4su\xf5iguste muutuste korral serveris."},
-pi(d){return"T\xf5uketeavituse tundmatu reegel '"+d+"'"},
+pj(d){return"T\xf5uketeavituse tundmatu reegel '"+d+"'"},
 goD(){return"Kui sa kustutad selle teavituse seadistuse, siis seda tegevust tagasi v\xf5tta ei saa."},
 goH(){return"Lisateave"},
 gov(){return"Jaga v\xf5tmeid seadmega..."},
@@ -623,15 +623,17 @@ gow(){return"Missuguseid seadmeid sa usaldad, et neist v\xf5iks lugeda kr\xfcpti
 goz(){return"K\xf5iki seadmeid"},
 goC(){return"Risttunnustatud seadmeid, kui see v\xf5imalus on kasutusel"},
 goB(){return"Risttunnustatud seadmeid"},
-gpj(){return"Vaid verifitseeritud seadmeid"},
+gpk(){return"Vaid verifitseeritud seadmeid"},
 gpg(){return"S\xf5num (kui soovid lisada)..."},
 goJ(){return"See pole antud seadmes toetatud"},
 gnR(){return"Liitu uue vestlusega"},
 goA(){return"Approve"},
+gpl(){return"You have knocked"},
+gph(){return"Please wait now, until someone from the room invites you."},
 C(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Ex,C.aG)})()
 B.dX(b.typeUniverse,JSON.parse('{"Ex":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_237",e:"endPart",h:b})})($__dart_deferred_initializers__,"jEXEfkmxaVXzJlBrF/tY/yB9qtI=");
+a.eventLog.push({p:"main.dart.js_237",e:"endPart",h:b})})($__dart_deferred_initializers__,"/hEAepOkfdYQe7O/uW6OWQSwIRg=");
 //# sourceMappingURL=main.dart.js_237.part.js.map

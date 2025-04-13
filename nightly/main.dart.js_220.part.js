@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_220",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cyU(){return new A.Es(B.di("de"))},
+cyX(){return new A.Es(B.dj("de"))},
 Es:function Es(d){this.a=d}}
 B=c[0]
 C=c[52]
@@ -95,7 +95,7 @@ gfc(){return"Chatdetails"},
 gfd(){return"Chats"},
 ghP(){return"W\xe4hle ein sicheres Passwort"},
 gfe(){return"Archiv leeren"},
-gcu(d){return"Schlie\xdfen"},
+gct(d){return"Schlie\xdfen"},
 gkR(){return"Als Direktnachrichtenraum f\xfcr die angegebene Matrix-ID markieren"},
 gkS(){return"Als Gruppe markieren"},
 ghQ(){return"Banne ausgew\xe4hlten Benutzer aus diesen Raum"},
@@ -255,7 +255,7 @@ gjj(){return"Standort wird ermittelt \u2026"},
 gjk(){return"Beleidigend"},
 gcA(){return"Ok"},
 gjm(){return"Online-Schl\xfcsselsicherung ist aktiviert"},
-gdv(){return"Hoppla, da ist etwas schiefgelaufen\u2026"},
+gdw(){return"Hoppla, da ist etwas schiefgelaufen\u2026"},
 gjl(){return"Einer deiner Clients wurde abgemeldet"},
 geD(){return"Konto hinzuf\xfcgen"},
 giz(){return"Bundles f\xfcr dieses Konto bearbeiten"},
@@ -615,7 +615,7 @@ goV(){return"Jitsi"},
 goW(){return"Notifies the user about Jitsi widget events."},
 gpa(){return"Suppress Server ACL Events"},
 gpb(){return"Suppresses notifications for Server ACL events."},
-pi(d){return"Unknown push rule '"+d+"'"},
+pj(d){return"Unknown push rule '"+d+"'"},
 goD(){return"If you delete this notification setting, this can not be undone."},
 goH(){return"Mehr"},
 gov(){return"Schl\xfcssel teilen mit..."},
@@ -623,16 +623,18 @@ gow(){return"Welchen Ger\xe4ten sollte vertraut werden, damit sie deine Nachrich
 goz(){return"Alle Ger\xe4te"},
 goC(){return"Cross verified devices if enabled"},
 goB(){return"Cross verified devices"},
-gpj(){return"Nur verifizierte Ger\xe4te"},
+gpk(){return"Nur verifizierte Ger\xe4te"},
 gpg(){return"(Optionale) Nachricht..."},
 goJ(){return"Nicht unterst\xfctzt auf diesem Ger\xe4t"},
 gnR(){return"Neuen Chat starten"},
 goA(){return"Approve"},
+gpl(){return"You have knocked"},
+gph(){return"Please wait now, until someone from the room invites you."},
 C(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.Es,C.aG)})()
 B.dX(b.typeUniverse,JSON.parse('{"Es":{"aG":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_220",e:"endPart",h:b})})($__dart_deferred_initializers__,"81ME8GoFlGikjRgvflawfsIvQUk=");
+a.eventLog.push({p:"main.dart.js_220",e:"endPart",h:b})})($__dart_deferred_initializers__,"BnUbrdnSaKaV7axUN/1G/vy0Rr4=");
 //# sourceMappingURL=main.dart.js_220.part.js.map

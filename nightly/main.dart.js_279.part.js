@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_279",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czk(){return new A.ET(B.di("nl"))},
+czn(){return new A.ET(B.dj("nl"))},
 ET:function ET(d){this.a=d}}
 B=c[0]
 C=c[52]
@@ -95,7 +95,7 @@ gfc(){return"Chatdetails"},
 gfd(){return"Chats"},
 ghP(){return"Kies een sterk wachtwoord"},
 gfe(){return"Archief wissen"},
-gcu(d){return"Sluiten"},
+gct(d){return"Sluiten"},
 gkR(){return"Markeer als priv\xe9berichtenkamer voor Matrix ID"},
 gkS(){return"Markeer als groep"},
 ghQ(){return"Persoon uit deze kamer verbannen"},
@@ -255,7 +255,7 @@ gjj(){return"Locatie ophalen\u2026"},
 gjk(){return"Beledigend"},
 gcA(){return"OK"},
 gjm(){return"Online sleutelback-up is ingeschakeld"},
-gdv(){return"Oeps, er ging iets mis\u2026"},
+gdw(){return"Oeps, er ging iets mis\u2026"},
 gjl(){return"\xc9\xe9n van jouw apparaten is uitgelogd"},
 geD(){return"Account toevoegen"},
 giz(){return"Bundels voor dit account wijzigen"},
@@ -615,7 +615,7 @@ goV(){return"Jitsi"},
 goW(){return"Stuur een melding naar de persoon over Jitsi widget gebeurtenissen."},
 gpa(){return"Server ACL gebeurtenissen uitschakelen"},
 gpb(){return"Meldingen over server ACL gebeurtenissen uitschakelen."},
-pi(d){return"Onbekende notificatieregel '"+d+"'"},
+pj(d){return"Onbekende notificatieregel '"+d+"'"},
 goD(){return"Als je deze melding-instelling verwijderd, kan dit niet ongedaan gemaakt worden."},
 goH(){return"Meer"},
 gov(){return"Deel sleutels met..."},
@@ -623,15 +623,17 @@ gow(){return"Welke apparaten moeten vertrouwd worden zodat ze je berichten kunne
 goz(){return"Alle apparaten"},
 goC(){return"Kruislings geverifieerde apparaten als ingeschakeld"},
 goB(){return"Kruislings geverifieerde apparaten"},
-gpj(){return"Alleen geverifieerde apparaten"},
+gpk(){return"Alleen geverifieerde apparaten"},
 gpg(){return"(Optioneel) bericht..."},
 goJ(){return"Niet ondersteund op dit apparaat"},
 gnR(){return"Nieuwe chat openen"},
 goA(){return"Approve"},
+gpl(){return"You have knocked"},
+gph(){return"Please wait now, until someone from the room invites you."},
 C(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.ET,C.aG)})()
 B.dX(b.typeUniverse,JSON.parse('{"ET":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_279",e:"endPart",h:b})})($__dart_deferred_initializers__,"qLwz7TSRuRChU2XkoGYUHYIjgTA=");
+a.eventLog.push({p:"main.dart.js_279",e:"endPart",h:b})})($__dart_deferred_initializers__,"fV8NSLq5gER/69wjPCMBv6n5qtI=");
 //# sourceMappingURL=main.dart.js_279.part.js.map
