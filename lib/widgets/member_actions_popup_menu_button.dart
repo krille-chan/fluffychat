@@ -84,6 +84,17 @@ void showMemberActionsPopupMenu({
             ],
           ),
         ),
+      if (user.membership == Membership.knock)
+        PopupMenuItem(
+          value: _MemberActions.approve,
+          child: Row(
+            children: [
+              const Icon(Icons.how_to_reg_outlined),
+              const SizedBox(width: 18),
+              Text(L10n.of(context).approve),
+            ],
+          ),
+        ),
       PopupMenuItem(
         enabled: user.room.canChangePowerLevel && user.canChangeUserPowerLevel,
         value: _MemberActions.setRole,
@@ -202,9 +213,14 @@ void showMemberActionsPopupMenu({
         future: () => user.setPower(power),
       );
       return;
+    case _MemberActions.approve:
+      await showFutureLoadingDialog(
+        context: context,
+        future: () => user.room.invite(user.id),
+      );
+      return;
     case _MemberActions.kick:
       if (await showOkCancelAlertDialog(
-            useRootNavigator: false,
             context: context,
             title: L10n.of(context).areYouSure,
             okLabel: L10n.of(context).yes,
@@ -220,7 +236,6 @@ void showMemberActionsPopupMenu({
       return;
     case _MemberActions.ban:
       if (await showOkCancelAlertDialog(
-            useRootNavigator: false,
             context: context,
             title: L10n.of(context).areYouSure,
             okLabel: L10n.of(context).yes,
@@ -268,7 +283,6 @@ void showMemberActionsPopupMenu({
       return;
     case _MemberActions.unban:
       if (await showOkCancelAlertDialog(
-            useRootNavigator: false,
             context: context,
             title: L10n.of(context).areYouSure,
             okLabel: L10n.of(context).yes,
@@ -290,6 +304,7 @@ enum _MemberActions {
   setRole,
   kick,
   ban,
+  approve,
   unban,
   report,
 }
