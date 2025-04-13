@@ -15,6 +15,7 @@ import '../../utils/url_launcher.dart';
 import '../future_loading_dialog.dart';
 import '../hover_builder.dart';
 import '../matrix.dart';
+import '../mxc_image_viewer.dart';
 
 class UserDialog extends StatelessWidget {
   static Future<void> show({
@@ -45,6 +46,7 @@ class UserDialog extends StatelessWidget {
         L10n.of(context).user;
     var copied = false;
     final theme = Theme.of(context);
+    final avatar = profile.avatarUrl;
     return AlertDialog.adaptive(
       title: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 256),
@@ -75,54 +77,65 @@ class UserDialog extends StatelessWidget {
                   children: [
                     HoverBuilder(
                       builder: (context, hovered) => StatefulBuilder(
-                        builder: (context, setState) => GestureDetector(
-                          onTap: () {
-                            Clipboard.setData(
-                              ClipboardData(text: profile.userId),
-                            );
-                            setState(() {
-                              copied = true;
-                            });
-                          },
-                          child: RichText(
-                            text: TextSpan(
-                              children: [
-                                WidgetSpan(
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(right: 4.0),
-                                    child: AnimatedScale(
-                                      duration: FluffyThemes.animationDuration,
-                                      curve: FluffyThemes.animationCurve,
-                                      scale: hovered
-                                          ? 1.33
-                                          : copied
-                                              ? 1.25
-                                              : 1.0,
-                                      child: Icon(
-                                        copied
-                                            ? Icons.check_circle
-                                            : Icons.copy,
-                                        size: 12,
-                                        color: copied ? Colors.green : null,
+                        builder: (context, setState) => MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          child: GestureDetector(
+                            onTap: () {
+                              Clipboard.setData(
+                                ClipboardData(text: profile.userId),
+                              );
+                              setState(() {
+                                copied = true;
+                              });
+                            },
+                            child: RichText(
+                              text: TextSpan(
+                                children: [
+                                  WidgetSpan(
+                                    child: Padding(
+                                      padding:
+                                          const EdgeInsets.only(right: 4.0),
+                                      child: AnimatedScale(
+                                        duration:
+                                            FluffyThemes.animationDuration,
+                                        curve: FluffyThemes.animationCurve,
+                                        scale: hovered
+                                            ? 1.33
+                                            : copied
+                                                ? 1.25
+                                                : 1.0,
+                                        child: Icon(
+                                          copied
+                                              ? Icons.check_circle
+                                              : Icons.copy,
+                                          size: 12,
+                                          color: copied ? Colors.green : null,
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                                TextSpan(text: profile.userId),
-                              ],
-                              style: theme.textTheme.bodyMedium
-                                  ?.copyWith(fontSize: 10),
+                                  TextSpan(text: profile.userId),
+                                ],
+                                style: theme.textTheme.bodyMedium
+                                    ?.copyWith(fontSize: 10),
+                              ),
+                              textAlign: TextAlign.center,
                             ),
-                            textAlign: TextAlign.center,
                           ),
                         ),
                       ),
                     ),
                     Center(
                       child: Avatar(
-                        mxContent: profile.avatarUrl,
+                        mxContent: avatar,
                         name: displayname,
                         size: Avatar.defaultSize * 2,
+                        onTap: avatar != null
+                            ? () => showDialog(
+                                  context: context,
+                                  builder: (_) => MxcImageViewer(avatar),
+                                )
+                            : null,
                       ),
                     ),
                     if (presenceText != null)

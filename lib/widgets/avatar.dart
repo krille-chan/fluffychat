@@ -62,18 +62,13 @@ class Avatar extends StatelessWidget {
             clipBehavior: Clip.hardEdge,
             child: noPic
                 ? Container(
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [name!.lightColorAvatar, name.color],
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                      ),
-                    ),
+                    decoration: BoxDecoration(color: name!.lightColorAvatar),
                     alignment: Alignment.center,
                     child: Text(
                       fallbackLetters,
                       textAlign: TextAlign.center,
                       style: TextStyle(
+                        fontFamily: 'RobotoMono',
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: (size / 2.5).roundToDouble(),
@@ -143,10 +138,12 @@ class Avatar extends StatelessWidget {
       ],
     );
     if (onTap == null) return container;
-    return InkWell(
-      onTap: onTap,
-      borderRadius: borderRadius,
-      child: container,
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
+        onTap: onTap,
+        child: container,
+      ),
     );
   }
 }
