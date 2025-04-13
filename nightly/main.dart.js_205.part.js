@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_205",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cyt(){return new A.Ep(B.di("ca"))},
-Ep:function Ep(d){this.a=d}}
+cyC(){return new A.Eq(B.di("ca"))},
+Eq:function Eq(d){this.a=d}}
 B=c[0]
 C=c[52]
 A=a.updateHolder(c[9],A)
-A.Ep.prototype={
+A.Eq.prototype={
 gnv(){return"true"},
 gjI(){return"Repetiu la contrasenya"},
 glV(){return"No \xe9s un arxiu d'image."},
@@ -95,7 +95,7 @@ gfa(){return"Detalls del xat"},
 gfb(){return"Xats"},
 ghN(){return"Trieu una contrasenya forta"},
 gfc(){return"Neteja l\u2019arxiu"},
-gcB(d){return"Tanca"},
+gcu(d){return"Tanca"},
 gkQ(){return"Marca com a conversa directa la sala amb aquesta ID de Matrix"},
 gkR(){return"Marca com un grup"},
 ghO(){return"Veta uni usu\xe0ri\xef d'aquesta sala"},
@@ -253,7 +253,7 @@ gfA(){return"No s\u2019ha trobat cap sala\u2026"},
 geS(){return"Notificacions"},
 gji(){return"S\u2019est\xe0 obtenint la ubicaci\xf3\u2026"},
 gjj(){return"Ofensiu"},
-gcz(){return"D'acord"},
+gcA(){return"D'acord"},
 gjl(){return"La c\xf2pia de seguretat de claus en l\xednia est\xe0 activada"},
 gdv(){return"Alguna cosa ha anat malament\u2026"},
 gjk(){return"Una de les teves aplicacions ha tancat la sessi\xf3"},
@@ -629,8 +629,8 @@ goH(){return"Not supported on this device"},
 gnQ(){return"Enter new chat"},
 C(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Ep,C.aG)})()
-B.dV(b.typeUniverse,JSON.parse('{"Ep":{"aG":[]}}'))};
+y(A.Eq,C.aG)})()
+B.dW(b.typeUniverse,JSON.parse('{"Eq":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_205",e:"endPart",h:b})})($__dart_deferred_initializers__,"hhfsEI8d1vgKH4h7cNRp7PzOzHg=");
+a.eventLog.push({p:"main.dart.js_205",e:"endPart",h:b})})($__dart_deferred_initializers__,"i7DkfW1iKmgrvbXTQ75JzbNoSHA=");
 //# sourceMappingURL=main.dart.js_205.part.js.map

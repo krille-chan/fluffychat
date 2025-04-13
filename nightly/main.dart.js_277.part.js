@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_277",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cyV(){return new A.ER(B.di("nb"))},
-ER:function ER(d){this.a=d}}
+cz3(){return new A.ES(B.di("nb"))},
+ES:function ES(d){this.a=d}}
 B=c[0]
 C=c[52]
 A=a.updateHolder(c[37],A)
-A.ER.prototype={
+A.ES.prototype={
 gnv(){return"false"},
 gjI(){return"Gjenta passord"},
 glV(){return"Ikke en bildefil."},
@@ -95,7 +95,7 @@ gfa(){return"Sludringsdetaljer"},
 gfb(){return"Chats"},
 ghN(){return"Velg et sterkt passord"},
 gfc(){return"Clear archive"},
-gcB(d){return"Lukk"},
+gcu(d){return"Lukk"},
 gkQ(){return"Mark as direct message room for the giving Matrix ID"},
 gkR(){return"Mark as group"},
 ghO(){return"Ban the given user from this room"},
@@ -253,7 +253,7 @@ gfA(){return"Fant ingen rom \u2026"},
 geS(){return"Merknader"},
 gji(){return"Obtaining location\u2026"},
 gjj(){return"St\xf8tende"},
-gcz(){return"OK"},
+gcA(){return"OK"},
 gjl(){return"Nettbasert sikkerhetskopiering av n\xf8kler p\xe5"},
 gdv(){return"Oida, noe gikk galt \u2026"},
 gjk(){return"One of your clients has been logged out"},
@@ -629,8 +629,8 @@ goH(){return"Not supported on this device"},
 gnQ(){return"Enter new chat"},
 C(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.ER,C.aG)})()
-B.dV(b.typeUniverse,JSON.parse('{"ER":{"aG":[]}}'))};
+y(A.ES,C.aG)})()
+B.dW(b.typeUniverse,JSON.parse('{"ES":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_277",e:"endPart",h:b})})($__dart_deferred_initializers__,"3bt1f15WqeoPgCXGlU4Rf3FEZaQ=");
+a.eventLog.push({p:"main.dart.js_277",e:"endPart",h:b})})($__dart_deferred_initializers__,"BlDPsRzNblYINba+Zr9wTPzc5s0=");
 //# sourceMappingURL=main.dart.js_277.part.js.map

@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_242",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cyD(){return new A.Ez(B.di("fi"))},
-Ez:function Ez(d){this.a=d}}
+cyM(){return new A.EA(B.di("fi"))},
+EA:function EA(d){this.a=d}}
 B=c[0]
 C=c[52]
 A=a.updateHolder(c[19],A)
-A.Ez.prototype={
+A.EA.prototype={
 gnv(){return"false"},
 gjI(){return"Salasana uudelleen"},
 glV(){return"T\xe4m\xe4 ei ole kuvatiedosto."},
@@ -95,7 +95,7 @@ gfa(){return"Keskustelun tiedot"},
 gfb(){return"Keskustelut"},
 ghN(){return"Valitse vahva salasana"},
 gfc(){return"Tyhjenn\xe4 arkisto"},
-gcB(d){return"Sulje"},
+gcu(d){return"Sulje"},
 gkQ(){return"Merkitse yksityiskeskusteluksi sy\xf6tetyn Matrix IDn kanssa"},
 gkR(){return"Merkitse ryhm\xe4ksi"},
 ghO(){return"Anna sy\xf6tetylle k\xe4ytt\xe4j\xe4lle porttikielto t\xe4h\xe4n huoneeseen"},
@@ -253,7 +253,7 @@ gfA(){return"Huoneita ei l\xf6ytynyt\u2026"},
 geS(){return"Ilmoitukset"},
 gji(){return"Paikannetaan sijantia\u2026"},
 gjj(){return"Loukkaava"},
-gcz(){return"ok"},
+gcA(){return"ok"},
 gjl(){return"Verkkkoavainvarmuuskopio on k\xe4yt\xf6ss\xe4"},
 gdv(){return"Hups, jotakin meni pieleen\u2026"},
 gjk(){return"Yksi tunnuksistasi on kirjattu ulos"},
@@ -629,8 +629,8 @@ goH(){return"Not supported on this device"},
 gnQ(){return"Enter new chat"},
 C(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Ez,C.aG)})()
-B.dV(b.typeUniverse,JSON.parse('{"Ez":{"aG":[]}}'))};
+y(A.EA,C.aG)})()
+B.dW(b.typeUniverse,JSON.parse('{"EA":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_242",e:"endPart",h:b})})($__dart_deferred_initializers__,"NyP2TfcAaXFY4tUTsasSrvntcfE=");
+a.eventLog.push({p:"main.dart.js_242",e:"endPart",h:b})})($__dart_deferred_initializers__,"Qm1FdvejfMjKIhhj3osKe+/qHf8=");
 //# sourceMappingURL=main.dart.js_242.part.js.map

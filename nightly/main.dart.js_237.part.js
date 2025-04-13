@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_237",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cyA(){return new A.Ew(B.di("et"))},
-Ew:function Ew(d){this.a=d}}
+cyJ(){return new A.Ex(B.di("et"))},
+Ex:function Ex(d){this.a=d}}
 B=c[0]
 C=c[52]
 A=a.updateHolder(c[16],A)
-A.Ew.prototype={
+A.Ex.prototype={
 gnv(){return"false"},
 gjI(){return"Korda salas\xf5na"},
 glV(){return"See pole pildifail."},
@@ -95,7 +95,7 @@ gfa(){return"Vestluse teave"},
 gfb(){return"Vestlused"},
 ghN(){return"Vali korralik salas\xf5na"},
 gfc(){return"Kustuta arhiiv"},
-gcB(d){return"Sulge"},
+gcu(d){return"Sulge"},
 gkQ(){return"M\xe4rgi otsevestusluseks antud Matrixi ID jaoks"},
 gkR(){return"M\xe4rgi vestlusr\xfchmaks"},
 ghO(){return"Sea sellele kasutajale antud jututoas suhtluskeeld"},
@@ -253,7 +253,7 @@ gfA(){return"Jututubasid ei leidunud\u2026"},
 geS(){return"Teavitused"},
 gji(){return"Tuvastan asukohta\u2026"},
 gjj(){return"Solvav"},
-gcz(){return"Sobib"},
+gcA(){return"Sobib"},
 gjl(){return"Kr\xfcptov\xf5tmete veebip\xf5hine varundus on kasutusel"},
 gdv(){return"Hopsti! Midagi l\xe4ks n\xfc\xfcd viltu\u2026"},
 gjk(){return"\xdcks sinu klientrakendustest on Matrix'i v\xf5rgust v\xe4lja loginud"},
@@ -629,8 +629,8 @@ goH(){return"See pole antud seadmes toetatud"},
 gnQ(){return"Liitu uue vestlusega"},
 C(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Ew,C.aG)})()
-B.dV(b.typeUniverse,JSON.parse('{"Ew":{"aG":[]}}'))};
+y(A.Ex,C.aG)})()
+B.dW(b.typeUniverse,JSON.parse('{"Ex":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_237",e:"endPart",h:b})})($__dart_deferred_initializers__,"nz1qh3ogS/3p7N+7EIZb1hP7mww=");
+a.eventLog.push({p:"main.dart.js_237",e:"endPart",h:b})})($__dart_deferred_initializers__,"UlhyLeg7s1bHstsy+QR5rZuJAVA=");
 //# sourceMappingURL=main.dart.js_237.part.js.map

@@ -2,16 +2,16 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_15",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cyY(d){return new A.zH(B.di(d))},
-cyZ(){return new A.EU(B.di("pt_BR"))},
-cz_(){return new A.EV(B.di("pt_PT"))},
-zH:function zH(d){this.a=d},
-EU:function EU(d){this.a=d},
-EV:function EV(d){this.a=d}},C
+cz6(d){return new A.zI(B.di(d))},
+cz7(){return new A.EV(B.di("pt_BR"))},
+cz8(){return new A.EW(B.di("pt_PT"))},
+zI:function zI(d){this.a=d},
+EV:function EV(d){this.a=d},
+EW:function EW(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[4],A)
 C=c[52]
-A.zH.prototype={
+A.zI.prototype={
 gnv(){return"false"},
 gjI(){return"Repeat password"},
 glV(){return"Not an image file."},
@@ -99,7 +99,7 @@ gfa(){return"Chat details"},
 gfb(){return"Chats"},
 ghN(){return"Choose a strong password"},
 gfc(){return"Clear archive"},
-gcB(d){return"Fechar"},
+gcu(d){return"Fechar"},
 gkQ(){return"Mark as direct message room for the giving Matrix ID"},
 gkR(){return"Mark as group"},
 ghO(){return"Ban the given user from this room"},
@@ -257,7 +257,7 @@ gfA(){return"No rooms found\u2026"},
 geS(){return"Notifica\xe7\xf5es"},
 gji(){return"Obtaining location\u2026"},
 gjj(){return"Offensive"},
-gcz(){return"Ok"},
+gcA(){return"Ok"},
 gjl(){return"Online Key Backup is enabled"},
 gdv(){return"Oops, something went wrong\u2026"},
 gjk(){return"One of your clients has been logged out"},
@@ -632,7 +632,7 @@ gpe(){return"(Optional) message..."},
 goH(){return"Not supported on this device"},
 gnQ(){return"Enter new chat"},
 C(d,e){return this.gbd(this).$1(e)}}
-A.EU.prototype={
+A.EV.prototype={
 gjI(){return"Repita a senha"},
 glV(){return"N\xe3o \xe9 uma imagem."},
 gbd(d){return"Remover"},
@@ -706,7 +706,7 @@ gfa(){return"Detalhes da conversa"},
 gfb(){return"Conversas"},
 ghN(){return"Escolha uma senha forte"},
 gfc(){return"Limpar arquivo"},
-gcB(d){return"Fechar"},
+gcu(d){return"Fechar"},
 gkQ(){return"Marcar como conversa direta para o ID Matrix dado"},
 gkR(){return"Marcar como grupo"},
 ghO(){return"Banir um(a) usu\xe1rio(a) desta sala"},
@@ -864,7 +864,7 @@ gfA(){return"Nenhuma sala encontrada\u2026"},
 geS(){return"Notifica\xe7\xf5es"},
 gji(){return"Obtendo localiza\xe7\xe3o\u2026"},
 gjj(){return"Ofensivo"},
-gcz(){return"Ok"},
+gcA(){return"Ok"},
 gjl(){return"Backup de chaves est\xe1 ativado"},
 gdv(){return"Opa, algo deu errado\u2026"},
 gjk(){return"Um dos seus clientes foi desvinculado"},
@@ -1123,7 +1123,7 @@ mo(d){return"Nesse momento, h\xe1 "+d+" usu\xe1rios bloqueados."},
 gmm(){return"Restrito"},
 glF(){return"Bater na porta restrito"},
 C(d,e){return this.gbd(this).$1(e)}}
-A.EV.prototype={
+A.EW.prototype={
 gjI(){return"Repete a palavra-passe"},
 gbd(d){return"Remover"},
 geB(){return"Acerca de"},
@@ -1182,7 +1182,7 @@ gfa(){return"Detalhes de conversa"},
 gfb(){return"Conversas"},
 ghN(){return"Escolhe uma palavra-passe forte"},
 gfc(){return"Limpar arquivo"},
-gcB(d){return"Fechar"},
+gcu(d){return"Fechar"},
 ghO(){return"Banir o utilizador dado desta sala"},
 ghP(){return"Limpar cache"},
 ghQ(){return"Criar uma conversa de grupo vazia\nUsa --no-encryption para desativar a encripta\xe7\xe3o"},
@@ -1311,7 +1311,7 @@ gfA(){return"N\xe3o foram encontradas nenhumas salas\u2026"},
 geS(){return"Notifica\xe7\xf5es"},
 gji(){return"A obter localiza\xe7\xe3o\u2026"},
 gjj(){return"Offensivo"},
-gcz(){return"ok"},
+gcA(){return"ok"},
 gjl(){return"A c\xf3pia de seguran\xe7a online de chaves est\xe1 ativada"},
 gdv(){return"Ups, algo correu mal\u2026"},
 gjk(){return"Um dos teus clientes terminou sess\xe3o"},
@@ -1371,10 +1371,10 @@ eZ(d){return d+" enviou um autocolante"},
 fZ(d){return d+" enviou um v\xeddeo"},
 C(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit,w=a.inheritMany
-x(A.zH,C.aG)
-w(A.zH,[A.EU,A.EV])})()
-B.dV(b.typeUniverse,JSON.parse('{"zH":{"aG":[]},"EU":{"aG":[]},"EV":{"aG":[]}}'))
+x(A.zI,C.aG)
+w(A.zI,[A.EV,A.EW])})()
+B.dW(b.typeUniverse,JSON.parse('{"zI":{"aG":[]},"EV":{"aG":[]},"EW":{"aG":[]}}'))
 var y={d:" alterou a visibilidade do hist\xf3rico para: "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_15",e:"endPart",h:b})})($__dart_deferred_initializers__,"c3hM2EWJYaWV8fVysGbUDLJxP4M=");
+a.eventLog.push({p:"main.dart.js_15",e:"endPart",h:b})})($__dart_deferred_initializers__,"uBd247msThT1cHm2CgVEditqw74=");
 //# sourceMappingURL=main.dart.js_15.part.js.map

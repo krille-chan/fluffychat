@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_244",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cyF(){return new A.EB(B.di("fr"))},
-EB:function EB(d){this.a=d}}
+cyO(){return new A.EC(B.di("fr"))},
+EC:function EC(d){this.a=d}}
 B=c[0]
 C=c[52]
 A=a.updateHolder(c[21],A)
-A.EB.prototype={
+A.EC.prototype={
 gnv(){return"true"},
 gjI(){return"R\xe9p\xe9tez le mot de passe"},
 glV(){return"Pas un fichier image."},
@@ -95,7 +95,7 @@ gfa(){return"D\xe9tails de la discussion"},
 gfb(){return"Discussions"},
 ghN(){return"Choisissez un mot de passe fort"},
 gfc(){return"Effacer les archives"},
-gcB(d){return"Fermer"},
+gcu(d){return"Fermer"},
 gkQ(){return"Marquer comme salon de messages directs pour l'identifiant Matrix indiqu\xe9"},
 gkR(){return"Marquer comme groupe"},
 ghO(){return"Bannir l'utilisateur/trice donn\xe9(e) de ce salon"},
@@ -253,7 +253,7 @@ gfA(){return"Aucun salon trouv\xe9\u2026"},
 geS(){return"Notifications"},
 gji(){return"Obtention de la localisation\u2026"},
 gjj(){return"Offensant"},
-gcz(){return"Valider"},
+gcA(){return"Valider"},
 gjl(){return"La sauvegarde en ligne des cl\xe9s est activ\xe9e"},
 gdv(){return"Oups, un probl\xe8me est survenu\u2026"},
 gjk(){return"Un de vos clients a \xe9t\xe9 d\xe9connect\xe9"},
@@ -629,8 +629,8 @@ goH(){return"Not supported on this device"},
 gnQ(){return"Enter new chat"},
 C(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.EB,C.aG)})()
-B.dV(b.typeUniverse,JSON.parse('{"EB":{"aG":[]}}'))};
+y(A.EC,C.aG)})()
+B.dW(b.typeUniverse,JSON.parse('{"EC":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_244",e:"endPart",h:b})})($__dart_deferred_initializers__,"+HXWq1xBh7AR7Oy4roInMzyafGc=");
+a.eventLog.push({p:"main.dart.js_244",e:"endPart",h:b})})($__dart_deferred_initializers__,"6UCV1q2dLSEPEiIqYsGO2W115dI=");
 //# sourceMappingURL=main.dart.js_244.part.js.map

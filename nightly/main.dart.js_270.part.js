@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_270",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cyP(){return new A.EL(B.di("it"))},
-EL:function EL(d){this.a=d}}
+cyY(){return new A.EM(B.di("it"))},
+EM:function EM(d){this.a=d}}
 B=c[0]
 C=c[52]
 A=a.updateHolder(c[31],A)
-A.EL.prototype={
+A.EM.prototype={
 gnv(){return"disattivato"},
 gjI(){return"Ripeti password"},
 glV(){return"Non \xe8 un file immagine."},
@@ -95,7 +95,7 @@ gfa(){return"Dettagli chat"},
 gfb(){return"Discussioni"},
 ghN(){return"Scegli una password complessa"},
 gfc(){return"Cancella archivio"},
-gcB(d){return"Chiudi"},
+gcu(d){return"Chiudi"},
 gkQ(){return"Contrassegna questo Matrix ID come stanza di messaggi diretti"},
 gkR(){return"Segna come gruppo"},
 ghO(){return"Banna l'utente specificato da questa stanza"},
@@ -253,7 +253,7 @@ gfA(){return"Nessuna stanza trovata\u2026"},
 geS(){return"Notifiche"},
 gji(){return"Ottengo la posizione\u2026"},
 gjj(){return"Offensivo"},
-gcz(){return"Ok"},
+gcA(){return"Ok"},
 gjl(){return"Il backup delle chiavi in linea \xe8 abilitato"},
 gdv(){return"Ops, qualcosa \xe8 andato storto\u2026"},
 gjk(){return"Uno dei tuoi client \xe8 stato disconnesso"},
@@ -629,8 +629,8 @@ goH(){return"Not supported on this device"},
 gnQ(){return"Enter new chat"},
 C(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.EL,C.aG)})()
-B.dV(b.typeUniverse,JSON.parse('{"EL":{"aG":[]}}'))};
+y(A.EM,C.aG)})()
+B.dW(b.typeUniverse,JSON.parse('{"EM":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_270",e:"endPart",h:b})})($__dart_deferred_initializers__,"AliSGo8mMXPw0klvuioEcom+NMk=");
+a.eventLog.push({p:"main.dart.js_270",e:"endPart",h:b})})($__dart_deferred_initializers__,"kxKufIzXSqrbExkcHF/47ydqxro=");
 //# sourceMappingURL=main.dart.js_270.part.js.map

@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_296",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czb(){return new A.F6(B.di("vi"))},
-F6:function F6(d){this.a=d}}
+czk(){return new A.F7(B.di("vi"))},
+F7:function F7(d){this.a=d}}
 B=c[0]
 C=c[52]
 A=a.updateHolder(c[51],A)
-A.F6.prototype={
+A.F7.prototype={
 gnv(){return"Kh\xf4ng"},
 gjI(){return"Nh\u1eadp l\u1ea1i m\u1eadt kh\u1ea9u"},
 glV(){return"Kh\xf4ng ph\u1ea3i t\u1ec7p \u1ea3nh."},
@@ -95,7 +95,7 @@ gfa(){return"Chi ti\u1ebft cu\u1ed9c tr\xf2 chuy\u1ec7n"},
 gfb(){return"Chats"},
 ghN(){return"Ch\u1ecdn m\u1ed9t m\u1eadt kh\u1ea9u m\u1ea1nh"},
 gfc(){return"Clear archive"},
-gcB(d){return"\u0110\xf3ng"},
+gcu(d){return"\u0110\xf3ng"},
 gkQ(){return"Mark as direct message room for the giving Matrix ID"},
 gkR(){return"Mark as group"},
 ghO(){return"Ban the given user from this room"},
@@ -253,7 +253,7 @@ gfA(){return"No rooms found\u2026"},
 geS(){return"Th\xf4ng b\xe1o"},
 gji(){return"Obtaining location\u2026"},
 gjj(){return"Offensive"},
-gcz(){return"Ok"},
+gcA(){return"Ok"},
 gjl(){return"Online Key Backup is enabled"},
 gdv(){return"Oops, something went wrong\u2026"},
 gjk(){return"One of your clients has been logged out"},
@@ -629,8 +629,8 @@ goH(){return"Not supported on this device"},
 gnQ(){return"Enter new chat"},
 C(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.F6,C.aG)})()
-B.dV(b.typeUniverse,JSON.parse('{"F6":{"aG":[]}}'))};
+y(A.F7,C.aG)})()
+B.dW(b.typeUniverse,JSON.parse('{"F7":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_296",e:"endPart",h:b})})($__dart_deferred_initializers__,"xnKnQaYZJtpfVGWChQzYcJc1x8g=");
+a.eventLog.push({p:"main.dart.js_296",e:"endPart",h:b})})($__dart_deferred_initializers__,"AfnVC+8UD/o7M0xicG1mRZokbXw=");
 //# sourceMappingURL=main.dart.js_296.part.js.map

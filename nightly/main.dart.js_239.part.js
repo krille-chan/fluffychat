@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_239",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cyB(){return new A.Ex(B.di("eu"))},
-Ex:function Ex(d){this.a=d}}
+cyK(){return new A.Ey(B.di("eu"))},
+Ey:function Ey(d){this.a=d}}
 B=c[0]
 C=c[52]
 A=a.updateHolder(c[17],A)
-A.Ex.prototype={
+A.Ey.prototype={
 gnv(){return"false"},
 gjI(){return"Idatzi berriro pasahitza"},
 glV(){return"Ez da irudi-fitxategia."},
@@ -95,7 +95,7 @@ gfa(){return"Txataren xehetasunak"},
 gfb(){return"Txatak"},
 ghN(){return"Aukeratu pasahitz sendo bat"},
 gfc(){return"Ezabatu artxiboa"},
-gcB(d){return"Itxi"},
+gcu(d){return"Itxi"},
 gkQ(){return"Markatu mezu-zuzen gela bezala Matrix ID jakin honentzat"},
 gkR(){return"Markatu talde bezala"},
 ghO(){return"Debekatu erabiltzailea gela honetan"},
@@ -253,7 +253,7 @@ gfA(){return"Ez da gelarik aurkitu\u2026"},
 geS(){return"Jakinarazpenak"},
 gji(){return"Kokapena atzitzen\u2026"},
 gjj(){return"Iraingarria"},
-gcz(){return"Ados"},
+gcA(){return"Ados"},
 gjl(){return"Gakoen online babeskopia gaituta dago"},
 gdv(){return"Hara, zerbaitek huts egin du\u2026"},
 gjk(){return"Zure gailuetako batek saioa amaitu du"},
@@ -629,9 +629,9 @@ goH(){return"Ez da gailu honekin bateragarria"},
 gnQ(){return"Enter new chat"},
 C(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.Ex,C.aG)})()
-B.dV(b.typeUniverse,JSON.parse('{"Ex":{"aG":[]}}'))
+x(A.Ey,C.aG)})()
+B.dW(b.typeUniverse,JSON.parse('{"Ey":{"aG":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_239",e:"endPart",h:b})})($__dart_deferred_initializers__,"xpF7o1TfI4TvAXg51GibnFz+pjs=");
+a.eventLog.push({p:"main.dart.js_239",e:"endPart",h:b})})($__dart_deferred_initializers__,"lJmv4X/+E0bYkLlsdjBJc9j79Ss=");
 //# sourceMappingURL=main.dart.js_239.part.js.map
