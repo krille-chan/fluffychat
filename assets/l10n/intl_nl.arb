@@ -646,7 +646,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "defaultPermissionLevel": "Standaard machtigingsniveau voor nieuwe personen",
+  "defaultPermissionLevel": "Standaard rechten-niveau voor nieuwe personen",
   "@defaultPermissionLevel": {
     "type": "String",
     "placeholders": {}
@@ -1114,7 +1114,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "locationPermissionDeniedNotice": "Locatievoorzieningen is geweigerd. Zet hem aan om locatie delen te gebruiken.",
+  "locationPermissionDeniedNotice": "Locatie toegang is geweigerd. Geef toegang om de locatie delen-functie te gebruiken.",
   "@locationPermissionDeniedNotice": {
     "type": "String",
     "placeholders": {}
@@ -1158,7 +1158,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "muteChat": "Meldingen uitschakelen",
+  "muteChat": "Chat dempen",
   "@muteChat": {
     "type": "String",
     "placeholders": {}
@@ -1692,7 +1692,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "setPermissionsLevel": "Machtigingsniveau instellen",
+  "setPermissionsLevel": "Rechten-niveau instellen",
   "@setPermissionsLevel": {
     "type": "String",
     "placeholders": {}
@@ -1811,7 +1811,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "toggleMuted": "Meldingen in- of uitschakelen",
+  "toggleMuted": "Dempen in- of uitschakelen",
   "@toggleMuted": {
     "type": "String",
     "placeholders": {}
@@ -1877,7 +1877,7 @@
       }
     }
   },
-  "unmuteChat": "Meldingen inschakelen",
+  "unmuteChat": "Dempen uitschakelen",
   "@unmuteChat": {
     "type": "String",
     "placeholders": {}
@@ -2537,7 +2537,7 @@
   "@pleaseTryAgainLaterOrChooseDifferentServer": {},
   "signInWithPassword": "Aanmelden met wachtwoord",
   "@signInWithPassword": {},
-  "chatPermissions": "Chat toestemmingen",
+  "chatPermissions": "Chat rechten",
   "@chatPermissions": {},
   "chatDescription": "Chatomschrijving",
   "@chatDescription": {},
@@ -2982,7 +2982,7 @@
   "@notificationRuleContainsUserName": {},
   "notificationRuleContainsUserNameDescription": "Stuurt een melding als een bericht de persoon vermeld.",
   "@notificationRuleContainsUserNameDescription": {},
-  "notificationRuleMaster": "Alle meldingen uitschakelen",
+  "notificationRuleMaster": "Alle meldingen dempen",
   "@notificationRuleMaster": {},
   "notificationRuleMasterDescription": "Overschrijf alle andere regels en meldingen uitschakelen.",
   "@notificationRuleMasterDescription": {},
@@ -3340,5 +3340,13 @@
   "notSupportedOnThisDevice": "Niet ondersteund op dit apparaat",
   "@notSupportedOnThisDevice": {},
   "commandHint_roomupgrade": "Upgradeer deze kamer naar de aangegeven kamerversie",
-  "@commandHint_roomupgrade": {}
+  "@commandHint_roomupgrade": {},
+  "setCustomPermissionLevel": "Aangepast rechten-niveau instellen",
+  "@setCustomPermissionLevel": {},
+  "setPermissionsLevelDescription": "Kies een standaard rol hieronder of voer een aangepast rechten-niveau in tussen 0 en 100.",
+  "@setPermissionsLevelDescription": {},
+  "ignoreUser": "Persoon negeren",
+  "@ignoreUser": {},
+  "normalUser": "Normaal persoon",
+  "@normalUser": {}
 }
