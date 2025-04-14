@@ -60,6 +60,22 @@ class ActivitySuggestionCarouselState
     _setActivityItems();
   }
 
+  @override
+  void didUpdateWidget(covariant ActivitySuggestionCarousel oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.selectedActivity != oldWidget.selectedActivity &&
+        _currentIndex != null &&
+        widget.selectedActivity != null) {
+      final prevIndex = _currentIndex!;
+      setState(
+        () {
+          _activityItems[prevIndex] = widget.selectedActivity!;
+          _currentActivity = widget.selectedActivity;
+        },
+      );
+    }
+  }
+
   Future<void> _setActivityItems() async {
     try {
       final ActivityPlanRequest request = ActivityPlanRequest(
@@ -138,7 +154,7 @@ class ActivitySuggestionCarouselState
       context: context,
       builder: (context) {
         return ActivitySuggestionDialog(
-          activity: _currentActivity!,
+          initialActivity: _currentActivity!,
           buttonText: L10n.of(context).selectActivity,
           onLaunch: widget.onActivitySelected,
         );

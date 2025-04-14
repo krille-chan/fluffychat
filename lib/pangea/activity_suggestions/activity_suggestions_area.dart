@@ -136,7 +136,7 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
                     context: context,
                     builder: (context) {
                       return ActivitySuggestionDialog(
-                        activity: activity,
+                        initialActivity: activity,
                         buttonText: L10n.of(context).inviteAndLaunch,
                         room: widget.room,
                       );

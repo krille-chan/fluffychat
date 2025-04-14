@@ -6,11 +6,11 @@ import 'package:fluffychat/pangea/common/constants/model_keys.dart';
 class ActivityPlanModel {
   final String bookmarkId;
   final ActivityPlanRequest req;
-  String title;
-  String learningObjective;
-  String instructions;
-  List<Vocab> vocab;
-  String? imageURL;
+  final String title;
+  final String learningObjective;
+  final String instructions;
+  final List<Vocab> vocab;
+  final String? imageURL;
 
   ActivityPlanModel({
     required this.req,
@@ -19,7 +19,8 @@ class ActivityPlanModel {
     required this.instructions,
     required this.vocab,
     this.imageURL,
-  }) : bookmarkId = req.hashCode.toString();
+  }) : bookmarkId =
+            "${title.hashCode ^ learningObjective.hashCode ^ instructions.hashCode ^ imageURL.hashCode ^ vocab.map((v) => v.hashCode).reduce((a, b) => a ^ b)}";
 
   factory ActivityPlanModel.fromJson(Map<String, dynamic> json) {
     return ActivityPlanModel(

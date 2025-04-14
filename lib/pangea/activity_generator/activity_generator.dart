@@ -189,10 +189,16 @@ class ActivityGeneratorState extends State<ActivityGenerator> {
     final imageUrl =
         "${AppConfig.assetsBaseURL}/${ActivitySuggestionsConstants.modeImageFileStart}$modeName.jpg";
     setState(() {
-      filename =
-          "${ActivitySuggestionsConstants.modeImageFileStart}$modeName.jpg";
-      for (final activity in activities!) {
-        activity.imageURL = imageUrl;
+      filename = imageUrl;
+      for (ActivityPlanModel activity in activities!) {
+        activity = ActivityPlanModel(
+          req: activity.req,
+          title: activity.title,
+          learningObjective: activity.learningObjective,
+          instructions: activity.instructions,
+          vocab: activity.vocab,
+          imageURL: imageUrl,
+        );
       }
     });
   }

@@ -39,6 +39,7 @@ class BookmarkedActivitiesListState extends State<BookmarkedActivitiesList> {
   double get cardWidth => _isColumnMode ? 225.0 : 150.0;
 
   Future<void> _onEdit(
+    String activityId,
     ActivityPlanModel activity,
     Uint8List? avatar,
     String? filename,
@@ -48,10 +49,20 @@ class BookmarkedActivitiesListState extends State<BookmarkedActivitiesList> {
             avatar,
             filename: filename,
           );
-      activity.imageURL = url.toString();
+      if (!mounted) return;
+      setState(() {
+        activity = ActivityPlanModel(
+          req: activity.req,
+          title: activity.title,
+          learningObjective: activity.learningObjective,
+          instructions: activity.instructions,
+          vocab: activity.vocab,
+          imageURL: url.toString(),
+        );
+      });
     }
 
-    await BookmarkedActivitiesRepo.remove(activity.bookmarkId);
+    await BookmarkedActivitiesRepo.remove(activityId);
     await BookmarkedActivitiesRepo.save(activity);
     if (mounted) setState(() {});
   }
@@ -87,7 +98,7 @@ class BookmarkedActivitiesListState extends State<BookmarkedActivitiesList> {
                     context: context,
                     builder: (context) {
                       return ActivitySuggestionDialog(
-                        activity: activity,
+                        initialActivity: activity,
                         buttonText: L10n.of(context).inviteAndLaunch,
                         room: widget.room,
                         onEdit: _onEdit,

@@ -27,7 +27,7 @@ class ActivityPlanCard extends StatefulWidget {
   final VoidCallback onChange;
   final ValueChanged<ActivityPlanModel> onEdit;
   final double maxWidth;
-  final String? initialFilename;
+  final String? initialImageURL;
 
   const ActivityPlanCard({
     super.key,
@@ -36,7 +36,7 @@ class ActivityPlanCard extends StatefulWidget {
     required this.onChange,
     required this.onEdit,
     this.maxWidth = 400,
-    this.initialFilename,
+    this.initialImageURL,
   });
 
   @override
@@ -54,6 +54,7 @@ class ActivityPlanCardState extends State<ActivityPlanCard> {
 
   Uint8List? _avatar;
   String? _filename;
+  String? _imageURL;
 
   @override
   void initState() {
@@ -64,7 +65,8 @@ class ActivityPlanCardState extends State<ActivityPlanCard> {
         TextEditingController(text: _tempActivity.learningObjective);
     _instructionsController =
         TextEditingController(text: _tempActivity.instructions);
-    _filename = widget.initialFilename;
+    _filename = widget.initialImageURL?.split("/").last;
+    _imageURL = widget.activity.imageURL ?? widget.initialImageURL;
   }
 
   static const double itemPadding = 12;
@@ -153,19 +155,39 @@ class ActivityPlanCardState extends State<ActivityPlanCard> {
       _avatar = bytes;
       _filename = photo.name;
     });
+
+    final url = await Matrix.of(context).client.uploadContent(
+          bytes,
+          filename: photo.name,
+        );
+
+    final updatedActivity = ActivityPlanModel(
+      req: _tempActivity.req,
+      title: _tempActivity.title,
+      learningObjective: _tempActivity.learningObjective,
+      instructions: _tempActivity.instructions,
+      vocab: _tempActivity.vocab,
+      imageURL: url.toString(),
+    );
+
+    widget.onEdit(updatedActivity);
+  }
+
+  Future<void> _setAvatarByImageURL() async {
+    if (_avatar != null || _imageURL == null) return;
+    final resp = await http
+        .get(Uri.parse(_imageURL!))
+        .timeout(const Duration(seconds: 5));
+    if (mounted) {
+      setState(() => _avatar = resp.bodyBytes);
+    }
   }
 
   Future<void> _onLaunch() async {
+    await _setAvatarByImageURL();
     await showFutureLoadingDialog(
       context: context,
       future: () async {
-        if (_avatar == null && widget.activity.imageURL != null) {
-          final resp = await http
-              .get(Uri.parse(widget.activity.imageURL!))
-              .timeout(const Duration(seconds: 5));
-          _avatar = resp.bodyBytes;
-        }
-
         String? avatarUrl;
         if (_avatar != null) {
           final client = Matrix.of(context).client;
@@ -253,12 +275,12 @@ class ActivityPlanCardState extends State<ActivityPlanCard> {
                       ),
                       clipBehavior: Clip.hardEdge,
                       alignment: Alignment.center,
-                      child: widget.activity.imageURL != null || _avatar != null
+                      child: _imageURL != null || _avatar != null
                           ? ClipRRect(
                               child: _avatar == null
                                   ? CachedNetworkImage(
                                       fit: BoxFit.cover,
-                                      imageUrl: widget.activity.imageURL!,
+                                      imageUrl: _imageURL!,
                                       placeholder: (context, url) {
                                         return const Center(
                                           child: CircularProgressIndicator(),
@@ -279,16 +301,18 @@ class ActivityPlanCardState extends State<ActivityPlanCard> {
                               padding: EdgeInsets.all(28.0),
                             ),
                     ),
-                    Positioned(
-                      top: 10.0,
-                      right: 10.0,
-                      child: IconButton(
-                        icon: const Icon(Icons.upload_outlined),
-                        onPressed: selectPhoto,
-                        style:
-                            IconButton.styleFrom(backgroundColor: Colors.black),
+                    if (_isEditing)
+                      Positioned(
+                        top: 10.0,
+                        right: 10.0,
+                        child: IconButton(
+                          icon: const Icon(Icons.upload_outlined),
+                          onPressed: selectPhoto,
+                          style: IconButton.styleFrom(
+                            backgroundColor: Colors.black,
+                          ),
+                        ),
                       ),
-                    ),
                   ],
                 ),
               ),
