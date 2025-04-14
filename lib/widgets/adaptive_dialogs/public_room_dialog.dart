@@ -1,12 +1,11 @@
+import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import '../../config/themes.dart';
 import '../../utils/url_launcher.dart';
 import '../avatar.dart';
@@ -94,8 +93,8 @@ class PublicRoomDialog extends StatelessWidget {
       title: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 256),
         child: Text(
-          chunk?.name ?? roomAlias ?? chunk?.roomId ?? 'Unknown',
-          overflow: TextOverflow.fade,
+          chunk?.name ?? roomAlias?.localpart ?? chunk?.roomId ?? 'Unknown',
+          textAlign: TextAlign.center,
         ),
       ),
       content: ConstrainedBox(
@@ -178,13 +177,14 @@ class PublicRoomDialog extends StatelessWidget {
                           : null,
                     ),
                   ),
-                  Text(
-                    L10n.of(context).countParticipants(
-                      profile?.numJoinedMembers ?? 0,
+                  if (profile?.numJoinedMembers != null)
+                    Text(
+                      L10n.of(context).countParticipants(
+                        profile?.numJoinedMembers ?? 0,
+                      ),
+                      style: const TextStyle(fontSize: 10),
+                      textAlign: TextAlign.center,
                     ),
-                    style: const TextStyle(fontSize: 10),
-                    textAlign: TextAlign.center,
-                  ),
                   if (topic != null && topic.isNotEmpty)
                     SelectableLinkify(
                       text: topic,
