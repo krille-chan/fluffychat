@@ -43,13 +43,16 @@ class MorphAnalyticsListView extends StatelessWidget {
               itemBuilder: (context, index) {
                 final feature = controller.features[index];
                 return feature.displayTags.isNotEmpty
-                    ? MorphFeatureBox(
-                        morphFeature: feature.feature,
-                        allTags: controller.morphs
-                            .getDisplayTags(feature.feature)
-                            .map((tag) => tag.toLowerCase())
-                            .toSet(),
-                        onConstructZoom: controller.setConstructZoom,
+                    ? Padding(
+                        padding: const EdgeInsets.only(bottom: 16.0),
+                        child: MorphFeatureBox(
+                          morphFeature: feature.feature,
+                          allTags: controller.morphs
+                              .getDisplayTags(feature.feature)
+                              .map((tag) => tag.toLowerCase())
+                              .toSet(),
+                          onConstructZoom: controller.setConstructZoom,
+                        ),
                       )
                     : const SizedBox.shrink();
               },

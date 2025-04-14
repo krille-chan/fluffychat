@@ -77,6 +77,8 @@ class _CustomizedSvgState extends State<CustomizedSvg> {
     }
   }
 
+  final DateTime _cacheClearDate = DateTime(2025, 4, 13);
+
   Future<void> _loadSvg() async {
     try {
       final cached = _getSvgFromCache();
@@ -88,7 +90,7 @@ class _CustomizedSvgState extends State<CustomizedSvg> {
         return;
       }
 
-      final modifiedSvg = await _getModifiedSvg();
+      final modifiedSvg = await _fetchSvg();
       setState(() {
         _svgContent = modifiedSvg;
         _isLoading = false;
@@ -104,32 +106,7 @@ class _CustomizedSvgState extends State<CustomizedSvg> {
     }
   }
 
-  Future<String?> _getModifiedSvg() async {
-    final svgContent = await _fetchSvg();
-    if (svgContent == null) {
-      return null;
-    }
-    return _modifySVG(svgContent);
-  }
-
   Future<String?> _fetchSvg() async {
-    final cachedSvgEntry = CustomizedSvg._svgStorage.read(widget.svgUrl);
-    if (cachedSvgEntry != null && cachedSvgEntry is Map<String, dynamic>) {
-      final cachedSvg = cachedSvgEntry['svg'] as String?;
-      final timestamp = cachedSvgEntry['timestamp'] as int?;
-      if (cachedSvg != null) {
-        return cachedSvg;
-      }
-      // if timestamp is younger than 1 day, return null
-      if (timestamp != null &&
-          DateTime.now()
-                  .difference(DateTime.fromMillisecondsSinceEpoch(timestamp))
-                  .inDays <
-              1) {
-        return null;
-      }
-    }
-
     final response = await http.get(Uri.parse(widget.svgUrl));
     if (response.statusCode != 200) {
       final e = Exception('Failed to load SVG: ${response.statusCode}');
@@ -152,7 +129,7 @@ class _CustomizedSvgState extends State<CustomizedSvg> {
       'timestamp': DateTime.now().millisecondsSinceEpoch,
     });
 
-    return svgContent;
+    return _modifySVG(svgContent);
   }
 
   String _modifySVG(String svgContent) {
@@ -167,7 +144,10 @@ class _CustomizedSvgState extends State<CustomizedSvg> {
     final cachedSvgEntry = CustomizedSvg._svgStorage.read(widget.svgUrl);
     if (cachedSvgEntry != null &&
         cachedSvgEntry is Map<String, dynamic> &&
-        cachedSvgEntry['svg'] is String) {
+        cachedSvgEntry['svg'] is String &&
+        cachedSvgEntry['timestamp'] is int &&
+        DateTime.fromMillisecondsSinceEpoch(cachedSvgEntry['timestamp'])
+            .isAfter(_cacheClearDate)) {
       return _modifySVG(cachedSvgEntry['svg'] as String);
     }
     return null;
