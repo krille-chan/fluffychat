@@ -4,10 +4,15 @@ import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
 import 'package:fluffychat/pangea/learning_settings/utils/p_language_store.dart';
 
 class PublicProfileModel {
+  LanguageModel? baseLanguage;
   LanguageModel? targetLanguage;
   Map<LanguageModel, LanguageAnalyticsProfileEntry>? languageAnalytics;
 
-  PublicProfileModel({this.targetLanguage, this.languageAnalytics});
+  PublicProfileModel({
+    this.baseLanguage,
+    this.targetLanguage,
+    this.languageAnalytics,
+  });
 
   factory PublicProfileModel.fromJson(Map<String, dynamic> json) {
     if (!json.containsKey(PangeaEventTypes.profileAnalytics)) {
@@ -15,6 +20,10 @@ class PublicProfileModel {
     }
 
     final profileJson = json[PangeaEventTypes.profileAnalytics];
+
+    final baseLanguage = profileJson[ModelKey.userSourceLanguage] != null
+        ? PLanguageStore.byLangCode(profileJson[ModelKey.userSourceLanguage])
+        : null;
 
     final targetLanguage = profileJson[ModelKey.userTargetLanguage] != null
         ? PLanguageStore.byLangCode(profileJson[ModelKey.userTargetLanguage])
@@ -34,6 +43,7 @@ class PublicProfileModel {
     }
 
     final profile = PublicProfileModel(
+      baseLanguage: baseLanguage,
       targetLanguage: targetLanguage,
       languageAnalytics: languageAnalytics,
     );
@@ -42,8 +52,13 @@ class PublicProfileModel {
 
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
+
     if (targetLanguage != null) {
       json[ModelKey.userTargetLanguage] = targetLanguage!.langCodeShort;
+    }
+
+    if (baseLanguage != null) {
+      json[ModelKey.userSourceLanguage] = baseLanguage!.langCodeShort;
     }
 
     final analytics = {};
@@ -61,7 +76,8 @@ class PublicProfileModel {
   }
 
   bool get isEmpty =>
-      targetLanguage == null &&
+      baseLanguage == null ||
+      targetLanguage == null ||
       (languageAnalytics == null || languageAnalytics!.isEmpty);
 
   void setLevel(LanguageModel language, int level) {

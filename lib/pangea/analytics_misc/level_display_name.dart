@@ -58,6 +58,21 @@ class LevelDisplayNameState extends State<LevelDisplayName> {
             Row(
               spacing: 4.0,
               children: [
+                if (_profile?.baseLanguage != null &&
+                    _profile?.targetLanguage != null)
+                  Text(
+                    _profile!.baseLanguage!.langCodeShort.toUpperCase(),
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                  ),
+                if (_profile?.baseLanguage != null &&
+                    _profile?.targetLanguage != null)
+                  const Icon(
+                    Icons.arrow_forward_outlined,
+                    size: 16.0,
+                  ),
                 if (_profile?.targetLanguage != null)
                   Text(
                     _profile!.targetLanguage!.langCodeShort.toUpperCase(),

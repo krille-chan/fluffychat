@@ -5,8 +5,8 @@ import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pangea/analytics_misc/level_display_name.dart';
 import 'package:fluffychat/pangea/bot/utils/bot_name.dart';
-import 'package:fluffychat/pangea/user/widgets/public_level_indicator.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
@@ -196,7 +196,10 @@ class UserBottomSheetView extends StatelessWidget {
                           },
                         ),
                         // #Pangea
-                        PublicLevelIndicator(userId: userId),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: LevelDisplayName(userId: userId),
+                        ),
                         // Pangea#
                       ],
                     ),

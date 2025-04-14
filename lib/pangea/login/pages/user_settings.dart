@@ -197,6 +197,7 @@ class UserSettingsState extends State<UserSettingsPage> {
         ),
         _pangeaController.userController.updatePublicProfile(
           targetLanguage: selectedTargetLanguage,
+          baseLanguage: _systemLanguage,
           level: 1,
         ),
       ];
