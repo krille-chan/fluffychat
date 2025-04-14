@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/choreographer/constants/choreo_constants.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
@@ -232,10 +233,14 @@ class ITBarState extends State<ITBar> with SingleTickerProviderStateMixin {
                                           controller: itController,
                                           vocabCount: itController
                                               .choreographer.altTranslator
-                                              .countVocabularyWordsFromSteps(),
+                                              .countNewConstructs(
+                                            ConstructTypeEnum.vocab,
+                                          ),
                                           grammarCount: itController
                                               .choreographer.altTranslator
-                                              .countGrammarConstructsFromSteps(),
+                                              .countNewConstructs(
+                                            ConstructTypeEnum.morph,
+                                          ),
                                           feedbackText: itController
                                               .choreographer.altTranslator
                                               .getDefaultFeedback(context),
