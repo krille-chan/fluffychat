@@ -16,9 +16,9 @@ jobs:
           MATRIX_URL: https://matrix.janian.de/_matrix/client/v3/rooms/${{ secrets.MATRIX_MANAGEMENT_ROOM }}/send/m.room.message
         run: |
           if [ "${{ github.event.action }}" == "opened" ]; then
-            PAYLOAD="{\"msgtype\": \"m.notice\", \"body\": \"New Issue Created: ${{ github.event.issue.title }}\\nCreated by: ${{ github.event.issue.user.login }}\\n${{ github.event.issue.body }}\\nURL: ${{ github.event.issue.html_url }}\"}"
+            PAYLOAD="{\"msgtype\": \"m.notice\", \"body\": \"New Issue from ${{ github.event.issue.user.login }}\\n${{ github.event.issue.title }}\\n\\n${{ github.event.issue.body }}\\n\\nURL: ${{ github.event.issue.html_url }}\"}"
           elif [ "${{ github.event.action }}" == "created" ]; then
-            PAYLOAD="{\"msgtype\": \"m.notice\", \"body\": \"New Comment from ${{ github.event.comment.user.login }}\\n${{ github.event.comment.body }}\\nURL: ${{ github.event.comment.html_url }}\"}"
+            PAYLOAD="{\"msgtype\": \"m.notice\", \"body\": \"New Comment from ${{ github.event.comment.user.login }}\\n\\n${{ github.event.comment.body }}\\n\\nURL: ${{ github.event.comment.html_url }}\"}"
           fi
           curl -X POST -H "Authorization: Bearer ${{ secrets.MATRIX_BOT_TOKEN }}" \
                -H "Content-Type: application/json" \
