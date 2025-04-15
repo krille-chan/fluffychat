@@ -31,6 +31,7 @@ Future<OkCancelResult?> showOkCancelAlertDialog({
               ? null
               : SelectableLinkify(
                   text: message,
+                  textScaleFactor: MediaQuery.textScalerOf(context).scale(1),
                   linkStyle: TextStyle(
                     color: Theme.of(context).colorScheme.primary,
                     decorationColor: Theme.of(context).colorScheme.primary,
@@ -81,6 +82,7 @@ Future<OkCancelResult?> showOkAlertDialog({
               ? null
               : SelectableLinkify(
                   text: message,
+                  textScaleFactor: MediaQuery.textScalerOf(context).scale(1),
                   linkStyle: TextStyle(
                     color: Theme.of(context).colorScheme.primary,
                     decorationColor: Theme.of(context).colorScheme.primary,

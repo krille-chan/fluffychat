@@ -122,6 +122,8 @@ class HomeserverPickerView extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 32.0),
                       child: SelectableLinkify(
                         text: L10n.of(context).appIntroduction,
+                        textScaleFactor:
+                            MediaQuery.textScalerOf(context).scale(1),
                         textAlign: TextAlign.center,
                         linkStyle: TextStyle(
                           color: theme.colorScheme.secondary,
@@ -169,6 +171,19 @@ class HomeserverPickerView extends StatelessWidget {
                                       content: Linkify(
                                         text: L10n.of(context)
                                             .homeserverDescription,
+                                        textScaleFactor:
+                                            MediaQuery.textScalerOf(context)
+                                                .scale(1),
+                                        options: const LinkifyOptions(
+                                          humanize: false,
+                                        ),
+                                        linkStyle: TextStyle(
+                                          color: theme.colorScheme.primary,
+                                          decorationColor:
+                                              theme.colorScheme.primary,
+                                        ),
+                                        onOpen: (link) =>
+                                            launchUrlString(link.url),
                                       ),
                                       actions: [
                                         AdaptiveDialogAction(
