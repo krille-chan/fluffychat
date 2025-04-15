@@ -8,6 +8,7 @@ import 'package:fluffychat/pages/login/login.dart';
 import 'package:fluffychat/pangea/common/utils/firebase_analytics.dart';
 import 'package:fluffychat/pangea/login/widgets/p_sso_button.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/widgets/fluffy_chat_app.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
@@ -62,7 +63,21 @@ Future<void> _loginFuture({
     identifier = AuthenticationUserIdentifier(user: username);
   }
 
-  final loginRes = await matrix.getLoginClient().login(
+  final client = matrix.getLoginClient();
+
+  final redirect = client.onLoginStateChanged.stream
+      .where((state) => state == LoginState.loggedIn)
+      .first
+      .then(
+    (_) {
+      final route = FluffyChatApp.router.state.fullPath;
+      if (route == null || !route.contains("/rooms")) {
+        context.go("/rooms");
+      }
+    },
+  ).timeout(const Duration(seconds: 30));
+
+  final loginRes = await client.login(
     LoginType.mLoginPassword,
     identifier: identifier,
     // To stay compatible with older server versions
@@ -78,5 +93,15 @@ Future<void> _loginFuture({
       }
     },
   );
+
+  if (client.onLoginStateChanged.value == LoginState.loggedIn) {
+    final route = FluffyChatApp.router.state.fullPath;
+    if (route == null || !route.contains("/rooms")) {
+      context.go("/rooms");
+    }
+  } else {
+    await redirect;
+  }
+
   GoogleAnalytics.login("pangea", loginRes.userId);
 }
