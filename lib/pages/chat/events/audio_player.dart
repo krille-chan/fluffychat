@@ -397,6 +397,7 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
             const SizedBox(height: 8),
             Linkify(
               text: fileDescription,
+              textScaleFactor: MediaQuery.textScalerOf(context).scale(1),
               style: TextStyle(
                 color: widget.color,
                 fontSize: widget.fontSize,
@@ -420,6 +421,7 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
 /// To use a MatrixFile as an AudioSource for the just_audio package
 class MatrixFileAudioSource extends StreamAudioSource {
   final MatrixFile file;
+
   MatrixFileAudioSource(this.file);
 
   @override

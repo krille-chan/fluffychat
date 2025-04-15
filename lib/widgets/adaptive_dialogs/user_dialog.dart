@@ -144,6 +144,8 @@ class UserDialog extends StatelessWidget {
                   if (statusMsg != null)
                     SelectableLinkify(
                       text: statusMsg,
+                      textScaleFactor:
+                          MediaQuery.textScalerOf(context).scale(1),
                       textAlign: TextAlign.center,
                       options: const LinkifyOptions(humanize: false),
                       linkStyle: TextStyle(

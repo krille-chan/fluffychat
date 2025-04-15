@@ -243,6 +243,8 @@ class ChatDetailsView extends StatelessWidget {
                             text: room.topic.isEmpty
                                 ? L10n.of(context).noChatDescriptionYet
                                 : room.topic,
+                            textScaleFactor:
+                                MediaQuery.textScalerOf(context).scale(1),
                             options: const LinkifyOptions(humanize: false),
                             linkStyle: const TextStyle(
                               color: Colors.blueAccent,

@@ -25,6 +25,7 @@ class EventVideoPlayer extends StatefulWidget {
   final Event event;
   final Color? textColor;
   final Color? linkColor;
+
   const EventVideoPlayer(
     this.event, {
     this.textColor,
@@ -190,6 +191,7 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
             width: width,
             child: Linkify(
               text: fileDescription,
+              textScaleFactor: MediaQuery.textScalerOf(context).scale(1),
               style: TextStyle(
                 color: textColor,
                 fontSize: AppConfig.fontSizeFactor * AppConfig.messageFontSize,

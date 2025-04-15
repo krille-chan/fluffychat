@@ -94,6 +94,7 @@ class MessageDownloadContent extends StatelessWidget {
         if (fileDescription != null)
           Linkify(
             text: fileDescription,
+            textScaleFactor: MediaQuery.textScalerOf(context).scale(1),
             style: TextStyle(
               color: textColor,
               fontSize: AppConfig.fontSizeFactor * AppConfig.messageFontSize,
