@@ -14,11 +14,11 @@ jobs:
       - name: Send Matrix Notification
         env:
           MATRIX_URL: https://matrix.org/_matrix/client/v3/rooms/${{ secrets.MATRIX_MANAGEMENT_ROOM }}/send/m.room.message
-          MATRIX_ACCESS_TOKEN: ${{ secrets.MATRIX_BOT_TOKEN
+          MATRIX_ACCESS_TOKEN: ${{ secrets.MATRIX_BOT_TOKEN }}
         run: |
-          if [ "${{ github.event_name }}" == "issues" ]; then
+          if [ "${{ github.event.action }}" == "opened" ]; then
             PAYLOAD="{\"msgtype\": \"m.text\", \"body\": \"New Issue Created: ${{ github.event.issue.title }}\\nCreated by: ${{ github.event.issue.user.login }}\\n${{ github.event.issue.body }}\\nURL: ${{ github.event.issue.html_url }}\"}"
-          else
+          elif [ "${{ github.event.action }}" == "created" ]; then
             PAYLOAD="{\"msgtype\": \"m.text\", \"body\": \"New Comment from ${{ github.event.comment.user.login }}\\n${{ github.event.comment.body }}\\nURL: ${{ github.event.comment.html_url }}\"}"
           fi
           curl -XPOST -H "Authorization: Bearer $MATRIX_ACCESS_TOKEN" \
