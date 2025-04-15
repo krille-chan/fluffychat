@@ -3331,5 +3331,11 @@
   "ignoreUser": "Neņemt vērā lietotāju",
   "@ignoreUser": {},
   "normalUser": "Parasts lietotājs",
-  "@normalUser": {}
+  "@normalUser": {},
+  "youHaveKnocked": "Tu pieklauvēji",
+  "@youHaveKnocked": {},
+  "pleaseWaitUntilInvited": "Lūgums tagad uzgaidīt, līdz kāds no istabas uzaicinās Tevi.",
+  "@pleaseWaitUntilInvited": {},
+  "approve": "Apstiprināt",
+  "@approve": {}
 }
