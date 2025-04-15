@@ -172,6 +172,7 @@ class IgcController {
       }
 
       igcTextData!.matches = confirmedMatches;
+      choreographer.acceptNormalizationMatches();
 
       // TODO - for each new match,
       // check if existing igcTextData has one and only one match with the same error text and correction

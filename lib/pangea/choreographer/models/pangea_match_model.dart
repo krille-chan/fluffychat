@@ -9,7 +9,7 @@ import '../constants/match_rule_ids.dart';
 import 'igc_text_data_model.dart';
 import 'span_data.dart';
 
-enum PangeaMatchStatus { open, ignored, accepted, unknown }
+enum PangeaMatchStatus { open, ignored, accepted, automatic, unknown }
 
 class PangeaMatch {
   SpanData match;
@@ -112,6 +112,10 @@ class PangeaMatch {
       offset >= match.offset && offset < match.offset + match.length;
 
   Color get underlineColor {
+    if (status == PangeaMatchStatus.automatic) {
+      return const Color.fromARGB(187, 132, 96, 224);
+    }
+
     switch (match.rule?.id ?? "unknown") {
       case MatchRuleIds.interactiveTranslation:
         return const Color.fromARGB(187, 132, 96, 224);

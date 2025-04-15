@@ -59,6 +59,7 @@ class Choreographer {
   final StreamController stateStream = StreamController.broadcast();
   StreamSubscription? _trialStream;
   StreamSubscription? _languageStream;
+  late AssistanceState _currentAssistanceState;
 
   Choreographer(this.pangeaController, this.chatController) {
     _initialize();
@@ -86,6 +87,7 @@ class Choreographer {
       // for changes like enabling autocorrect
       setState();
     });
+    _currentAssistanceState = assistanceState;
     clear();
   }
 
@@ -248,6 +250,12 @@ class Choreographer {
 
   /// Handles any changes to the text input
   _onChangeListener() {
+    // Rebuild the IGC button if the state has changed.
+    // This accounts for user typing after initial IGC has completed
+    if (_currentAssistanceState != assistanceState) {
+      setState();
+    }
+
     if (_noChange) {
       return;
     }
@@ -453,6 +461,33 @@ class Choreographer {
     }
   }
 
+  void acceptNormalizationMatches() {
+    for (int i = 0; i < igc.igcTextData!.matches.length; i++) {
+      final isNormalizationError =
+          igc.spanDataController.isNormalizationError(i);
+
+      if (!isNormalizationError) continue;
+      final match = igc.igcTextData!.matches[i];
+
+      choreoRecord.addRecord(
+        _textController.text,
+        match: match.copyWith..status = PangeaMatchStatus.automatic,
+      );
+
+      igc.igcTextData!.acceptReplacement(
+        i,
+        match.match.choices!.indexWhere(
+          (c) => c.isBestCorrection,
+        ),
+      );
+
+      _textController.setSystemText(
+        igc.igcTextData!.originalInput,
+        EditType.igc,
+      );
+    }
+  }
+
   void onIgnoreMatch({required int cursorOffset}) {
     try {
       if (igc.igcTextData == null) {
@@ -635,6 +670,7 @@ class Choreographer {
     if (!stateStream.isClosed) {
       stateStream.add(0);
     }
+    _currentAssistanceState = assistanceState;
   }
 
   LayerLinkAndKey get itBarLinkAndKey =>

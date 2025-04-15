@@ -175,16 +175,14 @@ class PangeaTextController extends TextEditingController {
         return TextSpan(text: text, style: style);
       }
 
+      final choreoSteps = choreographer.choreoRecord.choreoSteps;
+
       return TextSpan(
         style: style,
         children: [
           ...choreographer.igc.igcTextData!.constructTokenSpan(
-            context: context,
+            choreoStep: choreoSteps.isNotEmpty ? choreoSteps.last : null,
             defaultStyle: style,
-            spanCardModel: null,
-            handleClick: false,
-            transformTargetId: choreographer.inputTransformTargetKey,
-            room: choreographer.chatController.room,
           ),
           TextSpan(text: parts[1], style: style),
         ],
