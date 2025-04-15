@@ -3353,5 +3353,11 @@
   "ignoreUser": "Ignorar usuaria",
   "@ignoreUser": {},
   "normalUser": "Usuaria corrente",
-  "@normalUser": {}
+  "@normalUser": {},
+  "approve": "Aprobar",
+  "@approve": {},
+  "pleaseWaitUntilInvited": "Agora agarda a que alguén da sala te convide a entrar.",
+  "@pleaseWaitUntilInvited": {},
+  "youHaveKnocked": "Petaches á porta",
+  "@youHaveKnocked": {}
 }
