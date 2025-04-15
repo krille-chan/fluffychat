@@ -3353,5 +3353,11 @@
   "ignoreUser": "Eira kasutajat",
   "@ignoreUser": {},
   "normalUser": "Tavakasutaja",
-  "@normalUser": {}
+  "@normalUser": {},
+  "approve": "Kiida heaks",
+  "@approve": {},
+  "pleaseWaitUntilInvited": "Palun oota seni, kuni keegi jututoast saadab sulle kutse.",
+  "@pleaseWaitUntilInvited": {},
+  "youHaveKnocked": "Sa oled koputanud",
+  "@youHaveKnocked": {}
 }
