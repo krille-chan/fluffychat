@@ -18,8 +18,6 @@ dependencies:
   async: ^2.11.0
   badges: ^3.1.2
   blurhash_dart: ^1.2.1
-  cached_network_image: ^3.4.1
-  characters: ^1.2.0
   chewie: ^1.8.1
   collection: ^1.18.0
   cross_file: ^0.3.4+2
@@ -38,7 +36,6 @@ dependencies:
   file_selector: ^1.0.3
   flutter:
     sdk: flutter
-  app_settings: ^4.1.0
   flutter_cache_manager: ^3.4.1
   flutter_foreground_task: ^6.1.3
   flutter_highlighter: ^0.1.1
@@ -49,14 +46,17 @@ dependencies:
   flutter_map: ^6.1.0
   flutter_new_badger: ^1.1.1
   flutter_olm: 2.0.0
-  flutter_openssl_crypto: ^0.3.0
+  flutter_openssl_crypto: ^0.5.0
   flutter_secure_storage: ^9.2.3
   flutter_shortcuts_new: ^2.0.0
-  flutter_typeahead: ^5.2.0
+  flutter_typeahead: ## Custom fork from flutter_typeahead since the package is not maintain well.
+    git:
+      url: https://github.com/famedly/flutter_typeahead.git
+      ref: main
   flutter_web_auth_2: ^3.1.1 # Version 4 blocked by https://github.com/MixinNetwork/flutter-plugins/issues/379
   flutter_webrtc: ^0.12.9
   geolocator: ^13.0.1
-  go_router: ^14.3.0
+  go_router: ^14.8.1
   handy_window: ^0.4.0
   hive: ^2.2.3
   hive_flutter: ^1.1.0
@@ -73,7 +73,7 @@ dependencies:
     git:
       url: https://github.com/pangeachat/matrix-dart-sdk.git # repo
       ref: main # branch
-  # matrix: ^0.38.0
+  # matrix: ^0.38.1
   # Pangea#
   mime: ^1.0.6
   native_imaging: ^0.2.0
@@ -108,7 +108,10 @@ dependencies:
   webrtc_interface: ^1.0.13
   # #Pangea
   android_intent_plus: ^5.2.0
+  app_settings: ^6.1.1
   audioplayers: ^6.1.0
+  cached_network_image: ^3.4.1
+  characters: ^1.2.0
   country_picker: ^2.0.25
   csv: ^6.0.0
   dropdown_button2: ^2.3.9
@@ -129,7 +132,8 @@ dependencies:
   sentry_flutter: ^8.13.2
   shimmer: ^3.0.0
   rive: 0.11.11
-  text_to_speech: ^0.2.3
+  text_to_speech:
+    git: https://github.com/pangeachat/text_to_speech.git
   flutter_tts: ^4.2.0
   # Pangea#
 

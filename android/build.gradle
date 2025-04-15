@@ -8,14 +8,6 @@ allprojects {
 rootProject.buildDir = '../build'
 
 subprojects {
-    beforeEvaluate { project ->
-        if (project.name == "text_to_speech") {
-            project.buildscript.dependencies.classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.10"
-        }
-    }
-}
-
-subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
     project.evaluationDependsOn(":app")
 }
