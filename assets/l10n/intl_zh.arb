@@ -3353,5 +3353,11 @@
   "ignoreUser": "忽略用户",
   "@ignoreUser": {},
   "normalUser": "正常用户",
-  "@normalUser": {}
+  "@normalUser": {},
+  "approve": "批准",
+  "@approve": {},
+  "youHaveKnocked": "你已请求加入",
+  "@youHaveKnocked": {},
+  "pleaseWaitUntilInvited": "在来自该聊天室的某人邀请你之前请等待。",
+  "@pleaseWaitUntilInvited": {}
 }
