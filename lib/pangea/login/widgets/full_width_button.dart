@@ -35,7 +35,7 @@ class FullWidthButtonState extends State<FullWidthButton> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: EdgeInsets.fromLTRB(6, 6, 6, widget.error == null ? 6 : 0),
+          padding: EdgeInsets.fromLTRB(4, 4, 4, widget.error == null ? 4 : 0),
           child: AnimatedOpacity(
             duration: FluffyThemes.animationDuration,
             opacity: widget.enabled ? 1 : 0.5,
@@ -47,7 +47,7 @@ class FullWidthButtonState extends State<FullWidthButton> {
               child: Container(
                 // internal padding
                 padding: const EdgeInsets.symmetric(horizontal: 16),
-                height: 50,
+                height: 40,
                 decoration: BoxDecoration(
                   color: widget.enabled
                       ? Theme.of(context).colorScheme.primary
@@ -146,43 +146,46 @@ class FullWidthTextField extends StatelessWidget {
     final bool shouldShowError = showErrorText ?? errorText != null;
 
     return Padding(
-      padding: const EdgeInsets.all(6.0),
-      child: TextFormField(
-        obscureText: obscureText,
-        autocorrect: autocorrect,
-        textInputAction: textInputAction,
-        keyboardType: keyboardType,
-        autofillHints: autofillHints,
-        autofocus: autoFocus,
-        decoration: InputDecoration(
-          labelText: labelText,
-          hintText: hintText,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(36.0),
+      padding: const EdgeInsets.all(4.0),
+      child: SizedBox(
+        height: 40.0,
+        child: TextFormField(
+          obscureText: obscureText,
+          autocorrect: autocorrect,
+          textInputAction: textInputAction,
+          keyboardType: keyboardType,
+          autofillHints: autofillHints,
+          autofocus: autoFocus,
+          decoration: InputDecoration(
+            labelText: labelText,
+            hintText: hintText,
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(36.0),
+            ),
+            enabledBorder: errorText != null
+                ? OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(36.0),
+                    borderSide:
+                        BorderSide(color: Theme.of(context).colorScheme.error),
+                  )
+                : null,
+            focusedBorder: errorText != null
+                ? OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(36.0),
+                    borderSide: BorderSide(
+                      color: Theme.of(context).colorScheme.error,
+                      width: 2,
+                    ),
+                  )
+                : null,
+            contentPadding: const EdgeInsets.symmetric(horizontal: 30),
+            errorText: shouldShowError ? errorText : null,
           ),
-          enabledBorder: errorText != null
-              ? OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(36.0),
-                  borderSide:
-                      BorderSide(color: Theme.of(context).colorScheme.error),
-                )
-              : null,
-          focusedBorder: errorText != null
-              ? OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(36.0),
-                  borderSide: BorderSide(
-                    color: Theme.of(context).colorScheme.error,
-                    width: 2,
-                  ),
-                )
-              : null,
-          contentPadding: const EdgeInsets.symmetric(horizontal: 30),
-          errorText: shouldShowError ? errorText : null,
+          validator: validator,
+          onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
+          controller: controller,
+          onFieldSubmitted: onSubmitted,
         ),
-        validator: validator,
-        onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
-        controller: controller,
-        onFieldSubmitted: onSubmitted,
       ),
     );
   }

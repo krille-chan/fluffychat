@@ -9,7 +9,6 @@ import 'package:fluffychat/pangea/common/widgets/pangea_logo_svg.dart';
 import 'package:fluffychat/pangea/login/pages/pangea_login_scaffold.dart';
 import 'package:fluffychat/pangea/login/widgets/full_width_button.dart';
 import 'package:fluffychat/pangea/login/widgets/p_sso_button.dart';
-import 'package:fluffychat/pangea/login/widgets/tos_checkbox.dart';
 import 'signup.dart';
 
 class SignupPageView extends StatelessWidget {
@@ -19,24 +18,13 @@ class SignupPageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool validator() {
-      final valid = controller.formKey.currentState?.validate() ?? false;
-      if (!valid) return false;
-      if (!controller.isTnCChecked) {
-        controller.setSignupError(L10n.of(context).pleaseAgreeToTOS);
-        return false;
-      }
-      return true;
+      return controller.formKey.currentState?.validate() ?? false;
     }
 
     return Form(
       key: controller.formKey,
       child: PangeaLoginScaffold(
         children: [
-          TosCheckbox(
-            controller.isTnCChecked,
-            controller.onTncChange,
-            error: controller.signupError,
-          ),
           FullWidthButton(
             title: L10n.of(context).signUpWithEmail,
             onPressed: () {
@@ -63,6 +51,33 @@ class SignupPageView extends StatelessWidget {
             setLoading: controller.setLoadingSSO,
             loading: controller.loadingAppleSSO,
             validator: validator,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: 8.0,
+              horizontal: 8.0,
+            ),
+            child: RichText(
+              textAlign: TextAlign.justify,
+              text: TextSpan(
+                text: L10n.of(context).byUsingPangeaChat,
+                children: [
+                  TextSpan(
+                    text: L10n.of(context).termsAndConditions,
+                    style: const TextStyle(
+                      decoration: TextDecoration.underline,
+                    ),
+                  ),
+                  TextSpan(
+                    text: L10n.of(context).andCertifyIAmAtLeast13YearsOfAge,
+                  ),
+                ],
+                style: TextStyle(
+                  fontSize: 12,
+                  color: Theme.of(context).colorScheme.onSurface,
+                ),
+              ),
+            ),
           ),
         ],
       ),

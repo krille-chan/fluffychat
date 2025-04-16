@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/themes.dart';
 
 class PangeaLoginScaffold extends StatelessWidget {
   final String mainAssetPath;
@@ -22,9 +23,13 @@ class PangeaLoginScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isColumnMode = FluffyThemes.isColumnMode(context);
     return SafeArea(
       child: Scaffold(
-        appBar: customAppBar ?? AppBar(),
+        appBar: customAppBar ??
+            AppBar(
+              toolbarHeight: isColumnMode ? null : 40.0,
+            ),
         body: LayoutBuilder(
           builder: (context, constraints) {
             return SingleChildScrollView(
@@ -41,8 +46,8 @@ class PangeaLoginScaffold extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          width: 175,
-                          height: 175,
+                          width: isColumnMode ? 175 : 125,
+                          height: isColumnMode ? 175 : 125,
                           decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                             color: Colors.transparent,
@@ -59,13 +64,12 @@ class PangeaLoginScaffold extends StatelessWidget {
                                   ),
                           ),
                         ),
-                        const SizedBox(height: 24),
                         if (showAppName)
                           Text(
                             AppConfig.applicationName,
                             style: Theme.of(context).textTheme.displaySmall,
                           ),
-                        if (showAppName) const SizedBox(height: 12),
+                        const SizedBox(height: 12),
                         ...children,
                       ],
                     ),

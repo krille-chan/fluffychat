@@ -146,13 +146,7 @@ class SignupPageController extends State<SignupPage> {
     return null;
   }
 
-  bool isTnCChecked = false;
   String? signupError;
-  void onTncChange(bool? value) {
-    isTnCChecked = value ?? false;
-    signupError = null;
-    setState(() {});
-  }
 
   void signup([_]) async {
     setState(() => signupError = null);

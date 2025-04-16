@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
+import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/login/login.dart';
 import 'package:fluffychat/pangea/common/widgets/pangea_logo_svg.dart';
 import 'package:fluffychat/pangea/login/pages/pangea_login_scaffold.dart';
@@ -18,6 +19,7 @@ class PangeaLoginView extends StatelessWidget {
     return Form(
       key: controller.formKey,
       child: PangeaLoginScaffold(
+        showAppName: FluffyThemes.isColumnMode(context),
         children: [
           AutofillGroup(
             child: Column(
@@ -66,24 +68,24 @@ class PangeaLoginView extends StatelessWidget {
             enabled: controller.enabledSignIn,
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 6.0),
+            padding: const EdgeInsets.all(4.0),
             child: TextButton(
               onPressed: controller.loadingSignIn
                   ? () {}
                   : controller.passwordForgotten,
               style: TextButton.styleFrom(
                 foregroundColor: Theme.of(context).colorScheme.error,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16.0,
+                  vertical: 4.0,
+                ),
+                minimumSize: const Size(0, 0),
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(L10n.of(context).passwordForgotten),
-                ],
-              ),
+              child: Text(L10n.of(context).passwordForgotten),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
                 const Expanded(child: Divider()),
@@ -106,6 +108,33 @@ class PangeaLoginView extends StatelessWidget {
             title: L10n.of(context).signInWithApple,
             loading: controller.loadingAppleSSO,
             setLoading: controller.setLoadingSSO,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: 8.0,
+              horizontal: 8.0,
+            ),
+            child: RichText(
+              textAlign: TextAlign.justify,
+              text: TextSpan(
+                text: L10n.of(context).byUsingPangeaChat,
+                children: [
+                  TextSpan(
+                    text: L10n.of(context).termsAndConditions,
+                    style: const TextStyle(
+                      decoration: TextDecoration.underline,
+                    ),
+                  ),
+                  TextSpan(
+                    text: L10n.of(context).andCertifyIAmAtLeast13YearsOfAge,
+                  ),
+                ],
+                style: TextStyle(
+                  fontSize: 12,
+                  color: Theme.of(context).colorScheme.onSurface,
+                ),
+              ),
+            ),
           ),
         ],
       ),
