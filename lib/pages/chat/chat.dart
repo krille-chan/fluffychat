@@ -406,7 +406,7 @@ class ChatController extends State<ChatPageWithRoom>
         pangeaController.getAnalytics.analyticsStream.stream.listen((update) {
       if (update.targetID == null) return;
       OverlayUtil.showOverlay(
-        overlayKey: update.targetID,
+        overlayKey: "${update.targetID ?? ""}_points",
         followerAnchor: Alignment.bottomCenter,
         targetAnchor: Alignment.bottomCenter,
         context: context,

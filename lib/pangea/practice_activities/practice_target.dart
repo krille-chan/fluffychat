@@ -74,8 +74,8 @@ class PracticeTarget {
   Map<String, dynamic> toJson() {
     return {
       'tokens': tokens.map((e) => e.toJson()).toList(),
-      'activityType': activityType.index,
-      'morphFeature': morphFeature?.index,
+      'activityType': activityType.name,
+      'morphFeature': morphFeature?.name,
       'userL2': userL2,
     };
   }
@@ -114,6 +114,13 @@ class PracticeTarget {
       );
       return false;
     }
+
+    if (activityType == ActivityTypeEnum.morphId) {
+      return record.responses.any(
+        (res) => res.cId == token.morphIdByFeature(morph!) && res.isCorrect,
+      );
+    }
+
     return record.responses.any(
       (res) => res.cId == token.vocabConstructID && res.isCorrect,
     );

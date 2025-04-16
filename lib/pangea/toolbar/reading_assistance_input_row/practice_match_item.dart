@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
+import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_choice.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
@@ -13,6 +14,7 @@ class PracticeMatchItem extends StatefulWidget {
   const PracticeMatchItem({
     super.key,
     required this.content,
+    required this.token,
     required this.constructForm,
     required this.isCorrect,
     required this.isSelected,
@@ -22,6 +24,7 @@ class PracticeMatchItem extends StatefulWidget {
   });
 
   final Widget content;
+  final PangeaToken? token;
   final PracticeChoice constructForm;
   final String? audioContent;
   final MessageOverlayController overlayController;
@@ -131,7 +134,9 @@ class PracticeMatchItemState extends State<PracticeMatchItem> {
 
   void onTap() {
     play();
-    widget.overlayController.onChoiceSelect(widget.constructForm);
+    isCorrect == null || !isCorrect! || widget.token == null
+        ? widget.overlayController.onChoiceSelect(widget.constructForm)
+        : widget.overlayController.updateSelectedSpan(widget.token!.text);
   }
 
   @override

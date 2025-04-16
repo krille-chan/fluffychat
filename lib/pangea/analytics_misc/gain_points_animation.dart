@@ -119,7 +119,7 @@ class PointsGainedAnimationState extends State<PointsGainedAnimation>
     _controller?.forward().then(
       (_) {
         if (!mounted) return;
-        MatrixState.pAnyState.closeOverlay(widget.targetID);
+        MatrixState.pAnyState.closeOverlay("${widget.targetID}_points");
       },
     );
   }
@@ -132,7 +132,7 @@ class PointsGainedAnimationState extends State<PointsGainedAnimation>
         _offsetAnimation == null) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (mounted) {
-          MatrixState.pAnyState.closeOverlay(widget.targetID);
+          MatrixState.pAnyState.closeOverlay("${widget.targetID}_points");
         }
       });
       return const SizedBox();
