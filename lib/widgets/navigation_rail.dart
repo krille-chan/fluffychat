@@ -70,13 +70,22 @@ class SpacesNavigationRail extends StatelessWidget {
                         onTap: onGoToChats,
                         icon: const Padding(
                           padding: EdgeInsets.all(10.0),
-                          child: Icon(Icons.forum_outlined),
+                          // #Pangea
+                          // child: Icon(Icons.forum_outlined),
+                          child: Icon(Icons.home_outlined),
+                          // Pangea#
                         ),
                         selectedIcon: const Padding(
                           padding: EdgeInsets.all(10.0),
-                          child: Icon(Icons.forum),
+                          // #Pangea
+                          // child: Icon(Icons.forum),
+                          child: Icon(Icons.home),
+                          // Pangea#
                         ),
-                        toolTip: L10n.of(context).chats,
+                        // #Pangea
+                        // toolTip: L10n.of(context).chats,
+                        toolTip: L10n.of(context).home,
+                        // Pangea#
                         unreadBadgeFilter: (room) => true,
                       );
                     }
