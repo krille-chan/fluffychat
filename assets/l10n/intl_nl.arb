@@ -3343,10 +3343,16 @@
   "@commandHint_roomupgrade": {},
   "setCustomPermissionLevel": "Aangepast rechten-niveau instellen",
   "@setCustomPermissionLevel": {},
-  "setPermissionsLevelDescription": "Kies een standaard rol hieronder of voer een aangepast rechten-niveau in tussen 0 en 100.",
+  "setPermissionsLevelDescription": "Kies hieronder een standaard rol of voer een aangepast rechten-niveau in tussen 0 en 100.",
   "@setPermissionsLevelDescription": {},
   "ignoreUser": "Persoon negeren",
   "@ignoreUser": {},
   "normalUser": "Normaal persoon",
-  "@normalUser": {}
+  "@normalUser": {},
+  "pleaseWaitUntilInvited": "Wacht even alsjeblieft tot iemand van de kamer je uitnodigt.",
+  "@pleaseWaitUntilInvited": {},
+  "approve": "Goedkeuren",
+  "@approve": {},
+  "youHaveKnocked": "Je hebt geklopt",
+  "@youHaveKnocked": {}
 }
