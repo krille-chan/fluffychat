@@ -1,60 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
-import 'package:fluffychat/pangea/instructions/instructions_enum.dart';
-import 'package:fluffychat/pangea/instructions/instructions_show_popup.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import '../../bot/widgets/bot_face_svg.dart';
-import '../controllers/choreographer.dart';
 import '../controllers/it_controller.dart';
-
-class ITCloseButton extends StatelessWidget {
-  const ITCloseButton({
-    super.key,
-    required this.choreographer,
-  });
-
-  final Choreographer choreographer;
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      icon: const Icon(Icons.close_outlined),
-      onPressed: () {
-        if (choreographer.itController.isEditingSourceText) {
-          choreographer.itController.setIsEditingSourceText(false);
-        } else {
-          choreographer.itController.closeIT();
-        }
-      },
-    );
-  }
-}
-
-class ITBotButton extends StatelessWidget {
-  const ITBotButton({super.key, required this.choreographer});
-
-  final Choreographer choreographer;
-
-  @override
-  Widget build(BuildContext context) {
-    instructionsShowPopup(
-      context,
-      InstructionsEnum.itInstructions,
-      choreographer.itBotTransformTargetKey,
-    );
-
-    return IconButton(
-      icon: const BotFace(width: 40.0, expression: BotExpression.idle),
-      onPressed: () => instructionsShowPopup(
-        context,
-        InstructionsEnum.itInstructions,
-        choreographer.itBotTransformTargetKey,
-        showToggle: false,
-      ),
-    );
-  }
-}
 
 class ITRestartButton extends StatelessWidget {
   ITRestartButton({

@@ -10,14 +10,16 @@ class InstructionsInlineTooltip extends StatefulWidget {
   final InstructionsEnum instructionsEnum;
   final bool bold;
   final bool animate;
-  final double padding;
+  final EdgeInsets? padding;
+  final VoidCallback? onClose;
 
   const InstructionsInlineTooltip({
     super.key,
     required this.instructionsEnum,
     this.bold = false,
     this.animate = true,
-    this.padding = 0.0,
+    this.padding,
+    this.onClose,
   });
 
   @override
@@ -45,7 +47,7 @@ class InstructionsInlineTooltipState extends State<InstructionsInlineTooltip>
     setToggled();
   }
 
-  void setToggled() {
+  Future<void> setToggled() async {
     _isToggledOff = widget.instructionsEnum.isToggledOff;
 
     if (widget.animate) {
@@ -61,10 +63,12 @@ class InstructionsInlineTooltipState extends State<InstructionsInlineTooltip>
       );
 
       // Start in correct state
-      if (!_isToggledOff) _controller!.forward();
+      if (!_isToggledOff) {
+        await _controller!.forward();
+      }
     }
 
-    setState(() {});
+    if (mounted) setState(() {});
   }
 
   @override
@@ -73,14 +77,14 @@ class InstructionsInlineTooltipState extends State<InstructionsInlineTooltip>
     super.dispose();
   }
 
-  void _closeTooltip() {
+  Future<void> _closeTooltip() async {
     widget.instructionsEnum.setToggledOff(true);
-    setState(() {
-      _isToggledOff = true;
-      if (widget.animate) {
-        _controller?.reverse();
-      }
-    });
+    setState(() => _isToggledOff = true);
+
+    if (widget.animate) {
+      await _controller?.reverse();
+    }
+    widget.onClose?.call();
   }
 
   @override
@@ -98,7 +102,7 @@ class InstructionsInlineTooltipState extends State<InstructionsInlineTooltip>
 
   Widget _buildTooltipContent(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(widget.padding),
+      padding: widget.padding ?? const EdgeInsets.all(0),
       child: DecoratedBox(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(AppConfig.borderRadius),
