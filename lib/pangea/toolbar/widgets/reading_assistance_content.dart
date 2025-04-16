@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -147,7 +149,10 @@ class ReadingAssistanceContentState extends State<ReadingAssistanceContent> {
           ),
           constraints: BoxConstraints(
             maxHeight: AppConfig.toolbarMaxHeight,
-            minWidth: AppConfig.toolbarMinWidth,
+            minWidth: min(
+              AppConfig.toolbarMinWidth,
+              widget.overlayController.maxWidth,
+            ),
             minHeight: AppConfig.toolbarMinHeight,
             maxWidth: widget.overlayController.maxWidth,
           ),

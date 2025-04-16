@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:developer';
+import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -331,7 +332,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
         addBorder: false,
         overlayKey: "${selectedToken!.text.uniqueKey}_toolbar",
         maxHeight: AppConfig.toolbarMaxHeight,
-        maxWidth: AppConfig.toolbarMinWidth,
+        maxWidth: min(AppConfig.toolbarMinWidth, maxWidth),
       );
     }
   }
