@@ -62,14 +62,17 @@
             </intent-filter>
 
             <!-- App can open https://matrix.to urls -->
-            <intent-filter>
+            <!-- # Pangea -->
+            <!-- Causes deeplink error in google play -->
+            <!-- <intent-filter>
                <action android:name="android.intent.action.VIEW" />
                <category android:name="android.intent.category.DEFAULT" />
                <category android:name="android.intent.category.BROWSABLE" />
                <data
                    android:scheme="https"
                    android:host="matrix.to"/>
-            </intent-filter>
+            </intent-filter> -->
+            <!-- Pangea# -->
 
             <!-- App can open matrix: uris -->
             <intent-filter>
