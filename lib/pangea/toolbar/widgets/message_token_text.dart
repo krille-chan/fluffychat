@@ -164,11 +164,11 @@ class MessageTextWidget extends StatelessWidget {
             ? theme.colorScheme.onPrimary
             : theme.colorScheme.onSurface;
 
-    return Text.rich(
+    return RichText(
       softWrap: softWrap ?? true,
       maxLines: maxLines,
       overflow: overflow ?? TextOverflow.clip,
-      TextSpan(
+      text: TextSpan(
         children:
             tokenPositions.mapIndexed((int i, TokenPosition tokenPosition) {
           final substring = messageCharacters
@@ -246,8 +246,8 @@ class MessageTextWidget extends StatelessWidget {
                         onTap: onClick != null
                             ? () => onClick?.call(tokenPosition)
                             : null,
-                        child: Text.rich(
-                          TextSpan(
+                        child: RichText(
+                          text: TextSpan(
                             children: [
                               if (start.isNotEmpty)
                                 LinkifySpan(

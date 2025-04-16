@@ -323,20 +323,18 @@ class SettingsStyleView extends StatelessWidget {
                 );
               },
             ),
-            // #Pangea
-            // ListTile(
-            //   title: Text(L10n.of(context).fontSize),
-            //   trailing: Text('× ${AppConfig.fontSizeFactor}'),
-            // ),
-            // Slider.adaptive(
-            //   min: 0.5,
-            //   max: 2.5,
-            //   divisions: 20,
-            //   value: AppConfig.fontSizeFactor,
-            //   semanticFormatterCallback: (d) => d.toString(),
-            //   onChanged: controller.changeFontSizeFactor,
-            // ),
-            // Pangea
+            ListTile(
+              title: Text(L10n.of(context).fontSize),
+              trailing: Text('× ${AppConfig.fontSizeFactor}'),
+            ),
+            Slider.adaptive(
+              min: 0.5,
+              max: 2.5,
+              divisions: 20,
+              value: AppConfig.fontSizeFactor,
+              semanticFormatterCallback: (d) => d.toString(),
+              onChanged: controller.changeFontSizeFactor,
+            ),
             Divider(
               color: theme.dividerColor,
             ),
