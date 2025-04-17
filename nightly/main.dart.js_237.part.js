@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_237",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cz2(){return new A.Ex(B.dk("et"))},
+cz3(){return new A.Ex(B.dk("et"))},
 Ex:function Ex(d){this.a=d}}
 B=c[0]
 C=c[52]
@@ -95,7 +95,7 @@ gfd(){return"Vestluse teave"},
 gfe(){return"Vestlused"},
 ghQ(){return"Vali korralik salas\xf5na"},
 gff(){return"Kustuta arhiiv"},
-gct(d){return"Sulge"},
+gcu(d){return"Sulge"},
 gkS(){return"M\xe4rgi otsevestusluseks antud Matrixi ID jaoks"},
 gkT(){return"M\xe4rgi vestlusr\xfchmaks"},
 ghR(){return"Sea sellele kasutajale antud jututoas suhtluskeeld"},
@@ -635,5 +635,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Ex,C.aG)})()
 B.dX(b.typeUniverse,JSON.parse('{"Ex":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_237",e:"endPart",h:b})})($__dart_deferred_initializers__,"aejyT1bYWIiKRgGM8kMUBNlWzEY=");
+a.eventLog.push({p:"main.dart.js_237",e:"endPart",h:b})})($__dart_deferred_initializers__,"8IdpU0df1VJ/Oev4x3YFNsrQbeA=");
 //# sourceMappingURL=main.dart.js_237.part.js.map

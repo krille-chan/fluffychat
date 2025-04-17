@@ -2,9 +2,9 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_15",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-czq(d){return new A.zJ(B.dk(d))},
-czr(){return new A.EV(B.dk("pt_BR"))},
-czs(){return new A.EW(B.dk("pt_PT"))},
+czr(d){return new A.zJ(B.dk(d))},
+czs(){return new A.EV(B.dk("pt_BR"))},
+czt(){return new A.EW(B.dk("pt_PT"))},
 zJ:function zJ(d){this.a=d},
 EV:function EV(d){this.a=d},
 EW:function EW(d){this.a=d}},C
@@ -99,7 +99,7 @@ gfd(){return"Chat details"},
 gfe(){return"Chats"},
 ghQ(){return"Choose a strong password"},
 gff(){return"Clear archive"},
-gct(d){return"Fechar"},
+gcu(d){return"Fechar"},
 gkS(){return"Mark as direct message room for the giving Matrix ID"},
 gkT(){return"Mark as group"},
 ghR(){return"Ban the given user from this room"},
@@ -709,7 +709,7 @@ gfd(){return"Detalhes da conversa"},
 gfe(){return"Conversas"},
 ghQ(){return"Escolha uma senha forte"},
 gff(){return"Limpar arquivo"},
-gct(d){return"Fechar"},
+gcu(d){return"Fechar"},
 gkS(){return"Marcar como conversa direta para o ID Matrix dado"},
 gkT(){return"Marcar como grupo"},
 ghR(){return"Banir um(a) usu\xe1rio(a) desta sala"},
@@ -1185,7 +1185,7 @@ gfd(){return"Detalhes de conversa"},
 gfe(){return"Conversas"},
 ghQ(){return"Escolhe uma palavra-passe forte"},
 gff(){return"Limpar arquivo"},
-gct(d){return"Fechar"},
+gcu(d){return"Fechar"},
 ghR(){return"Banir o utilizador dado desta sala"},
 ghS(){return"Limpar cache"},
 ghT(){return"Criar uma conversa de grupo vazia\nUsa --no-encryption para desativar a encripta\xe7\xe3o"},
@@ -1379,5 +1379,5 @@ w(A.zJ,[A.EV,A.EW])})()
 B.dX(b.typeUniverse,JSON.parse('{"zJ":{"aG":[]},"EV":{"aG":[]},"EW":{"aG":[]}}'))
 var y={d:" alterou a visibilidade do hist\xf3rico para: "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_15",e:"endPart",h:b})})($__dart_deferred_initializers__,"VMOArcYC5O7V9cvRhn/+ZcEpgoc=");
+a.eventLog.push({p:"main.dart.js_15",e:"endPart",h:b})})($__dart_deferred_initializers__,"jIDeEJIBTbrDzIE9NtyExtt7vZI=");
 //# sourceMappingURL=main.dart.js_15.part.js.map

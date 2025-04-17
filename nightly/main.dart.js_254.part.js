@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_254",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czc(){return new A.EH(B.dk("hr"))},
+czd(){return new A.EH(B.dk("hr"))},
 EH:function EH(d){this.a=d}}
 B=c[0]
 C=c[52]
@@ -95,7 +95,7 @@ gfd(){return"Detalji razgovora"},
 gfe(){return"Razgovori"},
 ghQ(){return"Odaberi sna\u017enu lozinku"},
 gff(){return"Isprazni arhiv"},
-gct(d){return"Zatvori"},
+gcu(d){return"Zatvori"},
 gkS(){return"Ozna\u010di kao sobu za izravnu razmjenu poruka za zadani Matrix ID"},
 gkT(){return"Ozna\u010di kao grupu"},
 ghR(){return"Isklju\u010di navedenog korisnika iz ove sobe"},
@@ -635,5 +635,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.EH,C.aG)})()
 B.dX(b.typeUniverse,JSON.parse('{"EH":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_254",e:"endPart",h:b})})($__dart_deferred_initializers__,"o44QaB7JVaeiQUGcRq53aLTVfpo=");
+a.eventLog.push({p:"main.dart.js_254",e:"endPart",h:b})})($__dart_deferred_initializers__,"WP3oskIvD29GRi6fEECzwp0p4B4=");
 //# sourceMappingURL=main.dart.js_254.part.js.map

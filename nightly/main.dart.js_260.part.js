@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_260",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czd(){return new A.EI(B.dk("hu"))},
+cze(){return new A.EI(B.dk("hu"))},
 EI:function EI(d){this.a=d}}
 B=c[0]
 C=c[52]
@@ -95,7 +95,7 @@ gfd(){return"Cseveg\xe9s r\xe9szletei"},
 gfe(){return"Cseveg\xe9sek"},
 ghQ(){return"V\xe1lasszon egy er\u0151s jelsz\xf3t"},
 gff(){return"Arch\xedvum t\xf6rl\xe9se"},
-gct(d){return"Bez\xe1r\xe1s"},
+gcu(d){return"Bez\xe1r\xe1s"},
 gkS(){return"Szoba megjel\xf6l\xe9se mint k\xf6zvetlen cseveg\u0151 szoba az adott Matrix ID-n\xe9l"},
 gkT(){return"Csoportnak jel\xf6l\xe9s"},
 ghR(){return"Felhaszn\xe1l\xf3 kitilt\xe1sa ebb\u0151l a szob\xe1b\xf3l"},
@@ -635,5 +635,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.EI,C.aG)})()
 B.dX(b.typeUniverse,JSON.parse('{"EI":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_260",e:"endPart",h:b})})($__dart_deferred_initializers__,"SqXOucdvJvEvUKh81y8AWKjCgGI=");
+a.eventLog.push({p:"main.dart.js_260",e:"endPart",h:b})})($__dart_deferred_initializers__,"XN39GYb1FOTbYLZ46tnAPQ/bhe0=");
 //# sourceMappingURL=main.dart.js_260.part.js.map

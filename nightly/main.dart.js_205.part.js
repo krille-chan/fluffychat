@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_205",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cyW(){return new A.Eq(B.dk("ca"))},
+cyX(){return new A.Eq(B.dk("ca"))},
 Eq:function Eq(d){this.a=d}}
 B=c[0]
 C=c[52]
@@ -95,7 +95,7 @@ gfd(){return"Detalls del xat"},
 gfe(){return"Xats"},
 ghQ(){return"Trieu una contrasenya forta"},
 gff(){return"Neteja l\u2019arxiu"},
-gct(d){return"Tanca"},
+gcu(d){return"Tanca"},
 gkS(){return"Marca com a conversa directa la sala amb aquesta ID de Matrix"},
 gkT(){return"Marca com un grup"},
 ghR(){return"Veta uni usu\xe0ri\xef d'aquesta sala"},
@@ -635,5 +635,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Eq,C.aG)})()
 B.dX(b.typeUniverse,JSON.parse('{"Eq":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_205",e:"endPart",h:b})})($__dart_deferred_initializers__,"L8I1fEiRqwxDlATp5tESTcL0mP0=");
+a.eventLog.push({p:"main.dart.js_205",e:"endPart",h:b})})($__dart_deferred_initializers__,"ddm800i/w286Un0wDbEXQePF/80=");
 //# sourceMappingURL=main.dart.js_205.part.js.map

@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_247",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cz8(){return new A.ED(B.dk("ga"))},
+cz9(){return new A.ED(B.dk("ga"))},
 ED:function ED(d){this.a=d}}
 B=c[0]
 C=c[52]
@@ -95,7 +95,7 @@ gfd(){return"Sonra\xed comhr\xe1"},
 gfe(){return"Comhr\xe1ite"},
 ghQ(){return"Roghnaigh pasfhocal l\xe1idir"},
 gff(){return"Glan an cartlann"},
-gct(d){return"D\xfan"},
+gcu(d){return"D\xfan"},
 gkS(){return"Marc\xe1il mar sheomra teachtaireachta d\xedr\xed don ID Maitr\xeds tugtha"},
 gkT(){return"Marc\xe1il mar ghr\xfapa"},
 ghR(){return y.a},
@@ -636,5 +636,5 @@ x(A.ED,C.aG)})()
 B.dX(b.typeUniverse,JSON.parse('{"ED":{"aG":[]}}'))
 var y={a:"Cuir cosc ar an \xfas\xe1ideoir \xe1irithe \xf3n seomra seo"}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_247",e:"endPart",h:b})})($__dart_deferred_initializers__,"0owdgG81ANKxLIcQyg3lUM5XtqU=");
+a.eventLog.push({p:"main.dart.js_247",e:"endPart",h:b})})($__dart_deferred_initializers__,"jBrfD2W1fWBFksIT/5SBrGzWj/U=");
 //# sourceMappingURL=main.dart.js_247.part.js.map
