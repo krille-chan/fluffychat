@@ -75,7 +75,10 @@ class EventInfoDialog extends StatelessWidget {
               icon: const Icon(Icons.copy),
               onPressed: () {
                 Clipboard.setData(
-                    ClipboardData(text: event.toJson().toString()));
+                  ClipboardData(
+                    text: prettyJson(event),
+                  ),
+                );
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text(L10n.of(context).copiedToClipboard),
