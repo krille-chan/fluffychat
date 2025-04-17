@@ -29,12 +29,21 @@ class BookmarkedActivitiesRepo {
   }
 
   static List<ActivityPlanModel> get() {
-    final list = _bookStorage.getValues();
+    final List<String> keys = List<String>.from(_bookStorage.getKeys());
+    if (keys.isEmpty) return [];
 
-    if (list == null) return [];
+    final List<ActivityPlanModel> activities = [];
+    for (final key in keys) {
+      final json = _bookStorage.read(key);
+      if (json == null) continue;
+      final activity = ActivityPlanModel.fromJson(json);
+      if (key != activity.bookmarkId) {
+        _bookStorage.remove(key);
+        _bookStorage.write(activity.bookmarkId, activity.toJson());
+      }
+      activities.add(activity);
+    }
 
-    return (list as Iterable)
-        .map((json) => ActivityPlanModel.fromJson(json))
-        .toList();
+    return activities;
   }
 }
