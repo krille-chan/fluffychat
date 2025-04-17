@@ -1,9 +1,8 @@
 import 'dart:math';
 
-import 'package:flutter/material.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
+import 'package:flutter/material.dart';
 
 Future<T?> showAdaptiveBottomSheet<T>({
   required BuildContext context,
@@ -18,20 +17,21 @@ Future<T?> showAdaptiveBottomSheet<T>({
       useRootNavigator: useRootNavigator,
       barrierDismissible: isDismissible,
       useSafeArea: true,
-      builder: (context) => Container(
-        margin: const EdgeInsets.all(16),
-        constraints: const BoxConstraints(
-          maxWidth: 480,
-          maxHeight: 720,
-        ),
-        alignment: Alignment.center,
-        child: Material(
-          elevation: Theme.of(context).dialogTheme.elevation ?? 4,
-          shadowColor: Theme.of(context).dialogTheme.shadowColor,
-          borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-          color: Theme.of(context).scaffoldBackgroundColor,
-          clipBehavior: Clip.hardEdge,
-          child: builder(context),
+      builder: (context) => Center(
+        child: Container(
+          margin: const EdgeInsets.all(16),
+          constraints: const BoxConstraints(
+            maxWidth: 480,
+            maxHeight: 720,
+          ),
+          child: Material(
+            elevation: Theme.of(context).dialogTheme.elevation ?? 4,
+            shadowColor: Theme.of(context).dialogTheme.shadowColor,
+            borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+            color: Theme.of(context).scaffoldBackgroundColor,
+            clipBehavior: Clip.hardEdge,
+            child: builder(context),
+          ),
         ),
       ),
     );
