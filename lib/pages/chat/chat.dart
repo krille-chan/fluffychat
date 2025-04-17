@@ -660,7 +660,7 @@ class ChatController extends State<ChatPageWithRoom>
     //#Pangea
     choreographer.stateStream.close();
     choreographer.dispose();
-    MatrixState.pAnyState.closeOverlay();
+    MatrixState.pAnyState.closeAllOverlays();
     showToolbarStream.close();
     stopAudioStream.close();
     hideTextController.dispose();
@@ -679,7 +679,10 @@ class ChatController extends State<ChatPageWithRoom>
     _router.routeInformationProvider.addListener(_onRouteChanged);
   }
 
-  void _onRouteChanged() => stopAudioStream.add(null);
+  void _onRouteChanged() {
+    stopAudioStream.add(null);
+    MatrixState.pAnyState.closeAllOverlays();
+  }
 
   // TextEditingController sendController = TextEditingController();
   PangeaTextController get sendController => choreographer.textController;
