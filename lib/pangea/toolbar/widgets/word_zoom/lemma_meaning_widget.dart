@@ -15,6 +15,7 @@ import 'package:fluffychat/pangea/lemmas/lemma_info_request.dart';
 import 'package:fluffychat/pangea/lemmas/lemma_info_response.dart';
 import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
+import 'package:fluffychat/pangea/toolbar/enums/reading_assistance_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/practice_activity/word_zoom_activity_button.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -124,7 +125,9 @@ class LemmaMeaningWidgetState extends State<LemmaMeaningWidget> {
         widget.controller!.practiceSelection!.hasActiveActivityByToken(
           ActivityTypeEnum.wordMeaning,
           widget.token!,
-        )) {
+        ) &&
+        widget.controller!.readingAssistanceMode ==
+            ReadingAssistanceMode.messageMode) {
       return WordZoomActivityButton(
         icon: const Icon(Symbols.dictionary),
         isSelected: widget.controller?.toolbarMode == MessageMode.wordMeaning,

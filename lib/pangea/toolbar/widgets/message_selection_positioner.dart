@@ -64,7 +64,6 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
   final Completer _tooltipCompleter = Completer();
 
   MessageMode _currentMode = MessageMode.noneSelected;
-  ReadingAssistanceMode? _readingAssistanceMode;
 
   Animation<Offset>? _overlayOffsetAnimation;
   Animation<Size>? _messageSizeAnimation;
@@ -185,11 +184,13 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
 
     if (mode == ReadingAssistanceMode.messageMode) {
       setState(
-        () => _readingAssistanceMode = ReadingAssistanceMode.transitionMode,
+        () => widget.overlayController.readingAssistanceMode =
+            ReadingAssistanceMode.transitionMode,
       );
     } else if (mode == ReadingAssistanceMode.tokenMode) {
       setState(
-        () => _readingAssistanceMode = ReadingAssistanceMode.tokenMode,
+        () => widget.overlayController.readingAssistanceMode =
+            ReadingAssistanceMode.tokenMode,
       );
     }
 
@@ -237,7 +238,8 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
     }
 
     await _animationController.forward(from: 0);
-    if (mounted) setState(() => _readingAssistanceMode = mode);
+    if (mounted)
+      setState(() => widget.overlayController.readingAssistanceMode = mode);
   }
 
   T _runWithLogging<T>(
@@ -258,6 +260,9 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
       return defaultValue;
     }
   }
+
+  ReadingAssistanceMode? get _readingAssistanceMode =>
+      widget.overlayController.readingAssistanceMode;
 
   double get _inputBarSize =>
       _readingAssistanceMode == ReadingAssistanceMode.messageMode ||

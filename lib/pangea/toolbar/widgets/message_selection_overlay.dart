@@ -28,6 +28,7 @@ import 'package:fluffychat/pangea/practice_activities/practice_selection.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_selection_repo.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/text_to_speech_controller.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
+import 'package:fluffychat/pangea/toolbar/enums/reading_assistance_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/reading_assistance_input_row/morph_selection.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_positioner.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/reading_assistance_content.dart';
@@ -87,6 +88,8 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   bool isPlayingAudio = false;
 
   final GlobalKey<ReadingAssistanceContentState> wordZoomKey = GlobalKey();
+
+  ReadingAssistanceMode? readingAssistanceMode; // default mode
 
   double maxWidth = AppConfig.toolbarMinWidth;
 
@@ -402,6 +405,9 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   bool get showToolbarButtons =>
       pangeaMessageEvent != null &&
       pangeaMessageEvent!.event.messageType == MessageTypes.Text;
+
+  bool get hideWordCardContent =>
+      readingAssistanceMode == ReadingAssistanceMode.messageMode;
 
   bool get isPracticeComplete => isTranslationUnlocked;
 

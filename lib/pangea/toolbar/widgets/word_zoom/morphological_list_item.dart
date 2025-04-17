@@ -25,12 +25,13 @@ class MorphologicalListItem extends StatelessWidget {
   });
 
   bool get shouldDoActivity =>
+      overlayController.hideWordCardContent &&
       overlayController.practiceSelection?.hasActiveActivityByToken(
-        ActivityTypeEnum.morphId,
-        token,
-        morphFeature,
-      ) ==
-      true;
+            ActivityTypeEnum.morphId,
+            token,
+            morphFeature,
+          ) ==
+          true;
 
   bool get isSelected =>
       overlayController.toolbarMode == MessageMode.wordMorph &&

@@ -56,7 +56,7 @@ class WordAudioButtonState extends State<WordAudioButton> {
           .layerLinkAndKey('word-audio-button-${widget.uniqueID}')
           .link,
       child: Opacity(
-        opacity: !widget.isSelected ? widget.baseOpacity : 1,
+        opacity: widget.isSelected || _isPlaying ? 1 : widget.baseOpacity,
         child: IconButton(
           key: MatrixState.pAnyState
               .layerLinkAndKey('word-audio-button-${widget.uniqueID}')
@@ -64,8 +64,9 @@ class WordAudioButtonState extends State<WordAudioButton> {
           icon: const Icon(Icons.volume_up),
           isSelected: _isPlaying,
           selectedIcon: const Icon(Icons.pause_outlined),
-          color:
-              widget.isSelected ? Theme.of(context).colorScheme.primary : null,
+          color: widget.isSelected || _isPlaying
+              ? Theme.of(context).colorScheme.primary
+              : null,
           tooltip:
               _isPlaying ? L10n.of(context).stop : L10n.of(context).playAudio,
           iconSize: widget.size,
