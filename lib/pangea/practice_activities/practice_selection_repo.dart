@@ -5,6 +5,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_selection.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 
 class PracticeSelectionRepo {
   static final GetStorage _storage = GetStorage('practice_selection_cache');
@@ -71,9 +72,13 @@ class PracticeSelectionRepo {
     String messageLanguage,
     List<PangeaToken> tokens,
   ) {
+    final userL2 = MatrixState.pangeaController.languageController.userL2;
     final String key = _key(tokens);
     if (_memoryCache.containsKey(key)) {
-      return _memoryCache[key];
+      final entry = _memoryCache[key];
+      return entry?.langCode.split("-").first == userL2?.langCodeShort
+          ? entry
+          : null;
     }
 
     final stored = _parsePracticeSelection(key);
@@ -84,7 +89,9 @@ class PracticeSelectionRepo {
         _storage.remove(key);
       } else {
         _memoryCache[key] = entry;
-        return entry;
+        return entry.langCode.split("-").first == userL2?.langCodeShort
+            ? entry
+            : null;
       }
     }
 
@@ -98,6 +105,8 @@ class PracticeSelectionRepo {
 
     clean();
 
-    return newEntry;
+    return newEntry.langCode.split("-").first == userL2?.langCodeShort
+        ? newEntry
+        : null;
   }
 }
