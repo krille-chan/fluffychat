@@ -225,7 +225,7 @@ class MessageTextWidget extends StatelessWidget {
                         overlayController: overlayController,
                         textStyle: renderer.style(context),
                         width: tokenWidth,
-                        animate: isTransitionAnimation,
+                        animateIn: isTransitionAnimation,
                         practiceTarget: overlayController
                                     ?.toolbarMode.associatedActivityType !=
                                 null

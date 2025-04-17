@@ -25,14 +25,13 @@ const double tokenButtonHeight = 40.0;
 const double tokenButtonDefaultFontSize = 10;
 const int maxEmojisPerLemma = 1;
 const double estimatedEmojiWidthRatio = 2;
-const double estimatedEmojiHeightRatio = 1.3;
 
 class MessageTokenButton extends StatefulWidget {
   final MessageOverlayController? overlayController;
   final PangeaToken token;
   final TextStyle textStyle;
   final double width;
-  final bool animate;
+  final bool animateIn;
   final PracticeTarget? practiceTarget;
 
   const MessageTokenButton({
@@ -42,7 +41,7 @@ class MessageTokenButton extends StatefulWidget {
     required this.textStyle,
     required this.width,
     required this.practiceTarget,
-    this.animate = false,
+    this.animateIn = false,
   });
 
   @override
@@ -59,14 +58,20 @@ class MessageTokenButtonState extends State<MessageTokenButton>
   late Animation<double> _iconSizeAnimation;
 
   bool _isHovered = false;
+  bool _isSelected = false;
+  bool _finishedInitialAnimation = false;
+  bool _wasEmpty = false;
 
   @override
   void initState() {
     super.initState();
+    _setSelected();
+
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(
         milliseconds: AppConfig.overlayAnimationDuration,
+        // seconds: 5,
       ),
     );
 
@@ -88,29 +93,29 @@ class MessageTokenButtonState extends State<MessageTokenButton>
       CurvedAnimation(parent: _iconSizeController, curve: Curves.easeInOut),
     );
 
-    if (widget.animate) {
-      _controller.forward();
+    _wasEmpty = _isEmpty;
+
+    if (!_isEmpty) {
+      _controller.forward().then((_) {
+        if (mounted) setState(() => _finishedInitialAnimation = true);
+      });
+    } else {
+      setState(() => _finishedInitialAnimation = true);
     }
   }
 
-  double get topPadding => 10.0;
-
-  double get height =>
-      widget.animate ? _heightAnimation.value : tokenButtonHeight;
-
   @override
   void didUpdateWidget(covariant MessageTokenButton oldWidget) {
-    if (oldWidget.overlayController?.toolbarMode !=
-            widget.overlayController?.toolbarMode ||
-        oldWidget.overlayController?.selectedToken !=
-            widget.overlayController?.selectedToken ||
-        oldWidget.overlayController?.selectedMorph !=
-            widget.overlayController?.selectedMorph ||
-        widget.token.vocabConstructID.constructUses.points !=
-            widget.token.vocabConstructID.constructUses.points) {
-      setState(() {});
-    }
     super.didUpdateWidget(oldWidget);
+    _setSelected();
+    if (_isEmpty != _wasEmpty) {
+      if (_isEmpty && _animate) {
+        _controller.reverse();
+      } else if (!_isEmpty && _animate) {
+        _controller.forward();
+      }
+      setState(() => _wasEmpty = _isEmpty);
+    }
   }
 
   @override
@@ -120,18 +125,51 @@ class MessageTokenButtonState extends State<MessageTokenButton>
     super.dispose();
   }
 
-  double get textSize =>
-      widget.textStyle.fontSize ?? tokenButtonDefaultFontSize;
+  bool get _animate => widget.animateIn || _finishedInitialAnimation;
 
-  double get emojiSize => textSize * estimatedEmojiWidthRatio;
+  PracticeTarget? get _activity => widget.practiceTarget;
 
-  TextStyle get emojiStyle => widget.textStyle.copyWith(
-        fontSize: textSize + 4,
-      );
+  bool get _isActivityCompleteForToken =>
+      _activity?.isCompleteByToken(
+        widget.token,
+        _activity!.morphFeature,
+      ) ==
+      true;
 
-  PracticeTarget? get activity => widget.practiceTarget;
+  void _setSelected() {
+    final selected =
+        widget.overlayController?.selectedMorph?.token == widget.token &&
+            widget.overlayController?.selectedMorph?.morph ==
+                _activity?.morphFeature;
 
-  onMatch(PracticeChoice form) {
+    if (selected != _isSelected) {
+      setState(() {
+        _isSelected = selected;
+      });
+
+      _isSelected
+          ? _iconSizeController.forward()
+          : _iconSizeController.reverse();
+    }
+  }
+
+  void _setHovered(bool isHovered) {
+    if (isHovered != _isHovered) {
+      setState(() {
+        _isHovered = isHovered;
+      });
+
+      if (!_isHovered && _isSelected) {
+        return;
+      }
+
+      _isHovered
+          ? _iconSizeController.forward()
+          : _iconSizeController.reverse();
+    }
+  }
+
+  void _onMatch(PracticeChoice form) {
     if (widget.overlayController?.activity == null) {
       debugger(when: kDebugMode);
       ErrorHandler.logError(
@@ -140,9 +178,7 @@ class MessageTokenButtonState extends State<MessageTokenButton>
       );
       return;
     }
-    widget.overlayController!.selectedChoice = null;
-    widget.overlayController!.setState(() {});
-
+    widget.overlayController!.onChoiceSelect(null);
     widget.overlayController!.activity!.onMatch(
       widget.token,
       form,
@@ -151,65 +187,136 @@ class MessageTokenButtonState extends State<MessageTokenButton>
     );
   }
 
-  Widget get emojiView {
-    // if (widget.token.text.content.length == 1 || maxEmojisPerLemma == 1) {
-    return ShrinkableText(
-      text: widget.token.vocabConstructID.userSetEmoji.firstOrNull ?? '',
-      maxWidth: widget.width,
-      style: emojiStyle,
-    );
-    // }
-    // return Stack(
-    //   alignment: Alignment.center,
-    //   children: widget.token.vocabConstructID.userSetEmoji
-    //       .take(maxEmojisPerLemma)
-    //       .mapIndexed(
-    //         (index, emoji) => Positioned(
-    //           left: min(
-    //             index /
-    //                 widget.token.vocabConstructID.userSetEmoji.length *
-    //                 totalAvailableWidth,
-    //             index * emojiSize,
-    //           ),
-    //           child: Text(
-    //             emoji,
-    //             style: emojiStyle,
-    //           ),
-    //         ),
-    //       )
-    //       .toList()
-    //       .reversed
-    //       .toList(),
-    // );
+  bool get _isEmpty {
+    final mode = widget.overlayController?.toolbarMode;
+    return _activity == null ||
+        (_isActivityCompleteForToken &&
+            ![MessageMode.wordEmoji, MessageMode.wordMorph].contains(mode)) ||
+        (MessageMode.wordMorph == mode && _activity?.morphFeature == null);
   }
 
-  bool get isActivityCompleteForToken =>
-      activity?.isCompleteByToken(
-        widget.token,
-        activity!.morphFeature,
-      ) ==
-      true;
+  @override
+  Widget build(BuildContext context) {
+    if (widget.overlayController == null) {
+      return const SizedBox.shrink();
+    }
 
-  Color get color {
+    if (!_animate) {
+      return MessageTokenButtonContent(
+        activity: _activity,
+        messageMode: widget.overlayController!.toolbarMode,
+        token: widget.token,
+        selectedChoice: widget.overlayController?.selectedChoice,
+        isComplete: _isActivityCompleteForToken,
+        isSelected: _isSelected,
+        height: tokenButtonHeight,
+        width: widget.width,
+        textStyle: widget.textStyle,
+        sizeAnimation: _iconSizeAnimation,
+        onHover: _setHovered,
+        onTap: () => widget.overlayController!.onMorphActivitySelect(
+          MorphSelection(widget.token, _activity!.morphFeature!),
+        ),
+        onMatch: _onMatch,
+      );
+    }
+
+    return AnimatedBuilder(
+      animation: _heightAnimation,
+      builder: (context, child) {
+        return MessageTokenButtonContent(
+          activity: _activity,
+          messageMode: widget.overlayController!.toolbarMode,
+          token: widget.token,
+          selectedChoice: widget.overlayController?.selectedChoice,
+          isComplete: _isActivityCompleteForToken,
+          isSelected: _isSelected,
+          height: _heightAnimation.value,
+          width: widget.width,
+          textStyle: widget.textStyle,
+          sizeAnimation: _iconSizeAnimation,
+          onHover: _setHovered,
+          onTap: () => widget.overlayController!.onMorphActivitySelect(
+            MorphSelection(widget.token, _activity!.morphFeature!),
+          ),
+          onMatch: _onMatch,
+        );
+      },
+    );
+  }
+}
+
+class MessageTokenButtonContent extends StatelessWidget {
+  final PracticeTarget? activity;
+  final MessageMode messageMode;
+  final PangeaToken token;
+  final PracticeChoice? selectedChoice;
+
+  final bool isComplete;
+  final bool isSelected;
+  final double height;
+  final double width;
+  final TextStyle textStyle;
+  final Animation<double> sizeAnimation;
+
+  final Function(bool)? onHover;
+  final Function()? onTap;
+  final Function(PracticeChoice)? onMatch;
+
+  const MessageTokenButtonContent({
+    super.key,
+    required this.activity,
+    required this.messageMode,
+    required this.token,
+    required this.selectedChoice,
+    required this.isComplete,
+    required this.isSelected,
+    required this.height,
+    required this.width,
+    required this.textStyle,
+    required this.sizeAnimation,
+    this.onHover,
+    this.onTap,
+    this.onMatch,
+  });
+
+  TextStyle get _emojiStyle => textStyle.copyWith(
+        fontSize: (textStyle.fontSize ?? tokenButtonDefaultFontSize) + 4,
+      );
+
+  static final _borderRadius =
+      BorderRadius.circular(AppConfig.borderRadius - 4);
+
+  Color _color(BuildContext context) {
     if (activity == null) {
       return Theme.of(context).colorScheme.primary;
     }
-    if (isActivityCompleteForToken) {
+    if (isComplete) {
       return AppConfig.gold;
     }
     return Theme.of(context).colorScheme.primary;
   }
 
-  Widget get content {
-    final tokenActivity = activity;
-    if (tokenActivity == null || isActivityCompleteForToken) {
-      if (MessageMode.wordEmoji == widget.overlayController?.toolbarMode) {
-        return SizedBox(height: height, child: emojiView);
+  @override
+  Widget build(BuildContext context) {
+    if (activity == null) {
+      return SizedBox(height: height);
+    }
+
+    if (isComplete) {
+      if (MessageMode.wordEmoji == messageMode) {
+        return SizedBox(
+          height: height,
+          child: ShrinkableText(
+            text: token.vocabConstructID.userSetEmoji.firstOrNull ?? '',
+            maxWidth: width,
+            style: _emojiStyle,
+          ),
+        );
       }
-      if (MessageMode.wordMorph == widget.overlayController?.toolbarMode &&
-          activity?.morphFeature != null) {
+      if (MessageMode.wordMorph == messageMode) {
         final morphFeature = activity!.morphFeature!;
-        final morphTag = widget.token.morphIdByFeature(morphFeature);
+        final morphTag = token.morphIdByFeature(morphFeature);
         if (morphTag != null) {
           return Tooltip(
             message: getGrammarCopy(
@@ -218,7 +325,7 @@ class MessageTokenButtonState extends State<MessageTokenButton>
               context: context,
             ),
             child: SizedBox(
-              width: widget.width,
+              width: width,
               height: height,
               child: Center(
                 child: MorphIcon(
@@ -234,43 +341,28 @@ class MessageTokenButtonState extends State<MessageTokenButton>
       return SizedBox(height: height);
     }
 
-    if (MessageMode.wordMorph == widget.overlayController?.toolbarMode) {
+    if (MessageMode.wordMorph == messageMode) {
       if (activity?.morphFeature == null) {
         return SizedBox(height: height);
       }
 
-      final bool isSelected =
-          (widget.overlayController?.selectedMorph?.token == widget.token &&
-                  widget.overlayController?.selectedMorph?.morph ==
-                      activity?.morphFeature) ||
-              _isHovered;
-
-      // Trigger the icon size animation based on hover or selection
-      if (isSelected) {
-        _iconSizeController.forward();
-      } else {
-        _iconSizeController.reverse();
-      }
-
       return InkWell(
-        onHover: (isHovered) => setState(() => _isHovered = isHovered),
-        onTap: () => widget.overlayController!.onMorphActivitySelect(
-          MorphSelection(widget.token, activity!.morphFeature!),
-        ),
-        borderRadius: borderRadius,
+        onHover: onHover,
+        onTap: onTap,
+        borderRadius: _borderRadius,
         child: Container(
           height: height,
-          width: min(widget.width, height),
+          width: min(width, height),
           alignment: Alignment.center,
           child: Opacity(
             opacity: isSelected ? 1.0 : 0.4,
             child: AnimatedBuilder(
-              animation: _iconSizeAnimation,
+              animation: sizeAnimation,
               builder: (context, child) {
                 return Icon(
                   Symbols.toys_and_games,
-                  color: color,
-                  size: _iconSizeAnimation.value, // Use the new animation
+                  color: _color(context),
+                  size: sizeAnimation.value, // Use the new animation
                 );
               },
             ),
@@ -282,61 +374,41 @@ class MessageTokenButtonState extends State<MessageTokenButton>
     return DragTarget<PracticeChoice>(
       builder: (BuildContext context, accepted, rejected) {
         final double colorAlpha = 0.3 +
-            (widget.overlayController?.selectedChoice != null ? 0.4 : 0.0) +
-            (accepted.isNotEmpty || _isHovered ? 0.3 : 0.0);
+            (selectedChoice != null ? 0.4 : 0.0) +
+            (accepted.isNotEmpty ? 0.3 : 0.0);
 
         return InkWell(
-          onHover: (isHovered) => setState(() => _isHovered = isHovered),
-          onTap: widget.overlayController?.selectedChoice != null
-              ? () => onMatch(widget.overlayController!.selectedChoice!)
+          onTap: selectedChoice != null
+              ? () => onMatch?.call(selectedChoice!)
               : null,
-          borderRadius: borderRadius,
+          borderRadius: _borderRadius,
           child: CustomPaint(
             painter: DottedBorderPainter(
               color: Theme.of(context)
                   .colorScheme
                   .primary
                   .withAlpha((colorAlpha * 255).toInt()),
-              borderRadius: borderRadius,
+              borderRadius: _borderRadius,
             ),
             child: Container(
               height: height,
-              padding: EdgeInsets.only(top: topPadding),
-              width: MessageMode.wordMeaning ==
-                      widget.overlayController?.toolbarMode
-                  ? widget.width
-                  : min(widget.width, height),
+              padding: const EdgeInsets.only(top: 10.0),
+              width: MessageMode.wordMeaning == messageMode
+                  ? width
+                  : min(width, height),
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 color: Theme.of(context)
                     .colorScheme
                     .primary
                     .withAlpha((max(0, colorAlpha - 0.7) * 255).toInt()),
-                borderRadius: borderRadius,
+                borderRadius: _borderRadius,
               ),
             ),
           ),
         );
       },
-      onAcceptWithDetails: (details) => onMatch(details.data),
-    );
-  }
-
-  static final borderRadius = BorderRadius.circular(AppConfig.borderRadius - 4);
-
-  @override
-  Widget build(BuildContext context) {
-    if (widget.overlayController == null) {
-      return const SizedBox.shrink();
-    }
-
-    if (!widget.animate) {
-      return content;
-    }
-
-    return AnimatedBuilder(
-      animation: _heightAnimation,
-      builder: (context, child) => content,
+      onAcceptWithDetails: (details) => onMatch?.call(details.data),
     );
   }
 }

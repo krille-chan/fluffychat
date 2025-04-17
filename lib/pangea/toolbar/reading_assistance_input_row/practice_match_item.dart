@@ -107,31 +107,6 @@ class PracticeMatchItemState extends State<PracticeMatchItem> {
     }
   }
 
-  IntrinsicWidth content(BuildContext context) {
-    return IntrinsicWidth(
-      child: Container(
-        height: widget.fixedSize,
-        width: widget.fixedSize,
-        alignment: Alignment.center,
-        padding: const EdgeInsets.all(8),
-        decoration: BoxDecoration(
-          color: color(context).withAlpha((0.4 * 255).toInt()),
-          borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-          border: isSelected
-              ? Border.all(
-                  color: color(context),
-                  width: 2,
-                )
-              : Border.all(
-                  color: Colors.transparent,
-                  width: 2,
-                ),
-        ),
-        child: widget.content,
-      ),
-    );
-  }
-
   void onTap() {
     play();
     isCorrect == null || !isCorrect! || widget.token == null
@@ -141,11 +116,37 @@ class PracticeMatchItemState extends State<PracticeMatchItem> {
 
   @override
   Widget build(BuildContext context) {
+    final content = Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          height: widget.fixedSize,
+          width: widget.fixedSize,
+          alignment: Alignment.center,
+          padding: const EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            color: color(context).withAlpha((0.4 * 255).toInt()),
+            borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+            border: isSelected
+                ? Border.all(
+                    color: color(context),
+                    width: 2,
+                  )
+                : Border.all(
+                    color: Colors.transparent,
+                    width: 2,
+                  ),
+          ),
+          child: widget.content,
+        ),
+      ],
+    );
+
     return LongPressDraggable<PracticeChoice>(
       data: widget.constructForm,
       feedback: Material(
         type: MaterialType.transparency,
-        child: content(context),
+        child: content,
       ),
       delay: const Duration(milliseconds: 50),
       onDragStarted: onTap,
@@ -153,7 +154,7 @@ class PracticeMatchItemState extends State<PracticeMatchItem> {
         onHover: (isHovered) => setState(() => _isHovered = isHovered),
         borderRadius: BorderRadius.circular(AppConfig.borderRadius),
         onTap: onTap,
-        child: content(context),
+        child: content,
       ),
     );
   }

@@ -32,10 +32,6 @@ class ChoiceAnimationWidgetState extends State<ChoiceAnimationWidget>
       duration: const Duration(milliseconds: choiceArrayAnimationDuration),
       vsync: this,
     );
-
-    if (widget.isSelected) {
-      _controller.forward().then((_) => _controller.reset());
-    }
   }
 
   @override

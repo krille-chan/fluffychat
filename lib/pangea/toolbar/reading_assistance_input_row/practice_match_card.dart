@@ -35,10 +35,6 @@ class MatchActivityCard extends StatelessWidget {
   ) {
     switch (activityType) {
       case ActivityTypeEnum.emoji:
-        return Text(
-          choice,
-          style: TextStyle(fontSize: fontSize),
-        );
       case ActivityTypeEnum.wordMeaning:
         return Text(
           choice,

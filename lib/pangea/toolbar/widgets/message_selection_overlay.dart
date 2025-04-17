@@ -370,7 +370,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     }
   }
 
-  void onChoiceSelect(PracticeChoice choice, [bool force = false]) {
+  void onChoiceSelect(PracticeChoice? choice, [bool force = false]) {
     if (selectedChoice == choice && !force) {
       selectedChoice = null;
     } else {

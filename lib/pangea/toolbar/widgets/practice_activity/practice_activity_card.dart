@@ -312,7 +312,7 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        if (activityWidget != null) activityWidget!,
+        if (activityWidget != null && !fetchingActivity) activityWidget!,
         // Conditionally show the darkening and progress indicator based on the loading state
         if (!savoringTheJoy && fetchingActivity) ...[
           // Circular progress indicator in the center
