@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_280",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czq(){return new A.EU(B.dk("pl"))},
+czr(){return new A.EU(B.dk("pl"))},
 EU:function EU(d){this.a=d}}
 B=c[0]
 C=c[52]
@@ -634,7 +634,7 @@ gpi(){return"Please wait now, until someone from the room invites you."},
 C(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.EU,C.aG)})()
-B.dX(b.typeUniverse,JSON.parse('{"EU":{"aG":[]}}'))};
+B.dY(b.typeUniverse,JSON.parse('{"EU":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_280",e:"endPart",h:b})})($__dart_deferred_initializers__,"+KyPJAQZm7FvKJKnYpHKlkDqTXI=");
+a.eventLog.push({p:"main.dart.js_280",e:"endPart",h:b})})($__dart_deferred_initializers__,"3uK4jc/FhlJv31ztsvzYIhq9yfs=");
 //# sourceMappingURL=main.dart.js_280.part.js.map

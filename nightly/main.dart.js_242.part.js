@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_242",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cz6(){return new A.EA(B.dk("fi"))},
+cz7(){return new A.EA(B.dk("fi"))},
 EA:function EA(d){this.a=d}}
 B=c[0]
 C=c[52]
@@ -633,7 +633,7 @@ gpi(){return"Please wait now, until someone from the room invites you."},
 C(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.EA,C.aG)})()
-B.dX(b.typeUniverse,JSON.parse('{"EA":{"aG":[]}}'))};
+B.dY(b.typeUniverse,JSON.parse('{"EA":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_242",e:"endPart",h:b})})($__dart_deferred_initializers__,"tFkM+DJ3rghY7J4Klf6qxBfzX3Q=");
+a.eventLog.push({p:"main.dart.js_242",e:"endPart",h:b})})($__dart_deferred_initializers__,"uv8YiHQ0kLuXMGRvzLSUKTi4iEc=");
 //# sourceMappingURL=main.dart.js_242.part.js.map
