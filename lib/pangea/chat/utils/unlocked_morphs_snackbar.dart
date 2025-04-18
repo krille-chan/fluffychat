@@ -8,6 +8,8 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/pangea/analytics_details_popup/analytics_details_popup.dart';
+import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/common/utils/overlay.dart';
 import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
 import 'package:fluffychat/pangea/morphs/get_grammar_copy.dart';
@@ -108,7 +110,7 @@ class ConstructNotificationOverlayState
     );
 
     _controller!.forward().then((_) {
-      Future.delayed(const Duration(seconds: 5), () {
+      Future.delayed(const Duration(seconds: 15), () {
         if (mounted) _close();
       });
     });
@@ -126,85 +128,153 @@ class ConstructNotificationOverlayState
     });
   }
 
+  void _showDetails() {
+    showDialog<AnalyticsPopupWrapper>(
+      context: context,
+      builder: (context) => AnalyticsPopupWrapper(
+        constructZoom: widget.construct,
+        view: ConstructTypeEnum.morph,
+        backButtonOverride: IconButton(
+          icon: const Icon(Icons.close),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    final isColumnMode = FluffyThemes.isColumnMode(context);
     return SafeArea(
       child: Material(
         type: MaterialType.transparency,
         child: SizeTransition(
           sizeFactor: _animation!,
           axisAlignment: -1.0,
-          child: Container(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
-            decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.surface,
-              border: Border(
-                bottom: BorderSide(
-                  color: Theme.of(context).colorScheme.onSurface.withAlpha(50),
-                ),
-              ),
-            ),
-            child: Row(
-              children: [
-                const SizedBox(
-                  width: 50.0,
-                  height: 50.0,
-                ),
-                Expanded(
-                  child: Wrap(
-                    spacing: 16.0,
-                    alignment: WrapAlignment.center,
-                    crossAxisAlignment: WrapCrossAlignment.center,
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              return GestureDetector(
+                onPanUpdate: (details) {
+                  if (details.delta.dy < -10) _close();
+                },
+                onTap: _showDetails,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 16.0,
+                    horizontal: 4.0,
+                  ),
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.surface,
+                    border: Border(
+                      bottom: BorderSide(
+                        color: Theme.of(context)
+                            .colorScheme
+                            .onSurface
+                            .withAlpha(50),
+                      ),
+                    ),
+                    borderRadius: const BorderRadius.only(
+                      bottomLeft: Radius.circular(AppConfig.borderRadius),
+                      bottomRight: Radius.circular(AppConfig.borderRadius),
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        L10n.of(context).youUnlocked,
-                        style: TextStyle(
-                          fontSize:
-                              FluffyThemes.isColumnMode(context) ? 32.0 : 16.0,
-                          color: Theme.of(context).colorScheme.onSurface,
-                          fontWeight: FontWeight.bold,
+                      SizedBox(
+                        width: constraints.maxWidth >= 600 ? 120.0 : 65.0,
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: isColumnMode ? 16.0 : 8.0,
+                          ),
+                          child: Wrap(
+                            spacing: 16.0,
+                            alignment: WrapAlignment.center,
+                            crossAxisAlignment: WrapCrossAlignment.center,
+                            children: [
+                              Text(
+                                widget.copy ?? widget.construct.lemma,
+                                style: TextStyle(
+                                  fontSize: FluffyThemes.isColumnMode(context)
+                                      ? 32.0
+                                      : 16.0,
+                                  color: AppConfig.gold,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              MorphIcon(
+                                size: isColumnMode
+                                    ? null
+                                    : const Size(24.0, 24.0),
+                                morphFeature:
+                                    MorphFeaturesEnumExtension.fromString(
+                                  widget.construct.category,
+                                ),
+                                morphTag: widget.construct.lemma,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                       Row(
-                        mainAxisSize: MainAxisSize.min,
-                        spacing: 16.0,
                         children: [
-                          Flexible(
-                            child: Text(
-                              widget.copy ?? widget.construct.lemma,
-                              style: TextStyle(
-                                fontSize: FluffyThemes.isColumnMode(context)
-                                    ? 32.0
-                                    : 16.0,
-                                color: AppConfig.gold,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              overflow: TextOverflow.ellipsis,
+                          SizedBox(
+                            width: constraints.maxWidth >= 600 ? 120.0 : 65.0,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Tooltip(
+                                  message: L10n.of(context).details,
+                                  child: constraints.maxWidth >= 600
+                                      ? ElevatedButton(
+                                          style: IconButton.styleFrom(
+                                            padding: const EdgeInsets.symmetric(
+                                              vertical: 4.0,
+                                              horizontal: 16.0,
+                                            ),
+                                          ),
+                                          onPressed: _showDetails,
+                                          child: Text(
+                                            L10n.of(context).details,
+                                          ),
+                                        )
+                                      : IconButton(
+                                          icon: const Icon(
+                                            Icons.info_outline,
+                                          ),
+                                          style: IconButton.styleFrom(
+                                            padding: const EdgeInsets.all(4.0),
+                                          ),
+                                          onPressed: _showDetails,
+                                          constraints: const BoxConstraints(),
+                                        ),
+                                ),
+                                Tooltip(
+                                  message: L10n.of(context).close,
+                                  child: IconButton(
+                                    icon: const Icon(
+                                      Icons.close,
+                                    ),
+                                    style: IconButton.styleFrom(
+                                      padding: const EdgeInsets.all(4.0),
+                                    ),
+                                    onPressed: _close,
+                                    constraints: const BoxConstraints(),
+                                  ),
+                                ),
+                              ],
                             ),
-                          ),
-                          MorphIcon(
-                            morphFeature: MorphFeaturesEnumExtension.fromString(
-                              widget.construct.category,
-                            ),
-                            morphTag: widget.construct.lemma,
                           ),
                         ],
                       ),
                     ],
                   ),
                 ),
-                Container(
-                  alignment: Alignment.center,
-                  width: 50.0,
-                  child: IconButton(
-                    icon: const Icon(
-                      Icons.close,
-                    ),
-                    onPressed: _close,
-                  ),
-                ),
-              ],
-            ),
+              );
+            },
           ),
         ),
       ),

@@ -24,10 +24,12 @@ class AnalyticsPopupWrapper extends StatefulWidget {
     super.key,
     this.constructZoom,
     required this.view,
+    this.backButtonOverride,
   });
 
   final ConstructTypeEnum view;
   final ConstructIdentifier? constructZoom;
+  final Widget? backButtonOverride;
 
   @override
   AnalyticsPopupWrapperState createState() => AnalyticsPopupWrapperState();
@@ -116,14 +118,15 @@ class AnalyticsPopupWrapperState extends State<AnalyticsPopupWrapper> {
                       : ConstructTypeEnum.vocab.indicator.tooltip(context),
                 )
               : null,
-          leading: IconButton(
-            icon: localConstructZoom == null
-                ? const Icon(Icons.close)
-                : const Icon(Icons.arrow_back),
-            onPressed: localConstructZoom == null
-                ? () => Navigator.of(context).pop()
-                : () => setConstructZoom(null),
-          ),
+          leading: widget.backButtonOverride ??
+              IconButton(
+                icon: localConstructZoom == null
+                    ? const Icon(Icons.close)
+                    : const Icon(Icons.arrow_back),
+                onPressed: localConstructZoom == null
+                    ? () => Navigator.of(context).pop()
+                    : () => setConstructZoom(null),
+              ),
           actions: [
             TextButton.icon(
               style: TextButton.styleFrom(
