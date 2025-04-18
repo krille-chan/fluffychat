@@ -70,7 +70,8 @@ class ChatMembersController extends State<ChatMembersPage> {
           .client
           .getRoomById(widget.roomId)
           ?.requestParticipants(
-              [...Membership.values]..remove(Membership.leave));
+            [...Membership.values]..remove(Membership.leave),
+          );
 
       if (!mounted) return;
 

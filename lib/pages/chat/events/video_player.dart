@@ -189,21 +189,29 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
         if (fileDescription != null && textColor != null && linkColor != null)
           SizedBox(
             width: width,
-            child: Linkify(
-              text: fileDescription,
-              textScaleFactor: MediaQuery.textScalerOf(context).scale(1),
-              style: TextStyle(
-                color: textColor,
-                fontSize: AppConfig.fontSizeFactor * AppConfig.messageFontSize,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 8,
               ),
-              options: const LinkifyOptions(humanize: false),
-              linkStyle: TextStyle(
-                color: linkColor,
-                fontSize: AppConfig.fontSizeFactor * AppConfig.messageFontSize,
-                decoration: TextDecoration.underline,
-                decorationColor: linkColor,
+              child: Linkify(
+                text: fileDescription,
+                textScaleFactor: MediaQuery.textScalerOf(context).scale(1),
+                style: TextStyle(
+                  color: textColor,
+                  fontSize:
+                      AppConfig.fontSizeFactor * AppConfig.messageFontSize,
+                ),
+                options: const LinkifyOptions(humanize: false),
+                linkStyle: TextStyle(
+                  color: linkColor,
+                  fontSize:
+                      AppConfig.fontSizeFactor * AppConfig.messageFontSize,
+                  decoration: TextDecoration.underline,
+                  decorationColor: linkColor,
+                ),
+                onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
               ),
-              onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
             ),
           ),
       ],

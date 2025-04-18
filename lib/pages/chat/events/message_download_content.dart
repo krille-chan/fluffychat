@@ -30,85 +30,51 @@ class MessageDownloadContent extends StatelessWidget {
                 ?.tryGet<String>('mimetype')
                 ?.toUpperCase() ??
             'UNKNOWN');
-    final sizeString = event.sizeString;
+    final sizeString = event.sizeString ?? '?MB';
     final fileDescription = event.fileDescription;
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      spacing: 8,
-      children: [
-        InkWell(
-          onTap: () => event.saveFile(context),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.file_download_outlined,
-                      color: textColor,
-                    ),
-                    const SizedBox(width: 16),
-                    Flexible(
-                      child: Text(
-                        filename,
-                        maxLines: 1,
-                        style: TextStyle(
-                          color: textColor,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const Divider(height: 1),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
-                child: Row(
-                  children: [
-                    Text(
-                      filetype,
-                      style: TextStyle(
-                        color: linkColor,
-                      ),
-                    ),
-                    const Spacer(),
-                    if (sizeString != null)
-                      Text(
-                        sizeString,
-                        style: TextStyle(
-                          color: linkColor,
-                        ),
-                      ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-        if (fileDescription != null)
-          Linkify(
-            text: fileDescription,
-            textScaleFactor: MediaQuery.textScalerOf(context).scale(1),
-            style: TextStyle(
-              color: textColor,
-              fontSize: AppConfig.fontSizeFactor * AppConfig.messageFontSize,
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 16,
+        vertical: 8,
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        spacing: 8,
+        children: [
+          OutlinedButton.icon(
+            style: OutlinedButton.styleFrom(
+              foregroundColor: textColor,
+              side: BorderSide(color: textColor),
             ),
-            options: const LinkifyOptions(humanize: false),
-            linkStyle: TextStyle(
-              color: linkColor,
-              fontSize: AppConfig.fontSizeFactor * AppConfig.messageFontSize,
-              decoration: TextDecoration.underline,
-              decorationColor: linkColor,
+            icon: const Icon(Icons.file_download_outlined),
+            label: Text(
+              '$sizeString | $filetype - $filename',
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
             ),
-            onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
+            onPressed: () => event.saveFile(context),
           ),
-      ],
+          if (fileDescription != null) ...[
+            Linkify(
+              text: fileDescription,
+              textScaleFactor: MediaQuery.textScalerOf(context).scale(1),
+              style: TextStyle(
+                color: textColor,
+                fontSize: AppConfig.fontSizeFactor * AppConfig.messageFontSize,
+              ),
+              options: const LinkifyOptions(humanize: false),
+              linkStyle: TextStyle(
+                color: linkColor,
+                fontSize: AppConfig.fontSizeFactor * AppConfig.messageFontSize,
+                decoration: TextDecoration.underline,
+                decorationColor: linkColor,
+              ),
+              onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
+            ),
+          ],
+        ],
+      ),
     );
   }
 }

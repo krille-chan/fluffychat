@@ -149,10 +149,6 @@ class Message extends StatelessWidget {
             event.onlyEmotes &&
             event.numberEmotes > 0 &&
             event.numberEmotes <= 3);
-    final noPadding = {
-      MessageTypes.File,
-      MessageTypes.Audio,
-    }.contains(event.messageType);
 
     if (ownMessage) {
       color =
@@ -338,12 +334,6 @@ class Message extends StatelessWidget {
                                               AppConfig.borderRadius,
                                             ),
                                           ),
-                                          padding: noBubble || noPadding
-                                              ? EdgeInsets.zero
-                                              : const EdgeInsets.symmetric(
-                                                  horizontal: 16,
-                                                  vertical: 8,
-                                                ),
                                           constraints: const BoxConstraints(
                                             maxWidth:
                                                 FluffyThemes.columnWidth * 1.5,
