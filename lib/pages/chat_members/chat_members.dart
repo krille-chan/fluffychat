@@ -69,7 +69,8 @@ class ChatMembersController extends State<ChatMembersPage> {
       final participants = await Matrix.of(context)
           .client
           .getRoomById(widget.roomId)
-          ?.requestParticipants(Membership.values);
+          ?.requestParticipants(
+              [...Membership.values]..remove(Membership.leave));
 
       if (!mounted) return;
 
