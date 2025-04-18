@@ -72,9 +72,9 @@ void reportEvent(
   }
 
   ErrorHandler.logError(
-    e: "User reported message",
+    e: "User reported message with eventId ${event.eventId}",
     data: {
-      "content": event.content['body'],
+      "content": event.content,
       "eventID": event.eventId,
       "roomID": event.room.id,
       "userID": event.senderId,
