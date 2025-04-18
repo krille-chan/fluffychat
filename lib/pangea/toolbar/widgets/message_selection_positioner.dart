@@ -238,8 +238,9 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
     }
 
     await _animationController.forward(from: 0);
-    if (mounted)
+    if (mounted) {
       setState(() => widget.overlayController.readingAssistanceMode = mode);
+    }
   }
 
   T _runWithLogging<T>(

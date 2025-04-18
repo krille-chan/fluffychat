@@ -58,12 +58,15 @@ class PangeaPublicRoomBottomSheetState
   bool get _isKnockRoom => widget.chunk?.joinRule == 'knock';
 
   Future<void> _joinWithCode() async {
-    await MatrixState.pangeaController.classController.joinClasswithCode(
+    final resp =
+        await MatrixState.pangeaController.classController.joinClasswithCode(
       context,
       _codeController.text,
       notFoundError: L10n.of(context).notTheCodeError,
     );
-    Navigator.of(context).pop();
+    if (!resp.isError) {
+      Navigator.of(context).pop();
+    }
   }
 
   void _goToRoom(String roomID) {

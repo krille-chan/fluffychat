@@ -1,8 +1,11 @@
+// ignore_for_file: implementation_imports
+
 import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
 
+import 'package:async/src/result/result.dart' as result;
 import 'package:collection/collection.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:get_storage/get_storage.dart';
@@ -101,7 +104,7 @@ class ClassController extends BaseController {
         : context.go("/rooms/${room.id}");
   }
 
-  Future<void> joinClasswithCode(
+  Future<result.Result<String?>> joinClasswithCode(
     BuildContext context,
     String classCode, {
     String? notFoundError,
@@ -122,8 +125,7 @@ class ClassController extends BaseController {
         );
 
         if (knockResponse.statusCode == 429) {
-          await _showTooManyRequestsPopup(context);
-          return null;
+          return "429";
         }
         if (knockResponse.statusCode != 200) {
           throw notFoundError ?? L10n.of(context).unableToFindClass;
@@ -156,7 +158,17 @@ class ClassController extends BaseController {
       },
     );
 
-    if (spaceID.isError || spaceID.result == null) return;
+    if (spaceID.isError || spaceID.result == null) {
+      return spaceID;
+    }
+
+    if (spaceID.result == "429") {
+      await _showTooManyRequestsPopup(context);
+      return result.Result.error(
+        Exception(L10n.of(context).tooManyRequestsWarning),
+        StackTrace.current,
+      );
+    }
 
     try {
       await client.joinRoomById(spaceID.result!);
@@ -168,7 +180,7 @@ class ClassController extends BaseController {
           join: true,
         );
         room = client.getRoomById(spaceID.result!);
-        if (room == null) return;
+        if (room == null) return spaceID;
       }
 
       GoogleAnalytics.joinClass(classCode);
@@ -190,6 +202,7 @@ class ClassController extends BaseController {
       }
 
       setActiveSpaceIdInChatListController(spaceID.result!);
+      return spaceID;
     } catch (e, s) {
       ErrorHandler.logError(
         e: e,
@@ -198,11 +211,12 @@ class ClassController extends BaseController {
           "classCode": classCode,
         },
       );
+      return result.Result.error(e, s);
     }
   }
 
   Future<void> _showTooManyRequestsPopup(BuildContext context) async {
-    showDialog(
+    await showDialog(
       context: context,
       builder: (BuildContext context) {
         return Dialog(
