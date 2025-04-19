@@ -20,7 +20,6 @@ import 'message_content.dart';
 import 'message_reactions.dart';
 import 'reply_content.dart';
 import 'state_message.dart';
-import 'verification_request_content.dart';
 
 class Message extends StatelessWidget {
   final Event event;
@@ -85,7 +84,7 @@ class Message extends StatelessWidget {
 
     if (event.type == EventTypes.Message &&
         event.messageType == EventTypes.KeyVerificationRequest) {
-      return VerificationRequestContent(event: event, timeline: timeline);
+      return StateMessage(event);
     }
 
     final client = Matrix.of(context).client;
@@ -376,22 +375,32 @@ class Message extends StatelessWidget {
                                                     return Padding(
                                                       padding:
                                                           const EdgeInsets.only(
-                                                        bottom: 4.0,
+                                                        left: 16,
+                                                        right: 16,
+                                                        top: 8,
                                                       ),
-                                                      child: InkWell(
+                                                      child: Material(
+                                                        color:
+                                                            Colors.transparent,
                                                         borderRadius:
                                                             ReplyContent
                                                                 .borderRadius,
-                                                        onTap: () =>
-                                                            scrollToEventId(
-                                                          replyEvent.eventId,
-                                                        ),
-                                                        child: AbsorbPointer(
-                                                          child: ReplyContent(
-                                                            replyEvent,
-                                                            ownMessage:
-                                                                ownMessage,
-                                                            timeline: timeline,
+                                                        child: InkWell(
+                                                          borderRadius:
+                                                              ReplyContent
+                                                                  .borderRadius,
+                                                          onTap: () =>
+                                                              scrollToEventId(
+                                                            replyEvent.eventId,
+                                                          ),
+                                                          child: AbsorbPointer(
+                                                            child: ReplyContent(
+                                                              replyEvent,
+                                                              ownMessage:
+                                                                  ownMessage,
+                                                              timeline:
+                                                                  timeline,
+                                                            ),
                                                           ),
                                                         ),
                                                       ),

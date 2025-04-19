@@ -32,31 +32,59 @@ class MessageDownloadContent extends StatelessWidget {
             'UNKNOWN');
     final sizeString = event.sizeString ?? '?MB';
     final fileDescription = event.fileDescription;
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 16,
-        vertical: 8,
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        spacing: 8,
-        children: [
-          OutlinedButton.icon(
-            style: OutlinedButton.styleFrom(
-              foregroundColor: textColor,
-              side: BorderSide(color: textColor),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      spacing: 8,
+      children: [
+        Material(
+          color: Colors.transparent,
+          child: InkWell(
+            borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
+            onTap: () => event.saveFile(context),
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                spacing: 16,
+                children: [
+                  CircleAvatar(
+                    backgroundColor: textColor.withAlpha(32),
+                    child: Icon(Icons.file_download_outlined, color: textColor),
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        filename,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          color: textColor,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      Text(
+                        '$sizeString | $filetype',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(color: textColor, fontSize: 10),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
-            icon: const Icon(Icons.file_download_outlined),
-            label: Text(
-              '$sizeString | $filetype - $filename',
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-            onPressed: () => event.saveFile(context),
           ),
-          if (fileDescription != null) ...[
-            Linkify(
+        ),
+        if (fileDescription != null) ...[
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 16.0,
+              vertical: 8.0,
+            ),
+            child: Linkify(
               text: fileDescription,
               textScaleFactor: MediaQuery.textScalerOf(context).scale(1),
               style: TextStyle(
@@ -72,9 +100,9 @@ class MessageDownloadContent extends StatelessWidget {
               ),
               onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
             ),
-          ],
+          ),
         ],
-      ),
+      ],
     );
   }
 }
