@@ -59,7 +59,7 @@ class Avatar extends StatelessWidget {
               borderRadius: borderRadius,
               side: border ?? BorderSide.none,
             ),
-            clipBehavior: Clip.hardEdge,
+            clipBehavior: Clip.antiAlias,
             child: noPic
                 ? Container(
                     decoration: BoxDecoration(
