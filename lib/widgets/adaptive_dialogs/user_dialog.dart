@@ -15,6 +15,7 @@ import '../../utils/url_launcher.dart';
 import '../future_loading_dialog.dart';
 import '../hover_builder.dart';
 import '../matrix.dart';
+import '../mxc_image_viewer.dart';
 
 class UserDialog extends StatelessWidget {
   static Future<void> show({
@@ -45,6 +46,7 @@ class UserDialog extends StatelessWidget {
         L10n.of(context).user;
     var copied = false;
     final theme = Theme.of(context);
+    final avatar = profile.avatarUrl;
     return AlertDialog.adaptive(
       title: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 256),
@@ -52,30 +54,31 @@ class UserDialog extends StatelessWidget {
       ),
       content: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 256, maxHeight: 256),
-        child: SelectionArea(
-          child: PresenceBuilder(
-            userId: profile.userId,
-            client: Matrix.of(context).client,
-            builder: (context, presence) {
-              if (presence == null) return const SizedBox.shrink();
-              final statusMsg = presence.statusMsg;
-              final lastActiveTimestamp = presence.lastActiveTimestamp;
-              final presenceText = presence.currentlyActive == true
-                  ? L10n.of(context).currentlyActive
-                  : lastActiveTimestamp != null
-                      ? L10n.of(context).lastActiveAgo(
-                          lastActiveTimestamp.localizedTimeShort(context),
-                        )
-                      : null;
-              return SingleChildScrollView(
-                child: Column(
-                  spacing: 8,
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    HoverBuilder(
-                      builder: (context, hovered) => StatefulBuilder(
-                        builder: (context, setState) => GestureDetector(
+        child: PresenceBuilder(
+          userId: profile.userId,
+          client: Matrix.of(context).client,
+          builder: (context, presence) {
+            if (presence == null) return const SizedBox.shrink();
+            final statusMsg = presence.statusMsg;
+            final lastActiveTimestamp = presence.lastActiveTimestamp;
+            final presenceText = presence.currentlyActive == true
+                ? L10n.of(context).currentlyActive
+                : lastActiveTimestamp != null
+                    ? L10n.of(context).lastActiveAgo(
+                        lastActiveTimestamp.localizedTimeShort(context),
+                      )
+                    : null;
+            return SingleChildScrollView(
+              child: Column(
+                spacing: 8,
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  HoverBuilder(
+                    builder: (context, hovered) => StatefulBuilder(
+                      builder: (context, setState) => MouseRegion(
+                        cursor: SystemMouseCursors.click,
+                        child: GestureDetector(
                           onTap: () {
                             Clipboard.setData(
                               ClipboardData(text: profile.userId),
@@ -118,37 +121,45 @@ class UserDialog extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Center(
-                      child: Avatar(
-                        mxContent: profile.avatarUrl,
-                        name: displayname,
-                        size: Avatar.defaultSize * 2,
-                      ),
+                  ),
+                  Center(
+                    child: Avatar(
+                      mxContent: avatar,
+                      name: displayname,
+                      size: Avatar.defaultSize * 2,
+                      onTap: avatar != null
+                          ? () => showDialog(
+                                context: context,
+                                builder: (_) => MxcImageViewer(avatar),
+                              )
+                          : null,
                     ),
-                    if (presenceText != null)
-                      Text(
-                        presenceText,
-                        style: const TextStyle(fontSize: 10),
-                        textAlign: TextAlign.center,
+                  ),
+                  if (presenceText != null)
+                    Text(
+                      presenceText,
+                      style: const TextStyle(fontSize: 10),
+                      textAlign: TextAlign.center,
+                    ),
+                  if (statusMsg != null)
+                    SelectableLinkify(
+                      text: statusMsg,
+                      textScaleFactor:
+                          MediaQuery.textScalerOf(context).scale(1),
+                      textAlign: TextAlign.center,
+                      options: const LinkifyOptions(humanize: false),
+                      linkStyle: TextStyle(
+                        color: theme.colorScheme.primary,
+                        decoration: TextDecoration.underline,
+                        decorationColor: theme.colorScheme.primary,
                       ),
-                    if (statusMsg != null)
-                      Linkify(
-                        text: statusMsg,
-                        textAlign: TextAlign.center,
-                        options: const LinkifyOptions(humanize: false),
-                        linkStyle: TextStyle(
-                          color: theme.colorScheme.primary,
-                          decoration: TextDecoration.underline,
-                          decorationColor: theme.colorScheme.primary,
-                        ),
-                        onOpen: (url) =>
-                            UrlLauncher(context, url.url).launchUrl(),
-                      ),
-                  ],
-                ),
-              );
-            },
-          ),
+                      onOpen: (url) =>
+                          UrlLauncher(context, url.url).launchUrl(),
+                    ),
+                ],
+              ),
+            );
+          },
         ),
       ),
       actions: [

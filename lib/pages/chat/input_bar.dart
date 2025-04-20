@@ -235,7 +235,7 @@ class InputBar extends StatelessWidget {
             children: [
               Text(
                 commandExample(command),
-                style: const TextStyle(fontFamily: 'UbuntuMono'),
+                style: const TextStyle(fontFamily: 'RobotoMono'),
               ),
               Text(
                 hint,
@@ -255,7 +255,7 @@ class InputBar extends StatelessWidget {
         waitDuration: const Duration(days: 1), // don't show on hover
         child: Container(
           padding: padding,
-          child: Text(label, style: const TextStyle(fontFamily: 'UbuntuMono')),
+          child: Text(label, style: const TextStyle(fontFamily: 'RobotoMono')),
         ),
       );
     }

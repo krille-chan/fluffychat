@@ -3211,5 +3211,8 @@
   "recordAVideo": "Record a video",
   "optionalMessage": "(Optional) message...",
   "notSupportedOnThisDevice": "Not supported on this device",
-  "enterNewChat": "Enter new chat"
+  "enterNewChat": "Enter new chat",
+  "approve": "Approve",
+  "youHaveKnocked": "You have knocked",
+  "pleaseWaitUntilInvited": "Please wait now, until someone from the room invites you."
 }

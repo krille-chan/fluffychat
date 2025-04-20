@@ -16,6 +16,7 @@ import 'settings_security.dart';
 
 class SettingsSecurityView extends StatelessWidget {
   final SettingsSecurityController controller;
+
   const SettingsSecurityView(this.controller, {super.key});
 
   @override
@@ -143,7 +144,7 @@ class SettingsSecurityView extends StatelessWidget {
                     leading: const Icon(Icons.vpn_key_outlined),
                     subtitle: SelectableText(
                       Matrix.of(context).client.fingerprintKey.beautified,
-                      style: const TextStyle(fontFamily: 'UbuntuMono'),
+                      style: const TextStyle(fontFamily: 'RobotoMono'),
                     ),
                   ),
                   if (capabilities?.mChangePassword?.enabled != false ||

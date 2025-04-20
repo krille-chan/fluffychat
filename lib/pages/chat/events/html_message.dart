@@ -250,7 +250,7 @@ class HtmlMessage extends StatelessWidget {
               border: Border(
                 left: BorderSide(
                   color: textColor,
-                  width: 3,
+                  width: 5,
                 ),
               ),
             ),
@@ -295,7 +295,7 @@ class HtmlMessage extends StatelessWidget {
                 ),
                 textStyle: TextStyle(
                   fontSize: fontSize,
-                  fontFamily: 'UbuntuMono',
+                  fontFamily: 'RobotoMono',
                 ),
               ),
             ),
