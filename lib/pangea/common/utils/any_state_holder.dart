@@ -107,6 +107,15 @@ class PangeaAnyState {
   bool isOverlayOpen(String overlayKey) {
     return entries.any((element) => element.key == overlayKey);
   }
+
+  List<String> getMatchingOverlayKeys(RegExp regex) {
+    return entries
+        .where((e) => e.key != null)
+        .where((element) => regex.hasMatch(element.key!))
+        .map((e) => e.key)
+        .whereType<String>()
+        .toList();
+  }
 }
 
 class LayerLinkAndKey {

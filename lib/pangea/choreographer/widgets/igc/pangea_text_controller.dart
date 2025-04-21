@@ -120,6 +120,7 @@ class PangeaTextController extends TextEditingController {
 
     if (cardToShow != null) {
       OverlayUtil.showPositionedCard(
+        overlayKey: matchIndex != -1 ? "span_card_overlay_$matchIndex" : null,
         context: context,
         maxHeight: matchIndex != -1 &&
                 choreographer.igc.igcTextData!.matches[matchIndex].isITStart
@@ -128,6 +129,7 @@ class PangeaTextController extends TextEditingController {
         maxWidth: 350,
         cardToShow: cardToShow,
         transformTargetId: choreographer.inputTransformTargetKey,
+        onDismiss: () => choreographer.setState(),
       );
     }
   }

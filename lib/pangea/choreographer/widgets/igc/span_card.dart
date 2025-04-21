@@ -269,6 +269,7 @@ class WordMatchContent extends StatelessWidget {
             botExpression: controller.error == null
                 ? controller.currentExpression
                 : BotExpression.addled,
+            onClose: () => controller.widget.scm.choreographer.setState(),
           ),
           Scrollbar(
             controller: scrollController,

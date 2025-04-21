@@ -244,6 +244,7 @@ class IgcController {
 
     choreographer.chatController.inputFocus.unfocus();
     OverlayUtil.showPositionedCard(
+      overlayKey: "span_card_overlay_$firstMatchIndex",
       context: context,
       cardToShow: SpanCard(
         scm: SpanCardModel(
@@ -265,6 +266,7 @@ class IgcController {
       maxHeight: match.isITStart ? 260 : 350,
       maxWidth: 350,
       transformTargetId: choreographer.inputTransformTargetKey,
+      onDismiss: () => choreographer.setState(),
     );
   }
 

@@ -27,7 +27,7 @@ class OverlayUtil {
     Color? borderColor,
     Color? backgroundColor,
     bool closePrevOverlay = true,
-    Function? onDismiss,
+    VoidCallback? onDismiss,
     OverlayPositionEnum position = OverlayPositionEnum.transform,
     Offset? offset,
     String? overlayKey,
@@ -117,6 +117,7 @@ class OverlayUtil {
     String? overlayKey,
     bool isScrollable = true,
     bool addBorder = true,
+    VoidCallback? onDismiss,
   }) {
     try {
       final LayerLinkAndKey layerLinkAndKey =
@@ -192,6 +193,7 @@ class OverlayUtil {
             hasTopOverflow ? Alignment.bottomCenter : Alignment.topCenter,
         followerAnchor:
             hasTopOverflow ? Alignment.topCenter : Alignment.bottomCenter,
+        onDismiss: onDismiss,
       );
     } catch (err, stack) {
       debugger(when: kDebugMode);
@@ -208,7 +210,7 @@ class OverlayUtil {
 
 class TransparentBackdrop extends StatefulWidget {
   final Color? backgroundColor;
-  final Function? onDismiss;
+  final VoidCallback? onDismiss;
   final bool blurBackground;
 
   const TransparentBackdrop({

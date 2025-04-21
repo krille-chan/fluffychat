@@ -127,9 +127,26 @@ class PangeaMatch {
     }
   }
 
-  TextStyle textStyle(TextStyle? existingStyle) =>
-      existingStyle?.merge(IGCTextData.underlineStyle(underlineColor)) ??
-      IGCTextData.underlineStyle(underlineColor);
+  TextStyle textStyle(
+    int matchIndex,
+    int? openMatchIndex,
+    TextStyle? existingStyle,
+  ) {
+    double opacityFactor = 1.0;
+    if (openMatchIndex != null && openMatchIndex != matchIndex) {
+      opacityFactor = 0.5;
+    }
+
+    final int alpha = (255 * opacityFactor).round();
+    return existingStyle?.merge(
+          IGCTextData.underlineStyle(
+            underlineColor.withAlpha(alpha),
+          ),
+        ) ??
+        IGCTextData.underlineStyle(
+          underlineColor.withAlpha(alpha),
+        );
+  }
 
   PangeaMatch get copyWith => PangeaMatch.fromJson(toJson());
 
