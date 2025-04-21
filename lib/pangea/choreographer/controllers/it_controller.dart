@@ -13,6 +13,7 @@ import 'package:fluffychat/pangea/choreographer/controllers/error_service.dart';
 import 'package:fluffychat/pangea/choreographer/enums/edit_type.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import '../models/custom_input_translation_model.dart';
 import '../models/it_response_model.dart';
 import '../models/it_step.dart';
@@ -41,6 +42,8 @@ class ITController {
   void clear() {
     _isOpen = false;
     _willOpen = false;
+    MatrixState.pAnyState.closeOverlay("it_feedback_card");
+
     showChoiceFeedback = false;
     _isEditingSourceText = false;
     dismissed = false;

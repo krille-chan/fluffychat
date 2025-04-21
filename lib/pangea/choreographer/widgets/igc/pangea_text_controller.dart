@@ -7,6 +7,7 @@ import 'package:fluffychat/pangea/choreographer/models/igc_text_data_model.dart'
 import 'package:fluffychat/pangea/choreographer/widgets/igc/paywall_card.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/igc/span_card.dart';
 import 'package:fluffychat/pangea/subscription/controllers/subscription_controller.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import '../../../common/utils/overlay.dart';
 import '../../controllers/choreographer.dart';
 import '../../enums/edit_type.dart';
@@ -119,6 +120,7 @@ class PangeaTextController extends TextEditingController {
         : null;
 
     if (cardToShow != null) {
+      MatrixState.pAnyState.closeAllOverlays(RegExp(r'span_card_overlay_\d+'));
       OverlayUtil.showPositionedCard(
         overlayKey: matchIndex != -1 ? "span_card_overlay_$matchIndex" : null,
         context: context,
@@ -130,6 +132,7 @@ class PangeaTextController extends TextEditingController {
         cardToShow: cardToShow,
         transformTargetId: choreographer.inputTransformTargetKey,
         onDismiss: () => choreographer.setState(),
+        ignorePointer: true,
       );
     }
   }

@@ -16,6 +16,7 @@ import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/instructions/instructions_enum.dart';
 import 'package:fluffychat/pangea/instructions/instructions_inline_tooltip.dart';
 import 'package:fluffychat/pangea/learning_settings/pages/settings_learning.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import '../../common/utils/overlay.dart';
 import '../controllers/it_feedback_controller.dart';
 import '../models/it_response_model.dart';
@@ -334,6 +335,7 @@ class ITChoices extends StatelessWidget {
     }
 
     controller.choreographer.chatController.inputFocus.unfocus();
+    MatrixState.pAnyState.closeOverlay("it_feedback_card");
     OverlayUtil.showPositionedCard(
       context: context,
       cardToShow: choiceFeedback == null
@@ -370,10 +372,13 @@ class ITChoices extends StatelessWidget {
       borderColor: borderColor,
       transformTargetId: controller.choreographer.itBarTransformTargetKey,
       isScrollable: choiceFeedback == null,
+      overlayKey: "it_feedback_card",
+      ignorePointer: true,
     );
   }
 
   void selectContinuance(int index, BuildContext context) {
+    MatrixState.pAnyState.closeOverlay("it_feedback_card");
     final Continuance continuance =
         controller.currentITStep!.continuances[index];
     if (continuance.level == 1) {

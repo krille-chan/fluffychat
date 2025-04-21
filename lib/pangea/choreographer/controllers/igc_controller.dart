@@ -14,6 +14,7 @@ import 'package:fluffychat/pangea/choreographer/models/pangea_match_model.dart';
 import 'package:fluffychat/pangea/choreographer/repo/igc_repo.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/igc/span_card.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import '../../common/utils/error_handler.dart';
 import '../../common/utils/overlay.dart';
 import '../models/span_card_model.dart';
@@ -243,6 +244,7 @@ class IgcController {
     }
 
     choreographer.chatController.inputFocus.unfocus();
+    MatrixState.pAnyState.closeAllOverlays(RegExp(r'span_card_overlay_\d+'));
     OverlayUtil.showPositionedCard(
       overlayKey: "span_card_overlay_$firstMatchIndex",
       context: context,
@@ -267,6 +269,7 @@ class IgcController {
       maxWidth: 350,
       transformTargetId: choreographer.inputTransformTargetKey,
       onDismiss: () => choreographer.setState(),
+      ignorePointer: true,
     );
   }
 

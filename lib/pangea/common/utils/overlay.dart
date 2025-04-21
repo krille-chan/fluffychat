@@ -45,46 +45,46 @@ class OverlayUtil {
         builder: (context) => AnimatedContainer(
           duration: FluffyThemes.animationDuration,
           curve: FluffyThemes.animationCurve,
-          child: IgnorePointer(
-            ignoring: ignorePointer,
-            child: Stack(
-              children: [
-                if (backDropToDismiss)
-                  TransparentBackdrop(
+          child: Stack(
+            children: [
+              if (backDropToDismiss)
+                IgnorePointer(
+                  ignoring: ignorePointer,
+                  child: TransparentBackdrop(
                     backgroundColor: backgroundColor,
                     onDismiss: onDismiss,
                     blurBackground: blurBackground,
                   ),
-                Positioned(
-                  top: (position == OverlayPositionEnum.centered ||
-                          position == OverlayPositionEnum.top)
-                      ? 0
-                      : null,
-                  right: (position == OverlayPositionEnum.centered ||
-                          position == OverlayPositionEnum.top)
-                      ? 0
-                      : null,
-                  left: (position == OverlayPositionEnum.centered ||
-                          position == OverlayPositionEnum.top)
-                      ? 0
-                      : null,
-                  bottom: (position == OverlayPositionEnum.centered) ? 0 : null,
-                  child: (position != OverlayPositionEnum.transform)
-                      ? child
-                      : CompositedTransformFollower(
-                          targetAnchor: targetAnchor ?? Alignment.topCenter,
-                          followerAnchor:
-                              followerAnchor ?? Alignment.bottomCenter,
-                          link: MatrixState.pAnyState
-                              .layerLinkAndKey(transformTargetId)
-                              .link,
-                          showWhenUnlinked: false,
-                          offset: offset ?? Offset.zero,
-                          child: child,
-                        ),
                 ),
-              ],
-            ),
+              Positioned(
+                top: (position == OverlayPositionEnum.centered ||
+                        position == OverlayPositionEnum.top)
+                    ? 0
+                    : null,
+                right: (position == OverlayPositionEnum.centered ||
+                        position == OverlayPositionEnum.top)
+                    ? 0
+                    : null,
+                left: (position == OverlayPositionEnum.centered ||
+                        position == OverlayPositionEnum.top)
+                    ? 0
+                    : null,
+                bottom: (position == OverlayPositionEnum.centered) ? 0 : null,
+                child: (position != OverlayPositionEnum.transform)
+                    ? child
+                    : CompositedTransformFollower(
+                        targetAnchor: targetAnchor ?? Alignment.topCenter,
+                        followerAnchor:
+                            followerAnchor ?? Alignment.bottomCenter,
+                        link: MatrixState.pAnyState
+                            .layerLinkAndKey(transformTargetId)
+                            .link,
+                        showWhenUnlinked: false,
+                        offset: offset ?? Offset.zero,
+                        child: child,
+                      ),
+              ),
+            ],
           ),
         ),
       );
@@ -118,6 +118,7 @@ class OverlayUtil {
     bool isScrollable = true,
     bool addBorder = true,
     VoidCallback? onDismiss,
+    bool ignorePointer = false,
   }) {
     try {
       final LayerLinkAndKey layerLinkAndKey =
@@ -194,6 +195,7 @@ class OverlayUtil {
         followerAnchor:
             hasTopOverflow ? Alignment.topCenter : Alignment.bottomCenter,
         onDismiss: onDismiss,
+        ignorePointer: ignorePointer,
       );
     } catch (err, stack) {
       debugger(when: kDebugMode);

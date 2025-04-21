@@ -82,8 +82,15 @@ class PangeaAnyState {
     }
   }
 
-  void closeAllOverlays() {
-    final shouldRemove = entries.where((element) => element.canPop).toList();
+  void closeAllOverlays([RegExp? regex]) {
+    List<OverlayListEntry> shouldRemove =
+        entries.where((element) => element.canPop).toList();
+    if (regex != null) {
+      shouldRemove = shouldRemove
+          .where((element) => element.key != null)
+          .where((element) => regex.hasMatch(element.key!))
+          .toList();
+    }
     if (shouldRemove.isEmpty) return;
     for (int i = 0; i < shouldRemove.length; i++) {
       try {
