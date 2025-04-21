@@ -1,28 +1,24 @@
 import 'dart:developer';
 import 'dart:math';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
 import 'package:fluffychat/pangea/analytics_misc/text_loading_shimmer.dart';
 import 'package:fluffychat/pangea/morphs/get_grammar_copy.dart';
 import 'package:fluffychat/pangea/morphs/morph_features_enum.dart';
 import 'package:fluffychat/pangea/morphs/morph_meaning/morph_info_repo.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 class MorphMeaningWidget extends StatefulWidget {
   final MorphFeaturesEnum feature;
   final String tag;
   final TextStyle? style;
-  final InlineSpan? leading;
 
   const MorphMeaningWidget({
     super.key,
     required this.feature,
     required this.tag,
     this.style,
-    this.leading,
   });
 
   @override
@@ -136,36 +132,18 @@ class MorphMeaningWidgetState extends State<MorphMeaningWidget> {
       );
     }
 
-    return Row(
-      mainAxisAlignment: widget.leading != null
-          ? MainAxisAlignment.start
-          : MainAxisAlignment.center,
-      children: [
-        Flexible(
-          child: Tooltip(
-            triggerMode: TooltipTriggerMode.tap,
-            message: L10n.of(context).doubleClickToEdit,
-            child: GestureDetector(
-              onLongPress: () => _toggleEditMode(true),
-              onDoubleTap: () => _toggleEditMode(true),
-              child: RichText(
-                textAlign:
-                    widget.leading == null ? TextAlign.center : TextAlign.start,
-                text: TextSpan(
-                  style: widget.style,
-                  children: [
-                    if (widget.leading != null) widget.leading!,
-                    if (widget.leading != null) const TextSpan(text: '  '),
-                    TextSpan(
-                      text: _cachedResponse ?? L10n.of(context).meaningNotFound,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
+    return Tooltip(
+      triggerMode: TooltipTriggerMode.tap,
+      message: L10n.of(context).doubleClickToEdit,
+      child: GestureDetector(
+        onLongPress: () => _toggleEditMode(true),
+        onDoubleTap: () => _toggleEditMode(true),
+        child: Text(
+          textAlign: TextAlign.center,
+          _cachedResponse ?? L10n.of(context).meaningNotFound,
+          style: widget.style,
         ),
-      ],
+      ),
     );
   }
 }

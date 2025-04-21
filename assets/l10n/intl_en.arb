@@ -4507,7 +4507,7 @@
   },
   "botModeValidation": "Please select a chat mode",
   "clickBestOption": "Choose the best options to translate your message!",
-  "completeActivitiesToUnlock": "Complete one of the activities (emoji, meaning, listening OR grammar) to unlock the translation!",
+  "completeActivitiesToUnlock": "Complete at least one activity to unlock the translation!",
   "botSettingsSubtitle": "Invite bot to moderate chat activity",
   "invitePeople": "Invite users",
   "noCapacityLimit": "No capacity limit",

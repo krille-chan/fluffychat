@@ -32,7 +32,7 @@ class MessageTokenButton extends StatefulWidget {
   final TextStyle textStyle;
   final double width;
   final bool animateIn;
-  final PracticeTarget? practiceTarget;
+  final PracticeTarget? practiceTargetForToken;
 
   const MessageTokenButton({
     super.key,
@@ -40,7 +40,7 @@ class MessageTokenButton extends StatefulWidget {
     required this.token,
     required this.textStyle,
     required this.width,
-    required this.practiceTarget,
+    required this.practiceTargetForToken,
     this.animateIn = false,
   });
 
@@ -127,9 +127,9 @@ class MessageTokenButtonState extends State<MessageTokenButton>
 
   bool get _animate => widget.animateIn || _finishedInitialAnimation;
 
-  PracticeTarget? get _activity => widget.practiceTarget;
+  PracticeTarget? get _activity => widget.practiceTargetForToken;
 
-  bool get _isActivityCompleteForToken =>
+  bool get _isActivityCompleteOrNullForToken =>
       _activity?.isCompleteByToken(
         widget.token,
         _activity!.morphFeature,
@@ -189,8 +189,13 @@ class MessageTokenButtonState extends State<MessageTokenButton>
 
   bool get _isEmpty {
     final mode = widget.overlayController?.toolbarMode;
+    if (MessageMode.wordEmoji == mode &&
+        widget.token.vocabConstructID.userSetEmoji.firstOrNull != null) {
+      return false;
+    }
+
     return _activity == null ||
-        (_isActivityCompleteForToken &&
+        (_isActivityCompleteOrNullForToken &&
             ![MessageMode.wordEmoji, MessageMode.wordMorph].contains(mode)) ||
         (MessageMode.wordMorph == mode && _activity?.morphFeature == null);
   }
@@ -207,7 +212,7 @@ class MessageTokenButtonState extends State<MessageTokenButton>
         messageMode: widget.overlayController!.toolbarMode,
         token: widget.token,
         selectedChoice: widget.overlayController?.selectedChoice,
-        isComplete: _isActivityCompleteForToken,
+        isActivityCompleteOrNullForToken: _isActivityCompleteOrNullForToken,
         isSelected: _isSelected,
         height: tokenButtonHeight,
         width: widget.width,
@@ -229,7 +234,7 @@ class MessageTokenButtonState extends State<MessageTokenButton>
           messageMode: widget.overlayController!.toolbarMode,
           token: widget.token,
           selectedChoice: widget.overlayController?.selectedChoice,
-          isComplete: _isActivityCompleteForToken,
+          isActivityCompleteOrNullForToken: _isActivityCompleteOrNullForToken,
           isSelected: _isSelected,
           height: _heightAnimation.value,
           width: widget.width,
@@ -252,7 +257,7 @@ class MessageTokenButtonContent extends StatelessWidget {
   final PangeaToken token;
   final PracticeChoice? selectedChoice;
 
-  final bool isComplete;
+  final bool isActivityCompleteOrNullForToken;
   final bool isSelected;
   final double height;
   final double width;
@@ -269,7 +274,7 @@ class MessageTokenButtonContent extends StatelessWidget {
     required this.messageMode,
     required this.token,
     required this.selectedChoice,
-    required this.isComplete,
+    required this.isActivityCompleteOrNullForToken,
     required this.isSelected,
     required this.height,
     required this.width,
@@ -291,7 +296,7 @@ class MessageTokenButtonContent extends StatelessWidget {
     if (activity == null) {
       return Theme.of(context).colorScheme.primary;
     }
-    if (isComplete) {
+    if (isActivityCompleteOrNullForToken) {
       return AppConfig.gold;
     }
     return Theme.of(context).colorScheme.primary;
@@ -299,11 +304,7 @@ class MessageTokenButtonContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (activity == null) {
-      return SizedBox(height: height);
-    }
-
-    if (isComplete) {
+    if (isActivityCompleteOrNullForToken || activity == null) {
       if (MessageMode.wordEmoji == messageMode) {
         return SizedBox(
           height: height,
@@ -314,7 +315,7 @@ class MessageTokenButtonContent extends StatelessWidget {
           ),
         );
       }
-      if (MessageMode.wordMorph == messageMode) {
+      if (MessageMode.wordMorph == messageMode && activity != null) {
         final morphFeature = activity!.morphFeature!;
         final morphTag = token.morphIdByFeature(morphFeature);
         if (morphTag != null) {
@@ -337,8 +338,9 @@ class MessageTokenButtonContent extends StatelessWidget {
             ),
           );
         }
+      } else {
+        return SizedBox(height: height);
       }
-      return SizedBox(height: height);
     }
 
     if (MessageMode.wordMorph == messageMode) {

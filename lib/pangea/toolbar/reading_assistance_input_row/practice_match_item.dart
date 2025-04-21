@@ -1,14 +1,13 @@
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_choice.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
 class PracticeMatchItem extends StatefulWidget {
   const PracticeMatchItem({
@@ -129,7 +128,7 @@ class PracticeMatchItemState extends State<PracticeMatchItem> {
             borderRadius: BorderRadius.circular(AppConfig.borderRadius),
             border: isSelected
                 ? Border.all(
-                    color: color(context),
+                    color: color(context).withAlpha(255),
                     width: 2,
                   )
                 : Border.all(

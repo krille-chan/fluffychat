@@ -316,7 +316,7 @@ class HtmlMessage extends StatelessWidget {
                     ),
                     width: tokenWidth,
                     animateIn: isTransitionAnimation,
-                    practiceTarget:
+                    practiceTargetForToken:
                         overlayController?.toolbarMode.associatedActivityType !=
                                 null
                             ? overlayController?.practiceSelection
