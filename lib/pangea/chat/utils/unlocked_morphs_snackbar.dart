@@ -219,29 +219,31 @@ class ConstructNotificationOverlayState
                           ),
                         ),
                       ),
-                      Row(
-                        children: [
-                          SizedBox(
-                            width: constraints.maxWidth >= 600 ? 120.0 : 65.0,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Tooltip(
-                                  message: L10n.of(context).details,
-                                  child: constraints.maxWidth >= 600
-                                      ? ElevatedButton(
-                                          style: IconButton.styleFrom(
-                                            padding: const EdgeInsets.symmetric(
-                                              vertical: 4.0,
-                                              horizontal: 16.0,
-                                            ),
-                                          ),
-                                          onPressed: _showDetails,
-                                          child: Text(
-                                            L10n.of(context).details,
-                                          ),
-                                        )
-                                      : IconButton(
+                      SizedBox(
+                        width: constraints.maxWidth >= 600 ? 120.0 : 65.0,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Tooltip(
+                              message: L10n.of(context).details,
+                              child: constraints.maxWidth >= 600
+                                  ? ElevatedButton(
+                                      style: IconButton.styleFrom(
+                                        padding: const EdgeInsets.symmetric(
+                                          vertical: 4.0,
+                                          horizontal: 16.0,
+                                        ),
+                                      ),
+                                      onPressed: _showDetails,
+                                      child: Text(
+                                        L10n.of(context).details,
+                                      ),
+                                    )
+                                  : SizedBox(
+                                      width: 32.0,
+                                      height: 32.0,
+                                      child: Center(
+                                        child: IconButton(
                                           icon: const Icon(
                                             Icons.info_outline,
                                           ),
@@ -251,8 +253,14 @@ class ConstructNotificationOverlayState
                                           onPressed: _showDetails,
                                           constraints: const BoxConstraints(),
                                         ),
-                                ),
-                                Tooltip(
+                                      ),
+                                    ),
+                            ),
+                            SizedBox(
+                              width: 32.0,
+                              height: 32.0,
+                              child: Center(
+                                child: Tooltip(
                                   message: L10n.of(context).close,
                                   child: IconButton(
                                     icon: const Icon(
@@ -265,10 +273,10 @@ class ConstructNotificationOverlayState
                                     constraints: const BoxConstraints(),
                                   ),
                                 ),
-                              ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ],
                   ),
