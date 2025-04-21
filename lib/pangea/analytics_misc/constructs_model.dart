@@ -1,9 +1,11 @@
 import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
@@ -195,6 +197,11 @@ class OneConstructUse {
   }
 
   int get pointValue => useType.pointValue;
+
+  Color pointValueColor(BuildContext context) {
+    if (pointValue == 0) return Theme.of(context).colorScheme.primary;
+    return pointValue > 0 ? AppConfig.gold : Colors.red;
+  }
 
   ConstructIdentifier get identifier => ConstructIdentifier(
         lemma: lemma,
