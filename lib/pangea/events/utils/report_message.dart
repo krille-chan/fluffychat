@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 import 'package:fluffychat/pages/chat/chat.dart';
-import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_modal_action_popup.dart';
@@ -71,14 +71,19 @@ void reportEvent(
     return;
   }
 
-  ErrorHandler.logError(
-    e: "User reported message with eventId ${event.eventId}",
-    data: {
-      "content": event.content,
-      "eventID": event.eventId,
-      "roomID": event.room.id,
-      "userID": event.senderId,
-      "reason": reason,
+  final data = {
+    "content": event.content,
+    "eventID": event.eventId,
+    "roomID": event.room.id,
+    "userID": event.senderId,
+    "reason": reason,
+  };
+  Sentry.addBreadcrumb(Breadcrumb(data: data));
+  Sentry.captureException(
+    "User reported message with eventId ${event.eventId}",
+    stackTrace: StackTrace.current,
+    withScope: (scope) {
+      scope.fingerprint = ['user-report', event.eventId];
     },
   );
 }
