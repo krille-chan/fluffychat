@@ -280,6 +280,7 @@ class MessageContent extends StatelessWidget {
                 },
               );
             }
+            final inThread = event.relationshipType == RelationshipTypes.thread;
             final bigEmotes = event.onlyEmotes &&
                 event.numberEmotes > 0 &&
                 event.numberEmotes <= 3;
@@ -288,26 +289,41 @@ class MessageContent extends StatelessWidget {
                 horizontal: 16,
                 vertical: 8,
               ),
-              child: Linkify(
-                text: event.calcLocalizedBodyFallback(
-                  MatrixLocals(L10n.of(context)),
-                  hideReply: true,
-                ),
-                textScaleFactor: MediaQuery.textScalerOf(context).scale(1),
-                style: TextStyle(
-                  color: textColor,
-                  fontSize: bigEmotes ? fontSize * 5 : fontSize,
-                  decoration:
-                      event.redacted ? TextDecoration.lineThrough : null,
-                ),
-                options: const LinkifyOptions(humanize: false),
-                linkStyle: TextStyle(
-                  color: linkColor,
-                  fontSize: fontSize,
-                  decoration: TextDecoration.underline,
-                  decorationColor: linkColor,
-                ),
-                onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
+              child: Row(
+                children: [
+                  Linkify(
+                    text: event.calcLocalizedBodyFallback(
+                      MatrixLocals(L10n.of(context)),
+                      hideReply: true,
+                    ),
+                    textScaleFactor: MediaQuery.textScalerOf(context).scale(1),
+                    style: TextStyle(
+                      color: textColor,
+                      fontSize: bigEmotes ? fontSize * 5 : fontSize,
+                      decoration:
+                          event.redacted ? TextDecoration.lineThrough : null,
+                    ),
+                    options: const LinkifyOptions(humanize: false),
+                    linkStyle: TextStyle(
+                      color: linkColor,
+                      fontSize: fontSize,
+                      decoration: TextDecoration.underline,
+                      decorationColor: linkColor,
+                    ),
+                    onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
+                  ),
+                  if (inThread)
+                    // TODO: properly show thread messages
+                    _ButtonContent(
+                      icon: '🔁',
+                      label: 'In thread',
+                      textColor: Colors.grey,
+                      fontSize: 12,
+                      onPressed: () {
+                        print('In thread button pressed');
+                      },
+                    ),
+                ],
               ),
             );
         }
