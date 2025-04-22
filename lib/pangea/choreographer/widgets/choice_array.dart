@@ -35,6 +35,9 @@ class ChoicesArray extends StatefulWidget {
 
   final bool enableAudio;
 
+  /// language code for the TTS
+  final String? langCode;
+
   /// Used to unqiuely identify the keys for choices, in cases where multiple
   /// choices could have identical text, like in back-to-back practice activities
   final String? id;
@@ -61,6 +64,7 @@ class ChoicesArray extends StatefulWidget {
     required this.selectedChoiceIndex,
     required this.tts,
     this.enableAudio = true,
+    this.langCode,
     this.isActive = true,
     this.onLongPress,
     this.getDisplayCopy,
@@ -107,11 +111,14 @@ class ChoicesArrayState extends State<ChoicesArray> {
                 ? (String value, int index) {
                     widget.onPressed(value, index);
                     // TODO - what to pass here as eventID?
-                    if (widget.enableAudio && widget.tts != null) {
+                    if (widget.enableAudio &&
+                        widget.tts != null &&
+                        widget.langCode != null) {
                       widget.tts?.tryToSpeak(
                         value,
                         context,
                         targetID: null,
+                        langCode: widget.langCode!,
                       );
                     }
                   }

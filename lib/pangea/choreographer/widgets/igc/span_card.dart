@@ -310,6 +310,8 @@ class WordMatchContent extends StatelessWidget {
                       tts: controller.tts,
                       id: controller.widget.scm.pangeaMatch!.hashCode
                           .toString(),
+                      langCode: MatrixState.pangeaController.languageController
+                          .activeL2Code(),
                     ),
                   const SizedBox(height: 12),
                   PromptAndFeedback(controller: controller),

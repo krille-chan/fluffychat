@@ -537,17 +537,18 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     }
 
     /// we don't want to associate the audio with the text in this mode
-    if (practiceSelection?.hasActiveActivityByToken(
-              ActivityTypeEnum.wordFocusListening,
-              token,
-            ) ==
-            false ||
+    if (pangeaMessageEvent?.messageDisplayLangCode != null &&
+            practiceSelection?.hasActiveActivityByToken(
+                  ActivityTypeEnum.wordFocusListening,
+                  token,
+                ) ==
+                false ||
         !hideWordCardContent) {
       widget.chatController.choreographer.tts.tryToSpeak(
         token.text.content,
         context,
         targetID: null,
-        langCode: pangeaMessageEvent?.messageDisplayLangCode,
+        langCode: pangeaMessageEvent!.messageDisplayLangCode,
       );
     }
 

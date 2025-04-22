@@ -201,6 +201,7 @@ class LemmaWidgetState extends State<LemmaWidget> {
                     ?.updateToolbarMode(MessageMode.listening)
                 : null,
             uniqueID: "lemma-content-${widget.token.text.content}",
+            langCode: widget.pangeaMessageEvent.messageDisplayLangCode,
           ),
       ],
     );

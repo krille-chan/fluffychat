@@ -231,6 +231,8 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
           WordAudioButton(
             text: practiceActivity.multipleChoiceContent!.answers.first,
             uniqueID: "audio-activity-${widget.event.eventId}",
+            langCode: widget
+                .overlayController.pangeaMessageEvent?.messageDisplayLangCode,
           ),
         if (practiceActivity.activityType ==
             ActivityTypeEnum.hiddenWordListening)
@@ -251,6 +253,8 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
           id: currentRecordModel?.hashCode.toString(),
           tts: practiceActivity.activityType.includeTTSOnClick ? tts : null,
           enableAudio: !widget.overlayController.isPlayingAudio,
+          langCode:
+              MatrixState.pangeaController.languageController.activeL2Code(),
           getDisplayCopy: _getDisplayCopy,
           enableMultiSelect:
               widget.currentActivity.activityType == ActivityTypeEnum.emoji,

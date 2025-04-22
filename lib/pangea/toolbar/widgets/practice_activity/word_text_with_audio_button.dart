@@ -78,11 +78,16 @@ class WordAudioButtonState extends State<WordTextWithAudioButton> {
                 setState(() => _isPlaying = true);
               }
               try {
-                await tts.tryToSpeak(
-                  widget.text,
-                  context,
-                  targetID: 'text-audio-button-${widget.uniqueID}',
-                );
+                final l2 = MatrixState.pangeaController.languageController
+                    .activeL2Code();
+                if (l2 != null) {
+                  await tts.tryToSpeak(
+                    widget.text,
+                    context,
+                    targetID: 'text-audio-button-${widget.uniqueID}',
+                    langCode: l2,
+                  );
+                }
               } catch (e, s) {
                 ErrorHandler.logError(
                   e: e,

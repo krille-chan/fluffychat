@@ -44,7 +44,7 @@ class SettingsLearningController extends State<SettingsLearning> {
   void initState() {
     super.initState();
     _profile = pangeaController.userController.profile.copy();
-    tts.setupTTS().then((_) => setState(() {}));
+    tts.setAvailableLanguages().then((_) => setState(() {}));
   }
 
   @override
