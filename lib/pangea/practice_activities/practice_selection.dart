@@ -1,9 +1,6 @@
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-
 import 'package:collection/collection.dart';
-
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/learning_settings/constants/language_constants.dart';
 import 'package:fluffychat/pangea/lemmas/lemma_info_response.dart';
@@ -12,6 +9,7 @@ import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_selection_repo.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_target.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/foundation.dart';
 
 class PracticeSelection {
   late String _userL2;
@@ -127,8 +125,21 @@ class PracticeSelection {
       return [];
     }
 
-    final List<PangeaToken> tokens =
-        _tokens.where((t) => t.lemma.saveVocab).sorted(
+    final List<PangeaToken> basicallyEligible =
+        _tokens.where((t) => t.lemma.saveVocab).toList();
+
+    // list of tokens with unique lemmas and surface forms
+    final List<PangeaToken> tokens = [];
+    for (final t in basicallyEligible) {
+      if (!tokens.any(
+        (token) =>
+            token.lemma == t.lemma && token.text.content == t.text.content,
+      )) {
+        tokens.add(t);
+      }
+    }
+
+    tokens.sorted(
       (a, b) {
         final bScore = b.activityPriorityScore(activityType, null) *
             (tokenIsIncludedInActivityOfAnyType(b) ? 1.1 : 1);
@@ -139,6 +150,10 @@ class PracticeSelection {
         return bScore.compareTo(aScore);
       },
     );
+
+    if (tokens.isEmpty) {
+      return [];
+    }
 
     return [
       PracticeTarget(
