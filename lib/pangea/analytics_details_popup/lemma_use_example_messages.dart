@@ -29,7 +29,7 @@ class LemmaUseExampleMessages extends StatelessWidget {
       if (use.useType.skillsEnumType != LearningSkillsEnum.writing ||
           use.metadata.eventId == null ||
           use.form == null ||
-          use.pointValue <= 0) {
+          use.xp <= 0) {
         continue;
       }
 

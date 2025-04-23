@@ -177,6 +177,17 @@ class ChoreoRecordStep {
     data[_stepKey] = itStep?.toJson();
     return data;
   }
+
+  List<String>? get choices {
+    if (itStep != null) {
+      return itStep!.continuances.map((e) => e.text).toList().cast<String>();
+    }
+
+    return acceptedOrIgnoredMatch?.match.choices
+        ?.map((e) => e.value)
+        .toList()
+        .cast<String>();
+  }
 }
 
 // Example flow

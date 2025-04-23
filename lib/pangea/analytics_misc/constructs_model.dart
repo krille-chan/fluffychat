@@ -90,6 +90,8 @@ class OneConstructUse {
   String? id;
   ConstructUseMetaData metadata;
 
+  int xp;
+
   OneConstructUse({
     required this.useType,
     required this.lemma,
@@ -97,6 +99,7 @@ class OneConstructUse {
     required this.metadata,
     required category,
     required this.form,
+    required this.xp,
     this.id,
   }) {
     if (category is MorphFeaturesEnum) {
@@ -117,8 +120,10 @@ class OneConstructUse {
         ? ConstructTypeUtil.fromString(json['constructType'])
         : ConstructTypeEnum.vocab;
 
+    final useType = ConstructUseTypeUtil.fromString(json['useType']);
+
     return OneConstructUse(
-      useType: ConstructUseTypeUtil.fromString(json['useType']),
+      useType: useType,
       lemma: json['lemma'],
       form: json['form'],
       category: getCategory(json, constructType),
@@ -129,6 +134,7 @@ class OneConstructUse {
         roomId: json['chatId'],
         timeStamp: DateTime.parse(json['timeStamp']),
       ),
+      xp: json['xp'] ?? useType.pointValue,
     );
   }
 
@@ -142,6 +148,7 @@ class OneConstructUse {
         'constructType': constructType.string,
         'categories': category,
         'id': id,
+        'xp': xp,
       };
 
   String get category {
@@ -196,11 +203,9 @@ class OneConstructUse {
     return room.getEventById(metadata.eventId!);
   }
 
-  int get pointValue => useType.pointValue;
-
   Color pointValueColor(BuildContext context) {
-    if (pointValue == 0) return Theme.of(context).colorScheme.primary;
-    return pointValue > 0 ? AppConfig.gold : Colors.red;
+    if (xp == 0) return Theme.of(context).colorScheme.primary;
+    return xp > 0 ? AppConfig.gold : Colors.red;
   }
 
   ConstructIdentifier get identifier => ConstructIdentifier(

@@ -10,9 +10,11 @@ enum ConstructUseTypeEnum {
   /// produced in chat by user, igc was run, and we've judged it to be a correct use
   wa,
 
-  /// produced in chat by user, igc was run, and we've judged it to be a incorrect use
-  /// Note: if the IGC match is ignored, this is not counted as an incorrect use
+  /// produced during IGC
   ga,
+
+  /// produced during IT
+  ta,
 
   /// produced in chat by user and igc was not run
   unk,
@@ -78,6 +80,8 @@ extension ConstructUseTypeExtension on ConstructUseTypeEnum {
         return L10n.of(context).constructUseWaDesc;
       case ConstructUseTypeEnum.ga:
         return L10n.of(context).constructUseGaDesc;
+      case ConstructUseTypeEnum.ta:
+        return L10n.of(context).constructUseTaDesc;
       case ConstructUseTypeEnum.unk:
         return L10n.of(context).constructUseUnkDesc;
       case ConstructUseTypeEnum.corIt:
@@ -149,6 +153,7 @@ extension ConstructUseTypeExtension on ConstructUseTypeEnum {
       case ConstructUseTypeEnum.incIGC:
       case ConstructUseTypeEnum.corIGC:
       case ConstructUseTypeEnum.ga:
+      case ConstructUseTypeEnum.ta:
         return Icons.spellcheck;
       case ConstructUseTypeEnum.corPA:
       case ConstructUseTypeEnum.incPA:
@@ -223,9 +228,10 @@ extension ConstructUseTypeExtension on ConstructUseTypeEnum {
       case ConstructUseTypeEnum.ignMM:
       case ConstructUseTypeEnum.unk:
       case ConstructUseTypeEnum.nan:
+      case ConstructUseTypeEnum.ga:
+      case ConstructUseTypeEnum.ta:
         return 0;
 
-      case ConstructUseTypeEnum.ga:
       case ConstructUseTypeEnum.incMM:
       case ConstructUseTypeEnum.incIt:
       case ConstructUseTypeEnum.incIGC:
@@ -244,6 +250,7 @@ extension ConstructUseTypeExtension on ConstructUseTypeEnum {
     switch (this) {
       case ConstructUseTypeEnum.wa:
       case ConstructUseTypeEnum.ga:
+      case ConstructUseTypeEnum.ta:
       case ConstructUseTypeEnum.unk:
       case ConstructUseTypeEnum.corIt:
       case ConstructUseTypeEnum.ignIt:
@@ -283,6 +290,7 @@ extension ConstructUseTypeExtension on ConstructUseTypeEnum {
     switch (this) {
       case ConstructUseTypeEnum.wa:
       case ConstructUseTypeEnum.ga:
+      case ConstructUseTypeEnum.ta:
       case ConstructUseTypeEnum.unk:
       case ConstructUseTypeEnum.corIt:
       case ConstructUseTypeEnum.ignIt:
@@ -323,6 +331,7 @@ extension ConstructUseTypeExtension on ConstructUseTypeEnum {
     switch (this) {
       case ConstructUseTypeEnum.wa:
       case ConstructUseTypeEnum.ga:
+      case ConstructUseTypeEnum.ta:
       case ConstructUseTypeEnum.unk:
       case ConstructUseTypeEnum.pvm:
         return AnalyticsSummaryEnum.numWordsTyped;

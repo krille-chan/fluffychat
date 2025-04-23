@@ -68,13 +68,6 @@ class MessageMorphInputBarContentState
     super.didUpdateWidget(oldWidget);
   }
 
-  String? get _correctChoice {
-    return widget.activity.multipleChoiceContent?.choices
-        .firstWhereOrNull((choice) {
-      return widget.activity.practiceTarget.wasCorrectChoice(choice) == true;
-    });
-  }
-
   TextStyle? textStyle(BuildContext context) => overlay.maxWidth > 600
       ? Theme.of(context).textTheme.bodyLarge?.copyWith(
             fontWeight: FontWeight.bold,

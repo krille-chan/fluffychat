@@ -1,10 +1,12 @@
+import 'dart:math';
+
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/constructs_model.dart';
 import 'package:fluffychat/pangea/choreographer/models/choreo_record.dart';
 import 'package:fluffychat/pangea/choreographer/models/pangea_match_model.dart';
+import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/toolbar/models/speech_to_text_models.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -132,162 +134,138 @@ class PangeaRepresentation {
           )
           .toList();
     }
-    for (final token in tokensToSave) {
-      uses.addAll(
-        _getUsesForToken(
-          token,
-          metadata,
-          choreo: choreo,
-        ),
-      );
-    }
 
-    return uses;
-  }
-
-  /// Returns a [OneConstructUse] for the given [token]
-  /// If there is no [choreo], the [token] is
-  /// considered to be a [ConstructUseTypeEnum.wa] as long as it matches the target language.
-  /// Later on, we may want to consider putting it in some category of like 'pending'
-  ///
-  /// For both vocab and morph constructs, we should
-  /// 1) give wa if no assistance was used
-  /// 2) give ga if IGC was used and
-  /// 3) make no use if IT was used
-  List<OneConstructUse> _getUsesForToken(
-    PangeaToken token,
-    ConstructUseMetaData metadata, {
-    ChoreoRecord? choreo,
-  }) {
-    final List<OneConstructUse> uses = [];
-    final lemma = token.lemma;
-    final content = token.text.content;
-
-    if (choreo == null) {
-      uses.add(
-        OneConstructUse(
-          useType: ConstructUseTypeEnum.wa,
-          lemma: token.pos,
-          form: token.text.content,
-          category: "POS",
-          constructType: ConstructTypeEnum.morph,
-          metadata: metadata,
-        ),
-      );
-
-      for (final entry in token.morph.entries) {
-        uses.add(
-          OneConstructUse(
-            useType: ConstructUseTypeEnum.wa,
-            lemma: entry.value,
-            form: token.text.content,
-            category: entry.key,
-            constructType: ConstructTypeEnum.morph,
-            metadata: metadata,
-          ),
-        );
-      }
-
-      if (lemma.saveVocab) {
-        uses.add(
-          token.toVocabUse(
+    if (choreo == null ||
+        (choreo.choreoSteps.isEmpty && choreo.itSteps.isEmpty)) {
+      for (final token in tokensToSave) {
+        uses.addAll(
+          token.allUses(
             ConstructUseTypeEnum.wa,
             metadata,
+            ConstructUseTypeEnum.wa.pointValue,
           ),
         );
       }
+
       return uses;
     }
 
-    for (final step in choreo.choreoSteps) {
-      /// if 1) accepted match 2) token is in the replacement and 3) replacement
-      /// is in the overall step text, then token was a ga
-      final bool isAcceptedMatch =
-          step.acceptedOrIgnoredMatch?.status == PangeaMatchStatus.accepted;
-
-      // if the token was in an IT match, return no uses
-      if (step.itStep != null) return [];
-
-      // if this step was not accepted, continue
-      if (!isAcceptedMatch) continue;
-
-      if (isAcceptedMatch &&
-          step.acceptedOrIgnoredMatch?.match.choices != null) {
-        final choices = step.acceptedOrIgnoredMatch!.match.choices!;
-        final bool stepContainedToken = choices.any(
-          (choice) =>
-              // if this choice contains the token's content
-              choice.value.contains(content),
-        );
-        if (stepContainedToken) {
-          // give ga if IGC was used
-          uses.add(
-            token.toVocabUse(
-              ConstructUseTypeEnum.ga,
-              metadata,
-            ),
-          );
-
-          uses.add(
-            OneConstructUse(
-              useType: ConstructUseTypeEnum.ga,
-              lemma: token.pos,
-              form: token.text.content,
-              category: "POS",
-              constructType: ConstructTypeEnum.morph,
-              metadata: metadata,
-            ),
-          );
-
-          for (final entry in token.morph.entries) {
-            uses.add(
-              OneConstructUse(
-                useType: ConstructUseTypeEnum.ga,
-                lemma: entry.value,
-                form: token.text.content,
-                category: entry.key,
-                constructType: ConstructTypeEnum.morph,
-                metadata: metadata,
-              ),
-            );
-          }
-          return uses;
+    for (final token in tokensToSave) {
+      ChoreoRecordStep? tokenStep;
+      for (final step in choreo.choreoSteps) {
+        final igcMatch = step.acceptedOrIgnoredMatch;
+        final itStep = step.itStep;
+        if (itStep == null && igcMatch == null) {
+          continue;
         }
+
+        final choices = step.choices;
+        if (choices == null || choices.isEmpty) {
+          continue;
+        }
+
+        final stepContainsToken = choices.any(
+          (choice) => choice.contains(token.text.content),
+        );
+
+        // if the step contains the token, and the token hasn't been assigned a step
+        // (or the assigned step is an IGC step, but an IT step contains the token)
+        // then assign the token to the step
+        if (stepContainsToken &&
+            (tokenStep == null ||
+                (tokenStep.itStep == null && step.itStep != null))) {
+          tokenStep = step;
+        }
+      }
+
+      if (tokenStep == null ||
+          tokenStep.acceptedOrIgnoredMatch?.status ==
+              PangeaMatchStatus.automatic) {
+        // if the token wasn't found in any IT or IGC step, so it was wa
+        uses.addAll(
+          token.allUses(
+            ConstructUseTypeEnum.wa,
+            metadata,
+            ConstructUseTypeEnum.wa.pointValue,
+          ),
+        );
+        continue;
+      }
+
+      if (tokenStep.acceptedOrIgnoredMatch != null &&
+          tokenStep.acceptedOrIgnoredMatch?.status !=
+              PangeaMatchStatus.accepted) {
+        uses.addAll(
+          token.allUses(
+            ConstructUseTypeEnum.ga,
+            metadata,
+            0,
+          ),
+        );
+        continue;
+      }
+
+      if (tokenStep.itStep != null) {
+        final selectedChoices = tokenStep.itStep!.continuances
+            .where((choice) => choice.wasClicked)
+            .length;
+        if (selectedChoices == 0) {
+          ErrorHandler.logError(
+            e: "No selected choices for IT step",
+            data: {
+              "token": token.text.content,
+              "step": tokenStep.toJson(),
+            },
+          );
+          continue;
+        }
+
+        final corITPoints = ConstructUseTypeEnum.corIt.pointValue;
+        final incITPoints = ConstructUseTypeEnum.incIt.pointValue;
+        final xp = max(
+          0,
+          corITPoints + (incITPoints * (selectedChoices - 1)),
+        );
+
+        uses.addAll(
+          token.allUses(
+            ConstructUseTypeEnum.ta,
+            metadata,
+            xp,
+          ),
+        );
+      } else if (tokenStep.acceptedOrIgnoredMatch!.match.choices != null) {
+        final selectedChoices = tokenStep.acceptedOrIgnoredMatch!.match.choices!
+            .where((choice) => choice.selected)
+            .length;
+        if (selectedChoices == 0) {
+          ErrorHandler.logError(
+            e: "No selected choices for IGC step",
+            data: {
+              "token": token.text.content,
+              "step": tokenStep.toJson(),
+            },
+          );
+          continue;
+        }
+
+        final corIGCPoints = ConstructUseTypeEnum.corIGC.pointValue;
+        final incIGCPoints = ConstructUseTypeEnum.incIGC.pointValue;
+        final xp = max(
+          0,
+          corIGCPoints + (incIGCPoints * (selectedChoices - 1)),
+        );
+
+        uses.addAll(
+          token.allUses(
+            ConstructUseTypeEnum.ga,
+            metadata,
+            xp,
+          ),
+        );
       }
     }
 
-    uses.add(
-      OneConstructUse(
-        useType: ConstructUseTypeEnum.wa,
-        lemma: token.pos,
-        form: token.text.content,
-        category: "POS",
-        constructType: ConstructTypeEnum.morph,
-        metadata: metadata,
-      ),
-    );
-
-    // the token wasn't found in any IT or IGC step, so it was wa
-    for (final entry in token.morph.entries) {
-      uses.add(
-        OneConstructUse(
-          useType: ConstructUseTypeEnum.wa,
-          lemma: entry.value,
-          form: token.text.content,
-          category: entry.key,
-          constructType: ConstructTypeEnum.morph,
-          metadata: metadata,
-        ),
-      );
-    }
-    if (lemma.saveVocab) {
-      uses.add(
-        token.toVocabUse(
-          ConstructUseTypeEnum.wa,
-          metadata,
-        ),
-      );
-    }
     return uses;
   }
 }

@@ -26,13 +26,13 @@ class LemmaUsageDots extends StatelessWidget {
   List<bool> sortedUses(LearningSkillsEnum category) {
     final List<bool> useList = [];
     for (final OneConstructUse use in construct.uses) {
-      if (use.useType.pointValue == 0) {
+      if (use.xp == 0) {
         continue;
       }
       // If the use type matches the given category, save to list
       // Usage with positive XP is saved as true, else false
       if (category == use.useType.skillsEnumType) {
-        useList.add(use.useType.pointValue > 0);
+        useList.add(use.xp > 0);
       }
     }
     return useList;

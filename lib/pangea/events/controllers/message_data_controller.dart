@@ -1,18 +1,14 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:http/http.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pangea/choreographer/repo/full_text_translation_repo.dart';
-import 'package:fluffychat/pangea/common/config/environment.dart';
+import 'package:fluffychat/pangea/choreographer/repo/tokens_repo.dart';
 import 'package:fluffychat/pangea/common/controllers/base_controller.dart';
 import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
-import 'package:fluffychat/pangea/common/network/requests.dart';
-import 'package:fluffychat/pangea/common/network/urls.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
@@ -57,51 +53,15 @@ class MessageDataController extends BaseController {
   }
 
   /// get tokens from the server
-  static Future<TokensResponseModel> _fetchTokens(
-    String accessToken,
-    TokensRequestModel request,
-  ) async {
-    final Requests req = Requests(
-      choreoApiKey: Environment.choreoApiKey,
-      accessToken: accessToken,
-    );
-
-    final Response res = await req.post(
-      url: PApiUrls.tokenize,
-      body: request.toJson(),
-    );
-
-    final TokensResponseModel response = TokensResponseModel.fromJson(
-      jsonDecode(
-        utf8.decode(res.bodyBytes).toString(),
-      ),
-    );
-
-    if (response.tokens.isEmpty) {
-      ErrorHandler.logError(
-        e: Exception(
-          "empty tokens in tokenize response return",
-        ),
-        data: {
-          "accessToken": accessToken,
-          "request": request.toJson(),
-        },
-      );
-    }
-
-    return response;
-  }
-
-  /// get tokens from the server
   /// if repEventId is not null, send the tokens to the room
   Future<List<PangeaToken>> _getTokens({
     required String? repEventId,
     required TokensRequestModel req,
     required Room? room,
   }) async {
-    final TokensResponseModel res = await _fetchTokens(
+    final TokensResponseModel res = await TokensRepo.get(
       _pangeaController.userController.accessToken,
-      req,
+      request: req,
     );
     if (repEventId != null && room != null) {
       room
@@ -234,9 +194,9 @@ class MessageDataController extends BaseController {
     required TokensRequestModel req,
     required Room room,
   }) async {
-    final TokensResponseModel res = await _fetchTokens(
+    final TokensResponseModel res = await TokensRepo.get(
       _pangeaController.userController.accessToken,
-      req,
+      request: req,
     );
 
     try {

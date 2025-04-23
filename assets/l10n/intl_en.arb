@@ -4530,7 +4530,8 @@
   "updateNow": "Update Now",
   "updateLater": "Later",
   "constructUseWaDesc": "Used without help",
-  "constructUseGaDesc": "Grammar mistake",
+  "constructUseGaDesc": "Grammar assistance",
+  "constructUseTaDesc": "Translation assistance",
   "constructUseUnkDesc": "Unknown",
   "constructUseCorITDesc": "Correct in translation",
   "constructUseIgnITDesc": "Ignored in translation",
@@ -4865,5 +4866,7 @@
   "enterSpaceCode": "Enter the Space Code",
   "shareSpaceLink": "Share link to space",
   "byUsingPangeaChat": "By using Pangea Chat, I agree to the ",
-  "details": "Details"
+  "details": "Details",
+  "newVocab": "New vocab",
+  "newGrammar": "New grammar concepts"
 }

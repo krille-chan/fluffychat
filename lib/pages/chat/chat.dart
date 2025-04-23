@@ -27,6 +27,7 @@ import 'package:fluffychat/pages/chat/chat_view.dart';
 import 'package:fluffychat/pages/chat/event_info_dialog.dart';
 import 'package:fluffychat/pages/chat/recording_dialog.dart';
 import 'package:fluffychat/pages/chat_details/chat_details.dart';
+import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/constructs_model.dart';
 import 'package:fluffychat/pangea/analytics_misc/gain_points_animation.dart';
 import 'package:fluffychat/pangea/analytics_misc/level_up.dart';
@@ -36,6 +37,7 @@ import 'package:fluffychat/pangea/chat/widgets/event_too_large_dialog.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
 import 'package:fluffychat/pangea/choreographer/enums/edit_type.dart';
 import 'package:fluffychat/pangea/choreographer/models/choreo_record.dart';
+import 'package:fluffychat/pangea/choreographer/widgets/igc/message_analytics_feedback.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/igc/pangea_text_controller.dart';
 import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
@@ -819,18 +821,46 @@ class ChatController extends State<ChatPageWithRoom>
         );
 
         if (msgEventId != null && originalSent != null && tokensSent != null) {
+          final List<OneConstructUse> constructs = [
+            ...originalSent.vocabAndMorphUses(
+              choreo: choreo,
+              tokens: tokensSent.tokens,
+              metadata: metadata,
+            ),
+          ];
+
+          final newGrammarConstructs =
+              pangeaController.getAnalytics.newConstructCount(
+            constructs,
+            ConstructTypeEnum.morph,
+          );
+
+          final newVocabConstructs =
+              pangeaController.getAnalytics.newConstructCount(
+            constructs,
+            ConstructTypeEnum.vocab,
+          );
+
+          OverlayUtil.showOverlay(
+            overlayKey: "msg_analytics_feedback_$msgEventId",
+            followerAnchor: Alignment.bottomRight,
+            targetAnchor: Alignment.topRight,
+            context: context,
+            child: MessageAnalyticsFeedback(
+              overlayId: "msg_analytics_feedback_$msgEventId",
+              newGrammarConstructs: newGrammarConstructs,
+              newVocabConstructs: newVocabConstructs,
+            ),
+            transformTargetId: msgEventId,
+            ignorePointer: true,
+          );
+
           pangeaController.putAnalytics.setState(
             AnalyticsStream(
               eventId: msgEventId,
               targetID: msgEventId,
               roomId: room.id,
-              constructs: [
-                ...originalSent.vocabAndMorphUses(
-                  choreo: choreo,
-                  tokens: tokensSent.tokens,
-                  metadata: metadata,
-                ),
-              ],
+              constructs: constructs,
             ),
           );
         }

@@ -2,14 +2,9 @@ import 'dart:convert';
 
 import 'package:http/http.dart';
 
-import 'package:fluffychat/pangea/choreographer/models/language_detection_model.dart';
 import 'package:fluffychat/pangea/choreographer/models/pangea_match_model.dart';
-import 'package:fluffychat/pangea/choreographer/repo/language_detection_repo.dart';
 import 'package:fluffychat/pangea/choreographer/repo/span_data_repo.dart';
 import 'package:fluffychat/pangea/common/config/environment.dart';
-import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
-import 'package:fluffychat/pangea/events/models/pangea_token_text_model.dart';
-import 'package:fluffychat/pangea/lemmas/lemma.dart';
 import '../../common/constants/model_keys.dart';
 import '../../common/network/requests.dart';
 import '../../common/network/urls.dart';
@@ -41,42 +36,6 @@ class IgcRepo {
     await Future.delayed(const Duration(seconds: 2));
 
     final IGCTextData igcTextData = IGCTextData(
-      detections: LanguageDetectionResponse(
-        detections: [LanguageDetection(langCode: "en", confidence: 0.99)],
-        fullText: "This be a sample text",
-      ),
-      tokens: [
-        PangeaToken(
-          text: PangeaTokenText(content: "This", offset: 0, length: 4),
-          lemma: Lemma(form: "This", text: "this", saveVocab: true),
-          pos: "DET",
-          morph: {},
-        ),
-        PangeaToken(
-          text: PangeaTokenText(content: "be", offset: 5, length: 2),
-          lemma: Lemma(form: "be", text: "be", saveVocab: true),
-          pos: "VERB",
-          morph: {},
-        ),
-        PangeaToken(
-          text: PangeaTokenText(content: "a", offset: 8, length: 1),
-          lemma: Lemma(form: "a", text: "a", saveVocab: true),
-          pos: "DET",
-          morph: {},
-        ),
-        PangeaToken(
-          text: PangeaTokenText(content: "sample", offset: 10, length: 6),
-          lemma: Lemma(form: "sample", text: "sample", saveVocab: true),
-          pos: "NOUN",
-          morph: {},
-        ),
-        PangeaToken(
-          text: PangeaTokenText(content: "text", offset: 17, length: 4),
-          lemma: Lemma(form: "text", text: "text", saveVocab: true),
-          pos: "NOUN",
-          morph: {},
-        ),
-      ],
       matches: [
         PangeaMatch(
           match: spanDataRepomockSpan,

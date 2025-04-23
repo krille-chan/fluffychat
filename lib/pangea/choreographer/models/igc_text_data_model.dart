@@ -6,25 +6,19 @@ import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
 
 import 'package:fluffychat/pangea/choreographer/models/choreo_record.dart';
-import 'package:fluffychat/pangea/choreographer/models/language_detection_model.dart';
 import 'package:fluffychat/pangea/choreographer/models/pangea_match_model.dart';
 import 'package:fluffychat/pangea/choreographer/models/span_data.dart';
-import 'package:fluffychat/pangea/choreographer/repo/language_detection_repo.dart';
 import 'package:fluffychat/pangea/common/constants/model_keys.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_representation_event.dart';
-import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/events/models/representation_content_model.dart';
-import 'package:fluffychat/pangea/learning_settings/constants/language_constants.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 // import 'package:language_tool/language_tool.dart';
 
 class IGCTextData {
-  LanguageDetectionResponse detections;
   String originalInput;
   String? fullTextCorrection;
-  List<PangeaToken> tokens;
   List<PangeaMatch> matches;
   String userL1;
   String userL2;
@@ -33,10 +27,8 @@ class IGCTextData {
   bool loading = false;
 
   IGCTextData({
-    required this.detections,
     required this.originalInput,
     required this.fullTextCorrection,
-    required this.tokens,
     required this.matches,
     required this.userL1,
     required this.userL2,
@@ -45,25 +37,7 @@ class IGCTextData {
   });
 
   factory IGCTextData.fromJson(Map<String, dynamic> json) {
-    // changing this to allow for use of the LanguageDetectionResponse methods
-    // TODO - change API after we're sure all clients are updated. not urgent.
-    final LanguageDetectionResponse detections =
-        json[_detectionsKey] is Iterable
-            ? LanguageDetectionResponse.fromJson({
-                "detections": json[_detectionsKey],
-                "full_text": json["original_input"],
-              })
-            : LanguageDetectionResponse.fromJson(
-                json[_detectionsKey] as Map<String, dynamic>,
-              );
-
     return IGCTextData(
-      tokens: (json[_tokensKey] as Iterable)
-          .map<PangeaToken>(
-            (e) => PangeaToken.fromJson(e as Map<String, dynamic>),
-          )
-          .toList()
-          .cast<PangeaToken>(),
       matches: json[_matchesKey] != null
           ? (json[_matchesKey] as Iterable)
               .map<PangeaMatch>(
@@ -74,7 +48,6 @@ class IGCTextData {
               .toList()
               .cast<PangeaMatch>()
           : [],
-      detections: detections,
       originalInput: json["original_input"],
       fullTextCorrection: json["full_text_correction"],
       userL1: json[ModelKey.userL1],
@@ -90,7 +63,6 @@ class IGCTextData {
     String userL2,
   ) {
     final PangeaRepresentation content = event.content;
-    final List<PangeaToken> tokens = event.tokens ?? [];
     final List<PangeaMatch> matches = event.choreo?.choreoSteps
             .map((step) => step.acceptedOrIgnoredMatch)
             .whereType<PangeaMatch>()
@@ -102,38 +74,9 @@ class IGCTextData {
       originalInput = matches.first.match.fullText;
     }
 
-    final defaultDetections = LanguageDetectionResponse(
-      detections: [
-        LanguageDetection(langCode: content.langCode, confidence: 1),
-      ],
-      fullText: content.text,
-    );
-
-    LanguageDetectionResponse detections = defaultDetections;
-    if (event.detections != null) {
-      try {
-        detections = LanguageDetectionResponse.fromJson({
-          "detections": event.detections,
-          "full_text": content.text,
-        });
-      } catch (e, s) {
-        ErrorHandler.logError(
-          e: e,
-          s: s,
-          m: "Error parsing detections in IGCTextData.fromRepresentationEvent",
-          data: {
-            "detections": event.detections,
-            "full_text": content.text,
-          },
-        );
-      }
-    }
-
     return IGCTextData(
-      detections: detections,
       originalInput: originalInput,
       fullTextCorrection: content.text,
-      tokens: tokens,
       matches: matches,
       userL1: userL1,
       userL2: userL2,
@@ -142,30 +85,17 @@ class IGCTextData {
     );
   }
 
-  static const String _tokensKey = "tokens";
   static const String _matchesKey = "matches";
-  static const String _detectionsKey = "detections";
 
   Map<String, dynamic> toJson() => {
-        _detectionsKey: detections.toJson(),
         "original_input": originalInput,
         "full_text_correction": fullTextCorrection,
-        _tokensKey: tokens.map((e) => e.toJson()).toList(),
         _matchesKey: matches.map((e) => e.toJson()).toList(),
         ModelKey.userL1: userL1,
         ModelKey.userL2: userL2,
         "enable_it": enableIT,
         "enable_igc": enableIGC,
       };
-
-  /// if we haven't run IGC or IT or there are no matches, we use the highest validated detection
-  /// from [LanguageDetectionResponse.highestValidatedDetection]
-  /// if we have run igc/it and there are no matches, we can relax the threshold
-  /// and use the highest confidence detection
-  String get detectedLanguage {
-    return detections.detections.firstOrNull?.langCode ??
-        LanguageKeys.unknownLanguage;
-  }
 
   // reconstruct fullText based on accepted match
   //update offsets in existing matches to reflect the change
@@ -198,72 +128,8 @@ class IGCTextData {
     final fullText = newStart + replacement.value.characters + newEnd;
     originalInput = fullText.toString();
 
-    int startIndex;
-    int endIndex;
-
-    // replace the tokens that are part of the match
-    // with the tokens in the replacement
-    //    start is inclusive
-    try {
-      startIndex = tokenIndexByOffset(pangeaMatch.match.offset);
-      //    end is exclusive, hence the +1
-      // use pangeaMatch.matchContent.trim().length instead of pangeaMatch.match.length since pangeaMatch.match.length may include leading/trailing spaces
-      endIndex = tokenIndexByOffset(
-            pangeaMatch.match.offset + pangeaMatch.matchContent.trim().length,
-          ) +
-          1;
-    } catch (err, s) {
-      matches.removeAt(matchIndex);
-
-      for (final match in matches) {
-        match.match.fullText = originalInput;
-        if (match.match.offset > pangeaMatch.match.offset) {
-          match.match.offset +=
-              replacement.value.length - pangeaMatch.match.length;
-        }
-      }
-      ErrorHandler.logError(
-        e: err,
-        s: s,
-        data: {
-          "cursorOffset": pangeaMatch.match.offset,
-          "match": pangeaMatch.match.toJson(),
-          "tokens": tokens.map((e) => e.toJson()).toString(),
-        },
-      );
-      return;
-    }
-
-    // for all tokens after the replacement, update their offsets
-    for (int i = endIndex; i < tokens.length; i++) {
-      tokens[i].text.offset +=
-          replacement.value.length - pangeaMatch.match.length;
-    }
-
-    // clone the list for debugging purposes
-    final List<PangeaToken> newTokens = List.from(tokens);
-
-    // replace the tokens in the list
-    newTokens.replaceRange(startIndex, endIndex, replacement.tokens);
-
-    final String newFullText = PangeaToken.reconstructText(newTokens);
-    if (newFullText.trim() != originalInput.trim() && kDebugMode) {
-      PangeaToken.reconstructText(newTokens, debugWalkThrough: true);
-      ErrorHandler.logError(
-        m: "reconstructed text not working",
-        s: StackTrace.current,
-        data: {
-          "originalInput": originalInput,
-          "newFullText": newFullText,
-          "match": pangeaMatch.match.toJson(),
-        },
-      );
-    }
-
-    tokens = newTokens;
-
-    //update offsets in existing matches to reflect the change
-    //Question - remove matches that overlap with the accepted one?
+    // update offsets in existing matches to reflect the change
+    // Question - remove matches that overlap with the accepted one?
     // see case of "quiero ver un fix"
     matches.removeAt(matchIndex);
 
@@ -274,23 +140,6 @@ class IGCTextData {
             replacement.value.length - pangeaMatch.match.length;
       }
     }
-  }
-
-  void removeMatchByOffset(int offset) {
-    final int index = getTopMatchIndexForOffset(offset);
-    if (index != -1) {
-      matches.removeAt(index);
-    }
-  }
-
-  int tokenIndexByOffset(int cursorOffset) {
-    final tokenIndex = tokens.indexWhere(
-      (token) => token.start <= cursorOffset && cursorOffset <= token.end,
-    );
-    if (tokenIndex < 0) {
-      throw "No token found for cursor offset";
-    }
-    return tokenIndex;
   }
 
   List<int> matchIndicesByOffset(int offset) {
@@ -312,34 +161,6 @@ class IGCTextData {
     });
     if (matchIndex == -1) return -1;
     return matchesForToken[matchIndex];
-  }
-
-  PangeaMatch? getTopMatchForToken(PangeaToken token) {
-    final int topMatchIndex = getTopMatchIndexForOffset(token.text.offset);
-    if (topMatchIndex == -1) return null;
-    return matches[topMatchIndex];
-  }
-
-  int getAfterTokenSpacingByIndex(int tokenIndex) {
-    final int endOfToken = tokens[tokenIndex].end;
-
-    if (tokenIndex + 1 < tokens.length) {
-      final spaceBetween = tokens[tokenIndex + 1].text.offset - endOfToken;
-
-      if (spaceBetween < 0) {
-        ErrorHandler.logError(
-          m: "weird token lengths for ${tokens[tokenIndex].text.content} and ${tokens[tokenIndex + 1].text.content}",
-          data: {
-            "fullText": originalInput,
-            "tokens": tokens.map((e) => e.toJson()).toString(),
-          },
-        );
-        return 0;
-      }
-      return spaceBetween;
-    } else {
-      return originalInput.length - endOfToken;
-    }
   }
 
   static TextStyle underlineStyle(Color color) => TextStyle(
@@ -458,20 +279,5 @@ class IGCTextData {
     }
 
     return items;
-  }
-
-  List<PangeaToken> matchTokens(int matchIndex) {
-    if (matchIndex >= matches.length) {
-      return [];
-    }
-
-    final PangeaMatch match = matches[matchIndex];
-    final List<PangeaToken> tokensForMatch = [];
-    for (final token in tokens) {
-      if (match.isOffsetInMatchSpan(token.text.offset)) {
-        tokensForMatch.add(token);
-      }
-    }
-    return tokensForMatch;
   }
 }

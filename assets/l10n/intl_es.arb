@@ -5191,7 +5191,6 @@
   "enterCodeToJoin": "Ingrese el código para unirse",
   "updateLater": "Más tarde",
   "constructUseWaDesc": "Usado sin ayuda",
-  "constructUseGaDesc": "Error gramatical",
   "constructUseUnkDesc": "Desconocido",
   "constructUseCorITDesc": "Correcto en la traducción",
   "constructUseIgnITDesc": "Ignorado en la traducción",

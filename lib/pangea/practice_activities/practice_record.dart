@@ -220,35 +220,41 @@ class ActivityRecordResponse {
       case ActivityTypeEnum.wordFocusListening:
       case ActivityTypeEnum.lemmaId:
         final token = practiceActivity.targetTokens.first;
+        final constructUseType = useType(practiceActivity.activityType);
         return [
           OneConstructUse(
             lemma: token.lemma.text,
             form: token.text.content,
             constructType: ConstructTypeEnum.vocab,
-            useType: useType(practiceActivity.activityType),
+            useType: constructUseType,
             metadata: metadata,
             category: token.pos,
+            xp: constructUseType.pointValue,
           ),
         ];
       case ActivityTypeEnum.messageMeaning:
+        final constructUseType = useType(practiceActivity.activityType);
         return practiceActivity.targetTokens
             .expand(
               (t) => t.allUses(
-                useType(practiceActivity.activityType),
+                constructUseType,
                 metadata,
+                constructUseType.pointValue,
               ),
             )
             .toList();
       case ActivityTypeEnum.hiddenWordListening:
+        final constructUseType = useType(practiceActivity.activityType);
         return practiceActivity.targetTokens
             .map(
               (token) => OneConstructUse(
                 lemma: token.lemma.text,
                 form: token.text.content,
                 constructType: ConstructTypeEnum.vocab,
-                useType: useType(practiceActivity.activityType),
+                useType: constructUseType,
                 metadata: metadata,
                 category: token.pos,
+                xp: constructUseType.pointValue,
               ),
             )
             .toList();
@@ -273,13 +279,15 @@ class ActivityRecordResponse {
                   );
                   return null;
                 }
+                final constructUseType = useType(practiceActivity.activityType);
                 return OneConstructUse(
                   lemma: tag,
                   form: practiceActivity.targetTokens.first.text.content,
                   constructType: ConstructTypeEnum.morph,
-                  useType: useType(practiceActivity.activityType),
+                  useType: constructUseType,
                   metadata: metadata,
                   category: practiceActivity.morphFeature!,
+                  xp: constructUseType.pointValue,
                 );
               },
             )

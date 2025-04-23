@@ -6,14 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pangea/analytics_misc/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/bot/utils/bot_style.dart';
 import 'package:fluffychat/pangea/choreographer/enums/span_data_type.dart';
 import 'package:fluffychat/pangea/choreographer/models/span_data.dart';
 import 'package:fluffychat/pangea/choreographer/utils/match_copy.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/igc/card_error_widget.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
-import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
 import '../../../../widgets/matrix.dart';
 import '../../../bot/widgets/bot_face_svg.dart';
@@ -153,18 +151,6 @@ class SpanCardState extends State<SpanCard> {
   Future<void> onChoiceSelect(int index) async {
     selectedChoiceIndex = index;
     if (selectedChoice != null) {
-      if (!selectedChoice!.selected) {
-        MatrixState.pangeaController.putAnalytics.addDraftUses(
-          selectedChoice!.tokens,
-          widget.roomId,
-          selectedChoice!.isBestCorrection
-              ? ConstructUseTypeEnum.corIGC
-              : ConstructUseTypeEnum.incIGC,
-          targetID:
-              "${selectedChoice!.value}${widget.scm.pangeaMatch?.hashCode.toString()}",
-        );
-      }
-
       selectedChoice!.timestamp = DateTime.now();
       selectedChoice!.selected = true;
       setState(
@@ -175,28 +161,7 @@ class SpanCardState extends State<SpanCard> {
     }
   }
 
-  /// Returns the list of distractor choices that are not selected
-  List<SpanChoice>? get ignoredMatches => widget.scm.pangeaMatch?.match.choices
-      ?.where((choice) => choice.isDistractor && !choice.selected)
-      .toList();
-
-  /// Returns the list of tokens from choices that are not selected
-  List<PangeaToken>? get ignoredTokens => ignoredMatches
-      ?.expand((choice) => choice.tokens)
-      .toList()
-      .cast<PangeaToken>();
-
-  /// Adds the ignored tokens to locally cached analytics
-  void addIgnoredTokenUses() {
-    MatrixState.pangeaController.putAnalytics.addDraftUses(
-      ignoredTokens ?? [],
-      widget.roomId,
-      ConstructUseTypeEnum.ignIGC,
-    );
-  }
-
   Future<void> onReplaceSelected() async {
-    addIgnoredTokenUses();
     await widget.scm.onReplacementSelect(
       matchIndex: widget.scm.matchIndex,
       choiceIndex: selectedChoiceIndex!,
@@ -205,8 +170,6 @@ class SpanCardState extends State<SpanCard> {
   }
 
   void onIgnoreMatch() {
-    addIgnoredTokenUses();
-
     Future.delayed(
       Duration.zero,
       () {

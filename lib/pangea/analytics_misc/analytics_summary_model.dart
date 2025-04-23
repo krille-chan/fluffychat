@@ -124,7 +124,7 @@ class AnalyticsSummaryModel {
             use.useType != ConstructUseTypeEnum.wa &&
             use.useType != ConstructUseTypeEnum.ga &&
             use.useType != ConstructUseTypeEnum.unk &&
-            use.pointValue != 0,
+            use.xp != 0,
         percent: 0.8,
         context: context,
       );

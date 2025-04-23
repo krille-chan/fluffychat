@@ -155,7 +155,7 @@ class LevelBarPopup extends StatelessWidget {
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     Text(
-                                      "${use.pointValue > 0 ? '+' : ''}${use.pointValue}",
+                                      "${use.xp > 0 ? '+' : ''}${use.xp}",
                                       style: TextStyle(
                                         fontWeight: FontWeight.w900,
                                         fontSize: 14,

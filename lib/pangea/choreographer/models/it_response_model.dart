@@ -4,8 +4,6 @@ import 'package:collection/collection.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import 'package:fluffychat/pangea/choreographer/constants/choreo_constants.dart';
-import 'package:fluffychat/pangea/common/constants/model_keys.dart';
-import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 
 class ITResponseModel {
   String fullTextTranslation;
@@ -80,7 +78,7 @@ class Continuance {
   double probability;
   int level;
   String text;
-  List<PangeaToken> tokens;
+  // List<PangeaToken> tokens;
 
   /// saving this in a full json form
   String description;
@@ -100,18 +98,18 @@ class Continuance {
     required this.inDictionary,
     required this.hasInfo,
     required this.gold,
-    required this.tokens,
+    // required this.tokens,
   });
 
   factory Continuance.fromJson(Map<String, dynamic> json) {
-    final List<PangeaToken> tokensInternal = (json[ModelKey.tokens] != null)
-        ? (json[ModelKey.tokens] as Iterable)
-            .map<PangeaToken>(
-              (e) => PangeaToken.fromJson(e as Map<String, dynamic>),
-            )
-            .toList()
-            .cast<PangeaToken>()
-        : [];
+    // final List<PangeaToken> tokensInternal = (json[ModelKey.tokens] != null)
+    //     ? (json[ModelKey.tokens] as Iterable)
+    //         .map<PangeaToken>(
+    //           (e) => PangeaToken.fromJson(e as Map<String, dynamic>),
+    //         )
+    //         .toList()
+    //         .cast<PangeaToken>()
+    //     : [];
     return Continuance(
       probability: json['probability'].toDouble(),
       level: json['level'],
@@ -122,7 +120,7 @@ class Continuance {
       wasClicked: json['clkd'] ?? false,
       hasInfo: json['has_info'] ?? false,
       gold: json['gold'] ?? false,
-      tokens: tokensInternal,
+      // tokens: tokensInternal,
     );
   }
 
@@ -132,7 +130,7 @@ class Continuance {
     data['level'] = level;
     data['text'] = text;
     data['clkd'] = wasClicked;
-    data[ModelKey.tokens] = tokens.map((e) => e.toJson()).toList();
+    // data[ModelKey.tokens] = tokens.map((e) => e.toJson()).toList();
 
     if (!condensed) {
       data['description'] = description;

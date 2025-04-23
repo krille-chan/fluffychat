@@ -8,6 +8,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
+import 'package:fluffychat/pangea/analytics_misc/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/constructs_model.dart';
 import 'package:fluffychat/pangea/analytics_misc/put_analytics_controller.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
@@ -103,13 +104,15 @@ class PracticeActivityModel {
     //   "onMultipleChoiceSelect: ${choice.form} ${responseUseType(choice)}",
     // );
 
+    final constructUseType =
+        practiceTarget.record.responses.last.useType(activityType);
     MatrixState.pangeaController.putAnalytics.setState(
       AnalyticsStream(
         eventId: event?.eventId,
         roomId: event?.room.id,
         constructs: [
           OneConstructUse(
-            useType: practiceTarget.record.responses.last.useType(activityType),
+            useType: constructUseType,
             lemma: choice.form.cId.lemma,
             constructType: choice.form.cId.type,
             metadata: ConstructUseMetaData(
@@ -119,6 +122,7 @@ class PracticeActivityModel {
             ),
             category: choice.form.cId.category,
             form: choice.form.form,
+            xp: constructUseType.pointValue,
           ),
         ],
         targetID: targetTokens.first.text.uniqueKey,
@@ -179,14 +183,15 @@ class PracticeActivityModel {
 
     // we don't take off points for incorrect emoji matches
     if (ActivityTypeEnum.emoji != activityType || isCorrect) {
+      final constructUseType =
+          practiceTarget.record.responses.last.useType(activityType);
       MatrixState.pangeaController.putAnalytics.setState(
         AnalyticsStream(
           eventId: event?.eventId,
           roomId: event?.room.id,
           constructs: [
             OneConstructUse(
-              useType:
-                  practiceTarget.record.responses.last.useType(activityType),
+              useType: constructUseType,
               lemma: token.lemma.text,
               constructType: ConstructTypeEnum.vocab,
               metadata: ConstructUseMetaData(
@@ -197,6 +202,7 @@ class PracticeActivityModel {
               category: token.pos,
               // in the case of a wrong answer, the cId doesn't match the token
               form: token.text.content,
+              xp: constructUseType.pointValue,
             ),
           ],
           targetID: token.text.uniqueKey,

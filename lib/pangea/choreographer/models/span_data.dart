@@ -8,8 +8,6 @@ import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
 
-import 'package:fluffychat/pangea/common/constants/model_keys.dart';
-import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import '../enums/span_choice_type.dart';
 import '../enums/span_data_type.dart';
 
@@ -75,7 +73,7 @@ class SpanChoice {
   bool selected;
   String? feedback;
   DateTime? timestamp;
-  List<PangeaToken> tokens;
+  // List<PangeaToken> tokens;
 
   SpanChoice({
     required this.value,
@@ -83,18 +81,18 @@ class SpanChoice {
     this.feedback,
     this.selected = false,
     this.timestamp,
-    this.tokens = const [],
+    // this.tokens = const [],
   });
 
   factory SpanChoice.fromJson(Map<String, dynamic> json) {
-    final List<PangeaToken> tokensInternal = (json[ModelKey.tokens] != null)
-        ? (json[ModelKey.tokens] as Iterable)
-            .map<PangeaToken>(
-              (e) => PangeaToken.fromJson(e as Map<String, dynamic>),
-            )
-            .toList()
-            .cast<PangeaToken>()
-        : [];
+    // final List<PangeaToken> tokensInternal = (json[ModelKey.tokens] != null)
+    //     ? (json[ModelKey.tokens] as Iterable)
+    //         .map<PangeaToken>(
+    //           (e) => PangeaToken.fromJson(e as Map<String, dynamic>),
+    //         )
+    //         .toList()
+    //         .cast<PangeaToken>()
+    //     : [];
     return SpanChoice(
       value: json['value'] as String,
       type: json['type'] != null
@@ -107,7 +105,7 @@ class SpanChoice {
       selected: json['selected'] ?? false,
       timestamp:
           json['timestamp'] != null ? DateTime.parse(json['timestamp']) : null,
-      tokens: tokensInternal,
+      // tokens: tokensInternal,
     );
   }
 
@@ -117,7 +115,7 @@ class SpanChoice {
         'selected': selected,
         'feedback': feedback,
         'timestamp': timestamp?.toIso8601String(),
-        'tokens': tokens.map((e) => e.toJson()).toList(),
+        // 'tokens': tokens.map((e) => e.toJson()).toList(),
       };
 
   String feedbackToDisplay(BuildContext context) {

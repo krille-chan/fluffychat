@@ -12,7 +12,6 @@ import 'package:fluffychat/pangea/common/constants/local.key.dart';
 import 'package:fluffychat/pangea/common/controllers/base_controller.dart';
 import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
-import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -122,17 +121,17 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
     final String? eventID = data.eventId;
     final String? roomID = data.roomId;
 
-    List<OneConstructUse> constructs = [];
-    if (roomID != null) {
-      constructs = _getDraftUses(roomID);
-    }
+    final List<OneConstructUse> constructs = [];
+    // if (roomID != null) {
+    //   constructs = _getDraftUses(roomID);
+    // }
 
     constructs.addAll(data.constructs);
 
     if (kDebugMode) {
       for (final use in constructs) {
         debugPrint(
-          "_onNewAnalyticsData filtered use: ${use.constructType.string} ${use.useType.string} ${use.lemma} ${use.useType.pointValue}",
+          "_onNewAnalyticsData filtered use: ${use.constructType.string} ${use.useType.string} ${use.lemma} ${use.xp}",
         );
       }
     }
@@ -161,87 +160,87 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
     });
   }
 
-  void addDraftUses(
-    List<PangeaToken> tokens,
-    String roomID,
-    ConstructUseTypeEnum useType, {
-    String? targetID,
-  }) {
-    final metadata = ConstructUseMetaData(
-      roomId: roomID,
-      timeStamp: DateTime.now(),
-    );
+  // void addDraftUses(
+  //   List<PangeaToken> tokens,
+  //   String roomID,
+  //   ConstructUseTypeEnum useType, {
+  //   String? targetID,
+  // }) {
+  //   final metadata = ConstructUseMetaData(
+  //     roomId: roomID,
+  //     timeStamp: DateTime.now(),
+  //   );
 
-    // we only save those with saveVocab == true
-    final tokensToSave =
-        tokens.where((token) => token.lemma.saveVocab).toList();
+  //   // we only save those with saveVocab == true
+  //   final tokensToSave =
+  //       tokens.where((token) => token.lemma.saveVocab).toList();
 
-    // get all our vocab constructs
-    final uses = tokensToSave
-        .map(
-          (token) => OneConstructUse(
-            useType: useType,
-            lemma: token.lemma.text,
-            form: token.text.content,
-            constructType: ConstructTypeEnum.vocab,
-            metadata: metadata,
-            category: token.pos,
-          ),
-        )
-        .toList();
+  //   // get all our vocab constructs
+  //   final uses = tokensToSave
+  //       .map(
+  //         (token) => OneConstructUse(
+  //           useType: useType,
+  //           lemma: token.lemma.text,
+  //           form: token.text.content,
+  //           constructType: ConstructTypeEnum.vocab,
+  //           metadata: metadata,
+  //           category: token.pos,
+  //         ),
+  //       )
+  //       .toList();
 
-    // get all our grammar constructs
-    for (final token in tokensToSave) {
-      uses.add(
-        OneConstructUse(
-          useType: useType,
-          lemma: token.pos,
-          form: token.text.content,
-          category: "POS",
-          constructType: ConstructTypeEnum.morph,
-          metadata: metadata,
-        ),
-      );
-      for (final entry in token.morph.entries) {
-        uses.add(
-          OneConstructUse(
-            useType: useType,
-            lemma: entry.value,
-            form: token.text.content,
-            category: entry.key,
-            constructType: ConstructTypeEnum.morph,
-            metadata: metadata,
-          ),
-        );
-      }
-    }
+  //   // get all our grammar constructs
+  //   for (final token in tokensToSave) {
+  //     uses.add(
+  //       OneConstructUse(
+  //         useType: useType,
+  //         lemma: token.pos,
+  //         form: token.text.content,
+  //         category: "POS",
+  //         constructType: ConstructTypeEnum.morph,
+  //         metadata: metadata,
+  //       ),
+  //     );
+  //     for (final entry in token.morph.entries) {
+  //       uses.add(
+  //         OneConstructUse(
+  //           useType: useType,
+  //           lemma: entry.value,
+  //           form: token.text.content,
+  //           category: entry.key,
+  //           constructType: ConstructTypeEnum.morph,
+  //           metadata: metadata,
+  //         ),
+  //       );
+  //     }
+  //   }
 
-    if (kDebugMode) {
-      for (final use in uses) {
-        debugPrint(
-          "Draft use: ${use.constructType.string} ${use.useType.string} ${use.lemma} ${use.useType.pointValue}",
-        );
-      }
-    }
+  //   if (kDebugMode) {
+  //     for (final use in uses) {
+  //       debugPrint(
+  //         "Draft use: ${use.constructType.string} ${use.useType.string} ${use.lemma} ${use.useType.pointValue}",
+  //       );
+  //     }
+  //   }
 
-    final level = _pangeaController.getAnalytics.constructListModel.level;
+  //   final level = _pangeaController.getAnalytics.constructListModel.level;
 
-    // the list 'uses' gets altered in the _addLocalMessage method,
-    // so copy it here to that the list of new uses is accurate
-    final List<OneConstructUse> newUses = List.from(uses);
-    _addLocalMessage('draft$roomID', uses).then(
-      (_) => _decideWhetherToUpdateAnalyticsRoom(
-        level,
-        targetID,
-        newUses,
-      ),
-    );
-  }
+  //   // the list 'uses' gets altered in the _addLocalMessage method,
+  //   // so copy it here to that the list of new uses is accurate
+  //   final List<OneConstructUse> newUses = List.from(uses);
+  //   _addLocalMessage('draft$roomID', uses).then(
+  //     (_) => _decideWhetherToUpdateAnalyticsRoom(
+  //       level,
+  //       targetID,
+  //       newUses,
+  //     ),
+  //   );
+  // }
 
-  List<OneConstructUse> _getDraftUses(String roomID) {
-    final currentCache = _pangeaController.getAnalytics.messagesSinceUpdate;
-    return currentCache['draft$roomID'] ?? [];
-  }
+  // List<OneConstructUse> _getDraftUses(String roomID) {
+  //   final currentCache = _pangeaController.getAnalytics.messagesSinceUpdate;
+  //   return currentCache['draft$roomID'] ?? [];
+  // }
 
   void _clearDraftUses(String roomID) {
     final currentCache = _pangeaController.getAnalytics.messagesSinceUpdate;

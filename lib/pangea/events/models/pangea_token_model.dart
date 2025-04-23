@@ -189,6 +189,7 @@ class PangeaToken {
   OneConstructUse toVocabUse(
     ConstructUseTypeEnum type,
     ConstructUseMetaData metadata,
+    int xp,
   ) {
     return OneConstructUse(
       useType: type,
@@ -197,17 +198,19 @@ class PangeaToken {
       constructType: ConstructTypeEnum.vocab,
       metadata: metadata,
       category: pos,
+      xp: xp,
     );
   }
 
   List<OneConstructUse> allUses(
     ConstructUseTypeEnum type,
     ConstructUseMetaData metadata,
+    int xp,
   ) {
     final List<OneConstructUse> uses = [];
     if (!lemma.saveVocab) return uses;
 
-    uses.add(toVocabUse(type, metadata));
+    uses.add(toVocabUse(type, metadata, xp));
     for (final morphFeature in morph.keys) {
       uses.add(
         OneConstructUse(
@@ -217,6 +220,7 @@ class PangeaToken {
           constructType: ConstructTypeEnum.morph,
           metadata: metadata,
           category: morphFeature,
+          xp: xp,
         ),
       );
     }

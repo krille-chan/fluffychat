@@ -354,7 +354,7 @@ class LemmasToUsesWrapper {
       final uses = entry.value.toList();
 
       for (final use in uses) {
-        use.pointValue > 0 ? correctUses.add(use) : incorrectUses.add(use);
+        use.xp > 0 ? correctUses.add(use) : incorrectUses.add(use);
       }
 
       final totalUses = correctUses.length + incorrectUses.length;

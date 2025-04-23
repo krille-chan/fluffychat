@@ -24,7 +24,7 @@ class ConstructUses {
   int get points {
     return uses.fold<int>(
       0,
-      (total, use) => total + use.useType.pointValue,
+      (total, use) => total + use.xp,
     );
   }
 
@@ -46,8 +46,8 @@ class ConstructUses {
     return _category!.toLowerCase();
   }
 
-  bool get hasCorrectUse => uses.any((use) => use.pointValue > 0);
-  bool get hasIncorrectUse => uses.any((use) => use.pointValue < 0);
+  bool get hasCorrectUse => uses.any((use) => use.xp > 0);
+  bool get hasIncorrectUse => uses.any((use) => use.xp < 0);
 
   ConstructIdentifier get id => ConstructIdentifier(
         lemma: lemma,

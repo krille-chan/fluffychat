@@ -1,6 +1,9 @@
 import 'dart:developer';
 
+import 'package:flutter/foundation.dart';
+
 import 'package:collection/collection.dart';
+
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/learning_settings/constants/language_constants.dart';
 import 'package:fluffychat/pangea/lemmas/lemma_info_response.dart';
@@ -9,7 +12,6 @@ import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_selection_repo.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_target.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/foundation.dart';
 
 class PracticeSelection {
   late String _userL2;
@@ -41,8 +43,6 @@ class PracticeSelection {
   bool get eligibleForPractice =>
       _tokens.any((t) => t.lemma.saveVocab) &&
       langCode.split("-")[0] == _userL2.split("-")[0];
-
-  String get messageText => PangeaToken.reconstructText(tokens);
 
   Map<String, dynamic> toJson() => {
         'createdAt': createdAt.toIso8601String(),

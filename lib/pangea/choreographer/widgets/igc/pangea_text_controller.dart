@@ -72,15 +72,6 @@ class PangeaTextController extends TextEditingController {
       return;
     }
 
-    int tokenIndex;
-    try {
-      tokenIndex = choreographer.igc.igcTextData!.tokenIndexByOffset(
-        selection.baseOffset,
-      );
-    } catch (_) {
-      return;
-    }
-
     final int matchIndex =
         choreographer.igc.igcTextData!.getTopMatchIndexForOffset(
       selection.baseOffset,
@@ -102,9 +93,7 @@ class PangeaTextController extends TextEditingController {
               matchIndex: matchIndex,
               onReplacementSelect: choreographer.onReplacementSelect,
               // may not need this
-              onSentenceRewrite: ((sentenceRewrite) async {
-                debugPrint("onSentenceRewrite $tokenIndex $sentenceRewrite");
-              }),
+              onSentenceRewrite: ((sentenceRewrite) async {}),
               onIgnore: () => choreographer.onIgnoreMatch(
                 cursorOffset: selection.baseOffset,
               ),
