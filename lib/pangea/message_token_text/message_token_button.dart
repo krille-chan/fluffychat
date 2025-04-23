@@ -65,13 +65,11 @@ class MessageTokenButtonState extends State<MessageTokenButton>
   @override
   void initState() {
     super.initState();
-    _setSelected();
 
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(
         milliseconds: AppConfig.overlayAnimationDuration,
-        // seconds: 5,
       ),
     );
 
@@ -92,6 +90,8 @@ class MessageTokenButtonState extends State<MessageTokenButton>
     ).animate(
       CurvedAnimation(parent: _iconSizeController, curve: Curves.easeInOut),
     );
+
+    _setSelected(); // Call _setSelected after initializing _iconSizeController
 
     _wasEmpty = _isEmpty;
 
