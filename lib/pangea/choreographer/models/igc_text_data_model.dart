@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
@@ -8,8 +9,10 @@ import 'package:collection/collection.dart';
 import 'package:fluffychat/pangea/choreographer/models/choreo_record.dart';
 import 'package:fluffychat/pangea/choreographer/models/pangea_match_model.dart';
 import 'package:fluffychat/pangea/choreographer/models/span_data.dart';
+import 'package:fluffychat/pangea/choreographer/widgets/igc/autocorrect_popup.dart';
 import 'package:fluffychat/pangea/common/constants/model_keys.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
+import 'package:fluffychat/pangea/common/utils/overlay.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_representation_event.dart';
 import 'package:fluffychat/pangea/events/models/representation_content_model.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -142,6 +145,55 @@ class IGCTextData {
     }
   }
 
+  void undoReplacement(PangeaMatch match) async {
+    if (match.match.choices == null) {
+      debugger(when: kDebugMode);
+      ErrorHandler.logError(
+        m: "pangeaMatch.match.choices is null in undoReplacement",
+        data: {
+          "match": match.match.toJson(),
+        },
+      );
+      return;
+    }
+
+    if (!match.match.choices!.any((c) => c.isBestCorrection)) {
+      debugger(when: kDebugMode);
+      ErrorHandler.logError(
+        m: "pangeaMatch.match.choices has no best correction in undoReplacement",
+        data: {
+          "match": match.match.toJson(),
+        },
+      );
+      return;
+    }
+
+    final bestCorrection =
+        match.match.choices!.firstWhere((c) => c.isBestCorrection).value;
+
+    final String replacement = match.match.fullText.characters
+        .getRange(
+          match.match.offset,
+          match.match.offset + match.match.length,
+        )
+        .toString();
+
+    final newStart = originalInput.characters.take(match.match.offset);
+    final newEnd = originalInput.characters.skip(
+      match.match.offset + bestCorrection.characters.length,
+    );
+    final fullText = newStart + replacement.characters + newEnd;
+    originalInput = fullText.toString();
+
+    for (final remainingMatch in matches) {
+      remainingMatch.match.fullText = originalInput;
+      if (remainingMatch.match.offset > match.match.offset) {
+        remainingMatch.match.offset +=
+            match.match.length - bestCorrection.characters.length;
+      }
+    }
+  }
+
   List<int> matchIndicesByOffset(int offset) {
     final List<int> matchesForOffset = [];
     for (final (index, match) in matches.indexed) {
@@ -198,17 +250,25 @@ class IGCTextData {
   //PTODO - handle multitoken spans
   /// Returns a list of [TextSpan]s used to display the text in the input field
   /// with the appropriate styling for each error match.
-  List<TextSpan> constructTokenSpan({
-    ChoreoRecordStep? choreoStep,
+  List<InlineSpan> constructTokenSpan({
+    required List<ChoreoRecordStep> choreoSteps,
+    void Function(PangeaMatch)? onUndo,
     TextStyle? defaultStyle,
   }) {
-    final stepMatch = choreoStep?.acceptedOrIgnoredMatch;
-    final List<PangeaMatch> textSpanMatches = List.from(matches);
-    if (stepMatch != null && stepMatch.status == PangeaMatchStatus.automatic) {
-      textSpanMatches.add(stepMatch);
-    }
+    final automaticMatches = choreoSteps
+        .where(
+          (step) =>
+              step.acceptedOrIgnoredMatch?.status ==
+              PangeaMatchStatus.automatic,
+        )
+        .map((step) => step.acceptedOrIgnoredMatch)
+        .whereType<PangeaMatch>()
+        .toList();
 
-    final List<TextSpan> items = [];
+    final List<PangeaMatch> textSpanMatches = List.from(matches);
+    textSpanMatches.addAll(automaticMatches);
+
+    final List<InlineSpan> items = [];
 
     if (loading) {
       return [
@@ -243,19 +303,83 @@ class IGCTextData {
         // if the pointer is in a match, then add that match to items
         // and then move the pointer to the end of the match range
         final PangeaMatch match = textSpanMatches[matchIndex];
-        items.add(
-          getSpanItem(
-            start: match.match.offset,
-            end: match.match.offset + match.match.length,
-            style: match.textStyle(
-              matchIndex,
-              _openMatchIndex,
-              defaultStyle,
-            ),
-          ),
+        final style = match.textStyle(
+          matchIndex,
+          _openMatchIndex,
+          defaultStyle,
         );
+        if (match.status == PangeaMatchStatus.automatic) {
+          final span = originalInput.characters
+              .getRange(
+                match.match.offset,
+                match.match.offset +
+                    (match.match.choices
+                            ?.firstWhere((c) => c.isBestCorrection)
+                            .value
+                            .characters
+                            .length ??
+                        match.match.length),
+              )
+              .toString();
 
-        currentIndex = match.match.offset + match.match.length;
+          final originalText = match.match.fullText.characters
+              .getRange(
+                match.match.offset,
+                match.match.offset + match.match.length,
+              )
+              .toString();
+
+          items.add(
+            WidgetSpan(
+              alignment: PlaceholderAlignment.middle,
+              child: CompositedTransformTarget(
+                link: MatrixState.pAnyState
+                    .layerLinkAndKey("autocorrection_$matchIndex")
+                    .link,
+                child: Builder(
+                  builder: (context) {
+                    return RichText(
+                      key: MatrixState.pAnyState
+                          .layerLinkAndKey("autocorrection_$matchIndex")
+                          .key,
+                      text: TextSpan(
+                        text: span,
+                        style: style,
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            OverlayUtil.showOverlay(
+                              context: context,
+                              child: AutocorrectPopup(
+                                originalText: originalText,
+                                onUndo: () => onUndo?.call(match),
+                              ),
+                              transformTargetId: "autocorrection_$matchIndex",
+                            );
+                          },
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ),
+          );
+
+          currentIndex = match.match.offset +
+              (match.match.choices
+                      ?.firstWhere((c) => c.isBestCorrection)
+                      .value
+                      .length ??
+                  match.match.length);
+        } else {
+          items.add(
+            getSpanItem(
+              start: match.match.offset,
+              end: match.match.offset + match.match.length,
+              style: style,
+            ),
+          );
+          currentIndex = match.match.offset + match.match.length;
+        }
       } else {
         // otherwise, if the pointer is not at a match, then add all the text
         // until the next match (or, if there is not next match, the end of the

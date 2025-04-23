@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:fluffychat/pangea/choreographer/models/igc_text_data_model.dart';
+import 'package:fluffychat/pangea/choreographer/models/pangea_match_model.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/igc/paywall_card.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/igc/span_card.dart';
 import 'package:fluffychat/pangea/subscription/controllers/subscription_controller.dart';
@@ -175,8 +176,13 @@ class PangeaTextController extends TextEditingController {
         style: style,
         children: [
           ...choreographer.igc.igcTextData!.constructTokenSpan(
-            choreoStep: choreoSteps.isNotEmpty ? choreoSteps.last : null,
+            choreoSteps: choreoSteps.isNotEmpty &&
+                    choreoSteps.last.acceptedOrIgnoredMatch?.status ==
+                        PangeaMatchStatus.automatic
+                ? choreoSteps
+                : [],
             defaultStyle: style,
+            onUndo: choreographer.onUndoReplacement,
           ),
           TextSpan(text: parts[1], style: style),
         ],

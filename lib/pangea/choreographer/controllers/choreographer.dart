@@ -425,6 +425,33 @@ class Choreographer {
     }
   }
 
+  void onUndoReplacement(PangeaMatch match) {
+    try {
+      igc.igcTextData?.undoReplacement(match);
+
+      choreoRecord.choreoSteps.removeWhere(
+        (step) => step.acceptedOrIgnoredMatch == match,
+      );
+
+      _textController.setSystemText(
+        igc.igcTextData!.originalInput,
+        EditType.igc,
+      );
+    } catch (e, s) {
+      ErrorHandler.logError(
+        e: e,
+        s: s,
+        data: {
+          "igctextData": igc.igcTextData?.toJson(),
+          "match": match.toJson(),
+        },
+      );
+    } finally {
+      MatrixState.pAnyState.closeOverlay();
+      setState();
+    }
+  }
+
   void acceptNormalizationMatches() {
     for (int i = 0; i < igc.igcTextData!.matches.length; i++) {
       final isNormalizationError =
