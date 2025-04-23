@@ -30,7 +30,7 @@
 - chore: Use Cupertino Activity Indicator in ChatEventList (krille-chan)
 - chore: Use other join endpoint for room upgrades (Krille)
 - fix(macos): update dependencies to make the build work (Rafał Hirsch)
-- fix: Add missing <s> html tag to render (Krille)
+- fix: Add missing \<s> html tag to render (Krille)
 - fix: Consistent element padding between server picker and login view (xegim)
 - fix: Index of numbered lists are off (Krille)
 - fix: never use a transition on the shell route (Rafał Hirsch)
