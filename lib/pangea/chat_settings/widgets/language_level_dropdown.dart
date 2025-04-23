@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-import 'package:fluffychat/pangea/chat_settings/utils/language_level_copy.dart';
 import 'package:fluffychat/pangea/common/widgets/dropdown_text_button.dart';
 import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_enum.dart';
 
@@ -26,21 +25,22 @@ class LanguageLevelDropdown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = L10n.of(context);
+
     return DropdownButtonFormField2<LanguageLevelTypeEnum>(
       customButton: initialLevel != null &&
               LanguageLevelTypeEnum.values.contains(initialLevel)
-          ? CustomDropdownTextButton(
-              text: LanguageLevelTextPicker.languageLevelText(
-                context,
-                initialLevel!,
-              ),
-            )
+          ? CustomDropdownTextButton(text: initialLevel!.title(context))
           : null,
       menuItemStyleData: const MenuItemStyleData(
-        padding: EdgeInsets.zero, // Remove default padding
+        padding: EdgeInsets.symmetric(
+          vertical: 8.0,
+          horizontal: 16.0,
+        ),
+        height: 100.0,
       ),
       decoration: InputDecoration(
-        labelText: L10n.of(context).cefrLevelLabel,
+        labelText: l10n.cefrLevelLabel,
       ),
       isExpanded: true,
       dropdownStyleData: DropdownStyleData(
@@ -48,23 +48,38 @@ class LanguageLevelDropdown extends StatelessWidget {
         decoration: BoxDecoration(
           color: backgroundColor ??
               Theme.of(context).colorScheme.surfaceContainerHigh,
+          borderRadius: BorderRadius.circular(14.0),
         ),
       ),
       items:
           LanguageLevelTypeEnum.values.map((LanguageLevelTypeEnum levelOption) {
         return DropdownMenuItem(
           value: levelOption,
-          child: DropdownTextButton(
-            text: LanguageLevelTextPicker.languageLevelText(
-              context,
-              levelOption,
-            ),
-            isSelected: initialLevel == levelOption,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(levelOption.title(context)),
+              Flexible(
+                child: Text(
+                  levelOption.description(context),
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    fontSize: 14,
+                  ),
+                  maxLines: 5,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ],
           ),
         );
       }).toList(),
       onChanged: enabled
-          ? (value) => onChanged?.call(value as LanguageLevelTypeEnum)
+          ? (value) {
+              if (value != null) onChanged?.call(value);
+            }
           : null,
       value: initialLevel,
       validator: validator,

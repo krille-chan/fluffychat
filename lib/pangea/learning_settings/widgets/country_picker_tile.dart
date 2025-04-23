@@ -53,7 +53,7 @@ class CountryPickerDropdownState extends State<CountryPickerDropdown> {
       dropdownStyleData: DropdownStyleData(
         maxHeight: kIsWeb ? 500 : null,
         decoration: BoxDecoration(
-          // borderRadius: BorderRadius.circular(14),
+          borderRadius: BorderRadius.circular(14.0),
           color: Theme.of(context).colorScheme.surfaceContainerHigh,
         ),
       ),

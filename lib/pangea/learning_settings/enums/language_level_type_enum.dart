@@ -1,3 +1,7 @@
+import 'package:flutter/material.dart';
+
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+
 enum LanguageLevelTypeEnum { preA1, a1, a2, b1, b2, c1, c2 }
 
 extension LanguageLevelTypeEnumExtension on LanguageLevelTypeEnum {
@@ -82,6 +86,46 @@ extension LanguageLevelTypeEnumExtension on LanguageLevelTypeEnum {
         return LanguageLevelTypeEnum.c2;
       default:
         return LanguageLevelTypeEnum.a1;
+    }
+  }
+
+  String title(BuildContext context) {
+    final L10n copy = L10n.of(context);
+    switch (this) {
+      case LanguageLevelTypeEnum.preA1:
+        return copy.languageLevelPreA1;
+      case LanguageLevelTypeEnum.a1:
+        return copy.languageLevelA1;
+      case LanguageLevelTypeEnum.a2:
+        return copy.languageLevelA2;
+      case LanguageLevelTypeEnum.b1:
+        return copy.languageLevelB1;
+      case LanguageLevelTypeEnum.b2:
+        return copy.languageLevelB2;
+      case LanguageLevelTypeEnum.c1:
+        return copy.languageLevelC1;
+      case LanguageLevelTypeEnum.c2:
+        return copy.languageLevelC2;
+    }
+  }
+
+  String description(BuildContext context) {
+    final L10n copy = L10n.of(context);
+    switch (this) {
+      case LanguageLevelTypeEnum.preA1:
+        return copy.languageLevelPreA1Desc;
+      case LanguageLevelTypeEnum.a1:
+        return copy.languageLevelA1Desc;
+      case LanguageLevelTypeEnum.a2:
+        return copy.languageLevelA2Desc;
+      case LanguageLevelTypeEnum.b1:
+        return copy.languageLevelB1Desc;
+      case LanguageLevelTypeEnum.b2:
+        return copy.languageLevelB2Desc;
+      case LanguageLevelTypeEnum.c1:
+        return copy.languageLevelC1Desc;
+      case LanguageLevelTypeEnum.c2:
+        return copy.languageLevelC2Desc;
     }
   }
 }
