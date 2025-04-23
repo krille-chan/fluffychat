@@ -9,11 +9,13 @@ import 'package:fluffychat/widgets/matrix.dart';
 class PointsGainedAnimation extends StatefulWidget {
   final int points;
   final String targetID;
+  final bool invert;
 
   const PointsGainedAnimation({
     super.key,
     required this.points,
     required this.targetID,
+    this.invert = false,
   });
 
   @override
@@ -26,17 +28,15 @@ class PointsGainedAnimationState extends State<PointsGainedAnimation>
   final Color? loseColor = Colors.red;
 
   AnimationController? _controller;
-  Animation<double>? _offsetAnimation;
   Animation<double>? _fadeAnimation;
-  final List<Animation<double>> _swayAnimation = [];
-  final List<Offset> _initialVelocities = [];
+  Animation<double>? _progressAnimation;
 
+  final List<Offset> _trajectories = [];
   final Random _random = Random();
 
-  static const double _particleSpeed = 50; // Base speed for particles.
-  static const double gravity = 15; // Gravity constant for the animation.
-  static const int duration =
-      2000; // Duration of the animation in milliseconds.
+  static const double _particleSpeed = 50;
+  static const double gravity = 15;
+  static const int duration = 2000;
 
   @override
   void initState() {
@@ -48,7 +48,7 @@ class PointsGainedAnimationState extends State<PointsGainedAnimation>
       vsync: this,
     );
 
-    _offsetAnimation = Tween<double>(
+    _progressAnimation = Tween<double>(
       begin: 0.0,
       end: 3.0,
     ).animate(
@@ -68,40 +68,31 @@ class PointsGainedAnimationState extends State<PointsGainedAnimation>
       ),
     );
 
-    _showPointsGained();
+    initParticleTrajectories();
+    _controller?.forward().then(
+      (_) {
+        if (!mounted) return;
+        MatrixState.pAnyState.closeOverlay("${widget.targetID}_points");
+      },
+    );
   }
 
   void initParticleTrajectories() {
-    _initialVelocities.clear();
     for (int i = 0; i < widget.points.abs(); i++) {
       final angle =
           (i - widget.points.abs() / 2) / widget.points.abs() * (pi / 3) +
               (_random.nextDouble() - 0.5) * pi / 6 +
               pi / 2;
+
       final speedMultiplier =
           0.75 + _random.nextDouble() / 4; // Random speed multiplier.
       final speed = _particleSpeed *
           speedMultiplier *
           (widget.points > 0 ? 2 : 1); // Exponential speed.
-      _initialVelocities.add(Offset(speed * cos(angle), -speed * sin(angle)));
-    }
-  }
-
-  void initSwayAnimations() {
-    if (_controller == null) return;
-    _swayAnimation.clear();
-    initParticleTrajectories();
-
-    for (int i = 0; i < widget.points; i++) {
-      _swayAnimation.add(
-        Tween<double>(
-          begin: 0.0,
-          end: 2 * pi,
-        ).animate(
-          CurvedAnimation(
-            parent: _controller!,
-            curve: Curves.linear,
-          ),
+      _trajectories.add(
+        Offset(
+          speed * cos(angle) * (widget.invert ? -1 : 1),
+          -speed * sin(angle) * (widget.invert ? -1 : 1),
         ),
       );
     }
@@ -113,23 +104,12 @@ class PointsGainedAnimationState extends State<PointsGainedAnimation>
     super.dispose();
   }
 
-  void _showPointsGained() {
-    initSwayAnimations();
-    _controller?.reset();
-    _controller?.forward().then(
-      (_) {
-        if (!mounted) return;
-        MatrixState.pAnyState.closeOverlay("${widget.targetID}_points");
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     if (widget.points == 0 ||
         _controller == null ||
         _fadeAnimation == null ||
-        _offsetAnimation == null) {
+        _progressAnimation == null) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (mounted) {
           MatrixState.pAnyState.closeOverlay("${widget.targetID}_points");
@@ -163,8 +143,8 @@ class PointsGainedAnimationState extends State<PointsGainedAnimation>
               return AnimatedBuilder(
                 animation: _controller!,
                 builder: (context, child) {
-                  final progress = _offsetAnimation!.value;
-                  final trajectory = _initialVelocities[index];
+                  final progress = _progressAnimation!.value;
+                  final trajectory = _trajectories[index];
                   return Transform.translate(
                     offset: Offset(
                       trajectory.dx * progress,
