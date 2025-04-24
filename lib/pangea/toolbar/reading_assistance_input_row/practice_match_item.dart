@@ -21,7 +21,6 @@ class PracticeMatchItem extends StatefulWidget {
     required this.isSelected,
     this.audioContent,
     required this.overlayController,
-    required this.fixedSize,
   });
 
   final Widget content;
@@ -29,7 +28,6 @@ class PracticeMatchItem extends StatefulWidget {
   final PracticeChoice constructForm;
   final String? audioContent;
   final MessageOverlayController overlayController;
-  final double? fixedSize;
   final bool? isCorrect;
   final bool isSelected;
 
@@ -125,25 +123,24 @@ class PracticeMatchItemState extends State<PracticeMatchItem> {
     final content = Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Container(
-          height: widget.fixedSize,
-          width: widget.fixedSize,
-          alignment: Alignment.center,
-          padding: const EdgeInsets.all(8),
-          decoration: BoxDecoration(
-            color: color(context).withAlpha((0.4 * 255).toInt()),
-            borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-            border: isSelected
-                ? Border.all(
-                    color: color(context).withAlpha(255),
-                    width: 2,
-                  )
-                : Border.all(
-                    color: Colors.transparent,
-                    width: 2,
-                  ),
+        Flexible(
+          child: Container(
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              color: color(context).withAlpha((0.4 * 255).toInt()),
+              borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+              border: isSelected
+                  ? Border.all(
+                      color: color(context).withAlpha(255),
+                      width: 2,
+                    )
+                  : Border.all(
+                      color: Colors.transparent,
+                      width: 2,
+                    ),
+            ),
+            child: widget.content,
           ),
-          child: widget.content,
         ),
       ],
     );

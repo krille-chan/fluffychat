@@ -39,6 +39,7 @@ class MatchActivityCard extends StatelessWidget {
         return Text(
           choice,
           style: TextStyle(fontSize: fontSize),
+          textAlign: TextAlign.center,
         );
       case ActivityTypeEnum.wordFocusListening:
         return Icon(
@@ -99,9 +100,6 @@ class MatchActivityCard extends StatelessWidget {
                           ? cf.choiceContent
                           : null,
                   overlayController: overlayController,
-                  fixedSize: activityType == ActivityTypeEnum.wordMeaning
-                      ? null
-                      : fontSize * 2.1,
                 ),
               );
             },
