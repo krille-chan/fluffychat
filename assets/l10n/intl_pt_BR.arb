@@ -2973,5 +2973,21 @@
   "gallery": "Galeria",
   "@gallery": {},
   "files": "Arquivos",
-  "@files": {}
+  "@files": {},
+  "more": "Mais",
+  "@more": {},
+  "deletePushRuleCanNotBeUndone": "Se você excluir esta configuração de notificação, isso não pode ser desfeito.",
+  "@deletePushRuleCanNotBeUndone": {},
+  "alwaysUse24HourFormat": "Falso",
+  "@alwaysUse24HourFormat": {
+    "description": "Set to true to always display time of day in 24 hour format."
+  },
+  "setPermissionsLevelDescription": "Por favor, escolha uma função predefinida abaixo ou insira um nível de permissão personalizado entre 0 e 100.",
+  "@setPermissionsLevelDescription": {},
+  "shareKeysWith": "Compartilhar chaves com...",
+  "@shareKeysWith": {},
+  "setCustomPermissionLevel": "Definir nível de permissão personalizado",
+  "@setCustomPermissionLevel": {},
+  "ignoreUser": "Ignorar usuário",
+  "@ignoreUser": {}
 }
