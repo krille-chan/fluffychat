@@ -127,7 +127,7 @@ class LemmaMeaningWidgetState extends State<LemmaMeaningWidget> {
           widget.token!,
         ) &&
         widget.controller!.readingAssistanceMode ==
-            ReadingAssistanceMode.messageMode) {
+            ReadingAssistanceMode.practiceMode) {
       return WordZoomActivityButton(
         icon: const Icon(Symbols.dictionary),
         isSelected: widget.controller?.toolbarMode == MessageMode.wordMeaning,

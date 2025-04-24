@@ -6,7 +6,7 @@ import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/chat/widgets/pangea_chat_input_row.dart';
 import 'package:fluffychat/pangea/toolbar/enums/reading_assistance_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
-import 'package:fluffychat/pangea/toolbar/widgets/toolbar_button_column.dart';
+import 'package:fluffychat/pangea/toolbar/widgets/practice_mode_buttons.dart';
 
 class OverlayFooter extends StatelessWidget {
   final ChatController controller;
@@ -33,16 +33,16 @@ class OverlayFooter extends StatelessWidget {
         left: bottomSheetPadding,
         right: bottomSheetPadding,
       ),
-      height: readingAssistanceMode == ReadingAssistanceMode.messageMode ||
+      height: readingAssistanceMode == ReadingAssistanceMode.practiceMode ||
               readingAssistanceMode == ReadingAssistanceMode.transitionMode
-          ? AppConfig.messageModeInputBarHeight
-          : AppConfig.tokenModeInputBarHeight,
+          ? AppConfig.practiceModeInputBarHeight
+          : AppConfig.selectModeInputBarHeight,
       alignment: Alignment.center,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           if (showToolbarButtons)
-            ToolbarButtonRow(overlayController: overlayController),
+            PracticeModeButtons(overlayController: overlayController),
           Material(
             clipBehavior: Clip.hardEdge,
             color: Colors.transparent,

@@ -76,11 +76,11 @@ class TokenRenderingUtil {
     }
 
     switch (readingAssistanceMode!) {
-      case ReadingAssistanceMode.tokenMode:
+      case ReadingAssistanceMode.selectMode:
         return isTransitionAnimation;
       case ReadingAssistanceMode.transitionMode:
         return false;
-      case ReadingAssistanceMode.messageMode:
+      case ReadingAssistanceMode.practiceMode:
         return !isTransitionAnimation;
     }
   }

@@ -90,6 +90,8 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   final GlobalKey<ReadingAssistanceContentState> wordZoomKey = GlobalKey();
 
   ReadingAssistanceMode? readingAssistanceMode; // default mode
+  bool showTranslation = false;
+  String? translationText;
 
   double maxWidth = AppConfig.toolbarMinWidth;
 
@@ -289,7 +291,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   }
 
   /// Update [selectedSpan]
-  void updateSelectedSpan(PangeaTokenText selectedSpan, [bool force = false]) {
+  void updateSelectedSpan(PangeaTokenText? selectedSpan, [bool force = false]) {
     if (selectedMorph != null) {
       selectedMorph = null;
     }
@@ -407,7 +409,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
       pangeaMessageEvent!.event.messageType == MessageTypes.Text;
 
   bool get hideWordCardContent =>
-      readingAssistanceMode == ReadingAssistanceMode.messageMode;
+      readingAssistanceMode == ReadingAssistanceMode.practiceMode;
 
   bool get isPracticeComplete => isTranslationUnlocked;
 
@@ -572,6 +574,18 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   void setIsPlayingAudio(bool isPlaying) {
     if (mounted) {
       setState(() => isPlayingAudio = isPlaying);
+    }
+  }
+
+  void setShowTranslation(bool show, String? translation) {
+    if (showTranslation == show) return;
+    if (show && translation == null) return;
+
+    if (mounted) {
+      setState(() {
+        showTranslation = show;
+        translationText = show ? translation : null;
+      });
     }
   }
 

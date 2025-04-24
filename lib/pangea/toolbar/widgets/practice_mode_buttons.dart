@@ -4,10 +4,10 @@ import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/toolbar_button.dart';
 
-class ToolbarButtonRow extends StatelessWidget {
+class PracticeModeButtons extends StatelessWidget {
   final MessageOverlayController overlayController;
 
-  const ToolbarButtonRow({
+  const PracticeModeButtons({
     required this.overlayController,
     super.key,
   });
@@ -43,17 +43,6 @@ class ToolbarButtonRow extends StatelessWidget {
               alignment: Alignment.center,
               child: ToolbarButton(
                 mode: MessageMode.wordMorph,
-                overlayController: overlayController,
-                onPressed: overlayController.updateToolbarMode,
-                buttonSize: buttonSize,
-              ),
-            ),
-            Container(
-              width: buttonSize + 4,
-              height: buttonSize + 4,
-              alignment: Alignment.center,
-              child: ToolbarButton(
-                mode: MessageMode.messageTranslation,
                 overlayController: overlayController,
                 onPressed: overlayController.updateToolbarMode,
                 buttonSize: buttonSize,
