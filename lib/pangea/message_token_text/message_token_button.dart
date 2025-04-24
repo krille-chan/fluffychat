@@ -50,12 +50,12 @@ class MessageTokenButton extends StatefulWidget {
 
 class MessageTokenButtonState extends State<MessageTokenButton>
     with TickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<double> _heightAnimation;
+  AnimationController? _controller;
+  Animation<double>? _heightAnimation;
 
   // New controller and animation for icon size
-  late AnimationController _iconSizeController;
-  late Animation<double> _iconSizeAnimation;
+  AnimationController? _iconSizeController;
+  Animation<double>? _iconSizeAnimation;
 
   bool _isHovered = false;
   bool _isSelected = false;
@@ -76,7 +76,7 @@ class MessageTokenButtonState extends State<MessageTokenButton>
     _heightAnimation = Tween<double>(
       begin: 0,
       end: tokenButtonHeight,
-    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOut));
+    ).animate(CurvedAnimation(parent: _controller!, curve: Curves.easeOut));
 
     // Initialize the new icon size controller and animation
     _iconSizeController = AnimationController(
@@ -88,7 +88,7 @@ class MessageTokenButtonState extends State<MessageTokenButton>
       begin: 24, // Default icon size
       end: 30, // Enlarged icon size
     ).animate(
-      CurvedAnimation(parent: _iconSizeController, curve: Curves.easeInOut),
+      CurvedAnimation(parent: _iconSizeController!, curve: Curves.easeInOut),
     );
 
     _setSelected(); // Call _setSelected after initializing _iconSizeController
@@ -96,7 +96,7 @@ class MessageTokenButtonState extends State<MessageTokenButton>
     _wasEmpty = _isEmpty;
 
     if (!_isEmpty) {
-      _controller.forward().then((_) {
+      _controller?.forward().then((_) {
         if (mounted) setState(() => _finishedInitialAnimation = true);
       });
     } else {
@@ -110,9 +110,9 @@ class MessageTokenButtonState extends State<MessageTokenButton>
     _setSelected();
     if (_isEmpty != _wasEmpty) {
       if (_isEmpty && _animate) {
-        _controller.reverse();
+        _controller?.reverse();
       } else if (!_isEmpty && _animate) {
-        _controller.forward();
+        _controller?.forward();
       }
       setState(() => _wasEmpty = _isEmpty);
     }
@@ -120,8 +120,8 @@ class MessageTokenButtonState extends State<MessageTokenButton>
 
   @override
   void dispose() {
-    _controller.dispose();
-    _iconSizeController.dispose(); // Dispose the new controller
+    _controller?.dispose();
+    _iconSizeController?.dispose(); // Dispose the new controller
     super.dispose();
   }
 
@@ -148,8 +148,8 @@ class MessageTokenButtonState extends State<MessageTokenButton>
       });
 
       _isSelected
-          ? _iconSizeController.forward()
-          : _iconSizeController.reverse();
+          ? _iconSizeController?.forward()
+          : _iconSizeController?.reverse();
     }
   }
 
@@ -164,8 +164,8 @@ class MessageTokenButtonState extends State<MessageTokenButton>
       }
 
       _isHovered
-          ? _iconSizeController.forward()
-          : _iconSizeController.reverse();
+          ? _iconSizeController?.forward()
+          : _iconSizeController?.reverse();
     }
   }
 
@@ -206,7 +206,7 @@ class MessageTokenButtonState extends State<MessageTokenButton>
       return const SizedBox.shrink();
     }
 
-    if (!_animate) {
+    if (!_animate && _iconSizeAnimation != null) {
       return MessageTokenButtonContent(
         activity: _activity,
         messageMode: widget.overlayController!.toolbarMode,
@@ -217,7 +217,7 @@ class MessageTokenButtonState extends State<MessageTokenButton>
         height: tokenButtonHeight,
         width: widget.width,
         textStyle: widget.textStyle,
-        sizeAnimation: _iconSizeAnimation,
+        sizeAnimation: _iconSizeAnimation!,
         onHover: _setHovered,
         onTap: () => widget.overlayController!.onMorphActivitySelect(
           MorphSelection(widget.token, _activity!.morphFeature!),
@@ -226,28 +226,32 @@ class MessageTokenButtonState extends State<MessageTokenButton>
       );
     }
 
-    return AnimatedBuilder(
-      animation: _heightAnimation,
-      builder: (context, child) {
-        return MessageTokenButtonContent(
-          activity: _activity,
-          messageMode: widget.overlayController!.toolbarMode,
-          token: widget.token,
-          selectedChoice: widget.overlayController?.selectedChoice,
-          isActivityCompleteOrNullForToken: _isActivityCompleteOrNullForToken,
-          isSelected: _isSelected,
-          height: _heightAnimation.value,
-          width: widget.width,
-          textStyle: widget.textStyle,
-          sizeAnimation: _iconSizeAnimation,
-          onHover: _setHovered,
-          onTap: () => widget.overlayController!.onMorphActivitySelect(
-            MorphSelection(widget.token, _activity!.morphFeature!),
-          ),
-          onMatch: _onMatch,
-        );
-      },
-    );
+    if (_heightAnimation != null && _iconSizeAnimation != null) {
+      return AnimatedBuilder(
+        animation: _heightAnimation!,
+        builder: (context, child) {
+          return MessageTokenButtonContent(
+            activity: _activity,
+            messageMode: widget.overlayController!.toolbarMode,
+            token: widget.token,
+            selectedChoice: widget.overlayController?.selectedChoice,
+            isActivityCompleteOrNullForToken: _isActivityCompleteOrNullForToken,
+            isSelected: _isSelected,
+            height: _heightAnimation!.value,
+            width: widget.width,
+            textStyle: widget.textStyle,
+            sizeAnimation: _iconSizeAnimation!,
+            onHover: _setHovered,
+            onTap: () => widget.overlayController!.onMorphActivitySelect(
+              MorphSelection(widget.token, _activity!.morphFeature!),
+            ),
+            onMatch: _onMatch,
+          );
+        },
+      );
+    }
+
+    return const SizedBox.shrink();
   }
 }
 
