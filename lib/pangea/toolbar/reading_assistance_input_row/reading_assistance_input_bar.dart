@@ -86,11 +86,9 @@ class ReadingAssistanceInputBar extends StatelessWidget {
             );
           } else if (overlayController.selectedMorph != null) {
             content = MorphFocusWidget(
-              token: overlayController.selectedMorph!.token,
               morphFeature: overlayController.selectedMorph!.morph,
               pangeaMessageEvent: overlayController.pangeaMessageEvent!,
               overlayController: overlayController,
-              onEditDone: () => overlayController.setState(() {}),
             );
           } else {
             content = Center(

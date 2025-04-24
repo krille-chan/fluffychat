@@ -8,6 +8,7 @@ import 'package:matrix/matrix_api_lite/model/message_types.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
+import 'package:fluffychat/pangea/morphs/morph_features_enum.dart';
 import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
@@ -38,6 +39,8 @@ class ReadingAssistanceContent extends StatefulWidget {
 }
 
 class ReadingAssistanceContentState extends State<ReadingAssistanceContent> {
+  MorphFeaturesEnum? _selectedEditMorphFeature;
+
   TtsController get ttsController =>
       widget.overlayController.widget.chatController.choreographer.tts;
 
@@ -125,6 +128,8 @@ class ReadingAssistanceContentState extends State<ReadingAssistanceContent> {
           messageEvent: widget.overlayController.pangeaMessageEvent!,
           tts: ttsController,
           overlayController: widget.overlayController,
+          editMorph: (m) => setState(() => _selectedEditMorphFeature = m),
+          selectedEditMorphFeature: _selectedEditMorphFeature,
         );
     }
   }

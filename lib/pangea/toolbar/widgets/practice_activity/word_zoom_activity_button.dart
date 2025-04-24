@@ -4,7 +4,8 @@ class WordZoomActivityButton extends StatelessWidget {
   final Widget icon;
   final bool isSelected;
   final VoidCallback onPressed;
-
+  final VoidCallback? onDoubleTap;
+  final VoidCallback? onLongPress;
   final String? tooltip;
   final double? opacity;
 
@@ -12,6 +13,8 @@ class WordZoomActivityButton extends StatelessWidget {
     required this.icon,
     required this.isSelected,
     required this.onPressed,
+    this.onDoubleTap,
+    this.onLongPress,
     this.tooltip,
     this.opacity,
     super.key,
@@ -22,25 +25,29 @@ class WordZoomActivityButton extends StatelessWidget {
     Widget buttonContent = AnimatedSize(
       duration: const Duration(milliseconds: 200),
       curve: Curves.easeInOut,
-      child: IconButton(
-        onPressed: onPressed,
-        icon: AnimatedBuilder(
-          animation: Listenable.merge([ValueNotifier(isSelected)]),
-          builder: (context, child) {
-            return Transform.scale(
-              scale: isSelected ? 1.25 : 1.0,
-              child: icon,
-            );
-          },
+      child: GestureDetector(
+        onDoubleTap: onDoubleTap,
+        onLongPress: onLongPress,
+        child: IconButton(
+          onPressed: onPressed,
+          icon: AnimatedBuilder(
+            animation: Listenable.merge([ValueNotifier(isSelected)]),
+            builder: (context, child) {
+              return Transform.scale(
+                scale: isSelected ? 1.25 : 1.0,
+                child: icon,
+              );
+            },
+          ),
+          iconSize: 24, // Keep this constant as scaling handles the size change
+          color: isSelected ? Theme.of(context).colorScheme.primary : null,
+          visualDensity: VisualDensity.compact,
+          // style: IconButton.styleFrom(
+          //   backgroundColor: isSelected
+          //       ? Theme.of(context).colorScheme.primary.withValues(alpha: 0.25)
+          //       : Colors.transparent,
+          // ),
         ),
-        iconSize: 24, // Keep this constant as scaling handles the size change
-        color: isSelected ? Theme.of(context).colorScheme.primary : null,
-        visualDensity: VisualDensity.compact,
-        // style: IconButton.styleFrom(
-        //   backgroundColor: isSelected
-        //       ? Theme.of(context).colorScheme.primary.withValues(alpha: 0.25)
-        //       : Colors.transparent,
-        // ),
       ),
     );
 
