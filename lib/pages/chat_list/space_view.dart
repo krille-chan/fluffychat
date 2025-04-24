@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
@@ -492,86 +493,99 @@ class _SpaceViewState extends State<SpaceView> {
     final displayname =
         room?.getLocalizedDisplayname() ?? L10n.of(context).nothingFound;
     return Scaffold(
-      appBar: AppBar(
-        leading: FluffyThemes.isColumnMode(context)
-            ? null
-            : Center(
-                child: CloseButton(
-                  onPressed: widget.onBack,
-                ),
-              ),
-        automaticallyImplyLeading: false,
-        titleSpacing: FluffyThemes.isColumnMode(context) ? null : 0,
-        title: ListTile(
-          contentPadding: EdgeInsets.zero,
-          leading: Avatar(
-            mxContent: room?.avatar,
-            name: displayname,
-            // #Pangea
-            presenceUserId: room?.directChatMatrixID,
-            // Pangea#
-            border: BorderSide(width: 1, color: theme.dividerColor),
-            borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
-          ),
-          title: Text(
-            displayname,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-          ),
-          subtitle: room == null
-              ? null
-              : Text(
-                  L10n.of(context).countChatsAndCountParticipants(
-                    // #Pangea
-                    // room.spaceChildren.length,
-                    room.spaceChildCount,
-                    // Pangea#
-                    room.summary.mJoinedMemberCount ?? 1,
-                  ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
+      // #Pangea
+      // appBar: AppBar(
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(
+          kIsWeb ? 72.0 : (kToolbarHeight + MediaQuery.of(context).padding.top),
         ),
-        actions: [
-          PopupMenuButton<SpaceActions>(
-            onSelected: _onSpaceAction,
-            itemBuilder: (context) => [
-              PopupMenuItem(
-                value: SpaceActions.settings,
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Icon(Icons.settings_outlined),
-                    const SizedBox(width: 12),
-                    Text(L10n.of(context).settings),
-                  ],
-                ),
+        child: GestureDetector(
+          onTap: () {
+            _onSpaceAction(SpaceActions.settings);
+          },
+          child: AppBar(
+            // Pangea#
+            leading: FluffyThemes.isColumnMode(context)
+                ? null
+                : Center(
+                    child: CloseButton(
+                      onPressed: widget.onBack,
+                    ),
+                  ),
+            automaticallyImplyLeading: false,
+            titleSpacing: FluffyThemes.isColumnMode(context) ? null : 0,
+            title: ListTile(
+              contentPadding: EdgeInsets.zero,
+              leading: Avatar(
+                mxContent: room?.avatar,
+                name: displayname,
+                // #Pangea
+                presenceUserId: room?.directChatMatrixID,
+                // Pangea#
+                border: BorderSide(width: 1, color: theme.dividerColor),
+                borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
               ),
-              PopupMenuItem(
-                value: SpaceActions.invite,
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Icon(Icons.person_add_outlined),
-                    const SizedBox(width: 12),
-                    Text(L10n.of(context).invite),
-                  ],
-                ),
+              title: Text(
+                displayname,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
               ),
-              PopupMenuItem(
-                value: SpaceActions.leave,
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Icon(Icons.delete_outlined),
-                    const SizedBox(width: 12),
-                    Text(L10n.of(context).leave),
-                  ],
-                ),
+              subtitle: room == null
+                  ? null
+                  : Text(
+                      L10n.of(context).countChatsAndCountParticipants(
+                        // #Pangea
+                        // room.spaceChildren.length,
+                        room.spaceChildCount,
+                        // Pangea#
+                        room.summary.mJoinedMemberCount ?? 1,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+            ),
+            actions: [
+              PopupMenuButton<SpaceActions>(
+                onSelected: _onSpaceAction,
+                itemBuilder: (context) => [
+                  PopupMenuItem(
+                    value: SpaceActions.settings,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Icon(Icons.settings_outlined),
+                        const SizedBox(width: 12),
+                        Text(L10n.of(context).settings),
+                      ],
+                    ),
+                  ),
+                  PopupMenuItem(
+                    value: SpaceActions.invite,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Icon(Icons.person_add_outlined),
+                        const SizedBox(width: 12),
+                        Text(L10n.of(context).invite),
+                      ],
+                    ),
+                  ),
+                  PopupMenuItem(
+                    value: SpaceActions.leave,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Icon(Icons.delete_outlined),
+                        const SizedBox(width: 12),
+                        Text(L10n.of(context).leave),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
-        ],
+        ),
       ),
       floatingActionButton: room?.canChangeStateEvent(
                 EventTypes.SpaceChild,
