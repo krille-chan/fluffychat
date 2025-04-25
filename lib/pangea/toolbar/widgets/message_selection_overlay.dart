@@ -534,7 +534,8 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   void onClickOverlayMessageToken(
     PangeaToken token,
   ) {
-    if (practiceSelection?.hasHiddenWordActivity == true) {
+    if (practiceSelection?.hasHiddenWordActivity == true ||
+        readingAssistanceMode == ReadingAssistanceMode.practiceMode) {
       return;
     }
 
@@ -548,7 +549,6 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
         !hideWordCardContent) {
       widget.chatController.choreographer.tts.tryToSpeak(
         token.text.content,
-        context,
         targetID: null,
         langCode: pangeaMessageEvent!.messageDisplayLangCode,
       );

@@ -76,8 +76,9 @@ class WordZoomWidget extends StatelessWidget {
                 children: [
                   //@ggurdin - might need to play with size to properly center
                   IconButton(
-                    onPressed: () =>
-                        overlayController.onClickOverlayMessageToken(token),
+                    onPressed: () => overlayController.updateSelectedSpan(
+                      token.text,
+                    ),
                     icon: const Icon(Icons.close),
                   ),
                   LemmaWidget(

@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/events/message_reactions.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
@@ -55,8 +53,6 @@ class OverlayCenterContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final showTranslation = overlayController.showTranslation &&
-        overlayController.translationText != null;
     return IgnorePointer(
       ignoring: !isTransitionAnimation &&
           readingAssistanceMode != ReadingAssistanceMode.practiceMode,
@@ -70,80 +66,31 @@ class OverlayCenterContent extends StatelessWidget {
                 ? CrossAxisAlignment.end
                 : CrossAxisAlignment.start,
             children: [
-              Stack(
-                alignment: Alignment.topCenter,
-                children: [
-                  if (overlayController.readingAssistanceMode ==
-                      ReadingAssistanceMode.selectMode)
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(
-                          AppConfig.borderRadius,
-                        ),
-                        color: Theme.of(context).colorScheme.primaryContainer,
-                      ),
-                      padding: EdgeInsets.all(
-                        showTranslation ? 8.0 : 0.0,
-                      ),
-                      constraints: BoxConstraints(
-                        maxWidth: messageWidth ?? maxWidth,
-                      ),
-                      child: Column(
-                        children: [
-                          AnimatedContainer(
-                            duration: FluffyThemes.animationDuration,
-                            height: showTranslation ? messageHeight : 0,
-                            width: showTranslation ? messageWidth : 0,
-                          ),
-                          AnimatedSize(
-                            duration: FluffyThemes.animationDuration,
-                            child: SizedBox(
-                              width: messageWidth,
-                              child: showTranslation
-                                  ? Text(
-                                      overlayController.translationText!,
-                                      style: AppConfig.messageTextStyle(
-                                        event,
-                                        Theme.of(context)
-                                            .colorScheme
-                                            .onPrimaryContainer,
-                                      ),
-                                      textAlign: TextAlign.center,
-                                    )
-                                  : const SizedBox(),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  MeasureRenderBox(
-                    onChange: onChangeMessageSize,
-                    child: OverlayMessage(
-                      event,
-                      pangeaMessageEvent: pangeaMessageEvent,
-                      immersionMode: chatController.choreographer.immersionMode,
-                      controller: chatController,
-                      overlayController: overlayController,
-                      nextEvent: nextEvent,
-                      prevEvent: prevEvent,
-                      timeline: chatController.timeline!,
-                      sizeAnimation: sizeAnimation,
-                      // there's a split seconds between when the transition animation starts and
-                      // when the sizeAnimation is set when the original dimensions need to be enforced
-                      messageWidth:
-                          (sizeAnimation == null && isTransitionAnimation)
-                              ? messageWidth
-                              : null,
-                      messageHeight:
-                          (sizeAnimation == null && isTransitionAnimation)
-                              ? messageHeight
-                              : null,
-                      maxHeight: maxHeight,
-                      isTransitionAnimation: isTransitionAnimation,
-                      readingAssistanceMode: readingAssistanceMode,
-                    ),
-                  ),
-                ],
+              MeasureRenderBox(
+                onChange: onChangeMessageSize,
+                child: OverlayMessage(
+                  event,
+                  pangeaMessageEvent: pangeaMessageEvent,
+                  immersionMode: chatController.choreographer.immersionMode,
+                  controller: chatController,
+                  overlayController: overlayController,
+                  nextEvent: nextEvent,
+                  prevEvent: prevEvent,
+                  timeline: chatController.timeline!,
+                  sizeAnimation: sizeAnimation,
+                  // there's a split seconds between when the transition animation starts and
+                  // when the sizeAnimation is set when the original dimensions need to be enforced
+                  messageWidth: (sizeAnimation == null && isTransitionAnimation)
+                      ? messageWidth
+                      : null,
+                  messageHeight:
+                      (sizeAnimation == null && isTransitionAnimation)
+                          ? messageHeight
+                          : null,
+                  maxHeight: maxHeight,
+                  isTransitionAnimation: isTransitionAnimation,
+                  readingAssistanceMode: readingAssistanceMode,
+                ),
               ),
               if (hasReactions)
                 Padding(

@@ -6,12 +6,12 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/reactions_picker.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
+import 'package:fluffychat/pangea/toolbar/enums/reading_assistance_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_mode_locked_card.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_speech_to_text_card.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_translation_card.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/practice_activity/practice_activity_card.dart';
-import 'package:fluffychat/pangea/toolbar/widgets/word_zoom/morph_focus_widget.dart';
 
 const double minContentHeight = 120;
 
@@ -26,6 +26,11 @@ class ReadingAssistanceInputBar extends StatelessWidget {
   });
 
   Widget barContent(BuildContext context) {
+    if (overlayController.readingAssistanceMode !=
+        ReadingAssistanceMode.practiceMode) {
+      return ReactionsPicker(controller);
+    }
+
     Widget? content;
     final target =
         overlayController.toolbarMode.associatedActivityType != null &&
@@ -82,12 +87,6 @@ class ReadingAssistanceInputBar extends StatelessWidget {
             content = PracticeActivityCard(
               pangeaMessageEvent: overlayController.pangeaMessageEvent!,
               targetTokensAndActivityType: target,
-              overlayController: overlayController,
-            );
-          } else if (overlayController.selectedMorph != null) {
-            content = MorphFocusWidget(
-              morphFeature: overlayController.selectedMorph!.morph,
-              pangeaMessageEvent: overlayController.pangeaMessageEvent!,
               overlayController: overlayController,
             );
           } else {

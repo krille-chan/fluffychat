@@ -116,7 +116,6 @@ class ChoicesArrayState extends State<ChoicesArray> {
                         widget.langCode != null) {
                       widget.tts?.tryToSpeak(
                         value,
-                        context,
                         targetID: null,
                         langCode: widget.langCode!,
                       );

@@ -38,6 +38,8 @@ class ToolbarButton extends StatelessWidget {
         color: color(context),
         onPressed: () => onPressed(mode),
         playSound: true,
+        colorFactor:
+            Theme.of(context).brightness == Brightness.light ? 0.55 : 0.3,
         child: AnimatedContainer(
           duration: FluffyThemes.animationDuration,
           height: buttonSize,

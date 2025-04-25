@@ -138,6 +138,16 @@ class MessageContent extends StatelessWidget {
     if (overlayController != null) {
       overlayController?.onClickOverlayMessageToken(token);
       return;
+    } else {
+      Future.delayed(
+          const Duration(
+            milliseconds: AppConfig.overlayAnimationDuration,
+          ), () {
+        controller.choreographer.tts.tryToSpeak(
+          token.text.content,
+          langCode: pangeaMessageEvent!.messageDisplayLangCode,
+        );
+      });
     }
 
     controller.showToolbar(

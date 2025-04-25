@@ -430,7 +430,7 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
     } else {
       return Offset(
         _ownMessage ? _messageRightOffset : _messageLeftOffset,
-        _footerHeight + AppConfig.toolbarSpacing,
+        _footerHeight + (AppConfig.toolbarSpacing * 2),
       );
     }
   }

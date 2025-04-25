@@ -1,16 +1,29 @@
+import 'dart:developer';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
+import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pangea/analytics_details_popup/analytics_details_popup.dart';
+import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
+import 'package:fluffychat/pangea/common/utils/error_handler.dart';
+import 'package:fluffychat/pangea/common/utils/overlay.dart';
+import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
+import 'package:fluffychat/pangea/lemmas/construct_xp_widget.dart';
 import 'package:fluffychat/pangea/morphs/get_grammar_copy.dart';
 import 'package:fluffychat/pangea/morphs/morph_features_enum.dart';
 import 'package:fluffychat/pangea/morphs/morph_icon.dart';
+import 'package:fluffychat/pangea/morphs/morph_meaning/morph_info_repo.dart';
 import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/reading_assistance_input_row/morph_selection.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/practice_activity/word_zoom_activity_button.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 
 class MorphologicalListItem extends StatelessWidget {
   final MorphFeaturesEnum morphFeature;
@@ -41,40 +54,223 @@ class MorphologicalListItem extends StatelessWidget {
 
   String get morphTag => token.getMorphTag(morphFeature) ?? "X";
 
+  ConstructIdentifier get cId =>
+      token.morphIdByFeature(morphFeature) ??
+      ConstructIdentifier(
+        type: ConstructTypeEnum.morph,
+        category: morphFeature.name,
+        lemma: morphTag,
+      );
+
+  void _openDefintionPopup(BuildContext context) async {
+    const width = 300.0;
+    const height = 150.0;
+
+    try {
+      OverlayUtil.showPositionedCard(
+        context: context,
+        cardToShow: MorphMeaningPopup(
+          cId: cId,
+          width: width,
+          height: height,
+        ),
+        transformTargetId: cId.string,
+        backDropToDismiss: true,
+        borderColor: Theme.of(context).colorScheme.primary,
+        closePrevOverlay: false,
+        addBorder: false,
+        maxHeight: height,
+        maxWidth: width,
+      );
+    } catch (e, s) {
+      debugger(when: kDebugMode);
+      ErrorHandler.logError(
+        data: cId.toJson(),
+        e: e,
+        s: s,
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 40,
-      height: 40,
-      child: WordZoomActivityButton(
-        icon: shouldDoActivity
-            ? const Icon(Symbols.toys_and_games)
-            : MorphIcon(
-                morphFeature: morphFeature,
-                morphTag: token.getMorphTag(morphFeature),
-                size: const Size(24, 24),
+    return CompositedTransformTarget(
+      link: MatrixState.pAnyState.layerLinkAndKey(cId.string).link,
+      child: SizedBox(
+        key: MatrixState.pAnyState.layerLinkAndKey(cId.string).key,
+        width: 40,
+        height: 40,
+        child: WordZoomActivityButton(
+          icon: shouldDoActivity
+              ? const Icon(Symbols.toys_and_games)
+              : MorphIcon(
+                  morphFeature: morphFeature,
+                  morphTag: token.getMorphTag(morphFeature),
+                  size: const Size(24, 24),
+                ),
+          isSelected: isSelected,
+          onPressed: () {
+            overlayController
+                .onMorphActivitySelect(MorphSelection(token, morphFeature));
+            _openDefintionPopup(context);
+          },
+          onLongPress: () {
+            overlayController
+                .onMorphActivitySelect(MorphSelection(token, morphFeature));
+            editMorph();
+          },
+          tooltip: shouldDoActivity
+              ? morphFeature.getDisplayCopy(context)
+              : getGrammarCopy(
+                  category: morphFeature.name,
+                  lemma: morphTag,
+                  context: context,
+                ),
+          opacity: isSelected ? 1 : 0.7,
+        ),
+      ),
+    );
+  }
+}
+
+class MorphMeaningPopup extends StatefulWidget {
+  final ConstructIdentifier cId;
+  final double width;
+  final double height;
+
+  const MorphMeaningPopup({
+    super.key,
+    required this.cId,
+    required this.width,
+    required this.height,
+  });
+
+  @override
+  State<MorphMeaningPopup> createState() => MorphMeaningPopupState();
+}
+
+class MorphMeaningPopupState extends State<MorphMeaningPopup> {
+  MorphFeaturesEnum get _morphFeature =>
+      MorphFeaturesEnumExtension.fromString(widget.cId.category);
+
+  String get _morphTag => widget.cId.lemma;
+
+  String? _defintion;
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchDefinition();
+  }
+
+  @override
+  void didUpdateWidget(covariant MorphMeaningPopup oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.cId != widget.cId) {
+      _fetchDefinition();
+    }
+  }
+
+  Future<void> _fetchDefinition() async {
+    try {
+      final response = await MorphInfoRepo.get(
+        feature: _morphFeature,
+        tag: _morphTag,
+      );
+
+      if (mounted) {
+        setState(
+          () => _defintion = response ?? L10n.of(context).meaningNotFound,
+        );
+      }
+    } catch (e, s) {
+      debugger(when: kDebugMode);
+      ErrorHandler.logError(
+        data: widget.cId.toJson(),
+        e: e,
+        s: s,
+      );
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+      child: Container(
+        padding: const EdgeInsets.all(8),
+        height: widget.height,
+        width: widget.width,
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.surface,
+          borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+          boxShadow: [
+            BoxShadow(
+              color: Theme.of(context).colorScheme.onSurface.withAlpha(50),
+              blurRadius: 4,
+              offset: const Offset(0, 2),
+            ),
+          ],
+        ),
+        alignment: Alignment.center,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                spacing: 16.0,
+                children: [
+                  SizedBox(
+                    width: 24.0,
+                    height: 24.0,
+                    child: MorphIcon(
+                      morphFeature: _morphFeature,
+                      morphTag: _morphTag,
+                    ),
+                  ),
+                  Text(
+                    getGrammarCopy(
+                          category: _morphFeature.name,
+                          lemma: _morphTag,
+                          context: context,
+                        ) ??
+                        _morphTag,
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                  SizedBox(
+                    width: 24.0,
+                    height: 24.0,
+                    child: ConstructXpWidget(
+                      id: widget.cId,
+                      onTap: () => showDialog<AnalyticsPopupWrapper>(
+                        context: context,
+                        builder: (context) => AnalyticsPopupWrapper(
+                          constructZoom: widget.cId,
+                          view: ConstructTypeEnum.morph,
+                          backButtonOverride: IconButton(
+                            icon: const Icon(Icons.close),
+                            onPressed: () => Navigator.of(context).pop(),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-        isSelected: isSelected,
-        onPressed: () => overlayController
-            .onMorphActivitySelect(MorphSelection(token, morphFeature)),
-        onLongPress: () {
-          overlayController
-              .onMorphActivitySelect(MorphSelection(token, morphFeature));
-          editMorph();
-        },
-        onDoubleTap: () {
-          overlayController
-              .onMorphActivitySelect(MorphSelection(token, morphFeature));
-          editMorph();
-        },
-        tooltip: shouldDoActivity
-            ? morphFeature.getDisplayCopy(context)
-            : getGrammarCopy(
-                category: morphFeature.name,
-                lemma: morphTag,
-                context: context,
+              Padding(
+                padding: const EdgeInsets.only(top: 16.0),
+                child: _defintion != null
+                    ? Text(
+                        _defintion!,
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      )
+                    : const LinearProgressIndicator(),
               ),
-        opacity: isSelected ? 1 : 0.7,
+            ],
+          ),
+        ),
       ),
     );
   }

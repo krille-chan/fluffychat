@@ -159,11 +159,11 @@ class TtsController {
   /// A safer version of speak, that handles the case of
   /// the language not being supported by the TTS engine
   Future<void> tryToSpeak(
-    String text,
-    BuildContext context, {
+    String text, {
     required String langCode,
     // Target ID for where to show warning popup
     String? targetID,
+    BuildContext? context,
   }) async {
     chatController?.stopAudioStream.add(null);
     await _setSpeakingLanguage(langCode);
@@ -180,7 +180,7 @@ class TtsController {
               text,
               langCode,
             ));
-    } else if (targetID != null) {
+    } else if (targetID != null && context != null) {
       await _showTTSDisabledPopup(context, targetID);
     }
   }

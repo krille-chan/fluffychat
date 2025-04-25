@@ -124,6 +124,9 @@ class OverlayMessage extends StatelessWidget {
             ? ThemeData.dark().colorScheme.onPrimary
             : theme.colorScheme.onSurface;
 
+    final showTranslation = overlayController.showTranslation &&
+        overlayController.translationText != null;
+
     final content = Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(
@@ -253,18 +256,48 @@ class OverlayMessage extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: borderRadius,
       ),
-      child: sizeAnimation != null
-          ? AnimatedBuilder(
-              animation: sizeAnimation!,
-              builder: (context, child) {
-                return SizedBox(
-                  height: sizeAnimation!.value.height,
-                  width: sizeAnimation!.value.width,
-                  child: content,
-                );
-              },
-            )
-          : content,
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: borderRadius,
+          color: color,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            sizeAnimation != null
+                ? AnimatedBuilder(
+                    animation: sizeAnimation!,
+                    builder: (context, child) {
+                      return SizedBox(
+                        height: sizeAnimation!.value.height,
+                        width: sizeAnimation!.value.width,
+                        child: content,
+                      );
+                    },
+                  )
+                : content,
+            if (showTranslation)
+              SizedBox(
+                width: messageWidth,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(
+                    12.0,
+                    20.0,
+                    12.0,
+                    12.0,
+                  ),
+                  child: Text(
+                    overlayController.translationText!,
+                    style:
+                        AppConfig.messageTextStyle(event, textColor).copyWith(
+                      fontStyle: FontStyle.italic,
+                    ),
+                  ),
+                ),
+              ),
+          ],
+        ),
+      ),
     );
   }
 }

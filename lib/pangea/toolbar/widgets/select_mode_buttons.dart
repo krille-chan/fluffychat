@@ -10,7 +10,6 @@ import 'package:material_symbols_icons/symbols.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/events/audio_player.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/common/widgets/pressable_button.dart';
@@ -113,7 +112,6 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
 
     if (_selectedMode == SelectMode.translate) {
       widget.overlayController.setShowTranslation(false, null);
-      await Future.delayed(FluffyThemes.animationDuration);
     }
 
     setState(
@@ -245,7 +243,7 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
         return Icon(
           _audioPlayer.playerState.playing == true
               ? Icons.pause_outlined
-              : Icons.play_arrow,
+              : Icons.volume_up,
           size: 20,
           color: mode == _selectedMode ? Colors.white : null,
         );
@@ -294,6 +292,9 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
                 color: Theme.of(context).colorScheme.primaryContainer,
                 onPressed: () => _updateMode(mode),
                 playSound: true,
+                colorFactor: Theme.of(context).brightness == Brightness.light
+                    ? 0.55
+                    : 0.3,
                 child: Container(
                   height: buttonSize,
                   width: buttonSize,
