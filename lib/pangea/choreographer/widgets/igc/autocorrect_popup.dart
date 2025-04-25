@@ -13,22 +13,25 @@ class AutocorrectPopup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return Container(
-      padding: const EdgeInsets.all(8.0),
-      decoration: BoxDecoration(
-        color: theme.colorScheme.surface.withAlpha(200),
-        borderRadius: BorderRadius.circular(8.0),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        spacing: 8.0,
-        children: [
-          Text(originalText),
-          InkWell(
-            onTap: onUndo,
-            child: const Icon(Icons.replay, size: 12),
-          ),
-        ],
+    return Material(
+      type: MaterialType.transparency,
+      child: Container(
+        padding: const EdgeInsets.all(8.0),
+        decoration: BoxDecoration(
+          color: theme.colorScheme.surface.withAlpha(200),
+          borderRadius: BorderRadius.circular(8.0),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          spacing: 8.0,
+          children: [
+            Text(originalText),
+            InkWell(
+              onTap: onUndo,
+              child: const Icon(Icons.replay, size: 12),
+            ),
+          ],
+        ),
       ),
     );
   }
