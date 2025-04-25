@@ -22,9 +22,6 @@ class ModelKey {
   static const String instructionsSettings = 'instructions_settings';
   static const String cefrLevel = 'user_cefr';
 
-  // matrix profile keys
-  // making this a random string so that it's harder to guess
-  static const String activatedTrialKey = '7C4EuKIsph';
   static const String autoPlayMessages = 'autoPlayMessages';
   static const String itAutoPlay = 'autoPlayIT';
 

@@ -15,6 +15,7 @@ class MobileSubscriptionInfo extends CurrentSubscriptionInfo {
   MobileSubscriptionInfo({
     required super.userID,
     required super.availableSubscriptionInfo,
+    required super.history,
   });
 
   @override
@@ -65,7 +66,7 @@ class MobileSubscriptionInfo extends CurrentSubscriptionInfo {
 
     CustomerInfo info;
     try {
-      // await Purchases.syncPurchases();
+      await Purchases.invalidateCustomerInfoCache();
       info = await Purchases.getCustomerInfo();
     } catch (err) {
       ErrorHandler.logError(
@@ -81,9 +82,10 @@ class MobileSubscriptionInfo extends CurrentSubscriptionInfo {
         info.entitlements.all.entries
             .where(
               (MapEntry<String, EntitlementInfo> entry) =>
-                  entry.value.expirationDate == null ||
-                  DateTime.parse(entry.value.expirationDate!)
-                      .isAfter(DateTime.now()),
+                  entry.value.isActive &&
+                  (entry.value.expirationDate == null ||
+                      DateTime.parse(entry.value.expirationDate!)
+                          .isAfter(DateTime.now())),
             )
             .map((MapEntry<String, EntitlementInfo> entry) => entry.value)
             .toList();
@@ -94,9 +96,7 @@ class MobileSubscriptionInfo extends CurrentSubscriptionInfo {
       );
     } else if (activeEntitlements.isEmpty) {
       debugPrint("User has no active entitlements");
-      if (!isNewUserTrial) {
-        resetSubscription();
-      }
+      resetSubscription();
       return;
     }
 
@@ -107,7 +107,7 @@ class MobileSubscriptionInfo extends CurrentSubscriptionInfo {
         : null;
 
     if (activeEntitlement.periodType == PeriodType.trial) {
-      currentSubscription?.makeTrial();
+      // We dont use actual trials as it would require adding a CC on devices
     }
     if (currentSubscriptionId != null && currentSubscription == null) {
       Sentry.addBreadcrumb(

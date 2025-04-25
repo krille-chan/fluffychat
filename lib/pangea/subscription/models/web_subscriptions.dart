@@ -8,6 +8,7 @@ class WebSubscriptionInfo extends CurrentSubscriptionInfo {
   WebSubscriptionInfo({
     required super.userID,
     required super.availableSubscriptionInfo,
+    required super.history,
   });
 
   @override

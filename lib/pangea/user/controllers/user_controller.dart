@@ -273,6 +273,7 @@ class UserController extends BaseController {
     if (createdAt == null) {
       return false;
     }
+
     return createdAt.isAfter(
       DateTime.now().subtract(Duration(days: trialDays)),
     );

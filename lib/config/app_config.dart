@@ -190,7 +190,6 @@ abstract class AppConfig {
   static String assetsBaseURL =
       "https://pangea-chat-client-assets.s3.us-east-1.amazonaws.com";
 
-  static String trialSubscriptionId = "pangea_new_user_trial";
   static String errorSubscriptionId = "pangea_subscription_error";
   // Pangea#
 

@@ -83,6 +83,7 @@ class PApiUrls {
   static String rcAppsChoreo = "${PApiUrls.subscriptionEndpoint}/app_ids";
   static String rcProductsChoreo =
       "${PApiUrls.subscriptionEndpoint}/all_products";
+  static String rcProductsTrial = "${PApiUrls.subscriptionEndpoint}/free_trial";
 
   static String rcSubscription = PApiUrls.subscriptionEndpoint;
 }

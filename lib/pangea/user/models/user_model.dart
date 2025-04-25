@@ -13,8 +13,6 @@ class UserSettings {
   DateTime? dateOfBirth;
   DateTime? createdAt;
   bool? autoPlayMessages;
-  // bool itAutoPlay;
-  bool activatedFreeTrial;
   bool? publicProfile;
   String? targetLanguage;
   String? sourceLanguage;
@@ -26,8 +24,6 @@ class UserSettings {
     this.dateOfBirth,
     this.createdAt,
     this.autoPlayMessages,
-    // this.itAutoPlay = true,
-    this.activatedFreeTrial = false,
     this.publicProfile,
     this.targetLanguage,
     this.sourceLanguage,
@@ -44,8 +40,6 @@ class UserSettings {
             ? DateTime.parse(json[ModelKey.userCreatedAt])
             : null,
         autoPlayMessages: json[ModelKey.autoPlayMessages],
-        // itAutoPlay: json[ModelKey.itAutoPlay] ?? true,
-        activatedFreeTrial: json[ModelKey.activatedTrialKey] ?? false,
         publicProfile: json[ModelKey.publicProfile],
         targetLanguage: json[ModelKey.l2LanguageKey],
         sourceLanguage: json[ModelKey.l1LanguageKey],
@@ -63,8 +57,6 @@ class UserSettings {
     data[ModelKey.userDateOfBirth] = dateOfBirth?.toIso8601String();
     data[ModelKey.userCreatedAt] = createdAt?.toIso8601String();
     data[ModelKey.autoPlayMessages] = autoPlayMessages;
-    // data[ModelKey.itAutoPlay] = itAutoPlay;
-    data[ModelKey.activatedTrialKey] = activatedFreeTrial;
     data[ModelKey.publicProfile] = publicProfile;
     data[ModelKey.l2LanguageKey] = targetLanguage;
     data[ModelKey.l1LanguageKey] = sourceLanguage;
@@ -111,12 +103,6 @@ class UserSettings {
       autoPlayMessages: (accountData[ModelKey.autoPlayMessages]
               ?.content[ModelKey.autoPlayMessages] as bool?) ??
           false,
-      // itAutoPlay: (accountData[ModelKey.itAutoPlay]
-      //         ?.content[ModelKey.itAutoPlay] as bool?) ??
-      //     true,
-      activatedFreeTrial: (accountData[ModelKey.activatedTrialKey]
-              ?.content[ModelKey.activatedTrialKey] as bool?) ??
-          false,
       publicProfile: (accountData[ModelKey.publicProfile]
               ?.content[ModelKey.publicProfile] as bool?) ??
           false,
@@ -134,7 +120,6 @@ class UserSettings {
       dateOfBirth: dateOfBirth,
       createdAt: createdAt,
       autoPlayMessages: autoPlayMessages,
-      activatedFreeTrial: activatedFreeTrial,
       publicProfile: publicProfile,
       targetLanguage: targetLanguage,
       sourceLanguage: sourceLanguage,

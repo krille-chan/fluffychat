@@ -23,6 +23,7 @@ import 'package:fluffychat/pangea/common/utils/firebase_analytics.dart';
 import 'package:fluffychat/pangea/subscription/models/base_subscription_info.dart';
 import 'package:fluffychat/pangea/subscription/models/mobile_subscriptions.dart';
 import 'package:fluffychat/pangea/subscription/models/web_subscriptions.dart';
+import 'package:fluffychat/pangea/subscription/repo/subscription_repo.dart';
 import 'package:fluffychat/pangea/subscription/utils/subscription_app_id.dart';
 import 'package:fluffychat/pangea/subscription/widgets/subscription_paywall.dart';
 import 'package:fluffychat/pangea/user/controllers/user_controller.dart';
@@ -42,7 +43,6 @@ class SubscriptionController extends BaseController {
   AvailableSubscriptionsInfo? availableSubscriptionInfo;
 
   final StreamController subscriptionStream = StreamController.broadcast();
-  final StreamController trialActivationStream = StreamController.broadcast();
 
   SubscriptionController(PangeaController pangeaController) : super() {
     _pangeaController = pangeaController;
@@ -56,11 +56,6 @@ class SubscriptionController extends BaseController {
 
     final bool hasSubscription =
         currentSubscriptionInfo?.currentSubscriptionId != null;
-
-    if (_activatedNewUserTrial && !hasSubscription) {
-      _setNewUserTrial();
-      return true;
-    }
 
     return hasSubscription;
   }
@@ -101,20 +96,27 @@ class SubscriptionController extends BaseController {
       availableSubscriptionInfo = AvailableSubscriptionsInfo();
       await availableSubscriptionInfo!.setAvailableSubscriptions();
 
+      final subs =
+          await SubscriptionRepo.getCurrentSubscriptionInfo(null, null);
+
       currentSubscriptionInfo = kIsWeb
           ? WebSubscriptionInfo(
               userID: _userID!,
               availableSubscriptionInfo: availableSubscriptionInfo!,
+              history: subs.allSubscriptions,
             )
           : MobileSubscriptionInfo(
               userID: _userID!,
               availableSubscriptionInfo: availableSubscriptionInfo!,
+              history: subs.allSubscriptions,
             );
 
       await currentSubscriptionInfo!.configure();
       await currentSubscriptionInfo!.setCurrentSubscription();
-      if (_activatedNewUserTrial) {
-        _setNewUserTrial();
+
+      if (currentSubscriptionInfo!.currentSubscriptionId == null &&
+          _pangeaController.userController.inTrialWindow()) {
+        await activateNewUserTrial();
       }
 
       if (!kIsWeb) {
@@ -153,6 +155,25 @@ class SubscriptionController extends BaseController {
           ),
         },
       );
+
+      if (currentSubscriptionInfo?.currentSubscriptionId == null) {
+        currentSubscriptionInfo ??= kIsWeb
+            ? WebSubscriptionInfo(
+                userID: _userID!,
+                availableSubscriptionInfo:
+                    availableSubscriptionInfo ?? AvailableSubscriptionsInfo(),
+                history: {},
+              )
+            : MobileSubscriptionInfo(
+                userID: _userID!,
+                availableSubscriptionInfo:
+                    availableSubscriptionInfo ?? AvailableSubscriptionsInfo(),
+                history: {},
+              );
+
+        currentSubscriptionInfo!.currentSubscriptionId =
+            AppConfig.errorSubscriptionId;
+      }
     }
   }
 
@@ -163,7 +184,12 @@ class SubscriptionController extends BaseController {
   }) async {
     if (selectedSubscription != null) {
       if (selectedSubscription.isTrial) {
-        activateNewUserTrial();
+        try {
+          await activateNewUserTrial();
+          await updateCustomerInfo();
+        } catch (e) {
+          debugPrint("Failed to initialize trial subscription");
+        }
         return;
       }
 
@@ -215,47 +241,17 @@ class SubscriptionController extends BaseController {
     }
   }
 
-  int get _currentTrialDays =>
-      _userController.inTrialWindow(trialDays: 7) ? 7 : 0;
-
-  bool get _activatedNewUserTrial =>
-      _userController.inTrialWindow(trialDays: 1) ||
-      (_userController.inTrialWindow() &&
-          _userController.profile.userSettings.activatedFreeTrial);
-
-  void activateNewUserTrial() {
-    _userController.updateProfile(
-      (profile) {
-        profile.userSettings.activatedFreeTrial = true;
-        return profile;
-      },
-    );
-    _setNewUserTrial();
-    trialActivationStream.add(true);
-  }
-
-  void _setNewUserTrial() {
-    final DateTime? createdAt = _userController.profile.userSettings.createdAt;
-    if (createdAt == null) {
-      ErrorHandler.logError(
-        m: "Null user profile createdAt in subscription settings",
-        s: StackTrace.current,
-        data: {},
-      );
-      return;
+  Future<void> activateNewUserTrial() async {
+    if (await SubscriptionRepo.activateFreeTrial()) {
+      await updateCustomerInfo();
     }
-
-    final DateTime expirationDate = createdAt.add(
-      Duration(days: _currentTrialDays),
-    );
-    currentSubscriptionInfo?.setTrial(expirationDate);
   }
 
   Future<void> updateCustomerInfo() async {
     if (!initCompleter.isCompleted) {
       await initialize();
     }
-    await currentSubscriptionInfo!.setCurrentSubscription();
+    await currentSubscriptionInfo?.setCurrentSubscription();
     setState(null);
   }
 
@@ -384,11 +380,6 @@ class SubscriptionController extends BaseController {
           ?.defaultManagementURL(availableSubscriptionInfo?.appIds);
 }
 
-enum SubscriptionPeriodType {
-  normal,
-  trial,
-}
-
 enum SubscriptionDuration {
   month,
   year,
@@ -403,7 +394,6 @@ class SubscriptionDetails {
   final SubscriptionDuration? duration;
   final String? appId;
   final String id;
-  SubscriptionPeriodType periodType;
   Package? package;
   String? localizedPrice;
 
@@ -413,11 +403,9 @@ class SubscriptionDetails {
     this.duration,
     this.package,
     this.appId,
-    this.periodType = SubscriptionPeriodType.normal,
   });
 
-  void makeTrial() => periodType = SubscriptionPeriodType.trial;
-  bool get isTrial => periodType == SubscriptionPeriodType.trial;
+  bool get isTrial => appId == "trial";
 
   String displayPrice(BuildContext context) => isTrial || price <= 0
       ? L10n.of(context).freeTrial

@@ -61,6 +61,35 @@ class SubscriptionRepo {
     }
   }
 
+  static Future<bool> activateFreeTrial() async {
+    try {
+      final Requests req = Requests(
+        choreoApiKey: Environment.choreoApiKey,
+        accessToken: MatrixState.pangeaController.userController.accessToken,
+      );
+      final http.Response res = await req.get(
+        url: PApiUrls.rcProductsTrial,
+      );
+
+      if (res.statusCode != 201) {
+        ErrorHandler.logError(
+          e: res.body,
+          data: {},
+        );
+        return false;
+      } else {
+        return true;
+      }
+    } catch (err, s) {
+      ErrorHandler.logError(
+        e: err,
+        s: s,
+        data: {},
+      );
+      return false;
+    }
+  }
+
   static Future<RCSubscriptionResponseModel> getCurrentSubscriptionInfo(
     String? userId,
     List<SubscriptionDetails>? allProducts,
@@ -125,12 +154,14 @@ class RCSubscriptionResponseModel {
   SubscriptionDetails? currentSubscription;
   DateTime? expirationDate;
   List<String>? allEntitlements;
+  Map<String, RCSubscription>? allSubscriptions;
 
   RCSubscriptionResponseModel({
     this.currentSubscriptionId,
     this.currentSubscription,
     this.allEntitlements,
     this.expirationDate,
+    this.allSubscriptions,
   });
 
   factory RCSubscriptionResponseModel.fromJson(
@@ -145,9 +176,16 @@ class RCSubscriptionResponseModel {
         "User has more than one active entitlement. This shouldn't happen",
       );
     }
+
+    final history = (json['subscriptions'] as Map<String, dynamic>).map(
+      (key, value) => MapEntry(key, RCSubscription.fromJson(value)),
+    );
+
     if (activeEntitlements.isEmpty) {
       debugPrint("User has no active entitlements");
-      return RCSubscriptionResponseModel();
+      return RCSubscriptionResponseModel(
+        allSubscriptions: history,
+      );
     }
 
     final String currentSubscriptionId = activeEntitlements[0];
@@ -159,9 +197,6 @@ class RCSubscriptionResponseModel {
       currentSubscriptionMetadata['expires_date'],
     );
 
-    final String currentSubscriptionPeriodType =
-        currentSubscriptionMetadata['period_type'] ?? "";
-
     final SubscriptionDetails? currentSubscription =
         allProducts?.firstWhereOrNull(
       (SubscriptionDetails sub) =>
@@ -169,15 +204,12 @@ class RCSubscriptionResponseModel {
           currentSubscriptionId.contains(sub.id),
     );
 
-    if (currentSubscriptionPeriodType == "trial") {
-      currentSubscription?.makeTrial();
-    }
-
     return RCSubscriptionResponseModel(
       currentSubscription: currentSubscription,
       currentSubscriptionId: currentSubscriptionId,
       expirationDate: expirationDate,
       allEntitlements: activeEntitlements,
+      allSubscriptions: history,
     );
   }
 
@@ -206,5 +238,52 @@ class RCSubscriptionResponseModel {
         )
         .cast<String>()
         .toList();
+  }
+}
+
+class RCSubscription {
+  final String? autoResumeDate;
+  final String? billingIssuesDetectedAt;
+  final String expiresDate;
+  final String? gracePeriodExpiresDate;
+  final bool isSandbox;
+  final String originalPurchaseDate;
+  final String periodType;
+  final String purchaseDate;
+  final String? refundedAt;
+  final String store;
+  final String storeTransactionId;
+  final String? unsubscribeDetectedAt;
+
+  RCSubscription({
+    required this.autoResumeDate,
+    required this.billingIssuesDetectedAt,
+    required this.expiresDate,
+    required this.gracePeriodExpiresDate,
+    required this.isSandbox,
+    required this.originalPurchaseDate,
+    required this.periodType,
+    required this.purchaseDate,
+    required this.refundedAt,
+    required this.store,
+    required this.storeTransactionId,
+    required this.unsubscribeDetectedAt,
+  });
+
+  factory RCSubscription.fromJson(Map<String, dynamic> json) {
+    return RCSubscription(
+      autoResumeDate: json['auto_resume_date'],
+      billingIssuesDetectedAt: json['billing_issues_detected_at'],
+      expiresDate: json['expires_date'],
+      gracePeriodExpiresDate: json['grace_period_expires_date'],
+      isSandbox: json['is_sandbox'],
+      originalPurchaseDate: json['original_purchase_date'],
+      periodType: json['period_type'],
+      purchaseDate: json['purchase_date'],
+      refundedAt: json['refunded_at'],
+      store: json['store'],
+      storeTransactionId: json['store_transaction_id'],
+      unsubscribeDetectedAt: json['unsubscribe_detected_at'],
+    );
   }
 }
