@@ -165,6 +165,7 @@ class ChatController extends State<ChatPageWithRoom>
   String pendingText = '';
 
   bool showEmojiPicker = false;
+  int emojiPickerIndex = 0;
 
   void recreateChat() async {
     final room = this.room;
@@ -710,7 +711,23 @@ class ChatController extends State<ChatPageWithRoom>
     } else {
       inputFocus.unfocus();
     }
-    setState(() => showEmojiPicker = !showEmojiPicker);
+    setState(() {
+      showEmojiPicker = !showEmojiPicker;
+      emojiPickerIndex = 0;
+    });
+  }
+
+  void stickerPickerAction() {
+    if (showEmojiPicker) {
+      inputFocus.requestFocus();
+    } else {
+      inputFocus.unfocus();
+    }
+    emojiPickerType = EmojiPickerType.keyboard;
+    setState(() {
+      showEmojiPicker = !showEmojiPicker;
+      emojiPickerIndex = 1;
+    });
   }
 
   void _inputFocusListener() {
