@@ -59,8 +59,8 @@ enum FileSelectorType {
         extensions: <String>['png', 'PNG'],
       ),
       XTypeGroup(
-        label: 'WEBP',
-        extensions: <String>['WebP', 'WEBP'],
+        label: 'WebP',
+        extensions: <String>['webp', 'WebP', 'WEBP'],
       ),
       XTypeGroup(
         label: 'GIF',
