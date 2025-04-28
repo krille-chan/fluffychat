@@ -6,23 +6,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pangea/choreographer/widgets/igc/card_error_widget.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
-import 'package:fluffychat/pangea/instructions/instructions_enum.dart';
-import 'package:fluffychat/pangea/instructions/instructions_inline_tooltip.dart';
 import 'package:fluffychat/pangea/toolbar/models/speech_to_text_models.dart';
-import 'package:fluffychat/pangea/toolbar/widgets/icon_number_widget.dart';
-import 'package:fluffychat/pangea/toolbar/widgets/toolbar_content_loading_indicator.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import '../../bot/utils/bot_style.dart';
 
 class MessageSpeechToTextCard extends StatefulWidget {
   final PangeaMessageEvent messageEvent;
+  final Color textColor;
 
   const MessageSpeechToTextCard({
     super.key,
     required this.messageEvent,
+    required this.textColor,
   });
 
   @override
@@ -30,29 +26,33 @@ class MessageSpeechToTextCard extends StatefulWidget {
 }
 
 class MessageSpeechToTextCardState extends State<MessageSpeechToTextCard> {
-  SpeechToTextModel? speechToTextResponse;
+  SpeechToTextModel? _speechToTextResponse;
+
   bool _fetchingTranscription = true;
   Object? error;
-  STTToken? selectedToken;
-  TextSpan? transcriptText;
 
   String? get l1Code =>
       MatrixState.pangeaController.languageController.activeL1Code();
   String? get l2Code =>
       MatrixState.pangeaController.languageController.activeL2Code();
 
+  @override
+  void initState() {
+    super.initState();
+    _fetchTranscription();
+  }
+
   // look for transcription in message event
   // if not found, call API to transcribe audio
-  Future<void> getSpeechToText() async {
+  Future<void> _fetchTranscription() async {
     try {
       if (l1Code == null || l2Code == null) {
         throw Exception('Language selection not found');
       }
-      speechToTextResponse ??=
-          await widget.messageEvent.getSpeechToText(l1Code!, l2Code!);
 
-      debugPrint(
-        'Speech to text transcript: ${speechToTextResponse?.transcript.text}',
+      _speechToTextResponse ??= await widget.messageEvent.getSpeechToText(
+        l1Code!,
+        l2Code!,
       );
     } catch (e, s) {
       debugger(when: kDebugMode);
@@ -69,153 +69,51 @@ class MessageSpeechToTextCardState extends State<MessageSpeechToTextCard> {
     }
   }
 
-  TextSpan _buildTranscriptText(BuildContext context) {
-    try {
-      final Transcript transcript = speechToTextResponse!.transcript;
-      final List<InlineSpan> spans = [];
-      String remainingFullText = transcript.text;
-
-      if (transcript.sttTokens.isEmpty) {
-        return TextSpan(
-          text: remainingFullText,
-          style: BotStyle.text(context),
-        );
-      }
-
-      for (final token in transcript.sttTokens) {
-        final offset = remainingFullText.indexOf(token.token.text.content);
-        if (offset == -1) continue;
-        final length = token.length;
-
-        if (remainingFullText.substring(0, offset).trim().isNotEmpty) {
-          remainingFullText = remainingFullText.substring(offset);
-          continue;
-        }
-
-        if (offset > 0) {
-          // Add any plain text before the token
-          spans.add(
-            TextSpan(text: remainingFullText.substring(0, offset)),
-          );
-        }
-
-        spans.add(
-          TextSpan(
-            text: remainingFullText.substring(
-              offset,
-              offset + token.length,
-            ),
-            style: BotStyle.text(
-              context,
-              existingStyle: TextStyle(color: token.color(context)),
-              setColor: false,
-            ),
-            // gesturRecognizer that sets selectedToken on click
-            // recognizer: TapGestureRecognizer()
-            //   ..onTap = () {
-            //     debugPrint('Token tapped');
-            //     debugPrint(token.toJson().toString());
-            //     if (mounted) {
-            //       setState(() {
-            //         if (selectedToken == token) {
-            //           selectedToken = null;
-            //         } else {
-            //           selectedToken = token;
-            //         }
-            //       });
-            //     }
-            //   },
-          ),
-        );
-
-        remainingFullText = remainingFullText.substring(offset + length);
-      }
-
-      if (remainingFullText.isNotEmpty) {
-        // Add any remaining text after the last token
-        spans.add(TextSpan(text: remainingFullText));
-      }
-
-      return TextSpan(children: spans);
-    } catch (err, s) {
-      ErrorHandler.logError(
-        e: err,
-        s: s,
-        data: {},
-      );
-      setState(() => error = err);
-      return const TextSpan(text: '');
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    getSpeechToText().then((_) {
-      if (mounted) {
-        setState(() => transcriptText = _buildTranscriptText(context));
-      }
-    });
-  }
-
-  String? get wordsPerMinuteString =>
-      speechToTextResponse?.transcript.wordsPerMinute?.toStringAsFixed(2);
-
   @override
   Widget build(BuildContext context) {
     if (_fetchingTranscription) {
-      return const ToolbarContentLoadingIndicator();
+      return const LinearProgressIndicator();
     }
 
-    // done fetchig but not results means some kind of error
-    if (speechToTextResponse == null || error != null) {
-      return CardErrorWidget(
-        error: error ?? "Failed to fetch speech to text",
-        maxWidth: AppConfig.toolbarMinWidth,
+    // // done fetching but not results means some kind of error
+    if (_speechToTextResponse == null || error != null) {
+      return Row(
+        spacing: 8.0,
+        children: [
+          Flexible(
+            child: RichText(
+              text: TextSpan(
+                style: AppConfig.messageTextStyle(
+                  widget.messageEvent.event,
+                  widget.textColor,
+                ),
+                children: [
+                  WidgetSpan(
+                    alignment: PlaceholderAlignment.middle,
+                    child: Icon(
+                      Icons.error,
+                      color: Theme.of(context).colorScheme.error,
+                    ),
+                  ),
+                  const TextSpan(text: " "),
+                  TextSpan(
+                    text: L10n.of(context).oopsSomethingWentWrong,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
       );
     }
 
-    //TODO: find better icons
-    return ConstrainedBox(
-      constraints: const BoxConstraints(
-        maxWidth: AppConfig.toolbarMinWidth,
-        maxHeight: AppConfig.toolbarMaxHeight,
-      ),
-      child: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const SizedBox(height: 8),
-              RichText(
-                text: transcriptText!,
-              ),
-              if (widget.messageEvent.senderId ==
-                  Matrix.of(context).client.userID)
-                Column(
-                  children: [
-                    const SizedBox(height: 16),
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        IconNumberWidget(
-                          icon: Icons.speed,
-                          number: wordsPerMinuteString != null
-                              ? "$wordsPerMinuteString"
-                              : "??",
-                          toolTip: L10n.of(context).wordsPerMinute,
-                        ),
-                      ],
-                    ),
-                    const InstructionsInlineTooltip(
-                      instructionsEnum: InstructionsEnum.speechToText,
-                    ),
-                  ],
-                ),
-            ],
-          ),
-        ),
+    return Text(
+      "${_speechToTextResponse?.transcript.text}",
+      style: AppConfig.messageTextStyle(
+        widget.messageEvent.event,
+        widget.textColor,
+      ).copyWith(
+        fontStyle: FontStyle.italic,
       ),
     );
   }

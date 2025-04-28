@@ -484,19 +484,23 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
 
   // measurement for items in the toolbar
 
-  bool get showPracticeButtons =>
+  bool get _showButtons =>
       (widget.pangeaMessageEvent?.shouldShowToolbar ?? false) &&
       widget.pangeaMessageEvent?.event.messageType == MessageTypes.Text &&
-      (widget.pangeaMessageEvent?.messageDisplayLangIsL2 ?? false) &&
+      (widget.pangeaMessageEvent?.messageDisplayLangIsL2 ?? false);
+
+  bool get showPracticeButtons =>
+      _showButtons &&
       widget.overlayController.readingAssistanceMode ==
           ReadingAssistanceMode.practiceMode;
 
   bool get showSelectionButtons =>
-      widget.overlayController.readingAssistanceMode ==
-      ReadingAssistanceMode.selectMode;
+      _showButtons &&
+      [ReadingAssistanceMode.selectMode, null]
+          .contains(widget.overlayController.readingAssistanceMode);
 
   double get _selectionButtonsHeight {
-    return AppConfig.toolbarButtonsHeight;
+    return showSelectionButtons ? AppConfig.toolbarButtonsHeight : 0;
   }
 
   bool get _hasReactions {

@@ -9,7 +9,6 @@ import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/enums/reading_assistance_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_mode_locked_card.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
-import 'package:fluffychat/pangea/toolbar/widgets/message_speech_to_text_card.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_translation_card.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/practice_activity/practice_activity_card.dart';
 
@@ -43,14 +42,7 @@ class ReadingAssistanceInputBar extends StatelessWidget {
             : null;
 
     if (overlayController.pangeaMessageEvent?.isAudioMessage == true) {
-      if (!['audio/wav', 'audio/x-wav']
-          .contains(overlayController.pangeaMessageEvent!.mimetype)) {
-        return ReactionsPicker(controller);
-      }
-
-      content = MessageSpeechToTextCard(
-        messageEvent: overlayController.pangeaMessageEvent!,
-      );
+      return ReactionsPicker(controller);
     } else {
       switch (overlayController.toolbarMode) {
         case MessageMode.messageSpeechToText:

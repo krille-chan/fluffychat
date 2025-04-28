@@ -11,6 +11,7 @@ import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dar
 import 'package:fluffychat/pangea/events/extensions/pangea_event_extension.dart';
 import 'package:fluffychat/pangea/toolbar/enums/reading_assistance_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
+import 'package:fluffychat/pangea/toolbar/widgets/message_speech_to_text_card.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
@@ -126,6 +127,8 @@ class OverlayMessage extends StatelessWidget {
 
     final showTranslation = overlayController.showTranslation &&
         overlayController.translationText != null;
+
+    final showTranscription = pangeaMessageEvent?.isAudioMessage == true;
 
     final content = Container(
       decoration: BoxDecoration(
@@ -276,7 +279,7 @@ class OverlayMessage extends StatelessWidget {
                     },
                   )
                 : content,
-            if (showTranslation)
+            if (showTranscription || showTranslation)
               SizedBox(
                 width: messageWidth,
                 child: Padding(
@@ -286,13 +289,20 @@ class OverlayMessage extends StatelessWidget {
                     12.0,
                     12.0,
                   ),
-                  child: Text(
-                    overlayController.translationText!,
-                    style:
-                        AppConfig.messageTextStyle(event, textColor).copyWith(
-                      fontStyle: FontStyle.italic,
-                    ),
-                  ),
+                  child: showTranscription
+                      ? MessageSpeechToTextCard(
+                          messageEvent: pangeaMessageEvent!,
+                          textColor: textColor,
+                        )
+                      : Text(
+                          overlayController.translationText!,
+                          style: AppConfig.messageTextStyle(
+                            event,
+                            textColor,
+                          ).copyWith(
+                            fontStyle: FontStyle.italic,
+                          ),
+                        ),
                 ),
               ),
           ],

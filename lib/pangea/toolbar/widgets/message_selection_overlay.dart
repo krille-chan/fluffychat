@@ -183,11 +183,6 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   }
 
   Future<void> _setInitialToolbarMode() async {
-    if (pangeaMessageEvent?.isAudioMessage ?? false) {
-      updateToolbarMode(MessageMode.listening);
-      return;
-    }
-
     // 1) if we have a hidden word activity, then we should start with that
     if (practiceSelection?.hasHiddenWordActivity ?? false) {
       updateToolbarMode(MessageMode.practiceActivity);
