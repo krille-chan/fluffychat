@@ -59,7 +59,7 @@ enum FileSelectorType {
         extensions: <String>['jpg', 'JPG', 'jpeg', 'JPEG'],
       ),
       XTypeGroup(
-        label: 'PNGs',
+        label: 'PNG',
         extensions: <String>['png', 'PNG'],
       ),
       XTypeGroup(
