@@ -72,12 +72,15 @@ class AvailableSubscriptionsInfo {
   List<SubscriptionDetails> availableSubscriptions = [];
   SubscriptionAppIds? appIds;
   List<SubscriptionDetails>? allProducts;
+  DateTime? lastUpdated;
+
   final subscriptionBox =
       MatrixState.pangeaController.subscriptionController.subscriptionBox;
 
   AvailableSubscriptionsInfo({
     this.appIds,
     this.allProducts,
+    this.lastUpdated,
   });
 
   Future<void> setAvailableSubscriptions() async {
@@ -125,7 +128,8 @@ class AvailableSubscriptionsInfo {
     }
 
     try {
-      return AvailableSubscriptionsInfo.fromJson(json);
+      final resp = AvailableSubscriptionsInfo.fromJson(json);
+      return resp.lastUpdated == null ? null : resp;
     } catch (e, s) {
       ErrorHandler.logError(
         e: e,
@@ -152,9 +156,13 @@ class AvailableSubscriptionsInfo {
         .map((product) => SubscriptionDetails.fromJson(product))
         .toList()
         .cast<SubscriptionDetails>();
+    final lastUpdated = json['last_updated'] != null
+        ? DateTime.tryParse(json['last_updated']!)
+        : null;
     return AvailableSubscriptionsInfo(
       appIds: appIds,
       allProducts: allProducts,
+      lastUpdated: lastUpdated,
     );
   }
 
@@ -167,6 +175,7 @@ class AvailableSubscriptionsInfo {
     data['app_ids'] = appIds?.toJson();
     data['all_products'] =
         allProducts?.map((product) => product.toJson()).toList();
+    data['last_updated'] = (lastUpdated ?? DateTime.now()).toIso8601String();
     return data;
   }
 }

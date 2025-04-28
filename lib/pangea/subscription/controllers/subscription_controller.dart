@@ -248,9 +248,6 @@ class SubscriptionController extends BaseController {
   }
 
   Future<void> updateCustomerInfo() async {
-    if (!initCompleter.isCompleted) {
-      await initialize();
-    }
     await currentSubscriptionInfo?.setCurrentSubscription();
     setState(null);
   }
