@@ -1,10 +1,13 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
+import 'package:universal_html/html.dart' as html;
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
@@ -13,7 +16,10 @@ import 'package:fluffychat/pages/user_bottom_sheet/user_bottom_sheet.dart';
 import 'package:fluffychat/pangea/analytics_misc/level_display_name.dart';
 import 'package:fluffychat/pangea/chat_settings/constants/room_settings_constants.dart';
 import 'package:fluffychat/pangea/chat_settings/widgets/refer_friends_dialog.dart';
+import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/pangea/common/widgets/full_width_dialog.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/spaces/constants/space_constants.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
@@ -56,6 +62,100 @@ class InvitationSelectionView extends StatelessWidget {
         // Pangea#
         child: Column(
           children: [
+            // #Pangea
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: InkWell(
+                customBorder: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(99),
+                ),
+                onTap: () async {
+                  await Clipboard.setData(
+                    ClipboardData(text: room.classCode(context)),
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text(L10n.of(context).copiedToClipboard)),
+                  );
+                },
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 12.0,
+                    horizontal: 16.0,
+                  ),
+                  decoration: BoxDecoration(
+                    color: theme.colorScheme.secondaryContainer,
+                    borderRadius: BorderRadius.circular(99),
+                  ),
+                  child: Row(
+                    spacing: 16.0,
+                    children: [
+                      const Icon(
+                        Icons.copy_outlined,
+                        size: 20.0,
+                      ),
+                      Text(
+                        "${L10n.of(context).copyClassCode}: ${room.classCode(context)}",
+                        style: TextStyle(
+                          color: theme.colorScheme.onPrimaryContainer,
+                          fontWeight: FontWeight.normal,
+                          fontSize: 16.0,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(
+                bottom: 16.0,
+                left: 16.0,
+                right: 16.0,
+              ),
+              child: InkWell(
+                customBorder: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(99),
+                ),
+                onTap: () async {
+                  final String initialUrl =
+                      kIsWeb ? html.window.origin! : Environment.frontendURL;
+                  final link =
+                      "$initialUrl/#/join_with_link?${SpaceConstants.classCode}=${room.classCode(context)}";
+                  await Clipboard.setData(ClipboardData(text: link));
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text(L10n.of(context).copiedToClipboard)),
+                  );
+                },
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 12.0,
+                    horizontal: 16.0,
+                  ),
+                  decoration: BoxDecoration(
+                    color: theme.colorScheme.secondaryContainer,
+                    borderRadius: BorderRadius.circular(99),
+                  ),
+                  child: Row(
+                    spacing: 16.0,
+                    children: [
+                      const Icon(
+                        Icons.copy_outlined,
+                        size: 20.0,
+                      ),
+                      Text(
+                        L10n.of(context).copyClassLink,
+                        style: TextStyle(
+                          color: theme.colorScheme.onPrimaryContainer,
+                          fontWeight: FontWeight.normal,
+                          fontSize: 16.0,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            // Pangea#
             Padding(
               // #Pangea
               // padding: const EdgeInsets.all(16.0),

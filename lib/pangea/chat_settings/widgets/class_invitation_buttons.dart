@@ -10,7 +10,6 @@ import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/spaces/constants/space_constants.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import '../../../utils/fluffy_share.dart';
 
 class ClassInvitationButtons extends StatelessWidget {
   final String roomId;
@@ -37,12 +36,14 @@ class ClassInvitationButtons extends StatelessWidget {
           Icons.copy_outlined,
         ),
       ),
-      onTap: () {
+      onTap: () async {
         final String initialUrl =
             kIsWeb ? html.window.origin! : Environment.frontendURL;
-        FluffyShare.share(
-          "$initialUrl/#/join_with_link?${SpaceConstants.classCode}=${room.classCode(context)}",
-          context,
+        final link =
+            "$initialUrl/#/join_with_link?${SpaceConstants.classCode}=${room.classCode(context)}";
+        await Clipboard.setData(ClipboardData(text: link));
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(L10n.of(context).copiedToClipboard)),
         );
       },
     );
