@@ -8,7 +8,6 @@ import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/learning_settings/constants/language_constants.dart';
 import 'package:fluffychat/pangea/lemmas/construct_xp_widget.dart';
 import 'package:fluffychat/pangea/lemmas/lemma_emoji_row.dart';
-import 'package:fluffychat/pangea/morphs/edit_morph_widget.dart';
 import 'package:fluffychat/pangea/morphs/morph_features_enum.dart';
 import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
@@ -25,9 +24,6 @@ class WordZoomWidget extends StatelessWidget {
   final PangeaMessageEvent messageEvent;
   final TtsController tts;
   final MessageOverlayController overlayController;
-  final Function(MorphFeaturesEnum?) editMorph;
-
-  final MorphFeaturesEnum? selectedEditMorphFeature;
 
   const WordZoomWidget({
     super.key,
@@ -35,8 +31,6 @@ class WordZoomWidget extends StatelessWidget {
     required this.messageEvent,
     required this.tts,
     required this.overlayController,
-    required this.editMorph,
-    required this.selectedEditMorphFeature,
   });
 
   PangeaToken get _selectedToken => overlayController.selectedToken!;
@@ -111,68 +105,56 @@ class WordZoomWidget extends StatelessWidget {
             const SizedBox(
               height: 8.0,
             ),
-            if (selectedEditMorphFeature == null)
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    constraints: const BoxConstraints(
-                      minHeight: 40,
-                    ),
-                    alignment: Alignment.center,
-                    child: LemmaEmojiRow(
-                      cId: _selectedToken.vocabConstructID,
-                      onTapOverride: overlayController.hideWordCardContent &&
-                              hasEmojiActivity
-                          ? () => overlayController.updateToolbarMode(
-                                MessageMode.wordEmoji,
-                              )
-                          : null,
-                      isSelected: overlayController.toolbarMode ==
-                          MessageMode.wordEmoji,
-                      emojiSetCallback: () => overlayController.setState(() {}),
-                      shouldShowEmojis: !hasEmojiActivity,
-                    ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  constraints: const BoxConstraints(
+                    minHeight: 40,
                   ),
-                ],
-              ),
+                  alignment: Alignment.center,
+                  child: LemmaEmojiRow(
+                    cId: _selectedToken.vocabConstructID,
+                    onTapOverride: overlayController.hideWordCardContent &&
+                            hasEmojiActivity
+                        ? () => overlayController.updateToolbarMode(
+                              MessageMode.wordEmoji,
+                            )
+                        : null,
+                    isSelected:
+                        overlayController.toolbarMode == MessageMode.wordEmoji,
+                    emojiSetCallback: () => overlayController.setState(() {}),
+                    shouldShowEmojis: !hasEmojiActivity,
+                  ),
+                ),
+              ],
+            ),
             const SizedBox(
               height: 8.0,
             ),
-            if (selectedEditMorphFeature == null)
-              Container(
-                constraints: const BoxConstraints(
-                  minHeight: 40,
-                ),
-                alignment: Alignment.center,
-                child: Wrap(
-                  alignment: WrapAlignment.center,
-                  runAlignment: WrapAlignment.center,
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  spacing: 8,
-                  children: [
-                    LemmaMeaningWidget(
-                      constructUse: token.vocabConstructID.constructUses,
-                      langCode: MatrixState.pangeaController.languageController
-                              .userL2?.langCodeShort ??
-                          LanguageKeys.defaultLanguage,
-                      token: overlayController.selectedToken!,
-                      controller: overlayController,
-                      style: Theme.of(context).textTheme.bodyLarge,
-                    ),
-                  ],
-                ),
-              )
-            else
-              EditMorphWidget(
-                token: token,
-                pangeaMessageEvent: overlayController.pangeaMessageEvent!,
-                morphFeature: selectedEditMorphFeature!,
-                onClose: () {
-                  editMorph(null);
-                  overlayController.setState(() {});
-                },
+            Container(
+              constraints: const BoxConstraints(
+                minHeight: 40,
               ),
+              alignment: Alignment.center,
+              child: Wrap(
+                alignment: WrapAlignment.center,
+                runAlignment: WrapAlignment.center,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                spacing: 8,
+                children: [
+                  LemmaMeaningWidget(
+                    constructUse: token.vocabConstructID.constructUses,
+                    langCode: MatrixState.pangeaController.languageController
+                            .userL2?.langCodeShort ??
+                        LanguageKeys.defaultLanguage,
+                    token: overlayController.selectedToken!,
+                    controller: overlayController,
+                    style: Theme.of(context).textTheme.bodyLarge,
+                  ),
+                ],
+              ),
+            ),
             const SizedBox(
               height: 8.0,
             ),
@@ -215,21 +197,10 @@ class WordZoomWidget extends StatelessWidget {
                     ),
                     token: _selectedToken,
                     overlayController: overlayController,
-                    editMorph: () => editMorph(
-                      MorphFeaturesEnumExtension.fromString(cId.category),
-                    ),
                   ),
                 ),
               ],
             ),
-            // if (_selectedMorphFeature != null)
-            //   MorphologicalCenterWidget(
-            //     token: token,
-            //     morphFeature: _selectedMorphFeature!,
-            //     pangeaMessageEvent: messageEvent,
-            //     overlayController: overlayController,
-            //     onEditDone: onEditDone,
-            //   ),
           ],
         ),
       ),

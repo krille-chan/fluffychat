@@ -139,93 +139,119 @@ class EditMorphWidgetState extends State<EditMorphWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      spacing: 8.0,
+    return Stack(
       children: [
-        Text(
-          "${L10n.of(context).pangeaBotIsFallible} ${L10n.of(context).chooseCorrectLabel}",
-          textAlign: TextAlign.center,
-          style: const TextStyle(fontStyle: FontStyle.italic),
-        ),
-        if (_availableMorphTags == null || _availableMorphTags!.isEmpty)
-          const CircularProgressIndicator()
-        else
-          Wrap(
-            alignment: WrapAlignment.center,
-            children: _availableMorphTags!.map((tag) {
-              return Container(
-                margin: const EdgeInsets.all(2),
-                padding: EdgeInsets.zero,
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(10),
-                  ),
-                  border: Border.all(
-                    color: _selectedMorphTag == tag
-                        ? Theme.of(context).colorScheme.primary
-                        : Colors.transparent,
-                    style: BorderStyle.solid,
-                    width: 2.0,
-                  ),
-                ),
-                child: TextButton(
-                  style: ButtonStyle(
-                    padding: WidgetStateProperty.all(
-                      const EdgeInsets.symmetric(
-                        horizontal: 7,
-                      ),
-                    ),
-                    backgroundColor: WidgetStateProperty.all<Color>(
-                      _selectedMorphTag == tag
-                          ? Theme.of(context).colorScheme.primary.withAlpha(50)
-                          : Colors.transparent,
-                    ),
-                    shape: WidgetStateProperty.all(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                  ),
-                  onPressed: () => setState(() => _selectedMorphTag = tag),
-                  child: Text(
-                    getGrammarCopy(
-                          category: widget.morphFeature.name,
-                          lemma: tag,
-                          context: context,
-                        ) ??
-                        tag,
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              );
-            }).toList(),
+        Padding(
+          padding: const EdgeInsets.only(
+            top: 16.0,
+            bottom: 48.0,
           ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          spacing: 10,
-          children: [
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              spacing: 8.0,
+              children: [
+                Text(
+                  "${L10n.of(context).pangeaBotIsFallible} ${L10n.of(context).chooseCorrectLabel}",
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(fontStyle: FontStyle.italic),
                 ),
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-              ),
-              onPressed: widget.onClose,
-              child: Text(L10n.of(context).cancel),
+                if (_availableMorphTags == null || _availableMorphTags!.isEmpty)
+                  const CircularProgressIndicator()
+                else
+                  Wrap(
+                    alignment: WrapAlignment.center,
+                    children: _availableMorphTags!.map((tag) {
+                      return Container(
+                        margin: const EdgeInsets.all(2),
+                        padding: EdgeInsets.zero,
+                        decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(10),
+                          ),
+                          border: Border.all(
+                            color: _selectedMorphTag == tag
+                                ? Theme.of(context).colorScheme.primary
+                                : Colors.transparent,
+                            style: BorderStyle.solid,
+                            width: 2.0,
+                          ),
+                        ),
+                        child: TextButton(
+                          style: ButtonStyle(
+                            padding: WidgetStateProperty.all(
+                              const EdgeInsets.symmetric(
+                                horizontal: 7,
+                              ),
+                            ),
+                            backgroundColor: WidgetStateProperty.all<Color>(
+                              _selectedMorphTag == tag
+                                  ? Theme.of(context)
+                                      .colorScheme
+                                      .primary
+                                      .withAlpha(50)
+                                  : Colors.transparent,
+                            ),
+                            shape: WidgetStateProperty.all(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                          ),
+                          onPressed: () =>
+                              setState(() => _selectedMorphTag = tag),
+                          child: Text(
+                            getGrammarCopy(
+                                  category: widget.morphFeature.name,
+                                  lemma: tag,
+                                  context: context,
+                                ) ??
+                                tag,
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      );
+                    }).toList(),
+                  ),
+              ],
             ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+          ),
+        ),
+        Positioned(
+          bottom: 0,
+          left: 0,
+          right: 0,
+          child: Container(
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.surface,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              spacing: 10,
+              children: [
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                  ),
+                  onPressed: widget.onClose,
+                  child: Text(L10n.of(context).cancel),
                 ),
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-              ),
-              onPressed: _canSaveChanges ? _saveChanges : null,
-              child: Text(L10n.of(context).saveChanges),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                  ),
+                  onPressed: _canSaveChanges ? _saveChanges : null,
+                  child: Text(L10n.of(context).saveChanges),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ],
     );

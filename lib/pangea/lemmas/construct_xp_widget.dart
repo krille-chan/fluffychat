@@ -15,11 +15,13 @@ import 'package:fluffychat/widgets/matrix.dart';
 class ConstructXpWidget extends StatefulWidget {
   final ConstructIdentifier id;
   final VoidCallback? onTap;
+  final double size;
 
   const ConstructXpWidget({
     super.key,
     required this.id,
     this.onTap,
+    this.size = 24.0,
   });
 
   @override
@@ -100,12 +102,17 @@ class ConstructXpWidgetState extends State<ConstructXpWidget>
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: widget.onTap,
-      child: MouseRegion(
-        cursor: SystemMouseCursors.click,
-        child: Opacity(
-          opacity: constructLemmaCategory == null ? 0.2 : 1.0,
+    if (constructLemmaCategory == null) {
+      return const SizedBox();
+    }
+
+    return SizedBox(
+      width: widget.size,
+      height: widget.size,
+      child: GestureDetector(
+        onTap: widget.onTap,
+        child: MouseRegion(
+          cursor: SystemMouseCursors.click,
           child: Stack(
             alignment: Alignment.center,
             children: [
