@@ -102,12 +102,15 @@ class PLanguageDropdownState extends State<PLanguageDropdown> {
             labelText: widget.decorationText,
             enabledBorder: hasError
                 ? OutlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Theme.of(context).colorScheme.error),
+                    borderRadius: BorderRadius.circular(14),
+                    borderSide: BorderSide(
+                      color: Theme.of(context).colorScheme.error,
+                    ),
                   )
                 : null,
             focusedBorder: hasError
                 ? OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(14),
                     borderSide: BorderSide(
                       color: Theme.of(context).colorScheme.error,
                       width: 2,
