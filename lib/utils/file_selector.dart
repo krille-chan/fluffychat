@@ -51,6 +51,10 @@ enum FileSelectorType {
   images(
     [
       XTypeGroup(
+        label: 'Images',
+        extensions: <String>['jpg', 'JPG', 'jpeg', 'JPEG', 'png', 'PNG', 'webp', 'WebP', 'WEBP', 'gif', 'GIF', 'bmp', 'BMP', 'tiff', 'TIFF', 'tif', 'TIF', 'heic', 'HEIC', 'svg', 'SVG'],
+      ),
+      XTypeGroup(
         label: 'JPG',
         extensions: <String>['jpg', 'JPG', 'jpeg', 'JPEG'],
       ),
@@ -88,6 +92,10 @@ enum FileSelectorType {
   ),
   videos(
     [
+      XTypeGroup(
+        label: 'Videos',
+        extensions: <String>['mp4', 'MP4', 'avi', 'AVI', 'webm', 'WebM', 'WEBM', 'mov', 'MOV', 'mkv', 'MKV', 'wmv', 'WMV', 'flv', 'FLV', 'mpeg', 'MPEG', '3gp', '3GP', 'ogg', 'OGG'],
+      ),
       XTypeGroup(
         label: 'MP4',
         extensions: <String>['mp4', 'MP4'],
