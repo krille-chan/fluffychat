@@ -93,6 +93,10 @@ enum FileSelectorType {
         extensions: <String>['mp4', 'MP4'],
       ),
       XTypeGroup(
+        label: 'WebM',
+        extensions: <String>['webm', 'WebM', 'WEBM'],
+      ),
+      XTypeGroup(
         label: 'AVI',
         extensions: <String>['avi', 'AVI'],
       ),
