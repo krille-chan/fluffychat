@@ -3352,5 +3352,7 @@
   "youHaveKnocked": "您已請求加入",
   "@youHaveKnocked": {},
   "pleaseWaitUntilInvited": "直到聊天室裡有人邀請您前，請等候。",
-  "@pleaseWaitUntilInvited": {}
+  "@pleaseWaitUntilInvited": {},
+  "notificationRuleIsUserMentionDescription": "被@時通知他們。",
+  "@notificationRuleIsUserMentionDescription": {}
 }
