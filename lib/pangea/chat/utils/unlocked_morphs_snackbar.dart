@@ -34,7 +34,11 @@ class ConstructNotificationUtil {
   }
 
   static void onClose(ConstructIdentifier construct) {
-    MatrixState.pAnyState.closeOverlay("${construct.string}_snackbar");
+    final overlayKey = "${construct.string}_snackbar";
+    MatrixState.pAnyState.closeOverlay(overlayKey);
+
+    MatrixState.pAnyState.activeOverlays.remove(overlayKey);
+
     unlockedConstructs.remove(construct);
     closeCompleter?.complete();
     closeCompleter = null;
@@ -66,8 +70,13 @@ class ConstructNotificationUtil {
           canPop: false,
         );
 
+        MatrixState.pAnyState.activeOverlays
+            .add("${construct.string}_snackbar");
+
         await closeCompleter!.future;
       } catch (e) {
+        MatrixState.pAnyState.activeOverlays
+            .remove("${construct.string}_snackbar");
         showingNotification = false;
         break;
       }

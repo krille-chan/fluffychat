@@ -18,6 +18,7 @@ class OverlayListEntry {
 }
 
 class PangeaAnyState {
+  final Set<String> activeOverlays = {};
   final Map<String, LayerLinkAndKey> _layerLinkAndKeys = {};
   List<OverlayListEntry> entries = [];
 
@@ -56,6 +57,11 @@ class PangeaAnyState {
         canPop: canPop,
       ),
     );
+
+    if (overlayKey != null) {
+      activeOverlays.add(overlayKey);
+    }
+
     Overlay.of(context).insert(entry);
   }
 
@@ -79,6 +85,10 @@ class PangeaAnyState {
         );
       }
       entries.remove(entry);
+
+      if (overlayKey != null) {
+        activeOverlays.remove(overlayKey);
+      }
     }
   }
 
@@ -92,6 +102,7 @@ class PangeaAnyState {
           .toList();
     }
     if (shouldRemove.isEmpty) return;
+
     for (int i = 0; i < shouldRemove.length; i++) {
       try {
         shouldRemove[i].entry.remove();
@@ -104,6 +115,11 @@ class PangeaAnyState {
           },
         );
       }
+
+      if (shouldRemove[i].key != null) {
+        activeOverlays.remove(shouldRemove[i].key);
+      }
+
       entries.remove(shouldRemove[i]);
     }
   }

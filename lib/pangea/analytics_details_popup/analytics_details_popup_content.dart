@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:material_symbols_icons/symbols.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/analytics_details_popup/lemma_usage_dots.dart';
@@ -73,27 +71,16 @@ class AnalyticsDetailsViewContent extends StatelessWidget {
             child: Column(
               children: [
                 LemmaUseExampleMessages(construct: construct),
-                // Writing exercise section
-                LemmaUsageDots(
-                  construct: construct,
-                  category: LearningSkillsEnum.writing,
-                  tooltip: L10n.of(context).writingExercisesTooltip,
-                  icon: Symbols.edit_square,
-                ),
-                // Listening exercise section
-                LemmaUsageDots(
-                  construct: construct,
-                  category: LearningSkillsEnum.hearing,
-                  tooltip: L10n.of(context).listeningExercisesTooltip,
-                  icon: Icons.volume_up,
-                ),
-                // Reading exercise section
-                LemmaUsageDots(
-                  construct: construct,
-                  category: LearningSkillsEnum.reading,
-                  tooltip: L10n.of(context).readingExercisesTooltip,
-                  icon: Symbols.two_pager,
-                ),
+                ...LearningSkillsEnum.values
+                    .where((v) => v.isVisible)
+                    .map((skill) {
+                  return LemmaUsageDots(
+                    construct: construct,
+                    category: skill,
+                    tooltip: skill.tooltip(context),
+                    icon: skill.icon,
+                  );
+                }),
               ],
             ),
           ),

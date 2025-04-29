@@ -391,7 +391,6 @@ class ChatController extends State<ChatPageWithRoom>
           LevelUpUtil.showLevelUpDialog(
             update['level_up'],
             update['analytics_room_id'],
-            update["construct_summary_state_event_id"],
             update['construct_summary'],
             context,
           );

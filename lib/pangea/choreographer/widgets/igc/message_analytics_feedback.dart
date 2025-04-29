@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:material_symbols_icons/symbols.dart';
 
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/analytics_details_popup/analytics_details_popup.dart';
@@ -213,8 +212,8 @@ class NewConstructsBadge extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Icon(
-                      Symbols.toys_and_games,
-                      color: ProgressIndicatorEnum.morphsUsed.color(context),
+                      type.indicator.icon,
+                      color: type.indicator.color(context),
                       size: 24,
                     ),
                     const SizedBox(width: 4.0),
@@ -223,7 +222,7 @@ class NewConstructsBadge extends StatelessWidget {
                       endValue: newConstructs,
                       startAnimation: opacityAnimation.value > 0.9,
                       style: TextStyle(
-                        color: ProgressIndicatorEnum.morphsUsed.color(context),
+                        color: type.indicator.color(context),
                         fontWeight: FontWeight.bold,
                       ),
                     ),

@@ -4596,9 +4596,9 @@
   "meaningSectionHeader": "Meaning:",
   "formSectionHeader": "Forms used in chats:",
   "noEmojiSelectedTooltip": "No emoji selected",
-  "writingExercisesTooltip": "Writing activities",
-  "listeningExercisesTooltip": "Listening activities",
-  "readingExercisesTooltip": "Reading activities",
+  "writingExercisesTooltip": "Writing practice",
+  "listeningExercisesTooltip": "Listening practice",
+  "readingExercisesTooltip": "Reading practice",
   "meaningNotFound": "Meaning could not be found.",
   "formsNotFound": "Forms could not be found.",
   "chooseBaseForm": "Choose the base form",
@@ -4875,5 +4875,7 @@
   "languageLevelC1Desc": "I can express ideas fluently and spontaneously without much struggle and understand a wide range of demanding texts.",
   "languageLevelC2Desc": "I can understand virtually everything heard or read and express myself fluently and precisely.",
   "newVocab": "New vocab",
-  "newGrammar": "New grammar concepts"
+  "newGrammar": "New grammar concepts",
+  "congratulationsOnReaching": "Congratulations on reaching ",
+  "seeDetails": "See Details"
 }
