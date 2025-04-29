@@ -43,7 +43,9 @@ class GetAnalyticsController extends BaseController {
     _pangeaController = pangeaController;
   }
 
+  LanguageModel? get _l1 => _pangeaController.languageController.userL1;
   LanguageModel? get _l2 => _pangeaController.languageController.userL2;
+
   Client get _client => _pangeaController.matrixState.client;
 
   // the minimum XP required for a given level
@@ -507,7 +509,7 @@ class GetAnalyticsController extends BaseController {
       final request = ConstructSummaryRequest(
         constructs: constructUseOfCurrentLevel,
         constructUseMessageContentBodies: constructUseMessageContentBodies,
-        language: _l2!.langCodeShort,
+        language: _l1!.langCodeShort,
         upperLevel: upperLevel,
         lowerLevel: lowerLevel,
       );
