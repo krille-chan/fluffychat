@@ -112,6 +112,10 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
   Future<void> initializeTokensAndMode() async {
     try {
+      if (pangeaMessageEvent?.event.messageType != MessageTypes.Text) {
+        return;
+      }
+
       RepresentationEvent? repEvent =
           pangeaMessageEvent?.messageDisplayRepresentation;
       repEvent ??= await _fetchNewRepEvent();
