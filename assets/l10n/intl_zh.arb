@@ -3243,7 +3243,7 @@
   "@notificationRuleContainsDisplayName": {},
   "notificationRuleIsRoomMention": "聊天室提及",
   "@notificationRuleIsRoomMention": {},
-  "notificationRuleRoomnotifDescription": "消息包含 \"@room\" 时提醒用户。",
+  "notificationRuleRoomnotifDescription": "消息包含 「@room」 时提醒用户。",
   "@notificationRuleRoomnotifDescription": {},
   "notificationRuleTombstone": "墓碑",
   "@notificationRuleTombstone": {},
