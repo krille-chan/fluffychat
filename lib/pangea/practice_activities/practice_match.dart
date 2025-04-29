@@ -66,6 +66,10 @@ class PracticeMatchActivity {
         'Added PracticeChoice Construct: ${ith.key}, Forms: ${ith.value}',
       );
     }
+
+    choices.sort(
+      (a, b) => a.choiceContent.length.compareTo(b.choiceContent.length),
+    );
   }
 
   bool isCorrect(ConstructForm form, String value) {
