@@ -15,6 +15,7 @@ import 'package:text_to_speech/text_to_speech.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/events/audio_player.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
+import 'package:fluffychat/pangea/events/models/pangea_token_text_model.dart';
 import 'package:fluffychat/pangea/instructions/instructions_enum.dart';
 import 'package:fluffychat/pangea/instructions/instructions_show_popup.dart';
 import 'package:fluffychat/pangea/learning_settings/constants/language_constants.dart';
@@ -171,21 +172,32 @@ class TtsController {
     final enableTTS = MatrixState
         .pangeaController.userController.profile.toolSettings.enableTTS;
     if (enableTTS) {
+      final token = PangeaTokenText(
+        offset: 0,
+        content: text,
+        length: text.length,
+      );
       await (_isLangFullySupported(langCode)
           ? _speak(
               text,
               langCode,
+              [token],
             )
           : _speakFromChoreo(
               text,
               langCode,
+              [token],
             ));
     } else if (targetID != null && context != null) {
       await _showTTSDisabledPopup(context, targetID);
     }
   }
 
-  Future<void> _speak(String text, String langCode) async {
+  Future<void> _speak(
+    String text,
+    String langCode,
+    List<PangeaTokenText> tokens,
+  ) async {
     try {
       stop();
       text = text.toLowerCase();
@@ -228,13 +240,14 @@ class TtsController {
           'text': text,
         },
       );
-      await _speakFromChoreo(text, langCode);
+      await _speakFromChoreo(text, langCode, tokens);
     }
   }
 
   Future<void> _speakFromChoreo(
     String text,
     String langCode,
+    List<PangeaTokenText> tokens,
   ) async {
     TextToSpeechResponse? ttsRes;
     try {
@@ -243,7 +256,7 @@ class TtsController {
         TextToSpeechRequest(
           text: text,
           langCode: langCode,
-          tokens: [], // TODO: Somehow bring existing tokens to avoid extra choreo token requests
+          tokens: tokens,
           userL1:
               MatrixState.pangeaController.languageController.activeL1Code() ??
                   LanguageKeys.unknownLanguage,
