@@ -51,7 +51,13 @@ class ReadingAssistanceInputBar extends StatelessWidget {
         case MessageMode.noneSelected:
         case MessageMode.messageMeaning:
           //TODO: show all emojis for the lemmas and allow sending normal reactions
-          return ReactionsPicker(controller);
+          content = Text(
+            L10n.of(context).choosePracticeMode,
+            style: Theme.of(context)
+                .textTheme
+                .bodyLarge
+                ?.copyWith(fontStyle: FontStyle.italic),
+          );
 
         case MessageMode.messageTranslation:
           if (overlayController.isTranslationUnlocked) {
@@ -72,7 +78,7 @@ class ReadingAssistanceInputBar extends StatelessWidget {
               overlayController: overlayController,
             );
           } else {
-            content = const Text("All done!");
+            content = Text(L10n.of(context).allDone);
           }
         case MessageMode.wordMorph:
           if (target != null) {
