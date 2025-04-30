@@ -94,7 +94,7 @@ class BackgroundPush {
       if (Platform.isAndroid) {
         await UnifiedPush.initialize(
           onNewEndpoint: _newUpEndpoint,
-          onRegistrationFailed: _upUnregistered,
+          onRegistrationFailed: (_, reason) => _upUnregistered(reason),
           onUnregistered: _upUnregistered,
           onMessage: _onUpMessage,
         );
@@ -352,7 +352,8 @@ class BackgroundPush {
         .registerAppWithDialog();
   }
 
-  Future<void> _newUpEndpoint(String newEndpoint, String i) async {
+  Future<void> _newUpEndpoint(PushEndpoint pushEndpoint, String i) async {
+    final newEndpoint = pushEndpoint.url;
     upAction = true;
     if (newEndpoint.isEmpty) {
       await _upUnregistered(i);
@@ -397,9 +398,9 @@ class BackgroundPush {
     await matrix?.store.setBool(SettingKeys.unifiedPushRegistered, true);
   }
 
-  Future<void> _upUnregistered(String i) async {
+  Future<void> _upUnregistered(String reason) async {
     upAction = true;
-    Logs().i('[Push] Removing UnifiedPush endpoint...');
+    Logs().i('[Push] Removing UnifiedPush endpoint...', reason);
     final oldEndpoint =
         matrix?.store.getString(SettingKeys.unifiedPushEndpoint);
     await matrix?.store.setBool(SettingKeys.unifiedPushRegistered, false);
@@ -412,10 +413,10 @@ class BackgroundPush {
     }
   }
 
-  Future<void> _onUpMessage(Uint8List message, String i) async {
+  Future<void> _onUpMessage(PushMessage message, String i) async {
     upAction = true;
     final data = Map<String, dynamic>.from(
-      json.decode(utf8.decode(message))['notification'],
+      json.decode(utf8.decode(message.content))['notification'],
     );
     // UP may strip the devices list
     data['devices'] ??= [];
@@ -446,7 +447,7 @@ class UPFunctions extends UnifiedPushFunctions {
 
   @override
   Future<void> registerApp(String instance) async {
-    await UnifiedPush.registerApp(instance, features);
+    await UnifiedPush.register(instance: instance, features: features);
   }
 
   @override
