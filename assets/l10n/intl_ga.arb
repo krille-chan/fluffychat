@@ -3350,5 +3350,19 @@
   "enterNewChat": "Cuir isteach comhrá nua",
   "@enterNewChat": {},
   "commandHint_roomupgrade": "Uasghrádaigh an seomra seo go dtí an leagan seomra a thugtar",
-  "@commandHint_roomupgrade": {}
+  "@commandHint_roomupgrade": {},
+  "setCustomPermissionLevel": "Socraigh leibhéal ceadanna saincheaptha",
+  "@setCustomPermissionLevel": {},
+  "setPermissionsLevelDescription": "Roghnaigh ról réamhshainithe thíos nó cuir isteach leibhéal ceadanna saincheaptha idir 0 agus 100.",
+  "@setPermissionsLevelDescription": {},
+  "ignoreUser": "Déan neamhaird den úsáideoir",
+  "@ignoreUser": {},
+  "normalUser": "Gnáthúsáideoir",
+  "@normalUser": {},
+  "approve": "Ceadaigh",
+  "@approve": {},
+  "youHaveKnocked": "Bhuail tú",
+  "@youHaveKnocked": {},
+  "pleaseWaitUntilInvited": "Fan anois, le do thoil, go dtí go dtabharfaidh duine éigin ón seomra cuireadh duit.",
+  "@pleaseWaitUntilInvited": {}
 }
