@@ -43,6 +43,7 @@ import '../../widgets/matrix.dart';
 import 'package:fluffychat/utils/tor_stub.dart'
     if (dart.library.html) 'package:tor_detector_web/tor_detector_web.dart';
 
+
 enum PopupMenuAction {
   settings,
   invite,
@@ -835,7 +836,10 @@ class ChatListController extends State<ChatList>
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Icon(Icons.group_work_outlined),
+                  // #Pangea
+                  // const Icon(Icons.group_work_outlined),
+                  const Icon(Icons.groups_outlined),
+                  // Pangea#
                   const SizedBox(width: 12),
                   Text(L10n.of(context).addToSpace),
                 ],
