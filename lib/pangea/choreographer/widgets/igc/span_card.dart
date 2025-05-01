@@ -1,10 +1,5 @@
 import 'dart:developer';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/bot/utils/bot_style.dart';
 import 'package:fluffychat/pangea/choreographer/enums/span_data_type.dart';
@@ -13,13 +8,16 @@ import 'package:fluffychat/pangea/choreographer/utils/match_copy.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/igc/card_error_widget.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+
 import '../../../../widgets/matrix.dart';
 import '../../../bot/widgets/bot_face_svg.dart';
 import '../../../common/controllers/pangea_controller.dart';
 import '../../enums/span_choice_type.dart';
 import '../../models/span_card_model.dart';
 import '../choice_array.dart';
-import 'card_header.dart';
 import 'why_button.dart';
 
 //switch for definition vs correction vs practice
@@ -227,13 +225,13 @@ class WordMatchContent extends StatelessWidget {
       return Column(
         children: [
           // if (!controller.widget.scm.pangeaMatch!.isITStart)
-          CardHeader(
-            text: controller.error?.toString() ?? matchCopy.title,
-            botExpression: controller.error == null
-                ? controller.currentExpression
-                : BotExpression.addled,
-            onClose: () => controller.widget.scm.choreographer.setState(),
-          ),
+          // CardHeader(
+          //   text: controller.error?.toString(),
+          //   botExpression: controller.error == null
+          //       ? controller.currentExpression
+          //       : BotExpression.addled,
+          //   onClose: () => controller.widget.scm.choreographer.setState(),
+          // ),
           Scrollbar(
             controller: scrollController,
             thumbVisibility: true,
@@ -409,10 +407,11 @@ class PromptAndFeedback extends StatelessWidget {
               ),
             ),
           if (controller.selectedChoice != null) ...[
-            Text(
-              controller.selectedChoice!.feedbackToDisplay(context),
-              style: BotStyle.text(context),
-            ),
+            if (controller.selectedChoice?.feedback != null)
+              Text(
+                controller.selectedChoice!.feedbackToDisplay(context),
+                style: BotStyle.text(context),
+              ),
             const SizedBox(height: 8),
             if (controller.selectedChoice?.feedback == null)
               WhyButton(
@@ -429,7 +428,9 @@ class PromptAndFeedback extends StatelessWidget {
             Text(
               controller.widget.scm.pangeaMatch!.match.type.typeName
                   .defaultPrompt(context),
-              style: BotStyle.text(context),
+              style: BotStyle.text(context).copyWith(
+                fontStyle: FontStyle.italic,
+              ),
             ),
         ],
       ),
