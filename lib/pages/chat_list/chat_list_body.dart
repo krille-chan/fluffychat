@@ -198,7 +198,10 @@ class ChatListViewBody extends StatelessWidget {
                               ActiveFilter.messages
                             else
                               ActiveFilter.allChats,
-                            ActiveFilter.groups,
+                            // #Pangea
+                            if (AppConfig.separateChatTypes)
+                              ActiveFilter.groups,
+                            // Pangea#
                             ActiveFilter.unread,
                             // #Pangea
                             // if (spaceDelegateCandidates.isNotEmpty &&
