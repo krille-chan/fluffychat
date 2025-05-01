@@ -75,8 +75,15 @@ class UserBottomSheetView extends StatelessWidget {
                       title: Padding(
                         padding: const EdgeInsets.only(bottom: 12.0),
                         child: Text(
-                          L10n.of(context)
-                              .userWouldLikeToChangeTheChat(displayname),
+                          // #Pangea
+                          // L10n.of(context)
+                          //     .userWouldLikeToChangeTheChat(displayname),
+                          (user?.room.isSpace ?? false)
+                              ? L10n.of(context)
+                                  .userWouldLikeToChangeTheSpace(displayname)
+                              : L10n.of(context)
+                                  .userWouldLikeToChangeTheChat(displayname),
+                          // Pangea#
                         ),
                       ),
                       subtitle: Row(

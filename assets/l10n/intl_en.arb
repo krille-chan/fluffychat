@@ -4878,5 +4878,13 @@
   "newGrammar": "New grammar concepts",
   "congratulationsOnReaching": "Congratulations on reaching ",
   "seeDetails": "See Details",
-  "choosePracticeMode": "Click on one of the buttons above to start a practice activity"
+  "choosePracticeMode": "Click on one of the buttons above to start a practice activity",
+  "userWouldLikeToChangeTheSpace": "{user} would like to join the space.",
+  "@userWouldLikeToChangeTheSpace": {
+    "placeholders": {
+      "user": {
+        "type": "String"
+      }
+    }
+  }
 }
