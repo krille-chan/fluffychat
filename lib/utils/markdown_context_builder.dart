@@ -84,6 +84,30 @@ Widget markdownContextBuilder(
           },
         ),
         ContextMenuButtonItem(
+          label: l10n.quoteText,
+          onPressed: () {
+            final selection = controller.selection;
+            controller.text = controller.text.replaceRange(
+              selection.start,
+              selection.end,
+              '> $selectedText',
+            );
+            ContextMenuController.removeAny();
+          },
+        ),
+        ContextMenuButtonItem(
+          label: l10n.spoilerText,
+          onPressed: () {
+            final selection = controller.selection;
+            controller.text = controller.text.replaceRange(
+              selection.start,
+              selection.end,
+              '||$selectedText||',
+            );
+            ContextMenuController.removeAny();
+          },
+        ),
+        ContextMenuButtonItem(
           label: l10n.boldText,
           onPressed: () {
             final selection = controller.selection;
@@ -102,7 +126,7 @@ Widget markdownContextBuilder(
             controller.text = controller.text.replaceRange(
               selection.start,
               selection.end,
-              '*$selectedText*',
+              '__${selectedText}__',
             );
             ContextMenuController.removeAny();
           },

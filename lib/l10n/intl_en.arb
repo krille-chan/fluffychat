@@ -3182,6 +3182,8 @@
   "website": "Website",
   "@website": {},
   "compress": "Compress",
+  "spoilerText": "Spoiler text",
+  "quoteText": "Quote text",
   "@compress": {},
   "boldText": "Bold text",
   "@boldText": {},
