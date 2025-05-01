@@ -1,4 +1,4 @@
-name: fluffychat
+name: hermes
 description: Chat with your friends.
 publish_to: none
 # On version bump also increase the build number for F-Droid

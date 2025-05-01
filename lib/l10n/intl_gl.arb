@@ -826,8 +826,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "fluffychat": "FluffyChat",
-    "@fluffychat": {
+    "hermes": "Hermes",
+    "@hermes": {
         "type": "String",
         "placeholders": {}
     },
@@ -998,7 +998,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "inviteText": "{username} convidoute a FluffyChat.\n1. Visita fluffychat.im e instala a app\n2. Crea unha conta ou Accede\n3. Abre a ligazón do convite: \n {link}",
+    "inviteText": "{username} convidoute a Hermes.\n1. Visita hermes.im e instala a app\n2. Crea unha conta ou Accede\n3. Abre a ligazón do convite: \n {link}",
     "@inviteText": {
         "type": "String",
         "placeholders": {
@@ -1170,8 +1170,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "newMessageInFluffyChat": "💬 Nova mensaxe en FluffyChat",
-    "@newMessageInFluffyChat": {
+    "newMessageInHermes": "💬 Nova mensaxe en Hermes",
+    "@newMessageInHermes": {
         "type": "String",
         "placeholders": {}
     },
@@ -1792,7 +1792,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "title": "FluffyChat",
+    "title": "Hermes",
     "@title": {
         "description": "Title for the application",
         "type": "String",
@@ -2352,7 +2352,7 @@
     "@dehydrateTor": {},
     "indexedDbErrorTitle": "Problemas no modo privado",
     "@indexedDbErrorTitle": {},
-    "indexedDbErrorLong": "A almacenaxe de mensaxes non está activada por defecto no modo privado.\nMira en\n- about:config\n- establece dom.indexedDB.privateBrowsing.enabled como true\nSe non, non é posible executar FluffyChat.",
+    "indexedDbErrorLong": "A almacenaxe de mensaxes non está activada por defecto no modo privado.\nMira en\n- about:config\n- establece dom.indexedDB.privateBrowsing.enabled como true\nSe non, non é posible executar Hermes.",
     "@indexedDbErrorLong": {},
     "user": "Usuaria",
     "@user": {},
@@ -2379,7 +2379,7 @@
     "@noKeyForThisMessage": {},
     "appearOnTop": "Aparecer arriba",
     "@appearOnTop": {},
-    "otherCallingPermissions": "Micrófono, cámara e outros permisos para FluffyChat",
+    "otherCallingPermissions": "Micrófono, cámara e outros permisos para Hermes",
     "@otherCallingPermissions": {},
     "newGroup": "Novo grupo",
     "@newGroup": {},
@@ -2393,9 +2393,9 @@
     "@callingPermissions": {},
     "callingAccount": "Conta que chama",
     "@callingAccount": {},
-    "callingAccountDetails": "Permítelle a FluffyChat usar a app de telefonía nativa de android.",
+    "callingAccountDetails": "Permítelle a Hermes usar a app de telefonía nativa de android.",
     "@callingAccountDetails": {},
-    "appearOnTopDetails": "Permítelle á app aparecer por enriba (non é preciso se xa configuraches FluffyChat como unha conta para chamadas)",
+    "appearOnTopDetails": "Permítelle á app aparecer por enriba (non é preciso se xa configuraches Hermes como unha conta para chamadas)",
     "@appearOnTopDetails": {},
     "enterSpace": "Entrar no espazo",
     "@enterSpace": {},
@@ -2403,7 +2403,7 @@
     "@enterRoom": {},
     "allSpaces": "Todos os espazos",
     "@allSpaces": {},
-    "screenSharingDetail": "Estás a compartir a túa pantalla en FluffyChat",
+    "screenSharingDetail": "Estás a compartir a túa pantalla en Hermes",
     "@screenSharingDetail": {},
     "numChats": "{number} conversas",
     "@numChats": {
@@ -3131,7 +3131,7 @@
             }
         }
     },
-    "welcomeText": "Ola! 👋 Isto é FluffyChat. Podes iniciar sesión en calquera servidor compatible con https://matrix.org. Poderás conversar con calquera. Unha enorme rede de mensaxería descentralizada!",
+    "welcomeText": "Ola! 👋 Isto é Hermes. Podes iniciar sesión en calquera servidor compatible con https://matrix.org. Poderás conversar con calquera. Unha enorme rede de mensaxería descentralizada!",
     "@welcomeText": {},
     "setWallpaper": "Establecer fondo",
     "@setWallpaper": {},
@@ -3308,7 +3308,7 @@
     "@verifiedDevicesOnly": {},
     "waitingForServer": "Agardando polo servidor…",
     "@waitingForServer": {},
-    "appIntroduction": "FluffyChat permíteche laretar coas túas amizades entre diferentes mensaxerías. Coñece máis en https://matrix.org ou toca en *Continuar*.",
+    "appIntroduction": "Hermes permíteche laretar coas túas amizades entre diferentes mensaxerías. Coñece máis en https://matrix.org ou toca en *Continuar*.",
     "@appIntroduction": {},
     "notificationRuleMasterDescription": "Sobrescribe todas as outras regras e desactiva todas as notificacións.",
     "@notificationRuleMasterDescription": {},

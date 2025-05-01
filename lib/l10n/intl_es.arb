@@ -624,8 +624,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "fluffychat": "FluffyChat",
-    "@fluffychat": {
+    "hermes": "Hermes",
+    "@hermes": {
         "type": "String",
         "placeholders": {}
     },
@@ -756,7 +756,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "inviteText": "{username} te invitó a FluffyChat.\n1.Visita fluffychat.im e instala la app\n2. Regístrate o inicia sesión\n3. Abre el enlace de invitación:\n{link}",
+    "inviteText": "{username} te invitó a Hermes.\n1.Visita hermes.im e instala la app\n2. Regístrate o inicia sesión\n3. Abre el enlace de invitación:\n{link}",
     "@inviteText": {
         "type": "String",
         "placeholders": {
@@ -903,8 +903,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "newMessageInFluffyChat": "Nuevo mensaje en FluffyChat",
-    "@newMessageInFluffyChat": {
+    "newMessageInHermes": "Nuevo mensaje en Hermes",
+    "@newMessageInHermes": {
         "type": "String",
         "placeholders": {}
     },
@@ -1320,7 +1320,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "title": "FluffyChat",
+    "title": "Hermes",
     "@title": {
         "description": "Title for the application",
         "type": "String",
@@ -2226,7 +2226,7 @@
             }
         }
     },
-    "otherCallingPermissions": "Micrófono, cámara y otros permisos de FluffyChat",
+    "otherCallingPermissions": "Micrófono, cámara y otros permisos de Hermes",
     "@otherCallingPermissions": {},
     "emailOrUsername": "Correo electrónico o nombre de usuario",
     "@emailOrUsername": {},
@@ -2266,7 +2266,7 @@
     "@storeSecurlyOnThisDevice": {},
     "openChat": "Abrir chat",
     "@openChat": {},
-    "screenSharingDetail": "Usted está compartiendo su pantalla en FluffyChat",
+    "screenSharingDetail": "Usted está compartiendo su pantalla en Hermes",
     "@screenSharingDetail": {},
     "allRooms": "Todos los chats grupales",
     "@allRooms": {
@@ -2279,7 +2279,7 @@
     "@dismiss": {},
     "unsupportedAndroidVersion": "Versión de Android no compatible",
     "@unsupportedAndroidVersion": {},
-    "indexedDbErrorLong": "El almacenamiento de mensajes, por desgracia, no está habilitado en el modo privado por defecto.\nPor favor, visite\n - about:config\n - Establezca dom.indexedDB.privateBrowsing.enabled a true\nDe otra forma, no es posible usar FluffyChat.",
+    "indexedDbErrorLong": "El almacenamiento de mensajes, por desgracia, no está habilitado en el modo privado por defecto.\nPor favor, visite\n - about:config\n - Establezca dom.indexedDB.privateBrowsing.enabled a true\nDe otra forma, no es posible usar Hermes.",
     "@indexedDbErrorLong": {},
     "startFirstChat": "Comience su primer chat",
     "@startFirstChat": {},
@@ -2309,7 +2309,7 @@
     "@messagesStyle": {},
     "chatDescription": "Descripción del chat",
     "@chatDescription": {},
-    "callingAccountDetails": "Permite a FluffyChat utilizar la aplicación de llamadas nativa de Android.",
+    "callingAccountDetails": "Permite a Hermes utilizar la aplicación de llamadas nativa de Android.",
     "@callingAccountDetails": {},
     "enterSpace": "Unirse al espacio",
     "@enterSpace": {},
@@ -2607,7 +2607,7 @@
     "@placeCall": {},
     "callingAccount": "Llamando a cuenta",
     "@callingAccount": {},
-    "appearOnTopDetails": "Permite que la app aparezca delante (no hace falta si ya tienes Fluffychat configurado como cuenta llamante)",
+    "appearOnTopDetails": "Permite que la app aparezca delante (no hace falta si ya tienes Hermes configurado como cuenta llamante)",
     "@appearOnTopDetails": {},
     "disableEncryptionWarning": "Por motivos de seguridad no es posible deshabilitar el cifrado en un chat si ha sido habilitado previamente.",
     "@disableEncryptionWarning": {},
@@ -3027,7 +3027,7 @@
     "@blur": {},
     "continueText": "Continuar",
     "@continueText": {},
-    "welcomeText": "Eh, eh, 👋 Esto es FluffyChat. Puedes acceder a cualquier homeserver, que sea compatible con https://matrix.org. Y luego chatear con cualquiera. ¡Es una red de mensajería descentralizada enorme!",
+    "welcomeText": "Eh, eh, 👋 Esto es Hermes. Puedes acceder a cualquier homeserver, que sea compatible con https://matrix.org. Y luego chatear con cualquiera. ¡Es una red de mensajería descentralizada enorme!",
     "@welcomeText": {},
     "opacity": "Opacidad:",
     "@opacity": {},
@@ -3317,7 +3317,7 @@
     "@whatIsAHomeserver": {},
     "open": "Abrir",
     "@open": {},
-    "appIntroduction": "FluffyChat te permite chatear con tus amigos con diferentes mensajerías. Aprende más en https://matrix.org o simplemente pincha *Continuar*.",
+    "appIntroduction": "Hermes te permite chatear con tus amigos con diferentes mensajerías. Aprende más en https://matrix.org o simplemente pincha *Continuar*.",
     "@appIntroduction": {},
     "forwardMessageTo": "¿Reenviar mensaje a {roomName}?",
     "@forwardMessageTo": {

@@ -30,7 +30,7 @@ class User {
   const User(this.name, this.password);
 }
 
-const homeserver = 'http://${String.fromEnvironment(
+const homeserver = 'http://${const String.fromEnvironment(
   'HOMESERVER',
   defaultValue: 'localhost',
 )}';

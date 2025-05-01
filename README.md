@@ -1,21 +1,20 @@
-![Screenshot](https://github.com/krille-chan/fluffychat/blob/main/assets/banner_transparent.png?raw=true)
+![Screenshot](https://github.com/krille-chan/hermes/blob/main/assets/banner_transparent.png?raw=true)
 
-[FluffyChat](https://fluffychat.im) is an open source, nonprofit and cute [[matrix](https://matrix.org)] client written in [Flutter](https://flutter.dev). The goal of the app is to create an easy to use instant messenger which is open source and accessible for everyone.
+[Hermes](https://hermes.im) is an open source, nonprofit and cute [[matrix](https://matrix.org)] client written in [Flutter](https://flutter.dev). The goal of the app is to create an easy to use instant messenger which is open source and accessible for everyone.
 
 ### Links:
 
-- 🌐 [[Weblate] Translate FluffyChat into your language](https://hosted.weblate.org/projects/fluffychat/)
-- 🌍 [[m] Join the community](https://matrix.to/#/#fluffychat:matrix.org)
+- 🌐 [[Weblate] Translate Hermes into your language](https://hosted.weblate.org/projects/hermes/)
+- 🌍 [[m] Join the community](https://matrix.to/#/#hermes:matrix.org)
 - 📰 [[Mastodon] Get updates on social media](https://troet.cafe/@krille)
 - 🖥️ [[Famedly] Server hosting and professional support](https://famedly.com/kontakt)
-- 💝 [[Liberapay] Support FluffyChat development](https://de.liberapay.com/KrilleChritzelius)
+- 💝 [[Liberapay] Support Hermes development](https://de.liberapay.com/KrilleChritzelius)
 
 <a href='https://ko-fi.com/C1C86VN53' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://storage.ko-fi.com/cdn/kofi5.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
 ### Screenshots:
 
-<img src="https://github.com/krille-chan/fluffychat/blob/main/docs/screenshots/mobile.png?raw=true" height="300">
-<img src="https://github.com/krille-chan/fluffychat/blob/main/docs/screenshots/desktop.png?raw=true" height="300">
+![Screenshot](https://github.com/krille-chan/hermes/blob/main/docs/screenshots/product.jpeg?raw=true)
 
 # Features
 
@@ -44,7 +43,7 @@
 
 Please visit the website for installation instructions:
 
-- https://fluffychat.im
+- https://hermes.im
 
 # How to build
 
@@ -109,13 +108,13 @@ flutter build macos --release
 
 # Special thanks
 
-* <a href="https://github.com/fabiyamada">Fabiyamada</a> is a graphics designer and has made the fluffychat logo and the banner. Big thanks for her great designs.
+* <a href="https://github.com/fabiyamada">Fabiyamada</a> is a graphics designer and has made the hermes logo and the banner. Big thanks for her great designs.
 
 * <a href="https://github.com/advocatux">Advocatux</a> has made the Spanish translation with great love and care. He always stands by my side and supports my work with great commitment.
 
 * Thanks to MTRNord and Sorunome for developing.
 
-* Also thanks to all translators and testers! With your help, fluffychat is now available in more than 12 languages.
+* Also thanks to all translators and testers! With your help, hermes is now available in more than 12 languages.
 
 * <a href="https://github.com/madsrh/WoodenBeaver">WoodenBeaver</a> sound theme for the notification sound.
 

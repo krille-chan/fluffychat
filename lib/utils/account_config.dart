@@ -1,7 +1,7 @@
 import 'package:matrix/matrix.dart';
 
 extension ApplicationAccountConfigExtension on Client {
-  static const String accountDataKey = 'im.fluffychat.account_config';
+  static const String accountDataKey = 'im.hermes.account_config';
 
   ApplicationAccountConfig get applicationAccountConfig =>
       ApplicationAccountConfig.fromJson(

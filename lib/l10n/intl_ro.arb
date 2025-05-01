@@ -548,8 +548,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "fluffychat": "FluffyChat",
-    "@fluffychat": {
+    "hermes": "Hermes",
+    "@hermes": {
         "type": "String",
         "placeholders": {}
     },
@@ -706,7 +706,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "title": "FluffyChat",
+    "title": "Hermes",
     "@title": {
         "description": "Title for the application",
         "type": "String",
@@ -750,11 +750,11 @@
     "@callingAccount": {},
     "foregroundServiceRunning": "Această notificare apare când serviciul de foreground rulează.",
     "@foregroundServiceRunning": {},
-    "callingAccountDetails": "Permite FluffyChat să folosească aplicația de apeluri nativă android.",
+    "callingAccountDetails": "Permite Hermes să folosească aplicația de apeluri nativă android.",
     "@callingAccountDetails": {},
     "appearOnTop": "Apare deasupra",
     "@appearOnTop": {},
-    "appearOnTopDetails": "Permite aplicația să apare deasupra (nu este necesar dacă aveți FluffyChat stabilit ca cont de apeluri)",
+    "appearOnTopDetails": "Permite aplicația să apare deasupra (nu este necesar dacă aveți Hermes stabilit ca cont de apeluri)",
     "@appearOnTopDetails": {},
     "currentlyActive": "Activ acum",
     "@currentlyActive": {
@@ -977,7 +977,7 @@
             }
         }
     },
-    "inviteText": "{username} v-a invitat la FluffyChat.\n1. Instalați FluffyChat: https://fluffychat.im\n2. Înregistrați-vă sau conectați-vă\n3. Deschideți invitația: {link}",
+    "inviteText": "{username} v-a invitat la Hermes.\n1. Instalați Hermes: https://hermes.im\n2. Înregistrați-vă sau conectați-vă\n3. Deschideți invitația: {link}",
     "@inviteText": {
         "type": "String",
         "placeholders": {
@@ -1351,11 +1351,11 @@
     "@user": {},
     "custom": "Personalizat",
     "@custom": {},
-    "screenSharingDetail": "Partajați ecranul în FluffyChat",
+    "screenSharingDetail": "Partajați ecranul în Hermes",
     "@screenSharingDetail": {},
     "storeSecurlyOnThisDevice": "Stoca sigur pe acest dispozitiv",
     "@storeSecurlyOnThisDevice": {},
-    "otherCallingPermissions": "Microfon, cameră și alte permisiuni lui FluffyChat",
+    "otherCallingPermissions": "Microfon, cameră și alte permisiuni lui Hermes",
     "@otherCallingPermissions": {},
     "whyIsThisMessageEncrypted": "De ce este acest mesaj ilizibil?",
     "@whyIsThisMessageEncrypted": {},
@@ -1488,7 +1488,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "noGoogleServicesWarning": "Se pare că nu aveți serviciile google pe dispozitivul vostru. Această decizie este bună pentru confidențialitatea voastră! Să primiți notificari push în FluffyChat vă recomandăm https://microg.org/ sau https://unifiedpush.org/.",
+    "noGoogleServicesWarning": "Se pare că nu aveți serviciile google pe dispozitivul vostru. Această decizie este bună pentru confidențialitatea voastră! Să primiți notificari push în Hermes vă recomandăm https://microg.org/ sau https://unifiedpush.org/.",
     "@noGoogleServicesWarning": {
         "type": "String",
         "placeholders": {}
@@ -1706,7 +1706,7 @@
             }
         }
     },
-    "indexedDbErrorLong": "Stocarea de mesaje nu este activat implicit în modul privat.\nVă rugăm să vizitați\n- about:config\n- stabiliți dom.indexedDB.privateBrowsing.enabled la true\nAstfel, nu este posibil să folosiți FluffyChat.",
+    "indexedDbErrorLong": "Stocarea de mesaje nu este activat implicit în modul privat.\nVă rugăm să vizitați\n- about:config\n- stabiliți dom.indexedDB.privateBrowsing.enabled la true\nAstfel, nu este posibil să folosiți Hermes.",
     "@indexedDbErrorLong": {},
     "addWidget": "Adăugați widget",
     "@addWidget": {},
@@ -1720,8 +1720,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "newMessageInFluffyChat": "💬 Mesaj nou în FluffyChat",
-    "@newMessageInFluffyChat": {
+    "newMessageInHermes": "💬 Mesaj nou în Hermes",
+    "@newMessageInHermes": {
         "type": "String",
         "placeholders": {}
     },

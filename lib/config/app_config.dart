@@ -13,29 +13,29 @@ abstract class AppConfig {
   static const bool hideTypingUsernames = false;
 
   static const String inviteLinkPrefix = 'https://matrix.to/#/';
-  static const String deepLinkPrefix = 'im.fluffychat://chat/';
+  static const String deepLinkPrefix = 'im.hermes://chat/';
   static const String schemePrefix = 'matrix:';
-  static const String pushNotificationsChannelId = 'fluffychat_push';
-  static const String pushNotificationsAppId = 'chat.fluffy.fluffychat';
+  static const String pushNotificationsChannelId = 'hermes_push';
+  static const String pushNotificationsAppId = 'chat.pantheon.hermes';
   static const double borderRadius = 18.0;
   static const double columnWidth = 360.0;
 
-  static const String website = 'https://fluffychat.im';
+  static const String website = 'https://hermes.im';
   static const String enablePushTutorial =
-      'https://github.com/krille-chan/fluffychat/wiki/Push-Notifications-without-Google-Services';
+      'https://github.com/krille-chan/hermes/wiki/Push-Notifications-without-Google-Services';
   static const String encryptionTutorial =
-      'https://github.com/krille-chan/fluffychat/wiki/How-to-use-end-to-end-encryption-in-FluffyChat';
+      'https://github.com/krille-chan/hermes/wiki/How-to-use-end-to-end-encryption-in-Hermes';
   static const String startChatTutorial =
-      'https://github.com/krille-chan/fluffychat/wiki/How-to-Find-Users-in-FluffyChat';
-  static const String appId = 'im.fluffychat.FluffyChat';
-  static const String appOpenUrlScheme = 'im.fluffychat';
+      'https://github.com/krille-chan/hermes/wiki/How-to-Find-Users-in-Hermes';
+  static const String appId = 'im.hermes.Hermes';
+  static const String appOpenUrlScheme = 'im.hermes';
 
   static const String sourceCodeUrl =
-      'https://github.com/krille-chan/fluffychat';
+      'https://github.com/krille-chan/hermes';
   static const String supportUrl =
-      'https://github.com/krille-chan/fluffychat/issues';
+      'https://github.com/krille-chan/hermes/issues';
   static const String changelogUrl =
-      'https://github.com/krille-chan/fluffychat/blob/main/CHANGELOG.md';
+      'https://github.com/krille-chan/hermes/blob/main/CHANGELOG.md';
   static const String donationUrl = 'https://ko-fi.com/krille';
 
   static const Set<String> defaultReactions = {'👍', '❤️', '😂', '😮', '😢'};
@@ -43,7 +43,7 @@ abstract class AppConfig {
   static final Uri newIssueUrl = Uri(
     scheme: 'https',
     host: 'github.com',
-    path: '/krille-chan/fluffychat/issues/new',
+    path: '/krille-chan/hermes/issues/new',
   );
 
   static final Uri homeserverList = Uri(
@@ -55,6 +55,6 @@ abstract class AppConfig {
   static final Uri privacyUrl = Uri(
     scheme: 'https',
     host: 'github.com',
-    path: '/krille-chan/fluffychat/blob/main/PRIVACY.md',
+    path: '/allomanta/hermes/blob/main/PRIVACY.md',
   );
 }

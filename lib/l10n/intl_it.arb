@@ -696,8 +696,8 @@
     "type": "String",
     "placeholders": {}
   },
-  "fluffychat": "FluffyChat",
-  "@fluffychat": {
+  "hermes": "Hermes",
+  "@hermes": {
     "type": "String",
     "placeholders": {}
   },
@@ -868,7 +868,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "inviteText": "{username} ti ha invitato/a a FluffyChat.\n1. Visita fluffychat.im e installa l'applicazione\n2. Iscriviti o accedi\n3. Apri il collegamento di invito: \n {link}",
+  "inviteText": "{username} ti ha invitato/a a Hermes.\n1. Visita hermes.im e installa l'applicazione\n2. Iscriviti o accedi\n3. Apri il collegamento di invito: \n {link}",
   "@inviteText": {
     "type": "String",
     "placeholders": {
@@ -1030,8 +1030,8 @@
     "type": "String",
     "placeholders": {}
   },
-  "newMessageInFluffyChat": "💬 Nuovo messaggio in FluffyChat",
-  "@newMessageInFluffyChat": {
+  "newMessageInHermes": "💬 Nuovo messaggio in Hermes",
+  "@newMessageInHermes": {
     "type": "String",
     "placeholders": {}
   },
@@ -1556,7 +1556,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "title": "FluffyChat",
+  "title": "Hermes",
   "@title": {
     "description": "Title for the application",
     "type": "String",
@@ -2028,7 +2028,7 @@
   "@widgetJitsi": {},
   "messageType": "Tipo del Messaggio",
   "@messageType": {},
-  "indexedDbErrorLong": "Sfortunatamente l'archiviazione dei messaggi non è abilitata in modalità privata per impostazione predefinita.\nPer favore visita\n - about:config\n - imposta dom.indexedDB.privateBrowsing.enabled su true\nAltrimenti, non è possibile eseguire FluffyChat.",
+  "indexedDbErrorLong": "Sfortunatamente l'archiviazione dei messaggi non è abilitata in modalità privata per impostazione predefinita.\nPer favore visita\n - about:config\n - imposta dom.indexedDB.privateBrowsing.enabled su true\nAltrimenti, non è possibile eseguire Hermes.",
   "@indexedDbErrorLong": {},
   "oneClientLoggedOut": "Uno dei tuoi client è stato disconnesso",
   "@oneClientLoggedOut": {},
@@ -2107,7 +2107,7 @@
   "@sendOnEnter": {},
   "youRejectedTheInvitation": "Hai rifiutato l'invito",
   "@youRejectedTheInvitation": {},
-  "otherCallingPermissions": "Microfono, fotocamera e altri permessi di FluffyChat",
+  "otherCallingPermissions": "Microfono, fotocamera e altri permessi di Hermes",
   "@otherCallingPermissions": {},
   "messagesStyle": "Messaggi:",
   "@messagesStyle": {},
@@ -2119,7 +2119,7 @@
   "@newSpaceDescription": {},
   "chatDescription": "Descrizione della chat",
   "@chatDescription": {},
-  "callingAccountDetails": "Dai l'autorizzazione a FluffyChat di usare l'app di composizione Android nativa.",
+  "callingAccountDetails": "Dai l'autorizzazione a Hermes di usare l'app di composizione Android nativa.",
   "@callingAccountDetails": {},
   "enterSpace": "Unirsi allo spazio",
   "@enterSpace": {},
@@ -2301,7 +2301,7 @@
       }
     }
   },
-  "appearOnTopDetails": "Permetti all'app di apparire in alto (non necessario se hai già impostato Fluffychat come account di chiamata)",
+  "appearOnTopDetails": "Permetti all'app di apparire in alto (non necessario se hai già impostato Hermes come account di chiamata)",
   "@appearOnTopDetails": {},
   "enterRoom": "Unirsi alla stanza",
   "@enterRoom": {},
@@ -3126,7 +3126,7 @@
   },
   "continueText": "Continua",
   "@continueText": {},
-  "welcomeText": "Hey Hey 👋 Questa è FluffyChat. Puoi accedere a qualsiasi homeserver compatibile con https://matrix.org. E poi chattare con chiunque. È un'enorme rete di messaggistica decentralizzata!",
+  "welcomeText": "Hey Hey 👋 Questa è Hermes. Puoi accedere a qualsiasi homeserver compatibile con https://matrix.org. E poi chattare con chiunque. È un'enorme rete di messaggistica decentralizzata!",
   "@welcomeText": {},
   "blur": "Sfocatura:",
   "@blur": {},
@@ -3297,7 +3297,7 @@
   "@open": {},
   "appWantsToUseForLoginDescription": "Con la presente consenti all'app e al sito web di condividere informazioni su di te.",
   "@appWantsToUseForLoginDescription": {},
-  "appIntroduction": "FluffyChat ti consente di chattare con i tuoi amici attraverso diverse app di messaggistica. Ulteriori informazioni su https://matrix.org o semplicemente tocca *Continua*.",
+  "appIntroduction": "Hermes ti consente di chattare con i tuoi amici attraverso diverse app di messaggistica. Ulteriori informazioni su https://matrix.org o semplicemente tocca *Continua*.",
   "@appIntroduction": {},
   "waitingForServer": "In attesa del server...",
   "@waitingForServer": {},

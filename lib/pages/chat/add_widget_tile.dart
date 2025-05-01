@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/pages/chat/add_widget_tile_view.dart';
+import 'package:hermes/l10n/l10n.dart';
+import 'package:hermes/pages/chat/add_widget_tile_view.dart';
 
 class AddWidgetTile extends StatefulWidget {
   final Room room;

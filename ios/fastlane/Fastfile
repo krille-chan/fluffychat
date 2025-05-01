@@ -29,8 +29,8 @@ platform :ios do
     build_app(workspace: "Runner.xcworkspace", scheme: "Runner")
     upload_to_testflight(
       distribute_external: true,
-      groups: "FluffyChat Betatest",
-      changelog: "This is a release candidate for FluffyChat. Please test if the app is overall in a good condition before we push this to production.",
+      groups: "Hermes Betatest",
+      changelog: "This is a release candidate for Hermes. Please test if the app is overall in a good condition before we push this to production.",
     )
   end
 end

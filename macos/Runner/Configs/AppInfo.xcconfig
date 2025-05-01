@@ -5,10 +5,10 @@
 // 'flutter create' template.
 
 // The application's name. By default this is also the title of the Flutter window.
-PRODUCT_NAME = FluffyChat
+PRODUCT_NAME = Hermes
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = im.fluffychat.fluffychat
+PRODUCT_BUNDLE_IDENTIFIER = im.hermes.hermes
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2023 FluffyChat authors. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2023 Hermes authors. All rights reserved.

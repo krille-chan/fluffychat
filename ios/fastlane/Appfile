@@ -1,4 +1,4 @@
-app_identifier("im.fluffychat.app") # The bundle identifier of your app
+app_identifier("im.hermes.app") # The bundle identifier of your app
 apple_id("christian-kussowski@posteo.de") # Your Apple email address
 
 itc_team_id("122628977") # App Store Connect Team ID

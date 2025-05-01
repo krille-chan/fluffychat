@@ -1012,8 +1012,8 @@
     "type": "String",
     "placeholders": {}
   },
-  "fluffychat": "FluffyChat",
-  "@fluffychat": {
+  "hermes": "Hermes",
+  "@hermes": {
     "type": "String",
     "placeholders": {}
   },
@@ -1199,7 +1199,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "inviteText": "{username} invited you to FluffyChat.\n1. Visit fluffychat.im and install the app \n2. Sign up or sign in \n3. Open the invite link: \n {link}",
+  "inviteText": "{username} invited you to Hermes.\n1. Visit hermes.im and install the app \n2. Sign up or sign in \n3. Open the invite link: \n {link}",
   "@inviteText": {
     "type": "String",
     "placeholders": {
@@ -1387,8 +1387,8 @@
     "type": "String",
     "placeholders": {}
   },
-  "newMessageInFluffyChat": "💬 New message in FluffyChat",
-  "@newMessageInFluffyChat": {
+  "newMessageInHermes": "💬 New message in Hermes",
+  "@newMessageInHermes": {
     "type": "String",
     "placeholders": {}
   },
@@ -2107,7 +2107,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "title": "FluffyChat",
+  "title": "Hermes",
   "@title": {
     "description": "Title for the application",
     "type": "String",
@@ -2470,7 +2470,7 @@
   "@emailOrUsername": {},
   "indexedDbErrorTitle": "Private mode issues",
   "@indexedDbErrorTitle": {},
-  "indexedDbErrorLong": "The message storage is unfortunately not enabled in private mode by default.\nPlease visit\n - about:config\n - set dom.indexedDB.privateBrowsing.enabled to true\nOtherwise, it is not possible to run FluffyChat.",
+  "indexedDbErrorLong": "The message storage is unfortunately not enabled in private mode by default.\nPlease visit\n - about:config\n - set dom.indexedDB.privateBrowsing.enabled to true\nOtherwise, it is not possible to run Hermes.",
   "@indexedDbErrorLong": {},
   "switchToAccount": "Switch to account {number}",
   "@switchToAccount": {
@@ -2641,13 +2641,13 @@
   "@callingPermissions": {},
   "callingAccount": "Calling account",
   "@callingAccount": {},
-  "callingAccountDetails": "Allows FluffyChat to use the native android dialer app.",
+  "callingAccountDetails": "Allows Hermes to use the native android dialer app.",
   "@callingAccountDetails": {},
   "appearOnTop": "Appear on top",
   "@appearOnTop": {},
-  "appearOnTopDetails": "Allows the app to appear on top (not needed if you already have Fluffychat setup as a calling account)",
+  "appearOnTopDetails": "Allows the app to appear on top (not needed if you already have Hermes setup as a calling account)",
   "@appearOnTopDetails": {},
-  "otherCallingPermissions": "Microphone, camera and other FluffyChat permissions",
+  "otherCallingPermissions": "Microphone, camera and other Hermes permissions",
   "@otherCallingPermissions": {},
   "whyIsThisMessageEncrypted": "Why is this message unreadable?",
   "@whyIsThisMessageEncrypted": {},
@@ -3155,7 +3155,7 @@
   "@noticeChatBackupDeviceVerification": {},
   "continueText": "Continue",
   "@continueText": {},
-  "welcomeText": "Hey Hey 👋 This is FluffyChat. You can sign in to any homeserver, which is compatible with https://matrix.org. And then chat with anyone. It's a huge decentralized messaging network!",
+  "welcomeText": "Hey Hey 👋 This is Hermes. You can sign in to any homeserver, which is compatible with https://matrix.org. And then chat with anyone. It's a huge decentralized messaging network!",
   "@welcomeText": {},
   "blur": "Blur:",
   "@blur": {},
@@ -3216,7 +3216,7 @@
   "@open": {},
   "waitingForServer": "Waiting for server...",
   "@waitingForServer": {},
-  "appIntroduction": "FluffyChat lets you chat with your friends across different messengers. Learn more at https://matrix.org or just tap *Continue*.",
+  "appIntroduction": "Hermes lets you chat with your friends across different messengers. Learn more at https://matrix.org or just tap *Continue*.",
   "@appIntroduction": {},
   "newChatRequest": "📩 New chat request",
   "@newChatRequest": {},

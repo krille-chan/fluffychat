@@ -34,20 +34,20 @@ jobs:
       - name: Build Release Web
         run: flutter build web --dart-define=FLUTTER_WEB_CANVASKIT_URL=canvaskit/ --release --source-maps --base-href "/web/"
       - name: Create archive
-        run: tar -czf fluffychat-web.tar.gz build/web/
+        run: tar -czf hermes-web.tar.gz build/web/
       - name: Upload Web Build
         uses: actions/upload-artifact@v4
         with:
           name: Web Build
-          path: fluffychat-web.tar.gz
+          path: hermes-web.tar.gz
       - name: Upload to release
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.PAGES_DEPLOY_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: fluffychat-web.tar.gz
-          asset_name: fluffychat-web.tar.gz
+          asset_path: hermes-web.tar.gz
+          asset_name: hermes-web.tar.gz
           asset_content_type: application/gzip
       - name: Install and build tailwindcss
         working-directory: docs
@@ -67,7 +67,7 @@ jobs:
           personal_token: ${{ secrets.PAGES_DEPLOY_TOKEN }}
           publish_dir: ./public
           publish_branch: gh-pages
-          cname: fluffychat.im
+          cname: hermes.im
 
   build_apk:
     runs-on: ubuntu-latest
@@ -102,7 +102,7 @@ jobs:
         with:
           upload_url: ${{ github.event.release.upload_url }}
           asset_path: build/app/outputs/apk/release/app-release.apk
-          asset_name: fluffychat.apk
+          asset_name: hermes.apk
           asset_content_type: application/vnd.android.package-archive
 
   build_linux:
@@ -123,15 +123,15 @@ jobs:
       - run: ./flutter/bin/flutter pub get
       - run: ./flutter/bin/flutter build linux --target-platform linux-${{ matrix.arch }}
       - name: Create archive
-        run: tar -czf fluffychat-linux-${{ matrix.arch }}.tar.gz -C build/linux/${{ matrix.arch }}/release/bundle/ .
+        run: tar -czf hermes-linux-${{ matrix.arch }}.tar.gz -C build/linux/${{ matrix.arch }}/release/bundle/ .
       - name: Upload to release
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.PAGES_DEPLOY_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: fluffychat-linux-${{ matrix.arch }}.tar.gz
-          asset_name: fluffychat-linux-${{ matrix.arch }}.tar.gz
+          asset_path: hermes-linux-${{ matrix.arch }}.tar.gz
+          asset_name: hermes-linux-${{ matrix.arch }}.tar.gz
           asset_content_type: application/gzip
 
   deploy_playstore:

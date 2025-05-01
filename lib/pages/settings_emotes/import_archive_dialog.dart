@@ -7,11 +7,11 @@ import 'package:archive/archive.dart';
 import 'package:collection/collection.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/pages/settings_emotes/settings_emotes.dart';
-import 'package:fluffychat/utils/client_manager.dart';
-import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
-import 'package:fluffychat/widgets/matrix.dart';
+import 'package:hermes/l10n/l10n.dart';
+import 'package:hermes/pages/settings_emotes/settings_emotes.dart';
+import 'package:hermes/utils/client_manager.dart';
+import 'package:hermes/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
+import 'package:hermes/widgets/matrix.dart';
 
 class ImportEmoteArchiveDialog extends StatefulWidget {
   final EmotesSettingsController controller;

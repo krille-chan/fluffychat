@@ -4,7 +4,7 @@ import 'package:badges/badges.dart' as b;
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/l10n/l10n.dart';
+import 'package:hermes/l10n/l10n.dart';
 import '../../widgets/matrix.dart';
 
 class EncryptionButton extends StatelessWidget {

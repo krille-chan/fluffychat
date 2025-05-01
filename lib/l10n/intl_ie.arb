@@ -1098,8 +1098,8 @@
   },
   "homeserver": "Hem-servitor",
   "@homeserver": {},
-  "fluffychat": "FluffyChat",
-  "@fluffychat": {
+  "hermes": "Hermes",
+  "@hermes": {
     "type": "String",
     "placeholders": {}
   },
@@ -1142,7 +1142,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "title": "FluffyChat",
+  "title": "Hermes",
   "@title": {
     "description": "Title for the application",
     "type": "String",
@@ -1675,7 +1675,7 @@
       }
     }
   },
-  "@newMessageInFluffyChat": {
+  "@newMessageInHermes": {
     "type": "String",
     "placeholders": {}
   },

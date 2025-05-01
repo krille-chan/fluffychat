@@ -10,17 +10,17 @@ import 'package:matrix/encryption/utils/key_verification.dart';
 import 'package:matrix/matrix.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:universal_html/html.dart' as html;
-
-import 'package:fluffychat/config/setting_keys.dart';
-import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/utils/custom_http_client.dart';
-import 'package:fluffychat/utils/custom_image_resizer.dart';
-import 'package:fluffychat/utils/init_with_restore.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:hermes/l10n/l10n.dart';
+import 'package:hermes/config/app_config.dart';
+import 'package:hermes/config/setting_keys.dart';
+import 'package:hermes/utils/custom_http_client.dart';
+import 'package:hermes/utils/custom_image_resizer.dart';
+import 'package:hermes/utils/init_with_restore.dart';
+import 'package:hermes/utils/platform_infos.dart';
 import 'matrix_sdk_extensions/flutter_matrix_dart_sdk_database/builder.dart';
 
 abstract class ClientManager {
-  static const String clientNamespace = 'im.fluffychat.store.clients';
+  static const String clientNamespace = 'im.hermes.store.clients';
 
   static Future<List<Client>> getClients({
     bool initialize = true,

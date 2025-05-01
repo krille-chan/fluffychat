@@ -1,11 +1,11 @@
-name: fluffychat
-title: FluffyChat
+name: hermes
+title: Hermes
 base: core24
 version: 2.1.1
 license: AGPL-3.0
 summary: The cutest messenger in the Matrix network
 description: |
-  FluffyChat is an open source, nonprofit and cute matrix messenger app. The app is easy to use but secure and decentralized.
+  Hermes is an open source, nonprofit and cute matrix messenger app. The app is easy to use but secure and decentralized.
 
 
   ## Features
@@ -29,7 +29,7 @@ description: |
   - And much more...
 
 
-  ## FluffyChat comes with a dream
+  ## Hermes comes with a dream
 
   Imagine a world where everyone can choose the messenger they like and is still able to chat with all of their friends.
 
@@ -37,8 +37,8 @@ description: |
 
   And a world where apps are made for fluffyness and not for profit. ♥
 
-  Join the community: https://matrix.to/#/#fluffychat:matrix.org
-  Website: http://fluffychat.im
+  Join the community: https://matrix.to/#/#hermes:matrix.org
+  Website: http://hermes.im
   Microblog: https://mastodon.art/@krille
 
 grade: stable
@@ -74,7 +74,7 @@ parts:
       - zip
     override-prime: ''
 
-  fluffychat:
+  hermes:
     after: [flutter-git]
     plugin: nil
     source: .
@@ -102,11 +102,11 @@ slots:
   dbus-svc:
     interface: dbus
     bus: session
-    name: chat.fluffy.fluffychat
+    name: chat.fluffy.hermes
 
 apps:
-  fluffychat:
-    command: bin/fluffychat
+  hermes:
+    command: bin/hermes
     extensions: [ gnome ]
     plugs:
       - audio-playback

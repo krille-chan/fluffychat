@@ -743,8 +743,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "fluffychat": "FluffyChat",
-    "@fluffychat": {
+    "hermes": "Hermes",
+    "@hermes": {
         "type": "String",
         "placeholders": {}
     },
@@ -890,7 +890,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "inviteText": "{username} zaprosił/-a Cię do FluffyChat.\n1. Odwiedź fluffychat.im i zainstaluj aplikację\n2. Zarejestuj się lub zaloguj\n3. Otwórz link zaproszenia:\n{link}",
+    "inviteText": "{username} zaprosił/-a Cię do Hermes.\n1. Odwiedź hermes.im i zainstaluj aplikację\n2. Zarejestuj się lub zaloguj\n3. Otwórz link zaproszenia:\n{link}",
     "@inviteText": {
         "type": "String",
         "placeholders": {
@@ -1047,8 +1047,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "newMessageInFluffyChat": "💬 Nowa wiadomość we FluffyChat",
-    "@newMessageInFluffyChat": {
+    "newMessageInHermes": "💬 Nowa wiadomość we Hermes",
+    "@newMessageInHermes": {
         "type": "String",
         "placeholders": {}
     },
@@ -1386,7 +1386,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "title": "FluffyChat",
+    "title": "Hermes",
     "@title": {
         "description": "Title for the application",
         "type": "String",
@@ -2268,13 +2268,13 @@
     "@deviceKeys": {},
     "emailOrUsername": "Adres e-mail lub nazwa użytkownika",
     "@emailOrUsername": {},
-    "indexedDbErrorLong": "Przechowywanie wiadomości niestety nie jest domyślnie włączone w trybie prywatnym.\nOdwiedź\n - about:config\n - ustaw dom.indexedDB.privateBrowsing.enabled na true\nW przeciwnym razie nie jest możliwe uruchomienie FluffyChat.",
+    "indexedDbErrorLong": "Przechowywanie wiadomości niestety nie jest domyślnie włączone w trybie prywatnym.\nOdwiedź\n - about:config\n - ustaw dom.indexedDB.privateBrowsing.enabled na true\nW przeciwnym razie nie jest możliwe uruchomienie Hermes.",
     "@indexedDbErrorLong": {},
     "saveKeyManuallyDescription": "Zapisz ten klucz ręcznie, uruchamiając systemowe okno dialogowe udostępniania lub schowek.",
     "@saveKeyManuallyDescription": {},
     "screenSharingTitle": "udostępnianie ekranu",
     "@screenSharingTitle": {},
-    "appearOnTopDetails": "Umożliwia wyświetlanie aplikacji nad innymi (nie jest to konieczne, jeśli FluffyChat jest już ustawiony jako konto do dzwonienia)",
+    "appearOnTopDetails": "Umożliwia wyświetlanie aplikacji nad innymi (nie jest to konieczne, jeśli Hermes jest już ustawiony jako konto do dzwonienia)",
     "@appearOnTopDetails": {},
     "noKeyForThisMessage": "Może się to zdarzyć, jeśli wiadomość została wysłana przed zalogowaniem się na to konto na tym urządzeniu.\n\nMożliwe jest również, że nadawca zablokował Twoje urządzenie lub coś poszło nie tak z połączeniem internetowym.\n\nJesteś w stanie odczytać wiadomość na innej sesji? W takim razie możesz przenieść z niej wiadomość! Wejdź w Ustawienia > Urządzenia i upewnij się, że Twoje urządzenia zweryfikowały się wzajemnie. Gdy następnym razem otworzysz pokój i obie sesje będą włączone, klucze zostaną przekazane automatycznie.\n\nNie chcesz stracić kluczy podczas wylogowania lub przełączania urządzeń? Upewnij się, że w ustawieniach masz włączoną kopię zapasową czatu.",
     "@noKeyForThisMessage": {},
@@ -2428,15 +2428,15 @@
     "@storeSecurlyOnThisDevice": {},
     "foregroundServiceRunning": "To powiadomienie pojawia się, gdy usługa w tle jest uruchomiona.",
     "@foregroundServiceRunning": {},
-    "screenSharingDetail": "Udostępniasz swój ekran w FluffyChat",
+    "screenSharingDetail": "Udostępniasz swój ekran w Hermes",
     "@screenSharingDetail": {},
     "callingAccount": "Konto połączeń",
     "@callingAccount": {},
-    "callingAccountDetails": "Pozwala FluffyChat używać natywnej aplikacji do wykonywania połączeń w Androidzie.",
+    "callingAccountDetails": "Pozwala Hermes używać natywnej aplikacji do wykonywania połączeń w Androidzie.",
     "@callingAccountDetails": {},
     "appearOnTop": "Wyświetlaj nad innymi",
     "@appearOnTop": {},
-    "otherCallingPermissions": "Mikrofon, kamera i inne uprawnienia FluffyChat",
+    "otherCallingPermissions": "Mikrofon, kamera i inne uprawnienia Hermes",
     "@otherCallingPermissions": {},
     "whyIsThisMessageEncrypted": "Dlaczego nie można odczytać tej wiadomości?",
     "@whyIsThisMessageEncrypted": {},
@@ -2867,7 +2867,7 @@
             }
         }
     },
-    "welcomeText": "No cześć! 👋 Tutaj FluffyChat. Możesz zapisać się do dowolnego serwera domowego, kompatybilnego z https://matrix.org i rozmawiać ze wszystkimi. To duża zdecentralizowana sieć czatów!",
+    "welcomeText": "No cześć! 👋 Tutaj Hermes. Możesz zapisać się do dowolnego serwera domowego, kompatybilnego z https://matrix.org i rozmawiać ze wszystkimi. To duża zdecentralizowana sieć czatów!",
     "@welcomeText": {},
     "blur": "Rozmazanie:",
     "@blur": {},
@@ -3303,7 +3303,7 @@
     },
     "waitingForServer": "Oczekiwanie na serwer...",
     "@waitingForServer": {},
-    "appIntroduction": "FluffyChat umożliwia czatowanie ze znajomymi za pośrednictwem różnych komunikatorów. Dowiedz się więcej na stronie https://matrix.org lub kliknij na *Kontynuuj*.",
+    "appIntroduction": "Hermes umożliwia czatowanie ze znajomymi za pośrednictwem różnych komunikatorów. Dowiedz się więcej na stronie https://matrix.org lub kliknij na *Kontynuuj*.",
     "@appIntroduction": {},
     "previous": "Poprzedni",
     "@previous": {},

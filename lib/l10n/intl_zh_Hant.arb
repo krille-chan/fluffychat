@@ -691,8 +691,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "fluffychat": "FluffyChat",
-    "@fluffychat": {
+    "hermes": "Hermes",
+    "@hermes": {
         "type": "String",
         "placeholders": {}
     },
@@ -858,7 +858,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "inviteText": "{username} 邀請您使用 FluffyChat\n1. 安裝 FluffyChat：https://fluffychat.im\n2. 登入或註冊\n3. 打開該邀請網址：\n{link}",
+    "inviteText": "{username} 邀請您使用 Hermes\n1. 安裝 Hermes：https://hermes.im\n2. 登入或註冊\n3. 打開該邀請網址：\n{link}",
     "@inviteText": {
         "type": "String",
         "placeholders": {
@@ -1020,8 +1020,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "newMessageInFluffyChat": "💬 來自 FluffyChat 的新訊息",
-    "@newMessageInFluffyChat": {
+    "newMessageInHermes": "💬 來自 Hermes 的新訊息",
+    "@newMessageInHermes": {
         "type": "String",
         "placeholders": {}
     },
@@ -1055,7 +1055,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "noGoogleServicesWarning": "未能在你的裝置找到 Firebase Cloud Messaging(FCM). 如果想要收到通知消息的推送，我們建議安裝 ntfy。在有 ntfy 或其他 Unified Push 應用，便能在資料安全的情況下收到通知的推送。你可以在 Play store 或 F-Droid 下載並安裝 ntfy。",
+    "noGoogleServicesWarning": "您手機上沒有安裝 Google 服務框架。這或許對於保護您的隱私而言是個好事！但為了收到 Hermes 的推播通知，我們建議您使用 https://microg.org 或 https://unifiedpush.org。",
     "@noGoogleServicesWarning": {
         "type": "String",
         "placeholders": {}
@@ -1536,7 +1536,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "title": "FluffyChat",
+    "title": "Hermes",
     "@title": {
         "description": "Title for the application",
         "type": "String",
@@ -2136,7 +2136,7 @@
     },
     "unlockOldMessages": "解鎖舊消息",
     "@unlockOldMessages": {},
-    "callingAccountDetails": "允許 FluffyChat 使用原生 Android 撥號應用程式。",
+    "callingAccountDetails": "允許 Hermes 使用原生 Android 撥號應用程式。",
     "@callingAccountDetails": {},
     "noOtherDevicesFound": "未找到其他裝置",
     "@noOtherDevicesFound": {},
@@ -2233,7 +2233,7 @@
     "@enterRoom": {},
     "allSpaces": "所有空間",
     "@allSpaces": {},
-    "indexedDbErrorLong": "預設情況下，私密模式不啟用消息存儲。\n請訪問\n - about:config\n - 將 dom.indexedDB.privateBrowsing.enabled 設定為 true\n否則，無法運行 FluffyChat。",
+    "indexedDbErrorLong": "預設情況下，私密模式不啟用消息存儲。\n請訪問\n - about:config\n - 將 dom.indexedDB.privateBrowsing.enabled 設定為 true\n否則，無法運行 Hermes。",
     "@indexedDbErrorLong": {},
     "youKickedAndBanned": "🙅 您踢出並封鎖了 {user}",
     "@youKickedAndBanned": {
@@ -2739,7 +2739,7 @@
             }
         }
     },
-    "otherCallingPermissions": "麥克風、相機和其他 FluffyChat 權限",
+    "otherCallingPermissions": "麥克風、相機和其他 Hermes 權限",
     "@otherCallingPermissions": {},
     "disableEncryptionWarning": "出於安全原因，您不能在之前已加密的聊天室中停用加密。",
     "@disableEncryptionWarning": {},
@@ -2932,7 +2932,7 @@
     "@knock": {},
     "storeInSecureStorageDescription": "將恢復密鑰存儲在此裝置的安全存儲中。",
     "@storeInSecureStorageDescription": {},
-    "appearOnTopDetails": "允許應用程式顯示在最上層（如果您已將 Fluffychat 設定為通話帳戶則不需要）",
+    "appearOnTopDetails": "允許應用程式顯示在最上層（如果您已將 Hermes 設定為通話帳戶則不需要）",
     "@appearOnTopDetails": {},
     "whyIsThisMessageEncrypted": "為什麼這條訊息無法讀取？",
     "@whyIsThisMessageEncrypted": {},
@@ -3137,7 +3137,7 @@
             }
         }
     },
-    "welcomeText": "嘿，嘿👋這是FluffyChat。 您可以登入任何與https://matrix.org相容的歸屬伺服器後和任何人聊天。 這是一個巨大的去中心化訊息網路！",
+    "welcomeText": "嘿，嘿👋這是Hermes。 您可以登入任何與https://matrix.org相容的歸屬伺服器後和任何人聊天。 這是一個巨大的去中心化訊息網路！",
     "@welcomeText": {},
     "setWallpaper": "設定背景樣式",
     "@setWallpaper": {},
@@ -3235,7 +3235,7 @@
     "@open": {},
     "waitingForServer": "等待伺服器中...",
     "@waitingForServer": {},
-    "appIntroduction": "FluffyChat 讓你和你的朋友跨越工具聊天。在 https://matrix.org 了解更多或*繼續*。",
+    "appIntroduction": "Hermes 讓你和你的朋友跨越工具聊天。在 https://matrix.org 了解更多或*繼續*。",
     "@appIntroduction": {},
     "previous": "上一個",
     "@previous": {},

@@ -825,8 +825,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "fluffychat": "FluffyChat",
-    "@fluffychat": {
+    "hermes": "Hermes",
+    "@hermes": {
         "type": "String",
         "placeholders": {}
     },
@@ -997,7 +997,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "inviteText": "{username} convidou você para o FluffyChat.\n1. Visite fluffychat.im e instale o aplicativo\n2. Entre ou crie uma conta\n3. Abra o link do convite:\n{link}",
+    "inviteText": "{username} convidou você para o Hermes. \n1. Visite hermes.im e instale o aplicativo\n2. Entre ou crie uma conta \n3. Abra o link do convite:\n {link}",
     "@inviteText": {
         "type": "String",
         "placeholders": {
@@ -1169,8 +1169,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "newMessageInFluffyChat": "💬 Nova mensagem no FluffyChat",
-    "@newMessageInFluffyChat": {
+    "newMessageInHermes": "💬 Nova mensagem no Hermes",
+    "@newMessageInHermes": {
         "type": "String",
         "placeholders": {}
     },
@@ -1204,7 +1204,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "noGoogleServicesWarning": "O Firebase Cloud Messaging não parece estar disponível no seu dispositivo. Para receber notificações push, recomendados que você instwl3 o ntfy. Com o ntfy outro provedor do UnifiedPush, você pode receber notificações push de um modo seguro em relação aos dados. Você pode baixar o ntfy da Play Store ou do F-Droid.",
+    "noGoogleServicesWarning": "Aparentemente você não tem serviços Google no seu celular. Para receber notificações no Hermes, recomendamos instalar ntfy.",
     "@noGoogleServicesWarning": {
         "type": "String",
         "placeholders": {}
@@ -1791,7 +1791,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "title": "FluffyChat",
+    "title": "Hermes",
     "@title": {
         "description": "Title for the application",
         "type": "String",
@@ -2316,7 +2316,7 @@
     },
     "pleaseEnterRecoveryKeyDescription": "Para desbloquear as suas mensagens antigas, por favor, insira sua chave de recuperação gerada numa sessão prévia. Sua chave de recuperação NÃO é sua senha.",
     "@pleaseEnterRecoveryKeyDescription": {},
-    "indexedDbErrorLong": "Infelizmente, o armazenamento de mensagens não é ativado por padrão no modo privado.\nPor favor, visite\n- about:config\n- atribua \"true\" a \"dom.indexedDB.privateBrowsing.enabled\"\nSe não fizer isto, não será possível executar o FluffyChat.",
+    "indexedDbErrorLong": "Infelizmente, o armazenamento de mensagens não é habilitado por padrão no modo privado.\nPor favor, visite\n- about:config\n- atribua \"true\" a \"dom.indexedDB.privateBrowsing.enabled\"\nDe outro modo, não será possível executar o Hermes.",
     "@indexedDbErrorLong": {},
     "users": "Usuários",
     "@users": {},
@@ -2395,13 +2395,13 @@
     "@callingPermissions": {},
     "callingAccount": "Conta para chamadas",
     "@callingAccount": {},
-    "callingAccountDetails": "Permitir que o FluffyChat use o app de chamadas nativo do Android.",
+    "callingAccountDetails": "Permitir que o Hermes use o app de chamadas nativo do Android.",
     "@callingAccountDetails": {},
     "appearOnTop": "Aparecer no topo",
     "@appearOnTop": {},
-    "appearOnTopDetails": "Permite que o app apareça no topo (desnecessário caso o FluffyChat já esteja configurado como conta para chamadas)",
+    "appearOnTopDetails": "Permitir que o app apareça no topo (desnecessário caso Hermes já esteja configurado como conta para chamadas)",
     "@appearOnTopDetails": {},
-    "otherCallingPermissions": "Microfone, câmera e outras permissões do FluffyChat",
+    "otherCallingPermissions": "Microfone, câmera e outras permissões do Hermes",
     "@otherCallingPermissions": {},
     "newGroup": "Novo grupo",
     "@newGroup": {},
@@ -2437,7 +2437,7 @@
     "@whyIsThisMessageEncrypted": {},
     "screenSharingTitle": "compartilhamento de tela",
     "@screenSharingTitle": {},
-    "screenSharingDetail": "Você está compartilhando sua tela no FluffyChat",
+    "screenSharingDetail": "Você está compartilhando sua tela no Hermes",
     "@screenSharingDetail": {},
     "numChats": "{number} conversas",
     "@numChats": {
@@ -3265,11 +3265,11 @@
             }
         }
     },
-    "welcomeText": "Olá! 👋 Este é o FluffyChat. Você pode se conectar com qualquer servidor que é compatível com o https://matrix.org. E então conversar com qualquer um. É uma rede gigante e descentralizada de conversa!",
+    "welcomeText": "Olá! 👋 Este é o hermes. Você pode se conectar com qualquer servidor que é compatível com o https://matrix.org. E então conversar com qualquer um. É uma rede gigante e descentralizada de conversa!",
     "@welcomeText": {},
     "notificationRuleRoomServerAclDescription": "Omite notificações de listas de controle de acesso de servidor de uma sala (ACL).",
     "@notificationRuleRoomServerAclDescription": {},
-    "appIntroduction": "O FluffyChat permite que você converse com os seus amigos entre mensageiros diferentes. Aprenda mais em https://matrix.org ou toque em *Continuar*.",
+    "appIntroduction": "O hermes permite que você converse com os seus amigos entre mensageiros diferentes. Aprenda mais em https://matrix.org ou toque em *Continuar*.",
     "@appIntroduction": {},
     "notificationRuleIsUserMentionDescription": "Notifica o usuário quando é mencionado diretamente em uma mensagem.",
     "@notificationRuleIsUserMentionDescription": {},

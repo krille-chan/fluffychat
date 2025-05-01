@@ -518,8 +518,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "fluffychat": "FluffyChat",
-    "@fluffychat": {
+    "hermes": "Hermes",
+    "@hermes": {
         "type": "String",
         "placeholders": {}
     },
@@ -635,7 +635,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "inviteText": "{username}(e)k FluffyChatera gonbidatu zaitu.\n1. Bisitatu https://fluffychat.im eta instalatu aplikazioa\n2. Eman izena edo hasi saioa\n3. Ireki gonbidapen-esteka:\n{link}",
+    "inviteText": "{username}(e)k Hermesera gonbidatu zaitu.\n1. Bisitatu https://hermes.im eta instalatu aplikazioa\n2. Eman izena edo hasi saioa\n3. Ireki gonbidapen-esteka:\n{link}",
     "@inviteText": {
         "type": "String",
         "placeholders": {
@@ -777,8 +777,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "newMessageInFluffyChat": "💬 Mezu berria FluffyChaten",
-    "@newMessageInFluffyChat": {
+    "newMessageInHermes": "💬 Mezu berria Hermesen",
+    "@newMessageInHermes": {
         "type": "String",
         "placeholders": {}
     },
@@ -1134,7 +1134,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "title": "FluffyChat",
+    "title": "Hermes",
     "@title": {
         "description": "Title for the application",
         "type": "String",
@@ -2324,7 +2324,7 @@
     "@hydrate": {},
     "pleaseEnterRecoveryKeyDescription": "Mezu zaharrak ikusi ahal izateko, sartu aurreko saioan sortu zen berreskuratze-gakoa. Berreskuratze-gakoa EZ da zure pasahitza.",
     "@pleaseEnterRecoveryKeyDescription": {},
-    "indexedDbErrorLong": "Mezuen artxibatzea ez dago defektuz gaituta modu pribatua erabiltzean.\nGaitzeko:\n - about:config\n - dom.indexedDB.privateBrowsing.enabled aukerak true erakutsi dezala\nBestela ezin da FluffyChat erabili.",
+    "indexedDbErrorLong": "Mezuen artxibatzea ez dago defektuz gaituta modu pribatua erabiltzean.\nGaitzeko:\n - about:config\n - dom.indexedDB.privateBrowsing.enabled aukerak true erakutsi dezala\nBestela ezin da Hermes erabili.",
     "@indexedDbErrorLong": {},
     "storeSecurlyOnThisDevice": "Gorde gailu honetan modu seguruan",
     "@storeSecurlyOnThisDevice": {},
@@ -2372,21 +2372,21 @@
     "@newGroup": {},
     "enterSpace": "Sartu gunera",
     "@enterSpace": {},
-    "appearOnTopDetails": "Aplikazioa goikaldean agertzea baimentzen du (ez da beharrezkoa FluffyChat deitzeko kontutzat ezarri baduzu)",
+    "appearOnTopDetails": "Aplikazioa goikaldean agertzea baimentzen du (ez da beharrezkoa Hermes deitzeko kontutzat ezarri baduzu)",
     "@appearOnTopDetails": {},
     "screenSharingTitle": "pantaila-partekatzea",
     "@screenSharingTitle": {},
-    "screenSharingDetail": "Pantaila FluffyChaten partekatzen ari zara",
+    "screenSharingDetail": "Pantaila Hermesen partekatzen ari zara",
     "@screenSharingDetail": {},
     "callingPermissions": "Deitzeko baimenak",
     "@callingPermissions": {},
     "callingAccount": "Deitzen ari den kontua",
     "@callingAccount": {},
-    "callingAccountDetails": "Baimendu FluffyChat Android gailuko telefono-markagailua erabiltzea.",
+    "callingAccountDetails": "Baimendu Hermes Android gailuko telefono-markagailua erabiltzea.",
     "@callingAccountDetails": {},
     "appearOnTop": "Gainean erakutsi",
     "@appearOnTop": {},
-    "otherCallingPermissions": "Mikrofono, kamera eta FluffyChaten beste baimen batzuk",
+    "otherCallingPermissions": "Mikrofono, kamera eta Hermesen beste baimen batzuk",
     "@otherCallingPermissions": {},
     "numChats": "{number} txat",
     "@numChats": {
@@ -3126,7 +3126,7 @@
     "@blur": {},
     "continueText": "Jarraitu",
     "@continueText": {},
-    "welcomeText": "Ieup 👋 Ongi etorri FluffyChat-era. https://matrix.org-rekin bateragarria den edozein zerbitzaritan hasi dezakezu saioa eta edonorekin txateatu. Mezularitza-sare deszentralizatu eraraldoia da!",
+    "welcomeText": "Ieup 👋 Ongi etorri Hermes-era. https://matrix.org-rekin bateragarria den edozein zerbitzaritan hasi dezakezu saioa eta edonorekin txateatu. Mezularitza-sare deszentralizatu eraraldoia da!",
     "@welcomeText": {},
     "contactServerAdmin": "Jarri harremanetan zerbitzariaren administratzailearekin",
     "@contactServerAdmin": {},
@@ -3219,7 +3219,7 @@
     "@otherNotificationSettings": {},
     "waitingForServer": "Zerbitzariaren zain…",
     "@waitingForServer": {},
-    "appIntroduction": "FluffyChatek mezularitza-programa desberdinak erabiltzen dituzten lagunekin txateatzea ahalbidetzen dizu. Ikasi gehiago https://matrix.org estekan edo sakatu *Jarraitu*.",
+    "appIntroduction": "Hermesek mezularitza-programa desberdinak erabiltzen dituzten lagunekin txateatzea ahalbidetzen dizu. Ikasi gehiago https://matrix.org estekan edo sakatu *Jarraitu*.",
     "@appIntroduction": {},
     "synchronizingPleaseWaitCounter": " Sinkronizatzen… (%{percentage})",
     "@synchronizingPleaseWaitCounter": {

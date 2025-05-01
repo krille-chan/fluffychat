@@ -528,8 +528,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "fluffychat": "فلافي-شات",
-    "@fluffychat": {
+    "hermes": "فلافي-شات",
+    "@hermes": {
         "type": "String",
         "placeholders": {}
     },
@@ -650,7 +650,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "inviteText": "دعاك {username} إلى FluffyChat.\n1. قم بزيارة موقع fluffychat.im وقم بتثبيت التطبيق\n2. قم بإنشاءحساب أو تسجيل الدخول\n3. افتح رابط الدعوة:\n {link}",
+    "inviteText": "دعاك {username} إلى hermes.\n1. قم بزيارة موقع hermes.im وقم بتثبيت التطبيق\n2. قم بإنشاءحساب أو تسجيل الدخول\n3. افتح رابط الدعوة:\n {link}",
     "@inviteText": {
         "type": "String",
         "placeholders": {
@@ -792,8 +792,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "newMessageInFluffyChat": "💬 رسالة جديدة في FluffyChat",
-    "@newMessageInFluffyChat": {
+    "newMessageInhermes": "💬 رسالة جديدة في hermes",
+    "@newMessageInhermes": {
         "type": "String",
         "placeholders": {}
     },
@@ -2345,7 +2345,7 @@
     "@screenSharingTitle": {},
     "appearOnTop": "يظهر في الأعلى",
     "@appearOnTop": {},
-    "otherCallingPermissions": "الميكروفون والكاميرا وأذونات FluffyChat الأخرى",
+    "otherCallingPermissions": "الميكروفون والكاميرا وأذونات hermes الأخرى",
     "@otherCallingPermissions": {},
     "enterSpace": "أدخل المساحة",
     "@enterSpace": {},
@@ -2399,7 +2399,7 @@
     "@widgetUrlError": {},
     "indexedDbErrorTitle": "مشاكل الوضع الخاص",
     "@indexedDbErrorTitle": {},
-    "indexedDbErrorLong": "للأسف ، لم يتم تمكين تخزين الرسائل في الوضع الخاص افتراضيا.\nيرجى زيارة\n - حول:التكوين\n - تعيين dom.indexedDB.privateBrowsing.enabled إلى true\nخلاف ذلك ، لا يمكن تشغيل FluffyChat.",
+    "indexedDbErrorLong": "للأسف ، لم يتم تمكين تخزين الرسائل في الوضع الخاص افتراضيا.\nيرجى زيارة\n - حول:التكوين\n - تعيين dom.indexedDB.privateBrowsing.enabled إلى true\nخلاف ذلك ، لا يمكن تشغيل hermes.",
     "@indexedDbErrorLong": {},
     "switchToAccount": "التبديل إلى الحساب {number}",
     "@switchToAccount": {
@@ -2452,9 +2452,9 @@
     "@callingPermissions": {},
     "callingAccount": "الاتصال بالحساب",
     "@callingAccount": {},
-    "callingAccountDetails": "يسمح لـ FluffyChat باستخدام تطبيق android Dialer الأصلي.",
+    "callingAccountDetails": "يسمح لـ hermes باستخدام تطبيق android Dialer الأصلي.",
     "@callingAccountDetails": {},
-    "appearOnTopDetails": "يسمح للتطبيق بالظهور في الأعلى (ليست هناك حاجة إذا قمت بالفعل بإعداد Fluffychat كحساب اتصال)",
+    "appearOnTopDetails": "يسمح للتطبيق بالظهور في الأعلى (ليست هناك حاجة إذا قمت بالفعل بإعداد hermes كحساب اتصال)",
     "@appearOnTopDetails": {},
     "numChats": "{number} الدردشات",
     "@numChats": {
@@ -3118,7 +3118,7 @@
     "@noticeChatBackupDeviceVerification": {},
     "continueText": "استمرار",
     "@continueText": {},
-    "welcomeText": "مرحبًا، 👋 معك FluffyChat. يمكنك تسجيل الدخول إلى أي خادم منزلي، وهو متوافق مع https://matrix.org. ثم دردش مع أي شخص. إنها شبكة مراسلة لا مركزية ضخمة!",
+    "welcomeText": "مرحبًا، 👋 معك hermes. يمكنك تسجيل الدخول إلى أي خادم منزلي، وهو متوافق مع https://matrix.org. ثم دردش مع أي شخص. إنها شبكة مراسلة لا مركزية ضخمة!",
     "@welcomeText": {},
     "blur": "الضبابية:",
     "@blur": {},

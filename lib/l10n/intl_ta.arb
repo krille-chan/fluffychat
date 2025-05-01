@@ -436,8 +436,8 @@
     "type": "String",
     "placeholders": {}
   },
-  "fluffychat": "பஞ்சுபோன்ற",
-  "@fluffychat": {
+  "hermes": "பஞ்சுபோன்ற",
+  "@hermes": {
     "type": "String",
     "placeholders": {}
   },
@@ -1353,8 +1353,8 @@
     "type": "String",
     "placeholders": {}
   },
-  "newMessageInFluffyChat": "Fuf பஞ்சுபோன்ற புதிய செய்தி",
-  "@newMessageInFluffyChat": {
+  "newMessageInHermes": "Fuf பஞ்சுபோன்ற புதிய செய்தி",
+  "@newMessageInHermes": {
     "type": "String",
     "placeholders": {}
   },

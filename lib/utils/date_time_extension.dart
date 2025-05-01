@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:intl/intl.dart';
-
-import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:hermes/l10n/l10n.dart';
 
 /// Provides extra functionality for formatting the time.
 extension DateTimeExtension on DateTime {

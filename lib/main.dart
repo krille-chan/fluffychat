@@ -6,11 +6,12 @@ import 'package:flutter_vodozemac/flutter_vodozemac.dart' as vod;
 import 'package:matrix/matrix.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:fluffychat/utils/client_manager.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:hermes/config/app_config.dart';
+import 'package:hermes/utils/client_manager.dart';
+import 'package:hermes/utils/platform_infos.dart';
 import 'config/setting_keys.dart';
 import 'utils/background_push.dart';
-import 'widgets/fluffy_chat_app.dart';
+import 'widgets/hermes_app.dart';
 
 void main() async {
   // Our background push shared isolate accesses flutter-internal things very early in the startup proccess
@@ -61,8 +62,8 @@ Future<void> startGui(List<Client> clients, SharedPreferences store) async {
   String? pin;
   if (PlatformInfos.isMobile) {
     try {
-      pin =
-          await const FlutterSecureStorage().read(key: 'chat.fluffy.app_lock');
+      pin = await const FlutterSecureStorage()
+          .read(key: 'chat.pantheon.app_lock');
     } catch (e, s) {
       Logs().d('Unable to read PIN from Secure storage', e, s);
     }
@@ -73,7 +74,7 @@ Future<void> startGui(List<Client> clients, SharedPreferences store) async {
   await firstClient?.roomsLoading;
   await firstClient?.accountDataLoading;
 
-  runApp(FluffyChatApp(clients: clients, pincode: pin, store: store));
+  runApp(HermesApp(clients: clients, pincode: pin, store: store));
 }
 
 /// Watches the lifecycle changes to start the application when it

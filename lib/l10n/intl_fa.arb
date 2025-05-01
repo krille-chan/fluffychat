@@ -1122,8 +1122,8 @@
     "type": "String",
     "placeholders": {}
   },
-  "fluffychat": "فلافی‌چت",
-  "@fluffychat": {
+  "hermes": "فلافی‌چت",
+  "@hermes": {
     "type": "String",
     "placeholders": {}
   },
@@ -1217,8 +1217,8 @@
     "type": "String",
     "placeholders": {}
   },
-  "newMessageInFluffyChat": "💬 پیام جدید در فلافی‌چت",
-  "@newMessageInFluffyChat": {
+  "newMessageInHermes": "💬 پیام جدید در فلافی‌چت",
+  "@newMessageInHermes": {
     "type": "String",
     "placeholders": {}
   },
@@ -1640,7 +1640,7 @@
   },
   "serverRequiresEmail": "برای ثبت‌نام، این سرور باید نشانی رایانامه شما را تأیید کند.",
   "@serverRequiresEmail": {},
-  "inviteText": "{username} شما را به فلافی‌چت دعوت کرد.\n۱. به fluffychat.im بروید و برنامه را نصب کنید\n۲. ثبت‌نام کنید یا وارد شوید\n۳. پیوند دعوت را باز کنید:\n {link}",
+  "inviteText": "{username} شما را به فلافی‌چت دعوت کرد.\n۱. به hermes.im بروید و برنامه را نصب کنید\n۲. ثبت‌نام کنید یا وارد شوید\n۳. پیوند دعوت را باز کنید:\n {link}",
   "@inviteText": {
     "type": "String",
     "placeholders": {

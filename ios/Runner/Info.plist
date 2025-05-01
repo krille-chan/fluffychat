@@ -4,12 +4,12 @@
 <dict>
 	<key>BGTaskSchedulerPermittedIdentifiers</key>
 	<array>
-		<string>im.fluffychat.app</string>
+		<string>im.hermes.app</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>FluffyChat</string>
+	<string>Hermes</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -17,7 +17,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>fluffychat</string>
+	<string>hermes</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -30,11 +30,11 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>im.fluffychat.app.uris</string>
+			<string>im.hermes.app.uris</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>ShareMedia-$(PRODUCT_BUNDLE_IDENTIFIER)</string>
-				<string>im.fluffychat</string>
+				<string>im.hermes</string>
 				<string>matrix</string>
 			</array>
 		</dict>
@@ -52,27 +52,27 @@
 	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>Play audio and voice messages on bluetooth devices</string>
 	<key>NSCalendarsUsageDescription</key>
-	<string>Share calendar dates with your contacts in FluffyChat.</string>
+	<string>Share calendar dates with your contacts in Hermes.</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Open the camera and take a picture to share them with your contacts on FluffyChat.</string>
+	<string>Open the camera and take a picture to share them with your contacts on Hermes.</string>
 	<key>NSContactsUsageDescription</key>
-	<string>Share contacts with your contacts in FluffyChat.</string>
+	<string>Share contacts with your contacts in Hermes.</string>
 	<key>NSFaceIDUsageDescription</key>
-	<string>FluffyChat uses an app lock for an additional security level</string>
+	<string>Hermes uses an app lock for an additional security level</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Share your location with your contacts in FluffyChat.</string>
+	<string>Share your location with your contacts in Hermes.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Share your location with your contacts in FluffyChat.</string>
+	<string>Share your location with your contacts in Hermes.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Share your location with your contacts in FluffyChat.</string>
+	<string>Share your location with your contacts in Hermes.</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Record voice message and share them with your contacts on FluffyChat.</string>
+	<string>Record voice message and share them with your contacts on Hermes.</string>
 	<key>NSMotionUsageDescription</key>
-	<string>Share motions with your contacts in FluffyChat.</string>
+	<string>Share motions with your contacts in Hermes.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Open photos from your gallery and share them with your contacts on FluffyChat.</string>
+	<string>Open photos from your gallery and share them with your contacts on Hermes.</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
-	<string>Share data with your contacts in FluffyChat.</string>
+	<string>Share data with your contacts in Hermes.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>

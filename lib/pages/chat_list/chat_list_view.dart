@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
-
-import 'package:fluffychat/config/setting_keys.dart';
-import 'package:fluffychat/config/themes.dart';
-import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/pages/chat_list/chat_list.dart';
-import 'package:fluffychat/widgets/navigation_rail.dart';
+import 'package:hermes/config/app_config.dart';
+import 'package:hermes/l10n/l10n.dart';
+import 'package:hermes/config/themes.dart';
+import 'package:hermes/pages/chat_list/chat_list.dart';
+import 'package:hermes/widgets/navigation_rail.dart';
 import 'chat_list_body.dart';
 
 class ChatListView extends StatelessWidget {

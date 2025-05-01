@@ -3,15 +3,14 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 
 import 'package:matrix/matrix.dart';
-
-import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/pages/settings_notifications/push_rule_extensions.dart';
-import 'package:fluffychat/utils/localized_exception_extension.dart';
-import 'package:fluffychat/widgets/adaptive_dialogs/adaptive_dialog_action.dart';
-import 'package:fluffychat/widgets/adaptive_dialogs/show_modal_action_popup.dart';
-import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
-import 'package:fluffychat/widgets/future_loading_dialog.dart';
+import 'package:hermes/l10n/l10n.dart';
+import 'package:hermes/config/app_config.dart';
+import 'package:hermes/pages/settings_notifications/push_rule_extensions.dart';
+import 'package:hermes/utils/localized_exception_extension.dart';
+import 'package:hermes/widgets/adaptive_dialogs/adaptive_dialog_action.dart';
+import 'package:hermes/widgets/adaptive_dialogs/show_modal_action_popup.dart';
+import 'package:hermes/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
+import 'package:hermes/widgets/future_loading_dialog.dart';
 import '../../widgets/matrix.dart';
 import 'settings_notifications_view.dart';
 

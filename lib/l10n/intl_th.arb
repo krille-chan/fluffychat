@@ -158,8 +158,8 @@
       }
     }
   },
-  "fluffychat": "FluffyChat",
-  "@fluffychat": {
+  "hermes": "Hermes",
+  "@hermes": {
     "type": "String",
     "placeholders": {}
   },
@@ -1094,7 +1094,7 @@
     }
   },
   "@callingPermissions": {},
-  "@newMessageInFluffyChat": {
+  "@newMessageInHermes": {
     "type": "String",
     "placeholders": {}
   },

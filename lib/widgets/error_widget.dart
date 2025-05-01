@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-import 'package:fluffychat/utils/error_reporter.dart';
+import 'package:hermes/utils/error_reporter.dart';
 
-class FluffyChatErrorWidget extends StatefulWidget {
+class HermesErrorWidget extends StatefulWidget {
   final FlutterErrorDetails details;
-  const FluffyChatErrorWidget(this.details, {super.key});
+  const HermesErrorWidget(this.details, {super.key});
 
   @override
-  State<FluffyChatErrorWidget> createState() => _FluffyChatErrorWidgetState();
+  State<HermesErrorWidget> createState() => _HermesErrorWidgetState();
 }
 
-class _FluffyChatErrorWidgetState extends State<FluffyChatErrorWidget> {
+class _HermesErrorWidgetState extends State<HermesErrorWidget> {
   static final Set<String> knownExceptions = {};
   @override
   void initState() {

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/widgets/permission_slider_dialog.dart';
+import 'package:hermes/l10n/l10n.dart';
+import 'package:hermes/widgets/permission_slider_dialog.dart';
 import 'adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'adaptive_dialogs/show_text_input_dialog.dart';
 import 'adaptive_dialogs/user_dialog.dart';

@@ -34,7 +34,7 @@ target 'Runner' do
   flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
 
   # From package https://pub.dev/packages/receive_sharing_intent
-  target 'FluffyChat Share' do
+  target 'Hermes Share' do
     inherit! :search_paths
   end
 end

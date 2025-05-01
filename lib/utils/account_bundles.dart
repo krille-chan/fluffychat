@@ -44,7 +44,7 @@ class AccountBundle {
       };
 }
 
-const accountBundlesType = 'im.fluffychat.account_bundles';
+const accountBundlesType = 'im.hermes.account_bundles';
 
 extension AccountBundlesExtension on Client {
   List<AccountBundle> get accountBundles {

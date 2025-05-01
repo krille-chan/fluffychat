@@ -704,8 +704,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "fluffychat": "FluffyChat",
-    "@fluffychat": {
+    "hermes": "Hermes",
+    "@hermes": {
         "type": "String",
         "placeholders": {}
     },
@@ -876,7 +876,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "inviteText": "{username}がFluffyChatにあなたを招待しました. \n1. FluffyChatをインストールしてください: https://fluffychat.im \n2. 新しくアカウントを作成するかサインインしてください\n3. 招待リンクを開いてください: {link}",
+    "inviteText": "{username}がHermesにあなたを招待しました. \n1. Hermesをインストールしてください: https://hermes.im \n2. 新しくアカウントを作成するかサインインしてください\n3. 招待リンクを開いてください: {link}",
     "@inviteText": {
         "type": "String",
         "placeholders": {
@@ -1038,8 +1038,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "newMessageInFluffyChat": "💬 FluffyChatに新しいメッセージがあります",
-    "@newMessageInFluffyChat": {
+    "newMessageInHermes": "💬 Hermesに新しいメッセージがあります",
+    "@newMessageInHermes": {
         "type": "String",
         "placeholders": {}
     },
@@ -1574,7 +1574,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "title": "FluffyChat",
+    "title": "Hermes",
     "@title": {
         "description": "Title for the application",
         "type": "String",
@@ -2197,9 +2197,9 @@
     "@storeSecurlyOnThisDevice": {},
     "whyIsThisMessageEncrypted": "このメッセージが読めない理由",
     "@whyIsThisMessageEncrypted": {},
-    "otherCallingPermissions": "マイク、カメラ、その他FluffyChatの権限",
+    "otherCallingPermissions": "マイク、カメラ、その他Hermesの権限",
     "@otherCallingPermissions": {},
-    "appearOnTopDetails": "アプリをトップに表示できるようにする（すでに通話アカウントとしてFluffychatを設定している場合は必要ありません）",
+    "appearOnTopDetails": "アプリをトップに表示できるようにする（すでに通話アカウントとしてHermesを設定している場合は必要ありません）",
     "@appearOnTopDetails": {},
     "dehydrateTorLong": "TOR ユーザーの場合、ウィンドウを閉じる前にセッションをエクスポートすることをお勧めします。",
     "@dehydrateTorLong": {},

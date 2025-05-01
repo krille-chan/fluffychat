@@ -1,9 +1,9 @@
 [Desktop Entry]
-Name=FluffyChat
+Name=Hermes
 GenericName=Matrix Client
 Comment=Chat with your friends
-Exec=fluffychat
-Icon=${SNAP}/meta/gui/fluffychat.png
+Exec=hermes
+Icon=${SNAP}/meta/gui/hermes.png
 Terminal=false
 Type=Application
 Categories=Network;Chat;InstantMessaging;

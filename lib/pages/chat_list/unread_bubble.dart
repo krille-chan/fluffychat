@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/config/themes.dart';
+import 'package:hermes/config/themes.dart';
 
 class UnreadBubble extends StatelessWidget {
   final Room room;
@@ -19,8 +19,8 @@ class UnreadBubble extends StatelessWidget {
             : 14.0
         : 0.0;
     return AnimatedContainer(
-      duration: FluffyThemes.animationDuration,
-      curve: FluffyThemes.animationCurve,
+      duration: PantheonThemes.animationDuration,
+      curve: PantheonThemes.animationCurve,
       alignment: Alignment.center,
       padding: const EdgeInsets.symmetric(horizontal: 7),
       height: unreadBubbleSize,

@@ -11,27 +11,28 @@ import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart' as sdk;
 import 'package:matrix/matrix.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
-
-import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/pages/chat_list/chat_list_view.dart';
-import 'package:fluffychat/utils/localized_exception_extension.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:fluffychat/utils/show_scaffold_dialog.dart';
-import 'package:fluffychat/utils/show_update_snackbar.dart';
-import 'package:fluffychat/widgets/adaptive_dialogs/show_modal_action_popup.dart';
-import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
-import 'package:fluffychat/widgets/adaptive_dialogs/show_text_input_dialog.dart';
-import 'package:fluffychat/widgets/avatar.dart';
-import 'package:fluffychat/widgets/future_loading_dialog.dart';
-import 'package:fluffychat/widgets/share_scaffold_dialog.dart';
+import 'package:hermes/l10n/l10n.dart';
+import 'package:hermes/widgets/adaptive_dialogs/adaptive_dialog_action.dart';
+import 'package:hermes/config/app_config.dart';
+import 'package:hermes/pages/chat_list/chat_list_view.dart';
+import 'package:hermes/utils/localized_exception_extension.dart';
+import 'package:hermes/utils/matrix_sdk_extensions/matrix_locals.dart';
+import 'package:hermes/utils/platform_infos.dart';
+import 'package:hermes/utils/show_scaffold_dialog.dart';
+import 'package:hermes/utils/show_update_snackbar.dart';
+import 'package:hermes/widgets/adaptive_dialogs/show_modal_action_popup.dart';
+import 'package:hermes/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
+import 'package:hermes/widgets/adaptive_dialogs/show_text_input_dialog.dart';
+import 'package:hermes/widgets/avatar.dart';
+import 'package:hermes/widgets/future_loading_dialog.dart';
+import 'package:hermes/widgets/share_scaffold_dialog.dart';
 import '../../../utils/account_bundles.dart';
 import '../../config/setting_keys.dart';
 import '../../utils/url_launcher.dart';
 import '../../widgets/matrix.dart';
 import '../bootstrap/bootstrap_dialog.dart';
 
-import 'package:fluffychat/utils/tor_stub.dart'
+import 'package:hermes/utils/tor_stub.dart'
     if (dart.library.html) 'package:tor_detector_web/tor_detector_web.dart';
 
 enum PopupMenuAction {
@@ -178,7 +179,7 @@ class ChatListController extends State<ChatList>
   QueryPublicRoomsResponse? roomSearchResult;
 
   bool isSearching = false;
-  static const String _serverStoreNamespace = 'im.fluffychat.search.server';
+  static const String _serverStoreNamespace = 'im.hermes.search.server';
 
   void setServer() async {
     final newServer = await showTextInputDialog(

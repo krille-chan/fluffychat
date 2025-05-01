@@ -826,8 +826,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "fluffychat": "FluffyChat",
-    "@fluffychat": {
+    "hermes": "hermes",
+    "@hermes": {
         "type": "String",
         "placeholders": {}
     },
@@ -998,7 +998,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "inviteText": "{username} vás pozvali na FluffyChat.\n1. Navštivte fluffychat.im a nainstalujte si aplikaci.\n2. Zaregistrujte se anebo se přihlašte.\n3. Otevřete pozvánku: \n {link}",
+    "inviteText": "{username} vás pozvali na hermes.\n1. Navštivte hermes.im a nainstalujte si aplikaci.\n2. Zaregistrujte se anebo se přihlašte.\n3. Otevřete pozvánku: \n {link}",
     "@inviteText": {
         "type": "String",
         "placeholders": {
@@ -1170,8 +1170,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "newMessageInFluffyChat": "Nová zpráva ve FluffyChatu",
-    "@newMessageInFluffyChat": {
+    "newMessageInhermes": "Nová zpráva ve hermesu",
+    "@newMessageInhermes": {
         "type": "String",
         "placeholders": {}
     },
@@ -1792,7 +1792,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "title": "FluffyChat",
+    "title": "hermes",
     "@title": {
         "description": "Title for the application",
         "type": "String",
@@ -2491,13 +2491,13 @@
     "@unlockOldMessages": {},
     "foregroundServiceRunning": "Toto oznámení se zobrazuje když běží služba na pozadí.",
     "@foregroundServiceRunning": {},
-    "screenSharingDetail": "Sdílíte svou obrazovku přes FluffyChat",
+    "screenSharingDetail": "Sdílíte svou obrazovku přes hermes",
     "@screenSharingDetail": {},
-    "callingAccountDetails": "Opravňuje FluffyChat používat Android systémovou aplikaci pro vytáčení.",
+    "callingAccountDetails": "Opravňuje hermes používat Android systémovou aplikaci pro vytáčení.",
     "@callingAccountDetails": {},
     "appearOnTop": "Zobrazovat nahoře",
     "@appearOnTop": {},
-    "otherCallingPermissions": "Mikrofon, kamera a ostatní oprávnění FluffyChat",
+    "otherCallingPermissions": "Mikrofon, kamera a ostatní oprávnění hermes",
     "@otherCallingPermissions": {},
     "encryptThisChat": "Zašifrovat tuto konverzaci",
     "@encryptThisChat": {},
@@ -2626,7 +2626,7 @@
     },
     "block": "Blokovat",
     "@block": {},
-    "indexedDbErrorLong": "Ukládání zpráv bohužel není ve výchozím nastavení v soukromém režimu povoleno.\nNavštivte prosím\n - about:config\n - nastavte dom.indexedDB.privateBrowsing.enabled na true\nV opačném případě nebude možné FluffyChat spustit.",
+    "indexedDbErrorLong": "Ukládání zpráv bohužel není ve výchozím nastavení v soukromém režimu povoleno.\nNavštivte prosím\n - about:config\n - nastavte dom.indexedDB.privateBrowsing.enabled na true\nV opačném případě nebude možné hermes spustit.",
     "@indexedDbErrorLong": {},
     "youInvitedToBy": "📩 Prostřednictvím odkazu jste byli pozváni na:\n{alias}",
     "@youInvitedToBy": {

@@ -629,8 +629,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "fluffychat": "FluffyChat",
-    "@fluffychat": {
+    "hermes": "Hermes",
+    "@hermes": {
         "type": "String",
         "placeholders": {}
     },
@@ -735,7 +735,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "inviteText": "{username} הזמין אותך ל-FluffyChat.\n1. התקן את FluffyChat: https://fluffychat.im\n2. הירשם או היכנס\n3. פתח את קישור ההזמנה: {link}",
+    "inviteText": "{username} הזמין אותך ל-Hermes.\n1. התקן את Hermes: https://hermes.im\n2. הירשם או היכנס\n3. פתח את קישור ההזמנה: {link}",
     "@inviteText": {
         "type": "String",
         "placeholders": {
@@ -1308,12 +1308,12 @@
         "type": "String",
         "placeholders": {}
     },
-    "newMessageInFluffyChat": "הודעה חדשה ב-FluffyChat",
-    "@newMessageInFluffyChat": {
+    "newMessageInHermes": "הודעה חדשה ב-Hermes",
+    "@newMessageInHermes": {
         "type": "String",
         "placeholders": {}
     },
-    "noGoogleServicesWarning": "נראה שאין לך שירותי גוגל בטלפון שלך. זו החלטה טובה לפרטיות שלך! כדי לקבל התרעות ב- FluffyChat אנו ממליצים להשתמש https://microg.org/ או https://unifiedpush.org/.",
+    "noGoogleServicesWarning": "נראה שאין לך שירותי גוגל בטלפון שלך. זו החלטה טובה לפרטיות שלך! כדי לקבל התרעות ב- Hermes אנו ממליצים להשתמש https://microg.org/ או https://unifiedpush.org/.",
     "@noGoogleServicesWarning": {
         "type": "String",
         "placeholders": {}

@@ -9,10 +9,10 @@ import 'package:html/dom.dart' as dom;
 import 'package:html/parser.dart' as parser;
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/utils/event_checkbox_extension.dart';
-import 'package:fluffychat/widgets/avatar.dart';
-import 'package:fluffychat/widgets/future_loading_dialog.dart';
-import 'package:fluffychat/widgets/mxc_image.dart';
+import 'package:hermes/utils/event_checkbox_extension.dart';
+import 'package:hermes/widgets/avatar.dart';
+import 'package:hermes/widgets/future_loading_dialog.dart';
+import 'package:hermes/widgets/mxc_image.dart';
 import '../../../utils/url_launcher.dart';
 
 class HtmlMessage extends StatelessWidget {
@@ -86,7 +86,7 @@ class HtmlMessage extends StatelessWidget {
     'rt',
     'html',
     'body',
-    // Workaround for https://github.com/krille-chan/fluffychat/issues/507
+    // Workaround for https://github.com/krille-chan/hermes/issues/507
     'tg-forward',
   };
 

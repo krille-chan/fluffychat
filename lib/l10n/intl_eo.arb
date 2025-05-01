@@ -815,8 +815,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "fluffychat": "FluffyChat",
-    "@fluffychat": {
+    "hermes": "Hermes",
+    "@hermes": {
         "type": "String",
         "placeholders": {}
     },
@@ -987,7 +987,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "inviteText": "{username} invitis vin al FluffyChat. \n1. Instalu la aplikaĵon FluffyChat: https://fluffychat.im \n2. Registriĝu aŭ salutu \n3. Malfermu la invitan ligilon: {link}",
+    "inviteText": "{username} invitis vin al Hermes. \n1. Instalu la aplikaĵon Hermes: https://hermes.im \n2. Registriĝu aŭ salutu \n3. Malfermu la invitan ligilon: {link}",
     "@inviteText": {
         "type": "String",
         "placeholders": {
@@ -1149,8 +1149,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "newMessageInFluffyChat": "Nova mesaĝo en FluffyChat",
-    "@newMessageInFluffyChat": {
+    "newMessageInHermes": "Nova mesaĝo en Hermes",
+    "@newMessageInHermes": {
         "type": "String",
         "placeholders": {}
     },
@@ -1184,7 +1184,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "noGoogleServicesWarning": "Ŝajnas, ke via telefono ne havas servojn de Google. Tio estas bona decido por via privateco! Por ricevadi pasivajn sciigojn en FluffyChat, ni rekomendas, ke vi uzu la https://microg.org/ aŭ https://unifiedpush.org/.",
+    "noGoogleServicesWarning": "Ŝajnas, ke via telefono ne havas servojn de Google. Tio estas bona decido por via privateco! Por ricevadi pasivajn sciigojn en Hermes, ni rekomendas, ke vi uzu la https://microg.org/ aŭ https://unifiedpush.org/.",
     "@noGoogleServicesWarning": {
         "type": "String",
         "placeholders": {}
@@ -1750,7 +1750,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "title": "FluffyChat",
+    "title": "Hermes",
     "@title": {
         "description": "Title for the application",
         "type": "String",

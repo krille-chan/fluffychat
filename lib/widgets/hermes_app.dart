@@ -1,25 +1,36 @@
+
+
 import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
+
 import 'package:matrix/matrix.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:fluffychat/config/routes.dart';
 import 'package:fluffychat/config/setting_keys.dart';
-import 'package:fluffychat/config/themes.dart';
-import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/widgets/app_lock.dart';
-import 'package:fluffychat/widgets/theme_builder.dart';
+
+import 'package:hermes/l10n/l10n.dart';
+
+import 'package:hermes/config/routes.dart';
+
+import 'package:hermes/config/themes.dart';
+
+import 'package:hermes/widgets/app_lock.dart';
+
+import 'package:hermes/widgets/theme_builder.dart';
+
+import 'package:hermes/config/setting_keys.dart';
 import '../utils/custom_scroll_behaviour.dart';
 import 'matrix.dart';
 
-class FluffyChatApp extends StatelessWidget {
+class HermesApp extends StatelessWidget {
   final Widget? testWidget;
   final List<Client> clients;
   final String? pincode;
   final SharedPreferences store;
 
-  const FluffyChatApp({
+  const HermesApp({
     super.key,
     this.testWidget,
     required this.clients,

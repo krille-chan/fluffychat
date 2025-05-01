@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
-		609046320A2D7D2B0D36583B /* Pods_FluffyChat_Share.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9EB6E6475A19949A37A2634 /* Pods_FluffyChat_Share.framework */; };
+		609046320A2D7D2B0D36583B /* Pods_Hermes_Share.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9EB6E6475A19949A37A2634 /* Pods_Hermes_Share.framework */; };
 		74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74858FAE1ED2DC5600515810 /* AppDelegate.swift */; };
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
@@ -17,7 +17,7 @@
 		AB0F2865DE230DE37373E0E0 /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50DEFC207B70632D9C56ED78 /* Pods_Runner.framework */; };
 		C1005C45261071B5002F4F32 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1005C44261071B5002F4F32 /* ShareViewController.swift */; };
 		C1005C48261071B5002F4F32 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1005C46261071B5002F4F32 /* MainInterface.storyboard */; };
-		C1005C4C261071B5002F4F32 /* FluffyChat Share.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C1005C42261071B5002F4F32 /* FluffyChat Share.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C1005C4C261071B5002F4F32 /* Hermes Share.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C1005C42261071B5002F4F32 /* Hermes Share.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C137635E2AD1446100A8F905 /* notification.caf in Resources */ = {isa = PBXBuildFile; fileRef = C137635D2AD1446100A8F905 /* notification.caf */; };
 		C14695592E642D400075F2F7 /* Notification Service Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C14695522E642D400075F2F7 /* Notification Service Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C14695662E642E450075F2F7 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = C14695652E642E450075F2F7 /* Localizable.xcstrings */; };
@@ -32,7 +32,14 @@
 			containerPortal = 97C146E61CF9000F007C117D /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = C1005C41261071B5002F4F32;
-			remoteInfo = "FluffyChat Share";
+			remoteInfo = "Hermes Share";
+		};
+		C14695572E642D400075F2F7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 97C146E61CF9000F007C117D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C14695512E642D400075F2F7;
+			remoteInfo = "Notification Service Extension";
 		};
 		C14695572E642D400075F2F7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -60,7 +67,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				C1005C4C261071B5002F4F32 /* FluffyChat Share.appex in Embed App Extensions */,
+				C1005C4C261071B5002F4F32 /* Hermes Share.appex in Embed App Extensions */,
 				C14695592E642D400075F2F7 /* Notification Service Extension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
@@ -69,12 +76,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		09545B0C8C397F94966EA956 /* Pods-FluffyChat Share.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FluffyChat Share.debug.xcconfig"; path = "Target Support Files/Pods-FluffyChat Share/Pods-FluffyChat Share.debug.xcconfig"; sourceTree = "<group>"; };
+		09545B0C8C397F94966EA956 /* Pods-Hermes Share.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hermes Share.debug.xcconfig"; path = "Target Support Files/Pods-Hermes Share/Pods-Hermes Share.debug.xcconfig"; sourceTree = "<group>"; };
 		1498D2321E8E86230040F4C2 /* GeneratedPluginRegistrant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeneratedPluginRegistrant.h; sourceTree = "<group>"; };
 		1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedPluginRegistrant.m; sourceTree = "<group>"; };
 		3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppFrameworkInfo.plist; path = Flutter/AppFrameworkInfo.plist; sourceTree = "<group>"; };
 		50DEFC207B70632D9C56ED78 /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		58F7B95D036AD8E67B27588D /* Pods-FluffyChat Share.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FluffyChat Share.profile.xcconfig"; path = "Target Support Files/Pods-FluffyChat Share/Pods-FluffyChat Share.profile.xcconfig"; sourceTree = "<group>"; };
+		58F7B95D036AD8E67B27588D /* Pods-Hermes Share.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hermes Share.profile.xcconfig"; path = "Target Support Files/Pods-Hermes Share/Pods-Hermes Share.profile.xcconfig"; sourceTree = "<group>"; };
 		74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Runner-Bridging-Header.h"; sourceTree = "<group>"; };
 		74858FAE1ED2DC5600515810 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		76737C9A857D5FD6D2634A3F /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
@@ -87,19 +94,19 @@
 		97C147001CF9000F007C117D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		97C147021CF9000F007C117D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9DB2F3524376810E74C799A8 /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
-		C1005C42261071B5002F4F32 /* FluffyChat Share.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "FluffyChat Share.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1005C42261071B5002F4F32 /* Hermes Share.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Hermes Share.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1005C44261071B5002F4F32 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		C1005C47261071B5002F4F32 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		C1005C49261071B5002F4F32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C1005C53261072D4002F4F32 /* FluffyChat Share.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "FluffyChat Share.entitlements"; sourceTree = "<group>"; };
+		C1005C53261072D4002F4F32 /* Hermes Share.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Hermes Share.entitlements"; sourceTree = "<group>"; };
 		C137635D2AD1446100A8F905 /* notification.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = notification.caf; sourceTree = "<group>"; };
 		C14695522E642D400075F2F7 /* Notification Service Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Notification Service Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C14695652E642E450075F2F7 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		C149567B25C7274F00A16396 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C149567D25C7276200A16396 /* Runner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Runner.entitlements; sourceTree = "<group>"; };
-		C9EB6E6475A19949A37A2634 /* Pods_FluffyChat_Share.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FluffyChat_Share.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9EB6E6475A19949A37A2634 /* Pods_Hermes_Share.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hermes_Share.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA246783222E02DD03959891 /* Pods-Runner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"; sourceTree = "<group>"; };
-		F3778959E67CDA0CDB0D97BC /* Pods-FluffyChat Share.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FluffyChat Share.release.xcconfig"; path = "Target Support Files/Pods-FluffyChat Share/Pods-FluffyChat Share.release.xcconfig"; sourceTree = "<group>"; };
+		F3778959E67CDA0CDB0D97BC /* Pods-Hermes Share.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hermes Share.release.xcconfig"; path = "Target Support Files/Pods-Hermes Share/Pods-Hermes Share.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -136,7 +143,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				609046320A2D7D2B0D36583B /* Pods_FluffyChat_Share.framework in Frameworks */,
+				609046320A2D7D2B0D36583B /* Pods_Hermes_Share.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,7 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				50DEFC207B70632D9C56ED78 /* Pods_Runner.framework */,
-				C9EB6E6475A19949A37A2634 /* Pods_FluffyChat_Share.framework */,
+				C9EB6E6475A19949A37A2634 /* Pods_Hermes_Share.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -176,7 +183,7 @@
 				C14695652E642E450075F2F7 /* Localizable.xcstrings */,
 				9740EEB11CF90186004384FC /* Flutter */,
 				97C146F01CF9000F007C117D /* Runner */,
-				C1005C43261071B5002F4F32 /* FluffyChat Share */,
+				C1005C43261071B5002F4F32 /* Hermes Share */,
 				C14695532E642D400075F2F7 /* Notification Service Extension */,
 				97C146EF1CF9000F007C117D /* Products */,
 				E89DCAC000D371640E94E65B /* Pods */,
@@ -188,7 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				97C146EE1CF9000F007C117D /* Runner.app */,
-				C1005C42261071B5002F4F32 /* FluffyChat Share.appex */,
+				C1005C42261071B5002F4F32 /* Hermes Share.appex */,
 				C14695522E642D400075F2F7 /* Notification Service Extension.appex */,
 			);
 			name = Products;
@@ -212,15 +219,15 @@
 			path = Runner;
 			sourceTree = "<group>";
 		};
-		C1005C43261071B5002F4F32 /* FluffyChat Share */ = {
+		C1005C43261071B5002F4F32 /* Hermes Share */ = {
 			isa = PBXGroup;
 			children = (
-				C1005C53261072D4002F4F32 /* FluffyChat Share.entitlements */,
+				C1005C53261072D4002F4F32 /* Hermes Share.entitlements */,
 				C1005C44261071B5002F4F32 /* ShareViewController.swift */,
 				C1005C46261071B5002F4F32 /* MainInterface.storyboard */,
 				C1005C49261071B5002F4F32 /* Info.plist */,
 			);
-			path = "FluffyChat Share";
+			path = "Hermes Share";
 			sourceTree = "<group>";
 		};
 		E89DCAC000D371640E94E65B /* Pods */ = {
@@ -229,9 +236,9 @@
 				76737C9A857D5FD6D2634A3F /* Pods-Runner.debug.xcconfig */,
 				EA246783222E02DD03959891 /* Pods-Runner.release.xcconfig */,
 				9DB2F3524376810E74C799A8 /* Pods-Runner.profile.xcconfig */,
-				09545B0C8C397F94966EA956 /* Pods-FluffyChat Share.debug.xcconfig */,
-				F3778959E67CDA0CDB0D97BC /* Pods-FluffyChat Share.release.xcconfig */,
-				58F7B95D036AD8E67B27588D /* Pods-FluffyChat Share.profile.xcconfig */,
+				09545B0C8C397F94966EA956 /* Pods-Hermes Share.debug.xcconfig */,
+				F3778959E67CDA0CDB0D97BC /* Pods-Hermes Share.release.xcconfig */,
+				58F7B95D036AD8E67B27588D /* Pods-Hermes Share.profile.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -265,9 +272,9 @@
 			productReference = 97C146EE1CF9000F007C117D /* Runner.app */;
 			productType = "com.apple.product-type.application";
 		};
-		C1005C41261071B5002F4F32 /* FluffyChat Share */ = {
+		C1005C41261071B5002F4F32 /* Hermes Share */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C1005C51261071B5002F4F32 /* Build configuration list for PBXNativeTarget "FluffyChat Share" */;
+			buildConfigurationList = C1005C51261071B5002F4F32 /* Build configuration list for PBXNativeTarget "Hermes Share" */;
 			buildPhases = (
 				67579C1EA0B5C7B918473158 /* [CP] Check Pods Manifest.lock */,
 				C1005C3E261071B5002F4F32 /* Sources */,
@@ -340,7 +347,7 @@
 			projectRoot = "";
 			targets = (
 				97C146ED1CF9000F007C117D /* Runner */,
-				C1005C41261071B5002F4F32 /* FluffyChat Share */,
+				C1005C41261071B5002F4F32 /* Hermes Share */,
 				C14695512E642D400075F2F7 /* Notification Service Extension */,
 			);
 		};
@@ -433,7 +440,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-FluffyChat Share-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Hermes Share-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -530,7 +537,7 @@
 /* Begin PBXTargetDependency section */
 		C1005C4B261071B5002F4F32 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C1005C41261071B5002F4F32 /* FluffyChat Share */;
+			target = C1005C41261071B5002F4F32 /* Hermes Share */;
 			targetProxy = C1005C4A261071B5002F4F32 /* PBXContainerItemProxy */;
 		};
 		C14695582E642D400075F2F7 /* PBXTargetDependency */ = {
@@ -646,7 +653,7 @@
 					"$(PROJECT_DIR)/Flutter",
 				);
 				MARKETING_VERSION = 0.32.1;
-				PRODUCT_BUNDLE_IDENTIFIER = im.fluffychat.app;
+				PRODUCT_BUNDLE_IDENTIFIER = im.hermes.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
@@ -791,7 +798,7 @@
 					"$(PROJECT_DIR)/Flutter",
 				);
 				MARKETING_VERSION = 0.32.1;
-				PRODUCT_BUNDLE_IDENTIFIER = im.fluffychat.app;
+				PRODUCT_BUNDLE_IDENTIFIER = im.hermes.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
@@ -828,7 +835,7 @@
 					"$(PROJECT_DIR)/Flutter",
 				);
 				MARKETING_VERSION = 0.32.1;
-				PRODUCT_BUNDLE_IDENTIFIER = im.fluffychat.app;
+				PRODUCT_BUNDLE_IDENTIFIER = im.hermes.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
@@ -839,7 +846,7 @@
 		};
 		C1005C4E261071B5002F4F32 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 09545B0C8C397F94966EA956 /* Pods-FluffyChat Share.debug.xcconfig */;
+			baseConfigurationReference = 09545B0C8C397F94966EA956 /* Pods-Hermes Share.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -847,12 +854,12 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = "FluffyChat Share/FluffyChat Share.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Hermes Share/Hermes Share.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4NXF6Z997G;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "FluffyChat Share/Info.plist";
+				INFOPLIST_FILE = "Hermes Share/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -862,7 +869,7 @@
 				MARKETING_VERSION = 1.0.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "im.fluffychat.app.FluffyChat-Share";
+				PRODUCT_BUNDLE_IDENTIFIER = "im.hermes.app.Hermes-Share";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -874,7 +881,7 @@
 		};
 		C1005C4F261071B5002F4F32 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F3778959E67CDA0CDB0D97BC /* Pods-FluffyChat Share.release.xcconfig */;
+			baseConfigurationReference = F3778959E67CDA0CDB0D97BC /* Pods-Hermes Share.release.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -882,12 +889,12 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = "FluffyChat Share/FluffyChat Share.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Hermes Share/Hermes Share.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4NXF6Z997G;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "FluffyChat Share/Info.plist";
+				INFOPLIST_FILE = "Hermes Share/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -896,7 +903,7 @@
 				);
 				MARKETING_VERSION = 1.0.0;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "im.fluffychat.app.FluffyChat-Share";
+				PRODUCT_BUNDLE_IDENTIFIER = "im.hermes.app.Hermes-Share";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -906,7 +913,7 @@
 		};
 		C1005C50261071B5002F4F32 /* Profile */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 58F7B95D036AD8E67B27588D /* Pods-FluffyChat Share.profile.xcconfig */;
+			baseConfigurationReference = 58F7B95D036AD8E67B27588D /* Pods-Hermes Share.profile.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -914,12 +921,12 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = "FluffyChat Share/FluffyChat Share.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Hermes Share/Hermes Share.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4NXF6Z997G;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "FluffyChat Share/Info.plist";
+				INFOPLIST_FILE = "Hermes Share/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -928,7 +935,7 @@
 				);
 				MARKETING_VERSION = 1.0.0;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "im.fluffychat.app.FluffyChat-Share";
+				PRODUCT_BUNDLE_IDENTIFIER = "im.hermes.app.Hermes-Share";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -1079,7 +1086,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C1005C51261071B5002F4F32 /* Build configuration list for PBXNativeTarget "FluffyChat Share" */ = {
+		C1005C51261071B5002F4F32 /* Build configuration list for PBXNativeTarget "Hermes Share" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C1005C4E261071B5002F4F32 /* Debug */,

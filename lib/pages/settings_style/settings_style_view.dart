@@ -4,17 +4,16 @@ import 'package:flutter/material.dart';
 
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:matrix/matrix.dart';
-
-import 'package:fluffychat/config/setting_keys.dart';
-import 'package:fluffychat/config/themes.dart';
-import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/pages/chat/events/state_message.dart';
-import 'package:fluffychat/utils/account_config.dart';
-import 'package:fluffychat/utils/color_value.dart';
-import 'package:fluffychat/widgets/avatar.dart';
-import 'package:fluffychat/widgets/layouts/max_width_body.dart';
-import 'package:fluffychat/widgets/matrix.dart';
-import 'package:fluffychat/widgets/mxc_image.dart';
+import 'package:hermes/l10n/l10n.dart';
+import 'package:hermes/config/setting_keys.dart';
+import 'package:hermes/config/themes.dart';
+import 'package:hermes/pages/chat/events/state_message.dart';
+import 'package:hermes/utils/account_config.dart';
+import 'package:hermes/utils/color_value.dart';
+import 'package:hermes/widgets/avatar.dart';
+import 'package:hermes/widgets/layouts/max_width_body.dart';
+import 'package:hermes/widgets/matrix.dart';
+import 'package:hermes/widgets/mxc_image.dart';
 import '../../config/app_config.dart';
 import '../../widgets/settings_switch_list_tile.dart';
 import 'settings_style.dart';

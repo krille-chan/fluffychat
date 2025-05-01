@@ -953,8 +953,8 @@
     "type": "String",
     "placeholders": {}
   },
-  "fluffychat": "FluffyChat",
-  "@fluffychat": {
+  "hermes": "Hermes",
+  "@hermes": {
     "type": "String",
     "placeholders": {}
   },

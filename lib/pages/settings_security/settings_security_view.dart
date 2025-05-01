@@ -2,16 +2,15 @@ import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
-
-import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/config/setting_keys.dart';
-import 'package:fluffychat/config/themes.dart';
-import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/utils/beautify_string_extension.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:fluffychat/widgets/layouts/max_width_body.dart';
-import 'package:fluffychat/widgets/matrix.dart';
-import 'package:fluffychat/widgets/settings_switch_list_tile.dart';
+import 'package:hermes/l10n/l10n.dart';
+import 'package:hermes/config/app_config.dart';
+import 'package:hermes/config/setting_keys.dart';
+import 'package:hermes/config/themes.dart';
+import 'package:hermes/utils/beautify_string_extension.dart';
+import 'package:hermes/utils/platform_infos.dart';
+import 'package:hermes/widgets/layouts/max_width_body.dart';
+import 'package:hermes/widgets/matrix.dart';
+import 'package:hermes/widgets/settings_switch_list_tile.dart';
 import 'settings_security.dart';
 
 class SettingsSecurityView extends StatelessWidget {

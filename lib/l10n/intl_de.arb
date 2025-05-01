@@ -825,8 +825,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "fluffychat": "FluffyChat",
-    "@fluffychat": {
+    "hermes": "hermes",
+    "@hermes": {
         "type": "String",
         "placeholders": {}
     },
@@ -997,7 +997,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "inviteText": "{username} hat Dich zu FluffyChat eingeladen. \n1. Gehe auf fluffychat.im und installiere die App \n2. Melde Dich in der App an \n3. Öffne den Einladungslink: \n {link}",
+    "inviteText": "{username} hat Dich zu hermes eingeladen. \n1. Gehe auf hermes.im und installiere die App \n2. Melde Dich in der App an \n3. Öffne den Einladungslink: \n {link}",
     "@inviteText": {
         "type": "String",
         "placeholders": {
@@ -1169,8 +1169,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "newMessageInFluffyChat": "💬 Neue Nachricht in FluffyChat",
-    "@newMessageInFluffyChat": {
+    "newMessageInhermes": "💬 Neue Nachricht in hermes",
+    "@newMessageInhermes": {
         "type": "String",
         "placeholders": {}
     },
@@ -1779,7 +1779,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "title": "FluffyChat",
+    "title": "hermes",
     "@title": {
         "description": "Title for the application",
         "type": "String",
@@ -2360,7 +2360,7 @@
     "@storeInSecureStorageDescription": {},
     "storeInAppleKeyChain": "Im Apple KeyChain speichern",
     "@storeInAppleKeyChain": {},
-    "indexedDbErrorLong": "Die Nachrichtenspeicherung ist im privaten Modus standardmäßig leider nicht aktiviert.\nBitte besuche\n- about:config\n- Setze dom.indexedDB.privateBrowsing.enabled auf true\nAndernfalls ist es nicht möglich, FluffyChat auszuführen.",
+    "indexedDbErrorLong": "Die Nachrichtenspeicherung ist im privaten Modus standardmäßig leider nicht aktiviert.\nBitte besuche\n- about:config\n- Setze dom.indexedDB.privateBrowsing.enabled auf true\nAndernfalls ist es nicht möglich, hermes auszuführen.",
     "@indexedDbErrorLong": {},
     "confirmMatrixId": "Bitte bestätigen deine Matrix-ID, um dein Konto zu löschen.",
     "@confirmMatrixId": {},
@@ -2381,7 +2381,7 @@
     "@hideUnimportantStateEvents": {},
     "doNotShowAgain": "Nicht mehr anzeigen",
     "@doNotShowAgain": {},
-    "appearOnTopDetails": "Ermöglicht, dass die App oben angezeigt wird (nicht erforderlich, wenn du Fluffychat bereits als Anrufkonto eingerichtet haben)",
+    "appearOnTopDetails": "Ermöglicht, dass die App oben angezeigt wird (nicht erforderlich, wenn du hermes bereits als Anrufkonto eingerichtet haben)",
     "@appearOnTopDetails": {},
     "noKeyForThisMessage": "Dies kann passieren, wenn die Nachricht gesendet wurde, bevor du dich auf diesem Gerät bei deinem Konto angemeldet hast.\n\nEs ist auch möglich, dass der Absender dein Gerät blockiert hat oder etwas mit der Internetverbindung schief gelaufen ist.\n\nKannst du die Nachricht in einer anderen Sitzung lesen? Dann kannst du die Nachricht davon übertragen! Gehe zu den Einstellungen > Geräte und vergewissere dich, dass sich deine Geräte gegenseitig verifiziert haben. Wenn du den Raum das nächste Mal öffnest und beide Sitzungen im Vordergrund sind, werden die Schlüssel automatisch übertragen.\n\nDu möchtest die Schlüssel beim Abmelden oder Gerätewechsel nicht verlieren? Stelle sicher, dass du das Chat-Backup in den Einstellungen aktiviert hast.",
     "@noKeyForThisMessage": {},
@@ -2393,11 +2393,11 @@
     "@callingPermissions": {},
     "callingAccount": "Anrufkonto",
     "@callingAccount": {},
-    "callingAccountDetails": "Ermöglicht FluffyChat, die native Android-Dialer-App zu verwenden.",
+    "callingAccountDetails": "Ermöglicht hermes, die native Android-Dialer-App zu verwenden.",
     "@callingAccountDetails": {},
     "appearOnTop": "Oben erscheinen",
     "@appearOnTop": {},
-    "otherCallingPermissions": "Mikrofon, Kamera und andere FluffyChat-Berechtigungen",
+    "otherCallingPermissions": "Mikrofon, Kamera und andere hermes-Berechtigungen",
     "@otherCallingPermissions": {},
     "whyIsThisMessageEncrypted": "Warum ist diese Nachricht nicht lesbar?",
     "@whyIsThisMessageEncrypted": {},
@@ -3127,7 +3127,7 @@
     "@setWallpaper": {},
     "opacity": "Deckkraft:",
     "@opacity": {},
-    "welcomeText": "Hey Hey 👋 Das ist FluffyChat. Du kannst sich bei jedem Homeserver anmelden, der mit https://matrix.org kompatibel ist. Und dann mit jedem chatten. Das hier ist ein riesiges dezentrales Nachrichtennetzwerk!",
+    "welcomeText": "Hey Hey 👋 Das ist hermes. Du kannst sich bei jedem Homeserver anmelden, der mit https://matrix.org kompatibel ist. Und dann mit jedem chatten. Das hier ist ein riesiges dezentrales Nachrichtennetzwerk!",
     "@welcomeText": {},
     "blur": "Verwischen:",
     "@blur": {},
@@ -3185,7 +3185,7 @@
     "@supportPage": {},
     "serverInformation": "Server-Informationen:",
     "@serverInformation": {},
-    "appIntroduction": "Mit FluffyChat kannst du über verschiedene Messenger hinweg mit deinen Freunden chatten. Erfahre mehr dazu auf https://matrix.org oder tippe einfach auf *Fortfahren*.",
+    "appIntroduction": "Mit hermes kannst du über verschiedene Messenger hinweg mit deinen Freunden chatten. Erfahre mehr dazu auf https://matrix.org oder tippe einfach auf *Fortfahren*.",
     "@appIntroduction": {},
     "newChatRequest": "📩 Neue Chat-Anfrage",
     "@newChatRequest": {},

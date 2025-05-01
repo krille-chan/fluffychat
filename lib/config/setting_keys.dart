@@ -16,12 +16,12 @@ enum AppSettings<T> {
   audioRecordingNoiseSuppress<bool>('audioRecordingNoiseSuppress', true),
   audioRecordingBitRate<int>('audioRecordingBitRate', 64000),
   audioRecordingSamplingRate<int>('audioRecordingSamplingRate', 44100),
-  showNoGoogle<bool>('chat.fluffy.show_no_google', false),
-  unifiedPushRegistered<bool>('chat.fluffy.unifiedpush.registered', false),
-  unifiedPushEndpoint<String>('chat.fluffy.unifiedpush.endpoint', ''),
+  showNoGoogle<bool>('chat.pantheon.show_no_google', false),
+  unifiedPushRegistered<bool>('chat.pantheon.unifiedpush.registered', false),
+  unifiedPushEndpoint<String>('chat.pantheon.unifiedpush.endpoint', ''),
   pushNotificationsGatewayUrl<String>(
     'pushNotificationsGatewayUrl',
-    'https://push.fluffychat.im/_matrix/push/v1/notify',
+    'https://push.hermes.im/_matrix/push/v1/notify',
   ),
   pushNotificationsPusherFormat<String>(
     'pushNotificationsPusherFormat',
@@ -50,11 +50,11 @@ enum AppSettings<T> {
     false,
   ),
   // AppConfig-mirrored settings
-  applicationName<String>('chat.fluffy.application_name', 'FluffyChat'),
-  defaultHomeserver<String>('chat.fluffy.default_homeserver', 'matrix.org'),
+  applicationName<String>('chat.pantheon.application_name', 'Hermes'),
+  defaultHomeserver<String>('chat.pantheon.default_homeserver', 'matrix.org'),
   // colorSchemeSeed stored as ARGB int
   colorSchemeSeedInt<int>(
-    'chat.fluffy.color_scheme_seed',
+    'chat.pantheon.color_scheme_seed',
     0xFF5625BA,
   ),
   enableSoftLogout<bool>('chat.fluffy.enable_soft_logout', false);

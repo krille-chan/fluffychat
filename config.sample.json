@@ -1,7 +1,7 @@
 {
-  "applicationName": "FluffyChat",
+  "applicationName": "Hermes",
   "defaultHomeserver": "matrix.org",
-  "privacyUrl": "https://github.com/krille-chan/fluffychat/blob/main/PRIVACY.md",
+  "privacyUrl": "https://github.com/allomanta/hermes/blob/main/PRIVACY.md",
   "audioRecordingNumChannels": 1,
   "audioRecordingAutoGain": true,
   "audioRecordingEchoCancel": false,

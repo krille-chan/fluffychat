@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:matrix/matrix.dart';
-
-import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/utils/url_launcher.dart';
-import 'package:fluffychat/widgets/mxc_image.dart';
+import 'package:hermes/l10n/l10n.dart';
+import 'package:hermes/config/app_config.dart';
+import 'package:hermes/utils/url_launcher.dart';
+import 'package:hermes/widgets/mxc_image.dart';
 import '../../widgets/avatar.dart';
 
 class StickerPickerDialog extends StatefulWidget {
@@ -142,7 +141,7 @@ class StickerPickerDialogState extends State<StickerPickerDialog> {
                       OutlinedButton.icon(
                         onPressed: () => UrlLauncher(
                           context,
-                          'https://matrix.to/#/#fluffychat-stickers:janian.de',
+                          'https://matrix.to/#/#hermes-stickers:janian.de',
                         ).launchUrl(),
                         icon: const Icon(Icons.explore_outlined),
                         label: Text(L10n.of(context).discover),
