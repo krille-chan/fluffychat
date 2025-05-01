@@ -189,7 +189,7 @@ class ConstructListModel {
   int calculateLevelWithXp(int totalXP) {
     // [D] is the "compression factor". It determines how quickly
     /// or slowly the level grows relative to XP
-    const double D = 2500;
+    const double D = 1500;
     final doubleScore = (1 + sqrt((1 + (8.0 * totalXP / D)) / 2.0));
     if (!doubleScore.isNaN && doubleScore.isFinite) {
       return doubleScore.floor();
