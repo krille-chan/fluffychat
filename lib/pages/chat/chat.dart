@@ -1091,6 +1091,23 @@ class ChatController extends State<ChatPageWithRoom>
     inputFocus.requestFocus();
   }
 
+  void goToNextRoomAction(bool reverse) async {
+    final rooms = room.client.rooms;
+    final nextIndex = rooms.indexWhere((r) => r.id == room.id) +
+        (reverse ? -1 : 1) % rooms.length;
+    final nextID = rooms[nextIndex].id;
+
+    final result = await showFutureLoadingDialog(
+      context: context,
+      future: () => room.client.joinRoomById(
+        nextID,
+      ),
+    );
+    if (result.error != null) return;
+    if (!mounted) return;
+    context.go('/rooms/${nextID}');
+  }
+
   void goToNewRoomAction() async {
     final newRoomId = room
         .getState(EventTypes.RoomTombstone)!
