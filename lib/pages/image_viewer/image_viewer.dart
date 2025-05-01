@@ -57,10 +57,15 @@ class ImageViewerController extends State<ImageViewer> {
   void onKeyEvent(KeyEvent event) {
     switch (event.logicalKey) {
       case LogicalKeyboardKey.arrowUp:
+      case LogicalKeyboardKey.keyH:
         if (canGoBack) prevImage();
         break;
+      case LogicalKeyboardKey.keyL:
       case LogicalKeyboardKey.arrowDown:
         if (canGoNext) nextImage();
+        break;
+      case LogicalKeyboardKey.escape:
+        Navigator.of(context, rootNavigator: false).pop();
         break;
     }
   }
@@ -109,7 +114,7 @@ class ImageViewerController extends State<ImageViewer> {
 
   /// Go back if user swiped it away
   void onInteractionEnds(ScaleEndDetails endDetails) {
-    if (PlatformInfos.usesTouchscreen == false) {
+    if (!PlatformInfos.usesTouchscreen) {
       if (endDetails.velocity.pixelsPerSecond.dy >
           MediaQuery.sizeOf(context).height * maxScaleFactor) {
         Navigator.of(context, rootNavigator: false).pop();
