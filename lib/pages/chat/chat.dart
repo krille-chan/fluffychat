@@ -389,9 +389,8 @@ class ChatController extends State<ChatPageWithRoom>
       (update) {
         if (update['level_up'] != null) {
           LevelUpUtil.showLevelUpDialog(
-            update['level_up'],
-            update['analytics_room_id'],
-            update['construct_summary'],
+            update['upper_level'],
+            update['lower_level'],
             context,
           );
         } else if (update['unlocked_constructs'] != null) {
