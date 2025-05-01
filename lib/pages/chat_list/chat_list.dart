@@ -43,6 +43,7 @@ import '../../widgets/matrix.dart';
 import 'package:fluffychat/utils/tor_stub.dart'
     if (dart.library.html) 'package:tor_detector_web/tor_detector_web.dart';
 
+
 enum PopupMenuAction {
   settings,
   invite,
@@ -215,7 +216,7 @@ class ChatListController extends State<ChatList>
       case ActiveFilter.allChats:
         // #Pangea
         // return (room) => true;
-        return (room) => !room.isAnalyticsRoom;
+        return (room) => !room.isAnalyticsRoom && !room.isSpace;
       // Pangea#
       case ActiveFilter.messages:
         return (room) =>

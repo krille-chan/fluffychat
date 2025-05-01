@@ -122,10 +122,7 @@ abstract class AppConfig {
   static bool hideRedactedEvents = false;
   static bool hideUnknownEvents = true;
   static bool hideUnimportantStateEvents = true;
-  // #Pangea
-  // static bool separateChatTypes = false;
-  static bool separateChatTypes = true;
-  // Pangea#
+  static bool separateChatTypes = false;
   static bool autoplayImages = true;
   static bool sendTypingNotifications = true;
   static bool sendPublicReadReceipts = true;
