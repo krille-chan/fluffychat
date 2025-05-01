@@ -175,15 +175,20 @@ class ChatView extends StatelessWidget {
             }
             return;
           case LogicalKeyboardKey.arrowDown:
+          case LogicalKeyboardKey.keyJ:
             if (event is KeyDownEvent &&
                 HardwareKeyboard.instance.isAltPressed) {
               controller.goToNextRoomAction(false);
             }
+            break;
           case LogicalKeyboardKey.arrowUp:
+          case LogicalKeyboardKey.keyK:
+            print("DEBUG: " + event.logicalKey.toString());
             if (event is KeyDownEvent &&
                 HardwareKeyboard.instance.isAltPressed) {
               controller.goToNextRoomAction(true);
             }
+            break;
         }
       },
       child: PopScope(

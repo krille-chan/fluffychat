@@ -1093,8 +1093,16 @@ class ChatController extends State<ChatPageWithRoom>
 
   void goToNextRoomAction(bool reverse) async {
     final rooms = room.client.rooms;
-    final nextIndex = rooms.indexWhere((r) => r.id == room.id) +
-        (reverse ? -1 : 1) % rooms.length;
+    int nextIndex = rooms.indexWhere((r) => r.id == room.id);
+
+    if (reverse) {
+      nextIndex--;
+    } else {
+      nextIndex++;
+    }
+
+    nextIndex %= rooms.length;
+
     final nextID = rooms[nextIndex].id;
 
     final result = await showFutureLoadingDialog(
