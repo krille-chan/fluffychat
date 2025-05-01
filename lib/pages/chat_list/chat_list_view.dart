@@ -57,7 +57,8 @@ class ChatListView extends StatelessWidget {
                     // #Pangea
                     // !controller.isSearchMode && controller.activeSpaceId == null
                     controller.activeFilter == ActiveFilter.spaces &&
-                            controller.activeSpaceId == null
+                            controller.activeSpaceId == null &&
+                            !controller.isSearchMode
                         ? const SpaceFloatingActionButtons()
                         : !controller.isSearchMode &&
                                 controller.activeSpaceId == null
