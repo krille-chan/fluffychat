@@ -4876,7 +4876,14 @@
   "languageLevelC2Desc": "I can understand virtually everything heard or read and express myself fluently and precisely.",
   "newVocab": "New vocab",
   "newGrammar": "New grammar concepts",
-  "congratulationsOnReaching": "Congratulations on reaching ",
+  "congratulationsOnReaching": "You've reached Level {level}!",
+  "@congratulationsOnReaching": {
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
   "seeDetails": "See Details",
   "choosePracticeMode": "Click on one of the buttons above to start a practice activity",
   "userWouldLikeToChangeTheSpace": "{user} would like to join the space.",

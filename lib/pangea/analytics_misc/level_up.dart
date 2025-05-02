@@ -206,12 +206,12 @@ class LevelUpBannerState extends State<LevelUpBanner>
   Widget build(BuildContext context) {
     final style = FluffyThemes.isColumnMode(context)
         ? Theme.of(context).textTheme.titleLarge?.copyWith(
-              color: Colors.white,
+              color: Theme.of(context).colorScheme.onSecondaryContainer,
               fontWeight: FontWeight.bold,
               letterSpacing: 0.5,
             )
         : Theme.of(context).textTheme.bodyLarge?.copyWith(
-              color: Colors.white,
+              color: Theme.of(context).colorScheme.onSecondaryContainer,
               fontWeight: FontWeight.bold,
               letterSpacing: 0.5,
             );
@@ -232,123 +232,112 @@ class LevelUpBannerState extends State<LevelUpBanner>
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Container(
-                        margin: const EdgeInsets.only(
-                          top: 16,
-                        ),
-                        decoration: BoxDecoration(
-                          color: widget.level > 10
-                              ? Theme.of(context).colorScheme.primary
-                              : Theme.of(context)
-                                  .colorScheme
-                                  .secondaryContainer,
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 16,
-                          horizontal: 24,
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          spacing: 8.0,
-                          children: [
-                            Flexible(
-                              child: RichText(
-                                text: TextSpan(
-                                  children: [
-                                    TextSpan(
-                                      text: L10n.of(context)
-                                          .congratulationsOnReaching,
-                                      style: style,
-                                    ),
-                                    TextSpan(
-                                      text: "${L10n.of(context).level} ",
-                                      style: style,
-                                    ),
-                                    TextSpan(
-                                      text: "${widget.level} ",
-                                      style: style,
-                                    ),
-                                    WidgetSpan(
-                                      child: CachedNetworkImage(
-                                        imageUrl:
-                                            "${AppConfig.assetsBaseURL}/${LevelUpConstants.starFileName}",
-                                        height: 24,
-                                        width: 24,
+                      GestureDetector(
+                        onPanUpdate: (details) {
+                          if (details.delta.dy < -10) _close();
+                        },
+                        onTap: _toggleDetails,
+                        child: Container(
+                          margin: const EdgeInsets.only(
+                            top: 16,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Theme.of(context)
+                                .colorScheme
+                                .secondaryContainer,
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 16,
+                            horizontal: 24,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            spacing: 8.0,
+                            children: [
+                              Flexible(
+                                child: RichText(
+                                  text: TextSpan(
+                                    children: [
+                                      TextSpan(
+                                        text: L10n.of(context)
+                                            .congratulationsOnReaching(
+                                          widget.level,
+                                        ),
+                                        style: style,
                                       ),
-                                    ),
-                                  ],
+                                      TextSpan(
+                                        text: "  ",
+                                        style: style,
+                                      ),
+                                      WidgetSpan(
+                                        child: CachedNetworkImage(
+                                          imageUrl:
+                                              "${AppConfig.assetsBaseURL}/${LevelUpConstants.starFileName}",
+                                          height: 24,
+                                          width: 24,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
-                            ),
-                            AnimatedSize(
-                              duration: FluffyThemes.animationDuration,
-                              child: _error == null
-                                  ? ElevatedButton(
-                                      onPressed: _error != null
-                                          ? null
-                                          : _constructSummary != null
-                                              ? _toggleDetails
-                                              : () {},
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor: Colors.white,
-                                        foregroundColor: Theme.of(context)
-                                            .colorScheme
-                                            .surfaceContainerHighest,
-                                      ),
-                                      child: Row(
+                              AnimatedSize(
+                                duration: FluffyThemes.animationDuration,
+                                child: _error == null
+                                    ? FluffyThemes.isColumnMode(context)
+                                        ? ElevatedButton(
+                                            style: IconButton.styleFrom(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                vertical: 4.0,
+                                                horizontal: 16.0,
+                                              ),
+                                            ),
+                                            onPressed: _toggleDetails,
+                                            child: Text(
+                                              L10n.of(context).details,
+                                            ),
+                                          )
+                                        : SizedBox(
+                                            width: 32.0,
+                                            height: 32.0,
+                                            child: Center(
+                                              child: IconButton(
+                                                icon: const Icon(
+                                                  Icons.info_outline,
+                                                ),
+                                                style: IconButton.styleFrom(
+                                                  padding:
+                                                      const EdgeInsets.all(4.0),
+                                                ),
+                                                onPressed: _toggleDetails,
+                                                constraints:
+                                                    const BoxConstraints(),
+                                              ),
+                                            ),
+                                          )
+                                    : Row(
                                         children: [
-                                          Text(
-                                            "${L10n.of(context).seeDetails} ",
-                                            style: const TextStyle(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold,
+                                          Tooltip(
+                                            message: L10n.of(context)
+                                                .oopsSomethingWentWrong,
+                                            child: Icon(
+                                              Icons.error,
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .error,
                                             ),
                                           ),
-                                          Container(
-                                            decoration: const BoxDecoration(
-                                              color: AppConfig.gold,
-                                              shape: BoxShape.circle,
-                                            ),
-                                            padding: const EdgeInsets.all(
-                                              4.0,
-                                            ),
-                                            child: _loading
-                                                ? const CircularProgressIndicator
-                                                    .adaptive()
-                                                : Icon(
-                                                    _showDetails
-                                                        ? Icons
-                                                            .keyboard_arrow_down_rounded
-                                                        : Icons
-                                                            .keyboard_arrow_up_rounded,
-                                                    size: 20,
-                                                    color: Colors.white,
-                                                  ),
+                                          IconButton(
+                                            icon: const Icon(Icons.close),
+                                            onPressed: _close,
                                           ),
                                         ],
                                       ),
-                                    )
-                                  : Row(
-                                      children: [
-                                        Tooltip(
-                                          message: L10n.of(context)
-                                              .oopsSomethingWentWrong,
-                                          child: Icon(
-                                            Icons.error,
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .error,
-                                          ),
-                                        ),
-                                        IconButton(
-                                          icon: const Icon(Icons.close),
-                                          onPressed: _close,
-                                        ),
-                                      ],
-                                    ),
-                            ),
-                          ],
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                       SizeTransition(
@@ -359,7 +348,7 @@ class LevelUpBannerState extends State<LevelUpBanner>
                                 MediaQuery.of(context).size.height * 0.75,
                           ),
                           margin: const EdgeInsets.only(
-                            top: 16,
+                            top: 4.0,
                           ),
                           decoration: BoxDecoration(
                             color: Colors.black,
@@ -396,6 +385,7 @@ class LevelUpBannerState extends State<LevelUpBanner>
                                             child: Icon(
                                               skill.icon,
                                               size: 25,
+                                              color: Colors.white,
                                             ),
                                           ),
                                           Padding(
@@ -450,10 +440,12 @@ class LevelUpBannerState extends State<LevelUpBanner>
                                     ),
                                     child: Text(
                                       _constructSummary!.textSummary,
-                                      style: const TextStyle(
+                                      style: TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.w600,
-                                        color: Colors.white,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .onSecondaryContainer,
                                       ),
                                       textAlign: TextAlign.center,
                                     ),
