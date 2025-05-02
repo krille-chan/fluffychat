@@ -40,6 +40,7 @@ abstract class AppConfig {
           toolbarButtonsHeight +
           (chatInputRowOverlayPadding * 2) +
           toolbarSpacing;
+  static const double audioTranscriptionMaxHeight = 150.0;
 
   static TextStyle messageTextStyle(
     Event? event,

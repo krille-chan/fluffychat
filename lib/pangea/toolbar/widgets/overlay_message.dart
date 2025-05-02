@@ -280,8 +280,11 @@ class OverlayMessage extends StatelessWidget {
                   )
                 : content,
             if (showTranscription || showTranslation)
-              SizedBox(
+              Container(
                 width: messageWidth,
+                constraints: const BoxConstraints(
+                  maxHeight: AppConfig.audioTranscriptionMaxHeight,
+                ),
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(
                     12.0,
@@ -289,20 +292,22 @@ class OverlayMessage extends StatelessWidget {
                     12.0,
                     12.0,
                   ),
-                  child: showTranscription
-                      ? MessageSpeechToTextCard(
-                          messageEvent: pangeaMessageEvent!,
-                          textColor: textColor,
-                        )
-                      : Text(
-                          overlayController.translationText!,
-                          style: AppConfig.messageTextStyle(
-                            event,
-                            textColor,
-                          ).copyWith(
-                            fontStyle: FontStyle.italic,
+                  child: SingleChildScrollView(
+                    child: showTranscription
+                        ? MessageSpeechToTextCard(
+                            messageEvent: pangeaMessageEvent!,
+                            textColor: textColor,
+                          )
+                        : Text(
+                            overlayController.translationText!,
+                            style: AppConfig.messageTextStyle(
+                              event,
+                              textColor,
+                            ).copyWith(
+                              fontStyle: FontStyle.italic,
+                            ),
                           ),
-                        ),
+                  ),
                 ),
               ),
           ],

@@ -401,8 +401,8 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
         _reactionsHeight -
         _selectionButtonsHeight;
 
-    final hasHeaderOverflow =
-        topOffset < (_headerHeight + AppConfig.toolbarSpacing);
+    final hasHeaderOverflow = topOffset <
+        (_headerHeight + AppConfig.toolbarSpacing + _audioTranscriptionHeight);
     final hasFooterOverflow =
         bottomOffset < (_footerHeight + AppConfig.toolbarSpacing);
 
@@ -414,11 +414,16 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
     }
 
     if (hasHeaderOverflow) {
-      final difference = topOffset - (_headerHeight + AppConfig.toolbarSpacing);
+      final difference = topOffset -
+          (_headerHeight +
+              AppConfig.toolbarSpacing +
+              _audioTranscriptionHeight);
+
       double newBottomOffset = _mediaQuery!.size.height -
           _originalMessageOffset.dy +
           difference -
           _originalMessageSize.height;
+
       if (newBottomOffset < _footerHeight + AppConfig.toolbarSpacing) {
         newBottomOffset = _footerHeight + AppConfig.toolbarSpacing;
       }
@@ -502,6 +507,12 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
 
   double get _selectionButtonsHeight {
     return showSelectionButtons ? AppConfig.toolbarButtonsHeight : 0;
+  }
+
+  double get _audioTranscriptionHeight {
+    return widget.pangeaMessageEvent?.isAudioMessage ?? false
+        ? AppConfig.audioTranscriptionMaxHeight
+        : 0;
   }
 
   bool get _hasReactions {

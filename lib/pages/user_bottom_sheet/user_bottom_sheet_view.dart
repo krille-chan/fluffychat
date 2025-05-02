@@ -325,7 +325,10 @@ class UserBottomSheetView extends StatelessWidget {
                 ListTile(
                   textColor: theme.colorScheme.error,
                   iconColor: theme.colorScheme.error,
-                  title: Text(L10n.of(context).kickFromChat),
+                  // #Pangea
+                  // title: Text(L10n.of(context).kickFromChat),
+                  title: Text(L10n.of(context).kick),
+                  // Pangea#
                   leading: const Icon(Icons.exit_to_app_outlined),
                   onTap: () =>
                       controller.participantAction(UserBottomSheetAction.kick),
@@ -336,7 +339,10 @@ class UserBottomSheetView extends StatelessWidget {
                 ListTile(
                   textColor: theme.colorScheme.onErrorContainer,
                   iconColor: theme.colorScheme.onErrorContainer,
-                  title: Text(L10n.of(context).banFromChat),
+                  // #Pangea
+                  // title: Text(L10n.of(context).banFromChat),
+                  title: Text(L10n.of(context).ban),
+                  // Pangea#
                   leading: const Icon(Icons.warning_sharp),
                   onTap: () =>
                       controller.participantAction(UserBottomSheetAction.ban),
@@ -345,7 +351,10 @@ class UserBottomSheetView extends StatelessWidget {
                   user.canBan &&
                   user.membership == Membership.ban)
                 ListTile(
-                  title: Text(L10n.of(context).unbanFromChat),
+                  // #Pangea
+                  // title: Text(L10n.of(context).unbanFromChat),
+                  title: Text(L10n.of(context).unban),
+                  // Pangea#
                   leading: const Icon(Icons.warning_outlined),
                   onTap: () =>
                       controller.participantAction(UserBottomSheetAction.unban),

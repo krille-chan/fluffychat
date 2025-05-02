@@ -4886,5 +4886,8 @@
         "type": "String"
       }
     }
-  }
+  },
+  "ban": "Ban",
+  "unban": "Unban",
+  "kick": "Kick"
 }
