@@ -95,6 +95,33 @@ extension PushRuleExtension on PushRule {
         return l10n.unknownPushRule(ruleId);
     }
   }
+
+  // #Pangea
+  static List<String> get defaultPushRuleIds {
+    return [
+      '.m.rule.contains_user_name',
+      '.m.rule.master',
+      '.m.rule.suppress_notices',
+      '.m.rule.invite_for_me',
+      '.m.rule.member_event',
+      '.m.rule.is_user_mention',
+      '.m.rule.contains_display_name',
+      '.m.rule.is_room_mention',
+      '.m.rule.roomnotif',
+      // '.m.rule.tombstone',
+      '.m.rule.reaction',
+      // '.m.rule.room_server_acl',
+      '.m.rule.suppress_edits',
+      // '.m.rule.call',
+      // '.m.rule.encrypted_room_one_to_one',
+      '.m.rule.room_one_to_one',
+      '.m.rule.message',
+      // '.m.rule.encrypted',
+      // '.m.rule.room.server_acl',
+      // '.im.vector.jitsi',
+    ];
+  }
+  // Pangea#
 }
 
 extension PushRuleKindLocal on PushRuleKind {

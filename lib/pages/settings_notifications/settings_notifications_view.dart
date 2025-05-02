@@ -59,7 +59,13 @@ class SettingsNotificationsView extends StatelessWidget {
                           ),
                         ),
                       ),
-                      for (final rule in category.rules)
+                      // #Pangea
+                      // for (final rule in category.rules)
+                      for (final rule in category.rules.where(
+                        (rule) => PushRuleExtension.defaultPushRuleIds
+                            .contains(rule.ruleId),
+                      ))
+                        // Pangea#
                         ListTile(
                           title: Text(rule.getPushRuleName(L10n.of(context))),
                           subtitle: Text.rich(
