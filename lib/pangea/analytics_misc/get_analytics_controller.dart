@@ -517,24 +517,22 @@ class GetAnalyticsController extends BaseController {
       ErrorHandler.logError(e: e, data: {'e': e});
       return null;
     }
+
     try {
-      final Room? analyticsRoom = _client.analyticsRoomLocal(_l2!);
+      final Room? analyticsRoom = await _client.getMyAnalyticsRoom(_l2!);
       if (analyticsRoom == null) {
-        ErrorHandler.logError(
-          data: {'message': "Analytics room not found for user"},
-        );
-        return null;
+        throw "Analytics room not found for user";
       }
 
       // don't await this, just return the original response
       _saveConstructSummaryResponseToStateEvent(
         summary,
       );
-    } catch (e) {
+    } catch (e, s) {
       debugPrint("Error saving construct summary room: $e");
-      ErrorHandler.logError(e: e, data: {'e': e});
-      return null;
+      ErrorHandler.logError(e: e, s: s, data: {'e': e});
     }
+
     return summary;
   }
 }

@@ -129,19 +129,6 @@ class LevelUpBannerState extends State<LevelUpBanner>
 
     _slideController.forward();
 
-    MatrixState.pangeaController.getAnalytics
-        .generateLevelUpAnalytics(
-      widget.level,
-      widget.prevLevel,
-    )
-        .then((summary) {
-      if (mounted) {
-        setState(() {
-          _constructSummary = summary;
-        });
-      }
-    });
-
     Future.delayed(const Duration(seconds: 15), () async {
       if (mounted && !_showedDetails) _close();
     });
