@@ -496,8 +496,9 @@ class InputBar extends StatelessWidget {
           builder: (context, _, focusNode) {
             final textField = TextField(
               enableSuggestions: enableAutocorrect,
-              readOnly:
-                  controller != null && controller!.choreographer.isRunningIT,
+              readOnly: controller != null &&
+                  (controller!.choreographer.isRunningIT ||
+                      controller!.choreographer.chatController.obscureText),
               autocorrect: enableAutocorrect,
               controller: (controller
                           ?.choreographer.chatController.obscureText) ??

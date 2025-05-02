@@ -887,6 +887,7 @@ class ChatController extends State<ChatPageWithRoom>
         }
       },
     ).catchError((err, s) {
+      clearFakeEvent();
       if (err is EventTooLarge) {
         showAdaptiveDialog(
           context: context,
