@@ -74,6 +74,7 @@ class MessageTokenText extends StatelessWidget {
       return Text(
         _pangeaMessageEvent.messageDisplayText,
         style: _style,
+        textScaler: TextScaler.noScaling,
       );
     }
 
@@ -108,6 +109,8 @@ class MessageTextWidget extends StatelessWidget {
   final bool isMessage;
   final ReadingAssistanceMode? readingAssistanceMode;
 
+  final TextScaler? textScaler;
+
   const MessageTextWidget({
     super.key,
     required this.pangeaMessageEvent,
@@ -123,6 +126,7 @@ class MessageTextWidget extends StatelessWidget {
     this.isTransitionAnimation = false,
     this.isMessage = true,
     this.readingAssistanceMode,
+    this.textScaler,
   });
 
   @override
@@ -152,6 +156,7 @@ class MessageTextWidget extends StatelessWidget {
         softWrap: softWrap,
         maxLines: maxLines,
         overflow: overflow,
+        textScaler: textScaler,
       );
     }
 
@@ -168,6 +173,7 @@ class MessageTextWidget extends StatelessWidget {
       softWrap: softWrap ?? true,
       maxLines: maxLines,
       overflow: overflow ?? TextOverflow.clip,
+      textScaler: textScaler ?? TextScaler.noScaling,
       text: TextSpan(
         children:
             tokenPositions.mapIndexed((int i, TokenPosition tokenPosition) {

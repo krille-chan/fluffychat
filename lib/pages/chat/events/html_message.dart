@@ -336,6 +336,7 @@ class HtmlMessage extends StatelessWidget {
                         ? () => onClick?.call(token)
                         : null,
                     child: Text.rich(
+                      textScaler: TextScaler.noScaling,
                       TextSpan(
                         children: [
                           LinkifySpan(
@@ -407,6 +408,12 @@ class HtmlMessage extends StatelessWidget {
               splashColor: Colors.transparent,
               onTap: () => UrlLauncher(context, href, node.text).launchUrl(),
               child: Text.rich(
+                // #Pangea
+                // Text.rich applies the device's textScaleFactor
+                // overriding this one since non-html messages don't
+                // abide by the device's textScaleFactor
+                textScaler: TextScaler.noScaling,
+                // Pangea#
                 TextSpan(
                   children: _renderWithLineBreaks(
                     node.nodes,
@@ -428,6 +435,9 @@ class HtmlMessage extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.only(left: fontSize),
             child: Text.rich(
+              // #Pangea
+              textScaler: TextScaler.noScaling,
+              // Pangea#
               TextSpan(
                 children: [
                   if (node.parent?.localName == 'ul')
@@ -461,6 +471,9 @@ class HtmlMessage extends StatelessWidget {
               ),
             ),
             child: Text.rich(
+              // #Pangea
+              textScaler: TextScaler.noScaling,
+              // Pangea#
               TextSpan(
                 children: _renderWithLineBreaks(
                   node.nodes,
@@ -543,6 +556,9 @@ class HtmlMessage extends StatelessWidget {
                 obscure = !obscure;
               }),
               child: Text.rich(
+                // #Pangea
+                textScaler: TextScaler.noScaling,
+                // Pangea#
                 TextSpan(
                   children: [
                     WidgetSpan(
@@ -591,6 +607,9 @@ class HtmlMessage extends StatelessWidget {
                 obscure = !obscure;
               }),
               child: Text.rich(
+                // #Pangea
+                textScaler: TextScaler.noScaling,
+                // Pangea#
                 TextSpan(
                   children: _renderWithLineBreaks(
                     node.nodes,
@@ -670,6 +689,9 @@ class HtmlMessage extends StatelessWidget {
         },
         // Pangea#
         child: Text.rich(
+          // #Pangea
+          textScaler: TextScaler.noScaling,
+          // Pangea#
           _renderHtml(
             // #Pangea
             // parser.parse(html).body ?? dom.Element.html(''),

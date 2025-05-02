@@ -107,6 +107,7 @@ class ChatListItemSubtitle extends StatelessWidget {
             maxLines: pangeaMessageEvent.room.notificationCount >= 1 ? 2 : 1,
             overflow: TextOverflow.ellipsis,
             isMessage: false,
+            textScaler: MediaQuery.textScalerOf(context),
           );
         }
 
