@@ -65,7 +65,7 @@ class PangeaPublicRoomBottomSheetState
       notFoundError: L10n.of(context).notTheCodeError,
     );
     if (!resp.isError) {
-      Navigator.of(context).pop();
+      Navigator.of(context).pop(true);
     }
   }
 
@@ -105,7 +105,7 @@ class PangeaPublicRoomBottomSheetState
 
     if (result.result != null) {
       _goToRoom(result.result!);
-      Navigator.of(context).pop();
+      Navigator.of(context).pop(true);
     }
   }
 
