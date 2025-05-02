@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
+import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/common/widgets/dropdown_text_button.dart';
 import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_enum.dart';
 
@@ -32,12 +33,12 @@ class LanguageLevelDropdown extends StatelessWidget {
               LanguageLevelTypeEnum.values.contains(initialLevel)
           ? CustomDropdownTextButton(text: initialLevel!.title(context))
           : null,
-      menuItemStyleData: const MenuItemStyleData(
-        padding: EdgeInsets.symmetric(
+      menuItemStyleData: MenuItemStyleData(
+        padding: const EdgeInsets.symmetric(
           vertical: 8.0,
           horizontal: 16.0,
         ),
-        height: 100.0,
+        height: FluffyThemes.isColumnMode(context) ? 100.0 : 150.0,
       ),
       decoration: InputDecoration(
         labelText: l10n.cefrLevelLabel,
