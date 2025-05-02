@@ -102,10 +102,6 @@ class ConstructXpWidgetState extends State<ConstructXpWidget>
 
   @override
   Widget build(BuildContext context) {
-    if (constructLemmaCategory == null) {
-      return const SizedBox();
-    }
-
     return SizedBox(
       width: widget.size,
       height: widget.size,
