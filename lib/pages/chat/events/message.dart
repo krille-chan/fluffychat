@@ -422,11 +422,14 @@ class Message extends StatelessWidget {
                                                 Padding(
                                                   padding:
                                                       const EdgeInsets.only(
-                                                    top: 4.0,
+                                                    bottom: 8.0,
+                                                    left: 16.0,
+                                                    right: 16.0,
                                                   ),
                                                   child: Row(
                                                     mainAxisSize:
                                                         MainAxisSize.min,
+                                                    spacing: 4.0,
                                                     children: [
                                                       Icon(
                                                         Icons.edit_outlined,
@@ -435,11 +438,15 @@ class Message extends StatelessWidget {
                                                         size: 14,
                                                       ),
                                                       Text(
-                                                        ' - ${displayEvent.originServerTs.localizedTimeShort(context)}',
+                                                        displayEvent
+                                                            .originServerTs
+                                                            .localizedTimeShort(
+                                                          context,
+                                                        ),
                                                         style: TextStyle(
                                                           color: textColor
                                                               .withAlpha(164),
-                                                          fontSize: 12,
+                                                          fontSize: 11,
                                                         ),
                                                       ),
                                                     ],
