@@ -34,11 +34,7 @@ class ChatMembersController extends State<ChatMembersPage> {
 
     final members = this
         .members
-        ?.where(
-          (member) =>
-              membershipFilter == Membership.join ||
-              member.membership == membershipFilter,
-        )
+        ?.where((member) => member.membership == membershipFilter)
         .toList();
 
     if (filter.isEmpty) {
