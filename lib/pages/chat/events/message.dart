@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -581,26 +583,26 @@ class Message extends StatelessWidget {
                                                           timeline: timeline,
                                                           selected: selected,
                                                         ),
-                                                        if (event
-                                                            .hasAggregatedEvents(
-                                                          timeline,
-                                                          RelationshipTypes
-                                                              .edit,
-                                                        ))
-                                                          Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                    .only(
-                                                              bottom: 8.0,
-                                                              left: 16.0,
-                                                              right: 16.0,
-                                                            ),
-                                                            child: Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .min,
-                                                              spacing: 4.0,
-                                                              children: [
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .only(
+                                                            bottom: 8.0,
+                                                            left: 16.0,
+                                                            right: 16.0,
+                                                          ),
+                                                          child: Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .min,
+                                                            spacing: 4.0,
+                                                            children: [
+                                                              if (event
+                                                                  .hasAggregatedEvents(
+                                                                timeline,
+                                                                RelationshipTypes
+                                                                    .edit,
+                                                              ))
                                                                 Icon(
                                                                   Icons
                                                                       .edit_outlined,
@@ -610,24 +612,24 @@ class Message extends StatelessWidget {
                                                                   ),
                                                                   size: 14,
                                                                 ),
-                                                                Text(
-                                                                  displayEvent
-                                                                      .originServerTs
-                                                                      .localizedTimeShort(
-                                                                    context,
-                                                                  ),
-                                                                  style:
-                                                                      TextStyle(
-                                                                    color: textColor
-                                                                        .withAlpha(
-                                                                      164,
-                                                                    ),
-                                                                    fontSize: 11,
-                                                                  ),
+                                                              Text(
+                                                                displayEvent
+                                                                    .originServerTs
+                                                                    .localizedTimeShort(
+                                                                  context,
                                                                 ),
-                                                              ],
-                                                            ),
+                                                                style:
+                                                                    TextStyle(
+                                                                  color: textColor
+                                                                      .withAlpha(
+                                                                    164,
+                                                                  ),
+                                                                  fontSize: 11,
+                                                                ),
+                                                              ),
+                                                            ],
                                                           ),
+                                                        ),
                                                       ],
                                                     ),
                                                   ),
