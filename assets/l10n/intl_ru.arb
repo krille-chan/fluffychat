@@ -3270,5 +3270,15 @@
   "appIntroduction": "FluffyChat позволяет вам общаться с друзьями с разными мессенджерами. Узнайте больше на https://matrix.org или просто нажмите *Продолжить*.",
   "@appIntroduction": {},
   "previous": "Предыдущий",
-  "@previous": {}
+  "@previous": {},
+  "notificationRuleCallDescription": "Уведомляет пользователя про звонки.",
+  "@notificationRuleCallDescription": {},
+  "notificationRuleEncryptedRoomOneToOne": "Шифрованная комната «Один на один»",
+  "@notificationRuleEncryptedRoomOneToOne": {},
+  "notificationRuleEncryptedRoomOneToOneDescription": "Уведомляет пользователя про сообщение в зашифрованных комнатах «Один на один».",
+  "@notificationRuleEncryptedRoomOneToOneDescription": {},
+  "notificationRuleRoomOneToOne": "Комната «Один на один»",
+  "@notificationRuleRoomOneToOne": {},
+  "setCustomPermissionLevel": "Установить уровень пользовательских разрешений",
+  "@setCustomPermissionLevel": {}
 }
