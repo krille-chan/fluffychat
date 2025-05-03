@@ -1,10 +1,9 @@
+import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/utils/localized_exception_extension.dart';
 import '../../widgets/layouts/max_width_body.dart';
 import '../../widgets/matrix.dart';
 import '../chat_details/participant_list_item.dart';
@@ -145,8 +144,15 @@ class ChatMembersView extends StatelessWidget {
                                             L10n.of(context).banned,
                                           Membership.invite =>
                                             L10n.of(context).invited,
-                                          Membership.join =>
-                                            L10n.of(context).all,
+                                          Membership.join => L10n.of(context)
+                                              .countParticipants(room.summary
+                                                      .mJoinedMemberCount ??
+                                                  controller.members
+                                                      ?.where((member) =>
+                                                          member.membership ==
+                                                          Membership.join)
+                                                      .length ??
+                                                  0),
                                           Membership.knock =>
                                             L10n.of(context).knocking,
                                           Membership.leave =>
