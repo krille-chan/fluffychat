@@ -1150,11 +1150,12 @@ packages:
   matrix:
     dependency: "direct main"
     description:
-      name: matrix
-      sha256: "829f225f74b2a8c83b6b1f960004ecf742215d9ee9d8cc9e0f1974ff8e281f0f"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.39.1"
+      path: "."
+      ref: "krille/do-not-load-timeline-while-sync-processing"
+      resolved-ref: d7025e496f04050c010df35e9f2ac2c785550eb4
+      url: "https://github.com/famedly/matrix-dart-sdk.git"
+    source: git
+    version: "0.39.2"
   meta:
     dependency: transitive
     description:
