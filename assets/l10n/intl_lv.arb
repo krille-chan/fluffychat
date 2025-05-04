@@ -1835,7 +1835,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "addChatDescription": "Pievienot tērzēšanas aprakstu...",
+  "addChatDescription": "Pievienot tērzēšanas aprakstu…",
   "@addChatDescription": {},
   "sentAnAudio": "🎤 {username} nosūtīja skaņu",
   "@sentAnAudio": {
@@ -3326,7 +3326,7 @@
   "@commandHint_roomupgrade": {},
   "setCustomPermissionLevel": "Iestatīt pielāgotu atļauju līmeni",
   "@setCustomPermissionLevel": {},
-  "setPermissionsLevelDescription": "Lūgums zemāk izvēlēties iepriekšizveidotu lomu vai ievadīt pielāgotu atļauju līmeni starp 0 un 100.",
+  "setPermissionsLevelDescription": "Lūgums zemāk atlasīt iepriekšizveidotu lomu vai ievadīt pielāgotu atļauju līmeni starp 0 un 100.",
   "@setPermissionsLevelDescription": {},
   "ignoreUser": "Neņemt vērā lietotāju",
   "@ignoreUser": {},
