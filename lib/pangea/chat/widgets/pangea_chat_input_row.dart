@@ -324,8 +324,8 @@ class PangeaChatInputRowState extends State<PangeaChatInputRow> {
                             maxLines: 8,
                             autofocus: !PlatformInfos.isMobile,
                             keyboardType: TextInputType.multiline,
-                            textInputAction: AppConfig.sendOnEnter ??
-                                    true && PlatformInfos.isMobile
+                            textInputAction: AppConfig.sendOnEnter == true &&
+                                    PlatformInfos.isMobile
                                 ? TextInputAction.send
                                 : null,
                             onSubmitted: (String value) =>
