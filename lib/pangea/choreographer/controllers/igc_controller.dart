@@ -202,7 +202,9 @@ class IgcController {
     }
 
     choreographer.chatController.inputFocus.unfocus();
-    MatrixState.pAnyState.closeAllOverlays(RegExp(r'span_card_overlay_\d+'));
+    MatrixState.pAnyState.closeAllOverlays(
+      filter: RegExp(r'span_card_overlay_\d+'),
+    );
     OverlayUtil.showPositionedCard(
       overlayKey: "span_card_overlay_$firstMatchIndex",
       context: context,

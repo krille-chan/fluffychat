@@ -660,7 +660,7 @@ class ChatController extends State<ChatPageWithRoom>
     //#Pangea
     choreographer.stateStream.close();
     choreographer.dispose();
-    MatrixState.pAnyState.closeAllOverlays();
+    MatrixState.pAnyState.closeAllOverlays(force: true);
     showToolbarStream.close();
     stopAudioStream.close();
     hideTextController.dispose();

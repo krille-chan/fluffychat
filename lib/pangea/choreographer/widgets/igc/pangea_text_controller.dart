@@ -110,7 +110,9 @@ class PangeaTextController extends TextEditingController {
         : null;
 
     if (cardToShow != null) {
-      MatrixState.pAnyState.closeAllOverlays(RegExp(r'span_card_overlay_\d+'));
+      MatrixState.pAnyState.closeAllOverlays(
+        filter: RegExp(r'span_card_overlay_\d+'),
+      );
       OverlayUtil.showPositionedCard(
         overlayKey: matchIndex != -1 ? "span_card_overlay_$matchIndex" : null,
         context: context,
