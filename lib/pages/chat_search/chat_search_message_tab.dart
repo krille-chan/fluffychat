@@ -138,7 +138,7 @@ class _MessageSearchResultListTile extends StatelessWidget {
             mxContent: sender.avatarUrl,
             name: displayname,
             // #Pangea
-            presenceUserId: sender.id,
+            userId: sender.id,
             // Pangea#
             size: 16,
           ),

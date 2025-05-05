@@ -722,7 +722,7 @@ class ChatListController extends State<ChatList>
                 size: Avatar.defaultSize / 2,
                 name: displayname,
                 // #Pangea
-                presenceUserId: room.directChatMatrixID,
+                userId: room.directChatMatrixID,
                 // Pangea#
               ),
               const SizedBox(width: 12),
@@ -746,7 +746,7 @@ class ChatListController extends State<ChatList>
                   size: Avatar.defaultSize / 2,
                   name: space.getLocalizedDisplayname(),
                   // #Pangea
-                  presenceUserId: space.directChatMatrixID,
+                  userId: space.directChatMatrixID,
                   // Pangea#
                 ),
                 const SizedBox(width: 12),

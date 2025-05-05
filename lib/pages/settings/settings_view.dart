@@ -88,7 +88,7 @@ class SettingsView extends StatelessWidget {
                                   mxContent: profile?.avatarUrl,
                                   name: displayname,
                                   // #Pangea
-                                  presenceUserId: profile?.userId,
+                                  userId: profile?.userId,
                                   // Pangea#
                                   size: Avatar.defaultSize * 2.5,
                                 ),

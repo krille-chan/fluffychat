@@ -46,7 +46,7 @@ class ChatAppBarTitle extends StatelessWidget {
                 MatrixLocals(L10n.of(context)),
               ),
               // #Pangea
-              presenceUserId: room.directChatMatrixID,
+              userId: room.directChatMatrixID,
               // Pangea#
               size: 32,
             ),

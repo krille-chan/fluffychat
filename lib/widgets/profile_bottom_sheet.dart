@@ -92,7 +92,7 @@ class ProfileBottomSheet extends StatelessWidget {
                       mxContent: profile?.avatarUrl,
                       name: profile?.displayName ?? userId,
                       // #Pangea
-                      presenceUserId: userId,
+                      userId: userId,
                       // Pangea#
                       size: Avatar.defaultSize * 3,
                     ),

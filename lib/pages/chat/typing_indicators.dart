@@ -62,7 +62,7 @@ class TypingIndicators extends StatelessWidget {
                           size: avatarSize,
                           mxContent: typingUsers.first.avatarUrl,
                           // #Pangea
-                          presenceUserId: typingUsers.first.id,
+                          userId: typingUsers.first.id,
                           // Pangea#
                           name: typingUsers.first.calcDisplayname(),
                         ),
@@ -75,7 +75,7 @@ class TypingIndicators extends StatelessWidget {
                                 ? typingUsers.last.avatarUrl
                                 : null,
                             // #Pangea
-                            presenceUserId: typingUsers.length == 2
+                            userId: typingUsers.length == 2
                                 ? typingUsers.last.id
                                 : null,
                             // Pangea#
