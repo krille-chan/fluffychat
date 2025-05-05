@@ -4,6 +4,7 @@ import 'package:collection/collection.dart';
 import 'package:jwt_decode/jwt_decode.dart';
 import 'package:matrix/matrix.dart' as matrix;
 
+import 'package:fluffychat/pangea/bot/utils/bot_name.dart';
 import 'package:fluffychat/pangea/common/constants/model_keys.dart';
 import 'package:fluffychat/pangea/common/controllers/base_controller.dart';
 import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
@@ -336,6 +337,10 @@ class UserController extends BaseController {
 
   Future<PublicProfileModel> getPublicProfile(String userId) async {
     try {
+      if (userId == BotName.byEnvironment) {
+        return PublicProfileModel();
+      }
+
       final resp = await client.getUserProfile(userId);
       return PublicProfileModel.fromJson(resp.additionalProperties);
     } catch (e, s) {
