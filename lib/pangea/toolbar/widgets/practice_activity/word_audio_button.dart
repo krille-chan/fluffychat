@@ -72,6 +72,10 @@ class WordAudioButtonState extends State<WordAudioButton> {
           tooltip:
               _isPlaying ? L10n.of(context).stop : L10n.of(context).playAudio,
           iconSize: widget.size,
+          style: IconButton.styleFrom(
+            padding: const EdgeInsets.all(0),
+          ),
+          constraints: const BoxConstraints(),
           onPressed: widget.callbackOverride ??
               () async {
                 if (_isPlaying) {

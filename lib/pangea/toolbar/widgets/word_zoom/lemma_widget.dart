@@ -168,6 +168,7 @@ class LemmaWidgetState extends State<LemmaWidget> {
     }
 
     return Row(
+      spacing: 8.0,
       children: [
         Text(
           widget.token.lemma.text,

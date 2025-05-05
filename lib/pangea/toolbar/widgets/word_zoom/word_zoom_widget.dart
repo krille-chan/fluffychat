@@ -71,11 +71,15 @@ class WordZoomWidget extends StatelessWidget {
                   //@ggurdin - might need to play with size to properly center
                   SizedBox(
                     width: 24.0,
+                    height: 24.0,
                     child: IconButton(
                       onPressed: () => overlayController.updateSelectedSpan(
                         token.text,
                       ),
                       icon: const Icon(Icons.close),
+                      style: IconButton.styleFrom(
+                        padding: EdgeInsets.zero,
+                      ),
                     ),
                   ),
                   LemmaWidget(
@@ -164,6 +168,7 @@ class WordZoomWidget extends StatelessWidget {
             Wrap(
               alignment: WrapAlignment.center,
               crossAxisAlignment: WrapCrossAlignment.center,
+              spacing: 8.0,
               children: [
                 ...[
                   Text(
