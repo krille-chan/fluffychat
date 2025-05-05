@@ -1151,8 +1151,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "krille/do-not-load-timeline-while-sync-processing"
-      resolved-ref: "1275f752f3ad9be26a63663e32cafc7288025765"
+      ref: HEAD
+      resolved-ref: ecf0d6bb94458aff718585f9253e50ed96e53e12
       url: "https://github.com/famedly/matrix-dart-sdk.git"
     source: git
     version: "0.39.2"
