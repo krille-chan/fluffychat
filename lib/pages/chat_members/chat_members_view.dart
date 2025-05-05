@@ -144,15 +144,18 @@ class ChatMembersView extends StatelessWidget {
                                             L10n.of(context).banned,
                                           Membership.invite =>
                                             L10n.of(context).invited,
-                                          Membership.join => L10n.of(context)
-                                              .countParticipants(room.summary
-                                                      .mJoinedMemberCount ??
+                                          Membership.join =>
+                                            L10n.of(context).countParticipants(
+                                              room.summary.mJoinedMemberCount ??
                                                   controller.members
-                                                      ?.where((member) =>
-                                                          member.membership ==
-                                                          Membership.join)
+                                                      ?.where(
+                                                        (member) =>
+                                                            member.membership ==
+                                                            Membership.join,
+                                                      )
                                                       .length ??
-                                                  0),
+                                                  0,
+                                            ),
                                           Membership.knock =>
                                             L10n.of(context).knocking,
                                           Membership.leave =>
