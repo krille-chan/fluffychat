@@ -117,8 +117,6 @@ class FullWidthTextField extends StatelessWidget {
   final TextInputType? keyboardType;
   final String? Function(String?)? validator;
   final TextEditingController? controller;
-  final bool? showErrorText;
-  final String? errorText;
   final Function(String)? onSubmitted;
   final String? labelText;
   final List<String>? autofillHints;
@@ -132,8 +130,6 @@ class FullWidthTextField extends StatelessWidget {
     this.keyboardType,
     this.validator,
     this.controller,
-    this.errorText,
-    this.showErrorText,
     this.onSubmitted,
     this.labelText,
     this.autofillHints,
@@ -143,49 +139,31 @@ class FullWidthTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool shouldShowError = showErrorText ?? errorText != null;
-
     return Padding(
       padding: const EdgeInsets.all(4.0),
-      child: SizedBox(
-        height: 40.0,
-        child: TextFormField(
-          obscureText: obscureText,
-          autocorrect: autocorrect,
-          textInputAction: textInputAction,
-          keyboardType: keyboardType,
-          autofillHints: autofillHints,
-          autofocus: autoFocus,
-          decoration: InputDecoration(
-            labelText: labelText,
-            hintText: hintText,
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(36.0),
-            ),
-            enabledBorder: errorText != null
-                ? OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(36.0),
-                    borderSide:
-                        BorderSide(color: Theme.of(context).colorScheme.error),
-                  )
-                : null,
-            focusedBorder: errorText != null
-                ? OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(36.0),
-                    borderSide: BorderSide(
-                      color: Theme.of(context).colorScheme.error,
-                      width: 2,
-                    ),
-                  )
-                : null,
-            contentPadding: const EdgeInsets.symmetric(horizontal: 30),
-            errorText: shouldShowError ? errorText : null,
+      child: TextFormField(
+        obscureText: obscureText,
+        autocorrect: autocorrect,
+        textInputAction: textInputAction,
+        keyboardType: keyboardType,
+        autofillHints: autofillHints,
+        autofocus: autoFocus,
+        decoration: InputDecoration(
+          labelText: labelText,
+          hintText: hintText,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(36.0),
           ),
-          validator: validator,
-          onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
-          controller: controller,
-          onFieldSubmitted: onSubmitted,
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 30,
+            vertical: 8.0,
+          ),
+          isDense: true,
         ),
+        validator: validator,
+        onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
+        controller: controller,
+        onFieldSubmitted: onSubmitted,
       ),
     );
   }
