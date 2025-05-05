@@ -260,14 +260,17 @@ class MorphMeaningPopupState extends State<MorphMeaningPopup> {
                                 morphTag: _morphTag,
                               ),
                             ),
-                            Text(
-                              getGrammarCopy(
-                                    category: _morphFeature.name,
-                                    lemma: _morphTag,
-                                    context: context,
-                                  ) ??
-                                  _morphTag,
-                              style: Theme.of(context).textTheme.titleMedium,
+                            Flexible(
+                              child: Text(
+                                textAlign: TextAlign.center,
+                                getGrammarCopy(
+                                      category: _morphFeature.name,
+                                      lemma: _morphTag,
+                                      context: context,
+                                    ) ??
+                                    _morphTag,
+                                style: Theme.of(context).textTheme.titleMedium,
+                              ),
                             ),
                             if (MatrixState.pangeaController.getAnalytics
                                     .constructListModel

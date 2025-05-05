@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
 
@@ -95,7 +94,6 @@ class MorphInfoRepo {
                 LanguageKeys.defaultLanguage,
       ),
     );
-    debugger(when: kDebugMode);
     final morph = res.getFeatureByCode(feature.name);
 
     final data = morph?.getTagByCode(tag);
