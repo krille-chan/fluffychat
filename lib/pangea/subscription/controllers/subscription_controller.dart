@@ -186,7 +186,6 @@ class SubscriptionController extends BaseController {
       if (selectedSubscription.isTrial) {
         try {
           await activateNewUserTrial();
-          await updateCustomerInfo();
         } catch (e) {
           debugPrint("Failed to initialize trial subscription");
         }
