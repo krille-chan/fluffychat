@@ -93,7 +93,8 @@ class PangeaPublicRoomBottomSheetState
           serverName: via,
         );
 
-        if (client.getRoomById(roomId) == null) {
+        final room = client.getRoomById(roomId);
+        if (room == null || room.membership != Membership.join) {
           await client.waitForRoomInSync(roomId, join: true);
         }
         return roomId;
