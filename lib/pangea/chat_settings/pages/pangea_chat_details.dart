@@ -349,7 +349,7 @@ class PangeaChatDetailsView extends StatelessWidget {
                         if (room.isSpace && room.isRoomAdmin && kIsWeb)
                           DownloadAnalyticsButton(space: room),
                         Divider(color: theme.dividerColor, height: 1),
-                        if (isGroupChat)
+                        if (room.isRoomAdmin && !room.isSpace)
                           ListTile(
                             title: Text(
                               L10n.of(context).downloadGroupText,
@@ -368,7 +368,7 @@ class PangeaChatDetailsView extends StatelessWidget {
                             ),
                             onTap: () => _downloadChat(context),
                           ),
-                        if (isGroupChat)
+                        if (room.isRoomAdmin && !room.isSpace)
                           Divider(color: theme.dividerColor, height: 1),
                         if (isGroupChat)
                           ListTile(
