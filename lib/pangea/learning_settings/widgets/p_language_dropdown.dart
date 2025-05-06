@@ -21,6 +21,7 @@ class PLanguageDropdown extends StatefulWidget {
   final String? Function(LanguageModel?)? validator;
   final Color? backgroundColor;
   final bool hasError;
+  final bool enabled;
 
   const PLanguageDropdown({
     super.key,
@@ -34,6 +35,7 @@ class PLanguageDropdown extends StatefulWidget {
     this.validator,
     this.backgroundColor,
     this.hasError = false,
+    this.enabled = true,
   });
 
   @override
@@ -87,12 +89,14 @@ class PLanguageDropdownState extends State<PLanguageDropdown> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         DropdownButtonFormField2<LanguageModel>(
+          enableFeedback: widget.enabled,
           customButton: widget.initialLanguage != null &&
                   sortedLanguages.contains(widget.initialLanguage)
               ? LanguageDropDownEntry(
                   languageModel: widget.initialLanguage!,
                   isL2List: widget.isL2List,
                   isDropdown: true,
+                  enabled: widget.enabled,
                 )
               : null,
           menuItemStyleData: const MenuItemStyleData(
@@ -131,6 +135,7 @@ class PLanguageDropdownState extends State<PLanguageDropdown> {
             if (widget.showMultilingual)
               DropdownMenuItem(
                 value: LanguageModel.multiLingual(context),
+                enabled: widget.enabled,
                 child: LanguageDropDownEntry(
                   languageModel: LanguageModel.multiLingual(context),
                   isL2List: widget.isL2List,
@@ -150,12 +155,13 @@ class PLanguageDropdownState extends State<PLanguageDropdown> {
                   child: LanguageDropDownEntry(
                     languageModel: languageModel,
                     isL2List: widget.isL2List,
+                    enabled: widget.enabled,
                   ),
                 ),
               ),
             ),
           ],
-          onChanged: (value) => widget.onChange(value!),
+          onChanged: widget.enabled ? (value) => widget.onChange(value!) : null,
           value: widget.initialLanguage,
           validator: (value) => widget.validator?.call(value),
           dropdownSearchData: DropdownSearchData(
@@ -210,20 +216,25 @@ class LanguageDropDownEntry extends StatelessWidget {
   final LanguageModel languageModel;
   final bool isL2List;
   final bool isDropdown;
+  final bool enabled;
 
   const LanguageDropDownEntry({
     super.key,
     required this.languageModel,
     required this.isL2List,
     this.isDropdown = false,
+    this.enabled = true,
   });
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        LanguageFlag(
-          language: languageModel,
+        Opacity(
+          opacity: enabled ? 1 : 0.5,
+          child: LanguageFlag(
+            language: languageModel,
+          ),
         ),
         const SizedBox(width: 10),
         Expanded(
@@ -232,7 +243,9 @@ class LanguageDropDownEntry extends StatelessWidget {
               Text(
                 languageModel.getDisplayName(context) ?? "",
                 style: const TextStyle().copyWith(
-                  color: Theme.of(context).textTheme.bodyLarge!.color,
+                  color: enabled
+                      ? Theme.of(context).textTheme.bodyLarge!.color
+                      : Theme.of(context).disabledColor,
                   fontSize: 14,
                 ),
                 overflow: TextOverflow.ellipsis,
