@@ -18,6 +18,7 @@ class PressableButton extends StatefulWidget {
   final bool playSound;
 
   final double colorFactor;
+  final bool visible;
 
   const PressableButton({
     required this.borderRadius,
@@ -29,6 +30,7 @@ class PressableButton extends StatefulWidget {
     this.triggerAnimation,
     this.playSound = false,
     this.colorFactor = 0.3,
+    this.visible = true,
     super.key,
   });
 
@@ -135,6 +137,10 @@ class PressableButtonState extends State<PressableButton>
 
   @override
   Widget build(BuildContext context) {
+    if (!widget.visible) {
+      return widget.child;
+    }
+
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       child: GestureDetector(

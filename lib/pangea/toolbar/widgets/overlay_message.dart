@@ -13,6 +13,7 @@ import 'package:fluffychat/pangea/toolbar/enums/reading_assistance_mode_enum.dar
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_speech_to_text_card.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
+import 'package:fluffychat/utils/file_description.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 // @ggurdin be great to explain the need/function of a widget like this
@@ -108,12 +109,18 @@ class OverlayMessage extends StatelessWidget {
           : theme.colorScheme.primary;
     }
 
-    final noBubble = {
-          MessageTypes.Video,
-          MessageTypes.Image,
-          MessageTypes.Sticker,
-        }.contains(event.messageType) &&
-        !event.redacted;
+    final noBubble = ({
+              MessageTypes.Video,
+              MessageTypes.Image,
+              MessageTypes.Sticker,
+            }.contains(event.messageType) &&
+            event.fileDescription == null &&
+            !event.redacted) ||
+        (event.messageType == MessageTypes.Text &&
+            event.relationshipType == null &&
+            event.onlyEmotes &&
+            event.numberEmotes > 0 &&
+            event.numberEmotes <= 3);
     final noPadding = {
       MessageTypes.File,
       MessageTypes.Audio,
@@ -254,15 +261,12 @@ class OverlayMessage extends StatelessWidget {
     );
 
     return Material(
-      color: color,
-      clipBehavior: Clip.antiAlias,
-      shape: RoundedRectangleBorder(
-        borderRadius: borderRadius,
-      ),
+      type: MaterialType.transparency,
       child: Container(
+        clipBehavior: Clip.antiAlias,
         decoration: BoxDecoration(
+          color: noBubble ? Colors.transparent : color,
           borderRadius: borderRadius,
-          color: color,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

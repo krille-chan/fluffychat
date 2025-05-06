@@ -1840,7 +1840,10 @@ class ChatController extends State<ChatPageWithRoom>
   // #Pangea
   String? get buttonEventID => timeline!.events
       .firstWhereOrNull(
-        (event) => event.isVisibleInGui && event.senderId != room.client.userID,
+        (event) =>
+            event.isVisibleInGui &&
+            event.senderId != room.client.userID &&
+            !event.redacted,
       )
       ?.eventId;
 

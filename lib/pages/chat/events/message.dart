@@ -405,6 +405,7 @@ class Message extends StatelessWidget {
                                         showToolbar(pangeaMessageEvent);
                                       },
                                       color: color,
+                                      visible: isButton && !noBubble,
                                       child:
                                           // Pangea#
                                           Container(
