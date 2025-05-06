@@ -168,18 +168,21 @@ class LemmaWidgetState extends State<LemmaWidget> {
     }
 
     return Row(
-      spacing: 8.0,
       children: [
-        Text(
-          widget.token.lemma.text,
-          style: Theme.of(context).textTheme.headlineSmall,
-          overflow: TextOverflow.ellipsis,
+        Padding(
+          padding: const EdgeInsets.all(4.0),
+          child: Text(
+            widget.token.lemma.text,
+            style: Theme.of(context).textTheme.headlineSmall,
+            overflow: TextOverflow.ellipsis,
+          ),
         ),
         WordAudioButton(
           text: widget.token.lemma.text,
           baseOpacity: 0.4,
           uniqueID: "lemma-content-${widget.token.text.content}",
           langCode: widget.pangeaMessageEvent.messageDisplayLangCode,
+          padding: const EdgeInsets.all(4.0),
         ),
       ],
     );
