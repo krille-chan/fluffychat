@@ -10,6 +10,7 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/analytics_misc/analytics_constants.dart';
 import 'package:fluffychat/pangea/analytics_misc/learning_skills_enum.dart';
+import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/pangea/common/utils/overlay.dart';
 import 'package:fluffychat/pangea/constructs/construct_repo.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -178,6 +179,8 @@ class LevelUpBannerState extends State<LevelUpBanner>
   }
 
   Future<void> _toggleDetails() async {
+    if (!Environment.isStaging) return;
+
     if (mounted) {
       setState(() {
         _showDetails = !_showDetails;
@@ -282,59 +285,68 @@ class LevelUpBannerState extends State<LevelUpBanner>
                                   ),
                                 ),
                               ),
-                              AnimatedSize(
-                                duration: FluffyThemes.animationDuration,
-                                child: _error == null
-                                    ? FluffyThemes.isColumnMode(context)
-                                        ? ElevatedButton(
-                                            style: IconButton.styleFrom(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                vertical: 4.0,
-                                                horizontal: 16.0,
-                                              ),
-                                            ),
-                                            onPressed: _toggleDetails,
-                                            child: Text(
-                                              L10n.of(context).details,
-                                            ),
-                                          )
-                                        : SizedBox(
-                                            width: 32.0,
-                                            height: 32.0,
-                                            child: Center(
-                                              child: IconButton(
-                                                icon: const Icon(
-                                                  Icons.info_outline,
+                              Row(
+                                children: [
+                                  if (Environment.isStaging)
+                                    AnimatedSize(
+                                      duration: FluffyThemes.animationDuration,
+                                      child: _error == null
+                                          ? FluffyThemes.isColumnMode(context)
+                                              ? ElevatedButton(
+                                                  style: IconButton.styleFrom(
+                                                    padding: const EdgeInsets
+                                                        .symmetric(
+                                                      vertical: 4.0,
+                                                      horizontal: 16.0,
+                                                    ),
+                                                  ),
+                                                  onPressed: _toggleDetails,
+                                                  child: Text(
+                                                    L10n.of(context).details,
+                                                  ),
+                                                )
+                                              : SizedBox(
+                                                  width: 32.0,
+                                                  height: 32.0,
+                                                  child: Center(
+                                                    child: IconButton(
+                                                      icon: const Icon(
+                                                        Icons.info_outline,
+                                                      ),
+                                                      style:
+                                                          IconButton.styleFrom(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(
+                                                          4.0,
+                                                        ),
+                                                      ),
+                                                      onPressed: _toggleDetails,
+                                                      constraints:
+                                                          const BoxConstraints(),
+                                                    ),
+                                                  ),
+                                                )
+                                          : Row(
+                                              children: [
+                                                Tooltip(
+                                                  message: L10n.of(context)
+                                                      .oopsSomethingWentWrong,
+                                                  child: Icon(
+                                                    Icons.error,
+                                                    color: Theme.of(context)
+                                                        .colorScheme
+                                                        .error,
+                                                  ),
                                                 ),
-                                                style: IconButton.styleFrom(
-                                                  padding:
-                                                      const EdgeInsets.all(4.0),
-                                                ),
-                                                onPressed: _toggleDetails,
-                                                constraints:
-                                                    const BoxConstraints(),
-                                              ),
+                                              ],
                                             ),
-                                          )
-                                    : Row(
-                                        children: [
-                                          Tooltip(
-                                            message: L10n.of(context)
-                                                .oopsSomethingWentWrong,
-                                            child: Icon(
-                                              Icons.error,
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .error,
-                                            ),
-                                          ),
-                                          IconButton(
-                                            icon: const Icon(Icons.close),
-                                            onPressed: _close,
-                                          ),
-                                        ],
-                                      ),
+                                    ),
+                                  IconButton(
+                                    icon: const Icon(Icons.close),
+                                    onPressed: _close,
+                                  ),
+                                ],
                               ),
                             ],
                           ),
