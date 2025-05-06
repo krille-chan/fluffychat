@@ -88,16 +88,13 @@ class PangeaPublicRoomBottomSheetState
     final result = await showFutureLoadingDialog<String>(
       context: context,
       future: () async {
-        if (chunk != null && client.getRoomById(chunk!.roomId) != null) {
-          return chunk!.roomId;
-        }
         final roomId = await client.joinRoom(
           roomAlias ?? chunk!.roomId,
           serverName: via,
         );
 
         if (client.getRoomById(roomId) == null) {
-          await client.waitForRoomInSync(roomId);
+          await client.waitForRoomInSync(roomId, join: true);
         }
         return roomId;
       },
