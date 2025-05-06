@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:matrix/matrix_api_lite/model/matrix_exception.dart';
+import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pangea/common/utils/firebase_analytics.dart';
 import 'package:fluffychat/pangea/login/pages/signup_view.dart';
@@ -187,7 +187,7 @@ class SignupPageController extends State<SignupPage> {
     final displayname = usernameController.text;
     final localPart = displayname.toLowerCase().replaceAll(' ', '_');
 
-    final registerRes = await client.uiaRequestBackground(
+    final registerRes = await client.uiaRequestBackground<RegisterResponse?>(
       (auth) => client.register(
         username: localPart,
         password: passwordController.text,
@@ -196,7 +196,7 @@ class SignupPageController extends State<SignupPage> {
       ),
     );
 
-    GoogleAnalytics.login("pangea", registerRes.userId);
+    GoogleAnalytics.login("pangea", registerRes?.userId);
 
     if (displayname != localPart && client.userID != null) {
       await client.setDisplayName(
