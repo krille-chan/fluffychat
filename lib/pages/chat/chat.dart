@@ -1911,6 +1911,12 @@ class ChatController extends State<ChatPageWithRoom>
 
     Future.delayed(
         Duration(milliseconds: buttonEventID == event.eventId ? 200 : 0), () {
+      if (_router.state.path != ':roomid') {
+        // The user has navigated away from the chat,
+        // so we don't want to show the overlay.
+        return;
+      }
+
       OverlayUtil.showOverlay(
         context: context,
         child: overlayEntry!,
