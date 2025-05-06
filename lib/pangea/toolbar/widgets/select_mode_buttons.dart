@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +9,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:matrix/matrix.dart';
+import 'package:path_provider/path_provider.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat/events/audio_player.dart';
@@ -63,7 +65,9 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
 
   final AudioPlayer _audioPlayer = AudioPlayer();
   bool _isLoadingAudio = false;
-  PangeaAudioFile? _audioFile;
+  PangeaAudioFile? _audioBytes;
+  File? _audioFile;
+  String? _audioError;
 
   StreamSubscription? _onPlayerStateChanged;
   StreamSubscription? _onAudioPositionChanged;
@@ -81,11 +85,12 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
       }
       setState(() {});
     });
+
     _onAudioPositionChanged ??= _audioPlayer.positionStream.listen((state) {
-      if (_audioFile != null) {
+      if (_audioBytes != null) {
         widget.overlayController.highlightCurrentText(
           state.inMilliseconds,
-          _audioFile!.tokens,
+          _audioBytes!.tokens,
         );
       }
     });
@@ -107,13 +112,17 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
   String? get l2Code =>
       MatrixState.pangeaController.languageController.activeL2Code();
 
-  Future<void> _updateMode(SelectMode mode) async {
+  void _clear() {
+    setState(() => _audioError = null);
     widget.overlayController.updateSelectedSpan(null);
 
     if (_selectedMode == SelectMode.translate) {
       widget.overlayController.setShowTranslation(false, null);
     }
+  }
 
+  Future<void> _updateMode(SelectMode mode) async {
+    _clear();
     setState(
       () => _selectedMode =
           _selectedMode == mode && mode != SelectMode.audio ? null : mode,
@@ -154,11 +163,20 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
       );
 
       if (localEvent != null) {
-        _audioFile = await localEvent.getPangeaAudioFile();
+        _audioBytes = await localEvent.getPangeaAudioFile();
       } else {
-        _audioFile = await messageEvent!.getMatrixAudioFile(
+        _audioBytes = await messageEvent!.getMatrixAudioFile(
           langCode,
         );
+      }
+
+      if (!kIsWeb) {
+        final tempDir = await getTemporaryDirectory();
+
+        File? file;
+        file = File('${tempDir.path}/${_audioBytes!.name}');
+        await file.writeAsBytes(_audioBytes!.bytes);
+        setState(() => _audioFile = file);
       }
 
       if (mounted) setState(() => _isLoadingAudio = false);
@@ -178,26 +196,43 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
   }
 
   Future<void> _playAudio() async {
-    if (_audioPlayer.playerState.playing) {
-      await _audioPlayer.pause();
-      return;
-    } else if (_audioPlayer.position != Duration.zero) {
-      await _audioPlayer.play();
-      return;
-    }
+    try {
+      if (_audioPlayer.playerState.playing) {
+        await _audioPlayer.pause();
+        return;
+      } else if (_audioPlayer.position != Duration.zero) {
+        await _audioPlayer.play();
+        return;
+      }
 
-    if (_audioFile == null) {
-      await _fetchAudio();
-    }
+      if (_audioBytes == null) {
+        await _fetchAudio();
+      }
 
-    if (_audioFile == null) return;
-    await _audioPlayer.setAudioSource(
-      BytesAudioSource(
-        _audioFile!.bytes,
-        _audioFile!.mimeType,
-      ),
-    );
-    _audioPlayer.play();
+      if (_audioBytes == null) return;
+
+      if (_audioFile != null) {
+        await _audioPlayer.setFilePath(_audioFile!.path);
+      } else {
+        await _audioPlayer.setAudioSource(
+          BytesAudioSource(
+            _audioBytes!.bytes,
+            _audioBytes!.mimeType,
+          ),
+        );
+      }
+      _audioPlayer.play();
+    } catch (e, s) {
+      setState(() => _audioError = e.toString());
+      ErrorHandler.logError(
+        e: e,
+        s: s,
+        m: 'something wrong playing message audio',
+        data: {
+          'event': messageEvent?.event.toJson(),
+        },
+      );
+    }
   }
 
   Future<void> _fetchRepresentation() async {
@@ -233,11 +268,20 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
 
   Widget icon(SelectMode mode) {
     if (mode == SelectMode.audio) {
+      if (_audioError != null) {
+        return Icon(
+          Icons.error_outline,
+          size: 20,
+          color: Theme.of(context).colorScheme.error,
+        );
+      }
       if (_isLoadingAudio) {
-        return const SizedBox(
-          height: 20,
-          width: 20,
-          child: CircularProgressIndicator.adaptive(),
+        return const Center(
+          child: SizedBox(
+            height: 20.0,
+            width: 20.0,
+            child: CircularProgressIndicator.adaptive(),
+          ),
         );
       } else {
         return Icon(
@@ -252,10 +296,12 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
 
     if (mode == SelectMode.translate) {
       if (_isLoadingTranslation) {
-        return const SizedBox(
-          height: 20,
-          width: 20,
-          child: CircularProgressIndicator.adaptive(),
+        return const Center(
+          child: SizedBox(
+            height: 20.0,
+            width: 20.0,
+            child: CircularProgressIndicator.adaptive(),
+          ),
         );
       } else if (_repEvent != null) {
         return Icon(
