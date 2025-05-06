@@ -61,8 +61,7 @@ dependencies:
   just_audio: ^0.9.39
   latlong2: ^0.9.1
   linkify: ^5.0.0
-  matrix:
-    git: https://github.com/famedly/matrix-dart-sdk.git
+  matrix: ^0.39.3
   mime: ^1.0.6
   native_imaging: ^0.2.0
   opus_caf_converter_dart: ^1.0.1
