@@ -104,26 +104,19 @@ class LemmaEmojiRowState extends State<LemmaEmojiRow> {
     try {
       displayEmoji = emoji;
 
-      widget.cId
-          .setUserLemmaInfo(
+      await widget.cId.setUserLemmaInfo(
         UserSetLemmaInfo(
           emojis: [emoji],
         ),
-      )
-          .catchError((e, s) {
-        debugger(when: kDebugMode);
-        ErrorHandler.logError(data: widget.cId.toJson(), e: e, s: s);
-      }).then((_) {
-        if (mounted) {
-          widget.emojiSetCallback?.call();
-          setState(() {});
-        }
-      });
+      );
+
+      if (mounted) {
+        widget.emojiSetCallback?.call();
+        setState(() {});
+      }
 
       MatrixState.pAnyState.closeOverlay();
-
       widget.emojiSetCallback?.call();
-
       setState(() {});
     } catch (e, s) {
       debugger(when: kDebugMode);

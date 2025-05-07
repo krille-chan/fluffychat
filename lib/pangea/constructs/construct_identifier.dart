@@ -176,11 +176,14 @@ class ConstructIdentifier {
   }
 
   Future<void> setUserLemmaInfo(UserSetLemmaInfo newLemmaInfo) async {
-    final analyticsRoom =
-        MatrixState.pangeaController.matrixState.client.analyticsRoomLocal();
+    final client = MatrixState.pangeaController.matrixState.client;
+    final l2 = MatrixState.pangeaController.languageController.userL2;
+    if (l2 == null) return;
+
+    final analyticsRoom = await client.getMyAnalyticsRoom(l2);
     if (analyticsRoom == null) return;
+
     try {
-      final client = MatrixState.pangeaController.matrixState.client;
       final syncFuture = client.onRoomState.stream.firstWhere((event) {
         return event.roomId == analyticsRoom.id &&
             event.state.type == PangeaEventTypes.userSetLemmaInfo;
