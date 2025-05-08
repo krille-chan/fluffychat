@@ -166,7 +166,7 @@ class TtsController {
     String? targetID,
     BuildContext? context,
   }) async {
-    chatController?.stopAudioStream.add(null);
+    chatController?.stopMediaStream.add(null);
     await _setSpeakingLanguage(langCode);
 
     final enableTTS = MatrixState

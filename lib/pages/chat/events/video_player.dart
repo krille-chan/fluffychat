@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
@@ -12,6 +13,7 @@ import 'package:universal_html/html.dart' as html;
 import 'package:video_player/video_player.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/events/image_bubble.dart';
 import 'package:fluffychat/utils/file_description.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
@@ -25,10 +27,16 @@ class EventVideoPlayer extends StatefulWidget {
   final Event event;
   final Color? textColor;
   final Color? linkColor;
+  // #Pangea
+  final ChatController? chatController;
+  // Pangea#
   const EventVideoPlayer(
     this.event, {
     this.textColor,
     this.linkColor,
+    // #Pangea
+    this.chatController,
+    // Pangea#
     super.key,
   });
 
@@ -41,6 +49,17 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
   bool _isDownloading = false;
   String? _networkUri;
   File? _tmpFile;
+
+  // #Pangea
+  StreamSubscription? _stopVideoSubscription;
+
+  @override
+  initState() {
+    _stopVideoSubscription = widget.chatController?.stopMediaStream.stream
+        .listen((_) => _chewieManager?.pause());
+    super.initState();
+  }
+  // Pangea#
 
   void _downloadAction() async {
     if (PlatformInfos.isDesktop) {
@@ -99,6 +118,9 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
   @override
   void dispose() {
     _chewieManager?.dispose();
+    // #Pangea
+    _stopVideoSubscription?.cancel();
+    // Pangea#
     super.dispose();
   }
 
