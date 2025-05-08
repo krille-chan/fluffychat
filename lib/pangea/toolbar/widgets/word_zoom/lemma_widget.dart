@@ -167,24 +167,29 @@ class LemmaWidgetState extends State<LemmaWidget> {
       );
     }
 
-    return Row(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(4.0),
-          child: Text(
-            widget.token.lemma.text,
-            style: Theme.of(context).textTheme.headlineSmall,
-            overflow: TextOverflow.ellipsis,
+    return Expanded(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Flexible(
+            child: Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: Text(
+                widget.token.lemma.text,
+                style: Theme.of(context).textTheme.headlineSmall,
+                textAlign: TextAlign.center,
+              ),
+            ),
           ),
-        ),
-        WordAudioButton(
-          text: widget.token.lemma.text,
-          baseOpacity: 0.4,
-          uniqueID: "lemma-content-${widget.token.text.content}",
-          langCode: widget.pangeaMessageEvent.messageDisplayLangCode,
-          padding: const EdgeInsets.all(4.0),
-        ),
-      ],
+          WordAudioButton(
+            text: widget.token.lemma.text,
+            baseOpacity: 0.4,
+            uniqueID: "lemma-content-${widget.token.text.content}",
+            langCode: widget.pangeaMessageEvent.messageDisplayLangCode,
+            padding: const EdgeInsets.all(4.0),
+          ),
+        ],
+      ),
     );
   }
 }
