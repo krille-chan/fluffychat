@@ -124,7 +124,7 @@ class NewPrivateChatView extends StatelessWidget {
                         ),
                         style: TextStyle(
                           color: theme.colorScheme.onSurface,
-                          fontSize: 13,
+                          fontSize: 12,
                         ),
                       ),
                     ),
@@ -164,9 +164,15 @@ class NewPrivateChatView extends StatelessWidget {
                           vertical: 24.0,
                         ),
                         child: Material(
-                          borderRadius:
-                              BorderRadius.circular(AppConfig.borderRadius),
-                          color: theme.colorScheme.primaryContainer,
+                          shape: RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.circular(AppConfig.borderRadius),
+                            side: BorderSide(
+                              width: 3,
+                              color: theme.colorScheme.primary,
+                            ),
+                          ),
+                          color: Colors.transparent,
                           clipBehavior: Clip.hardEdge,
                           child: InkWell(
                             borderRadius:
@@ -176,17 +182,16 @@ class NewPrivateChatView extends StatelessWidget {
                               userId,
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.all(32.0),
+                              padding: const EdgeInsets.all(16.0),
                               child: ConstrainedBox(
                                 constraints:
-                                    const BoxConstraints(maxWidth: 256),
+                                    const BoxConstraints(maxWidth: 200),
                                 child: PrettyQrView.data(
                                   data: 'https://matrix.to/#/$userId',
                                   decoration: PrettyQrDecoration(
                                     shape: PrettyQrSmoothSymbol(
                                       roundFactor: 1,
-                                      color:
-                                          theme.colorScheme.onPrimaryContainer,
+                                      color: theme.colorScheme.primary,
                                     ),
                                   ),
                                 ),
