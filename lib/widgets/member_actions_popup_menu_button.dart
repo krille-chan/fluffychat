@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/pangea/analytics_misc/level_display_name.dart';
 import 'package:fluffychat/pangea/bot/utils/bot_name.dart';
 import 'package:fluffychat/widgets/permission_slider_dialog.dart';
 import 'adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
@@ -69,6 +70,17 @@ void showMemberActionsPopupMenu({
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
+                // #Pangea
+                Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      LevelDisplayName(userId: user.id),
+                    ],
+                  ),
+                ),
+                // Pangea#
               ],
             ),
           ),

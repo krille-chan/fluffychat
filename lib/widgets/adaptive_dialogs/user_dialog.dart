@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/pangea/analytics_misc/level_display_name.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/adaptive_dialog_action.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -156,6 +157,17 @@ class UserDialog extends StatelessWidget {
                       onOpen: (url) =>
                           UrlLauncher(context, url.url).launchUrl(),
                     ),
+                  // #Pangea
+                  Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        LevelDisplayName(userId: profile.userId),
+                      ],
+                    ),
+                  ),
+                  // Pangea#
                 ],
               ),
             );
