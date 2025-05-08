@@ -3344,5 +3344,19 @@
   "enterNewChat": "Masuk ke obrolan baru",
   "@enterNewChat": {},
   "commandHint_roomupgrade": "Tingkatkan ruangan ini ke versi ruangan yang ditentukan",
-  "@commandHint_roomupgrade": {}
+  "@commandHint_roomupgrade": {},
+  "pleaseWaitUntilInvited": "Silakan menunggu sampai seseorang dari ruangan mengundang Anda.",
+  "@pleaseWaitUntilInvited": {},
+  "setCustomPermissionLevel": "Atur tingkat perizinan kustom",
+  "@setCustomPermissionLevel": {},
+  "setPermissionsLevelDescription": "Silakan pilih peran yang sudah ditentukan di bawah atau masukkan tingkat perizinan kustom antara 0 dan 100.",
+  "@setPermissionsLevelDescription": {},
+  "ignoreUser": "Abaikan pengguna",
+  "@ignoreUser": {},
+  "normalUser": "Pengguna biasa",
+  "@normalUser": {},
+  "approve": "Terima",
+  "@approve": {},
+  "youHaveKnocked": "Anda telah mengetuk",
+  "@youHaveKnocked": {}
 }

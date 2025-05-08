@@ -2592,7 +2592,7 @@
       }
     }
   },
-  "sendTypingNotifications": "Lähetä kirjoitusilmoituksia",
+  "sendTypingNotifications": "acLähetä kirjoitusilmoituksia",
   "@sendTypingNotifications": {},
   "inviteGroupChat": "Kutsu ryhmäkeskusteluun",
   "@inviteGroupChat": {},

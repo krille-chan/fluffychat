@@ -1740,7 +1740,7 @@
       }
     }
   },
-  "report": "ziņot",
+  "report": "Ziņot",
   "@report": {},
   "status": "Stāvoklis",
   "@status": {
@@ -1835,7 +1835,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "addChatDescription": "Pievienot tērzēšanas aprakstu...",
+  "addChatDescription": "Pievienot tērzēšanas aprakstu…",
   "@addChatDescription": {},
   "sentAnAudio": "🎤 {username} nosūtīja skaņu",
   "@sentAnAudio": {
@@ -3101,7 +3101,7 @@
   "@noticeChatBackupDeviceVerification": {},
   "continueText": "Turpināt",
   "@continueText": {},
-  "welcomeText": "Sveicieni! 👋 Šis ir FluffyChat. Tu vari pieteikties jebkurā mājasserverī, kas ir saderīgs ar https://matrix.org. Tad vari tērzēt ar ikvienu. Tas ir milzīgs decentralizētās saziņas tīkls!",
+  "welcomeText": "Sveicieni! 👋 Šis ir FluffyChat. Tu vari pieteikties jebkurā mājasserverī, kas ir saderīgs ar https://matrix.org. Tad vari tērzēt ar ikvienu. Tas ir milzīgs decentralizētās saziņas tīkls.",
   "@welcomeText": {},
   "blur": "Aizmiglojums:",
   "@blur": {},
@@ -3323,5 +3323,19 @@
   "enterNewChat": "Ieiet jaunajā tērzēšanā",
   "@enterNewChat": {},
   "commandHint_roomupgrade": "Uzlabot šo istabu uz norādīto istabas versiju",
-  "@commandHint_roomupgrade": {}
+  "@commandHint_roomupgrade": {},
+  "setCustomPermissionLevel": "Iestatīt pielāgotu atļauju līmeni",
+  "@setCustomPermissionLevel": {},
+  "setPermissionsLevelDescription": "Lūgums zemāk atlasīt iepriekšizveidotu lomu vai ievadīt pielāgotu atļauju līmeni starp 0 un 100.",
+  "@setPermissionsLevelDescription": {},
+  "ignoreUser": "Neņemt vērā lietotāju",
+  "@ignoreUser": {},
+  "normalUser": "Parasts lietotājs",
+  "@normalUser": {},
+  "youHaveKnocked": "Tu pieklauvēji",
+  "@youHaveKnocked": {},
+  "pleaseWaitUntilInvited": "Lūgums tagad uzgaidīt, līdz kāds no istabas uzaicinās Tevi.",
+  "@pleaseWaitUntilInvited": {},
+  "approve": "Apstiprināt",
+  "@approve": {}
 }
