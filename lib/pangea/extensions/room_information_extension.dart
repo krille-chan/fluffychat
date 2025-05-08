@@ -1,23 +1,6 @@
 part of "pangea_room_extension.dart";
 
 extension RoomInformationRoomExtension on Room {
-  Future<int> get numNonAdmins async {
-    return (await requestParticipants())
-        .where(
-          (e) =>
-              e.powerLevel < SpaceConstants.powerLevelOfAdmin &&
-              e.id != BotName.byEnvironment,
-        )
-        .toList()
-        .length;
-  }
-
-  DateTime? get creationTime {
-    final dynamic roomCreate = getState(EventTypes.RoomCreate);
-    if (roomCreate is! Event) return null;
-    return roomCreate.originServerTs;
-  }
-
   String? get creatorId => getState(EventTypes.RoomCreate)?.senderId;
 
   bool isFirstOrSecondChild(String roomId) {

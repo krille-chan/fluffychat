@@ -42,12 +42,4 @@ extension SpaceRoomExtension on Room {
             .toList()
         : participants;
   }
-
-  Event? get pangeaRoomRulesStateEvent {
-    final dynamic roomRules = getState(PangeaEventTypes.rules);
-    if (roomRules is Event) {
-      return roomRules;
-    }
-    return null;
-  }
 }

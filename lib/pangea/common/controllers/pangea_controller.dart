@@ -22,7 +22,6 @@ import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/guard/p_vguard.dart';
 import 'package:fluffychat/pangea/learning_settings/controllers/language_controller.dart';
 import 'package:fluffychat/pangea/learning_settings/utils/p_language_store.dart';
-import 'package:fluffychat/pangea/spaces/constants/space_constants.dart';
 import 'package:fluffychat/pangea/spaces/controllers/space_controller.dart';
 import 'package:fluffychat/pangea/subscription/controllers/subscription_controller.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/speech_to_text_controller.dart';
@@ -83,7 +82,6 @@ class PangeaController {
     subscriptionController.initialize();
 
     startChatWithBotIfNotPresent();
-    inviteBotToExistingSpaces();
     setPangeaPushRules();
     // joinSupportSpace();
   }
@@ -344,52 +342,6 @@ class PangeaController {
         _clearCachedData();
       }
     });
-
-    // matrixState.client.onSyncStatus.stream
-    //     .where((SyncStatusUpdate event) => event.status == SyncStatus.finished)
-    //     .listen(_handleSyncStatusFinished);
-
-    //PTODO - listen to incoming invites and autojoin if in class
-    // matrixState.client.onSync.stream
-    //     .where((event) => event.rooms?.invite?.isNotEmpty ?? false)
-    //     .listen((SyncUpdate event) {
-    // });
-
-    // matrixState.client.onSync.stream.listen(_handleOnSyncUpdate);
-  }
-
-  Future<void> inviteBotToExistingSpaces() async {
-    final List<Room> spaces =
-        matrixState.client.rooms.where((room) => room.isSpace).toList();
-    for (final Room space in spaces) {
-      if (space.ownPowerLevel < SpaceConstants.powerLevelOfAdmin ||
-          !space.canInvite) {
-        continue;
-      }
-      List<User> participants;
-      try {
-        participants = await space.requestParticipants();
-      } catch (err) {
-        ErrorHandler.logError(
-          e: "Failed to fetch participants for space ${space.id}",
-          data: {
-            "spaceID": space.id,
-          },
-        );
-        continue;
-      }
-      final List<String> userIds = participants.map((user) => user.id).toList();
-      if (!userIds.contains(BotName.byEnvironment)) {
-        try {
-          await space.invite(BotName.byEnvironment);
-        } catch (err) {
-          ErrorHandler.logError(
-            e: "Failed to invite pangea bot to existing space",
-            data: {"spaceId": space.id, "error": err},
-          );
-        }
-      }
-    }
   }
 
   Future<void> setPangeaPushRules() async {
