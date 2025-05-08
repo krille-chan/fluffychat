@@ -705,6 +705,15 @@
       }
     }
   },
+  "countInvited": "{count} invited",
+  "@countInvited": {
+    "type": "String",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "create": "Create",
   "@create": {
     "type": "String",
