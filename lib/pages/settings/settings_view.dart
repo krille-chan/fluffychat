@@ -15,6 +15,7 @@ import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/navigation_rail.dart';
+import '../../widgets/mxc_image_viewer.dart';
 import 'settings.dart';
 
 class SettingsView extends StatelessWidget {
@@ -74,6 +75,7 @@ class SettingsView extends StatelessWidget {
                     future: controller.profileFuture,
                     builder: (context, snapshot) {
                       final profile = snapshot.data;
+                      final avatar = profile?.avatarUrl;
                       final mxid = Matrix.of(context).client.userID ??
                           L10n.of(context).user;
                       final displayname =
@@ -85,12 +87,19 @@ class SettingsView extends StatelessWidget {
                             child: Stack(
                               children: [
                                 Avatar(
-                                  mxContent: profile?.avatarUrl,
+                                  mxContent: avatar,
                                   name: displayname,
                                   // #Pangea
                                   userId: profile?.userId,
                                   // Pangea#
                                   size: Avatar.defaultSize * 2.5,
+                                  onTap: avatar != null
+                                      ? () => showDialog(
+                                            context: context,
+                                            builder: (_) =>
+                                                MxcImageViewer(avatar),
+                                          )
+                                      : null,
                                 ),
                                 if (profile != null)
                                   Positioned(

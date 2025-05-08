@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -6,6 +5,7 @@ import 'package:flutter_linkify/flutter_linkify.dart';
 
 import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/adaptive_dialog_action.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/dialog_text_field.dart';
 
 Future<String?> showTextInputDialog({
   required BuildContext context,
@@ -31,7 +31,6 @@ Future<String?> showTextInputDialog({
   bool autoSubmit = false,
   // Pangea#
 }) {
-  final theme = Theme.of(context);
   return showAdaptiveDialog<String>(
     context: context,
     useRootNavigator: useRootNavigator,
@@ -53,6 +52,7 @@ Future<String?> showTextInputDialog({
                 if (message != null)
                   SelectableLinkify(
                     text: message,
+                    textScaleFactor: MediaQuery.textScalerOf(context).scale(1),
                     linkStyle: TextStyle(
                       color: Theme.of(context).colorScheme.primary,
                       decorationColor: Theme.of(context).colorScheme.primary,
@@ -64,88 +64,34 @@ Future<String?> showTextInputDialog({
                 ValueListenableBuilder<String?>(
                   valueListenable: error,
                   builder: (context, error, _) {
-                    switch (theme.platform) {
-                      case TargetPlatform.android:
-                      case TargetPlatform.fuchsia:
-                      case TargetPlatform.linux:
-                      case TargetPlatform.windows:
-                        return TextField(
-                          controller: controller,
-                          obscureText: obscureText,
-                          // #Pangea
-                          // minLines: minLines,
-                          // maxLines: maxLines,
-                          minLines: autoSubmit ? 1 : minLines,
-                          maxLines: autoSubmit ? 1 : maxLines,
-                          onSubmitted: autoSubmit
-                              ? (_) {
-                                  final input = controller.text;
-                                  final errorText = validator?.call(input);
-                                  if (errorText != null) {
-                                    error = errorText;
-                                    return;
-                                  }
-                                  Navigator.of(context).pop<String>(input);
-                                }
-                              : null,
-                          // Pangea#
-                          maxLength: maxLength,
-                          keyboardType: keyboardType,
-                          autocorrect: autocorrect,
-                          decoration: InputDecoration(
-                            errorText: error,
-                            hintText: hintText,
-                            labelText: labelText,
-                            prefixText: prefixText,
-                            suffixText: suffixText,
-                          ),
-                        );
-                      case TargetPlatform.iOS:
-                      case TargetPlatform.macOS:
-                        return Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            CupertinoTextField(
-                              controller: controller,
-                              obscureText: obscureText,
-                              // #Pangea
-                              // minLines: minLines,
-                              // maxLines: maxLines,
-                              minLines: autoSubmit ? 1 : minLines,
-                              maxLines: autoSubmit ? 1 : maxLines,
-                              onSubmitted: autoSubmit
-                                  ? (_) {
-                                      final input = controller.text;
-                                      final errorText = validator?.call(input);
-                                      if (errorText != null) {
-                                        error = errorText;
-                                        return;
-                                      }
-                                      Navigator.of(context).pop<String>(input);
-                                    }
-                                  : null,
-                              // Pangea#
-                              maxLength: maxLength,
-                              keyboardType: keyboardType,
-                              autocorrect: autocorrect,
-                              prefix:
-                                  prefixText != null ? Text(prefixText) : null,
-                              suffix:
-                                  suffixText != null ? Text(suffixText) : null,
-                              placeholder: labelText ?? hintText,
-                            ),
-                            if (error != null)
-                              Text(
-                                error!,
-                                style: TextStyle(
-                                  fontSize: 11,
-                                  color: theme.colorScheme.error,
-                                ),
-                                textAlign: TextAlign.left,
-                              ),
-                          ],
-                        );
-                    }
+                    return DialogTextField(
+                      hintText: hintText,
+                      errorText: error,
+                      labelText: labelText,
+                      controller: controller,
+                      initialText: initialText,
+                      prefixText: prefixText,
+                      suffixText: suffixText,
+                      // #Pangea
+                      // minLines: minLines,
+                      // maxLines: maxLines,
+                      minLines: autoSubmit ? 1 : minLines,
+                      maxLines: autoSubmit ? 1 : maxLines,
+                      onSubmitted: autoSubmit
+                          ? (_) {
+                              final input = controller.text;
+                              final errorText = validator?.call(input);
+                              if (errorText != null) {
+                                error = errorText;
+                                return;
+                              }
+                              Navigator.of(context).pop<String>(input);
+                            }
+                          : null,
+                      // Pangea#
+                      maxLength: maxLength,
+                      keyboardType: keyboardType,
+                    );
                   },
                 ),
               ],

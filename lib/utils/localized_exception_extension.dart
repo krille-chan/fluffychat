@@ -57,24 +57,6 @@ extension LocalizedExceptionExtension on Object {
     if (this is InvalidPassphraseException) {
       return L10n.of(context).wrongRecoveryKey;
     }
-    if (this is BadServerVersionsException) {
-      final serverVersions = (this as BadServerVersionsException)
-          .serverVersions
-          .toString()
-          .replaceAll('{', '"')
-          .replaceAll('}', '"');
-      final supportedVersions = (this as BadServerVersionsException)
-          .supportedVersions
-          .toString()
-          .replaceAll('{', '"')
-          .replaceAll('}', '"');
-      return L10n.of(context).badServerVersionsException(
-        serverVersions,
-        supportedVersions,
-        serverVersions,
-        supportedVersions,
-      );
-    }
     if (this is BadServerLoginTypesException) {
       final serverVersions = (this as BadServerLoginTypesException)
           .serverLoginTypes

@@ -99,44 +99,43 @@ class ClientChooserButton extends StatelessWidget {
               ],
             ),
           ),
-        ...matrix.accountBundles[bundle]!.map(
-          (client) => PopupMenuItem(
-            value: client,
-            child: FutureBuilder<Profile?>(
-              // analyzer does not understand this type cast for error
-              // handling
-              //
-              // ignore: unnecessary_cast
-              future: (client!.fetchOwnProfile() as Future<Profile?>)
-                  .onError((e, s) => null),
-              builder: (context, snapshot) => Row(
-                children: [
-                  Avatar(
-                    mxContent: snapshot.data?.avatarUrl,
-                    name:
-                        snapshot.data?.displayName ?? client.userID!.localpart,
-                    size: 32,
+        ...matrix.accountBundles[bundle]!
+            .whereType<Client>()
+            .where((client) => client.isLogged())
+            .map(
+              (client) => PopupMenuItem(
+                value: client,
+                child: FutureBuilder<Profile?>(
+                  future: client.fetchOwnProfile(),
+                  builder: (context, snapshot) => Row(
+                    children: [
+                      Avatar(
+                        mxContent: snapshot.data?.avatarUrl,
+                        name: snapshot.data?.displayName ??
+                            client.userID!.localpart,
+                        size: 32,
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Text(
+                          snapshot.data?.displayName ??
+                              client.userID!.localpart!,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      IconButton(
+                        icon: const Icon(Icons.edit_outlined),
+                        onPressed: () => controller.editBundlesForAccount(
+                          client.userID,
+                          bundle,
+                        ),
+                      ),
+                    ],
                   ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: Text(
-                      snapshot.data?.displayName ?? client.userID!.localpart!,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                  const SizedBox(width: 12),
-                  IconButton(
-                    icon: const Icon(Icons.edit_outlined),
-                    onPressed: () => controller.editBundlesForAccount(
-                      client.userID,
-                      bundle,
-                    ),
-                  ),
-                ],
+                ),
               ),
             ),
-          ),
-        ),
       ],
       PopupMenuItem(
         value: SettingsAction.addAccount,

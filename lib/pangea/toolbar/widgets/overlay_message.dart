@@ -23,7 +23,7 @@ class OverlayMessage extends StatelessWidget {
   final MessageOverlayController overlayController;
   final ChatController controller;
   final Event? nextEvent;
-  final Event? prevEvent;
+  final Event? previousEvent;
   final Timeline timeline;
   final bool immersionMode;
 
@@ -46,7 +46,7 @@ class OverlayMessage extends StatelessWidget {
     required this.maxHeight,
     this.pangeaMessageEvent,
     this.nextEvent,
-    this.prevEvent,
+    this.previousEvent,
     this.sizeAnimation,
     this.isTransitionAnimation = false,
     this.readingAssistanceMode,
@@ -71,15 +71,26 @@ class OverlayMessage extends StatelessWidget {
         nextEvent!.senderId == event.senderId &&
         !displayTime;
 
-    final previousEventSameSender = prevEvent != null &&
+    final previousEventSameSender = previousEvent != null &&
         {
           EventTypes.Message,
           EventTypes.Sticker,
           EventTypes.Encrypted,
-        }.contains(prevEvent!.type) &&
-        prevEvent!.senderId == event.senderId &&
-        prevEvent!.originServerTs.sameEnvironment(event.originServerTs);
+        }.contains(previousEvent!.type) &&
+        previousEvent!.senderId == event.senderId &&
+        previousEvent!.originServerTs.sameEnvironment(event.originServerTs);
 
+    final textColor = ownMessage
+        ? ThemeData.dark().colorScheme.onPrimary
+        : theme.colorScheme.onSurface;
+
+    final linkColor = theme.brightness == Brightness.light
+        ? theme.colorScheme.primary
+        : ownMessage
+            ? theme.colorScheme.onPrimary
+            : theme.colorScheme.onSurface;
+
+    final displayEvent = event.getDisplayEvent(timeline);
     const hardCorner = Radius.circular(4);
     const roundedCorner = Radius.circular(AppConfig.borderRadius);
     final borderRadius = BorderRadius.only(
@@ -91,7 +102,6 @@ class OverlayMessage extends StatelessWidget {
           ownMessage && previousEventSameSender ? hardCorner : roundedCorner,
     );
 
-    final displayEvent = event.getDisplayEvent(timeline);
     // ignore: deprecated_member_use
     var color = theme.colorScheme.surfaceContainerHigh;
     if (ownMessage) {
@@ -121,16 +131,6 @@ class OverlayMessage extends StatelessWidget {
             event.onlyEmotes &&
             event.numberEmotes > 0 &&
             event.numberEmotes <= 3);
-    final noPadding = {
-      MessageTypes.File,
-      MessageTypes.Audio,
-    }.contains(event.messageType);
-
-    final textColor = event.isActivityMessage
-        ? ThemeData.light().colorScheme.onPrimary
-        : ownMessage
-            ? ThemeData.dark().colorScheme.onPrimary
-            : theme.colorScheme.onSurface;
 
     final showTranslation = overlayController.showTranslation &&
         overlayController.translationText != null;
@@ -143,12 +143,6 @@ class OverlayMessage extends StatelessWidget {
           AppConfig.borderRadius,
         ),
       ),
-      padding: noBubble || noPadding
-          ? EdgeInsets.zero
-          : const EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 8,
-            ),
       width: messageWidth,
       height: messageHeight,
       constraints: BoxConstraints(
@@ -185,18 +179,24 @@ class OverlayMessage extends StatelessWidget {
                         );
                   return Padding(
                     padding: const EdgeInsets.only(
-                      bottom: 4.0,
+                      left: 16,
+                      right: 16,
+                      top: 8,
                     ),
-                    child: InkWell(
+                    child: Material(
+                      color: Colors.transparent,
                       borderRadius: ReplyContent.borderRadius,
-                      onTap: () => controller.scrollToEventId(
-                        replyEvent.eventId,
-                      ),
-                      child: AbsorbPointer(
-                        child: ReplyContent(
-                          replyEvent,
-                          ownMessage: ownMessage,
-                          timeline: timeline,
+                      child: InkWell(
+                        borderRadius: ReplyContent.borderRadius,
+                        onTap: () => controller.scrollToEventId(
+                          replyEvent.eventId,
+                        ),
+                        child: AbsorbPointer(
+                          child: ReplyContent(
+                            replyEvent,
+                            ownMessage: ownMessage,
+                            timeline: timeline,
+                          ),
                         ),
                       ),
                     ),
@@ -204,21 +204,17 @@ class OverlayMessage extends StatelessWidget {
                 },
               ),
             MessageContent(
-              event.getDisplayEvent(timeline),
+              displayEvent,
               textColor: textColor,
+              linkColor: linkColor,
+              borderRadius: borderRadius,
+              timeline: timeline,
               pangeaMessageEvent: pangeaMessageEvent,
               immersionMode: immersionMode,
               overlayController: overlayController,
               controller: controller,
               nextEvent: nextEvent,
-              prevEvent: prevEvent,
-              borderRadius: borderRadius,
-              timeline: timeline,
-              linkColor: theme.brightness == Brightness.light
-                  ? theme.colorScheme.primary
-                  : ownMessage
-                      ? theme.colorScheme.onPrimary
-                      : theme.colorScheme.onSurface,
+              prevEvent: previousEvent,
               isTransitionAnimation: isTransitionAnimation,
               readingAssistanceMode: readingAssistanceMode,
             ),
@@ -228,30 +224,30 @@ class OverlayMessage extends StatelessWidget {
             ))
               Padding(
                 padding: const EdgeInsets.only(
-                  top: 4.0,
+                  bottom: 8.0,
+                  left: 16.0,
+                  right: 16.0,
                 ),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
+                  spacing: 4.0,
                   children: [
-                    if (event.hasAggregatedEvents(
-                      timeline,
-                      RelationshipTypes.edit,
-                    )) ...[
-                      Icon(
-                        Icons.edit_outlined,
-                        color: textColor.withAlpha(164),
-                        size: 14,
+                    Icon(
+                      Icons.edit_outlined,
+                      color: textColor.withAlpha(164),
+                      size: 14,
+                    ),
+                    Text(
+                      displayEvent.originServerTs.localizedTimeShort(
+                        context,
                       ),
-                      Text(
-                        ' - ${displayEvent.originServerTs.localizedTimeShort(context)}',
-                        style: TextStyle(
-                          color: textColor.withAlpha(
-                            164,
-                          ),
-                          fontSize: 12,
+                      style: TextStyle(
+                        color: textColor.withAlpha(
+                          164,
                         ),
+                        fontSize: 11,
                       ),
-                    ],
+                    ),
                   ],
                 ),
               ),

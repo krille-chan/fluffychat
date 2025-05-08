@@ -9,6 +9,10 @@
   "@repeatPassword": {},
   "notAnImage": "Not an image file.",
   "@notAnImage": {},
+  "setCustomPermissionLevel": "Set custom permission level",
+  "setPermissionsLevelDescription": "Please choose a predefined role below or enter a custom permission level between 0 and 100.",
+  "ignoreUser": "Ignore user",
+  "normalUser": "Normal user",
   "remove": "Remove",
   "@remove": {
     "type": "String",
@@ -102,6 +106,7 @@
     "type": "String",
     "placeholders": {}
   },
+  "commandHint_roomupgrade": "Upgrade this room to the given room version",
   "commandHint_googly": "Send some googly eyes",
   "@commandHint_googly": {},
   "commandHint_cuddle": "Send a cuddle",
@@ -3206,6 +3211,7 @@
   "recordAVideo": "Record a video",
   "optionalMessage": "(Optional) message...",
   "notSupportedOnThisDevice": "Not supported on this device",
+  "enterNewChat": "Enter new chat",
   "accountInformation": "Account information",
   "addGroupDescription": "Add a chat description",
   "addNewFriend": "Add new friend",
@@ -4863,7 +4869,7 @@
   "emptyChatWarningDesc": "You haven't invited anyone to your chat. Go to Chat settings to invite your contacts or the Bot. You can also do this later.",
   "areYouLikeMe": "Are you like me?",
   "tryAgainLater": "Too many attempts made. Please try again in 5 minutes.",
-  "enterSpaceCode": "Enter the Space Code",
+  "enterSpaceCode": "Enter space code",
   "shareSpaceLink": "Share link to space",
   "byUsingPangeaChat": "By using Pangea Chat, I agree to the ",
   "details": "Details",
@@ -4896,5 +4902,8 @@
   },
   "ban": "Ban",
   "unban": "Unban",
-  "kick": "Kick"
+  "kick": "Kick",
+  "approve": "Approve",
+  "youHaveKnocked": "You have knocked",
+  "pleaseWaitUntilInvited": "Please wait now, until someone from the room invites you."
 }

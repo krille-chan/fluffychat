@@ -11,13 +11,11 @@ import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
 import 'package:fluffychat/pages/chat_list/dummy_chat_list_item.dart';
 import 'package:fluffychat/pages/chat_list/search_title.dart';
 import 'package:fluffychat/pages/chat_list/space_view.dart';
-import 'package:fluffychat/pages/user_bottom_sheet/user_bottom_sheet.dart';
 import 'package:fluffychat/pangea/chat_list/widgets/pangea_chat_list_header.dart';
-import 'package:fluffychat/pangea/public_spaces/pangea_public_room_bottom_sheet.dart';
-import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/public_room_dialog.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/user_dialog.dart';
 import 'package:fluffychat/widgets/avatar.dart';
-import 'package:fluffychat/widgets/hover_builder.dart';
 import 'package:fluffychat/widgets/unread_rooms_badge.dart';
 import '../../config/themes.dart';
 import '../../widgets/matrix.dart';
@@ -135,12 +133,9 @@ class ChatListViewBody extends StatelessWidget {
                         //                   .results[i].userId.localpart ??
                         //               L10n.of(context).unknownDevice,
                         //       avatar: userSearchResult.results[i].avatarUrl,
-                        //       onPressed: () => showAdaptiveBottomSheet(
+                        //       onPressed: () => UserDialog.show(
                         //         context: context,
-                        //         builder: (c) => UserBottomSheet(
-                        //           profile: userSearchResult.results[i],
-                        //           outerContext: context,
-                        //         ),
+                        //         profile: userSearchResult.results[i],
                         //       ),
                         //     ),
                         //   ),
@@ -175,16 +170,16 @@ class ChatListViewBody extends StatelessWidget {
                     ),
                     // #Pangea
                     // if (client.rooms.isNotEmpty && !controller.isSearchMode)
+                    //   SizedBox(
+                    //     height: 64,
+                    //     child: ListView(
+                    //       padding: const EdgeInsets.symmetric(
+                    //         horizontal: 12.0,
+                    //         vertical: 12.0,
+                    //       ),
+                    //       shrinkWrap: true,
+                    //       scrollDirection: Axis.horizontal,
                     if (!controller.isSearchMode)
-                      // SizedBox(
-                      //   height: 64,
-                      //   child: ListView(
-                      //     padding: const EdgeInsets.symmetric(
-                      //       horizontal: 12.0,
-                      //       vertical: 16.0,
-                      //     ),
-                      //     shrinkWrap: true,
-                      //     scrollDirection: Axis.horizontal,
                       SingleChildScrollView(
                         padding: const EdgeInsets.symmetric(
                           horizontal: 12.0,
@@ -211,64 +206,26 @@ class ChatListViewBody extends StatelessWidget {
                               ActiveFilter.spaces,
                           ]
                               .map(
-                                (filter) => Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(horizontal: 4),
-                                  child: HoverBuilder(
-                                    builder: (context, hovered) =>
-                                        AnimatedScale(
-                                      duration: FluffyThemes.animationDuration,
-                                      curve: FluffyThemes.animationCurve,
-                                      scale: hovered ? 1.1 : 1.0,
-                                      child: InkWell(
-                                        borderRadius: BorderRadius.circular(
-                                          AppConfig.borderRadius,
-                                        ),
-                                        onTap: () =>
-                                            controller.setActiveFilter(filter),
-                                        // #Pangea
-                                        child: UnreadRoomsBadge(
-                                          filter: (_) =>
-                                              filter == ActiveFilter.unread,
-                                          badgePosition: BadgePosition.topEnd(
-                                            top: -12,
-                                            end: -6,
-                                          ),
-                                          // Pangea#
-                                          child: Container(
-                                            padding: const EdgeInsets.symmetric(
-                                              horizontal: 12,
-                                              vertical: 6,
-                                            ),
-                                            decoration: BoxDecoration(
-                                              color: filter ==
-                                                      controller.activeFilter
-                                                  ? theme.colorScheme.primary
-                                                  : theme.colorScheme
-                                                      .secondaryContainer,
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                AppConfig.borderRadius,
-                                              ),
-                                            ),
-                                            alignment: Alignment.center,
-                                            child: Text(
-                                              filter.toLocalizedString(context),
-                                              style: TextStyle(
-                                                fontWeight: filter ==
-                                                        controller.activeFilter
-                                                    ? FontWeight.w500
-                                                    : FontWeight.normal,
-                                                color: filter ==
-                                                        controller.activeFilter
-                                                    ? theme
-                                                        .colorScheme.onPrimary
-                                                    : theme.colorScheme
-                                                        .onSecondaryContainer,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
+                                // #Pangea
+                                // (filter) => Padding(
+                                (filter) => UnreadRoomsBadge(
+                                  filter: (_) => filter == ActiveFilter.unread,
+                                  badgePosition: BadgePosition.topEnd(
+                                    top: -12,
+                                    end: -6,
+                                  ),
+                                  child: Padding(
+                                    // Pangea#
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 4.0,
+                                    ),
+                                    child: FilterChip(
+                                      selected:
+                                          filter == controller.activeFilter,
+                                      onSelected: (_) =>
+                                          controller.setActiveFilter(filter),
+                                      label: Text(
+                                        filter.toLocalizedString(context),
                                       ),
                                     ),
                                   ),
@@ -410,7 +367,10 @@ class PublicRoomsHorizontalListState extends State<PublicRoomsHorizontalList> {
           Scrollbar(
               thumbVisibility: true,
               controller: _scrollController,
-              child: ListView.builder(
+              child:
+                  // Pangea#
+                  ListView.builder(
+                // #Pangea
                 controller: _scrollController,
                 // Pangea#
                 scrollDirection: Axis.horizontal,
@@ -423,15 +383,11 @@ class PublicRoomsHorizontalListState extends State<PublicRoomsHorizontalList> {
                       L10n.of(context).chat,
                   // Pangea#
                   avatar: publicRooms[i].avatarUrl,
-                  onPressed: () => showAdaptiveBottomSheet(
+                  onPressed: () => showAdaptiveDialog(
                     context: context,
-                    // #Pangea
-                    // builder: (c) => PublicRoomBottomSheet(
-                    builder: (c) => PangeaPublicRoomBottomSheet(
-                      // Pangea#
+                    builder: (c) => PublicRoomDialog(
                       roomAlias: publicRooms[i].canonicalAlias ??
                           publicRooms[i].roomId,
-                      outerContext: context,
                       chunk: publicRooms[i],
                     ),
                   ),
@@ -533,12 +489,9 @@ class UserSearchResultsListState extends State<UserSearchResultsList> {
               widget.userSearchResult.results[i].userId.localpart ??
               L10n.of(context).unknownDevice,
           avatar: widget.userSearchResult.results[i].avatarUrl,
-          onPressed: () => showAdaptiveBottomSheet(
+          onPressed: () => UserDialog.show(
             context: context,
-            builder: (c) => UserBottomSheet(
-              profile: widget.userSearchResult.results[i],
-              outerContext: context,
-            ),
+            profile: widget.userSearchResult.results[i],
           ),
         ),
       ),

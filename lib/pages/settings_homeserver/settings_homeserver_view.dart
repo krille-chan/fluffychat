@@ -169,6 +169,8 @@ class SettingsHomeserverView extends StatelessWidget {
                         title: const Text('Federation Base URL'),
                         subtitle: Linkify(
                           text: data.federationBaseUrl.toString(),
+                          textScaleFactor:
+                              MediaQuery.textScalerOf(context).scale(1),
                           options: const LinkifyOptions(humanize: false),
                           linkStyle: TextStyle(
                             color: theme.colorScheme.primary,
@@ -231,6 +233,8 @@ class SettingsHomeserverView extends StatelessWidget {
                         title: const Text('Base URL'),
                         subtitle: Linkify(
                           text: wellKnown.mHomeserver.baseUrl.toString(),
+                          textScaleFactor:
+                              MediaQuery.textScalerOf(context).scale(1),
                           options: const LinkifyOptions(humanize: false),
                           linkStyle: TextStyle(
                             color: theme.colorScheme.primary,
@@ -244,6 +248,8 @@ class SettingsHomeserverView extends StatelessWidget {
                           title: const Text('Identity Server:'),
                           subtitle: Linkify(
                             text: identityServer.baseUrl.toString(),
+                            textScaleFactor:
+                                MediaQuery.textScalerOf(context).scale(1),
                             options: const LinkifyOptions(humanize: false),
                             linkStyle: TextStyle(
                               color: theme.colorScheme.primary,

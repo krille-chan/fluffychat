@@ -19,10 +19,6 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
-      - name: Remove Emoji Font
-        run: |
-          rm -rf fonts/NotoEmoji
-          yq -i 'del( .flutter.fonts[] | select(.family == "NotoEmoji") )' pubspec.yaml
       - run: flutter pub get
       - name: Prepare web
         run: ./scripts/prepare-web.sh

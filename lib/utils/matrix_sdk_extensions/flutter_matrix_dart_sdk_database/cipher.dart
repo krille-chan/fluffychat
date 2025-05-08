@@ -90,7 +90,7 @@ Future<String?> getDatabaseCipher() async {
 
 void _sendNoEncryptionWarning(Object exception) async {
   final store = await SharedPreferences.getInstance();
-  final isStored = store.getBool(SettingKeys.noEncryptionWarningShown);
+  final isStored = AppSettings.noEncryptionWarningShown.getItem(store);
 
   if (isStored == true) return;
 
@@ -108,5 +108,5 @@ void _sendNoEncryptionWarning(Object exception) async {
   // );
   // Pangea#
 
-  await store.setBool(SettingKeys.noEncryptionWarningShown, true);
+  await AppSettings.noEncryptionWarningShown.setItem(store, true);
 }

@@ -24,6 +24,7 @@ import 'matrix_sdk_extensions/flutter_matrix_dart_sdk_database/builder.dart';
 
 abstract class ClientManager {
   static const String clientNamespace = 'im.fluffychat.store.clients';
+
   static Future<List<Client>> getClients({
     bool initialize = true,
     required SharedPreferences store,
@@ -103,7 +104,7 @@ abstract class ClientManager {
       : NativeImplementationsIsolate(compute);
 
   static Client createClient(String clientName, SharedPreferences store) {
-    final shareKeysWith = store.getString(SettingKeys.shareKeysWith) ?? 'all';
+    final shareKeysWith = AppSettings.shareKeysWith.getItem(store);
 
     return Client(
       clientName,

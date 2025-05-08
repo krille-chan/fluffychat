@@ -908,7 +908,7 @@
       }
     }
   },
-  "defaultPermissionLevel": "Default na antas ng pahintulot",
+  "defaultPermissionLevel": "Default na antas ng pahintulot para sa mga bagong user",
   "@defaultPermissionLevel": {
     "type": "String",
     "placeholders": {}
@@ -962,5 +962,102 @@
   "@fontSize": {
     "type": "String",
     "placeholders": {}
+  },
+  "noChatsFoundHere": "Walang pang mga chat na nahanap dito. Magsimula ng bagong chat kasama ang isang tao sa pamamagitan ng paggamit ng button sa ibaba. ⤵️",
+  "@noChatsFoundHere": {},
+  "aboutHomeserver": "Tungkol sa {homeserver}",
+  "@aboutHomeserver": {
+    "type": "String",
+    "placeholders": {
+      "homeserver": {
+        "type": "String"
+      }
+    }
+  },
+  "space": "Espasyo",
+  "@space": {},
+  "countChatsAndCountParticipants": "{chats} mga chat at {participants} mga kasali",
+  "@countChatsAndCountParticipants": {
+    "type": "String",
+    "placeholders": {
+      "chats": {
+        "type": "int"
+      },
+      "participants": {
+        "type": "int"
+      }
+    }
+  },
+  "guestsAreForbidden": "Pinagbabawal ang mga bisita",
+  "@guestsAreForbidden": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "guestsCanJoin": "Maaring sumali ang mga bisita",
+  "@guestsCanJoin": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "forward": "I-forward",
+  "@forward": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "fromJoining": "Mula sa pagsali",
+  "@fromJoining": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "fromTheInvitation": "Mula sa imbitasyon",
+  "@fromTheInvitation": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "goToTheNewRoom": "Pumunta sa bagong room",
+  "@goToTheNewRoom": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "group": "Grupo",
+  "@group": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "swipeRightToLeftToReply": "Mag-swipe pakaliwa o kanan para tumugon",
+  "@swipeRightToLeftToReply": {},
+  "noMoreChatsFound": "Wala nang mga chat na nahanap…",
+  "@noMoreChatsFound": {},
+  "joinedChats": "Mga nasaling chat",
+  "@joinedChats": {},
+  "unread": "Hindi nabasa",
+  "@unread": {},
+  "spaces": "Mga Espasyo",
+  "@spaces": {},
+  "groupIsPublic": "Pampubliko ang grupo",
+  "@groupIsPublic": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "groups": "Mga grupo",
+  "@groups": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "alwaysUse24HourFormat": "false",
+  "@alwaysUse24HourFormat": {
+    "description": "Set to true to always display time of day in 24 hour format."
+  },
+  "chatDescription": "Paglalarawan ng chat",
+  "@chatDescription": {},
+  "chatDescriptionHasBeenChanged": "Nabago ang paglalarawan ng chat",
+  "@chatDescriptionHasBeenChanged": {},
+  "groupWith": "Grupo kasama kay/sa {displayname}",
+  "@groupWith": {
+    "type": "String",
+    "placeholders": {
+      "displayname": {
+        "type": "String"
+      }
+    }
   }
 }

@@ -4,8 +4,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pangea/common/widgets/pressable_button.dart';
-import 'package:fluffychat/pangea/public_spaces/pangea_public_room_bottom_sheet.dart';
-import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/public_room_dialog.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
 
 class PublicSpaceCard extends StatelessWidget {
@@ -25,14 +24,10 @@ class PublicSpaceCard extends StatelessWidget {
     final theme = Theme.of(context);
 
     return PressableButton(
-      onPressed: () => showAdaptiveBottomSheet(
+      onPressed: () => showAdaptiveDialog(
         context: context,
-        // #Pangea
-        // builder: (c) => PublicRoomBottomSheet(
-        builder: (c) => PangeaPublicRoomBottomSheet(
-          // Pangea#
+        builder: (c) => PublicRoomDialog(
           roomAlias: space.canonicalAlias ?? space.roomId,
-          outerContext: context,
           chunk: space,
         ),
       ),

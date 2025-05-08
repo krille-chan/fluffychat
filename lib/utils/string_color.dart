@@ -9,7 +9,7 @@ extension StringColor on String {
       number += codeUnitAt(i);
     }
     number = (number % 12) * 25.5;
-    return HSLColor.fromAHSL(1, number, 1, light).toColor();
+    return HSLColor.fromAHSL(0.75, number, 1, light).toColor();
   }
 
   Color get color {
@@ -29,6 +29,6 @@ extension StringColor on String {
 
   Color get lightColorAvatar {
     _colorCache[this] ??= {};
-    return _colorCache[this]![0.4] ??= _getColorLight(0.4);
+    return _colorCache[this]![0.45] ??= _getColorLight(0.45);
   }
 }

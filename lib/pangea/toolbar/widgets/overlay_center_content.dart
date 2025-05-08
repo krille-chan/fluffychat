@@ -75,7 +75,7 @@ class OverlayCenterContent extends StatelessWidget {
                   controller: chatController,
                   overlayController: overlayController,
                   nextEvent: nextEvent,
-                  prevEvent: prevEvent,
+                  previousEvent: prevEvent,
                   timeline: chatController.timeline!,
                   sizeAnimation: sizeAnimation,
                   // there's a split seconds between when the transition animation starts and

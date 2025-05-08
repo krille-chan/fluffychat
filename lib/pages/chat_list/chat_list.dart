@@ -218,24 +218,21 @@ class ChatListController extends State<ChatList>
         return (room) => !room.isAnalyticsRoom && !room.isSpace;
       // Pangea#
       case ActiveFilter.messages:
+        // #Pangea
+        // return (room) => !room.isSpace && room.isDirectChat;
         return (room) =>
-            !room.isSpace &&
-            room.isDirectChat // #Pangea
-            &&
-            !room.isAnalyticsRoom;
+            !room.isSpace && room.isDirectChat && !room.isAnalyticsRoom;
       // Pangea#
       case ActiveFilter.groups:
+        // #Pangea
+        // return (room) => !room.isSpace && !room.isDirectChat;
         return (room) =>
-            !room.isSpace &&
-            !room.isDirectChat // #Pangea
-            &&
-            !room.isAnalyticsRoom;
+            !room.isSpace && !room.isDirectChat && !room.isAnalyticsRoom;
       // Pangea#
       case ActiveFilter.unread:
-        return (room) =>
-            room.isUnreadOrInvited // #Pangea
-            &&
-            !room.isAnalyticsRoom;
+        // #Pangea
+        // return (room) => room.isUnreadOrInvited;
+        return (room) => room.isUnreadOrInvited && !room.isAnalyticsRoom;
       // Pangea#
       case ActiveFilter.spaces:
         return (room) => room.isSpace;

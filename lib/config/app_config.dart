@@ -11,6 +11,7 @@ abstract class AppConfig {
   // #Pangea
   static String get applicationName => _applicationName;
   static String? _applicationWelcomeMessage;
+
   static String? get applicationWelcomeMessage => _applicationWelcomeMessage;
   // #Pangea
   // static String _defaultHomeserver = 'matrix.org';
@@ -154,9 +155,6 @@ abstract class AppConfig {
       'https://sygnal.pangea.chat/_matrix/push/v1/notify';
   static const String? pushNotificationsPusherFormat = null;
   // Pangea#
-  static const String emojiFontName = 'Noto Emoji';
-  static const String emojiFontUrl =
-      'https://github.com/googlefonts/noto-emoji/';
   static const double borderRadius = 18.0;
   static const double columnWidth = 360.0;
   static final Uri homeserverList = Uri(

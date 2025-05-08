@@ -38,7 +38,6 @@ class ReplyDisplay extends StatelessWidget {
                 ? ReplyContent(
                     controller.replyEvent!,
                     timeline: controller.timeline!,
-                    backgroundColor: Colors.transparent,
                   )
                 : _EditContent(
                     controller.editEvent?.getDisplayEvent(controller.timeline!),

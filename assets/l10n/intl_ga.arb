@@ -3346,5 +3346,9 @@
   "notSupportedOnThisDevice": "Ní thacaítear leis ar an ngléas seo",
   "@notSupportedOnThisDevice": {},
   "optionalMessage": "Teachtaireacht (Roghnach)…",
-  "@optionalMessage": {}
+  "@optionalMessage": {},
+  "enterNewChat": "Cuir isteach comhrá nua",
+  "@enterNewChat": {},
+  "commandHint_roomupgrade": "Uasghrádaigh an seomra seo go dtí an leagan seomra a thugtar",
+  "@commandHint_roomupgrade": {}
 }

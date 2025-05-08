@@ -11,8 +11,10 @@ import 'package:record/record.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/pangea/toolbar/utils/update_version_dialog.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import 'events/audio_player.dart';
 
 class RecordingDialog extends StatefulWidget {
@@ -35,25 +37,17 @@ class RecordingDialogState extends State<RecordingDialog> {
 
   String? fileName;
 
-  static const int bitRate = 64000;
-  // #Pangea
-  // static const int samplingRate = 44100;
-  static const int samplingRate = 22050;
-  // Pangea#
-
   Future<void> startRecording() async {
+    final store = Matrix.of(context).store;
     try {
-      // #Pangea
-      // final codec = kIsWeb
-      //     // Web seems to create webm instead of ogg when using opus encoder
-      //     // which does not play on iOS right now. So we use wav for now:
-      //     ? AudioEncoder.wav
-      //     // Everywhere else we use opus if supported by the platform:
-      //     : await _audioRecorder.isEncoderSupported(AudioEncoder.opus)
-      //         ? AudioEncoder.opus
-      //         : AudioEncoder.aacLc;
-      const codec = AudioEncoder.wav;
-      // Pangea#
+      final codec = kIsWeb
+          // Web seems to create webm instead of ogg when using opus encoder
+          // which does not play on iOS right now. So we use wav for now:
+          ? AudioEncoder.wav
+          // Everywhere else we use opus if supported by the platform:
+          : await _audioRecorder.isEncoderSupported(AudioEncoder.opus)
+              ? AudioEncoder.opus
+              : AudioEncoder.aacLc;
       fileName =
           'recording${DateTime.now().microsecondsSinceEpoch}.${codec.fileExtension}';
       String? path;
@@ -71,17 +65,17 @@ class RecordingDialogState extends State<RecordingDialog> {
 
       // #Pangea
       final isNotError = await showUpdateVersionDialog(
-        future: () =>
+        future: () async =>
             // Pangea#
-
-            _audioRecorder.start(
-          const RecordConfig(
-            bitRate: bitRate,
-            sampleRate: samplingRate,
-            numChannels: 1,
-            autoGain: true,
-            echoCancel: true,
-            noiseSuppress: true,
+            await _audioRecorder.start(
+          RecordConfig(
+            bitRate: AppSettings.audioRecordingBitRate.getItem(store),
+            sampleRate: AppSettings.audioRecordingSamplingRate.getItem(store),
+            numChannels: AppSettings.audioRecordingNumChannels.getItem(store),
+            autoGain: AppSettings.audioRecordingAutoGain.getItem(store),
+            echoCancel: AppSettings.audioRecordingEchoCancel.getItem(store),
+            noiseSuppress:
+                AppSettings.audioRecordingNoiseSuppress.getItem(store),
             encoder: codec,
           ),
           path: path ?? '',

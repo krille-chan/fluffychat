@@ -11,7 +11,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "acceptedTheInvitation": "{username} aceptó la invitación",
+  "acceptedTheInvitation": "👍 {username} aceptó la invitación",
   "@acceptedTheInvitation": {
     "type": "String",
     "placeholders": {
@@ -68,7 +68,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "areGuestsAllowedToJoin": "¿Pueden unirse los usuarios visitantes?",
+  "areGuestsAllowedToJoin": "¿Pueden unirse usuarios de visita?",
   "@areGuestsAllowedToJoin": {
     "type": "String",
     "placeholders": {}
@@ -1943,7 +1943,7 @@
   },
   "scanQrCode": "Escanear código QR",
   "@scanQrCode": {},
-  "homeserver": "Homeserver",
+  "homeserver": "Servidor inicial",
   "@homeserver": {},
   "newChat": "Nuevo chat",
   "@newChat": {
@@ -2193,7 +2193,7 @@
   "@youAcceptedTheInvitation": {},
   "widgetEtherpad": "Nota de texto",
   "@widgetEtherpad": {},
-  "commandHint_cuddle": "Mandar una carantoña",
+  "commandHint_cuddle": "Enviar un abrazo",
   "@commandHint_cuddle": {},
   "supposedMxid": "Esto debería ser {mxid}",
   "@supposedMxid": {
@@ -2206,7 +2206,7 @@
   },
   "importFromZipFile": "Importar de un archivo .zip",
   "@importFromZipFile": {},
-  "exportEmotePack": "Exportar paquete de emotes como .zip",
+  "exportEmotePack": "Exportar paquete de emotes a .zip",
   "@exportEmotePack": {},
   "addChatDescription": "Añadir una descripción del chat...",
   "@addChatDescription": {},
@@ -2320,7 +2320,7 @@
   "@enterSpace": {},
   "pleaseEnterRecoveryKey": "Por favor, introduzca su clave de recuperación:",
   "@pleaseEnterRecoveryKey": {},
-  "widgetNameError": "Por favor, introduzca un nombre a mostrar.",
+  "widgetNameError": "Por favor proporciona un nombre para mostrar.",
   "@widgetNameError": {},
   "addWidget": "Añadir widget",
   "@addWidget": {},
@@ -3337,6 +3337,16 @@
   "@previous": {},
   "otherPartyNotLoggedIn": "La otra parte ahora mismo no está conectada y por tanto ¡no puede recibir mensajes!",
   "@otherPartyNotLoggedIn": {},
+  "takeAPhoto": "Tomar foto",
+  "@takeAPhoto": {},
+  "recordAVideo": "Grabar video",
+  "@recordAVideo": {},
+  "optionalMessage": "(Opcional) mensaje...",
+  "@optionalMessage": {},
+  "notSupportedOnThisDevice": "No es compatible con este dispositivo",
+  "@notSupportedOnThisDevice": {},
+  "enterNewChat": "Ingresar a nuevo chat",
+  "@enterNewChat": {},
   "accountInformation": "Información de la cuenta",
   "addGroupDescription": "Agregar una descripción al grupo",
   "alreadyHaveAnAccount": "¿Ya tiene una cuenta?",

@@ -148,7 +148,7 @@ class ChatController extends State<ChatPageWithRoom>
 
   final AutoScrollController scrollController = AutoScrollController();
 
-  FocusNode inputFocus = FocusNode();
+  late final FocusNode inputFocus;
   StreamSubscription<html.Event>? onFocusSub;
 
   Timer? typingCoolDown;
@@ -323,8 +323,26 @@ class ChatController extends State<ChatPageWithRoom>
     );
   }
 
+  KeyEventResult _shiftEnterKeyHandling(FocusNode node, KeyEvent evt) {
+    if (!HardwareKeyboard.instance.isShiftPressed &&
+        evt.logicalKey.keyLabel == 'Enter') {
+      if (evt is KeyDownEvent) {
+        send();
+      }
+      return KeyEventResult.handled;
+    } else {
+      return KeyEventResult.ignored;
+    }
+  }
+
   @override
   void initState() {
+    inputFocus = FocusNode(
+      onKeyEvent: (AppConfig.sendOnEnter ?? !PlatformInfos.isMobile)
+          ? _shiftEnterKeyHandling
+          : null,
+    );
+
     scrollController.addListener(_updateScrollController);
     inputFocus.addListener(_inputFocusListener);
 
@@ -332,8 +350,7 @@ class ChatController extends State<ChatPageWithRoom>
     WidgetsBinding.instance.addPostFrameCallback(_shareItems);
     super.initState();
     _displayChatDetailsColumn = ValueNotifier(
-      Matrix.of(context).store.getBool(SettingKeys.displayChatDetailsColumn) ??
-          false,
+      AppSettings.displayChatDetailsColumn.getItem(Matrix.of(context).store),
     );
 
     sendingClient = Matrix.of(context).client;
@@ -924,8 +941,12 @@ class ChatController extends State<ChatPageWithRoom>
     });
   }
 
-  void sendFileAction() async {
-    final files = await selectFiles(context, allowMultiple: true);
+  void sendFileAction({FileSelectorType type = FileSelectorType.any}) async {
+    final files = await selectFiles(
+      context,
+      allowMultiple: true,
+      type: type,
+    );
     if (files.isEmpty) return;
     await showAdaptiveDialog(
       context: context,
@@ -943,27 +964,6 @@ class ChatController extends State<ChatPageWithRoom>
       context: context,
       builder: (c) => SendFileDialog(
         files: [XFile.fromData(image)],
-        room: room,
-        outerContext: context,
-      ),
-    );
-  }
-
-  void sendImageAction() async {
-    final files = await selectFiles(
-      context,
-      allowMultiple: true,
-      // #Pangea
-      // type: FileSelectorType.images,
-      type: FileSelectorType.media,
-      // Pangea#
-    );
-    if (files.isEmpty) return;
-
-    await showAdaptiveDialog(
-      context: context,
-      builder: (c) => SendFileDialog(
-        files: files,
         room: room,
         outerContext: context,
       ),
@@ -1235,12 +1235,13 @@ class ChatController extends State<ChatPageWithRoom>
             // Pangea#
           )
         : null;
+    // #Pangea
+    // if (reasonInput == null) return;
     if (reasonInput == null) {
-      // #Pangea
       clearSelectedEvents();
-      // Pangea#
       return;
     }
+    // Pangea#
     final reason = reasonInput.isEmpty ? null : reasonInput;
     for (final event in selectedEvents) {
       await showFutureLoadingDialog(
@@ -1572,35 +1573,23 @@ class ChatController extends State<ChatPageWithRoom>
   }
 
   void goToNewRoomAction() async {
-    if (OkCancelResult.ok !=
-        await showOkCancelAlertDialog(
-          context: context,
-          title: L10n.of(context).goToTheNewRoom,
-          message: room
-              .getState(EventTypes.RoomTombstone)!
-              .parsedTombstoneContent
-              .body,
-          okLabel: L10n.of(context).ok,
-          cancelLabel: L10n.of(context).cancel,
-        )) {
-      return;
-    }
     final result = await showFutureLoadingDialog(
       context: context,
-      future: () async {
-        final roomId = room.client.joinRoom(
-          room
-              .getState(EventTypes.RoomTombstone)!
-              .parsedTombstoneContent
-              .replacementRoom,
-        );
-        await room.leave();
-        return roomId;
-      },
+      future: () => room.client.joinRoomById(
+        room
+            .getState(EventTypes.RoomTombstone)!
+            .parsedTombstoneContent
+            .replacementRoom,
+      ),
     );
-    if (result.error == null) {
-      context.go('/rooms/${result.result!}');
-    }
+    if (result.error != null) return;
+    if (!mounted) return;
+    context.go('/rooms/${result.result!}');
+
+    await showFutureLoadingDialog(
+      context: context,
+      future: room.leave,
+    );
   }
 
   void onSelectMessage(Event event) {
@@ -1671,7 +1660,10 @@ class ChatController extends State<ChatPageWithRoom>
       sendFileAction();
     }
     if (choice == 'image') {
-      sendImageAction();
+      sendFileAction(type: FileSelectorType.images);
+    }
+    if (choice == 'video') {
+      sendFileAction(type: FileSelectorType.videos);
     }
     if (choice == 'camera') {
       openCameraAction();
@@ -1954,10 +1946,10 @@ class ChatController extends State<ChatPageWithRoom>
   late final ValueNotifier<bool> _displayChatDetailsColumn;
 
   void toggleDisplayChatDetailsColumn() async {
-    await Matrix.of(context).store.setBool(
-          SettingKeys.displayChatDetailsColumn,
-          !_displayChatDetailsColumn.value,
-        );
+    await AppSettings.displayChatDetailsColumn.setItem(
+      Matrix.of(context).store,
+      !_displayChatDetailsColumn.value,
+    );
     _displayChatDetailsColumn.value = !_displayChatDetailsColumn.value;
   }
 

@@ -61,44 +61,23 @@ parts:
     build-packages:
       - g++
 
-  flutter-git:
-    source: https://github.com/flutter/flutter.git
-    source-tag: 3.27.4
-    plugin: nil
-    override-build: |
-      set -eux
-      mkdir -p $CRAFT_PART_INSTALL/usr/bin
-      mkdir -p $CRAFT_PART_INSTALL/usr/libexec
-      cp -r $CRAFT_PART_SRC $CRAFT_PART_INSTALL/usr/libexec/flutter
-      ln -sf $CRAFT_PART_INSTALL/usr/libexec/flutter/bin/flutter $CRAFT_PART_INSTALL/usr/bin/flutter
-      export PATH="$CRAFT_PART_INSTALL/usr/bin:$PATH"
-      flutter doctor
-    build-packages:
-      - clang
-      - cmake
-      - curl
-      - ninja-build
-      - unzip
-    override-prime: ''
-
   fluffychat:
-    after: [ flutter-git ]
-    plugin: nil
+    plugin: flutter
     source: .
     override-build: |
-      flutter pub get || true
-      flutter build linux --release -v
-      mkdir -p $CRAFT_PART_INSTALL/bin
-      cp -r build/linux/*/release/bundle/* $CRAFT_PART_INSTALL/bin/
+      # Workaround for Flutter build error:
+      rm -rf build
+      craftctl default
     build-packages:
       - libsecret-1-dev
       - libjsoncpp-dev
       - libssl-dev
       - curl
-      - jq
+      - libpciaccess-dev
     stage-packages:
       - libsecret-1-0
       - libjsoncpp25
+      - libpciaccess0
 
 slots:
   dbus-svc:
@@ -108,7 +87,7 @@ slots:
 
 apps:
   fluffychat:
-    command: bin/fluffychat
+    command: fluffychat
     extensions: [ gnome ]
     plugs:
       - audio-playback

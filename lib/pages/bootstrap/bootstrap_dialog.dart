@@ -18,6 +18,7 @@ import '../key_verification/key_verification_dialog.dart';
 class BootstrapDialog extends StatefulWidget {
   final bool wipe;
   final Client client;
+
   const BootstrapDialog({
     super.key,
     this.wipe = false,
@@ -132,7 +133,7 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                   minLines: 2,
                   maxLines: 4,
                   readOnly: true,
-                  style: const TextStyle(fontFamily: 'UbuntuMono'),
+                  style: const TextStyle(fontFamily: 'RobotoMono'),
                   controller: TextEditingController(text: key),
                   decoration: const InputDecoration(
                     contentPadding: EdgeInsets.all(16),
@@ -257,7 +258,7 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                           ? null
                           : [AutofillHints.password],
                       controller: _recoveryKeyTextEditingController,
-                      style: const TextStyle(fontFamily: 'UbuntuMono'),
+                      style: const TextStyle(fontFamily: 'RobotoMono'),
                       decoration: InputDecoration(
                         contentPadding: const EdgeInsets.all(16),
                         hintStyle: TextStyle(
