@@ -3208,6 +3208,16 @@
       }
     }
   },
+  "sentVoiceMessage": "{sender}: \uD83C\uDF99\uFE0F {duration}",
+  "@sentVoiceMessage": {
+    "type": "String",
+    "placeholders": {
+      "rule": {
+        "sender": "String",
+        "duration": "String"
+      }
+    }
+  },
   "deletePushRuleCanNotBeUndone": "If you delete this notification setting, this can not be undone.",
   "more": "More",
   "shareKeysWith": "Share keys with...",

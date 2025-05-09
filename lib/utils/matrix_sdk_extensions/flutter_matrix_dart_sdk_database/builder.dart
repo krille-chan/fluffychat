@@ -11,7 +11,6 @@ import 'package:universal_html/html.dart' as html;
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/utils/client_manager.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions/flutter_hive_collections_database.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'cipher.dart';
 
@@ -55,7 +54,7 @@ Future<DatabaseApi> flutterMatrixSdkDatabaseBuilder(Client client) async {
       Logs().e('Unable to send error notification', e, s);
     }
 
-    return FlutterHiveCollectionsDatabase.databaseBuilder(client);
+    rethrow;
   }
 }
 

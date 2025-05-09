@@ -18,7 +18,6 @@ import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/utils/custom_http_client.dart';
 import 'package:fluffychat/utils/custom_image_resizer.dart';
 import 'package:fluffychat/utils/init_with_restore.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions/flutter_hive_collections_database.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'matrix_sdk_extensions/flutter_matrix_dart_sdk_database/builder.dart';
 
@@ -119,7 +118,6 @@ abstract class ClientManager {
       },
       logLevel: kReleaseMode ? Level.warning : Level.verbose,
       databaseBuilder: flutterMatrixSdkDatabaseBuilder,
-      legacyDatabaseBuilder: FlutterHiveCollectionsDatabase.databaseBuilder,
       supportedLoginTypes: {
         AuthenticationTypes.password,
         AuthenticationTypes.sso,
