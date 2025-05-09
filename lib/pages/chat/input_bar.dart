@@ -325,6 +325,9 @@ class InputBar extends StatelessWidget {
                   suggestion.tryGet<String>('mxid'),
               size: size,
               client: client,
+              // #Pangea
+              userId: suggestion.tryGet<String>('mxid'),
+              // Pangea#
             ),
             const SizedBox(width: 6),
             // #Pangea
