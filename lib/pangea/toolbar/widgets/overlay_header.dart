@@ -22,7 +22,7 @@ class OverlayHeader extends StatelessWidget {
     final l10n = L10n.of(context);
     final theme = Theme.of(context);
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(AppConfig.borderRadius),
@@ -55,6 +55,16 @@ class OverlayHeader extends StatelessWidget {
               tooltip: l10n.copy,
               onPressed: controller.copyEventsAction,
               color: theme.colorScheme.primary,
+            ),
+          if (controller.canSaveSelectedEvent)
+            // Use builder context to correctly position the share dialog on iPad
+            Builder(
+              builder: (context) => IconButton(
+                icon: const Icon(Symbols.download),
+                tooltip: L10n.of(context).download,
+                onPressed: () => controller.saveSelectedEvent(context),
+                color: theme.colorScheme.primary,
+              ),
             ),
           if (controller.canPinSelectedEvents)
             IconButton(
