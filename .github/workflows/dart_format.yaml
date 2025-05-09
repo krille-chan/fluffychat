@@ -1,39 +1,39 @@
-name: Dart Code Formatter
+# name: Dart Code Formatter
 
-on:
-  pull_request:
-  push:
-    branches: main
+# on:
+#   pull_request:
+#   push:
+#     branches: main
 
-jobs:
-  format:
-    runs-on: ubuntu-latest
+# jobs:
+#   format:
+#     runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-        with:
-          ref: ${{ github.head_ref }}
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v3
+#         with:
+#           ref: ${{ github.head_ref }}
 
-      - run: cat .github/workflows/versions.env >> $GITHUB_ENV
-      - uses: subosito/flutter-action@v2
-        with:
-          flutter-version: ${{ env.FLUTTER_VERSION }}
-          cache: true
+#       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
+#       - uses: subosito/flutter-action@v2
+#         with:
+#           flutter-version: ${{ env.FLUTTER_VERSION }}
+#           cache: true
 
-      - name: Auto-format Dart code
-        run: |
-          dart format lib/ test/
-          dart run import_sorter:main --no-comments
-          if ! git diff --exit-code; then
-            git config user.name "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add .
-            git commit -m "generated"
-            git push
-          fi
+#       - name: Auto-format Dart code
+#         run: |
+#           dart format lib/ test/
+#           dart run import_sorter:main --no-comments
+#           if ! git diff --exit-code; then
+#             git config user.name "github-actions[bot]"
+#             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+#             git add .
+#             git commit -m "generated"
+#             git push
+#           fi
 
-      - name: Check for unformatted files
-        if: ${{ failure() }}
-        run: |
-          echo "Code was formatted. Please verify the changes in the PR."
+#       - name: Check for unformatted files
+#         if: ${{ failure() }}
+#         run: |
+#           echo "Code was formatted. Please verify the changes in the PR."
