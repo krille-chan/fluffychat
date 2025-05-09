@@ -635,8 +635,8 @@ gpf(){return"Please wait now, until someone from the room invites you."},
 C(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.Eo,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"Eo":{"aF":[]}}'))
+B.dU(b.typeUniverse,JSON.parse('{"Eo":{"aF":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_220",e:"endPart",h:b})})($__dart_deferred_initializers__,"dc3yN0hE8YLSd5yvbtB66AqGBek=");
+a.eventLog.push({p:"main.dart.js_220",e:"endPart",h:b})})($__dart_deferred_initializers__,"fH1NiVaZa31jdfoW/J4lZ+rXv18=");
 //# sourceMappingURL=main.dart.js_220.part.js.map

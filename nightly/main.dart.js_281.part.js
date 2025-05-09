@@ -635,7 +635,7 @@ gpf(){return"Please wait now, until someone from the room invites you."},
 C(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.ET,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"ET":{"aF":[]}}'))};
+B.dU(b.typeUniverse,JSON.parse('{"ET":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_281",e:"endPart",h:b})})($__dart_deferred_initializers__,"DAepcbAN78xFlTpOJ6/ApYLGxec=");
+a.eventLog.push({p:"main.dart.js_281",e:"endPart",h:b})})($__dart_deferred_initializers__,"dgSfeGEJDdGh7Tow1mdmXAnWdTo=");
 //# sourceMappingURL=main.dart.js_281.part.js.map

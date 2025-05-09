@@ -635,8 +635,8 @@ gpf(){return"Please wait now, until someone from the room invites you."},
 C(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.Eu,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"Eu":{"aF":[]}}'))
+B.dU(b.typeUniverse,JSON.parse('{"Eu":{"aF":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_239",e:"endPart",h:b})})($__dart_deferred_initializers__,"XHbmiVtf1XHyaWdQAvcqPelus3w=");
+a.eventLog.push({p:"main.dart.js_239",e:"endPart",h:b})})($__dart_deferred_initializers__,"l4AiURexA+r6j1JR5vm2U0EsEgo=");
 //# sourceMappingURL=main.dart.js_239.part.js.map
