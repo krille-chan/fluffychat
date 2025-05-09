@@ -3208,7 +3208,7 @@
       }
     }
   },
-  "sentVoiceMessage": "{sender}: \uD83C\uDF99\uFE0F {duration}",
+  "sentVoiceMessage": "\uD83C\uDF99\uFE0F {duration} - {sender}",
   "@sentVoiceMessage": {
     "type": "String",
     "placeholders": {
