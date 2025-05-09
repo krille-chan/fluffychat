@@ -617,7 +617,7 @@ goU(){return"Notifica l'usu\xe0ri\xef sobre activitat del giny de Jitsi."},
 gp8(){return"Ignora canvis en ACL de servidor"},
 gp9(){return"Ignora les notificacions per canvis en les regles d'acc\xe9s (ACL) de servidor."},
 pg(d){return"No es coneix la regla push '"+d+"'"},
-oo(d,e){return d+": \ud83c\udf99\ufe0f "+e},
+oo(d,e){return"\ud83c\udf99\ufe0f "+e+" - "+d},
 goB(){return"Si esborres aquesta opci\xf3 de notificaci\xf3 no ho podr\xe0s tornar a canviar."},
 goF(){return"M\xe9s"},
 gos(){return"Comparteix les claus amb..."},
@@ -637,5 +637,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Em,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"Em":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_205",e:"endPart",h:b})})($__dart_deferred_initializers__,"E88jVzttp/XDVhdBmbfNloBljZs=");
+a.eventLog.push({p:"main.dart.js_205",e:"endPart",h:b})})($__dart_deferred_initializers__,"bROJf607mjaDsHJi22th16zR3JY=");
 //# sourceMappingURL=main.dart.js_205.part.js.map

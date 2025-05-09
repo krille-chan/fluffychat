@@ -617,7 +617,7 @@ goU(){return"Informa \xe1 usuaria sobre eventos do widget Jitsi."},
 gp8(){return"Omite eventos do sevidor ACL"},
 gp9(){return"Omite notificaci\xf3n sobre eventos do servidor ACL."},
 pg(d){return"Regra push desco\xf1ecida '"+d+"'"},
-oo(d,e){return d+": \ud83c\udf99\ufe0f "+e},
+oo(d,e){return"\ud83c\udf99\ufe0f "+e+" - "+d},
 goB(){return"Se omites este axuste de notificaci\xf3ns non poder\xe1s desfacer a acci\xf3n."},
 goF(){return"M\xe1is"},
 gos(){return"Compartir chaves con\u2026"},
@@ -637,5 +637,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.EA,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"EA":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_248",e:"endPart",h:b})})($__dart_deferred_initializers__,"z38PHcC+ClIvHJL8CT0dWtNObPE=");
+a.eventLog.push({p:"main.dart.js_248",e:"endPart",h:b})})($__dart_deferred_initializers__,"AcNM5sJ7ZlpFL9L0NQVFmyPAR2I=");
 //# sourceMappingURL=main.dart.js_248.part.js.map

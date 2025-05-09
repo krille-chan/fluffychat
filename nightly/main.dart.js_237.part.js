@@ -617,7 +617,7 @@ goU(){return"Teavita kasutajat s\xfcndmustest Jitsi vidinas."},
 gp8(){return"Ligip\xe4\xe4su\xf5igused serveris"},
 gp9(){return"Peida teavitused ligip\xe4\xe4su\xf5iguste muutuste korral serveris."},
 pg(d){return"T\xf5uketeavituse tundmatu reegel '"+d+"'"},
-oo(d,e){return d+": \ud83c\udf99\ufe0f "+e},
+oo(d,e){return"\ud83c\udf99\ufe0f "+e+" - "+d},
 goB(){return"Kui sa kustutad selle teavituse seadistuse, siis seda tegevust tagasi v\xf5tta ei saa."},
 goF(){return"Lisateave"},
 gos(){return"Jaga v\xf5tmeid seadmega..."},
@@ -637,5 +637,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Et,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"Et":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_237",e:"endPart",h:b})})($__dart_deferred_initializers__,"iHlPNF28jA1UhEsr8Ru8ZiRE9yI=");
+a.eventLog.push({p:"main.dart.js_237",e:"endPart",h:b})})($__dart_deferred_initializers__,"90K2Z1Gh+V/GSJjI7ea5MmN4jlc=");
 //# sourceMappingURL=main.dart.js_237.part.js.map

@@ -617,7 +617,7 @@ goU(){return"Notifies the user about Jitsi widget events."},
 gp8(){return"Suppress Server ACL Events"},
 gp9(){return"Suppresses notifications for Server ACL events."},
 pg(d){return"Unknown push rule '"+d+"'"},
-oo(d,e){return d+": \ud83c\udf99\ufe0f "+e},
+oo(d,e){return"\ud83c\udf99\ufe0f "+e+" - "+d},
 goB(){return"If you delete this notification setting, this can not be undone."},
 goF(){return"Mehr"},
 gos(){return"Schl\xfcssel teilen mit..."},
@@ -638,5 +638,5 @@ x(A.Eo,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"Eo":{"aF":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_220",e:"endPart",h:b})})($__dart_deferred_initializers__,"oXvjHrTBQhJZWAy1BDR9bqQ05Q0=");
+a.eventLog.push({p:"main.dart.js_220",e:"endPart",h:b})})($__dart_deferred_initializers__,"dc3yN0hE8YLSd5yvbtB66AqGBek=");
 //# sourceMappingURL=main.dart.js_220.part.js.map

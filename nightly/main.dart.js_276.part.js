@@ -617,7 +617,7 @@ goU(){return"Pazi\u0146o lietot\u0101jam par Jitsi logr\u012bka notikumiem."},
 gp8(){return"Apspiest servera ACL notikumus"},
 gp9(){return"Apspie\u017e notikumus par servera ACL notikumiem."},
 pg(d){return"Nezin\u0101ma pa\u0161pieg\u0101des k\u0101rtula '"+d+"'"},
-oo(d,e){return d+": \ud83c\udf99\ufe0f "+e},
+oo(d,e){return"\ud83c\udf99\ufe0f "+e+" - "+d},
 goB(){return"Ja tiek izdz\u0113sts \u0161is pazi\u0146ojuma iestat\u012bjums, to nevar atsaukt."},
 goF(){return"Vair\u0101k"},
 gos(){return"Kop\u012bgot atsl\u0113gas ar..."},
@@ -637,5 +637,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.EN,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"EN":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_276",e:"endPart",h:b})})($__dart_deferred_initializers__,"t+mIWYGcNDV7hzpDB6sCLiJCZ2w=");
+a.eventLog.push({p:"main.dart.js_276",e:"endPart",h:b})})($__dart_deferred_initializers__,"1tjdjzh2y797ZFA7ONZlowVYzmw=");
 //# sourceMappingURL=main.dart.js_276.part.js.map

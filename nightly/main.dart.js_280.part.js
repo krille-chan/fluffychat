@@ -618,7 +618,7 @@ goU(){return"Powiadamia o komunikatach wid\u017cet\xf3w Jitsi."},
 gp8(){return"St\u0142um komunikaty o listach kontroli dost\u0119pu serwer\xf3w pokoj\xf3w"},
 gp9(){return"T\u0142umi powiadomienia o komunikatach o listach kontroli dost\u0119pu (ACL) serwer\xf3w pokoj\xf3w."},
 pg(d){return"Nieznana regu\u0142a: '"+d+"'"},
-oo(d,e){return d+": \ud83c\udf99\ufe0f "+e},
+oo(d,e){return"\ud83c\udf99\ufe0f "+e+" - "+d},
 goB(){return"Je\u015bli skasujesz to ustawienie powiadomie\u0144, nie b\u0119dzie si\u0119 da\u0142o tego cofn\u0105\u0107."},
 goF(){return"Wi\u0119cej"},
 gos(){return"Udost\u0119pnij klucze..."},
@@ -638,5 +638,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.EQ,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"EQ":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_280",e:"endPart",h:b})})($__dart_deferred_initializers__,"vxaV9tDwFmE7Tlgngu81OKrfZwQ=");
+a.eventLog.push({p:"main.dart.js_280",e:"endPart",h:b})})($__dart_deferred_initializers__,"87sLpiJmZxbTIWubLYIiiSOvOmU=");
 //# sourceMappingURL=main.dart.js_280.part.js.map

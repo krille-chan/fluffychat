@@ -617,7 +617,7 @@ goU(){return"Cuireann s\xe9 seo in i\xfal don \xfas\xe1ideoir faoi imeachta\xed 
 gp8(){return"Seachtaigh Freastala\xed ACL Imeachta\xed"},
 gp9(){return"Sochtann f\xf3gra\xed le haghaidh imeachta\xed Freastala\xed ACL."},
 pg(d){return"Riail bhr\xfa anaithnid '"+d+"'"},
-oo(d,e){return d+": \ud83c\udf99\ufe0f "+e},
+oo(d,e){return"\ud83c\udf99\ufe0f "+e+" - "+d},
 goB(){return"M\xe1 scriosann t\xfa an socr\xfa f\xf3gra seo, n\xed f\xe9idir \xe9 seo a cheal\xfa."},
 goF(){return"Tuilleadh"},
 gos(){return"Roinn na heochracha le..."},
@@ -638,5 +638,5 @@ x(A.Ez,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"Ez":{"aF":[]}}'))
 var y={a:"Cuir cosc ar an \xfas\xe1ideoir \xe1irithe \xf3n seomra seo"}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_247",e:"endPart",h:b})})($__dart_deferred_initializers__,"zYqaANcrzvWjFykwYJOX306+nuk=");
+a.eventLog.push({p:"main.dart.js_247",e:"endPart",h:b})})($__dart_deferred_initializers__,"PtI5kXCvxBAfYZ9GXy2Btz2XSTo=");
 //# sourceMappingURL=main.dart.js_247.part.js.map

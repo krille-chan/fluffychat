@@ -617,7 +617,7 @@ goU(){return"Stuur een melding naar de persoon over Jitsi widget gebeurtenissen.
 gp8(){return"Server ACL gebeurtenissen uitschakelen"},
 gp9(){return"Meldingen over server ACL gebeurtenissen uitschakelen."},
 pg(d){return"Onbekende notificatieregel '"+d+"'"},
-oo(d,e){return d+": \ud83c\udf99\ufe0f "+e},
+oo(d,e){return"\ud83c\udf99\ufe0f "+e+" - "+d},
 goB(){return"Als je deze melding-instelling verwijderd, kan dit niet ongedaan gemaakt worden."},
 goF(){return"Meer"},
 gos(){return"Deel sleutels met..."},
@@ -637,5 +637,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.EP,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"EP":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_279",e:"endPart",h:b})})($__dart_deferred_initializers__,"bDNGs3ZztIIQ/zA0cJngU3EYD3s=");
+a.eventLog.push({p:"main.dart.js_279",e:"endPart",h:b})})($__dart_deferred_initializers__,"Y2GWfnUSupqtciGlOmHeCkMEtuI=");
 //# sourceMappingURL=main.dart.js_279.part.js.map

@@ -617,7 +617,7 @@ goU(){return"Notifica al usuario sobre eventos del componente de Jitsi."},
 gp8(){return"Suprimir eventos de ACL del servidor"},
 gp9(){return"Suprime notificaciones de eventos de ACL del servidor."},
 pg(d){return"Regla de notificaci\xf3n desconocida '"+d+"'"},
-oo(d,e){return d+": \ud83c\udf99\ufe0f "+e},
+oo(d,e){return"\ud83c\udf99\ufe0f "+e+" - "+d},
 goB(){return"Si eliminas este ajuste de notificaci\xf3n, esto no se puede deshacer."},
 goF(){return"M\xe1s"},
 gos(){return"Compartir claves con..."},
@@ -637,5 +637,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Es,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"Es":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_232",e:"endPart",h:b})})($__dart_deferred_initializers__,"a8/tJI27NUIfpClxHaj/8Sf7mJs=");
+a.eventLog.push({p:"main.dart.js_232",e:"endPart",h:b})})($__dart_deferred_initializers__,"8UFUw40VoPnCoTnneZ/IygWNuWc=");
 //# sourceMappingURL=main.dart.js_232.part.js.map

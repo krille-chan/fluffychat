@@ -617,7 +617,7 @@ goU(){return"Memberi tahu pengguna tentang peristiwa widget Jitsi."},
 gp8(){return"Diamkan Peristiwa ACL Server"},
 gp9(){return"Mendiamkan notifikasi peristiwa ACL server."},
 pg(d){return"Aturan dorongan '"+d+"' tidak diketahui"},
-oo(d,e){return d+": \ud83c\udf99\ufe0f "+e},
+oo(d,e){return"\ud83c\udf99\ufe0f "+e+" - "+d},
 goB(){return"Jika kamu menghapus pengaturan notifikasi ini, maka tidak dapat diurungkan."},
 goF(){return"Tambahan"},
 gos(){return"Bagikan kunci dengan..."},
@@ -638,5 +638,5 @@ x(A.EG,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"EG":{"aF":[]}}'))
 var y={a:"Memberi tahu pengguna tentang pesan dalam ruangan satu ke satu."}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_263",e:"endPart",h:b})})($__dart_deferred_initializers__,"ESAUWSh3pfuiNA9BPJs2S/aqde0=");
+a.eventLog.push({p:"main.dart.js_263",e:"endPart",h:b})})($__dart_deferred_initializers__,"8HmztggdM106i6HqsCdHNYxiZ64=");
 //# sourceMappingURL=main.dart.js_263.part.js.map

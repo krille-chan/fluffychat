@@ -617,7 +617,7 @@ goU(){return"Notifica all'utente gli eventi del widget Jitsi."},
 gp8(){return"Silenziare gli eventi ACL del server"},
 gp9(){return"Silenzia le notifiche per gli eventi ACL del server."},
 pg(d){return"Regola push '"+d+"' sconosciuta"},
-oo(d,e){return d+": \ud83c\udf99\ufe0f "+e},
+oo(d,e){return"\ud83c\udf99\ufe0f "+e+" - "+d},
 goB(){return"Se si elimina questa impostazione di notifica, questo non pu\xf2 essere annullato."},
 goF(){return"Di pi\xf9"},
 gos(){return"Condividi le chiavi con..."},
@@ -637,5 +637,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.EI,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"EI":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_270",e:"endPart",h:b})})($__dart_deferred_initializers__,"YRSrU1EhK8Q6Rg2xOrE38alPxgw=");
+a.eventLog.push({p:"main.dart.js_270",e:"endPart",h:b})})($__dart_deferred_initializers__,"4TLzMkZgowiPT931eQnUPpMJR/0=");
 //# sourceMappingURL=main.dart.js_270.part.js.map

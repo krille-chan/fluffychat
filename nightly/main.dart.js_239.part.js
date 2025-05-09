@@ -617,7 +617,7 @@ goU(){return"Erabiltzailea jakinarazten du Jitsi widgetaren gertaerei buruz."},
 gp8(){return"Ezkutatu zerbitzariaren ACL gertaerak"},
 gp9(){return"Zerbitzariaren ACL gertaerak ezkutatzen ditu."},
 pg(d){return"Push arau ezezaguna '"+d+"'"},
-oo(d,e){return d+": \ud83c\udf99\ufe0f "+e},
+oo(d,e){return"\ud83c\udf99\ufe0f "+e+" - "+d},
 goB(){return"Jakinarazpen ezarpen hau ezabatzen baduzu, ezin da desegin."},
 goF(){return"Gehiago"},
 gos(){return"Partekatu gakoak\u2026"},
@@ -638,5 +638,5 @@ x(A.Eu,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"Eu":{"aF":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_239",e:"endPart",h:b})})($__dart_deferred_initializers__,"y3cfBg4wvLhpelZTpyvOXUxczL8=");
+a.eventLog.push({p:"main.dart.js_239",e:"endPart",h:b})})($__dart_deferred_initializers__,"XHbmiVtf1XHyaWdQAvcqPelus3w=");
 //# sourceMappingURL=main.dart.js_239.part.js.map

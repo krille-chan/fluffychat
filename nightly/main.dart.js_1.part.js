@@ -619,7 +619,7 @@ goU(){return"\u63d0\u9192\u7528\u6237 Jitsi \u5c0f\u90e8\u4ef6\u7684\u4e8b\u4ef6
 gp8(){return"\u9690\u85cf\u670d\u52a1\u5668 ACL \u4e8b\u4ef6"},
 gp9(){return"\u9690\u85cf\u670d\u52a1\u5668 ACL \u4e8b\u4ef6\u7684\u901a\u77e5\u3002"},
 pg(d){return"\u672a\u77e5\u63a8\u9001\u89c4\u5219 '"+d+"'"},
-oo(d,e){return d+": \ud83c\udf99\ufe0f "+e},
+oo(d,e){return"\ud83c\udf99\ufe0f "+e+" - "+d},
 goB(){return"\u5220\u9664\u8fd9\u4e2a\u901a\u77e5\u8bbe\u7f6e\u7684\u64cd\u4f5c\u65e0\u6cd5\u64a4\u9500\u3002"},
 goF(){return"\u66f4\u591a"},
 gos(){return"\u4e0e\u54ea\u4e9b\u8bbe\u5907\u5206\u4eab\u5bc6\u94a5\u2026"},
@@ -1217,5 +1217,5 @@ y(A.zI,C.aF)
 y(A.F4,A.zI)})()
 B.dV(b.typeUniverse,JSON.parse('{"zI":{"aF":[]},"F4":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_1",e:"endPart",h:b})})($__dart_deferred_initializers__,"fyQw357aaiiJAS08JoORZfuUPlI=");
+a.eventLog.push({p:"main.dart.js_1",e:"endPart",h:b})})($__dart_deferred_initializers__,"jq5hiAAcYrmm5Pp4QcLlYbHWp2k=");
 //# sourceMappingURL=main.dart.js_1.part.js.map
