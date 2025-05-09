@@ -430,8 +430,7 @@ class PangeaChatDetailsView extends StatelessWidget {
                                   room.isSpace ? room.leaveSpace : room.leave,
                             );
                             if (!resp.isError) {
-                              MatrixState.pangeaController.classController
-                                  .setActiveSpaceIdInChatListController(null);
+                              context.go("/rooms?spaceId=clear");
                             }
                           },
                         ),

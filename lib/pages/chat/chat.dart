@@ -358,14 +358,6 @@ class ChatController extends State<ChatPageWithRoom>
     WidgetsBinding.instance.addObserver(this);
     // #Pangea
     if (!mounted) return;
-    if (room.isSpace) {
-      ErrorHandler.logError(
-        e: "Space chat opened",
-        s: StackTrace.current,
-        data: {"roomId": roomId},
-      );
-      context.go("/rooms");
-    }
     Future.delayed(const Duration(seconds: 1), () async {
       if (!mounted) return;
       debugPrint(
@@ -548,7 +540,8 @@ class ChatController extends State<ChatPageWithRoom>
         var prevNumEvents = timeline!.events.length;
         await requestHistory();
         var numRequests = 0;
-        while (timeline!.events.length > prevNumEvents &&
+        while (timeline != null &&
+            timeline!.events.length > prevNumEvents &&
             visibleEvents.length < 10 &&
             numRequests <= 5) {
           prevNumEvents = timeline!.events.length;
@@ -694,6 +687,14 @@ class ChatController extends State<ChatPageWithRoom>
     super.didChangeDependencies();
     _router = GoRouter.of(context);
     _router.routeInformationProvider.addListener(_onRouteChanged);
+    if (room.isSpace && _router.state.path == ":roomid") {
+      ErrorHandler.logError(
+        e: "Space chat opened",
+        s: StackTrace.current,
+        data: {"roomId": roomId},
+      );
+      context.go("/rooms");
+    }
   }
 
   void _onRouteChanged() {

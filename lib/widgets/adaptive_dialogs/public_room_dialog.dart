@@ -26,7 +26,6 @@ class PublicRoomDialog extends StatefulWidget {
   final List<String>? via;
 
   const PublicRoomDialog({super.key, this.roomAlias, this.chunk, this.via});
-
   // #Pangea
   @override
   State<PublicRoomDialog> createState() => PublicRoomDialogState();
@@ -38,6 +37,20 @@ class PublicRoomDialogState extends State<PublicRoomDialog> {
   List<String>? get via => widget.via;
 
   final TextEditingController _codeController = TextEditingController();
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (chunk != null) {
+      final room = MatrixState.pangeaController.matrixState.client
+          .getRoomById(chunk!.roomId);
+
+      if (room != null && room.membership == Membership.join) {
+        context.go("/rooms?spaceId=${room.id}");
+        Navigator.of(context).maybePop();
+      }
+    }
+  }
 
   @override
   void dispose() {
@@ -95,6 +108,11 @@ class PublicRoomDialogState extends State<PublicRoomDialog> {
         !client.getRoomById(result.result!)!.isSpace) {
       context.go('/rooms/$roomId');
     }
+    // #Pangea
+    else {
+      context.go('/rooms?spaceId=$roomId');
+    }
+    // Pangea#
     return;
   }
 

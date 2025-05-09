@@ -7,7 +7,8 @@ import 'package:fluffychat/widgets/layouts/empty_page.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class JoinWithAlias extends StatefulWidget {
-  const JoinWithAlias({super.key});
+  final String? alias;
+  const JoinWithAlias({super.key, this.alias});
 
   @override
   State<JoinWithAlias> createState() => _JoinWithAliasState();
@@ -26,16 +27,13 @@ class _JoinWithAliasState extends State<JoinWithAlias> {
   }
 
   Future<void> _joinRoom() async {
-    final String? alias =
-        GoRouterState.of(context).uri.queryParameters['alias'];
-
-    if (alias == null || alias.isEmpty) {
+    if (widget.alias == null || widget.alias!.isEmpty) {
       context.go("/rooms");
       return;
     }
 
     await MatrixState.pangeaController.classController.joinCachedRoomAlias(
-      alias,
+      widget.alias!,
       context,
     );
   }

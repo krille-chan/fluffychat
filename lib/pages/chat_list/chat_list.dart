@@ -80,11 +80,19 @@ extension LocalizedActiveFilter on ActiveFilter {
 class ChatList extends StatefulWidget {
   static BuildContext? contextForVoip;
   final String? activeChat;
+  // #Pangea
+  final String? activeSpaceId;
+  final String? activeFilter;
+  // Pangea#
   final bool displayNavigationRail;
 
   const ChatList({
     super.key,
     required this.activeChat,
+    // #Pangea
+    this.activeSpaceId,
+    this.activeFilter,
+    // Pangea#
     this.displayNavigationRail = false,
   });
 
@@ -149,16 +157,9 @@ class ChatListController extends State<ChatList>
       future: () async {
         if (acceptInvite == OkCancelResult.ok) {
           await room.join();
-          if (room.isSpace) {
-            setActiveSpace(room.id);
-            context.go(
-              FluffyThemes.isColumnMode(context)
-                  ? "/rooms/${room.id}/details"
-                  : "/rooms",
-            );
-            return;
-          }
-          context.go("/rooms/${room.id}");
+          context.go(
+            room.isSpace ? "/rooms?spaceId=${room.id}" : "/rooms/${room.id}",
+          );
           return;
         }
         await room.leave();
@@ -472,7 +473,6 @@ class ChatListController extends State<ChatList>
   }
 
   //#Pangea
-  StreamSubscription? classStream;
   StreamSubscription? _invitedSpaceSubscription;
   StreamSubscription? _subscriptionStatusStream;
   StreamSubscription? _spaceChildSubscription;
@@ -507,20 +507,6 @@ class ChatListController extends State<ChatList>
     _checkTorBrowser();
 
     //#Pangea
-    classStream = MatrixState.pangeaController.classController.stateStream
-        .listen((event) {
-      if (!mounted || event is! Map<String, dynamic>) return;
-      if (event.containsKey("activeSpaceId")) {
-        final setSpaceID = event["activeSpaceId"];
-        setSpaceID != null ? setActiveSpace(setSpaceID) : clearActiveSpace();
-        if (setSpaceID != null) {
-          context.push("/rooms/$setSpaceID/details");
-        }
-      } else if (event.containsKey("activeFilter")) {
-        setActiveFilter(event["activeFilter"]);
-      }
-    });
-
     _invitedSpaceSubscription = MatrixState
         .pangeaController.matrixState.client.onSync.stream
         .where((event) => event.rooms?.invite != null)
@@ -635,6 +621,15 @@ class ChatListController extends State<ChatList>
         );
       }
     });
+
+    _activeSpaceId =
+        widget.activeSpaceId == 'clear' ? null : widget.activeSpaceId;
+
+    if (widget.activeFilter == 'groups') {
+      activeFilter = AppConfig.separateChatTypes
+          ? ActiveFilter.groups
+          : ActiveFilter.allChats;
+    }
     // Pangea#
 
     super.initState();
@@ -644,15 +639,21 @@ class ChatListController extends State<ChatList>
   @override
   void didUpdateWidget(ChatList oldWidget) {
     super.didUpdateWidget(oldWidget);
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      final params = GoRouterState.of(context).uri.queryParameters;
-      if (!params.containsKey("filter") || params['filter'] != 'groups') return;
+    if (widget.activeFilter != oldWidget.activeFilter &&
+        widget.activeFilter == 'groups') {
       setActiveFilter(
         AppConfig.separateChatTypes
             ? ActiveFilter.groups
             : ActiveFilter.allChats,
       );
-    });
+    }
+
+    if (widget.activeSpaceId != oldWidget.activeSpaceId &&
+        widget.activeSpaceId != null) {
+      widget.activeSpaceId == 'clear'
+          ? clearActiveSpace()
+          : setActiveSpace(widget.activeSpaceId!);
+    }
   }
   // Pangea#
 
@@ -662,7 +663,6 @@ class ChatListController extends State<ChatList>
     _intentFileStreamSubscription?.cancel();
     _intentUriStreamSubscription?.cancel();
     //#Pangea
-    classStream?.cancel();
     _invitedSpaceSubscription?.cancel();
     _subscriptionStatusStream?.cancel();
     _spaceChildSubscription?.cancel();

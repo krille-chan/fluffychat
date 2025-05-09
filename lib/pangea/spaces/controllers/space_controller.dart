@@ -12,7 +12,6 @@ import 'package:get_storage/get_storage.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pangea/common/constants/local.key.dart';
 import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
@@ -32,14 +31,6 @@ class ClassController extends BaseController {
 
   ClassController(PangeaController pangeaController) : super() {
     _pangeaController = pangeaController;
-  }
-
-  void setActiveFilterInChatListController(ActiveFilter filter) {
-    setState({"activeFilter": filter});
-  }
-
-  void setActiveSpaceIdInChatListController(String? classId) {
-    setState({"activeSpaceId": classId});
   }
 
   Future<void> joinCachedSpaceCode(BuildContext context) async {
@@ -83,7 +74,7 @@ class ClassController extends BaseController {
     Room? room = client.getRoomByAlias(alias) ?? client.getRoomById(alias);
     if (room != null) {
       room.isSpace
-          ? setActiveSpaceIdInChatListController(room.id)
+          ? context.go("/rooms?spaceId=${room.id}")
           : context.go("/rooms/${room.id}");
       return;
     }
@@ -100,7 +91,7 @@ class ClassController extends BaseController {
     }
 
     room.isSpace
-        ? setActiveSpaceIdInChatListController(room.id)
+        ? context.go("/rooms?spaceId=${room.id}")
         : context.go("/rooms/${room.id}");
   }
 
@@ -141,7 +132,7 @@ class ClassController extends BaseController {
             );
 
         if (alreadyJoined.isNotEmpty || inFoundClass) {
-          setActiveSpaceIdInChatListController(alreadyJoined.first);
+          context.go("/rooms?spaceId=${alreadyJoined.first}");
           return null;
         }
 
@@ -201,7 +192,7 @@ class ClassController extends BaseController {
         await room.requestParticipants();
       }
 
-      setActiveSpaceIdInChatListController(spaceID.result!);
+      context.go("/rooms?spaceId=${room.id}");
       return spaceID;
     } catch (e, s) {
       ErrorHandler.logError(
