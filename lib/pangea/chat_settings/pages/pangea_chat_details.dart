@@ -104,6 +104,7 @@ class PangeaChatDetailsView extends StatelessWidget {
               controller: controller,
               room: room,
             ),
+            centerTitle: true,
             backgroundColor: theme.appBarTheme.backgroundColor,
           ),
           body: MaxWidthBody(

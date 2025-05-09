@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/visibility.dart' as visible;
 
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pages/chat_details/chat_details.dart';
@@ -20,9 +21,12 @@ class ClassNameHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton.icon(
-      onPressed:
-          room.canSendDefaultStates ? controller.setDisplaynameAction : null,
-      onHover: room.canSendDefaultStates ? controller.hoverEditNameIcon : null,
+      onPressed: !room.isDirectChat && room.canSendDefaultStates
+          ? controller.setDisplaynameAction
+          : null,
+      onHover: !room.isDirectChat && room.canSendDefaultStates
+          ? controller.hoverEditNameIcon
+          : null,
       style: TextButton.styleFrom(
         padding: const EdgeInsets.symmetric(horizontal: 25),
       ),
@@ -33,12 +37,20 @@ class ClassNameHeader extends StatelessWidget {
           color: Theme.of(context).colorScheme.onSurface,
         ),
       ),
-      label: room.nameAndRoomTypeIcon(
-        TextStyle(
-          fontSize: 20,
-          color: Theme.of(context).textTheme.bodyLarge!.color,
-        ),
-      ),
+      label: room.isDirectChat
+          ? Text(
+              L10n.of(context).chatDetails,
+              style: TextStyle(
+                fontSize: 20,
+                color: Theme.of(context).textTheme.bodyLarge!.color,
+              ),
+            )
+          : room.nameAndRoomTypeIcon(
+              TextStyle(
+                fontSize: 20,
+                color: Theme.of(context).textTheme.bodyLarge!.color,
+              ),
+            ),
       // icon: Text(
       //   room.getLocalizedDisplayname(
       //     MatrixLocals(L10n.of(context)),
