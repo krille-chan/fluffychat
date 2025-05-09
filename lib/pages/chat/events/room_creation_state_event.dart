@@ -61,63 +61,69 @@ class RoomCreationStateEventState extends State<RoomCreationStateEvent> {
     final roomName = event.room.getLocalizedDisplayname(matrixLocals);
     return Padding(
       padding: const EdgeInsets.only(bottom: 32.0),
-      child: Center(
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 256),
-          child: Material(
-            color: theme.colorScheme.surfaceContainer,
-            borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Avatar(
-                    mxContent: event.room.avatar,
-                    name: roomName,
-                    size: Avatar.defaultSize * 2,
-                    // #Pangea
-                    userId: event.room.directChatMatrixID,
-                    useRive: true,
-                    // Pangea#
-                  ),
-                  Text(
-                    roomName,
-                    style: theme.textTheme.bodyLarge,
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    '${event.originServerTs.localizedTime(context)} | ${l10n.countParticipants((event.room.summary.mJoinedMemberCount ?? 1) + (event.room.summary.mInvitedMemberCount ?? 0))}',
-                    style: theme.textTheme.labelSmall,
-                    textAlign: TextAlign.center,
-                  ),
-                  // #Pangea
-                  InstructionsInlineTooltip(
-                    instructionsEnum: InstructionsEnum.clickMessage,
-                    padding: const EdgeInsets.only(
-                      left: 16.0,
-                      right: 16.0,
-                      top: 16.0,
+      // #Pangea
+      // child: Center(
+      //  child: ConstrainedBox(
+      child: Column(
+        children: [
+          ConstrainedBox(
+            // Pangea#
+            constraints: const BoxConstraints(maxWidth: 256),
+            child: Material(
+              color: theme.colorScheme.surfaceContainer,
+              borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Avatar(
+                      mxContent: event.room.avatar,
+                      name: roomName,
+                      size: Avatar.defaultSize * 2,
+                      // #Pangea
+                      userId: event.room.directChatMatrixID,
+                      useRive: true,
+                      // Pangea#
                     ),
-                    onClose: () => setState(() {}),
-                  ),
-                  if (_members <= 1 &&
-                      InstructionsEnum.clickMessage.isToggledOff)
-                    const InstructionsInlineTooltip(
-                      instructionsEnum: InstructionsEnum.emptyChatWarning,
-                      padding: EdgeInsets.only(
-                        left: 16.0,
-                        right: 16.0,
-                        top: 16.0,
-                      ),
+                    Text(
+                      roomName,
+                      style: theme.textTheme.bodyLarge,
+                      textAlign: TextAlign.center,
                     ),
-                  // Pangea#
-                ],
+                    const SizedBox(height: 8),
+                    Text(
+                      '${event.originServerTs.localizedTime(context)} | ${l10n.countParticipants((event.room.summary.mJoinedMemberCount ?? 1) + (event.room.summary.mInvitedMemberCount ?? 0))}',
+                      style: theme.textTheme.labelSmall,
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
-        ),
+          // #Pangea
+          const SizedBox(height: 16.0),
+          InstructionsInlineTooltip(
+            instructionsEnum: InstructionsEnum.clickMessage,
+            padding: const EdgeInsets.only(
+              left: 16.0,
+              right: 16.0,
+              top: 16.0,
+            ),
+            onClose: () => setState(() {}),
+          ),
+          if (_members <= 1 && InstructionsEnum.clickMessage.isToggledOff)
+            const InstructionsInlineTooltip(
+              instructionsEnum: InstructionsEnum.emptyChatWarning,
+              padding: EdgeInsets.only(
+                left: 16.0,
+                right: 16.0,
+                top: 16.0,
+              ),
+            ),
+          // Pangea#
+        ],
       ),
     );
   }
