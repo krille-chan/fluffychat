@@ -41,9 +41,6 @@ class ParticipantListItem extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
             ),
           ),
-          // #Pangea
-          LevelDisplayName(userId: user.id),
-          // Pangea#
           if (permissionBatch.isNotEmpty)
             Container(
               padding: const EdgeInsets.symmetric(
@@ -88,11 +85,15 @@ class ParticipantListItem extends StatelessWidget {
                 ),
         ],
       ),
-      subtitle: Text(
-        user.id,
-        maxLines: 1,
-        overflow: TextOverflow.ellipsis,
-      ),
+      subtitle:
+          // #Pangea
+          LevelDisplayName(userId: user.id),
+      // Text(
+      //   user.id,
+      //   maxLines: 1,
+      //   overflow: TextOverflow.ellipsis,
+      // ),
+      // Pangea#
       leading: Opacity(
         opacity: user.membership == Membership.join ? 1 : 0.5,
         child: Avatar(

@@ -40,8 +40,8 @@ class LevelDisplayNameState extends State<LevelDisplayName> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(
-        horizontal: 8.0,
-        vertical: 4.0,
+        horizontal: 0,
+        vertical: 2.0,
       ),
       child: Row(
         children: <Widget>[

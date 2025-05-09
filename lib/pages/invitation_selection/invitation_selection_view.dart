@@ -464,15 +464,17 @@ class _InviteContactListTile extends StatelessWidget {
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
       ),
-      subtitle: Text(
-        profile.userId,
-        maxLines: 1,
-        overflow: TextOverflow.ellipsis,
-        style: TextStyle(
-          color: theme.colorScheme.secondary,
-        ),
-      ),
-      // #Pangea
+      subtitle:
+          // #Pangea
+          LevelDisplayName(userId: profile.userId),
+      // Text(
+      //   profile.userId,
+      //   maxLines: 1,
+      //   overflow: TextOverflow.ellipsis,
+      //   style: TextStyle(
+      //     color: theme.colorScheme.secondary,
+      //   ),
+      // ),
       // trailing: TextButton.icon(
       //   onPressed: isMember ? null : onTap,
       //   label: Text(isMember ? l10n.participant : l10n.invite),
@@ -481,7 +483,6 @@ class _InviteContactListTile extends StatelessWidget {
       trailing: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          LevelDisplayName(userId: profile.userId),
           if (membershipCopy() != null)
             Container(
               padding: const EdgeInsets.all(4),
