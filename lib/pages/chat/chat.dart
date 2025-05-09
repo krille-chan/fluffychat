@@ -327,7 +327,10 @@ class ChatController extends State<ChatPageWithRoom>
     if (!HardwareKeyboard.instance.isShiftPressed &&
         evt.logicalKey.keyLabel == 'Enter') {
       if (evt is KeyDownEvent) {
-        send();
+        // #Pangea
+        // send();
+        choreographer.send(context);
+        // Pangea#
       }
       return KeyEventResult.handled;
     } else {
