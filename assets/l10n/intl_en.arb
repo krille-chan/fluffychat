@@ -3212,9 +3212,11 @@
   "@sentVoiceMessage": {
     "type": "String",
     "placeholders": {
-      "rule": {
-        "sender": "String",
-        "duration": "String"
+      "sender": {
+        "type": "String"
+      },
+      "duration": {
+        "type": "String"
       }
     }
   },
