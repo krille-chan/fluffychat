@@ -13,6 +13,7 @@ import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../../config/app_config.dart';
+import '../../../utils/event_checkbox_extension.dart';
 import '../../../utils/platform_infos.dart';
 import '../../../utils/url_launcher.dart';
 import '../../bootstrap/bootstrap_dialog.dart';
@@ -204,6 +205,11 @@ class MessageContent extends StatelessWidget {
                     decorationColor: linkColor,
                   ),
                   onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
+                  eventId: event.eventId,
+                  checkboxCheckedEvents: event.aggregatedEvents(
+                    timeline,
+                    EventCheckboxRoomExtension.relationshipType,
+                  ),
                 ),
               );
             }

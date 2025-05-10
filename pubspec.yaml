@@ -61,7 +61,10 @@ dependencies:
   just_audio: ^0.9.39
   latlong2: ^0.9.1
   linkify: ^5.0.0
-  matrix: ^0.40.0
+  matrix:
+    git:
+      url: https://github.com/famedly/matrix-dart-sdk.git
+      ref: krille/add-markdown-checkboxes
   mime: ^1.0.6
   native_imaging: ^0.2.0
   opus_caf_converter_dart: ^1.0.1

@@ -1150,10 +1150,11 @@ packages:
   matrix:
     dependency: "direct main"
     description:
-      name: matrix
-      sha256: "7d15fdbc760be7e40c58bb65e03baa8241b1e31db2bc67dab61883aabc083a85"
-      url: "https://pub.dev"
-    source: hosted
+      path: "."
+      ref: "krille/add-markdown-checkboxes"
+      resolved-ref: f3bb654ac2cda19bdd8a35fb46846018acd01a89
+      url: "https://github.com/famedly/matrix-dart-sdk.git"
+    source: git
     version: "0.40.0"
   meta:
     dependency: transitive
