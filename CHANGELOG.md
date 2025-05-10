@@ -1,3 +1,19 @@
+## v1.26.1
+
+Updates the Matrix Dart SDK to fix multiple issues where messages can be missing in the timeline.
+
+- feat: Reenable archive feature after various fixes landed in sdk (krille-chan)
+- build: Update matrix dart sdk to 0.40.0 (Christian Kußowski)
+- chore: Adjust new chat page design (krille-chan)
+- chore: Display count of invited in members page (krille-chan)
+- chore: Do not load timeline while sync processing (Krille)
+- chore: Do not store event from push in database (Krille)
+- chore: Only show joined members in members list by default (Krille)
+- chore: Remove matrix notification workflow (Krille)
+- fix(docs): escape tag (Sophie L)
+- fix: Crash when opening settings in column mode from popup menu (krille-chan)
+- refactor: Display thread messages like replies as a thread fallback (Krille)
+
 ## v1.26.0
 
 - feat: Add advanced configuration page (Krille)
