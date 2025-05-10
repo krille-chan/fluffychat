@@ -39384,7 +39384,8 @@ record_windows
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 --------------------------------------------------------------------------------
-record_darwin
+record_ios
+record_macos
 
 // Copyright 2022 openapi4j authors. All rights reserved.
 //
