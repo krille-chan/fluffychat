@@ -626,10 +626,19 @@ class ChatController extends State<ChatPageWithRoom>
     );
     if (result == null) return;
     final audioFile = XFile(result.path);
+
+    final bytesResult = await showFutureLoadingDialog(
+      context: context,
+      future: audioFile.readAsBytes,
+    );
+    final bytes = bytesResult.result;
+    if (bytes == null) return;
+
     final file = MatrixAudioFile(
-      bytes: await audioFile.readAsBytes(),
+      bytes: bytes,
       name: result.fileName ?? audioFile.path,
     );
+
     await room.sendFileEvent(
       file,
       inReplyTo: replyEvent,
