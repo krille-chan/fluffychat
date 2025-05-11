@@ -73,7 +73,7 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
       setState(() {
         _chewieController = ChewieController(
           videoPlayerController: videoPlayerController,
-          useRootNavigator: !kIsWeb,
+          showControlsOnInitialize: false,
           autoPlay: true,
           autoInitialize: true,
           looping: true,

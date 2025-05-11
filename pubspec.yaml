@@ -14,7 +14,7 @@ dependencies:
   async: ^2.11.0
   badges: ^3.1.2
   blurhash_dart: ^1.2.1
-  chewie: ^1.11.0
+  chewie: ^1.11.3
   collection: ^1.18.0
   cross_file: ^0.3.4+2
   cupertino_icons: any
@@ -93,7 +93,7 @@ dependencies:
   universal_html: ^2.2.4
   url_launcher: ^6.2.5
   video_compress: ^3.1.4
-  video_player: ^2.9.2
+  video_player: ^2.9.5
   wakelock_plus: ^1.2.2
   webrtc_interface: ^1.0.13
 
