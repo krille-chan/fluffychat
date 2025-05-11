@@ -68,49 +68,52 @@ class EventVideoPlayer extends StatelessWidget {
             child: SizedBox(
               width: width,
               height: height,
-              child: Stack(
-                children: [
-                  if (event.hasThumbnail)
-                    MxcImage(
-                      event: event,
-                      isThumbnail: true,
-                      width: width,
-                      height: height,
-                      fit: BoxFit.cover,
-                      placeholder: (context) => BlurHash(
+              child: Hero(
+                tag: event.eventId,
+                child: Stack(
+                  children: [
+                    if (event.hasThumbnail)
+                      MxcImage(
+                        event: event,
+                        isThumbnail: true,
+                        width: width,
+                        height: height,
+                        fit: BoxFit.cover,
+                        placeholder: (context) => BlurHash(
+                          blurhash: blurHash,
+                          width: width,
+                          height: height,
+                          fit: BoxFit.cover,
+                        ),
+                      )
+                    else
+                      BlurHash(
                         blurhash: blurHash,
                         width: width,
                         height: height,
                         fit: BoxFit.cover,
                       ),
-                    )
-                  else
-                    BlurHash(
-                      blurhash: blurHash,
-                      width: width,
-                      height: height,
-                      fit: BoxFit.cover,
-                    ),
-                  Center(
-                    child: CircleAvatar(
-                      child: supportsVideoPlayer
-                          ? const Icon(Icons.play_arrow_outlined)
-                          : const Icon(Icons.file_download_outlined),
-                    ),
-                  ),
-                  if (duration != null)
-                    Positioned(
-                      bottom: 8,
-                      left: 16,
-                      child: Text(
-                        '${duration.inMinutes.toString().padLeft(2, '0')}:${(duration.inSeconds % 60).toString().padLeft(2, '0')}',
-                        style: TextStyle(
-                          color: Colors.white,
-                          backgroundColor: Colors.black.withAlpha(32),
-                        ),
+                    Center(
+                      child: CircleAvatar(
+                        child: supportsVideoPlayer
+                            ? const Icon(Icons.play_arrow_outlined)
+                            : const Icon(Icons.file_download_outlined),
                       ),
                     ),
-                ],
+                    if (duration != null)
+                      Positioned(
+                        bottom: 8,
+                        left: 16,
+                        child: Text(
+                          '${duration.inMinutes.toString().padLeft(2, '0')}:${(duration.inSeconds % 60).toString().padLeft(2, '0')}',
+                          style: TextStyle(
+                            color: Colors.white,
+                            backgroundColor: Colors.black.withAlpha(32),
+                          ),
+                        ),
+                      ),
+                  ],
+                ),
               ),
             ),
           ),

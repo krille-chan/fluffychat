@@ -70,13 +70,15 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
       await videoPlayerController.initialize();
 
       // Create a ChewieController on top.
-      _chewieController = ChewieController(
-        videoPlayerController: videoPlayerController,
-        useRootNavigator: !kIsWeb,
-        autoPlay: true,
-        autoInitialize: true,
-        looping: true,
-      );
+      setState(() {
+        _chewieController = ChewieController(
+          videoPlayerController: videoPlayerController,
+          useRootNavigator: !kIsWeb,
+          autoPlay: true,
+          autoInitialize: true,
+          looping: true,
+        );
+      });
     } on IOException catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -117,33 +119,46 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
     final blurHash = (widget.event.infoMap as Map<String, dynamic>)
             .tryGet<String>('xyz.amorgan.blurhash') ??
         fallbackBlurHash;
-
-    const width = 300.0;
+    final infoMap = widget.event.content.tryGetMap<String, Object?>('info');
+    final videoWidth = infoMap?.tryGet<int>('w') ?? 400;
+    final videoHeight = infoMap?.tryGet<int>('h') ?? 300;
+    final height = MediaQuery.of(context).size.height - 52;
+    final width = videoWidth * (height / videoHeight);
 
     final chewieController = _chewieController;
     return chewieController != null
-        ? Center(child: Chewie(controller: chewieController))
+        ? Center(
+            child: SizedBox(
+              width: width,
+              height: height,
+              child: Chewie(controller: chewieController),
+            ),
+          )
         : Stack(
             children: [
               Center(
-                child: hasThumbnail
-                    ? MxcImage(
-                        event: widget.event,
-                        isThumbnail: true,
-                        width: width,
-                        fit: BoxFit.cover,
-                        placeholder: (context) => BlurHash(
+                child: Hero(
+                  tag: widget.event.eventId,
+                  child: hasThumbnail
+                      ? MxcImage(
+                          event: widget.event,
+                          isThumbnail: true,
+                          width: width,
+                          height: height,
+                          fit: BoxFit.cover,
+                          placeholder: (context) => BlurHash(
+                            blurhash: blurHash,
+                            width: width,
+                            height: height,
+                            fit: BoxFit.cover,
+                          ),
+                        )
+                      : BlurHash(
                           blurhash: blurHash,
                           width: width,
-                          height: width,
-                          fit: BoxFit.cover,
+                          height: height,
                         ),
-                      )
-                    : BlurHash(
-                        blurhash: blurHash,
-                        width: width,
-                        height: width,
-                      ),
+                ),
               ),
               const Center(child: CircularProgressIndicator.adaptive()),
             ],
