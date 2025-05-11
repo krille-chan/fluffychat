@@ -168,7 +168,12 @@ class MessageContent extends StatelessWidget {
               linkColor: linkColor,
             );
           case MessageTypes.Video:
-            return EventVideoPlayer(event, textColor: textColor);
+            return EventVideoPlayer(
+              event,
+              textColor: textColor,
+              linkColor: linkColor,
+              timeline: timeline,
+            );
           case MessageTypes.File:
             return MessageDownloadContent(
               event,

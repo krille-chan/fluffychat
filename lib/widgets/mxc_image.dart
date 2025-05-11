@@ -96,7 +96,7 @@ class _MxcImageState extends State<MxcImage> {
       final data = await event.downloadAndDecryptAttachment(
         getThumbnail: widget.isThumbnail,
       );
-      if (data.detectFileType is MatrixImageFile) {
+      if (data.detectFileType is MatrixImageFile || widget.isThumbnail) {
         if (!mounted) return;
         setState(() {
           _imageData = data.bytes;
