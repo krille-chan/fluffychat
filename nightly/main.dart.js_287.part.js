@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_287",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cz8(){return new A.EZ(B.dg("sl"))},
-EZ:function EZ(d){this.a=d}}
+cz9(){return new A.F_(B.dg("sl"))},
+F_:function F_(d){this.a=d}}
 B=c[0]
 C=c[52]
 A=a.updateHolder(c[43],A)
-A.EZ.prototype={
+A.F_.prototype={
 gnv(){return"false"},
 gjG(){return"Ponovite geslo"},
 glR(){return"Not an image file."},
@@ -635,8 +635,8 @@ gpl(){return"You have knocked"},
 gpi(){return"Please wait now, until someone from the room invites you."},
 C(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.EZ,C.aG)})()
-B.dX(b.typeUniverse,JSON.parse('{"EZ":{"aG":[]}}'))};
+y(A.F_,C.aG)})()
+B.dX(b.typeUniverse,JSON.parse('{"F_":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_287",e:"endPart",h:b})})($__dart_deferred_initializers__,"q3PN7k4iKO5BBrJ6mXc1obO1Iws=");
+a.eventLog.push({p:"main.dart.js_287",e:"endPart",h:b})})($__dart_deferred_initializers__,"80Hr3UizTT7mOmJUdA77jK2SnhA=");
 //# sourceMappingURL=main.dart.js_287.part.js.map

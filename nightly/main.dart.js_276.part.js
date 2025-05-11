@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_276",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cyZ(){return new A.EQ(B.dg("lv"))},
-EQ:function EQ(d){this.a=d}}
+cz_(){return new A.ER(B.dg("lv"))},
+ER:function ER(d){this.a=d}}
 B=c[0]
 C=c[52]
 A=a.updateHolder(c[36],A)
-A.EQ.prototype={
+A.ER.prototype={
 gnv(){return"n\u0113"},
 gjG(){return"Atk\u0101rtot paroli"},
 glR(){return"Nav att\u0113la datne."},
@@ -635,8 +635,8 @@ gpl(){return"You have knocked"},
 gpi(){return"Please wait now, until someone from the room invites you."},
 C(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.EQ,C.aG)})()
-B.dX(b.typeUniverse,JSON.parse('{"EQ":{"aG":[]}}'))};
+y(A.ER,C.aG)})()
+B.dX(b.typeUniverse,JSON.parse('{"ER":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_276",e:"endPart",h:b})})($__dart_deferred_initializers__,"Z1G97pbj55zq0W1dCuexxI6zFp0=");
+a.eventLog.push({p:"main.dart.js_276",e:"endPart",h:b})})($__dart_deferred_initializers__,"RjPYVZgwbtlFt8NI7tSeFE1XyLQ=");
 //# sourceMappingURL=main.dart.js_276.part.js.map

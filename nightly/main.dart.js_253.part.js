@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_253",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cyO(){return new A.EF(B.dg("hi"))},
-EF:function EF(d){this.a=d}}
+cyP(){return new A.EG(B.dg("hi"))},
+EG:function EG(d){this.a=d}}
 B=c[0]
 C=c[52]
 A=a.updateHolder(c[25],A)
-A.EF.prototype={
+A.EG.prototype={
 gnv(){return"false"},
 gjG(){return"\u092a\u093e\u0938\u0935\u0930\u094d\u0921 \u0926\u094b\u0939\u0930\u093e\u090f\u0902"},
 glR(){return"\u0915\u094b\u0908 \u091b\u0935\u093f \u092b\u093c\u093e\u0907\u0932 \u0928\u0939\u0940\u0902\u0964"},
@@ -635,8 +635,8 @@ gpl(){return"You have knocked"},
 gpi(){return"Please wait now, until someone from the room invites you."},
 C(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.EF,C.aG)})()
-B.dX(b.typeUniverse,JSON.parse('{"EF":{"aG":[]}}'))};
+y(A.EG,C.aG)})()
+B.dX(b.typeUniverse,JSON.parse('{"EG":{"aG":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_253",e:"endPart",h:b})})($__dart_deferred_initializers__,"K1fN4znDBceZtBcJhrV2M6Cu8ZE=");
+a.eventLog.push({p:"main.dart.js_253",e:"endPart",h:b})})($__dart_deferred_initializers__,"8tTQnIP7BohfMoRcZ15xAtAMl78=");
 //# sourceMappingURL=main.dart.js_253.part.js.map

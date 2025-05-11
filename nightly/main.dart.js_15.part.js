@@ -2,16 +2,16 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_15",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cz2(d){return new A.zL(B.dg(d))},
-cz3(){return new A.EU(B.dg("pt_BR"))},
-cz4(){return new A.EV(B.dg("pt_PT"))},
-zL:function zL(d){this.a=d},
-EU:function EU(d){this.a=d},
-EV:function EV(d){this.a=d}},C
+cz3(d){return new A.zN(B.dg(d))},
+cz4(){return new A.EV(B.dg("pt_BR"))},
+cz5(){return new A.EW(B.dg("pt_PT"))},
+zN:function zN(d){this.a=d},
+EV:function EV(d){this.a=d},
+EW:function EW(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[4],A)
 C=c[52]
-A.zL.prototype={
+A.zN.prototype={
 gnv(){return"false"},
 gjG(){return"Repeat password"},
 glR(){return"Not an image file."},
@@ -638,7 +638,7 @@ goz(){return"Approve"},
 gpl(){return"You have knocked"},
 gpi(){return"Please wait now, until someone from the room invites you."},
 C(d,e){return this.gbc(this).$1(e)}}
-A.EU.prototype={
+A.EV.prototype={
 gjG(){return"Repita a senha"},
 glR(){return"N\xe3o \xe9 uma imagem."},
 gbc(d){return"Remover"},
@@ -1129,7 +1129,7 @@ mn(d){return"Nesse momento, h\xe1 "+d+" usu\xe1rios bloqueados."},
 gmk(){return"Restrito"},
 glC(){return"Bater na porta restrito"},
 C(d,e){return this.gbc(this).$1(e)}}
-A.EV.prototype={
+A.EW.prototype={
 gjG(){return"Repete a palavra-passe"},
 gbc(d){return"Remover"},
 gez(){return"Acerca de"},
@@ -1377,10 +1377,10 @@ eY(d){return d+" enviou um autocolante"},
 fY(d){return d+" enviou um v\xeddeo"},
 C(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit,w=a.inheritMany
-x(A.zL,C.aG)
-w(A.zL,[A.EU,A.EV])})()
-B.dX(b.typeUniverse,JSON.parse('{"zL":{"aG":[]},"EU":{"aG":[]},"EV":{"aG":[]}}'))
+x(A.zN,C.aG)
+w(A.zN,[A.EV,A.EW])})()
+B.dX(b.typeUniverse,JSON.parse('{"zN":{"aG":[]},"EV":{"aG":[]},"EW":{"aG":[]}}'))
 var y={d:" alterou a visibilidade do hist\xf3rico para: "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_15",e:"endPart",h:b})})($__dart_deferred_initializers__,"veNn+dHFXZQx37QEZI0zXkrGVLU=");
+a.eventLog.push({p:"main.dart.js_15",e:"endPart",h:b})})($__dart_deferred_initializers__,"Z+nP/SnG6FAqQU62mw21VeLZvcM=");
 //# sourceMappingURL=main.dart.js_15.part.js.map

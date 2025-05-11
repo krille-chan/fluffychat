@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_239",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cyG(){return new A.Ex(B.dg("eu"))},
-Ex:function Ex(d){this.a=d}}
+cyH(){return new A.Ey(B.dg("eu"))},
+Ey:function Ey(d){this.a=d}}
 B=c[0]
 C=c[52]
 A=a.updateHolder(c[17],A)
-A.Ex.prototype={
+A.Ey.prototype={
 gnv(){return"false"},
 gjG(){return"Idatzi berriro pasahitza"},
 glR(){return"Ez da irudi-fitxategia."},
@@ -635,9 +635,9 @@ gpl(){return"You have knocked"},
 gpi(){return"Please wait now, until someone from the room invites you."},
 C(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.Ex,C.aG)})()
-B.dX(b.typeUniverse,JSON.parse('{"Ex":{"aG":[]}}'))
+x(A.Ey,C.aG)})()
+B.dX(b.typeUniverse,JSON.parse('{"Ey":{"aG":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_239",e:"endPart",h:b})})($__dart_deferred_initializers__,"SIl7xqRN7HyhNKHzusmcbZ2sIcY=");
+a.eventLog.push({p:"main.dart.js_239",e:"endPart",h:b})})($__dart_deferred_initializers__,"fvlR1RK7tps5+INusaF7CNzTKVc=");
 //# sourceMappingURL=main.dart.js_239.part.js.map
