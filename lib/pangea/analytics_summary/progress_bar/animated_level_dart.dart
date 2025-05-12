@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import 'package:fluffychat/config/app_config.dart';
@@ -27,6 +29,9 @@ class AnimatedLevelBarState extends State<AnimatedLevelBar>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
 
+  double get _beginWidth => max(20, widget.beginWidth);
+  double get _endWidth => max(20, widget.endWidth);
+
   /// Whether the animation has run for the first time during initState. Don't
   /// want the animation to run when the widget mounts, only when points are gained.
   bool _init = true;
@@ -45,7 +50,7 @@ class AnimatedLevelBarState extends State<AnimatedLevelBar>
   @override
   void didUpdateWidget(covariant AnimatedLevelBar oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.endWidth != widget.endWidth) {
+    if (max(20, oldWidget.endWidth) != max(20, widget.endWidth)) {
       _controller.reset();
       _controller.forward();
     }
@@ -63,15 +68,15 @@ class AnimatedLevelBarState extends State<AnimatedLevelBar>
     // would remove the animation for first points gained. It would remove the need for a flag though.
     if (_init) {
       return Tween<double>(
-        begin: widget.endWidth,
-        end: widget.endWidth,
+        begin: _endWidth,
+        end: _endWidth,
       ).animate(_controller);
     }
 
     // animate the width of the bar
     return Tween<double>(
-      begin: widget.beginWidth,
-      end: widget.endWidth,
+      begin: _beginWidth,
+      end: _endWidth,
     ).animate(_controller);
   }
 
