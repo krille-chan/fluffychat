@@ -9,7 +9,6 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/bot/utils/bot_style.dart';
 import 'package:fluffychat/pangea/choreographer/enums/span_data_type.dart';
 import 'package:fluffychat/pangea/choreographer/models/span_data.dart';
-import 'package:fluffychat/pangea/choreographer/utils/match_copy.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/igc/card_error_widget.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
@@ -214,11 +213,6 @@ class WordMatchContent extends StatelessWidget {
         offset: controller.widget.scm.pangeaMatch?.match.offset,
       );
     }
-
-    final MatchCopy matchCopy = MatchCopy(
-      context,
-      controller.widget.scm.pangeaMatch!,
-    );
 
     final ScrollController scrollController = ScrollController();
 

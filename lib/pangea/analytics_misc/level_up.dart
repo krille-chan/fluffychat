@@ -90,7 +90,6 @@ class LevelUpBannerState extends State<LevelUpBanner>
   bool _showedDetails = false;
 
   ConstructSummary? _constructSummary;
-  bool _loading = true;
   String? _error;
 
   @override
@@ -151,10 +150,6 @@ class LevelUpBannerState extends State<LevelUpBanner>
       );
     } catch (e) {
       _error = e.toString();
-    } finally {
-      if (mounted) {
-        setState(() => _loading = false);
-      }
     }
   }
 

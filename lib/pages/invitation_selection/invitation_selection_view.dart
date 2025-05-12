@@ -54,7 +54,7 @@ class InvitationSelectionView extends StatelessWidget {
         title: Text(L10n.of(context).inviteContact),
         // #Pangea
         actions: [
-          if (room.classCode(context) != null)
+          if (room.isSpace && room.classCode(context) != null)
             PopupMenuButton<int>(
               icon: const Icon(Icons.share_outlined),
               onSelected: (value) async {
