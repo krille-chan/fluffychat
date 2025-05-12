@@ -17,6 +17,8 @@ class DialogTextField extends StatelessWidget {
   final TextInputType? keyboardType;
   final int? maxLength;
   final bool autocorrect = true;
+  final FocusNode? focusNode;
+  final void Function(String)? onSubmitted;
 
   const DialogTextField({
     super.key,
@@ -32,6 +34,8 @@ class DialogTextField extends StatelessWidget {
     this.controller,
     this.counterText,
     this.errorText,
+    this.focusNode,
+    this.onSubmitted,
   });
 
   @override
@@ -61,6 +65,8 @@ class DialogTextField extends StatelessWidget {
             suffixText: suffixText,
             counterText: counterText,
           ),
+          focusNode: focusNode,
+          onSubmitted: onSubmitted,
         );
       case TargetPlatform.iOS:
       case TargetPlatform.macOS:
@@ -78,6 +84,8 @@ class DialogTextField extends StatelessWidget {
               prefix: prefixText != null ? Text(prefixText) : null,
               suffix: suffixText != null ? Text(suffixText) : null,
               placeholder: labelText ?? hintText,
+              focusNode: focusNode,
+              onSubmitted: onSubmitted,
             ),
             if (errorText != null)
               Text(
