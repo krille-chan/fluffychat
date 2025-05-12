@@ -288,7 +288,11 @@ class InvitationSelectionView extends StatelessWidget {
                     ),
                   ],
                 ),
-                onPressed: () => context.go("/rooms/${room.id}"),
+                onPressed: () => context.go(
+                  room.isSpace
+                      ? "/rooms?spaceId=${room.id}"
+                      : "/rooms/${room.id}",
+                ),
               ),
             ),
           ],

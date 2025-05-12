@@ -255,6 +255,18 @@ abstract class AppRoutes {
             final resp = await loggedOutRedirect(context, state);
             final spaceId = state.uri.queryParameters['spaceId'];
 
+            final roomId = state.pathParameters['roomid'];
+            final room = roomId != null
+                ? Matrix.of(context).client.getRoomById(roomId)
+                : null;
+
+            if (room != null &&
+                room.isSpace &&
+                !FluffyThemes.isColumnMode(context) &&
+                (state.fullPath?.endsWith(':roomid') ?? false)) {
+              return '/rooms?spaceId=${room.id}';
+            }
+
             if (resp != null ||
                 !state.uri.queryParameters.containsKey('spaceId') ||
                 spaceId == 'clear' ||
