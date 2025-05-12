@@ -4,7 +4,6 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -67,17 +66,16 @@ class ClientChooserButton extends StatelessWidget {
           ],
         ),
       ),
-      if (!FluffyThemes.isColumnMode(context))
-        PopupMenuItem(
-          value: SettingsAction.settings,
-          child: Row(
-            children: [
-              const Icon(Icons.settings_outlined),
-              const SizedBox(width: 18),
-              Text(L10n.of(context).settings),
-            ],
-          ),
+      PopupMenuItem(
+        value: SettingsAction.settings,
+        child: Row(
+          children: [
+            const Icon(Icons.settings_outlined),
+            const SizedBox(width: 18),
+            Text(L10n.of(context).settings),
+          ],
         ),
+      ),
       const PopupMenuDivider(),
       for (final bundle in bundles) ...[
         if (matrix.accountBundles[bundle]!.length != 1 ||
