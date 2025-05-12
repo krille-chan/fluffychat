@@ -3,6 +3,8 @@ import 'dart:developer';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+
 import 'package:fluffychat/pangea/analytics_misc/analytics_constants.dart';
 import 'package:fluffychat/pangea/analytics_summary/progress_indicators_enum.dart';
 import 'package:fluffychat/pangea/morphs/morph_features_enum.dart';
@@ -23,6 +25,16 @@ extension ConstructExtension on ConstructTypeEnum {
         return 'vocab';
       case ConstructTypeEnum.morph:
         return 'morph';
+    }
+  }
+
+  String sheetname(BuildContext context) {
+    final l10n = L10n.of(context);
+    switch (this) {
+      case ConstructTypeEnum.vocab:
+        return l10n.vocab;
+      case ConstructTypeEnum.morph:
+        return l10n.grammar;
     }
   }
 

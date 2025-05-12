@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/pangea/spaces/widgets/download_analytics_dialog.dart';
+import 'package:fluffychat/pangea/spaces/widgets/download_space_analytics_dialog.dart';
 
-class DownloadAnalyticsButton extends StatelessWidget {
+class DownloadSpaceAnalyticsButton extends StatelessWidget {
   final Room space;
 
-  const DownloadAnalyticsButton({
+  const DownloadSpaceAnalyticsButton({
     super.key,
     required this.space,
   });

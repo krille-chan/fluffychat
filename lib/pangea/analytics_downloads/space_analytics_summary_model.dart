@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-import 'package:fluffychat/pangea/analytics_downloads/analytics_summary_enum.dart';
+import 'package:fluffychat/pangea/analytics_downloads/space_analytics_summary_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_list_model.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_use_model.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_use_type_enum.dart';
 
-class AnalyticsSummaryModel {
+class SpaceAnalyticsSummaryModel {
   String username;
   bool dataAvailable;
   int? level;
@@ -51,7 +51,7 @@ class AnalyticsSummaryModel {
   int? numChoicesCorrect;
   int? numChoicesIncorrect;
 
-  AnalyticsSummaryModel({
+  SpaceAnalyticsSummaryModel({
     required this.username,
     required this.dataAvailable,
     this.level,
@@ -78,14 +78,14 @@ class AnalyticsSummaryModel {
     this.numChoicesIncorrect,
   });
 
-  static AnalyticsSummaryModel emptyModel(String userID) {
-    return AnalyticsSummaryModel(
+  static SpaceAnalyticsSummaryModel emptyModel(String userID) {
+    return SpaceAnalyticsSummaryModel(
       username: userID,
       dataAvailable: false,
     );
   }
 
-  static AnalyticsSummaryModel fromConstructListModel(
+  static SpaceAnalyticsSummaryModel fromConstructListModel(
     String userID,
     ConstructListModel? model,
     String Function(ConstructUses) getCopy,
@@ -111,7 +111,8 @@ class AnalyticsSummaryModel {
       final originalWrittenUses = morphLemmas.lemmasByPercent(
         filter: (use) =>
             use.useType == ConstructUseTypeEnum.wa ||
-            use.useType == ConstructUseTypeEnum.ga,
+            use.useType == ConstructUseTypeEnum.ga ||
+            use.useType == ConstructUseTypeEnum.ta,
         percent: 0.8,
         context: context,
       );
@@ -123,6 +124,7 @@ class AnalyticsSummaryModel {
         filter: (use) =>
             use.useType != ConstructUseTypeEnum.wa &&
             use.useType != ConstructUseTypeEnum.ga &&
+            use.useType != ConstructUseTypeEnum.ta &&
             use.useType != ConstructUseTypeEnum.unk &&
             use.xp != 0,
         percent: 0.8,
@@ -143,13 +145,14 @@ class AnalyticsSummaryModel {
       numChoicesCorrect = 0;
       numChoicesIncorrect = 0;
       for (final use in model.uses) {
-        if (use.useType.summaryEnumType == AnalyticsSummaryEnum.numWordsTyped) {
+        if (use.useType.summaryEnumType ==
+            SpaceAnalyticsSummaryEnum.numWordsTyped) {
           numWordsTyped = numWordsTyped! + 1;
         } else if (use.useType.summaryEnumType ==
-            AnalyticsSummaryEnum.numChoicesCorrect) {
+            SpaceAnalyticsSummaryEnum.numChoicesCorrect) {
           numChoicesCorrect = numChoicesCorrect! + 1;
         } else if (use.useType.summaryEnumType ==
-            AnalyticsSummaryEnum.numChoicesIncorrect) {
+            SpaceAnalyticsSummaryEnum.numChoicesIncorrect) {
           numChoicesIncorrect = numChoicesIncorrect! + 1;
         }
       }
@@ -161,7 +164,7 @@ class AnalyticsSummaryModel {
         .toSet()
         .length;
 
-    return AnalyticsSummaryModel(
+    return SpaceAnalyticsSummaryModel(
       username: userID,
       dataAvailable: model != null,
       level: model?.level,
@@ -208,57 +211,57 @@ class AnalyticsSummaryModel {
     );
   }
 
-  dynamic getValue(AnalyticsSummaryEnum key, BuildContext context) {
+  dynamic getValue(SpaceAnalyticsSummaryEnum key, BuildContext context) {
     switch (key) {
-      case AnalyticsSummaryEnum.username:
+      case SpaceAnalyticsSummaryEnum.username:
         return username;
-      case AnalyticsSummaryEnum.dataAvailable:
+      case SpaceAnalyticsSummaryEnum.dataAvailable:
         return dataAvailable
             ? L10n.of(context).available
             : L10n.of(context).unavailable;
-      case AnalyticsSummaryEnum.level:
+      case SpaceAnalyticsSummaryEnum.level:
         return level;
-      case AnalyticsSummaryEnum.totalXP:
+      case SpaceAnalyticsSummaryEnum.totalXP:
         return totalXP;
-      case AnalyticsSummaryEnum.numLemmas:
+      case SpaceAnalyticsSummaryEnum.numLemmas:
         return numLemmas;
-      case AnalyticsSummaryEnum.numLemmasUsedCorrectly:
+      case SpaceAnalyticsSummaryEnum.numLemmasUsedCorrectly:
         return numLemmasUsedCorrectly;
-      case AnalyticsSummaryEnum.numLemmasUsedIncorrectly:
+      case SpaceAnalyticsSummaryEnum.numLemmasUsedIncorrectly:
         return numLemmasUsedIncorrectly;
-      case AnalyticsSummaryEnum.numLemmasSmallXP:
+      case SpaceAnalyticsSummaryEnum.numLemmasSmallXP:
         return numLemmasSmallXP;
-      case AnalyticsSummaryEnum.numLemmasMediumXP:
+      case SpaceAnalyticsSummaryEnum.numLemmasMediumXP:
         return numLemmasMediumXP;
-      case AnalyticsSummaryEnum.numLemmasLargeXP:
+      case SpaceAnalyticsSummaryEnum.numLemmasLargeXP:
         return numLemmasLargeXP;
-      case AnalyticsSummaryEnum.numMorphConstructs:
+      case SpaceAnalyticsSummaryEnum.numMorphConstructs:
         return numMorphConstructs;
-      case AnalyticsSummaryEnum.listMorphConstructs:
+      case SpaceAnalyticsSummaryEnum.listMorphConstructs:
         return listMorphConstructs;
-      case AnalyticsSummaryEnum.listMorphConstructsUsedCorrectlyOriginal:
+      case SpaceAnalyticsSummaryEnum.listMorphConstructsUsedCorrectlyOriginal:
         return listMorphConstructsUsedCorrectlyOriginal;
-      case AnalyticsSummaryEnum.listMorphConstructsUsedIncorrectlyOriginal:
+      case SpaceAnalyticsSummaryEnum.listMorphConstructsUsedIncorrectlyOriginal:
         return listMorphConstructsUsedIncorrectlyOriginal;
-      case AnalyticsSummaryEnum.listMorphConstructsUsedCorrectlySystem:
+      case SpaceAnalyticsSummaryEnum.listMorphConstructsUsedCorrectlySystem:
         return listMorphConstructsUsedCorrectlySystem;
-      case AnalyticsSummaryEnum.listMorphConstructsUsedIncorrectlySystem:
+      case SpaceAnalyticsSummaryEnum.listMorphConstructsUsedIncorrectlySystem:
         return listMorphConstructsUsedIncorrectlySystem;
-      case AnalyticsSummaryEnum.listMorphSmallXP:
+      case SpaceAnalyticsSummaryEnum.listMorphSmallXP:
         return listMorphSmallXP;
-      case AnalyticsSummaryEnum.listMorphMediumXP:
+      case SpaceAnalyticsSummaryEnum.listMorphMediumXP:
         return listMorphMediumXP;
-      case AnalyticsSummaryEnum.listMorphLargeXP:
+      case SpaceAnalyticsSummaryEnum.listMorphLargeXP:
         return listMorphLargeXP;
-      case AnalyticsSummaryEnum.listMorphHugeXP:
+      case SpaceAnalyticsSummaryEnum.listMorphHugeXP:
         return listMorphHugeXP;
-      case AnalyticsSummaryEnum.numMessagesSent:
+      case SpaceAnalyticsSummaryEnum.numMessagesSent:
         return numMessagesSent;
-      case AnalyticsSummaryEnum.numWordsTyped:
+      case SpaceAnalyticsSummaryEnum.numWordsTyped:
         return numWordsTyped;
-      case AnalyticsSummaryEnum.numChoicesCorrect:
+      case SpaceAnalyticsSummaryEnum.numChoicesCorrect:
         return numChoicesCorrect;
-      case AnalyticsSummaryEnum.numChoicesIncorrect:
+      case SpaceAnalyticsSummaryEnum.numChoicesIncorrect:
         return numChoicesIncorrect;
     }
   }

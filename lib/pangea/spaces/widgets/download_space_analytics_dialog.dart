@@ -7,8 +7,8 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
-import 'package:fluffychat/pangea/analytics_downloads/analytics_summary_enum.dart';
-import 'package:fluffychat/pangea/analytics_misc/analytics_summary_model.dart';
+import 'package:fluffychat/pangea/analytics_downloads/space_analytics_summary_enum.dart';
+import 'package:fluffychat/pangea/analytics_downloads/space_analytics_summary_model.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_list_model.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_use_model.dart';
 import 'package:fluffychat/pangea/analytics_misc/constructs_model.dart';
@@ -120,20 +120,22 @@ class DownloadAnalyticsDialogState extends State<DownloadAnalyticsDialog> {
         _downloading = true;
       });
 
-      final List<AnalyticsSummaryModel> summaries = [];
+      final List<SpaceAnalyticsSummaryModel> summaries = [];
       await for (final batch
           in widget.space.getNextAnalyticsRoomBatch(userL2!)) {
         if (batch.isEmpty) continue;
-        final List<AnalyticsSummaryModel?> batchSummaries = await Future.wait(
+        final List<SpaceAnalyticsSummaryModel?> batchSummaries =
+            await Future.wait(
           batch.map((r) => _getAnalyticsModel(r)),
         );
-        summaries.addAll(batchSummaries.whereType<AnalyticsSummaryModel>());
+        summaries
+            .addAll(batchSummaries.whereType<SpaceAnalyticsSummaryModel>());
       }
 
       for (final userID in _downloadStatuses.keys) {
         if (_downloadStatuses[userID] == 0) {
           _downloadStatuses[userID] = -1;
-          summaries.add(AnalyticsSummaryModel.emptyModel(userID));
+          summaries.add(SpaceAnalyticsSummaryModel.emptyModel(userID));
         }
       }
 
@@ -161,7 +163,7 @@ class DownloadAnalyticsDialogState extends State<DownloadAnalyticsDialog> {
   }
 
   Future<void> _downloadSpaceAnalytics(
-    List<AnalyticsSummaryModel> summaries,
+    List<SpaceAnalyticsSummaryModel> summaries,
   ) async {
     final content = _downloadType == DownloadType.xlsx
         ? _getExcelFileContent(summaries)
@@ -177,11 +179,13 @@ class DownloadAnalyticsDialogState extends State<DownloadAnalyticsDialog> {
     );
   }
 
-  Future<AnalyticsSummaryModel?> _getAnalyticsModel(Room analyticsRoom) async {
+  Future<SpaceAnalyticsSummaryModel?> _getAnalyticsModel(
+    Room analyticsRoom,
+  ) async {
     final String? userID = analyticsRoom.creatorId;
     if (userID == null) return null;
 
-    AnalyticsSummaryModel? summary;
+    SpaceAnalyticsSummaryModel? summary;
     try {
       _downloadStatuses[userID] = 1;
       if (mounted) setState(() {});
@@ -192,7 +196,7 @@ class DownloadAnalyticsDialogState extends State<DownloadAnalyticsDialog> {
 
       if (constructEvents == null) {
         if (mounted) setState(() => _downloadStatuses[userID] = -1);
-        return AnalyticsSummaryModel.emptyModel(userID);
+        return SpaceAnalyticsSummaryModel.emptyModel(userID);
       }
 
       final List<OneConstructUse> uses = [];
@@ -201,7 +205,7 @@ class DownloadAnalyticsDialogState extends State<DownloadAnalyticsDialog> {
       }
 
       final constructs = ConstructListModel(uses: uses);
-      summary = AnalyticsSummaryModel.fromConstructListModel(
+      summary = SpaceAnalyticsSummaryModel.fromConstructListModel(
         userID,
         constructs,
         getCopy,
@@ -238,11 +242,11 @@ class DownloadAnalyticsDialogState extends State<DownloadAnalyticsDialog> {
   }
 
   List<CellValue> _formatExcelRow(
-    AnalyticsSummaryModel summary,
+    SpaceAnalyticsSummaryModel summary,
   ) {
     final List<CellValue> row = [];
-    for (int i = 0; i < AnalyticsSummaryEnum.values.length; i++) {
-      final key = AnalyticsSummaryEnum.values[i];
+    for (int i = 0; i < SpaceAnalyticsSummaryEnum.values.length; i++) {
+      final key = SpaceAnalyticsSummaryEnum.values[i];
       final value = summary.getValue(key, context);
       if (value is int) {
         row.add(IntCellValue(value));
@@ -256,12 +260,12 @@ class DownloadAnalyticsDialogState extends State<DownloadAnalyticsDialog> {
   }
 
   List<int> _getExcelFileContent(
-    List<AnalyticsSummaryModel> summaries,
+    List<SpaceAnalyticsSummaryModel> summaries,
   ) {
     final excel = Excel.createExcel();
     final sheet = excel['Sheet1'];
 
-    for (final key in AnalyticsSummaryEnum.values) {
+    for (final key in SpaceAnalyticsSummaryEnum.values) {
       sheet
           .cell(
             CellIndex.indexByColumnRow(
@@ -287,19 +291,19 @@ class DownloadAnalyticsDialogState extends State<DownloadAnalyticsDialog> {
   }
 
   String _getCSVFileContent(
-    List<AnalyticsSummaryModel> summaries,
+    List<SpaceAnalyticsSummaryModel> summaries,
   ) {
     final List<List<dynamic>> rows = [];
     final headerRow = [];
-    for (final key in AnalyticsSummaryEnum.values) {
+    for (final key in SpaceAnalyticsSummaryEnum.values) {
       headerRow.add(key.header(L10n.of(context)));
     }
     rows.add(headerRow);
 
     for (final summary in summaries) {
       final row = [];
-      for (int i = 0; i < AnalyticsSummaryEnum.values.length; i++) {
-        final key = AnalyticsSummaryEnum.values[i];
+      for (int i = 0; i < SpaceAnalyticsSummaryEnum.values.length; i++) {
+        final key = SpaceAnalyticsSummaryEnum.values[i];
         final value = summary.getValue(key, context);
         if (value == null) continue;
         value is List<String> ? row.add(value.join(", ")) : row.add(value);

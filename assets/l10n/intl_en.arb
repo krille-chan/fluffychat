@@ -4905,5 +4905,12 @@
   "kick": "Kick",
   "approve": "Approve",
   "youHaveKnocked": "You have knocked",
-  "pleaseWaitUntilInvited": "Please wait now, until someone from the room invites you."
+  "pleaseWaitUntilInvited": "Please wait now, until someone from the room invites you.",
+  "lemma": "Lemma",
+  "grammarFeature": "Grammar feature",
+  "grammarTag": "Grammar tag",
+  "forms": "Forms",
+  "exampleMessages": "Example messages",
+  "timesUsedIndependently": "Times used independently",
+  "timesUsedWithAssistance": "Times used with assistance"
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-import 'package:fluffychat/pangea/analytics_downloads/analytics_summary_enum.dart';
+import 'package:fluffychat/pangea/analytics_downloads/space_analytics_summary_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/learning_skills_enum.dart';
 import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
 
@@ -327,14 +327,14 @@ extension ConstructUseTypeExtension on ConstructUseTypeEnum {
     }
   }
 
-  AnalyticsSummaryEnum? get summaryEnumType {
+  SpaceAnalyticsSummaryEnum? get summaryEnumType {
     switch (this) {
       case ConstructUseTypeEnum.wa:
       case ConstructUseTypeEnum.ga:
       case ConstructUseTypeEnum.ta:
       case ConstructUseTypeEnum.unk:
       case ConstructUseTypeEnum.pvm:
-        return AnalyticsSummaryEnum.numWordsTyped;
+        return SpaceAnalyticsSummaryEnum.numWordsTyped;
 
       case ConstructUseTypeEnum.corIt:
       case ConstructUseTypeEnum.corPA:
@@ -345,7 +345,7 @@ extension ConstructUseTypeExtension on ConstructUseTypeEnum {
       case ConstructUseTypeEnum.corM:
       case ConstructUseTypeEnum.em:
       case ConstructUseTypeEnum.corMM:
-        return AnalyticsSummaryEnum.numChoicesCorrect;
+        return SpaceAnalyticsSummaryEnum.numChoicesCorrect;
 
       case ConstructUseTypeEnum.incIt:
       case ConstructUseTypeEnum.incIGC:
@@ -355,7 +355,7 @@ extension ConstructUseTypeExtension on ConstructUseTypeEnum {
       case ConstructUseTypeEnum.incL:
       case ConstructUseTypeEnum.incM:
       case ConstructUseTypeEnum.incMM:
-        return AnalyticsSummaryEnum.numChoicesIncorrect;
+        return SpaceAnalyticsSummaryEnum.numChoicesIncorrect;
 
       case ConstructUseTypeEnum.ignIt:
       case ConstructUseTypeEnum.ignPA:
