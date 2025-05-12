@@ -72,9 +72,10 @@ class AnalyticsDownloadDialogState extends State<AnalyticsDownloadDialog> {
         fileName,
         _downloadType,
       );
-    } catch (e) {
+    } catch (e, s) {
       ErrorHandler.logError(
         e: e,
+        s: s,
         data: {
           "downloadType": _downloadType,
         },
@@ -205,6 +206,7 @@ class AnalyticsDownloadDialogState extends State<AnalyticsDownloadDialog> {
     final allUses = constructUses.map((e) => e.uses).expand((e) => e).toList();
     final List<PangeaMessageEvent> examples = [];
     for (final OneConstructUse use in allUses) {
+      if (use.metadata.roomId == null) continue;
       final Room? room = MatrixState.pangeaController.matrixState.client
           .getRoomById(use.metadata.roomId!);
       if (room == null) continue;
