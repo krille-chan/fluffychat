@@ -30,17 +30,11 @@ Future<List<XFile>> selectFiles(
 
   if (allowMultiple) {
     return await AppLock.of(context).pauseWhile(
-      openFiles(
-        confirmButtonText: title,
-        acceptedTypeGroups: type.groups,
-      ),
+      openFiles(confirmButtonText: title, acceptedTypeGroups: type.groups),
     );
   }
   final file = await AppLock.of(context).pauseWhile(
-    openFile(
-      confirmButtonText: title,
-      acceptedTypeGroups: type.groups,
-    ),
+    openFile(confirmButtonText: title, acceptedTypeGroups: type.groups),
   );
   if (file == null) return [];
   return [file];
@@ -51,37 +45,45 @@ enum FileSelectorType {
   images(
     [
       XTypeGroup(
+        label: 'Images',
+        extensions: <String>[
+          'jpg',
+          'JPG',
+          'jpeg',
+          'JPEG',
+          'png',
+          'PNG',
+          'webp',
+          'WebP',
+          'WEBP',
+          'gif',
+          'GIF',
+          'bmp',
+          'BMP',
+          'tiff',
+          'TIFF',
+          'tif',
+          'TIF',
+          'heic',
+          'HEIC',
+          'svg',
+          'SVG',
+        ],
+      ),
+      XTypeGroup(
         label: 'JPG',
         extensions: <String>['jpg', 'JPG', 'jpeg', 'JPEG'],
       ),
-      XTypeGroup(
-        label: 'PNGs',
-        extensions: <String>['png', 'PNG'],
-      ),
-      XTypeGroup(
-        label: 'WEBP',
-        extensions: <String>['WebP', 'WEBP'],
-      ),
-      XTypeGroup(
-        label: 'GIF',
-        extensions: <String>['gif', 'GIF'],
-      ),
-      XTypeGroup(
-        label: 'BMP',
-        extensions: <String>['bmp', 'BMP'],
-      ),
+      XTypeGroup(label: 'PNG', extensions: <String>['png', 'PNG']),
+      XTypeGroup(label: 'WebP', extensions: <String>['webp', 'WebP', 'WEBP']),
+      XTypeGroup(label: 'GIF', extensions: <String>['gif', 'GIF']),
+      XTypeGroup(label: 'BMP', extensions: <String>['bmp', 'BMP']),
       XTypeGroup(
         label: 'TIFF',
         extensions: <String>['tiff', 'TIFF', 'tif', 'TIF'],
       ),
-      XTypeGroup(
-        label: 'HEIC',
-        extensions: <String>['heic', 'HEIC'],
-      ),
-      XTypeGroup(
-        label: 'SVG',
-        extensions: <String>['svg', 'SVG'],
-      ),
+      XTypeGroup(label: 'HEIC', extensions: <String>['heic', 'HEIC']),
+      XTypeGroup(label: 'SVG', extensions: <String>['svg', 'SVG']),
     ],
     FileType.image,
     null,
@@ -89,51 +91,48 @@ enum FileSelectorType {
   videos(
     [
       XTypeGroup(
-        label: 'MP4',
-        extensions: <String>['mp4', 'MP4'],
+        label: 'Videos',
+        extensions: <String>[
+          'mp4',
+          'MP4',
+          'avi',
+          'AVI',
+          'webm',
+          'WebM',
+          'WEBM',
+          'mov',
+          'MOV',
+          'mkv',
+          'MKV',
+          'wmv',
+          'WMV',
+          'flv',
+          'FLV',
+          'mpeg',
+          'MPEG',
+          '3gp',
+          '3GP',
+          'ogg',
+          'OGG',
+        ],
       ),
-      XTypeGroup(
-        label: 'AVI',
-        extensions: <String>['avi', 'AVI'],
-      ),
-      XTypeGroup(
-        label: 'MOV',
-        extensions: <String>['mov', 'MOV'],
-      ),
-      XTypeGroup(
-        label: 'MKV',
-        extensions: <String>['mkv', 'MKV'],
-      ),
-      XTypeGroup(
-        label: 'WMV',
-        extensions: <String>['wmv', 'WMV'],
-      ),
-      XTypeGroup(
-        label: 'FLV',
-        extensions: <String>['flv', 'FLV'],
-      ),
-      XTypeGroup(
-        label: 'MPEG',
-        extensions: <String>['mpeg', 'MPEG'],
-      ),
-      XTypeGroup(
-        label: '3GP',
-        extensions: <String>['3gp', '3GP'],
-      ),
-      XTypeGroup(
-        label: 'OGG',
-        extensions: <String>['ogg', 'OGG'],
-      ),
+      XTypeGroup(label: 'MP4', extensions: <String>['mp4', 'MP4']),
+      XTypeGroup(label: 'WebM', extensions: <String>['webm', 'WebM', 'WEBM']),
+      XTypeGroup(label: 'AVI', extensions: <String>['avi', 'AVI']),
+      XTypeGroup(label: 'MOV', extensions: <String>['mov', 'MOV']),
+      XTypeGroup(label: 'MKV', extensions: <String>['mkv', 'MKV']),
+      XTypeGroup(label: 'WMV', extensions: <String>['wmv', 'WMV']),
+      XTypeGroup(label: 'FLV', extensions: <String>['flv', 'FLV']),
+      XTypeGroup(label: 'MPEG', extensions: <String>['mpeg', 'MPEG']),
+      XTypeGroup(label: '3GP', extensions: <String>['3gp', '3GP']),
+      XTypeGroup(label: 'OGG', extensions: <String>['ogg', 'OGG']),
     ],
     FileType.video,
     null,
   ),
   zip(
     [
-      XTypeGroup(
-        label: 'ZIP',
-        extensions: <String>['zip', 'ZIP'],
-      ),
+      XTypeGroup(label: 'ZIP', extensions: <String>['zip', 'ZIP']),
     ],
     FileType.custom,
     ['zip', 'ZIP'],
