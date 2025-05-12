@@ -6,7 +6,6 @@ import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat_details/chat_details.dart';
 import 'package:fluffychat/pages/chat_details/participant_list_item.dart';
 import 'package:fluffychat/pangea/chat_settings/utils/download_chat.dart';
@@ -96,9 +95,7 @@ class PangeaChatDetailsView extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(
             leading: controller.widget.embeddedCloseButton ??
-                (room.isSpace && FluffyThemes.isColumnMode(context)
-                    ? const SizedBox()
-                    : const Center(child: BackButton())),
+                const Center(child: BackButton()),
             elevation: theme.appBarTheme.elevation,
             title: ClassNameHeader(
               controller: controller,

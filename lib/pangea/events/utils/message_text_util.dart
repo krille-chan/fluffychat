@@ -155,6 +155,7 @@ class MessageTextUtil {
       }
 
       _tokenPositionsCache[pangeaMessageEvent.eventId] = tokenPositions;
+
       return tokenPositions;
     } catch (err, s) {
       ErrorHandler.logError(

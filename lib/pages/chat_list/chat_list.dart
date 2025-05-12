@@ -120,7 +120,7 @@ class ChatListController extends State<ChatList>
 
     // #Pangea
     if (FluffyThemes.isColumnMode(context)) {
-      context.push("/rooms/$spaceId/details");
+      context.push("/rooms/$spaceId");
     }
     // Pangea#
 

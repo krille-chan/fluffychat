@@ -50,6 +50,7 @@ import 'package:fluffychat/pangea/events/models/tokens_event_content_model.dart'
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/instructions/instructions_enum.dart';
 import 'package:fluffychat/pangea/learning_settings/widgets/p_language_dialog.dart';
+import 'package:fluffychat/pangea/spaces/pages/pangea_space_page.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/utils/error_reporter.dart';
@@ -100,6 +101,12 @@ class ChatPage extends StatelessWidget {
         ),
       );
     }
+
+    // #Pangea
+    if (room.isSpace) {
+      return PangeaSpacePage(space: room);
+    }
+    // Pangea#
 
     return ChatPageWithRoom(
       key: Key('chat_page_${roomId}_$eventId'),

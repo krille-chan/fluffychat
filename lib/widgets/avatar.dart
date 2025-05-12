@@ -22,6 +22,7 @@ class Avatar extends StatelessWidget {
   final BorderSide? border;
   // #Pangea
   final bool useRive;
+  final bool showPresence;
   final String? userId;
   // Pangea#
 
@@ -38,6 +39,7 @@ class Avatar extends StatelessWidget {
     this.icon,
     // #Pangea
     this.useRive = false,
+    this.showPresence = true,
     this.userId,
     // Pangea#
     super.key,
@@ -117,7 +119,7 @@ class Avatar extends StatelessWidget {
         ),
         // #Pangea
         // if (presenceUserId != null)
-        if (presenceUserId != null && size >= 32.0)
+        if (presenceUserId != null && size >= 32.0 && showPresence)
           // Pangea#
           PresenceBuilder(
             client: client,

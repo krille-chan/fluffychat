@@ -4921,5 +4921,6 @@
         "type": "String"
       }
     }
-  }
+  },
+  "leaderboard": "Leaderboard"
 }

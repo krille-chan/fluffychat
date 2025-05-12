@@ -245,13 +245,11 @@ abstract class AppRoutes {
                 !state.uri.queryParameters.containsKey('spaceId') ||
                 spaceId == 'clear' ||
                 !FluffyThemes.isColumnMode(context) ||
-                (state.fullPath?.contains('details') ?? true)) {
+                state.path == ':roomid') {
               return resp;
             }
 
-            return !FluffyThemes.isColumnMode(context)
-                ? resp
-                : '/rooms/$spaceId/details?spaceId=${spaceId ?? 'clear'}';
+            return '/rooms/$spaceId?spaceId=${spaceId ?? 'clear'}';
           },
           // Pangea#
           pageBuilder: (context, state) => defaultPageBuilder(

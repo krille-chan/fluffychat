@@ -21,7 +21,7 @@ void chatListHandleSpaceTap(
     controller.setActiveSpace(space.id);
 
     if (FluffyThemes.isColumnMode(context)) {
-      context.go('/rooms/${space.id}/details');
+      context.go('/rooms/${space.id}');
     } else if (controller.activeChat != null &&
         !space.isFirstOrSecondChild(controller.activeChat!)) {
       context.go("/rooms");
