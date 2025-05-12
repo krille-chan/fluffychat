@@ -37,6 +37,7 @@ import 'package:fluffychat/pangea/layouts/bottom_nav_layout.dart';
 import 'package:fluffychat/pangea/learning_settings/pages/settings_learning.dart';
 import 'package:fluffychat/pangea/login/pages/login_or_signup_view.dart';
 import 'package:fluffychat/pangea/login/pages/signup.dart';
+import 'package:fluffychat/pangea/login/pages/space_code_onboarding.dart';
 import 'package:fluffychat/pangea/login/pages/user_settings.dart';
 import 'package:fluffychat/pangea/spaces/constants/space_constants.dart';
 import 'package:fluffychat/pangea/spaces/utils/join_with_alias.dart';
@@ -173,6 +174,19 @@ abstract class AppRoutes {
         const UserSettingsPage(),
       ),
       redirect: loggedOutRedirect,
+      routes: [
+        GoRoute(
+          path: 'join_space',
+          pageBuilder: (context, state) {
+            return defaultPageBuilder(
+              context,
+              state,
+              const SpaceCodeOnboarding(),
+            );
+          },
+          redirect: loggedOutRedirect,
+        ),
+      ],
     ),
     ShellRoute(
       pageBuilder: chatListShellRouteBuilder,

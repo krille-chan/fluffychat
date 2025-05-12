@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/widgets/mxc_image.dart';
 
 class PangeaLoginScaffold extends StatelessWidget {
   final String mainAssetPath;
   final Uint8List? mainAssetBytes;
+  final Uri? mainAssetUrl;
   final List<Widget> children;
   final bool showAppName;
   final AppBar? customAppBar;
@@ -16,6 +18,7 @@ class PangeaLoginScaffold extends StatelessWidget {
     required this.children,
     this.mainAssetPath = "assets/pangea/PangeaChat_Glow_Logo.png",
     this.mainAssetBytes,
+    this.mainAssetUrl,
     this.showAppName = true,
     this.customAppBar,
     super.key,
@@ -58,10 +61,22 @@ class PangeaLoginScaffold extends StatelessWidget {
                                     mainAssetBytes!,
                                     fit: BoxFit.cover,
                                   )
-                                : Image.asset(
-                                    mainAssetPath,
-                                    fit: BoxFit.cover,
-                                  ),
+                                : mainAssetUrl != null
+                                    ? mainAssetUrl!.toString().startsWith("mxc")
+                                        ? MxcImage(
+                                            uri: mainAssetUrl,
+                                            fit: BoxFit.cover,
+                                            width: isColumnMode ? 175 : 125,
+                                            height: isColumnMode ? 175 : 125,
+                                          )
+                                        : Image.network(
+                                            mainAssetUrl.toString(),
+                                            fit: BoxFit.cover,
+                                          )
+                                    : Image.asset(
+                                        mainAssetPath,
+                                        fit: BoxFit.cover,
+                                      ),
                           ),
                         ),
                         if (showAppName)

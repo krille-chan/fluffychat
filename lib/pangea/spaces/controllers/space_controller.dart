@@ -23,22 +23,35 @@ import '../../common/controllers/base_controller.dart';
 
 class ClassController extends BaseController {
   late PangeaController _pangeaController;
-
-  // Storage Initialization
-  final GetStorage chatBox = GetStorage("chat_list_storage");
-  final GetStorage linkBox = GetStorage("link_storage");
   static final GetStorage _classStorage = GetStorage('class_storage');
 
   ClassController(PangeaController pangeaController) : super() {
     _pangeaController = pangeaController;
   }
 
-  Future<void> joinCachedSpaceCode(BuildContext context) async {
-    final String? classCode = linkBox.read(
+  Future<void> cacheSpaceCode(String code) async {
+    if (code.isEmpty) return;
+    await _classStorage.write(
       PLocalKey.cachedClassCodeToJoin,
+      code,
     );
+  }
 
-    final String? alias = _classStorage.read(PLocalKey.cachedAliasToJoin);
+  String? justInputtedCode() {
+    return _classStorage.read(PLocalKey.justInputtedCode);
+  }
+
+  String? get cachedClassCode {
+    return _classStorage.read(PLocalKey.cachedClassCodeToJoin);
+  }
+
+  String? get cachedAlias {
+    return _classStorage.read(PLocalKey.cachedAliasToJoin);
+  }
+
+  Future<void> joinCachedSpaceCode(BuildContext context) async {
+    final String? classCode = cachedClassCode;
+    final String? alias = cachedAlias;
 
     if (classCode != null) {
       await joinClasswithCode(
@@ -46,7 +59,7 @@ class ClassController extends BaseController {
         classCode,
       );
 
-      await linkBox.remove(
+      await _classStorage.remove(
         PLocalKey.cachedClassCodeToJoin,
       );
     } else if (alias != null) {
@@ -141,7 +154,7 @@ class ClassController extends BaseController {
         }
 
         final chosenClassId = foundClasses.first;
-        await chatBox.write(
+        await _classStorage.write(
           PLocalKey.justInputtedCode,
           classCode,
         );

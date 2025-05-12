@@ -207,7 +207,11 @@ class UserSettingsState extends State<UserSettingsPage> {
           throw TimeoutException(L10n.of(context).oopsSomethingWentWrong);
         },
       );
-      context.go('/rooms');
+      context.go(
+        _pangeaController.classController.cachedClassCode == null
+            ? '/user_age/join_space'
+            : '/rooms',
+      );
     } catch (err) {
       if (err is MatrixException) {
         profileCreationError = err.errorMessage;

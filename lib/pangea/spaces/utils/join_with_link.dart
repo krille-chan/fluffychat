@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
-import 'package:fluffychat/pangea/common/constants/local.key.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 //if on home with classcode in url and not logged in, then save it soemhow and after llogin, join class automatically
@@ -32,10 +31,11 @@ class _JoinClassWithLinkState extends State<JoinClassWithLink> {
         );
         return;
       }
-      await MatrixState.pangeaController.classController.linkBox.write(
-        PLocalKey.cachedClassCodeToJoin,
-        widget.classCode,
-      );
+
+      if (widget.classCode != null) {
+        await MatrixState.pangeaController.classController
+            .cacheSpaceCode(widget.classCode!);
+      }
       context.go("/home");
     });
   }

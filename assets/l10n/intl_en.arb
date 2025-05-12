@@ -4922,5 +4922,15 @@
       }
     }
   },
-  "leaderboard": "Leaderboard"
+  "leaderboard": "Leaderboard",
+  "welcomeUser": "Welcome {user}",
+  "@welcomeUser": {
+    "placeholders": {
+      "user": {
+        "type": "String"
+      }
+    }
+  },
+  "joinSpaceOnboardingDesc": "Do you have an invite code or link to a learning community?",
+  "skipForNow": "Skip for now"
 }
