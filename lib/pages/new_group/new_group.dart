@@ -236,7 +236,10 @@ class NewGroupController extends State<NewGroup> {
       room = client.getRoomById(spaceId);
     }
     if (room == null) return;
-    GoogleAnalytics.createClass(room.name, room.classCode(context));
+    final spaceCode = room.classCode(context);
+    if (spaceCode != null) {
+      GoogleAnalytics.createClass(room.name, spaceCode);
+    }
 
     // if a timeout happened, don't redirect to the space
     if (error != null) return;

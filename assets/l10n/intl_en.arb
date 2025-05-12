@@ -4870,7 +4870,7 @@
   "areYouLikeMe": "Are you like me?",
   "tryAgainLater": "Too many attempts made. Please try again in 5 minutes.",
   "enterSpaceCode": "Enter space code",
-  "shareSpaceLink": "Share link to space",
+  "shareSpaceLink": "Share link",
   "byUsingPangeaChat": "By using Pangea Chat, I agree to the ",
   "details": "Details",
   "languageLevelPreA1Desc": "I have never learned or used the language.",
@@ -4912,5 +4912,14 @@
   "forms": "Forms",
   "exampleMessages": "Example messages",
   "timesUsedIndependently": "Times used independently",
-  "timesUsedWithAssistance": "Times used with assistance"
+  "timesUsedWithAssistance": "Times used with assistance",
+  "goToSpaceButton": "Go to space",
+  "shareInviteCode": "Share invite code: {code}",
+  "@shareInviteCode": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  }
 }

@@ -888,10 +888,13 @@ class ChatController extends State<ChatPageWithRoom>
           pangeaEditingEvent = previousEdit;
         }
 
-        GoogleAnalytics.sendMessage(
-          room.id,
-          room.classCode(context),
-        );
+        final spaceCode = room.classCode(context);
+        if (spaceCode != null) {
+          GoogleAnalytics.sendMessage(
+            room.id,
+            spaceCode,
+          );
+        }
 
         if (msgEventId == null) {
           ErrorHandler.logError(

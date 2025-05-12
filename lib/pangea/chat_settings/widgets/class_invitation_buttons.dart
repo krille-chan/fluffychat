@@ -48,31 +48,35 @@ class ClassInvitationButtons extends StatelessWidget {
       },
     );
 
-    final copyCodeListTile = ListTile(
-      title: Text(
-        "${L10n.of(context).copyClassCode}: ${room.classCode(context)}",
-        style: TextStyle(
-          color: Theme.of(context).colorScheme.secondary,
-          fontWeight: FontWeight.bold,
+    final spaceCode = room.classCode(context);
+    Widget? copyCodeListTile;
+    if (spaceCode != null) {
+      copyCodeListTile = ListTile(
+        title: Text(
+          "${L10n.of(context).copyClassCode}: $spaceCode",
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.secondary,
+            fontWeight: FontWeight.bold,
+          ),
         ),
-      ),
-      subtitle: Text(L10n.of(context).copyClassCodeDesc),
-      leading: CircleAvatar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        foregroundColor: Theme.of(context).textTheme.bodyLarge!.color,
-        child: const Icon(
-          Icons.copy,
+        subtitle: Text(L10n.of(context).copyClassCodeDesc),
+        leading: CircleAvatar(
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+          foregroundColor: Theme.of(context).textTheme.bodyLarge!.color,
+          child: const Icon(
+            Icons.copy,
+          ),
         ),
-      ),
-      onTap: () async {
-        //PTODO-Lala: Standarize toast
-        //PTODO - explore using Fluffyshare for this
-        await Clipboard.setData(ClipboardData(text: room.classCode(context)));
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(L10n.of(context).copiedToClipboard)),
-        );
-      },
-    );
+        onTap: () async {
+          //PTODO-Lala: Standarize toast
+          //PTODO - explore using Fluffyshare for this
+          await Clipboard.setData(ClipboardData(text: spaceCode));
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(L10n.of(context).copiedToClipboard)),
+          );
+        },
+      );
+    }
 
     // final inviateWithEmailListTile = ListTile(
     //   enabled: false,
@@ -118,7 +122,7 @@ class ClassInvitationButtons extends StatelessWidget {
       children: [
         // inviteStudentByUserNameTile,
         copyClassLinkListTile,
-        copyCodeListTile,
+        if (copyCodeListTile != null) copyCodeListTile,
         // inviateWithEmailListTile,
         // addFromGoogleClassooomListTile,
       ],
