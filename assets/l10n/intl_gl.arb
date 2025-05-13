@@ -3359,5 +3359,26 @@
   "pleaseWaitUntilInvited": "Agora agarda a que alguén da sala te convide a entrar.",
   "@pleaseWaitUntilInvited": {},
   "youHaveKnocked": "Petaches á porta",
-  "@youHaveKnocked": {}
+  "@youHaveKnocked": {},
+  "sentVoiceMessage": "🎙️ {duration} - {sender}",
+  "@sentVoiceMessage": {
+    "type": "String",
+    "placeholders": {
+      "sender": {
+        "type": "String"
+      },
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "countInvited": "{count} convidadas",
+  "@countInvited": {
+    "type": "String",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
 }
