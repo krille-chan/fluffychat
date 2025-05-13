@@ -134,6 +134,9 @@ class UserDialog extends StatelessWidget {
                                 builder: (_) => MxcImageViewer(avatar),
                               )
                           : null,
+                      // #Pangea
+                      userId: profile.userId,
+                      // Pangea#
                     ),
                   ),
                   if (presenceText != null)
