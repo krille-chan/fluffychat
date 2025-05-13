@@ -393,9 +393,7 @@ class MessageTokenButtonContent extends StatelessWidget {
             child: Container(
               height: height,
               padding: const EdgeInsets.only(top: 10.0),
-              width: MessageMode.wordMeaning == messageMode
-                  ? width
-                  : min(width, height),
+              width: max(width, 24.0),
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 color: Theme.of(context)

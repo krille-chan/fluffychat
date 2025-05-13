@@ -290,7 +290,6 @@ class HtmlMessage extends StatelessWidget {
         );
 
         return WidgetSpan(
-          alignment: PlaceholderAlignment.middle,
           child: CompositedTransformTarget(
             link: token != null && renderer.assignTokenKey
                 ? MatrixState.pAnyState
@@ -333,12 +332,12 @@ class HtmlMessage extends StatelessWidget {
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
                   child: GestureDetector(
+                    behavior: HitTestBehavior.translucent,
                     onTap: onClick != null && token != null
                         ? () => onClick?.call(token)
                         : null,
-                    child: Text.rich(
-                      textScaler: TextScaler.noScaling,
-                      TextSpan(
+                    child: RichText(
+                      text: TextSpan(
                         children: [
                           LinkifySpan(
                             text: node.innerHtml,
