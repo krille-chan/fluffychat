@@ -51,10 +51,11 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
   bool _isDownloading = false;
 
   // The video_player package only doesn't support Windows and Linux.
-  final _supportsVideoPlayer =
-      !PlatformInfos.isWindows && !PlatformInfos.isLinux;
-
   // #Pangea
+  // final _supportsVideoPlayer =
+  //     !PlatformInfos.isWindows && !PlatformInfos.isLinux;
+  final _supportsVideoPlayer = !PlatformInfos.isLinux;
+
   StreamSubscription? _stopVideoSubscription;
   // Pangea#
 
