@@ -67,6 +67,10 @@ class PermissionsListTile extends StatelessWidget {
           return L10n.of(context).enableEncryption;
         case 'm.room.server_acl':
           return L10n.of(context).editBlockedServers;
+        // #Pangea
+        case EventTypes.SpaceChild:
+          return L10n.of(context).spaceChildPermission;
+        // Pangea#
       }
     }
     return permissionKey;

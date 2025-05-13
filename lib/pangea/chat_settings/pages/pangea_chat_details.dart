@@ -294,31 +294,6 @@ class PangeaChatDetailsView extends StatelessWidget {
                           ),
                         if (room.canInvite && !room.isDirectChat)
                           Divider(color: theme.dividerColor, height: 1),
-                        if (isGroupChat && room.isRoomAdmin)
-                          ListTile(
-                            title: Text(
-                              L10n.of(context).editChatPermissions,
-                              style: TextStyle(
-                                color: theme.colorScheme.secondary,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            subtitle: Text(
-                              L10n.of(context).whoCanPerformWhichAction,
-                            ),
-                            leading: CircleAvatar(
-                              backgroundColor: theme.scaffoldBackgroundColor,
-                              foregroundColor: iconColor,
-                              child: const Icon(
-                                Icons.manage_accounts_outlined,
-                              ),
-                            ),
-                            onTap: () => context.push(
-                              '/rooms/${room.id}/details/permissions',
-                            ),
-                          ),
-                        if (isGroupChat && room.isRoomAdmin)
-                          Divider(color: theme.dividerColor, height: 1),
                         if (room.isRoomAdmin &&
                             room.isSpace &&
                             room.spaceParents.isEmpty)
@@ -331,6 +306,31 @@ class PangeaChatDetailsView extends StatelessWidget {
                         if (room.isRoomAdmin &&
                             room.isSpace &&
                             room.spaceParents.isEmpty)
+                          Divider(color: theme.dividerColor, height: 1),
+                        if (room.isRoomAdmin)
+                          ListTile(
+                            title: Text(
+                              L10n.of(context).permissions,
+                              style: TextStyle(
+                                color: theme.colorScheme.secondary,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            subtitle: Text(
+                              L10n.of(context).whoCanPerformWhichAction,
+                            ),
+                            leading: CircleAvatar(
+                              backgroundColor: theme.scaffoldBackgroundColor,
+                              foregroundColor: iconColor,
+                              child: const Icon(
+                                Icons.edit_attributes_outlined,
+                              ),
+                            ),
+                            onTap: () => context.push(
+                              '/rooms/${room.id}/details/permissions',
+                            ),
+                          ),
+                        if (room.isRoomAdmin)
                           Divider(color: theme.dividerColor, height: 1),
                         if (!room.isSpace && !room.isDirectChat)
                           RoomCapacityButton(

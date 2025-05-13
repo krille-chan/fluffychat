@@ -256,7 +256,7 @@ class NewGroupController extends State<NewGroup> {
         stateKey: '',
         content: {
           'events': {
-            EventTypes.SpaceChild: 0,
+            EventTypes.SpaceChild: 50,
           },
           'users_default': 0,
           'users': {
