@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2025-03-10 10:26:28.474786",
+  "@@last_modified": "2025-05-13 11:20:01.172393",
   "about": "Giới thiệu",
   "@about": {
     "type": "String",
@@ -3800,5 +3800,476 @@
         "type": "int"
       }
     }
+  },
+  "setCustomPermissionLevel": "Đặt cấp độ quyền tùy chỉnh",
+  "setPermissionsLevelDescription": "Vui lòng chọn một vai trò đã định nghĩa sẵn bên dưới hoặc nhập một cấp độ quyền tùy chỉnh từ 0 đến 100.",
+  "ignoreUser": "Bỏ qua người dùng",
+  "normalUser": "Người dùng bình thường",
+  "commandHint_roomupgrade": "Nâng cấp phòng này lên phiên bản phòng đã cho",
+  "enterNewChat": "Tham gia trò chuyện mới",
+  "completeActivitiesToUnlock": "Hoàn thành ít nhất một hoạt động để mở khóa bản dịch!",
+  "constructUseGaDesc": "Hỗ trợ ngữ pháp",
+  "constructUseTaDesc": "Hỗ trợ dịch thuật",
+  "chooseLemmaMeaningInstructionsBody": "Khớp nghĩa với các từ trong tin nhắn!",
+  "analyticsVocabListBody": "Đây là toàn bộ từ vựng của bạn! Khi bạn kiếm XP cho mỗi từ, chúng sẽ từ hạt giống phát triển thành nở rộ. Nhấp vào bất kỳ từ nào để xem thêm chi tiết.",
+  "morphAnalyticsListBody": "Đây là tất cả các khái niệm ngữ pháp trong ngôn ngữ bạn đang học! Bạn sẽ mở khóa chúng khi gặp phải trong khi trò chuyện. Nhấp để xem chi tiết.",
+  "chooseWordAudioInstructionsBody": "Nghe toàn bộ tin nhắn. Sau đó, khớp các âm thanh với các từ.",
+  "chooseMorphsInstructionsBody": "Nhấp vào các mảnh ghép cho các câu hỏi ngữ pháp!",
+  "inviteAndLaunch": "Khởi động và mời",
+  "createOwnChat": "Tạo trò chuyện của riêng bạn",
+  "pleaseEnterInt": "Vui lòng nhập một số",
+  "home": "Trang chủ",
+  "join": "Tham gia",
+  "readingAssistanceOverviewBody": "Nhấp vào các nút bên dưới để chơi mini-game về việc khớp emoji, âm thanh, nghĩa từ và khái niệm ngữ pháp. Hoặc nhấp vào bất kỳ từ nào để xem chi tiết.",
+  "learnByTexting": "Học qua nhắn tin",
+  "referFriends": "Giới thiệu bạn bè",
+  "referFriendDialogTitle": "Mời một người bạn tham gia cuộc trò chuyện của bạn",
+  "referFriendDialogDesc": "Bạn có một người bạn hào hứng học một ngôn ngữ mới cùng bạn không? Hãy sao chép và gửi liên kết mời này để tham gia và bắt đầu trò chuyện với bạn hôm nay.",
+  "youUnlocked": "Bạn đã mở khóa",
+  "resetInstructionTooltipsTitle": "Đặt lại hướng dẫn công cụ",
+  "resetInstructionTooltipsDesc": "Nhấp để hiển thị hướng dẫn công cụ như cho một người dùng hoàn toàn mới.",
+  "selectForGrammar": "Chọn một biểu tượng ngữ pháp cho các hoạt động và chi tiết.",
+  "newChatActivityTitle": "Thêm một hoạt động thú vị?",
+  "newChatActivityDesc": "Biến mỗi cuộc trò chuyện nhóm thành một cuộc phiêu lưu với Kế hoạch Hoạt động! Đặt các chủ đề và mục tiêu hấp dẫn cho nhóm, và mang cuộc trò chuyện đến cuộc sống với những hình ảnh tuyệt đẹp. Khơi dậy những cuộc thảo luận sáng tạo và giữ cho niềm vui chảy trôi một cách dễ dàng!",
+  "exploreMore": "Khám phá thêm",
+  "randomize": "Ngẫu nhiên hóa",
+  "clear": "Xóa",
+  "makeYourOwnActivity": "Tạo hoạt động của riêng bạn",
+  "featuredActivities": "Nổi bật",
+  "yourBookmarks": "Đã đánh dấu",
+  "goToChat": "Đi đến trò chuyện",
+  "save": "Lưu",
+  "selectActivity": "Chọn hoạt động",
+  "wordFocusListeningMultipleChoice": "Âm thanh nào phù hợp với từ?",
+  "createActivity": "Tạo hoạt động",
+  "startChat": "Bắt đầu trò chuyện",
+  "translationProblem": "Vấn đề dịch thuật",
+  "perfectTranslation": "Dịch thuật hoàn hảo!",
+  "greatJobTranslation": "Làm tốt công việc với bản dịch này!",
+  "goodJobTranslation": "Làm tốt công việc với bản dịch này.",
+  "makingProgress": "Bạn đang tiến bộ!",
+  "keepPracticing": "Tiếp tục luyện tập!",
+  "niceJob": "Làm tốt lắm!",
+  "publicSpacesTitle": "Cộng đồng học tập",
+  "askToJoin": "Yêu cầu tham gia",
+  "emptyChatWarningTitle": "Trò chuyện trống",
+  "emptyChatWarningDesc": "Bạn chưa mời ai vào trò chuyện của mình. Đi đến cài đặt trò chuyện để mời danh bạ hoặc Bot của bạn. Bạn cũng có thể làm điều này sau.",
+  "areYouLikeMe": "Bạn có giống tôi không?",
+  "tryAgainLater": "Đã thực hiện quá nhiều lần. Vui lòng thử lại sau 5 phút.",
+  "enterSpaceCode": "Nhập mã không gian",
+  "shareSpaceLink": "Chia sẻ liên kết",
+  "byUsingPangeaChat": "Bằng cách sử dụng Pangea Chat, tôi đồng ý với ",
+  "details": "Chi tiết",
+  "languageLevelPreA1Desc": "Tôi chưa bao giờ học hoặc sử dụng ngôn ngữ này.",
+  "languageLevelA1Desc": "Tôi có thể hiểu và sử dụng một số biểu thức quen thuộc hàng ngày và các cụm từ rất cơ bản.",
+  "languageLevelA2Desc": "Tôi có thể hiểu các câu và các biểu thức thường được sử dụng liên quan đến các lĩnh vực có liên quan ngay lập tức.",
+  "languageLevelB1Desc": "Tôi có thể xử lý hầu hết các tình huống quen thuộc và có thể tạo ra văn bản đơn giản liên kết về các chủ đề quen thuộc.",
+  "languageLevelB2Desc": "Tôi có thể hiểu các ý chính của các văn bản phức tạp và tương tác với một mức độ lưu loát và tự phát.",
+  "languageLevelC1Desc": "Tôi có thể diễn đạt ý tưởng một cách lưu loát và tự phát mà không gặp nhiều khó khăn và hiểu một loạt các văn bản đòi hỏi.",
+  "languageLevelC2Desc": "Tôi có thể hiểu hầu như mọi thứ nghe hoặc đọc và diễn đạt bản thân một cách lưu loát và chính xác.",
+  "newVocab": "Từ vựng mới",
+  "newGrammar": "Khái niệm ngữ pháp mới",
+  "congratulationsOnReaching": "Bạn đã đạt đến Cấp độ {level}!",
+  "seeDetails": "Xem chi tiết",
+  "choosePracticeMode": "Nhấp vào một trong các nút ở trên để bắt đầu một hoạt động thực hành",
+  "userWouldLikeToChangeTheSpace": "{user} muốn tham gia không gian.",
+  "ban": "Cấm",
+  "unban": "Bỏ cấm",
+  "kick": "Đá",
+  "approve": "Chấp thuận",
+  "youHaveKnocked": "Bạn đã gõ cửa",
+  "pleaseWaitUntilInvited": "Vui lòng chờ cho đến khi ai đó trong phòng mời bạn.",
+  "lemma": "Lemma",
+  "grammarFeature": "Tính năng ngữ pháp",
+  "grammarTag": "Thẻ ngữ pháp",
+  "forms": "Hình thức",
+  "exampleMessages": "Tin nhắn ví dụ",
+  "timesUsedIndependently": "Số lần sử dụng độc lập",
+  "timesUsedWithAssistance": "Số lần sử dụng với sự trợ giúp",
+  "goToSpaceButton": "Đi đến không gian",
+  "shareInviteCode": "Chia sẻ mã mời: {code}",
+  "leaderboard": "Bảng xếp hạng",
+  "welcomeUser": "Chào mừng {user}",
+  "joinSpaceOnboardingDesc": "Bạn có mã mời hoặc liên kết đến một cộng đồng học tập không?",
+  "skipForNow": "Bỏ qua tạm thời",
+  "@setCustomPermissionLevel": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@setPermissionsLevelDescription": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@ignoreUser": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@normalUser": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@commandHint_roomupgrade": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@enterNewChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@completeActivitiesToUnlock": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@constructUseGaDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@constructUseTaDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@chooseLemmaMeaningInstructionsBody": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@analyticsVocabListBody": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@morphAnalyticsListBody": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@chooseWordAudioInstructionsBody": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@chooseMorphsInstructionsBody": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@inviteAndLaunch": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@createOwnChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@pleaseEnterInt": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@home": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@join": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@readingAssistanceOverviewBody": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@learnByTexting": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@referFriends": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@referFriendDialogTitle": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@referFriendDialogDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@youUnlocked": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@resetInstructionTooltipsTitle": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@resetInstructionTooltipsDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@selectForGrammar": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@newChatActivityTitle": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@newChatActivityDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@exploreMore": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@randomize": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@clear": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@makeYourOwnActivity": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@featuredActivities": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@yourBookmarks": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@goToChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@save": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@selectActivity": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@wordFocusListeningMultipleChoice": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@createActivity": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@startChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@translationProblem": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@perfectTranslation": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@greatJobTranslation": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@goodJobTranslation": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@makingProgress": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@keepPracticing": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@niceJob": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@publicSpacesTitle": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@askToJoin": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@emptyChatWarningTitle": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@emptyChatWarningDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@areYouLikeMe": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@tryAgainLater": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@enterSpaceCode": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@shareSpaceLink": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@byUsingPangeaChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@details": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@languageLevelPreA1Desc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@languageLevelA1Desc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@languageLevelA2Desc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@languageLevelB1Desc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@languageLevelB2Desc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@languageLevelC1Desc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@languageLevelC2Desc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@newVocab": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@newGrammar": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@congratulationsOnReaching": {
+    "type": "String",
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
+  "@seeDetails": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@choosePracticeMode": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userWouldLikeToChangeTheSpace": {
+    "type": "String",
+    "placeholders": {
+      "user": {
+        "type": "String"
+      }
+    }
+  },
+  "@ban": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unban": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@kick": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@approve": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@youHaveKnocked": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@pleaseWaitUntilInvited": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@lemma": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@grammarFeature": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@grammarTag": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@forms": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@exampleMessages": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@timesUsedIndependently": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@timesUsedWithAssistance": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@goToSpaceButton": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@shareInviteCode": {
+    "type": "String",
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "@leaderboard": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@welcomeUser": {
+    "type": "String",
+    "placeholders": {
+      "user": {
+        "type": "String"
+      }
+    }
+  },
+  "@joinSpaceOnboardingDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@skipForNow": {
+    "type": "String",
+    "placeholders": {}
   }
 }
