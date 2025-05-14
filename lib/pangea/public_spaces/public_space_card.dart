@@ -24,12 +24,10 @@ class PublicSpaceCard extends StatelessWidget {
     final theme = Theme.of(context);
 
     return PressableButton(
-      onPressed: () => showAdaptiveDialog(
+      onPressed: () => PublicRoomDialog.show(
         context: context,
-        builder: (c) => PublicRoomDialog(
-          roomAlias: space.canonicalAlias ?? space.roomId,
-          chunk: space,
-        ),
+        roomAlias: space.canonicalAlias ?? space.roomId,
+        chunk: space,
       ),
       borderRadius: BorderRadius.circular(24.0),
       color: theme.brightness == Brightness.dark

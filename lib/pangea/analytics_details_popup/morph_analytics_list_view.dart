@@ -6,6 +6,7 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/analytics_details_popup/analytics_details_popup.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_use_model.dart';
+import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
 import 'package:fluffychat/pangea/constructs/construct_level_enum.dart';
 import 'package:fluffychat/pangea/instructions/instructions_enum.dart';
@@ -13,7 +14,6 @@ import 'package:fluffychat/pangea/instructions/instructions_inline_tooltip.dart'
 import 'package:fluffychat/pangea/morphs/get_grammar_copy.dart';
 import 'package:fluffychat/pangea/morphs/morph_features_enum.dart';
 import 'package:fluffychat/pangea/morphs/morph_icon.dart';
-import 'package:fluffychat/pangea/user/client_extension.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class MorphAnalyticsListView extends StatelessWidget {
@@ -183,7 +183,8 @@ class MorphTagChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final unlocked = constructAnalytics.points > 0;
+    final unlocked = constructAnalytics.points > 0 ||
+        Matrix.of(context).client.userID == Environment.supportUserId;
 
     return InkWell(
       borderRadius: BorderRadius.circular(AppConfig.borderRadius),
@@ -216,7 +217,7 @@ class MorphTagChip extends StatelessWidget {
               SizedBox(
                 width: 28.0,
                 height: 28.0,
-                child: unlocked || Matrix.of(context).client.isSupportAccount
+                child: unlocked
                     ? MorphIcon(
                         morphFeature: feature,
                         morphTag: morphTag,

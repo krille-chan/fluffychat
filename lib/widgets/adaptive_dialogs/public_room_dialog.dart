@@ -27,6 +27,31 @@ class PublicRoomDialog extends StatefulWidget {
 
   const PublicRoomDialog({super.key, this.roomAlias, this.chunk, this.via});
   // #Pangea
+  static Future<bool?> show({
+    required BuildContext context,
+    String? roomAlias,
+    PublicRoomsChunk? chunk,
+    List<String>? via,
+  }) async {
+    final room = MatrixState.pangeaController.matrixState.client
+        .getRoomById(chunk!.roomId);
+
+    if (room != null && room.membership == Membership.join) {
+      context.go("/rooms?spaceId=${room.id}");
+      return null;
+    }
+
+    return showAdaptiveDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (context) => PublicRoomDialog(
+        roomAlias: roomAlias,
+        chunk: chunk,
+        via: via,
+      ),
+    );
+  }
+
   @override
   State<PublicRoomDialog> createState() => PublicRoomDialogState();
 }
@@ -37,20 +62,6 @@ class PublicRoomDialogState extends State<PublicRoomDialog> {
   List<String>? get via => widget.via;
 
   final TextEditingController _codeController = TextEditingController();
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    if (chunk != null) {
-      final room = MatrixState.pangeaController.matrixState.client
-          .getRoomById(chunk!.roomId);
-
-      if (room != null && room.membership == Membership.join) {
-        context.go("/rooms?spaceId=${room.id}");
-        Navigator.of(context).maybePop();
-      }
-    }
-  }
 
   @override
   void dispose() {

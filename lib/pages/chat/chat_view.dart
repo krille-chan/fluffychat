@@ -406,7 +406,9 @@ class ChatView extends StatelessWidget {
                         ),
                         // #Pangea
                         ChatViewBackground(controller.choreographer),
-                        if (!controller.room.isAbandonedDMRoom)
+                        if (!controller.room.isAbandonedDMRoom &&
+                            controller.room.canSendDefaultMessages &&
+                            controller.room.membership == Membership.join)
                           Positioned(
                             left: 0,
                             right: 0,

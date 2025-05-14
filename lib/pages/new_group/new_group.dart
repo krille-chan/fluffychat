@@ -11,12 +11,10 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/new_group/new_group_view.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
 import 'package:fluffychat/pangea/chat/constants/default_power_level.dart';
-import 'package:fluffychat/pangea/common/constants/model_keys.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/common/utils/firebase_analytics.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
-import 'package:fluffychat/pangea/spaces/constants/space_constants.dart';
-import 'package:fluffychat/pangea/spaces/utils/space_code.dart';
+import 'package:fluffychat/pangea/spaces/utils/client_spaces_extension.dart';
 import 'package:fluffychat/utils/file_selector.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
@@ -197,44 +195,40 @@ class NewGroupController extends State<NewGroup> {
   Future<void> _createSpace() async {
     if (!mounted) return;
     // #Pangea
-    final client = Matrix.of(context).client;
-    final joinCode = await SpaceCodeUtil.generateSpaceCode(client);
-    // Pangea#
-    final spaceId = await Matrix.of(context).client.createRoom(
-          // #Pangea
-          // preset: publicGroup
-          //     ? sdk.CreateRoomPreset.publicChat
-          //     : sdk.CreateRoomPreset.privateChat,
-          // Pangea#
-          creationContent: {'type': RoomCreationTypes.mSpace},
-          // #Pangea
-          // visibility: publicGroup ? sdk.Visibility.public : null,
+    // final spaceId = await Matrix.of(context).client.createRoom(
+    //       preset: publicGroup
+    //           ? sdk.CreateRoomPreset.publicChat
+    //           : sdk.CreateRoomPreset.privateChat,
+    //       creationContent: {'type': RoomCreationTypes.mSpace},
+    //       visibility: publicGroup ? sdk.Visibility.public : null,
+    //       roomAliasName: publicGroup
+    //           ? nameController.text.trim().toLowerCase().replaceAll(' ', '_')
+    //           : null,
+    //       name: nameController.text.trim(),
+    //       powerLevelContentOverride: {'events_default': 100},
+    //       initialState: [
+    //         if (avatar != null)
+    //           sdk.StateEvent(
+    //             type: sdk.EventTypes.RoomAvatar,
+    //             content: {'url': avatarUrl.toString()},
+    //           ),
+    //       ],
+    //     );
+    // if (!mounted) return;
+    // context.pop<String>(spaceId);
+    final spaceId = await Matrix.of(context).client.createPangeaSpace(
+          name: nameController.text,
           visibility:
               groupCanBeFound ? sdk.Visibility.public : sdk.Visibility.private,
-          // roomAliasName: publicGroup
-          //     ? nameController.text.trim().toLowerCase().replaceAll(' ', '_')
-          //     : null,
-          // Pangea#
-          name: nameController.text.trim(),
-          powerLevelContentOverride: {'events_default': 100},
-          initialState: [
-            // #Pangea
-            ..._spaceInitialState(joinCode),
-            // Pangea#
-            if (avatar != null)
-              sdk.StateEvent(
-                type: sdk.EventTypes.RoomAvatar,
-                content: {'url': avatarUrl.toString()},
-              ),
-          ],
+          joinRules:
+              requiredCodeToJoin ? sdk.JoinRules.knock : sdk.JoinRules.public,
+          avatar: avatar,
+          avatarUrl: avatarUrl,
         );
+
     if (!mounted) return;
-    // #Pangea
-    Room? room = client.getRoomById(spaceId);
-    if (room == null) {
-      await Matrix.of(context).client.waitForRoomInSync(spaceId);
-      room = client.getRoomById(spaceId);
-    }
+
+    final room = Matrix.of(context).client.getRoomById(spaceId);
     if (room == null) return;
     final spaceCode = room.classCode(context);
     if (spaceCode != null) {
@@ -245,37 +239,7 @@ class NewGroupController extends State<NewGroup> {
     if (error != null) return;
     context.go("/rooms?spaceId=$spaceId");
     // Pangea#
-    context.pop<String>(spaceId);
   }
-
-  // #Pangea
-  List<StateEvent> _spaceInitialState(String joinCode) {
-    return [
-      StateEvent(
-        type: EventTypes.RoomPowerLevels,
-        stateKey: '',
-        content: {
-          'events': {
-            EventTypes.SpaceChild: 50,
-          },
-          'users_default': 0,
-          'users': {
-            Matrix.of(context).client.userID: SpaceConstants.powerLevelOfAdmin,
-          },
-        },
-      ),
-      StateEvent(
-        type: sdk.EventTypes.RoomJoinRules,
-        content: {
-          ModelKey.joinRule: requiredCodeToJoin
-              ? sdk.JoinRules.knock.toString().replaceAll('JoinRules.', '')
-              : sdk.JoinRules.public.toString().replaceAll('JoinRules.', ''),
-          ModelKey.accessCode: joinCode,
-        },
-      ),
-    ];
-  }
-  //Pangea#
 
   void submitAction([_]) async {
     final client = Matrix.of(context).client;

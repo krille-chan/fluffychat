@@ -4,4 +4,6 @@ class SpaceConstants {
   static const defaultDominantLanguage = "en";
   static const defaultTargetLanguage = "es";
   static const String classCode = 'classcode';
+  static const String introductionChatAlias = 'introductionChat';
+  static const String announcementsChatAlias = 'announcementsChat';
 }

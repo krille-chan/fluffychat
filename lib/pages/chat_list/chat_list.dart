@@ -534,7 +534,9 @@ class ChatListController extends State<ChatList>
           final String? justInputtedCode =
               MatrixState.pangeaController.classController.justInputtedCode();
           final newSpaceCode = space?.classCode(context);
-          if (newSpaceCode == justInputtedCode) return;
+          if (newSpaceCode?.toLowerCase() == justInputtedCode?.toLowerCase()) {
+            return;
+          }
 
           if (space != null) {
             chatListHandleSpaceTap(

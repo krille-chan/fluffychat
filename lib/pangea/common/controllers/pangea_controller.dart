@@ -172,11 +172,13 @@ class PangeaController {
         getAnalytics.dispose();
         userController.clear();
         _languageStream?.cancel();
+        _languageStream = null;
         break;
       case LoginState.loggedIn:
         // Initialize analytics data
         putAnalytics.initialize();
         getAnalytics.initialize();
+        _setLanguageStream();
         break;
     }
     if (state != LoginState.loggedIn) {
@@ -352,9 +354,12 @@ class PangeaController {
   void _subscribeToStreams() {
     matrixState.client.onLoginStateChanged.stream
         .listen(_handleLoginStateChange);
+    _setLanguageStream();
+  }
 
-    // Listen for changes to the user's language settings
-    _languageStream ??= userController.stateStream.listen((update) {
+  void _setLanguageStream() {
+    _languageStream?.cancel();
+    _languageStream = userController.stateStream.listen((update) {
       if (update is Map<String, dynamic> &&
           update['prev_target_lang'] != null) {
         clearCache();

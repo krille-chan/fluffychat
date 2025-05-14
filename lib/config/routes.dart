@@ -253,29 +253,39 @@ abstract class AppRoutes {
           // redirect: loggedOutRedirect,
           redirect: (context, state) async {
             final resp = await loggedOutRedirect(context, state);
-            final spaceId = state.uri.queryParameters['spaceId'];
+            if (resp != null) return resp;
+            final isColumnMode = FluffyThemes.isColumnMode(context);
 
             final roomId = state.pathParameters['roomid'];
             final room = roomId != null
                 ? Matrix.of(context).client.getRoomById(roomId)
                 : null;
 
-            if (room != null &&
-                room.isSpace &&
-                !FluffyThemes.isColumnMode(context) &&
-                (state.fullPath?.endsWith(':roomid') ?? false)) {
-              return '/rooms?spaceId=${room.id}';
+            if (room != null && room.isSpace) {
+              // If a user is on mobile and they end up on the space
+              // page, redirect them and set the activeSpaceId
+              if (!isColumnMode &&
+                  (state.fullPath?.endsWith(':roomid') ?? false)) {
+                return '/rooms?spaceId=${room.id}';
+              }
             }
 
-            if (resp != null ||
-                !state.uri.queryParameters.containsKey('spaceId') ||
-                spaceId == 'clear' ||
-                !FluffyThemes.isColumnMode(context) ||
-                state.path == ':roomid') {
-              return resp;
+            if (state.uri.queryParameters.containsKey('spaceId')) {
+              final spaceId = state.uri.queryParameters['spaceId'];
+              if (spaceId == null || spaceId == 'clear') {
+                // Have to load chat list to clear the spaceId, so don't redirect
+                return null;
+              }
+
+              // If spaceId is not null, and on web, and not on the space page,
+              // redirect to the space page
+              if (isColumnMode &&
+                  !(state.fullPath?.endsWith(':roomid') ?? false)) {
+                return '/rooms/$spaceId?spaceId=$spaceId';
+              }
             }
 
-            return '/rooms/$spaceId?spaceId=${spaceId ?? 'clear'}';
+            return null;
           },
           // Pangea#
           pageBuilder: (context, state) => defaultPageBuilder(

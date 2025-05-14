@@ -181,12 +181,18 @@ class UrlLauncher {
         }
         return;
       } else {
-        await showAdaptiveDialog(
+        // #Pangea
+        // await showAdaptiveDialog(
+        //   context: context,
+        //   builder: (c) => PublicRoomDialog(
+        //     roomAlias: identityParts.primaryIdentifier,
+        //   ),
+        // );
+        await PublicRoomDialog.show(
           context: context,
-          builder: (c) => PublicRoomDialog(
-            roomAlias: identityParts.primaryIdentifier,
-          ),
+          roomAlias: identityParts.primaryIdentifier,
         );
+        // Pangea#
       }
       if (roomIdOrAlias.sigil == '!') {
         if (await showOkCancelAlertDialog(

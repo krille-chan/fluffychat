@@ -117,6 +117,11 @@ class ClassController extends BaseController {
     final spaceID = await showFutureLoadingDialog<String?>(
       context: context,
       future: () async {
+        await _classStorage.write(
+          PLocalKey.justInputtedCode,
+          classCode,
+        );
+
         final knockResponse = await client.httpClient.post(
           Uri.parse(
             '${client.homeserver}/_synapse/client/pangea/v1/knock_with_code',
@@ -154,10 +159,6 @@ class ClassController extends BaseController {
         }
 
         final chosenClassId = foundClasses.first;
-        await _classStorage.write(
-          PLocalKey.justInputtedCode,
-          classCode,
-        );
         return chosenClassId;
       },
     );

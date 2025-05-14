@@ -383,15 +383,21 @@ class PublicRoomsHorizontalListState extends State<PublicRoomsHorizontalList> {
                       L10n.of(context).chat,
                   // Pangea#
                   avatar: publicRooms[i].avatarUrl,
-                  onPressed: () => showAdaptiveDialog(
-                    context: context,
-                    builder: (c) => PublicRoomDialog(
-                      roomAlias: publicRooms[i].canonicalAlias ??
-                          publicRooms[i].roomId,
-                      chunk: publicRooms[i],
-                    ),
-                  ),
                   // #Pangea
+                  onPressed: () => PublicRoomDialog.show(
+                    context: context,
+                    roomAlias:
+                        publicRooms[i].canonicalAlias ?? publicRooms[i].roomId,
+                    chunk: publicRooms[i],
+                  ),
+                  // onPressed: () => showAdaptiveDialog(
+                  //   context: context,
+                  //   builder: (c) => PublicRoomDialog(
+                  //     roomAlias: publicRooms[i].canonicalAlias ??
+                  //         publicRooms[i].roomId,
+                  //     chunk: publicRooms[i],
+                  //   ),
+                  // ),
                   radius: BorderRadius.circular(
                     AppConfig.borderRadius / 2,
                   ),
