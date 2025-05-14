@@ -8,7 +8,8 @@ on:
 
 env:
   WEB_APP_ENV: ${{ vars.WEB_APP_ENV }}
-  
+  ENV_OVERRIDES: ${{ vars.ENV_OVERRIDES }}
+
 jobs:
   build_web:
     runs-on: ubuntu-latest
