@@ -307,7 +307,7 @@ class PangeaChatDetailsView extends StatelessWidget {
                             room.isSpace &&
                             room.spaceParents.isEmpty)
                           Divider(color: theme.dividerColor, height: 1),
-                        if (room.isRoomAdmin)
+                        if (room.isRoomAdmin && !room.isDirectChat)
                           ListTile(
                             title: Text(
                               L10n.of(context).permissions,
@@ -330,7 +330,7 @@ class PangeaChatDetailsView extends StatelessWidget {
                               '/rooms/${room.id}/details/permissions',
                             ),
                           ),
-                        if (room.isRoomAdmin)
+                        if (room.isRoomAdmin && !room.isDirectChat)
                           Divider(color: theme.dividerColor, height: 1),
                         if (!room.isSpace && !room.isDirectChat)
                           RoomCapacityButton(
