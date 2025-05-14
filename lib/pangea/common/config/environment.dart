@@ -119,7 +119,7 @@ class Environment {
 
     List<dynamic> data = [];
     try {
-      final String jsonString = await rootBundle.loadString('assets/envs.json');
+      final String jsonString = await rootBundle.loadString('envs.json');
       data = jsonDecode(jsonString);
     } catch (e, s) {
       ErrorHandler.logError(
