@@ -571,14 +571,6 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
                 child: Row(
                   spacing: 6.0,
                   children: [
-                    if (_isEditing)
-                      GestureDetector(
-                        child: const Icon(Icons.close_outlined, size: 16.0),
-                        onTap: () {
-                          _clearEdits();
-                          _setEditing(false);
-                        },
-                      ),
                     if (_isEditing && widget.onEdit != null)
                       Expanded(
                         child: ElevatedButton(
@@ -642,7 +634,15 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
                           ),
                         ),
                       ),
-                    if (!_isEditing)
+                    if (_isEditing)
+                      GestureDetector(
+                        child: const Icon(Icons.close_outlined, size: 16.0),
+                        onTap: () {
+                          _clearEdits();
+                          _setEditing(false);
+                        },
+                      )
+                    else
                       IconButton.filled(
                         style: IconButton.styleFrom(
                           backgroundColor: theme.colorScheme.primary,
