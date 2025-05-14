@@ -15,7 +15,7 @@ abstract class AppConfig {
   static String? get applicationWelcomeMessage => _applicationWelcomeMessage;
   // #Pangea
   // static String _defaultHomeserver = 'matrix.org';
-  static String _defaultHomeserver = Environment.synapseURL;
+  static String get _defaultHomeserver => Environment.synapseURL;
   // #Pangea
   static String get defaultHomeserver => _defaultHomeserver;
   static double fontSizeFactor = 1;
@@ -206,9 +206,11 @@ abstract class AppConfig {
     if (json['application_welcome_message'] is String) {
       _applicationWelcomeMessage = json['application_welcome_message'];
     }
-    if (json['default_homeserver'] is String) {
-      _defaultHomeserver = json['default_homeserver'];
-    }
+    // #Pangea
+    // if (json['default_homeserver'] is String) {
+    //   _defaultHomeserver = json['default_homeserver'];
+    // }
+    // Pangea#
     if (json['privacy_url'] is String) {
       _privacyUrl = json['privacy_url'];
     }

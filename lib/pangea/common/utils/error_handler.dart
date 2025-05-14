@@ -29,7 +29,7 @@ class ErrorHandler {
         options.debug = kDebugMode;
         options.environment = kDebugMode
             ? "debug"
-            : Environment.isStaging
+            : Environment.isStagingEnvironment
                 ? "staging"
                 : "productionC";
       },

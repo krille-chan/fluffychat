@@ -4934,5 +4934,7 @@
   "joinSpaceOnboardingDesc": "Do you have an invite code or link to a learning community?",
   "skipForNow": "Skip for now",
   "permissions": "Permissions",
-  "spaceChildPermission": "Who can add new chats and subspaces to this space"
+  "spaceChildPermission": "Who can add new chats and subspaces to this space",
+  "addEnvironmentOverride": "Add environment override",
+  "defaultOption": "Default"
 }

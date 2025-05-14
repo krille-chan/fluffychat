@@ -45,6 +45,8 @@ jobs:
           rm assets/.env
           echo "$WEB_APP_ENV" >> .env
           cp .env assets/.env
+          touch assets/envs.json
+          echo "$ENV_OVERRIDES" >> assets/envs.json
       - name: Apply .env patch
         run: git apply ./scripts/enable_mobile_env.patch
       - name: Install Fastlane

@@ -110,7 +110,7 @@ Future<void> startGui(List<Client> clients, SharedPreferences store) async {
   // staging or vice versa, logout.
   if (firstClient?.userID?.domain != null) {
     final isStagingUser = firstClient!.userID!.domain!.contains("staging");
-    final isStagingServer = Environment.isStaging;
+    final isStagingServer = Environment.synapseURL.contains("staging");
     if (isStagingServer != isStagingUser) {
       await firstClient.logout();
     }

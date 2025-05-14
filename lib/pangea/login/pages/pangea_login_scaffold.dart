@@ -13,6 +13,7 @@ class PangeaLoginScaffold extends StatelessWidget {
   final List<Widget> children;
   final bool showAppName;
   final AppBar? customAppBar;
+  final List<Widget>? actions;
 
   const PangeaLoginScaffold({
     required this.children,
@@ -21,6 +22,7 @@ class PangeaLoginScaffold extends StatelessWidget {
     this.mainAssetUrl,
     this.showAppName = true,
     this.customAppBar,
+    this.actions,
     super.key,
   });
 
@@ -32,6 +34,7 @@ class PangeaLoginScaffold extends StatelessWidget {
         appBar: customAppBar ??
             AppBar(
               toolbarHeight: isColumnMode ? null : 40.0,
+              actions: actions,
             ),
         body: LayoutBuilder(
           builder: (context, constraints) {

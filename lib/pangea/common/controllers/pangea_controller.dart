@@ -107,17 +107,35 @@ class PangeaController {
   _logOutfromPangea() {
     debugPrint("Pangea logout");
     GoogleAnalytics.logout();
-    _clearCachedData();
+    clearCache();
   }
 
-  void _clearCachedData() {
-    GetStorage('mode_list_storage').erase();
-    GetStorage('activity_plan_storage').erase();
-    GetStorage('bookmarked_activities').erase();
-    GetStorage('objective_list_storage').erase();
-    GetStorage('topic_list_storage').erase();
-    GetStorage('lemma_storage').erase();
-    GetStorage().erase();
+  static final List<String> _storageKeys = [
+    'mode_list_storage',
+    'activity_plan_storage',
+    'bookmarked_activities',
+    'objective_list_storage',
+    'topic_list_storage',
+    'activity_plan_search_storage',
+    "analytics_storage",
+    "version_storage",
+    'lemma_storage',
+    'svg_cache',
+    'morphs_storage',
+    'morph_meaning_storage',
+    'practice_record_cache',
+    'practice_selection_cache',
+    'class_storage',
+    'subscription_storage',
+    'vocab_storage',
+  ];
+
+  Future<void> clearCache() async {
+    final List<Future<void>> futures = [];
+    for (final key in _storageKeys) {
+      futures.add(GetStorage(key).erase());
+    }
+    await Future.wait(futures);
   }
 
   Future<void> checkHomeServerAction() async {
@@ -339,7 +357,7 @@ class PangeaController {
     _languageStream ??= userController.stateStream.listen((update) {
       if (update is Map<String, dynamic> &&
           update['prev_target_lang'] != null) {
-        _clearCachedData();
+        clearCache();
       }
     });
   }

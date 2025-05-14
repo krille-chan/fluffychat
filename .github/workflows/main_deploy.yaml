@@ -47,6 +47,8 @@ jobs:
           touch public/.env
           echo "$WEB_APP_ENV" >> public/.env
           cp public/.env public/assets/.env
+          touch public/assets/envs.json
+          echo "$ENV_OVERRIDES" >> public/assets/envs.json
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:

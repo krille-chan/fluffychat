@@ -330,7 +330,7 @@ class SettingsView extends StatelessWidget {
                     },
                   ),
                   // Conditional ListTile based on the environment (staging or not)
-                  if (Environment.isStaging)
+                  if (Environment.isStagingEnvironment)
                     ListTile(
                       leading: const Icon(Icons.bug_report_outlined),
                       title: Text(L10n.of(context).connectedToStaging),

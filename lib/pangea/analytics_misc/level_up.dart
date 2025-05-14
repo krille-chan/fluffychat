@@ -174,7 +174,7 @@ class LevelUpBannerState extends State<LevelUpBanner>
   }
 
   Future<void> _toggleDetails() async {
-    if (!Environment.isStaging) return;
+    if (!Environment.isStagingEnvironment) return;
 
     if (mounted) {
       setState(() {
@@ -282,7 +282,7 @@ class LevelUpBannerState extends State<LevelUpBanner>
                               ),
                               Row(
                                 children: [
-                                  if (Environment.isStaging)
+                                  if (Environment.isStagingEnvironment)
                                     AnimatedSize(
                                       duration: FluffyThemes.animationDuration,
                                       child: _error == null
