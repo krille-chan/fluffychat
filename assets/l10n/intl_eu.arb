@@ -3359,5 +3359,28 @@
   "youHaveKnocked": "Sartzeko baimena eskatu duzu",
   "@youHaveKnocked": {},
   "pleaseWaitUntilInvited": "Orain itxaron gelako norbaitek gonbidatzen zaituen arte.",
-  "@pleaseWaitUntilInvited": {}
+  "@pleaseWaitUntilInvited": {},
+  "checkList": "Kontrol-zerrenda",
+  "@checkList": {},
+  "countInvited": "{count} gonbidatu",
+  "@countInvited": {
+    "type": "String",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "sentVoiceMessage": "🎙️ {duration} - {sender}",
+  "@sentVoiceMessage": {
+    "type": "String",
+    "placeholders": {
+      "sender": {
+        "type": "String"
+      },
+      "duration": {
+        "type": "String"
+      }
+    }
+  }
 }
