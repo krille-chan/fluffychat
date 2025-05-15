@@ -165,8 +165,8 @@ Future<void> _tryPushHelper(
             .downloadMxcCached(
               avatar,
               thumbnailMethod: ThumbnailMethod.crop,
-              width: 256,
-              height: 256,
+              width: 128,
+              height: 128,
               animated: false,
               isThumbnail: true,
               rounded: true,
@@ -184,8 +184,8 @@ Future<void> _tryPushHelper(
                 .downloadMxcCached(
                   senderAvatar,
                   thumbnailMethod: ThumbnailMethod.crop,
-                  width: 256,
-                  height: 256,
+                  width: 128,
+                  height: 128,
                   animated: false,
                   isThumbnail: true,
                   rounded: true,
