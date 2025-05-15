@@ -48,7 +48,7 @@ class PracticeSelectionRepo {
   }
 
   static void clean() {
-    final Iterable<String> keys = _storage.getKeys();
+    final keys = _storage.getKeys();
     if (keys.length > 300) {
       final entries = keys
           .map((key) => _parsePracticeSelection(key))

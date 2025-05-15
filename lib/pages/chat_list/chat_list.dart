@@ -19,6 +19,8 @@ import 'package:fluffychat/pages/chat_list/chat_list_view.dart';
 import 'package:fluffychat/pangea/chat_list/utils/app_version_util.dart';
 import 'package:fluffychat/pangea/chat_list/utils/chat_list_handle_space_tap.dart';
 import 'package:fluffychat/pangea/chat_settings/constants/pangea_room_types.dart';
+import 'package:fluffychat/pangea/chat_settings/utils/delete_room.dart';
+import 'package:fluffychat/pangea/chat_settings/widgets/delete_space_dialog.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/common/utils/firebase_analytics.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
@@ -885,7 +887,10 @@ class ChatListController extends State<ChatList>
             mainAxisSize: MainAxisSize.min,
             children: [
               Icon(
-                Icons.delete_outlined,
+                // #Pangea
+                // Icons.delete_outlined,
+                Icons.logout_outlined,
+                // Pangea#
                 color: Theme.of(context).colorScheme.onErrorContainer,
               ),
               const SizedBox(width: 12),
@@ -900,6 +905,28 @@ class ChatListController extends State<ChatList>
             ],
           ),
         ),
+        // #Pangea
+        if (room.isRoomAdmin)
+          PopupMenuItem(
+            value: ChatContextAction.delete,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  Icons.delete_outlined,
+                  color: Theme.of(context).colorScheme.onErrorContainer,
+                ),
+                const SizedBox(width: 12),
+                Text(
+                  L10n.of(context).delete,
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onErrorContainer,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        // Pangea#
       ],
     );
 
@@ -1020,6 +1047,37 @@ class ChatListController extends State<ChatList>
             await Future.wait(futures);
           },
         );
+        return;
+      case ChatContextAction.delete:
+        if (room.isSpace) {
+          final resp = await showDialog<bool?>(
+            context: context,
+            builder: (_) => DeleteSpaceDialog(space: room),
+          );
+          if (resp == true && mounted) {
+            context.go("/rooms?spaceId=clear");
+          }
+        } else {
+          final confirmed = await showOkCancelAlertDialog(
+            context: context,
+            title: L10n.of(context).areYouSure,
+            okLabel: L10n.of(context).delete,
+            cancelLabel: L10n.of(context).cancel,
+            isDestructive: true,
+            message: room.isSpace
+                ? L10n.of(context).deleteSpaceDesc
+                : L10n.of(context).deleteChatDesc,
+          );
+          if (confirmed != OkCancelResult.ok) return;
+          if (!mounted) return;
+
+          final resp = await showFutureLoadingDialog(
+            context: context,
+            future: room.delete,
+          );
+          if (resp.isError) return;
+          if (mounted) context.go("/rooms?spaceId=clear");
+        }
         return;
       // Pangea#
       case ChatContextAction.block:
@@ -1295,5 +1353,6 @@ enum ChatContextAction {
   block,
   // #Pangea
   removeFromSpace,
+  delete,
   // Pangea#
 }
