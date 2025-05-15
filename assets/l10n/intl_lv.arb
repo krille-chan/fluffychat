@@ -573,7 +573,7 @@
       }
     }
   },
-  "dateWithYear": "{day}.{month}.{year}.",
+  "dateWithYear": "{year}.{month}.{day}",
   "@dateWithYear": {
     "type": "String",
     "placeholders": {
