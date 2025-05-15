@@ -97,9 +97,12 @@ class SettingsLearningController extends State<SettingsLearning> {
     }
   }
 
+  bool get hasIdenticalLanguages =>
+      selectedSourceLanguage?.langCodeShort ==
+      selectedTargetLanguage?.langCodeShort;
+
   Future<void> submit() async {
-    if (selectedSourceLanguage?.langCodeShort ==
-        selectedTargetLanguage?.langCodeShort) {
+    if (hasIdenticalLanguages) {
       setState(() {
         languageMatchError = L10n.of(context).noIdenticalLanguages;
       });
@@ -247,22 +250,29 @@ class SettingsLearningController extends State<SettingsLearning> {
       _profile.userSettings.targetLanguage != null && _targetLanguage != null;
 
   LanguageModel? get selectedSourceLanguage {
-    return userL1 ?? pangeaController.languageController.systemLanguage;
+    return _selectedBaseLanguage ??
+        pangeaController.languageController.systemLanguage;
   }
 
   LanguageModel? get selectedTargetLanguage {
-    return userL2 ??
+    return _selectedTargetLanguage ??
         ((selectedSourceLanguage?.langCode != 'en')
             ? PLanguageStore.byLangCode('en')
             : PLanguageStore.byLangCode('es'));
   }
 
-  LanguageModel? get userL1 => _profile.userSettings.sourceLanguage != null
-      ? PLanguageStore.byLangCode(_profile.userSettings.sourceLanguage!)
-      : null;
-  LanguageModel? get userL2 => _profile.userSettings.targetLanguage != null
-      ? PLanguageStore.byLangCode(_profile.userSettings.targetLanguage!)
-      : null;
+  LanguageModel? get _selectedBaseLanguage =>
+      _profile.userSettings.sourceLanguage != null
+          ? PLanguageStore.byLangCode(_profile.userSettings.sourceLanguage!)
+          : null;
+
+  LanguageModel? get _selectedTargetLanguage =>
+      _profile.userSettings.targetLanguage != null
+          ? PLanguageStore.byLangCode(_profile.userSettings.targetLanguage!)
+          : null;
+
+  LanguageModel? get userL1 => pangeaController.languageController.userL1;
+  LanguageModel? get userL2 => pangeaController.languageController.userL2;
 
   bool get publicProfile => _profile.userSettings.publicProfile ?? true;
 

@@ -8,6 +8,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/chat_settings/widgets/language_level_dropdown.dart';
 import 'package:fluffychat/pangea/common/constants/model_keys.dart';
 import 'package:fluffychat/pangea/common/widgets/full_width_dialog.dart';
@@ -172,6 +173,38 @@ class SettingsLearningView extends StatelessWidget {
                                     backgroundColor: Theme.of(context)
                                         .colorScheme
                                         .surfaceContainerHigh,
+                                  ),
+                                  AnimatedSize(
+                                    duration: FluffyThemes.animationDuration,
+                                    curve: FluffyThemes.animationCurve,
+                                    child: controller.userL1?.langCodeShort ==
+                                            controller.userL2?.langCodeShort
+                                        ? Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                              horizontal: 16.0,
+                                            ),
+                                            child: Row(
+                                              spacing: 8.0,
+                                              children: [
+                                                Icon(
+                                                  Icons.info_outlined,
+                                                  color: Theme.of(context)
+                                                      .colorScheme
+                                                      .error,
+                                                ),
+                                                Text(
+                                                  L10n.of(context)
+                                                      .noIdenticalLanguages,
+                                                  style: TextStyle(
+                                                    color: Theme.of(context)
+                                                        .colorScheme
+                                                        .error,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          )
+                                        : const SizedBox.shrink(),
                                   ),
                                   CountryPickerDropdown(controller),
                                   LanguageLevelDropdown(

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -28,6 +29,9 @@ class UserSettingsState extends State<UserSettingsPage> {
   PangeaController get _pangeaController => MatrixState.pangeaController;
 
   LanguageModel? selectedTargetLanguage;
+  LanguageModel? selectedBaseLanguage;
+  bool showBaseLanguageDropdown = false;
+
   LanguageLevelTypeEnum selectedCefrLevel = LanguageLevelTypeEnum.a1;
 
   String? selectedLanguageError;
@@ -62,11 +66,16 @@ class UserSettingsState extends State<UserSettingsPage> {
   @override
   void initState() {
     super.initState();
+    selectedBaseLanguage =
+        _pangeaController.languageController.userL1 ?? _systemLanguage;
     selectedTargetLanguage = _pangeaController.languageController.userL2;
-    selectedAvatarPath = avatarPaths.first;
+
     displayNameController.text = Matrix.of(context).client.userID?.localpart ??
         Matrix.of(context).client.userID ??
         "";
+
+    final random = Random();
+    selectedAvatarPath = avatarPaths[random.nextInt(avatarPaths.length)];
   }
 
   @override
@@ -79,10 +88,20 @@ class UserSettingsState extends State<UserSettingsPage> {
     super.dispose();
   }
 
+  void setSelectedBaseLanguage(LanguageModel? language) {
+    setState(() {
+      selectedBaseLanguage = language;
+      selectedLanguageError = null;
+    });
+  }
+
   void setSelectedTargetLanguage(LanguageModel? language) {
     setState(() {
       selectedTargetLanguage = language;
       selectedLanguageError = null;
+      if (!showBaseLanguageDropdown && _hasIdenticalLanguages) {
+        showBaseLanguageDropdown = true;
+      }
     });
   }
 
@@ -174,6 +193,13 @@ class UserSettingsState extends State<UserSettingsPage> {
       return;
     }
 
+    if (_hasIdenticalLanguages) {
+      setState(() {
+        selectedLanguageError = L10n.of(context).noIdenticalLanguages;
+      });
+      return;
+    }
+
     if (!formKey.currentState!.validate()) return;
     setState(() => loading = true);
 
@@ -228,6 +254,13 @@ class UserSettingsState extends State<UserSettingsPage> {
 
   List<LanguageModel> get targetOptions =>
       _pangeaController.pLanguageStore.targetOptions;
+
+  List<LanguageModel> get baseOptions =>
+      MatrixState.pangeaController.pLanguageStore.baseOptions;
+
+  bool get _hasIdenticalLanguages =>
+      _systemLanguage != null &&
+      _systemLanguage?.langCodeShort == selectedTargetLanguage?.langCodeShort;
 
   @override
   Widget build(BuildContext context) => UserSettingsView(controller: this);
