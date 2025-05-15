@@ -3358,5 +3358,28 @@
   "approve": "Terima",
   "@approve": {},
   "youHaveKnocked": "Anda telah mengetuk",
-  "@youHaveKnocked": {}
+  "@youHaveKnocked": {},
+  "sentVoiceMessage": "🎙️ {duration} - {sender}",
+  "@sentVoiceMessage": {
+    "type": "String",
+    "placeholders": {
+      "sender": {
+        "type": "String"
+      },
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "checkList": "Ceklis",
+  "@checkList": {},
+  "countInvited": "{count} diundang",
+  "@countInvited": {
+    "type": "String",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
 }
