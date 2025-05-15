@@ -40,7 +40,7 @@
   },
   "jumpToLastReadMessage": "Pārlēkt uz pēdējo izlasīto ziņu",
   "@jumpToLastReadMessage": {},
-  "allRooms": "Visas kopu tērzēšanas",
+  "allRooms": "Visām kopu tērzēšanām",
   "@allRooms": {
     "type": "String",
     "placeholders": {}
@@ -83,7 +83,7 @@
   },
   "reportErrorDescription": "😭 Ak nē! Kaut kas nogāja greizi. Ja ir vēlēšanas, par šo nepilnību var ziņot izstrādātājiem.",
   "@reportErrorDescription": {},
-  "directChats": "Tiešās tērzēšanas",
+  "directChats": "Tiešajām tērzēšanām",
   "@directChats": {
     "type": "String",
     "placeholders": {}
@@ -1323,7 +1323,7 @@
   "@sendAsText": {
     "type": "String"
   },
-  "inviteForMe": "Uzaicinājums man",
+  "inviteForMe": "Uzaicinājumu man",
   "@inviteForMe": {
     "type": "String",
     "placeholders": {}
@@ -1740,7 +1740,7 @@
       }
     }
   },
-  "report": "ziņot",
+  "report": "Ziņot",
   "@report": {},
   "status": "Stāvoklis",
   "@status": {
@@ -1762,7 +1762,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "memberChanges": "Dalībnieku izmaiņas",
+  "memberChanges": "Dalībnieku izmaiņām",
   "@memberChanges": {
     "type": "String",
     "placeholders": {}
@@ -1835,7 +1835,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "addChatDescription": "Pievienot tērzēšanas aprakstu...",
+  "addChatDescription": "Pievienot tērzēšanas aprakstu…",
   "@addChatDescription": {},
   "sentAnAudio": "🎤 {username} nosūtīja skaņu",
   "@sentAnAudio": {
@@ -2532,7 +2532,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "botMessages": "Robotprogrammatūras ziņas",
+  "botMessages": "Robotprogrammatūras ziņām",
   "@botMessages": {
     "type": "String",
     "placeholders": {}
@@ -3101,7 +3101,7 @@
   "@noticeChatBackupDeviceVerification": {},
   "continueText": "Turpināt",
   "@continueText": {},
-  "welcomeText": "Sveicieni! 👋 Šis ir FluffyChat. Tu vari pieteikties jebkurā mājasserverī, kas ir saderīgs ar https://matrix.org. Tad vari tērzēt ar ikvienu. Tas ir milzīgs decentralizētās saziņas tīkls!",
+  "welcomeText": "Sveicieni! 👋 Šis ir FluffyChat. Tu vari pieteikties jebkurā mājasserverī, kas ir saderīgs ar https://matrix.org. Tad vari tērzēt ar ikvienu. Tas ir milzīgs decentralizētās saziņas tīkls.",
   "@welcomeText": {},
   "blur": "Aizmiglojums:",
   "@blur": {},
@@ -3209,7 +3209,7 @@
   "@otherNotificationSettings": {},
   "notificationRuleContainsUserName": "Saturs lietotāja vārdu",
   "@notificationRuleContainsUserName": {},
-  "notificationRuleMasterDescription": "Pārspēj visas pārējās kārtulas un atspējo visus paziņojumus.",
+  "notificationRuleMasterDescription": "Aizvieto visas pārējās kārtulas un atspējo visus paziņojumus.",
   "@notificationRuleMasterDescription": {},
   "notificationRuleInviteForMe": "Uzaicinājums man",
   "@notificationRuleInviteForMe": {},
@@ -3323,5 +3323,42 @@
   "enterNewChat": "Ieiet jaunajā tērzēšanā",
   "@enterNewChat": {},
   "commandHint_roomupgrade": "Uzlabot šo istabu uz norādīto istabas versiju",
-  "@commandHint_roomupgrade": {}
+  "@commandHint_roomupgrade": {},
+  "setCustomPermissionLevel": "Iestatīt pielāgotu atļauju līmeni",
+  "@setCustomPermissionLevel": {},
+  "setPermissionsLevelDescription": "Lūgums zemāk atlasīt iepriekšizveidotu lomu vai ievadīt pielāgotu atļauju līmeni starp 0 un 100.",
+  "@setPermissionsLevelDescription": {},
+  "ignoreUser": "Neņemt vērā lietotāju",
+  "@ignoreUser": {},
+  "normalUser": "Parasts lietotājs",
+  "@normalUser": {},
+  "youHaveKnocked": "Tu pieklauvēji",
+  "@youHaveKnocked": {},
+  "pleaseWaitUntilInvited": "Lūgums tagad uzgaidīt, līdz kāds no istabas uzaicinās Tevi.",
+  "@pleaseWaitUntilInvited": {},
+  "approve": "Apstiprināt",
+  "@approve": {},
+  "checkList": "Pārbaužu saraksts",
+  "@checkList": {},
+  "countInvited": "{count} uzaicināti",
+  "@countInvited": {
+    "type": "String",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "sentVoiceMessage": "🎙️ {duration} - {sender}",
+  "@sentVoiceMessage": {
+    "type": "String",
+    "placeholders": {
+      "sender": {
+        "type": "String"
+      },
+      "duration": {
+        "type": "String"
+      }
+    }
+  }
 }

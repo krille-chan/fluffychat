@@ -3289,5 +3289,7 @@
   "optionalMessage": "(Optionale) Nachricht...",
   "@optionalMessage": {},
   "notSupportedOnThisDevice": "Nicht unterstützt auf diesem Gerät",
-  "@notSupportedOnThisDevice": {}
+  "@notSupportedOnThisDevice": {},
+  "ignoreUser": "Nutzer ignorieren",
+  "@ignoreUser": {}
 }
