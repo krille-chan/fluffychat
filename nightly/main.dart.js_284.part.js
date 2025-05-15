@@ -127,9 +127,9 @@ gi1(){return"Gekopieerd naar klembord"},
 geo(d){return"Bericht kopi\xebren"},
 gi2(){return"Kopieer naar klembord"},
 i3(d){return"Kan het bericht niet ontsleutelen: "+d},
-gp8(){return"Check list"},
+gp8(){return"Checklist"},
 dC(d){return""+d+" personen"},
-p9(d){return""+d+" invited"},
+p9(d){return""+d+" uitgenodigd"},
 gf6(d){return"Aanmaken"},
 i4(d){return"\ud83d\udcac "+d+" heeft de chat gemaakt"},
 ge1(){return"Groep aanmaken"},
@@ -637,5 +637,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.EU,C.aC)})()
 B.dN(b.typeUniverse,JSON.parse('{"EU":{"aC":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_284",e:"endPart",h:b})})($__dart_deferred_initializers__,"tF0TATUcD2w7BlPBC/K1Vfsa3BI=");
+a.eventLog.push({p:"main.dart.js_284",e:"endPart",h:b})})($__dart_deferred_initializers__,"2JOMqAHqMCRN9gtrlF0bk5+8Dww=");
 //# sourceMappingURL=main.dart.js_284.part.js.map

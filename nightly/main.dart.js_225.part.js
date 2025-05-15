@@ -628,7 +628,7 @@ gnQ(){return"Cross verified devices"},
 goY(){return"Nur verifizierte Ger\xe4te"},
 goP(){return"(Optionale) Nachricht..."},
 go6(){return"Nicht unterst\xfctzt auf diesem Ger\xe4t"},
-gnU(){return"Neuen Chat starten"},
+gnU(){return"Neuen Chat betreten"},
 gnz(){return"Approve"},
 gp6(){return"You have knocked"},
 goR(){return"Please wait now, until someone from the room invites you."},
@@ -638,5 +638,5 @@ x(A.Et,C.aC)})()
 B.dN(b.typeUniverse,JSON.parse('{"Et":{"aC":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_225",e:"endPart",h:b})})($__dart_deferred_initializers__,"9qbBxwZJZonVhpD3XTwgwF0yDEE=");
+a.eventLog.push({p:"main.dart.js_225",e:"endPart",h:b})})($__dart_deferred_initializers__,"EMwRQA6wtet4P7FPxAsfcqSJGW8=");
 //# sourceMappingURL=main.dart.js_225.part.js.map
