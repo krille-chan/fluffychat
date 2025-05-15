@@ -8,11 +8,11 @@ import 'package:punycode/punycode.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pangea/public_spaces/public_room_bottom_sheet.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/user_dialog.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import '../widgets/adaptive_dialogs/public_room_dialog.dart';
 import 'platform_infos.dart';
 
 class UrlLauncher {
@@ -188,9 +188,10 @@ class UrlLauncher {
         //     roomAlias: identityParts.primaryIdentifier,
         //   ),
         // );
-        await PublicRoomDialog.show(
+        await PublicRoomBottomSheet.show(
           context: context,
           roomAlias: identityParts.primaryIdentifier,
+          // Pangea#
         );
         // Pangea#
       }
