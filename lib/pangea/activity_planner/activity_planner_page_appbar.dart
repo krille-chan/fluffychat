@@ -11,11 +11,11 @@ import 'package:fluffychat/pangea/common/widgets/customized_svg.dart';
 class ActivityPlannerPageAppBar extends StatelessWidget
     implements PreferredSizeWidget {
   final PageMode pageMode;
-  final String roomID;
+  final String? roomID;
 
   const ActivityPlannerPageAppBar({
     required this.pageMode,
-    required this.roomID,
+    this.roomID,
     super.key,
   });
 
@@ -68,7 +68,9 @@ class ActivityPlannerPageAppBar extends StatelessWidget
           alignment: Alignment.center,
           child: InkWell(
             customBorder: const CircleBorder(),
-            onTap: () => context.go('/rooms/$roomID/planner/generator'),
+            onTap: () => roomID != null
+                ? context.go('/rooms/$roomID/planner/generator')
+                : context.go("/homepage/planner/generator"),
             child: Container(
               decoration: BoxDecoration(
                 color: theme.colorScheme.surfaceContainerHighest,

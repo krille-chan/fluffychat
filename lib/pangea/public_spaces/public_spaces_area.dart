@@ -176,7 +176,7 @@ class PublicSpacesAreaState extends State<PublicSpacesArea> {
                   key: const ValueKey('title'),
                   children: [
                     Text(
-                      L10n.of(context).publicSpacesTitle,
+                      L10n.of(context).findYourPeople,
                       style: isColumnMode
                           ? theme.textTheme.titleLarge
                               ?.copyWith(fontWeight: FontWeight.bold)

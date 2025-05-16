@@ -274,10 +274,20 @@ extension EventsRoomExtension on Room {
   }) async {
     Uint8List? bytes = avatar;
     if (avatarURL != null && bytes == null) {
-      final resp = await http
-          .get(Uri.parse(avatarURL))
-          .timeout(const Duration(seconds: 5));
-      bytes = resp.bodyBytes;
+      try {
+        final resp = await http
+            .get(Uri.parse(avatarURL))
+            .timeout(const Duration(seconds: 5));
+        bytes = resp.bodyBytes;
+      } catch (e, s) {
+        ErrorHandler.logError(
+          e: e,
+          s: s,
+          data: {
+            "avatarURL": avatarURL,
+          },
+        );
+      }
     }
 
     MatrixFile? file;

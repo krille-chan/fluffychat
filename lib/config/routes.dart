@@ -203,12 +203,23 @@ abstract class AppRoutes {
             ...newRoomRoutes,
             GoRoute(
               path: '/planner',
-              redirect: loggedOutRedirect,
               pageBuilder: (context, state) => defaultPageBuilder(
                 context,
                 state,
-                const ActivityGenerator(),
+                const ActivityPlannerPage(),
               ),
+              redirect: loggedOutRedirect,
+              routes: [
+                GoRoute(
+                  path: '/generator',
+                  redirect: loggedOutRedirect,
+                  pageBuilder: (context, state) => defaultPageBuilder(
+                    context,
+                    state,
+                    const ActivityGenerator(),
+                  ),
+                ),
+              ],
             ),
           ],
         ),

@@ -4936,5 +4936,12 @@
   "permissions": "Permissions",
   "spaceChildPermission": "Who can add new chats and subspaces to this space",
   "addEnvironmentOverride": "Add environment override",
-  "defaultOption": "Default"
+  "defaultOption": "Default",
+  "chatWithActivities": "Chat with activities",
+  "findYourPeople": "Find your people",
+  "launch": "Launch",
+  "launchActivityToChats": "Launch activity to chats",
+  "searchChats": "Search chats",
+  "selectChats": "Select chats",
+  "selectChatToStart": "Complete! Select a chat to start"
 }
