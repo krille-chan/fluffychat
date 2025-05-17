@@ -3380,5 +3380,7 @@
         "type": "String"
       }
     }
-  }
+  },
+  "checkList": "Kontrollnimekiri",
+  "@checkList": {}
 }
