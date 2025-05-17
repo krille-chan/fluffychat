@@ -51,7 +51,7 @@ extension ClientDownloadContentExtension on Client {
     if (rounded) {
       final image = decodeImage(imageData);
       if (image != null) {
-        imageData = copyCropCircle(image).toUint8List();
+        imageData = encodePng(copyCropCircle(image));
       }
     }
 
