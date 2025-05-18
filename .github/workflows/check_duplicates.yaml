@@ -11,26 +11,29 @@ jobs:
         title: ${{ github.event.issue.title }}
         body: ${{ github.event.issue.title }}
         author: ${{ github.event.issue.author }}
+        number: ${{ github.event.issue.number }}
         GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
       - name: Check duplicates
         run: |
-          ISSUES=$(gh issue list --search '${{ env.title }}')
+          ISSUES=$(gh issue list --search '${{ env.title }}' | grep -v "${{ number }}"")
           echo $ISSUES
-          RESPONSE=$(curl "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${{ secrets.GEMINI_KEY }}" \
-          -H 'Content-Type: application/json' \
-          -X POST \
-          -d "{
-          \"contents\": [{
-              \"parts\":[
-              {\"text\": \"Please compare issue title and body to possible duplications. If you think this issue could be a duplication, write a very short and nice response to this Github issue and link the possible duplication issues and ask the author ${{ env.author }} to check those. If you don't find any duplications, just reply with 'false'. \n\nIssue title: ${{ env.title }}\nIssue body: ${{ env.body }}\n\nPossible duplications:\n$ISSUES\"}
-              ]
-          }]
-          }" | jq -r '.candidates[0].content.parts[0].text')
-          echo $RESPONSE
-          if [ "$RESPONSE" != "false" ]; then
-            gh issue comment ${{ github.event.issue.number }} --body "$RESPONSE"
+          if [ "$ISSUES" != ""]; then
+            RESPONSE=$(curl "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${{ secrets.GEMINI_KEY }}" \
+            -H 'Content-Type: application/json' \
+            -X POST \
+            -d "{
+            \"contents\": [{
+                \"parts\":[
+                {\"text\": \"Please compare issue title and body to possible duplications. If you think this issue could be a duplication, write a very short and nice response to this Github issue and link the possible duplication issues and ask the author ${{ env.author }} to check those. If you don't find any duplications, just reply with 'false'. \n\nIssue title: ${{ env.title }}\nIssue body: ${{ env.body }}\n\nPossible duplications:\n$ISSUES\"}
+                ]
+            }]
+            }" | jq -r '.candidates[0].content.parts[0].text')
+            echo $RESPONSE
+            if [ "$RESPONSE" != "false" ]; then
+              gh issue comment ${{ github.event.issue.number }} --body "$RESPONSE"
+            fi
           fi
         env:
           OPENAI_KEY: ${{ secrets.OPENAI_KEY }}
