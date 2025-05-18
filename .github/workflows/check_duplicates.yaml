@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Check duplicates
         run: |
-          issues=$(gh issue list --search '${{ title }}' --json number,title,url | jq -r 'map(select(.number != ${{ env.number }})) | .[] | "- [" + .title + "](" + .url + ")"')
+          issues=$(gh issue list --search '${{ env.title }}' --json number,title,url | jq -r 'map(select(.number != ${{ env.number }})) | .[] | "- [" + .title + "](" + .url + ")"')
           if [ "$ISSUES" != ""]; then
             gh issue comment ${{ github.event.issue.number }} --body "Thanks for reporting @${{ env.author }}.\nPlease check if this could be a duplicate of one of these issues:\n$issues"
           fi
