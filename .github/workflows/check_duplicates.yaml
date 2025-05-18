@@ -11,13 +11,13 @@ jobs:
         title: ${{ github.event.issue.title }}
         body: ${{ github.event.issue.title }}
         author: ${{ github.event.issue.author }}
-        number: ${{ github.event.issue.number }}
+        number: ${{ github.event.issue.user.login }}
         GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
       - name: Check duplicates
         run: |
-          ISSUES=$(gh issue list --search '${{ env.title }}' | grep -v "${{ number }}"")
+          ISSUES=$(gh issue list --search '${{ env.title }}' | grep -v "${{ env.number }}"")
           echo $ISSUES
           if [ "$ISSUES" != ""]; then
             RESPONSE=$(curl "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${{ secrets.GEMINI_KEY }}" \
