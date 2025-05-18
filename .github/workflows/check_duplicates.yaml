@@ -23,5 +23,6 @@ jobs:
             echo "No duplicates found."
           else
             issues_markdown=$(echo "$issues_filtered" | jq -r '.[] | "- [" + .title + "](" + .url + ")"')
-            gh issue comment ${{ github.event.issue.number }} --body "@${{ env.author }}\nPossible duplication of:\n$issues_markdown"
+            formatted_body=$(echo -e "@${{ env.author }}\nPossible duplication of:\n$issues_markdown")
+            gh issue comment ${{ github.event.issue.number }} --body "$formatted_body"
           fi
