@@ -1,4 +1,4 @@
-name: Check Duplicates
+name: Check duplicates
 
 on:
   issues:
@@ -14,18 +14,17 @@ jobs:
         GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
-      - name: Search for similar issues
-        run: echo "issues=$(gh issue list --search '${{ env.title }}')" >> $GITHUB_ENV
-      - name: Let Gemini reply
+      - name: Check duplicates
         run: |
-          echo "${{ env.issues }}"
+          ISSUES=$(gh issue list --search '${{ env.title }}')
+          echo $ISSUES
           RESPONSE=$(curl "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${{ secrets.GEMINI_KEY }}" \
           -H 'Content-Type: application/json' \
           -X POST \
           -d "{
           \"contents\": [{
               \"parts\":[
-              {\"text\": \"Please compare issue title and body to possible duplications. If you think this issue could be a duplication, write a short response to this Github issue and link the possible duplication issues and ask the author @$author to check those. Otherwise just responde with an empty String.\n\nIssue title: $title\nIssue body: $body\n\nPossible duplications:\n$issues\"}
+              {\"text\": \"Please compare issue title and body to possible duplications. If you think this issue could be a duplication, write a short response to this Github issue and link the possible duplication issues and ask the author @$author to check those. Otherwise just responde with an empty String.\n\nIssue title: $title\nIssue body: $body\n\nPossible duplications:\n$ISSUES\"}
               ]
           }]
           }" | jq -r '.candidates[0].content.parts[0].text')
