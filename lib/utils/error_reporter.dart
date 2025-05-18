@@ -49,10 +49,7 @@ class ErrorReporter {
             onPressed: () => launchUrl(
               AppConfig.newIssueUrl.resolveUri(
                 Uri(
-                  queryParameters: {
-                    'template': 'bug_report.yaml',
-                    'title': '[BUG]: ${message ?? error.toString()}',
-                  },
+                  queryParameters: {'template': 'bug_report.yaml'},
                 ),
               ),
               mode: LaunchMode.externalApplication,
