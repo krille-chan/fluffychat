@@ -7,9 +7,12 @@ on:
 jobs:
   check_duplicates:
     runs-on: ubuntu-latest
+    env:
+        title: ${{ github.event.issue.title }}
+        body: ${{ github.event.issue.title }}
     steps:
       - name: Search for similar issues
-        run: echo "ISSUES=$(gh issue list --search '${{ github.event.issue.title }}' --json title,body | jq '[.[] | {title, body: (.body[:200])}]')" >> $GITHUB_ENV
+        run: echo "ISSUES=$(gh issue list --search '${{ env.title }}' --json title,body)" >> $GITHUB_ENV
       - name: Send message to GPT
         if: "${{ env.ISSUES != '[]' }}"
         run: |
@@ -21,7 +24,7 @@ jobs:
               "model": "gpt-3.5-turbo",
               "messages": [
                 {"role": "user", "content": "Please link possible duplications of this issue."},
-                {"role": "user", "content": "${{ github.event.issue.title }}\n${{ github.event.issue.body }}"},
+                {"role": "user", "content": "${{ env.title }}\n${{ env.body }}"},
                 {"role": "user", "content": "${{ env.ISSUES }}"}
               ],
               "temperature": 0.7
