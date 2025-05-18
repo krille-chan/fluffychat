@@ -20,5 +20,5 @@ jobs:
           number=${{ env.number }}
           issues_filtered=$(echo "$issues" | jq --arg num "$number" 'map(select(.number != ($num | tonumber)))')
           if [ "$ISSUES" != ""]; then
-            gh issue comment ${{ github.event.issue.number }} --body "@${{ env.author }}\nPossible duplication of:\n$issues_markdown=$"
+            gh issue comment ${{ github.event.issue.number }} --body "@${{ env.author }}\nPossible duplication of:\n$issues_markdown"
           fi
