@@ -1,7 +1,7 @@
 name: Check Duplicates
 
 on:
-  issue:
+  issues:
     types: [opened]
 
 jobs:
