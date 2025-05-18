@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Search for similar issues
-        run: echo "ISSUES=$(gh issue list --search '${{ github.event.issue.title }}' --json title,body | jq '[.[] | {title, body: (.body[:200])}]')"
+        run: echo "ISSUES=$(gh issue list --search '${{ github.event.issue.title }}' --json title,body | jq '[.[] | {title, body: (.body[:200])}]')" >> $GITHUB_ENV
       - name: Send message to GPT
         if: "${{ env.ISSUES != '[]' }}"
         run: |
