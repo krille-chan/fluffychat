@@ -127,7 +127,7 @@ gi1(){return"Kopeerisin l\xf5ikelauale"},
 geo(d){return"Kopeeri"},
 gi2(){return"Kopeeri l\xf5ikelauale"},
 i3(d){return"S\xf5numi dekr\xfcptimine ei \xf5nnestunud: "+d},
-gp8(){return"Check list"},
+gp8(){return"Kontrollnimekiri"},
 dC(d){return""+d+" osalejat"},
 p9(d){return""+d+" kutsutut"},
 gf6(d){return"Loo"},
@@ -637,5 +637,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Ey,C.aC)})()
 B.dN(b.typeUniverse,JSON.parse('{"Ey":{"aC":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_242",e:"endPart",h:b})})($__dart_deferred_initializers__,"NtDDo65b4SRwBsvQhci2DKWxjL4=");
+a.eventLog.push({p:"main.dart.js_242",e:"endPart",h:b})})($__dart_deferred_initializers__,"Eu99Y7mduhMM7TEJk3xx4VQnHog=");
 //# sourceMappingURL=main.dart.js_242.part.js.map

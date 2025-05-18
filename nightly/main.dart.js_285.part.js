@@ -584,19 +584,19 @@ gos(){return"Zast\u0119puje inne regu\u0142y i wy\u0142\u0105cza wszystkie powia
 goJ(){return"Wy\u0142\u0105cz dla automatycznych wiadomo\u015bci"},
 goK(){return"Wy\u0142\u0105cza powiadomienia z automatycznych klient\xf3w, takich jak boty."},
 goi(){return"W\u0142\u0105cz dla zaprosze\u0144"},
-goj(){return"W\u0142\u0105cza powiadamia o zaproszeniach do pokoju."},
+goj(){return"W\u0142\u0105cza powiadomienia o zaproszeniach do pokoju."},
 got(){return"Wy\u0142\u0105cz dla zmian cz\u0142onkostwa"},
 gou(){return"Wy\u0142\u0105cza powiadomienia o zmianach cz\u0142onkostwa w pokoju."},
 gon(){return"W\u0142\u0105cz dla wzmianek"},
 goo(){return"W\u0142\u0105cza powiadomienia o byciu wzmiankowanym w wiadomo\u015bci."},
 goa(){return"W\u0142\u0105cz dla wiadomo\u015bci z nazw\u0105 wy\u015bwietlan\u0105"},
-gob(){return"W\u0142\u0105cza powiadamia o wiadomo\u015bciach zawieraj\u0105cych Twoj\u0105 nazw\u0119 wy\u015bwietlan\u0105."},
+gob(){return"W\u0142\u0105cza powiadomienia o wiadomo\u015bciach zawieraj\u0105cych Twoj\u0105 nazw\u0119 wy\u015bwietlan\u0105."},
 gol(){return"W\u0142\u0105cz dla wzmianek pokoju"},
 gom(){return"W\u0142\u0105cza powiadomienia o wzmiankowaniu ca\u0142ego pokoju."},
 goD(){return"W\u0142\u0105cz dla powiadomie\u0144 w pokoju"},
-goE(){return"W\u0142\u0105cza powiadamia o wiadomo\u015bciach zawieraj\u0105cych \u201e@room\u201d."},
+goE(){return"W\u0142\u0105cza powiadomienia o wiadomo\u015bciach zawieraj\u0105cych \u201e@room\u201d."},
 goL(){return"W\u0142\u0105cz dla \u201enagrobk\xf3w\u201d"},
-goM(){return"W\u0142\u0105cza powiadamia o komunikatach dezaktywacji pokoj\xf3w."},
+goM(){return"W\u0142\u0105cza powiadomienia o komunikatach dezaktywacji pokoj\xf3w."},
 gox(){return"Wy\u0142\u0105cz dla reakcji"},
 goy(){return"Wy\u0142\u0105cza powiadomienia o reakcjach."},
 goB(){return"Wy\u0142\u0105cz dla list kontroli dost\u0119pu serwera"},
@@ -638,5 +638,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.EV,C.aC)})()
 B.dN(b.typeUniverse,JSON.parse('{"EV":{"aC":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_285",e:"endPart",h:b})})($__dart_deferred_initializers__,"jIQWZm1LrgbPRzvAn1EybDCU/HY=");
+a.eventLog.push({p:"main.dart.js_285",e:"endPart",h:b})})($__dart_deferred_initializers__,"LNzNeZnf+WswSfCnzVa5UuJx90o=");
 //# sourceMappingURL=main.dart.js_285.part.js.map
