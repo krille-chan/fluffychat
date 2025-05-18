@@ -12,6 +12,7 @@ jobs:
         body: ${{ github.event.issue.title }}
         GH_TOKEN: ${{ github.token }}
     steps:
+      - uses: actions/checkout@v4
       - name: Search for similar issues
         run: echo "issues=$(gh issue list --search '${{ env.title }}' --json title,body,url)" >> $GITHUB_ENV
       - name: Let Gemini reply
