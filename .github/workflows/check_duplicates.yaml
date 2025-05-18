@@ -10,26 +10,25 @@ jobs:
     env:
         title: ${{ github.event.issue.title }}
         body: ${{ github.event.issue.title }}
+        author: ${{ github.event.issue.author }}
         GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
       - name: Search for similar issues
-        run: echo "issues=$(gh issue list --search '${{ env.title }}' --json title,body,url | jq -R '. | @json')" >> $GITHUB_ENV
+        run: echo "issues=$(gh issue list --search '${{ env.title }}')" >> $GITHUB_ENV
       - name: Let Gemini reply
         run: |
           echo "${{ env.issues }}"
           RESPONSE=$(curl "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${{ secrets.GEMINI_KEY }}" \
           -H 'Content-Type: application/json' \
           -X POST \
-          -d '{
-            "contents": [{
-              "parts":[
-                {"text": "Please write a very short and nice response to this new issue. If existing link possible duplications by using markdown links."},
-                {"text": "${{ env.title }}\n${{ env.body }}"},
-                {"text": "Possible duplications:\n${{ env.issues }}"}
+          -d "{
+          \"contents\": [{
+              \"parts\":[
+              {\"text\": \"Please compare issue title and body to possible duplications. If you think this issue could be a duplication, write a short response to this Github issue and link the possible duplication issues and ask the author @$author to check those. Otherwise just responde with an empty String.\n\nIssue title: $title\nIssue body: $body\n\nPossible duplications:\n$issues\"}
               ]
-            }]
-          }' | jq -r '.candidates[0].content.parts[0].text')
+          }]
+          }" | jq -r '.candidates[0].content.parts[0].text')
           echo $RESPONSE
           gh issue comment ${{ github.event.issue.number }} --body "$RESPONSE"
         env:
