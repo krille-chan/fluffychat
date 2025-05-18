@@ -24,11 +24,13 @@ jobs:
           -d "{
           \"contents\": [{
               \"parts\":[
-              {\"text\": \"Please compare issue title and body to possible duplications. If you think this issue could be a duplication, write a short response to this Github issue and link the possible duplication issues and ask the author ${{ env.author }} to check those. Otherwise just responde with an empty String.\n\nIssue title: ${{ env.title }}\nIssue body: ${{ env.body }}\n\nPossible duplications:\n$ISSUES\"}
+              {\"text\": \"Please compare issue title and body to possible duplications. If you think this issue could be a duplication, write a very short and nice response to this Github issue and link the possible duplication issues and ask the author ${{ env.author }} to check those. If you don't find any duplications, just reply with 'false'. \n\nIssue title: ${{ env.title }}\nIssue body: ${{ env.body }}\n\nPossible duplications:\n$ISSUES\"}
               ]
           }]
           }" | jq -r '.candidates[0].content.parts[0].text')
           echo $RESPONSE
-          gh issue comment ${{ github.event.issue.number }} --body "$RESPONSE"
+          if [ "$RESPONSE" != "false" ]; then
+            gh issue comment ${{ github.event.issue.number }} --body "$RESPONSE"
+          fi
         env:
           OPENAI_KEY: ${{ secrets.OPENAI_KEY }}
