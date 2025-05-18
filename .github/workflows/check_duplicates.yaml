@@ -12,9 +12,8 @@ jobs:
         body: ${{ github.event.issue.title }}
     steps:
       - name: Search for similar issues
-        run: echo "ISSUES=$(gh issue list --search '${{ env.title }}' --json title,body)" >> $GITHUB_ENV
+        run: echo "issues=$(gh issue list --search '${{ env.title }}' --json title,body,url)" >> $GITHUB_ENV
       - name: Send message to GPT
-        if: "${{ env.ISSUES != '[]' }}"
         run: |
           curl -X POST \
           https://api.openai.com/v1/chat/completions \
@@ -25,7 +24,7 @@ jobs:
               "messages": [
                 {"role": "user", "content": "Please link possible duplications of this issue."},
                 {"role": "user", "content": "${{ env.title }}\n${{ env.body }}"},
-                {"role": "user", "content": "${{ env.ISSUES }}"}
+                {"role": "user", "content": "${{ env.issues }}"}
               ],
               "temperature": 0.7
             }'
