@@ -3291,5 +3291,99 @@
   "notSupportedOnThisDevice": "Nicht unterstützt auf diesem Gerät",
   "@notSupportedOnThisDevice": {},
   "ignoreUser": "Nutzer ignorieren",
-  "@ignoreUser": {}
+  "@ignoreUser": {},
+  "notificationRuleEncryptedRoomOneToOneDescription": "Benachrichtigt den Benutzer über Nachrichten in verschlüsselten Eins-zu-Eins-Chats.",
+  "@notificationRuleEncryptedRoomOneToOneDescription": {},
+  "commandHint_roomupgrade": "Aktualisieren Sie diesen Raum auf die angegebene Raumversion",
+  "@commandHint_roomupgrade": {},
+  "notificationRuleMemberEvent": "Mitgliederveranstaltung",
+  "@notificationRuleMemberEvent": {},
+  "notificationRuleInviteForMeDescription": "Benachrichtigt den Benutzer, wenn er in einen Raum eingeladen wird.",
+  "@notificationRuleInviteForMeDescription": {},
+  "notificationRuleIsUserMentionDescription": "Benachrichtigt den Benutzer, wenn er in einer Nachricht direkt erwähnt wird.",
+  "@notificationRuleIsUserMentionDescription": {},
+  "notificationRuleRoomnotifDescription": "Benachrichtigt den Benutzer, wenn eine Nachricht „@room“ enthält.",
+  "@notificationRuleRoomnotifDescription": {},
+  "notificationRuleRoomOneToOneDescription": "Benachrichtigt den Benutzer über Nachrichten in Einzelchats.",
+  "@notificationRuleRoomOneToOneDescription": {},
+  "notificationRuleEncryptedDescription": "Benachrichtigt den Benutzer über Nachrichten in verschlüsselten Räumen.",
+  "@notificationRuleEncryptedDescription": {},
+  "notificationRuleJitsiDescription": "Benachrichtigt den Benutzer über Jitsi-Widget-Ereignisse.",
+  "@notificationRuleJitsiDescription": {},
+  "checkList": "Checkliste",
+  "@checkList": {},
+  "countInvited": "{count} invited",
+  "@countInvited": {
+    "type": "String",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "notificationRuleIsUserMention": "Benutzererwähnung",
+  "@notificationRuleIsUserMention": {},
+  "notificationRuleContainsDisplayName": "Enthält den Anzeigenamen",
+  "@notificationRuleContainsDisplayName": {},
+  "notificationRuleContainsDisplayNameDescription": "Benachrichtigt den Benutzer, wenn eine Nachricht seinen Anzeigenamen enthält.",
+  "@notificationRuleContainsDisplayNameDescription": {},
+  "notificationRuleIsRoomMention": "Chat-Erwähnung",
+  "@notificationRuleIsRoomMention": {},
+  "notificationRuleRoomnotif": "Chat-Benachritigung",
+  "@notificationRuleRoomnotif": {},
+  "notificationRuleTombstoneDescription": "Benachrichtigt den Benutzer über Nachrichten zur Raumdeaktivierung.",
+  "@notificationRuleTombstoneDescription": {},
+  "notificationRuleEncryptedRoomOneToOne": "Verschlüsselter Einzelchat",
+  "@notificationRuleEncryptedRoomOneToOne": {},
+  "notificationRuleRoomOneToOne": "Einzelchat",
+  "@notificationRuleRoomOneToOne": {},
+  "notificationRuleServerAclDescription": "Unterdrückt Benachrichtigungen für Server-ACL-Ereignisse.",
+  "@notificationRuleServerAclDescription": {},
+  "unknownPushRule": "Unbekannte Push-Regel '{rule}'",
+  "@unknownPushRule": {
+    "type": "String",
+    "placeholders": {
+      "rule": {
+        "type": "String"
+      }
+    }
+  },
+  "deletePushRuleCanNotBeUndone": "Wenn Sie diese Benachrichtigungseinstellung löschen, kann dies nicht rückgängig gemacht werden.",
+  "@deletePushRuleCanNotBeUndone": {},
+  "crossVerifiedDevices": "Cross-verifizierte Geräte",
+  "@crossVerifiedDevices": {},
+  "notificationRuleIsRoomMentionDescription": "Benachrichtigt den Benutzer, wenn ein Raum erwähnt wird.",
+  "@notificationRuleIsRoomMentionDescription": {},
+  "notificationRuleRoomServerAcl": "Raumserver-ACL",
+  "@notificationRuleRoomServerAcl": {},
+  "crossVerifiedDevicesIfEnabled": "Cross-verifizierte Geräte, falls aktiviert",
+  "@crossVerifiedDevicesIfEnabled": {},
+  "notificationRuleServerAcl": "Unterdrücken von Server-ACL-Ereignissen",
+  "@notificationRuleServerAcl": {},
+  "notificationRuleMemberEventDescription": "Unterdrückt Benachrichtigungen zu Mitgliedschaftsereignissen.",
+  "@notificationRuleMemberEventDescription": {},
+  "sentVoiceMessage": "🎙️ {duration} - {sender}",
+  "@sentVoiceMessage": {
+    "type": "String",
+    "placeholders": {
+      "sender": {
+        "type": "String"
+      },
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "normalUser": "Normaler Benutzer",
+  "@normalUser": {},
+  "setCustomPermissionLevel": "Benutzerdefinierte Berechtigungsstufe festlegen",
+  "@setCustomPermissionLevel": {},
+  "setPermissionsLevelDescription": "Bitte wählen Sie unten eine vordefinierte Rolle aus oder geben Sie eine benutzerdefinierte Berechtigungsstufe zwischen 0 und 100 ein.",
+  "@setPermissionsLevelDescription": {},
+  "approve": "Genehmigen",
+  "@approve": {},
+  "youHaveKnocked": "Du hast geklopft",
+  "@youHaveKnocked": {},
+  "pleaseWaitUntilInvited": "Bitte warte nun, bis dich jemand aus dem Raum auffordert.",
+  "@pleaseWaitUntilInvited": {}
 }
