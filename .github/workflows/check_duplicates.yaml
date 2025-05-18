@@ -24,7 +24,7 @@ jobs:
           -d "{
           \"contents\": [{
               \"parts\":[
-              {\"text\": \"Please compare issue title and body to possible duplications. If you think this issue could be a duplication, write a short response to this Github issue and link the possible duplication issues and ask the author @$author to check those. Otherwise just responde with an empty String.\n\nIssue title: $title\nIssue body: $body\n\nPossible duplications:\n$ISSUES\"}
+              {\"text\": \"Please compare issue title and body to possible duplications. If you think this issue could be a duplication, write a short response to this Github issue and link the possible duplication issues and ask the author ${{ env.author }} to check those. Otherwise just responde with an empty String.\n\nIssue title: ${{ env.title }}\nIssue body: ${{ env.body }}\n\nPossible duplications:\n$ISSUES\"}
               ]
           }]
           }" | jq -r '.candidates[0].content.parts[0].text')
