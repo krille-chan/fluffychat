@@ -13,19 +13,18 @@ jobs:
     steps:
       - name: Search for similar issues
         run: echo "issues=$(gh issue list --search '${{ env.title }}' --json title,body,url)" >> $GITHUB_ENV
-      - name: Send message to GPT
+      - name: Let Gemini reply
         run: |
-          curl "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${{ secrets.GEMINI_KEY }}" \
+          RESPONSE=$(curl "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${{ secrets.GEMINI_KEY }}" \
           -H 'Content-Type: application/json' \
           -X POST \
           -d '{
             "contents": [{
               "parts":[
-                {"text": "Please write a very short and nice response to this new issue and link possible duplications."},
-                {"text": "${{ env.title }}\n${{ env.body }}"},
-                {"text": "${{ env.issues }}"}
+                {"text": "Please write a very short and nice response to this new issue and link possible duplications.\n\n${{ env.title }}\n${{ env.body }}\n\nPossible Duplications:\n${{ env.issues }}"}
               ]
             }]
-          }'
+          }' | jq -r '.candidates[0].content.parts[0].text')
+          gh issue comment ${{ github.event.issue.number }} --body "$RESPONSE"
         env:
           OPENAI_KEY: ${{ secrets.OPENAI_KEY }}
