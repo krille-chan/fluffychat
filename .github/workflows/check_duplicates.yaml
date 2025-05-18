@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Search for similar issues
-        run: echo "issues=$(gh issue list --search '${{ env.title }}')" >> $GITHUB_ENV
+        run: echo "issues=$(gh issue list --search '${{ env.title }}' --json title,body,url | jq -R '. | @json')" >> $GITHUB_ENV
       - name: Let Gemini reply
         run: |
           echo "${{ env.issues }}"
@@ -25,7 +25,6 @@ jobs:
             "contents": [{
               "parts":[
                 {"text": "Please write a very short and nice response to this new issue. If existing link possible duplications by using markdown links."},
-                {"text": "To create a link to a possible duplication, use 'https://github.com/krille-chan/fluffychat/issues/<ISSUENUMBER>'"},
                 {"text": "${{ env.title }}\n${{ env.body }}"},
                 {"text": "Possible duplications:\n${{ env.issues }}"}
               ]
