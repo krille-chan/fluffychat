@@ -1,0 +1,30 @@
+name: Check Duplicates
+
+on:
+  issue:
+    types: [opened]
+
+jobs:
+  check_duplicates:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Search for similar issues
+        run: echo "ISSUES=$(gh issue list --search '${{ github.event.issue.title }}' --json title,body | jq '[.[] | {title, body: (.body[:200])}]')"
+      - name: Send message to GPT
+        if: "${{ env.ISSUES != '[]' }}"
+        run: |
+          curl -X POST \
+          https://api.openai.com/v1/chat/completions \
+          -H "Content-Type: application/json" \
+          -H "Authorization: Bearer ${{ secrets.OPENAI_KEY }}" \
+          -d '{
+              "model": "gpt-3.5-turbo",
+              "messages": [
+                {"role": "user", "content": "Please link possible duplications of this issue."},
+                {"role": "user", "content": "${{ github.event.issue.title }}\n${{ github.event.issue.body }}"},
+                {"role": "user", "content": "${{ env.ISSUES }}"}
+              ],
+              "temperature": 0.7
+            }'
+        env:
+          OPENAI_KEY: ${{ secrets.OPENAI_KEY }}

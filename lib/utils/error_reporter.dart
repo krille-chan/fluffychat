@@ -48,9 +48,7 @@ class ErrorReporter {
           AdaptiveDialogAction(
             onPressed: () => launchUrl(
               AppConfig.newIssueUrl.resolveUri(
-                Uri(
-                  queryParameters: {'template': 'bug_report.yaml'},
-                ),
+                Uri(queryParameters: {'template': 'bug_report.yaml'}),
               ),
               mode: LaunchMode.externalApplication,
             ),
