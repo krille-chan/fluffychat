@@ -15,18 +15,17 @@ jobs:
         run: echo "issues=$(gh issue list --search '${{ env.title }}' --json title,body,url)" >> $GITHUB_ENV
       - name: Send message to GPT
         run: |
-          curl -X POST \
-          https://api.openai.com/v1/chat/completions \
-          -H "Content-Type: application/json" \
-          -H "Authorization: Bearer ${{ secrets.OPENAI_KEY }}" \
+          curl "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${{ secrets.GEMINI_KEY }}" \
+          -H 'Content-Type: application/json' \
+          -X POST \
           -d '{
-              "model": "gpt-3.5-turbo",
-              "messages": [
-                {"role": "user", "content": "Please link possible duplications of this issue."},
-                {"role": "user", "content": "${{ env.title }}\n${{ env.body }}"},
-                {"role": "user", "content": "${{ env.issues }}"}
-              ],
-              "temperature": 0.7
-            }'
+            "contents": [{
+              "parts":[
+                {"text": "Please write a very short and nice response to this new issue and link possible duplications."},
+                {"text": "${{ env.title }}\n${{ env.body }}"},
+                {"text": "${{ env.issues }}"}
+              ]
+            }]
+          }'
         env:
           OPENAI_KEY: ${{ secrets.OPENAI_KEY }}
