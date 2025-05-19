@@ -80,9 +80,11 @@ class OverlayMessage extends StatelessWidget {
         previousEvent!.senderId == event.senderId &&
         previousEvent!.originServerTs.sameEnvironment(event.originServerTs);
 
-    final textColor = ownMessage
-        ? ThemeData.dark().colorScheme.onPrimary
-        : theme.colorScheme.onSurface;
+    final textColor = event.isActivityMessage
+        ? ThemeData.light().colorScheme.onPrimary
+        : ownMessage
+            ? ThemeData.dark().colorScheme.onPrimary
+            : theme.colorScheme.onSurface;
 
     final linkColor = theme.brightness == Brightness.light
         ? theme.colorScheme.primary

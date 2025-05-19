@@ -130,13 +130,6 @@ class ActivityPlanMessage extends StatelessWidget {
                                         AppConfig.borderRadius,
                                       ),
                                     ),
-                                    padding:
-                                        event.messageType == MessageTypes.Image
-                                            ? EdgeInsets.zero
-                                            : const EdgeInsets.symmetric(
-                                                horizontal: 16,
-                                                vertical: 8,
-                                              ),
                                     constraints: const BoxConstraints(
                                       maxWidth: FluffyThemes.columnWidth * 1.5,
                                     ),
