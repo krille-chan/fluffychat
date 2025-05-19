@@ -418,7 +418,6 @@ class ITChoices extends StatelessWidget {
         onPressed: (value, index) => selectContinuance(index, context),
         onLongPress: (value, index) => showCard(context, index),
         selectedChoiceIndex: null,
-        tts: controller.choreographer.tts,
         langCode: controller.choreographer.pangeaController.languageController
             .activeL2Code(),
       );

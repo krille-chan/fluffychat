@@ -39,9 +39,6 @@ class PracticeMatchItemState extends State<PracticeMatchItem> {
   bool _isHovered = false;
   bool _isPlaying = false;
 
-  TtsController get tts =>
-      widget.overlayController.widget.chatController.choreographer.tts;
-
   bool get isSelected => widget.isSelected;
 
   bool? get isCorrect => widget.isCorrect;
@@ -52,7 +49,7 @@ class PracticeMatchItemState extends State<PracticeMatchItem> {
     }
 
     if (_isPlaying) {
-      await tts.stop();
+      await TtsController.stop();
       if (mounted) {
         setState(() => _isPlaying = false);
       }
@@ -64,7 +61,7 @@ class PracticeMatchItemState extends State<PracticeMatchItem> {
         final l2 =
             MatrixState.pangeaController.languageController.activeL2Code();
         if (l2 != null) {
-          await tts.tryToSpeak(
+          await TtsController.tryToSpeak(
             widget.audioContent!,
             context: context,
             targetID: 'word-audio-button',

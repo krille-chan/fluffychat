@@ -15,6 +15,7 @@ import 'package:fluffychat/pangea/practice_activities/practice_activity_model.da
 import 'package:fluffychat/pangea/practice_activities/practice_generation_repo.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_record.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_target.dart';
+import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
 import 'package:fluffychat/pangea/toolbar/event_wrappers/practice_activity_event.dart';
 import 'package:fluffychat/pangea/toolbar/reading_assistance_input_row/message_morph_choice.dart';
 import 'package:fluffychat/pangea/toolbar/reading_assistance_input_row/practice_match_card.dart';
@@ -231,7 +232,7 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
       widget.overlayController
           .onActivityFinish(currentActivity!.activityType, null);
 
-      widget.overlayController.widget.chatController.choreographer.tts.stop();
+      TtsController.stop();
     } catch (e, s) {
       _onError();
       debugger(when: kDebugMode);

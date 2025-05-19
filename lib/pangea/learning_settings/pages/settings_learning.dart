@@ -35,7 +35,6 @@ class SettingsLearning extends StatefulWidget {
 class SettingsLearningController extends State<SettingsLearning> {
   PangeaController pangeaController = MatrixState.pangeaController;
   late Profile _profile;
-  final tts = TtsController();
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   String? languageMatchError;
@@ -46,12 +45,12 @@ class SettingsLearningController extends State<SettingsLearning> {
   void initState() {
     super.initState();
     _profile = pangeaController.userController.profile.copy();
-    tts.setAvailableLanguages().then((_) => setState(() {}));
+    TtsController.setAvailableLanguages().then((_) => setState(() {}));
   }
 
   @override
   void dispose() {
-    tts.dispose();
+    TtsController.stop();
     scrollController.dispose();
     super.dispose();
   }

@@ -43,7 +43,6 @@ class Choreographer {
   late ITController itController;
   late IgcController igc;
   late ErrorService errorService;
-  late TtsController tts;
 
   bool isFetching = false;
   int _timesClicked = 0;
@@ -64,7 +63,6 @@ class Choreographer {
     _initialize();
   }
   _initialize() {
-    tts = TtsController(chatController: chatController);
     _textController = PangeaTextController(choreographer: this);
     InputPasteListener(_textController, onPaste);
     itController = ITController(this);
@@ -566,7 +564,7 @@ class Choreographer {
     _textController.dispose();
     _languageStream?.cancel();
     stateStream.close();
-    tts.dispose();
+    TtsController.stop();
   }
 
   LanguageModel? get l2Lang {

@@ -9,7 +9,6 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
-import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_unsubscribed_card.dart';
@@ -38,9 +37,6 @@ class ReadingAssistanceContent extends StatefulWidget {
 }
 
 class ReadingAssistanceContentState extends State<ReadingAssistanceContent> {
-  TtsController get ttsController =>
-      widget.overlayController.widget.chatController.choreographer.tts;
-
   Widget? toolbarContent(BuildContext context) {
     final bool? subscribed =
         MatrixState.pangeaController.subscriptionController.isSubscribed;
@@ -123,7 +119,6 @@ class ReadingAssistanceContentState extends State<ReadingAssistanceContent> {
         return WordZoomWidget(
           token: widget.overlayController.selectedToken!,
           messageEvent: widget.overlayController.pangeaMessageEvent!,
-          tts: ttsController,
           overlayController: widget.overlayController,
         );
     }
