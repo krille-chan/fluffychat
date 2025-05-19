@@ -34,7 +34,8 @@ class SettingsView extends StatelessWidget {
         ?.tryGet<String>('account');
     return Row(
       children: [
-        if (FluffyThemes.isColumnMode(context)) ...[
+        if (FluffyThemes.isColumnMode(context) ||
+            AppConfig.displayNavigationRail) ...[
           SpacesNavigationRail(
             activeSpaceId: null,
             onGoToChats: () => context.go('/rooms'),
