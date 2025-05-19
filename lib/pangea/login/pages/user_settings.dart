@@ -259,8 +259,9 @@ class UserSettingsState extends State<UserSettingsPage> {
       MatrixState.pangeaController.pLanguageStore.baseOptions;
 
   bool get _hasIdenticalLanguages =>
-      _systemLanguage != null &&
-      _systemLanguage?.langCodeShort == selectedTargetLanguage?.langCodeShort;
+      selectedBaseLanguage != null &&
+      selectedTargetLanguage?.langCodeShort ==
+          selectedBaseLanguage?.langCodeShort;
 
   @override
   Widget build(BuildContext context) => UserSettingsView(controller: this);
