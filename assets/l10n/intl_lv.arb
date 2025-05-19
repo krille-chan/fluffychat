@@ -83,7 +83,7 @@
   },
   "reportErrorDescription": "😭 Ak nē! Kaut kas nogāja greizi. Ja ir vēlēšanas, par šo nepilnību var ziņot izstrādātājiem.",
   "@reportErrorDescription": {},
-  "directChats": "Tiešajām tērzēšanām",
+  "directChats": "Tiešās tērzēšanas",
   "@directChats": {
     "type": "String",
     "placeholders": {}
