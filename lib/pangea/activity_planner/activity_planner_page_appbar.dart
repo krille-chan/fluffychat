@@ -70,7 +70,7 @@ class ActivityPlannerPageAppBar extends StatelessWidget
             customBorder: const CircleBorder(),
             onTap: () => roomID != null
                 ? context.go('/rooms/$roomID/planner/generator')
-                : context.go("/homepage/planner/generator"),
+                : context.go("/rooms/homepage/planner/generator"),
             child: Container(
               decoration: BoxDecoration(
                 color: theme.colorScheme.surfaceContainerHighest,

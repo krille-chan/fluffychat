@@ -188,43 +188,6 @@ abstract class AppRoutes {
         ),
       ],
     ),
-    ShellRoute(
-      pageBuilder: chatListShellRouteBuilder,
-      routes: [
-        GoRoute(
-          path: '/homepage',
-          redirect: loggedOutRedirect,
-          pageBuilder: (context, state) => defaultPageBuilder(
-            context,
-            state,
-            const SuggestionsPage(),
-          ),
-          routes: [
-            ...newRoomRoutes,
-            GoRoute(
-              path: '/planner',
-              pageBuilder: (context, state) => defaultPageBuilder(
-                context,
-                state,
-                const ActivityPlannerPage(),
-              ),
-              redirect: loggedOutRedirect,
-              routes: [
-                GoRoute(
-                  path: '/generator',
-                  redirect: loggedOutRedirect,
-                  pageBuilder: (context, state) => defaultPageBuilder(
-                    context,
-                    state,
-                    const ActivityGenerator(),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ],
-    ),
     // Pangea#
     ShellRoute(
       // Never use a transition on the shell route. Changing the PageBuilder
@@ -402,6 +365,40 @@ abstract class AppRoutes {
                     : child,
               ),
               routes: [
+                // #Pangea
+                GoRoute(
+                  path: '/homepage',
+                  redirect: loggedOutRedirect,
+                  pageBuilder: (context, state) => defaultPageBuilder(
+                    context,
+                    state,
+                    const SuggestionsPage(),
+                  ),
+                  routes: [
+                    ...newRoomRoutes,
+                    GoRoute(
+                      path: '/planner',
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        state,
+                        const ActivityPlannerPage(),
+                      ),
+                      redirect: loggedOutRedirect,
+                      routes: [
+                        GoRoute(
+                          path: '/generator',
+                          redirect: loggedOutRedirect,
+                          pageBuilder: (context, state) => defaultPageBuilder(
+                            context,
+                            state,
+                            const ActivityGenerator(),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                // Pangea#
                 GoRoute(
                   path: 'settings',
                   pageBuilder: (context, state) => defaultPageBuilder(
