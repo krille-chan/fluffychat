@@ -75,6 +75,7 @@ class ImageViewerView extends StatelessWidget {
                 focusNode: controller.focusNode,
                 onKeyEvent: controller.onKeyEvent,
                 child: PageView.builder(
+                  scrollDirection: Axis.vertical,
                   controller: controller.pageController,
                   itemCount: controller.allEvents.length,
                   itemBuilder: (context, i) {
@@ -119,30 +120,33 @@ class ImageViewerView extends StatelessWidget {
                   },
                 ),
               ),
-              if (hovered && controller.canGoBack)
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: IconButton(
-                      style: iconButtonStyle,
-                      tooltip: L10n.of(context).previous,
-                      icon: const Icon(Icons.chevron_left_outlined),
-                      onPressed: controller.prevImage,
-                    ),
-                  ),
-                ),
-              if (hovered && controller.canGoNext)
+              if (hovered)
                 Align(
                   alignment: Alignment.centerRight,
-                  child: Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: IconButton(
-                      style: iconButtonStyle,
-                      tooltip: L10n.of(context).next,
-                      icon: const Icon(Icons.chevron_right_outlined),
-                      onPressed: controller.nextImage,
-                    ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      if (controller.canGoBack)
+                        Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: IconButton(
+                            style: iconButtonStyle,
+                            tooltip: L10n.of(context).previous,
+                            icon: const Icon(Icons.arrow_upward_outlined),
+                            onPressed: controller.prevImage,
+                          ),
+                        ),
+                      if (controller.canGoNext)
+                        Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: IconButton(
+                            style: iconButtonStyle,
+                            tooltip: L10n.of(context).next,
+                            icon: const Icon(Icons.arrow_downward_outlined),
+                            onPressed: controller.nextImage,
+                          ),
+                        ),
+                    ],
                   ),
                 ),
             ],
