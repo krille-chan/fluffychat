@@ -488,9 +488,7 @@ class ChatListController extends State<ChatList>
       if (mounted) {
         searchServer =
             Matrix.of(context).store.getString(_serverStoreNamespace);
-        // #Pangea
-        // Matrix.of(context).backgroundPush?.setupPush();
-        // Pangea#
+        Matrix.of(context).backgroundPush?.setupPush();
         UpdateNotifier.showUpdateSnackBar(context);
         // #Pangea
         AppVersionUtil.showAppVersionDialog(context);
