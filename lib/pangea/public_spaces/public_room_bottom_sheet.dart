@@ -208,6 +208,7 @@ class PublicRoomBottomSheetState extends State<PublicRoomBottomSheet> {
                           child: Column(
                             spacing: 16.0,
                             mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
                               Row(
                                 spacing: 8.0,
@@ -226,6 +227,7 @@ class PublicRoomBottomSheetState extends State<PublicRoomBottomSheet> {
                                     child: Text(
                                       chunk!.topic!,
                                       softWrap: true,
+                                      textAlign: TextAlign.start,
                                       maxLines: null,
                                     ),
                                   ),

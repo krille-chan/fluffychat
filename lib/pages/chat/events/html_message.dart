@@ -162,65 +162,68 @@ class HtmlMessage extends StatelessWidget {
     String fullHtml,
     List<PangeaToken> remainingTokens,
   ) {
-    for (final node in element.nodes) {
-      node.replaceWith(_tokenizeHtml(node, fullHtml, remainingTokens));
-    }
+    final regex = RegExp(r'(<[^>]+>)');
 
-    if (element is dom.Text) {
-      // once a text element in reached in the HTML tree, find and
-      // wrap all the spans with matching tokens until all tokens
-      // have been wrapped or no more text elements remain
-      String tokenizedText = element.text;
-      while (remainingTokens.isNotEmpty) {
-        final tokenText = remainingTokens.first.text.content;
+    final matches = regex.allMatches(fullHtml);
+    final List<String> result = <String>[];
+    int lastEnd = 0;
 
-        int startIndex = tokenizedText.lastIndexOf('</token>');
-        startIndex = startIndex == -1 ? 0 : startIndex + 8;
-        final int tokenIndex = tokenizedText.indexOf(
-          tokenText,
-          startIndex,
-        );
-
-        // if the token is not found in the text, check if the token exist in the full HTML.
-        // If not, remove the token and continue. If so, break to move on to the next node in the HTML.
-        if (tokenIndex == -1) {
-          final fullHtmlIndex = fullHtml.indexOf(tokenText);
-          if (fullHtmlIndex == -1) {
-            remainingTokens.removeAt(0);
-            continue;
-          } else {
-            break;
-          }
-        }
-
-        final token = remainingTokens.removeAt(0);
-        final tokenEnd = tokenIndex + tokenText.length;
-        final before = tokenizedText.substring(0, tokenIndex);
-        final after = tokenizedText.substring(tokenEnd);
-
-        tokenizedText =
-            "$before<token offset=\"${token.text.offset}\" length=\"${token.text.length}\">$tokenText</token>$after";
+    for (final match in matches) {
+      if (match.start > lastEnd) {
+        result.add(fullHtml.substring(lastEnd, match.start)); // Text before tag
       }
-
-      final newElement = dom.Element.html('<span>$tokenizedText</span>');
-      return newElement;
+      result.add(match.group(0)!); // The tag itself
+      lastEnd = match.end;
     }
 
-    return element;
+    if (lastEnd < fullHtml.length) {
+      result.add(fullHtml.substring(lastEnd)); // Remaining text after last tag
+    }
+
+    for (final PangeaToken token in tokens ?? []) {
+      final String tokenText = token.text.content;
+      final substringIndex = result.indexWhere(
+        (string) =>
+            string.contains(tokenText) &&
+            !(string.startsWith('<') && string.endsWith('>')),
+      );
+
+      if (substringIndex == -1) continue;
+      final int tokenIndex = result[substringIndex].indexOf(tokenText);
+      if (tokenIndex == -1) continue;
+
+      final int tokenLength = tokenText.characters.length;
+      final before = result[substringIndex].substring(0, tokenIndex);
+      final after = result[substringIndex].substring(tokenIndex + tokenLength);
+      result.replaceRange(substringIndex, substringIndex + 1, [
+        if (before.isNotEmpty) before,
+        '<token offset="${token.text.offset}" length="${token.text.length}">$tokenText</token>',
+        if (after.isNotEmpty) after,
+      ]);
+    }
+
+    return dom.Element.html('<span>${result.join()}</span>');
   }
   // Pangea#
 
   /// Adding line breaks before block elements.
   List<InlineSpan> _renderWithLineBreaks(
     dom.NodeList nodes,
-    BuildContext context, {
+    // #Pangea
+    // BuildContext context, {
+    BuildContext context,
+    TextStyle textStyle, {
+    // Pangea#
     int depth = 1,
   }) {
     final onlyElements = nodes.whereType<dom.Element>().toList();
     return [
       for (var i = 0; i < nodes.length; i++) ...[
         // Actually render the node child:
-        _renderHtml(nodes[i], context, depth: depth + 1),
+        // #Pangea
+        // _renderHtml(nodes[i], context, depth: depth + 1),
+        _renderHtml(nodes[i], context, textStyle, depth: depth + 1),
+        // Pangea#
         // Add linebreaks between blocks:
         if (nodes[i] is dom.Element &&
             onlyElements.indexOf(nodes[i] as dom.Element) <
@@ -237,7 +240,11 @@ class HtmlMessage extends StatelessWidget {
   /// Transforms a Node to an InlineSpan.
   InlineSpan _renderHtml(
     dom.Node node,
-    BuildContext context, {
+    // #Pangea
+    // BuildContext context, {
+    BuildContext context,
+    TextStyle textStyle, {
+    // Pangea#
     int depth = 1,
   }) {
     // We must not render elements nested more than 100 elements deep:
@@ -276,9 +283,11 @@ class HtmlMessage extends StatelessWidget {
         final renderer = TokenRenderingUtil(
           pangeaMessageEvent: pangeaMessageEvent,
           readingAssistanceMode: readingAssistanceMode,
-          existingStyle: AppConfig.messageTextStyle(
-            pangeaMessageEvent!.event,
-            textColor,
+          existingStyle: textStyle.merge(
+            AppConfig.messageTextStyle(
+              pangeaMessageEvent!.event,
+              textColor,
+            ),
           ),
           overlayController: overlayController,
           isTransitionAnimation: isTransitionAnimation,
@@ -418,6 +427,11 @@ class HtmlMessage extends StatelessWidget {
                   children: _renderWithLineBreaks(
                     node.nodes,
                     context,
+                    // #Pangea
+                    textStyle.merge(
+                      linkStyle.copyWith(height: 1.25),
+                    ),
+                    // Pangea#
                     depth: depth,
                   ),
                   style: linkStyle,
@@ -450,6 +464,9 @@ class HtmlMessage extends StatelessWidget {
                   ..._renderWithLineBreaks(
                     node.nodes,
                     context,
+                    // #Pangea
+                    textStyle,
+                    // Pangea#
                     depth: depth,
                   ),
                 ],
@@ -478,6 +495,9 @@ class HtmlMessage extends StatelessWidget {
                 children: _renderWithLineBreaks(
                   node.nodes,
                   context,
+                  // #Pangea
+                  textStyle.copyWith(fontStyle: FontStyle.italic),
+                  // Pangea#
                   depth: depth,
                 ),
               ),
@@ -576,12 +596,28 @@ class HtmlMessage extends StatelessWidget {
                                 node.localName == 'summary',
                           )
                           .map(
-                            (node) => _renderHtml(node, context, depth: depth),
+                            // #Pangea
+                            // (node) => _renderHtml(node, context, depth: depth),
+                            (node) => _renderHtml(
+                              node,
+                              context,
+                              textStyle.merge(
+                                TextStyle(
+                                  fontSize: fontSize,
+                                  color: textColor,
+                                ),
+                              ),
+                              depth: depth,
+                            ),
+                            // Pangea#
                           )
                     else
                       ..._renderWithLineBreaks(
                         node.nodes,
                         context,
+                        // #Pangea
+                        textStyle,
+                        // Pangea#
                         depth: depth,
                       ),
                   ],
@@ -614,6 +650,11 @@ class HtmlMessage extends StatelessWidget {
                   children: _renderWithLineBreaks(
                     node.nodes,
                     context,
+                    // #Pangea
+                    textStyle.copyWith(
+                      backgroundColor: obscure ? textColor : null,
+                    ),
+                    // Pangea#
                     depth: depth,
                   ),
                 ),
@@ -628,6 +669,36 @@ class HtmlMessage extends StatelessWidget {
         );
       block:
       default:
+        // #Pangea
+        final style = switch (node.localName) {
+          'body' => TextStyle(
+              fontSize: fontSize,
+              color: textColor,
+            ),
+          'a' => linkStyle,
+          'strong' => const TextStyle(fontWeight: FontWeight.bold),
+          'em' || 'i' => const TextStyle(fontStyle: FontStyle.italic),
+          'del' ||
+          'strikethrough' =>
+            const TextStyle(decoration: TextDecoration.lineThrough),
+          'u' => const TextStyle(decoration: TextDecoration.underline),
+          'h1' => TextStyle(fontSize: fontSize * 1.6, height: 2),
+          'h2' => TextStyle(fontSize: fontSize * 1.5, height: 2),
+          'h3' => TextStyle(fontSize: fontSize * 1.4, height: 2),
+          'h4' => TextStyle(fontSize: fontSize * 1.3, height: 1.75),
+          'h5' => TextStyle(fontSize: fontSize * 1.2, height: 1.75),
+          'h6' => TextStyle(fontSize: fontSize * 1.1, height: 1.5),
+          'span' => TextStyle(
+              color: node.attributes['color']?.hexToColor ??
+                  node.attributes['data-mx-color']?.hexToColor ??
+                  textColor,
+              backgroundColor: node.attributes['data-mx-bg-color']?.hexToColor,
+            ),
+          'sup' => const TextStyle(fontFeatures: [FontFeature.superscripts()]),
+          'sub' => const TextStyle(fontFeatures: [FontFeature.subscripts()]),
+          _ => null,
+        };
+        // Pangea#
         return TextSpan(
           style: switch (node.localName) {
             'body' => TextStyle(
@@ -663,6 +734,9 @@ class HtmlMessage extends StatelessWidget {
           children: _renderWithLineBreaks(
             node.nodes,
             context,
+            // #Pangea
+            textStyle.merge(style ?? const TextStyle()),
+            // Pangea#
             depth: depth,
           ),
         );
@@ -698,6 +772,12 @@ class HtmlMessage extends StatelessWidget {
             parsed,
             // Pangea#
             context,
+            // #Pangea
+            TextStyle(
+              fontSize: fontSize,
+              color: textColor,
+            ),
+            // Pangea#
           ),
           style: TextStyle(
             fontSize: fontSize,

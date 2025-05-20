@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import 'package:fluffychat/config/themes.dart';
@@ -22,17 +24,27 @@ class ChatInputBar extends StatefulWidget {
 }
 
 class ChatInputBarState extends State<ChatInputBar> {
-  void updateHeight() {
-    final renderBox = context.findRenderObject() as RenderBox?;
-    if (renderBox == null || !renderBox.hasSize) return;
-    widget.controller.updateInputBarHeight(renderBox.size.height);
+  Timer? _debounceTimer;
+
+  void _updateHeight() {
+    _debounceTimer = Timer(const Duration(milliseconds: 100), () {
+      final renderBox = context.findRenderObject() as RenderBox?;
+      if (renderBox == null || !renderBox.hasSize) return;
+      widget.controller.updateInputBarHeight(renderBox.size.height);
+    });
+  }
+
+  @override
+  void dispose() {
+    _debounceTimer?.cancel();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return NotificationListener(
       onNotification: (SizeChangedLayoutNotification notification) {
-        WidgetsBinding.instance.addPostFrameCallback((_) => updateHeight());
+        WidgetsBinding.instance.addPostFrameCallback((_) => _updateHeight());
         return true;
       },
       child: SizeChangedLayoutNotifier(

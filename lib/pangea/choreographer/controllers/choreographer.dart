@@ -13,7 +13,6 @@ import 'package:fluffychat/pangea/choreographer/enums/edit_type.dart';
 import 'package:fluffychat/pangea/choreographer/models/choreo_record.dart';
 import 'package:fluffychat/pangea/choreographer/models/it_step.dart';
 import 'package:fluffychat/pangea/choreographer/models/pangea_match_model.dart';
-import 'package:fluffychat/pangea/choreographer/repo/language_detection_repo.dart';
 import 'package:fluffychat/pangea/choreographer/utils/input_paste_listener.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/igc/pangea_text_controller.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/igc/paywall_card.dart';
@@ -21,7 +20,6 @@ import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/common/utils/any_state_holder.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/common/utils/overlay.dart';
-import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/events/models/representation_content_model.dart';
 import 'package:fluffychat/pangea/events/models/tokens_event_content_model.dart';
 import 'package:fluffychat/pangea/events/repo/token_api_models.dart';
@@ -148,56 +146,57 @@ class Choreographer {
               )
             : null;
 
-    final detectionResp = await LanguageDetectionRepo.get(
-      MatrixState.pangeaController.userController.accessToken,
-      request: LanguageDetectionRequest(
+    PangeaMessageTokens? tokensSent;
+    PangeaRepresentation? originalSent;
+    try {
+      TokensResponseModel? res;
+      if (l1LangCode != null && l2LangCode != null) {
+        res = await pangeaController.messageData
+            .getTokens(
+              repEventId: null,
+              room: chatController.room,
+              req: TokensRequestModel(
+                fullText: currentText,
+                senderL1: l1LangCode!,
+                senderL2: l2LangCode!,
+              ),
+            )
+            .timeout(const Duration(seconds: 10));
+      }
+
+      originalSent = PangeaRepresentation(
+        langCode: res?.detections.firstOrNull?.langCode ??
+            LanguageKeys.unknownLanguage,
         text: currentText,
-        senderl1: l1LangCode,
-        senderl2: l2LangCode,
-      ),
-    );
-    final detections = detectionResp.detections;
-    final detectedLanguage =
-        detections.firstOrNull?.langCode ?? LanguageKeys.unknownLanguage;
-
-    final PangeaRepresentation originalSent = PangeaRepresentation(
-      langCode: detectedLanguage,
-      text: currentText,
-      originalSent: true,
-      originalWritten: originalWritten == null,
-    );
-
-    List<PangeaToken>? res;
-    if (l1LangCode != null && l2LangCode != null) {
-      res = await pangeaController.messageData.getTokens(
-        repEventId: null,
-        room: chatController.room,
-        req: TokensRequestModel(
-          fullText: currentText,
-          langCode: detectedLanguage,
-          senderL1: l1LangCode!,
-          senderL2: l2LangCode!,
-        ),
+        originalSent: true,
+        originalWritten: originalWritten == null,
       );
+
+      tokensSent = res != null
+          ? PangeaMessageTokens(
+              tokens: res.tokens,
+              detections: res.detections,
+            )
+          : null;
+    } catch (e, s) {
+      ErrorHandler.logError(
+        e: e,
+        s: s,
+        data: {
+          "currentText": currentText,
+          "l1LangCode": l1LangCode,
+          "l2LangCode": l2LangCode,
+          "choreoRecord": choreoRecord.toJson(),
+        },
+      );
+    } finally {
+      chatController.send(
+        originalSent: originalSent,
+        tokensSent: tokensSent,
+        choreo: choreoRecord,
+      );
+      clear();
     }
-
-    final PangeaMessageTokens? tokensSent = res != null
-        ? PangeaMessageTokens(
-            tokens: res,
-            detections: detections,
-          )
-        : null;
-
-    chatController.send(
-      // originalWritten: originalWritten,
-      originalSent: originalSent,
-      tokensSent: tokensSent,
-      //TODO - save originalwritten tokens
-      // choreo: applicableChoreo,
-      choreo: choreoRecord,
-    );
-
-    clear();
   }
 
   _resetDebounceTimer() {

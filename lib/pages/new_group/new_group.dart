@@ -48,6 +48,8 @@ class NewGroupController extends State<NewGroup> {
 
   bool requiredCodeToJoin = false;
   // bool publicGroup = false;
+
+  bool get canSubmit => nameController.text.trim().isNotEmpty;
   // Pangea#
   bool groupCanBeFound = false;
 
@@ -250,10 +252,11 @@ class NewGroupController extends State<NewGroup> {
         focusNode.requestFocus();
         return;
       }
-      // Pangea#
 
-      if (nameController.text.trim().isEmpty &&
-          createGroupType == CreateGroupType.space) {
+      // if (nameController.text.trim().isEmpty &&
+      // createGroupType == CreateGroupType.space) {
+      if (!canSubmit) {
+        // Pangea#
         setState(() => error = L10n.of(context).pleaseFillOut);
         return;
       }

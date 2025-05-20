@@ -162,7 +162,7 @@ class RepresentationEvent {
         ),
       );
     }
-    final List<PangeaToken> res =
+    final TokensResponseModel res =
         await MatrixState.pangeaController.messageData.getTokens(
       repEventId: _event?.eventId,
       room: _event?.room ?? parentMessageEvent.room,
@@ -180,7 +180,7 @@ class RepresentationEvent {
       ),
     );
 
-    return res;
+    return res.tokens;
   }
 
   Future<void> sendTokensEvent(
