@@ -33,7 +33,6 @@ import 'package:fluffychat/pangea/activity_generator/activity_generator.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_planner_page.dart';
 import 'package:fluffychat/pangea/activity_suggestions/suggestions_page.dart';
 import 'package:fluffychat/pangea/guard/p_vguard.dart';
-import 'package:fluffychat/pangea/layouts/bottom_nav_layout.dart';
 import 'package:fluffychat/pangea/learning_settings/pages/settings_learning.dart';
 import 'package:fluffychat/pangea/login/pages/login_or_signup_view.dart';
 import 'package:fluffychat/pangea/login/pages/signup.dart';
@@ -210,15 +209,7 @@ abstract class AppRoutes {
                 ),
                 sideView: child,
               )
-            // #Pangea
-            // : child,
-            : FluffyThemes.isColumnMode(context) ||
-                    (state.fullPath?.split("/").reversed.elementAt(1) ==
-                            'rooms' &&
-                        state.pathParameters['roomid'] != null)
-                ? child
-                : BottomNavLayout(mainView: child),
-        // Pangea#
+            : child,
       ),
       routes: [
         GoRoute(
@@ -352,6 +343,39 @@ abstract class AppRoutes {
               ),
               redirect: loggedOutRedirect,
             ),
+            // #Pangea
+            GoRoute(
+              path: 'homepage',
+              redirect: loggedOutRedirect,
+              pageBuilder: (context, state) => defaultPageBuilder(
+                context,
+                state,
+                const SuggestionsPage(),
+              ),
+              routes: [
+                ...newRoomRoutes,
+                GoRoute(
+                  path: '/planner',
+                  pageBuilder: (context, state) => defaultPageBuilder(
+                    context,
+                    state,
+                    const ActivityPlannerPage(),
+                  ),
+                  redirect: loggedOutRedirect,
+                  routes: [
+                    GoRoute(
+                      path: '/generator',
+                      redirect: loggedOutRedirect,
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        state,
+                        const ActivityGenerator(),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
             // Pangea#
             ShellRoute(
               pageBuilder: (context, state, child) => defaultPageBuilder(
@@ -365,40 +389,6 @@ abstract class AppRoutes {
                     : child,
               ),
               routes: [
-                // #Pangea
-                GoRoute(
-                  path: '/homepage',
-                  redirect: loggedOutRedirect,
-                  pageBuilder: (context, state) => defaultPageBuilder(
-                    context,
-                    state,
-                    const SuggestionsPage(),
-                  ),
-                  routes: [
-                    ...newRoomRoutes,
-                    GoRoute(
-                      path: '/planner',
-                      pageBuilder: (context, state) => defaultPageBuilder(
-                        context,
-                        state,
-                        const ActivityPlannerPage(),
-                      ),
-                      redirect: loggedOutRedirect,
-                      routes: [
-                        GoRoute(
-                          path: '/generator',
-                          redirect: loggedOutRedirect,
-                          pageBuilder: (context, state) => defaultPageBuilder(
-                            context,
-                            state,
-                            const ActivityGenerator(),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-                // Pangea#
                 GoRoute(
                   path: 'settings',
                   pageBuilder: (context, state) => defaultPageBuilder(
@@ -802,21 +792,14 @@ abstract class AppRoutes {
             ? TwoColumnLayout(
                 mainView: ChatList(
                   activeChat: state.pathParameters['roomid'],
-                  // #Pangea
                   activeSpaceId: state.uri.queryParameters['spaceId'],
                   activeFilter: state.uri.queryParameters['filter'],
-                  // Pangea#
                   displayNavigationRail:
                       state.path?.startsWith('/rooms/settings') != true,
                 ),
                 sideView: child,
               )
-            : FluffyThemes.isColumnMode(context) ||
-                    (state.fullPath?.split("/").reversed.elementAt(1) ==
-                            'rooms' &&
-                        state.pathParameters['roomid'] != null)
-                ? child
-                : BottomNavLayout(mainView: child),
+            : child,
       );
   // Pangea#
 }

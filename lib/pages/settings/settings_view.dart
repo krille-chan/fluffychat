@@ -41,7 +41,11 @@ class SettingsView extends StatelessWidget {
     // Pangea#
     return Row(
       children: [
-        if (FluffyThemes.isColumnMode(context)) ...[
+        // #Pangea
+        // if (FluffyThemes.isColumnMode(context)) ...[
+        if (FluffyThemes.isColumnMode(context) ||
+            AppConfig.displayNavigationRail) ...[
+          // Pangea#
           SpacesNavigationRail(
             activeSpaceId: null,
             onGoToChats: () => context.go('/rooms'),

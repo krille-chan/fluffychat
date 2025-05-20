@@ -8,8 +8,11 @@ import 'package:fluffychat/pangea/common/widgets/pressable_button.dart';
 
 class LevelBadge extends StatelessWidget {
   final int level;
+  final bool mini;
+
   const LevelBadge({
     required this.level,
+    this.mini = false,
     super.key,
   });
 
@@ -46,7 +49,7 @@ class LevelBadge extends StatelessWidget {
             ),
             const SizedBox(width: 4),
             Text(
-              L10n.of(context).levelShort(level),
+              mini ? "$level" : L10n.of(context).levelShort(level),
               style: TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.bold,

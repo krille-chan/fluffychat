@@ -359,6 +359,14 @@ class SettingsStyleView extends StatelessWidget {
               storeKey: SettingKeys.separateChatTypes,
               defaultValue: AppConfig.separateChatTypes,
             ),
+            // #Pangea
+            // SettingsSwitchListTile.adaptive(
+            //   title: L10n.of(context).displayNavigationRail,
+            //   onChanged: (b) => AppConfig.displayNavigationRail = b,
+            //   storeKey: SettingKeys.displayNavigationRail,
+            //   defaultValue: AppConfig.displayNavigationRail,
+            // ),
+            // Pangea#
           ],
         ),
       ),
