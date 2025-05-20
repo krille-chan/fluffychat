@@ -3364,5 +3364,28 @@
   "youHaveKnocked": "Bhuail tú",
   "@youHaveKnocked": {},
   "pleaseWaitUntilInvited": "Fan anois, le do thoil, go dtí go dtabharfaidh duine éigin ón seomra cuireadh duit.",
-  "@pleaseWaitUntilInvited": {}
+  "@pleaseWaitUntilInvited": {},
+  "checkList": "Liosta seiceála",
+  "@checkList": {},
+  "countInvited": "cuireadh chuig {count}",
+  "@countInvited": {
+    "type": "String",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "sentVoiceMessage": "🎙️ {duration} - {sender}",
+  "@sentVoiceMessage": {
+    "type": "String",
+    "placeholders": {
+      "sender": {
+        "type": "String"
+      },
+      "duration": {
+        "type": "String"
+      }
+    }
+  }
 }
