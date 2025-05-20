@@ -49,8 +49,12 @@ class MessageTextUtil {
         return null;
       }
 
-      if (_tokenPositionsCache.containsKey(pangeaMessageEvent.eventId)) {
-        return _tokenPositionsCache[pangeaMessageEvent.eventId]!
+      final cacheKey = pangeaMessageEvent.event
+          .getDisplayEvent(pangeaMessageEvent.timeline)
+          .eventId;
+
+      if (_tokenPositionsCache.containsKey(cacheKey)) {
+        return _tokenPositionsCache[cacheKey]!
             .map(
               (t) => TokenPosition(
                 start: t.start,
@@ -154,7 +158,7 @@ class MessageTextUtil {
         continue;
       }
 
-      _tokenPositionsCache[pangeaMessageEvent.eventId] = tokenPositions;
+      _tokenPositionsCache[cacheKey] = tokenPositions;
 
       return tokenPositions;
     } catch (err, s) {
