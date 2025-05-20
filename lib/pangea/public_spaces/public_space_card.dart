@@ -74,7 +74,7 @@ class PublicSpaceCard extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
                       spacing: 4.0,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Column(
