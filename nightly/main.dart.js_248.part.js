@@ -127,9 +127,9 @@ gi1(){return"C\xf3ipe\xe1ilte ar an ghearrthaisce"},
 geo(d){return"C\xf3ipe\xe1il"},
 gi2(){return"C\xf3ipe\xe1il ar an ghearrthaisce"},
 i3(d){return"N\xedorbh fh\xe9idir teachtaireacht a dh\xedchripti\xfa: "+d},
-gp8(){return"Check list"},
+gp8(){return"Liosta seice\xe1la"},
 dC(d){return""+d+" rannph\xe1irtithe"},
-p9(d){return""+d+" invited"},
+p9(d){return"cuireadh chuig "+d},
 gf6(d){return"Cruthaigh"},
 i4(d){return"\ud83d\udcac chruthaigh "+d+" an comhr\xe1"},
 ge1(){return"Cruthaigh gr\xfapa"},
@@ -638,5 +638,5 @@ x(A.EE,C.aC)})()
 B.dN(b.typeUniverse,JSON.parse('{"EE":{"aC":[]}}'))
 var y={a:"Cuir cosc ar an \xfas\xe1ideoir \xe1irithe \xf3n seomra seo"}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_248",e:"endPart",h:b})})($__dart_deferred_initializers__,"YGmOVUTlPUYBGV2NAZ6s4kyOIv8=");
+a.eventLog.push({p:"main.dart.js_248",e:"endPart",h:b})})($__dart_deferred_initializers__,"bc9rmEJJ8EA9iLFXhWiW74Tl2jo=");
 //# sourceMappingURL=main.dart.js_248.part.js.map
