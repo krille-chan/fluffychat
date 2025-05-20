@@ -205,7 +205,7 @@
       }
     }
   },
-  "changedTheChatDescriptionTo": "{username} hat die Chat-Beschreibung geändert zu: \"{description}\"",
+  "changedTheChatDescriptionTo": "{username} hat die Chatbeschreibung geändert in: '{description}'",
   "@changedTheChatDescriptionTo": {
     "type": "String",
     "placeholders": {
@@ -217,7 +217,7 @@
       }
     }
   },
-  "changedTheChatNameTo": "{username} hat den Chat-Namen geändert zu: \"{chatname}\"",
+  "changedTheChatNameTo": "{username} hat den Chatnamen geändert in: '{chatname}'",
   "@changedTheChatNameTo": {
     "type": "String",
     "placeholders": {
@@ -238,7 +238,7 @@
       }
     }
   },
-  "changedTheDisplaynameTo": "{username} hat den Nicknamen geändert zu: \"{displayname}\"",
+  "changedTheDisplaynameTo": "{username} hat den Spitznamen geändert in: '{displayname}'",
   "@changedTheDisplaynameTo": {
     "type": "String",
     "placeholders": {
@@ -3247,5 +3247,47 @@
   "notificationRuleSuppressNoticesDescription": "Unterdrückt Benachrichtigungen von automatisierten Clients wie Bots.",
   "@notificationRuleSuppressNoticesDescription": {},
   "notificationRuleInviteForMe": "Einladung für mich",
-  "@notificationRuleInviteForMe": {}
+  "@notificationRuleInviteForMe": {},
+  "notificationRuleReaction": "Reaktion",
+  "@notificationRuleReaction": {},
+  "notificationRuleReactionDescription": "Unterdrückt Benachrichtigungen für Reaktionen.",
+  "@notificationRuleReactionDescription": {},
+  "notificationRuleSuppressEditsDescription": "Unterdrückt Benachrichtigungen für bearbeitete Nachrichten.",
+  "@notificationRuleSuppressEditsDescription": {},
+  "notificationRuleCall": "Anruf",
+  "@notificationRuleCall": {},
+  "notificationRuleCallDescription": "Benachrichtigt den Benutzer über Anrufe.",
+  "@notificationRuleCallDescription": {},
+  "notificationRuleEncrypted": "Verschlüsselt",
+  "@notificationRuleEncrypted": {},
+  "more": "Mehr",
+  "@more": {},
+  "notificationRuleSuppressEdits": "Unterdrückt Bearbeitungen",
+  "@notificationRuleSuppressEdits": {},
+  "notificationRuleRoomServerAclDescription": "Unterdrückt Benachrichtigungen für Raumserver-Zugriffskontrolllisten (ACL).",
+  "@notificationRuleRoomServerAclDescription": {},
+  "notificationRuleMessage": "Nachricht",
+  "@notificationRuleMessage": {},
+  "notificationRuleMessageDescription": "Informiert den Benutzer über allgemeine Nachrichten.",
+  "@notificationRuleMessageDescription": {},
+  "notificationRuleJitsi": "Jitsi",
+  "@notificationRuleJitsi": {},
+  "allDevices": "Alle Geräte",
+  "@allDevices": {},
+  "enterNewChat": "Neuen Chat starten",
+  "@enterNewChat": {},
+  "shareKeysWith": "Schlüssel teilen mit...",
+  "@shareKeysWith": {},
+  "shareKeysWithDescription": "Welchen Geräten sollte vertraut werden, damit sie deine Nachrichten in verschlüsselten Chats mitlesen können?",
+  "@shareKeysWithDescription": {},
+  "verifiedDevicesOnly": "Nur verifizierte Geräte",
+  "@verifiedDevicesOnly": {},
+  "takeAPhoto": "Foto aufnehmen",
+  "@takeAPhoto": {},
+  "recordAVideo": "Video aufnehmen",
+  "@recordAVideo": {},
+  "optionalMessage": "(Optionale) Nachricht...",
+  "@optionalMessage": {},
+  "notSupportedOnThisDevice": "Nicht unterstützt auf diesem Gerät",
+  "@notSupportedOnThisDevice": {}
 }

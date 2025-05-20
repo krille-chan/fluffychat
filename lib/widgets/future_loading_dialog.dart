@@ -20,6 +20,7 @@ Future<Result<T>> showFutureLoadingDialog<T>({
   bool barrierDismissible = false,
   bool delay = true,
   ExceptionContext? exceptionContext,
+  bool ignoreError = false,
   // #Pangea
   String? Function(Object, StackTrace?)? onError,
   String? Function()? onSuccess,
@@ -98,6 +99,7 @@ class LoadingDialog<T> extends StatefulWidget {
     this.onDismiss,
     // Pangea#
   });
+
   @override
   LoadingDialogState<T> createState() => LoadingDialogState<T>();
 }

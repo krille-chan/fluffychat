@@ -7,6 +7,7 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
+import 'package:fluffychat/pangea/activity_planner/activity_planner_builder.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_planner_page.dart';
 import 'package:fluffychat/pangea/activity_planner/bookmarked_activities_repo.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_suggestion_card.dart';
@@ -97,11 +98,16 @@ class BookmarkedActivitiesListState extends State<BookmarkedActivitiesList> {
                   showDialog(
                     context: context,
                     builder: (context) {
-                      return ActivitySuggestionDialog(
+                      return ActivityPlannerBuilder(
                         initialActivity: activity,
-                        buttonText: L10n.of(context).inviteAndLaunch,
-                        room: widget.room,
                         onEdit: _onEdit,
+                        room: widget.room,
+                        builder: (controller) {
+                          return ActivitySuggestionDialog(
+                            controller: controller,
+                            buttonText: l10n.launch,
+                          );
+                        },
                       );
                     },
                   );

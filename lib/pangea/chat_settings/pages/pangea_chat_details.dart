@@ -6,15 +6,13 @@ import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat_details/chat_details.dart';
 import 'package:fluffychat/pages/chat_details/participant_list_item.dart';
 import 'package:fluffychat/pangea/chat_settings/utils/download_chat.dart';
 import 'package:fluffychat/pangea/chat_settings/utils/download_file.dart';
-import 'package:fluffychat/pangea/chat_settings/widgets/class_details_toggle_add_students_tile.dart';
 import 'package:fluffychat/pangea/chat_settings/widgets/class_name_header.dart';
 import 'package:fluffychat/pangea/chat_settings/widgets/conversation_bot/conversation_bot_settings.dart';
-import 'package:fluffychat/pangea/chat_settings/widgets/download_analytics_button.dart';
+import 'package:fluffychat/pangea/chat_settings/widgets/download_space_analytics_button.dart';
 import 'package:fluffychat/pangea/chat_settings/widgets/room_capacity_button.dart';
 import 'package:fluffychat/pangea/chat_settings/widgets/visibility_toggle.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
@@ -96,14 +94,13 @@ class PangeaChatDetailsView extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(
             leading: controller.widget.embeddedCloseButton ??
-                (room.isSpace && FluffyThemes.isColumnMode(context)
-                    ? const SizedBox()
-                    : const Center(child: BackButton())),
+                const Center(child: BackButton()),
             elevation: theme.appBarTheme.elevation,
             title: ClassNameHeader(
               controller: controller,
               room: room,
             ),
+            centerTitle: true,
             backgroundColor: theme.appBarTheme.backgroundColor,
           ),
           body: MaxWidthBody(
@@ -277,7 +274,7 @@ class PangeaChatDetailsView extends StatelessWidget {
                         if (room.canInvite && !room.isDirectChat)
                           ListTile(
                             title: Text(
-                              L10n.of(context).inviteStudentByUserName,
+                              L10n.of(context).inviteContact,
                               style: TextStyle(
                                 color: Theme.of(context).colorScheme.secondary,
                                 fontWeight: FontWeight.bold,
@@ -297,37 +294,6 @@ class PangeaChatDetailsView extends StatelessWidget {
                           ),
                         if (room.canInvite && !room.isDirectChat)
                           Divider(color: theme.dividerColor, height: 1),
-                        if (room.isSpace && room.isRoomAdmin)
-                          SpaceDetailsToggleAddStudentsTile(
-                            controller: controller,
-                          ),
-                        if (room.isSpace && room.isRoomAdmin)
-                          Divider(color: theme.dividerColor, height: 1),
-                        if (isGroupChat && room.isRoomAdmin)
-                          ListTile(
-                            title: Text(
-                              L10n.of(context).editChatPermissions,
-                              style: TextStyle(
-                                color: theme.colorScheme.secondary,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            subtitle: Text(
-                              L10n.of(context).whoCanPerformWhichAction,
-                            ),
-                            leading: CircleAvatar(
-                              backgroundColor: theme.scaffoldBackgroundColor,
-                              foregroundColor: iconColor,
-                              child: const Icon(
-                                Icons.manage_accounts_outlined,
-                              ),
-                            ),
-                            onTap: () => context.push(
-                              '/rooms/${room.id}/details/permissions',
-                            ),
-                          ),
-                        if (isGroupChat && room.isRoomAdmin)
-                          Divider(color: theme.dividerColor, height: 1),
                         if (room.isRoomAdmin &&
                             room.isSpace &&
                             room.spaceParents.isEmpty)
@@ -341,15 +307,40 @@ class PangeaChatDetailsView extends StatelessWidget {
                             room.isSpace &&
                             room.spaceParents.isEmpty)
                           Divider(color: theme.dividerColor, height: 1),
+                        if (room.isRoomAdmin && !room.isDirectChat)
+                          ListTile(
+                            title: Text(
+                              L10n.of(context).permissions,
+                              style: TextStyle(
+                                color: theme.colorScheme.secondary,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            subtitle: Text(
+                              L10n.of(context).whoCanPerformWhichAction,
+                            ),
+                            leading: CircleAvatar(
+                              backgroundColor: theme.scaffoldBackgroundColor,
+                              foregroundColor: iconColor,
+                              child: const Icon(
+                                Icons.edit_attributes_outlined,
+                              ),
+                            ),
+                            onTap: () => context.push(
+                              '/rooms/${room.id}/details/permissions',
+                            ),
+                          ),
+                        if (room.isRoomAdmin && !room.isDirectChat)
+                          Divider(color: theme.dividerColor, height: 1),
                         if (!room.isSpace && !room.isDirectChat)
                           RoomCapacityButton(
                             room: room,
                             controller: controller,
                           ),
                         if (room.isSpace && room.isRoomAdmin && kIsWeb)
-                          DownloadAnalyticsButton(space: room),
+                          DownloadSpaceAnalyticsButton(space: room),
                         Divider(color: theme.dividerColor, height: 1),
-                        if (room.isRoomAdmin && !room.isSpace)
+                        if (room.ownPowerLevel >= 50 && !room.isSpace)
                           ListTile(
                             title: Text(
                               L10n.of(context).downloadGroupText,
@@ -368,7 +359,7 @@ class PangeaChatDetailsView extends StatelessWidget {
                             ),
                             onTap: () => _downloadChat(context),
                           ),
-                        if (room.isRoomAdmin && !room.isSpace)
+                        if (room.ownPowerLevel >= 50 && !room.isSpace)
                           Divider(color: theme.dividerColor, height: 1),
                         if (isGroupChat)
                           ListTile(
@@ -430,8 +421,7 @@ class PangeaChatDetailsView extends StatelessWidget {
                                   room.isSpace ? room.leaveSpace : room.leave,
                             );
                             if (!resp.isError) {
-                              MatrixState.pangeaController.classController
-                                  .setActiveSpaceIdInChatListController(null);
+                              context.go("/rooms?spaceId=clear");
                             }
                           },
                         ),

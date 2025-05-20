@@ -1,16 +1,4 @@
 Map<String, dynamic> defaultPowerLevels(String userID) => {
-      "defaults": {
-        "ban": 50,
-        "events_default": 0,
-        "invite": 50,
-        "kick": 50,
-        "notifications": {
-          "room": 50,
-        },
-        "redact": 50,
-        "state_default": 50,
-        "users_default": 0,
-      },
       "events": {
         "m.room.avatar": 50,
         "m.room.canonical_alias": 50,
@@ -22,7 +10,23 @@ Map<String, dynamic> defaultPowerLevels(String userID) => {
         "m.room.tombstone": 100,
       },
       "users": {
-        "@bot:staging.pangea.chat": 50,
+        userID: 100,
+      },
+    };
+
+Map<String, dynamic> restrictedPowerLevels(String userID) => {
+      "events_default": 50,
+      "events": {
+        "m.room.avatar": 50,
+        "m.room.canonical_alias": 50,
+        "m.room.encryption": 100,
+        "m.room.history_visibility": 100,
+        "m.room.name": 50,
+        "m.room.power_levels": 100,
+        "m.room.server_acl": 100,
+        "m.room.tombstone": 100,
+      },
+      "users": {
         userID: 100,
       },
     };

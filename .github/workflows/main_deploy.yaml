@@ -8,7 +8,8 @@ on:
 
 env:
   WEB_APP_ENV: ${{ vars.WEB_APP_ENV }}
-  
+  ENV_OVERRIDES: ${{ vars.ENV_OVERRIDES }}
+
 jobs:
   build_web:
     runs-on: ubuntu-latest
@@ -19,10 +20,6 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
-      - name: Remove Emoji Font
-        run: |
-          rm -rf fonts/NotoEmoji
-          yq -i 'del( .flutter.fonts[] | select(.family == "NotoEmoji") )' pubspec.yaml
       - run: flutter pub get
       - name: Prepare web
         run: ./scripts/prepare-web.sh
@@ -51,6 +48,8 @@ jobs:
           touch public/.env
           echo "$WEB_APP_ENV" >> public/.env
           cp public/.env public/assets/.env
+          touch public/assets/envs.json
+          echo "$ENV_OVERRIDES" >> public/assets/envs.json
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:

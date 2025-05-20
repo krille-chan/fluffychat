@@ -1,6 +1,5 @@
 import 'package:collection/collection.dart';
 
-import 'package:fluffychat/pangea/common/constants/local.key.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/subscription/controllers/subscription_controller.dart';
 import 'package:fluffychat/pangea/subscription/repo/subscription_repo.dart';
@@ -74,9 +73,6 @@ class AvailableSubscriptionsInfo {
   List<SubscriptionDetails>? allProducts;
   DateTime? lastUpdated;
 
-  final subscriptionBox =
-      MatrixState.pangeaController.subscriptionController.subscriptionBox;
-
   AvailableSubscriptionsInfo({
     this.appIds,
     this.allProducts,
@@ -84,7 +80,8 @@ class AvailableSubscriptionsInfo {
   });
 
   Future<void> setAvailableSubscriptions() async {
-    final cachedInfo = _getCachedSubscriptionInfo();
+    final cachedInfo = await MatrixState.pangeaController.subscriptionController
+        .getCachedSubscriptionInfo();
     appIds ??= cachedInfo?.appIds ?? await SubscriptionRepo.getAppIds();
     allProducts ??=
         cachedInfo?.allProducts ?? await SubscriptionRepo.getAllProducts();
@@ -102,11 +99,8 @@ class AvailableSubscriptionsInfo {
 
   Future<void> _cacheSubscriptionInfo() async {
     try {
-      final json = toJson();
-      await subscriptionBox.write(
-        PLocalKey.availableSubscriptionInfo,
-        json,
-      );
+      MatrixState.pangeaController.subscriptionController
+          .setCachedSubscriptionInfo(this);
     } catch (e, s) {
       ErrorHandler.logError(
         e: e,
@@ -116,29 +110,6 @@ class AvailableSubscriptionsInfo {
           "allProducts": allProducts,
         },
       );
-    }
-  }
-
-  AvailableSubscriptionsInfo? _getCachedSubscriptionInfo() {
-    final json = subscriptionBox.read(
-      PLocalKey.availableSubscriptionInfo,
-    );
-    if (json is! Map<String, dynamic>) {
-      return null;
-    }
-
-    try {
-      final resp = AvailableSubscriptionsInfo.fromJson(json);
-      return resp.lastUpdated == null ? null : resp;
-    } catch (e, s) {
-      ErrorHandler.logError(
-        e: e,
-        s: s,
-        data: {
-          "json": json,
-        },
-      );
-      return null;
     }
   }
 

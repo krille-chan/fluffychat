@@ -22,6 +22,7 @@ extension EventInfoDialogExtension on Event {
 class EventInfoDialog extends StatelessWidget {
   final Event event;
   final L10n l10n;
+
   const EventInfoDialog({
     required this.event,
     required this.l10n,
@@ -42,10 +43,8 @@ class EventInfoDialog extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(L10n.of(context).messageInfo),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_downward_outlined),
+        leading: CloseButton(
           onPressed: Navigator.of(context, rootNavigator: false).pop,
-          tooltip: L10n.of(context).close,
         ),
       ),
       body: ListView(

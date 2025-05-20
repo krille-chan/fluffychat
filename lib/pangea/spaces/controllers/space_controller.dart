@@ -12,7 +12,6 @@ import 'package:get_storage/get_storage.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pangea/common/constants/local.key.dart';
 import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
@@ -24,30 +23,35 @@ import '../../common/controllers/base_controller.dart';
 
 class ClassController extends BaseController {
   late PangeaController _pangeaController;
-
-  // Storage Initialization
-  final GetStorage chatBox = GetStorage("chat_list_storage");
-  final GetStorage linkBox = GetStorage("link_storage");
   static final GetStorage _classStorage = GetStorage('class_storage');
 
   ClassController(PangeaController pangeaController) : super() {
     _pangeaController = pangeaController;
   }
 
-  void setActiveFilterInChatListController(ActiveFilter filter) {
-    setState({"activeFilter": filter});
+  Future<void> cacheSpaceCode(String code) async {
+    if (code.isEmpty) return;
+    await _classStorage.write(
+      PLocalKey.cachedClassCodeToJoin,
+      code,
+    );
   }
 
-  void setActiveSpaceIdInChatListController(String? classId) {
-    setState({"activeSpaceId": classId});
+  String? justInputtedCode() {
+    return _classStorage.read(PLocalKey.justInputtedCode);
+  }
+
+  String? get cachedClassCode {
+    return _classStorage.read(PLocalKey.cachedClassCodeToJoin);
+  }
+
+  String? get cachedAlias {
+    return _classStorage.read(PLocalKey.cachedAliasToJoin);
   }
 
   Future<void> joinCachedSpaceCode(BuildContext context) async {
-    final String? classCode = linkBox.read(
-      PLocalKey.cachedClassCodeToJoin,
-    );
-
-    final String? alias = _classStorage.read(PLocalKey.cachedAliasToJoin);
+    final String? classCode = cachedClassCode;
+    final String? alias = cachedAlias;
 
     if (classCode != null) {
       await joinClasswithCode(
@@ -55,7 +59,7 @@ class ClassController extends BaseController {
         classCode,
       );
 
-      await linkBox.remove(
+      await _classStorage.remove(
         PLocalKey.cachedClassCodeToJoin,
       );
     } else if (alias != null) {
@@ -83,7 +87,7 @@ class ClassController extends BaseController {
     Room? room = client.getRoomByAlias(alias) ?? client.getRoomById(alias);
     if (room != null) {
       room.isSpace
-          ? setActiveSpaceIdInChatListController(room.id)
+          ? context.go("/rooms?spaceId=${room.id}")
           : context.go("/rooms/${room.id}");
       return;
     }
@@ -100,7 +104,7 @@ class ClassController extends BaseController {
     }
 
     room.isSpace
-        ? setActiveSpaceIdInChatListController(room.id)
+        ? context.go("/rooms?spaceId=${room.id}")
         : context.go("/rooms/${room.id}");
   }
 
@@ -113,6 +117,11 @@ class ClassController extends BaseController {
     final spaceID = await showFutureLoadingDialog<String?>(
       context: context,
       future: () async {
+        await _classStorage.write(
+          PLocalKey.justInputtedCode,
+          classCode,
+        );
+
         final knockResponse = await client.httpClient.post(
           Uri.parse(
             '${client.homeserver}/_synapse/client/pangea/v1/knock_with_code',
@@ -141,7 +150,7 @@ class ClassController extends BaseController {
             );
 
         if (alreadyJoined.isNotEmpty || inFoundClass) {
-          setActiveSpaceIdInChatListController(alreadyJoined.first);
+          context.go("/rooms?spaceId=${alreadyJoined.first}");
           return null;
         }
 
@@ -150,10 +159,6 @@ class ClassController extends BaseController {
         }
 
         final chosenClassId = foundClasses.first;
-        await chatBox.write(
-          PLocalKey.justInputtedCode,
-          classCode,
-        );
         return chosenClassId;
       },
     );
@@ -201,7 +206,7 @@ class ClassController extends BaseController {
         await room.requestParticipants();
       }
 
-      setActiveSpaceIdInChatListController(spaceID.result!);
+      context.go("/rooms?spaceId=${room.id}");
       return spaceID;
     } catch (e, s) {
       ErrorHandler.logError(

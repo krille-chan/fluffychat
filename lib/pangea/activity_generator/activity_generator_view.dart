@@ -7,6 +7,7 @@ import 'package:material_symbols_icons/symbols.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/activity_generator/activity_generator.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_card.dart';
+import 'package:fluffychat/pangea/activity_planner/activity_planner_builder.dart';
 import 'package:fluffychat/pangea/activity_planner/suggestion_form_field.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_suggestions_constants.dart';
 import 'package:fluffychat/pangea/instructions/instructions_enum.dart';
@@ -53,13 +54,15 @@ class ActivityGeneratorView extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         itemCount: controller.activities!.length,
         itemBuilder: (context, index) {
-          return ActivityPlanCard(
-            activity: controller.activities![index],
+          return ActivityPlannerBuilder(
+            initialActivity: controller.activities![index],
+            initialFilename: controller.filename,
             room: controller.room,
-            onEdit: (updatedActivity) =>
-                controller.onEdit(index, updatedActivity),
-            onChange: controller.update,
-            initialImageURL: controller.filename,
+            builder: (c) {
+              return ActivityPlanCard(
+                controller: c,
+              );
+            },
           );
         },
       );

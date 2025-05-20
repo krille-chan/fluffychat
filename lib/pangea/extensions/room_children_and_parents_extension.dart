@@ -25,9 +25,7 @@ extension ChildrenAndParentsRoomExtension on Room {
       throw NestedSpaceError();
     }
 
-    final List<Room> spaceParents =
-        ChildrenAndParentsRoomExtension(child).pangeaSpaceParents;
-    for (final Room parent in spaceParents) {
+    for (final Room parent in pangeaSpaceParents) {
       try {
         await parent.removeSpaceChild(roomId);
       } catch (e) {

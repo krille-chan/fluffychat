@@ -116,9 +116,13 @@ class ITBarState extends State<ITBar> with SingleTickerProviderStateMixin {
             Container(
               key: widget.choreographer.itBarLinkAndKey.key,
               decoration: BoxDecoration(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(24),
+                  topRight: Radius.circular(24),
+                ),
                 color: Theme.of(context).colorScheme.surfaceContainer,
               ),
-              padding: const EdgeInsets.fromLTRB(0, 3, 3, 3),
+              padding: const EdgeInsets.all(3),
               child: SingleChildScrollView(
                 child: Column(
                   children: [
@@ -414,7 +418,6 @@ class ITChoices extends StatelessWidget {
         onPressed: (value, index) => selectContinuance(index, context),
         onLongPress: (value, index) => showCard(context, index),
         selectedChoiceIndex: null,
-        tts: controller.choreographer.tts,
         langCode: controller.choreographer.pangeaController.languageController
             .activeL2Code(),
       );

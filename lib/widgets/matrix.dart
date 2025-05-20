@@ -20,6 +20,7 @@ import 'package:url_launcher/url_launcher_string.dart';
 
 import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/common/utils/any_state_holder.dart';
+import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
 import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_file_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -249,6 +250,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       ),
     );
     pangeaController = PangeaController(matrix: widget, matrixState: this);
+    TtsController.initialize();
     // Pangea#
   }
 

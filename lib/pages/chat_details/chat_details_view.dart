@@ -14,6 +14,7 @@ import 'package:fluffychat/widgets/chat_settings_popup_menu.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/url_launcher.dart';
+import '../../widgets/mxc_image_viewer.dart';
 import '../../widgets/qr_code_viewer.dart';
 
 class ChatDetailsView extends StatelessWidget {
@@ -37,6 +38,9 @@ class ChatDetailsView extends StatelessWidget {
       );
     }
 
+    final directChatMatrixID = room.directChatMatrixID;
+    final roomAvatar = room.avatar;
+
     return StreamBuilder(
       stream: room.client.onRoomState.stream
           .where((update) => update.roomId == room.id),
@@ -57,7 +61,7 @@ class ChatDetailsView extends StatelessWidget {
                 const Center(child: BackButton()),
             elevation: theme.appBarTheme.elevation,
             actions: <Widget>[
-              if (room.canonicalAlias.isNotEmpty) ...[
+              if (room.canonicalAlias.isNotEmpty)
                 IconButton(
                   tooltip: L10n.of(context).share,
                   icon: const Icon(Icons.qr_code_rounded),
@@ -65,8 +69,16 @@ class ChatDetailsView extends StatelessWidget {
                     context,
                     room.canonicalAlias,
                   ),
+                )
+              else if (directChatMatrixID != null)
+                IconButton(
+                  tooltip: L10n.of(context).share,
+                  icon: const Icon(Icons.qr_code_rounded),
+                  onPressed: () => showQrCodeViewer(
+                    context,
+                    directChatMatrixID,
+                  ),
                 ),
-              ],
               if (controller.widget.embeddedCloseButton == null)
                 ChatSettingsPopupMenu(room, false),
             ],
@@ -101,6 +113,13 @@ class ChatDetailsView extends StatelessWidget {
                                       userId: room.directChatMatrixID,
                                       // Pangea#
                                       size: Avatar.defaultSize * 2.5,
+                                      onTap: roomAvatar != null
+                                          ? () => showDialog(
+                                                context: context,
+                                                builder: (_) =>
+                                                    MxcImageViewer(roomAvatar),
+                                              )
+                                          : null,
                                     ),
                                   ),
                                   if (!room.isDirectChat &&
@@ -227,6 +246,8 @@ class ChatDetailsView extends StatelessWidget {
                             text: room.topic.isEmpty
                                 ? L10n.of(context).noChatDescriptionYet
                                 : room.topic,
+                            textScaleFactor:
+                                MediaQuery.textScalerOf(context).scale(1),
                             options: const LinkifyOptions(humanize: false),
                             linkStyle: const TextStyle(
                               color: Colors.blueAccent,

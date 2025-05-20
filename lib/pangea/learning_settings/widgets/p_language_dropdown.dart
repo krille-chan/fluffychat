@@ -195,7 +195,6 @@ class PLanguageDropdownState extends State<PLanguageDropdown> {
               ? const SizedBox.shrink()
               : Padding(
                   padding: const EdgeInsets.symmetric(
-                    horizontal: 30,
                     vertical: 5,
                   ),
                   child: Text(

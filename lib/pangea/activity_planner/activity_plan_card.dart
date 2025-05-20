@@ -6,37 +6,23 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
-import 'package:http/http.dart' as http;
 import 'package:material_symbols_icons/symbols.dart';
-import 'package:matrix/matrix.dart' as sdk;
-import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
+import 'package:fluffychat/pangea/activity_planner/activity_planner_builder.dart';
 import 'package:fluffychat/pangea/activity_planner/bookmarked_activities_repo.dart';
-import 'package:fluffychat/pangea/chat/constants/default_power_level.dart';
+import 'package:fluffychat/pangea/activity_suggestions/activity_room_selection.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
-import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
-import 'package:fluffychat/utils/file_selector.dart';
+import 'package:fluffychat/pangea/common/widgets/full_width_dialog.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
-import 'package:fluffychat/widgets/matrix.dart';
 
 class ActivityPlanCard extends StatefulWidget {
-  final ActivityPlanModel activity;
-  final Room? room;
-  final VoidCallback onChange;
-  final ValueChanged<ActivityPlanModel> onEdit;
-  final double maxWidth;
-  final String? initialImageURL;
+  final ActivityPlannerBuilderState controller;
 
   const ActivityPlanCard({
     super.key,
-    required this.activity,
-    required this.room,
-    required this.onChange,
-    required this.onEdit,
-    this.maxWidth = 400,
-    this.initialImageURL,
+    required this.controller,
   });
 
   @override
@@ -44,58 +30,7 @@ class ActivityPlanCard extends StatefulWidget {
 }
 
 class ActivityPlanCardState extends State<ActivityPlanCard> {
-  bool _isEditing = false;
-  late ActivityPlanModel _tempActivity;
-  late TextEditingController _titleController;
-  late TextEditingController _learningObjectiveController;
-  late TextEditingController _instructionsController;
-  final TextEditingController _newVocabController = TextEditingController();
-  final FocusNode _vocabFocusNode = FocusNode();
-
-  Uint8List? _avatar;
-  String? _filename;
-  String? _imageURL;
-
-  @override
-  void initState() {
-    super.initState();
-    _tempActivity = widget.activity;
-    _titleController = TextEditingController(text: _tempActivity.title);
-    _learningObjectiveController =
-        TextEditingController(text: _tempActivity.learningObjective);
-    _instructionsController =
-        TextEditingController(text: _tempActivity.instructions);
-    _filename = widget.initialImageURL?.split("/").last;
-    _imageURL = widget.activity.imageURL ?? widget.initialImageURL;
-  }
-
   static const double itemPadding = 12;
-
-  @override
-  void dispose() {
-    _titleController.dispose();
-    _learningObjectiveController.dispose();
-    _instructionsController.dispose();
-    _newVocabController.dispose();
-    _vocabFocusNode.dispose();
-    super.dispose();
-  }
-
-  Future<void> _saveEdits() async {
-    final updatedActivity = ActivityPlanModel(
-      req: _tempActivity.req,
-      title: _titleController.text,
-      learningObjective: _learningObjectiveController.text,
-      instructions: _instructionsController.text,
-      vocab: _tempActivity.vocab,
-      imageURL: widget.activity.imageURL,
-    );
-
-    widget.onEdit(updatedActivity);
-    setState(() {
-      _isEditing = false;
-    });
-  }
 
   Future<ActivityPlanModel> _addBookmark(ActivityPlanModel activity) async {
     try {
@@ -107,418 +42,350 @@ class ActivityPlanCardState extends State<ActivityPlanCard> {
     } finally {
       if (mounted) {
         setState(() {});
-        widget.onChange();
       }
     }
   }
 
   Future<void> _removeBookmark() async {
     try {
-      BookmarkedActivitiesRepo.remove(widget.activity.bookmarkId);
+      BookmarkedActivitiesRepo.remove(
+        widget.controller.updatedActivity.bookmarkId,
+      );
     } catch (e, stack) {
       debugger(when: kDebugMode);
-      ErrorHandler.logError(e: e, s: stack, data: widget.activity.toJson());
+      ErrorHandler.logError(
+        e: e,
+        s: stack,
+        data: widget.controller.updatedActivity.toJson(),
+      );
     } finally {
       if (mounted) {
         setState(() {});
-        widget.onChange();
       }
     }
   }
 
-  void _addVocab() {
-    setState(() {
-      _tempActivity.vocab.add(Vocab(lemma: _newVocabController.text, pos: ''));
-      _newVocabController.clear();
-      _vocabFocusNode.requestFocus();
-    });
-  }
-
-  void _removeVocab(int index) {
-    setState(() {
-      _tempActivity.vocab.removeAt(index);
-    });
-  }
-
-  void selectPhoto() async {
-    final resp = await selectFiles(
-      context,
-      type: FileSelectorType.images,
-      allowMultiple: false,
-    );
-
-    final photo = resp.singleOrNull;
-    if (photo == null) return;
-    final bytes = await photo.readAsBytes();
-
-    setState(() {
-      _avatar = bytes;
-      _filename = photo.name;
-    });
-
-    final url = await Matrix.of(context).client.uploadContent(
-          bytes,
-          filename: photo.name,
-        );
-
-    final updatedActivity = ActivityPlanModel(
-      req: _tempActivity.req,
-      title: _tempActivity.title,
-      learningObjective: _tempActivity.learningObjective,
-      instructions: _tempActivity.instructions,
-      vocab: _tempActivity.vocab,
-      imageURL: url.toString(),
-    );
-
-    widget.onEdit(updatedActivity);
-  }
-
-  Future<void> _setAvatarByImageURL() async {
-    if (_avatar != null || _imageURL == null) return;
-    final resp = await http
-        .get(Uri.parse(_imageURL!))
-        .timeout(const Duration(seconds: 5));
-    if (mounted) {
-      setState(() => _avatar = resp.bodyBytes);
-    }
-  }
-
   Future<void> _onLaunch() async {
-    await _setAvatarByImageURL();
-    await showFutureLoadingDialog(
+    if (widget.controller.room != null) {
+      final resp = await showFutureLoadingDialog(
+        context: context,
+        future: widget.controller.launchToRoom,
+      );
+      if (!resp.isError) {
+        context.go("/rooms/${widget.controller.room!.id}");
+      }
+      return;
+    }
+
+    return showDialog(
       context: context,
-      future: () async {
-        String? avatarUrl;
-        if (_avatar != null) {
-          final client = Matrix.of(context).client;
-          final url = await client.uploadContent(
-            _avatar!,
-            filename: _filename,
-          );
-          avatarUrl = url.toString();
-        }
-
-        if (widget.room != null) {
-          await widget.room?.sendActivityPlan(
-            widget.activity,
-            avatar: _avatar,
-            filename: _filename,
-          );
-
-          context.go("/rooms/${widget.room?.id}");
-          return;
-        }
-
-        final client = Matrix.of(context).client;
-        final roomId = await client.createGroupChat(
-          preset: CreateRoomPreset.publicChat,
-          visibility: sdk.Visibility.private,
-          groupName:
-              widget.activity.title.isNotEmpty ? widget.activity.title : null,
-          initialState: [
-            if (_avatar != null) ...[
-              StateEvent(
-                type: EventTypes.RoomAvatar,
-                stateKey: '',
-                content: {
-                  "url": avatarUrl,
-                },
-              ),
-            ],
-            StateEvent(
-              type: EventTypes.RoomPowerLevels,
-              stateKey: '',
-              content: defaultPowerLevels(client.userID!),
+      builder: (context) {
+        return FullWidthDialog(
+          dialogContent: DecoratedBox(
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.surface,
             ),
-          ],
-          enableEncryption: false,
+            child: ActivityRoomSelection(
+              controller: widget.controller,
+              backButton: IconButton(
+                onPressed: Navigator.of(context).pop,
+                icon: const Icon(Icons.close),
+              ),
+            ),
+          ),
+          maxWidth: 400.0,
+          maxHeight: 650.0,
         );
-
-        Room? room = client.getRoomById(roomId);
-        if (room == null) {
-          await client.waitForRoomInSync(roomId);
-          room = client.getRoomById(roomId);
-        }
-        if (room == null) return;
-
-        await room.sendActivityPlan(
-          widget.activity,
-          avatar: _avatar,
-          filename: _filename,
-        );
-
-        context.go("/rooms/$roomId/invite?filter=groups");
       },
     );
   }
 
-  bool get isBookmarked =>
-      BookmarkedActivitiesRepo.isBookmarked(widget.activity);
+  bool get _isBookmarked => BookmarkedActivitiesRepo.isBookmarked(
+        widget.controller.updatedActivity,
+      );
 
   @override
   Widget build(BuildContext context) {
     final l10n = L10n.of(context);
     return Center(
       child: ConstrainedBox(
-        constraints: BoxConstraints(maxWidth: widget.maxWidth),
+        constraints: const BoxConstraints(maxWidth: 400),
         child: Card(
           margin: const EdgeInsets.symmetric(vertical: itemPadding),
-          child: Column(
-            children: [
-              AnimatedSize(
-                duration: FluffyThemes.animationDuration,
-                child: Stack(
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12.0),
+          child: Form(
+            key: widget.controller.formKey,
+            child: Column(
+              children: [
+                AnimatedSize(
+                  duration: FluffyThemes.animationDuration,
+                  child: Stack(
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12.0),
+                        ),
+                        clipBehavior: Clip.hardEdge,
+                        alignment: Alignment.center,
+                        child: widget.controller.imageURL != null ||
+                                widget.controller.avatar != null
+                            ? ClipRRect(
+                                child: widget.controller.avatar == null
+                                    ? CachedNetworkImage(
+                                        fit: BoxFit.cover,
+                                        imageUrl: widget.controller.imageURL!,
+                                        placeholder: (context, url) {
+                                          return const Center(
+                                            child: CircularProgressIndicator(),
+                                          );
+                                        },
+                                        errorWidget: (context, url, error) {
+                                          return const Padding(
+                                            padding: EdgeInsets.all(28.0),
+                                          );
+                                        },
+                                      )
+                                    : Image.memory(
+                                        widget.controller.avatar!,
+                                        fit: BoxFit.cover,
+                                      ),
+                              )
+                            : const Padding(
+                                padding: EdgeInsets.all(28.0),
+                              ),
                       ),
-                      clipBehavior: Clip.hardEdge,
-                      alignment: Alignment.center,
-                      child: _imageURL != null || _avatar != null
-                          ? ClipRRect(
-                              child: _avatar == null
-                                  ? CachedNetworkImage(
-                                      fit: BoxFit.cover,
-                                      imageUrl: _imageURL!,
-                                      placeholder: (context, url) {
-                                        return const Center(
-                                          child: CircularProgressIndicator(),
-                                        );
-                                      },
-                                      errorWidget: (context, url, error) {
-                                        return const Padding(
-                                          padding: EdgeInsets.all(28.0),
-                                        );
-                                      },
-                                    )
-                                  : Image.memory(
-                                      _avatar!,
-                                      fit: BoxFit.cover,
-                                    ),
-                            )
-                          : const Padding(
-                              padding: EdgeInsets.all(28.0),
+                      if (widget.controller.isEditing)
+                        Positioned(
+                          top: 10.0,
+                          right: 10.0,
+                          child: IconButton(
+                            icon: const Icon(Icons.upload_outlined),
+                            onPressed: widget.controller.selectAvatar,
+                            style: IconButton.styleFrom(
+                              backgroundColor: Colors.black,
                             ),
-                    ),
-                    if (_isEditing)
-                      Positioned(
-                        top: 10.0,
-                        right: 10.0,
-                        child: IconButton(
-                          icon: const Icon(Icons.upload_outlined),
-                          onPressed: selectPhoto,
-                          style: IconButton.styleFrom(
-                            backgroundColor: Colors.black,
                           ),
                         ),
-                      ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        const Icon(Icons.event_note_outlined),
-                        const SizedBox(width: itemPadding),
-                        Expanded(
-                          child: _isEditing
-                              ? TextField(
-                                  controller: _titleController,
-                                  decoration: InputDecoration(
-                                    labelText: L10n.of(context).activityTitle,
+                Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          const Icon(Icons.event_note_outlined),
+                          const SizedBox(width: itemPadding),
+                          Expanded(
+                            child: widget.controller.isEditing
+                                ? TextField(
+                                    controller:
+                                        widget.controller.titleController,
+                                    decoration: InputDecoration(
+                                      labelText: L10n.of(context).activityTitle,
+                                    ),
+                                    maxLines: null,
+                                  )
+                                : Text(
+                                    widget.controller.updatedActivity.title,
+                                    style:
+                                        Theme.of(context).textTheme.bodyLarge,
                                   ),
-                                  maxLines: null,
-                                )
-                              : Text(
-                                  widget.activity.title,
-                                  style: Theme.of(context).textTheme.bodyLarge,
-                                ),
-                        ),
-                        if (!_isEditing)
-                          IconButton(
-                            onPressed: isBookmarked
-                                ? () => _removeBookmark()
-                                : () => _addBookmark(widget.activity),
-                            icon: Icon(
-                              isBookmarked
-                                  ? Icons.bookmark
-                                  : Icons.bookmark_border,
-                            ),
                           ),
-                      ],
-                    ),
-                    const SizedBox(height: itemPadding),
-                    Row(
-                      children: [
-                        Icon(
-                          Symbols.target,
-                          color: Theme.of(context).colorScheme.secondary,
-                        ),
-                        const SizedBox(width: itemPadding),
-                        Expanded(
-                          child: _isEditing
-                              ? TextField(
-                                  controller: _learningObjectiveController,
-                                  decoration: InputDecoration(
-                                    labelText: l10n.learningObjectiveLabel,
-                                  ),
-                                  maxLines: null,
-                                )
-                              : Text(
-                                  widget.activity.learningObjective,
-                                  style: Theme.of(context).textTheme.bodyMedium,
-                                ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: itemPadding),
-                    Row(
-                      children: [
-                        Icon(
-                          Symbols.steps_rounded,
-                          color: Theme.of(context).colorScheme.secondary,
-                        ),
-                        const SizedBox(width: itemPadding),
-                        Expanded(
-                          child: _isEditing
-                              ? TextField(
-                                  controller: _instructionsController,
-                                  decoration: InputDecoration(
-                                    labelText: l10n.instructions,
-                                  ),
-                                  maxLines: null,
-                                )
-                              : Text(
-                                  widget.activity.instructions,
-                                  style: Theme.of(context).textTheme.bodyMedium,
-                                ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: itemPadding),
-                    if (widget.activity.vocab.isNotEmpty) ...[
+                          if (!widget.controller.isEditing)
+                            IconButton(
+                              onPressed: _isBookmarked
+                                  ? () => _removeBookmark()
+                                  : () => _addBookmark(
+                                        widget.controller.updatedActivity,
+                                      ),
+                              icon: Icon(
+                                _isBookmarked
+                                    ? Icons.bookmark
+                                    : Icons.bookmark_border,
+                              ),
+                            ),
+                        ],
+                      ),
+                      const SizedBox(height: itemPadding),
                       Row(
                         children: [
                           Icon(
-                            Symbols.dictionary,
+                            Symbols.target,
                             color: Theme.of(context).colorScheme.secondary,
                           ),
                           const SizedBox(width: itemPadding),
                           Expanded(
-                            child: Wrap(
-                              spacing: 4.0,
-                              runSpacing: 4.0,
-                              children: List<Widget>.generate(
-                                  _tempActivity.vocab.length, (int index) {
-                                return _isEditing
-                                    ? Chip(
-                                        label: Text(
-                                          _tempActivity.vocab[index].lemma,
-                                        ),
-                                        onDeleted: () => _removeVocab(index),
-                                        backgroundColor: Colors.transparent,
-                                        visualDensity: VisualDensity.compact,
-                                        shape: const StadiumBorder(
-                                          side: BorderSide(
-                                            color: Colors.transparent,
-                                          ),
-                                        ),
-                                      )
-                                    : Chip(
-                                        label: Text(
-                                          _tempActivity.vocab[index].lemma,
-                                        ),
-                                        backgroundColor: Colors.transparent,
-                                        visualDensity: VisualDensity.compact,
-                                        shape: const StadiumBorder(
-                                          side: BorderSide(
-                                            color: Colors.transparent,
-                                          ),
-                                        ),
-                                      );
-                              }).toList(),
+                            child: widget.controller.isEditing
+                                ? TextField(
+                                    controller: widget.controller
+                                        .learningObjectivesController,
+                                    decoration: InputDecoration(
+                                      labelText: l10n.learningObjectiveLabel,
+                                    ),
+                                    maxLines: null,
+                                  )
+                                : Text(
+                                    widget.controller.updatedActivity
+                                        .learningObjective,
+                                    style:
+                                        Theme.of(context).textTheme.bodyMedium,
+                                  ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: itemPadding),
+                      Row(
+                        children: [
+                          Icon(
+                            Symbols.steps_rounded,
+                            color: Theme.of(context).colorScheme.secondary,
+                          ),
+                          const SizedBox(width: itemPadding),
+                          Expanded(
+                            child: widget.controller.isEditing
+                                ? TextField(
+                                    controller: widget
+                                        .controller.instructionsController,
+                                    decoration: InputDecoration(
+                                      labelText: l10n.instructions,
+                                    ),
+                                    maxLines: null,
+                                  )
+                                : Text(
+                                    widget.controller.updatedActivity
+                                        .instructions,
+                                    style:
+                                        Theme.of(context).textTheme.bodyMedium,
+                                  ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: itemPadding),
+                      if (widget.controller.vocab.isNotEmpty) ...[
+                        Row(
+                          children: [
+                            Icon(
+                              Symbols.dictionary,
+                              color: Theme.of(context).colorScheme.secondary,
                             ),
+                            const SizedBox(width: itemPadding),
+                            Expanded(
+                              child: Wrap(
+                                spacing: 4.0,
+                                runSpacing: 4.0,
+                                children: List<Widget>.generate(
+                                    widget.controller.vocab.length,
+                                    (int index) {
+                                  return widget.controller.isEditing
+                                      ? Chip(
+                                          label: Text(
+                                            widget
+                                                .controller.vocab[index].lemma,
+                                          ),
+                                          onDeleted: () => widget.controller
+                                              .removeVocab(index),
+                                          backgroundColor: Colors.transparent,
+                                          visualDensity: VisualDensity.compact,
+                                          shape: const StadiumBorder(
+                                            side: BorderSide(
+                                              color: Colors.transparent,
+                                            ),
+                                          ),
+                                        )
+                                      : Chip(
+                                          label: Text(
+                                            widget
+                                                .controller.vocab[index].lemma,
+                                          ),
+                                          backgroundColor: Colors.transparent,
+                                          visualDensity: VisualDensity.compact,
+                                          shape: const StadiumBorder(
+                                            side: BorderSide(
+                                              color: Colors.transparent,
+                                            ),
+                                          ),
+                                        );
+                                }).toList(),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                      if (widget.controller.isEditing) ...[
+                        const SizedBox(height: itemPadding),
+                        Padding(
+                          padding: const EdgeInsets.only(top: itemPadding),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: TextField(
+                                  controller: widget.controller.vocabController,
+                                  decoration: InputDecoration(
+                                    labelText: l10n.addVocabulary,
+                                  ),
+                                  onSubmitted: (value) {
+                                    widget.controller.addVocab();
+                                  },
+                                ),
+                              ),
+                              IconButton(
+                                icon: const Icon(Icons.add),
+                                onPressed: widget.controller.addVocab,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                      const SizedBox(height: itemPadding),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              Tooltip(
+                                message: !widget.controller.isEditing
+                                    ? l10n.edit
+                                    : l10n.saveChanges,
+                                child: IconButton(
+                                  icon: Icon(
+                                    !widget.controller.isEditing
+                                        ? Icons.edit
+                                        : Icons.save,
+                                  ),
+                                  onPressed: () => !widget.controller.isEditing
+                                      ? setState(() {
+                                          widget.controller.isEditing = true;
+                                        })
+                                      : widget.controller.saveEdits(),
+                                  isSelected: widget.controller.isEditing,
+                                ),
+                              ),
+                              if (widget.controller.isEditing)
+                                Tooltip(
+                                  message: l10n.cancel,
+                                  child: IconButton(
+                                    icon: const Icon(Icons.cancel),
+                                    onPressed: widget.controller.clearEdits,
+                                  ),
+                                ),
+                            ],
+                          ),
+                          ElevatedButton.icon(
+                            onPressed:
+                                !widget.controller.isEditing ? _onLaunch : null,
+                            icon: const Icon(Icons.send),
+                            label: Text(l10n.launchActivityButton),
                           ),
                         ],
                       ),
                     ],
-                    if (_isEditing) ...[
-                      const SizedBox(height: itemPadding),
-                      Padding(
-                        padding: const EdgeInsets.only(top: itemPadding),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: TextField(
-                                controller: _newVocabController,
-                                focusNode: _vocabFocusNode,
-                                decoration: InputDecoration(
-                                  labelText: l10n.addVocabulary,
-                                ),
-                                onSubmitted: (value) {
-                                  _addVocab();
-                                },
-                              ),
-                            ),
-                            IconButton(
-                              icon: const Icon(Icons.add),
-                              onPressed: _addVocab,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                    const SizedBox(height: itemPadding),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            Tooltip(
-                              message:
-                                  !_isEditing ? l10n.edit : l10n.saveChanges,
-                              child: IconButton(
-                                icon:
-                                    Icon(!_isEditing ? Icons.edit : Icons.save),
-                                onPressed: () => !_isEditing
-                                    ? setState(() {
-                                        _isEditing = true;
-                                      })
-                                    : _saveEdits(),
-                                isSelected: _isEditing,
-                              ),
-                            ),
-                            if (_isEditing)
-                              Tooltip(
-                                message: l10n.cancel,
-                                child: IconButton(
-                                  icon: const Icon(Icons.cancel),
-                                  onPressed: () {
-                                    setState(() {
-                                      _isEditing = false;
-                                    });
-                                  },
-                                ),
-                              ),
-                          ],
-                        ),
-                        ElevatedButton.icon(
-                          onPressed: !_isEditing ? _onLaunch : null,
-                          icon: const Icon(Icons.send),
-                          label: Text(l10n.launchActivityButton),
-                        ),
-                      ],
-                    ),
-                  ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

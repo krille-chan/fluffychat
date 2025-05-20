@@ -25,7 +25,7 @@ import 'package:fluffychat/pangea/practice_activities/practice_selection_repo.da
 
 /// A minimized version of AnalyticsController that get the logged in user's analytics
 class GetAnalyticsController extends BaseController {
-  final GetStorage analyticsBox = GetStorage("analytics_storage");
+  static final GetStorage analyticsBox = GetStorage("analytics_storage");
   late PangeaController _pangeaController;
   late PracticeSelectionRepo perMessage;
 
@@ -275,6 +275,15 @@ class GetAnalyticsController extends BaseController {
       return {};
     }
   }
+
+  Future<void> clearMessagesCache() async =>
+      analyticsBox.remove(PLocalKey.messagesSinceUpdate);
+
+  Future<void> setMessagesCache(Map<dynamic, dynamic> cacheValue) async =>
+      analyticsBox.write(
+        PLocalKey.messagesSinceUpdate,
+        cacheValue,
+      );
 
   /// A flat list of all locally cached construct uses
   List<OneConstructUse> get _locallyCachedConstructs =>

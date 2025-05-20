@@ -10,16 +10,14 @@ import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 import 'package:shimmer/shimmer.dart';
 
-import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_request.dart';
+import 'package:fluffychat/pangea/activity_planner/activity_planner_builder.dart';
 import 'package:fluffychat/pangea/activity_planner/media_enum.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_plan_search_repo.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_suggestion_card.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_suggestion_dialog.dart';
-import 'package:fluffychat/pangea/activity_suggestions/activity_suggestions_constants.dart';
-import 'package:fluffychat/pangea/common/widgets/customized_svg.dart';
 import 'package:fluffychat/pangea/learning_settings/constants/language_constants.dart';
 import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_enum.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -135,10 +133,15 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
                   showDialog(
                     context: context,
                     builder: (context) {
-                      return ActivitySuggestionDialog(
+                      return ActivityPlannerBuilder(
                         initialActivity: activity,
-                        buttonText: L10n.of(context).inviteAndLaunch,
                         room: widget.room,
+                        builder: (controller) {
+                          return ActivitySuggestionDialog(
+                            controller: controller,
+                            buttonText: L10n.of(context).launch,
+                          );
+                        },
                       );
                     },
                   );
@@ -165,7 +168,7 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
             children: [
               Flexible(
                 child: Text(
-                  L10n.of(context).startChat,
+                  L10n.of(context).chatWithActivities,
                   style: isColumnMode
                       ? theme.textTheme.titleLarge
                           ?.copyWith(fontWeight: FontWeight.bold)
@@ -175,91 +178,10 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
-              Material(
-                type: MaterialType.transparency,
-                child: Row(
-                  spacing: 8.0,
-                  children: [
-                    InkWell(
-                      customBorder: const CircleBorder(),
-                      onTap: () => context.go('/homepage/newgroup'),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: theme.colorScheme.surfaceContainerHighest,
-                          borderRadius: BorderRadius.circular(36.0),
-                        ),
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 6.0,
-                          horizontal: 10.0,
-                        ),
-                        child: Row(
-                          spacing: 8.0,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            CustomizedSvg(
-                              svgUrl:
-                                  "${AppConfig.assetsBaseURL}/${ActivitySuggestionsConstants.plusIconPath}",
-                              colorReplacements: {
-                                "#CDBEF9": colorToHex(
-                                  Theme.of(context).colorScheme.secondary,
-                                ),
-                              },
-                              height: 16.0,
-                              width: 16.0,
-                            ),
-                            Text(
-                              isColumnMode
-                                  ? L10n.of(context).createOwnChat
-                                  : L10n.of(context).chat,
-                              style: theme.textTheme.titleSmall?.copyWith(
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    InkWell(
-                      customBorder: const CircleBorder(),
-                      onTap: () => context.go('/homepage/planner'),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: theme.colorScheme.surfaceContainerHighest,
-                          borderRadius: BorderRadius.circular(36.0),
-                        ),
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 6.0,
-                          horizontal: 10.0,
-                        ),
-                        child: Row(
-                          spacing: 8.0,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            CustomizedSvg(
-                              svgUrl:
-                                  "${AppConfig.assetsBaseURL}/${ActivitySuggestionsConstants.crayonIconPath}",
-                              colorReplacements: {
-                                "#CDBEF9": colorToHex(
-                                  Theme.of(context).colorScheme.secondary,
-                                ),
-                              },
-                              height: 16.0,
-                              width: 16.0,
-                            ),
-                            Text(
-                              isColumnMode
-                                  ? L10n.of(context).makeYourOwnActivity
-                                  : L10n.of(context).createActivity,
-                              style: theme.textTheme.titleSmall?.copyWith(
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+              IconButton(
+                icon: const Icon(Icons.menu_outlined),
+                onPressed: () => context.go('/rooms/homepage/planner'),
+                tooltip: L10n.of(context).activityPlannerTitle,
               ),
             ],
           ),

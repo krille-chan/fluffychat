@@ -10,7 +10,6 @@ import 'package:fluffychat/pangea/lemmas/construct_xp_widget.dart';
 import 'package:fluffychat/pangea/lemmas/lemma_emoji_row.dart';
 import 'package:fluffychat/pangea/morphs/morph_features_enum.dart';
 import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
-import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/practice_activity/word_audio_button.dart';
@@ -22,14 +21,12 @@ import 'package:fluffychat/widgets/matrix.dart';
 class WordZoomWidget extends StatelessWidget {
   final PangeaToken token;
   final PangeaMessageEvent messageEvent;
-  final TtsController tts;
   final MessageOverlayController overlayController;
 
   const WordZoomWidget({
     super.key,
     required this.token,
     required this.messageEvent,
-    required this.tts,
     required this.overlayController,
   });
 
@@ -93,7 +90,6 @@ class WordZoomWidget extends StatelessWidget {
                       debugPrint("what are we doing edits with?");
                       _onEditDone();
                     },
-                    tts: tts,
                     overlayController: overlayController,
                   ),
                   ConstructXpWidget(
@@ -181,7 +177,7 @@ class WordZoomWidget extends StatelessWidget {
                     baseOpacity: 0.4,
                     uniqueID: "word-zoom-audio-${_selectedToken.text.content}",
                     langCode: overlayController
-                        .pangeaMessageEvent?.messageDisplayLangCode,
+                        .pangeaMessageEvent!.messageDisplayLangCode,
                   ),
                 ],
                 ..._selectedToken.morphsBasicallyEligibleForPracticeByPriority

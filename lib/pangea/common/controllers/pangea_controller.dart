@@ -22,7 +22,6 @@ import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/guard/p_vguard.dart';
 import 'package:fluffychat/pangea/learning_settings/controllers/language_controller.dart';
 import 'package:fluffychat/pangea/learning_settings/utils/p_language_store.dart';
-import 'package:fluffychat/pangea/spaces/constants/space_constants.dart';
 import 'package:fluffychat/pangea/spaces/controllers/space_controller.dart';
 import 'package:fluffychat/pangea/subscription/controllers/subscription_controller.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/speech_to_text_controller.dart';
@@ -83,7 +82,6 @@ class PangeaController {
     subscriptionController.initialize();
 
     startChatWithBotIfNotPresent();
-    inviteBotToExistingSpaces();
     setPangeaPushRules();
     // joinSupportSpace();
   }
@@ -109,17 +107,35 @@ class PangeaController {
   _logOutfromPangea() {
     debugPrint("Pangea logout");
     GoogleAnalytics.logout();
-    _clearCachedData();
+    clearCache();
   }
 
-  void _clearCachedData() {
-    GetStorage('mode_list_storage').erase();
-    GetStorage('activity_plan_storage').erase();
-    GetStorage('bookmarked_activities').erase();
-    GetStorage('objective_list_storage').erase();
-    GetStorage('topic_list_storage').erase();
-    GetStorage('lemma_storage').erase();
-    GetStorage().erase();
+  static final List<String> _storageKeys = [
+    'mode_list_storage',
+    'activity_plan_storage',
+    'bookmarked_activities',
+    'objective_list_storage',
+    'topic_list_storage',
+    'activity_plan_search_storage',
+    "analytics_storage",
+    "version_storage",
+    'lemma_storage',
+    'svg_cache',
+    'morphs_storage',
+    'morph_meaning_storage',
+    'practice_record_cache',
+    'practice_selection_cache',
+    'class_storage',
+    'subscription_storage',
+    'vocab_storage',
+  ];
+
+  Future<void> clearCache() async {
+    final List<Future<void>> futures = [];
+    for (final key in _storageKeys) {
+      futures.add(GetStorage(key).erase());
+    }
+    await Future.wait(futures);
   }
 
   Future<void> checkHomeServerAction() async {
@@ -156,11 +172,13 @@ class PangeaController {
         getAnalytics.dispose();
         userController.clear();
         _languageStream?.cancel();
+        _languageStream = null;
         break;
       case LoginState.loggedIn:
         // Initialize analytics data
         putAnalytics.initialize();
         getAnalytics.initialize();
+        _setLanguageStream();
         break;
     }
     if (state != LoginState.loggedIn) {
@@ -336,60 +354,17 @@ class PangeaController {
   void _subscribeToStreams() {
     matrixState.client.onLoginStateChanged.stream
         .listen(_handleLoginStateChange);
-
-    // Listen for changes to the user's language settings
-    _languageStream ??= userController.stateStream.listen((update) {
-      if (update is Map<String, dynamic> &&
-          update['prev_target_lang'] != null) {
-        _clearCachedData();
-      }
-    });
-
-    // matrixState.client.onSyncStatus.stream
-    //     .where((SyncStatusUpdate event) => event.status == SyncStatus.finished)
-    //     .listen(_handleSyncStatusFinished);
-
-    //PTODO - listen to incoming invites and autojoin if in class
-    // matrixState.client.onSync.stream
-    //     .where((event) => event.rooms?.invite?.isNotEmpty ?? false)
-    //     .listen((SyncUpdate event) {
-    // });
-
-    // matrixState.client.onSync.stream.listen(_handleOnSyncUpdate);
+    _setLanguageStream();
   }
 
-  Future<void> inviteBotToExistingSpaces() async {
-    final List<Room> spaces =
-        matrixState.client.rooms.where((room) => room.isSpace).toList();
-    for (final Room space in spaces) {
-      if (space.ownPowerLevel < SpaceConstants.powerLevelOfAdmin ||
-          !space.canInvite) {
-        continue;
+  void _setLanguageStream() {
+    _languageStream?.cancel();
+    _languageStream = userController.stateStream.listen((update) {
+      if (update is Map<String, dynamic> &&
+          update['prev_target_lang'] != null) {
+        clearCache();
       }
-      List<User> participants;
-      try {
-        participants = await space.requestParticipants();
-      } catch (err) {
-        ErrorHandler.logError(
-          e: "Failed to fetch participants for space ${space.id}",
-          data: {
-            "spaceID": space.id,
-          },
-        );
-        continue;
-      }
-      final List<String> userIds = participants.map((user) => user.id).toList();
-      if (!userIds.contains(BotName.byEnvironment)) {
-        try {
-          await space.invite(BotName.byEnvironment);
-        } catch (err) {
-          ErrorHandler.logError(
-            e: "Failed to invite pangea bot to existing space",
-            data: {"spaceId": space.id, "error": err},
-          );
-        }
-      }
-    }
+    });
   }
 
   Future<void> setPangeaPushRules() async {

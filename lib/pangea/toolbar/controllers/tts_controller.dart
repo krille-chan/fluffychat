@@ -24,55 +24,37 @@ import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class TtsController {
-  final ChatController? chatController;
-  TtsController({this.chatController}) {
+  static void initialize() {
     setAvailableLanguages();
-    _languageSubscription =
-        MatrixState.pangeaController.userController.stateStream.listen(
-      (_) => setAvailableLanguages(),
-    );
   }
 
-  List<String> _availableLangCodes = [];
-  StreamSubscription? _languageSubscription;
+  static List<String> _availableLangCodes = [];
 
-  final flutter_tts.FlutterTts _tts = flutter_tts.FlutterTts();
-  final TextToSpeech _alternativeTTS = TextToSpeech();
-  final StreamController<bool> loadingChoreoStream =
+  static final flutter_tts.FlutterTts _tts = flutter_tts.FlutterTts();
+  static final TextToSpeech _alternativeTTS = TextToSpeech();
+  static final StreamController<bool> loadingChoreoStream =
       StreamController<bool>.broadcast();
 
-  bool get _useAlternativeTTS {
+  static bool get _useAlternativeTTS {
     return PlatformInfos.isWindows;
   }
 
-  Future<void> dispose() async {
-    await _tts.stop();
-    await _languageSubscription?.cancel();
-    await loadingChoreoStream.close();
-  }
-
-  void _onError(dynamic message) {
-    // the package treats this as an error, but it's not
-    // don't send to sentry
-    if (message == 'canceled' || message == 'interrupted') {
-      return;
+  static Future<void> _onError(dynamic message) async {
+    if (message != 'canceled' && message != 'interrupted') {
+      ErrorHandler.logError(
+        e: 'TTS error',
+        data: {
+          'message': message,
+        },
+      );
     }
-
-    ErrorHandler.logError(
-      e: 'TTS error',
-      data: {
-        'message': message,
-      },
-    );
   }
 
-  Future<void> setAvailableLanguages() async {
+  static Future<void> setAvailableLanguages() async {
     try {
       if (_useAlternativeTTS) {
         await _setAvailableAltLanguages();
       } else {
-        _tts.setErrorHandler(_onError);
-
         await _tts.awaitSpeakCompletion(true);
         await _setAvailableBaseLanguages();
       }
@@ -86,7 +68,7 @@ class TtsController {
     }
   }
 
-  Future<void> _setAvailableBaseLanguages() async {
+  static Future<void> _setAvailableBaseLanguages() async {
     final voices = (await _tts.getVoices) as List?;
     _availableLangCodes = (voices ?? [])
         .map((v) {
@@ -100,12 +82,12 @@ class TtsController {
         .toList();
   }
 
-  Future<void> _setAvailableAltLanguages() async {
+  static Future<void> _setAvailableAltLanguages() async {
     final languages = await _alternativeTTS.getLanguages();
     _availableLangCodes = languages.toSet().toList();
   }
 
-  Future<void> _setSpeakingLanguage(String langCode) async {
+  static Future<void> _setSpeakingLanguage(String langCode) async {
     String? selectedLangCode;
     final langCodeShort = langCode.split("-").first;
     if (_availableLangCodes.contains(langCode)) {
@@ -132,7 +114,7 @@ class TtsController {
     }
   }
 
-  Future<void> stop() async {
+  static Future<void> stop() async {
     try {
       // return type is dynamic but apparent its supposed to be 1
       // https://pub.dev/packages/flutter_tts
@@ -157,26 +139,67 @@ class TtsController {
     }
   }
 
-  /// A safer version of speak, that handles the case of
-  /// the language not being supported by the TTS engine
-  Future<void> tryToSpeak(
+  static VoidCallback? _onStop;
+
+  static Future<void> tryToSpeak(
     String text, {
     required String langCode,
     // Target ID for where to show warning popup
     String? targetID,
     BuildContext? context,
+    ChatController? chatController,
+    VoidCallback? onStart,
+    VoidCallback? onStop,
   }) async {
-    chatController?.stopAudioStream.add(null);
+    final prevOnStop = _onStop;
+    _onStop = onStop;
+
+    _tts.setErrorHandler((message) {
+      _onError(message);
+      prevOnStop?.call();
+    });
+
+    onStart?.call();
+
+    await _tryToSpeak(
+      text,
+      langCode: langCode,
+      targetID: targetID,
+      context: context,
+      chatController: chatController,
+      onStart: onStart,
+      onStop: onStop,
+    );
+
+    onStop?.call();
+  }
+
+  /// A safer version of speak, that handles the case of
+  /// the language not being supported by the TTS engine
+  static Future<void> _tryToSpeak(
+    String text, {
+    required String langCode,
+    // Target ID for where to show warning popup
+    String? targetID,
+    BuildContext? context,
+    ChatController? chatController,
+    VoidCallback? onStart,
+    VoidCallback? onStop,
+  }) async {
+    chatController?.stopMediaStream.add(null);
     await _setSpeakingLanguage(langCode);
 
     final enableTTS = MatrixState
         .pangeaController.userController.profile.toolSettings.enableTTS;
+
     if (enableTTS) {
       final token = PangeaTokenText(
         offset: 0,
         content: text,
         length: text.length,
       );
+
+      onStart?.call();
       await (_isLangFullySupported(langCode)
           ? _speak(
               text,
@@ -191,31 +214,33 @@ class TtsController {
     } else if (targetID != null && context != null) {
       await _showTTSDisabledPopup(context, targetID);
     }
+
+    onStop?.call();
   }
 
-  Future<void> _speak(
+  static Future<void> _speak(
     String text,
     String langCode,
     List<PangeaTokenText> tokens,
   ) async {
     try {
-      stop();
+      await stop();
       text = text.toLowerCase();
 
       Logs().i('Speaking: $text, langCode: $langCode');
       final result = await Future(
         () => (_useAlternativeTTS
-                ? _alternativeTTS.speak(text)
-                : _tts.speak(text))
-            .timeout(
-          const Duration(seconds: 5),
-          onTimeout: () {
-            ErrorHandler.logError(
-              e: "Timeout on tts.speak",
-              data: {"text": text},
-            );
-          },
-        ),
+            ? _alternativeTTS.speak(text)
+            : _tts.speak(text)),
+        //     .timeout(
+        //   const Duration(seconds: 5),
+        //   // onTimeout: () {
+        //   //   ErrorHandler.logError(
+        //   //     e: "Timeout on tts.speak",
+        //   //     data: {"text": text},
+        //   //   );
+        //   // },
+        // ),
       );
       Logs().i('Finished speaking: $text, result: $result');
 
@@ -241,10 +266,12 @@ class TtsController {
         },
       );
       await _speakFromChoreo(text, langCode, tokens);
+    } finally {
+      stop();
     }
   }
 
-  Future<void> _speakFromChoreo(
+  static Future<void> _speakFromChoreo(
     String text,
     String langCode,
     List<PangeaTokenText> tokens,
@@ -252,7 +279,7 @@ class TtsController {
     TextToSpeechResponse? ttsRes;
     try {
       loadingChoreoStream.add(true);
-      ttsRes = await chatController?.pangeaController.textToSpeech.get(
+      ttsRes = await MatrixState.pangeaController.textToSpeech.get(
         TextToSpeechRequest(
           text: text,
           langCode: langCode,
@@ -304,7 +331,7 @@ class TtsController {
     }
   }
 
-  bool _isLangFullySupported(String langCode) {
+  static bool _isLangFullySupported(String langCode) {
     if (_availableLangCodes.contains(langCode)) {
       return true;
     }
@@ -317,7 +344,7 @@ class TtsController {
     return _availableLangCodes.any((lang) => lang.startsWith(langCodeShort));
   }
 
-  Future<void> _showTTSDisabledPopup(
+  static Future<void> _showTTSDisabledPopup(
     BuildContext context,
     String targetID,
   ) async =>

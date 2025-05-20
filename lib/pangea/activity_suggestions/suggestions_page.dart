@@ -19,7 +19,6 @@ class SuggestionsPage extends StatelessWidget {
             vertical: 16.0,
           ),
           child: Column(
-            mainAxisSize: MainAxisSize.min,
             spacing: 24.0,
             children: [
               if (!isColumnMode) const LearningProgressIndicators(),

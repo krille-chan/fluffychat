@@ -270,8 +270,7 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
           : AppConfig.selectModeInputBarHeight;
 
   bool get _showDetails =>
-      (Matrix.of(context).store.getBool(SettingKeys.displayChatDetailsColumn) ??
-          false) &&
+      AppSettings.displayChatDetailsColumn.getItem(Matrix.of(context).store) &&
       FluffyThemes.isThreeColumnMode(context) &&
       widget.chatController.room.membership == Membership.join;
 

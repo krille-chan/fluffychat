@@ -9,7 +9,6 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/bot/utils/bot_style.dart';
 import 'package:fluffychat/pangea/choreographer/enums/span_data_type.dart';
 import 'package:fluffychat/pangea/choreographer/models/span_data.dart';
-import 'package:fluffychat/pangea/choreographer/utils/match_copy.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/igc/card_error_widget.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
@@ -61,11 +60,9 @@ class SpanCardState extends State<SpanCard> {
 
   @override
   void dispose() {
-    tts.stop();
+    TtsController.stop();
     super.dispose();
   }
-
-  TtsController get tts => widget.scm.choreographer.tts;
 
   //get selected choice
   SpanChoice? get selectedChoice {
@@ -215,11 +212,6 @@ class WordMatchContent extends StatelessWidget {
       );
     }
 
-    final MatchCopy matchCopy = MatchCopy(
-      context,
-      controller.widget.scm.pangeaMatch!,
-    );
-
     final ScrollController scrollController = ScrollController();
 
     try {
@@ -269,7 +261,6 @@ class WordMatchContent extends StatelessWidget {
                       onPressed: (value, index) =>
                           controller.onChoiceSelect(index),
                       selectedChoiceIndex: controller.selectedChoiceIndex,
-                      tts: controller.tts,
                       id: controller.widget.scm.pangeaMatch!.hashCode
                           .toString(),
                       langCode: MatrixState.pangeaController.languageController

@@ -38,10 +38,14 @@ class LevelDisplayNameState extends State<LevelDisplayName> {
 
   @override
   Widget build(BuildContext context) {
+    if (_profile != null && _profile!.isEmpty) {
+      return const SizedBox();
+    }
+
     return Padding(
       padding: const EdgeInsets.symmetric(
-        horizontal: 8.0,
-        vertical: 4.0,
+        horizontal: 0,
+        vertical: 2.0,
       ),
       child: Row(
         children: <Widget>[

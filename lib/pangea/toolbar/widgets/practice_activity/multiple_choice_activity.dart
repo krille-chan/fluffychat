@@ -13,7 +13,6 @@ import 'package:fluffychat/pangea/morphs/get_grammar_copy.dart';
 import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_activity_model.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_record.dart';
-import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_audio_card.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/practice_activity/practice_activity_card.dart';
@@ -79,9 +78,6 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
       setState(() => selectedChoiceIndex = null);
     }
   }
-
-  TtsController get tts =>
-      widget.overlayController.widget.chatController.choreographer.tts;
 
   void updateChoice(String value, int index) {
     final bool isCorrect =
@@ -232,7 +228,7 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
             text: practiceActivity.multipleChoiceContent!.answers.first,
             uniqueID: "audio-activity-${widget.event.eventId}",
             langCode: widget
-                .overlayController.pangeaMessageEvent?.messageDisplayLangCode,
+                .overlayController.pangeaMessageEvent!.messageDisplayLangCode,
           ),
         if (practiceActivity.activityType ==
             ActivityTypeEnum.hiddenWordListening)
@@ -251,8 +247,8 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
           choices: choices(context),
           isActive: true,
           id: currentRecordModel?.hashCode.toString(),
-          tts: practiceActivity.activityType.includeTTSOnClick ? tts : null,
-          enableAudio: !widget.overlayController.isPlayingAudio,
+          enableAudio: !widget.overlayController.isPlayingAudio &&
+              practiceActivity.activityType.includeTTSOnClick,
           langCode:
               MatrixState.pangeaController.languageController.activeL2Code(),
           getDisplayCopy: _getDisplayCopy,

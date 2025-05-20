@@ -20,6 +20,7 @@ jobs:
       name: ${{ inputs.environment }}
     env:
       WEB_APP_ENV: ${{ vars.WEB_APP_ENV }}
+      ENV_OVERRIDES: ${{ vars.ENV_OVERRIDES }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -45,6 +46,8 @@ jobs:
           rm assets/.env
           echo "$WEB_APP_ENV" >> .env
           cp .env assets/.env
+          touch assets/envs.json
+          echo "$ENV_OVERRIDES" >> assets/envs.json
       - name: Apply .env patch
         run: git apply ./scripts/enable_mobile_env.patch
       - name: Install Fastlane

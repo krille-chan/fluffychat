@@ -50,6 +50,7 @@ import 'package:fluffychat/pangea/events/models/tokens_event_content_model.dart'
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/instructions/instructions_enum.dart';
 import 'package:fluffychat/pangea/learning_settings/widgets/p_language_dialog.dart';
+import 'package:fluffychat/pangea/spaces/pages/pangea_space_page.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/utils/error_reporter.dart';
@@ -101,6 +102,12 @@ class ChatPage extends StatelessWidget {
       );
     }
 
+    // #Pangea
+    if (room.isSpace) {
+      return PangeaSpacePage(space: room);
+    }
+    // Pangea#
+
     return ChatPageWithRoom(
       key: Key('chat_page_${roomId}_$eventId'),
       room: room,
@@ -148,7 +155,7 @@ class ChatController extends State<ChatPageWithRoom>
 
   final AutoScrollController scrollController = AutoScrollController();
 
-  FocusNode inputFocus = FocusNode();
+  late final FocusNode inputFocus;
   StreamSubscription<html.Event>? onFocusSub;
 
   Timer? typingCoolDown;
@@ -323,8 +330,29 @@ class ChatController extends State<ChatPageWithRoom>
     );
   }
 
+  KeyEventResult _shiftEnterKeyHandling(FocusNode node, KeyEvent evt) {
+    if (!HardwareKeyboard.instance.isShiftPressed &&
+        evt.logicalKey.keyLabel == 'Enter') {
+      if (evt is KeyDownEvent) {
+        // #Pangea
+        // send();
+        choreographer.send(context);
+        // Pangea#
+      }
+      return KeyEventResult.handled;
+    } else {
+      return KeyEventResult.ignored;
+    }
+  }
+
   @override
   void initState() {
+    inputFocus = FocusNode(
+      onKeyEvent: (AppConfig.sendOnEnter ?? !PlatformInfos.isMobile)
+          ? _shiftEnterKeyHandling
+          : null,
+    );
+
     scrollController.addListener(_updateScrollController);
     inputFocus.addListener(_inputFocusListener);
 
@@ -332,8 +360,7 @@ class ChatController extends State<ChatPageWithRoom>
     WidgetsBinding.instance.addPostFrameCallback(_shareItems);
     super.initState();
     _displayChatDetailsColumn = ValueNotifier(
-      Matrix.of(context).store.getBool(SettingKeys.displayChatDetailsColumn) ??
-          false,
+      AppSettings.displayChatDetailsColumn.getItem(Matrix.of(context).store),
     );
 
     sendingClient = Matrix.of(context).client;
@@ -341,14 +368,6 @@ class ChatController extends State<ChatPageWithRoom>
     WidgetsBinding.instance.addObserver(this);
     // #Pangea
     if (!mounted) return;
-    if (room.isSpace) {
-      ErrorHandler.logError(
-        e: "Space chat opened",
-        s: StackTrace.current,
-        data: {"roomId": roomId},
-      );
-      context.go("/rooms");
-    }
     Future.delayed(const Duration(seconds: 1), () async {
       if (!mounted) return;
       debugPrint(
@@ -531,7 +550,8 @@ class ChatController extends State<ChatPageWithRoom>
         var prevNumEvents = timeline!.events.length;
         await requestHistory();
         var numRequests = 0;
-        while (timeline!.events.length > prevNumEvents &&
+        while (timeline != null &&
+            timeline!.events.length > prevNumEvents &&
             visibleEvents.length < 10 &&
             numRequests <= 5) {
           prevNumEvents = timeline!.events.length;
@@ -569,8 +589,8 @@ class ChatController extends State<ChatPageWithRoom>
     if (state == AppLifecycleState.paused) {
       clearSelectedEvents();
     }
-    if (state == AppLifecycleState.hidden && !stopAudioStream.isClosed) {
-      stopAudioStream.add(null);
+    if (state == AppLifecycleState.hidden && !stopMediaStream.isClosed) {
+      stopMediaStream.add(null);
     }
     // Pangea#
     if (state != AppLifecycleState.resumed) return;
@@ -662,7 +682,7 @@ class ChatController extends State<ChatPageWithRoom>
     choreographer.dispose();
     MatrixState.pAnyState.closeAllOverlays(force: true);
     showToolbarStream.close();
-    stopAudioStream.close();
+    stopMediaStream.close();
     hideTextController.dispose();
     _levelSubscription?.cancel();
     _analyticsSubscription?.cancel();
@@ -677,10 +697,20 @@ class ChatController extends State<ChatPageWithRoom>
     super.didChangeDependencies();
     _router = GoRouter.of(context);
     _router.routeInformationProvider.addListener(_onRouteChanged);
+    if (room.isSpace && _router.state.path == ":roomid") {
+      ErrorHandler.logError(
+        e: "Space chat opened",
+        s: StackTrace.current,
+        data: {"roomId": roomId},
+      );
+      context.go("/rooms");
+    }
   }
 
   void _onRouteChanged() {
-    stopAudioStream.add(null);
+    if (!stopMediaStream.isClosed) {
+      stopMediaStream.add(null);
+    }
     MatrixState.pAnyState.closeAllOverlays();
   }
 
@@ -867,10 +897,13 @@ class ChatController extends State<ChatPageWithRoom>
           pangeaEditingEvent = previousEdit;
         }
 
-        GoogleAnalytics.sendMessage(
-          room.id,
-          room.classCode(context),
-        );
+        final spaceCode = room.classCode(context);
+        if (spaceCode != null) {
+          GoogleAnalytics.sendMessage(
+            room.id,
+            spaceCode,
+          );
+        }
 
         if (msgEventId == null) {
           ErrorHandler.logError(
@@ -924,8 +957,12 @@ class ChatController extends State<ChatPageWithRoom>
     });
   }
 
-  void sendFileAction() async {
-    final files = await selectFiles(context, allowMultiple: true);
+  void sendFileAction({FileSelectorType type = FileSelectorType.any}) async {
+    final files = await selectFiles(
+      context,
+      allowMultiple: true,
+      type: type,
+    );
     if (files.isEmpty) return;
     await showAdaptiveDialog(
       context: context,
@@ -943,27 +980,6 @@ class ChatController extends State<ChatPageWithRoom>
       context: context,
       builder: (c) => SendFileDialog(
         files: [XFile.fromData(image)],
-        room: room,
-        outerContext: context,
-      ),
-    );
-  }
-
-  void sendImageAction() async {
-    final files = await selectFiles(
-      context,
-      allowMultiple: true,
-      // #Pangea
-      // type: FileSelectorType.images,
-      type: FileSelectorType.media,
-      // Pangea#
-    );
-    if (files.isEmpty) return;
-
-    await showAdaptiveDialog(
-      context: context,
-      builder: (c) => SendFileDialog(
-        files: files,
         room: room,
         outerContext: context,
       ),
@@ -1007,7 +1023,7 @@ class ChatController extends State<ChatPageWithRoom>
 
   void voiceMessageAction() async {
     // #Pangea
-    stopAudioStream.add(null);
+    stopMediaStream.add(null);
     // Pangea#
     final scaffoldMessenger = ScaffoldMessenger.of(context);
     if (PlatformInfos.isAndroid) {
@@ -1235,12 +1251,13 @@ class ChatController extends State<ChatPageWithRoom>
             // Pangea#
           )
         : null;
+    // #Pangea
+    // if (reasonInput == null) return;
     if (reasonInput == null) {
-      // #Pangea
       clearSelectedEvents();
-      // Pangea#
       return;
     }
+    // Pangea#
     final reason = reasonInput.isEmpty ? null : reasonInput;
     for (final event in selectedEvents) {
       await showFutureLoadingDialog(
@@ -1572,35 +1589,23 @@ class ChatController extends State<ChatPageWithRoom>
   }
 
   void goToNewRoomAction() async {
-    if (OkCancelResult.ok !=
-        await showOkCancelAlertDialog(
-          context: context,
-          title: L10n.of(context).goToTheNewRoom,
-          message: room
-              .getState(EventTypes.RoomTombstone)!
-              .parsedTombstoneContent
-              .body,
-          okLabel: L10n.of(context).ok,
-          cancelLabel: L10n.of(context).cancel,
-        )) {
-      return;
-    }
     final result = await showFutureLoadingDialog(
       context: context,
-      future: () async {
-        final roomId = room.client.joinRoom(
-          room
-              .getState(EventTypes.RoomTombstone)!
-              .parsedTombstoneContent
-              .replacementRoom,
-        );
-        await room.leave();
-        return roomId;
-      },
+      future: () => room.client.joinRoomById(
+        room
+            .getState(EventTypes.RoomTombstone)!
+            .parsedTombstoneContent
+            .replacementRoom,
+      ),
     );
-    if (result.error == null) {
-      context.go('/rooms/${result.result!}');
-    }
+    if (result.error != null) return;
+    if (!mounted) return;
+    context.go('/rooms/${result.result!}');
+
+    await showFutureLoadingDialog(
+      context: context,
+      future: room.leave,
+    );
   }
 
   void onSelectMessage(Event event) {
@@ -1671,7 +1676,10 @@ class ChatController extends State<ChatPageWithRoom>
       sendFileAction();
     }
     if (choice == 'image') {
-      sendImageAction();
+      sendFileAction(type: FileSelectorType.images);
+    }
+    if (choice == 'video') {
+      sendFileAction(type: FileSelectorType.videos);
     }
     if (choice == 'camera') {
       openCameraAction();
@@ -1850,7 +1858,7 @@ class ChatController extends State<ChatPageWithRoom>
   final StreamController<String> showToolbarStream =
       StreamController.broadcast();
 
-  final StreamController<void> stopAudioStream = StreamController.broadcast();
+  final StreamController<void> stopMediaStream = StreamController.broadcast();
 
   void showToolbar(
     Event event, {
@@ -1910,7 +1918,7 @@ class ChatController extends State<ChatPageWithRoom>
       HapticFeedback.mediumImpact();
     }
 
-    stopAudioStream.add(null);
+    stopMediaStream.add(null);
 
     Future.delayed(
         Duration(milliseconds: buttonEventID == event.eventId ? 200 : 0), () {
@@ -1954,10 +1962,10 @@ class ChatController extends State<ChatPageWithRoom>
   late final ValueNotifier<bool> _displayChatDetailsColumn;
 
   void toggleDisplayChatDetailsColumn() async {
-    await Matrix.of(context).store.setBool(
-          SettingKeys.displayChatDetailsColumn,
-          !_displayChatDetailsColumn.value,
-        );
+    await AppSettings.displayChatDetailsColumn.setItem(
+      Matrix.of(context).store,
+      !_displayChatDetailsColumn.value,
+    );
     _displayChatDetailsColumn.value = !_displayChatDetailsColumn.value;
   }
 

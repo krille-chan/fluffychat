@@ -37,6 +37,7 @@ class ChatAppBarListTile extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 4.0),
                 child: Linkify(
                   text: title,
+                  textScaleFactor: MediaQuery.textScalerOf(context).scale(1),
                   options: const LinkifyOptions(humanize: false),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,

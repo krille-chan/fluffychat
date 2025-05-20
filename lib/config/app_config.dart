@@ -11,10 +11,11 @@ abstract class AppConfig {
   // #Pangea
   static String get applicationName => _applicationName;
   static String? _applicationWelcomeMessage;
+
   static String? get applicationWelcomeMessage => _applicationWelcomeMessage;
   // #Pangea
   // static String _defaultHomeserver = 'matrix.org';
-  static String _defaultHomeserver = Environment.synapseURL;
+  static String get _defaultHomeserver => Environment.synapseURL;
   // #Pangea
   static String get defaultHomeserver => _defaultHomeserver;
   static double fontSizeFactor = 1;
@@ -120,7 +121,10 @@ abstract class AppConfig {
       'https://8591d0d863b646feb4f3dda7e5dcab38@o256755.ingest.sentry.io/5243143';
   // Pangea#
   static bool renderHtml = true;
-  static bool hideRedactedEvents = false;
+  // #Pangea
+  // static bool hideRedactedEvents = false;
+  static bool hideRedactedEvents = true;
+  // Pangea#
   static bool hideUnknownEvents = true;
   static bool hideUnimportantStateEvents = true;
   static bool separateChatTypes = false;
@@ -154,9 +158,6 @@ abstract class AppConfig {
       'https://sygnal.pangea.chat/_matrix/push/v1/notify';
   static const String? pushNotificationsPusherFormat = null;
   // Pangea#
-  static const String emojiFontName = 'Noto Emoji';
-  static const String emojiFontUrl =
-      'https://github.com/googlefonts/noto-emoji/';
   static const double borderRadius = 18.0;
   static const double columnWidth = 360.0;
   static final Uri homeserverList = Uri(
@@ -208,9 +209,11 @@ abstract class AppConfig {
     if (json['application_welcome_message'] is String) {
       _applicationWelcomeMessage = json['application_welcome_message'];
     }
-    if (json['default_homeserver'] is String) {
-      _defaultHomeserver = json['default_homeserver'];
-    }
+    // #Pangea
+    // if (json['default_homeserver'] is String) {
+    //   _defaultHomeserver = json['default_homeserver'];
+    // }
+    // Pangea#
     if (json['privacy_url'] is String) {
       _privacyUrl = json['privacy_url'];
     }

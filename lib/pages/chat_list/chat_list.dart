@@ -8,7 +8,6 @@ import 'package:fluffychat/pages/chat_list/chat_list_view.dart';
 import 'package:fluffychat/pangea/chat_list/utils/app_version_util.dart';
 import 'package:fluffychat/pangea/chat_list/utils/chat_list_handle_space_tap.dart';
 import 'package:fluffychat/pangea/chat_settings/constants/pangea_room_types.dart';
-import 'package:fluffychat/pangea/common/constants/local.key.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/common/utils/firebase_analytics.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
@@ -78,11 +77,19 @@ extension LocalizedActiveFilter on ActiveFilter {
 class ChatList extends StatefulWidget {
   static BuildContext? contextForVoip;
   final String? activeChat;
+  // #Pangea
+  final String? activeSpaceId;
+  final String? activeFilter;
+  // Pangea#
   final bool displayNavigationRail;
 
   const ChatList({
     super.key,
     required this.activeChat,
+    // #Pangea
+    this.activeSpaceId,
+    this.activeFilter,
+    // Pangea#
     this.displayNavigationRail = false,
   });
 
@@ -110,7 +117,7 @@ class ChatListController extends State<ChatList>
 
     // #Pangea
     if (FluffyThemes.isColumnMode(context)) {
-      context.push("/rooms/$spaceId/details");
+      context.push("/rooms/$spaceId");
     }
     // Pangea#
 
@@ -147,16 +154,9 @@ class ChatListController extends State<ChatList>
       future: () async {
         if (acceptInvite == OkCancelResult.ok) {
           await room.join();
-          if (room.isSpace) {
-            setActiveSpace(room.id);
-            context.go(
-              FluffyThemes.isColumnMode(context)
-                  ? "/rooms/${room.id}/details"
-                  : "/rooms",
-            );
-            return;
-          }
-          context.go("/rooms/${room.id}");
+          context.go(
+            room.isSpace ? "/rooms?spaceId=${room.id}" : "/rooms/${room.id}",
+          );
           return;
         }
         await room.leave();
@@ -216,24 +216,21 @@ class ChatListController extends State<ChatList>
         return (room) => !room.isAnalyticsRoom && !room.isSpace;
       // Pangea#
       case ActiveFilter.messages:
+        // #Pangea
+        // return (room) => !room.isSpace && room.isDirectChat;
         return (room) =>
-            !room.isSpace &&
-            room.isDirectChat // #Pangea
-            &&
-            !room.isAnalyticsRoom;
+            !room.isSpace && room.isDirectChat && !room.isAnalyticsRoom;
       // Pangea#
       case ActiveFilter.groups:
+        // #Pangea
+        // return (room) => !room.isSpace && !room.isDirectChat;
         return (room) =>
-            !room.isSpace &&
-            !room.isDirectChat // #Pangea
-            &&
-            !room.isAnalyticsRoom;
+            !room.isSpace && !room.isDirectChat && !room.isAnalyticsRoom;
       // Pangea#
       case ActiveFilter.unread:
-        return (room) =>
-            room.isUnreadOrInvited // #Pangea
-            &&
-            !room.isAnalyticsRoom;
+        // #Pangea
+        // return (room) => room.isUnreadOrInvited;
+        return (room) => room.isUnreadOrInvited && !room.isAnalyticsRoom;
       // Pangea#
       case ActiveFilter.spaces:
         return (room) => room.isSpace;
@@ -473,7 +470,6 @@ class ChatListController extends State<ChatList>
   }
 
   //#Pangea
-  StreamSubscription? classStream;
   StreamSubscription? _invitedSpaceSubscription;
   StreamSubscription? _subscriptionStatusStream;
   StreamSubscription? _spaceChildSubscription;
@@ -510,20 +506,6 @@ class ChatListController extends State<ChatList>
     _checkTorBrowser();
 
     //#Pangea
-    classStream = MatrixState.pangeaController.classController.stateStream
-        .listen((event) {
-      if (!mounted || event is! Map<String, dynamic>) return;
-      if (event.containsKey("activeSpaceId")) {
-        final setSpaceID = event["activeSpaceId"];
-        setSpaceID != null ? setActiveSpace(setSpaceID) : clearActiveSpace();
-        if (setSpaceID != null) {
-          context.push("/rooms/$setSpaceID/details");
-        }
-      } else if (event.containsKey("activeFilter")) {
-        setActiveFilter(event["activeFilter"]);
-      }
-    });
-
     _invitedSpaceSubscription = MatrixState
         .pangeaController.matrixState.client.onSync.stream
         .where((event) => event.rooms?.invite != null)
@@ -550,11 +532,11 @@ class ChatListController extends State<ChatList>
 
           // #Pangea
           final String? justInputtedCode =
-              MatrixState.pangeaController.classController.chatBox.read(
-            PLocalKey.justInputtedCode,
-          );
+              MatrixState.pangeaController.classController.justInputtedCode();
           final newSpaceCode = space?.classCode(context);
-          if (newSpaceCode == justInputtedCode) return;
+          if (newSpaceCode?.toLowerCase() == justInputtedCode?.toLowerCase()) {
+            return;
+          }
 
           if (space != null) {
             chatListHandleSpaceTap(
@@ -638,6 +620,15 @@ class ChatListController extends State<ChatList>
         );
       }
     });
+
+    _activeSpaceId =
+        widget.activeSpaceId == 'clear' ? null : widget.activeSpaceId;
+
+    if (widget.activeFilter == 'groups') {
+      activeFilter = AppConfig.separateChatTypes
+          ? ActiveFilter.groups
+          : ActiveFilter.allChats;
+    }
     // Pangea#
 
     super.initState();
@@ -647,15 +638,21 @@ class ChatListController extends State<ChatList>
   @override
   void didUpdateWidget(ChatList oldWidget) {
     super.didUpdateWidget(oldWidget);
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      final params = GoRouterState.of(context).uri.queryParameters;
-      if (!params.containsKey("filter") || params['filter'] != 'groups') return;
+    if (widget.activeFilter != oldWidget.activeFilter &&
+        widget.activeFilter == 'groups') {
       setActiveFilter(
         AppConfig.separateChatTypes
             ? ActiveFilter.groups
             : ActiveFilter.allChats,
       );
-    });
+    }
+
+    if (widget.activeSpaceId != oldWidget.activeSpaceId &&
+        widget.activeSpaceId != null) {
+      widget.activeSpaceId == 'clear'
+          ? clearActiveSpace()
+          : setActiveSpace(widget.activeSpaceId!);
+    }
   }
   // Pangea#
 
@@ -665,7 +662,6 @@ class ChatListController extends State<ChatList>
     _intentFileStreamSubscription?.cancel();
     _intentUriStreamSubscription?.cancel();
     //#Pangea
-    classStream?.cancel();
     _invitedSpaceSubscription?.cancel();
     _subscriptionStatusStream?.cancel();
     _spaceChildSubscription?.cancel();

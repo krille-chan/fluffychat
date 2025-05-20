@@ -1,6 +1,6 @@
 # Privacy
 
-FluffyChat is available on Android, iOS and as a web version. Desktop versions for Windows, Linux and macOS may follow.
+FluffyChat is available on Android, iOS, Linux and as a web version. Desktop versions for Windows and macOS may follow.
 
 *   [Matrix](#matrix)
 *   [Database](#database)

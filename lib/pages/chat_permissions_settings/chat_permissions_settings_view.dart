@@ -53,7 +53,6 @@ class ChatPermissionsSettingsView extends StatelessWidget {
             )..removeWhere(
                 (k, v) =>
                     v is! int ||
-                    k.equals("m.space.child") ||
                     k.equals("pangea.usranalytics") ||
                     k.equals(EventTypes.RoomPowerLevels),
               );

@@ -173,8 +173,8 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
     // #Pangea
     // If there's another audio playing, stop it. Wait for this to come through
     // the stream so that the listener doesn't stop the audio that just started
-    final future = widget.chatController.stopAudioStream.stream.first;
-    widget.chatController.stopAudioStream.add(null);
+    final future = widget.chatController.stopMediaStream.stream.first;
+    widget.chatController.stopMediaStream.add(null);
     await future;
 
     // if (AudioPlayerWidget.currentId != widget.event.eventId) {
@@ -366,7 +366,7 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
           : _downloadAction();
     }
 
-    _onShowToolbar = widget.chatController.stopAudioStream.stream.listen((_) {
+    _onShowToolbar = widget.chatController.stopMediaStream.stream.listen((_) {
       audioPlayer?.pause();
       audioPlayer?.seek(Duration.zero);
     });
@@ -561,20 +561,27 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
               // Pangea#
               ) ...[
             const SizedBox(height: 8),
-            Linkify(
-              text: fileDescription,
-              style: TextStyle(
-                color: widget.color,
-                fontSize: widget.fontSize,
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 8,
               ),
-              options: const LinkifyOptions(humanize: false),
-              linkStyle: TextStyle(
-                color: widget.linkColor,
-                fontSize: widget.fontSize,
-                decoration: TextDecoration.underline,
-                decorationColor: widget.linkColor,
+              child: Linkify(
+                text: fileDescription,
+                textScaleFactor: MediaQuery.textScalerOf(context).scale(1),
+                style: TextStyle(
+                  color: widget.color,
+                  fontSize: widget.fontSize,
+                ),
+                options: const LinkifyOptions(humanize: false),
+                linkStyle: TextStyle(
+                  color: widget.linkColor,
+                  fontSize: widget.fontSize,
+                  decoration: TextDecoration.underline,
+                  decorationColor: widget.linkColor,
+                ),
+                onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
               ),
-              onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
             ),
           ],
         ],
@@ -586,6 +593,7 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
 /// To use a MatrixFile as an AudioSource for the just_audio package
 class MatrixFileAudioSource extends StreamAudioSource {
   final MatrixFile file;
+
   MatrixFileAudioSource(this.file);
 
   @override

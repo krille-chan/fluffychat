@@ -18,7 +18,6 @@ import 'package:fluffychat/pangea/practice_activities/practice_choice.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_target.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/reading_assistance_input_row/morph_selection.dart';
-import 'package:fluffychat/pangea/toolbar/utils/shrinkable_text.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 
 const double tokenButtonHeight = 40.0;
@@ -312,9 +311,8 @@ class MessageTokenButtonContent extends StatelessWidget {
       if (MessageMode.wordEmoji == messageMode) {
         return SizedBox(
           height: height,
-          child: ShrinkableText(
-            text: token.vocabConstructID.userSetEmoji.firstOrNull ?? '',
-            maxWidth: width,
+          child: Text(
+            token.vocabConstructID.userSetEmoji.firstOrNull ?? '',
             style: _emojiStyle,
           ),
         );
@@ -330,13 +328,11 @@ class MessageTokenButtonContent extends StatelessWidget {
               context: context,
             ),
             child: SizedBox(
-              width: width,
-              height: height,
+              width: 24.0,
               child: Center(
                 child: MorphIcon(
                   morphFeature: morphFeature,
                   morphTag: morphTag.lemma,
-                  size: const Size(24.0, 24.0),
                 ),
               ),
             ),
@@ -356,10 +352,8 @@ class MessageTokenButtonContent extends StatelessWidget {
         onHover: onHover,
         onTap: onTap,
         borderRadius: _borderRadius,
-        child: Container(
+        child: SizedBox(
           height: height,
-          width: min(width, height),
-          alignment: Alignment.center,
           child: Opacity(
             opacity: isSelected ? 1.0 : 0.4,
             child: AnimatedBuilder(
@@ -399,9 +393,7 @@ class MessageTokenButtonContent extends StatelessWidget {
             child: Container(
               height: height,
               padding: const EdgeInsets.only(top: 10.0),
-              width: MessageMode.wordMeaning == messageMode
-                  ? width
-                  : min(width, height),
+              width: max(width, 24.0),
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 color: Theme.of(context)

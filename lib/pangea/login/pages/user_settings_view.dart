@@ -4,6 +4,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/chat_settings/widgets/language_level_dropdown.dart';
 import 'package:fluffychat/pangea/learning_settings/widgets/p_language_dropdown.dart';
 import 'package:fluffychat/pangea/login/pages/pangea_login_scaffold.dart';
@@ -105,6 +106,21 @@ class UserSettingsView extends StatelessWidget {
               return null;
             },
             controller: controller.displayNameController,
+          ),
+          AnimatedSize(
+            duration: FluffyThemes.animationDuration,
+            child: controller.showBaseLanguageDropdown
+                ? Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: PLanguageDropdown(
+                      languages: controller.baseOptions,
+                      onChange: controller.setSelectedBaseLanguage,
+                      initialLanguage: controller.selectedBaseLanguage,
+                      hasError: controller.selectedLanguageError != null,
+                      decorationText: L10n.of(context).myBaseLanguage,
+                    ),
+                  )
+                : const SizedBox(),
           ),
           Padding(
             padding: const EdgeInsets.all(8),
