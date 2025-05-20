@@ -74,7 +74,8 @@ class ChatFloatingActionButtonState extends State<ChatFloatingActionButton> {
         child: const Icon(Icons.arrow_downward_outlined),
       );
     }
-    if (widget.controller.choreographer.errorService.error != null) {
+    if (widget.controller.choreographer.errorService.error != null &&
+        !widget.controller.choreographer.itController.willOpen) {
       return ChoreographerHasErrorButton(
         widget.controller.choreographer.errorService.error!,
         widget.controller.choreographer,

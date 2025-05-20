@@ -12,7 +12,6 @@ import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
-import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/events/models/representation_content_model.dart';
 import 'package:fluffychat/pangea/events/models/tokens_event_content_model.dart';
 import 'package:fluffychat/pangea/events/repo/token_api_models.dart';
@@ -23,7 +22,7 @@ import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 class MessageDataController extends BaseController {
   late PangeaController _pangeaController;
 
-  final Map<int, Future<List<PangeaToken>>> _tokensCache = {};
+  final Map<int, Future<TokensResponseModel>> _tokensCache = {};
   final Map<int, Future<PangeaRepresentation>> _representationCache = {};
   late Timer _cacheTimer;
 
@@ -54,7 +53,7 @@ class MessageDataController extends BaseController {
 
   /// get tokens from the server
   /// if repEventId is not null, send the tokens to the room
-  Future<List<PangeaToken>> _getTokens({
+  Future<TokensResponseModel> _getTokens({
     required String? repEventId,
     required TokensRequestModel req,
     required Room? room,
@@ -83,13 +82,13 @@ class MessageDataController extends BaseController {
           );
     }
 
-    return res.tokens;
+    return res;
   }
 
   /// get tokens from the server
   /// first check if the tokens are in the cache
   /// if repEventId is not null, send the tokens to the room
-  Future<List<PangeaToken>> getTokens({
+  Future<TokensResponseModel> getTokens({
     required String? repEventId,
     required TokensRequestModel req,
     required Room? room,
