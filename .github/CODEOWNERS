@@ -1,2 +1,2 @@
 * @krille-chan
-assets/l10n/*.arb @weblate
+lib/l10n/*.arb @weblate
