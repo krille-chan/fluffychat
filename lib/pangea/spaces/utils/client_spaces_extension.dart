@@ -24,6 +24,7 @@ extension SpacesClientExtension on Client {
       powerLevelContentOverride: {'events_default': 100},
       initialState: [
         ..._spaceInitialState(
+          userID!,
           joinCode,
           joinRules: joinRules,
         ),
@@ -123,6 +124,7 @@ extension SpacesClientExtension on Client {
   }
 
   List<StateEvent> _spaceInitialState(
+    String userID,
     String joinCode, {
     required JoinRules joinRules,
   }) {
@@ -130,15 +132,7 @@ extension SpacesClientExtension on Client {
       StateEvent(
         type: EventTypes.RoomPowerLevels,
         stateKey: '',
-        content: {
-          'events': {
-            EventTypes.SpaceChild: 50,
-          },
-          'users_default': 0,
-          'users': {
-            userID: SpaceConstants.powerLevelOfAdmin,
-          },
-        },
+        content: defaultSpacePowerLevels(userID),
       ),
       StateEvent(
         type: EventTypes.RoomJoinRules,

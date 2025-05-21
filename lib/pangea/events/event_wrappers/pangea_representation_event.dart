@@ -93,7 +93,7 @@ class RepresentationEvent {
     if (tokenEvents.isEmpty) return null;
 
     if (tokenEvents.length > 1) {
-      debugger(when: kDebugMode);
+      // debugger(when: kDebugMode);
       Sentry.addBreadcrumb(
         Breadcrumb(
           message:
