@@ -209,7 +209,7 @@ class LearningProgressIndicatorsState
                               );
                             },
                             indicator: c.indicator,
-                            mini: constraints.maxWidth < 380,
+                            mini: constraints.maxWidth < 300,
                           ),
                         )
                         .toList(),
@@ -241,7 +241,7 @@ class LearningProgressIndicatorsState
                               left: 0,
                               child: LevelBadge(
                                 level: _constructsModel.level,
-                                mini: constraints.maxWidth < 380,
+                                mini: constraints.maxWidth < 300,
                               ),
                             ),
                           ],
