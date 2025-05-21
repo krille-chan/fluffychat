@@ -30,6 +30,7 @@ class MessageContent extends StatelessWidget {
   final void Function(Event)? onInfoTab;
   final BorderRadius borderRadius;
   final Timeline timeline;
+  final bool selected;
 
   const MessageContent(
     this.event, {
@@ -39,6 +40,7 @@ class MessageContent extends StatelessWidget {
     required this.textColor,
     required this.linkColor,
     required this.borderRadius,
+    required this.selected,
   });
 
   void _verifyOrRequestKey(BuildContext context) async {
@@ -269,6 +271,7 @@ class MessageContent extends StatelessWidget {
                 textColor: textColor,
                 room: event.room,
                 fontSize: AppConfig.fontSizeFactor * AppConfig.messageFontSize,
+                limitHeight: !selected,
                 linkStyle: TextStyle(
                   color: linkColor,
                   fontSize:

@@ -418,6 +418,7 @@ class Message extends StatelessWidget {
                                                 onInfoTab: onInfoTab,
                                                 borderRadius: borderRadius,
                                                 timeline: timeline,
+                                                selected: selected,
                                               ),
                                               if (event.hasAggregatedEvents(
                                                 timeline,

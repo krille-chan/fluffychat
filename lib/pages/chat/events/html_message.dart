@@ -23,6 +23,7 @@ class HtmlMessage extends StatelessWidget {
   final void Function(LinkableElement) onOpen;
   final String? eventId;
   final Set<Event>? checkboxCheckedEvents;
+  final bool limitHeight;
 
   const HtmlMessage({
     super.key,
@@ -34,6 +35,7 @@ class HtmlMessage extends StatelessWidget {
     required this.onOpen,
     this.eventId,
     this.checkboxCheckedEvents,
+    this.limitHeight = true,
   });
 
   /// Keep in sync with: https://spec.matrix.org/latest/client-server-api/#mroommessage-msgtypes
@@ -513,6 +515,8 @@ class HtmlMessage extends StatelessWidget {
         fontSize: fontSize,
         color: textColor,
       ),
+      maxLines: limitHeight ? 64 : null,
+      overflow: TextOverflow.fade,
     );
   }
 }
