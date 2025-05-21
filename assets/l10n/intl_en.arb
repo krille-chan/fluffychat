@@ -4952,5 +4952,7 @@
   "inviteOtherUsersToRoom": "Invite other users",
   "changeTheNameOfTheSpace": "Change the name of the space",
   "changeTheDescription": "Change the description",
-  "changeThePermissions": "Change the permissions"
+  "changeThePermissions": "Change the permissions",
+  "introductions": "Introductions",
+  "announcements": "Announcements"
 }

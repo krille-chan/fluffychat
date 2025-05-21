@@ -11,6 +11,8 @@ import 'package:fluffychat/pangea/spaces/utils/space_code.dart';
 extension SpacesClientExtension on Client {
   Future<String> createPangeaSpace({
     required String name,
+    required String introChatName,
+    required String announcementsChatName,
     Visibility visibility = Visibility.private,
     JoinRules joinRules = JoinRules.public,
     Uint8List? avatar,
@@ -39,7 +41,11 @@ extension SpacesClientExtension on Client {
     final space = await _waitForRoom(roomId);
     if (space == null) return roomId;
 
-    await _addDefaultSpaceChats(space: space);
+    await _addDefaultSpaceChats(
+      space: space,
+      introductionsName: introChatName,
+      announcementsName: announcementsChatName,
+    );
     return roomId;
   }
 
@@ -107,6 +113,13 @@ extension SpacesClientExtension on Client {
 
     if (roomIds.length != 2) {
       throw Exception('Failed to create default space chats');
+    }
+
+    for (final roomId in roomIds) {
+      final room = getRoomById(roomId);
+      if (room == null) {
+        await waitForRoomInSync(roomId, join: true);
+      }
     }
 
     final addIntroChatFuture = space.pangeaSetSpaceChild(
