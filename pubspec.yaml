@@ -109,6 +109,10 @@ dev_dependencies:
   msix: ^3.6.2
   translations_cleaner: ^0.0.5
 
+import_sorter:
+  ignored_files: # Optional, defaults to []
+    - \/lib\/l10n
+
 flutter_native_splash:
   color: "#ffffff"
   color_dark: "#000000"
