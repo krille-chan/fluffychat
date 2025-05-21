@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
@@ -180,46 +179,6 @@ class MessageContent extends StatelessWidget {
               textColor: textColor,
               linkColor: linkColor,
             );
-
-          case MessageTypes.Text:
-          case MessageTypes.Notice:
-          case MessageTypes.Emote:
-            if (AppConfig.renderHtml &&
-                !event.redacted &&
-                event.isRichMessage) {
-              var html = event.formattedText;
-              if (event.messageType == MessageTypes.Emote) {
-                html = '* $html';
-              }
-              return Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 8,
-                ),
-                child: HtmlMessage(
-                  html: html,
-                  textColor: textColor,
-                  room: event.room,
-                  fontSize:
-                      AppConfig.fontSizeFactor * AppConfig.messageFontSize,
-                  linkStyle: TextStyle(
-                    color: linkColor,
-                    fontSize:
-                        AppConfig.fontSizeFactor * AppConfig.messageFontSize,
-                    decoration: TextDecoration.underline,
-                    decorationColor: linkColor,
-                  ),
-                  onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
-                  eventId: event.eventId,
-                  checkboxCheckedEvents: event.aggregatedEvents(
-                    timeline,
-                    EventCheckboxRoomExtension.relationshipType,
-                  ),
-                ),
-              );
-            }
-            // else we fall through to the normal message rendering
-            continue textmessage;
           case MessageTypes.BadEncrypted:
           case EventTypes.Encrypted:
             return _ButtonContent(
@@ -264,6 +223,9 @@ class MessageContent extends StatelessWidget {
               }
             }
             continue textmessage;
+          case MessageTypes.Text:
+          case MessageTypes.Notice:
+          case MessageTypes.Emote:
           case MessageTypes.None:
           textmessage:
           default:
@@ -291,34 +253,35 @@ class MessageContent extends StatelessWidget {
                 },
               );
             }
-            final bigEmotes = event.onlyEmotes &&
-                event.numberEmotes > 0 &&
-                event.numberEmotes <= 3;
+            var html = AppConfig.renderHtml && event.isRichMessage
+                ? event.formattedText
+                : event.body;
+            if (event.messageType == MessageTypes.Emote) {
+              html = '* $html';
+            }
             return Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: 16,
                 vertical: 8,
               ),
-              child: Linkify(
-                text: event.calcLocalizedBodyFallback(
-                  MatrixLocals(L10n.of(context)),
-                  hideReply: true,
-                ),
-                textScaleFactor: MediaQuery.textScalerOf(context).scale(1),
-                style: TextStyle(
-                  color: textColor,
-                  fontSize: bigEmotes ? fontSize * 5 : fontSize,
-                  decoration:
-                      event.redacted ? TextDecoration.lineThrough : null,
-                ),
-                options: const LinkifyOptions(humanize: false),
+              child: HtmlMessage(
+                html: html,
+                textColor: textColor,
+                room: event.room,
+                fontSize: AppConfig.fontSizeFactor * AppConfig.messageFontSize,
                 linkStyle: TextStyle(
                   color: linkColor,
-                  fontSize: fontSize,
+                  fontSize:
+                      AppConfig.fontSizeFactor * AppConfig.messageFontSize,
                   decoration: TextDecoration.underline,
                   decorationColor: linkColor,
                 ),
                 onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
+                eventId: event.eventId,
+                checkboxCheckedEvents: event.aggregatedEvents(
+                  timeline,
+                  EventCheckboxRoomExtension.relationshipType,
+                ),
               ),
             );
         }
