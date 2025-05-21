@@ -292,12 +292,45 @@ class IGCTextData {
     // create a pointer to the current index in the original input
     // and iterate until the pointer has reached the end of the input
     int currentIndex = 0;
+    int loops = 0;
+    final List<PangeaMatch> addedMatches = [];
     while (currentIndex < originalInput.characters.length) {
+      if (loops > 100) {
+        ErrorHandler.logError(
+          e: "In constructTokenSpan, infinite loop detected",
+          data: {
+            "currentIndex": currentIndex,
+            "matches": textSpanMatches.map((m) => m.toJson()).toList(),
+          },
+        );
+        throw "In constructTokenSpan, infinite loop detected";
+      }
+
       // check if the pointer is at a match, and if so, get the index of the match
       final int matchIndex = matchRanges.indexWhere(
         (range) => currentIndex >= range[0] && currentIndex < range[1],
       );
-      final bool inMatch = matchIndex != -1;
+      final bool inMatch = matchIndex != -1 &&
+          !addedMatches.contains(
+            textSpanMatches[matchIndex],
+          );
+
+      if (matchIndex != -1 &&
+          addedMatches.contains(
+            textSpanMatches[matchIndex],
+          )) {
+        ErrorHandler.logError(
+          e: "In constructTokenSpan, currentIndex is in match that has already been added",
+          data: {
+            "currentIndex": currentIndex,
+            "matchIndex": matchIndex,
+            "matches": textSpanMatches.map((m) => m.toJson()).toList(),
+          },
+        );
+        throw "In constructTokenSpan, currentIndex is in match that has already been added";
+      }
+
+      final prevIndex = currentIndex;
 
       if (inMatch) {
         // if the pointer is in a match, then add that match to items
@@ -312,13 +345,7 @@ class IGCTextData {
           final span = originalInput.characters
               .getRange(
                 match.match.offset,
-                match.match.offset +
-                    (match.match.choices
-                            ?.firstWhere((c) => c.isBestCorrection)
-                            .value
-                            .characters
-                            .length ??
-                        match.match.length),
+                match.match.offset + match.match.length,
               )
               .toString();
 
@@ -364,12 +391,8 @@ class IGCTextData {
             ),
           );
 
-          currentIndex = match.match.offset +
-              (match.match.choices
-                      ?.firstWhere((c) => c.isBestCorrection)
-                      .value
-                      .length ??
-                  match.match.length);
+          addedMatches.add(match);
+          currentIndex = match.match.offset + match.match.length;
         } else {
           items.add(
             getSpanItem(
@@ -400,6 +423,20 @@ class IGCTextData {
         );
         currentIndex = nextIndex;
       }
+
+      if (prevIndex >= currentIndex) {
+        ErrorHandler.logError(
+          e: "In constructTokenSpan, currentIndex is less than prevIndex",
+          data: {
+            "currentIndex": currentIndex,
+            "prevIndex": prevIndex,
+            "matches": textSpanMatches.map((m) => m.toJson()).toList(),
+          },
+        );
+        throw "In constructTokenSpan, currentIndex is less than prevIndex";
+      }
+
+      loops++;
     }
 
     return items;
