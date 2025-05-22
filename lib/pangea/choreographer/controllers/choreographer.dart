@@ -453,16 +453,24 @@ class Choreographer {
       if (!isNormalizationError) continue;
       final match = igc.igcTextData!.matches[i];
 
-      choreoRecord.addRecord(
-        _textController.text,
-        match: match.copyWith..status = PangeaMatchStatus.automatic,
-      );
-
       igc.igcTextData!.acceptReplacement(
         i,
         match.match.choices!.indexWhere(
           (c) => c.isBestCorrection,
         ),
+      );
+
+      final newMatch = match.copyWith;
+      newMatch.status = PangeaMatchStatus.automatic;
+      newMatch.match.length = match.match.choices!
+          .firstWhere((c) => c.isBestCorrection)
+          .value
+          .characters
+          .length;
+
+      choreoRecord.addRecord(
+        _textController.text,
+        match: newMatch,
       );
 
       _textController.setSystemText(

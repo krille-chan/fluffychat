@@ -201,7 +201,8 @@ class ChatListViewBody extends StatelessWidget {
                             // #Pangea
                             // if (spaceDelegateCandidates.isNotEmpty &&
                             //     !controller.widget.displayNavigationRail)
-                            if (!controller.widget.displayNavigationRail)
+                            if (!AppConfig.displayNavigationRail &&
+                                !FluffyThemes.isColumnMode(context))
                               // Pangea#
                               ActiveFilter.spaces,
                           ]

@@ -4943,5 +4943,16 @@
   "launchActivityToChats": "Launch activity to chats",
   "searchChats": "Search chats",
   "selectChats": "Select chats",
-  "selectChatToStart": "Complete! Select a chat to start"
+  "selectChatToStart": "Complete! Select a chat to start",
+  "configureSpace": "Configure space",
+  "pinMessages": "Pin messages",
+  "setJoinRules": "Set join rules",
+  "displayNavigationRail": "Show navigation rail on mobile",
+  "changeGeneralSettings": "Change general settings",
+  "inviteOtherUsersToRoom": "Invite other users",
+  "changeTheNameOfTheSpace": "Change the name of the space",
+  "changeTheDescription": "Change the description",
+  "changeThePermissions": "Change the permissions",
+  "introductions": "Introductions",
+  "announcements": "Announcements"
 }

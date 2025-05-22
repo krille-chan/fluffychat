@@ -7,7 +7,6 @@ import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart' as sdk;
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/new_group/new_group_view.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
 import 'package:fluffychat/pangea/chat/constants/default_power_level.dart';
@@ -188,10 +187,8 @@ class NewGroupController extends State<NewGroup> {
         );
       }
     }
-    // if a timeout happened, don't redirect to the chat
-    if (error != null) return;
-    // Pangea#
     context.go('/rooms/$roomId/invite?filter=groups');
+    // Pangea#
   }
 
   Future<void> _createSpace() async {
@@ -220,6 +217,8 @@ class NewGroupController extends State<NewGroup> {
     // context.pop<String>(spaceId);
     final spaceId = await Matrix.of(context).client.createPangeaSpace(
           name: nameController.text,
+          introChatName: L10n.of(context).introductions,
+          announcementsChatName: L10n.of(context).announcements,
           visibility:
               groupCanBeFound ? sdk.Visibility.public : sdk.Visibility.private,
           joinRules:
@@ -237,8 +236,6 @@ class NewGroupController extends State<NewGroup> {
       GoogleAnalytics.createClass(room.name, spaceCode);
     }
 
-    // if a timeout happened, don't redirect to the space
-    if (error != null) return;
     context.go("/rooms?spaceId=$spaceId");
     // Pangea#
   }
@@ -273,23 +270,9 @@ class NewGroupController extends State<NewGroup> {
 
       switch (createGroupType) {
         case CreateGroupType.group:
-          // #Pangea
-          // await _createGroup();
-          await _createGroup().timeout(
-            const Duration(
-              seconds: AppConfig.roomCreationTimeoutSeconds,
-            ),
-          );
-        // Pangea#
+          await _createGroup();
         case CreateGroupType.space:
-          // #Pangea
-          // await _createSpace();
-          await _createSpace().timeout(
-            const Duration(
-              seconds: AppConfig.roomCreationTimeoutSeconds,
-            ),
-          );
-        // Pangea#
+          await _createSpace();
       }
     } catch (e, s) {
       sdk.Logs().d('Unable to create group', e, s);

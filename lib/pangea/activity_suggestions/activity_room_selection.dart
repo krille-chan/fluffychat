@@ -14,6 +14,7 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_planner_builder.dart';
 import 'package:fluffychat/pangea/bot/utils/bot_name.dart';
+import 'package:fluffychat/pangea/chat/constants/default_power_level.dart';
 import 'package:fluffychat/pangea/chat_settings/constants/bot_mode.dart';
 import 'package:fluffychat/pangea/chat_settings/models/bot_options_model.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
@@ -178,6 +179,13 @@ class ActivityRoomSelectionState extends State<ActivityRoomSelection> {
             preset: CreateRoomPreset.trustedPrivateChat,
             initialState: [
               BotOptionsModel(mode: BotMode.directChat).toStateEvent,
+              StateEvent(
+                type: EventTypes.RoomPowerLevels,
+                stateKey: '',
+                content: defaultPowerLevels(
+                  Matrix.of(context).client.userID!,
+                ),
+              ),
               if (avatar != null && avatarUrl != null)
                 StateEvent(
                   type: EventTypes.RoomAvatar,

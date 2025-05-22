@@ -211,7 +211,7 @@ class ActivityPlannerBuilderState extends State<ActivityPlannerBuilder> {
   }
 
   Future<void> clearEdits() async {
-    _resetActivity();
+    await _resetActivity();
     if (mounted) {
       setState(() {
         isEditing = false;

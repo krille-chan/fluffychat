@@ -65,7 +65,17 @@ class ErrorService {
     return Duration(seconds: coolDownSeconds);
   }
 
+  final List<String> _errorCache = [];
+
   setError(ChoreoError? error, {Duration? duration}) {
+    if (_errorCache.contains(error?.raw.toString())) {
+      return;
+    }
+
+    if (error != null) {
+      _errorCache.add(error.raw.toString());
+    }
+
     _error = error;
     Future.delayed(duration ?? defaultCooldown, () {
       clear();

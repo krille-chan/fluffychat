@@ -527,6 +527,18 @@ class _SpaceViewState extends State<SpaceView> {
     final room = Matrix.of(context).client.getRoomById(widget.spaceId);
     final displayname =
         room?.getLocalizedDisplayname() ?? L10n.of(context).nothingFound;
+
+    // #Pangea
+    final joinedParents = room?.spaceParents
+        .map((parent) {
+          final roomId = parent.roomId;
+          if (roomId == null) return null;
+          return room.client.getRoomById(roomId);
+        })
+        .whereType<Room>()
+        .toList();
+    // Pangea#
+
     return Scaffold(
       // #Pangea
       // appBar: AppBar(
@@ -539,14 +551,51 @@ class _SpaceViewState extends State<SpaceView> {
             _onSpaceAction(SpaceActions.settings);
           },
           child: AppBar(
-            // Pangea#
-            leading: FluffyThemes.isColumnMode(context)
-                ? null
+            // leading: FluffyThemes.isColumnMode(context)
+            //     ? null
+            //     : Center(
+            //         child: CloseButton(
+            //           onPressed: widget.onBack,
+            //         ),
+            //       ),
+            leading: joinedParents?.isEmpty ?? true
+                ? FluffyThemes.isColumnMode(context)
+                    ? null
+                    : Center(
+                        child: CloseButton(
+                          onPressed: widget.onBack,
+                        ),
+                      )
                 : Center(
-                    child: CloseButton(
-                      onPressed: widget.onBack,
-                    ),
+                    child: joinedParents!.length == 1
+                        ? IconButton(
+                            icon: const Icon(Icons.arrow_back_outlined),
+                            onPressed: () =>
+                                widget.toParentSpace(joinedParents.first.id),
+                          )
+                        : PopupMenuButton(
+                            popUpAnimationStyle: AnimationStyle(
+                              duration: const Duration(milliseconds: 0),
+                            ),
+                            tooltip: null,
+                            useRootNavigator: true,
+                            icon: const Icon(Icons.arrow_back_outlined),
+                            itemBuilder: (context) {
+                              return [
+                                ...joinedParents.mapIndexed((i, room) {
+                                  return PopupMenuItem(
+                                    value: i,
+                                    child: Text(room.getLocalizedDisplayname()),
+                                  );
+                                }),
+                              ];
+                            },
+                            onSelected: (i) {
+                              widget.toParentSpace(joinedParents[i].id);
+                            },
+                          ),
                   ),
+            // Pangea#
             automaticallyImplyLeading: false,
             titleSpacing: FluffyThemes.isColumnMode(context) ? null : 0,
             title: ListTile(
@@ -660,14 +709,16 @@ class _SpaceViewState extends State<SpaceView> {
                     // Pangea#
                     .toList();
 
-                final joinedParents = room.spaceParents
-                    .map((parent) {
-                      final roomId = parent.roomId;
-                      if (roomId == null) return null;
-                      return room.client.getRoomById(roomId);
-                    })
-                    .whereType<Room>()
-                    .toList();
+                // #Pangea
+                // final joinedParents = room.spaceParents
+                //     .map((parent) {
+                //       final roomId = parent.roomId;
+                //       if (roomId == null) return null;
+                //       return room.client.getRoomById(roomId);
+                //     })
+                //     .whereType<Room>()
+                //     .toList();
+                // Pangea#
                 final filter = _filterController.text.trim().toLowerCase();
                 return CustomScrollView(
                   slivers: [
@@ -715,51 +766,51 @@ class _SpaceViewState extends State<SpaceView> {
                         ),
                       ),
                     ),
-                    SliverList.builder(
-                      itemCount: joinedParents.length,
-                      itemBuilder: (context, i) {
-                        final displayname =
-                            joinedParents[i].getLocalizedDisplayname();
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 8,
-                            vertical: 1,
-                          ),
-                          child: Material(
-                            borderRadius:
-                                BorderRadius.circular(AppConfig.borderRadius),
-                            clipBehavior: Clip.hardEdge,
-                            child: ListTile(
-                              minVerticalPadding: 0,
-                              leading: Icon(
-                                Icons.adaptive.arrow_back_outlined,
-                                size: 16,
-                              ),
-                              title: Row(
-                                children: [
-                                  Avatar(
-                                    mxContent: joinedParents[i].avatar,
-                                    name: displayname,
-                                    // #Pangea
-                                    userId: joinedParents[i].directChatMatrixID,
-                                    // Pangea#
-                                    size: Avatar.defaultSize / 2,
-                                    borderRadius: BorderRadius.circular(
-                                      AppConfig.borderRadius / 4,
-                                    ),
-                                  ),
-                                  const SizedBox(width: 8),
-                                  Expanded(child: Text(displayname)),
-                                ],
-                              ),
-                              onTap: () =>
-                                  widget.toParentSpace(joinedParents[i].id),
-                            ),
-                          ),
-                        );
-                      },
-                    ),
                     // #Pangea
+                    // SliverList.builder(
+                    //   itemCount: joinedParents.length,
+                    //   itemBuilder: (context, i) {
+                    //     final displayname =
+                    //         joinedParents[i].getLocalizedDisplayname();
+                    //     return Padding(
+                    //       padding: const EdgeInsets.symmetric(
+                    //         horizontal: 8,
+                    //         vertical: 1,
+                    //       ),
+                    //       child: Material(
+                    //         borderRadius:
+                    //             BorderRadius.circular(AppConfig.borderRadius),
+                    //         clipBehavior: Clip.hardEdge,
+                    //         child: ListTile(
+                    //           minVerticalPadding: 0,
+                    //           leading: Icon(
+                    //             Icons.adaptive.arrow_back_outlined,
+                    //             size: 16,
+                    //           ),
+                    //           title: Row(
+                    //             children: [
+                    //               Avatar(
+                    //                 mxContent: joinedParents[i].avatar,
+                    //                 name: displayname,
+                    //                 // #Pangea
+                    //                 userId: joinedParents[i].directChatMatrixID,
+                    //                 // Pangea#
+                    //                 size: Avatar.defaultSize / 2,
+                    //                 borderRadius: BorderRadius.circular(
+                    //                   AppConfig.borderRadius / 4,
+                    //                 ),
+                    //               ),
+                    //               const SizedBox(width: 8),
+                    //               Expanded(child: Text(displayname)),
+                    //             ],
+                    //           ),
+                    //           onTap: () =>
+                    //               widget.toParentSpace(joinedParents[i].id),
+                    //         ),
+                    //       ),
+                    //     );
+                    //   },
+                    // ),
                     KnockingUsersIndicator(room: room),
                     // Pangea#
                     SliverList.builder(
