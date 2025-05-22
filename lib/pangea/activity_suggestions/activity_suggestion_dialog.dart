@@ -270,6 +270,10 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
                                                 return L10n.of(context)
                                                     .pleaseEnterInt;
                                               }
+                                              if (val > 50) {
+                                                return L10n.of(context)
+                                                    .maxFifty;
+                                              }
                                             } catch (e) {
                                               return L10n.of(context)
                                                   .pleaseEnterANumber;

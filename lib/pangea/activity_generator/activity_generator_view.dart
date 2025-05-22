@@ -176,6 +176,9 @@ class ActivityGeneratorView extends StatelessWidget {
                         if (n == null || n <= 0) {
                           return l10n.mustBeInteger;
                         }
+                        if (n > 50) {
+                          return l10n.maxFifty;
+                        }
                         return null;
                       },
                       onChanged: (val) => controller
