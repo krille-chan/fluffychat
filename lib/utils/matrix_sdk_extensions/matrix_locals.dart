@@ -354,19 +354,11 @@ class MatrixLocals extends MatrixLocalizations {
   String get cancelledSend => l10n.sendCanceled;
 
   @override
-  String voiceMessage(String senderName, Duration? duration) {
-    final dateTime = duration == null
-        ? null
-        : DateTime.fromMillisecondsSinceEpoch(
-            duration.inSeconds * 1000,
-          );
-    final formattedDuration = dateTime == null
-        ? ''
-        : DateFormat(
-            DateFormat.MINUTE_SECOND,
-            l10n.localeName,
-          ).format(dateTime);
-
-    return l10n.sentVoiceMessage(senderName, formattedDuration);
-  }
+  String voiceMessage(String senderName, Duration? duration) =>
+      l10n.sentVoiceMessage(
+        senderName,
+        duration == null
+            ? ''
+            : '${duration.inMinutes}:${duration.inSeconds % 60}',
+      );
 }
