@@ -29,10 +29,6 @@ class ChoicesArray extends StatefulWidget {
   final int? selectedChoiceIndex;
   final String originalSpan;
 
-  /// If null then should not be used
-  /// We don't want tts in the case of L1 options
-  final TtsController? tts;
-
   final bool enableAudio;
 
   /// language code for the TTS
@@ -62,7 +58,6 @@ class ChoicesArray extends StatefulWidget {
     required this.onPressed,
     required this.originalSpan,
     required this.selectedChoiceIndex,
-    required this.tts,
     this.enableAudio = true,
     this.langCode,
     this.isActive = true,
@@ -111,10 +106,8 @@ class ChoicesArrayState extends State<ChoicesArray> {
                 ? (String value, int index) {
                     widget.onPressed(value, index);
                     // TODO - what to pass here as eventID?
-                    if (widget.enableAudio &&
-                        widget.tts != null &&
-                        widget.langCode != null) {
-                      widget.tts?.tryToSpeak(
+                    if (widget.enableAudio && widget.langCode != null) {
+                      TtsController.tryToSpeak(
                         value,
                         targetID: null,
                         langCode: widget.langCode!,

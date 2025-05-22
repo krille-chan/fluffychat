@@ -57,7 +57,7 @@ class ITController {
     choreographer.setState();
   }
 
-  Duration get animationSpeed => const Duration(milliseconds: 500);
+  Duration get animationSpeed => const Duration(milliseconds: 300);
 
   Future<void> initializeIT(ITStartData itStartData) async {
     _willOpen = true;
@@ -136,7 +136,8 @@ class ITController {
 
       // During first IT step, next step will not be set
       if (nextITStep == null) {
-        final ITResponseModel res = await _customInputTranslation(currentText);
+        final ITResponseModel res = await _customInputTranslation(currentText)
+            .timeout(const Duration(seconds: 10));
         if (sourceText == null) return;
 
         if (res.goldContinuances != null && res.goldContinuances!.isNotEmpty) {

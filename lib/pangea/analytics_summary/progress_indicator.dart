@@ -9,6 +9,7 @@ class ProgressIndicatorBadge extends StatelessWidget {
   final int points;
   final VoidCallback onTap;
   final ProgressIndicatorEnum indicator;
+  final bool mini;
 
   const ProgressIndicatorBadge({
     super.key,
@@ -16,6 +17,7 @@ class ProgressIndicatorBadge extends StatelessWidget {
     required this.indicator,
     required this.loading,
     required this.points,
+    this.mini = false,
   });
 
   @override
@@ -42,15 +44,17 @@ class ProgressIndicatorBadge extends StatelessWidget {
                 color: indicator.color(context),
                 weight: 1000,
               ),
-              const SizedBox(width: 4.0),
-              Text(
-                indicator.tooltip(context),
-                style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.bold,
-                  color: indicator.color(context),
+              if (!mini) ...[
+                const SizedBox(width: 4.0),
+                Text(
+                  indicator.tooltip(context),
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                    color: indicator.color(context),
+                  ),
                 ),
-              ),
+              ],
               const SizedBox(width: 4.0),
               !loading
                   ? Text(

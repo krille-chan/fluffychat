@@ -131,9 +131,9 @@ class NewGroupView extends StatelessWidget {
                   onFieldSubmitted: (value) {
                     controller.loading ? null : controller.submitAction();
                   },
-                  validator: (value) => value == null || value.isEmpty
-                      ? L10n.of(context).pleaseFillOut
-                      : null,
+                  validator: (value) => controller.canSubmit
+                      ? null
+                      : L10n.of(context).pleaseFillOut,
                   focusNode: controller.focusNode,
                   // Pangea#
                 ),

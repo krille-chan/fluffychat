@@ -6,7 +6,6 @@ import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import '../../config/themes.dart';
 import '../../utils/url_launcher.dart';
@@ -17,58 +16,12 @@ import '../matrix.dart';
 import '../mxc_image_viewer.dart';
 import 'adaptive_dialog_action.dart';
 
-// #Pangea
-// class PublicRoomDialog extends StatelessWidget {
-class PublicRoomDialog extends StatefulWidget {
-  // Pangea#
+class PublicRoomDialog extends StatelessWidget {
   final String? roomAlias;
   final PublicRoomsChunk? chunk;
   final List<String>? via;
 
   const PublicRoomDialog({super.key, this.roomAlias, this.chunk, this.via});
-  // #Pangea
-  static Future<bool?> show({
-    required BuildContext context,
-    String? roomAlias,
-    PublicRoomsChunk? chunk,
-    List<String>? via,
-  }) async {
-    final room = MatrixState.pangeaController.matrixState.client
-        .getRoomById(chunk!.roomId);
-
-    if (room != null && room.membership == Membership.join) {
-      context.go("/rooms?spaceId=${room.id}");
-      return null;
-    }
-
-    return showAdaptiveDialog(
-      context: context,
-      barrierDismissible: true,
-      builder: (context) => PublicRoomDialog(
-        roomAlias: roomAlias,
-        chunk: chunk,
-        via: via,
-      ),
-    );
-  }
-
-  @override
-  State<PublicRoomDialog> createState() => PublicRoomDialogState();
-}
-
-class PublicRoomDialogState extends State<PublicRoomDialog> {
-  PublicRoomsChunk? get chunk => widget.chunk;
-  String? get roomAlias => widget.roomAlias;
-  List<String>? get via => widget.via;
-
-  final TextEditingController _codeController = TextEditingController();
-
-  @override
-  void dispose() {
-    _codeController.dispose();
-    super.dispose();
-  }
-  // Pangea#
 
   void _joinRoom(BuildContext context) async {
     final client = Matrix.of(context).client;
@@ -87,16 +40,9 @@ class PublicRoomDialogState extends State<PublicRoomDialog> {
                 via: via,
               );
 
-        // #Pangea
-        // if (!knock && client.getRoomById(roomId) == null) {
-        //   await client.waitForRoomInSync(roomId);
-        // }
-        final room = client.getRoomById(roomId);
-        if (!knock && (room == null || room.membership != Membership.join)) {
-          await client.waitForRoomInSync(roomId, join: true);
+        if (!knock && client.getRoomById(roomId) == null) {
+          await client.waitForRoomInSync(roomId);
         }
-        // Pangea#
-
         return roomId;
       },
     );
@@ -119,11 +65,6 @@ class PublicRoomDialogState extends State<PublicRoomDialog> {
         !client.getRoomById(result.result!)!.isSpace) {
       context.go('/rooms/$roomId');
     }
-    // #Pangea
-    else {
-      context.go('/rooms?spaceId=$roomId');
-    }
-    // Pangea#
     return;
   }
 
@@ -144,31 +85,10 @@ class PublicRoomDialogState extends State<PublicRoomDialog> {
     return query.chunk.firstWhere(_testRoom);
   }
 
-  // #Pangea
-  Future<void> _joinWithCode() async {
-    final resp =
-        await MatrixState.pangeaController.classController.joinClasswithCode(
-      context,
-      _codeController.text,
-      notFoundError: L10n.of(context).notTheCodeError,
-    );
-    if (!resp.isError) {
-      Navigator.of(context).pop(true);
-    }
-  }
-  // Pangea#
-
   @override
   Widget build(BuildContext context) {
     final roomAlias = this.roomAlias ?? chunk?.canonicalAlias;
-    // #Pangea
-    // final roomLink = roomAlias ?? chunk?.roomId;
-    String? roomLink = roomAlias ?? chunk?.roomId;
-    if (roomLink != null) {
-      roomLink =
-          "${Environment.frontendURL}/#/join_with_alias?alias=${Uri.encodeComponent(roomLink)}";
-    }
-    // Pangea#
+    final roomLink = roomAlias ?? chunk?.roomId;
     var copied = false;
     return AlertDialog.adaptive(
       title: ConstrainedBox(
@@ -179,13 +99,7 @@ class PublicRoomDialogState extends State<PublicRoomDialog> {
         ),
       ),
       content: ConstrainedBox(
-        // #Pangea
-        // constraints: const BoxConstraints(maxWidth: 256, maxHeight: 256),
-        constraints: const BoxConstraints(
-          maxWidth: 256,
-          maxHeight: 300,
-        ),
-        // Pangea#
+        constraints: const BoxConstraints(maxWidth: 256, maxHeight: 256),
         child: FutureBuilder<PublicRoomsChunk>(
           future: _search(context),
           builder: (context, snapshot) {
@@ -208,10 +122,7 @@ class PublicRoomDialogState extends State<PublicRoomDialog> {
                           child: GestureDetector(
                             onTap: () {
                               Clipboard.setData(
-                                // #Pangea
-                                // ClipboardData(text: roomLink),
-                                ClipboardData(text: roomLink!),
-                                // Pangea#
+                                ClipboardData(text: roomLink),
                               );
                               setState(() {
                                 copied = true;
@@ -243,12 +154,7 @@ class PublicRoomDialogState extends State<PublicRoomDialog> {
                                       ),
                                     ),
                                   ),
-                                  // #Pangea
-                                  // TextSpan(text: roomLink),
-                                  TextSpan(
-                                    text: L10n.of(context).shareSpaceLink,
-                                  ),
-                                  // Pangea#
+                                  TextSpan(text: roomLink),
                                 ],
                                 style: theme.textTheme.bodyMedium
                                     ?.copyWith(fontSize: 10),
@@ -280,79 +186,6 @@ class PublicRoomDialogState extends State<PublicRoomDialog> {
                       style: const TextStyle(fontSize: 10),
                       textAlign: TextAlign.center,
                     ),
-                  // #Pangea
-                  Material(
-                    type: MaterialType.transparency,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Theme.of(context).colorScheme.outline,
-                        ),
-                        borderRadius: BorderRadius.circular(24),
-                      ),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: TextField(
-                              style: const TextStyle(
-                                fontSize: 12,
-                              ),
-                              controller: _codeController,
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                focusedBorder: InputBorder.none,
-                                enabledBorder: InputBorder.none,
-                                errorBorder: InputBorder.none,
-                                disabledBorder: InputBorder.none,
-                                hintText: L10n.of(context).enterSpaceCode,
-                                contentPadding: const EdgeInsets.symmetric(
-                                  horizontal: 16.0,
-                                ),
-                                labelStyle: const TextStyle(
-                                  fontSize: 12,
-                                ),
-                                hintStyle: TextStyle(
-                                  color: Theme.of(context).hintColor,
-                                  fontSize: 12,
-                                ),
-                                isDense: true,
-                              ),
-                            ),
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                              border: Border(
-                                left: BorderSide(
-                                  color: Theme.of(context).colorScheme.outline,
-                                ),
-                              ),
-                            ),
-                            child: ElevatedButton(
-                              onPressed: _joinWithCode,
-                              style: ElevatedButton.styleFrom(
-                                shape: const RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.zero,
-                                    bottomLeft: Radius.zero,
-                                    topRight: Radius.circular(24),
-                                    bottomRight: Radius.circular(24),
-                                  ),
-                                ),
-                                padding: EdgeInsets.zero,
-                              ),
-                              child: Text(
-                                L10n.of(context).join,
-                                style: const TextStyle(
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  // Pangea#
                   if (topic != null && topic.isNotEmpty)
                     SelectableLinkify(
                       text: topic,
@@ -381,10 +214,7 @@ class PublicRoomDialogState extends State<PublicRoomDialog> {
           child: Text(
             chunk?.joinRule == 'knock' &&
                     Matrix.of(context).client.getRoomById(chunk!.roomId) == null
-                // #Pangea
-                // ? L10n.of(context).knock
-                ? L10n.of(context).askToJoin
-                // Pangea#
+                ? L10n.of(context).knock
                 : chunk?.roomType == 'm.space'
                     ? L10n.of(context).joinSpace
                     : L10n.of(context).joinRoom,

@@ -11,6 +11,7 @@ import 'package:fluffychat/pages/chat/events/video_player.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/events/extensions/pangea_event_extension.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
+import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/enums/reading_assistance_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
@@ -142,7 +143,7 @@ class MessageContent extends StatelessWidget {
           const Duration(
             milliseconds: AppConfig.overlayAnimationDuration,
           ), () {
-        controller.choreographer.tts.tryToSpeak(
+        TtsController.tryToSpeak(
           token.text.content,
           langCode: pangeaMessageEvent!.messageDisplayLangCode,
         );

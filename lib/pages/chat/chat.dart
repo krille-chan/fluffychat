@@ -708,7 +708,9 @@ class ChatController extends State<ChatPageWithRoom>
   }
 
   void _onRouteChanged() {
-    stopMediaStream.add(null);
+    if (!stopMediaStream.isClosed) {
+      stopMediaStream.add(null);
+    }
     MatrixState.pAnyState.closeAllOverlays();
   }
 

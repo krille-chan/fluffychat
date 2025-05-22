@@ -32,6 +32,10 @@ abstract class SettingKeys {
       'chat.fluffy.swipeRightToLeftToReply';
   static const String experimentalVoip = 'chat.fluffy.experimental_voip';
   static const String showPresences = 'chat.fluffy.show_presences';
+  // #Pangea
+  static const String displayNavigationRail =
+      'chat.fluffy.display_navigation_rail';
+  // Pangea#
 }
 
 enum AppSettings<T> {

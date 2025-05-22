@@ -83,7 +83,7 @@ class MessageActivityRequest {
       'message_tokens': messageTokens.map((e) => e.toJson()).toList(),
       'activity_quality_feedback': activityQualityFeedback?.toJson(),
       'target_tokens': targetTokens.map((e) => e.toJson()).toList(),
-      'target_type': targetType.string,
+      'target_type': targetType.name,
       'target_morph_feature': targetMorphFeature,
     };
   }

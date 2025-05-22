@@ -1,8 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
@@ -11,7 +12,7 @@ class WordAudioButton extends StatefulWidget {
   final bool isSelected;
   final double baseOpacity;
   final String uniqueID;
-  final String? langCode;
+  final String langCode;
   final EdgeInsets? padding;
 
   /// If defined, this callback will be called instead of the default one
@@ -21,10 +22,10 @@ class WordAudioButton extends StatefulWidget {
     super.key,
     required this.text,
     required this.uniqueID,
+    required this.langCode,
     this.isSelected = false,
     this.baseOpacity = 1,
     this.callbackOverride,
-    this.langCode,
     this.padding,
   });
 
@@ -33,8 +34,19 @@ class WordAudioButton extends StatefulWidget {
 }
 
 class WordAudioButtonState extends State<WordAudioButton> {
-  final TtsController tts = TtsController();
+  late TtsController tts;
   bool _isPlaying = false;
+  bool _isLoading = false;
+  StreamSubscription? _loadingChoreoSubscription;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadingChoreoSubscription =
+        TtsController.loadingChoreoStream.stream.listen((val) {
+      if (mounted) setState(() => _isLoading = val);
+    });
+  }
 
   @override
   void didUpdateWidget(covariant WordAudioButton oldWidget) {
@@ -47,7 +59,8 @@ class WordAudioButtonState extends State<WordAudioButton> {
 
   @override
   void dispose() {
-    tts.dispose();
+    TtsController.stop();
+    _loadingChoreoSubscription?.cancel();
     super.dispose();
   }
 
@@ -71,45 +84,34 @@ class WordAudioButtonState extends State<WordAudioButton> {
               onTap: widget.callbackOverride ??
                   () async {
                     if (_isPlaying) {
-                      await tts.stop();
-                      if (mounted) {
-                        setState(() => _isPlaying = false);
-                      }
+                      await TtsController.stop();
                     } else {
-                      if (mounted) {
-                        setState(() => _isPlaying = true);
-                      }
-                      try {
-                        if (widget.langCode != null) {
-                          await tts.tryToSpeak(
-                            widget.text,
-                            context: context,
-                            targetID: 'word-audio-button-${widget.uniqueID}',
-                            langCode: widget.langCode!,
-                          );
-                        }
-                      } catch (e, s) {
-                        ErrorHandler.logError(
-                          e: e,
-                          s: s,
-                          data: {
-                            "text": widget.text,
-                          },
-                        );
-                      } finally {
-                        if (mounted) {
-                          setState(() => _isPlaying = false);
-                        }
-                      }
+                      await TtsController.tryToSpeak(
+                        widget.text,
+                        context: context,
+                        targetID: 'word-audio-button-${widget.uniqueID}',
+                        langCode: widget.langCode,
+                        onStart: () => setState(() => _isPlaying = true),
+                        onStop: () => setState(() => _isPlaying = false),
+                      );
                     }
                   },
               child: Padding(
                 padding: widget.padding ?? const EdgeInsets.all(0.0),
-                child: Icon(
-                  _isPlaying ? Icons.pause_outlined : Icons.volume_up,
-                  color:
-                      _isPlaying ? Theme.of(context).colorScheme.primary : null,
-                ),
+                child: _isLoading
+                    ? const SizedBox(
+                        width: 16,
+                        height: 16,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 3,
+                        ),
+                      )
+                    : Icon(
+                        _isPlaying ? Icons.pause_outlined : Icons.volume_up,
+                        color: _isPlaying
+                            ? Theme.of(context).colorScheme.primary
+                            : null,
+                      ),
               ),
             ),
           ),

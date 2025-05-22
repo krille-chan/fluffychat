@@ -121,7 +121,10 @@ abstract class AppConfig {
       'https://8591d0d863b646feb4f3dda7e5dcab38@o256755.ingest.sentry.io/5243143';
   // Pangea#
   static bool renderHtml = true;
-  static bool hideRedactedEvents = false;
+  // #Pangea
+  // static bool hideRedactedEvents = false;
+  static bool hideRedactedEvents = true;
+  // Pangea#
   static bool hideUnknownEvents = true;
   static bool hideUnimportantStateEvents = true;
   static bool separateChatTypes = false;
@@ -131,6 +134,9 @@ abstract class AppConfig {
   static bool swipeRightToLeftToReply = true;
   static bool? sendOnEnter;
   static bool showPresences = true;
+  // #Pangea
+  static bool displayNavigationRail = true;
+  // Pangea#
   static bool experimentalVoip = false;
   static const bool hideTypingUsernames = false;
   static const bool hideAllStateEvents = false;

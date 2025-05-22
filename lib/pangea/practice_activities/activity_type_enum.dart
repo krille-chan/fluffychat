@@ -15,25 +15,6 @@ enum ActivityTypeEnum {
 }
 
 extension ActivityTypeExtension on ActivityTypeEnum {
-  String get string {
-    switch (this) {
-      case ActivityTypeEnum.wordMeaning:
-        return 'word_meaning';
-      case ActivityTypeEnum.wordFocusListening:
-        return 'word_focus_listening';
-      case ActivityTypeEnum.hiddenWordListening:
-        return 'hidden_word_listening';
-      case ActivityTypeEnum.lemmaId:
-        return 'lemma_id';
-      case ActivityTypeEnum.emoji:
-        return 'emoji';
-      case ActivityTypeEnum.morphId:
-        return 'morph_id';
-      case ActivityTypeEnum.messageMeaning:
-        return 'message_meaning'; // TODO: Add to L10n
-    }
-  }
-
   bool get hiddenType {
     switch (this) {
       case ActivityTypeEnum.wordMeaning:

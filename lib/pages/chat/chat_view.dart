@@ -400,7 +400,12 @@ class ChatView extends StatelessWidget {
                             // #Pangea
                             // Keep messages above minimum input bar height
                             if (!controller.room.isAbandonedDMRoom)
-                              SizedBox(height: controller.inputBarHeight),
+                              AnimatedSize(
+                                duration: const Duration(milliseconds: 200),
+                                child: SizedBox(
+                                  height: controller.inputBarHeight,
+                                ),
+                              ),
                             // Pangea#
                           ],
                         ),

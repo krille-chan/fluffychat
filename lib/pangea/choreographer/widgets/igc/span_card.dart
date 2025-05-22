@@ -60,11 +60,9 @@ class SpanCardState extends State<SpanCard> {
 
   @override
   void dispose() {
-    tts.stop();
+    TtsController.stop();
     super.dispose();
   }
-
-  TtsController get tts => widget.scm.choreographer.tts;
 
   //get selected choice
   SpanChoice? get selectedChoice {
@@ -263,7 +261,6 @@ class WordMatchContent extends StatelessWidget {
                       onPressed: (value, index) =>
                           controller.onChoiceSelect(index),
                       selectedChoiceIndex: controller.selectedChoiceIndex,
-                      tts: controller.tts,
                       id: controller.widget.scm.pangeaMatch!.hashCode
                           .toString(),
                       langCode: MatrixState.pangeaController.languageController

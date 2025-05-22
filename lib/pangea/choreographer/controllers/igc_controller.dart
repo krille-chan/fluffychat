@@ -104,7 +104,9 @@ class IgcController {
       }
 
       final IGCTextData igcTextDataResponse =
-          await _igcTextDataCache[reqBody.hashCode]!.data;
+          await _igcTextDataCache[reqBody.hashCode]!
+              .data
+              .timeout((const Duration(seconds: 10)));
 
       // this will happen when the user changes the input while igc is fetching results
       if (igcTextDataResponse.originalInput != choreographer.currentText) {
@@ -293,6 +295,9 @@ class IgcController {
     igcTextData = null;
     spanDataController.clearCache();
     spanDataController.dispose();
+    MatrixState.pAnyState.closeAllOverlays(
+      filter: RegExp(r'span_card_overlay_\d+'),
+    );
   }
 
   dispose() {

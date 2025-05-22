@@ -4,7 +4,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pangea/common/widgets/pressable_button.dart';
-import 'package:fluffychat/widgets/adaptive_dialogs/public_room_dialog.dart';
+import 'package:fluffychat/pangea/public_spaces/public_room_bottom_sheet.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
 
 class PublicSpaceCard extends StatelessWidget {
@@ -24,10 +24,10 @@ class PublicSpaceCard extends StatelessWidget {
     final theme = Theme.of(context);
 
     return PressableButton(
-      onPressed: () => PublicRoomDialog.show(
-        context: context,
+      onPressed: () => PublicRoomBottomSheet.show(
         roomAlias: space.canonicalAlias ?? space.roomId,
         chunk: space,
+        context: context,
       ),
       borderRadius: BorderRadius.circular(24.0),
       color: theme.brightness == Brightness.dark
@@ -74,7 +74,7 @@ class PublicSpaceCard extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
                       spacing: 4.0,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Column(

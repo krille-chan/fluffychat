@@ -27,6 +27,7 @@ import 'package:fluffychat/pangea/practice_activities/practice_choice.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_selection.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_selection_repo.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/text_to_speech_controller.dart';
+import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/enums/reading_assistance_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/reading_assistance_input_row/morph_selection.dart';
@@ -546,7 +547,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
                 ) ==
                 false ||
         !hideWordCardContent) {
-      widget.chatController.choreographer.tts.tryToSpeak(
+      TtsController.tryToSpeak(
         token.text.content,
         targetID: null,
         langCode: pangeaMessageEvent!.messageDisplayLangCode,

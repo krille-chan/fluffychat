@@ -11,6 +11,9 @@ class PermissionsListTile extends StatelessWidget {
   final String? category;
   final void Function(int? level)? onChanged;
   final bool canEdit;
+  // #Pangea
+  final Room room;
+  // Pangea#
 
   const PermissionsListTile({
     super.key,
@@ -19,6 +22,9 @@ class PermissionsListTile extends StatelessWidget {
     this.category,
     required this.onChanged,
     required this.canEdit,
+    // #Pangea
+    required this.room,
+    // Pangea#
   });
 
   String getLocalizedPowerLevelString(BuildContext context) {
@@ -29,15 +35,27 @@ class PermissionsListTile extends StatelessWidget {
         case 'events_default':
           return L10n.of(context).sendMessages;
         case 'state_default':
-          return L10n.of(context).changeGeneralChatSettings;
+          // #Pangea
+          // return L10n.of(context).changeGeneralChatSettings;
+          return L10n.of(context).changeGeneralSettings;
+        // Pangea#
         case 'ban':
-          return L10n.of(context).banFromChat;
+          // #Pangea
+          // return L10n.of(context).banFromChat;
+          return L10n.of(context).ban;
+        // Pangea#
         case 'kick':
-          return L10n.of(context).kickFromChat;
+          // #Pangea
+          // return L10n.of(context).kickFromChat;
+          return L10n.of(context).kick;
+        // Pangea#
         case 'redact':
           return L10n.of(context).deleteMessage;
         case 'invite':
-          return L10n.of(context).inviteOtherUsers;
+          // #Pangea
+          // return L10n.of(context).inviteOtherUsers;
+          return L10n.of(context).inviteOtherUsersToRoom;
+        // Pangea#
       }
     } else if (category == 'notifications') {
       switch (permissionKey) {
@@ -49,12 +67,20 @@ class PermissionsListTile extends StatelessWidget {
         case EventTypes.RoomName:
           // #Pangea
           // return L10n.of(context).changeTheNameOfTheGroup;
-          return L10n.of(context).changeTheNameOfTheChat;
+          return room.isSpace
+              ? L10n.of(context).changeTheNameOfTheSpace
+              : L10n.of(context).changeTheNameOfTheChat;
         // Pangea#
         case EventTypes.RoomTopic:
-          return L10n.of(context).changeTheDescriptionOfTheGroup;
+          // #Pangea
+          // return L10n.of(context).changeTheDescriptionOfTheGroup;
+          return L10n.of(context).changeTheDescription;
+        // Pangea#
         case EventTypes.RoomPowerLevels:
-          return L10n.of(context).changeTheChatPermissions;
+          // #Pangea
+          // return L10n.of(context).changeTheChatPermissions;
+          return L10n.of(context).changeThePermissions;
+        // Pangea#
         case EventTypes.HistoryVisibility:
           return L10n.of(context).changeTheVisibilityOfChatHistory;
         case EventTypes.RoomCanonicalAlias:
@@ -70,6 +96,10 @@ class PermissionsListTile extends StatelessWidget {
         // #Pangea
         case EventTypes.SpaceChild:
           return L10n.of(context).spaceChildPermission;
+        case EventTypes.RoomPinnedEvents:
+          return L10n.of(context).pinMessages;
+        case EventTypes.RoomJoinRules:
+          return L10n.of(context).setJoinRules;
         // Pangea#
       }
     }

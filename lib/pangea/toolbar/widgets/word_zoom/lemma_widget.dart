@@ -8,7 +8,6 @@ import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dar
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/events/models/tokens_event_content_model.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
-import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/practice_activity/word_audio_button.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
@@ -18,7 +17,6 @@ class LemmaWidget extends StatefulWidget {
   final PangeaMessageEvent pangeaMessageEvent;
   final VoidCallback onEdit;
   final VoidCallback onEditDone;
-  final TtsController tts;
   final MessageOverlayController? overlayController;
 
   const LemmaWidget({
@@ -27,7 +25,6 @@ class LemmaWidget extends StatefulWidget {
     required this.pangeaMessageEvent,
     required this.onEdit,
     required this.onEditDone,
-    required this.tts,
     required this.overlayController,
   });
 

@@ -2,6 +2,8 @@ import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
 
+import 'package:collection/collection.dart';
+
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
@@ -60,13 +62,22 @@ class PracticeTarget {
       userL2.hashCode;
 
   static PracticeTarget fromJson(Map<String, dynamic> json) {
+    final type = ActivityTypeEnum.values.firstWhereOrNull(
+      (v) => json['activityType'] == v.name,
+    );
+    if (type == null) {
+      throw Exception(
+        "ActivityTypeEnum ${json['activityType']} not found in enum",
+      );
+    }
+
     return PracticeTarget(
       tokens:
           (json['tokens'] as List).map((e) => PangeaToken.fromJson(e)).toList(),
-      activityType: ActivityTypeEnum.values[json['activityType']],
+      activityType: type,
       morphFeature: json['morphFeature'] == null
           ? null
-          : MorphFeaturesEnum.values[json['morphFeature']],
+          : MorphFeaturesEnumExtension.fromString(json['morphFeature']),
       userL2: json['userL2'],
     );
   }
@@ -83,7 +94,7 @@ class PracticeTarget {
   //unique condensed deterministic key for local storage
   String get storageKey {
     return tokens.map((e) => e.text.content).join() +
-        activityType.string +
+        activityType.name +
         (morphFeature?.name ?? "");
   }
 
