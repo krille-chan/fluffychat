@@ -82,6 +82,8 @@ class BackgroundPush {
   void _init() async {
     try {
       // #Pangea
+      onLogin ??=
+          client.onLoginStateChanged.stream.listen(handleLoginStateChanged);
       FirebaseMessaging.instance.getInitialMessage().then(_onOpenNotification);
       FirebaseMessaging.onMessageOpenedApp.listen(_onOpenNotification);
       // Pangea#
