@@ -44,7 +44,6 @@ import '../../widgets/matrix.dart';
 import 'package:fluffychat/utils/tor_stub.dart'
     if (dart.library.html) 'package:tor_detector_web/tor_detector_web.dart';
 
-
 enum PopupMenuAction {
   settings,
   invite,
