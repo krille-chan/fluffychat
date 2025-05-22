@@ -4937,6 +4937,8 @@
   "spaceChildPermission": "Who can add new chats and subspaces to this space",
   "addEnvironmentOverride": "Add environment override",
   "defaultOption": "Default",
+  "deleteChatDesc": "Are you sure you want to delete this chat? It will be deleted for all participants and all messages within the chat will no longer be available for practice or learning analytics.",
+  "deleteSpaceDesc": "The space and any selected chats and/or subspaces will be deleted for all participants and all messages within the chat will no longer be available for practice or learning analytics. This action cannot be undone.",
   "chatWithActivities": "Chat with activities",
   "findYourPeople": "Find your people",
   "launch": "Launch",

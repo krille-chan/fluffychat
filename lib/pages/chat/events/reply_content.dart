@@ -32,10 +32,16 @@ class ReplyContent extends StatelessWidget {
         timeline != null ? replyEvent.getDisplayEvent(timeline) : replyEvent;
     final fontSize = AppConfig.messageFontSize * AppConfig.fontSizeFactor;
     final color = theme.brightness == Brightness.dark
-        ? theme.colorScheme.onTertiaryContainer
-        : ownMessage
+        // Pangea#
+        ? ownMessage
             ? theme.colorScheme.tertiaryContainer
-            : theme.colorScheme.tertiary;
+            : theme.colorScheme.onTertiaryContainer
+        : theme.colorScheme.tertiary;
+    // ? theme.colorScheme.onTertiaryContainer
+    // : ownMessage
+    //     ? theme.colorScheme.tertiaryContainer
+    //     : theme.colorScheme.tertiary;
+    // Pangea#
 
     return Material(
       color: Colors.transparent,
@@ -69,7 +75,9 @@ class ReplyContent extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         // #Pangea
                         // color: color,
-                        color: theme.colorScheme.onSurface,
+                        color: ownMessage && theme.brightness == Brightness.dark
+                            ? theme.colorScheme.tertiaryContainer
+                            : theme.colorScheme.onSurface,
                         // Pangea#
                         fontSize: fontSize,
                       ),

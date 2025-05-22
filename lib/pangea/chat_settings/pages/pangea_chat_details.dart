@@ -8,10 +8,12 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pages/chat_details/chat_details.dart';
 import 'package:fluffychat/pages/chat_details/participant_list_item.dart';
+import 'package:fluffychat/pangea/chat_settings/utils/delete_room.dart';
 import 'package:fluffychat/pangea/chat_settings/utils/download_chat.dart';
 import 'package:fluffychat/pangea/chat_settings/utils/download_file.dart';
 import 'package:fluffychat/pangea/chat_settings/widgets/class_name_header.dart';
 import 'package:fluffychat/pangea/chat_settings/widgets/conversation_bot/conversation_bot_settings.dart';
+import 'package:fluffychat/pangea/chat_settings/widgets/delete_space_dialog.dart';
 import 'package:fluffychat/pangea/chat_settings/widgets/download_space_analytics_button.dart';
 import 'package:fluffychat/pangea/chat_settings/widgets/room_capacity_button.dart';
 import 'package:fluffychat/pangea/chat_settings/widgets/visibility_toggle.dart';
@@ -425,6 +427,58 @@ class PangeaChatDetailsView extends StatelessWidget {
                             }
                           },
                         ),
+                        Divider(color: theme.dividerColor, height: 1),
+                        if (room.isRoomAdmin)
+                          ListTile(
+                            title: Text(
+                              L10n.of(context).delete,
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.error,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            leading: CircleAvatar(
+                              backgroundColor:
+                                  Theme.of(context).scaffoldBackgroundColor,
+                              foregroundColor: iconColor,
+                              child: Icon(
+                                Icons.delete_outline,
+                                color: Theme.of(context).colorScheme.error,
+                              ),
+                            ),
+                            onTap: () async {
+                              if (room.isSpace) {
+                                final resp = await showDialog<bool?>(
+                                  context: context,
+                                  builder: (_) =>
+                                      DeleteSpaceDialog(space: room),
+                                );
+
+                                if (resp == true) {
+                                  context.go("/rooms?spaceId=clear");
+                                }
+                              } else {
+                                final confirmed = await showOkCancelAlertDialog(
+                                  context: context,
+                                  title: L10n.of(context).areYouSure,
+                                  okLabel: L10n.of(context).delete,
+                                  cancelLabel: L10n.of(context).cancel,
+                                  isDestructive: true,
+                                  message: room.isSpace
+                                      ? L10n.of(context).deleteSpaceDesc
+                                      : L10n.of(context).deleteChatDesc,
+                                );
+                                if (confirmed != OkCancelResult.ok) return;
+
+                                final resp = await showFutureLoadingDialog(
+                                  context: context,
+                                  future: room.delete,
+                                );
+                                if (resp.isError) return;
+                                context.go("/rooms?spaceId=clear");
+                              }
+                            },
+                          ),
                         Divider(color: theme.dividerColor, height: 1),
                         ListTile(
                           title: Text(
