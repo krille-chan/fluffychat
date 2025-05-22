@@ -4961,5 +4961,6 @@
   "activities": "Activities",
   "access": "Access",
   "addSubspace": "Add subspace",
-  "botSettings": "Bot settings"
+  "botSettings": "Bot settings",
+  "activitySuggestionTimeoutMessage": "We are working hard to generate activties for you, please check back in a minute"
 }

@@ -13,6 +13,7 @@ import 'package:shimmer/shimmer.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_request.dart';
+import 'package:fluffychat/pangea/activity_planner/activity_plan_response.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_planner_builder.dart';
 import 'package:fluffychat/pangea/activity_planner/media_enum.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_plan_search_repo.dart';
@@ -66,6 +67,7 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
   }
 
   bool _loading = true;
+  bool _timeout = false;
   bool get _isColumnMode => FluffyThemes.isColumnMode(context);
 
   final List<ActivityPlanModel> _activityItems = [];
@@ -80,11 +82,22 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
       MatrixState.pangeaController.languageController.userL2?.langCode ??
       LanguageKeys.defaultLanguage;
 
-  Future<void> _setActivityItems() async {
+  Future<void> _setActivityItems({int retries = 0}) async {
+    if (retries > 3) {
+      if (mounted) {
+        setState(() {
+          _timeout = true;
+          _loading = false;
+        });
+      }
+      return;
+    }
+
     try {
       setState(() {
         _activityItems.clear();
         _loading = true;
+        _timeout = false;
       });
 
       final ActivityPlanRequest request = ActivityPlanRequest(
@@ -98,7 +111,20 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
         numberOfParticipants: 3,
         count: 5,
       );
-      final resp = await ActivitySearchRepo.get(request);
+      final resp = await ActivitySearchRepo.get(request).timeout(
+        const Duration(seconds: 5),
+        onTimeout: () {
+          setState(() {
+            _timeout = true;
+            _loading = false;
+          });
+
+          Future.delayed(const Duration(seconds: 5), () {
+            _setActivityItems(retries: retries + 1);
+          });
+          return ActivityPlanResponse(activityPlans: []);
+        },
+      );
       _activityItems.addAll(resp.activityPlans);
     } finally {
       if (mounted) setState(() => _loading = false);
@@ -161,6 +187,7 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
 
     return Column(
       spacing: 8.0,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (widget.showTitle)
           Row(
@@ -185,32 +212,57 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
               ),
             ],
           ),
-        Container(
-          decoration: const BoxDecoration(),
-          child: scrollDirection == Axis.horizontal
-              ? Scrollbar(
-                  thumbVisibility: true,
-                  controller: _scrollController,
-                  child: Padding(
-                    padding: const EdgeInsets.only(bottom: 16.0),
-                    child: SingleChildScrollView(
-                      controller: _scrollController,
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        spacing: 8.0,
-                        children: cards,
-                      ),
+        AnimatedSize(
+          duration: FluffyThemes.animationDuration,
+          child: _timeout
+              ? Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: RichText(
+                    text: TextSpan(
+                      style: DefaultTextStyle.of(context).style,
+                      children: [
+                        const WidgetSpan(
+                          alignment: PlaceholderAlignment.middle,
+                          child: Icon(
+                            Icons.info_outline,
+                          ),
+                        ),
+                        const TextSpan(text: "  "),
+                        TextSpan(
+                          text:
+                              L10n.of(context).activitySuggestionTimeoutMessage,
+                        ),
+                      ],
                     ),
                   ),
                 )
-              : SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  child: Wrap(
-                    alignment: WrapAlignment.spaceEvenly,
-                    runSpacing: 16.0,
-                    spacing: 4.0,
-                    children: cards,
-                  ),
+              : Container(
+                  decoration: const BoxDecoration(),
+                  child: scrollDirection == Axis.horizontal
+                      ? Scrollbar(
+                          thumbVisibility: true,
+                          controller: _scrollController,
+                          child: Padding(
+                            padding: const EdgeInsets.only(bottom: 16.0),
+                            child: SingleChildScrollView(
+                              controller: _scrollController,
+                              scrollDirection: Axis.horizontal,
+                              child: Row(
+                                spacing: 8.0,
+                                children: cards,
+                              ),
+                            ),
+                          ),
+                        )
+                      : SizedBox(
+                          width: MediaQuery.of(context).size.width,
+                          child: Wrap(
+                            alignment: WrapAlignment.spaceEvenly,
+                            runSpacing: 16.0,
+                            spacing: 4.0,
+                            children: cards,
+                          ),
+                        ),
                 ),
         ),
       ],
