@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -7,7 +10,13 @@ import 'package:matrix/matrix.dart' as sdk;
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pages/settings/settings.dart';
+import 'package:fluffychat/pangea/chat_settings/models/bot_options_model.dart';
 import 'package:fluffychat/pangea/chat_settings/pages/pangea_chat_details.dart';
+import 'package:fluffychat/pangea/chat_settings/utils/download_chat.dart';
+import 'package:fluffychat/pangea/chat_settings/utils/download_file.dart';
+import 'package:fluffychat/pangea/common/utils/error_handler.dart';
+import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/spaces/utils/set_class_name.dart';
 import 'package:fluffychat/utils/file_selector.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -264,9 +273,138 @@ class ChatDetailsController extends State<ChatDetails> {
     if (mounted) setState(() {});
   }
 
-  @override
-  void dispose() {
-    super.dispose();
+  void downloadChatAction() async {
+    if (roomId == null) return;
+    final Room? room = Matrix.of(context).client.getRoomById(roomId!);
+    if (room == null) return;
+
+    final type = await showModalActionPopup(
+      context: context,
+      title: L10n.of(context).downloadGroupText,
+      actions: [
+        AdaptiveModalAction(
+          value: DownloadType.csv,
+          label: L10n.of(context).downloadCSVFile,
+        ),
+        AdaptiveModalAction(
+          value: DownloadType.txt,
+          label: L10n.of(context).downloadTxtFile,
+        ),
+        AdaptiveModalAction(
+          value: DownloadType.xlsx,
+          label: L10n.of(context).downloadXLSXFile,
+        ),
+      ],
+    );
+    if (type == null) return;
+    downloadChat(room, type, context);
+  }
+
+  Future<void> setBotOptions(BotOptionsModel botOptions) async {
+    if (roomId == null) return;
+    final Room? room = Matrix.of(context).client.getRoomById(roomId!);
+    if (room == null) return;
+
+    try {
+      await Matrix.of(context).client.setRoomStateWithKey(
+            room.id,
+            PangeaEventTypes.botOptions,
+            '',
+            botOptions.toJson(),
+          );
+    } catch (err, stack) {
+      debugger(when: kDebugMode);
+      ErrorHandler.logError(
+        e: err,
+        s: stack,
+        data: {
+          "botOptions": botOptions.toJson(),
+          "roomID": room.id,
+        },
+      );
+    }
+  }
+
+  Future<void> setRoomCapacity() async {
+    if (roomId == null) return;
+    final Room? room = Matrix.of(context).client.getRoomById(roomId!);
+    if (room == null) return;
+
+    final input = await showTextInputDialog(
+      context: context,
+      title: L10n.of(context).chatCapacity,
+      message: L10n.of(context).chatCapacityExplanation,
+      okLabel: L10n.of(context).ok,
+      cancelLabel: L10n.of(context).cancel,
+      initialText: ((room.capacity != null) ? '${room.capacity}' : ''),
+      keyboardType: TextInputType.number,
+      maxLength: 3,
+      validator: (value) {
+        if (value.isEmpty ||
+            int.tryParse(value) == null ||
+            int.parse(value) < 0) {
+          return L10n.of(context).enterNumber;
+        }
+        if (int.parse(value) < (room.summary.mJoinedMemberCount ?? 1)) {
+          return L10n.of(context).chatCapacitySetTooLow;
+        }
+        return null;
+      },
+    );
+    if (input == null || input.isEmpty || int.tryParse(input) == null) {
+      return;
+    }
+
+    final newCapacity = int.parse(input);
+    final success = await showFutureLoadingDialog(
+      context: context,
+      future: () => room.updateRoomCapacity(newCapacity),
+    );
+    if (success.error == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(L10n.of(context).chatCapacityHasBeenChanged),
+        ),
+      );
+      setState(() {});
+    }
+  }
+
+  Future<void> addSubspace() async {
+    final names = await showTextInputDialog(
+      context: context,
+      title: L10n.of(context).createNewSpace,
+      hintText: L10n.of(context).spaceName,
+      minLines: 1,
+      maxLines: 1,
+      maxLength: 64,
+      validator: (text) {
+        if (text.isEmpty) {
+          return L10n.of(context).pleaseChoose;
+        }
+        return null;
+      },
+      okLabel: L10n.of(context).create,
+      cancelLabel: L10n.of(context).cancel,
+    );
+    if (names == null) return;
+    final client = Matrix.of(context).client;
+    final result = await showFutureLoadingDialog(
+      context: context,
+      future: () async {
+        final activeSpace = client.getRoomById(roomId!)!;
+        await activeSpace.postLoad();
+
+        final resp = await client.createSpace(
+          name: names,
+          visibility: activeSpace.joinRules == JoinRules.public
+              ? sdk.Visibility.public
+              : sdk.Visibility.private,
+        );
+        await activeSpace.pangeaSetSpaceChild(resp);
+      },
+    );
+    if (result.error != null) return;
   }
   // Pangea#
 }

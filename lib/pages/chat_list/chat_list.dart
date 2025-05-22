@@ -1022,17 +1022,7 @@ class ChatListController extends State<ChatList>
           context: context,
           // #Pangea
           // future: () => space.setSpaceChild(room.id),
-          future: () async {
-            try {
-              await space.pangeaSetSpaceChild(room.id);
-            } catch (err) {
-              if (err is NestedSpaceError) {
-                throw L10n.of(context).nestedSpaceError;
-              } else {
-                rethrow;
-              }
-            }
-          },
+          future: () => space.pangeaSetSpaceChild(room.id),
           // Pangea#
         );
         // #Pangea

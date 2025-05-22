@@ -227,27 +227,19 @@ abstract class AppRoutes {
                 : null;
 
             if (room != null && room.isSpace) {
-              // If a user is on mobile and they end up on the space
-              // page, redirect them and set the activeSpaceId
-              if (!isColumnMode &&
+              if (isColumnMode &&
                   (state.fullPath?.endsWith(':roomid') ?? false)) {
-                return '/rooms?spaceId=${room.id}';
+                return '/rooms/${room.id}/details?spaceId=${room.id}';
               }
             }
 
-            if (state.uri.queryParameters.containsKey('spaceId')) {
-              final spaceId = state.uri.queryParameters['spaceId'];
-              if (spaceId == null || spaceId == 'clear') {
-                // Have to load chat list to clear the spaceId, so don't redirect
-                return null;
-              }
-
-              // If spaceId is not null, and on web, and not on the space page,
-              // redirect to the space page
-              if (isColumnMode &&
-                  !(state.fullPath?.endsWith(':roomid') ?? false)) {
-                return '/rooms/$spaceId?spaceId=$spaceId';
-              }
+            final spaceId = state.uri.queryParameters['spaceId'];
+            if (spaceId != null &&
+                spaceId != 'clear' &&
+                isColumnMode &&
+                state.fullPath != null &&
+                !state.fullPath!.contains('details')) {
+              return '/rooms/$spaceId/details?spaceId=$spaceId';
             }
 
             return null;
@@ -595,30 +587,6 @@ abstract class AppRoutes {
                   redirect: loggedOutRedirect,
                 ),
                 // #Pangea
-                GoRoute(
-                  path: 'planner',
-                  pageBuilder: (context, state) => defaultPageBuilder(
-                    context,
-                    state,
-                    ActivityPlannerPage(
-                      roomID: state.pathParameters['roomid']!,
-                    ),
-                  ),
-                  redirect: loggedOutRedirect,
-                  routes: [
-                    GoRoute(
-                      path: '/generator',
-                      redirect: loggedOutRedirect,
-                      pageBuilder: (context, state) => defaultPageBuilder(
-                        context,
-                        state,
-                        ActivityGenerator(
-                          roomID: state.pathParameters['roomid']!,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
                 // GoRoute(
                 //   path: 'encryption',
                 //   pageBuilder: (context, state) => defaultPageBuilder(
@@ -650,6 +618,32 @@ abstract class AppRoutes {
                     ),
                   ),
                   routes: [
+                    // #Pangea
+                    GoRoute(
+                      path: 'planner',
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        state,
+                        ActivityPlannerPage(
+                          roomID: state.pathParameters['roomid']!,
+                        ),
+                      ),
+                      redirect: loggedOutRedirect,
+                      routes: [
+                        GoRoute(
+                          path: '/generator',
+                          redirect: loggedOutRedirect,
+                          pageBuilder: (context, state) => defaultPageBuilder(
+                            context,
+                            state,
+                            ActivityGenerator(
+                              roomID: state.pathParameters['roomid']!,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    // Pangea#
                     GoRoute(
                       path: 'access',
                       pageBuilder: (context, state) => defaultPageBuilder(

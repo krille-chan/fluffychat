@@ -33,7 +33,7 @@ class ActivityPlannerPageAppBar extends StatelessWidget
         children: [
           const SizedBox(width: 8.0),
           IconButton(
-            icon: const Icon(Icons.close),
+            icon: const Icon(Icons.arrow_back),
             onPressed: () => Navigator.of(context).pop(),
           ),
         ],
@@ -69,7 +69,7 @@ class ActivityPlannerPageAppBar extends StatelessWidget
           child: InkWell(
             customBorder: const CircleBorder(),
             onTap: () => roomID != null
-                ? context.go('/rooms/$roomID/planner/generator')
+                ? context.go('/rooms/$roomID/details/planner/generator')
                 : context.go("/rooms/homepage/planner/generator"),
             child: Container(
               decoration: BoxDecoration(

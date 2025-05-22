@@ -1,30 +1,36 @@
-import 'package:flutter/foundation.dart';
+import 'dart:async';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
+import 'package:collection/collection.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat_details/chat_details.dart';
 import 'package:fluffychat/pages/chat_details/participant_list_item.dart';
+import 'package:fluffychat/pangea/analytics_misc/level_display_name.dart';
+import 'package:fluffychat/pangea/bot/utils/bot_name.dart';
+import 'package:fluffychat/pangea/bot/widgets/bot_face_svg.dart';
+import 'package:fluffychat/pangea/chat_settings/models/bot_options_model.dart';
 import 'package:fluffychat/pangea/chat_settings/utils/delete_room.dart';
-import 'package:fluffychat/pangea/chat_settings/utils/download_chat.dart';
-import 'package:fluffychat/pangea/chat_settings/utils/download_file.dart';
 import 'package:fluffychat/pangea/chat_settings/widgets/class_name_header.dart';
 import 'package:fluffychat/pangea/chat_settings/widgets/conversation_bot/conversation_bot_settings.dart';
 import 'package:fluffychat/pangea/chat_settings/widgets/delete_space_dialog.dart';
-import 'package:fluffychat/pangea/chat_settings/widgets/download_space_analytics_button.dart';
-import 'package:fluffychat/pangea/chat_settings/widgets/room_capacity_button.dart';
-import 'package:fluffychat/pangea/chat_settings/widgets/visibility_toggle.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/spaces/utils/load_participants_util.dart';
+import 'package:fluffychat/pangea/spaces/widgets/download_space_analytics_dialog.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
-import 'package:fluffychat/widgets/adaptive_dialogs/show_modal_action_popup.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/user_dialog.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
+import 'package:fluffychat/widgets/hover_builder.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
@@ -32,34 +38,6 @@ class PangeaChatDetailsView extends StatelessWidget {
   final ChatDetailsController controller;
 
   const PangeaChatDetailsView(this.controller, {super.key});
-
-  void _downloadChat(BuildContext context) async {
-    if (controller.roomId == null) return;
-    final Room? room =
-        Matrix.of(context).client.getRoomById(controller.roomId!);
-    if (room == null) return;
-
-    final type = await showModalActionPopup(
-      context: context,
-      title: L10n.of(context).downloadGroupText,
-      actions: [
-        AdaptiveModalAction(
-          value: DownloadType.csv,
-          label: L10n.of(context).downloadCSVFile,
-        ),
-        AdaptiveModalAction(
-          value: DownloadType.txt,
-          label: L10n.of(context).downloadTxtFile,
-        ),
-        AdaptiveModalAction(
-          value: DownloadType.xlsx,
-          label: L10n.of(context).downloadXLSXFile,
-        ),
-      ],
-    );
-    if (type == null) return;
-    downloadChat(room, type, context);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -77,8 +55,6 @@ class PangeaChatDetailsView extends StatelessWidget {
       );
     }
 
-    final bool isGroupChat = !room.isDirectChat && !room.isSpace;
-
     return StreamBuilder(
       stream: room.client.onRoomState.stream
           .where((update) => update.roomId == room.id),
@@ -89,14 +65,15 @@ class PangeaChatDetailsView extends StatelessWidget {
         final actualMembersCount = (room.summary.mInvitedMemberCount ?? 0) +
             (room.summary.mJoinedMemberCount ?? 0);
         final canRequestMoreMembers = members.length < actualMembersCount;
-        final iconColor = theme.textTheme.bodyLarge!.color;
         final displayname = room.getLocalizedDisplayname(
           MatrixLocals(L10n.of(context)),
         );
         return Scaffold(
           appBar: AppBar(
             leading: controller.widget.embeddedCloseButton ??
-                const Center(child: BackButton()),
+                (room.isSpace
+                    ? const SizedBox()
+                    : const Center(child: BackButton())),
             elevation: theme.appBarTheme.elevation,
             title: ClassNameHeader(
               controller: controller,
@@ -109,7 +86,7 @@ class PangeaChatDetailsView extends StatelessWidget {
             child: ListView.builder(
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
-              itemCount: members.length + 1 + (canRequestMoreMembers ? 1 : 0),
+              itemCount: 2,
               itemBuilder: (BuildContext context, int i) => i == 0
                   ? Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -265,256 +242,569 @@ class PangeaChatDetailsView extends StatelessWidget {
                             ),
                           ],
                         ),
-                        Divider(color: theme.dividerColor, height: 1),
-                        if (isGroupChat && room.canInvite)
-                          ConversationBotSettings(
-                            key: controller.addConversationBotKey,
-                            room: room,
-                          ),
-                        if (isGroupChat && room.canInvite)
-                          Divider(color: theme.dividerColor, height: 1),
-                        if (room.canInvite && !room.isDirectChat)
-                          ListTile(
-                            title: Text(
-                              L10n.of(context).inviteContact,
-                              style: TextStyle(
-                                color: Theme.of(context).colorScheme.secondary,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            leading: CircleAvatar(
-                              backgroundColor:
-                                  Theme.of(context).scaffoldBackgroundColor,
-                              foregroundColor:
-                                  Theme.of(context).textTheme.bodyLarge!.color,
-                              child: const Icon(
-                                Icons.person_add_outlined,
-                              ),
-                            ),
-                            onTap: () =>
-                                context.push('/rooms/${room.id}/invite'),
-                          ),
-                        if (room.canInvite && !room.isDirectChat)
-                          Divider(color: theme.dividerColor, height: 1),
-                        if (room.isRoomAdmin &&
-                            room.isSpace &&
-                            room.spaceParents.isEmpty)
-                          VisibilityToggle(
-                            room: room,
-                            setVisibility: controller.setVisibility,
-                            setJoinRules: controller.setJoinRules,
-                            iconColor: iconColor,
-                          ),
-                        if (room.isRoomAdmin &&
-                            room.isSpace &&
-                            room.spaceParents.isEmpty)
-                          Divider(color: theme.dividerColor, height: 1),
-                        if (room.isRoomAdmin && !room.isDirectChat)
-                          ListTile(
-                            title: Text(
-                              L10n.of(context).permissions,
-                              style: TextStyle(
-                                color: theme.colorScheme.secondary,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            subtitle: Text(
-                              L10n.of(context).whoCanPerformWhichAction,
-                            ),
-                            leading: CircleAvatar(
-                              backgroundColor: theme.scaffoldBackgroundColor,
-                              foregroundColor: iconColor,
-                              child: const Icon(
-                                Icons.edit_attributes_outlined,
-                              ),
-                            ),
-                            onTap: () => context.push(
-                              '/rooms/${room.id}/details/permissions',
-                            ),
-                          ),
-                        if (room.isRoomAdmin && !room.isDirectChat)
-                          Divider(color: theme.dividerColor, height: 1),
-                        if (!room.isSpace && !room.isDirectChat)
-                          RoomCapacityButton(
-                            room: room,
-                            controller: controller,
-                          ),
-                        if (room.isSpace && room.isRoomAdmin && kIsWeb)
-                          DownloadSpaceAnalyticsButton(space: room),
-                        Divider(color: theme.dividerColor, height: 1),
-                        if (room.ownPowerLevel >= 50 && !room.isSpace)
-                          ListTile(
-                            title: Text(
-                              L10n.of(context).downloadGroupText,
-                              style: TextStyle(
-                                color: Theme.of(context).colorScheme.secondary,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            leading: CircleAvatar(
-                              backgroundColor:
-                                  Theme.of(context).scaffoldBackgroundColor,
-                              foregroundColor: iconColor,
-                              child: const Icon(
-                                Icons.download_outlined,
-                              ),
-                            ),
-                            onTap: () => _downloadChat(context),
-                          ),
-                        if (room.ownPowerLevel >= 50 && !room.isSpace)
-                          Divider(color: theme.dividerColor, height: 1),
-                        if (isGroupChat)
-                          ListTile(
-                            title: Text(
-                              room.pushRuleState == PushRuleState.notify
-                                  ? L10n.of(context).notificationsOn
-                                  : L10n.of(context).notificationsOff,
-                              style: TextStyle(
-                                color: Theme.of(context).colorScheme.secondary,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            leading: CircleAvatar(
-                              backgroundColor:
-                                  Theme.of(context).scaffoldBackgroundColor,
-                              foregroundColor: iconColor,
-                              child: Icon(
-                                room.pushRuleState == PushRuleState.notify
-                                    ? Icons.notifications_on_outlined
-                                    : Icons.notifications_off_outlined,
-                              ),
-                            ),
-                            onTap: controller.toggleMute,
-                          ),
-                        if (isGroupChat)
-                          Divider(color: theme.dividerColor, height: 1),
-                        ListTile(
-                          title: Text(
-                            L10n.of(context).leave,
-                            style: TextStyle(
-                              color: Theme.of(context).colorScheme.secondary,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          leading: CircleAvatar(
-                            backgroundColor:
-                                Theme.of(context).scaffoldBackgroundColor,
-                            foregroundColor: iconColor,
-                            child: const Icon(
-                              Icons.logout_outlined,
-                            ),
-                          ),
-                          onTap: () async {
-                            final confirmed = await showOkCancelAlertDialog(
-                              useRootNavigator: false,
-                              context: context,
-                              title: L10n.of(context).areYouSure,
-                              okLabel: L10n.of(context).leave,
-                              cancelLabel: L10n.of(context).no,
-                              message: room.isSpace
-                                  ? L10n.of(context).leaveSpaceDescription
-                                  : L10n.of(context).leaveRoomDescription,
-                              isDestructive: true,
-                            );
-                            if (confirmed != OkCancelResult.ok) return;
-                            final resp = await showFutureLoadingDialog(
-                              context: context,
-                              future:
-                                  room.isSpace ? room.leaveSpace : room.leave,
-                            );
-                            if (!resp.isError) {
-                              context.go("/rooms?spaceId=clear");
-                            }
-                          },
-                        ),
-                        Divider(color: theme.dividerColor, height: 1),
-                        if (room.isRoomAdmin)
-                          ListTile(
-                            title: Text(
-                              L10n.of(context).delete,
-                              style: TextStyle(
-                                color: Theme.of(context).colorScheme.error,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            leading: CircleAvatar(
-                              backgroundColor:
-                                  Theme.of(context).scaffoldBackgroundColor,
-                              foregroundColor: iconColor,
-                              child: Icon(
-                                Icons.delete_outline,
-                                color: Theme.of(context).colorScheme.error,
-                              ),
-                            ),
-                            onTap: () async {
-                              if (room.isSpace) {
-                                final resp = await showDialog<bool?>(
-                                  context: context,
-                                  builder: (_) =>
-                                      DeleteSpaceDialog(space: room),
-                                );
-
-                                if (resp == true) {
-                                  context.go("/rooms?spaceId=clear");
-                                }
-                              } else {
-                                final confirmed = await showOkCancelAlertDialog(
-                                  context: context,
-                                  title: L10n.of(context).areYouSure,
-                                  okLabel: L10n.of(context).delete,
-                                  cancelLabel: L10n.of(context).cancel,
-                                  isDestructive: true,
-                                  message: room.isSpace
-                                      ? L10n.of(context).deleteSpaceDesc
-                                      : L10n.of(context).deleteChatDesc,
-                                );
-                                if (confirmed != OkCancelResult.ok) return;
-
-                                final resp = await showFutureLoadingDialog(
-                                  context: context,
-                                  future: room.delete,
-                                );
-                                if (resp.isError) return;
-                                context.go("/rooms?spaceId=clear");
-                              }
-                            },
-                          ),
-                        Divider(color: theme.dividerColor, height: 1),
-                        ListTile(
-                          title: Text(
-                            L10n.of(context).countParticipants(
-                              actualMembersCount,
-                            ),
-                            style: TextStyle(
-                              color: theme.colorScheme.secondary,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
+                        RoomDetailsButtonRow(
+                          controller: controller,
+                          room: room,
                         ),
                       ],
                     )
-                  : i < members.length + 1
-                      ? ParticipantListItem(members[i - 1])
-                      : ListTile(
-                          title: Text(
-                            L10n.of(context).loadCountMoreParticipants(
-                              (actualMembersCount - members.length),
-                            ),
-                          ),
-                          leading: CircleAvatar(
-                            backgroundColor: theme.scaffoldBackgroundColor,
-                            child: const Icon(
-                              Icons.group_outlined,
-                              color: Colors.grey,
-                            ),
-                          ),
-                          onTap: () => context.push(
-                            '/rooms/${controller.roomId!}/details/members',
-                          ),
-                          trailing: const Icon(Icons.chevron_right_outlined),
-                        ),
+                  : Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: RoomParticipantsSection(room: room),
+                    ),
             ),
           ),
+        );
+      },
+    );
+  }
+}
+
+class RoomDetailsButtonRow extends StatefulWidget {
+  final ChatDetailsController controller;
+  final Room room;
+
+  const RoomDetailsButtonRow({
+    super.key,
+    required this.controller,
+    required this.room,
+  });
+
+  @override
+  State<RoomDetailsButtonRow> createState() => RoomDetailsButtonRowState();
+}
+
+class RoomDetailsButtonRowState extends State<RoomDetailsButtonRow> {
+  StreamSubscription? notificationChangeSub;
+
+  @override
+  void initState() {
+    super.initState();
+    notificationChangeSub ??= Matrix.of(context)
+        .client
+        .onSync
+        .stream
+        .where(
+          (syncUpdate) =>
+              syncUpdate.accountData?.any(
+                (accountData) => accountData.type == 'm.push_rules',
+              ) ??
+              false,
+        )
+        .listen(
+          (u) => setState(() {}),
+        );
+  }
+
+  @override
+  void dispose() {
+    notificationChangeSub?.cancel();
+    super.dispose();
+  }
+
+  final double _buttonWidth = 130.0;
+  final double _buttonHeight = 80.0;
+
+  final double _miniButtonWidth = 50.0;
+  final double _buttonPadding = 4.0;
+
+  double get _fullButtonWidth => _buttonWidth + (_buttonPadding * 2);
+  double get _fullMiniButtonWidth => _miniButtonWidth + (_buttonPadding * 2);
+
+  Room get room => widget.room;
+
+  List<ButtonDetails> _buttons(BuildContext context) {
+    final L10n l10n = L10n.of(context);
+    return [
+      ButtonDetails(
+        title: l10n.activities,
+        icon: const Icon(Icons.event_note_outlined),
+        onPressed: () => room.isSpace
+            ? context.go("/rooms/homepage/planner")
+            : context.go("/rooms/${room.id}/details/planner"),
+        visible: (room) => room.canSendDefaultStates,
+      ),
+      ButtonDetails(
+        title: l10n.permissions,
+        icon: const Icon(Icons.edit_attributes_outlined),
+        onPressed: () => context.go('/rooms/${room.id}/details/permissions'),
+        visible: (room) => room.isRoomAdmin && !room.isDirectChat,
+      ),
+      ButtonDetails(
+        title: l10n.access,
+        icon: const Icon(Icons.shield_outlined),
+        onPressed: () => context.go('/rooms/${room.id}/details/access'),
+        visible: (room) => room.isSpace && room.isRoomAdmin,
+      ),
+      ButtonDetails(
+        title: room.pushRuleState == PushRuleState.notify
+            ? l10n.notificationsOn
+            : l10n.notificationsOff,
+        icon: Icon(
+          room.pushRuleState == PushRuleState.notify
+              ? Icons.notifications_on_outlined
+              : Icons.notifications_off_outlined,
+        ),
+        onPressed: () => showFutureLoadingDialog(
+          context: context,
+          future: () => room.setPushRuleState(
+            room.pushRuleState == PushRuleState.notify
+                ? PushRuleState.mentionsOnly
+                : PushRuleState.notify,
+          ),
+        ),
+        visible: (room) => !room.isSpace,
+      ),
+      ButtonDetails(
+        title: l10n.invite,
+        icon: const Icon(Icons.person_add_outlined),
+        onPressed: () => context.go('/rooms/${room.id}/details/invite'),
+        visible: (room) => room.canInvite && !room.isDirectChat,
+      ),
+      ButtonDetails(
+        title: l10n.addSubspace,
+        icon: const Icon(Icons.add_outlined),
+        onPressed: widget.controller.addSubspace,
+        visible: (room) =>
+            room.isSpace &&
+            room.canSendEvent(
+              EventTypes.SpaceChild,
+            ),
+      ),
+      ButtonDetails(
+        title: l10n.downloadSpaceAnalytics,
+        icon: const Icon(Icons.download_outlined),
+        onPressed: () {
+          showDialog(
+            context: context,
+            builder: (context) => DownloadAnalyticsDialog(space: room),
+          );
+        },
+        visible: (room) => room.isSpace && room.isRoomAdmin,
+      ),
+      ButtonDetails(
+        title: l10n.download,
+        icon: const Icon(Icons.download_outlined),
+        onPressed: widget.controller.downloadChatAction,
+        visible: (room) => room.ownPowerLevel >= 50 && !room.isSpace,
+      ),
+      ButtonDetails(
+        title: l10n.botSettings,
+        icon: const BotFace(
+          width: 30.0,
+          expression: BotExpression.idle,
+        ),
+        onPressed: () => showDialog<BotOptionsModel?>(
+          context: context,
+          builder: (BuildContext context) => ConversationBotSettingsDialog(
+            room: room,
+            onSubmit: widget.controller.setBotOptions,
+          ),
+        ),
+        visible: (room) =>
+            !room.isSpace && !room.isDirectChat && room.canInvite,
+      ),
+      ButtonDetails(
+        title: l10n.chatCapacity,
+        icon: const Icon(Icons.reduce_capacity),
+        onPressed: widget.controller.setRoomCapacity,
+        visible: (room) =>
+            !room.isSpace && !room.isDirectChat && room.canSendDefaultStates,
+      ),
+      ButtonDetails(
+        title: l10n.leave,
+        icon: const Icon(Icons.logout_outlined),
+        onPressed: () async {
+          final confirmed = await showOkCancelAlertDialog(
+            useRootNavigator: false,
+            context: context,
+            title: L10n.of(context).areYouSure,
+            okLabel: L10n.of(context).leave,
+            cancelLabel: L10n.of(context).no,
+            message: room.isSpace
+                ? L10n.of(context).leaveSpaceDescription
+                : L10n.of(context).leaveRoomDescription,
+            isDestructive: true,
+          );
+          if (confirmed != OkCancelResult.ok) return;
+          final resp = await showFutureLoadingDialog(
+            context: context,
+            future: room.isSpace ? room.leaveSpace : room.leave,
+          );
+          if (!resp.isError) {
+            context.go("/rooms?spaceId=clear");
+          }
+        },
+        visible: (room) => room.membership == Membership.join,
+      ),
+      ButtonDetails(
+        title: l10n.delete,
+        icon: const Icon(Icons.delete_outline),
+        onPressed: () async {
+          if (room.isSpace) {
+            final resp = await showDialog<bool?>(
+              context: context,
+              builder: (_) => DeleteSpaceDialog(space: room),
+            );
+
+            if (resp == true) {
+              context.go("/rooms?spaceId=clear");
+            }
+          } else {
+            final confirmed = await showOkCancelAlertDialog(
+              context: context,
+              title: L10n.of(context).areYouSure,
+              okLabel: L10n.of(context).delete,
+              cancelLabel: L10n.of(context).cancel,
+              isDestructive: true,
+              message: room.isSpace
+                  ? L10n.of(context).deleteSpaceDesc
+                  : L10n.of(context).deleteChatDesc,
+            );
+            if (confirmed != OkCancelResult.ok) return;
+
+            final resp = await showFutureLoadingDialog(
+              context: context,
+              future: room.delete,
+            );
+            if (resp.isError) return;
+            context.go("/rooms?spaceId=clear");
+          }
+        },
+        visible: (room) => room.isRoomAdmin,
+      ),
+    ];
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final buttons = _buttons(context)
+        .where(
+          (button) => button.visible(room),
+        )
+        .toList();
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 16.0),
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final availableWidth = constraints.maxWidth;
+          final fullButtonCapacity =
+              (availableWidth / _fullButtonWidth).floor() - 1;
+          final miniButtonCapacity =
+              (availableWidth / _fullMiniButtonWidth).floor() - 1;
+
+          final mini = fullButtonCapacity < 3;
+          final capacity = mini ? miniButtonCapacity : fullButtonCapacity;
+
+          final numVisibleButtons = min(buttons.length, capacity);
+
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: List.generate(numVisibleButtons + 1, (index) {
+              if (index == numVisibleButtons) {
+                if (buttons.length == numVisibleButtons) {
+                  return const SizedBox();
+                } else if (buttons.length == numVisibleButtons + 1) {
+                  return RoomDetailsButton(
+                    mini: mini,
+                    visible: true,
+                    title: buttons[index].title,
+                    icon: buttons[index].icon,
+                    onPressed: buttons[index].onPressed,
+                    width: mini ? _miniButtonWidth : _buttonWidth,
+                    height: mini ? _miniButtonWidth : _buttonHeight,
+                  );
+                }
+                return PopupMenuButton(
+                  onSelected: (button) => button.onPressed(),
+                  itemBuilder: (context) {
+                    return buttons
+                        .skip(numVisibleButtons)
+                        .map(
+                          (button) => PopupMenuItem(
+                            value: button,
+                            child: Row(
+                              children: [
+                                button.icon,
+                                const SizedBox(width: 8),
+                                Text(button.title),
+                              ],
+                            ),
+                          ),
+                        )
+                        .toList();
+                  },
+                  child: RoomDetailsButton(
+                    mini: mini,
+                    visible: true,
+                    title: L10n.of(context).more,
+                    icon: const Icon(Icons.more_horiz_outlined),
+                    width: mini ? _miniButtonWidth : _buttonWidth,
+                    height: mini ? _miniButtonWidth : _buttonHeight,
+                  ),
+                );
+              }
+
+              final button = buttons[index];
+              return Padding(
+                padding: EdgeInsets.symmetric(horizontal: _buttonPadding),
+                child: RoomDetailsButton(
+                  mini: mini,
+                  visible: button.visible(room),
+                  title: button.title,
+                  icon: button.icon,
+                  onPressed: button.onPressed,
+                  width: mini ? _miniButtonWidth : _buttonWidth,
+                  height: mini ? _miniButtonWidth : _buttonHeight,
+                ),
+              );
+            }),
+          );
+        },
+      ),
+    );
+  }
+}
+
+class RoomDetailsButton extends StatelessWidget {
+  final bool mini;
+  final bool visible;
+
+  final String title;
+  final Widget icon;
+  final VoidCallback? onPressed;
+
+  final double width;
+  final double height;
+
+  const RoomDetailsButton({
+    super.key,
+    required this.visible,
+    required this.title,
+    required this.icon,
+    required this.mini,
+    required this.width,
+    required this.height,
+    this.onPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    if (!visible) {
+      return const SizedBox();
+    }
+
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: HoverBuilder(
+        builder: (context, hovered) {
+          return GestureDetector(
+            onTap: onPressed,
+            child: Container(
+              width: width,
+              height: height,
+              decoration: BoxDecoration(
+                color: hovered
+                    ? Theme.of(context).colorScheme.primary.withAlpha(50)
+                    : Colors.transparent,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              padding: const EdgeInsets.all(8.0),
+              child: mini
+                  ? icon
+                  : Column(
+                      spacing: 8.0,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        icon,
+                        Text(
+                          title,
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+
+class ButtonDetails {
+  final String title;
+  final Widget icon;
+  final VoidCallback onPressed;
+  final bool Function(Room) visible;
+
+  const ButtonDetails({
+    required this.title,
+    required this.icon,
+    required this.onPressed,
+    required this.visible,
+  });
+}
+
+class RoomParticipantsSection extends StatelessWidget {
+  final Room room;
+
+  const RoomParticipantsSection({
+    required this.room,
+    super.key,
+  });
+
+  final double _width = 90.0;
+  final double _padding = 12.0;
+
+  double get _fullWidth => _width + (_padding * 2);
+
+  @override
+  Widget build(BuildContext context) {
+    final List<User> members = room.getParticipants().toList()
+      ..sort((b, a) => a.powerLevel.compareTo(b.powerLevel));
+
+    final actualMembersCount = (room.summary.mInvitedMemberCount ?? 0) +
+        (room.summary.mJoinedMemberCount ?? 0);
+
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final availableWidth = constraints.maxWidth;
+        final capacity = (availableWidth / _fullWidth).floor();
+
+        if (capacity < 4) {
+          return Column(
+            children: [
+              ...members.map((member) => ParticipantListItem(member)),
+              if (actualMembersCount - members.length > 0)
+                ListTile(
+                  title: Text(
+                    L10n.of(context).loadCountMoreParticipants(
+                      (actualMembersCount - members.length),
+                    ),
+                  ),
+                  leading: CircleAvatar(
+                    backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                    child: const Icon(
+                      Icons.group_outlined,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  onTap: () => context.push(
+                    '/rooms/${room.id}/details/members',
+                  ),
+                  trailing: const Icon(Icons.chevron_right_outlined),
+                ),
+            ],
+          );
+        }
+
+        return LoadParticipantsUtil(
+          space: room,
+          builder: (participantsLoader) {
+            final filteredParticipants =
+                participantsLoader.filteredParticipants("");
+            return Wrap(
+              alignment: WrapAlignment.center,
+              runAlignment: WrapAlignment.center,
+              children: [
+                ...filteredParticipants.mapIndexed((index, user) {
+                  Color? color = index == 0
+                      ? AppConfig.gold
+                      : index == 1
+                          ? Colors.grey[400]!
+                          : index == 2
+                              ? Colors.brown[400]!
+                              : null;
+
+                  final publicProfile = participantsLoader.getPublicProfile(
+                    user.id,
+                  );
+
+                  if (user.id == BotName.byEnvironment ||
+                      publicProfile == null ||
+                      publicProfile.level == null) {
+                    color = null;
+                  }
+
+                  return Padding(
+                    padding: EdgeInsets.all(_padding),
+                    child: SizedBox(
+                      width: _width,
+                      child: Column(
+                        children: [
+                          Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              if (color != null)
+                                CircleAvatar(
+                                  radius: _width / 2,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      gradient: LinearGradient(
+                                        begin: const Alignment(0.5, -0.5),
+                                        end: const Alignment(-0.5, 0.5),
+                                        colors: <Color>[
+                                          color,
+                                          Colors.white,
+                                          color,
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              else
+                                SizedBox(
+                                  height: _width,
+                                  width: _width,
+                                ),
+                              MouseRegion(
+                                cursor: SystemMouseCursors.click,
+                                child: GestureDetector(
+                                  onTap: () => UserDialog.show(
+                                    context: context,
+                                    profile: Profile(
+                                      userId: user.id,
+                                      displayName: user.displayName,
+                                      avatarUrl: user.avatarUrl,
+                                    ),
+                                  ),
+                                  child: Center(
+                                    child: Avatar(
+                                      mxContent: user.avatarUrl,
+                                      name: user.calcDisplayname(),
+                                      size: _width - 6.0,
+                                      presenceUserId: user.id,
+                                      showPresence: false,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Text(
+                            user.calcDisplayname(),
+                            style: Theme.of(context)
+                                .textTheme
+                                .labelLarge
+                                ?.copyWith(
+                                  color: Theme.of(context).colorScheme.primary,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                          ),
+                          LevelDisplayName(
+                            userId: user.id,
+                            textStyle: Theme.of(context).textTheme.labelSmall,
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                }),
+              ],
+            );
+          },
         );
       },
     );

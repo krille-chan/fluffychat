@@ -1,97 +1,94 @@
 import 'package:flutter/material.dart';
 
-import 'package:fluffychat/pangea/user/models/profile_model.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
-class LevelDisplayName extends StatefulWidget {
+class LevelDisplayName extends StatelessWidget {
   final String userId;
+  final TextStyle? textStyle;
+  final double? iconSize;
+
   const LevelDisplayName({
     required this.userId,
+    this.textStyle,
+    this.iconSize,
     super.key,
   });
 
   @override
-  State<LevelDisplayName> createState() => LevelDisplayNameState();
-}
-
-class LevelDisplayNameState extends State<LevelDisplayName> {
-  PublicProfileModel? _profile;
-  bool _loading = true;
-  String? _error;
-
-  @override
-  void initState() {
-    super.initState();
-    _fetchProfile();
-  }
-
-  Future<void> _fetchProfile() async {
-    try {
-      final userController = MatrixState.pangeaController.userController;
-      _profile = await userController.getPublicProfile(widget.userId);
-    } catch (e) {
-      _error = e.toString();
-    } finally {
-      if (mounted) setState(() => _loading = false);
-    }
-  }
-
-  @override
   Widget build(BuildContext context) {
-    if (_profile != null && _profile!.isEmpty) {
-      return const SizedBox();
-    }
-
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 0,
         vertical: 2.0,
       ),
-      child: Row(
-        children: <Widget>[
-          if (_loading)
-            const CircularProgressIndicator()
-          else if (_error != null || _profile == null)
-            const SizedBox()
-          else
-            Row(
-              spacing: 4.0,
-              children: [
-                if (_profile?.baseLanguage != null &&
-                    _profile?.targetLanguage != null)
-                  Text(
-                    _profile!.baseLanguage!.langCodeShort.toUpperCase(),
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
+      child: FutureBuilder(
+        future: MatrixState.pangeaController.userController
+            .getPublicProfile(userId),
+        builder: (context, snapshot) {
+          return Row(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              if (!snapshot.hasData)
+                const Padding(
+                  padding: EdgeInsets.all(4.0),
+                  child: SizedBox(
+                    width: 12.0,
+                    height: 12.0,
+                    child: CircularProgressIndicator.adaptive(),
                   ),
-                if (_profile?.baseLanguage != null &&
-                    _profile?.targetLanguage != null)
-                  const Icon(
-                    Icons.arrow_forward_outlined,
-                    size: 16.0,
-                  ),
-                if (_profile?.targetLanguage != null)
-                  Text(
-                    _profile!.targetLanguage!.langCodeShort.toUpperCase(),
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
-                  ),
-                if (_profile?.level != null) const Text("⭐"),
-                if (_profile?.level != null)
-                  Text(
-                    "${_profile!.level!}",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
-                  ),
-              ],
-            ),
-        ],
+                )
+              else if (snapshot.hasError || snapshot.data == null)
+                const SizedBox()
+              else
+                Row(
+                  children: [
+                    if (snapshot.data?.baseLanguage != null &&
+                        snapshot.data?.targetLanguage != null)
+                      Text(
+                        snapshot.data!.baseLanguage!.langCodeShort
+                            .toUpperCase(),
+                        style: textStyle ??
+                            TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+                      ),
+                    if (snapshot.data?.baseLanguage != null &&
+                        snapshot.data?.targetLanguage != null)
+                      Icon(
+                        Icons.chevron_right_outlined,
+                        size: iconSize ?? 16.0,
+                      ),
+                    if (snapshot.data?.targetLanguage != null)
+                      Text(
+                        snapshot.data!.targetLanguage!.langCodeShort
+                            .toUpperCase(),
+                        style: textStyle ??
+                            TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+                      ),
+                    const SizedBox(width: 4.0),
+                    if (snapshot.data?.level != null)
+                      Text(
+                        "⭐",
+                        style: textStyle,
+                      ),
+                    if (snapshot.data?.level != null)
+                      Text(
+                        "${snapshot.data!.level!}",
+                        style: textStyle ??
+                            TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+                      ),
+                  ],
+                ),
+            ],
+          );
+        },
       ),
     );
   }

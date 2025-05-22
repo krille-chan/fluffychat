@@ -4956,5 +4956,9 @@
   "changeTheDescription": "Change the description",
   "changeThePermissions": "Change the permissions",
   "introductions": "Introductions",
-  "announcements": "Announcements"
+  "announcements": "Announcements",
+  "activities": "Activities",
+  "access": "Access",
+  "addSubspace": "Add subspace",
+  "botSettings": "Bot settings"
 }
