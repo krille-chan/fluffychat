@@ -19,6 +19,9 @@ class ClassInvitationButtons extends StatelessWidget {
   Widget build(BuildContext context) {
     final Room? room = Matrix.of(context).client.getRoomById(roomId);
     if (room == null) return Text(L10n.of(context).oopsSomethingWentWrong);
+    if (room.classCode(context) == null) {
+      return const SizedBox();
+    }
 
     final copyClassLinkListTile = ListTile(
       title: Text(
@@ -67,7 +70,7 @@ class ClassInvitationButtons extends StatelessWidget {
       onTap: () async {
         //PTODO-Lala: Standarize toast
         //PTODO - explore using Fluffyshare for this
-        await Clipboard.setData(ClipboardData(text: room.classCode(context)));
+        await Clipboard.setData(ClipboardData(text: room.classCode(context)!));
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(L10n.of(context).copiedToClipboard)),
         );

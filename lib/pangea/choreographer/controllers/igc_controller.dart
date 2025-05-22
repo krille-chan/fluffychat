@@ -293,6 +293,9 @@ class IgcController {
     igcTextData = null;
     spanDataController.clearCache();
     spanDataController.dispose();
+    MatrixState.pAnyState.closeAllOverlays(
+      filter: RegExp(r'span_card_overlay_\d+'),
+    );
   }
 
   dispose() {

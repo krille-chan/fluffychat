@@ -1,14 +1,14 @@
 part of "pangea_room_extension.dart";
 
 extension SpaceRoomExtension on Room {
-  String classCode(BuildContext context) {
+  String? classCode(BuildContext context) {
     if (!isSpace) {
       for (final Room potentialClassRoom in pangeaSpaceParents) {
         if (potentialClassRoom.isSpace) {
           return SpaceRoomExtension(potentialClassRoom).classCode(context);
         }
       }
-      return L10n.of(context).notInClass;
+      return null;
     }
     final roomJoinRules = getState(EventTypes.RoomJoinRules, "");
     if (roomJoinRules != null) {
@@ -17,7 +17,7 @@ extension SpaceRoomExtension on Room {
         return accessCode;
       }
     }
-    return L10n.of(context).noClassCode;
+    return null;
   }
 
   void checkClass() {

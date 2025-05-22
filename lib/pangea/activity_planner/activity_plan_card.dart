@@ -174,12 +174,25 @@ class ActivityPlanCardState extends State<ActivityPlanCard> {
   }
 
   Future<void> _setAvatarByImageURL() async {
-    if (_avatar != null || _imageURL == null) return;
-    final resp = await http
-        .get(Uri.parse(_imageURL!))
-        .timeout(const Duration(seconds: 5));
-    if (mounted) {
-      setState(() => _avatar = resp.bodyBytes);
+    try {
+      if (_avatar != null || _imageURL == null) return;
+      final resp = await http
+          .get(Uri.parse(_imageURL!))
+          .timeout(const Duration(seconds: 5));
+      if (mounted) {
+        setState(() => _avatar = resp.bodyBytes);
+      }
+    } catch (e, s) {
+      ErrorHandler.logError(
+        e: e,
+        s: s,
+        data: {
+          "imageURL": _imageURL,
+        },
+      );
+      if (mounted) {
+        setState(() => _avatar = null);
+      }
     }
   }
 

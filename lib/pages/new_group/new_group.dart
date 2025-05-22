@@ -237,7 +237,10 @@ class NewGroupController extends State<NewGroup> {
       room = client.getRoomById(spaceId);
     }
     if (room == null) return;
-    GoogleAnalytics.createClass(room.name, room.classCode(context));
+    final spaceCode = room.classCode(context);
+    if (spaceCode != null) {
+      GoogleAnalytics.createClass(room.name, spaceCode);
+    }
     try {
       await room.invite(BotName.byEnvironment);
     } catch (err) {

@@ -63,98 +63,104 @@ class InvitationSelectionView extends StatelessWidget {
         child: Column(
           children: [
             // #Pangea
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: InkWell(
-                customBorder: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(99),
-                ),
-                onTap: () async {
-                  await Clipboard.setData(
-                    ClipboardData(text: room.classCode(context)),
-                  );
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text(L10n.of(context).copiedToClipboard)),
-                  );
-                },
-                child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 12.0,
-                    horizontal: 16.0,
-                  ),
-                  decoration: BoxDecoration(
-                    color: theme.colorScheme.secondaryContainer,
+            if (room.isSpace && room.classCode(context) != null)
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: InkWell(
+                  customBorder: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(99),
                   ),
-                  child: Row(
-                    spacing: 16.0,
-                    children: [
-                      const Icon(
-                        Icons.copy_outlined,
-                        size: 20.0,
+                  onTap: () async {
+                    await Clipboard.setData(
+                      ClipboardData(text: room.classCode(context)!),
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(L10n.of(context).copiedToClipboard),
                       ),
-                      Text(
-                        "${L10n.of(context).copyClassCode}: ${room.classCode(context)}",
-                        style: TextStyle(
-                          color: theme.colorScheme.onPrimaryContainer,
-                          fontWeight: FontWeight.normal,
-                          fontSize: 16.0,
+                    );
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 12.0,
+                      horizontal: 16.0,
+                    ),
+                    decoration: BoxDecoration(
+                      color: theme.colorScheme.secondaryContainer,
+                      borderRadius: BorderRadius.circular(99),
+                    ),
+                    child: Row(
+                      spacing: 16.0,
+                      children: [
+                        const Icon(
+                          Icons.copy_outlined,
+                          size: 20.0,
                         ),
-                      ),
-                    ],
+                        Text(
+                          "${L10n.of(context).copyClassCode}: ${room.classCode(context)}",
+                          style: TextStyle(
+                            color: theme.colorScheme.onPrimaryContainer,
+                            fontWeight: FontWeight.normal,
+                            fontSize: 16.0,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(
-                bottom: 16.0,
-                left: 16.0,
-                right: 16.0,
-              ),
-              child: InkWell(
-                customBorder: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(99),
+            if (room.isSpace && room.classCode(context) != null)
+              Padding(
+                padding: const EdgeInsets.only(
+                  bottom: 16.0,
+                  left: 16.0,
+                  right: 16.0,
                 ),
-                onTap: () async {
-                  final String initialUrl =
-                      kIsWeb ? html.window.origin! : Environment.frontendURL;
-                  final link =
-                      "$initialUrl/#/join_with_link?${SpaceConstants.classCode}=${room.classCode(context)}";
-                  await Clipboard.setData(ClipboardData(text: link));
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text(L10n.of(context).copiedToClipboard)),
-                  );
-                },
-                child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 12.0,
-                    horizontal: 16.0,
-                  ),
-                  decoration: BoxDecoration(
-                    color: theme.colorScheme.secondaryContainer,
+                child: InkWell(
+                  customBorder: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(99),
                   ),
-                  child: Row(
-                    spacing: 16.0,
-                    children: [
-                      const Icon(
-                        Icons.copy_outlined,
-                        size: 20.0,
+                  onTap: () async {
+                    final String initialUrl =
+                        kIsWeb ? html.window.origin! : Environment.frontendURL;
+                    final link =
+                        "$initialUrl/#/join_with_link?${SpaceConstants.classCode}=${room.classCode(context)}";
+                    await Clipboard.setData(ClipboardData(text: link));
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(L10n.of(context).copiedToClipboard),
                       ),
-                      Text(
-                        L10n.of(context).copyClassLink,
-                        style: TextStyle(
-                          color: theme.colorScheme.onPrimaryContainer,
-                          fontWeight: FontWeight.normal,
-                          fontSize: 16.0,
+                    );
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 12.0,
+                      horizontal: 16.0,
+                    ),
+                    decoration: BoxDecoration(
+                      color: theme.colorScheme.secondaryContainer,
+                      borderRadius: BorderRadius.circular(99),
+                    ),
+                    child: Row(
+                      spacing: 16.0,
+                      children: [
+                        const Icon(
+                          Icons.copy_outlined,
+                          size: 20.0,
                         ),
-                      ),
-                    ],
+                        Text(
+                          L10n.of(context).copyClassLink,
+                          style: TextStyle(
+                            color: theme.colorScheme.onPrimaryContainer,
+                            fontWeight: FontWeight.normal,
+                            fontSize: 16.0,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
             // Pangea#
             Padding(
               // #Pangea

@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import 'package:fluffychat/pangea/choreographer/controllers/error_service.dart';
 import 'package:fluffychat/pangea/choreographer/models/igc_text_data_model.dart';
 import 'package:fluffychat/pangea/choreographer/models/pangea_match_model.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/igc/paywall_card.dart';
@@ -174,18 +175,29 @@ class PangeaTextController extends TextEditingController {
 
       final choreoSteps = choreographer.choreoRecord.choreoSteps;
 
+      List<InlineSpan> inlineSpans = [];
+      try {
+        inlineSpans = choreographer.igc.igcTextData!.constructTokenSpan(
+          choreoSteps: choreoSteps.isNotEmpty &&
+                  choreoSteps.last.acceptedOrIgnoredMatch?.status ==
+                      PangeaMatchStatus.automatic
+              ? choreoSteps
+              : [],
+          defaultStyle: style,
+          onUndo: choreographer.onUndoReplacement,
+        );
+      } catch (e) {
+        choreographer.errorService.setError(
+          ChoreoError(type: ChoreoErrorType.unknown, raw: e),
+        );
+        inlineSpans = [TextSpan(text: text, style: style)];
+        choreographer.igc.clear();
+      }
+
       return TextSpan(
         style: style,
         children: [
-          ...choreographer.igc.igcTextData!.constructTokenSpan(
-            choreoSteps: choreoSteps.isNotEmpty &&
-                    choreoSteps.last.acceptedOrIgnoredMatch?.status ==
-                        PangeaMatchStatus.automatic
-                ? choreoSteps
-                : [],
-            defaultStyle: style,
-            onUndo: choreographer.onUndoReplacement,
-          ),
+          ...inlineSpans,
           TextSpan(text: parts[1], style: style),
         ],
       );
