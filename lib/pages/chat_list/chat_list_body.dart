@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:badges/badges.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
@@ -16,7 +15,6 @@ import 'package:fluffychat/pangea/public_spaces/public_room_bottom_sheet.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/user_dialog.dart';
 import 'package:fluffychat/widgets/avatar.dart';
-import 'package:fluffychat/widgets/unread_rooms_badge.dart';
 import '../../config/themes.dart';
 import '../../widgets/matrix.dart';
 
@@ -179,62 +177,35 @@ class ChatListViewBody extends StatelessWidget {
                     //       ),
                     //       shrinkWrap: true,
                     //       scrollDirection: Axis.horizontal,
-                    if (!controller.isSearchMode)
-                      SingleChildScrollView(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 12.0,
-                          vertical: 16.0,
-                        ),
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          // Pangea#
-                          children: [
-                            if (AppConfig.separateChatTypes)
-                              ActiveFilter.messages
-                            else
-                              ActiveFilter.allChats,
-                            // #Pangea
-                            if (AppConfig.separateChatTypes)
-                              ActiveFilter.groups,
-                            // Pangea#
-                            ActiveFilter.unread,
-                            // #Pangea
-                            // if (spaceDelegateCandidates.isNotEmpty &&
-                            //     !controller.widget.displayNavigationRail)
-                            if (!AppConfig.displayNavigationRail &&
-                                !FluffyThemes.isColumnMode(context))
-                              // Pangea#
-                              ActiveFilter.spaces,
-                          ]
-                              .map(
-                                // #Pangea
-                                // (filter) => Padding(
-                                (filter) => UnreadRoomsBadge(
-                                  filter: (_) => filter == ActiveFilter.unread,
-                                  badgePosition: BadgePosition.topEnd(
-                                    top: -12,
-                                    end: -6,
-                                  ),
-                                  child: Padding(
-                                    // Pangea#
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 4.0,
-                                    ),
-                                    child: FilterChip(
-                                      selected:
-                                          filter == controller.activeFilter,
-                                      onSelected: (_) =>
-                                          controller.setActiveFilter(filter),
-                                      label: Text(
-                                        filter.toLocalizedString(context),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              )
-                              .toList(),
-                        ),
-                      ),
+                    //       children: [
+                    //         if (AppConfig.separateChatTypes)
+                    //           ActiveFilter.messages
+                    //         else
+                    //           ActiveFilter.allChats,
+                    //         ActiveFilter.unread,
+                    //         if (spaceDelegateCandidates.isNotEmpty &&
+                    //             !controller.widget.displayNavigationRail)
+                    //           ActiveFilter.spaces,
+                    //       ]
+                    //           .map(
+                    //             (filter) => Padding(
+                    //               padding: const EdgeInsets.symmetric(
+                    //                 horizontal: 4.0,
+                    //               ),
+                    //               child: FilterChip(
+                    //                 selected: filter == controller.activeFilter,
+                    //                 onSelected: (_) =>
+                    //                     controller.setActiveFilter(filter),
+                    //                 label: Text(
+                    //                   filter.toLocalizedString(context),
+                    //                 ),
+                    //               ),
+                    //             ),
+                    //           )
+                    //           .toList(),
+                    //     ),
+                    //   ),
+                    // Pangea#
                     if (controller.isSearchMode)
                       SearchTitle(
                         title: L10n.of(context).chats,

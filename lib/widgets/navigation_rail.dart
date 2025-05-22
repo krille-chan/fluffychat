@@ -90,16 +90,26 @@ class SpacesNavigationRail extends StatelessWidget {
                             onTap: () => isColumnMode
                                 ? onGoToChats()
                                 : context.go("/rooms/homepage"),
-                            icon: const Padding(
-                              padding: EdgeInsets.all(10.0),
-                              child: Icon(Icons.home_outlined),
-                            ),
-                            selectedIcon: const Padding(
-                              padding: EdgeInsets.all(10.0),
-                              child: Icon(Icons.home),
+                            backgroundColor: Colors.transparent,
+                            icon: FutureBuilder<Profile>(
+                              future: client.fetchOwnProfile(),
+                              builder: (context, snapshot) => Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  Material(
+                                    color: Colors.transparent,
+                                    borderRadius: BorderRadius.circular(99),
+                                    child: Avatar(
+                                      mxContent: snapshot.data?.avatarUrl,
+                                      name: snapshot.data?.displayName ??
+                                          client.userID!.localpart,
+                                      size: 45,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                             toolTip: L10n.of(context).home,
-                            unreadBadgeFilter: (room) => true,
                           );
                         }
                         i--;

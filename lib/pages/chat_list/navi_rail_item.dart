@@ -15,6 +15,9 @@ class NaviRailItem extends StatelessWidget {
   final Widget icon;
   final Widget? selectedIcon;
   final bool Function(Room)? unreadBadgeFilter;
+  // #Pangea
+  final Color? backgroundColor;
+  // Pangea#
 
   const NaviRailItem({
     required this.toolTip,
@@ -23,6 +26,9 @@ class NaviRailItem extends StatelessWidget {
     required this.icon,
     this.selectedIcon,
     this.unreadBadgeFilter,
+    // #Pangea
+    this.backgroundColor,
+    // Pangea#
     super.key,
   });
   @override
@@ -70,9 +76,15 @@ class NaviRailItem extends StatelessWidget {
                   curve: FluffyThemes.animationCurve,
                   child: Material(
                     borderRadius: borderRadius,
-                    color: isSelected
-                        ? theme.colorScheme.primaryContainer
-                        : theme.colorScheme.surfaceContainerHigh,
+                    // #Pangea
+                    // color: isSelected
+                    //     ? theme.colorScheme.primaryContainer
+                    //     : theme.colorScheme.surfaceContainerHigh,
+                    color: backgroundColor ??
+                        (isSelected
+                            ? theme.colorScheme.primaryContainer
+                            : theme.colorScheme.surfaceContainerHigh),
+                    // Pangea#
                     child: Tooltip(
                       message: toolTip,
                       child: InkWell(

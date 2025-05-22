@@ -10,7 +10,6 @@ class AnimatedLevelBar extends StatefulWidget {
   final double beginWidth;
   final double endWidth;
   final Color primaryColor;
-  final Color highlightColor;
 
   const AnimatedLevelBar({
     super.key,
@@ -18,7 +17,6 @@ class AnimatedLevelBar extends StatefulWidget {
     required this.beginWidth,
     required this.endWidth,
     required this.primaryColor,
-    required this.highlightColor,
   });
 
   @override
@@ -94,20 +92,6 @@ class AnimatedLevelBarState extends State<AnimatedLevelBar>
                 color: widget.primaryColor,
                 borderRadius: const BorderRadius.all(
                   Radius.circular(AppConfig.borderRadius),
-                ),
-              ),
-            ),
-            Positioned(
-              top: 2,
-              left: 8,
-              child: Container(
-                height: 6,
-                width: _animation.value >= 16 ? _animation.value - 16 : 0,
-                decoration: BoxDecoration(
-                  color: widget.highlightColor,
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(AppConfig.borderRadius),
-                  ),
                 ),
               ),
             ),

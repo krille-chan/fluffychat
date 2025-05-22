@@ -2,22 +2,16 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:go_router/go_router.dart';
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/pangea/analytics_details_popup/analytics_details_popup.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_list_model.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/get_analytics_controller.dart';
 import 'package:fluffychat/pangea/analytics_summary/learning_progress_bar.dart';
-import 'package:fluffychat/pangea/analytics_summary/learning_settings_button.dart';
-import 'package:fluffychat/pangea/analytics_summary/level_badge.dart';
+import 'package:fluffychat/pangea/analytics_summary/learning_progress_indicator_button.dart';
 import 'package:fluffychat/pangea/analytics_summary/level_bar_popup.dart';
 import 'package:fluffychat/pangea/analytics_summary/progress_indicator.dart';
 import 'package:fluffychat/pangea/analytics_summary/progress_indicators_enum.dart';
 import 'package:fluffychat/pangea/learning_settings/pages/settings_learning.dart';
-import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 /// A summary of "My Analytics" shown at the top of the chat list
@@ -40,7 +34,6 @@ class LearningProgressIndicatorsState
 
   StreamSubscription<AnalyticsStreamUpdate>? _analyticsSubscription;
   StreamSubscription? _languageSubscription;
-  Profile? _profile;
 
   @override
   void initState() {
@@ -59,12 +52,6 @@ class LearningProgressIndicatorsState
     _languageSubscription =
         MatrixState.pangeaController.userController.stateStream.listen((_) {
       if (mounted) setState(() {});
-    });
-
-    final client = MatrixState.pangeaController.matrixState.client;
-    if (client.userID == null) return;
-    client.getProfileFromUserId(client.userID!).then((profile) {
-      if (mounted) setState(() => _profile = profile);
     });
   }
 
@@ -100,161 +87,122 @@ class LearningProgressIndicatorsState
       return const SizedBox();
     }
 
+    final userL1 = MatrixState.pangeaController.languageController.userL1;
     final userL2 = MatrixState.pangeaController.languageController.userL2;
 
-    final mxid = client.userID ?? L10n.of(context).user;
-    final displayname = _profile?.displayName ?? mxid.localpart ?? mxid;
-
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        return Row(
-          children: [
-            Tooltip(
-              message: L10n.of(context).settings,
-              child: MouseRegion(
-                cursor: SystemMouseCursors.click,
-                child: GestureDetector(
-                  onTap: () => context.go("/rooms/settings"),
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                      bottom: 8.0,
-                      right: 8.0,
-                    ),
-                    child: Stack(
-                      clipBehavior: Clip.none, // Allow overflow
-                      children: [
-                        FutureBuilder<Profile>(
-                          future: client.fetchOwnProfile(),
-                          builder: (context, snapshot) => Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              Material(
-                                color: Colors.transparent,
-                                borderRadius: BorderRadius.circular(99),
-                                child: Avatar(
-                                  mxContent: snapshot.data?.avatarUrl,
-                                  name: snapshot.data?.displayName ??
-                                      client.userID!.localpart,
-                                  size: 60,
-                                ),
+    return Row(
+      children: [
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 8.0),
+                    child: Row(
+                      spacing: 16.0,
+                      children: ConstructTypeEnum.values
+                          .map(
+                            (c) => LearningProgressIndicatorButton(
+                              onPressed: () {
+                                showDialog<AnalyticsPopupWrapper>(
+                                  context: context,
+                                  builder: (context) => AnalyticsPopupWrapper(
+                                    view: c,
+                                  ),
+                                );
+                              },
+                              child: ProgressIndicatorBadge(
+                                indicator: c.indicator,
+                                loading: _loading,
+                                points: uniqueLemmas(c.indicator),
                               ),
-                            ],
+                            ),
+                          )
+                          .toList(),
+                    ),
+                  ),
+                  LearningProgressIndicatorButton(
+                    onPressed: () => showDialog(
+                      context: context,
+                      builder: (c) => const SettingsLearning(),
+                      barrierDismissible: false,
+                    ),
+                    child: Row(
+                      children: [
+                        if (userL1 != null && userL2 != null)
+                          Text(
+                            userL1.langCodeShort.toUpperCase(),
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge
+                                ?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: Theme.of(context).colorScheme.primary,
+                                ),
+                          ),
+                        if (userL1 != null && userL2 != null)
+                          const Icon(Icons.chevron_right_outlined),
+                        if (userL2 != null)
+                          Text(
+                            userL2.langCodeShort.toUpperCase(),
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge
+                                ?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: Theme.of(context).colorScheme.primary,
+                                ),
+                          ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 6),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                child: MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: GestureDetector(
+                    onTap: () {
+                      showDialog<LevelBarPopup>(
+                        context: context,
+                        builder: (c) => const LevelBarPopup(),
+                      );
+                    },
+                    child: Row(
+                      spacing: 8.0,
+                      children: [
+                        Expanded(
+                          child: LearningProgressBar(
+                            level: _constructsModel.level,
+                            totalXP: _constructsModel.totalXP,
+                            height: 24.0,
                           ),
                         ),
-                        Positioned(
-                          bottom: -3,
-                          right: -3,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              color:
-                                  Theme.of(context).colorScheme.surfaceBright,
-                            ),
-                            padding: const EdgeInsets.all(4.0),
-                            child: Icon(
-                              size: 14,
-                              Icons.settings_outlined,
-                              color: Theme.of(context).colorScheme.primary,
-                              weight: 1000,
-                            ),
-                          ),
+                        Text(
+                          "⭐ ${_constructsModel.level}",
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleLarge
+                              ?.copyWith(
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
                         ),
                       ],
                     ),
                   ),
                 ),
               ),
-            ),
-            const SizedBox(width: 10),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    spacing: 6.0,
-                    children: [
-                      Text(
-                        displayname,
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                          color: Theme.of(context).colorScheme.primary,
-                        ),
-                      ),
-                      LearningSettingsButton(
-                        onTap: () => showDialog(
-                          context: context,
-                          builder: (c) => const SettingsLearning(),
-                          barrierDismissible: false,
-                        ),
-                        l2: userL2?.langCode.toUpperCase(),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 6),
-                  Row(
-                    spacing: 6.0,
-                    children: ConstructTypeEnum.values
-                        .map(
-                          (c) => ProgressIndicatorBadge(
-                            points: uniqueLemmas(c.indicator),
-                            loading: _loading,
-                            onTap: () {
-                              showDialog<AnalyticsPopupWrapper>(
-                                context: context,
-                                builder: (context) => AnalyticsPopupWrapper(
-                                  view: c,
-                                ),
-                              );
-                            },
-                            indicator: c.indicator,
-                            mini: constraints.maxWidth < 300,
-                          ),
-                        )
-                        .toList(),
-                  ),
-                  const SizedBox(height: 6),
-                  MouseRegion(
-                    cursor: SystemMouseCursors.click,
-                    child: GestureDetector(
-                      onTap: () {
-                        showDialog<LevelBarPopup>(
-                          context: context,
-                          builder: (c) => const LevelBarPopup(),
-                        );
-                      },
-                      child: SizedBox(
-                        height: 26,
-                        child: Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            Positioned(
-                              left: 16,
-                              right: 0,
-                              child: LearningProgressBar(
-                                level: _constructsModel.level,
-                                totalXP: _constructsModel.totalXP,
-                              ),
-                            ),
-                            Positioned(
-                              left: 0,
-                              child: LevelBadge(
-                                level: _constructsModel.level,
-                                mini: constraints.maxWidth < 300,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        );
-      },
+              const SizedBox(height: 16.0),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
