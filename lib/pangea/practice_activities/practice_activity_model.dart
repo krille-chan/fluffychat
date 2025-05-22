@@ -326,7 +326,7 @@ class PracticeActivityModel {
   Map<String, dynamic> toJson() {
     return {
       'lang_code': langCode,
-      'activity_type': activityType.string,
+      'activity_type': activityType.name,
       'content': multipleChoiceContent?.toJson(),
       'target_tokens': targetTokens.map((e) => e.toJson()).toList(),
       'match_content': matchContent?.toJson(),
