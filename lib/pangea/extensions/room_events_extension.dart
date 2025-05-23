@@ -272,6 +272,7 @@ extension EventsRoomExtension on Room {
     String? avatarURL,
     String? filename,
   }) async {
+    BookmarkedActivitiesRepo.save(activity);
     Uint8List? bytes = avatar;
     if (avatarURL != null && bytes == null) {
       try {

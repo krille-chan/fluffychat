@@ -16,6 +16,7 @@ import 'package:matrix/src/utils/markdown.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
+import 'package:fluffychat/pangea/activity_planner/bookmarked_activities_repo.dart';
 import 'package:fluffychat/pangea/analytics_misc/constructs_event.dart';
 import 'package:fluffychat/pangea/analytics_misc/constructs_model.dart';
 import 'package:fluffychat/pangea/bot/utils/bot_name.dart';
