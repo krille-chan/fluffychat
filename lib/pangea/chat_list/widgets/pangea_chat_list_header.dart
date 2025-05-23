@@ -28,11 +28,11 @@ class PangeaChatListHeader extends StatelessWidget
               top: 16,
               left: 16,
               right: 16,
+              bottom: 16,
             ),
             child: Column(
               children: [
                 const LearningProgressIndicators(),
-                const SizedBox(height: 16),
                 TextField(
                   controller: controller.searchController,
                   focusNode: controller.searchFocusNode,
@@ -49,7 +49,7 @@ class PangeaChatListHeader extends StatelessWidget
                       borderRadius: BorderRadius.circular(99),
                     ),
                     contentPadding: EdgeInsets.zero,
-                    hintText: L10n.of(context).searchChatsRooms,
+                    hintText: L10n.of(context).search,
                     hintStyle: TextStyle(
                       color: theme.colorScheme.onPrimaryContainer,
                       fontWeight: FontWeight.normal,
