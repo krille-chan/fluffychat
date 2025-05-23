@@ -166,7 +166,8 @@ class WordZoomWidget extends StatelessWidget {
               crossAxisAlignment: WrapCrossAlignment.center,
               spacing: 8.0,
               children: [
-                ...[
+                if (token.text.content.toLowerCase() !=
+                    token.lemma.text.toLowerCase()) ...[
                   Text(
                     _selectedToken.text.content,
                     style: Theme.of(context).textTheme.bodyLarge,
