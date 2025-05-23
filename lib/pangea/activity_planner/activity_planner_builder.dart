@@ -220,7 +220,8 @@ class ActivityPlannerBuilderState extends State<ActivityPlannerBuilder> {
   }
 
   Future<void> launchToRoom() async {
-    return widget.room?.sendActivityPlan(
+    if (room == null || room!.isSpace) return;
+    return room?.sendActivityPlan(
       updatedActivity,
       avatar: avatar,
       filename: filename,

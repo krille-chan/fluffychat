@@ -66,7 +66,7 @@ class ActivityPlanCardState extends State<ActivityPlanCard> {
   }
 
   Future<void> _onLaunch() async {
-    if (widget.controller.room != null) {
+    if (widget.controller.room != null && !widget.controller.room!.isSpace) {
       final resp = await showFutureLoadingDialog(
         context: context,
         future: widget.controller.launchToRoom,

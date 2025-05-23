@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 
@@ -10,6 +9,7 @@ import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat_details/chat_details.dart';
 import 'package:fluffychat/pages/chat_details/participant_list_item.dart';
 import 'package:fluffychat/pangea/analytics_misc/level_display_name.dart';
@@ -17,7 +17,6 @@ import 'package:fluffychat/pangea/bot/utils/bot_name.dart';
 import 'package:fluffychat/pangea/bot/widgets/bot_face_svg.dart';
 import 'package:fluffychat/pangea/chat_settings/models/bot_options_model.dart';
 import 'package:fluffychat/pangea/chat_settings/utils/delete_room.dart';
-import 'package:fluffychat/pangea/chat_settings/widgets/class_name_header.dart';
 import 'package:fluffychat/pangea/chat_settings/widgets/conversation_bot/conversation_bot_settings.dart';
 import 'package:fluffychat/pangea/chat_settings/widgets/delete_space_dialog.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
@@ -64,7 +63,6 @@ class PangeaChatDetailsView extends StatelessWidget {
         members = members.take(10).toList();
         final actualMembersCount = (room.summary.mInvitedMemberCount ?? 0) +
             (room.summary.mJoinedMemberCount ?? 0);
-        final canRequestMoreMembers = members.length < actualMembersCount;
         final displayname = room.getLocalizedDisplayname(
           MatrixLocals(L10n.of(context)),
         );
@@ -72,17 +70,17 @@ class PangeaChatDetailsView extends StatelessWidget {
           appBar: AppBar(
             leading: controller.widget.embeddedCloseButton ??
                 (room.isSpace
-                    ? const SizedBox()
+                    ? FluffyThemes.isColumnMode(context)
+                        ? const SizedBox()
+                        : BackButton(
+                            onPressed: () =>
+                                context.go("/rooms?spaceId=${room.id}"),
+                          )
                     : const Center(child: BackButton())),
-            elevation: theme.appBarTheme.elevation,
-            title: ClassNameHeader(
-              controller: controller,
-              room: room,
-            ),
-            centerTitle: true,
-            backgroundColor: theme.appBarTheme.backgroundColor,
           ),
           body: MaxWidthBody(
+            maxWidth: 800,
+            showBorder: false,
             child: ListView.builder(
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
@@ -106,10 +104,11 @@ class PangeaChatDetailsView extends StatelessWidget {
                                     child: Avatar(
                                       mxContent: room.avatar,
                                       name: displayname,
-                                      // #Pangea
                                       userId: room.directChatMatrixID,
-                                      // Pangea#
                                       size: Avatar.defaultSize * 2.5,
+                                      borderRadius: room.isSpace
+                                          ? BorderRadius.circular(24.0)
+                                          : null,
                                     ),
                                   ),
                                   if (!room.isDirectChat &&
@@ -197,7 +196,6 @@ class PangeaChatDetailsView extends StatelessWidget {
                             ),
                           ],
                         ),
-                        Divider(color: theme.dividerColor, height: 1),
                         Stack(
                           children: [
                             if (room.isRoomAdmin)
@@ -211,8 +209,8 @@ class PangeaChatDetailsView extends StatelessWidget {
                               ),
                             Padding(
                               padding: const EdgeInsets.only(
-                                left: 24.0,
-                                right: 24.0,
+                                left: 32.0,
+                                right: 32.0,
                                 top: 16.0,
                                 bottom: 16.0,
                               ),
@@ -242,9 +240,12 @@ class PangeaChatDetailsView extends StatelessWidget {
                             ),
                           ],
                         ),
-                        RoomDetailsButtonRow(
-                          controller: controller,
-                          room: room,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                          child: RoomDetailsButtonRow(
+                            controller: controller,
+                            room: room,
+                          ),
                         ),
                       ],
                     )
@@ -302,14 +303,9 @@ class RoomDetailsButtonRowState extends State<RoomDetailsButtonRow> {
     super.dispose();
   }
 
-  final double _buttonWidth = 130.0;
-  final double _buttonHeight = 80.0;
-
+  final double _buttonWidth = 120.0;
+  final double _buttonHeight = 70.0;
   final double _miniButtonWidth = 50.0;
-  final double _buttonPadding = 4.0;
-
-  double get _fullButtonWidth => _buttonWidth + (_buttonPadding * 2);
-  double get _fullMiniButtonWidth => _miniButtonWidth + (_buttonPadding * 2);
 
   Room get room => widget.room;
 
@@ -319,22 +315,23 @@ class RoomDetailsButtonRowState extends State<RoomDetailsButtonRow> {
       ButtonDetails(
         title: l10n.activities,
         icon: const Icon(Icons.event_note_outlined),
-        onPressed: () => room.isSpace
-            ? context.go("/rooms/homepage/planner")
-            : context.go("/rooms/${room.id}/details/planner"),
-        visible: (room) => room.canSendDefaultStates,
+        onPressed: () => context.go("/rooms/${room.id}/details/planner"),
+        visible: room.canSendDefaultStates || room.isSpace,
+        enabled: room.canSendDefaultStates,
       ),
       ButtonDetails(
         title: l10n.permissions,
         icon: const Icon(Icons.edit_attributes_outlined),
         onPressed: () => context.go('/rooms/${room.id}/details/permissions'),
-        visible: (room) => room.isRoomAdmin && !room.isDirectChat,
+        visible: (room.isRoomAdmin && !room.isDirectChat) || room.isSpace,
+        enabled: room.isRoomAdmin && !room.isDirectChat,
       ),
       ButtonDetails(
         title: l10n.access,
         icon: const Icon(Icons.shield_outlined),
         onPressed: () => context.go('/rooms/${room.id}/details/access'),
-        visible: (room) => room.isSpace && room.isRoomAdmin,
+        visible: room.isSpace,
+        enabled: room.isSpace && room.isRoomAdmin,
       ),
       ButtonDetails(
         title: room.pushRuleState == PushRuleState.notify
@@ -353,23 +350,24 @@ class RoomDetailsButtonRowState extends State<RoomDetailsButtonRow> {
                 : PushRuleState.notify,
           ),
         ),
-        visible: (room) => !room.isSpace,
+        visible: !room.isSpace,
       ),
       ButtonDetails(
         title: l10n.invite,
         icon: const Icon(Icons.person_add_outlined),
         onPressed: () => context.go('/rooms/${room.id}/details/invite'),
-        visible: (room) => room.canInvite && !room.isDirectChat,
+        visible: (room.canInvite && !room.isDirectChat) || room.isSpace,
+        enabled: room.canInvite && !room.isDirectChat,
       ),
       ButtonDetails(
         title: l10n.addSubspace,
         icon: const Icon(Icons.add_outlined),
         onPressed: widget.controller.addSubspace,
-        visible: (room) =>
-            room.isSpace &&
+        visible: room.isSpace &&
             room.canSendEvent(
               EventTypes.SpaceChild,
             ),
+        showInMainView: false,
       ),
       ButtonDetails(
         title: l10n.downloadSpaceAnalytics,
@@ -380,13 +378,14 @@ class RoomDetailsButtonRowState extends State<RoomDetailsButtonRow> {
             builder: (context) => DownloadAnalyticsDialog(space: room),
           );
         },
-        visible: (room) => room.isSpace && room.isRoomAdmin,
+        visible: room.isSpace && room.isRoomAdmin,
+        showInMainView: false,
       ),
       ButtonDetails(
         title: l10n.download,
         icon: const Icon(Icons.download_outlined),
         onPressed: widget.controller.downloadChatAction,
-        visible: (room) => room.ownPowerLevel >= 50 && !room.isSpace,
+        visible: room.ownPowerLevel >= 50 && !room.isSpace,
       ),
       ButtonDetails(
         title: l10n.botSettings,
@@ -401,14 +400,13 @@ class RoomDetailsButtonRowState extends State<RoomDetailsButtonRow> {
             onSubmit: widget.controller.setBotOptions,
           ),
         ),
-        visible: (room) =>
-            !room.isSpace && !room.isDirectChat && room.canInvite,
+        visible: !room.isSpace && !room.isDirectChat && room.canInvite,
       ),
       ButtonDetails(
         title: l10n.chatCapacity,
         icon: const Icon(Icons.reduce_capacity),
         onPressed: widget.controller.setRoomCapacity,
-        visible: (room) =>
+        visible:
             !room.isSpace && !room.isDirectChat && room.canSendDefaultStates,
       ),
       ButtonDetails(
@@ -435,7 +433,8 @@ class RoomDetailsButtonRowState extends State<RoomDetailsButtonRow> {
             context.go("/rooms?spaceId=clear");
           }
         },
-        visible: (room) => room.membership == Membership.join,
+        visible: room.membership == Membership.join,
+        showInMainView: false,
       ),
       ButtonDetails(
         title: l10n.delete,
@@ -471,7 +470,8 @@ class RoomDetailsButtonRowState extends State<RoomDetailsButtonRow> {
             context.go("/rooms?spaceId=clear");
           }
         },
-        visible: (room) => room.isRoomAdmin,
+        visible: room.isRoomAdmin,
+        showInMainView: false,
       ),
     ];
   }
@@ -480,7 +480,7 @@ class RoomDetailsButtonRowState extends State<RoomDetailsButtonRow> {
   Widget build(BuildContext context) {
     final buttons = _buttons(context)
         .where(
-          (button) => button.visible(room),
+          (button) => button.visible,
         )
         .toList();
 
@@ -490,37 +490,35 @@ class RoomDetailsButtonRowState extends State<RoomDetailsButtonRow> {
         builder: (context, constraints) {
           final availableWidth = constraints.maxWidth;
           final fullButtonCapacity =
-              (availableWidth / _fullButtonWidth).floor() - 1;
+              (availableWidth / _buttonWidth).floor() - 1;
           final miniButtonCapacity =
-              (availableWidth / _fullMiniButtonWidth).floor() - 1;
+              (availableWidth / _miniButtonWidth).floor() - 1;
 
-          final mini = fullButtonCapacity < 3;
+          final mini = fullButtonCapacity < 4;
           final capacity = mini ? miniButtonCapacity : fullButtonCapacity;
 
-          final numVisibleButtons = min(buttons.length, capacity);
+          List<ButtonDetails> mainViewButtons =
+              buttons.where((button) => button.showInMainView).toList();
+          final List<ButtonDetails> otherButtons =
+              buttons.where((button) => !button.showInMainView).toList();
+
+          if (capacity < mainViewButtons.length) {
+            otherButtons.addAll(mainViewButtons.skip(capacity));
+            mainViewButtons = mainViewButtons.take(capacity).toList();
+          }
 
           return Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: List.generate(numVisibleButtons + 1, (index) {
-              if (index == numVisibleButtons) {
-                if (buttons.length == numVisibleButtons) {
+            children: List.generate(mainViewButtons.length + 1, (index) {
+              if (index == mainViewButtons.length) {
+                if (otherButtons.isEmpty) {
                   return const SizedBox();
-                } else if (buttons.length == numVisibleButtons + 1) {
-                  return RoomDetailsButton(
-                    mini: mini,
-                    visible: true,
-                    title: buttons[index].title,
-                    icon: buttons[index].icon,
-                    onPressed: buttons[index].onPressed,
-                    width: mini ? _miniButtonWidth : _buttonWidth,
-                    height: mini ? _miniButtonWidth : _buttonHeight,
-                  );
                 }
+
                 return PopupMenuButton(
-                  onSelected: (button) => button.onPressed(),
+                  onSelected: (button) => button.onPressed?.call(),
                   itemBuilder: (context) {
-                    return buttons
-                        .skip(numVisibleButtons)
+                    return otherButtons
                         .map(
                           (button) => PopupMenuItem(
                             value: button,
@@ -537,9 +535,11 @@ class RoomDetailsButtonRowState extends State<RoomDetailsButtonRow> {
                   },
                   child: RoomDetailsButton(
                     mini: mini,
-                    visible: true,
-                    title: L10n.of(context).more,
-                    icon: const Icon(Icons.more_horiz_outlined),
+                    buttonDetails: ButtonDetails(
+                      title: L10n.of(context).more,
+                      icon: const Icon(Icons.more_horiz_outlined),
+                      visible: true,
+                    ),
                     width: mini ? _miniButtonWidth : _buttonWidth,
                     height: mini ? _miniButtonWidth : _buttonHeight,
                   ),
@@ -547,17 +547,11 @@ class RoomDetailsButtonRowState extends State<RoomDetailsButtonRow> {
               }
 
               final button = buttons[index];
-              return Padding(
-                padding: EdgeInsets.symmetric(horizontal: _buttonPadding),
-                child: RoomDetailsButton(
-                  mini: mini,
-                  visible: button.visible(room),
-                  title: button.title,
-                  icon: button.icon,
-                  onPressed: button.onPressed,
-                  width: mini ? _miniButtonWidth : _buttonWidth,
-                  height: mini ? _miniButtonWidth : _buttonHeight,
-                ),
+              return RoomDetailsButton(
+                mini: mini,
+                buttonDetails: button,
+                width: mini ? _miniButtonWidth : _buttonWidth,
+                height: mini ? _miniButtonWidth : _buttonHeight,
               );
             }),
           );
@@ -569,64 +563,75 @@ class RoomDetailsButtonRowState extends State<RoomDetailsButtonRow> {
 
 class RoomDetailsButton extends StatelessWidget {
   final bool mini;
-  final bool visible;
+  // final bool visible;
+  // final bool enabled;
 
-  final String title;
-  final Widget icon;
-  final VoidCallback? onPressed;
+  // final String title;
+  // final Widget icon;
+  // final VoidCallback? onPressed;
 
   final double width;
   final double height;
 
+  final ButtonDetails buttonDetails;
+
   const RoomDetailsButton({
     super.key,
-    required this.visible,
-    required this.title,
-    required this.icon,
+    required this.buttonDetails,
+    // required this.visible,
+    // required this.title,
+    // required this.icon,
     required this.mini,
     required this.width,
     required this.height,
-    this.onPressed,
+    // this.enabled = true,
+    // this.onPressed,
   });
 
   @override
   Widget build(BuildContext context) {
-    if (!visible) {
+    if (!buttonDetails.visible) {
       return const SizedBox();
     }
 
-    return MouseRegion(
-      cursor: SystemMouseCursors.click,
-      child: HoverBuilder(
-        builder: (context, hovered) {
-          return GestureDetector(
-            onTap: onPressed,
-            child: Container(
-              width: width,
-              height: height,
-              decoration: BoxDecoration(
-                color: hovered
-                    ? Theme.of(context).colorScheme.primary.withAlpha(50)
-                    : Colors.transparent,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              padding: const EdgeInsets.all(8.0),
-              child: mini
-                  ? icon
-                  : Column(
-                      spacing: 8.0,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        icon,
-                        Text(
-                          title,
-                          textAlign: TextAlign.center,
+    return AbsorbPointer(
+      absorbing: !buttonDetails.enabled,
+      child: MouseRegion(
+        cursor: SystemMouseCursors.click,
+        child: HoverBuilder(
+          builder: (context, hovered) {
+            return GestureDetector(
+              onTap: buttonDetails.onPressed,
+              child: Opacity(
+                opacity: buttonDetails.enabled ? 1.0 : 0.5,
+                child: Container(
+                  width: width,
+                  height: height,
+                  decoration: BoxDecoration(
+                    color: hovered
+                        ? Theme.of(context).colorScheme.primary.withAlpha(50)
+                        : Colors.transparent,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  padding: const EdgeInsets.all(8.0),
+                  child: mini
+                      ? buttonDetails.icon
+                      : Column(
+                          spacing: 8.0,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            buttonDetails.icon,
+                            Text(
+                              buttonDetails.title,
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-            ),
-          );
-        },
+                ),
+              ),
+            );
+          },
+        ),
       ),
     );
   }
@@ -635,14 +640,18 @@ class RoomDetailsButton extends StatelessWidget {
 class ButtonDetails {
   final String title;
   final Widget icon;
-  final VoidCallback onPressed;
-  final bool Function(Room) visible;
+  final VoidCallback? onPressed;
+  final bool visible;
+  final bool enabled;
+  final bool showInMainView;
 
   const ButtonDetails({
     required this.title,
     required this.icon,
-    required this.onPressed,
     required this.visible,
+    this.onPressed,
+    this.enabled = true,
+    this.showInMainView = true,
   });
 }
 
@@ -654,7 +663,7 @@ class RoomParticipantsSection extends StatelessWidget {
     super.key,
   });
 
-  final double _width = 90.0;
+  final double _width = 80.0;
   final double _padding = 12.0;
 
   double get _fullWidth => _width + (_padding * 2);
@@ -792,6 +801,7 @@ class RoomParticipantsSection extends StatelessWidget {
                                   color: Theme.of(context).colorScheme.primary,
                                   fontWeight: FontWeight.bold,
                                 ),
+                            overflow: TextOverflow.ellipsis,
                           ),
                           LevelDisplayName(
                             userId: user.id,

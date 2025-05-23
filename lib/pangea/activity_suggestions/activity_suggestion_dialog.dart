@@ -49,7 +49,8 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
       await widget.controller.updateImageURL();
       widget.onLaunch!.call();
       Navigator.of(context).pop();
-    } else if (widget.controller.room != null) {
+    } else if (widget.controller.room != null &&
+        !widget.controller.room!.isSpace) {
       final resp = await showFutureLoadingDialog(
         context: context,
         future: widget.controller.launchToRoom,

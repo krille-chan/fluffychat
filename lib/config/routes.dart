@@ -221,18 +221,6 @@ abstract class AppRoutes {
             if (resp != null) return resp;
             final isColumnMode = FluffyThemes.isColumnMode(context);
 
-            final roomId = state.pathParameters['roomid'];
-            final room = roomId != null
-                ? Matrix.of(context).client.getRoomById(roomId)
-                : null;
-
-            if (room != null && room.isSpace) {
-              if (isColumnMode &&
-                  (state.fullPath?.endsWith(':roomid') ?? false)) {
-                return '/rooms/${room.id}/details?spaceId=${room.id}';
-              }
-            }
-
             final spaceId = state.uri.queryParameters['spaceId'];
             if (spaceId != null &&
                 spaceId != 'clear' &&
