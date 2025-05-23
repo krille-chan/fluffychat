@@ -165,7 +165,8 @@ class ChatListViewBody extends StatelessWidget {
                             ActiveFilter.groups,
                             ActiveFilter.unread,
                             if (spaceDelegateCandidates.isNotEmpty &&
-                                !controller.widget.displayNavigationRail)
+                                !AppConfig.displayNavigationRail &&
+                                !FluffyThemes.isColumnMode(context))
                               ActiveFilter.spaces,
                           ]
                               .map(
