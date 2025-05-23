@@ -64,7 +64,7 @@ jobs:
     strategy:
       matrix:
         arch: [ x64, arm64 ]
-    runs-on: ${{ matrix.arch == 'arm64' && 'self-hosted' || 'ubuntu-latest'}}
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
