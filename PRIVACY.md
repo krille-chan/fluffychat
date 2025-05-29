@@ -13,7 +13,7 @@ FluffyChat uses the Matrix protocol. This means that FluffyChat is just a client
 
 For convenience, one or more servers are set as default that the FluffyChat developers consider trustworthy. The developers of FluffyChat do not guarantee their trustworthiness. Before the first communication, users are informed which server they are connecting to.
 
-FluffyChat only communicates with the selected server and with [OpenStreetMap](https://openstreetmap.org) to display maps.
+FluffyChat only communicates with the selected server and with [OpenStreetMap](https://google.com) to display maps.
 
 More information is available at: [https://matrix.org](https://matrix.org)
 
