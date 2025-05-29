@@ -118,6 +118,7 @@ class ChatInputRow extends StatelessWidget {
                 decoration: const BoxDecoration(),
                 clipBehavior: Clip.hardEdge,
                 child: PopupMenuButton<String>(
+                  useRootNavigator: true,
                   icon: const Icon(Icons.add_circle_outline),
                   iconColor: theme.colorScheme.onPrimaryContainer,
                   onSelected: controller.onAddPopupMenuButtonSelected,
@@ -198,6 +199,7 @@ class ChatInputRow extends StatelessWidget {
                   decoration: const BoxDecoration(),
                   clipBehavior: Clip.hardEdge,
                   child: PopupMenuButton(
+                    useRootNavigator: true,
                     icon: const Icon(Icons.camera_alt_outlined),
                     onSelected: controller.onAddPopupMenuButtonSelected,
                     iconColor: theme.colorScheme.onPrimaryContainer,
@@ -365,6 +367,7 @@ class _ChatAccountPicker extends StatelessWidget {
       child: FutureBuilder<Profile>(
         future: controller.sendingClient.fetchOwnProfile(),
         builder: (context, snapshot) => PopupMenuButton<String>(
+          useRootNavigator: true,
           onSelected: (mxid) => _popupMenuButtonSelected(mxid, context),
           itemBuilder: (BuildContext context) => clients
               .map(

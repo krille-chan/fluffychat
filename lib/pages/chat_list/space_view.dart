@@ -265,6 +265,7 @@ class _SpaceViewState extends State<SpaceView> {
         ),
         actions: [
           PopupMenuButton<SpaceActions>(
+            useRootNavigator: true,
             onSelected: _onSpaceAction,
             itemBuilder: (context) => [
               PopupMenuItem(

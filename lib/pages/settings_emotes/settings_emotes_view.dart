@@ -29,6 +29,7 @@ class EmotesSettingsView extends StatelessWidget {
         title: Text(L10n.of(context).customEmojisAndStickers),
         actions: [
           PopupMenuButton<PopupMenuEmojiActions>(
+            useRootNavigator: true,
             onSelected: (value) {
               switch (value) {
                 case PopupMenuEmojiActions.export:
