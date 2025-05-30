@@ -102,6 +102,7 @@ abstract class ClientManager {
 
   static Client createClient(String clientName, SharedPreferences store) {
     final shareKeysWith = AppSettings.shareKeysWith.getItem(store);
+    final enableSoftLogout = AppSettings.enableSoftLogout.getItem(store);
 
     return Client(
       clientName,
@@ -130,6 +131,8 @@ abstract class ClientManager {
               .singleWhereOrNull((share) => share.name == shareKeysWith) ??
           ShareKeysWith.all,
       convertLinebreaksInFormatting: false,
+      onSoftLogout:
+          enableSoftLogout ? (client) => client.refreshAccessToken() : null,
     );
   }
 

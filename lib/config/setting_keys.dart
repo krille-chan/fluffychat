@@ -57,7 +57,8 @@ enum AppSettings<T> {
   displayChatDetailsColumn(
     'chat.fluffy.display_chat_details_column',
     false,
-  );
+  ),
+  enableSoftLogout<bool>('chat.fluffy.enable_soft_logout', false);
 
   final String key;
   final T defaultValue;
