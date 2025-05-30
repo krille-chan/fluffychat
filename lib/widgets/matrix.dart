@@ -436,6 +436,10 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
 
     AppConfig.showPresences =
         store.getBool(SettingKeys.showPresences) ?? AppConfig.showPresences;
+
+    AppConfig.displayNavigationRail =
+        store.getBool(SettingKeys.displayNavigationRail) ??
+            AppConfig.displayNavigationRail;
   }
 
   @override
