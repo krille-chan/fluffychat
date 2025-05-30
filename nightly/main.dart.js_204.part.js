@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_204",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cz7(){return new A.Ez(B.da("ca"))},
+czd(){return new A.Ez(B.da("ca"))},
 Ez:function Ez(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -64,7 +64,7 @@ geT(){return"Vetadi"},
 hb(d,e){return d+" ha vetat a "+e},
 ghd(){return"Bloca el dispositiu"},
 gcl(){return"Blocat"},
-gbs(d){return"Cancel\xb7la"},
+gbt(d){return"Cancel\xb7la"},
 eV(d){return"No es pot obrir l\u2019URI "+d},
 geX(){return"Canvia el nom del dispositiu"},
 hh(d){return d+" ha canviat la imatge del xat"},
@@ -364,7 +364,7 @@ mB(d){return d+" est\xe0 escrivint\u2026"},
 mC(d){return"\ud83d\udeaa "+d+" ha marxat del xat"},
 jE(d,e){return d+" ha enviat un esdeveniment "+e},
 gmy(){return"No verificat"},
-gcO(){return"Verificat"},
+gcP(){return"Verificat"},
 gjH(){return"Inicia la verificaci\xf3"},
 gmI(){return"T'has verificat correctament!"},
 gmJ(){return"Verificant un altre compte"},
@@ -546,7 +546,7 @@ goJ(){return"Un dels teus dispositius no est\xe0 verificat"},
 go3(){return"Nota: quan connectes tots els dispositius al backup del xat, es verifiquen autom\xe0ticament."},
 gkN(){return"Continua"},
 gnw(d){return"Difumina:"},
-gbL(d){return"Opacitat:"},
+gbM(d){return"Opacitat:"},
 gfQ(){return"Tria imatge de fons"},
 gnY(){return"Gestiona el compte"},
 glL(){return"El servidor no ofereix cap informaci\xf3 de contacte v\xe0lida"},
@@ -639,5 +639,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Ez,C.aE)})()
 B.dO(b.typeUniverse,JSON.parse('{"Ez":{"aE":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_204",e:"endPart",h:b})})($__dart_deferred_initializers__,"HnyaL3AtalYWcN/VyM7IFonPjSw=");
+a.eventLog.push({p:"main.dart.js_204",e:"endPart",h:b})})($__dart_deferred_initializers__,"0yTChJ2PdvmksOpslDrV7LhoqPY=");
 //# sourceMappingURL=main.dart.js_204.part.js.map

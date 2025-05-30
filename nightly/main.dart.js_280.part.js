@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_280",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czC(){return new A.F3(B.da("pl"))},
+czI(){return new A.F3(B.da("pl"))},
 F3:function F3(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -65,7 +65,7 @@ geT(){return"Zbanowany/-a"},
 hb(d,e){return d+" zbanowa\u0142/-a "+e},
 ghd(){return"Zablokuj urz\u0105dzenie"},
 gcl(){return"Zablokowane"},
-gbs(d){return"Anuluj"},
+gbt(d){return"Anuluj"},
 eV(d){return"Nie mo\u017cna otworzy\u0107 linku "+d},
 geX(){return"Zmie\u0144 nazw\u0119 urz\u0105dzenia"},
 hh(d){return d+" zmieni\u0142/-a zdj\u0119cie profilowe"},
@@ -365,7 +365,7 @@ mB(d){return d+" pisze\u2026"},
 mC(d){return"\ud83d\udeaa "+d+" opu\u015bci\u0142/-a czat"},
 jE(d,e){return d+" wys\u0142a\u0142/-a zdarzenie "+e},
 gmy(){return"Niezweryfikowane"},
-gcO(){return"Zweryfikowane"},
+gcP(){return"Zweryfikowane"},
 gjH(){return"Rozpocznij weryfikacj\u0119"},
 gmI(){return"Pomy\u015blnie zweryfikowano!"},
 gmJ(){return"Weryfikowanie innego konta"},
@@ -547,7 +547,7 @@ goJ(){return"Tylko kiedy Twoje urz\u0105dzenie nie jest zweryfikowane"},
 go3(){return"Uwaga: Urz\u0105dzenia dodane do kopii zapasowej czatu automatycznie zostaj\u0105 zweryfikowane."},
 gkN(){return"Kontynuuj"},
 gnw(d){return"Rozmazanie:"},
-gbL(d){return"Przezroczysto\u015b\u0107:"},
+gbM(d){return"Przezroczysto\u015b\u0107:"},
 gfQ(){return"Ustaw tapet\u0119"},
 gnY(){return"Zarz\u0105dzaj kontem"},
 glL(){return"Serwer nie dostarcza \u017cadnych poprawnych danych kontaktowych"},
@@ -640,5 +640,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.F3,C.aE)})()
 B.dO(b.typeUniverse,JSON.parse('{"F3":{"aE":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_280",e:"endPart",h:b})})($__dart_deferred_initializers__,"lw9NhU8KgdPG3yrXcFoBEHKJ7vA=");
+a.eventLog.push({p:"main.dart.js_280",e:"endPart",h:b})})($__dart_deferred_initializers__,"M3vms/ddf+bP7ZLXZBbWVD0i3qU=");
 //# sourceMappingURL=main.dart.js_280.part.js.map

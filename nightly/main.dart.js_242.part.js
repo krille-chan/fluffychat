@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_242",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czi(){return new A.EK(B.da("fi"))},
+czo(){return new A.EK(B.da("fi"))},
 EK:function EK(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -64,7 +64,7 @@ geT(){return"Porttikiellossa"},
 hb(d,e){return d+" antoi porttikiellon k\xe4ytt\xe4j\xe4lle "+e},
 ghd(){return"Est\xe4 laite"},
 gcl(){return"Estetty"},
-gbs(d){return"Peruuta"},
+gbt(d){return"Peruuta"},
 eV(d){return"URI-osoitetta "+d+" ei voida avata"},
 geX(){return"Vaihda laitteen nime\xe4"},
 hh(d){return d+" muutti keskustelun kuvaa"},
@@ -364,7 +364,7 @@ mB(d){return d+" kirjoittaa\u2026"},
 mC(d){return"\ud83d\udeaa "+d+" poistui keskustelusta"},
 jE(d,e){return d+" l\xe4hetti "+e+"-tapahtuman"},
 gmy(){return"Varmistamaton"},
-gcO(){return"Varmistettu"},
+gcP(){return"Varmistettu"},
 gjH(){return"Aloita varmennus"},
 gmI(){return"Varmensit onnistuneesti!"},
 gmJ(){return"Varmistetaan toista tunnusta"},
@@ -546,7 +546,7 @@ goJ(){return"One of your devices is not verified"},
 go3(){return"Note: When you connect all your devices to the chat backup, they are automatically verified."},
 gkN(){return"Continue"},
 gnw(d){return"Blur:"},
-gbL(d){return"Opacity:"},
+gbM(d){return"Opacity:"},
 gfQ(){return"Set wallpaper"},
 gnY(){return"Manage account"},
 glL(){return"Server does not provide any valid contact information"},
@@ -639,5 +639,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.EK,C.aE)})()
 B.dO(b.typeUniverse,JSON.parse('{"EK":{"aE":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_242",e:"endPart",h:b})})($__dart_deferred_initializers__,"ftVpCrBQJ3mOnGP4/jUPeTfSjWc=");
+a.eventLog.push({p:"main.dart.js_242",e:"endPart",h:b})})($__dart_deferred_initializers__,"WkfmNI/oKmvYw2ti/yq5KBsvFTc=");
 //# sourceMappingURL=main.dart.js_242.part.js.map

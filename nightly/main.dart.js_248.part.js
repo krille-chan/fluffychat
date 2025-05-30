@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_248",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czm(){return new A.EO(B.da("gl"))},
+czs(){return new A.EO(B.da("gl"))},
 EO:function EO(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -64,7 +64,7 @@ geT(){return"Vetada"},
 hb(d,e){return d+" vetou a "+e},
 ghd(){return"Bloquear dispositivo"},
 gcl(){return"Bloqueado"},
-gbs(d){return"Cancelar"},
+gbt(d){return"Cancelar"},
 eV(d){return"Non se pode abrir o URI "+d},
 geX(){return"Cambiar nome do dispositivo"},
 hh(d){return d+" cambiou o avatar da conversa"},
@@ -364,7 +364,7 @@ mB(d){return d+" est\xe1 escribindo\u2026"},
 mC(d){return"\ud83d\udeaa "+d+" deixou a conversa"},
 jE(d,e){return d+" enviou un evento "+e},
 gmy(){return"Sen verificar"},
-gcO(){return"Verificado"},
+gcP(){return"Verificado"},
 gjH(){return"Comezar verificaci\xf3n"},
 gmI(){return"Verificaches correctamente!"},
 gmJ(){return"Verificando a outra conta"},
@@ -546,7 +546,7 @@ goJ(){return"Un dos teus dispositivos non est\xe1 verificado"},
 go3(){return"Nota: Cando conectas todos os teus dispositivos \xe1 copia de apoio da conversa quedan verificados automaticamente."},
 gkN(){return"Continuar"},
 gnw(d){return"N\xe9boa:"},
-gbL(d){return"Opacidade:"},
+gbM(d){return"Opacidade:"},
 gfQ(){return"Establecer fondo"},
 gnY(){return"Xestionar conta"},
 glL(){return"O servidor non proporciona informaci\xf3n de contacto v\xe1lida"},
@@ -639,5 +639,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.EO,C.aE)})()
 B.dO(b.typeUniverse,JSON.parse('{"EO":{"aE":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_248",e:"endPart",h:b})})($__dart_deferred_initializers__,"1LE6kRinIvIDK9Mm0+7vFeWDff8=");
+a.eventLog.push({p:"main.dart.js_248",e:"endPart",h:b})})($__dart_deferred_initializers__,"gmwjOeUE0zMBz+csyZvwwzViG0Y=");
 //# sourceMappingURL=main.dart.js_248.part.js.map

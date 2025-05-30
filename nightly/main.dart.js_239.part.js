@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_239",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czg(){return new A.EI(B.da("eu"))},
+czm(){return new A.EI(B.da("eu"))},
 EI:function EI(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -64,7 +64,7 @@ geT(){return"Kanporatuta"},
 hb(d,e){return d+"(e)k "+e+"(r)i debekua ezarri dio"},
 ghd(){return"Blokeatu gailua"},
 gcl(){return"Blokeatuta"},
-gbs(d){return"Utzi"},
+gbt(d){return"Utzi"},
 eV(d){return"Ezin da "+d+" URIa ireki"},
 geX(){return"Aldatu gailuaren izena"},
 hh(d){return d+"(e)k txataren abatarra aldatu du"},
@@ -364,7 +364,7 @@ mB(d){return d+" idazten ari da\u2026"},
 mC(d){return"\ud83d\udeaa "+d+"(e)k txata utzi du"},
 jE(d,e){return d+"(e)k "+e+" gertaera bat bidali du"},
 gmy(){return"Egiaztatu gabe(a)"},
-gcO(){return"Egiaztatuta"},
+gcP(){return"Egiaztatuta"},
 gjH(){return"Abiarazi egiaztaketa"},
 gmI(){return"Ondo egiaztatu duzu!"},
 gmJ(){return"Beste kontua egiaztatzen"},
@@ -546,7 +546,7 @@ goJ(){return"Zure gailuetako bat ez dago egiaztatuta"},
 go3(){return"Oharra: gailu guztiak txat-babeskopiarekin konektatzen dituzunean, automatikoki egiaztatzen dira."},
 gkN(){return"Jarraitu"},
 gnw(d){return"Lausotu:"},
-gbL(d){return"Opakutasuna:"},
+gbM(d){return"Opakutasuna:"},
 gfQ(){return"Ezarri horma-irudia"},
 gnY(){return"Kudeatu kontua"},
 glL(){return"Zerbitzariak ez du harremanetarako informaziorik zehaztu"},
@@ -640,5 +640,5 @@ x(A.EI,C.aE)})()
 B.dO(b.typeUniverse,JSON.parse('{"EI":{"aE":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_239",e:"endPart",h:b})})($__dart_deferred_initializers__,"XaJsqt4/MzA3665kLpux9PMAx2I=");
+a.eventLog.push({p:"main.dart.js_239",e:"endPart",h:b})})($__dart_deferred_initializers__,"LhiDRZEcbgqBEvx4qjxYtjhYIwE=");
 //# sourceMappingURL=main.dart.js_239.part.js.map

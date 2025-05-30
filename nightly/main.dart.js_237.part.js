@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_237",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czf(){return new A.EH(B.da("et"))},
+czl(){return new A.EH(B.da("et"))},
 EH:function EH(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -64,7 +64,7 @@ geT(){return"Ligip\xe4\xe4s vestlusele on keelatud"},
 hb(d,e){return d+" keelas ligip\xe4\xe4su kasutajale "+e},
 ghd(){return"Blokeeri seade"},
 gcl(){return"Blokeeritud"},
-gbs(d){return"Katkesta"},
+gbt(d){return"Katkesta"},
 eV(d){return d+" aadressi avamine ei \xf5nnestu"},
 geX(){return"Muuda seadme nime"},
 hh(d){return d+" muutis vestluse tunnuspilti"},
@@ -364,7 +364,7 @@ mB(d){return d+" kirjutab\u2026"},
 mC(d){return"\ud83d\udeaa"+d+" lahkus vestlusest"},
 jE(d,e){return d+" saatis "+e+" s\xfcndmuse"},
 gmy(){return"Verifitseerimata"},
-gcO(){return"Verifitseeritud"},
+gcP(){return"Verifitseeritud"},
 gjH(){return"Alusta verifitseerimist"},
 gmI(){return"Sinu verifitseerimine \xf5nnestus!"},
 gmJ(){return"Verifitseerin teist kasutajakontot"},
@@ -546,7 +546,7 @@ goJ(){return"\xdcks sinu seadmetest pole verifitseeritud"},
 go3(){return"M\xe4rkus: kui liidad k\xf5ik oma seadmed vestluste varundamisega, siis on nad sellega ka automaatselt verifitseeritud."},
 gkN(){return"J\xe4tka"},
 gnw(d){return"H\xe4gusus:"},
-gbL(d){return"L\xe4bipaistmatus:"},
+gbM(d){return"L\xe4bipaistmatus:"},
 gfQ(){return"M\xe4\xe4ra taustapildiks"},
 gnY(){return"Halda kasutajakontot"},
 glL(){return"Server ei jaga asjakohast kontaktteavet"},
@@ -639,5 +639,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.EH,C.aE)})()
 B.dO(b.typeUniverse,JSON.parse('{"EH":{"aE":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_237",e:"endPart",h:b})})($__dart_deferred_initializers__,"ZmLFKlhBsnVz2bO+jnI1jW0vMdI=");
+a.eventLog.push({p:"main.dart.js_237",e:"endPart",h:b})})($__dart_deferred_initializers__,"1EAMpFFVzjUbO8XM5DyULjA4+DE=");
 //# sourceMappingURL=main.dart.js_237.part.js.map

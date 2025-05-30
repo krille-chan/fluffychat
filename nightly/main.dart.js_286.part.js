@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_286",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czI(){return new A.F8(B.da("sk"))},
+czO(){return new A.F8(B.da("sk"))},
 F8:function F8(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -64,7 +64,7 @@ geT(){return"Zabanovan\xfd"},
 hb(d,e){return d+" zabanoval "+e},
 ghd(){return"Zak\xe1za\u0165 zariadenie"},
 gcl(){return"Blocked"},
-gbs(d){return"Zru\u0161i\u0165"},
+gbt(d){return"Zru\u0161i\u0165"},
 eV(d){return"Nemo\u017eno otvori\u0165 identifik\xe1tor prostriedku "+d},
 geX(){return"Zmeni\u0165 n\xe1zov zariadenia"},
 hh(d){return d+" si zmenili sv\xf4j avatar"},
@@ -364,7 +364,7 @@ mB(d){return d+" p\xed\u0161e\u2026"},
 mC(d){return d+" opustili chat"},
 jE(d,e){return d+" poslali udalos\u0165 "+e},
 gmy(){return"Unverified"},
-gcO(){return"Verified"},
+gcP(){return"Verified"},
 gjH(){return"Spusti\u0165 verifik\xe1ciu"},
 gmI(){return"Verifik\xe1cia bola \xfaspe\u0161n\xe1!"},
 gmJ(){return"Verifikujem proti\u013eahl\xfd \xfa\u010det"},
@@ -546,7 +546,7 @@ goJ(){return"One of your devices is not verified"},
 go3(){return"Note: When you connect all your devices to the chat backup, they are automatically verified."},
 gkN(){return"Continue"},
 gnw(d){return"Blur:"},
-gbL(d){return"Opacity:"},
+gbM(d){return"Opacity:"},
 gfQ(){return"Set wallpaper"},
 gnY(){return"Manage account"},
 glL(){return"Server does not provide any valid contact information"},
@@ -639,5 +639,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.F8,C.aE)})()
 B.dO(b.typeUniverse,JSON.parse('{"F8":{"aE":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_286",e:"endPart",h:b})})($__dart_deferred_initializers__,"HqhiV/kelcGFdVPZ39tzy9j6964=");
+a.eventLog.push({p:"main.dart.js_286",e:"endPart",h:b})})($__dart_deferred_initializers__,"kd/8ZeIxw9E1dl1hwDOKbPxsffg=");
 //# sourceMappingURL=main.dart.js_286.part.js.map

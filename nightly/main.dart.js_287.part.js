@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_287",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czJ(){return new A.F9(B.da("sl"))},
+czP(){return new A.F9(B.da("sl"))},
 F9:function F9(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -64,7 +64,7 @@ geT(){return"Prepovedano"},
 hb(d,e){return d+" je prepovedan v "+e},
 ghd(){return"Blokirana naprava"},
 gcl(){return"Blokirano"},
-gbs(d){return"Prekli\u010di"},
+gbt(d){return"Prekli\u010di"},
 eV(d){return"URI-ja "+d+" ni mogo\u010de odpreti"},
 geX(){return"Spremenite ime naprave"},
 hh(d){return d+" je spremenil avatar za klepet"},
@@ -364,7 +364,7 @@ mB(d){return d+" is typing\u2026"},
 mC(d){return"\ud83d\udeaa "+d+" left the chat"},
 jE(d,e){return d+" sent a "+e+" event"},
 gmy(){return"Unverified"},
-gcO(){return"Verified"},
+gcP(){return"Verified"},
 gjH(){return"Start Verification"},
 gmI(){return"You successfully verified!"},
 gmJ(){return"Verifying other account"},
@@ -546,7 +546,7 @@ goJ(){return"One of your devices is not verified"},
 go3(){return"Note: When you connect all your devices to the chat backup, they are automatically verified."},
 gkN(){return"Continue"},
 gnw(d){return"Blur:"},
-gbL(d){return"Opacity:"},
+gbM(d){return"Opacity:"},
 gfQ(){return"Set wallpaper"},
 gnY(){return"Manage account"},
 glL(){return"Server does not provide any valid contact information"},
@@ -639,5 +639,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.F9,C.aE)})()
 B.dO(b.typeUniverse,JSON.parse('{"F9":{"aE":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_287",e:"endPart",h:b})})($__dart_deferred_initializers__,"bEBnzfkbe8t0Vo35qSFREgeq5SY=");
+a.eventLog.push({p:"main.dart.js_287",e:"endPart",h:b})})($__dart_deferred_initializers__,"Hf2T2xjWlwYJcNEz7LAArmmnYxU=");
 //# sourceMappingURL=main.dart.js_287.part.js.map

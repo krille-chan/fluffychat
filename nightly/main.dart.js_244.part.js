@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_244",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czk(){return new A.EM(B.da("fr"))},
+czq(){return new A.EM(B.da("fr"))},
 EM:function EM(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -64,7 +64,7 @@ geT(){return"Banni"},
 hb(d,e){return d+" a banni "+e},
 ghd(){return"Bloquer l'appareil"},
 gcl(){return"Bloqu\xe9"},
-gbs(d){return"Annuler"},
+gbt(d){return"Annuler"},
 eV(d){return"Impossible d'ouvrir l'URI "+d},
 geX(){return"Modifier le nom de l'appareil"},
 hh(d){return d+" a chang\xe9 l'image de la discussion"},
@@ -364,7 +364,7 @@ mB(d){return d+" est en train d'\xe9crire\u2026"},
 mC(d){return"\ud83d\udeaa "+d+" a quitt\xe9 la discussion"},
 jE(d,e){return d+" a envoy\xe9 un \xe9v\xe8nement de type "+e},
 gmy(){return"Non v\xe9rifi\xe9"},
-gcO(){return"V\xe9rifi\xe9"},
+gcP(){return"V\xe9rifi\xe9"},
 gjH(){return"Commencer la v\xe9rification"},
 gmI(){return"La v\xe9rification a \xe9t\xe9 effectu\xe9e avec succ\xe8s !"},
 gmJ(){return"V\xe9rification de l'autre compte"},
@@ -546,7 +546,7 @@ goJ(){return"One of your devices is not verified"},
 go3(){return"Note: When you connect all your devices to the chat backup, they are automatically verified."},
 gkN(){return"Continue"},
 gnw(d){return"Blur:"},
-gbL(d){return"Opacity:"},
+gbM(d){return"Opacity:"},
 gfQ(){return"Set wallpaper"},
 gnY(){return"Manage account"},
 glL(){return"Server does not provide any valid contact information"},
@@ -639,5 +639,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.EM,C.aE)})()
 B.dO(b.typeUniverse,JSON.parse('{"EM":{"aE":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_244",e:"endPart",h:b})})($__dart_deferred_initializers__,"nJWWGrXoEsYlpPJ2wc9J0pIx4JA=");
+a.eventLog.push({p:"main.dart.js_244",e:"endPart",h:b})})($__dart_deferred_initializers__,"5Zbvk10PfmLNC++UOTWDqs1U4cU=");
 //# sourceMappingURL=main.dart.js_244.part.js.map

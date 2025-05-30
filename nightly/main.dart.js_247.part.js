@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_247",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czl(){return new A.EN(B.da("ga"))},
+czr(){return new A.EN(B.da("ga"))},
 EN:function EN(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -64,7 +64,7 @@ geT(){return"Coiscthe"},
 hb(d,e){return"Chuir "+d+" cosc ar "+e},
 ghd(){return"Bac Gl\xe9as"},
 gcl(){return"Bactha"},
-gbs(d){return"Cealaigh"},
+gbt(d){return"Cealaigh"},
 eV(d){return"N\xed f\xe9idir an URI "+d+" a oscailt"},
 geX(){return"Athraigh ainm an ghl\xe9is"},
 hh(d){return"D'athraigh "+d+" abhat\xe1r an chomhr\xe1"},
@@ -364,7 +364,7 @@ mB(d){return"T\xe1 "+d+" ag cl\xf3scr\xedobh\u2026"},
 mC(d){return"\ud83d\udeaa D'fh\xe1g "+d+" an comhr\xe1"},
 jE(d,e){return"Sheol "+d+" imeacht "+e},
 gmy(){return"Neamhfh\xedoraithe"},
-gcO(){return"Deimhnithe"},
+gcP(){return"Deimhnithe"},
 gjH(){return"Tosaigh F\xedor\xfa"},
 gmI(){return"D'fh\xedoraigh t\xfa go rath\xfail!"},
 gmJ(){return"Ag f\xedor\xfa cuntas eile"},
@@ -546,7 +546,7 @@ goJ(){return"N\xed fh\xedora\xedtear ceann de do ghl\xe9asanna"},
 go3(){return"N\xf3ta: Nuair a nascann t\xfa do ghl\xe9asanna go l\xe9ir leis an gc\xfaltaca comhr\xe1, d\xe9antar iad a fh\xedor\xfa go huathoibr\xedoch."},
 gkN(){return"Lean ar aghaidh"},
 gnw(d){return"Doil\xe9irigh:"},
-gbL(d){return"Teimhneacht:"},
+gbM(d){return"Teimhneacht:"},
 gfQ(){return"Socraigh c\xfalbhrat"},
 gnY(){return"Bainistigh cuntas"},
 glL(){return"N\xed shol\xe1thra\xedonn an freastala\xed aon fhaisn\xe9is teagmh\xe1la bhail\xed"},
@@ -640,5 +640,5 @@ x(A.EN,C.aE)})()
 B.dO(b.typeUniverse,JSON.parse('{"EN":{"aE":[]}}'))
 var y={a:"Cuir cosc ar an \xfas\xe1ideoir \xe1irithe \xf3n seomra seo"}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_247",e:"endPart",h:b})})($__dart_deferred_initializers__,"+aH66PQVXgCE12Szz13WLPjaAcM=");
+a.eventLog.push({p:"main.dart.js_247",e:"endPart",h:b})})($__dart_deferred_initializers__,"eYTIEIBWttmlOLFll3jvvlOcQrs=");
 //# sourceMappingURL=main.dart.js_247.part.js.map

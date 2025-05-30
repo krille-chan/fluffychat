@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_276",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czz(){return new A.F0(B.da("lv"))},
+czF(){return new A.F0(B.da("lv"))},
 F0:function F0(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -64,7 +64,7 @@ geT(){return"Izsl\u0113gts"},
 hb(d,e){return d+" izsl\u0113dza "+e},
 ghd(){return"Liegt ier\u012bci"},
 gcl(){return"Liegta"},
-gbs(d){return"Atcelt"},
+gbt(d){return"Atcelt"},
 eV(d){return"Nevar atv\u0113rt adresi "+d},
 geX(){return"Main\u012bt ier\u012bces nosaukumu"},
 hh(d){return d+" nomain\u012bja t\u0113rz\u0113\u0161anas att\u0113lu"},
@@ -364,7 +364,7 @@ mB(d){return d+" raksta\u2026"},
 mC(d){return"\ud83d\udeaa "+d+" pameta t\u0113rz\u0113\u0161anu"},
 jE(d,e){return d+" nos\u016bt\u012bja notikumu "+e},
 gmy(){return"Neapliecin\u0101ta"},
-gcO(){return"Apliecin\u0101ta"},
+gcP(){return"Apliecin\u0101ta"},
 gjH(){return"Uzs\u0101kt apliecin\u0101\u0161anu"},
 gmI(){return"Apliecin\u0101\u0161ana bija sekm\u012bga."},
 gmJ(){return"Apliecina citu kontu"},
@@ -546,7 +546,7 @@ goJ(){return"Viena no ier\u012bc\u0113m nav apliecin\u0101ta"},
 go3(){return"Piez\u012bme: kad visas ier\u012bces tiek savienotas ar t\u0113rz\u0113\u0161anu rezerves kopiju, t\u0101s tiek autom\u0101tiski apliecin\u0101tas."},
 gkN(){return"Turpin\u0101t"},
 gnw(d){return"Aizmiglojums:"},
-gbL(d){return"Necaurredzam\u012bba:"},
+gbM(d){return"Necaurredzam\u012bba:"},
 gfQ(){return"Iestat\u012bt ekr\u0101ntapeti"},
 gnY(){return"P\u0101rvald\u012bt kontu"},
 glL(){return"Serveris nesniedz nek\u0101du der\u012bgu sazi\u0146as inform\u0101ciju"},
@@ -639,5 +639,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.F0,C.aE)})()
 B.dO(b.typeUniverse,JSON.parse('{"F0":{"aE":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_276",e:"endPart",h:b})})($__dart_deferred_initializers__,"PF9aTUM6DF0p1cONaJk9vllQrMI=");
+a.eventLog.push({p:"main.dart.js_276",e:"endPart",h:b})})($__dart_deferred_initializers__,"jfSMAWYTrEV7zViFjYq4pWPxebY=");
 //# sourceMappingURL=main.dart.js_276.part.js.map

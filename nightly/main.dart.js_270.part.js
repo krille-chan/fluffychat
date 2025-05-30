@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_270",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czu(){return new A.EW(B.da("it"))},
+czA(){return new A.EW(B.da("it"))},
 EW:function EW(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -64,7 +64,7 @@ geT(){return"Bandito"},
 hb(d,e){return d+" ha bandito "+e},
 ghd(){return"Blocca dispositivo"},
 gcl(){return"Bloccato"},
-gbs(d){return"Annulla"},
+gbt(d){return"Annulla"},
 eV(d){return"Impossibile aprire l'URI "+d},
 geX(){return"Cambia nome dispositivo"},
 hh(d){return d+" ha cambiato l'avatar della discussione"},
@@ -364,7 +364,7 @@ mB(d){return d+" sta scrivendo\u2026"},
 mC(d){return"\ud83d\udeaa "+d+" ha abbandonato la chat"},
 jE(d,e){return d+" ha inviato un evento "+e},
 gmy(){return"Non verificato"},
-gcO(){return"Verificato"},
+gcP(){return"Verificato"},
 gjH(){return"Avvia la verifica"},
 gmI(){return"Hai verificato con successo!"},
 gmJ(){return"Verifica dell'altro account"},
@@ -546,7 +546,7 @@ goJ(){return"Uno dei tuoi dispositivi non \xe8 verificato"},
 go3(){return"Nota: quando colleghi tutti i tuoi dispositivi al backup della chat, vengono verificati automaticamente."},
 gkN(){return"Continua"},
 gnw(d){return"Sfocatura:"},
-gbL(d){return"Opacit\xe0:"},
+gbM(d){return"Opacit\xe0:"},
 gfQ(){return"Imposta sfondo"},
 gnY(){return"Gestisci account"},
 glL(){return"Il server non fornisce alcuna informazione di contatto valida"},
@@ -639,5 +639,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.EW,C.aE)})()
 B.dO(b.typeUniverse,JSON.parse('{"EW":{"aE":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_270",e:"endPart",h:b})})($__dart_deferred_initializers__,"MWv3yhGLIU9CXkiqqDuRkgiwL4k=");
+a.eventLog.push({p:"main.dart.js_270",e:"endPart",h:b})})($__dart_deferred_initializers__,"iGeL2NU2/9q/dYvnFv8qZ/9LSHo=");
 //# sourceMappingURL=main.dart.js_270.part.js.map

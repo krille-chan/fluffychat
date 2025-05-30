@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_254",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czp(){return new A.ER(B.da("hr"))},
+czv(){return new A.ER(B.da("hr"))},
 ER:function ER(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -64,7 +64,7 @@ geT(){return"Isklju\u010den"},
 hb(d,e){return d+" je isklju\u010dio/la "+e},
 ghd(){return"Blokiraj ure\u0111aj"},
 gcl(){return"Blokirano"},
-gbs(d){return"Odustani"},
+gbt(d){return"Odustani"},
 eV(d){return"URI adresa "+d+" se ne mo\u017ee otvoriti"},
 geX(){return"Promijeni ime ure\u0111aja"},
 hh(d){return d+" je promijenio/la avatar razgovora"},
@@ -364,7 +364,7 @@ mB(d){return d+" pi\u0161e \u2026"},
 mC(d){return"\ud83d\udeaa "+d+" je napustio/la razgovor"},
 jE(d,e){return d+" ja poslao/la "+e+" doga\u0111aj"},
 gmy(){return"Nepotvr\u0111eno"},
-gcO(){return"Potvr\u0111eno"},
+gcP(){return"Potvr\u0111eno"},
 gjH(){return"Pokreni potvr\u0111ivanje"},
 gmI(){return"Uspje\u0161no si potvrdio/la!"},
 gmJ(){return"Potvr\u0111ivanje drugog ra\u010duna"},
@@ -546,7 +546,7 @@ goJ(){return"One of your devices is not verified"},
 go3(){return"Note: When you connect all your devices to the chat backup, they are automatically verified."},
 gkN(){return"Continue"},
 gnw(d){return"Blur:"},
-gbL(d){return"Opacity:"},
+gbM(d){return"Opacity:"},
 gfQ(){return"Set wallpaper"},
 gnY(){return"Manage account"},
 glL(){return"Server does not provide any valid contact information"},
@@ -639,5 +639,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.ER,C.aE)})()
 B.dO(b.typeUniverse,JSON.parse('{"ER":{"aE":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_254",e:"endPart",h:b})})($__dart_deferred_initializers__,"UATf4i+PJcBP/TwfuqBLvLGWATI=");
+a.eventLog.push({p:"main.dart.js_254",e:"endPart",h:b})})($__dart_deferred_initializers__,"0oy+ug7q213CE6RD2F6EOAv5hqI=");
 //# sourceMappingURL=main.dart.js_254.part.js.map

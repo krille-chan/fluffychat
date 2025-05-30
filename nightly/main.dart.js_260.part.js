@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_260",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czq(){return new A.ES(B.da("hu"))},
+czw(){return new A.ES(B.da("hu"))},
 ES:function ES(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -64,7 +64,7 @@ geT(){return"Kitiltva"},
 hb(d,e){return d+" kitiltva "+e+" \xe1ltal"},
 ghd(){return"Eszk\xf6z blokkol\xe1sa"},
 gcl(){return"Blokkolva"},
-gbs(d){return"M\xe9gse"},
+gbt(d){return"M\xe9gse"},
 eV(d){return"Nem siker\xfclt a k\xf6vetkez\u0151 URI megnyit\xe1sa: "+d},
 geX(){return"Eszk\xf6zn\xe9v m\xf3dos\xedt\xe1sa"},
 hh(d){return d+" m\xf3dos\xedtotta a cseveg\xe9si profilk\xe9p\xe9t"},
@@ -364,7 +364,7 @@ mB(d){return d+" g\xe9pel\u2026"},
 mC(d){return"\ud83d\udeaa "+d+" elhagyta a cseveg\xe9st"},
 jE(d,e){return d+" "+e+" esem\xe9nyt k\xfcld\xf6tt"},
 gmy(){return"Nem visszaigazolt"},
-gcO(){return"Visszaigazolt"},
+gcP(){return"Visszaigazolt"},
 gjH(){return"Hiteles\xedt\xe9s megkezd\xe9se"},
 gmI(){return"Sikeres hiteles\xedt\xe9s!"},
 gmJ(){return"M\xe1sik fi\xf3k hiteles\xedt\xe9se"},
@@ -546,7 +546,7 @@ goJ(){return"One of your devices is not verified"},
 go3(){return"Note: When you connect all your devices to the chat backup, they are automatically verified."},
 gkN(){return"Continue"},
 gnw(d){return"Blur:"},
-gbL(d){return"Opacity:"},
+gbM(d){return"Opacity:"},
 gfQ(){return"Set wallpaper"},
 gnY(){return"Manage account"},
 glL(){return"Server does not provide any valid contact information"},
@@ -639,5 +639,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.ES,C.aE)})()
 B.dO(b.typeUniverse,JSON.parse('{"ES":{"aE":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_260",e:"endPart",h:b})})($__dart_deferred_initializers__,"Tv8nvHuE5ZPP5tqdn3Zy4kPY8rY=");
+a.eventLog.push({p:"main.dart.js_260",e:"endPart",h:b})})($__dart_deferred_initializers__,"RBYZAdYW4wY05AcZ5B2fwl1i/eM=");
 //# sourceMappingURL=main.dart.js_260.part.js.map
