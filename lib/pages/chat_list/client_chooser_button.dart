@@ -162,7 +162,6 @@ class ClientChooserButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(99),
         color: Colors.transparent,
         child: PopupMenuButton<Object>(
-          useRootNavigator: true,
           popUpAnimationStyle: FluffyThemes.isColumnMode(context)
               ? AnimationStyle.noAnimation
               : null, // https://github.com/flutter/flutter/issues/167180
