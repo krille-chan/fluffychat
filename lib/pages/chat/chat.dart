@@ -1192,6 +1192,7 @@ class ChatController extends State<ChatPageWithRoom>
       } else {
         sendController.text += '\n- [ ] ';
       }
+      onInputBarChanged(sendController.text);
       inputFocus.requestFocus();
     }
   }
