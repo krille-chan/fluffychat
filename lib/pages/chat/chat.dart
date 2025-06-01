@@ -631,6 +631,8 @@ class ChatController extends State<ChatPageWithRoom>
   }
 
   void voiceMessageAction() async {
+    room.client.getConfig(); // Preload server file configuration.
+
     final scaffoldMessenger = ScaffoldMessenger.of(context);
     if (PlatformInfos.isAndroid) {
       final info = await DeviceInfoPlugin().androidInfo;
@@ -1168,6 +1170,8 @@ class ChatController extends State<ChatPageWithRoom>
   }
 
   void onAddPopupMenuButtonSelected(String choice) {
+    room.client.getConfig(); // Preload server file configuration.
+
     if (choice == 'file') {
       sendFileAction();
     }
