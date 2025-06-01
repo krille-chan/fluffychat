@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_202",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cz6(){return new A.Ex(B.da("bo"))},
-Ex:function Ex(d){this.a=d}}
+cz5(){return new A.Ew(B.da("bn"))},
+Ew:function Ew(d){this.a=d}}
 B=c[0]
 C=c[54]
-A=a.updateHolder(c[8],A)
-A.Ex.prototype={
+A=a.updateHolder(c[7],A)
+A.Ew.prototype={
 gkt(){return"false"},
 gju(){return"Repeat password"},
 glQ(){return"Not an image file."},
@@ -21,11 +21,11 @@ gln(){return"Import Emojis"},
 glo(){return"Import from .zip file"},
 gl5(){return"Export Emote pack as .zip"},
 gmd(d){return"Replace"},
-geo(){return"About"},
+geo(){return"\u09b8\u09ae\u09cd\u09aa\u09b0\u09cd\u0995\u09c7"},
 ko(d){return"About "+d},
-geN(d){return"Accept"},
-fW(d){return"\ud83d\udc4d "+d+" accepted the invitation"},
-gfY(){return"Account"},
+geN(d){return"\u09b8\u09cd\u09ac\u09c0\u0995\u09be\u09b0 \u0995\u09b0\u09bf"},
+fW(d){return d+" \u0986\u09ae\u09a8\u09cd\u09a4\u09cd\u09b0\u09a3 \u0997\u09cd\u09b0\u09b9\u09a3 \u0995\u09b0\u09c7\u099b\u09c7"},
+gfY(){return"\u0985\u09cd\u09af\u09be\u0995\u09be\u0989\u09a8\u09cd\u099f"},
 fZ(d){return"\ud83d\udd10 "+d+" activated end to end encryption"},
 gh_(){return"Add email"},
 gkM(){return"Please confirm your Matrix ID in order to delete your account."},
@@ -619,7 +619,7 @@ gom(){return"Notifies the user about Jitsi widget events."},
 goB(){return"Suppress Server ACL Events"},
 goC(){return"Suppresses notifications for Server ACL events."},
 oQ(d){return"Unknown push rule '"+d+"'"},
-p_(d,e){return"\ud83c\udf99\ufe0f "+e+" - "+d},
+p_(d,e){return"\ud83c\udf99\ufe0f "+e+" - Voice message from "+d},
 gkY(){return"If you delete this notification setting, this can not be undone."},
 glG(){return"More"},
 gkc(){return"Share keys with..."},
@@ -636,8 +636,8 @@ goZ(){return"You have knocked"},
 goN(){return"Please wait now, until someone from the room invites you."},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Ex,C.aE)})()
-B.dM(b.typeUniverse,JSON.parse('{"Ex":{"aE":[]}}'))};
+y(A.Ew,C.aE)})()
+B.dM(b.typeUniverse,JSON.parse('{"Ew":{"aE":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_202",e:"endPart",h:b})})($__dart_deferred_initializers__,"SDzdBIBily01KaLJgwp9SX+Rl1o=");
+a.eventLog.push({p:"main.dart.js_202",e:"endPart",h:b})})($__dart_deferred_initializers__,"6V6aIW0sjd99E1iUvt8EVguRvw0=");
 //# sourceMappingURL=main.dart.js_202.part.js.map

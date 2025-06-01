@@ -623,7 +623,7 @@ gom(){return"Notifies the user about Jitsi widget events."},
 goB(){return"Suppress Server ACL Events"},
 goC(){return"Suppresses notifications for Server ACL events."},
 oQ(d){return"Unknown push rule '"+d+"'"},
-p_(d,e){return"\ud83c\udf99\ufe0f "+e+" - "+d},
+p_(d,e){return"\ud83c\udf99\ufe0f "+e+" - Voice message from "+d},
 gkY(){return"If you delete this notification setting, this can not be undone."},
 glG(){return"More"},
 gkc(){return"Share keys with..."},
@@ -1392,5 +1392,5 @@ w(A.zX,[A.F3,A.F4])})()
 B.dM(b.typeUniverse,JSON.parse('{"zX":{"aE":[]},"F3":{"aE":[]},"F4":{"aE":[]}}'))
 var y={d:" alterou a visibilidade do hist\xf3rico para: "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_16",e:"endPart",h:b})})($__dart_deferred_initializers__,"5nXRQe9Dt4Y9gY0Y+qUY3lq1re4=");
+a.eventLog.push({p:"main.dart.js_16",e:"endPart",h:b})})($__dart_deferred_initializers__,"WXvPQM/A/87t1e+vU1GtiWK8z/A=");
 //# sourceMappingURL=main.dart.js_16.part.js.map
