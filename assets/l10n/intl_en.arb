@@ -4962,5 +4962,18 @@
   "access": "Access",
   "addSubspace": "Add subspace",
   "botSettings": "Bot settings",
-  "activitySuggestionTimeoutMessage": "We are working hard to generate activties for you, please check back in a minute"
+  "activitySuggestionTimeoutMessage": "We are working hard to generate activties for you, please check back in a minute",
+  "accessSettingsWarning": "Oops! It looks like you don't have permission to set the Access rules of this room. You should check these to make sure they're what you need and talk to a room admin if you need to change them",
+  "howSpaceCanBeFound": "How this space can be found",
+  "private": "Private",
+  "cannotBeFoundInSearch": "Cannot be found in search",
+  "public": "Public",
+  "visibleToCommunity": "Visible to the broader Pangea Chat community via \"Find your people\"",
+  "howSpaceCanBeJoined": "How this space can be joined",
+  "restricted": "Restricted",
+  "canBeFoundVia": "Can be found via:",
+  "canBeFoundViaInvitation": "\u2022 invitation",
+  "canBeFoundViaCodeOrLink": "\u2022 code or link",
+  "canBeFoundViaKnock": "\u2022 request to join and admin approval",
+  "anyoneCanJoin": "Anyone can join! However, admin can kick and ban whoever misbehaves. Those who are banned may not return!"
 }

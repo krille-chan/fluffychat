@@ -122,10 +122,18 @@ extension SpacesClientExtension on Client {
             type: EventTypes.RoomAvatar,
             content: {'url': introChatUploadURL.toString()},
           ),
+        RoomDefaults.defaultPowerLevels(userID!),
         StateEvent(
-          type: EventTypes.RoomPowerLevels,
-          stateKey: '',
-          content: defaultPowerLevels(userID!),
+          type: EventTypes.RoomJoinRules,
+          content: {
+            'join_rule': 'knock_restricted',
+            'allow': [
+              {
+                "type": "m.room_membership",
+                "room_id": space.id,
+              }
+            ],
+          },
         ),
       ],
     );
@@ -142,10 +150,18 @@ extension SpacesClientExtension on Client {
             type: EventTypes.RoomAvatar,
             content: {'url': announcementsChatUploadURL.toString()},
           ),
+        RoomDefaults.restrictedPowerLevels(userID!),
         StateEvent(
-          type: EventTypes.RoomPowerLevels,
-          stateKey: '',
-          content: restrictedPowerLevels(userID!),
+          type: EventTypes.RoomJoinRules,
+          content: {
+            'join_rule': 'knock_restricted',
+            'allow': [
+              {
+                "type": "m.room_membership",
+                "room_id": space.id,
+              }
+            ],
+          },
         ),
       ],
     );
@@ -166,11 +182,11 @@ extension SpacesClientExtension on Client {
       }
     }
 
-    final addIntroChatFuture = space.pangeaSetSpaceChild(
+    final addIntroChatFuture = space.addToSpace(
       roomIds[0],
     );
 
-    final addAnnouncementsChatFuture = space.pangeaSetSpaceChild(
+    final addAnnouncementsChatFuture = space.addToSpace(
       roomIds[1],
     );
 
@@ -186,11 +202,7 @@ extension SpacesClientExtension on Client {
     required JoinRules joinRules,
   }) {
     return [
-      StateEvent(
-        type: EventTypes.RoomPowerLevels,
-        stateKey: '',
-        content: defaultSpacePowerLevels(userID),
-      ),
+      RoomDefaults.defaultSpacePowerLevels(userID),
       StateEvent(
         type: EventTypes.RoomJoinRules,
         content: {
@@ -199,5 +211,70 @@ extension SpacesClientExtension on Client {
         },
       ),
     ];
+  }
+
+  /// Keep the room's current join rule state event content (except for what's intentionally replaced)
+  /// since space's access codes were stored there. Don't want to accidentally remove them.
+  Future<void> pangeaSetJoinRules(
+    String roomId,
+    String joinRule, {
+    List<Map<String, dynamic>>? allow,
+  }) async {
+    final room = getRoomById(roomId);
+    if (room == null) {
+      throw Exception('Room not found for user ID: $userID');
+    }
+
+    final currentJoinRule = room
+            .getState(
+              EventTypes.RoomJoinRules,
+            )
+            ?.content ??
+        {};
+
+    if (currentJoinRule[ModelKey.joinRule] == joinRule &&
+        (currentJoinRule['allow'] == allow)) {
+      return; // No change needed
+    }
+
+    currentJoinRule[ModelKey.joinRule] = joinRule;
+    currentJoinRule['allow'] = allow;
+
+    await setRoomStateWithKey(
+      roomId,
+      EventTypes.RoomJoinRules,
+      '',
+      currentJoinRule,
+    );
+  }
+
+  Future<void> setSpaceChildAccess(String roomId) async {
+    await pangeaSetJoinRules(
+      roomId,
+      'knock_restricted',
+      allow: [
+        {
+          "type": "m.room_membership",
+          "room_id": id,
+        }
+      ],
+    );
+
+    await setRoomVisibilityOnDirectory(
+      roomId,
+      visibility: Visibility.private,
+    );
+  }
+
+  Future<void> resetSpaceChildAccess(String roomId) async {
+    await pangeaSetJoinRules(
+      roomId,
+      JoinRules.knock.toString().replaceAll('JoinRules.', ''),
+    );
+
+    await setRoomVisibilityOnDirectory(
+      roomId,
+      visibility: Visibility.private,
+    );
   }
 }

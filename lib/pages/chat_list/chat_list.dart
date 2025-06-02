@@ -24,6 +24,7 @@ import 'package:fluffychat/pangea/chat_settings/widgets/delete_space_dialog.dart
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/common/utils/firebase_analytics.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/spaces/utils/client_spaces_extension.dart';
 import 'package:fluffychat/pangea/subscription/widgets/subscription_snackbar.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
@@ -83,7 +84,6 @@ class ChatList extends StatefulWidget {
   final String? activeChat;
   // #Pangea
   final String? activeSpaceId;
-  final String? activeFilter;
   // Pangea#
   final bool displayNavigationRail;
 
@@ -92,7 +92,6 @@ class ChatList extends StatefulWidget {
     required this.activeChat,
     // #Pangea
     this.activeSpaceId,
-    this.activeFilter,
     // Pangea#
     this.displayNavigationRail = false,
   });
@@ -535,7 +534,7 @@ class ChatListController extends State<ChatList>
           // #Pangea
           final String? justInputtedCode =
               MatrixState.pangeaController.classController.justInputtedCode();
-          final newSpaceCode = space?.classCode(context);
+          final newSpaceCode = space?.classCode;
           if (newSpaceCode?.toLowerCase() == justInputtedCode?.toLowerCase()) {
             return;
           }
@@ -625,12 +624,6 @@ class ChatListController extends State<ChatList>
 
     _activeSpaceId =
         widget.activeSpaceId == 'clear' ? null : widget.activeSpaceId;
-
-    if (widget.activeFilter == 'groups') {
-      activeFilter = AppConfig.separateChatTypes
-          ? ActiveFilter.groups
-          : ActiveFilter.allChats;
-    }
     // Pangea#
 
     super.initState();
@@ -640,15 +633,6 @@ class ChatListController extends State<ChatList>
   @override
   void didUpdateWidget(ChatList oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.activeFilter != oldWidget.activeFilter &&
-        widget.activeFilter == 'groups') {
-      setActiveFilter(
-        AppConfig.separateChatTypes
-            ? ActiveFilter.groups
-            : ActiveFilter.allChats,
-      );
-    }
-
     if (widget.activeSpaceId != oldWidget.activeSpaceId &&
         widget.activeSpaceId != null) {
       widget.activeSpaceId == 'clear'
@@ -822,12 +806,11 @@ class ChatListController extends State<ChatList>
               ],
             ),
           ),
-          if (spacesWithPowerLevels.isNotEmpty
-                  // #Pangea
-                  &&
-                  !room.isSpace
-              // Pangea#
-              )
+          // #Pangea
+          // if (spacesWithPowerLevels.isNotEmpty)
+          if (spacesWithPowerLevels.isNotEmpty &&
+              room.canChangeStateEvent(EventTypes.SpaceParent))
+            // Pangea#
             PopupMenuItem(
               value: ChatContextAction.addToSpace,
               child: Row(
@@ -846,8 +829,11 @@ class ChatListController extends State<ChatList>
           // if the room has a parent for which the user has a high enough power level
           // to set parent's space child events, show option to remove the room from the space
           if (room.spaceParents.isNotEmpty &&
+              room.canChangeStateEvent(EventTypes.SpaceParent) &&
               room.pangeaSpaceParents.any(
-                (r) => r.canChangeStateEvent(EventTypes.SpaceChild),
+                (r) =>
+                    r.canChangeStateEvent(EventTypes.SpaceChild) &&
+                    r.id == activeSpaceId,
               ) &&
               activeSpaceId != null)
             PopupMenuItem(
@@ -1022,21 +1008,40 @@ class ChatListController extends State<ChatList>
           context: context,
           // #Pangea
           // future: () => space.setSpaceChild(room.id),
-          future: () => space.pangeaSetSpaceChild(room.id),
+          future: () => space.addToSpace(room.id),
           // Pangea#
         );
         // #Pangea
+        try {
+          await space.client.setSpaceChildAccess(room.id);
+        } catch (e) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(L10n.of(context).accessSettingsWarning),
+              duration: const Duration(seconds: 10),
+            ),
+          );
+        }
         return;
       case ChatContextAction.removeFromSpace:
         await showFutureLoadingDialog(
           context: context,
           future: () async {
-            final futures = room.pangeaSpaceParents
-                .where((r) => r.canChangeStateEvent(EventTypes.SpaceChild))
-                .map((space) => removeSpaceChild(space, room.id));
-            await Future.wait(futures);
+            final activeSpace = room.client.getRoomById(activeSpaceId!);
+            if (activeSpace == null) return;
+            await activeSpace.removeSpaceChild(room.id);
           },
         );
+        try {
+          await room.client.resetSpaceChildAccess(room.id);
+        } catch (e) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(L10n.of(context).accessSettingsWarning),
+              duration: const Duration(seconds: 10),
+            ),
+          );
+        }
         return;
       case ChatContextAction.delete:
         if (room.isSpace) {
@@ -1076,22 +1081,6 @@ class ChatListController extends State<ChatList>
         context.go('/rooms/settings/security/ignorelist', extra: userId);
     }
   }
-
-  // #Pangea
-  /// Remove a room from a space. Often, the user will have permission to set
-  /// the SpaceChild event for the parent space, but not the SpaceParent event.
-  /// This would cause a permissions error, but the child will still be removed
-  /// via the SpaceChild event. If that's the case, silence the error.
-  Future<void> removeSpaceChild(Room space, String roomId) async {
-    try {
-      await space.removeSpaceChild(roomId);
-    } catch (err) {
-      if ((err as MatrixException).error != MatrixError.M_FORBIDDEN) {
-        rethrow;
-      }
-    }
-  }
-  // Pangea#
 
   void dismissStatusList() async {
     final result = await showOkCancelAlertDialog(

@@ -22,7 +22,7 @@ Future<Result<T>> showFutureLoadingDialog<T>({
   ExceptionContext? exceptionContext,
   bool ignoreError = false,
   // #Pangea
-  String? Function(Object, StackTrace?)? onError,
+  Object? Function(Object, StackTrace?)? onError,
   String? Function()? onSuccess,
   VoidCallback? onDismiss,
   // Pangea#
@@ -82,7 +82,7 @@ class LoadingDialog<T> extends StatefulWidget {
   final Future<T> future;
   final ExceptionContext? exceptionContext;
   // #Pangea
-  final String? Function(Object, StackTrace?)? onError;
+  final Object? Function(Object, StackTrace?)? onError;
   final String? Function()? onSuccess;
   final VoidCallback? onDismiss;
   // Pangea#

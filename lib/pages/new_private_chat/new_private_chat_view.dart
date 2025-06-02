@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 import 'package:pretty_qr_code/pretty_qr_code.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/new_private_chat/new_private_chat.dart';
+import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -33,13 +32,15 @@ class NewPrivateChatView extends StatelessWidget {
         leading: const Center(child: BackButton()),
         title: Text(L10n.of(context).newChat),
         backgroundColor: theme.scaffoldBackgroundColor,
-        actions: [
-          TextButton(
-            onPressed:
-                UrlLauncher(context, AppConfig.startChatTutorial).launchUrl,
-            child: Text(L10n.of(context).help),
-          ),
-        ],
+        // #Pangea
+        // actions: [
+        //   TextButton(
+        //     onPressed:
+        //         UrlLauncher(context, AppConfig.startChatTutorial).launchUrl,
+        //     child: Text(L10n.of(context).help),
+        //   ),
+        // ],
+        // Pangea#
       ),
       body: MaxWidthBody(
         withScrolling: false,
@@ -138,15 +139,17 @@ class NewPrivateChatView extends StatelessWidget {
                       title: Text(L10n.of(context).shareInviteLink),
                       onTap: controller.inviteAction,
                     ),
-                    ListTile(
-                      leading: CircleAvatar(
-                        backgroundColor: theme.colorScheme.tertiaryContainer,
-                        foregroundColor: theme.colorScheme.onTertiaryContainer,
-                        child: const Icon(Icons.group_add_outlined),
-                      ),
-                      title: Text(L10n.of(context).createGroup),
-                      onTap: () => context.go('/rooms/newgroup'),
-                    ),
+                    // #Pangea
+                    // ListTile(
+                    //   leading: CircleAvatar(
+                    //     backgroundColor: theme.colorScheme.tertiaryContainer,
+                    //     foregroundColor: theme.colorScheme.onTertiaryContainer,
+                    //     child: const Icon(Icons.group_add_outlined),
+                    //   ),
+                    //   title: Text(L10n.of(context).createGroup),
+                    //   onTap: () => context.go('/rooms/newgroup'),
+                    // ),
+                    // Pangea#
                     if (PlatformInfos.isMobile)
                       ListTile(
                         leading: CircleAvatar(
@@ -181,7 +184,10 @@ class NewPrivateChatView extends StatelessWidget {
                                 constraints:
                                     const BoxConstraints(maxWidth: 256),
                                 child: PrettyQrView.data(
-                                  data: 'https://matrix.to/#/$userId',
+                                  // #Pangea
+                                  // data: 'https://matrix.to/#/$userId',
+                                  data: Environment.frontendURL,
+                                  // Pangea#
                                   decoration: PrettyQrDecoration(
                                     shape: PrettyQrSmoothSymbol(
                                       roundFactor: 1,

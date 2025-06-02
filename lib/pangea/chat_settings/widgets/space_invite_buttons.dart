@@ -50,7 +50,7 @@ class SpaceInviteButtonsController extends State<SpaceInviteButtons> {
 
   @override
   Widget build(BuildContext context) {
-    final spaceCode = widget.room.classCode(context);
+    final spaceCode = widget.room.classCode;
     if (!widget.room.isSpace || spaceCode == null) {
       return const SizedBox.shrink();
     }

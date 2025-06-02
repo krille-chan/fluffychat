@@ -10,7 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
 import 'package:html_unescape/html_unescape.dart';
 import 'package:http/http.dart' as http;
-import 'package:matrix/matrix.dart' as matrix;
 import 'package:matrix/matrix.dart';
 import 'package:matrix/src/utils/markdown.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';

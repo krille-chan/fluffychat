@@ -6,18 +6,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:matrix/matrix.dart' as sdk;
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pages/settings/settings.dart';
+import 'package:fluffychat/pangea/chat/constants/default_power_level.dart';
 import 'package:fluffychat/pangea/chat_settings/models/bot_options_model.dart';
 import 'package:fluffychat/pangea/chat_settings/pages/pangea_chat_details.dart';
 import 'package:fluffychat/pangea/chat_settings/utils/download_chat.dart';
 import 'package:fluffychat/pangea/chat_settings/utils/download_file.dart';
+import 'package:fluffychat/pangea/common/constants/model_keys.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/spaces/utils/set_class_name.dart';
+import 'package:fluffychat/pangea/spaces/utils/space_code.dart';
 import 'package:fluffychat/utils/file_selector.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_modal_action_popup.dart';
@@ -209,70 +211,6 @@ class ChatDetailsController extends State<ChatDetails> {
   // Pangea#
 
   // #Pangea
-  bool showEditNameIcon = false;
-  void hoverEditNameIcon(bool hovering) =>
-      setState(() => showEditNameIcon = !showEditNameIcon);
-
-  Future<void> setJoinRules(JoinRules joinRules) async {
-    if (roomId == null) return;
-    final room = Matrix.of(context).client.getRoomById(roomId!);
-    if (room == null) return;
-
-    final content = room.getState(EventTypes.RoomJoinRules)?.content ?? {};
-    content['join_rule'] = joinRules.toString().replaceAll('JoinRules.', '');
-    await showFutureLoadingDialog(
-      context: context,
-      future: () async {
-        await room.client.setRoomStateWithKey(
-          roomId!,
-          EventTypes.RoomJoinRules,
-          '',
-          content,
-        );
-      },
-    );
-  }
-
-  Future<void> setVisibility(sdk.Visibility visibility) async {
-    if (roomId == null) return;
-    final room = Matrix.of(context).client.getRoomById(roomId!);
-    if (room == null) return;
-
-    await showFutureLoadingDialog(
-      context: context,
-      future: () async {
-        await room.client.setRoomVisibilityOnDirectory(
-          room.id,
-          visibility: visibility,
-        );
-      },
-    );
-    setState(() {});
-  }
-
-  Future<void> toggleMute() async {
-    final client = Matrix.of(context).client;
-    final Room? room = client.getRoomById(roomId!);
-    if (room == null) return;
-    await showFutureLoadingDialog(
-      context: context,
-      future: () async {
-        await (room.pushRuleState == PushRuleState.notify
-            ? room.setPushRuleState(PushRuleState.mentionsOnly)
-            : room.setPushRuleState(PushRuleState.notify));
-      },
-    );
-
-    // wait for push rule update in sync
-    await client.onSync.stream.firstWhere(
-      (sync) =>
-          sync.accountData != null &&
-          sync.accountData!.isNotEmpty &&
-          sync.accountData!.any((e) => e.type == 'm.push_rules'),
-    );
-    if (mounted) setState(() {});
-  }
-
   void downloadChatAction() async {
     if (roomId == null) return;
     final Room? room = Matrix.of(context).client.getRoomById(roomId!);
@@ -389,22 +327,37 @@ class ChatDetailsController extends State<ChatDetails> {
     );
     if (names == null) return;
     final client = Matrix.of(context).client;
-    final result = await showFutureLoadingDialog(
+    await showFutureLoadingDialog(
       context: context,
       future: () async {
         final activeSpace = client.getRoomById(roomId!)!;
         await activeSpace.postLoad();
+        final accessCode = await SpaceCodeUtil.generateSpaceCode(client);
 
-        final resp = await client.createSpace(
+        final resp = await client.createRoom(
           name: names,
-          visibility: activeSpace.joinRules == JoinRules.public
-              ? sdk.Visibility.public
-              : sdk.Visibility.private,
+          visibility: RoomDefaults.spaceChildVisibility,
+          creationContent: {'type': 'm.space'},
+          initialState: [
+            RoomDefaults.defaultSpacePowerLevels(client.userID!),
+            StateEvent(
+              type: EventTypes.RoomJoinRules,
+              content: {
+                'join_rule': 'knock_restricted',
+                'allow': [
+                  {
+                    "type": "m.room_membership",
+                    "room_id": roomId!,
+                  }
+                ],
+                ModelKey.accessCode: accessCode,
+              },
+            ),
+          ],
         );
-        await activeSpace.pangeaSetSpaceChild(resp);
+        await activeSpace.addToSpace(resp);
       },
     );
-    if (result.error != null) return;
   }
   // Pangea#
 }

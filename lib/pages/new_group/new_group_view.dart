@@ -65,27 +65,26 @@ class NewGroupView extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: SegmentedButton<CreateGroupType>(
-                selected: {controller.createGroupType},
-                onSelectionChanged: controller.setCreateGroupType,
-                segments: [
-                  ButtonSegment(
-                    value: CreateGroupType.group,
-                    // #Pangea
-                    // label: Text(L10n.of(context).group),
-                    label: Text(L10n.of(context).chat),
-                    // Pangea#
-                  ),
-                  ButtonSegment(
-                    value: CreateGroupType.space,
-                    label: Text(L10n.of(context).space),
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 16),
+            // #Pangea
+            // Padding(
+            //   padding: const EdgeInsets.all(16.0),
+            //   child: SegmentedButton<CreateGroupType>(
+            //     selected: {controller.createGroupType},
+            //     onSelectionChanged: controller.setCreateGroupType,
+            //     segments: [
+            //       ButtonSegment(
+            //         value: CreateGroupType.group,
+            //         label: Text(L10n.of(context).group),
+            //       ),
+            //       ButtonSegment(
+            //         value: CreateGroupType.space,
+            //         label: Text(L10n.of(context).space),
+            //       ),
+            //     ],
+            //   ),
+            // ),
+            // const SizedBox(height: 16),
+            // Pangea#
             InkWell(
               borderRadius: BorderRadius.circular(90),
               onTap: controller.loading ? null : controller.selectPhoto,

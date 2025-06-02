@@ -269,12 +269,8 @@ class PangeaController {
             preset: CreateRoomPreset.trustedPrivateChat,
             initialState: [
               BotOptionsModel(mode: BotMode.directChat).toStateEvent,
-              StateEvent(
-                type: EventTypes.RoomPowerLevels,
-                stateKey: '',
-                content: defaultPowerLevels(
-                  matrixState.client.userID!,
-                ),
+              RoomDefaults.defaultPowerLevels(
+                matrixState.client.userID!,
               ),
             ],
           );

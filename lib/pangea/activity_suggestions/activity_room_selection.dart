@@ -179,12 +179,8 @@ class ActivityRoomSelectionState extends State<ActivityRoomSelection> {
             preset: CreateRoomPreset.trustedPrivateChat,
             initialState: [
               BotOptionsModel(mode: BotMode.directChat).toStateEvent,
-              StateEvent(
-                type: EventTypes.RoomPowerLevels,
-                stateKey: '',
-                content: defaultPowerLevels(
-                  Matrix.of(context).client.userID!,
-                ),
+              RoomDefaults.defaultPowerLevels(
+                Matrix.of(context).client.userID!,
               ),
               if (avatar != null && avatarUrl != null)
                 StateEvent(

@@ -202,7 +202,6 @@ abstract class AppRoutes {
                   activeChat: state.pathParameters['roomid'],
                   // #Pangea
                   activeSpaceId: state.uri.queryParameters['spaceId'],
-                  activeFilter: state.uri.queryParameters['filter'],
                   // Pangea#
                   displayNavigationRail:
                       state.path?.startsWith('/rooms/settings') != true,
@@ -245,7 +244,6 @@ abstract class AppRoutes {
                     activeChat: state.pathParameters['roomid'],
                     // #Pangea
                     activeSpaceId: state.uri.queryParameters['spaceId'],
-                    activeFilter: state.uri.queryParameters['filter'],
                     // Pangea#
                   ),
           ),
@@ -287,22 +285,12 @@ abstract class AppRoutes {
               pageBuilder: (context, state) => defaultPageBuilder(
                 context,
                 state,
-                const NewGroup(),
+                // #Pangea
+                // const NewGroup(),
+                NewGroup(spaceId: state.uri.queryParameters['space']),
+                // Pangea#
               ),
               redirect: loggedOutRedirect,
-              // #Pangea
-              routes: [
-                GoRoute(
-                  path: ':spaceid',
-                  pageBuilder: (context, state) => defaultPageBuilder(
-                    context,
-                    state,
-                    NewGroup(spaceId: state.pathParameters['spaceid']!),
-                  ),
-                  redirect: loggedOutRedirect,
-                ),
-              ],
-              // Pangea#
             ),
             GoRoute(
               path: 'newspace',
@@ -775,7 +763,6 @@ abstract class AppRoutes {
                 mainView: ChatList(
                   activeChat: state.pathParameters['roomid'],
                   activeSpaceId: state.uri.queryParameters['spaceId'],
-                  activeFilter: state.uri.queryParameters['filter'],
                   displayNavigationRail:
                       state.path?.startsWith('/rooms/settings') != true,
                 ),

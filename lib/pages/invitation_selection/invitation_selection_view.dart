@@ -54,17 +54,17 @@ class InvitationSelectionView extends StatelessWidget {
         title: Text(L10n.of(context).inviteContact),
         // #Pangea
         actions: [
-          if (room.isSpace && room.classCode(context) != null)
+          if (room.isSpace && room.classCode != null)
             PopupMenuButton<int>(
               icon: const Icon(Icons.share_outlined),
               onSelected: (value) async {
-                final spaceCode = room.classCode(context)!;
+                final spaceCode = room.classCode!;
                 String toCopy = spaceCode;
                 if (value == 0) {
                   final String initialUrl =
                       kIsWeb ? html.window.origin! : Environment.frontendURL;
                   toCopy =
-                      "$initialUrl/#/join_with_link?${SpaceConstants.classCode}=${room.classCode(context)}";
+                      "$initialUrl/#/join_with_link?${SpaceConstants.classCode}=${room.classCode}";
                 }
 
                 await Clipboard.setData(ClipboardData(text: toCopy));
@@ -92,8 +92,7 @@ class InvitationSelectionView extends StatelessWidget {
                   child: ListTile(
                     leading: const Icon(Icons.share_outlined),
                     title: Text(
-                      L10n.of(context)
-                          .shareInviteCode(room.classCode(context)!),
+                      L10n.of(context).shareInviteCode(room.classCode!),
                     ),
                     contentPadding: const EdgeInsets.all(0),
                   ),

@@ -330,7 +330,7 @@ class RoomDetailsButtonRowState extends State<RoomDetailsButtonRow> {
         title: l10n.access,
         icon: const Icon(Icons.shield_outlined),
         onPressed: () => context.go('/rooms/${room.id}/details/access'),
-        visible: room.isSpace,
+        visible: room.isSpace && room.spaceParents.isEmpty,
         enabled: room.isSpace && room.isRoomAdmin,
       ),
       ButtonDetails(
@@ -364,7 +364,7 @@ class RoomDetailsButtonRowState extends State<RoomDetailsButtonRow> {
         icon: const Icon(Icons.add_outlined),
         onPressed: widget.controller.addSubspace,
         visible: room.isSpace &&
-            room.canSendEvent(
+            room.canChangeStateEvent(
               EventTypes.SpaceChild,
             ),
         showInMainView: false,
