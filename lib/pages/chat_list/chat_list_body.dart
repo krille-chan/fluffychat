@@ -224,7 +224,7 @@ class ChatListViewBody extends StatelessWidget {
                             child: Text(
                               client.rooms.isEmpty
                                   ? L10n.of(context).noChatsFoundHere
-                                  : L10n.of(context).noMoreChatsFound,
+                                  : L10n.of(context).nothingHereYet,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 18,
