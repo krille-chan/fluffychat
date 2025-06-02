@@ -1159,12 +1159,11 @@ packages:
   matrix:
     dependency: "direct main"
     description:
-      path: "."
-      ref: "krille/add-markdown-checkboxes"
-      resolved-ref: f3bb654ac2cda19bdd8a35fb46846018acd01a89
-      url: "https://github.com/famedly/matrix-dart-sdk.git"
-    source: git
-    version: "0.40.0"
+      name: matrix
+      sha256: "6646a39b95005f0b1df2d8aaeb71edb0a3cbeb6e13f433bd4f8a32013b273a58"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.40.1"
   meta:
     dependency: transitive
     description:
