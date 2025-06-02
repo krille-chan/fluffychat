@@ -40,17 +40,18 @@ class NewGroupView extends StatelessWidget {
           // Pangea#
         ),
         actions: [
-          TextButton(
-            onPressed: controller.loading
-                ? null
-                : () => SpaceCodeUtil.joinWithSpaceCodeDialog(context),
-            child: Text(
-              L10n.of(context).joinByCode,
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.primary,
+          if (controller.createGroupType == CreateGroupType.space)
+            TextButton(
+              onPressed: controller.loading
+                  ? null
+                  : () => SpaceCodeUtil.joinWithSpaceCodeDialog(context),
+              child: Text(
+                L10n.of(context).joinByCode,
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.primary,
+                ),
               ),
             ),
-          ),
         ],
       ),
       body: MaxWidthBody(
@@ -66,6 +67,7 @@ class NewGroupView extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             // #Pangea
+            // Simplying options here
             // Padding(
             //   padding: const EdgeInsets.all(16.0),
             //   child: SegmentedButton<CreateGroupType>(
