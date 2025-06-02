@@ -3236,5 +3236,6 @@
     "enterNewChat": "Enter new chat",
     "approve": "Approve",
     "youHaveKnocked": "You have knocked",
-    "pleaseWaitUntilInvited": "Please wait now, until someone from the room invites you."
+    "pleaseWaitUntilInvited": "Please wait now, until someone from the room invites you.",
+    "nothingHereYet": "Nothing here yet"
 }
