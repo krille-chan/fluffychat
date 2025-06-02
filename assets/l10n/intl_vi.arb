@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2025-05-13 11:20:01.172393",
+  "@@last_modified": "2025-05-23 14:49:00.786183",
   "about": "Giới thiệu",
   "@about": {
     "type": "String",
@@ -4269,6 +4269,116 @@
     "placeholders": {}
   },
   "@skipForNow": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "permissions": "Quyền hạn",
+  "spaceChildPermission": "Ai có thể thêm trò chuyện và không gian con vào không gian này",
+  "addEnvironmentOverride": "Thêm ghi đè môi trường",
+  "defaultOption": "Mặc định",
+  "chatWithActivities": "Trò chuyện với các hoạt động",
+  "findYourPeople": "Tìm người của bạn",
+  "launch": "Khởi động",
+  "launchActivityToChats": "Khởi động hoạt động đến các trò chuyện",
+  "searchChats": "Tìm kiếm cuộc trò chuyện",
+  "selectChats": "Chọn cuộc trò chuyện",
+  "selectChatToStart": "Hoàn tất! Chọn một trò chuyện để bắt đầu",
+  "configureSpace": "Cấu hình không gian",
+  "pinMessages": "Ghim tin nhắn",
+  "setJoinRules": "Đặt quy tắc tham gia",
+  "displayNavigationRail": "Hiển thị thanh điều hướng trên di động",
+  "changeGeneralSettings": "Thay đổi cài đặt chung",
+  "inviteOtherUsersToRoom": "Mời người dùng khác",
+  "changeTheNameOfTheSpace": "Thay đổi tên của không gian",
+  "changeTheDescription": "Thay đổi mô tả",
+  "changeThePermissions": "Thay đổi quyền hạn",
+  "introductions": "Giới thiệu",
+  "announcements": "Thông báo",
+  "@permissions": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@spaceChildPermission": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@addEnvironmentOverride": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@defaultOption": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@chatWithActivities": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@findYourPeople": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@launch": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@launchActivityToChats": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@searchChats": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@selectChats": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@selectChatToStart": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@configureSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@pinMessages": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@setJoinRules": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@displayNavigationRail": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@changeGeneralSettings": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@inviteOtherUsersToRoom": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@changeTheNameOfTheSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@changeTheDescription": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@changeThePermissions": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@introductions": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@announcements": {
     "type": "String",
     "placeholders": {}
   }
