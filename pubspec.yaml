@@ -40,7 +40,7 @@ dependencies:
   flutter_new_badger: ^1.1.1
   flutter_olm: 2.0.0
   flutter_openssl_crypto: ^0.5.0
-  flutter_secure_storage: ^9.2.2
+  flutter_secure_storage: ^9.2.4
   flutter_shortcuts_new: ^2.0.0
   flutter_typeahead: ## Custom fork from flutter_typeahead since the package is not maintain well.
     git:
@@ -61,10 +61,7 @@ dependencies:
   just_audio: ^0.9.39
   latlong2: ^0.9.1
   linkify: ^5.0.0
-  matrix:
-    git:
-      url: https://github.com/famedly/matrix-dart-sdk.git
-      ref: krille/add-markdown-checkboxes
+  matrix: ^0.40.1
   mime: ^1.0.6
   native_imaging: ^0.2.0
   opus_caf_converter_dart: ^1.0.1
@@ -109,6 +106,10 @@ dev_dependencies:
   msix: ^3.6.2
   translations_cleaner: ^0.0.5
 
+import_sorter:
+  ignored_files: # Optional, defaults to []
+    - \/lib\/l10n
+
 flutter_native_splash:
   color: "#ffffff"
   color_dark: "#000000"
@@ -137,6 +138,13 @@ msix_config:
   install_certificate: false
 
 dependency_overrides:
+  # https://github.com/juliansteenbakker/flutter_secure_storage/issues/920
+  flutter_secure_storage_linux:
+    git:
+      url: https://github.com/m-berto/flutter_secure_storage.git
+      ref: patch-2
+      path: flutter_secure_storage_linux
+  flutter_secure_storage_platform_interface: 2.0.0
   # https://github.com/ThexXTURBOXx/flutter_web_auth_2/issues/155
   flutter_web_auth_2:
     git:

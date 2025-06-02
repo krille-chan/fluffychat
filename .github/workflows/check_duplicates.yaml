@@ -1,0 +1,28 @@
+name: Check duplicates
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  check_duplicates:
+    runs-on: ubuntu-latest
+    env:
+        title: ${{ github.event.issue.title }}
+        author: ${{ github.event.issue.user.login }}
+        number: ${{ github.event.issue.number }}
+        GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check duplicates
+        run: |
+          issues=$(gh issue list --search '${{ env.title }}' --json number,title,url)
+          number=${{ env.number }}
+          issues_filtered=$(echo "$issues" | jq --arg num "$number" 'map(select(.number != ($num | tonumber)))')
+          if [ "$(echo "$issues_filtered" | jq length)" -eq 0 ]; then
+            echo "No duplicates found."
+          else
+            issues_markdown=$(echo "$issues_filtered" | jq -r '.[] | "- [" + .title + "](" + .url + ")"')
+            formatted_body=$(echo -e "@${{ env.author }}\nPossible duplication of:\n$issues_markdown")
+            gh issue comment ${{ github.event.issue.number }} --body "$formatted_body"
+          fi

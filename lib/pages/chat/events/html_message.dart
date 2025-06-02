@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
@@ -23,6 +24,7 @@ class HtmlMessage extends StatelessWidget {
   final void Function(LinkableElement) onOpen;
   final String? eventId;
   final Set<Event>? checkboxCheckedEvents;
+  final bool limitHeight;
 
   const HtmlMessage({
     super.key,
@@ -34,6 +36,7 @@ class HtmlMessage extends StatelessWidget {
     required this.onOpen,
     this.eventId,
     this.checkboxCheckedEvents,
+    this.limitHeight = true,
   });
 
   /// Keep in sync with: https://spec.matrix.org/latest/client-server-api/#mroommessage-msgtypes
@@ -260,12 +263,11 @@ class HtmlMessage extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: SizedBox.square(
-                          dimension: fontSize,
-                          child: Checkbox.adaptive(
+                          dimension: fontSize + 2,
+                          child: CupertinoCheckbox(
                             checkColor: textColor,
                             side: BorderSide(color: textColor),
                             activeColor: textColor.withAlpha(64),
-                            visualDensity: VisualDensity.compact,
                             value:
                                 staticallyChecked || checkedByReaction != null,
                             onChanged: eventId == null ||
@@ -513,6 +515,8 @@ class HtmlMessage extends StatelessWidget {
         fontSize: fontSize,
         color: textColor,
       ),
+      maxLines: limitHeight ? 64 : null,
+      overflow: TextOverflow.fade,
     );
   }
 }

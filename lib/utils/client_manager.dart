@@ -4,7 +4,6 @@ import 'package:flutter/foundation.dart';
 
 import 'package:collection/collection.dart';
 import 'package:desktop_notifications/desktop_notifications.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:matrix/encryption/utils/key_verification.dart';
@@ -15,6 +14,7 @@ import 'package:universal_html/html.dart' as html;
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/custom_http_client.dart';
 import 'package:fluffychat/utils/custom_image_resizer.dart';
 import 'package:fluffychat/utils/init_with_restore.dart';
@@ -102,6 +102,7 @@ abstract class ClientManager {
 
   static Client createClient(String clientName, SharedPreferences store) {
     final shareKeysWith = AppSettings.shareKeysWith.getItem(store);
+    final enableSoftLogout = AppSettings.enableSoftLogout.getItem(store);
 
     return Client(
       clientName,
@@ -130,6 +131,8 @@ abstract class ClientManager {
               .singleWhereOrNull((share) => share.name == shareKeysWith) ??
           ShareKeysWith.all,
       convertLinebreaksInFormatting: false,
+      onSoftLogout:
+          enableSoftLogout ? (client) => client.refreshAccessToken() : null,
     );
   }
 

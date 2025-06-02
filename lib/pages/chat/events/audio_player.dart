@@ -49,8 +49,8 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
   AudioPlayerStatus status = AudioPlayerStatus.notDownloaded;
 
   late final MatrixState matrix;
-  late final List<int>? _waveform;
-  late final String? _durationString;
+  List<int>? _waveform;
+  String? _durationString;
 
   @override
   void dispose() {

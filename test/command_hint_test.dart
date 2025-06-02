@@ -8,7 +8,7 @@ import 'utils/test_client.dart';
 void main() async {
   test('Check for missing /command hints', () async {
     final translated =
-        jsonDecode(File('assets/l10n/intl_en.arb').readAsStringSync())
+        jsonDecode(File('lib/l10n/intl_en.arb').readAsStringSync())
             .keys
             .where((String k) => k.startsWith('commandHint_'))
             .map((k) => k.replaceFirst('commandHint_', ''));

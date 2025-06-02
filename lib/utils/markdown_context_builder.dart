@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_text_input_dialog.dart';
 
 Widget markdownContextBuilder(
@@ -52,6 +51,35 @@ Widget markdownContextBuilder(
               selection.end,
               '[$selectedText](${url.toString()})',
             );
+            ContextMenuController.removeAny();
+          },
+        ),
+        ContextMenuButtonItem(
+          label: l10n.checkList,
+          onPressed: () {
+            final text = controller.text;
+            final selection = controller.selection;
+
+            var start = selection.textBefore(text).lastIndexOf('\n');
+            if (start == -1) start = 0;
+            final end = selection.end;
+
+            final fullLineSelection =
+                TextSelection(baseOffset: start, extentOffset: end);
+
+            const checkBox = '- [ ]';
+
+            final replacedRange = fullLineSelection
+                .textInside(text)
+                .split('\n')
+                .map(
+                  (line) => line.startsWith(checkBox) || line.isEmpty
+                      ? line
+                      : '$checkBox $line',
+                )
+                .join('\n');
+            controller.text =
+                controller.text.replaceRange(start, end, replacedRange);
             ContextMenuController.removeAny();
           },
         ),

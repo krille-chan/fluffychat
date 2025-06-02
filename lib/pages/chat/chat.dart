@@ -9,7 +9,6 @@ import 'package:collection/collection.dart';
 import 'package:desktop_drop/desktop_drop.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:matrix/matrix.dart';
@@ -21,6 +20,7 @@ import 'package:universal_html/html.dart' as html;
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/chat_view.dart';
 import 'package:fluffychat/pages/chat/event_info_dialog.dart';
 import 'package:fluffychat/pages/chat/recording_dialog.dart';
@@ -631,6 +631,8 @@ class ChatController extends State<ChatPageWithRoom>
   }
 
   void voiceMessageAction() async {
+    room.client.getConfig(); // Preload server file configuration.
+
     final scaffoldMessenger = ScaffoldMessenger.of(context);
     if (PlatformInfos.isAndroid) {
       final info = await DeviceInfoPlugin().androidInfo;
@@ -1103,13 +1105,18 @@ class ChatController extends State<ChatPageWithRoom>
   }
 
   void goToNewRoomAction() async {
+    final newRoomId = room
+        .getState(EventTypes.RoomTombstone)!
+        .parsedTombstoneContent
+        .replacementRoom;
     final result = await showFutureLoadingDialog(
       context: context,
-      future: () => room.client.joinRoomById(
+      future: () => room.client.joinRoom(
         room
             .getState(EventTypes.RoomTombstone)!
             .parsedTombstoneContent
             .replacementRoom,
+        via: [newRoomId.domain!],
       ),
     );
     if (result.error != null) return;
@@ -1163,6 +1170,8 @@ class ChatController extends State<ChatPageWithRoom>
   }
 
   void onAddPopupMenuButtonSelected(String choice) {
+    room.client.getConfig(); // Preload server file configuration.
+
     if (choice == 'file') {
       sendFileAction();
     }
@@ -1180,14 +1189,6 @@ class ChatController extends State<ChatPageWithRoom>
     }
     if (choice == 'location') {
       sendLocationAction();
-    }
-    if (choice == 'checklist') {
-      if (sendController.text.isEmpty) {
-        sendController.text = '- [ ] ';
-      } else {
-        sendController.text += '\n- [ ] ';
-      }
-      inputFocus.requestFocus();
     }
   }
 
@@ -1355,41 +1356,35 @@ class ChatController extends State<ChatPageWithRoom>
         Expanded(
           child: ChatView(this),
         ),
-        AnimatedSize(
-          duration: FluffyThemes.animationDuration,
-          curve: FluffyThemes.animationCurve,
-          child: ValueListenableBuilder(
-            valueListenable: _displayChatDetailsColumn,
-            builder: (context, displayChatDetailsColumn, _) {
-              if (!FluffyThemes.isThreeColumnMode(context) ||
-                  room.membership != Membership.join ||
-                  !displayChatDetailsColumn) {
-                return const SizedBox(
-                  height: double.infinity,
-                  width: 0,
-                );
-              }
-              return Container(
-                width: FluffyThemes.columnWidth,
-                clipBehavior: Clip.hardEdge,
-                decoration: BoxDecoration(
-                  border: Border(
-                    left: BorderSide(
-                      width: 1,
-                      color: theme.dividerColor,
+        ValueListenableBuilder(
+          valueListenable: _displayChatDetailsColumn,
+          builder: (context, displayChatDetailsColumn, _) =>
+              !FluffyThemes.isThreeColumnMode(context) ||
+                      room.membership != Membership.join ||
+                      !displayChatDetailsColumn
+                  ? const SizedBox(
+                      height: double.infinity,
+                      width: 0,
+                    )
+                  : Container(
+                      width: FluffyThemes.columnWidth,
+                      clipBehavior: Clip.hardEdge,
+                      decoration: BoxDecoration(
+                        border: Border(
+                          left: BorderSide(
+                            width: 1,
+                            color: theme.dividerColor,
+                          ),
+                        ),
+                      ),
+                      child: ChatDetails(
+                        roomId: roomId,
+                        embeddedCloseButton: IconButton(
+                          icon: const Icon(Icons.close),
+                          onPressed: toggleDisplayChatDetailsColumn,
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-                child: ChatDetails(
-                  roomId: roomId,
-                  embeddedCloseButton: IconButton(
-                    icon: const Icon(Icons.close),
-                    onPressed: toggleDisplayChatDetailsColumn,
-                  ),
-                ),
-              );
-            },
-          ),
         ),
       ],
     );
