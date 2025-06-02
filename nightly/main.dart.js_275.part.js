@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_275",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czy(){return new A.EZ(B.da("lt"))},
+czB(){return new A.EZ(B.da("lt"))},
 EZ:function EZ(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -256,7 +256,7 @@ gfk(){return"Nerasta kambari\u0173\u2026"},
 geE(){return"Prane\u0161imai"},
 gj4(){return"Gaunama vieta\u2026"},
 gj5(){return"Agresyvus"},
-gcp(){return"OK"},
+gcr(){return"OK"},
 gj7(){return"Internetin\u0117 atsargin\u0117 rakt\u0173 kopija \u012fjungta"},
 gdk(){return"Oi, ka\u017ekas nutiko ne taip\u2026"},
 gj6(){return"Vienas i\u0161 j\u016bs\u0173 klient\u0173 atsijung\u0117"},
@@ -423,7 +423,7 @@ gmE(){return"Vartotojai"},
 gmx(){return"Atrakinti senas \u017einutes"},
 gjT(){return"\u012era\u0161ykite \u0161\u012f rakt\u0105 rankiniu b\u016bdu, \u012fjung\u0119 sistemos bendrinimo dialogo lang\u0105 arba i\u0161karpin\u0119."},
 kP(d){return""+d+" failai"},
-gdv(){return"Vartotojas"},
+gdw(){return"Vartotojas"},
 gi0(){return"Pasirinktinis"},
 gmV(){return"Kod\u0117l \u0161i \u017einut\u0117 neperskaitoma?"},
 glM(){return"Taip gali atsitikti, jei \u017einut\u0117 buvo i\u0161si\u0173sta prie\u0161 prisijungiant prie paskyros \u0161iame prietaise.\n\nTaip pat gali b\u016bti, kad siunt\u0117jas u\u017eblokavo j\u016bs\u0173 prietais\u0105 arba ka\u017ekas sutriko su interneto ry\u0161iu.\n\nAr galite perskaityti \u017einut\u0119 kitoje sesijoje? Tada galite perkelti \u017einut\u0119 i\u0161 jos! Eikite \u012f Nustatymai > Prietaisai ir \u012fsitikinkite, kad j\u016bs\u0173 prietaisai patvirtino vienas kit\u0105. Kai kit\u0105 kart\u0105 atidarysite kambar\u012f ir abi sesijos bus pirmame plane, raktai bus perduoti automati\u0161kai.\n\nNenorite prarasti rakt\u0173 atsijungdami arba keisdami \u012frenginius? \u012esitikinkite, kad nustatymuose \u012fjung\u0117te pokalbi\u0173 atsargin\u0119 kopij\u0105."},
@@ -639,5 +639,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.EZ,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"EZ":{"aE":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_275",e:"endPart",h:b})})($__dart_deferred_initializers__,"fnkqEb6oSnkx7a+Ffh/9DYltqHs=");
+a.eventLog.push({p:"main.dart.js_275",e:"endPart",h:b})})($__dart_deferred_initializers__,"HssI6Ab1HqPzqvLof/WrRGVMaZE=");
 //# sourceMappingURL=main.dart.js_275.part.js.map

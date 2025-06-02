@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_254",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czp(){return new A.EQ(B.da("hr"))},
+czs(){return new A.EQ(B.da("hr"))},
 EQ:function EQ(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -256,7 +256,7 @@ gfk(){return"Nema soba \u2026"},
 geE(){return"Obavijesti"},
 gj4(){return"Dohva\u0107anje lokacije \u2026"},
 gj5(){return"Uvredljiv"},
-gcp(){return"U redu"},
+gcr(){return"U redu"},
 gj7(){return"Internetski klju\u010d sigurnosnih kopija je aktiviran"},
 gdk(){return"Ups, dogodila se gre\u0161ka \u2026"},
 gj6(){return"Jedan od tvojih klijenata je odjavljen"},
@@ -423,7 +423,7 @@ gmE(){return"Korisnici"},
 gmx(){return"Otklju\u010daj stare poruke"},
 gjT(){return"Spremi ovaj klju\u010d ru\u010dno pokretanjem dijaloga za dijeljenje sustava ili me\u0111uspremnika."},
 kP(d){return"Broj datoteka: "+d},
-gdv(){return"Korisnik"},
+gdw(){return"Korisnik"},
 gi0(){return"Prilago\u0111eno"},
 gmV(){return"Za\u0161to nije mogu\u0107e \u010ditati ovu poruku?"},
 glM(){return"To se mo\u017ee dogoditi ako je poruka poslana prije prijave na tvoj ra\u010dun na ovom ure\u0111aju.\n\nTako\u0111er je mogu\u0107e da je po\u0161iljatelj blokirao tvoj ure\u0111aj ili je do\u0161lo do gre\u0161ke s internetskom vezom.\n\nMo\u017ee\u0161 li pro\u010ditati poruku na jednoj drugoj sesiji? U tom slu\u010daju mo\u017ee\u0161 prenijeti poruku iz nje! Idi na Postavke > Ure\u0111aji i uvjeri se da su se tvoji ure\u0111aji me\u0111usobno provjerili. Kada sljede\u0107i put otvori\u0161 sobu i obje sesije su u prednjem planu, klju\u010devi \u0107e se automatski prenijeti.\n\nNe \u017eeli\u0161 izgubiti klju\u010deve kada se odjavi\u0161 ili zamijeni\u0161 ure\u0111aje? Aktiviraj spremanje sigurnosne kopije razgovora u postavkama."},
@@ -639,5 +639,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.EQ,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"EQ":{"aE":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_254",e:"endPart",h:b})})($__dart_deferred_initializers__,"Ob7/LlR3OjtxC95yKPWIasKoTKo=");
+a.eventLog.push({p:"main.dart.js_254",e:"endPart",h:b})})($__dart_deferred_initializers__,"CTbMKUb8ADNe3pAehFrL1TCQoZU=");
 //# sourceMappingURL=main.dart.js_254.part.js.map

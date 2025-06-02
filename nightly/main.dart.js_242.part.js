@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_242",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czi(){return new A.EJ(B.da("fi"))},
+czl(){return new A.EJ(B.da("fi"))},
 EJ:function EJ(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -256,7 +256,7 @@ gfk(){return"Huoneita ei l\xf6ytynyt\u2026"},
 geE(){return"Ilmoitukset"},
 gj4(){return"Paikannetaan sijantia\u2026"},
 gj5(){return"Loukkaava"},
-gcp(){return"ok"},
+gcr(){return"ok"},
 gj7(){return"Verkkkoavainvarmuuskopio on k\xe4yt\xf6ss\xe4"},
 gdk(){return"Hups, jotakin meni pieleen\u2026"},
 gj6(){return"Yksi tunnuksistasi on kirjattu ulos"},
@@ -423,7 +423,7 @@ gmE(){return"K\xe4ytt\xe4j\xe4t"},
 gmx(){return"Pura vanhojen viestien salaus"},
 gjT(){return"Tallenna t\xe4m\xe4 avain manuaalisesti k\xe4ytt\xe4en j\xe4rjestelm\xe4n jakodialogia tai leikep\xf6yt\xe4\xe4."},
 kP(d){return""+d+" tiedostoa"},
-gdv(){return"K\xe4ytt\xe4j\xe4"},
+gdw(){return"K\xe4ytt\xe4j\xe4"},
 gi0(){return"Mukautettu"},
 gmV(){return"Miksei t\xe4t\xe4 viesti\xe4 voida lukea?"},
 glM(){return"T\xe4m\xe4 voi tapahtua mik\xe4li viesti l\xe4hetettiin ennen sis\xe4\xe4nkirjautumistasi t\xe4lle laitteelle.\n\nOn my\xf6s mahdollista, ett\xe4 l\xe4hett\xe4j\xe4 on est\xe4nyt t\xe4m\xe4n laitteen tai jokin meni pieleen verkkoyhteyden kanssa.\n\nPystytk\xf6 lukemaan viestin toisella istunnolla? Siin\xe4 tapauksessa voit siirt\xe4\xe4 viestin silt\xe4! Mene Asetukset > Laitteet ja varmista, ett\xe4 laitteesi ovat varmistaneet toisensa. Seuraavankerran avatessasi huoneen ja molempien istuntojen ollessa etualalla, avaimet siirret\xe4\xe4n automaattisesti.\n\nHaluatko varmistaa ettet menet\xe4 avaimia uloskirjautuessa tai laitteita vaihtaessa? Varmista avainvarmuuskopion k\xe4yt\xf6ss\xe4olo asetuksista."},
@@ -639,5 +639,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.EJ,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"EJ":{"aE":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_242",e:"endPart",h:b})})($__dart_deferred_initializers__,"weaRlmEF/c6mv2dTgEjvaNhZaYY=");
+a.eventLog.push({p:"main.dart.js_242",e:"endPart",h:b})})($__dart_deferred_initializers__,"Ci0qXobv75A3mYFn33iZuJoOiYU=");
 //# sourceMappingURL=main.dart.js_242.part.js.map

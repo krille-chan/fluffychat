@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_270",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czu(){return new A.EV(B.da("it"))},
+czx(){return new A.EV(B.da("it"))},
 EV:function EV(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -256,7 +256,7 @@ gfk(){return"Nessuna stanza trovata\u2026"},
 geE(){return"Notifiche"},
 gj4(){return"Ottengo la posizione\u2026"},
 gj5(){return"Offensivo"},
-gcp(){return"Ok"},
+gcr(){return"Ok"},
 gj7(){return"Il backup delle chiavi in linea \xe8 abilitato"},
 gdk(){return"Ops, qualcosa \xe8 andato storto\u2026"},
 gj6(){return"Uno dei tuoi client \xe8 stato disconnesso"},
@@ -423,7 +423,7 @@ gmE(){return"Utenti"},
 gmx(){return"Sblocca i vecchi messaggi"},
 gjT(){return"Salva questa chiave manualmente attivando la finestra di condivisione o gli appunti."},
 kP(d){return""+d+" file"},
-gdv(){return"Utente"},
+gdw(){return"Utente"},
 gi0(){return"Personalizzato"},
 gmV(){return"Perch\xe9 questo messaggio \xe8 illeggibile?"},
 glM(){return"Questo pu\xf2 accadere se il messaggio \xe8 stato inviato prima che hai fatto l'accesso in questo dispositivo.\n\n\xc8 anche possibile che il mittente abbia bloccato il tuo dispositivo o che qualcosa sia andato storto con la tua connessione ad internet.\n\nSei in grado di leggere il messaggio su altre sessioni? Allora puoi trasferire il messaggio da l\xec! Vai su Impostazioni > Dispositivi e verifica che i tuoi dispositivi siano verificati l'un l'altro. Quando aprirai la stanza la prossima volta ed entrambe le sessioni sono in primo piano, le chiavi saranno trasmesse automaticamente.\n\nNon vuoi perdere le chiavi quando ti disconnetti o cambi dispositivo? Assicurati di aver attivato il backup delle chat nelle impostazioni."},
@@ -639,5 +639,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.EV,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"EV":{"aE":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_270",e:"endPart",h:b})})($__dart_deferred_initializers__,"l8zPP9bXvhzFJofgf0krbSdaWjg=");
+a.eventLog.push({p:"main.dart.js_270",e:"endPart",h:b})})($__dart_deferred_initializers__,"ovaUMTXUNpWQti+FH/Jztst4wis=");
 //# sourceMappingURL=main.dart.js_270.part.js.map

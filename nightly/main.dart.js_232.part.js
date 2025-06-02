@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_232",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cze(){return new A.EF(B.da("es"))},
+czh(){return new A.EF(B.da("es"))},
 EF:function EF(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -256,7 +256,7 @@ gfk(){return"Ninguna sala encontrada\u2026"},
 geE(){return"Notificaciones"},
 gj4(){return"Obteniendo ubicaci\xf3n\u2026"},
 gj5(){return"Ofensiva"},
-gcp(){return"Ok"},
+gcr(){return"Ok"},
 gj7(){return"La copia de seguridad de la clave en l\xednea est\xe1 habilitada"},
 gdk(){return"Ups, algo sali\xf3 mal\u2026"},
 gj6(){return"Se ha cerrado en la sesi\xf3n de uno de sus clientes"},
@@ -423,7 +423,7 @@ gmE(){return"Usuarios"},
 gmx(){return"Desbloquear mensajes viejos"},
 gjT(){return"Compartir esta clave manualmente usando el di\xe1logo de compartir del sistema o el portapapeles."},
 kP(d){return""+d+" archivos"},
-gdv(){return"Usuario"},
+gdw(){return"Usuario"},
 gi0(){return"Personalizado"},
 gmV(){return"\xbfPor qu\xe9 no se puede leer este mensaje?"},
 glM(){return"Esto puede ocurrir si el mensaje se envi\xf3 antes de que entraras en tu cuenta en este dispositivo.\n\nTambi\xe9n puede que el remitente haya bloqueado tu dispositivo o haya fallado algo en la conexi\xf3n a Internet.\n\n\xbfPuedes leer el mensaje en otra sesi\xf3n? Entonces, \xa1puedes transferir el mensaje desde all\xed! Ve a Ajustes > Dispositivos y aseg\xfarate de que tus dispositivos se han verificado mutuamente. Cuando abras la sala la pr\xf3xima vez y ambas sesiones est\xe9n en primer plano, las claves se transmitir\xe1n autom\xe1ticamente.\n\n\xbfNo quieres perder las claves al salir o al cambiar de dispositivo? Aseg\xfarate de que has habilitado la copia de seguridad del chat en los ajustes."},
@@ -639,5 +639,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.EF,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"EF":{"aE":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_232",e:"endPart",h:b})})($__dart_deferred_initializers__,"3p3BaA8N96RbnVcXaeMYzYEn/Ko=");
+a.eventLog.push({p:"main.dart.js_232",e:"endPart",h:b})})($__dart_deferred_initializers__,"mKS1jsFX0jse5DRGBBMF4+OvJfM=");
 //# sourceMappingURL=main.dart.js_232.part.js.map

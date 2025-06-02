@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_220",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cza(){return new A.EB(B.da("de"))},
+czd(){return new A.EB(B.da("de"))},
 EB:function EB(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -256,7 +256,7 @@ gfk(){return"Keine R\xe4ume gefunden \u2026"},
 geE(){return"Benachrichtigungen"},
 gj4(){return"Standort wird ermittelt \u2026"},
 gj5(){return"Beleidigend"},
-gcp(){return"Ok"},
+gcr(){return"Ok"},
 gj7(){return"Online-Schl\xfcsselsicherung ist aktiviert"},
 gdk(){return"Hoppla, da ist etwas schiefgelaufen\u2026"},
 gj6(){return"Einer deiner Clients wurde abgemeldet"},
@@ -423,7 +423,7 @@ gmE(){return"Benutzer"},
 gmx(){return"Entsperre alte Nachrichten"},
 gjT(){return"Speicher diesen Schl\xfcssel manuell, indem du den Systemfreigabedialog oder die Zwischenablage ausl\xf6st."},
 kP(d){return""+d+" Dateien"},
-gdv(){return"Benutzer"},
+gdw(){return"Benutzer"},
 gi0(){return"Benutzerdefiniert"},
 gmV(){return"Warum ist diese Nachricht nicht lesbar?"},
 glM(){return"Dies kann passieren, wenn die Nachricht gesendet wurde, bevor du dich auf diesem Ger\xe4t bei deinem Konto angemeldet hast.\n\nEs ist auch m\xf6glich, dass der Absender dein Ger\xe4t blockiert hat oder etwas mit der Internetverbindung schief gelaufen ist.\n\nKannst du die Nachricht in einer anderen Sitzung lesen? Dann kannst du die Nachricht davon \xfcbertragen! Gehe zu den Einstellungen > Ger\xe4te und vergewissere dich, dass sich deine Ger\xe4te gegenseitig verifiziert haben. Wenn du den Raum das n\xe4chste Mal \xf6ffnest und beide Sitzungen im Vordergrund sind, werden die Schl\xfcssel automatisch \xfcbertragen.\n\nDu m\xf6chtest die Schl\xfcssel beim Abmelden oder Ger\xe4tewechsel nicht verlieren? Stelle sicher, dass du das Chat-Backup in den Einstellungen aktiviert hast."},
@@ -640,5 +640,5 @@ x(A.EB,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"EB":{"aE":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_220",e:"endPart",h:b})})($__dart_deferred_initializers__,"ICAmyD0hFoYaPzMnpR0YgdvZODc=");
+a.eventLog.push({p:"main.dart.js_220",e:"endPart",h:b})})($__dart_deferred_initializers__,"2XyhlNauJT4VavxSLaXwXxpcjbg=");
 //# sourceMappingURL=main.dart.js_220.part.js.map

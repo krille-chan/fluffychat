@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_263",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czs(){return new A.ET(B.da("id"))},
+czv(){return new A.ET(B.da("id"))},
 ET:function ET(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -256,7 +256,7 @@ gfk(){return"Tidak ada ruangan yang ditemukan\u2026"},
 geE(){return"Notifikasi"},
 gj4(){return"Mendapatkan lokasi\u2026"},
 gj5(){return"Menyinggung"},
-gcp(){return"Ok"},
+gcr(){return"Ok"},
 gj7(){return"Cadangan Kunci Online dinyalakan"},
 gdk(){return"Ups, ada yang salah\u2026"},
 gj6(){return"Salah satu klienmu telah keluar"},
@@ -423,7 +423,7 @@ gmE(){return"Pengguna"},
 gmx(){return"Akses pesan lama"},
 gjT(){return"Simpan kunci ini secara manual dengan memicu dialog pembagian atau papan klip sistem."},
 kP(d){return""+d+" file"},
-gdv(){return"Pengguna"},
+gdw(){return"Pengguna"},
 gi0(){return"Kustom"},
 gmV(){return"Mengapa pesan ini tidak bisa dibaca?"},
 glM(){return"Hal ini bisa terjadi jika pesan dikirim sebelum kamu masuk ke akunmu di perangkat ini.\n\nMungkin juga pengirim telah memblokir perangkatmu atau ada yang tidak beres dengan koneksi internet.\n\nApakah kamu bisa membaca pesan pada sesi lain? Maka kamu bisa mentransfer pesan dari sesi tersebut! Buka Pengaturan > Perangkat dan pastikan bahwa perangkat Anda telah ditandatangani secara silang. Ketika kamu membuka ruangan di lain waktu dan kedua sesi berada di latar depan, kunci akan ditransmisikan secara otomatis.\n\nApakah kamu tidak mau kehilangan kunci saat keluar atau berpindah perangkat? Pastikan bahwa kamu telah mengaktifkan cadangan obrolan dalam pengaturan."},
@@ -640,5 +640,5 @@ x(A.ET,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"ET":{"aE":[]}}'))
 var y={a:"Memberi tahu pengguna tentang pesan dalam ruangan satu ke satu."}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_263",e:"endPart",h:b})})($__dart_deferred_initializers__,"MMZA8eZ1dNjKNNly1fYD1nc7wEA=");
+a.eventLog.push({p:"main.dart.js_263",e:"endPart",h:b})})($__dart_deferred_initializers__,"DmJCiV/EiexCEWOK6sGKFmhSYS0=");
 //# sourceMappingURL=main.dart.js_263.part.js.map

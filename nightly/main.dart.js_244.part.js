@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_244",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czk(){return new A.EL(B.da("fr"))},
+czn(){return new A.EL(B.da("fr"))},
 EL:function EL(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -256,7 +256,7 @@ gfk(){return"Aucun salon trouv\xe9\u2026"},
 geE(){return"Notifications"},
 gj4(){return"Obtention de la localisation\u2026"},
 gj5(){return"Offensant"},
-gcp(){return"Valider"},
+gcr(){return"Valider"},
 gj7(){return"La sauvegarde en ligne des cl\xe9s est activ\xe9e"},
 gdk(){return"Oups, un probl\xe8me est survenu\u2026"},
 gj6(){return"Un de vos clients a \xe9t\xe9 d\xe9connect\xe9"},
@@ -423,7 +423,7 @@ gmE(){return"Utilisateurs/trices"},
 gmx(){return"D\xe9verrouiller les anciens messages"},
 gjT(){return"Enregistrer cette cl\xe9 manuellement en d\xe9clenchant la bo\xeete de dialogue de partage du syst\xe8me ou le presse-papiers."},
 kP(d){return""+d+" fichiers"},
-gdv(){return"Utilisateur/trice"},
+gdw(){return"Utilisateur/trice"},
 gi0(){return"Personnalis\xe9"},
 gmV(){return"Pourquoi ce message est-il illisible ?"},
 glM(){return"Cela peut se produire si le message a \xe9t\xe9 envoy\xe9 avant que vous ne vous soyez connect\xe9 \xe0 votre compte sur cet appareil.\n\nIl est \xe9galement possible que l'exp\xe9diteur ait bloqu\xe9 votre appareil ou qu'un probl\xe8me de connexion Internet se soit produit.\n\n\xcates-vous capable de lire le message sur une autre session ? Vous pouvez alors transf\xe9rer le message \xe0 partir de celle-ci ! Allez dans Param\xe8tres > Appareils et assurez-vous que vos appareils se sont v\xe9rifi\xe9s mutuellement. Lorsque vous ouvrirez le salon la fois suivante et que les deux sessions seront au premier plan, les cl\xe9s seront transmises automatiquement.\n\nVous ne voulez pas perdre les cl\xe9s en vous d\xe9connectant ou en changeant d'appareil ? Assurez-vous que vous avez activ\xe9 la sauvegarde de la discussion dans les param\xe8tres."},
@@ -639,5 +639,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.EL,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"EL":{"aE":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_244",e:"endPart",h:b})})($__dart_deferred_initializers__,"tS/oU9HStqQetKIv72Ic8mSTN9k=");
+a.eventLog.push({p:"main.dart.js_244",e:"endPart",h:b})})($__dart_deferred_initializers__,"O1r120ynAmFOPF59F1AAA/wvULU=");
 //# sourceMappingURL=main.dart.js_244.part.js.map

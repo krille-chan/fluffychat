@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_280",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czC(){return new A.F2(B.da("pl"))},
+czF(){return new A.F2(B.da("pl"))},
 F2:function F2(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -257,7 +257,7 @@ gfk(){return"Nie znaleziono pokoj\xf3w\u2026"},
 geE(){return"Powiadomienia"},
 gj4(){return"Uzyskiwanie lokalizacji\u2026"},
 gj5(){return"Obra\u017aliwe"},
-gcp(){return"Ok"},
+gcr(){return"Ok"},
 gj7(){return"Kopia zapasowa kluczy online jest w\u0142\u0105czona"},
 gdk(){return"Ojej! Co\u015b posz\u0142o nie tak\u2026"},
 gj6(){return"Jedno z twoich urz\u0105dze\u0144 zosta\u0142o wylogowane"},
@@ -424,7 +424,7 @@ gmE(){return"U\u017cytkownicy"},
 gmx(){return"Odblokuj stare wiadomo\u015bci"},
 gjT(){return"Zapisz ten klucz r\u0119cznie, uruchamiaj\u0105c systemowe okno dialogowe udost\u0119pniania lub schowek."},
 kP(d){return""+d+" plik\xf3w"},
-gdv(){return"U\u017cytkownik"},
+gdw(){return"U\u017cytkownik"},
 gi0(){return"W\u0142asne"},
 gmV(){return"Dlaczego nie mo\u017cna odczyta\u0107 tej wiadomo\u015bci?"},
 glM(){return"Mo\u017ce si\u0119 to zdarzy\u0107, je\u015bli wiadomo\u015b\u0107 zosta\u0142a wys\u0142ana przed zalogowaniem si\u0119 na to konto na tym urz\u0105dzeniu.\n\nMo\u017cliwe jest r\xf3wnie\u017c, \u017ce nadawca zablokowa\u0142 Twoje urz\u0105dzenie lub co\u015b posz\u0142o nie tak z po\u0142\u0105czeniem internetowym.\n\nJeste\u015b w stanie odczyta\u0107 wiadomo\u015b\u0107 na innej sesji? W takim razie mo\u017cesz przenie\u015b\u0107 z niej wiadomo\u015b\u0107! Wejd\u017a w Ustawienia > Urz\u0105dzenia i upewnij si\u0119, \u017ce Twoje urz\u0105dzenia zweryfikowa\u0142y si\u0119 wzajemnie. Gdy nast\u0119pnym razem otworzysz pok\xf3j i obie sesje b\u0119d\u0105 w\u0142\u0105czone, klucze zostan\u0105 przekazane automatycznie.\n\nNie chcesz straci\u0107 kluczy podczas wylogowania lub prze\u0142\u0105czania urz\u0105dze\u0144? Upewnij si\u0119, \u017ce w ustawieniach masz w\u0142\u0105czon\u0105 kopi\u0119 zapasow\u0105 czatu."},
@@ -640,5 +640,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.F2,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"F2":{"aE":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_280",e:"endPart",h:b})})($__dart_deferred_initializers__,"2pnxxzFu6cBODWDDrJ0ZltLdww8=");
+a.eventLog.push({p:"main.dart.js_280",e:"endPart",h:b})})($__dart_deferred_initializers__,"xZIkOFSoFeHo/yRNnKK2+VTBZeQ=");
 //# sourceMappingURL=main.dart.js_280.part.js.map

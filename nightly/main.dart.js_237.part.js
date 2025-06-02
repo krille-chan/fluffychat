@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_237",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czf(){return new A.EG(B.da("et"))},
+czi(){return new A.EG(B.da("et"))},
 EG:function EG(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -256,7 +256,7 @@ gfk(){return"Jututubasid ei leidunud\u2026"},
 geE(){return"Teavitused"},
 gj4(){return"Tuvastan asukohta\u2026"},
 gj5(){return"Solvav"},
-gcp(){return"Sobib"},
+gcr(){return"Sobib"},
 gj7(){return"Kr\xfcptov\xf5tmete veebip\xf5hine varundus on kasutusel"},
 gdk(){return"Hopsti! Midagi l\xe4ks n\xfc\xfcd viltu\u2026"},
 gj6(){return"\xdcks sinu klientrakendustest on Matrix'i v\xf5rgust v\xe4lja loginud"},
@@ -423,7 +423,7 @@ gmE(){return"Kasutajad"},
 gmx(){return"Muuda vanad s\xf5numid loetavaks"},
 gjT(){return"Salvesta see kr\xfcptov\xf5ti kasutades selle s\xfcsteemi jagamisvalikuid v\xf5i l\xf5ikelauda."},
 kP(d){return""+d+" faili"},
-gdv(){return"Kasutaja"},
+gdw(){return"Kasutaja"},
 gi0(){return"Kohandatud"},
 gmV(){return"Miks see s\xf5num pole loetav?"},
 glM(){return"See v\xf5ib juhtuda, kui s\xf5num oli saadetud enne, kui siin seadmes oma kontoga sisse logisid.\n\nSamuti v\xf5ib juhtuda siis, kui saatja on lugemises selles seadmes blokeerinud v\xf5i on tekkinud t\xf5rkeid veebi\xfchenduses.\n\nAga m\xf5nes teises seadmes saad seda s\xf5numit lugeda? Siis sa v\xf5id s\xf5numi sealt \xfcle t\xf5sta. Ava Seadistused -> Seadmed ning kontrolli, et k\xf5ik sinu seadmed on omavahel verifitseeritud. Kui avad selle vestluse v\xf5i jututoa ning m\xf5lemad sessioonid on avatud, siis vajalikud kr\xfcptov\xf5tmed saadetakse automaatset.\n\nKas sa soovid v\xe4ltida kr\xfcptov\xf5tmete kadumist v\xe4ljalogimisel ja seadmete vahetusel? Siis palun kontrolli, et seadistuses on kr\xfcptov\xf5tmete varundus sisse l\xfclitatud."},
@@ -639,5 +639,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.EG,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"EG":{"aE":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_237",e:"endPart",h:b})})($__dart_deferred_initializers__,"3FuiogBDD9iVLJQ6d20yCedixgQ=");
+a.eventLog.push({p:"main.dart.js_237",e:"endPart",h:b})})($__dart_deferred_initializers__,"LPC0eTeftl4zPGqVAoVBziEXj+U=");
 //# sourceMappingURL=main.dart.js_237.part.js.map

@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_204",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cz7(){return new A.Ey(B.da("ca"))},
+cza(){return new A.Ey(B.da("ca"))},
 Ey:function Ey(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -256,7 +256,7 @@ gfk(){return"No s\u2019ha trobat cap sala\u2026"},
 geE(){return"Notificacions"},
 gj4(){return"S\u2019est\xe0 obtenint la ubicaci\xf3\u2026"},
 gj5(){return"Ofensiu"},
-gcp(){return"D'acord"},
+gcr(){return"D'acord"},
 gj7(){return"La c\xf2pia de seguretat de claus en l\xednia est\xe0 activada"},
 gdk(){return"Alguna cosa ha anat malament\u2026"},
 gj6(){return"Una de les teves aplicacions ha tancat la sessi\xf3"},
@@ -423,7 +423,7 @@ gmE(){return"Usu\xe0r\xefis"},
 gmx(){return"Desbloqueja els missatges antics"},
 gjT(){return"Per desar aquesta clau manualment, pica l'eina de compartir o copia-la al porta-retalls."},
 kP(d){return""+d+" arxius"},
-gdv(){return"Usu\xe0r\xefi"},
+gdw(){return"Usu\xe0r\xefi"},
 gi0(){return"Personalitzat"},
 gmV(){return"Per qu\xe8 no es pot llegir aquest missatge?"},
 glM(){return"Aix\xf2 pot passar si el missatge es va enviar abans que haguessis iniciat sessi\xf3 al teu compte des d'aquest dispositiu.\n\nTamb\xe9 pot ser que l'emissor hagi bloquejat el teu dispositiu o que la connexi\xf3 a internet an\xe9s malament.\n\nQue pots llegir el missatge des d'una altra sessi\xf3? Si \xe9s aix\xed, llavors pots transferir-lo! Ves a Par\xe0metres \u2192 Dispositius i assegura't que els teus dispositius s'ha verificat m\xfatuament. Quan obris la sala la propera vegada i totes dues sessions estiguin executant-se, en primer pla, llavors les claus es trasnsmetran autom\xe0ticament.\n\nVols evitar perdre les claus en tancar la sessi\xf3 o en canviar de dispositiu? Llavors assegura't que has activat la c\xf2pia de seguretat del xat als par\xe0metres."},
@@ -639,5 +639,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Ey,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"Ey":{"aE":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_204",e:"endPart",h:b})})($__dart_deferred_initializers__,"lAW0cSVRJDzUaRmLWwSbR84qwwk=");
+a.eventLog.push({p:"main.dart.js_204",e:"endPart",h:b})})($__dart_deferred_initializers__,"gkS8qZ+G37DmrkjIXhJuqURayII=");
 //# sourceMappingURL=main.dart.js_204.part.js.map

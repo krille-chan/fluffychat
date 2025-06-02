@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_294",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czP(){return new A.Fe(B.da("tr"))},
+czS(){return new A.Fe(B.da("tr"))},
 Fe:function Fe(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -256,7 +256,7 @@ gfk(){return"Oda bulunamad\u0131\u2026"},
 geE(){return"Bildirimler"},
 gj4(){return"Konum al\u0131n\u0131yor\u2026"},
 gj5(){return"Rahats\u0131z edici"},
-gcp(){return"Tamam"},
+gcr(){return"Tamam"},
 gj7(){return"\xc7evrim i\xe7i anahtar yedekleme etkinle\u015ftirildi"},
 gdk(){return"T\xfch, bir \u015feyler yanl\u0131\u015f gitti\u2026"},
 gj6(){return"\u0130stemcilerinizden birinin oturumu kapat\u0131ld\u0131"},
@@ -423,7 +423,7 @@ gmE(){return"Kullan\u0131c\u0131lar"},
 gmx(){return"Eski mesajlar\u0131n kilidini a\xe7"},
 gjT(){return"Sistem payla\u015f\u0131m\u0131 ileti\u015fim kutusunu veya panoyu tetikleyerek bu anahtar\u0131 elle kaydedin."},
 kP(d){return""+d+" dosya"},
-gdv(){return"Kullan\u0131c\u0131"},
+gdw(){return"Kullan\u0131c\u0131"},
 gi0(){return"\xd6zel"},
 gmV(){return"Bu mesaj neden okunam\u0131yor?"},
 glM(){return"Bu durum, mesaj siz bu ayg\u0131tta hesab\u0131n\u0131zda oturum a\xe7madan \xf6nce g\xf6nderildiyse meydana gelebilir.\n\nG\xf6nderenin ayg\u0131t\u0131n\u0131z\u0131 engellemi\u015f olmas\u0131 veya internet ba\u011flant\u0131s\u0131nda bir sorun olmas\u0131 da m\xfcmk\xfcnd\xfcr.\n\nMesaj\u0131 ba\u015fka bir oturumda okuyabiliyor musunuz? O zaman mesaj\u0131 oradan aktarabilirsiniz! Ayarlar > Ayg\u0131tlar b\xf6l\xfcm\xfcne gidin ve ayg\u0131tlar\u0131n\u0131z\u0131n birbirini do\u011frulad\u0131\u011f\u0131ndan emin olun. Oday\u0131 bir sonraki sefer a\xe7t\u0131\u011f\u0131n\u0131zda ve her iki oturum da \xf6n planda oldu\u011funda, anahtarlar otomatik olarak iletilecektir.\n\nOturumu kapat\u0131rken veya ayg\u0131t de\u011fi\u015ftirirken anahtarlar\u0131 kaybetmek istemiyor musunuz? Ayarlarda sohbet yedeklemesini etkinle\u015ftirdi\u011finizden emin olun."},
@@ -640,5 +640,5 @@ x(A.Fe,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"Fe":{"aE":[]}}'))
 var y={c:" adresinde geli\u015ftiricilere bildirin. Hata mesaj\u0131: "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_294",e:"endPart",h:b})})($__dart_deferred_initializers__,"sszJq/xiABDkcx5kPTxmPXAViHw=");
+a.eventLog.push({p:"main.dart.js_294",e:"endPart",h:b})})($__dart_deferred_initializers__,"YjF+UBTQVQ5STwKnLLGtIKY0exk=");
 //# sourceMappingURL=main.dart.js_294.part.js.map

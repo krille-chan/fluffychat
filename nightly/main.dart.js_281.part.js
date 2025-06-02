@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_281",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czG(){return new A.F5(B.da("ro"))},
+czJ(){return new A.F5(B.da("ro"))},
 F5:function F5(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -256,7 +256,7 @@ gfk(){return"Nici o camer\u0103 nu s-a g\u0103sit\u2026"},
 geE(){return"Notific\u0103ri"},
 gj4(){return"Ob\u021bin\xe2nd loca\u021bie\u2026"},
 gj5(){return"Ofensiv"},
-gcp(){return"Ok"},
+gcr(){return"Ok"},
 gj7(){return"Backup de cheie online este activat"},
 gdk(){return"Ups, ceva a e\u0219uat\u2026"},
 gj6(){return"Unul dintre clien\u021bilor vo\u0219tri a fost deconectat"},
@@ -423,7 +423,7 @@ gmE(){return"Utilizatori"},
 gmx(){return"Debloca\u021bi mesajele vechi"},
 gjT(){return"Activa\u021bi dialogul de partajare sistemului sau folosi\u021bi clipboard-ul s\u0103 salva\u021bi manual aceast\u0103 cheie."},
 kP(d){return""+d+" fi\u0219iere"},
-gdv(){return"Utilizator"},
+gdw(){return"Utilizator"},
 gi0(){return"Personalizat"},
 gmV(){return"De ce este acest mesaj ilizibil?"},
 glM(){return"Aceast\u0103 chestie poate s\u0103 se \xeent\xe2mple c\xe2nd mesajul a fost trimis \xeenainte s\u0103 v\u0103 conecta\u021bi contul cu acest dispozitiv.\n\nO alt\u0103 explica\u021bie ar fi dac\u0103 trimi\u021b\u0103torul a blocat dispozitivul vostru sau ceva s-a \xeent\xe2mplat cu conexiunea la internet\n\nPute\u021bi s\u0103 citi\u021bi mesajul \xeen o alt\u0103 se\u0219iune? Atunci pute\u021bi s\u0103 transfera\u021bi mesajul de acolo! Merge\u021bi la Configur\u0103ri > Dispozitive \u0219i verifica\u021bi c\u0103 dispozitivele s-au verificat. C\xe2nd deschide\u021bi camera \xeen viitor \u0219i ambele se\u0219iune sunt \xeen foreground, cheile va fi transmise automat. \n\nDori\u021bi s\u0103 \xee\u021bi p\u0103stra\u021bi cheile c\xe2nd deconecta\u021bi sau schimba\u021bi dispozitive? Fi\u021bi aten\u021bi s\u0103 activa\u021bi backup de chat \xeen configur\u0103ri."},
@@ -639,5 +639,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.F5,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"F5":{"aE":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_281",e:"endPart",h:b})})($__dart_deferred_initializers__,"kXCNCXA6GHWbHwlwlXxg0xy0RT4=");
+a.eventLog.push({p:"main.dart.js_281",e:"endPart",h:b})})($__dart_deferred_initializers__,"R3R+xad4qlLEdD4w2Kk5hdyWWGU=");
 //# sourceMappingURL=main.dart.js_281.part.js.map

@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_260",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czq(){return new A.ER(B.da("hu"))},
+czt(){return new A.ER(B.da("hu"))},
 ER:function ER(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -256,7 +256,7 @@ gfk(){return"Nem tal\xe1lhat\xf3ak szob\xe1k\u2026"},
 geE(){return"\xc9rtes\xedt\xe9sek"},
 gj4(){return"Tart\xf3zkod\xe1si hely lek\xe9r\xe9se\u2026"},
 gj5(){return"S\xe9rt\u0151"},
-gcp(){return"Ok"},
+gcr(){return"Ok"},
 gj7(){return"Online kulcsment\xe9s enged\xe9lyezve"},
 gdk(){return"Hopp\xe1, valami hiba l\xe9pett fel\u2026"},
 gj6(){return"Az egyik kliense kijelentkezett"},
@@ -423,7 +423,7 @@ gmE(){return"Felhaszn\xe1l\xf3k"},
 gmx(){return"R\xe9gi \xfczenetek felold\xe1sa"},
 gjT(){return"A kulcs manu\xe1lis ment\xe9se rendszer megoszt\xe1s vagy v\xe1g\xf3lap m\xe1sol\xe1s seg\xedts\xe9g\xe9vel."},
 kP(d){return""+d+" f\xe1jl"},
-gdv(){return"Felhaszn\xe1l\xf3"},
+gdw(){return"Felhaszn\xe1l\xf3"},
 gi0(){return"Egyedi"},
 gmV(){return"Mi\xe9rt olvashatatlan ez az \xfczenet?"},
 glM(){return"Akkor fordulhat el\u0151, ha az \xfczenet az eszk\xf6zre val\xf3 bejelentkez\xe9s el\u0151tt ker\xfclt k\xfcld\xe9sre.\n\nAz is elk\xe9pzelhet\u0151, hogy a k\xfcld\u0151 blokkolta az eszk\xf6z\xe9t, vagy valami probl\xe9ma l\xe9pett fel az internet kapcsolatban.\n\nM\xe1s helyen l\xe1tja az \xfczenetet? Akkor \xe1t tudja m\xe1solni ide is! Menjen a Be\xe1ll\xedt\xe1sok > Eszk\xf6z\xf6k r\xe9szbe, \xe9s gy\u0151z\u0151dj\xf6n meg r\xf3la, hogy az eszk\xf6zei meger\u0151s\xedtett\xe9k egym\xe1st. Legk\xf6zelebb amikor ezt a szob\xe1t megnyitja, \xe9s mind a k\xe9t kliens az el\u0151t\xe9rben van, akkor szikroniz\xe1l\xf3dni fognak.\n\nNem akarja elvesz\xedteni a kulcsokat amikor kijelentkezik, vagy eszk\xf6zt cser\xe9l? Gy\u0151z\u0151dj\xf6n meg r\xf3la, hogy bekapcsolta a chat ment\xe9st a be\xe1ll\xedt\xe1sokban."},
@@ -639,5 +639,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.ER,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"ER":{"aE":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_260",e:"endPart",h:b})})($__dart_deferred_initializers__,"VIYfrCC27ZBZ3wcmfj07bcZW+Hw=");
+a.eventLog.push({p:"main.dart.js_260",e:"endPart",h:b})})($__dart_deferred_initializers__,"+ITwfi2/XeQCQujf1W8x9PmEuow=");
 //# sourceMappingURL=main.dart.js_260.part.js.map

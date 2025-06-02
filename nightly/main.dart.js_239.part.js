@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_239",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czg(){return new A.EH(B.da("eu"))},
+czj(){return new A.EH(B.da("eu"))},
 EH:function EH(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -256,7 +256,7 @@ gfk(){return"Ez da gelarik aurkitu\u2026"},
 geE(){return"Jakinarazpenak"},
 gj4(){return"Kokapena atzitzen\u2026"},
 gj5(){return"Iraingarria"},
-gcp(){return"Ados"},
+gcr(){return"Ados"},
 gj7(){return"Gakoen online babeskopia gaituta dago"},
 gdk(){return"Hara, zerbaitek huts egin du\u2026"},
 gj6(){return"Zure gailuetako batek saioa amaitu du"},
@@ -423,7 +423,7 @@ gmE(){return"Erabiltzaileak"},
 gmx(){return"Desblokeatu mezu zaharrak"},
 gjT(){return"Gorde eskuz gako hau gailuko partekatze-menua edo arbela erabiliz."},
 kP(d){return""+d+" fitxategi"},
-gdv(){return"Erabiltzailea"},
+gdw(){return"Erabiltzailea"},
 gi0(){return"Neurrira egindakoa"},
 gmV(){return"Zergatik ezin da mezu hau irakurri?"},
 glM(){return"Mezua gailu honetan saioa hasi baino lehen bidali bazen gertatu daiteke.\n\nBeste aukera bat igorleak zure gailua blokeatu izana da, edo zerbaitek huts egin izana interneteko konexioan.\n\nMezua beste saio batean irakur dezakezu? Hala bada, mezua transferitu dezakezu! Zoaz Ezrpenetara > Gailuak eta baieztatu zure gailuek bata bestea egiaztatu dutela. Gela irekiko duzun hurrengo aldian eta bi saioak aurreko planoan irekita daudenean, gakoak automatikoki partekatuko dira.\n\nEz duzu gakorik galdu nahi saioa amaitu edo gailuak aldatzen dituzunean? Baieztatu ezarpenetan txaten babeskopiak gaituta dituzula."},
@@ -640,5 +640,5 @@ x(A.EH,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"EH":{"aE":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_239",e:"endPart",h:b})})($__dart_deferred_initializers__,"Sh1+00sH0MqdQXKiB6AYksMdeis=");
+a.eventLog.push({p:"main.dart.js_239",e:"endPart",h:b})})($__dart_deferred_initializers__,"JIbT5fRBM3nUFiyFhPtsubdRfmo=");
 //# sourceMappingURL=main.dart.js_239.part.js.map

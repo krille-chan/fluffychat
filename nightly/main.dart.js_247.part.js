@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_247",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czl(){return new A.EM(B.da("ga"))},
+czo(){return new A.EM(B.da("ga"))},
 EM:function EM(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -256,7 +256,7 @@ gfk(){return"N\xedor aims\xedodh aon seomra\xed\u2026"},
 geE(){return"F\xf3gra\xed"},
 gj4(){return"ag Aimsi\xfa an su\xedomh\u2026"},
 gj5(){return"Maslach"},
-gcp(){return"Ceart go leor"},
+gcr(){return"Ceart go leor"},
 gj7(){return"T\xe1 C\xfaltaca Eochair Ar L\xedne cumasaithe"},
 gdk(){return"\xdaps, chuaigh rud \xe9igin m\xedcheart \u2026"},
 gj6(){return"T\xe1 duine de do chliaint log\xe1ilte amach"},
@@ -423,7 +423,7 @@ gmE(){return"\xdas\xe1ideoir\xed"},
 gmx(){return"D\xedghlas\xe1il seanteachtaireachta\xed"},
 gjT(){return"S\xe1bh\xe1il an eochair seo de l\xe1imh tr\xed dial\xf3g n\xf3 gearrthaisce comhroinnte an ch\xf3rais a spreagadh."},
 kP(d){return"Comhaid "+d},
-gdv(){return"\xdas\xe1ideoir"},
+gdw(){return"\xdas\xe1ideoir"},
 gi0(){return"Saincheaptha"},
 gmV(){return"C\xe9n f\xe1th nach f\xe9idir an teachtaireacht seo a l\xe9amh?"},
 glM(){return"F\xe9adfaidh s\xe9 seo tarl\xfa m\xe1 seoladh an teachtaireacht sular sh\xednigh t\xfa isteach ar do chuntas ag an ngl\xe9as seo.\n\nIs f\xe9idir freisin gur chuir an seolt\xf3ir bac ar do ghl\xe9as n\xf3 go ndeachaigh rud \xe9igin m\xedcheart leis an nasc idirl\xedn.\n\nAn bhfuil t\xfa in ann an teachtaireacht a l\xe9amh ar sheisi\xfan eile? Ansin is f\xe9idir leat an teachtaireacht a aistri\xfa uaidh! T\xe9igh go Socruithe > Gl\xe9asanna agus cinntigh go bhfuil do ghl\xe9asanna f\xedoraithe a ch\xe9ile. Nuair a oscla\xedonn t\xfa an seomra an ch\xe9ad uair eile agus an d\xe1 sheisi\xfan sa tulra, d\xe9anfar na heochracha a tharchur go huathoibr\xedoch.\n\nN\xe1r mhaith leat na heochracha a chailleadh agus t\xfa ag log\xe1il amach n\xf3 ag aistri\xfa gl\xe9asanna? D\xe9an cinnte go bhfuil an c\xfaltaca comhr\xe1 cumasaithe agat sna socruithe."},
@@ -640,5 +640,5 @@ x(A.EM,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"EM":{"aE":[]}}'))
 var y={a:"Cuir cosc ar an \xfas\xe1ideoir \xe1irithe \xf3n seomra seo"}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_247",e:"endPart",h:b})})($__dart_deferred_initializers__,"6K0Kl7BD0SQYcqi/LOCZIKYjROA=");
+a.eventLog.push({p:"main.dart.js_247",e:"endPart",h:b})})($__dart_deferred_initializers__,"b8qUgOnDWLTF0+UsfYhyJJW+L4Q=");
 //# sourceMappingURL=main.dart.js_247.part.js.map

@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_279",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czB(){return new A.F1(B.da("nl"))},
+czE(){return new A.F1(B.da("nl"))},
 F1:function F1(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -256,7 +256,7 @@ gfk(){return"Geen kamers gevonden \u2026"},
 geE(){return"Meldingen"},
 gj4(){return"Locatie ophalen\u2026"},
 gj5(){return"Beledigend"},
-gcp(){return"OK"},
+gcr(){return"OK"},
 gj7(){return"Online sleutelback-up is ingeschakeld"},
 gdk(){return"Oeps, er ging iets mis\u2026"},
 gj6(){return"\xc9\xe9n van jouw apparaten is uitgelogd"},
@@ -423,7 +423,7 @@ gmE(){return"Personen"},
 gmx(){return"Oude berichten ontgrendelen"},
 gjT(){return"Sla deze sleutel handmatig op via delen of het klembord."},
 kP(d){return""+d+" bestanden"},
-gdv(){return"Persoon"},
+gdw(){return"Persoon"},
 gi0(){return"Aangepast"},
 gmV(){return"Waarom is dit bericht onleesbaar?"},
 glM(){return"Dit kan gebeuren als het bericht is verzonden voordat je bij je account op dit apparaat hebt aangemeld.\n\nHet is ook mogelijk dat de afzender je apparaat heeft geblokkeerd of dat er iets mis is gegaan met de internetverbinding.\n\nKan je het bericht wel lezen op een andere sessie? Dan kan je het bericht daarvandaan overzetten! Ga naar Instellingen > Apparaten en zorg ervoor dat je apparaten elkaar hebben geverifieerd. Wanneer je de kamer de volgende keer opent en beide sessies op de voorgrond staan, zullen de sleutels automatisch worden verzonden.\n\nWil je de sleutels niet verliezen als je uitlogt of van apparaat wisselt? Zorg er dan voor dat je de chatback-up hebt aangezet in de instellingen."},
@@ -639,5 +639,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.F1,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"F1":{"aE":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_279",e:"endPart",h:b})})($__dart_deferred_initializers__,"FoNqmfTa2W+eXkC8vmnmkuTgku4=");
+a.eventLog.push({p:"main.dart.js_279",e:"endPart",h:b})})($__dart_deferred_initializers__,"VHHmEqFm0oEOV8O6qElUDG+BjHg=");
 //# sourceMappingURL=main.dart.js_279.part.js.map

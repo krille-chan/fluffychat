@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_290",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czL(){return new A.Fa(B.da("sv"))},
+czO(){return new A.Fa(B.da("sv"))},
 Fa:function Fa(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -256,7 +256,7 @@ gfk(){return"Hittade inga rum\u2026"},
 geE(){return"Aviseringar"},
 gj4(){return"Erh\xe5ller plats\u2026"},
 gj5(){return"St\xf6tande"},
-gcp(){return"OK"},
+gcr(){return"OK"},
 gj7(){return"Online Nyckel-backup \xe4r aktiverad"},
 gdk(){return"Hoppsan, n\xe5got gick fel\u2026"},
 gj6(){return"En av dina klienter har loggats ut"},
@@ -423,7 +423,7 @@ gmE(){return"Anv\xe4ndare"},
 gmx(){return"L\xe5s upp \xe4ldre meddelanden"},
 gjT(){return"Spara nyckeln manuellt genom att aktivera dela-funktionen eller urklippshanteraren p\xe5 enheten."},
 kP(d){return""+d+" filer"},
-gdv(){return"Anv\xe4ndare"},
+gdw(){return"Anv\xe4ndare"},
 gi0(){return"Anpassad"},
 gmV(){return"Varf\xf6r kan inte detta meddelande l\xe4sas?"},
 glM(){return"Detta kan h\xe4nda om meddelandet skickades innan du loggade in p\xe5 ditt konto i den h\xe4r enheten.\n\nDet kan ocks\xe5 vara s\xe5 att avs\xe4ndaren har blockerat din enhet eller att n\xe5got gick fel med internetanslutningen.\n\nKan du l\xe4sa meddelandet i en annan session? I s\xe5dana fall kan du \xf6verf\xf6ra meddelandet fr\xe5n den sessionen! G\xe5 till Inst\xe4llningar > Enhet och s\xe4kerst\xe4ll att dina enheter har verifierat varandra. N\xe4r du \xf6ppnar rummet n\xe4sta g\xe5ng och b\xe5da sessionerna \xe4r i f\xf6rgrunden, s\xe5 kommer nycklarna att \xf6verf\xf6ras automatiskt.\n\nVill du inte f\xf6rlora nycklarna vid utloggning eller n\xe4r du byter enhet? S\xe4kerst\xe4ll att du har aktiverat s\xe4kerhetskopiering f\xf6r chatten i inst\xe4llningarna."},
@@ -639,5 +639,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fa,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"Fa":{"aE":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_290",e:"endPart",h:b})})($__dart_deferred_initializers__,"UjkdfLs5MvWDI7wygLPU0c8PNLE=");
+a.eventLog.push({p:"main.dart.js_290",e:"endPart",h:b})})($__dart_deferred_initializers__,"yoPHvyGZylS4i282EZPbk4vexh4=");
 //# sourceMappingURL=main.dart.js_290.part.js.map

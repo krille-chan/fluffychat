@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_276",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czz(){return new A.F_(B.da("lv"))},
+czC(){return new A.F_(B.da("lv"))},
 F_:function F_(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -256,7 +256,7 @@ gfk(){return"Istabas netika atrastas\u2026"},
 geE(){return"Pazi\u0146ojumi"},
 gj4(){return"Ieg\u016bst atra\u0161an\u0101s vietu\u2026"},
 gj5(){return"Aizskaro\u0161s"},
-gcp(){return"Labi"},
+gcr(){return"Labi"},
 gj7(){return"Tie\u0161saistes atsl\u0113gas rezerves kop\u0113\u0161ana ir iesp\u0113jota"},
 gdk(){return"Ups! Kaut kas nog\u0101ja greizi\u2026"},
 gj6(){return"Viens no klientiem ir atteicies"},
@@ -423,7 +423,7 @@ gmE(){return"Lietot\u0101ji"},
 gmx(){return"Atsl\u0113gt vec\u0101s zi\u0146as"},
 gjT(){return"\u0160o atsl\u0113gu var pa\u0161roc\u012bgi saglab\u0101t ar sist\u0113mas kop\u012bgo\u0161anas dialogloga vai starpliktuves izsauk\u0161anu."},
 kP(d){return""+d+" datnes"},
-gdv(){return"Lietot\u0101js"},
+gdw(){return"Lietot\u0101js"},
 gi0(){return"Piel\u0101gots"},
 gmV(){return"K\u0101d\u0113\u013c \u0161\u012b zi\u0146a ir nelas\u0101ma?"},
 glM(){return"T\u0101 var notikt, ja zi\u0146a tika nos\u016bt\u012bta, pirms pieteicies sav\u0101 kont\u0101 \u0161aj\u0101 ier\u012bc\u0113.\n\nIr ar\u012b iesp\u0113jams, ka s\u016bt\u012bt\u0101js noliedza Tavu ier\u012bci vai kaut kas nog\u0101ja greizi ar interneta savienojumu.\n\nVai zi\u0146as ir las\u0101mas cit\u0101 sesij\u0101? Tad Tu vari p\u0101rs\u016bt\u012bt zi\u0146u no t\u0101s. J\u0101dodas uz Iestat\u012bjumi > Ier\u012bces un j\u0101p\u0101rliecin\u0101s, ka ier\u012bces viena otru ir apliecin\u0101ju\u0161as. Kad n\u0101kamreiz atv\u0113rsi istabu un abas sesijas b\u016bs priek\u0161pl\u0101n\u0101, atsl\u0113gas tiks autom\u0101tiski p\u0101rs\u016bt\u012btas.\n\nVai nev\u0113lies zaud\u0113t atsl\u0113gas, kad atsakies vai maini ier\u012bces? J\u0101p\u0101rliecin\u0101s, ka iestat\u012bjumos ir iesp\u0113jota t\u0113rz\u0113\u0161anu rezerves kopija."},
@@ -639,5 +639,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.F_,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"F_":{"aE":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_276",e:"endPart",h:b})})($__dart_deferred_initializers__,"a1J/LyonUbpOUAGOOMAnaYFidoY=");
+a.eventLog.push({p:"main.dart.js_276",e:"endPart",h:b})})($__dart_deferred_initializers__,"ptVo7uA7n2zSen18l23KT5DxuZU=");
 //# sourceMappingURL=main.dart.js_276.part.js.map

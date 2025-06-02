@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_248",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czm(){return new A.EN(B.da("gl"))},
+czp(){return new A.EN(B.da("gl"))},
 EN:function EN(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -256,7 +256,7 @@ gfk(){return"Non se atoparon salas\u2026"},
 geE(){return"Notificaci\xf3ns"},
 gj4(){return"Obtendo a localizaci\xf3n\u2026"},
 gj5(){return"Ofensivo"},
-gcp(){return"Ok"},
+gcr(){return"Ok"},
 gj7(){return"Copia de Apoio en li\xf1a das Chaves activada"},
 gdk(){return"Ooooi, algo fallou\u2026"},
 gj6(){return"Un dos teus clientes foi desconectado"},
@@ -423,7 +423,7 @@ gmE(){return"Usuarias"},
 gmx(){return"Desbloquear mensaxes antigas"},
 gjT(){return"Garda esta chave manualmente usando o sistema para compartir do dispositivo ou portapapeis."},
 kP(d){return""+d+" ficheiros"},
-gdv(){return"Usuaria"},
+gdw(){return"Usuaria"},
 gi0(){return"Personal"},
 gmV(){return"Por que non podo ler esta mensaxe?"},
 glM(){return"Pode ser que a mensaxe fose enviada antes de que ti accedeses \xe1 t\xfaa conta neste dispositivo.\n\nTam\xe9n \xe9 posible que a remitente non validase o teu dispositivo ou tam\xe9n que algo fallase na conexi\xf3n a internet.\n\nPodes ler a mensaxe noutro dispositivo? Ent\xf3n podes transferila desde el! Vai a Axustes > Dispositivos e comproba que tes t\xf3dolos dispositivos verificados. Ent\xf3n cando abras a sala a pr\xf3xima vez a sincronizaci\xf3n realizarase e as chaves transmitiranse autom\xe1ticamente.\n\nNon desexas perder as chaves cando pechas sesi\xf3n ou cambias de dispositivo? Comproba nos axustes que activaches a copia de apoio das conversas."},
@@ -639,5 +639,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.EN,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"EN":{"aE":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_248",e:"endPart",h:b})})($__dart_deferred_initializers__,"DVT5ulUGK+JqyGB2bolAje/5pkw=");
+a.eventLog.push({p:"main.dart.js_248",e:"endPart",h:b})})($__dart_deferred_initializers__,"PofFgvjBGQc6eraI+gi1bTQmDgE=");
 //# sourceMappingURL=main.dart.js_248.part.js.map
