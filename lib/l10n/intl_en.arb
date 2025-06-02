@@ -3236,5 +3236,30 @@
     "enterNewChat": "Enter new chat",
     "approve": "Approve",
     "youHaveKnocked": "You have knocked",
-    "pleaseWaitUntilInvited": "Please wait now, until someone from the room invites you."
+    "pleaseWaitUntilInvited": "Please wait now, until someone from the room invites you.",
+    "banUsers": "Ban users",
+    "inviteOthers": "Invite other users",
+    "kickUsers": "Kick users",
+    "changeGeneralRoomSettings": "Change general room settings",
+    "roomPermissions": "Room permissions",
+    "roomPermissionsDescription": "Define which power level is necessary for certain actions in this room. The power levels 0, 50 and 100 are usually representing users, moderators and admins, but any gradation is possible.",
+    "configureRoom": "Configure room",
+    "changeCanonicalRoomAlias": "Change the main public room address",
+    "changeRoomName": "Change the name of the room",
+    "roomAccessAndVisibilityDescription": "Who is allowed to join this room, and how the room can be discovered.",
+    "sendAtRoomNotifications": "Send @room notifications",
+    "visibilityOfTheRoomHistory": "Visibility of the room history",
+    "whoIsAllowedToJoinThisRoom": "Who is allowed to join this room",
+    "publicRoomAddresses": "Public room addresses",
+    "roomCanBeDiscoveredViaSearchOnServer": "Room can be discovered via the search on {server}",
+    "@roomCanBeDiscoveredViaSearchOnServer": {
+        "type": "String",
+        "placeholders": {
+            "server": {
+                "type": "String"
+            }
+        }
+    },
+    "changeTheVisibilityOfRoomHistory": "Change the visibility of the room history",
+    "changeTheRoomPermissions": "Change the room permissions"
 }

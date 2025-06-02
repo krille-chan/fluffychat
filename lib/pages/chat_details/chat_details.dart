@@ -44,7 +44,7 @@ class ChatDetailsController extends State<ChatDetails> {
     final room = Matrix.of(context).client.getRoomById(roomId!)!;
     final input = await showTextInputDialog(
       context: context,
-      title: L10n.of(context).changeTheNameOfTheGroup,
+      title: L10n.of(context).changeRoomName,
       okLabel: L10n.of(context).ok,
       cancelLabel: L10n.of(context).cancel,
       initialText: room.getLocalizedDisplayname(

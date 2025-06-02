@@ -29,33 +29,33 @@ class PermissionsListTile extends StatelessWidget {
         case 'events_default':
           return L10n.of(context).sendMessages;
         case 'state_default':
-          return L10n.of(context).changeGeneralChatSettings;
+          return L10n.of(context).changeGeneralRoomSettings;
         case 'ban':
-          return L10n.of(context).banFromChat;
+          return L10n.of(context).banUsers;
         case 'kick':
-          return L10n.of(context).kickFromChat;
+          return L10n.of(context).kickUsers;
         case 'redact':
           return L10n.of(context).deleteMessage;
         case 'invite':
-          return L10n.of(context).inviteOtherUsers;
+          return L10n.of(context).inviteOthers;
       }
     } else if (category == 'notifications') {
       switch (permissionKey) {
         case 'rooms':
-          return L10n.of(context).sendRoomNotifications;
+          return L10n.of(context).sendAtRoomNotifications;
       }
     } else if (category == 'events') {
       switch (permissionKey) {
         case EventTypes.RoomName:
-          return L10n.of(context).changeTheNameOfTheGroup;
+          return L10n.of(context).changeRoomName;
         case EventTypes.RoomTopic:
           return L10n.of(context).changeTheDescriptionOfTheGroup;
         case EventTypes.RoomPowerLevels:
-          return L10n.of(context).changeTheChatPermissions;
+          return L10n.of(context).changeTheRoomPermissions;
         case EventTypes.HistoryVisibility:
-          return L10n.of(context).changeTheVisibilityOfChatHistory;
+          return L10n.of(context).changeTheVisibilityOfRoomHistory;
         case EventTypes.RoomCanonicalAlias:
-          return L10n.of(context).changeTheCanonicalRoomAlias;
+          return L10n.of(context).changeCanonicalRoomAlias;
         case EventTypes.RoomAvatar:
           return L10n.of(context).editRoomAvatar;
         case EventTypes.RoomTombstone:

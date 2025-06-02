@@ -106,7 +106,7 @@ void showMemberActionsPopupMenu({
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(L10n.of(context).chatPermissions),
+                Text(L10n.of(context).roomPermissions),
                 Text(
                   user.powerLevel < 50
                       ? L10n.of(context).userLevel(user.powerLevel)
@@ -131,7 +131,7 @@ void showMemberActionsPopupMenu({
               ),
               const SizedBox(width: 18),
               Text(
-                L10n.of(context).kickFromChat,
+                L10n.of(context).kickUsers,
                 style: TextStyle(color: theme.colorScheme.onErrorContainer),
               ),
             ],
@@ -148,7 +148,7 @@ void showMemberActionsPopupMenu({
               ),
               const SizedBox(width: 18),
               Text(
-                L10n.of(context).banFromChat,
+                L10n.of(context).banUsers,
                 style: TextStyle(color: theme.colorScheme.onErrorContainer),
               ),
             ],

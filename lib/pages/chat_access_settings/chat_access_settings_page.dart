@@ -38,7 +38,7 @@ class ChatAccessSettingsPageView extends StatelessWidget {
               children: [
                 ListTile(
                   title: Text(
-                    L10n.of(context).visibilityOfTheChatHistory,
+                    L10n.of(context).visibilityOfTheRoomHistory,
                     style: TextStyle(
                       color: theme.colorScheme.secondary,
                       fontWeight: FontWeight.bold,
@@ -61,7 +61,7 @@ class ChatAccessSettingsPageView extends StatelessWidget {
                 Divider(color: theme.dividerColor),
                 ListTile(
                   title: Text(
-                    L10n.of(context).whoIsAllowedToJoinThisGroup,
+                    L10n.of(context).whoIsAllowedToJoinThisRoom,
                     style: TextStyle(
                       color: theme.colorScheme.secondary,
                       fontWeight: FontWeight.bold,
@@ -110,7 +110,7 @@ class ChatAccessSettingsPageView extends StatelessWidget {
                   Divider(color: theme.dividerColor),
                   ListTile(
                     title: Text(
-                      L10n.of(context).publicChatAddresses,
+                      L10n.of(context).publicRoomAddresses,
                       style: TextStyle(
                         color: theme.colorScheme.secondary,
                         fontWeight: FontWeight.bold,
@@ -171,7 +171,7 @@ class ChatAccessSettingsPageView extends StatelessWidget {
                     builder: (context, snapshot) => SwitchListTile.adaptive(
                       value: snapshot.data == Visibility.public,
                       title: Text(
-                        L10n.of(context).chatCanBeDiscoveredViaSearchOnServer(
+                        L10n.of(context).roomCanBeDiscoveredViaSearchOnServer(
                           room.client.userID!.domain!,
                         ),
                       ),
