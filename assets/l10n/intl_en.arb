@@ -4962,7 +4962,7 @@
   "access": "Access",
   "addSubspace": "Add subspace",
   "botSettings": "Bot settings",
-  "activitySuggestionTimeoutMessage": "We are working hard to generate activties for you, please check back in a minute",
+  "activitySuggestionTimeoutMessage": "We are working hard to generate activities for you, please check back in a minute",
   "accessSettingsWarning": "Oops! It looks like you don't have permission to set the Access rules of this room. You should check these to make sure they're what you need and talk to a room admin if you need to change them",
   "howSpaceCanBeFound": "How this space can be found",
   "private": "Private",
