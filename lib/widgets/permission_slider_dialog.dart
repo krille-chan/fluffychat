@@ -14,7 +14,7 @@ Future<int?> showPermissionChooser(
   return await showAdaptiveDialog<int>(
     context: context,
     builder: (context) => AlertDialog.adaptive(
-      title: Text(L10n.of(context).chatPermissions),
+      title: Text(L10n.of(context).roomPermissions),
       content: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 256, maxHeight: 256),
         child: Column(

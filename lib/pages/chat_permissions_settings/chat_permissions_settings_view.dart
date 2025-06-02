@@ -20,7 +20,7 @@ class ChatPermissionsSettingsView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: const Center(child: BackButton()),
-        title: Text(L10n.of(context).chatPermissions),
+        title: Text(L10n.of(context).roomPermissions),
       ),
       body: MaxWidthBody(
         child: StreamBuilder(
@@ -46,13 +46,13 @@ class ChatPermissionsSettingsView extends StatelessWidget {
                 ListTile(
                   leading: const Icon(Icons.info_outlined),
                   subtitle: Text(
-                    L10n.of(context).chatPermissionsDescription,
+                    L10n.of(context).roomPermissionsDescription,
                   ),
                 ),
                 Divider(color: theme.dividerColor),
                 ListTile(
                   title: Text(
-                    L10n.of(context).chatPermissions,
+                    L10n.of(context).roomPermissions,
                     style: TextStyle(
                       color: theme.colorScheme.primary,
                       fontWeight: FontWeight.bold,
@@ -112,7 +112,7 @@ class ChatPermissionsSettingsView extends StatelessWidget {
                     Divider(color: theme.dividerColor),
                     ListTile(
                       title: Text(
-                        L10n.of(context).configureChat,
+                        L10n.of(context).configureRoom,
                         style: TextStyle(
                           color: theme.colorScheme.primary,
                           fontWeight: FontWeight.bold,

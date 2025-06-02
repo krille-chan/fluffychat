@@ -289,7 +289,8 @@ class ChatDetailsView extends StatelessWidget {
                               L10n.of(context).accessAndVisibility,
                             ),
                             subtitle: Text(
-                              L10n.of(context).accessAndVisibilityDescription,
+                              L10n.of(context)
+                                  .roomAccessAndVisibilityDescription,
                             ),
                             onTap: () => context
                                 .push('/rooms/${room.id}/details/access'),
@@ -297,7 +298,7 @@ class ChatDetailsView extends StatelessWidget {
                           ),
                         if (!room.isDirectChat)
                           ListTile(
-                            title: Text(L10n.of(context).chatPermissions),
+                            title: Text(L10n.of(context).roomPermissions),
                             subtitle: Text(
                               L10n.of(context).whoCanPerformWhichAction,
                             ),
