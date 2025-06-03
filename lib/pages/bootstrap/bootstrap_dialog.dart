@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'dart:math';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:matrix/encryption.dart';
 import 'package:matrix/matrix.dart';
@@ -91,7 +92,13 @@ class BootstrapDialogState extends State<BootstrapDialog> {
     final theme = Theme.of(context);
     _wipe ??= widget.wipe;
     final buttons = <Widget>[];
-    Widget body = const CircularProgressIndicator.adaptive();
+    Widget body = const Center(
+      child: SizedBox(
+        width: 50,
+        height: 50,
+        child: CircularProgressIndicator.adaptive(),
+      ),
+    );
     titleText = L10n.of(context).loadingPleaseWait;
 
     if (bootstrap.newSsssKey?.recoveryKey != null &&
@@ -443,7 +450,9 @@ class BootstrapDialogState extends State<BootstrapDialog> {
           break;
         case BootstrapState.error:
           titleText = L10n.of(context).oopsSomethingWentWrong;
-          body = const Icon(Icons.error_outline, color: Colors.red, size: 80);
+          body = const Center(
+            child: Icon(Icons.error_outline, color: Colors.red, size: 80),
+          );
           buttons.add(
             ElevatedButton(
               onPressed: () =>
@@ -454,21 +463,23 @@ class BootstrapDialogState extends State<BootstrapDialog> {
           break;
         case BootstrapState.done:
           titleText = L10n.of(context).everythingReady;
-          body = Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Icon(
-                Icons.check_circle_rounded,
-                size: 120,
-                color: Colors.green,
-              ),
-              const SizedBox(height: 16),
-              Text(
-                L10n.of(context).yourChatBackupHasBeenSetUp,
-                style: const TextStyle(fontSize: 20),
-              ),
-              const SizedBox(height: 16),
-            ],
+          body = Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Icon(
+                  Icons.check_circle_rounded,
+                  size: 80,
+                  color: Colors.green,
+                ),
+                const SizedBox(height: 16),
+                Text(
+                  L10n.of(context).yourChatBackupHasBeenSetUp,
+                  style: const TextStyle(fontSize: 20),
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
           );
           buttons.add(
             ElevatedButton(
@@ -496,11 +507,14 @@ class BootstrapDialogState extends State<BootstrapDialog> {
           padding: const EdgeInsets.all(20.0),
           child: Column(
             mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               body,
-              const SizedBox(height: 8),
-              ...buttons,
+              if (buttons.isNotEmpty) const SizedBox(height: 16),
+              ...buttons.map((button) => SizedBox(
+                    width: min(MediaQuery.of(context).size.width * 0.8, 320),
+                    child: button,
+                  )),
             ],
           ),
         ),
