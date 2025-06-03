@@ -540,8 +540,14 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
           Positioned(
             top: 4.0,
             left: 4.0,
-            child: IconButton(
-              icon: const Icon(Icons.close_outlined),
+            child: IconButton.filled(
+              style: IconButton.styleFrom(
+                backgroundColor: theme.colorScheme.surface.withAlpha(170),
+              ),
+              icon: Icon(
+                Icons.close_outlined,
+                color: theme.colorScheme.onSurface,
+              ),
               onPressed: Navigator.of(context).pop,
               tooltip: L10n.of(context).close,
             ),
