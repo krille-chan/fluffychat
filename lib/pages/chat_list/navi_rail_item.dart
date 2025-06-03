@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:badges/badges.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/widgets/hover_builder.dart';
 import 'package:fluffychat/widgets/unread_rooms_badge.dart';
 import '../../config/themes.dart';
@@ -35,14 +34,27 @@ class NaviRailItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    final borderRadius = BorderRadius.circular(AppConfig.borderRadius);
+    // #Pangea
+    // final borderRadius = BorderRadius.circular(AppConfig.borderRadius);
+    final borderRadius = BorderRadius.circular(10.0);
+
+    final isColumnMode = FluffyThemes.isColumnMode(context);
+    final width = isColumnMode
+        ? FluffyThemes.navRailWidth
+        : FluffyThemes.navRailWidth - 8.0;
+    // Pangea#
     final icon = isSelected ? selectedIcon ?? this.icon : this.icon;
     final unreadBadgeFilter = this.unreadBadgeFilter;
     return HoverBuilder(
       builder: (context, hovered) {
+        // #Pangea
+        // return SizedBox(
+        //   height: 72,
         return SizedBox(
-          height: 72,
-          width: FluffyThemes.navRailWidth,
+          height: width - (isColumnMode ? 16.0 : 12.0),
+          width: width,
+          // width: FluffyThemes.navRailWidth,
+          // Pangea#
           child: Stack(
             children: [
               Positioned(
@@ -53,7 +65,7 @@ class NaviRailItem extends StatelessWidget {
                   // #Pangea
                   // width: isSelected ? 8 : 0,
                   width: isSelected
-                      ? FluffyThemes.isColumnMode(context)
+                      ? isColumnMode
                           ? 8
                           : 4
                       : 0,
@@ -74,16 +86,25 @@ class NaviRailItem extends StatelessWidget {
                   scale: hovered ? 1.1 : 1.0,
                   duration: FluffyThemes.animationDuration,
                   curve: FluffyThemes.animationCurve,
-                  child: Material(
-                    borderRadius: borderRadius,
-                    // #Pangea
-                    // color: isSelected
-                    //     ? theme.colorScheme.primaryContainer
-                    //     : theme.colorScheme.surfaceContainerHigh,
-                    color: backgroundColor ??
-                        (isSelected
-                            ? theme.colorScheme.primaryContainer
-                            : theme.colorScheme.surfaceContainerHigh),
+                  // #Pangea
+                  // child: Material(
+                  // borderRadius: borderRadius,
+                  // color: isSelected
+                  //     ? theme.colorScheme.primaryContainer
+                  //     : theme.colorScheme.surfaceContainerHigh,
+                  child: Container(
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: backgroundColor ??
+                          (isSelected
+                              ? theme.colorScheme.primaryContainer
+                              : theme.colorScheme.surfaceContainerHigh),
+                      borderRadius: borderRadius,
+                    ),
+                    margin: EdgeInsets.symmetric(
+                      horizontal: isColumnMode ? 16.0 : 12.0,
+                      vertical: isColumnMode ? 8.0 : 6.0,
+                    ),
                     // Pangea#
                     child: Tooltip(
                       message: toolTip,

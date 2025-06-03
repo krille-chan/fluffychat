@@ -44,6 +44,10 @@ class SpacesNavigationRail extends StatelessWidget {
     final isHomepage = path.contains('homepage');
     final isCommunities = path.contains('communities');
     final isColumnMode = FluffyThemes.isColumnMode(context);
+
+    final width = isColumnMode
+        ? FluffyThemes.navRailWidth
+        : FluffyThemes.navRailWidth - 8.0;
     // return StreamBuilder(
     return Material(
       child: SafeArea(
@@ -69,9 +73,7 @@ class SpacesNavigationRail extends StatelessWidget {
             return SizedBox(
               // #Pangea
               // width: FluffyThemes.navRailWidth,
-              width: isColumnMode
-                  ? FluffyThemes.navRailWidth
-                  : FluffyThemes.navRailWidth * 0.75,
+              width: width,
               // Pangea#
               child: Column(
                 children: [
@@ -112,7 +114,8 @@ class SpacesNavigationRail extends StatelessWidget {
                                       mxContent: snapshot.data?.avatarUrl,
                                       name: snapshot.data?.displayName ??
                                           client.userID!.localpart,
-                                      size: 45,
+                                      size:
+                                          width - (isColumnMode ? 32.0 : 24.0),
                                     ),
                                   ),
                                 ],
@@ -135,14 +138,18 @@ class SpacesNavigationRail extends StatelessWidget {
                                       !isCommunities,
                                   // Pangea#
                                   onTap: onGoToChats,
-                                  icon: const Padding(
-                                    padding: EdgeInsets.all(10.0),
-                                    child: Icon(Icons.forum_outlined),
-                                  ),
-                                  selectedIcon: const Padding(
-                                    padding: EdgeInsets.all(10.0),
-                                    child: Icon(Icons.forum),
-                                  ),
+                                  // #Pangea
+                                  // icon: const Padding(
+                                  //   padding: EdgeInsets.all(10.0),
+                                  //   child: Icon(Icons.forum_outlined),
+                                  // ),
+                                  // selectedIcon: const Padding(
+                                  //   padding: EdgeInsets.all(10.0),
+                                  //   child: Icon(Icons.forum),
+                                  // ),
+                                  icon: const Icon(Icons.forum_outlined),
+                                  selectedIcon: const Icon(Icons.forum),
+                                  // Pangea#
                                   toolTip: L10n.of(context).chats,
                                   unreadBadgeFilter: (room) => true,
                                 );
@@ -163,10 +170,7 @@ class SpacesNavigationRail extends StatelessWidget {
                               clearActiveSpace?.call();
                               context.go('/rooms/communities');
                             },
-                            icon: const Padding(
-                              padding: EdgeInsets.all(10.0),
-                              child: Icon(Icons.groups),
-                            ),
+                            icon: const Icon(Icons.groups),
                             toolTip: L10n.of(context).findYourPeople,
                             // Pangea#
                           );
@@ -194,6 +198,9 @@ class SpacesNavigationRail extends StatelessWidget {
                             borderRadius: BorderRadius.circular(
                               AppConfig.borderRadius / 2,
                             ),
+                            // #Pangea
+                            size: width - (isColumnMode ? 32.0 : 24.0),
+                            // Pangea#
                           ),
                         );
                       },
@@ -202,14 +209,18 @@ class SpacesNavigationRail extends StatelessWidget {
                   NaviRailItem(
                     isSelected: isSettings,
                     onTap: () => context.go('/rooms/settings'),
-                    icon: const Padding(
-                      padding: EdgeInsets.all(10.0),
-                      child: Icon(Icons.settings_outlined),
-                    ),
-                    selectedIcon: const Padding(
-                      padding: EdgeInsets.all(10.0),
-                      child: Icon(Icons.settings),
-                    ),
+                    // #Pangea
+                    // icon: const Padding(
+                    //   padding: EdgeInsets.all(10.0),
+                    //   child: Icon(Icons.settings_outlined),
+                    // ),
+                    // selectedIcon: const Padding(
+                    //   padding: EdgeInsets.all(10.0),
+                    //   child: Icon(Icons.settings),
+                    // ),
+                    icon: const Icon(Icons.settings_outlined),
+                    selectedIcon: const Icon(Icons.settings),
+                    // Pangea#
                     toolTip: L10n.of(context).settings,
                   ),
                 ],
