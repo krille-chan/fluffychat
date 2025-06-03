@@ -46,6 +46,7 @@ class ActivitySuggestionCarousel extends StatefulWidget {
 class ActivitySuggestionCarouselState
     extends State<ActivitySuggestionCarousel> {
   bool _loading = true;
+  bool _closed = false;
   String? _error;
 
   double get _cardWidth => _isColumnMode ? 250.0 : 175.0;
@@ -138,6 +139,9 @@ class ActivitySuggestionCarouselState
 
   void _close() {
     widget.onActivitySelected(null, null, null);
+    setState(() {
+      _closed = true;
+    });
   }
 
   void _onClickCard() {
@@ -179,152 +183,160 @@ class ActivitySuggestionCarouselState
       child: AnimatedOpacity(
         duration: FluffyThemes.animationDuration,
         opacity: widget.enabled ? 1.0 : 0.5,
-        child: Container(
-          decoration: BoxDecoration(
-            border: Border.all(color: theme.dividerColor),
-            borderRadius: BorderRadius.circular(24.0),
-          ),
-          padding: const EdgeInsets.symmetric(
-            vertical: 16.0,
-            horizontal: 4.0,
-          ),
-          child: Column(
-            spacing: 16.0,
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: _closed
+            ? const SizedBox.shrink()
+            : Container(
+                decoration: BoxDecoration(
+                  border: Border.all(color: theme.dividerColor),
+                  borderRadius: BorderRadius.circular(24.0),
+                ),
+                padding: const EdgeInsets.symmetric(
+                  vertical: 16.0,
+                  horizontal: 4.0,
+                ),
+                child: Column(
+                  spacing: 16.0,
                   children: [
-                    Text(
-                      L10n.of(context).newChatActivityTitle,
-                      style: theme.textTheme.titleLarge,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            L10n.of(context).newChatActivityTitle,
+                            style: theme.textTheme.titleLarge,
+                          ),
+                          IconButton(
+                            icon: const Icon(Icons.close),
+                            onPressed: widget.enabled ? _close : null,
+                          ),
+                        ],
+                      ),
                     ),
-                    IconButton(
-                      icon: const Icon(Icons.close),
-                      onPressed: widget.enabled ? _close : null,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                      child: Text(L10n.of(context).newChatActivityDesc),
+                    ),
+                    Row(
+                      spacing: _isColumnMode ? 16.0 : 4.0,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        MouseRegion(
+                          cursor: _canMoveLeft
+                              ? SystemMouseCursors.click
+                              : SystemMouseCursors.basic,
+                          child: GestureDetector(
+                            onTap: _canMoveLeft ? _moveLeft : null,
+                            child: Icon(
+                              Icons.chevron_left_outlined,
+                              size: 32.0,
+                              color: _canMoveLeft ? null : theme.disabledColor,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          constraints:
+                              BoxConstraints(maxHeight: _cardHeight + 12.0),
+                          child: _error != null ||
+                                  (_currentActivity == null && !_loading)
+                              ? const SizedBox.shrink()
+                              : _loading
+                                  ? Shimmer.fromColors(
+                                      baseColor: theme.colorScheme.primary
+                                          .withAlpha(50),
+                                      highlightColor: theme.colorScheme.primary
+                                          .withAlpha(150),
+                                      child: Container(
+                                        height: _cardHeight,
+                                        width: _cardWidth,
+                                        decoration: BoxDecoration(
+                                          color: theme
+                                              .colorScheme.surfaceContainer,
+                                          borderRadius:
+                                              BorderRadius.circular(24.0),
+                                        ),
+                                      ),
+                                    )
+                                  : ActivitySuggestionCard(
+                                      selected: widget.selectedActivity ==
+                                          _currentActivity,
+                                      activity: _currentActivity!,
+                                      onPressed:
+                                          widget.enabled ? _onClickCard : null,
+                                      width: _cardWidth,
+                                      height: _cardHeight,
+                                      image: _currentActivity ==
+                                              widget.selectedActivity
+                                          ? widget.selectedActivityImage
+                                          : null,
+                                      onChange: () {
+                                        if (mounted) setState(() {});
+                                      },
+                                    ),
+                        ),
+                        MouseRegion(
+                          cursor: _canMoveRight
+                              ? SystemMouseCursors.click
+                              : SystemMouseCursors.basic,
+                          child: GestureDetector(
+                            onTap: _canMoveRight ? _moveRight : null,
+                            child: Icon(
+                              Icons.chevron_right_outlined,
+                              size: 32.0,
+                              color: _canMoveRight ? null : theme.disabledColor,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      spacing: 16.0,
+                      children: _activityItems.mapIndexed((i, activity) {
+                        final selected = activity == _currentActivity;
+                        return InkWell(
+                          enableFeedback: widget.enabled,
+                          borderRadius: BorderRadius.circular(12.0),
+                          onTap: widget.enabled
+                              ? () => _setActivityByIndex(i)
+                              : null,
+                          child: ImageFiltered(
+                            imageFilter: ImageFilter.blur(
+                              sigmaX: selected ? 0.0 : 0.5,
+                              sigmaY: selected ? 0.0 : 0.5,
+                            ),
+                            child: Opacity(
+                              opacity: selected ? 1.0 : 0.5,
+                              child: ClipOval(
+                                child: SizedBox.fromSize(
+                                  size: const Size.fromRadius(12.0),
+                                  child: activity.imageURL != null
+                                      ? CachedNetworkImage(
+                                          imageUrl: activity.imageURL!,
+                                          errorWidget: (context, url, error) =>
+                                              const SizedBox(),
+                                          progressIndicatorBuilder:
+                                              (context, url, progress) {
+                                            return CircularProgressIndicator(
+                                              value: progress.progress,
+                                            );
+                                          },
+                                        )
+                                      : CircleAvatar(
+                                          backgroundColor:
+                                              theme.colorScheme.secondary,
+                                          radius: 12.0,
+                                        ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      }).toList(),
                     ),
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                child: Text(L10n.of(context).newChatActivityDesc),
-              ),
-              Row(
-                spacing: _isColumnMode ? 16.0 : 4.0,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  MouseRegion(
-                    cursor: _canMoveLeft
-                        ? SystemMouseCursors.click
-                        : SystemMouseCursors.basic,
-                    child: GestureDetector(
-                      onTap: _canMoveLeft ? _moveLeft : null,
-                      child: Icon(
-                        Icons.chevron_left_outlined,
-                        size: 32.0,
-                        color: _canMoveLeft ? null : theme.disabledColor,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    constraints: BoxConstraints(maxHeight: _cardHeight + 12.0),
-                    child: _error != null ||
-                            (_currentActivity == null && !_loading)
-                        ? const SizedBox.shrink()
-                        : _loading
-                            ? Shimmer.fromColors(
-                                baseColor:
-                                    theme.colorScheme.primary.withAlpha(50),
-                                highlightColor:
-                                    theme.colorScheme.primary.withAlpha(150),
-                                child: Container(
-                                  height: _cardHeight,
-                                  width: _cardWidth,
-                                  decoration: BoxDecoration(
-                                    color: theme.colorScheme.surfaceContainer,
-                                    borderRadius: BorderRadius.circular(24.0),
-                                  ),
-                                ),
-                              )
-                            : ActivitySuggestionCard(
-                                selected:
-                                    widget.selectedActivity == _currentActivity,
-                                activity: _currentActivity!,
-                                onPressed: widget.enabled ? _onClickCard : null,
-                                width: _cardWidth,
-                                height: _cardHeight,
-                                image:
-                                    _currentActivity == widget.selectedActivity
-                                        ? widget.selectedActivityImage
-                                        : null,
-                                onChange: () {
-                                  if (mounted) setState(() {});
-                                },
-                              ),
-                  ),
-                  MouseRegion(
-                    cursor: _canMoveRight
-                        ? SystemMouseCursors.click
-                        : SystemMouseCursors.basic,
-                    child: GestureDetector(
-                      onTap: _canMoveRight ? _moveRight : null,
-                      child: Icon(
-                        Icons.chevron_right_outlined,
-                        size: 32.0,
-                        color: _canMoveRight ? null : theme.disabledColor,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                spacing: 16.0,
-                children: _activityItems.mapIndexed((i, activity) {
-                  final selected = activity == _currentActivity;
-                  return InkWell(
-                    enableFeedback: widget.enabled,
-                    borderRadius: BorderRadius.circular(12.0),
-                    onTap: widget.enabled ? () => _setActivityByIndex(i) : null,
-                    child: ImageFiltered(
-                      imageFilter: ImageFilter.blur(
-                        sigmaX: selected ? 0.0 : 0.5,
-                        sigmaY: selected ? 0.0 : 0.5,
-                      ),
-                      child: Opacity(
-                        opacity: selected ? 1.0 : 0.5,
-                        child: ClipOval(
-                          child: SizedBox.fromSize(
-                            size: const Size.fromRadius(12.0),
-                            child: activity.imageURL != null
-                                ? CachedNetworkImage(
-                                    imageUrl: activity.imageURL!,
-                                    errorWidget: (context, url, error) =>
-                                        const SizedBox(),
-                                    progressIndicatorBuilder:
-                                        (context, url, progress) {
-                                      return CircularProgressIndicator(
-                                        value: progress.progress,
-                                      );
-                                    },
-                                  )
-                                : CircleAvatar(
-                                    backgroundColor:
-                                        theme.colorScheme.secondary,
-                                    radius: 12.0,
-                                  ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  );
-                }).toList(),
-              ),
-            ],
-          ),
-        ),
       ),
     );
   }
