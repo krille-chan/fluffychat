@@ -5,11 +5,17 @@ import 'package:fluffychat/config/themes.dart';
 class TwoColumnLayout extends StatelessWidget {
   final Widget mainView;
   final Widget sideView;
+  // #Pangea
+  final Color? dividerColor;
+  // Pangea#
 
   const TwoColumnLayout({
     super.key,
     required this.mainView,
     required this.sideView,
+    // #Pangea
+    this.dividerColor,
+    // Pangea#
   });
   @override
   Widget build(BuildContext context) {
@@ -27,7 +33,10 @@ class TwoColumnLayout extends StatelessWidget {
             ),
             Container(
               width: 1.0,
-              color: theme.dividerColor,
+              // #Pangea
+              // color: theme.dividerColor,
+              color: dividerColor ?? theme.dividerColor,
+              // Pangea#
             ),
             Expanded(
               child: ClipRRect(

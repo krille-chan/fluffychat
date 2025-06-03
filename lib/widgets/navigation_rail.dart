@@ -7,7 +7,6 @@ import 'package:matrix/matrix.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat_list/navi_rail_item.dart';
-import 'package:fluffychat/pangea/spaces/utils/space_code.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -17,11 +16,17 @@ class SpacesNavigationRail extends StatelessWidget {
   final String? activeSpaceId;
   final void Function() onGoToChats;
   final void Function(String) onGoToSpaceId;
+  // #Pangea
+  final void Function()? clearActiveSpace;
+  // Pangea#
 
   const SpacesNavigationRail({
     required this.activeSpaceId,
     required this.onGoToChats,
     required this.onGoToSpaceId,
+    // #Pangea
+    this.clearActiveSpace,
+    // Pangea#
     super.key,
   });
 
@@ -35,12 +40,9 @@ class SpacesNavigationRail extends StatelessWidget {
         .path
         .startsWith('/rooms/settings');
     // #Pangea
-    final isHomepage = GoRouter.of(context)
-        .routeInformationProvider
-        .value
-        .uri
-        .path
-        .contains('homepage');
+    final path = GoRouter.of(context).routeInformationProvider.value.uri.path;
+    final isHomepage = path.contains('homepage');
+    final isCommunities = path.contains('communities');
     final isColumnMode = FluffyThemes.isColumnMode(context);
     // return StreamBuilder(
     return Material(
@@ -78,18 +80,25 @@ class SpacesNavigationRail extends StatelessWidget {
                       scrollDirection: Axis.vertical,
                       // #Pangea
                       // itemCount: rootSpaces.length + 2,
-                      itemCount: rootSpaces.length + 4,
+                      itemCount: rootSpaces.length + 3,
                       // Pangea#
                       itemBuilder: (context, i) {
                         // #Pangea
                         if (i == 0) {
                           return NaviRailItem(
                             isSelected: isColumnMode
-                                ? activeSpaceId == null && !isSettings
+                                ? activeSpaceId == null &&
+                                    !isSettings &&
+                                    !isCommunities
                                 : isHomepage,
-                            onTap: () => isColumnMode
-                                ? onGoToChats()
-                                : context.go("/rooms/homepage"),
+                            onTap: () {
+                              if (isColumnMode) {
+                                onGoToChats();
+                              } else {
+                                clearActiveSpace?.call();
+                                context.go("/rooms/homepage");
+                              }
+                            },
                             backgroundColor: Colors.transparent,
                             icon: FutureBuilder<Profile>(
                               future: client.fetchOwnProfile(),
@@ -122,7 +131,8 @@ class SpacesNavigationRail extends StatelessWidget {
                                   // isSelected: activeSpaceId == null && !isSettings,
                                   isSelected: activeSpaceId == null &&
                                       !isSettings &&
-                                      !isHomepage,
+                                      !isHomepage &&
+                                      !isCommunities,
                                   // Pangea#
                                   onTap: onGoToChats,
                                   icon: const Padding(
@@ -139,28 +149,26 @@ class SpacesNavigationRail extends StatelessWidget {
                         }
                         i--;
                         if (i == rootSpaces.length) {
-                          // #Pangea
                           return NaviRailItem(
-                            isSelected: false,
-                            onTap: () =>
-                                SpaceCodeUtil.joinWithSpaceCodeDialog(context),
+                            // #Pangea
+                            // isSelected: false,
+                            // onTap: () => context.go('/rooms/newspace'),
+                            // icon: const Padding(
+                            //   padding: EdgeInsets.all(8.0),
+                            //   child: Icon(Icons.add),
+                            // ),
+                            // toolTip: L10n.of(context).createNewSpace,
+                            isSelected: isCommunities,
+                            onTap: () {
+                              clearActiveSpace?.call();
+                              context.go('/rooms/communities');
+                            },
                             icon: const Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Icon(Icons.join_right_outlined),
+                              padding: EdgeInsets.all(10.0),
+                              child: Icon(Icons.groups),
                             ),
-                            toolTip: L10n.of(context).joinByCode,
-                          );
-                        }
-                        if (i == rootSpaces.length + 1) {
-                          // Pangea#
-                          return NaviRailItem(
-                            isSelected: false,
-                            onTap: () => context.go('/rooms/newspace'),
-                            icon: const Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Icon(Icons.add),
-                            ),
-                            toolTip: L10n.of(context).createNewSpace,
+                            toolTip: L10n.of(context).findYourPeople,
+                            // Pangea#
                           );
                         }
                         final space = rootSpaces[i];

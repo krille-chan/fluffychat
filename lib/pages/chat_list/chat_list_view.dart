@@ -41,6 +41,9 @@ class ChatListView extends StatelessWidget {
               activeSpaceId: controller.activeSpaceId,
               onGoToChats: controller.clearActiveSpace,
               onGoToSpaceId: controller.setActiveSpace,
+              // #Pangea
+              clearActiveSpace: controller.clearActiveSpace,
+              // Pangea#
             ),
             Container(
               color: Theme.of(context).dividerColor,

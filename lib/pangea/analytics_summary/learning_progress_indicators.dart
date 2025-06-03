@@ -105,7 +105,7 @@ class LearningProgressIndicatorsState
                       spacing: 16.0,
                       children: ConstructTypeEnum.values
                           .map(
-                            (c) => LearningProgressIndicatorButton(
+                            (c) => HoverButton(
                               onPressed: () {
                                 showDialog<AnalyticsPopupWrapper>(
                                   context: context,
@@ -124,7 +124,7 @@ class LearningProgressIndicatorsState
                           .toList(),
                     ),
                   ),
-                  LearningProgressIndicatorButton(
+                  HoverButton(
                     onPressed: () => showDialog(
                       context: context,
                       builder: (c) => const SettingsLearning(),

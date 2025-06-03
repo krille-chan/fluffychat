@@ -4975,5 +4975,6 @@
   "canBeFoundViaInvitation": "\u2022 invitation",
   "canBeFoundViaCodeOrLink": "\u2022 code or link",
   "canBeFoundViaKnock": "\u2022 request to join and admin approval",
-  "anyoneCanJoin": "Anyone can join! However, admin can kick and ban whoever misbehaves. Those who are banned may not return!"
+  "anyoneCanJoin": "Anyone can join! However, admin can kick and ban whoever misbehaves. Those who are banned may not return!",
+  "createYourSpace": "Create your space"
 }
