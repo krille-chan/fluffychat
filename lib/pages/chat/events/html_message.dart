@@ -193,8 +193,13 @@ class HtmlMessage extends StatelessWidget {
       if (tokenIndex == -1) continue;
 
       final int tokenLength = tokenText.characters.length;
-      final before = result[substringIndex].substring(0, tokenIndex);
-      final after = result[substringIndex].substring(tokenIndex + tokenLength);
+      final before =
+          result[substringIndex].characters.take(tokenIndex).toString();
+      final after = result[substringIndex]
+          .characters
+          .skip(tokenIndex + tokenLength)
+          .toString();
+
       result.replaceRange(substringIndex, substringIndex + 1, [
         if (before.isNotEmpty) before,
         '<token offset="${token.text.offset}" length="${token.text.length}">$tokenText</token>',

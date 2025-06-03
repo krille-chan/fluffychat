@@ -1486,6 +1486,16 @@ class ChatController extends State<ChatPageWithRoom>
   void typeEmoji(Emoji? emoji) {
     if (emoji == null) return;
     final text = sendController.text;
+
+    // #Pangea
+    if (!sendController.selection.isValid) {
+      sendController.value = TextEditingValue(
+        text: text,
+        selection: TextSelection.collapsed(offset: text.length),
+      );
+    }
+    // Pangea#
+
     final selection = sendController.selection;
     final newText = sendController.text.isEmpty
         ? emoji.emoji
