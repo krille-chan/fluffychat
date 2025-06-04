@@ -71,50 +71,48 @@ class Avatar extends StatelessWidget {
               borderRadius: borderRadius,
               side: border ?? BorderSide.none,
             ),
-            clipBehavior: Clip.hardEdge,
-            child:
-                // #Pangea
-                (userId ?? presenceUserId) == BotName.byEnvironment
-                    ? BotFace(
-                        width: size,
-                        expression: BotExpression.idle,
-                        useRive: useRive,
-                      )
-                    :
+            clipBehavior: Clip.antiAlias,
+            // #Pangea
+            // child: noPic
+            child: (userId ?? presenceUserId) == BotName.byEnvironment
+                ? BotFace(
+                    width: size,
+                    expression: BotExpression.idle,
+                    useRive: useRive,
+                  )
+                : noPic
                     // Pangea#
-
-                    noPic
-                        ? Container(
-                            decoration:
-                                BoxDecoration(color: name?.lightColorAvatar),
-                            alignment: Alignment.center,
-                            child: Text(
-                              fallbackLetters,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontFamily: 'RobotoMono',
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: (size / 2.5).roundToDouble(),
-                              ),
-                            ),
-                          )
-                        : MxcImage(
-                            client: client,
-                            key: ValueKey(mxContent.toString()),
-                            cacheKey: '${mxContent}_$size',
-                            uri: mxContent,
-                            fit: BoxFit.cover,
-                            width: size,
-                            height: size,
-                            placeholder: (_) => Center(
-                              child: Icon(
-                                Icons.person_2,
-                                color: theme.colorScheme.tertiary,
-                                size: size / 1.5,
-                              ),
-                            ),
+                    ? Container(
+                        decoration:
+                            BoxDecoration(color: name?.lightColorAvatar),
+                        alignment: Alignment.center,
+                        child: Text(
+                          fallbackLetters,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontFamily: 'RobotoMono',
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: (size / 2.5).roundToDouble(),
                           ),
+                        ),
+                      )
+                    : MxcImage(
+                        client: client,
+                        key: ValueKey(mxContent.toString()),
+                        cacheKey: '${mxContent}_$size',
+                        uri: mxContent,
+                        fit: BoxFit.cover,
+                        width: size,
+                        height: size,
+                        placeholder: (_) => Center(
+                          child: Icon(
+                            Icons.person_2,
+                            color: theme.colorScheme.tertiary,
+                            size: size / 1.5,
+                          ),
+                        ),
+                      ),
           ),
         ),
         // #Pangea

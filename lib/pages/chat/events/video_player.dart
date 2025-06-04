@@ -101,7 +101,6 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
         autoPlay: true,
         autoInitialize: true,
       );
-
       // #Pangea
       _stopVideoSubscription?.cancel();
       _stopVideoSubscription =

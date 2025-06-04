@@ -85,14 +85,12 @@ class ParticipantListItem extends StatelessWidget {
                 ),
         ],
       ),
-      subtitle:
-          // #Pangea
-          LevelDisplayName(userId: user.id),
-      // Text(
+      // #Pangea
+      subtitle: LevelDisplayName(userId: user.id),
+      // subtitle: Text(
       //   user.id,
       //   maxLines: 1,
       //   overflow: TextOverflow.ellipsis,
-      // ),
       // Pangea#
       leading: Opacity(
         opacity: user.membership == Membership.join ? 1 : 0.5,

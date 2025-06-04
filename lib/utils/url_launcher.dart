@@ -191,7 +191,6 @@ class UrlLauncher {
         await PublicRoomBottomSheet.show(
           context: context,
           roomAlias: identityParts.primaryIdentifier,
-          // Pangea#
         );
         // Pangea#
       }
