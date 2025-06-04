@@ -451,8 +451,12 @@ class Message extends StatelessWidget {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: <Widget>[
-                                                if (event.relationshipType ==
-                                                    RelationshipTypes.reply)
+                                                if ({
+                                                  RelationshipTypes.reply,
+                                                  RelationshipTypes.thread,
+                                                }.contains(
+                                                  event.relationshipType,
+                                                ))
                                                   FutureBuilder<Event?>(
                                                     future: event.getReplyEvent(
                                                       timeline,
