@@ -10,7 +10,6 @@ import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:universal_html/html.dart' as html;
 
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions/flutter_hive_collections_database.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'cipher.dart';
 
@@ -74,7 +73,7 @@ Future<DatabaseApi> flutterMatrixSdkDatabaseBuilder(Client client) async {
       Logs().e('Unable to send error notification', e, s);
     }
 
-    return FlutterHiveCollectionsDatabase.databaseBuilder(client);
+    rethrow;
   }
 }
 
