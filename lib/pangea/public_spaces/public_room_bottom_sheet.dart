@@ -142,7 +142,7 @@ class PublicRoomBottomSheetState extends State<PublicRoomBottomSheet> {
       context: context,
       future: () async => client.knockRoom(
         roomAlias ?? chunk!.roomId,
-        serverName: via,
+        via: via,
       ),
       onSuccess: () => L10n.of(context).knockSpaceSuccess,
       delay: false,
