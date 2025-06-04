@@ -34,7 +34,7 @@ class FindYourPeopleView extends StatelessWidget {
               ),
               title: Icon(
                 Icons.groups_outlined,
-                size: 20.0,
+                size: 24.0,
                 color: theme.colorScheme.primary,
               ),
               centerTitle: false,
@@ -46,14 +46,14 @@ class FindYourPeopleView extends StatelessWidget {
                       Icon(
                         Icons.join_full,
                         color: theme.colorScheme.primary,
-                        size: 20.0,
+                        size: 24.0,
                       ),
                       const SizedBox(width: 8.0),
                       Text(
                         L10n.of(context).joinWithCode,
                         style: TextStyle(
                           color: theme.colorScheme.primary,
-                          fontSize: 10.0,
+                          fontSize: 14.0,
                         ),
                       ),
                     ],
@@ -160,7 +160,7 @@ class FindYourPeopleView extends StatelessWidget {
                                   L10n.of(context).joinWithCode,
                                   style: TextStyle(
                                     color: theme.colorScheme.onPrimaryContainer,
-                                    fontSize: 14.0,
+                                    fontSize: 16.0,
                                   ),
                                 ),
                               ],
@@ -182,7 +182,7 @@ class FindYourPeopleView extends StatelessWidget {
                                   L10n.of(context).createYourSpace,
                                   style: TextStyle(
                                     color: theme.colorScheme.onPrimaryContainer,
-                                    fontSize: 14.0,
+                                    fontSize: 16.0,
                                   ),
                                 ),
                               ],

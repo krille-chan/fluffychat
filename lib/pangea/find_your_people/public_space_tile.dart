@@ -49,6 +49,7 @@ class PublicSpaceTile extends StatelessWidget {
                       child: Column(
                         spacing: 8.0,
                         crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
                             space.name ?? '',
@@ -66,14 +67,14 @@ class PublicSpaceTile extends StatelessWidget {
                             children: [
                               Icon(
                                 Icons.group,
-                                size: isColumnMode ? 30.0 : 16.0,
+                                size: isColumnMode ? 20.0 : 16.0,
                               ),
                               Text(
                                 L10n.of(context).countParticipants(
                                   space.numJoinedMembers,
                                 ),
                                 style: TextStyle(
-                                  fontSize: isColumnMode ? 20.0 : 12.0,
+                                  fontSize: isColumnMode ? 16.0 : 12.0,
                                   height: 1.2,
                                 ),
                               ),
@@ -90,7 +91,7 @@ class PublicSpaceTile extends StatelessWidget {
               Text(
                 space.topic!,
                 style: const TextStyle(
-                  fontSize: 20.0,
+                  fontSize: 16.0,
                   height: 1.2,
                 ),
                 maxLines: 2,
