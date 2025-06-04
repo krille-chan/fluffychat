@@ -1,5 +1,7 @@
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
+
 class RoomDefaults {
   static StateEvent defaultPowerLevels(String userID) => StateEvent(
         type: EventTypes.RoomPowerLevels,
@@ -10,6 +12,7 @@ class RoomDefaults {
           "invite": 50,
           "redact": 50,
           "events": {
+            PangeaEventTypes.activityPlan: 0,
             "m.room.power_levels": 100,
             "m.room.pinned_events": 50,
           },
@@ -34,6 +37,7 @@ class RoomDefaults {
           "invite": 50,
           "redact": 50,
           "events": {
+            PangeaEventTypes.activityPlan: 50,
             "m.room.power_levels": 100,
             "m.room.pinned_events": 50,
           },

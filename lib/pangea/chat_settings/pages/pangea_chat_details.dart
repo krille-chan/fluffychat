@@ -19,6 +19,7 @@ import 'package:fluffychat/pangea/chat_settings/models/bot_options_model.dart';
 import 'package:fluffychat/pangea/chat_settings/utils/delete_room.dart';
 import 'package:fluffychat/pangea/chat_settings/widgets/conversation_bot/conversation_bot_settings.dart';
 import 'package:fluffychat/pangea/chat_settings/widgets/delete_space_dialog.dart';
+import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/spaces/utils/load_participants_util.dart';
 import 'package:fluffychat/pangea/spaces/widgets/download_space_analytics_dialog.dart';
@@ -316,8 +317,9 @@ class RoomDetailsButtonRowState extends State<RoomDetailsButtonRow> {
         title: l10n.activities,
         icon: const Icon(Icons.event_note_outlined),
         onPressed: () => context.go("/rooms/${room.id}/details/planner"),
-        visible: room.canSendDefaultStates || room.isSpace,
-        enabled: room.canSendDefaultStates,
+        visible: room.canChangeStateEvent(PangeaEventTypes.activityPlan) ||
+            room.isSpace,
+        enabled: room.canChangeStateEvent(PangeaEventTypes.activityPlan),
       ),
       ButtonDetails(
         title: l10n.permissions,
