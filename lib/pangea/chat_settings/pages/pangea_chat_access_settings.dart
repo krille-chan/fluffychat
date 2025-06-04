@@ -3,7 +3,6 @@ import 'package:flutter/material.dart' hide Visibility;
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat_access_settings/chat_access_settings_controller.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
@@ -168,20 +167,20 @@ class ChatAccessTile extends StatelessWidget {
 
     return InkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+      borderRadius: BorderRadius.circular(10),
       child: Opacity(
         opacity: selected ? 1.0 : 0.5,
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+            borderRadius: BorderRadius.circular(10),
             border: Border.all(
               color: selected
-                  ? theme.colorScheme.primaryContainer
-                  : theme.colorScheme.outline,
+                  ? theme.colorScheme.primaryFixedDim
+                  : theme.colorScheme.surfaceContainerHigh,
               width: 2,
             ),
             color: selected
-                ? theme.colorScheme.primaryContainer.withAlpha(50)
+                ? theme.colorScheme.primaryFixedDim.withAlpha(50)
                 : null,
           ),
           padding: const EdgeInsets.all(16.0),
