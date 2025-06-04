@@ -97,7 +97,10 @@ class MessageDataController extends BaseController {
         repEventId: repEventId,
         req: req,
         room: room,
-      );
+      ).catchError((e, s) {
+        _tokensCache.remove(req.hashCode);
+        return Future<TokensResponseModel>.error(e, s);
+      });
 
   /////// translation ////////
 

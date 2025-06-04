@@ -74,7 +74,10 @@ class ChatInputBarState extends State<ChatInputBar> {
                   ),
                   child: Column(
                     children: [
-                      ReplyDisplay(widget.controller),
+                      // #Pangea
+                      if (!widget.controller.obscureText)
+                        // Pangea#
+                        ReplyDisplay(widget.controller),
                       PangeaChatInputRow(
                         controller: widget.controller,
                       ),

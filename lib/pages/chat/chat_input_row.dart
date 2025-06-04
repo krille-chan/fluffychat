@@ -320,7 +320,12 @@ class ChatInputRow extends StatelessWidget {
                       )
                     : FloatingActionButton.small(
                         tooltip: L10n.of(context).send,
-                        onPressed: controller.send,
+                        // #Pangea
+                        // onPressed: controller.send,
+                        onPressed: () => controller.send(
+                          message: controller.sendController.text,
+                        ),
+                        // Pangea#
                         elevation: 0,
                         heroTag: null,
                         shape: RoundedRectangleBorder(

@@ -202,6 +202,7 @@ extension EventsRoomExtension on Room {
     PangeaMessageTokens? tokensWritten,
     ChoreoRecord? choreo,
     String? messageTag,
+    String? tempEventId,
   }) {
     // if (parseCommands) {
     //   return client.parseAndRunCommand(this, message,
@@ -232,6 +233,9 @@ extension EventsRoomExtension on Room {
     }
     if (messageTag != null) {
       event[ModelKey.messageTags] = messageTag;
+    }
+    if (tempEventId != null) {
+      event[ModelKey.tempEventId] = tempEventId;
     }
 
     if (parseMarkdown) {

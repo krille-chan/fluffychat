@@ -3,6 +3,7 @@
 import 'dart:async';
 import 'dart:developer';
 import 'dart:io';
+import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -39,6 +40,7 @@ import 'package:fluffychat/pangea/choreographer/enums/edit_type.dart';
 import 'package:fluffychat/pangea/choreographer/models/choreo_record.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/igc/message_analytics_feedback.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/igc/pangea_text_controller.dart';
+import 'package:fluffychat/pangea/common/constants/model_keys.dart';
 import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/common/utils/firebase_analytics.dart';
@@ -515,7 +517,7 @@ class ChatController extends State<ChatPageWithRoom>
     // #Pangea
     // If fake event was sent, don't animate in the next event.
     // It makes the replacement of the fake event jumpy.
-    if (_fakeEventID != null) {
+    if (_fakeEventIDs.isNotEmpty) {
       animateInEventIndex = null;
       return;
     }
@@ -687,7 +689,6 @@ class ChatController extends State<ChatPageWithRoom>
     MatrixState.pAnyState.closeAllOverlays(force: true);
     showToolbarStream.close();
     stopMediaStream.close();
-    hideTextController.dispose();
     _levelSubscription?.cancel();
     _analyticsSubscription?.cancel();
     _router.routeInformationProvider.removeListener(_onRouteChanged);
@@ -720,10 +721,6 @@ class ChatController extends State<ChatPageWithRoom>
 
   // TextEditingController sendController = TextEditingController();
   PangeaTextController get sendController => choreographer.textController;
-
-  /// used to obscure text in text field after sending fake message without
-  /// changing the actual text in the sendController
-  final TextEditingController hideTextController = TextEditingController();
   // #Pangea
 
   void setSendingClient(Client c) {
@@ -758,26 +755,47 @@ class ChatController extends State<ChatPageWithRoom>
     pangeaEditingEvent = null;
   }
 
-  String? _fakeEventID;
-  bool get obscureText => _fakeEventID != null;
+  final List<String> _fakeEventIDs = [];
+  bool get obscureText => _fakeEventIDs.isNotEmpty;
 
   /// Add a fake event to the timeline to visually indicate that a message is being sent.
   /// Used when tokenizing after message send, specifically because tokenization for some
   /// languages takes some time.
-  void sendFakeMessage() {
+  String? sendFakeMessage() {
+    if (sendController.text.trim().isEmpty) return null;
+
     final eventID = room.sendFakeMessage(
       text: sendController.text,
       inReplyTo: replyEvent,
       editEventId: editEvent?.eventId,
     );
-    setState(() => _fakeEventID = eventID);
+    sendController.setSystemText("", EditType.other);
+    setState(() => _fakeEventIDs.add(eventID));
+
+    // wait for the next event to come through before clearing any fake event,
+    // to make the replacement look smooth
+    room.client.onTimelineEvent.stream
+        .firstWhere((event) => event.content[ModelKey.tempEventId] == eventID)
+        .then(
+          (_) => clearFakeEvent(eventID),
+        );
+
+    return eventID;
   }
 
-  void clearFakeEvent() {
-    if (_fakeEventID == null) return;
-    timeline?.events.removeWhere((e) => e.eventId == _fakeEventID);
+  void clearFakeEvent(String? eventId) {
+    if (eventId == null) return;
+
+    final inTimeline = timeline != null &&
+        timeline!.events.any(
+          (e) => e.eventId == eventId,
+        );
+
+    if (!inTimeline) return;
+    timeline?.events.removeWhere((e) => e.eventId == eventId);
+
     setState(() {
-      _fakeEventID = null;
+      _fakeEventIDs.remove(eventId);
     });
   }
 
@@ -786,20 +804,26 @@ class ChatController extends State<ChatPageWithRoom>
   // but for choero, the tx id is generated before the message send.
   // Also, adding PangeaMessageData
   Future<void> send({
+    required String message,
     PangeaRepresentation? originalSent,
     PangeaRepresentation? originalWritten,
     PangeaMessageTokens? tokensSent,
     PangeaMessageTokens? tokensWritten,
     ChoreoRecord? choreo,
+    String? tempEventId,
   }) async {
+    if (message.trim().isEmpty) return;
+    // if (sendController.text.trim().isEmpty) return;
     // Pangea#
-    if (sendController.text.trim().isEmpty) return;
     _storeInputTimeoutTimer?.cancel();
     final prefs = await SharedPreferences.getInstance();
     prefs.remove('draft_$roomId');
     var parseCommands = true;
 
-    final commandMatch = RegExp(r'^\/(\w+)').firstMatch(sendController.text);
+    // #Pangea
+    // final commandMatch = RegExp(r'^\/(\w+)').firstMatch(sendController.text);
+    final commandMatch = RegExp(r'^\/(\w+)').firstMatch(message);
+    // Pangea#
     if (commandMatch != null &&
         !sendingClient.commands.keys.contains(commandMatch[1]!.toLowerCase())) {
       final l10n = L10n.of(context);
@@ -810,7 +834,13 @@ class ChatController extends State<ChatPageWithRoom>
         okLabel: l10n.sendAsText,
         cancelLabel: l10n.cancel,
       );
-      if (dialogResult == OkCancelResult.cancel) return;
+      // #Pangea
+      // if (dialogResult == OkCancelResult.cancel) return;
+      if (dialogResult == OkCancelResult.cancel) {
+        clearFakeEvent(tempEventId);
+        return;
+      }
+      // Pangea#
       parseCommands = false;
     }
 
@@ -822,15 +852,20 @@ class ChatController extends State<ChatPageWithRoom>
     //   editEventId: editEvent?.eventId,
     //   parseCommands: parseCommands,
     // );
-    final previousEdit = editEvent;
 
-    // wait for the next event to come through before clearing any fake event,
-    // to make the replacement look smooth
-    room.client.onTimelineEvent.stream.first.then((_) => clearFakeEvent());
+    // If the message and the sendController text don't match, it's possible
+    // that there was a delay in tokenization before send, and the user started
+    // typing a new message. We don't want to erase that, so only reset the input
+    // bar text if the message is the same as the sendController text.
+    if (message == sendController.text) {
+      sendController.setSystemText("", EditType.other);
+    }
+
+    final previousEdit = editEvent;
 
     room
         .pangeaSendTextEvent(
-      sendController.text,
+      message,
       inReplyTo: replyEvent,
       editEventId: editEvent?.eventId,
       parseCommands: parseCommands,
@@ -839,6 +874,7 @@ class ChatController extends State<ChatPageWithRoom>
       tokensSent: tokensSent,
       tokensWritten: tokensWritten,
       choreo: choreo,
+      tempEventId: tempEventId,
     )
         .then(
       (String? msgEventId) async {
@@ -915,7 +951,7 @@ class ChatController extends State<ChatPageWithRoom>
             s: StackTrace.current,
             data: {
               'roomId': roomId,
-              'text': sendController.text,
+              'text': message,
               'inReplyTo': replyEvent?.eventId,
               'editEventId': editEvent?.eventId,
             },
@@ -924,7 +960,7 @@ class ChatController extends State<ChatPageWithRoom>
         }
       },
     ).catchError((err, s) {
-      clearFakeEvent();
+      clearFakeEvent(tempEventId);
       if (err is EventTooLarge) {
         showAdaptiveDialog(
           context: context,
@@ -937,22 +973,21 @@ class ChatController extends State<ChatPageWithRoom>
         s: s,
         data: {
           'roomId': roomId,
-          'text': sendController.text,
+          'text': message,
           'inReplyTo': replyEvent?.eventId,
           'editEventId': editEvent?.eventId,
         },
       );
     });
+    // sendController.value = TextEditingValue(
+    //   text: pendingText,
+    //   selection: const TextSelection.collapsed(offset: 0),
+    // );
     // Pangea#
-    sendController.value = TextEditingValue(
-      text: pendingText,
-      selection: const TextSelection.collapsed(offset: 0),
-    );
 
     setState(() {
       // #Pangea
       // sendController.text = pendingText;
-      sendController.setSystemText(pendingText, EditType.other);
       // Pangea#
       _inputTextIsEmpty = pendingText.isEmpty;
       replyEvent = null;
