@@ -50,7 +50,10 @@ enum AppSettings<T> {
   // Pangea#
   pushNotificationsGatewayUrl<String>(
     'pushNotificationsGatewayUrl',
-    'https://push.fluffychat.im/_matrix/push/v1/notify',
+    // #Pangea
+    // 'https://push.fluffychat.im/_matrix/push/v1/notify',
+    'https://sygnal.pangea.chat/_matrix/push/v1/notify',
+    // Pangea#
   ),
   pushNotificationsPusherFormat<String>(
     'pushNotificationsPusherFormat',

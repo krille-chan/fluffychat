@@ -18,7 +18,7 @@ dependencies:
   async: ^2.11.0
   badges: ^3.1.2
   blurhash_dart: ^1.2.1
-  chewie: ^1.8.1
+  chewie: ^1.11.0
   collection: ^1.18.0
   cross_file: ^0.3.4+2
   cupertino_icons: any
