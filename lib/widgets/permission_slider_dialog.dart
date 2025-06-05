@@ -72,6 +72,13 @@ Future<int?> showPermissionChooser(
             onPressed: () => Navigator.of(context).pop<int>(0),
             child: Text(L10n.of(context).normalUser),
           ),
+        // #Pangea
+        AdaptiveDialogAction(
+          bigButtons: true,
+          onPressed: () => Navigator.of(context).pop(),
+          child: Text(L10n.of(context).close),
+        ),
+        // Pangea#
       ],
     ),
   );
