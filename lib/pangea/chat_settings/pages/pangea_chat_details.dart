@@ -8,7 +8,6 @@ import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat_details/chat_details.dart';
 import 'package:fluffychat/pages/chat_details/participant_list_item.dart';
@@ -23,6 +22,7 @@ import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/spaces/utils/load_participants_util.dart';
 import 'package:fluffychat/pangea/spaces/widgets/download_space_analytics_dialog.dart';
+import 'package:fluffychat/pangea/spaces/widgets/leaderboard_participant_list.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
@@ -721,22 +721,15 @@ class RoomParticipantsSection extends StatelessWidget {
               runAlignment: WrapAlignment.center,
               children: [
                 ...filteredParticipants.mapIndexed((index, user) {
-                  Color? color = index == 0
-                      ? AppConfig.gold
-                      : index == 1
-                          ? Colors.grey[400]!
-                          : index == 2
-                              ? Colors.brown[400]!
-                              : null;
-
                   final publicProfile = participantsLoader.getPublicProfile(
                     user.id,
                   );
 
+                  LinearGradient? gradient = index.leaderboardGradient;
                   if (user.id == BotName.byEnvironment ||
                       publicProfile == null ||
                       publicProfile.level == null) {
-                    color = null;
+                    gradient = null;
                   }
 
                   return Padding(
@@ -748,21 +741,13 @@ class RoomParticipantsSection extends StatelessWidget {
                           Stack(
                             alignment: Alignment.center,
                             children: [
-                              if (color != null)
+                              if (gradient != null)
                                 CircleAvatar(
                                   radius: _width / 2,
                                   child: Container(
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
-                                      gradient: LinearGradient(
-                                        begin: const Alignment(0.5, -0.5),
-                                        end: const Alignment(-0.5, 0.5),
-                                        colors: <Color>[
-                                          color,
-                                          Colors.white,
-                                          color,
-                                        ],
-                                      ),
+                                      gradient: gradient,
                                     ),
                                   ),
                                 )

@@ -98,11 +98,21 @@ class PresenceAvatar extends StatelessWidget {
   final CachedPresence presence;
   final double height;
   final void Function(Profile) onTap;
+  // #Pangea
+  final LinearGradient? gradient;
+  final Widget? floatingIndicator;
+  final bool showPresence;
+  // Pangea#
 
   const PresenceAvatar({
     required this.presence,
     required this.height,
     required this.onTap,
+    // #Pangea
+    this.gradient,
+    this.showPresence = true,
+    this.floatingIndicator,
+    // Pangea#
     super.key,
   });
 
@@ -146,7 +156,11 @@ class PresenceAvatar extends StatelessWidget {
                               Container(
                                 padding: const EdgeInsets.all(3),
                                 decoration: BoxDecoration(
-                                  gradient: presence.gradient,
+                                  // #Pangea
+                                  // gradient: presence.gradient,
+                                  gradient: gradient ??
+                                      (showPresence ? presence.gradient : null),
+                                  // Pangea#
                                   borderRadius:
                                       BorderRadius.circular(avatarSize),
                                 ),
@@ -159,7 +173,11 @@ class PresenceAvatar extends StatelessWidget {
                                   size: avatarSize - 6,
                                 ),
                               ),
-                              if (presence.userid == client.userID)
+                              // #Pangea
+                              // if (presence.userid == client.userID)
+                              if (floatingIndicator == null &&
+                                  presence.userid == client.userID)
+                                // Pangea#
                                 Positioned(
                                   right: 0,
                                   bottom: 0,
@@ -182,6 +200,9 @@ class PresenceAvatar extends StatelessWidget {
                                     ),
                                   ),
                                 ),
+                              // #Pangea
+                              if (floatingIndicator != null) floatingIndicator!,
+                              // Pangea#
                               if (statusMsg != null) ...[
                                 Positioned(
                                   left: 0,
