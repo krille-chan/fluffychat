@@ -682,39 +682,40 @@ class RoomParticipantsSection extends StatelessWidget {
       builder: (context, constraints) {
         final availableWidth = constraints.maxWidth;
         final capacity = (availableWidth / _fullWidth).floor();
-
-        if (capacity < 4) {
-          return Column(
-            children: [
-              ...members.map((member) => ParticipantListItem(member)),
-              if (actualMembersCount - members.length > 0)
-                ListTile(
-                  title: Text(
-                    L10n.of(context).loadCountMoreParticipants(
-                      (actualMembersCount - members.length),
-                    ),
-                  ),
-                  leading: CircleAvatar(
-                    backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                    child: const Icon(
-                      Icons.group_outlined,
-                      color: Colors.grey,
-                    ),
-                  ),
-                  onTap: () => context.push(
-                    '/rooms/${room.id}/details/members',
-                  ),
-                  trailing: const Icon(Icons.chevron_right_outlined),
-                ),
-            ],
-          );
-        }
-
         return LoadParticipantsUtil(
           space: room,
           builder: (participantsLoader) {
+            if (capacity < 4) {
+              return Column(
+                children: [
+                  ...members.map((member) => ParticipantListItem(member)),
+                  if (actualMembersCount - members.length > 0)
+                    ListTile(
+                      title: Text(
+                        L10n.of(context).loadCountMoreParticipants(
+                          (actualMembersCount - members.length),
+                        ),
+                      ),
+                      leading: CircleAvatar(
+                        backgroundColor:
+                            Theme.of(context).scaffoldBackgroundColor,
+                        child: const Icon(
+                          Icons.group_outlined,
+                          color: Colors.grey,
+                        ),
+                      ),
+                      onTap: () => context.push(
+                        '/rooms/${room.id}/details/members',
+                      ),
+                      trailing: const Icon(Icons.chevron_right_outlined),
+                    ),
+                ],
+              );
+            }
+
             final filteredParticipants =
                 participantsLoader.filteredParticipants("");
+
             return Wrap(
               alignment: WrapAlignment.center,
               runAlignment: WrapAlignment.center,
