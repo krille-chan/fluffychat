@@ -225,7 +225,6 @@ class ActivityPlannerBuilderState extends State<ActivityPlannerBuilder> {
       updatedActivity,
       avatar: avatar,
       filename: filename,
-      avatarURL: imageURL,
     );
   }
 
