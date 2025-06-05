@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_290",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czO(){return new A.Fa(B.da("sv"))},
+czQ(){return new A.Fa(B.da("sv"))},
 Fa:function Fa(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -129,7 +129,7 @@ ghY(){return"Kopiera till urklipp"},
 hZ(d){return"Kunde ej avkoda meddelande: "+d},
 gp0(){return"Check list"},
 dC(d){return""+d+" deltagare"},
-p5(d){return""+d+" invited"},
+p7(d){return""+d+" invited"},
 gf3(d){return"Skapa"},
 i_(d){return"\ud83d\udcac "+d+" skapade chatten"},
 ge2(){return"Skapa grupp"},
@@ -634,10 +634,13 @@ gnR(){return"Enter new chat"},
 gnv(){return"Approve"},
 goZ(){return"You have knocked"},
 goN(){return"Please wait now, until someone from the room invites you."},
+gp5(){return"Logout your current device"},
+gp6(){return"Logout all active devices"},
+gp8(){return"Show navigation rail on mobile"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fa,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"Fa":{"aE":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_290",e:"endPart",h:b})})($__dart_deferred_initializers__,"yoPHvyGZylS4i282EZPbk4vexh4=");
+a.eventLog.push({p:"main.dart.js_290",e:"endPart",h:b})})($__dart_deferred_initializers__,"WbufS88OFJt3gQWJpFWYjWHUFlk=");
 //# sourceMappingURL=main.dart.js_290.part.js.map

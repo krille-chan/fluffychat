@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_297",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czV(){return new A.Fh(B.da("yue"))},
+czX(){return new A.Fh(B.da("yue"))},
 Fh:function Fh(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -129,7 +129,7 @@ ghY(){return"Copy to clipboard"},
 hZ(d){return"Could not decrypt message: "+d},
 gp0(){return"Check list"},
 dC(d){return""+d+" participants"},
-p5(d){return""+d+" invited"},
+p7(d){return""+d+" invited"},
 gf3(d){return"Create"},
 i_(d){return"\ud83d\udcac "+d+" created the chat"},
 ge2(){return"Create group"},
@@ -634,10 +634,13 @@ gnR(){return"Enter new chat"},
 gnv(){return"Approve"},
 goZ(){return"You have knocked"},
 goN(){return"Please wait now, until someone from the room invites you."},
+gp5(){return"Logout your current device"},
+gp6(){return"Logout all active devices"},
+gp8(){return"Show navigation rail on mobile"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fh,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"Fh":{"aE":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_297",e:"endPart",h:b})})($__dart_deferred_initializers__,"UjSGssokvghP05kBtsLfMBY+M6M=");
+a.eventLog.push({p:"main.dart.js_297",e:"endPart",h:b})})($__dart_deferred_initializers__,"Ir1M9SmZik4VDeJxKV6+Cqc+suQ=");
 //# sourceMappingURL=main.dart.js_297.part.js.map

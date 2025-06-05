@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_279",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czE(){return new A.F1(B.da("nl"))},
+czG(){return new A.F1(B.da("nl"))},
 F1:function F1(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -129,7 +129,7 @@ ghY(){return"Kopieer naar klembord"},
 hZ(d){return"Kan het bericht niet ontsleutelen: "+d},
 gp0(){return"Checklist"},
 dC(d){return""+d+" personen"},
-p5(d){return""+d+" uitgenodigd"},
+p7(d){return""+d+" uitgenodigd"},
 gf3(d){return"Aanmaken"},
 i_(d){return"\ud83d\udcac "+d+" heeft de chat gemaakt"},
 ge2(){return"Groep aanmaken"},
@@ -634,10 +634,13 @@ gnR(){return"Nieuwe chat openen"},
 gnv(){return"Goedkeuren"},
 goZ(){return"Je hebt geklopt"},
 goN(){return"Wacht even alsjeblieft tot iemand van de kamer je uitnodigt."},
+gp5(){return"Logout your current device"},
+gp6(){return"Logout all active devices"},
+gp8(){return"Show navigation rail on mobile"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.F1,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"F1":{"aE":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_279",e:"endPart",h:b})})($__dart_deferred_initializers__,"VHHmEqFm0oEOV8O6qElUDG+BjHg=");
+a.eventLog.push({p:"main.dart.js_279",e:"endPart",h:b})})($__dart_deferred_initializers__,"mn6WFtF/OWkefqgtil6KUHAJNmM=");
 //# sourceMappingURL=main.dart.js_279.part.js.map

@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_276",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czC(){return new A.F_(B.da("lv"))},
+czE(){return new A.F_(B.da("lv"))},
 F_:function F_(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -129,7 +129,7 @@ ghY(){return"Ievietot starpliktuv\u0113"},
 hZ(d){return"Nevar\u0113ja at\u0161ifr\u0113t zi\u0146u: "+d},
 gp0(){return"P\u0101rbau\u017eu saraksts"},
 dC(d){return""+d+" dal\u012bbnieki"},
-p5(d){return""+d+" uzaicin\u0101ti"},
+p7(d){return""+d+" uzaicin\u0101ti"},
 gf3(d){return"Izveidot"},
 i_(d){return"\ud83d\udcac "+d+" izveidoja t\u0113rz\u0113\u0161anu"},
 ge2(){return"Izveidot kopu"},
@@ -634,10 +634,13 @@ gnR(){return"Ieiet jaunaj\u0101 t\u0113rz\u0113\u0161an\u0101"},
 gnv(){return"Apstiprin\u0101t"},
 goZ(){return"Tu pieklauv\u0113ji"},
 goN(){return"L\u016bgums tagad uzgaid\u012bt, l\u012bdz k\u0101ds no istabas uzaicin\u0101s Tevi."},
+gp5(){return"Logout your current device"},
+gp6(){return"Logout all active devices"},
+gp8(){return"Show navigation rail on mobile"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.F_,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"F_":{"aE":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_276",e:"endPart",h:b})})($__dart_deferred_initializers__,"ptVo7uA7n2zSen18l23KT5DxuZU=");
+a.eventLog.push({p:"main.dart.js_276",e:"endPart",h:b})})($__dart_deferred_initializers__,"87RCD6tT6ZoZvvE1zWnf+IhNRFs=");
 //# sourceMappingURL=main.dart.js_276.part.js.map

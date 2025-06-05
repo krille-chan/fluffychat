@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_295",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czT(){return new A.Ff(B.da("uk"))},
+czV(){return new A.Ff(B.da("uk"))},
 Ff:function Ff(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -129,7 +129,7 @@ ghY(){return"\u041a\u043e\u043f\u0456\u044e\u0432\u0430\u0442\u0438 \u0434\u043e
 hZ(d){return"\u041f\u043e\u043c\u0438\u043b\u043a\u0430 \u0440\u043e\u0437\u0448\u0438\u0444\u0440\u0443\u0432\u0430\u043d\u043d\u044f \u043f\u043e\u0432\u0456\u0434\u043e\u043c\u043b\u0435\u043d\u043d\u044f: "+d},
 gp0(){return"\u041a\u043e\u043d\u0442\u0440\u043e\u043b\u044c\u043d\u0438\u0439 \u0441\u043f\u0438\u0441\u043e\u043a"},
 dC(d){return"\u0423\u0447\u0430\u0441\u043d\u0438\u043a\u0456\u0432: "+d},
-p5(d){return"\u0417\u0430\u043f\u0440\u043e\u0448\u0435\u043d\u043e "+d},
+p7(d){return"\u0417\u0430\u043f\u0440\u043e\u0448\u0435\u043d\u043e "+d},
 gf3(d){return"\u0421\u0442\u0432\u043e\u0440\u0438\u0442\u0438"},
 i_(d){return"\ud83d\udcac "+d+" \u0441\u0442\u0432\u043e\u0440\u044e\u0454 \u0431\u0435\u0441\u0456\u0434\u0443"},
 ge2(){return"\u0421\u0442\u0432\u043e\u0440\u0438\u0442\u0438 \u0433\u0440\u0443\u043f\u0443"},
@@ -634,10 +634,13 @@ gnR(){return"\u0421\u0442\u0432\u043e\u0440\u0438\u0442\u0438 \u043d\u043e\u0432
 gnv(){return"\u0421\u0445\u0432\u0430\u043b\u0438\u0442\u0438"},
 goZ(){return"\u0412\u0438 \u043f\u043e\u0441\u0442\u0443\u043a\u0430\u043b\u0438"},
 goN(){return"\u0411\u0443\u0434\u044c \u043b\u0430\u0441\u043a\u0430, \u0437\u0430\u0447\u0435\u043a\u0430\u0439\u0442\u0435, \u043f\u043e\u043a\u0438 \u0445\u0442\u043e\u0441\u044c \u0437 \u043a\u0456\u043c\u043d\u0430\u0442\u0438 \u0437\u0430\u043f\u0440\u043e\u0441\u0438\u0442\u044c \u0432\u0430\u0441."},
+gp5(){return"Logout your current device"},
+gp6(){return"Logout all active devices"},
+gp8(){return"Show navigation rail on mobile"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Ff,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"Ff":{"aE":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_295",e:"endPart",h:b})})($__dart_deferred_initializers__,"/DaGoFXJgzf+F09KN9NNBhyCKv0=");
+a.eventLog.push({p:"main.dart.js_295",e:"endPart",h:b})})($__dart_deferred_initializers__,"dFHar8YXge7Cmyjdf35ROfWctqo=");
 //# sourceMappingURL=main.dart.js_295.part.js.map

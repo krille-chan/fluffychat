@@ -2,9 +2,9 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_16",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-czG(d){return new A.zX(B.da(d))},
-czH(){return new A.F3(B.da("pt_BR"))},
-czI(){return new A.F4(B.da("pt_PT"))},
+czI(d){return new A.zX(B.da(d))},
+czJ(){return new A.F3(B.da("pt_BR"))},
+czK(){return new A.F4(B.da("pt_PT"))},
 zX:function zX(d){this.a=d},
 F3:function F3(d){this.a=d},
 F4:function F4(d){this.a=d}},C
@@ -133,7 +133,7 @@ ghY(){return"Copy to clipboard"},
 hZ(d){return"Could not decrypt message: "+d},
 gp0(){return"Check list"},
 dC(d){return""+d+" participants"},
-p5(d){return""+d+" invited"},
+p7(d){return""+d+" invited"},
 gf3(d){return"Create"},
 i_(d){return"\ud83d\udcac "+d+" created the chat"},
 ge2(){return"Create group"},
@@ -638,6 +638,9 @@ gnR(){return"Enter new chat"},
 gnv(){return"Approve"},
 goZ(){return"You have knocked"},
 goN(){return"Please wait now, until someone from the room invites you."},
+gp5(){return"Logout your current device"},
+gp6(){return"Logout all active devices"},
+gp8(){return"Show navigation rail on mobile"},
 B(d,e){return this.gba(this).$1(e)}}
 A.F3.prototype={
 gkt(){return"Falso"},
@@ -1392,5 +1395,5 @@ w(A.zX,[A.F3,A.F4])})()
 B.dM(b.typeUniverse,JSON.parse('{"zX":{"aE":[]},"F3":{"aE":[]},"F4":{"aE":[]}}'))
 var y={d:" alterou a visibilidade do hist\xf3rico para: "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_16",e:"endPart",h:b})})($__dart_deferred_initializers__,"JZPHSTvrKzBlboOrVK1ycZUeTl0=");
+a.eventLog.push({p:"main.dart.js_16",e:"endPart",h:b})})($__dart_deferred_initializers__,"rqI0v6NkVIdsIIUdU7MMsv/Foa4=");
 //# sourceMappingURL=main.dart.js_16.part.js.map

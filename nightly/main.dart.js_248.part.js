@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_248",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czp(){return new A.EN(B.da("gl"))},
+czr(){return new A.EN(B.da("gl"))},
 EN:function EN(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -129,7 +129,7 @@ ghY(){return"Copiar ao portapapeis"},
 hZ(d){return"Non se descifrou a mensaxe: "+d},
 gp0(){return"Check list"},
 dC(d){return""+d+" participantes"},
-p5(d){return""+d+" convidadas"},
+p7(d){return""+d+" convidadas"},
 gf3(d){return"Crear"},
 i_(d){return"\ud83d\udcac "+d+" creou a conversa"},
 ge2(){return"Crear grupo"},
@@ -634,10 +634,13 @@ gnR(){return"Entrar na nova conversa"},
 gnv(){return"Aprobar"},
 goZ(){return"Petaches \xe1 porta"},
 goN(){return"Agora agarda a que algu\xe9n da sala te convide a entrar."},
+gp5(){return"Logout your current device"},
+gp6(){return"Logout all active devices"},
+gp8(){return"Show navigation rail on mobile"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.EN,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"EN":{"aE":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_248",e:"endPart",h:b})})($__dart_deferred_initializers__,"PofFgvjBGQc6eraI+gi1bTQmDgE=");
+a.eventLog.push({p:"main.dart.js_248",e:"endPart",h:b})})($__dart_deferred_initializers__,"UWu2FTCQXyJ3Va4oogX+yAQ89eM=");
 //# sourceMappingURL=main.dart.js_248.part.js.map

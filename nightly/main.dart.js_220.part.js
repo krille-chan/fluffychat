@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_220",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czd(){return new A.EB(B.da("de"))},
+czf(){return new A.EB(B.da("de"))},
 EB:function EB(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -129,7 +129,7 @@ ghY(){return"In Zwischenablage kopieren"},
 hZ(d){return"Nachricht konnte nicht entschl\xfcsselt werden: "+d},
 gp0(){return"Checkliste"},
 dC(d){return""+d+" Mitglieder"},
-p5(d){return""+d+" invited"},
+p7(d){return""+d+" invited"},
 gf3(d){return"Erstellen"},
 i_(d){return"\ud83d\udcac "+d+" hat den Chat erstellt"},
 ge2(){return"Gruppe erstellen"},
@@ -634,11 +634,14 @@ gnR(){return"Neuen Chat betreten"},
 gnv(){return"Genehmigen"},
 goZ(){return"Du hast geklopft"},
 goN(){return"Bitte warte nun, bis dich jemand aus dem Raum auffordert."},
+gp5(){return"Logout your current device"},
+gp6(){return"Logout all active devices"},
+gp8(){return"Show navigation rail on mobile"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.EB,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"EB":{"aE":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_220",e:"endPart",h:b})})($__dart_deferred_initializers__,"2XyhlNauJT4VavxSLaXwXxpcjbg=");
+a.eventLog.push({p:"main.dart.js_220",e:"endPart",h:b})})($__dart_deferred_initializers__,"4bzEN758AylmsFPiQoY/KN4bz18=");
 //# sourceMappingURL=main.dart.js_220.part.js.map

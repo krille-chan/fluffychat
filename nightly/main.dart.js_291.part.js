@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_291",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czP(){return new A.Fb(B.da("ta"))},
+czR(){return new A.Fb(B.da("ta"))},
 Fb:function Fb(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -129,7 +129,7 @@ ghY(){return"\u0b87\u0b9f\u0bc8\u0ba8\u0bbf\u0bb2\u0bc8\u0baa\u0bcd\u0baa\u0bb2\
 hZ(d){return"\u0b9a\u0bc6\u0baf\u0bcd\u0ba4\u0bbf\u0baf\u0bc8 \u0bae\u0bb1\u0bc8\u0b95\u0bc1\u0bb1\u0bbf\u0baf\u0bbe\u0b95\u0bcd\u0b95 \u0bae\u0bc1\u0b9f\u0bbf\u0baf\u0bb5\u0bbf\u0bb2\u0bcd\u0bb2\u0bc8: "+d},
 gp0(){return"Check list"},
 dC(d){return""+d+" \u0baa\u0b99\u0bcd\u0b95\u0bc7\u0bb1\u0bcd\u0baa\u0bbe\u0bb3\u0bb0\u0bcd\u0b95\u0bb3\u0bcd"},
-p5(d){return""+d+" invited"},
+p7(d){return""+d+" invited"},
 gf3(d){return"\u0b89\u0bb0\u0bc1\u0bb5\u0bbe\u0b95\u0bcd\u0b95\u0bc1"},
 i_(d){return"\ud83d\udcac "+d+" \u0b85\u0bb0\u0b9f\u0bcd\u0b9f\u0bc8\u0baf\u0bc8 \u0b89\u0bb0\u0bc1\u0bb5\u0bbe\u0b95\u0bcd\u0b95\u0bbf\u0ba9\u0bbe\u0bb0\u0bcd"},
 ge2(){return"\u0b95\u0bc1\u0bb4\u0bc1\u0bb5\u0bc8 \u0b89\u0bb0\u0bc1\u0bb5\u0bbe\u0b95\u0bcd\u0b95\u0bb5\u0bc1\u0bae\u0bcd"},
@@ -634,11 +634,14 @@ gnR(){return"Enter new chat"},
 gnv(){return"Approve"},
 goZ(){return"You have knocked"},
 goN(){return"Please wait now, until someone from the room invites you."},
+gp5(){return"Logout your current device"},
+gp6(){return"Logout all active devices"},
+gp8(){return"Show navigation rail on mobile"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.Fb,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"Fb":{"aE":[]}}'))
 var y={d:" \u0b87\u0bb2\u0bcd \u0b9f\u0bc6\u0bb5\u0bb2\u0baa\u0bcd\u0baa\u0bb0\u0bcd\u0b95\u0bb3\u0bbf\u0b9f\u0bae\u0bcd \u0b87\u0ba8\u0bcd\u0ba4\u0baa\u0bcd \u0baa\u0bbf\u0bb4\u0bc8\u0baf\u0bc8\u0baa\u0bcd \u0baa\u0bc1\u0b95\u0bbe\u0bb0\u0bb3\u0bbf\u0b95\u0bcd\u0b95\u0bb5\u0bc1\u0bae\u0bcd. \u0baa\u0bbf\u0bb4\u0bc8 \u0b9a\u0bc6\u0baf\u0bcd\u0ba4\u0bbf: "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_291",e:"endPart",h:b})})($__dart_deferred_initializers__,"YVO7t+3dd3s8iTUJaYZiDlk99yI=");
+a.eventLog.push({p:"main.dart.js_291",e:"endPart",h:b})})($__dart_deferred_initializers__,"UWlAoPPlZUu0Zobm2OuGFm3J+BE=");
 //# sourceMappingURL=main.dart.js_291.part.js.map

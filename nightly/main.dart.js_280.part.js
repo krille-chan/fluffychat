@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_280",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czF(){return new A.F2(B.da("pl"))},
+czH(){return new A.F2(B.da("pl"))},
 F2:function F2(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -130,7 +130,7 @@ ghY(){return"Skopiuj do schowka"},
 hZ(d){return"Nie mo\u017cna odszyfrowa\u0107 wiadomo\u015bci: "+d},
 gp0(){return"Lista kontrolna"},
 dC(d){return""+d+" uczestnik\xf3w"},
-p5(d){return""+d+" zaproszonych"},
+p7(d){return""+d+" zaproszonych"},
 gf3(d){return"Stw\xf3rz"},
 i_(d){return"\ud83d\udcac "+d+" utworzy\u0142/-a czat"},
 ge2(){return"Utw\xf3rz grup\u0119"},
@@ -635,10 +635,13 @@ gnR(){return"Do\u0142\u0105cz do nowego czatu"},
 gnv(){return"Zaakceptuj"},
 goZ(){return"Zapuka\u0142e\u015b/-a\u015b"},
 goN(){return"Prosz\u0119 zaczeka\u0107 na zaproszenie przez kogo\u015b z pokoju."},
+gp5(){return"Logout your current device"},
+gp6(){return"Logout all active devices"},
+gp8(){return"Show navigation rail on mobile"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.F2,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"F2":{"aE":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_280",e:"endPart",h:b})})($__dart_deferred_initializers__,"xZIkOFSoFeHo/yRNnKK2+VTBZeQ=");
+a.eventLog.push({p:"main.dart.js_280",e:"endPart",h:b})})($__dart_deferred_initializers__,"66dCbW7NYh3YxGm7uZlOGx2EAYE=");
 //# sourceMappingURL=main.dart.js_280.part.js.map

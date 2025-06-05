@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_272",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czy(){return new A.EW(B.da("ja"))},
+czA(){return new A.EW(B.da("ja"))},
 EW:function EW(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -129,7 +129,7 @@ ghY(){return"\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u306b\u30b3\u30d4\u30fc"
 hZ(d){return"\u30e1\u30c3\u30bb\u30fc\u30b8\u3092\u89e3\u8aad\u3067\u304d\u307e\u305b\u3093\u3067\u3057\u305f: "+d},
 gp0(){return"Check list"},
 dC(d){return""+d+"\u540d\u306e\u53c2\u52a0\u8005"},
-p5(d){return""+d+" invited"},
+p7(d){return""+d+" invited"},
 gf3(d){return"\u4f5c\u6210"},
 i_(d){return"\ud83d\udcac "+d+"\u304c\u30c1\u30e3\u30c3\u30c8\u3092\u4f5c\u6210\u3057\u307e\u3057\u305f"},
 ge2(){return"Create group"},
@@ -634,10 +634,13 @@ gnR(){return"Enter new chat"},
 gnv(){return"Approve"},
 goZ(){return"You have knocked"},
 goN(){return"Please wait now, until someone from the room invites you."},
+gp5(){return"Logout your current device"},
+gp6(){return"Logout all active devices"},
+gp8(){return"Show navigation rail on mobile"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.EW,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"EW":{"aE":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_272",e:"endPart",h:b})})($__dart_deferred_initializers__,"dayIkc2MNwyNuyMNicn8t5BpOkM=");
+a.eventLog.push({p:"main.dart.js_272",e:"endPart",h:b})})($__dart_deferred_initializers__,"zetjOCQ6sF0/wPCawONK6ty80oQ=");
 //# sourceMappingURL=main.dart.js_272.part.js.map

@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_263",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czv(){return new A.ET(B.da("id"))},
+czx(){return new A.ET(B.da("id"))},
 ET:function ET(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -129,7 +129,7 @@ ghY(){return"Salin ke papan klip"},
 hZ(d){return"Tidak dapat mendekripsikan pesan: "+d},
 gp0(){return"Ceklis"},
 dC(d){return""+d+" anggota"},
-p5(d){return""+d+" diundang"},
+p7(d){return""+d+" diundang"},
 gf3(d){return"Buat"},
 i_(d){return"\ud83d\udcac "+d+" membuat obrolan ini"},
 ge2(){return"Buat grup"},
@@ -634,11 +634,14 @@ gnR(){return"Masuk ke obrolan baru"},
 gnv(){return"Terima"},
 goZ(){return"Anda telah mengetuk"},
 goN(){return"Silakan menunggu sampai seseorang dari ruangan mengundang Anda."},
+gp5(){return"Logout your current device"},
+gp6(){return"Logout all active devices"},
+gp8(){return"Show navigation rail on mobile"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.ET,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"ET":{"aE":[]}}'))
 var y={a:"Memberi tahu pengguna tentang pesan dalam ruangan satu ke satu."}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_263",e:"endPart",h:b})})($__dart_deferred_initializers__,"DmJCiV/EiexCEWOK6sGKFmhSYS0=");
+a.eventLog.push({p:"main.dart.js_263",e:"endPart",h:b})})($__dart_deferred_initializers__,"p0f//P4SmPpgeRyz4ni4MaPLzSk=");
 //# sourceMappingURL=main.dart.js_263.part.js.map

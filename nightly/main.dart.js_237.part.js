@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_237",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czi(){return new A.EG(B.da("et"))},
+czk(){return new A.EG(B.da("et"))},
 EG:function EG(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -129,7 +129,7 @@ ghY(){return"Kopeeri l\xf5ikelauale"},
 hZ(d){return"S\xf5numi dekr\xfcptimine ei \xf5nnestunud: "+d},
 gp0(){return"Kontrollnimekiri"},
 dC(d){return""+d+" osalejat"},
-p5(d){return""+d+" kutsutut"},
+p7(d){return""+d+" kutsutut"},
 gf3(d){return"Loo"},
 i_(d){return"\ud83d\udcac "+d+" algatas vestluse"},
 ge2(){return"Loo vestlusr\xfchm"},
@@ -634,10 +634,13 @@ gnR(){return"Liitu uue vestlusega"},
 gnv(){return"Kiida heaks"},
 goZ(){return"Sa oled koputanud"},
 goN(){return"Palun oota seni, kuni keegi jututoast saadab sulle kutse."},
+gp5(){return"Logout your current device"},
+gp6(){return"Logout all active devices"},
+gp8(){return"Show navigation rail on mobile"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.EG,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"EG":{"aE":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_237",e:"endPart",h:b})})($__dart_deferred_initializers__,"LPC0eTeftl4zPGqVAoVBziEXj+U=");
+a.eventLog.push({p:"main.dart.js_237",e:"endPart",h:b})})($__dart_deferred_initializers__,"Gtl1YorEGq/oxVKWh30Mn4LqZ7Q=");
 //# sourceMappingURL=main.dart.js_237.part.js.map

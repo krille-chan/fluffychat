@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_189",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cz6(){return new A.Eu(B.da("ar"))},
+cz8(){return new A.Eu(B.da("ar"))},
 Eu:function Eu(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[5],A)
@@ -129,7 +129,7 @@ ghY(){return"\u0627\u0646\u0633\u062e \u0627\u0644\u0649 \u0627\u0644\u062d\u062
 hZ(d){return"\u062a\u0639\u0630\u0631 \u0641\u0643 \u062a\u0634\u0641\u064a\u0631 \u0627\u0644\u0631\u0633\u0627\u0644\u0629: "+d},
 gp0(){return"Check list"},
 dC(d){return""+d+" \u0645\u0646\u062a\u0633\u0628\u0627"},
-p5(d){return""+d+" invited"},
+p7(d){return""+d+" invited"},
 gf3(d){return"\u0623\u0646\u0634\u0626"},
 i_(d){return"\ud83d\udcac \u0623\u0646\u0634\u0623 "+d+" \u0627\u0644\u0645\u062d\u0627\u062f\u062b\u0629"},
 ge2(){return"\u0625\u0646\u0634\u0627\u0621 \u0645\u062c\u0645\u0648\u0639\u0629"},
@@ -634,10 +634,13 @@ gnR(){return"Enter new chat"},
 gnv(){return"Approve"},
 goZ(){return"You have knocked"},
 goN(){return"Please wait now, until someone from the room invites you."},
+gp5(){return"Logout your current device"},
+gp6(){return"Logout all active devices"},
+gp8(){return"Show navigation rail on mobile"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Eu,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"Eu":{"aE":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_189",e:"endPart",h:b})})($__dart_deferred_initializers__,"lczX7drNwyaJJFgj3CThSL3sUyQ=");
+a.eventLog.push({p:"main.dart.js_189",e:"endPart",h:b})})($__dart_deferred_initializers__,"xeJvLOitSegt+F1QU90Bkl1tAMg=");
 //# sourceMappingURL=main.dart.js_189.part.js.map

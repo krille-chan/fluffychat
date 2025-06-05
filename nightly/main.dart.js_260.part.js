@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_260",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czt(){return new A.ER(B.da("hu"))},
+czv(){return new A.ER(B.da("hu"))},
 ER:function ER(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -129,7 +129,7 @@ ghY(){return"V\xe1g\xf3lapra m\xe1sol\xe1s"},
 hZ(d){return"Nem siker\xfclt visszafejteni az \xfczenetet: "+d},
 gp0(){return"Tennival\xf3k list\xe1ja"},
 dC(d){return""+d+" r\xe9sztvev\u0151"},
-p5(d){return""+d+" megh\xedvott"},
+p7(d){return""+d+" megh\xedvott"},
 gf3(d){return"L\xe9trehoz"},
 i_(d){return"\ud83d\udcac "+d+" cseveg\xe9st hozott l\xe9tre"},
 ge2(){return"Csoport l\xe9trehoz\xe1sa"},
@@ -634,10 +634,13 @@ gnR(){return"Bel\xe9p\xe9s \xfaj cseveg\xe9sbe"},
 gnv(){return"J\xf3v\xe1hagy"},
 goZ(){return"Kopogott"},
 goN(){return"K\xe9rem v\xe1rjon, am\xedg valaki a szob\xe1b\xf3l beh\xedvja \xd6nt."},
+gp5(){return"Logout your current device"},
+gp6(){return"Logout all active devices"},
+gp8(){return"Show navigation rail on mobile"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.ER,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"ER":{"aE":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_260",e:"endPart",h:b})})($__dart_deferred_initializers__,"+ITwfi2/XeQCQujf1W8x9PmEuow=");
+a.eventLog.push({p:"main.dart.js_260",e:"endPart",h:b})})($__dart_deferred_initializers__,"m7zVkuDhVchwg6NmRGD3S0OEqgo=");
 //# sourceMappingURL=main.dart.js_260.part.js.map

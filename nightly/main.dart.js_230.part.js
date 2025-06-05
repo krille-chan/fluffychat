@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_230",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czg(){return new A.EE(B.da("eo"))},
+czi(){return new A.EE(B.da("eo"))},
 EE:function EE(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -129,7 +129,7 @@ ghY(){return"Kopii al tondujo"},
 hZ(d){return"Ne povis mal\u0109ifri mesa\u011don: "+d},
 gp0(){return"Check list"},
 dC(d){return""+d+" partoprenantoj"},
-p5(d){return""+d+" invited"},
+p7(d){return""+d+" invited"},
 gf3(d){return"Krei"},
 i_(d){return d+" kreis la babilon"},
 ge2(){return"Create group"},
@@ -634,10 +634,13 @@ gnR(){return"Enter new chat"},
 gnv(){return"Approve"},
 goZ(){return"You have knocked"},
 goN(){return"Please wait now, until someone from the room invites you."},
+gp5(){return"Logout your current device"},
+gp6(){return"Logout all active devices"},
+gp8(){return"Show navigation rail on mobile"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.EE,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"EE":{"aE":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_230",e:"endPart",h:b})})($__dart_deferred_initializers__,"OFZFKD0ytHFSdmJgILLm/GviZeI=");
+a.eventLog.push({p:"main.dart.js_230",e:"endPart",h:b})})($__dart_deferred_initializers__,"bZ2RZUGtBYJMDWAI8EJR2gph9V4=");
 //# sourceMappingURL=main.dart.js_230.part.js.map

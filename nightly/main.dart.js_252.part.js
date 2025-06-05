@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_252",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czq(){return new A.EO(B.da("he"))},
+czs(){return new A.EO(B.da("he"))},
 EO:function EO(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -129,7 +129,7 @@ ghY(){return"\u05d4\u05e2\u05ea\u05e7 \u05dc\u05dc\u05d5\u05d7"},
 hZ(d){return"\u05dc\u05d0 \u05e0\u05d9\u05ea\u05df \u05dc\u05e4\u05e2\u05e0\u05d7 \u05d4\u05d5\u05d3\u05e2\u05d4: "+d},
 gp0(){return"Check list"},
 dC(d){return""+d+" \u05de\u05e9\u05ea\u05ea\u05e4\u05d9\u05dd"},
-p5(d){return""+d+" invited"},
+p7(d){return""+d+" invited"},
 gf3(d){return"\u05e6\u05d5\u05e8"},
 i_(d){return d+" \u05d9\u05e6\u05e8 \u05d0\u05ea \u05d4\u05e6'\u05d0\u05d8"},
 ge2(){return"Create group"},
@@ -634,10 +634,13 @@ gnR(){return"Enter new chat"},
 gnv(){return"Approve"},
 goZ(){return"You have knocked"},
 goN(){return"Please wait now, until someone from the room invites you."},
+gp5(){return"Logout your current device"},
+gp6(){return"Logout all active devices"},
+gp8(){return"Show navigation rail on mobile"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.EO,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"EO":{"aE":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_252",e:"endPart",h:b})})($__dart_deferred_initializers__,"3T+t5K1sgJ/6ZddS4r+Q32oZ6bc=");
+a.eventLog.push({p:"main.dart.js_252",e:"endPart",h:b})})($__dart_deferred_initializers__,"4EM7gg7xOqX+R9SdHQsU4Fhw11Q=");
 //# sourceMappingURL=main.dart.js_252.part.js.map

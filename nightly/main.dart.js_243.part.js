@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_243",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-czm(){return new A.EK(B.da("fil"))},
+czo(){return new A.EK(B.da("fil"))},
 EK:function EK(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -129,7 +129,7 @@ ghY(){return"Kopyahin sa clipboard"},
 hZ(d){return"Hindi ma-decrypt ang mensahe: "+d},
 gp0(){return"Check list"},
 dC(d){return""+d+" mga kasali"},
-p5(d){return""+d+" invited"},
+p7(d){return""+d+" invited"},
 gf3(d){return"Gumawa"},
 i_(d){return"\ud83d\udcac Ginawa ni "+d+" ang chat"},
 ge2(){return"Gumawa ng grupo"},
@@ -634,10 +634,13 @@ gnR(){return"Enter new chat"},
 gnv(){return"Approve"},
 goZ(){return"You have knocked"},
 goN(){return"Please wait now, until someone from the room invites you."},
+gp5(){return"Logout your current device"},
+gp6(){return"Logout all active devices"},
+gp8(){return"Show navigation rail on mobile"},
 B(d,e){return this.gba(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.EK,C.aE)})()
 B.dM(b.typeUniverse,JSON.parse('{"EK":{"aE":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_243",e:"endPart",h:b})})($__dart_deferred_initializers__,"lsZ1g11qXa42SO8FzUdAAXAfYSQ=");
+a.eventLog.push({p:"main.dart.js_243",e:"endPart",h:b})})($__dart_deferred_initializers__,"e6I3DGwsZMnywF0dqlEtjiDAbvM=");
 //# sourceMappingURL=main.dart.js_243.part.js.map
