@@ -109,44 +109,43 @@ class ChatView extends StatelessWidget {
             ],
           ),
       ];
+    } else if (!controller.room.isArchived) {
       // #Pangea
+      return [
+        IconButton(
+          icon: const Icon(Icons.search_outlined),
+          tooltip: L10n.of(context).search,
+          onPressed: () {
+            context.go('/rooms/${controller.room.id}/search');
+          },
+        ),
+        IconButton(
+          icon: const Icon(Icons.settings_outlined),
+          tooltip: L10n.of(context).chatDetails,
+          onPressed: () {
+            if (GoRouterState.of(context).uri.path.endsWith('/details')) {
+              context.go('/rooms/${controller.room.id}');
+            } else {
+              context.go('/rooms/${controller.room.id}/details');
+            }
+          },
+        ),
+      ];
+      // return [
+      //   if (AppConfig.experimentalVoip &&
+      //       Matrix.of(context).voipPlugin != null &&
+      //       controller.room.isDirectChat)
+      //     IconButton(
+      //       onPressed: controller.onPhoneButtonTap,
+      //       icon: const Icon(Icons.call_outlined),
+      //       tooltip: L10n.of(context).placeCall,
+      //     ),
+      //   EncryptionButton(controller.room),
+      //   ChatSettingsPopupMenu(controller.room, true),
+      // ];
+      // Pangea#
     }
-    // } else if (!controller.room.isArchived) {
-    //   return [
-    //     if (AppConfig.experimentalVoip &&
-    //         Matrix.of(context).voipPlugin != null &&
-    //         controller.room.isDirectChat)
-    //       IconButton(
-    //         onPressed: controller.onPhoneButtonTap,
-    //         icon: const Icon(Icons.call_outlined),
-    //         tooltip: L10n.of(context).placeCall,
-    //       ),
-    //     EncryptionButton(controller.room),
-    //     ChatSettingsPopupMenu(controller.room, true),
-    //   ];
-    // }
-    // return [];
-    return [
-      IconButton(
-        icon: const Icon(Icons.search_outlined),
-        tooltip: L10n.of(context).search,
-        onPressed: () {
-          context.go('/rooms/${controller.room.id}/search');
-        },
-      ),
-      IconButton(
-        icon: const Icon(Icons.settings_outlined),
-        tooltip: L10n.of(context).chatDetails,
-        onPressed: () {
-          if (GoRouterState.of(context).uri.path.endsWith('/details')) {
-            context.go('/rooms/${controller.room.id}');
-          } else {
-            context.go('/rooms/${controller.room.id}/details');
-          }
-        },
-      ),
-    ];
-    // Pangea#
+    return [];
   }
 
   @override
