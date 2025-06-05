@@ -15,8 +15,9 @@ class SuggestionsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isColumnMode = FluffyThemes.isColumnMode(context);
-    return Material(
-      child: SafeArea(
+    return Scaffold(
+      resizeToAvoidBottomInset: true,
+      body: SafeArea(
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
