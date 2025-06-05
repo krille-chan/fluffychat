@@ -27,12 +27,12 @@ import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
-import 'package:fluffychat/widgets/adaptive_dialogs/user_dialog.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/hover_builder.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:fluffychat/widgets/member_actions_popup_menu_button.dart';
 
 class PangeaChatDetailsView extends StatelessWidget {
   final ChatDetailsController controller;
@@ -771,27 +771,27 @@ class RoomParticipantsSection extends StatelessWidget {
                                   height: _width,
                                   width: _width,
                                 ),
-                              MouseRegion(
-                                cursor: SystemMouseCursors.click,
-                                child: GestureDetector(
-                                  onTap: () => UserDialog.show(
-                                    context: context,
-                                    profile: Profile(
-                                      userId: user.id,
-                                      displayName: user.displayName,
-                                      avatarUrl: user.avatarUrl,
+                              Builder(
+                                builder: (context) {
+                                  return MouseRegion(
+                                    cursor: SystemMouseCursors.click,
+                                    child: GestureDetector(
+                                      onTap: () => showMemberActionsPopupMenu(
+                                        context: context,
+                                        user: user,
+                                      ),
+                                      child: Center(
+                                        child: Avatar(
+                                          mxContent: user.avatarUrl,
+                                          name: user.calcDisplayname(),
+                                          size: _width - 6.0,
+                                          presenceUserId: user.id,
+                                          showPresence: false,
+                                        ),
+                                      ),
                                     ),
-                                  ),
-                                  child: Center(
-                                    child: Avatar(
-                                      mxContent: user.avatarUrl,
-                                      name: user.calcDisplayname(),
-                                      size: _width - 6.0,
-                                      presenceUserId: user.id,
-                                      showPresence: false,
-                                    ),
-                                  ),
-                                ),
+                                  );
+                                },
                               ),
                             ],
                           ),
