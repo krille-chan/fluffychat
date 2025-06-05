@@ -207,6 +207,36 @@ class SettingsController extends State<Settings> {
     // Pangea#
   }
 
+  // #Pangea
+  void setStatus() async {
+    final client = Matrix.of(context).client;
+    final currentPresence = await client.fetchCurrentPresence(client.userID!);
+    final input = await showTextInputDialog(
+      useRootNavigator: false,
+      context: context,
+      title: L10n.of(context).setStatus,
+      message: L10n.of(context).leaveEmptyToClearStatus,
+      okLabel: L10n.of(context).ok,
+      cancelLabel: L10n.of(context).cancel,
+      hintText: L10n.of(context).statusExampleMessage,
+      maxLines: 6,
+      minLines: 1,
+      maxLength: 255,
+      initialText: currentPresence.statusMsg,
+    );
+    if (input == null) return;
+    if (!mounted) return;
+    await showFutureLoadingDialog(
+      context: context,
+      future: () => client.setPresence(
+        client.userID!,
+        PresenceType.online,
+        statusMsg: input,
+      ),
+    );
+  }
+  // Pangea#
+
   @override
   Widget build(BuildContext context) {
     final client = Matrix.of(context).client;

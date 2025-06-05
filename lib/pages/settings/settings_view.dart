@@ -165,6 +165,25 @@ class SettingsView extends StatelessWidget {
                                     //    style: const TextStyle(fontSize: 12),
                                   ),
                                 ),
+                                // #Pangea
+                                TextButton.icon(
+                                  onPressed: controller.setStatus,
+                                  icon: const Icon(
+                                    Icons.add,
+                                    size: 14,
+                                  ),
+                                  style: TextButton.styleFrom(
+                                    foregroundColor:
+                                        theme.colorScheme.secondary,
+                                    iconColor: theme.colorScheme.secondary,
+                                  ),
+                                  label: Text(
+                                    L10n.of(context).setStatus,
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                                // Pangea#
                               ],
                             ),
                           ),
