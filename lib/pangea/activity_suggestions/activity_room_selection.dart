@@ -128,7 +128,6 @@ class ActivityRoomSelectionState extends State<ActivityRoomSelection> {
         widget.controller.updatedActivity,
         avatar: widget.controller.avatar,
         filename: widget.controller.filename,
-        avatarURL: widget.controller.imageURL,
       );
       _launchStatus[room.id] = 1;
     } catch (e, s) {
@@ -205,7 +204,6 @@ class ActivityRoomSelectionState extends State<ActivityRoomSelection> {
           widget.controller.updatedActivity,
           avatar: widget.controller.avatar,
           filename: widget.controller.filename,
-          avatarURL: widget.controller.imageURL,
         );
       }
       _launchStatus["placeholder"] = 1;

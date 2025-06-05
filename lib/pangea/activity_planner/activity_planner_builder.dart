@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -25,8 +23,6 @@ class ActivityPlannerBuilder extends StatefulWidget {
   final Future<void> Function(
     String,
     ActivityPlanModel,
-    Uint8List?,
-    String?,
   )? onEdit;
 
   const ActivityPlannerBuilder({
@@ -204,8 +200,6 @@ class ActivityPlannerBuilderState extends State<ActivityPlannerBuilder> {
       await widget.onEdit!(
         widget.initialActivity.bookmarkId,
         updatedActivity,
-        avatar,
-        filename,
       );
     }
   }
@@ -225,7 +219,6 @@ class ActivityPlannerBuilderState extends State<ActivityPlannerBuilder> {
       updatedActivity,
       avatar: avatar,
       filename: filename,
-      avatarURL: imageURL,
     );
   }
 
