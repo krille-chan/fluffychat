@@ -5,6 +5,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/analytics_misc/analytics_constants.dart';
+import 'package:fluffychat/pangea/analytics_misc/gain_points_animation.dart';
 import 'package:fluffychat/pangea/analytics_misc/learning_skills_enum.dart';
 import 'package:fluffychat/pangea/analytics_summary/progress_bar/progress_bar.dart';
 import 'package:fluffychat/pangea/analytics_summary/progress_bar/progress_bar_details.dart';
@@ -14,6 +15,7 @@ import 'package:fluffychat/pangea/constructs/construct_repo.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:material_symbols_icons/symbols.dart';
 
 class LevelUpConstants {
   static const String starFileName = "star.png";
@@ -550,7 +552,16 @@ class LevelUpBarAnimation extends StatefulWidget {
 class _LevelUpBarAnimationState extends State<LevelUpBarAnimation>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-  late Animation<double> _animation;
+  late Animation<double> _progressAnimation;
+  late Animation<int> _newVocab;
+  late Animation<int> _newGrammar;
+
+  final int startGrammar = 23;
+  final int endGrammar = 78;
+  final int startVocab = 54;
+  final int endVocab = 64;
+
+  //add vocab and grammar animation controllers, then display their values in the text fields below. Easy!
 
   @override
   void initState() {
@@ -561,7 +572,15 @@ class _LevelUpBarAnimationState extends State<LevelUpBarAnimation>
       vsync: this,
     );
 
-    _animation = Tween<double>(begin: 0, end: 1).animate(
+    _progressAnimation = Tween<double>(begin: 0, end: 1).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
+    );
+
+    _newVocab = IntTween(begin: startVocab, end: endVocab).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeOut),
+    );
+
+    _newGrammar = IntTween(begin: startGrammar, end: endGrammar).animate(
       CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
     );
 
@@ -576,23 +595,87 @@ class _LevelUpBarAnimationState extends State<LevelUpBarAnimation>
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: _animation,
-      builder: (context, _) {
-        return Padding(
-          padding: const EdgeInsets.all(24),
-          child: ProgressBar(
-            levelBars: [
-              LevelBarDetails(
-                widthMultiplier: _animation.value,
-                currentPoints: 0,
-                fillColor: AppConfig.goldLight,
+    final Color grammarVocabColor = Theme.of(context).colorScheme.primary;
+    final TextStyle grammarVocabText =
+        TextStyle(color: grammarVocabColor, fontSize: 24);
+    const TextStyle titleText =
+        TextStyle(color: AppConfig.goldLight, fontSize: 20);
+
+    return Stack(
+      alignment: AlignmentDirectional.center,
+      children: [
+        Column(
+          children: [
+            ClipOval(
+              child: Image.asset(
+                '../../../assets/favicon.png',
+                width: 150, // Adjust the size as needed
+                height: 150,
+                fit: BoxFit.cover, // Use BoxFit.cover to fill the circle
               ),
-            ],
-            height: 20,
-          ),
-        );
-      },
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            const Text(
+              //Language fix later
+              "You have reached a new level!",
+              style: titleText,
+            ),
+            AnimatedBuilder(
+              animation: _progressAnimation,
+              builder: (context, _) {
+                return Padding(
+                  padding: const EdgeInsets.all(24),
+                  child: Column(
+                    children: [
+                      ProgressBar(
+                        levelBars: [
+                          LevelBarDetails(
+                            widthMultiplier: _progressAnimation.value,
+                            currentPoints: 0,
+                            fillColor: AppConfig.goldLight,
+                          ),
+                        ],
+                        height: 20,
+                      ),
+                      const SizedBox(height: 45),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Symbols.dictionary,
+                            color: grammarVocabColor,
+                            size: 35,
+                          ),
+                          Text(
+                            "${_newVocab.value}",
+                            style: grammarVocabText,
+                          ),
+                          const SizedBox(width: 40),
+                          Icon(
+                            Symbols.toys_and_games,
+                            color: grammarVocabColor,
+                            size: 35,
+                          ),
+                          Text(
+                            "${_newGrammar.value}",
+                            style: grammarVocabText,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
+          ],
+        ),
+        const PointsGainedAnimation(
+          points: 10,
+          targetID: "targetID?",
+        ),
+      ],
     );
   }
 }
