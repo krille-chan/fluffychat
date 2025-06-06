@@ -304,7 +304,7 @@ class RoomDetailsButtonRowState extends State<RoomDetailsButtonRow> {
     super.dispose();
   }
 
-  final double _buttonWidth = 165.0;
+  final double _buttonWidth = 125.0;
   final double _buttonHeight = 84.0;
   final double _miniButtonWidth = 50.0;
 
@@ -499,11 +499,6 @@ class RoomDetailsButtonRowState extends State<RoomDetailsButtonRow> {
 
           final mini = fullButtonCapacity < 4;
           final capacity = mini ? miniButtonCapacity : fullButtonCapacity;
-
-          debugPrint(
-            "RoomDetailsButtonRow: $fullButtonCapacity buttons available",
-          );
-          debugPrint("Available width: $availableWidth");
 
           List<ButtonDetails> mainViewButtons =
               buttons.where((button) => button.showInMainView).toList();

@@ -178,13 +178,17 @@ class _SpaceViewState extends State<SpaceView> {
       await _joinDefaultChats();
     } catch (e, s) {
       Logs().w('Unable to load hierarchy', e, s);
-      if (!mounted) return;
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text(e.toLocalizedString(context))));
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(e.toLocalizedString(context))),
+        );
+      }
     } finally {
-      setState(() {
-        _isLoading = false;
-      });
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+        });
+      }
     }
   }
 

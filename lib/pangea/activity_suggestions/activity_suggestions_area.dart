@@ -114,13 +114,15 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
       final resp = await ActivitySearchRepo.get(request).timeout(
         const Duration(seconds: 5),
         onTimeout: () {
-          setState(() {
-            _timeout = true;
-            _loading = false;
-          });
+          if (mounted) {
+            setState(() {
+              _timeout = true;
+              _loading = false;
+            });
+          }
 
           Future.delayed(const Duration(seconds: 5), () {
-            _setActivityItems(retries: retries + 1);
+            if (mounted) _setActivityItems(retries: retries + 1);
           });
           return ActivityPlanResponse(activityPlans: []);
         },
