@@ -389,6 +389,9 @@ class HtmlMessage extends StatelessWidget {
           if (matrixId.sigil == '@') {
             final user = room.unsafeGetUserFromMemoryOrFallback(matrixId);
             return WidgetSpan(
+              // #Pangea
+              alignment: PlaceholderAlignment.middle,
+              // Pangea#
               child: MatrixPill(
                 key: Key('user_pill_$matrixId'),
                 name: user.calcDisplayname(),
@@ -397,6 +400,9 @@ class HtmlMessage extends StatelessWidget {
                 outerContext: context,
                 fontSize: fontSize,
                 color: linkStyle.color,
+                // #Pangea
+                userId: user.id,
+                // Pangea#
               ),
             );
           }
@@ -405,6 +411,9 @@ class HtmlMessage extends StatelessWidget {
                 ? this.room.client.getRoomById(matrixId)
                 : this.room.client.getRoomByAlias(matrixId);
             return WidgetSpan(
+              // #Pangea
+              alignment: PlaceholderAlignment.middle,
+              // Pangea#
               child: MatrixPill(
                 name: room?.getLocalizedDisplayname() ?? matrixId,
                 avatar: room?.avatar,
@@ -802,6 +811,9 @@ class MatrixPill extends StatelessWidget {
   final String uri;
   final double? fontSize;
   final Color? color;
+  // #Pangea
+  final String? userId;
+  // Pangea#
 
   const MatrixPill({
     super.key,
@@ -811,6 +823,9 @@ class MatrixPill extends StatelessWidget {
     required this.uri,
     required this.fontSize,
     required this.color,
+    // #Pangea
+    this.userId,
+    // Pangea#
   });
 
   @override
@@ -825,6 +840,9 @@ class MatrixPill extends StatelessWidget {
             mxContent: avatar,
             name: name,
             size: 16,
+            // #Pangea
+            userId: userId,
+            // Pangea#
           ),
           const SizedBox(width: 6),
           Text(

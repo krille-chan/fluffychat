@@ -1925,7 +1925,10 @@ class ChatController extends State<ChatPageWithRoom>
       return;
     }
     // Close emoji picker, if open
-    showEmojiPicker = false;
+    if (showEmojiPicker) {
+      hideEmojiPicker();
+      return;
+    }
 
     // Check if the user has set their languages. If not, prompt them to do so.
     if (!MatrixState.pangeaController.languageController.languagesSet) {

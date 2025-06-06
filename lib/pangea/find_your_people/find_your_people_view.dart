@@ -126,7 +126,8 @@ class FindYourPeopleView extends StatelessWidget {
                                       : BorderSide.none,
                                   borderRadius: BorderRadius.circular(100),
                                 ),
-                                contentPadding: EdgeInsets.zero,
+                                contentPadding:
+                                    const EdgeInsets.fromLTRB(0, 0, 20.0, 0),
                                 hintText: L10n.of(context).findYourPeople,
                                 hintStyle: TextStyle(
                                   color: theme.colorScheme.onPrimaryContainer,

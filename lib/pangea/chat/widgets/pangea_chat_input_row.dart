@@ -213,6 +213,7 @@ class PangeaChatInputRowState extends State<PangeaChatInputRow> {
                         clipBehavior: Clip.hardEdge,
                         decoration: const BoxDecoration(),
                         child: PopupMenuButton<String>(
+                          useRootNavigator: true,
                           icon: const Icon(Icons.add_outlined),
                           onSelected: _controller.onAddPopupMenuButtonSelected,
                           itemBuilder: (BuildContext context) =>
