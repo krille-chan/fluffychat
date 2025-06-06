@@ -598,44 +598,53 @@ class RoomDetailsButton extends StatelessWidget {
       return const SizedBox();
     }
 
-    return AbsorbPointer(
-      absorbing: !buttonDetails.enabled,
-      child: MouseRegion(
-        cursor: SystemMouseCursors.click,
-        child: HoverBuilder(
-          builder: (context, hovered) {
-            return GestureDetector(
-              onTap: buttonDetails.onPressed,
-              child: Opacity(
-                opacity: buttonDetails.enabled ? 1.0 : 0.5,
-                child: Container(
-                  width: width,
-                  height: height,
-                  decoration: BoxDecoration(
-                    color: hovered
-                        ? Theme.of(context).colorScheme.primary.withAlpha(50)
-                        : Colors.transparent,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  padding: const EdgeInsets.all(12.0),
-                  child: mini
-                      ? buttonDetails.icon
-                      : Column(
-                          spacing: 12.0,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            buttonDetails.icon,
-                            Text(
-                              buttonDetails.title,
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(fontSize: 12.0),
+    return TooltipVisibility(
+      visible: mini,
+      child: Tooltip(
+        message: buttonDetails.title,
+        child: AbsorbPointer(
+          absorbing: !buttonDetails.enabled,
+          child: MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: HoverBuilder(
+              builder: (context, hovered) {
+                return GestureDetector(
+                  onTap: buttonDetails.onPressed,
+                  child: Opacity(
+                    opacity: buttonDetails.enabled ? 1.0 : 0.5,
+                    child: Container(
+                      width: width,
+                      height: height,
+                      decoration: BoxDecoration(
+                        color: hovered
+                            ? Theme.of(context)
+                                .colorScheme
+                                .primary
+                                .withAlpha(50)
+                            : Colors.transparent,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      padding: const EdgeInsets.all(12.0),
+                      child: mini
+                          ? buttonDetails.icon
+                          : Column(
+                              spacing: 12.0,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                buttonDetails.icon,
+                                Text(
+                                  buttonDetails.title,
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(fontSize: 12.0),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                ),
-              ),
-            );
-          },
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
         ),
       ),
     );
