@@ -283,7 +283,7 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
       );
 
   double get _columnWidth => FluffyThemes.isColumnMode(context)
-      ? (FluffyThemes.columnWidth + FluffyThemes.navRailWidth)
+      ? (FluffyThemes.columnWidth + FluffyThemes.navRailWidth + 1.0)
       : 0;
 
   /// Available vertical space not taken up by the header and footer
