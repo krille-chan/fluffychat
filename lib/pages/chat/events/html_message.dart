@@ -397,6 +397,9 @@ class HtmlMessage extends StatelessWidget {
                 outerContext: context,
                 fontSize: fontSize,
                 color: linkStyle.color,
+                // #Pangea
+                userId: user.id,
+                // Pangea#
               ),
             );
           }
@@ -802,6 +805,9 @@ class MatrixPill extends StatelessWidget {
   final String uri;
   final double? fontSize;
   final Color? color;
+  // #Pangea
+  final String? userId;
+  // Pangea#
 
   const MatrixPill({
     super.key,
@@ -811,6 +817,9 @@ class MatrixPill extends StatelessWidget {
     required this.uri,
     required this.fontSize,
     required this.color,
+    // #Pangea
+    this.userId,
+    // Pangea#
   });
 
   @override
@@ -825,6 +834,9 @@ class MatrixPill extends StatelessWidget {
             mxContent: avatar,
             name: name,
             size: 16,
+            // #Pangea
+            userId: userId,
+            // Pangea#
           ),
           const SizedBox(width: 6),
           Text(

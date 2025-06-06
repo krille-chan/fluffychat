@@ -398,6 +398,7 @@ class _SearchItem extends StatelessWidget {
   final void Function() onPressed;
   // #Pangea
   final BorderRadius? radius;
+  final String? userId;
   // Pangea#
 
   const _SearchItem({
@@ -406,6 +407,7 @@ class _SearchItem extends StatelessWidget {
     required this.onPressed,
     // #Pangea
     this.radius,
+    this.userId,
     // Pangea#
   });
 
@@ -423,6 +425,7 @@ class _SearchItem extends StatelessWidget {
                 name: title,
                 // #Pangea
                 borderRadius: radius,
+                userId: userId,
                 // Pangea#
               ),
               Padding(
@@ -478,6 +481,7 @@ class UserSearchResultsListState extends State<UserSearchResultsList> {
               widget.userSearchResult.results[i].userId.localpart ??
               L10n.of(context).unknownDevice,
           avatar: widget.userSearchResult.results[i].avatarUrl,
+          userId: widget.userSearchResult.results[i].userId,
           onPressed: () => UserDialog.show(
             context: context,
             profile: widget.userSearchResult.results[i],
