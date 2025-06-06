@@ -524,6 +524,7 @@ class RoomDetailsButtonRowState extends State<RoomDetailsButtonRow> {
                 }
 
                 return PopupMenuButton(
+                  useRootNavigator: true,
                   onSelected: (button) => button.onPressed?.call(),
                   itemBuilder: (context) {
                     return otherButtons
