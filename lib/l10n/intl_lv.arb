@@ -3345,7 +3345,7 @@
       }
     }
   },
-  "sentVoiceMessage": "🎙️ {duration} - {sender}",
+  "sentVoiceMessage": "🎙️ {duration} - Balss ziņa no {sender}",
   "@sentVoiceMessage": {
     "type": "String",
     "placeholders": {
@@ -3356,5 +3356,11 @@
         "type": "String"
       }
     }
-  }
+  },
+  "commandHint_logout": "Atteikties pašreizējā ierīcē",
+  "@commandHint_logout": {},
+  "commandHint_logoutall": "Atteikties visās izmantotajās ierīcēs",
+  "@commandHint_logoutall": {},
+  "displayNavigationRail": "Rādīt pārvietošanās sliedi viedierīcēs",
+  "@displayNavigationRail": {}
 }
