@@ -601,7 +601,11 @@ class RoomDetailsButton extends StatelessWidget {
       return const SizedBox();
     }
 
-    return AbsorbPointer(
+    return TooltipVisibility(
+      visible: mini,
+      child: Tooltip(
+        message: buttonDetails.title,
+        child: AbsorbPointer(
       absorbing: !buttonDetails.enabled,
       child: MouseRegion(
         cursor: SystemMouseCursors.click,
@@ -639,6 +643,8 @@ class RoomDetailsButton extends StatelessWidget {
               ),
             );
           },
+        ),
+          ),
         ),
       ),
     );
