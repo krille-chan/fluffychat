@@ -3351,7 +3351,7 @@
   "@pleaseWaitUntilInvited": {},
   "youHaveKnocked": "Petaches á porta",
   "@youHaveKnocked": {},
-  "sentVoiceMessage": "🎙️ {duration} - {sender}",
+  "sentVoiceMessage": "🎙️ {duration} - Mensaxe de voz de  {sender}",
   "@sentVoiceMessage": {
     "type": "String",
     "placeholders": {
@@ -3371,5 +3371,9 @@
         "type": "int"
       }
     }
-  }
+  },
+  "commandHint_logoutall": "Fechar a sesión en todos os dispositivos activos",
+  "@commandHint_logoutall": {},
+  "commandHint_logout": "Fechar a sesión no dispositivo actual",
+  "@commandHint_logout": {}
 }
