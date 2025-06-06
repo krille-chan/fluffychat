@@ -91,8 +91,16 @@ class WordAudioButtonState extends State<WordAudioButton> {
                         context: context,
                         targetID: 'word-audio-button-${widget.uniqueID}',
                         langCode: widget.langCode,
-                        onStart: () => setState(() => _isPlaying = true),
-                        onStop: () => setState(() => _isPlaying = false),
+                        onStart: () {
+                          if (mounted) {
+                            setState(() => _isPlaying = true);
+                          }
+                        },
+                        onStop: () {
+                          if (mounted) {
+                            setState(() => _isPlaying = false);
+                          }
+                        },
                       );
                     }
                   },
