@@ -40,6 +40,7 @@ import 'package:fluffychat/pangea/login/pages/login_or_signup_view.dart';
 import 'package:fluffychat/pangea/login/pages/signup.dart';
 import 'package:fluffychat/pangea/login/pages/space_code_onboarding.dart';
 import 'package:fluffychat/pangea/login/pages/user_settings.dart';
+import 'package:fluffychat/pangea/onboarding/onboarding.dart';
 import 'package:fluffychat/pangea/spaces/constants/space_constants.dart';
 import 'package:fluffychat/pangea/spaces/utils/join_with_alias.dart';
 import 'package:fluffychat/pangea/spaces/utils/join_with_link.dart';
@@ -238,7 +239,7 @@ abstract class AppRoutes {
             FluffyThemes.isColumnMode(context)
                 // #Pangea
                 // ? const EmptyPage()
-                ? const SuggestionsPage()
+                ? const Onboarding()
                 // Pangea#
                 : ChatList(
                     activeChat: state.pathParameters['roomid'],

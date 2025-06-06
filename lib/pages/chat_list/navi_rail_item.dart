@@ -116,8 +116,12 @@ class NaviRailItem extends StatelessWidget {
                             : UnreadRoomsBadge(
                                 filter: unreadBadgeFilter,
                                 badgePosition: BadgePosition.topEnd(
-                                  top: -12,
-                                  end: -8,
+                                  // #Pangea
+                                  // top: -12,
+                                  // end: -8,
+                                  top: -20,
+                                  end: -16,
+                                  // Pangea#
                                 ),
                                 child: icon,
                               ),
