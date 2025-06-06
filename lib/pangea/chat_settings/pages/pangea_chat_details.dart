@@ -80,7 +80,7 @@ class PangeaChatDetailsView extends StatelessWidget {
                     : const Center(child: BackButton())),
           ),
           body: MaxWidthBody(
-            maxWidth: 800,
+            maxWidth: 900,
             showBorder: false,
             child: ListView.builder(
               physics: const NeverScrollableScrollPhysics(),
@@ -304,8 +304,8 @@ class RoomDetailsButtonRowState extends State<RoomDetailsButtonRow> {
     super.dispose();
   }
 
-  final double _buttonWidth = 120.0;
-  final double _buttonHeight = 70.0;
+  final double _buttonWidth = 165.0;
+  final double _buttonHeight = 84.0;
   final double _miniButtonWidth = 50.0;
 
   Room get room => widget.room;
@@ -315,7 +315,7 @@ class RoomDetailsButtonRowState extends State<RoomDetailsButtonRow> {
     return [
       ButtonDetails(
         title: l10n.activities,
-        icon: const Icon(Icons.event_note_outlined),
+        icon: const Icon(Icons.event_note_outlined, size: 30.0),
         onPressed: () => context.go("/rooms/${room.id}/details/planner"),
         visible: room.canChangeStateEvent(PangeaEventTypes.activityPlan) ||
             room.isSpace,
@@ -323,14 +323,14 @@ class RoomDetailsButtonRowState extends State<RoomDetailsButtonRow> {
       ),
       ButtonDetails(
         title: l10n.permissions,
-        icon: const Icon(Icons.edit_attributes_outlined),
+        icon: const Icon(Icons.edit_attributes_outlined, size: 30.0),
         onPressed: () => context.go('/rooms/${room.id}/details/permissions'),
         visible: (room.isRoomAdmin && !room.isDirectChat) || room.isSpace,
         enabled: room.isRoomAdmin && !room.isDirectChat,
       ),
       ButtonDetails(
         title: l10n.access,
-        icon: const Icon(Icons.shield_outlined),
+        icon: const Icon(Icons.shield_outlined, size: 30.0),
         onPressed: () => context.go('/rooms/${room.id}/details/access'),
         visible: room.isSpace && room.spaceParents.isEmpty,
         enabled: room.isSpace && room.isRoomAdmin,
@@ -343,6 +343,7 @@ class RoomDetailsButtonRowState extends State<RoomDetailsButtonRow> {
           room.pushRuleState == PushRuleState.notify
               ? Icons.notifications_on_outlined
               : Icons.notifications_off_outlined,
+          size: 30.0,
         ),
         onPressed: () => showFutureLoadingDialog(
           context: context,
@@ -356,14 +357,14 @@ class RoomDetailsButtonRowState extends State<RoomDetailsButtonRow> {
       ),
       ButtonDetails(
         title: l10n.invite,
-        icon: const Icon(Icons.person_add_outlined),
+        icon: const Icon(Icons.person_add_outlined, size: 30.0),
         onPressed: () => context.go('/rooms/${room.id}/details/invite'),
         visible: (room.canInvite && !room.isDirectChat) || room.isSpace,
         enabled: room.canInvite && !room.isDirectChat,
       ),
       ButtonDetails(
         title: l10n.addSubspace,
-        icon: const Icon(Icons.add_outlined),
+        icon: const Icon(Icons.add_outlined, size: 30.0),
         onPressed: widget.controller.addSubspace,
         visible: room.isSpace &&
             room.canChangeStateEvent(
@@ -373,7 +374,7 @@ class RoomDetailsButtonRowState extends State<RoomDetailsButtonRow> {
       ),
       ButtonDetails(
         title: l10n.downloadSpaceAnalytics,
-        icon: const Icon(Icons.download_outlined),
+        icon: const Icon(Icons.download_outlined, size: 30.0),
         onPressed: () {
           showDialog(
             context: context,
@@ -385,7 +386,7 @@ class RoomDetailsButtonRowState extends State<RoomDetailsButtonRow> {
       ),
       ButtonDetails(
         title: l10n.download,
-        icon: const Icon(Icons.download_outlined),
+        icon: const Icon(Icons.download_outlined, size: 30.0),
         onPressed: widget.controller.downloadChatAction,
         visible: room.ownPowerLevel >= 50 && !room.isSpace,
       ),
@@ -406,14 +407,14 @@ class RoomDetailsButtonRowState extends State<RoomDetailsButtonRow> {
       ),
       ButtonDetails(
         title: l10n.chatCapacity,
-        icon: const Icon(Icons.reduce_capacity),
+        icon: const Icon(Icons.reduce_capacity, size: 30.0),
         onPressed: widget.controller.setRoomCapacity,
         visible:
             !room.isSpace && !room.isDirectChat && room.canSendDefaultStates,
       ),
       ButtonDetails(
         title: l10n.leave,
-        icon: const Icon(Icons.logout_outlined),
+        icon: const Icon(Icons.logout_outlined, size: 30.0),
         onPressed: () async {
           final confirmed = await showOkCancelAlertDialog(
             useRootNavigator: false,
@@ -440,7 +441,7 @@ class RoomDetailsButtonRowState extends State<RoomDetailsButtonRow> {
       ),
       ButtonDetails(
         title: l10n.delete,
-        icon: const Icon(Icons.delete_outline),
+        icon: const Icon(Icons.delete_outline, size: 30.0),
         onPressed: () async {
           if (room.isSpace) {
             final resp = await showDialog<bool?>(
@@ -498,6 +499,11 @@ class RoomDetailsButtonRowState extends State<RoomDetailsButtonRow> {
 
           final mini = fullButtonCapacity < 4;
           final capacity = mini ? miniButtonCapacity : fullButtonCapacity;
+
+          debugPrint(
+            "RoomDetailsButtonRow: $fullButtonCapacity buttons available",
+          );
+          debugPrint("Available width: $availableWidth");
 
           List<ButtonDetails> mainViewButtons =
               buttons.where((button) => button.showInMainView).toList();
@@ -615,17 +621,18 @@ class RoomDetailsButton extends StatelessWidget {
                         : Colors.transparent,
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(12.0),
                   child: mini
                       ? buttonDetails.icon
                       : Column(
-                          spacing: 8.0,
+                          spacing: 12.0,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             buttonDetails.icon,
                             Text(
                               buttonDetails.title,
                               textAlign: TextAlign.center,
+                              style: const TextStyle(fontSize: 12.0),
                             ),
                           ],
                         ),
@@ -665,7 +672,7 @@ class RoomParticipantsSection extends StatelessWidget {
     super.key,
   });
 
-  final double _width = 80.0;
+  final double _width = 100.0;
   final double _padding = 12.0;
 
   double get _fullWidth => _width + (_padding * 2);
