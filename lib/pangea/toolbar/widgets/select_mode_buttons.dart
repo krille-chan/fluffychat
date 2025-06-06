@@ -80,8 +80,7 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
     super.initState();
     _onPlayerStateChanged = _audioPlayer.playerStateStream.listen((state) {
       if (state.processingState == ProcessingState.completed) {
-        _audioPlayer.stop();
-        _audioPlayer.seek(null);
+        _updateMode(null);
       }
       setState(() {});
     });
@@ -121,8 +120,18 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
     }
   }
 
-  Future<void> _updateMode(SelectMode mode) async {
+  Future<void> _updateMode(SelectMode? mode) async {
     _clear();
+
+    if (mode == null) {
+      setState(() {
+        _audioPlayer.stop();
+        _audioPlayer.seek(null);
+        _selectedMode = null;
+      });
+      return;
+    }
+
     setState(
       () => _selectedMode =
           _selectedMode == mode && mode != SelectMode.audio ? null : mode,
