@@ -389,6 +389,9 @@ class HtmlMessage extends StatelessWidget {
           if (matrixId.sigil == '@') {
             final user = room.unsafeGetUserFromMemoryOrFallback(matrixId);
             return WidgetSpan(
+              // #Pangea
+              alignment: PlaceholderAlignment.middle,
+              // Pangea#
               child: MatrixPill(
                 key: Key('user_pill_$matrixId'),
                 name: user.calcDisplayname(),
@@ -408,6 +411,9 @@ class HtmlMessage extends StatelessWidget {
                 ? this.room.client.getRoomById(matrixId)
                 : this.room.client.getRoomByAlias(matrixId);
             return WidgetSpan(
+              // #Pangea
+              alignment: PlaceholderAlignment.middle,
+              // Pangea#
               child: MatrixPill(
                 name: room?.getLocalizedDisplayname() ?? matrixId,
                 avatar: room?.avatar,
