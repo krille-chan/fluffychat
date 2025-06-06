@@ -3362,7 +3362,7 @@
   },
   "checkList": "清单",
   "@checkList": {},
-  "sentVoiceMessage": "🎙️ {duration} - {sender}",
+  "sentVoiceMessage": "🎙️ {duration} - 来自 {sender} 的语音消息",
   "@sentVoiceMessage": {
     "type": "String",
     "placeholders": {
@@ -3373,5 +3373,11 @@
         "type": "String"
       }
     }
-  }
+  },
+  "commandHint_logout": "注销当前设备",
+  "@commandHint_logout": {},
+  "commandHint_logoutall": "注销所有活动设备",
+  "@commandHint_logoutall": {},
+  "displayNavigationRail": "在移动设备上显示导航栏",
+  "@displayNavigationRail": {}
 }
