@@ -11,6 +11,7 @@ import 'package:fluffychat/pages/chat_list/dummy_chat_list_item.dart';
 import 'package:fluffychat/pages/chat_list/search_title.dart';
 import 'package:fluffychat/pages/chat_list/space_view.dart';
 import 'package:fluffychat/pangea/chat_list/widgets/pangea_chat_list_header.dart';
+import 'package:fluffychat/pangea/onboarding/onboarding.dart';
 import 'package:fluffychat/pangea/public_spaces/public_room_bottom_sheet.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/user_dialog.dart';
@@ -287,6 +288,16 @@ class ChatListViewBody extends StatelessWidget {
                     );
                   },
                 ),
+              // #Pangea
+              const SliverPadding(padding: EdgeInsets.all(12.0)),
+              if (!FluffyThemes.isColumnMode(context))
+                SliverList.builder(
+                  itemCount: 1,
+                  itemBuilder: (context, _) {
+                    return const Onboarding();
+                  },
+                ),
+              // Pangea#
             ],
           ),
         );

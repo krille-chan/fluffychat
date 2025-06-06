@@ -88,18 +88,10 @@ class SpacesNavigationRail extends StatelessWidget {
                         // #Pangea
                         if (i == 0) {
                           return NaviRailItem(
-                            isSelected: isColumnMode
-                                ? activeSpaceId == null &&
-                                    !isSettings &&
-                                    !isCommunities
-                                : isHomepage,
+                            isSelected: isHomepage,
                             onTap: () {
-                              if (isColumnMode) {
-                                onGoToChats();
-                              } else {
-                                clearActiveSpace?.call();
-                                context.go("/rooms/homepage");
-                              }
+                              clearActiveSpace?.call();
+                              context.go("/rooms/homepage");
                             },
                             backgroundColor: Colors.transparent,
                             icon: FutureBuilder<Profile>(
@@ -127,32 +119,30 @@ class SpacesNavigationRail extends StatelessWidget {
                         i--;
                         // Pangea#
                         if (i == 0) {
-                          return isColumnMode
-                              ? const SizedBox()
-                              : NaviRailItem(
-                                  // #Pangea
-                                  // isSelected: activeSpaceId == null && !isSettings,
-                                  isSelected: activeSpaceId == null &&
-                                      !isSettings &&
-                                      !isHomepage &&
-                                      !isCommunities,
-                                  // Pangea#
-                                  onTap: onGoToChats,
-                                  // #Pangea
-                                  // icon: const Padding(
-                                  //   padding: EdgeInsets.all(10.0),
-                                  //   child: Icon(Icons.forum_outlined),
-                                  // ),
-                                  // selectedIcon: const Padding(
-                                  //   padding: EdgeInsets.all(10.0),
-                                  //   child: Icon(Icons.forum),
-                                  // ),
-                                  icon: const Icon(Icons.forum_outlined),
-                                  selectedIcon: const Icon(Icons.forum),
-                                  // Pangea#
-                                  toolTip: L10n.of(context).chats,
-                                  unreadBadgeFilter: (room) => true,
-                                );
+                          return NaviRailItem(
+                            // #Pangea
+                            // isSelected: activeSpaceId == null && !isSettings,
+                            isSelected: activeSpaceId == null &&
+                                !isSettings &&
+                                !isHomepage &&
+                                !isCommunities,
+                            // Pangea#
+                            onTap: onGoToChats,
+                            // #Pangea
+                            // icon: const Padding(
+                            //   padding: EdgeInsets.all(10.0),
+                            //   child: Icon(Icons.forum_outlined),
+                            // ),
+                            // selectedIcon: const Padding(
+                            //   padding: EdgeInsets.all(10.0),
+                            //   child: Icon(Icons.forum),
+                            // ),
+                            icon: const Icon(Icons.forum_outlined),
+                            selectedIcon: const Icon(Icons.forum),
+                            // Pangea#
+                            toolTip: L10n.of(context).chats,
+                            unreadBadgeFilter: (room) => true,
+                          );
                         }
                         i--;
                         if (i == rootSpaces.length) {

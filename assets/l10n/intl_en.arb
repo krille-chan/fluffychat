@@ -4998,5 +4998,15 @@
   "canBeFoundViaKnock": "\u2022 request to join and admin approval",
   "anyoneCanJoin": "Anyone can join! However, admin can kick and ban whoever misbehaves. Those who are banned may not return!",
   "createYourSpace": "Create your space",
-  "sendActivities": "Send activities"
+  "sendActivities": "Send activities",
+  "getStarted": "Get Started",
+  "getStartedBotChatDesc": "Chatting with AI is a great place to start and Pangea reading, writing, listening and speaking tools make it easy!",
+  "getStartedCommunitiesDesc": "Learning with a community is where Pangea Chat shines!\nYou can join your class, find a school, or even make your own!",
+  "getStartedFriendsDesc": "Do you have a friend that wants to learn with you?",
+  "getStartedBotChatComplete": "Well-done! You're chatting with the bot!",
+  "getStartedCommunitiesComplete": "Great, you have joined a space!",
+  "getStartedComplete": "You've completed this section!\nKeep exploring our amazing features by chatting with friends!",
+  "getStartedFriendsComplete": "Woohoo! You've got friends! 😉",
+  "getStartedBotChatButton": "Start chatting!",
+  "getStartedFriendsButton": "Invite a friend"
 }
