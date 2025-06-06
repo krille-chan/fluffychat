@@ -206,7 +206,7 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
                 ),
               ),
               IconButton(
-                icon: const Icon(Icons.menu_outlined),
+                icon: const Icon(Icons.event_note_outlined),
                 onPressed: () => context.go('/rooms/homepage/planner'),
                 tooltip: L10n.of(context).activityPlannerTitle,
               ),
