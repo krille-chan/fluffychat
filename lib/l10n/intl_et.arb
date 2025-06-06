@@ -3360,7 +3360,7 @@
       }
     }
   },
-  "sentVoiceMessage": "🎙️ {duration} - {sender}",
+  "sentVoiceMessage": "🎙️ {duration} - Häälsõnum kasutajalt {sender}",
   "@sentVoiceMessage": {
     "type": "String",
     "placeholders": {
@@ -3373,5 +3373,9 @@
     }
   },
   "checkList": "Kontrollnimekiri",
-  "@checkList": {}
+  "@checkList": {},
+  "commandHint_logoutall": "Logi kõikidest aktiivsetest seadmetest välja",
+  "@commandHint_logoutall": {},
+  "commandHint_logout": "Logi oma praegusest seadmest välja",
+  "@commandHint_logout": {}
 }
