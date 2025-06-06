@@ -5,16 +5,16 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/analytics_misc/analytics_constants.dart';
-import 'package:fluffychat/pangea/analytics_misc/gain_points_animation.dart';
 import 'package:fluffychat/pangea/analytics_misc/learning_skills_enum.dart';
 import 'package:fluffychat/pangea/analytics_summary/progress_bar/progress_bar.dart';
 import 'package:fluffychat/pangea/analytics_summary/progress_bar/progress_bar_details.dart';
 import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/pangea/common/utils/overlay.dart';
+import 'package:fluffychat/pangea/common/widgets/full_width_dialog.dart';
 import 'package:fluffychat/pangea/constructs/construct_repo.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 class LevelUpConstants {
@@ -56,6 +56,12 @@ class LevelUpUtil {
       child: LevelUpBanner(
         level: level,
         prevLevel: prevLevel,
+        backButtonOverride: IconButton(
+          icon: const Icon(Icons.close),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
       ),
       transformTargetId: '',
       position: OverlayPositionEnum.top,
@@ -69,10 +75,12 @@ class LevelUpUtil {
 class LevelUpBanner extends StatefulWidget {
   final int level;
   final int prevLevel;
+  final Widget? backButtonOverride;
 
   const LevelUpBanner({
     required this.level,
     required this.prevLevel,
+    required this.backButtonOverride,
     super.key,
   });
 
@@ -86,11 +94,8 @@ class LevelUpBannerState extends State<LevelUpBanner>
   late Animation<Offset> _slideAnimation;
 
   late AnimationController _sizeController;
-  late Animation<double> _sizeAnimation;
 
-  bool _showDetails = false;
-  bool _showedDetails = false;
-  bool _showingLevelingAnimation = false;
+  final bool _showedDetails = false;
 
   ConstructSummary? _constructSummary;
   String? _error;
@@ -98,7 +103,6 @@ class LevelUpBannerState extends State<LevelUpBanner>
   @override
   void initState() {
     super.initState();
-    _setConstructSummary();
 
     _slideController = AnimationController(
       vsync: this,
@@ -120,21 +124,16 @@ class LevelUpBannerState extends State<LevelUpBanner>
       duration: FluffyThemes.animationDuration,
     );
 
-    _sizeAnimation = Tween<double>(
-      begin: 0,
-      end: 1,
-    ).animate(
-      CurvedAnimation(
-        parent: _sizeController,
-        curve: Curves.easeOut,
-      ),
-    );
-
     _slideController.forward();
 
-    Future.delayed(const Duration(seconds: 15), () async {
+    Future.delayed(const Duration(seconds: 10), () async {
       if (mounted && !_showedDetails) _close();
     });
+  }
+
+  Future<void> _close() async {
+    await _slideController.reverse();
+    MatrixState.pAnyState.closeOverlay("level_up_notification");
   }
 
   @override
@@ -144,77 +143,38 @@ class LevelUpBannerState extends State<LevelUpBanner>
     super.dispose();
   }
 
-  Future<void> _setConstructSummary() async {
-    try {
-      _constructSummary = await MatrixState.pangeaController.getAnalytics
-          .generateLevelUpAnalytics(
-        widget.level,
-        widget.prevLevel,
-      );
-    } catch (e) {
-      _error = e.toString();
-    }
-  }
-
-  Future<void> _close() async {
-    await _slideController.reverse();
-    MatrixState.pAnyState.closeOverlay("level_up_notification");
-  }
-
-  int _skillsPoints(LearningSkillsEnum skill) {
-    switch (skill) {
-      case LearningSkillsEnum.writing:
-        return _constructSummary?.writingConstructScore ?? 0;
-      case LearningSkillsEnum.reading:
-        return _constructSummary?.readingConstructScore ?? 0;
-      case LearningSkillsEnum.speaking:
-        return _constructSummary?.speakingConstructScore ?? 0;
-      case LearningSkillsEnum.hearing:
-        return _constructSummary?.hearingConstructScore ?? 0;
-      default:
-        return 0;
-    }
-  }
-
   Future<void> _toggleDetails() async {
     if (!Environment.isStagingEnvironment) return;
 
-    if (mounted) {
-      if (!_showedDetails) {
-        setState(() {
-          _showingLevelingAnimation = true;
-        });
-      }
+    await _close();
 
-      setState(() {
-        _showDetails = !_showDetails;
-        if (_showDetails && _showedDetails) {
-          _showedDetails = true;
-        }
-      });
+    //if (!mounted) return;
 
-      await (_showDetails
-          ? _sizeController.forward()
-          : _sizeController.reverse());
-
-      if (_showDetails && _showingLevelingAnimation) {
-        await Future.delayed(const Duration(seconds: 2));
-        if (!mounted) return;
-        setState(() {
-          _showingLevelingAnimation = false;
-        });
-      }
-
-      if (!_showDetails) {
-        await Future.delayed(
-          const Duration(milliseconds: 300),
-          () async {
-            if (!mounted) return;
-            _close();
-          },
-        );
-      }
-    }
+    await showDialog(
+      context: context,
+      builder: (context) => FullWidthDialog(
+        maxWidth: 400,
+        maxHeight: 800,
+        dialogContent: Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: kIsWeb
+                ? const Text(
+                    "You have leveled up!",
+                    style: TextStyle(
+                      color: AppConfig.gold,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  )
+                : null,
+          ),
+          body: LevelUpBarAnimation(
+            prevLevel: widget.prevLevel,
+            level: widget.level,
+          ),
+        ),
+      ),
+    );
   }
 
   @override
@@ -257,11 +217,11 @@ class LevelUpBannerState extends State<LevelUpBanner>
                             top: 16,
                           ),
                           decoration: BoxDecoration(
-                            color:
-                                Theme.of(context).brightness == Brightness.dark
-                                    ? Colors.black
-                                    : Colors.white,
+                            color: Theme.of(context).colorScheme.surface,
                             borderRadius: BorderRadius.circular(8),
+                            border: Border.all(
+                              color: AppConfig.gold,
+                            ),
                           ),
                           padding: const EdgeInsets.symmetric(
                             vertical: 16,
@@ -301,232 +261,26 @@ class LevelUpBannerState extends State<LevelUpBanner>
                                   if (Environment.isStagingEnvironment)
                                     AnimatedSize(
                                       duration: FluffyThemes.animationDuration,
-                                      child: _error == null
-                                          ? FluffyThemes.isColumnMode(context)
-                                              ? IconButton(
-                                                  style: IconButton.styleFrom(
-                                                    padding: const EdgeInsets
-                                                        .symmetric(
-                                                      vertical: 4.0,
-                                                      horizontal: 16.0,
-                                                    ),
-                                                  ),
-                                                  onPressed: _toggleDetails,
-                                                  icon: Icon(
-                                                    Icons.arrow_drop_down,
-                                                    color: Theme.of(context)
-                                                        .colorScheme
-                                                        .onSurface,
-                                                  ),
-                                                )
-                                              : SizedBox(
-                                                  width: 32.0,
-                                                  height: 32.0,
-                                                  child: Center(
-                                                    child: IconButton(
-                                                      icon: const Icon(
-                                                        Icons.info_outline,
-                                                      ),
-                                                      style:
-                                                          IconButton.styleFrom(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(
-                                                          4.0,
-                                                        ),
-                                                      ),
-                                                      onPressed: _toggleDetails,
-                                                      constraints:
-                                                          const BoxConstraints(),
-                                                    ),
-                                                  ),
-                                                )
-                                          : Row(
-                                              children: [
-                                                Tooltip(
-                                                  message: L10n.of(context)
-                                                      .oopsSomethingWentWrong,
-                                                  child: Icon(
-                                                    Icons.error,
-                                                    color: Theme.of(context)
-                                                        .colorScheme
-                                                        .error,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
+                                      child: IconButton(
+                                        style: IconButton.styleFrom(
+                                          padding: const EdgeInsets.symmetric(
+                                            vertical: 4.0,
+                                            horizontal: 16.0,
+                                          ),
+                                        ),
+                                        onPressed: _toggleDetails,
+                                        icon: Icon(
+                                          Icons.arrow_drop_down,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .onSurface,
+                                        ),
+                                      ),
                                     ),
                                 ],
                               ),
                             ],
                           ),
-                        ),
-                      ),
-                      SizeTransition(
-                        sizeFactor: _sizeAnimation,
-                        child: Container(
-                          height: MediaQuery.of(context).size.height * 0.75,
-                          width: MediaQuery.of(context).size.width * .5,
-                          margin: const EdgeInsets.only(
-                            top: 4.0,
-                          ),
-                          decoration: BoxDecoration(
-                            color:
-                                Theme.of(context).brightness == Brightness.dark
-                                    ? Colors.black
-                                    : Colors.white,
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          padding: const EdgeInsets.all(16),
-                          child: _showingLevelingAnimation
-                              ? const Expanded(
-                                  child: LevelUpBarAnimation(),
-                                )
-                              : SingleChildScrollView(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    spacing: 24.0,
-                                    children: [
-                                      Table(
-                                        columnWidths: const {
-                                          0: IntrinsicColumnWidth(),
-                                          1: FlexColumnWidth(),
-                                          2: IntrinsicColumnWidth(),
-                                        },
-                                        defaultVerticalAlignment:
-                                            TableCellVerticalAlignment.middle,
-                                        children: [
-                                          ...LearningSkillsEnum.values
-                                              .where(
-                                            (v) =>
-                                                v.isVisible &&
-                                                _skillsPoints(v) > -1,
-                                          )
-                                              .map((skill) {
-                                            return TableRow(
-                                              children: [
-                                                Padding(
-                                                  padding: const EdgeInsets
-                                                      .symmetric(
-                                                    vertical: 9.0,
-                                                    horizontal: 18.0,
-                                                  ),
-                                                  child: Icon(
-                                                    skill.icon,
-                                                    size: 25,
-                                                    color: Theme.of(context)
-                                                        .colorScheme
-                                                        .onSurface,
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: const EdgeInsets
-                                                      .symmetric(
-                                                    vertical: 9.0,
-                                                    horizontal: 18.0,
-                                                  ),
-                                                  child: Text(
-                                                    skill.tooltip(context),
-                                                    style: const TextStyle(
-                                                      fontSize: 16,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                    ),
-                                                    textAlign: TextAlign.center,
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: const EdgeInsets
-                                                      .symmetric(
-                                                    vertical: 9.0,
-                                                    horizontal: 18.0,
-                                                  ),
-                                                  child: Text(
-                                                    "+ ${_skillsPoints(skill)} XP",
-                                                    style: const TextStyle(
-                                                      fontSize: 16,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                    ),
-                                                    textAlign: TextAlign.center,
-                                                  ),
-                                                ),
-                                              ],
-                                            );
-                                          }),
-                                        ],
-                                      ),
-                                      CachedNetworkImage(
-                                        imageUrl:
-                                            "${AppConfig.assetsBaseURL}/${LevelUpConstants.dinoLevelUPFileName}",
-                                        width: 400,
-                                        fit: BoxFit.cover,
-                                      ),
-                                      if (_constructSummary?.textSummary !=
-                                          null)
-                                        Container(
-                                          padding: const EdgeInsets.all(12),
-                                          decoration: BoxDecoration(
-                                            color: Colors.transparent,
-                                            borderRadius:
-                                                BorderRadius.circular(8),
-                                          ),
-                                          child: Text(
-                                            _constructSummary!.textSummary,
-                                            style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w400,
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .onSecondaryContainer,
-                                            ),
-                                            textAlign: TextAlign.center,
-                                          ),
-                                        ),
-                                      const SizedBox(
-                                        height: 24,
-                                      ),
-                                      // Share button, currently no functionality
-                                      // ElevatedButton(
-                                      //   onPressed: () {
-                                      //     // Add share functionality
-                                      //   },
-                                      //   style: ElevatedButton.styleFrom(
-                                      //     backgroundColor: Colors.white,
-                                      //     foregroundColor: Colors.black,
-                                      //     padding: const EdgeInsets.symmetric(
-                                      //       vertical: 12,
-                                      //       horizontal: 24,
-                                      //     ),
-                                      //     shape: RoundedRectangleBorder(
-                                      //       borderRadius: BorderRadius.circular(8),
-                                      //     ),
-                                      //   ),
-                                      //   child: const Row(
-                                      //     mainAxisSize: MainAxisSize
-                                      //         .min,
-                                      //     children: [
-                                      //       Text(
-                                      //         "Share with Friends",
-                                      //         style: TextStyle(
-                                      //           fontSize: 16,
-                                      //           fontWeight: FontWeight.bold,
-                                      //         ),
-                                      //       ),
-                                      //       SizedBox(
-                                      //         width: 8,
-                                      //       ),
-                                      //       Icon(
-                                      //         Icons.ios_share,
-                                      //         size: 20,
-                                      //       ),
-                                      //     ),
-                                      //   ),
-                                      // ),
-                                    ],
-                                  ),
-                                ),
                         ),
                       ),
                     ],
@@ -543,7 +297,14 @@ class LevelUpBannerState extends State<LevelUpBanner>
 
 //animated progress bar -- move to own file later
 class LevelUpBarAnimation extends StatefulWidget {
-  const LevelUpBarAnimation({super.key});
+  final int prevLevel;
+  final int level;
+
+  const LevelUpBarAnimation({
+    super.key,
+    required this.prevLevel,
+    required this.level,
+  });
 
   @override
   State<LevelUpBarAnimation> createState() => _LevelUpBarAnimationState();
@@ -551,40 +312,90 @@ class LevelUpBarAnimation extends StatefulWidget {
 
 class _LevelUpBarAnimationState extends State<LevelUpBarAnimation>
     with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<double> _progressAnimation;
-  late Animation<int> _newVocab;
-  late Animation<int> _newGrammar;
+  late final AnimationController _controller;
+  late final Animation<double> _progressAnimation;
+  late final Animation<int> _vocabAnimation;
+  late final Animation<int> _grammarAnimation;
+  late final Animation<double> _skillsOpacity;
+  late final Animation<double> _shrinkMultiplier;
 
-  final int startGrammar = 23;
-  final int endGrammar = 78;
-  final int startVocab = 54;
-  final int endVocab = 64;
+  ConstructSummary? _constructSummary;
 
-  //add vocab and grammar animation controllers, then display their values in the text fields below. Easy!
+  static const int _startGrammar = 23;
+  static const int _endGrammar = 78;
+  static const int _startVocab = 54;
+  static const int _endVocab = 64;
+
+  static const double _startOpacity = 0.0;
+  static const double _endOpacity = 1.0;
+  static const Duration _animationDuration = Duration(seconds: 3);
 
   @override
   void initState() {
     super.initState();
 
+    _loadConstructSummary();
+
     _controller = AnimationController(
-      duration: const Duration(milliseconds: 1500),
+      duration: _animationDuration,
       vsync: this,
     );
 
     _progressAnimation = Tween<double>(begin: 0, end: 1).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
+      CurvedAnimation(parent: _controller, curve: Curves.easeOutBack),
     );
 
-    _newVocab = IntTween(begin: startVocab, end: endVocab).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeOut),
+    _vocabAnimation = IntTween(begin: _startVocab, end: _endVocab).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: const Interval(0.0, 0.5, curve: Curves.easeInOutQuad),
+      ),
     );
 
-    _newGrammar = IntTween(begin: startGrammar, end: endGrammar).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
+    _grammarAnimation =
+        IntTween(begin: _startGrammar, end: _endGrammar).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: const Interval(0.0, 0.5, curve: Curves.easeInOutQuad),
+      ),
+    );
+
+    _skillsOpacity =
+        Tween<double>(begin: _startOpacity, end: _endOpacity).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: const Interval(0.5, 1.0, curve: Curves.easeIn),
+      ),
+    );
+
+    _shrinkMultiplier = Tween<double>(begin: 1.0, end: 0.5).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: const Interval(0.5, 1.0, curve: Curves.easeInOut),
+      ),
     );
 
     _controller.forward();
+  }
+
+  Future<void> _loadConstructSummary() async {
+    final summary = await MatrixState.pangeaController.getAnalytics
+        .generateLevelUpAnalytics(widget.level, widget.prevLevel);
+    setState(() => _constructSummary = summary);
+  }
+
+  int _getSkillXP(LearningSkillsEnum skill) {
+    return switch (skill) {
+      LearningSkillsEnum.writing =>
+        _constructSummary?.writingConstructScore ?? 0,
+      LearningSkillsEnum.reading =>
+        _constructSummary?.readingConstructScore ?? 0,
+      LearningSkillsEnum.speaking =>
+        _constructSummary?.speakingConstructScore ?? 0,
+      LearningSkillsEnum.hearing =>
+        _constructSummary?.hearingConstructScore ?? 0,
+      _ => 0,
+    };
   }
 
   @override
@@ -595,87 +406,166 @@ class _LevelUpBarAnimationState extends State<LevelUpBarAnimation>
 
   @override
   Widget build(BuildContext context) {
-    final Color grammarVocabColor = Theme.of(context).colorScheme.primary;
-    final TextStyle grammarVocabText =
-        TextStyle(color: grammarVocabColor, fontSize: 24);
-    const TextStyle titleText =
-        TextStyle(color: AppConfig.goldLight, fontSize: 20);
+    final colorScheme = Theme.of(context).colorScheme;
+    final grammarVocabStyle =
+        TextStyle(color: colorScheme.primary, fontSize: 24);
 
-    return Stack(
-      alignment: AlignmentDirectional.center,
+    return Column(
       children: [
-        Column(
-          children: [
-            ClipOval(
-              child: Image.asset(
-                '../../../assets/favicon.png',
-                width: 150, // Adjust the size as needed
-                height: 150,
-                fit: BoxFit.cover, // Use BoxFit.cover to fill the circle
+        AnimatedBuilder(
+          animation: _progressAnimation,
+          builder: (_, __) => Column(
+            children: [
+              // Avatar (static size)
+              ClipOval(
+                child: Image.asset(
+                  '../../../assets/favicon.png',
+                  width: 150 * _shrinkMultiplier.value,
+                  height: 150 * _shrinkMultiplier.value,
+                  fit: BoxFit.cover,
+                ),
               ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            const Text(
-              //Language fix later
-              "You have reached a new level!",
-              style: titleText,
-            ),
-            AnimatedBuilder(
-              animation: _progressAnimation,
-              builder: (context, _) {
-                return Padding(
-                  padding: const EdgeInsets.all(24),
-                  child: Column(
-                    children: [
-                      ProgressBar(
-                        levelBars: [
-                          LevelBarDetails(
-                            widthMultiplier: _progressAnimation.value,
-                            currentPoints: 0,
-                            fillColor: AppConfig.goldLight,
-                          ),
-                        ],
-                        height: 20,
+              SizedBox(height: 10 * _shrinkMultiplier.value),
+            ],
+          ),
+        ),
+        Expanded(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.all(15),
+            child: Column(
+              children: [
+                // Animated progress bar
+                AnimatedBuilder(
+                  animation: _progressAnimation,
+                  builder: (_, __) => ProgressBar(
+                    levelBars: [
+                      LevelBarDetails(
+                        widthMultiplier: _progressAnimation.value,
+                        currentPoints: 0,
+                        fillColor: AppConfig.goldLight,
                       ),
-                      const SizedBox(height: 45),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Symbols.dictionary,
-                            color: grammarVocabColor,
-                            size: 35,
-                          ),
-                          Text(
-                            "${_newVocab.value}",
-                            style: grammarVocabText,
-                          ),
-                          const SizedBox(width: 40),
-                          Icon(
-                            Symbols.toys_and_games,
-                            color: grammarVocabColor,
-                            size: 35,
-                          ),
-                          Text(
-                            "${_newGrammar.value}",
-                            style: grammarVocabText,
-                          ),
-                        ],
+                    ],
+                    height: 20,
+                  ),
+                ),
+                const SizedBox(height: 25),
+                // Animated vocab and grammar row
+                AnimatedBuilder(
+                  animation: _controller,
+                  builder: (_, __) => Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Symbols.dictionary,
+                        color: colorScheme.primary,
+                        size: 35,
+                      ),
+                      Text(
+                        '${_vocabAnimation.value}',
+                        style: grammarVocabStyle,
+                      ),
+                      const SizedBox(width: 40),
+                      Icon(
+                        Symbols.toys_and_games,
+                        color: colorScheme.primary,
+                        size: 35,
+                      ),
+                      Text(
+                        '${_grammarAnimation.value}',
+                        style: grammarVocabStyle,
                       ),
                     ],
                   ),
-                );
-              },
+                ),
+                const SizedBox(height: 32),
+                // Skills section (fades in)
+                AnimatedBuilder(
+                  animation: _skillsOpacity,
+                  builder: (_, __) => Opacity(
+                    opacity: _skillsOpacity.value,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        _buildSkillsTable(context),
+                        const SizedBox(height: 24),
+                        if (_constructSummary?.textSummary != null)
+                          Padding(
+                            padding: const EdgeInsets.only(top: 16),
+                            child: Text(
+                              _constructSummary!.textSummary,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                                color: colorScheme.onSecondaryContainer,
+                              ),
+                            ),
+                          ),
+                        CachedNetworkImage(
+                          imageUrl:
+                              "${AppConfig.assetsBaseURL}/${LevelUpConstants.dinoLevelUPFileName}",
+                          width: 400,
+                          fit: BoxFit.cover,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
-        const PointsGainedAnimation(
-          points: 10,
-          targetID: "targetID?",
+          ),
         ),
       ],
+    );
+  }
+
+  Widget _buildSkillsTable(BuildContext context) {
+    final visibleSkills = LearningSkillsEnum.values.where(
+      (skill) => skill.isVisible && _getSkillXP(skill) > -1,
+    );
+
+    return Table(
+      columnWidths: const {
+        0: IntrinsicColumnWidth(),
+        1: FlexColumnWidth(),
+        2: IntrinsicColumnWidth(),
+      },
+      defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+      children: visibleSkills.map((skill) {
+        return TableRow(
+          children: [
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(vertical: 9.0, horizontal: 18.0),
+              child: Icon(
+                skill.icon,
+                size: 25,
+                color: Theme.of(context).colorScheme.onSurface,
+              ),
+            ),
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(vertical: 9.0, horizontal: 18.0),
+              child: Text(
+                skill.tooltip(context),
+                style:
+                    const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(vertical: 9.0, horizontal: 18.0),
+              child: Text(
+                "+ ${_getSkillXP(skill)} XP",
+                style:
+                    const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ],
+        );
+      }).toList(),
     );
   }
 }
