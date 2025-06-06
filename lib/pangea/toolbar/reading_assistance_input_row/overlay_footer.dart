@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
@@ -7,6 +5,7 @@ import 'package:fluffychat/pangea/chat/widgets/pangea_chat_input_row.dart';
 import 'package:fluffychat/pangea/toolbar/enums/reading_assistance_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/practice_mode_buttons.dart';
+import 'package:flutter/material.dart';
 
 class OverlayFooter extends StatelessWidget {
   final ChatController controller;

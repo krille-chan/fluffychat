@@ -1,7 +1,3 @@
-import 'package:flutter/material.dart';
-
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/reactions_picker.dart';
@@ -11,6 +7,8 @@ import 'package:fluffychat/pangea/toolbar/widgets/message_mode_locked_card.dart'
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_translation_card.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/practice_activity/practice_activity_card.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 const double minContentHeight = 120;
 
@@ -27,7 +25,8 @@ class ReadingAssistanceInputBar extends StatelessWidget {
   Widget barContent(BuildContext context) {
     if (overlayController.readingAssistanceMode !=
         ReadingAssistanceMode.practiceMode) {
-      return ReactionsPicker(controller);
+      return const SizedBox();
+      // return ReactionsPicker(controller);
     }
 
     Widget? content;

@@ -1,10 +1,6 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:flutter/material.dart';
-
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/config/themes.dart';
@@ -24,6 +20,8 @@ import 'package:fluffychat/pangea/toolbar/widgets/overlay_header.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/select_mode_buttons.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
+import 'package:matrix/matrix.dart';
 
 /// Controls positioning of the message overlay.
 class MessageSelectionPositioner extends StatefulWidget {
@@ -149,10 +147,11 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
     _centeredMessageOffset = Offset(
       offset.dx - _columnWidth - _horizontalPadding - 2.0,
       _mediaQuery!.size.height -
-          (offset.dy -
-              ((AppConfig.practiceModeInputBarHeight -
-                      AppConfig.selectModeInputBarHeight) *
-                  0.75)) -
+          offset.dy -
+          // (offset.dy -
+          //     ((AppConfig.practiceModeInputBarHeight -
+          //             AppConfig.selectModeInputBarHeight) *
+          //         0.75)) -
           renderBox.size.height -
           _reactionsHeight,
     );
@@ -485,6 +484,7 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
   }
 
   double get _footerHeight {
+    return 0;
     return _inputBarSize + (_mediaQuery?.padding.bottom ?? 0);
   }
 

@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/analytics_details_popup/analytics_details_popup.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
@@ -7,16 +5,16 @@ import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dar
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/learning_settings/constants/language_constants.dart';
 import 'package:fluffychat/pangea/lemmas/construct_xp_widget.dart';
-import 'package:fluffychat/pangea/lemmas/lemma_emoji_row.dart';
+import 'package:fluffychat/pangea/lemmas/lemma_reaction_picker.dart';
 import 'package:fluffychat/pangea/morphs/morph_features_enum.dart';
 import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
-import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/practice_activity/word_audio_button.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/word_zoom/lemma_meaning_widget.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/word_zoom/lemma_widget.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/word_zoom/morphological_list_item.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
 
 class WordZoomWidget extends StatelessWidget {
   final PangeaToken token;
@@ -108,30 +106,34 @@ class WordZoomWidget extends StatelessWidget {
             const SizedBox(
               height: 8.0,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  constraints: const BoxConstraints(
-                    minHeight: 40,
-                  ),
-                  alignment: Alignment.center,
-                  child: LemmaEmojiRow(
-                    cId: _selectedToken.vocabConstructID,
-                    onTapOverride: overlayController.hideWordCardContent &&
-                            hasEmojiActivity
-                        ? () => overlayController.updateToolbarMode(
-                              MessageMode.wordEmoji,
-                            )
-                        : null,
-                    isSelected:
-                        overlayController.toolbarMode == MessageMode.wordEmoji,
-                    emojiSetCallback: () => overlayController.setState(() {}),
-                    shouldShowEmojis: !hasEmojiActivity,
-                  ),
-                ),
-              ],
+            LemmaReactionPicker(
+              cId: _selectedToken.vocabConstructID,
+              controller: overlayController.widget.chatController,
             ),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.center,
+            //   children: [
+            //     Container(
+            //       constraints: const BoxConstraints(
+            //         minHeight: 40,
+            //       ),
+            //       alignment: Alignment.center,
+            // child: LemmaEmojiRow(
+            //   cId: _selectedToken.vocabConstructID,
+            //   onTapOverride: overlayController.hideWordCardContent &&
+            //           hasEmojiActivity
+            //       ? () => overlayController.updateToolbarMode(
+            //             MessageMode.wordEmoji,
+            //           )
+            //       : null,
+            //   isSelected:
+            //       overlayController.toolbarMode == MessageMode.wordEmoji,
+            //   emojiSetCallback: () => overlayController.setState(() {}),
+            //   shouldShowEmojis: !hasEmojiActivity,
+            // ),
+            //     ),
+            //   ],
+            // ),
             const SizedBox(
               height: 8.0,
             ),
