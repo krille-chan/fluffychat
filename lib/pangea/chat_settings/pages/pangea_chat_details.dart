@@ -1,6 +1,13 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
+
 import 'package:collection/collection.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:flutter_linkify/flutter_linkify.dart';
+import 'package:go_router/go_router.dart';
+import 'package:matrix/matrix.dart';
+
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat_details/chat_details.dart';
 import 'package:fluffychat/pages/chat_details/participant_list_item.dart';
@@ -26,11 +33,6 @@ import 'package:fluffychat/widgets/hover_builder.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/member_actions_popup_menu_button.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:flutter_linkify/flutter_linkify.dart';
-import 'package:go_router/go_router.dart';
-import 'package:matrix/matrix.dart';
 
 class PangeaChatDetailsView extends StatelessWidget {
   final ChatDetailsController controller;
@@ -606,44 +608,47 @@ class RoomDetailsButton extends StatelessWidget {
       child: Tooltip(
         message: buttonDetails.title,
         child: AbsorbPointer(
-      absorbing: !buttonDetails.enabled,
-      child: MouseRegion(
-        cursor: SystemMouseCursors.click,
-        child: HoverBuilder(
-          builder: (context, hovered) {
-            return GestureDetector(
-              onTap: buttonDetails.onPressed,
-              child: Opacity(
-                opacity: buttonDetails.enabled ? 1.0 : 0.5,
-                child: Container(
-                  width: width,
-                  height: height,
-                  decoration: BoxDecoration(
-                    color: hovered
-                        ? Theme.of(context).colorScheme.primary.withAlpha(50)
-                        : Colors.transparent,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  padding: const EdgeInsets.all(12.0),
-                  child: mini
-                      ? buttonDetails.icon
-                      : Column(
-                          spacing: 12.0,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            buttonDetails.icon,
-                            Text(
-                              buttonDetails.title,
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(fontSize: 12.0),
+          absorbing: !buttonDetails.enabled,
+          child: MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: HoverBuilder(
+              builder: (context, hovered) {
+                return GestureDetector(
+                  onTap: buttonDetails.onPressed,
+                  child: Opacity(
+                    opacity: buttonDetails.enabled ? 1.0 : 0.5,
+                    child: Container(
+                      width: width,
+                      height: height,
+                      decoration: BoxDecoration(
+                        color: hovered
+                            ? Theme.of(context)
+                                .colorScheme
+                                .primary
+                                .withAlpha(50)
+                            : Colors.transparent,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      padding: const EdgeInsets.all(12.0),
+                      child: mini
+                          ? buttonDetails.icon
+                          : Column(
+                              spacing: 12.0,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                buttonDetails.icon,
+                                Text(
+                                  buttonDetails.title,
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(fontSize: 12.0),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                ),
-              ),
-            );
-          },
-        ),
+                    ),
+                  ),
+                );
+              },
+            ),
           ),
         ),
       ),
