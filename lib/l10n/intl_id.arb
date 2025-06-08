@@ -3350,7 +3350,7 @@
   "@approve": {},
   "youHaveKnocked": "Anda telah mengetuk",
   "@youHaveKnocked": {},
-  "sentVoiceMessage": "🎙️ {duration} - {sender}",
+  "sentVoiceMessage": "🎙️ {duration} - Pesan suara dari {sender}",
   "@sentVoiceMessage": {
     "type": "String",
     "placeholders": {
@@ -3372,5 +3372,11 @@
         "type": "int"
       }
     }
-  }
+  },
+  "commandHint_logout": "Keluar dari perangkatmu saat ini",
+  "@commandHint_logout": {},
+  "commandHint_logoutall": "Keluarkan semua perangkat aktif",
+  "@commandHint_logoutall": {},
+  "displayNavigationRail": "Tampilkan jalur navigasi pada ponsel",
+  "@displayNavigationRail": {}
 }
