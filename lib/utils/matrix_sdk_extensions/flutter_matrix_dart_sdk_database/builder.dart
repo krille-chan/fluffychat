@@ -17,10 +17,10 @@ import 'cipher.dart';
 import 'sqlcipher_stub.dart'
     if (dart.library.io) 'package:sqlcipher_flutter_libs/sqlcipher_flutter_libs.dart';
 
-Future<DatabaseApi> flutterMatrixSdkDatabaseBuilder(Client client) async {
+Future<DatabaseApi> flutterMatrixSdkDatabaseBuilder(String clientName) async {
   MatrixSdkDatabase? database;
   try {
-    database = await _constructDatabase(client);
+    database = await _constructDatabase(clientName);
     await database.open();
     return database;
   } catch (e, s) {
@@ -36,7 +36,7 @@ Future<DatabaseApi> flutterMatrixSdkDatabaseBuilder(Client client) async {
 
     // Delete database file:
     if (database == null && !kIsWeb) {
-      final dbFile = File(await _getDatabasePath(client.clientName));
+      final dbFile = File(await _getDatabasePath(clientName));
       if (await dbFile.exists()) await dbFile.delete();
     }
 
@@ -58,10 +58,10 @@ Future<DatabaseApi> flutterMatrixSdkDatabaseBuilder(Client client) async {
   }
 }
 
-Future<MatrixSdkDatabase> _constructDatabase(Client client) async {
+Future<MatrixSdkDatabase> _constructDatabase(String clientName) async {
   if (kIsWeb) {
     html.window.navigator.storage?.persist();
-    return MatrixSdkDatabase(client.clientName);
+    return await MatrixSdkDatabase.init(clientName);
   }
 
   final cipher = await getDatabaseCipher();
@@ -75,7 +75,7 @@ Future<MatrixSdkDatabase> _constructDatabase(Client client) async {
     );
   }
 
-  final path = await _getDatabasePath(client.clientName);
+  final path = await _getDatabasePath(clientName);
 
   // fix dlopen for old Android
   await applyWorkaroundToOpenSqlCipherOnOldAndroidVersions();
@@ -84,7 +84,7 @@ Future<MatrixSdkDatabase> _constructDatabase(Client client) async {
       createDatabaseFactoryFfi(ffiInit: SQfLiteEncryptionHelper.ffiInit);
 
   // migrate from potential previous SQLite database path to current one
-  await _migrateLegacyLocation(path, client.clientName);
+  await _migrateLegacyLocation(path, clientName);
 
   // required for [getDatabasesPath]
   databaseFactory = factory;
@@ -111,8 +111,8 @@ Future<MatrixSdkDatabase> _constructDatabase(Client client) async {
     ),
   );
 
-  return MatrixSdkDatabase(
-    client.clientName,
+  return await MatrixSdkDatabase.init(
+    clientName,
     database: database,
     maxFileSize: 1000 * 1000 * 10,
     fileStorageLocation: fileStorageLocation?.uri,

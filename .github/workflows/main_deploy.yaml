@@ -19,6 +19,8 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
+      - uses: moonrepo/setup-rust@v1
+      - run: rustup component add rust-src --toolchain nightly-x86_64-unknown-linux-gnu
       - run: flutter pub get
       - name: Prepare web
         run: ./scripts/prepare-web.sh
@@ -50,6 +52,7 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.3'
+      - uses: moonrepo/setup-rust@v1
       - name: Install Fastlane
         run: gem install fastlane -NV
       - name: Apply Google Services Patch
