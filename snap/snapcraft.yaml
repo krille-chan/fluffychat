@@ -74,6 +74,8 @@ parts:
       - libssl-dev
       - curl
       - libpciaccess-dev
+      - cargo
+      - rustc
     stage-packages:
       - libsecret-1-0
       - libjsoncpp25
