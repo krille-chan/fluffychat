@@ -51,16 +51,6 @@ platforms:
     build-on: arm64
 
 parts:
-  olm:
-    plugin: cmake
-    cmake-parameters:
-      - -DCMAKE_INSTALL_PREFIX=/usr
-    source: https://gitlab.matrix.org/matrix-org/olm.git
-    source-type: git
-    source-tag: '3.2.14'
-    build-packages:
-      - g++
-
   fluffychat:
     plugin: flutter
     source: .
