@@ -45,7 +45,7 @@ dependencies:
     git:
       url: https://github.com/famedly/flutter_typeahead.git
       ref: main
-  flutter_vodozemac: ^0.2.0
+  flutter_vodozemac: ^0.2.1
   flutter_web_auth_2: ^3.1.1 # Version 4 blocked by https://github.com/MixinNetwork/flutter-plugins/issues/379
   flutter_webrtc: ^0.12.9
   geolocator: ^13.0.1
