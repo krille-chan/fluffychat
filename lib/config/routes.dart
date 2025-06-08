@@ -107,6 +107,7 @@ abstract class AppRoutes {
             ? TwoColumnLayout(
                 mainView: ChatList(
                   activeChat: state.pathParameters['roomid'],
+                  activeSpaceId: state.uri.queryParameters['spaceId'],
                   displayNavigationRail:
                       state.path?.startsWith('/rooms/settings') != true,
                 ),
@@ -125,6 +126,7 @@ abstract class AppRoutes {
                 ? const EmptyPage()
                 : ChatList(
                     activeChat: state.pathParameters['roomid'],
+                    activeSpaceId: state.uri.queryParameters['spaceId'],
                   ),
           ),
           routes: [
