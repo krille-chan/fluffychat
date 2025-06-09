@@ -1266,7 +1266,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "confirm": "Deimhnigh",
+  "confirm": "Dearbhaigh",
   "@confirm": {
     "type": "String",
     "placeholders": {}
@@ -3367,7 +3367,7 @@
       }
     }
   },
-  "sentVoiceMessage": "🎙️ {duration} - {sender}",
+  "sentVoiceMessage": "🎙️ {duration} - Teachtaireacht ghutha ó {sender}",
   "@sentVoiceMessage": {
     "type": "String",
     "placeholders": {
@@ -3378,5 +3378,11 @@
         "type": "String"
       }
     }
-  }
+  },
+  "displayNavigationRail": "Taispeáin ráille nascleanúna ar fhóin phóca",
+  "@displayNavigationRail": {},
+  "commandHint_logout": "Logáil amach as do ghléas reatha",
+  "@commandHint_logout": {},
+  "commandHint_logoutall": "Logáil amach gach gléas gníomhach",
+  "@commandHint_logoutall": {}
 }
