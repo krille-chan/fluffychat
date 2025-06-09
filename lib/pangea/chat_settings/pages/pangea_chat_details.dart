@@ -624,7 +624,7 @@ class RoomDetailsButton extends StatelessWidget {
                             : Colors.transparent,
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      padding: const EdgeInsets.all(12.0),
+                      padding: EdgeInsets.all(mini ? 6 : 12.0),
                       child: mini
                           ? buttonDetails.icon
                           : Column(
