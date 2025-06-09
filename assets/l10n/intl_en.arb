@@ -696,6 +696,7 @@
       }
     }
   },
+  "checkList": "Check list",
   "countParticipants": "{count} participants",
   "@countParticipants": {
     "type": "String",

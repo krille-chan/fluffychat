@@ -336,9 +336,10 @@ class ChatController extends State<ChatPageWithRoom>
     );
   }
 
-  KeyEventResult _shiftEnterKeyHandling(FocusNode node, KeyEvent evt) {
+  KeyEventResult _customEnterKeyHandling(FocusNode node, KeyEvent evt) {
     if (!HardwareKeyboard.instance.isShiftPressed &&
-        evt.logicalKey.keyLabel == 'Enter') {
+        evt.logicalKey.keyLabel == 'Enter' &&
+        (AppConfig.sendOnEnter ?? !PlatformInfos.isMobile)) {
       if (evt is KeyDownEvent) {
         // #Pangea
         // send();
@@ -346,6 +347,36 @@ class ChatController extends State<ChatPageWithRoom>
         // Pangea#
       }
       return KeyEventResult.handled;
+    } else if (evt.logicalKey.keyLabel == 'Enter' && evt is KeyDownEvent) {
+      final currentLineNum = sendController.text
+              .substring(
+                0,
+                sendController.selection.baseOffset,
+              )
+              .split('\n')
+              .length -
+          1;
+      final currentLine = sendController.text.split('\n')[currentLineNum];
+
+      for (final pattern in [
+        '- [ ] ',
+        '- [x] ',
+        '* [ ] ',
+        '* [x] ',
+        '- ',
+        '* ',
+        '+ ',
+      ]) {
+        if (currentLine.startsWith(pattern)) {
+          if (currentLine == pattern) {
+            return KeyEventResult.ignored;
+          }
+          sendController.text += '\n$pattern';
+          return KeyEventResult.handled;
+        }
+      }
+
+      return KeyEventResult.ignored;
     } else {
       return KeyEventResult.ignored;
     }
@@ -353,11 +384,7 @@ class ChatController extends State<ChatPageWithRoom>
 
   @override
   void initState() {
-    inputFocus = FocusNode(
-      onKeyEvent: (AppConfig.sendOnEnter ?? !PlatformInfos.isMobile)
-          ? _shiftEnterKeyHandling
-          : null,
-    );
+    inputFocus = FocusNode(onKeyEvent: _customEnterKeyHandling);
 
     scrollController.addListener(_updateScrollController);
     inputFocus.addListener(_inputFocusListener);
@@ -1747,6 +1774,14 @@ class ChatController extends State<ChatPageWithRoom>
     }
     if (choice == 'location') {
       sendLocationAction();
+    }
+    if (choice == 'checklist') {
+      if (sendController.text.isEmpty) {
+        sendController.text = '- [ ] ';
+      } else {
+        sendController.text += '\n- [ ] ';
+      }
+      inputFocus.requestFocus();
     }
   }
 

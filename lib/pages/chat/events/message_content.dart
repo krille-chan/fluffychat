@@ -19,6 +19,7 @@ import 'package:fluffychat/pangea/toolbar/widgets/message_token_text.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_toolbar_selection_area.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import '../../../config/app_config.dart';
+import '../../../utils/event_checkbox_extension.dart';
 import '../../../utils/platform_infos.dart';
 import '../../../utils/url_launcher.dart';
 import 'audio_player.dart';
@@ -291,6 +292,11 @@ class MessageContent extends StatelessWidget {
                     decorationColor: linkColor,
                   ),
                   onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
+                  eventId: event.eventId,
+                  checkboxCheckedEvents: event.aggregatedEvents(
+                    timeline,
+                    EventCheckboxRoomExtension.relationshipType,
+                  ),
                   // #Pangea
                   event: event,
                   overlayController: overlayController,
