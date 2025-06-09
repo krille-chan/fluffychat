@@ -101,7 +101,7 @@ abstract class ClientManager {
       ? const NativeImplementationsDummy()
       : NativeImplementationsIsolate(
           compute,
-          vodozemacInit: vod.init,
+          vodozemacInit: () => vod.init(wasmPath: './assets/assets/vodozemac/'),
         );
 
   static Future<Client> createClient(

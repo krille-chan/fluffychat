@@ -124,6 +124,7 @@ flutter:
   assets:
     - assets/
     - assets/sounds/
+    - assets/vodozemac/
 
 msix_config:
   display_name: FluffyChat
