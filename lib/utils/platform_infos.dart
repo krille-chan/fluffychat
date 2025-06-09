@@ -33,6 +33,12 @@ abstract class PlatformInfos {
 
   static bool get usesTouchscreen => !isMobile;
 
+  static bool get supportsVideoPlayer =>
+      // #Pangea
+      // !PlatformInfos.isWindows && !PlatformInfos.isLinux;
+      !PlatformInfos.isLinux;
+  // Pangea#
+
   /// Web could also record in theory but currently only wav which is too large
   /// #Pangea
   // static bool get platformCanRecord => (isMobile || isMacOS);

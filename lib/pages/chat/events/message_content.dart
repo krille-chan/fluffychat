@@ -248,14 +248,12 @@ class MessageContent extends StatelessWidget {
               linkColor: linkColor,
             );
           case MessageTypes.Video:
-            // #Pangea
-            // return EventVideoPlayer(event, textColor: textColor);
             return EventVideoPlayer(
               event,
               textColor: textColor,
-              chatController: controller,
+              linkColor: linkColor,
+              timeline: timeline,
             );
-          // Pangea#
           case MessageTypes.File:
             return MessageDownloadContent(
               event,
