@@ -5008,5 +5008,8 @@
   "getStartedComplete": "You've completed this section!\nKeep exploring our amazing features by chatting with friends!",
   "getStartedFriendsComplete": "Woohoo! You've got friends! 😉",
   "getStartedBotChatButton": "Start chatting!",
-  "getStartedFriendsButton": "Invite a friend"
+  "getStartedFriendsButton": "Invite a friend",
+  "groupChat": "Group Chat",
+  "directMessage": "Direct Message",
+  "newDirectMessage": "New direct message"
 }

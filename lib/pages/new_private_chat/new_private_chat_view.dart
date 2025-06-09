@@ -30,7 +30,10 @@ class NewPrivateChatView extends StatelessWidget {
       appBar: AppBar(
         scrolledUnderElevation: 0,
         leading: const Center(child: BackButton()),
-        title: Text(L10n.of(context).newChat),
+        // #Pangea
+        title: Text(L10n.of(context).newDirectMessage),
+        // title: Text(L10n.of(context).newChat),
+        // Pangea#
         backgroundColor: theme.scaffoldBackgroundColor,
         // #Pangea
         // actions: [
