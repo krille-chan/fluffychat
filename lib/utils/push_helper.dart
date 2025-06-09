@@ -18,6 +18,8 @@ import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 
+const notificationAvatarDimension = 128;
+
 Future<void> pushHelper(
   PushNotification notification, {
   Client? client,
@@ -166,8 +168,8 @@ Future<void> _tryPushHelper(
             .downloadMxcCached(
               avatar,
               thumbnailMethod: ThumbnailMethod.crop,
-              width: 128,
-              height: 128,
+              width: notificationAvatarDimension,
+              height: notificationAvatarDimension,
               animated: false,
               isThumbnail: true,
               rounded: true,
@@ -188,8 +190,8 @@ Future<void> _tryPushHelper(
                 .downloadMxcCached(
                   senderAvatar,
                   thumbnailMethod: ThumbnailMethod.crop,
-                  width: 128,
-                  height: 128,
+                  width: notificationAvatarDimension,
+                  height: notificationAvatarDimension,
                   animated: false,
                   isThumbnail: true,
                   rounded: true,
