@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
@@ -16,7 +17,6 @@ import 'package:fluffychat/utils/client_download_content_extension.dart';
 import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:fluffychat/utils/shortcut_memory_icon.dart';
 
 Future<void> pushHelper(
   PushNotification notification, {
@@ -165,11 +165,12 @@ Future<void> _tryPushHelper(
         : await client
             .downloadMxcCached(
               avatar,
-              thumbnailMethod: ThumbnailMethod.scale,
-              width: 256,
-              height: 256,
+              thumbnailMethod: ThumbnailMethod.crop,
+              width: 128,
+              height: 128,
               animated: false,
               isThumbnail: true,
+              rounded: true,
             )
             .timeout(const Duration(seconds: 3));
   } catch (e, s) {
@@ -186,11 +187,12 @@ Future<void> _tryPushHelper(
             : await client
                 .downloadMxcCached(
                   senderAvatar,
-                  thumbnailMethod: ThumbnailMethod.scale,
-                  width: 256,
-                  height: 256,
+                  thumbnailMethod: ThumbnailMethod.crop,
+                  width: 128,
+                  height: 128,
                   animated: false,
                   isThumbnail: true,
+                  rounded: true,
                 )
                 .timeout(const Duration(seconds: 3));
   } catch (e, s) {
@@ -320,10 +322,7 @@ Future<void> _setShortcut(
       action: AppConfig.inviteLinkPrefix + event.room.id,
       shortLabel: title,
       conversationShortcut: true,
-      icon: await avatarFile?.toShortcutMemoryIcon(
-        event.room.id,
-        event.room.client.database,
-      ),
+      icon: avatarFile == null ? null : base64Encode(avatarFile),
       shortcutIconAsset: avatarFile == null
           ? ShortcutIconAsset.androidAsset
           : ShortcutIconAsset.memoryAsset,
