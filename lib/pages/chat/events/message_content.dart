@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
@@ -12,14 +11,10 @@ import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dar
 import 'package:fluffychat/pangea/events/extensions/pangea_event_extension.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
-import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/enums/reading_assistance_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
-import 'package:fluffychat/pangea/toolbar/widgets/message_token_text.dart';
-import 'package:fluffychat/pangea/toolbar/widgets/message_toolbar_selection_area.dart';
-import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
+import 'package:fluffychat/utils/event_checkbox_extension.dart';
 import '../../../config/app_config.dart';
-import '../../../utils/event_checkbox_extension.dart';
 import '../../../utils/platform_infos.dart';
 import '../../../utils/url_launcher.dart';
 import 'audio_player.dart';
@@ -36,6 +31,7 @@ class MessageContent extends StatelessWidget {
   final void Function(Event)? onInfoTab;
   final BorderRadius borderRadius;
   final Timeline timeline;
+
   // #Pangea
   final PangeaMessageEvent? pangeaMessageEvent;
   //question: are there any performance benefits to using booleans
@@ -169,20 +165,8 @@ class MessageContent extends StatelessWidget {
     final fontSize = AppConfig.messageFontSize * AppConfig.fontSizeFactor;
     final buttonTextColor = textColor;
     switch (event.type) {
-      // #Pangea
-      // case EventTypes.Message:
-      // Pangea#
-      case EventTypes.Encrypted:
-        // #Pangea
-        return _ButtonContent(
-          textColor: buttonTextColor,
-          onPressed: () {},
-          icon: '🔒',
-          label: L10n.of(context).encrypted,
-          fontSize: fontSize,
-        );
       case EventTypes.Message:
-      // Pangea#
+      case EventTypes.Encrypted:
       case EventTypes.Sticker:
         switch (event.messageType) {
           case MessageTypes.Image:
@@ -235,10 +219,10 @@ class MessageContent extends StatelessWidget {
                 linkColor: linkColor,
                 fontSize: fontSize,
                 // #Pangea
+                chatController: controller,
                 eventId: event.eventId,
                 roomId: event.room.id,
                 senderId: event.senderId,
-                chatController: controller,
                 // Pangea#
               );
             }
@@ -260,58 +244,6 @@ class MessageContent extends StatelessWidget {
               textColor: textColor,
               linkColor: linkColor,
             );
-
-          case MessageTypes.Text:
-          case MessageTypes.Notice:
-          case MessageTypes.Emote:
-            if (AppConfig.renderHtml &&
-                !event.redacted &&
-                event.isRichMessage) {
-              var html = event.formattedText;
-              if (event.messageType == MessageTypes.Emote) {
-                html = '* $html';
-              }
-              return Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 8,
-                ),
-                child: HtmlMessage(
-                  html: html,
-                  textColor: textColor,
-                  room: event.room,
-                  fontSize:
-                      AppConfig.fontSizeFactor * AppConfig.messageFontSize,
-                  linkStyle: TextStyle(
-                    color: linkColor,
-                    fontSize:
-                        AppConfig.fontSizeFactor * AppConfig.messageFontSize,
-                    decoration: TextDecoration.underline,
-                    decorationColor: linkColor,
-                  ),
-                  onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
-                  eventId: event.eventId,
-                  checkboxCheckedEvents: event.aggregatedEvents(
-                    timeline,
-                    EventCheckboxRoomExtension.relationshipType,
-                  ),
-                  // #Pangea
-                  event: event,
-                  overlayController: overlayController,
-                  controller: controller,
-                  pangeaMessageEvent: pangeaMessageEvent,
-                  nextEvent: nextEvent,
-                  prevEvent: prevEvent,
-                  isSelected: overlayController != null ? isSelected : null,
-                  onClick: event.isActivityMessage ? null : onClick,
-                  isTransitionAnimation: isTransitionAnimation,
-                  readingAssistanceMode: readingAssistanceMode,
-                  // Pangea#
-                ),
-              );
-            }
-            // else we fall through to the normal message rendering
-            continue textmessage;
           case MessageTypes.BadEncrypted:
           // #Pangea
           // case EventTypes.Encrypted:
@@ -358,6 +290,9 @@ class MessageContent extends StatelessWidget {
               }
             }
             continue textmessage;
+          case MessageTypes.Text:
+          case MessageTypes.Notice:
+          case MessageTypes.Emote:
           case MessageTypes.None:
           textmessage:
           default:
@@ -385,89 +320,47 @@ class MessageContent extends StatelessWidget {
                 },
               );
             }
-            // #Pangea
-            // final bigEmotes = event.onlyEmotes &&
-            //     event.numberEmotes > 0 &&
-            //     event.numberEmotes <= 3;
-            // Pangea#
-
-            // #Pangea
-
-            final messageTextStyle =
-                AppConfig.messageTextStyle(event, textColor);
-
-            if (pangeaMessageEvent != null &&
-                pangeaMessageEvent!.shouldShowToolbar) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 8,
-                ),
-                child: MessageTokenText(
-                  pangeaMessageEvent: pangeaMessageEvent!,
-                  tokens:
-                      pangeaMessageEvent!.messageDisplayRepresentation?.tokens,
-                  style: messageTextStyle,
-                  onClick: onClick,
-                  isSelected: overlayController != null ? isSelected : null,
-                  messageMode: overlayController?.toolbarMode,
-                  isHighlighted: (PangeaToken token) =>
-                      overlayController?.toolbarMode.associatedActivityType !=
-                          null &&
-                      overlayController?.practiceSelection
-                              ?.hasActiveActivityByToken(
-                            overlayController!
-                                .toolbarMode.associatedActivityType!,
-                            token,
-                          ) ==
-                          true,
-                  overlayController: overlayController,
-                  isTransitionAnimation: isTransitionAnimation,
-                  readingAssistanceMode: readingAssistanceMode,
-                ),
-              );
+            var html = AppConfig.renderHtml && event.isRichMessage
+                ? event.formattedText
+                : event.body;
+            if (event.messageType == MessageTypes.Emote) {
+              html = '* $html';
             }
-            // Pangea#
-
-            return
+            return Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 8,
+              ),
+              child: HtmlMessage(
+                html: html,
+                textColor: textColor,
+                room: event.room,
+                fontSize: AppConfig.fontSizeFactor * AppConfig.messageFontSize,
+                linkStyle: TextStyle(
+                  color: linkColor,
+                  fontSize:
+                      AppConfig.fontSizeFactor * AppConfig.messageFontSize,
+                  decoration: TextDecoration.underline,
+                  decorationColor: linkColor,
+                ),
+                onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
+                eventId: event.eventId,
+                checkboxCheckedEvents: event.aggregatedEvents(
+                  timeline,
+                  EventCheckboxRoomExtension.relationshipType,
+                ),
                 // #Pangea
-                ToolbarSelectionArea(
-              event: event,
-              controller: controller,
-              pangeaMessageEvent: pangeaMessageEvent,
-              isOverlay: overlayController != null,
-              nextEvent: nextEvent,
-              prevEvent: prevEvent,
-              child:
-                  // Pangea#
-                  Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 8,
-                ),
-                child: Linkify(
-                  text: event.calcLocalizedBodyFallback(
-                    MatrixLocals(L10n.of(context)),
-                    hideReply: true,
-                  ),
-                  textScaleFactor: MediaQuery.textScalerOf(context).scale(1),
-                  // #Pangea
-                  // style: TextStyle(
-                  //   color: textColor,
-                  //   fontSize: bigEmotes ? fontSize * 5 : fontSize,
-                  //   decoration: event.redacted ? TextDecoration.lineThrough : null,
-                  // ),
-                  style: messageTextStyle,
-                  // Pangea#
-                  options: const LinkifyOptions(humanize: false),
-                  linkStyle: TextStyle(
-                    color: linkColor,
-                    fontSize: fontSize,
-                    decoration: TextDecoration.underline,
-                    decorationColor: linkColor,
-                  ),
-                  onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
-                ),
+                event: event,
+                overlayController: overlayController,
+                controller: controller,
+                pangeaMessageEvent: pangeaMessageEvent,
+                nextEvent: nextEvent,
+                prevEvent: prevEvent,
+                isSelected: overlayController != null ? isSelected : null,
+                onClick: event.isActivityMessage ? null : onClick,
+                isTransitionAnimation: isTransitionAnimation,
+                readingAssistanceMode: readingAssistanceMode,
+                // Pangea#
               ),
             );
         }
