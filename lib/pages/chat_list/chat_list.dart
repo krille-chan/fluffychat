@@ -6,7 +6,6 @@ import 'package:flutter/services.dart';
 
 import 'package:app_links/app_links.dart';
 import 'package:cross_file/cross_file.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_shortcuts_new/flutter_shortcuts_new.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart' as sdk;
@@ -15,6 +14,7 @@ import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_view.dart';
 import 'package:fluffychat/pangea/chat_list/utils/app_version_util.dart';
 import 'package:fluffychat/pangea/chat_list/utils/chat_list_handle_space_tap.dart';

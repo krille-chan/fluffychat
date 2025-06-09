@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 import 'package:csv/csv.dart';
 import 'package:excel/excel.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/analytics_downloads/space_analytics_summary_enum.dart';
 import 'package:fluffychat/pangea/analytics_downloads/space_analytics_summary_model.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_list_model.dart';
