@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:audioplayers/audioplayers.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:confetti/confetti.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/analytics_misc/analytics_constants.dart';
@@ -319,20 +320,28 @@ class _LevelUpBarAnimationState extends State<LevelUpBarAnimation>
   late final Animation<double> _skillsOpacity;
   late final Animation<double> _shrinkMultiplier;
 
+  late final ConfettiController _confettiController;
+
   ConstructSummary? _constructSummary;
+
+  int displayedLevel = -1;
+  bool _hasBlastedConfetti = false;
 
   static const int _startGrammar = 23;
   static const int _endGrammar = 78;
   static const int _startVocab = 54;
   static const int _endVocab = 64;
+  static const String language = "ES";
 
-  static const double _startOpacity = 0.0;
-  static const double _endOpacity = 1.0;
-  static const Duration _animationDuration = Duration(seconds: 3);
+  static const Duration _animationDuration = Duration(seconds: 6);
 
   @override
   void initState() {
     super.initState();
+
+    displayedLevel = widget.prevLevel;
+    _confettiController =
+        ConfettiController(duration: const Duration(seconds: 1));
 
     _loadConstructSummary();
 
@@ -340,6 +349,22 @@ class _LevelUpBarAnimationState extends State<LevelUpBarAnimation>
       duration: _animationDuration,
       vsync: this,
     );
+
+    // halfway through the animation, switch to the new level
+    _controller.addListener(() {
+      if (_controller.value >= 0.5 && displayedLevel == widget.prevLevel) {
+        setState(() {
+          displayedLevel = widget.level;
+        });
+      }
+    });
+
+    _controller.addListener(() {
+      if (_controller.value >= 0.5 && !_hasBlastedConfetti) {
+        _confettiController.play();
+        _hasBlastedConfetti = true;
+      }
+    });
 
     _progressAnimation = Tween<double>(begin: 0, end: 1).animate(
       CurvedAnimation(parent: _controller, curve: Curves.easeOutBack),
@@ -360,18 +385,17 @@ class _LevelUpBarAnimationState extends State<LevelUpBarAnimation>
       ),
     );
 
-    _skillsOpacity =
-        Tween<double>(begin: _startOpacity, end: _endOpacity).animate(
+    _skillsOpacity = Tween<double>(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(
         parent: _controller,
-        curve: const Interval(0.5, 1.0, curve: Curves.easeIn),
+        curve: const Interval(0.7, 1.0, curve: Curves.easeIn),
       ),
     );
 
     _shrinkMultiplier = Tween<double>(begin: 1.0, end: 0.5).animate(
       CurvedAnimation(
         parent: _controller,
-        curve: const Interval(0.5, 1.0, curve: Curves.easeInOut),
+        curve: const Interval(0.7, 1.0, curve: Curves.easeInOut),
       ),
     );
 
@@ -401,118 +425,160 @@ class _LevelUpBarAnimationState extends State<LevelUpBarAnimation>
   @override
   void dispose() {
     _controller.dispose();
+    _confettiController.dispose();
     super.dispose();
   }
 
   @override
+  @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final grammarVocabStyle =
-        TextStyle(color: colorScheme.primary, fontSize: 24);
+    final grammarVocabStyle = Theme.of(context).textTheme.titleLarge?.copyWith(
+          fontWeight: FontWeight.bold,
+          color: colorScheme.primary,
+        );
 
-    return Column(
+    return Stack(
       children: [
-        AnimatedBuilder(
-          animation: _progressAnimation,
-          builder: (_, __) => Column(
+        SingleChildScrollView(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              // Avatar (static size)
-              ClipOval(
-                child: Image.asset(
-                  '../../../assets/favicon.png',
-                  width: 150 * _shrinkMultiplier.value,
-                  height: 150 * _shrinkMultiplier.value,
-                  fit: BoxFit.cover,
+              // Avatar and language
+              AnimatedBuilder(
+                animation: _progressAnimation,
+                builder: (_, __) => Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ClipOval(
+                      child: Image.asset(
+                        './assets/favicon.png',
+                        width: 150 * _shrinkMultiplier.value,
+                        height: 150 * _shrinkMultiplier.value,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    const SizedBox(width: 16),
+                    Text(
+                      language,
+                      style: TextStyle(
+                        fontSize: 24 * _skillsOpacity.value,
+                        color: AppConfig.goldLight,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              SizedBox(height: 10 * _shrinkMultiplier.value),
+              const SizedBox(height: 20),
+
+              // Progress bar + Level
+              AnimatedBuilder(
+                animation: _progressAnimation,
+                builder: (_, __) => Row(
+                  children: [
+                    Expanded(
+                      child: ProgressBar(
+                        levelBars: [
+                          LevelBarDetails(
+                            widthMultiplier: _progressAnimation.value,
+                            currentPoints: 0,
+                            fillColor: AppConfig.goldLight,
+                          ),
+                        ],
+                        height: 20,
+                      ),
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      "⭐ $displayedLevel",
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: AppConfig.goldLight,
+                          ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 25),
+
+              // Vocab and grammar row
+              AnimatedBuilder(
+                animation: _controller,
+                builder: (_, __) => Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Symbols.dictionary,
+                      color: colorScheme.primary,
+                      size: 35,
+                    ),
+                    const SizedBox(width: 8),
+                    Text('${_vocabAnimation.value}', style: grammarVocabStyle),
+                    const SizedBox(width: 40),
+                    Icon(
+                      Symbols.toys_and_games,
+                      color: colorScheme.primary,
+                      size: 35,
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      '${_grammarAnimation.value}',
+                      style: grammarVocabStyle,
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 32),
+
+              // Skills section
+              AnimatedBuilder(
+                animation: _skillsOpacity,
+                builder: (_, __) => Opacity(
+                  opacity: _skillsOpacity.value,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      _buildSkillsTable(context),
+                      const SizedBox(height: 24),
+                      if (_constructSummary?.textSummary != null)
+                        Padding(
+                          padding: const EdgeInsets.only(top: 16),
+                          child: Text(
+                            _constructSummary!.textSummary,
+                            textAlign: TextAlign.left,
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
+                        ),
+                      const SizedBox(height: 24),
+                      CachedNetworkImage(
+                        imageUrl:
+                            "${AppConfig.assetsBaseURL}/${LevelUpConstants.dinoLevelUPFileName}",
+                        width: 400,
+                        fit: BoxFit.cover,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
         ),
-        Expanded(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.all(15),
-            child: Column(
-              children: [
-                // Animated progress bar
-                AnimatedBuilder(
-                  animation: _progressAnimation,
-                  builder: (_, __) => ProgressBar(
-                    levelBars: [
-                      LevelBarDetails(
-                        widthMultiplier: _progressAnimation.value,
-                        currentPoints: 0,
-                        fillColor: AppConfig.goldLight,
-                      ),
-                    ],
-                    height: 20,
-                  ),
-                ),
-                const SizedBox(height: 25),
-                // Animated vocab and grammar row
-                AnimatedBuilder(
-                  animation: _controller,
-                  builder: (_, __) => Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Symbols.dictionary,
-                        color: colorScheme.primary,
-                        size: 35,
-                      ),
-                      Text(
-                        '${_vocabAnimation.value}',
-                        style: grammarVocabStyle,
-                      ),
-                      const SizedBox(width: 40),
-                      Icon(
-                        Symbols.toys_and_games,
-                        color: colorScheme.primary,
-                        size: 35,
-                      ),
-                      Text(
-                        '${_grammarAnimation.value}',
-                        style: grammarVocabStyle,
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 32),
-                // Skills section (fades in)
-                AnimatedBuilder(
-                  animation: _skillsOpacity,
-                  builder: (_, __) => Opacity(
-                    opacity: _skillsOpacity.value,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        _buildSkillsTable(context),
-                        const SizedBox(height: 24),
-                        if (_constructSummary?.textSummary != null)
-                          Padding(
-                            padding: const EdgeInsets.only(top: 16),
-                            child: Text(
-                              _constructSummary!.textSummary,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
-                                color: colorScheme.onSecondaryContainer,
-                              ),
-                            ),
-                          ),
-                        CachedNetworkImage(
-                          imageUrl:
-                              "${AppConfig.assetsBaseURL}/${LevelUpConstants.dinoLevelUPFileName}",
-                          width: 400,
-                          fit: BoxFit.cover,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
+
+        // Confetti overlay
+        Align(
+          alignment: Alignment.topCenter,
+          child: ConfettiWidget(
+            confettiController: _confettiController,
+            blastDirectionality: BlastDirectionality.explosive,
+            emissionFrequency: 0.2,
+            numberOfParticles: 30,
+            gravity: 0.4,
+            colors: const [
+              AppConfig.goldLight,
+              AppConfig.gold,
+            ],
           ),
         ),
       ],
@@ -520,50 +586,73 @@ class _LevelUpBarAnimationState extends State<LevelUpBarAnimation>
   }
 
   Widget _buildSkillsTable(BuildContext context) {
-    final visibleSkills = LearningSkillsEnum.values.where(
-      (skill) => skill.isVisible && _getSkillXP(skill) > -1,
-    );
+    final visibleSkills = LearningSkillsEnum.values
+        .where(
+          (skill) => skill.isVisible && _getSkillXP(skill) > -1,
+        )
+        .toList();
 
-    return Table(
-      columnWidths: const {
-        0: IntrinsicColumnWidth(),
-        1: FlexColumnWidth(),
-        2: IntrinsicColumnWidth(),
-      },
-      defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-      children: visibleSkills.map((skill) {
-        return TableRow(
-          children: [
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 9.0, horizontal: 18.0),
-              child: Icon(
-                skill.icon,
-                size: 25,
-                color: Theme.of(context).colorScheme.onSurface,
-              ),
-            ),
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 9.0, horizontal: 18.0),
-              child: Text(
-                skill.tooltip(context),
-                style:
-                    const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-                textAlign: TextAlign.center,
-              ),
-            ),
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 9.0, horizontal: 18.0),
-              child: Text(
-                "+ ${_getSkillXP(skill)} XP",
-                style:
-                    const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ],
+    const int itemsPerRow = 3;
+
+    // Break skills into chunks of 3
+    final List<List<LearningSkillsEnum>> rows = [];
+    for (var i = 0; i < visibleSkills.length; i += itemsPerRow) {
+      rows.add(
+        visibleSkills.sublist(
+          i,
+          i + itemsPerRow > visibleSkills.length
+              ? visibleSkills.length
+              : i + itemsPerRow,
+        ),
+      );
+    }
+
+    return Column(
+      children: rows.map((row) {
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 12.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: List.generate(3, (index) {
+              if (index < row.length) {
+                final skill = row[index];
+                return Expanded(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        skill.tooltip(context),
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(height: 8),
+                      Icon(
+                        skill.icon,
+                        size: 30,
+                        color: Theme.of(context).colorScheme.onSurface,
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        "+ ${_getSkillXP(skill)} XP",
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: AppConfig.gold,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
+                );
+              } else {
+                // Empty spacer to keep spacing consistent
+                return const Expanded(child: SizedBox());
+              }
+            }),
+          ),
         );
       }).toList(),
     );
