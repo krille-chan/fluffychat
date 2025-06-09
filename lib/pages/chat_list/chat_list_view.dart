@@ -72,7 +72,7 @@ class ChatListView extends StatelessWidget {
                     ? FloatingActionButton.extended(
                         onPressed: () => context.go('/rooms/newprivatechat'),
                         // #Pangea
-                        icon: const Icon(Icons.message_outlined),
+                        icon: const Icon(Icons.chat_bubble_outline),
                         // icon: const Icon(Icons.add_outlined),
                         // Pangea#
                         label: Text(
