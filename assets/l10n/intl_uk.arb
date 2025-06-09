@@ -3359,5 +3359,26 @@
   "approve": "Схвалити",
   "@approve": {},
   "youHaveKnocked": "Ви постукали",
-  "@youHaveKnocked": {}
+  "@youHaveKnocked": {},
+  "sentVoiceMessage": "🎙️ {duration} - {sender}",
+  "@sentVoiceMessage": {
+    "type": "String",
+    "placeholders": {
+      "sender": {
+        "type": "String"
+      },
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "countInvited": "Запрошено {count}",
+  "@countInvited": {
+    "type": "String",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
 }
