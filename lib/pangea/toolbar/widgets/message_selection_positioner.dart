@@ -147,11 +147,10 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
     _centeredMessageOffset = Offset(
       offset.dx - _columnWidth - _horizontalPadding - 2.0,
       _mediaQuery!.size.height -
-          offset.dy -
-          // (offset.dy -
-          //     ((AppConfig.practiceModeInputBarHeight -
-          //             AppConfig.selectModeInputBarHeight) *
-          //         0.75)) -
+          (offset.dy -
+              ((AppConfig.practiceModeInputBarHeight -
+                      AppConfig.selectModeInputBarHeight) *
+                  0.75)) -
           renderBox.size.height -
           _reactionsHeight,
     );
@@ -484,7 +483,6 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
   }
 
   double get _footerHeight {
-    return 0;
     return _inputBarSize + (_mediaQuery?.padding.bottom ?? 0);
   }
 

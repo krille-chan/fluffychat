@@ -1,6 +1,5 @@
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
-import 'package:fluffychat/pages/chat/reactions_picker.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/enums/reading_assistance_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_mode_locked_card.dart';
@@ -41,7 +40,8 @@ class ReadingAssistanceInputBar extends StatelessWidget {
             : null;
 
     if (overlayController.pangeaMessageEvent?.isAudioMessage == true) {
-      return ReactionsPicker(controller);
+      return const SizedBox();
+      // return ReactionsPicker(controller);
     } else {
       switch (overlayController.toolbarMode) {
         case MessageMode.messageSpeechToText:
