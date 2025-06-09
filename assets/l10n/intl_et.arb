@@ -3345,5 +3345,40 @@
   "enterNewChat": "Liitu uue vestlusega",
   "@enterNewChat": {},
   "commandHint_roomupgrade": "Uuenda see jututuba antud jututoa versioonini",
-  "@commandHint_roomupgrade": {}
+  "@commandHint_roomupgrade": {},
+  "setCustomPermissionLevel": "Seadista kohandatud õiguste tase",
+  "@setCustomPermissionLevel": {},
+  "setPermissionsLevelDescription": "Palun vali eelvalitud rollide seast või lisa õiguste tase vahemikus 0 kuni 100.",
+  "@setPermissionsLevelDescription": {},
+  "ignoreUser": "Eira kasutajat",
+  "@ignoreUser": {},
+  "normalUser": "Tavakasutaja",
+  "@normalUser": {},
+  "approve": "Kiida heaks",
+  "@approve": {},
+  "pleaseWaitUntilInvited": "Palun oota seni, kuni keegi jututoast saadab sulle kutse.",
+  "@pleaseWaitUntilInvited": {},
+  "youHaveKnocked": "Sa oled koputanud",
+  "@youHaveKnocked": {},
+  "countInvited": "{count} kutsutut",
+  "@countInvited": {
+    "type": "String",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "sentVoiceMessage": "🎙️ {duration} - {sender}",
+  "@sentVoiceMessage": {
+    "type": "String",
+    "placeholders": {
+      "sender": {
+        "type": "String"
+      },
+      "duration": {
+        "type": "String"
+      }
+    }
+  }
 }

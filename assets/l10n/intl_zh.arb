@@ -3243,7 +3243,7 @@
   "@notificationRuleContainsDisplayName": {},
   "notificationRuleIsRoomMention": "聊天室提及",
   "@notificationRuleIsRoomMention": {},
-  "notificationRuleRoomnotifDescription": "消息包含 \"@room\" 时提醒用户。",
+  "notificationRuleRoomnotifDescription": "消息包含 「@room」 时提醒用户。",
   "@notificationRuleRoomnotifDescription": {},
   "notificationRuleTombstone": "墓碑",
   "@notificationRuleTombstone": {},
@@ -3345,5 +3345,42 @@
   "enterNewChat": "进入新聊天",
   "@enterNewChat": {},
   "commandHint_roomupgrade": "将此聊天室升级到给定的聊天室版本",
-  "@commandHint_roomupgrade": {}
+  "@commandHint_roomupgrade": {},
+  "setCustomPermissionLevel": "设置自定义权限等级",
+  "@setCustomPermissionLevel": {},
+  "setPermissionsLevelDescription": "请在下方选择预定义的角色或输入 0 到 100 间的自定义权限等级。",
+  "@setPermissionsLevelDescription": {},
+  "ignoreUser": "忽略用户",
+  "@ignoreUser": {},
+  "normalUser": "正常用户",
+  "@normalUser": {},
+  "approve": "批准",
+  "@approve": {},
+  "youHaveKnocked": "你已请求加入",
+  "@youHaveKnocked": {},
+  "pleaseWaitUntilInvited": "在来自该聊天室的某人邀请你之前请等待。",
+  "@pleaseWaitUntilInvited": {},
+  "countInvited": "邀请了 {count}",
+  "@countInvited": {
+    "type": "String",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "checkList": "清单",
+  "@checkList": {},
+  "sentVoiceMessage": "🎙️ {duration} - {sender}",
+  "@sentVoiceMessage": {
+    "type": "String",
+    "placeholders": {
+      "sender": {
+        "type": "String"
+      },
+      "duration": {
+        "type": "String"
+      }
+    }
+  }
 }

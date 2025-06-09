@@ -3345,5 +3345,40 @@
   "enterNewChat": "Entrar na nova conversa",
   "@enterNewChat": {},
   "commandHint_roomupgrade": "Actualizar esta sala á versión de sala indicada",
-  "@commandHint_roomupgrade": {}
+  "@commandHint_roomupgrade": {},
+  "setCustomPermissionLevel": "Establecer nivel personalizado dos permisos",
+  "@setCustomPermissionLevel": {},
+  "setPermissionsLevelDescription": "Elixe un rol predefinido dos indicados ou escribe un nivel personalizado entre 0 e 100.",
+  "@setPermissionsLevelDescription": {},
+  "ignoreUser": "Ignorar usuaria",
+  "@ignoreUser": {},
+  "normalUser": "Usuaria corrente",
+  "@normalUser": {},
+  "approve": "Aprobar",
+  "@approve": {},
+  "pleaseWaitUntilInvited": "Agora agarda a que alguén da sala te convide a entrar.",
+  "@pleaseWaitUntilInvited": {},
+  "youHaveKnocked": "Petaches á porta",
+  "@youHaveKnocked": {},
+  "sentVoiceMessage": "🎙️ {duration} - {sender}",
+  "@sentVoiceMessage": {
+    "type": "String",
+    "placeholders": {
+      "sender": {
+        "type": "String"
+      },
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "countInvited": "{count} convidadas",
+  "@countInvited": {
+    "type": "String",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
 }

@@ -3339,5 +3339,48 @@
   "optionalMessage": "Mezua (aukerakoa)…",
   "@optionalMessage": {},
   "notSupportedOnThisDevice": "Ez da gailu honekin bateragarria",
-  "@notSupportedOnThisDevice": {}
+  "@notSupportedOnThisDevice": {},
+  "commandHint_roomupgrade": "Bertsio-berritu gela adierazitako gela-bertsiora",
+  "@commandHint_roomupgrade": {},
+  "enterNewChat": "Sartu txat berrira",
+  "@enterNewChat": {},
+  "normalUser": "Erabiltzaile arrunta",
+  "@normalUser": {},
+  "notificationRuleRoomServerAclDescription": "Gela-zerbitzarirako sarbide-kontroleko zerrenden (ACL) jakinarazpenak ezkutatzen ditu.",
+  "@notificationRuleRoomServerAclDescription": {},
+  "ignoreUser": "Egin muzin erabiltzaileari",
+  "@ignoreUser": {},
+  "setCustomPermissionLevel": "Ezarri baimen-maila propioak",
+  "@setCustomPermissionLevel": {},
+  "setPermissionsLevelDescription": "Aukeratu defektuzko rola edo sartu baimen-maila pertsonalizatu bat 0 eta 100 artean.",
+  "@setPermissionsLevelDescription": {},
+  "approve": "Onetsi",
+  "@approve": {},
+  "youHaveKnocked": "Sartzeko baimena eskatu duzu",
+  "@youHaveKnocked": {},
+  "pleaseWaitUntilInvited": "Orain itxaron gelako norbaitek gonbidatzen zaituen arte.",
+  "@pleaseWaitUntilInvited": {},
+  "checkList": "Kontrol-zerrenda",
+  "@checkList": {},
+  "countInvited": "{count} gonbidatu",
+  "@countInvited": {
+    "type": "String",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "sentVoiceMessage": "🎙️ {duration} - {sender}",
+  "@sentVoiceMessage": {
+    "type": "String",
+    "placeholders": {
+      "sender": {
+        "type": "String"
+      },
+      "duration": {
+        "type": "String"
+      }
+    }
+  }
 }
