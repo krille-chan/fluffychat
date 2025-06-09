@@ -17,3 +17,31 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_REPO: ${{ github.repository }}
           NUMBER: ${{ github.event.issue.number }}
+      - name: Get project ID from project number
+        id: get_project_id
+        run: |
+          PROJECT_ID=$(gh api graphql -f query='query { repository(owner: "${{ github.repository_owner }}", name: "${{ github.event.repository.name }}") { projectV2(number: 1) { id } } }' --jq '.data.repository.projectV2.id')
+          echo "PROJECT_ID=$PROJECT_ID" >> $GITHUB_ENV
+      - name: Get item ID for issue in project
+        id: get_item_id
+        run: |
+          ITEM_ID=$(gh api graphql -f query='query { repository(owner: "${{ github.repository_owner }}", name: "${{ github.event.repository.name }}") { issue(number: ${{ github.event.issue.number }}) { projectItems(first: 10) { nodes { id project { id } } } } }' --jq '.data.repository.issue.projectItems.nodes[] | select(.project.id==env.PROJECT_ID) | .id')
+          echo "ITEM_ID=$ITEM_ID" >> $GITHUB_ENV
+      - name: Get status field and Done option IDs
+        id: get_status_ids
+        run: |
+          STATUS_FIELD_ID=$(gh api graphql -f query='query { node(id: "'$PROJECT_ID'") { ... on ProjectV2 { fields(first: 20) { nodes { id name } } } } }' --jq '.data.node.fields.nodes[] | select(.name=="Status") | .id')
+          DONE_OPTION_ID=$(gh api graphql -f query='query { node(id: "'$STATUS_FIELD_ID'") { ... on ProjectV2Field { options { id name } } } }' --jq '.data.node.options[] | select(.name=="Done") | .id')
+          echo "STATUS_FIELD_ID=$STATUS_FIELD_ID" >> $GITHUB_ENV
+          echo "DONE_OPTION_ID=$DONE_OPTION_ID" >> $GITHUB_ENV
+      - name: Set status to Done in project
+        run: |
+          gh api graphql -f query='mutation($project:ID!, $item:ID!, $field:ID!, $option:ID!) { updateProjectV2ItemFieldValue(input: {projectId: $project, itemId: $item, fieldId: $field, value: { singleSelectOptionId: $option } }) { projectV2Item { id } } }' -f project=$PROJECT_ID -f item=$ITEM_ID -f field=$STATUS_FIELD_ID -f option=$DONE_OPTION_ID
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PROJECT_ID: ${{ env.PROJECT_ID }}
+          ITEM_ID: ${{ env.ITEM_ID }}
+          STATUS_FIELD_ID: ${{ env.STATUS_FIELD_ID }}
+          DONE_OPTION_ID: ${{ env.DONE_OPTION_ID }}
+# To get your project, field, and option IDs, see the instructions in the new issue_opened_project.yaml file.
+# You must replace the placeholders with your actual project and field IDs.
