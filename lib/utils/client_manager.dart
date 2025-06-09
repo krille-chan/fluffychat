@@ -132,9 +132,6 @@ abstract class ClientManager {
       },
       logLevel: kReleaseMode ? Level.warning : Level.verbose,
       databaseBuilder: flutterMatrixSdkDatabaseBuilder,
-      // #Pangea
-      // legacyDatabaseBuilder: FlutterHiveCollectionsDatabase.databaseBuilder,
-      // Pangea#
       supportedLoginTypes: {
         AuthenticationTypes.password,
         AuthenticationTypes.sso,

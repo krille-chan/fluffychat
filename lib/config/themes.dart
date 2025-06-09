@@ -7,7 +7,10 @@ import 'app_config.dart';
 abstract class FluffyThemes {
   static const double columnWidth = 380.0;
 
-  static const double navRailWidth = 80.0;
+  // #Pangea
+  // static const double navRailWidth = 80.0;
+  static const double navRailWidth = 72.0;
+  // Pangea#
 
   static bool isColumnModeByWidth(double width) =>
       width > columnWidth * 2 + navRailWidth;

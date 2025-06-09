@@ -44,6 +44,35 @@ class ChatPermissionsSettingsView extends StatelessWidget {
             final eventsPowerLevels = Map<String, int?>.from(
               powerLevelsContent.tryGetMap<String, int?>('events') ?? {},
             )..removeWhere((k, v) => v is! int);
+            // #Pangea
+            final defaults = Map<String, dynamic>.from(
+              controller.defaultPowerLevels,
+            );
+
+            Map<String, dynamic> missingPowerLevels = Map<String, dynamic>.from(
+              defaults,
+            )..removeWhere((k, v) => v is! int || powerLevels.containsKey(k));
+
+            missingPowerLevels = missingPowerLevels.map(
+              (key, value) => MapEntry(key, controller.getDefaultValue(key)),
+            );
+
+            Map<String, int?> missingEventsPowerLevels = Map<String, int?>.from(
+              defaults.tryGetMap<String, int?>('events') ?? {},
+            )..removeWhere(
+                (k, v) => v is! int || eventsPowerLevels.containsKey(k),
+              );
+
+            missingEventsPowerLevels = missingEventsPowerLevels.map(
+              (key, value) => MapEntry(
+                key,
+                controller.getDefaultValue(key, category: 'events'),
+              ),
+            );
+
+            powerLevels.addAll(missingPowerLevels);
+            eventsPowerLevels.addAll(missingEventsPowerLevels);
+            // Pangea#
             return Column(
               children: [
                 ListTile(

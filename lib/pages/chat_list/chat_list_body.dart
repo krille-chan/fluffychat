@@ -11,6 +11,7 @@ import 'package:fluffychat/pages/chat_list/dummy_chat_list_item.dart';
 import 'package:fluffychat/pages/chat_list/search_title.dart';
 import 'package:fluffychat/pages/chat_list/space_view.dart';
 import 'package:fluffychat/pangea/chat_list/widgets/pangea_chat_list_header.dart';
+import 'package:fluffychat/pangea/onboarding/onboarding.dart';
 import 'package:fluffychat/pangea/public_spaces/public_room_bottom_sheet.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/user_dialog.dart';
@@ -287,6 +288,16 @@ class ChatListViewBody extends StatelessWidget {
                     );
                   },
                 ),
+              // #Pangea
+              const SliverPadding(padding: EdgeInsets.all(12.0)),
+              if (!FluffyThemes.isColumnMode(context))
+                SliverList.builder(
+                  itemCount: 1,
+                  itemBuilder: (context, _) {
+                    return const Onboarding();
+                  },
+                ),
+              // Pangea#
             ],
           ),
         );
@@ -387,6 +398,7 @@ class _SearchItem extends StatelessWidget {
   final void Function() onPressed;
   // #Pangea
   final BorderRadius? radius;
+  final String? userId;
   // Pangea#
 
   const _SearchItem({
@@ -395,6 +407,7 @@ class _SearchItem extends StatelessWidget {
     required this.onPressed,
     // #Pangea
     this.radius,
+    this.userId,
     // Pangea#
   });
 
@@ -412,6 +425,7 @@ class _SearchItem extends StatelessWidget {
                 name: title,
                 // #Pangea
                 borderRadius: radius,
+                userId: userId,
                 // Pangea#
               ),
               Padding(
@@ -467,6 +481,7 @@ class UserSearchResultsListState extends State<UserSearchResultsList> {
               widget.userSearchResult.results[i].userId.localpart ??
               L10n.of(context).unknownDevice,
           avatar: widget.userSearchResult.results[i].avatarUrl,
+          userId: widget.userSearchResult.results[i].userId,
           onPressed: () => UserDialog.show(
             context: context,
             profile: widget.userSearchResult.results[i],

@@ -8,7 +8,6 @@ import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat_details/chat_details.dart';
 import 'package:fluffychat/pages/chat_details/participant_list_item.dart';
@@ -19,19 +18,21 @@ import 'package:fluffychat/pangea/chat_settings/models/bot_options_model.dart';
 import 'package:fluffychat/pangea/chat_settings/utils/delete_room.dart';
 import 'package:fluffychat/pangea/chat_settings/widgets/conversation_bot/conversation_bot_settings.dart';
 import 'package:fluffychat/pangea/chat_settings/widgets/delete_space_dialog.dart';
+import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/spaces/utils/load_participants_util.dart';
 import 'package:fluffychat/pangea/spaces/widgets/download_space_analytics_dialog.dart';
+import 'package:fluffychat/pangea/spaces/widgets/leaderboard_participant_list.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
-import 'package:fluffychat/widgets/adaptive_dialogs/user_dialog.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/hover_builder.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:fluffychat/widgets/member_actions_popup_menu_button.dart';
 
 class PangeaChatDetailsView extends StatelessWidget {
   final ChatDetailsController controller;
@@ -79,7 +80,7 @@ class PangeaChatDetailsView extends StatelessWidget {
                     : const Center(child: BackButton())),
           ),
           body: MaxWidthBody(
-            maxWidth: 800,
+            maxWidth: 900,
             showBorder: false,
             child: ListView.builder(
               physics: const NeverScrollableScrollPhysics(),
@@ -303,8 +304,8 @@ class RoomDetailsButtonRowState extends State<RoomDetailsButtonRow> {
     super.dispose();
   }
 
-  final double _buttonWidth = 120.0;
-  final double _buttonHeight = 70.0;
+  final double _buttonWidth = 125.0;
+  final double _buttonHeight = 84.0;
   final double _miniButtonWidth = 50.0;
 
   Room get room => widget.room;
@@ -314,21 +315,22 @@ class RoomDetailsButtonRowState extends State<RoomDetailsButtonRow> {
     return [
       ButtonDetails(
         title: l10n.activities,
-        icon: const Icon(Icons.event_note_outlined),
+        icon: const Icon(Icons.event_note_outlined, size: 30.0),
         onPressed: () => context.go("/rooms/${room.id}/details/planner"),
-        visible: room.canSendDefaultStates || room.isSpace,
-        enabled: room.canSendDefaultStates,
+        visible: room.canChangeStateEvent(PangeaEventTypes.activityPlan) ||
+            room.isSpace,
+        enabled: room.canChangeStateEvent(PangeaEventTypes.activityPlan),
       ),
       ButtonDetails(
         title: l10n.permissions,
-        icon: const Icon(Icons.edit_attributes_outlined),
+        icon: const Icon(Icons.edit_attributes_outlined, size: 30.0),
         onPressed: () => context.go('/rooms/${room.id}/details/permissions'),
         visible: (room.isRoomAdmin && !room.isDirectChat) || room.isSpace,
         enabled: room.isRoomAdmin && !room.isDirectChat,
       ),
       ButtonDetails(
         title: l10n.access,
-        icon: const Icon(Icons.shield_outlined),
+        icon: const Icon(Icons.shield_outlined, size: 30.0),
         onPressed: () => context.go('/rooms/${room.id}/details/access'),
         visible: room.isSpace && room.spaceParents.isEmpty,
         enabled: room.isSpace && room.isRoomAdmin,
@@ -341,6 +343,7 @@ class RoomDetailsButtonRowState extends State<RoomDetailsButtonRow> {
           room.pushRuleState == PushRuleState.notify
               ? Icons.notifications_on_outlined
               : Icons.notifications_off_outlined,
+          size: 30.0,
         ),
         onPressed: () => showFutureLoadingDialog(
           context: context,
@@ -354,14 +357,14 @@ class RoomDetailsButtonRowState extends State<RoomDetailsButtonRow> {
       ),
       ButtonDetails(
         title: l10n.invite,
-        icon: const Icon(Icons.person_add_outlined),
+        icon: const Icon(Icons.person_add_outlined, size: 30.0),
         onPressed: () => context.go('/rooms/${room.id}/details/invite'),
         visible: (room.canInvite && !room.isDirectChat) || room.isSpace,
         enabled: room.canInvite && !room.isDirectChat,
       ),
       ButtonDetails(
         title: l10n.addSubspace,
-        icon: const Icon(Icons.add_outlined),
+        icon: const Icon(Icons.add_outlined, size: 30.0),
         onPressed: widget.controller.addSubspace,
         visible: room.isSpace &&
             room.canChangeStateEvent(
@@ -371,7 +374,7 @@ class RoomDetailsButtonRowState extends State<RoomDetailsButtonRow> {
       ),
       ButtonDetails(
         title: l10n.downloadSpaceAnalytics,
-        icon: const Icon(Icons.download_outlined),
+        icon: const Icon(Icons.download_outlined, size: 30.0),
         onPressed: () {
           showDialog(
             context: context,
@@ -383,7 +386,7 @@ class RoomDetailsButtonRowState extends State<RoomDetailsButtonRow> {
       ),
       ButtonDetails(
         title: l10n.download,
-        icon: const Icon(Icons.download_outlined),
+        icon: const Icon(Icons.download_outlined, size: 30.0),
         onPressed: widget.controller.downloadChatAction,
         visible: room.ownPowerLevel >= 50 && !room.isSpace,
       ),
@@ -404,14 +407,14 @@ class RoomDetailsButtonRowState extends State<RoomDetailsButtonRow> {
       ),
       ButtonDetails(
         title: l10n.chatCapacity,
-        icon: const Icon(Icons.reduce_capacity),
+        icon: const Icon(Icons.reduce_capacity, size: 30.0),
         onPressed: widget.controller.setRoomCapacity,
         visible:
             !room.isSpace && !room.isDirectChat && room.canSendDefaultStates,
       ),
       ButtonDetails(
         title: l10n.leave,
-        icon: const Icon(Icons.logout_outlined),
+        icon: const Icon(Icons.logout_outlined, size: 30.0),
         onPressed: () async {
           final confirmed = await showOkCancelAlertDialog(
             useRootNavigator: false,
@@ -438,7 +441,7 @@ class RoomDetailsButtonRowState extends State<RoomDetailsButtonRow> {
       ),
       ButtonDetails(
         title: l10n.delete,
-        icon: const Icon(Icons.delete_outline),
+        icon: const Icon(Icons.delete_outline, size: 30.0),
         onPressed: () async {
           if (room.isSpace) {
             final resp = await showDialog<bool?>(
@@ -516,6 +519,7 @@ class RoomDetailsButtonRowState extends State<RoomDetailsButtonRow> {
                 }
 
                 return PopupMenuButton(
+                  useRootNavigator: true,
                   onSelected: (button) => button.onPressed?.call(),
                   itemBuilder: (context) {
                     return otherButtons
@@ -594,43 +598,53 @@ class RoomDetailsButton extends StatelessWidget {
       return const SizedBox();
     }
 
-    return AbsorbPointer(
-      absorbing: !buttonDetails.enabled,
-      child: MouseRegion(
-        cursor: SystemMouseCursors.click,
-        child: HoverBuilder(
-          builder: (context, hovered) {
-            return GestureDetector(
-              onTap: buttonDetails.onPressed,
-              child: Opacity(
-                opacity: buttonDetails.enabled ? 1.0 : 0.5,
-                child: Container(
-                  width: width,
-                  height: height,
-                  decoration: BoxDecoration(
-                    color: hovered
-                        ? Theme.of(context).colorScheme.primary.withAlpha(50)
-                        : Colors.transparent,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  padding: const EdgeInsets.all(8.0),
-                  child: mini
-                      ? buttonDetails.icon
-                      : Column(
-                          spacing: 8.0,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            buttonDetails.icon,
-                            Text(
-                              buttonDetails.title,
-                              textAlign: TextAlign.center,
+    return TooltipVisibility(
+      visible: mini,
+      child: Tooltip(
+        message: buttonDetails.title,
+        child: AbsorbPointer(
+          absorbing: !buttonDetails.enabled,
+          child: MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: HoverBuilder(
+              builder: (context, hovered) {
+                return GestureDetector(
+                  onTap: buttonDetails.onPressed,
+                  child: Opacity(
+                    opacity: buttonDetails.enabled ? 1.0 : 0.5,
+                    child: Container(
+                      width: width,
+                      height: height,
+                      decoration: BoxDecoration(
+                        color: hovered
+                            ? Theme.of(context)
+                                .colorScheme
+                                .primary
+                                .withAlpha(50)
+                            : Colors.transparent,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      padding: EdgeInsets.all(mini ? 6 : 12.0),
+                      child: mini
+                          ? buttonDetails.icon
+                          : Column(
+                              spacing: 12.0,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                buttonDetails.icon,
+                                Text(
+                                  buttonDetails.title,
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(fontSize: 12.0),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                ),
-              ),
-            );
-          },
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
         ),
       ),
     );
@@ -663,7 +677,7 @@ class RoomParticipantsSection extends StatelessWidget {
     super.key,
   });
 
-  final double _width = 80.0;
+  final double _width = 100.0;
   final double _padding = 12.0;
 
   double get _fullWidth => _width + (_padding * 2);
@@ -680,60 +694,54 @@ class RoomParticipantsSection extends StatelessWidget {
       builder: (context, constraints) {
         final availableWidth = constraints.maxWidth;
         final capacity = (availableWidth / _fullWidth).floor();
-
-        if (capacity < 4) {
-          return Column(
-            children: [
-              ...members.map((member) => ParticipantListItem(member)),
-              if (actualMembersCount - members.length > 0)
-                ListTile(
-                  title: Text(
-                    L10n.of(context).loadCountMoreParticipants(
-                      (actualMembersCount - members.length),
-                    ),
-                  ),
-                  leading: CircleAvatar(
-                    backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-                    child: const Icon(
-                      Icons.group_outlined,
-                      color: Colors.grey,
-                    ),
-                  ),
-                  onTap: () => context.push(
-                    '/rooms/${room.id}/details/members',
-                  ),
-                  trailing: const Icon(Icons.chevron_right_outlined),
-                ),
-            ],
-          );
-        }
-
         return LoadParticipantsUtil(
           space: room,
           builder: (participantsLoader) {
+            if (capacity < 4) {
+              return Column(
+                children: [
+                  ...members.map((member) => ParticipantListItem(member)),
+                  if (actualMembersCount - members.length > 0)
+                    ListTile(
+                      title: Text(
+                        L10n.of(context).loadCountMoreParticipants(
+                          (actualMembersCount - members.length),
+                        ),
+                      ),
+                      leading: CircleAvatar(
+                        backgroundColor:
+                            Theme.of(context).scaffoldBackgroundColor,
+                        child: const Icon(
+                          Icons.group_outlined,
+                          color: Colors.grey,
+                        ),
+                      ),
+                      onTap: () => context.push(
+                        '/rooms/${room.id}/details/members',
+                      ),
+                      trailing: const Icon(Icons.chevron_right_outlined),
+                    ),
+                ],
+              );
+            }
+
             final filteredParticipants =
                 participantsLoader.filteredParticipants("");
+
             return Wrap(
               alignment: WrapAlignment.center,
               runAlignment: WrapAlignment.center,
               children: [
                 ...filteredParticipants.mapIndexed((index, user) {
-                  Color? color = index == 0
-                      ? AppConfig.gold
-                      : index == 1
-                          ? Colors.grey[400]!
-                          : index == 2
-                              ? Colors.brown[400]!
-                              : null;
-
                   final publicProfile = participantsLoader.getPublicProfile(
                     user.id,
                   );
 
+                  LinearGradient? gradient = index.leaderboardGradient;
                   if (user.id == BotName.byEnvironment ||
                       publicProfile == null ||
                       publicProfile.level == null) {
-                    color = null;
+                    gradient = null;
                   }
 
                   return Padding(
@@ -745,21 +753,13 @@ class RoomParticipantsSection extends StatelessWidget {
                           Stack(
                             alignment: Alignment.center,
                             children: [
-                              if (color != null)
+                              if (gradient != null)
                                 CircleAvatar(
                                   radius: _width / 2,
                                   child: Container(
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
-                                      gradient: LinearGradient(
-                                        begin: const Alignment(0.5, -0.5),
-                                        end: const Alignment(-0.5, 0.5),
-                                        colors: <Color>[
-                                          color,
-                                          Colors.white,
-                                          color,
-                                        ],
-                                      ),
+                                      gradient: gradient,
                                     ),
                                   ),
                                 )
@@ -768,27 +768,27 @@ class RoomParticipantsSection extends StatelessWidget {
                                   height: _width,
                                   width: _width,
                                 ),
-                              MouseRegion(
-                                cursor: SystemMouseCursors.click,
-                                child: GestureDetector(
-                                  onTap: () => UserDialog.show(
-                                    context: context,
-                                    profile: Profile(
-                                      userId: user.id,
-                                      displayName: user.displayName,
-                                      avatarUrl: user.avatarUrl,
+                              Builder(
+                                builder: (context) {
+                                  return MouseRegion(
+                                    cursor: SystemMouseCursors.click,
+                                    child: GestureDetector(
+                                      onTap: () => showMemberActionsPopupMenu(
+                                        context: context,
+                                        user: user,
+                                      ),
+                                      child: Center(
+                                        child: Avatar(
+                                          mxContent: user.avatarUrl,
+                                          name: user.calcDisplayname(),
+                                          size: _width - 6.0,
+                                          presenceUserId: user.id,
+                                          showPresence: false,
+                                        ),
+                                      ),
                                     ),
-                                  ),
-                                  child: Center(
-                                    child: Avatar(
-                                      mxContent: user.avatarUrl,
-                                      name: user.calcDisplayname(),
-                                      size: _width - 6.0,
-                                      presenceUserId: user.id,
-                                      showPresence: false,
-                                    ),
-                                  ),
-                                ),
+                                  );
+                                },
                               ),
                             ],
                           ),
