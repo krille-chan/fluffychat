@@ -1541,9 +1541,11 @@ class ChatController extends State<ChatPageWithRoom>
     // setState(() => selectedEvents.clear());
     // Pangea#
     // if reaction already exists, don't send it again
-    if (_allReactionEvents.any(
-      (e) => e.content.tryGetMap('m.relates_to')?['key'] == emoji,
-    )) {
+    if (timeline == null ||
+        events.any(
+          (e) => e.aggregatedEvents(timeline!, RelationshipTypes.reaction).any(
+              (re) => re.content.tryGetMap('m.relates_to')?['key'] == emoji),
+        )) {
       return;
     }
 
