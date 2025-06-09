@@ -20,7 +20,7 @@ jobs:
       - name: Get project ID from project number
         id: get_project_id
         run: |
-          PROJECT_ID=$(gh api graphql -f query='query { repository(owner: "${{ github.repository_owner }}", name: "${{ github.event.repository.name }}") { projectV2(number: 1) { id } } }' --jq '.data.repository.projectV2.id')
+          PROJECT_ID=$(gh api graphql -f query='query { organization(login: "pangeachat") { projectV2(number: 4) { id } } }' --jq '.data.organization.projectV2.id')
           echo "PROJECT_ID=$PROJECT_ID" >> $GITHUB_ENV
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
