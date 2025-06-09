@@ -10,6 +10,7 @@ import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:matrix/encryption.dart';
 import 'package:matrix/matrix.dart';
 import 'package:provider/provider.dart';
@@ -162,6 +163,9 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   bool get hasComplexBundles => accountBundles.values.any((v) => v.length > 1);
 
   Client? _loginClientCandidate;
+
+  AudioPlayer? audioPlayer;
+  final ValueNotifier<String?> voiceMessageEventId = ValueNotifier(null);
 
   Client getLoginClient() {
     if (widget.clients.isNotEmpty && !client.isLogged()) {

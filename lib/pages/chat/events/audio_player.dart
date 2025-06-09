@@ -5,20 +5,25 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import 'package:async/async.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:matrix/matrix.dart';
 import 'package:opus_caf_converter_dart/opus_caf_converter_dart.dart';
 import 'package:path_provider/path_provider.dart';
 
+import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_audio_card.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/utils/error_reporter.dart';
 import 'package:fluffychat/utils/file_description.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions/event_extension.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
-import '../../../utils/matrix_sdk_extensions/event_extension.dart';
+import '../../../widgets/fluffy_chat_app.dart';
+import '../../../widgets/matrix.dart';
 
 class AudioPlayerWidget extends StatefulWidget {
   final Color color;
@@ -27,23 +32,16 @@ class AudioPlayerWidget extends StatefulWidget {
   // #Pangea
   // final Event event;
   final Event? event;
+  final String eventId;
+  final String roomId;
+  final String senderId;
   final PangeaAudioFile? matrixFile;
-  final bool autoplay;
   final Function(bool)? setIsPlayingAudio;
-  final double padding;
   final ChatController chatController;
-  final bool isOverlay;
   final MessageOverlayController? overlayController;
   // Pangea#
 
-  static String? currentId;
-
   static const int wavesCount = 40;
-
-  // #Pangea
-  final int? sectionStartMS;
-  final int? sectionEndMS;
-  // Pangea#
 
   const AudioPlayerWidget(
     this.event, {
@@ -51,14 +49,12 @@ class AudioPlayerWidget extends StatefulWidget {
     required this.linkColor,
     required this.fontSize,
     // #Pangea
+    required this.eventId,
+    required this.roomId,
+    required this.senderId,
     this.matrixFile,
-    this.autoplay = false,
-    this.sectionStartMS,
-    this.sectionEndMS,
     this.setIsPlayingAudio,
-    this.padding = 12.0,
     required this.chatController,
-    required this.isOverlay,
     this.overlayController,
     // Pangea#
     super.key,
@@ -71,65 +67,154 @@ class AudioPlayerWidget extends StatefulWidget {
 enum AudioPlayerStatus { notDownloaded, downloading, downloaded }
 
 class AudioPlayerState extends State<AudioPlayerWidget> {
+  static const double buttonSize = 36;
+
   AudioPlayerStatus status = AudioPlayerStatus.notDownloaded;
-  AudioPlayer? audioPlayer;
 
-  StreamSubscription? onAudioPositionChanged;
-  StreamSubscription? onDurationChanged;
-  StreamSubscription? onPlayerStateChanged;
-  StreamSubscription? onPlayerError;
-
-  String? statusText;
-  double currentPosition = 0;
-  double maxPosition = 1;
-
-  MatrixFile? matrixFile;
-  File? audioFile;
+  late final MatrixState matrix;
+  List<int>? _waveform;
+  String? _durationString;
 
   // #Pangea
   StreamSubscription? _onShowToolbar;
+  StreamSubscription? _onAudioPositionChanged;
+  StreamSubscription? _onPlayerStateChanged;
   // Pangea#
 
   @override
   void dispose() {
-    if (audioPlayer?.playerState.playing == true) {
-      audioPlayer?.stop();
-    }
-    onAudioPositionChanged?.cancel();
-    onDurationChanged?.cancel();
-    onPlayerStateChanged?.cancel();
-    onPlayerError?.cancel();
-    // #Pangea
-    _onShowToolbar?.cancel();
-    // Pangea#
-
     super.dispose();
-  }
+    // final audioPlayer = matrix.voiceMessageEventId.value != widget.event.eventId
+    final audioPlayer = matrix.voiceMessageEventId.value != widget.eventId
+        ? null
+        : matrix.audioPlayer;
+    if (audioPlayer != null) {
+      if (audioPlayer.playing && !audioPlayer.isAtEndPosition) {
+        // #Pangea
+        try {
+          // Pangea#
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            ScaffoldMessenger.of(matrix.context).showMaterialBanner(
+              MaterialBanner(
+                padding: EdgeInsets.zero,
+                leading: StreamBuilder(
+                  stream: audioPlayer.playerStateStream.asBroadcastStream(),
+                  builder: (context, _) => IconButton(
+                    onPressed: () {
+                      if (audioPlayer.isAtEndPosition) {
+                        audioPlayer.seek(Duration.zero);
+                      } else if (audioPlayer.playing) {
+                        audioPlayer.pause();
+                      } else {
+                        audioPlayer.play();
+                      }
+                    },
+                    icon: audioPlayer.playing && !audioPlayer.isAtEndPosition
+                        ? const Icon(Icons.pause_outlined)
+                        : const Icon(Icons.play_arrow_outlined),
+                  ),
+                ),
+                content: StreamBuilder(
+                  stream: audioPlayer.positionStream.asBroadcastStream(),
+                  builder: (context, _) => GestureDetector(
+                    onTap: () => FluffyChatApp.router.go(
+                      // #Pangea
+                      // '/rooms/${widget.event.room.id}?event=${widget.event.eventId}',
+                      '/rooms/${widget.roomId}?event=${widget.eventId}',
+                      // Pangea#
+                    ),
+                    child: Text(
+                      // #Pangea
+                      // '🎙️ ${audioPlayer.position.minuteSecondString} / ${audioPlayer.duration?.minuteSecondString} - ${widget.event.senderFromMemoryOrFallback.calcDisplayname()}',
+                      '🎙️ ${audioPlayer.position.minuteSecondString} / ${audioPlayer.duration?.minuteSecondString} - ${widget.event?.senderFromMemoryOrFallback.calcDisplayname() ?? widget.senderId}',
+                      // Pangea#
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ),
+                actions: [
+                  IconButton(
+                    onPressed: () {
+                      audioPlayer.pause();
+                      audioPlayer.dispose();
+                      matrix.voiceMessageEventId.value =
+                          matrix.audioPlayer = null;
 
-  void _startAction() {
-    if (status == AudioPlayerStatus.downloaded) {
-      _playAction();
-    } else {
-      _downloadAction();
+                      WidgetsBinding.instance.addPostFrameCallback((_) {
+                        ScaffoldMessenger.of(matrix.context)
+                            .clearMaterialBanners();
+                      });
+                    },
+                    icon: const Icon(Icons.close_outlined),
+                  ),
+                ],
+              ),
+            );
+          });
+          // #Pangea
+        } catch (e) {
+          audioPlayer.stop();
+        }
+        // Pangea#
+        return;
+      }
+      audioPlayer.pause();
+      audioPlayer.dispose();
+      matrix.voiceMessageEventId.value = matrix.audioPlayer = null;
+      // #Pangea
+      _onShowToolbar?.cancel();
+      _onAudioPositionChanged?.cancel();
+      _onPlayerStateChanged?.cancel();
+      // Pangea#
     }
   }
 
-  Future<void> _downloadAction() async {
-    // #Pangea
-    // if (status != AudioPlayerStatus.notDownloaded) return;
-    if (status != AudioPlayerStatus.notDownloaded || widget.event == null) {
+  void _onButtonTap() async {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ScaffoldMessenger.of(matrix.context).clearMaterialBanners();
+    });
+
+    final currentPlayer =
+        // #Pangea
+        // matrix.voiceMessageEventId.value != widget.event.eventId
+        matrix.voiceMessageEventId.value != widget.eventId
+            // Pangea#
+            ? null
+            : matrix.audioPlayer;
+
+    if (currentPlayer != null) {
+      if (currentPlayer.isAtEndPosition) {
+        currentPlayer.seek(Duration.zero);
+      } else if (currentPlayer.playing) {
+        currentPlayer.pause();
+      } else {
+        currentPlayer.play();
+      }
       return;
     }
+
+    // #Pangea
+    // matrix.voiceMessageEventId.value = widget.event.eventId;
+    matrix.voiceMessageEventId.value = widget.eventId;
     // Pangea#
+    matrix.audioPlayer
+      ?..stop()
+      ..dispose();
+    File? file;
+    MatrixFile? matrixFile;
+
     setState(() => status = AudioPlayerStatus.downloading);
     try {
       // #Pangea
-      // final matrixFile = await widget.event.downloadAndDecryptAttachment();
-      final matrixFile = await widget.event!.downloadAndDecryptAttachment();
+      // matrixFile = await widget.event.downloadAndDecryptAttachment();
+      matrixFile = await widget.event?.downloadAndDecryptAttachment();
       // Pangea#
-      File? file;
 
-      if (!kIsWeb) {
+      // #Pangea
+      // if (!kIsWeb) {
+      if (!kIsWeb && matrixFile != null) {
+        // Pangea#
         final tempDir = await getTemporaryDirectory();
         final fileName = Uri.encodeComponent(
           // #Pangea
@@ -153,11 +238,8 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
       }
 
       setState(() {
-        audioFile = file;
-        this.matrixFile = matrixFile;
         status = AudioPlayerStatus.downloaded;
       });
-      _playAction();
     } catch (e, s) {
       Logs().v('Could not download audio file', e, s);
       ScaffoldMessenger.of(context).showSnackBar(
@@ -165,52 +247,20 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
           content: Text(e.toLocalizedString(context)),
         ),
       );
+      rethrow;
     }
-  }
-
-  void _playAction() async {
-    final audioPlayer = this.audioPlayer ??= AudioPlayer();
+    if (!context.mounted) return;
     // #Pangea
-    // If there's another audio playing, stop it. Wait for this to come through
-    // the stream so that the listener doesn't stop the audio that just started
-    final future = widget.chatController.stopMediaStream.stream.first;
-    widget.chatController.stopMediaStream.add(null);
-    await future;
+    // if (matrix.voiceMessageEventId.value != widget.event.eventId) return;
+    if (matrix.voiceMessageEventId.value != widget.eventId) return;
+    // Pangea#
 
-    // if (AudioPlayerWidget.currentId != widget.event.eventId) {
-    if (AudioPlayerWidget.currentId != widget.event?.eventId) {
-      // Pangea#
-      if (AudioPlayerWidget.currentId != null) {
-        if (audioPlayer.playerState.playing) {
-          await audioPlayer.stop();
-          setState(() {});
-        }
-      }
-      // #Pangea
-      // AudioPlayerWidget.currentId = widget.event.eventId;
-      AudioPlayerWidget.currentId = widget.event?.eventId;
-      // Pangea#
-    }
-    if (audioPlayer.playerState.playing) {
-      await audioPlayer.pause();
-      return;
-    } else if (audioPlayer.position != Duration.zero) {
-      await audioPlayer.play();
-      return;
-    }
+    final audioPlayer = matrix.audioPlayer = AudioPlayer();
 
-    onAudioPositionChanged ??= audioPlayer.positionStream.listen((state) {
-      if (maxPosition <= 0) return;
-      setState(() {
-        statusText =
-            '${state.inMinutes.toString().padLeft(2, '0')}:${(state.inSeconds % 60).toString().padLeft(2, '0')}';
-        currentPosition = state.inMilliseconds.toDouble();
-      });
-      if (state.inMilliseconds.toDouble() == maxPosition) {
-        audioPlayer.stop();
-        audioPlayer.seek(null);
-      }
-      // #Pangea
+    // #Pangea
+    _onAudioPositionChanged?.cancel();
+    _onAudioPositionChanged =
+        matrix.audioPlayer!.positionStream.listen((state) {
       // Pass current timestamp to overlay, so it can highlight as necessary
       if (widget.matrixFile != null) {
         widget.overlayController?.highlightCurrentText(
@@ -218,24 +268,25 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
           widget.matrixFile!.tokens,
         );
       }
-      // Pangea#
     });
-    onDurationChanged ??= audioPlayer.durationStream.listen((max) {
-      if (max == null || max == Duration.zero) return;
-      setState(() => maxPosition = max.inMilliseconds.toDouble());
-    });
-    onPlayerStateChanged ??= audioPlayer.playingStream.listen(
+
+    _onPlayerStateChanged?.cancel();
+    _onPlayerStateChanged = audioPlayer.playingStream.listen(
       (isPlaying) => setState(() {
-        // #Pangea
         widget.setIsPlayingAudio?.call(isPlaying);
-        // Pangea#
       }),
     );
-    final audioFile = this.audioFile;
-    if (audioFile != null) {
-      audioPlayer.setFilePath(audioFile.path);
+    // Pangea#
+
+    // #Pangea
+    // if (file != null) {
+    //   audioPlayer.setFilePath(file.path);
+    // } else {
+    //   await audioPlayer.setAudioSource(MatrixFileAudioSource(matrixFile));
+    // }
+    if (file != null) {
+      audioPlayer.setFilePath(file.path);
     } else {
-      // #Pangea
       try {
         if (widget.matrixFile != null) {
           await audioPlayer.setAudioSource(
@@ -245,38 +296,42 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
             ),
           );
         } else {
-          // Pangea#
           await audioPlayer.setAudioSource(MatrixFileAudioSource(matrixFile!));
-          // #Pangea
         }
       } catch (e, _) {
         debugger(when: kDebugMode);
       }
-      // Pangea#
     }
+    // Pangea#
+
     audioPlayer.play().onError(
           ErrorReporter(context, 'Unable to play audio message')
               .onErrorCallback,
         );
   }
 
-  static const double buttonSize = 36;
-
-  String? get _durationString {
-    // #Pangea
-    int? durationInt;
-    if (widget.matrixFile?.duration != null) {
-      durationInt = widget.matrixFile!.duration;
-    } else {
-      // final durationInt = widget.event?.content
-      durationInt = widget.event?.content
-          .tryGetMap<String, dynamic>('info')
-          ?.tryGet<int>('duration');
+  void _toggleSpeed() async {
+    final audioPlayer = matrix.audioPlayer;
+    if (audioPlayer == null) return;
+    switch (audioPlayer.speed) {
+      case 1.0:
+        await audioPlayer.setSpeed(1.25);
+        break;
+      case 1.25:
+        await audioPlayer.setSpeed(1.5);
+        break;
+      case 1.5:
+        await audioPlayer.setSpeed(2.0);
+        break;
+      case 2.0:
+        await audioPlayer.setSpeed(0.5);
+        break;
+      case 0.5:
+      default:
+        await audioPlayer.setSpeed(1.0);
+        break;
     }
-    // Pangea#
-    if (durationInt == null) return null;
-    final duration = Duration(milliseconds: durationInt);
-    return '${duration.inMinutes.toString().padLeft(2, '0')}:${(duration.inSeconds % 60).toString().padLeft(2, '0')}';
+    setState(() {});
   }
 
   List<int>? _getWaveform() {
@@ -306,71 +361,39 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
     return eventWaveForm.map((i) => i > 1024 ? 1024 : i).toList();
   }
 
-  late final List<int>? _waveform;
-
-  // #Pangea
-  // void _toggleSpeed() async {
-  //   final audioPlayer = this.audioPlayer;
-  //   if (audioPlayer == null) return;
-  //   switch (audioPlayer.speed) {
-  //     case 1.0:
-  //       await audioPlayer.setSpeed(1.25);
-  //       break;
-  //     case 1.25:
-  //       await audioPlayer.setSpeed(1.5);
-  //       break;
-  //     case 1.5:
-  //       await audioPlayer.setSpeed(2.0);
-  //       break;
-  //     case 2.0:
-  //       await audioPlayer.setSpeed(0.5);
-  //       break;
-  //     case 0.5:
-  //     default:
-  //       await audioPlayer.setSpeed(1.0);
-  //       break;
-  //   }
-  //   setState(() {});
-  // }
-  // Pangea#
-
-  // #Pangea
-  Future<void> _downloadMatrixFile() async {
-    if (kIsWeb) return;
-    final temp = await getTemporaryDirectory();
-    final tempDir = temp;
-    String filename = widget.matrixFile!.name;
-    if (filename.length > 100) {
-      filename = filename.substring(filename.length - 100);
-    }
-    final file = File('${tempDir.path}/$filename');
-
-    await file.writeAsBytes(widget.matrixFile!.bytes);
-    audioFile = file;
-  }
-  // Pangea#
-
   @override
   void initState() {
     super.initState();
+    matrix = Matrix.of(context);
     _waveform = _getWaveform();
+
     // #Pangea
-    if (widget.matrixFile != null) {
-      _downloadMatrixFile().then((_) {
-        setState(() => status = AudioPlayerStatus.downloaded);
-        if (widget.autoplay) _playAction();
+    // if (matrix.voiceMessageEventId.value == widget.event.eventId &&
+    if (matrix.voiceMessageEventId.value == widget.eventId &&
+        // Pangea#
+        matrix.audioPlayer != null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        ScaffoldMessenger.of(matrix.context).clearMaterialBanners();
       });
-    } else if (widget.autoplay) {
-      status == AudioPlayerStatus.downloaded
-          ? _playAction()
-          : _downloadAction();
     }
 
-    _onShowToolbar = widget.chatController.stopMediaStream.stream.listen((_) {
-      audioPlayer?.pause();
-      audioPlayer?.seek(Duration.zero);
-    });
+    // #Pangea
+    // final durationInt = widget.event.content
+    //     .tryGetMap<String, dynamic>('info')
+    //     ?.tryGet<int>('duration');
+    int? durationInt;
+    if (widget.matrixFile?.duration != null) {
+      durationInt = widget.matrixFile!.duration;
+    } else {
+      durationInt = widget.event?.content
+          .tryGetMap<String, dynamic>('info')
+          ?.tryGet<int>('duration');
+    }
     // Pangea#
+    if (durationInt != null) {
+      final duration = Duration(milliseconds: durationInt);
+      _durationString = duration.minuteSecondString;
+    }
   }
 
   @override
@@ -378,214 +401,239 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
     final theme = Theme.of(context);
     final waveform = _waveform;
 
-    final statusText = this.statusText ??= _durationString ?? '00:00';
-    final audioPlayer = this.audioPlayer;
+    return ValueListenableBuilder(
+      valueListenable: matrix.voiceMessageEventId,
+      builder: (context, eventId, _) {
+        // #Pangea
+        // final audioPlayer =
+        //     eventId != widget.event.eventId ? null : matrix.audioPlayer;
+        final audioPlayer =
+            eventId != widget.eventId ? null : matrix.audioPlayer;
+        // Pangea#
 
-    // #Pangea
-    // final fileDescription = widget.event.fileDescription;
-    final fileDescription = widget.event?.fileDescription;
-    // Pangea#
+        // #Pangea
+        // final fileDescription = widget.event.fileDescription;
+        final fileDescription = widget.event?.fileDescription;
+        // Pangea#
 
-    final wavePosition =
-        (currentPosition / maxPosition) * AudioPlayerWidget.wavesCount;
+        return StreamBuilder<Object>(
+          stream: audioPlayer == null
+              ? null
+              : StreamGroup.merge([
+                  audioPlayer.positionStream.asBroadcastStream(),
+                  audioPlayer.playerStateStream.asBroadcastStream(),
+                ]),
+          builder: (context, _) {
+            final maxPosition =
+                audioPlayer?.duration?.inMilliseconds.toDouble() ?? 1.0;
+            var currentPosition =
+                audioPlayer?.position.inMilliseconds.toDouble() ?? 0.0;
+            if (currentPosition > maxPosition) currentPosition = maxPosition;
 
-    return Padding(
-      // #Pangea
-      // padding: const EdgeInsets.all(12.0),
-      padding: EdgeInsets.all(widget.padding),
-      // Pangea#
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ConstrainedBox(
-            // #Pangea
-            // constraints:
-            //     const BoxConstraints(maxWidth: FluffyThemes.columnWidth),
-            constraints: const BoxConstraints(maxWidth: 250),
-            // Pangea#
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                SizedBox(
-                  width: buttonSize,
-                  height: buttonSize,
-                  child: status == AudioPlayerStatus.downloading
-                      ? CircularProgressIndicator(
-                          strokeWidth: 2,
-                          color: widget.color,
-                        )
-                      : InkWell(
-                          borderRadius: BorderRadius.circular(64),
-                          // #Pangea
-                          // onLongPress: () => widget.event.saveFile(context),
-                          onLongPress: () => widget.event?.saveFile(context),
-                          // Pangea#
-                          onTap: _startAction,
-                          child: Material(
-                            color: widget.color.withAlpha(64),
-                            borderRadius: BorderRadius.circular(64),
-                            child: Icon(
-                              audioPlayer?.playerState.playing == true
-                                  ? Icons.pause_outlined
-                                  : Icons.play_arrow_outlined,
-                              color: widget.color,
-                            ),
-                          ),
-                        ),
-                ),
-                // #Pangea
-                // const SizedBox(width: 8),
-                // Pangea#
-                Expanded(
-                  child: Stack(
-                    children: [
-                      if (waveform != null)
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                          child: Row(
-                            children: [
-                              for (var i = 0;
-                                  i < AudioPlayerWidget.wavesCount;
-                                  i++)
-                                Expanded(
-                                  child: Container(
-                                    height: 32,
-                                    alignment: Alignment.center,
-                                    child: Container(
-                                      // #Pangea
-                                      // margin: const EdgeInsets.symmetric(
-                                      //   horizontal: 1,
-                                      // ),
-                                      margin: const EdgeInsets.only(
-                                        right: 0.5,
-                                      ),
-                                      // Pangea#
-                                      decoration: BoxDecoration(
-                                        color: i < wavePosition
-                                            ? widget.color
-                                            : widget.color.withAlpha(128),
-                                        borderRadius: BorderRadius.circular(64),
-                                      ),
-                                      height: 32 * (waveform[i] / 1024),
+            final wavePosition =
+                (currentPosition / maxPosition) * AudioPlayerWidget.wavesCount;
+
+            final statusText = audioPlayer == null
+                ? _durationString ?? '00:00'
+                : audioPlayer.position.minuteSecondString;
+            return Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ConstrainedBox(
+                    constraints: const BoxConstraints(
+                      maxWidth: FluffyThemes.columnWidth,
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        SizedBox(
+                          width: buttonSize,
+                          height: buttonSize,
+                          child: status == AudioPlayerStatus.downloading
+                              ? CircularProgressIndicator(
+                                  strokeWidth: 2,
+                                  color: widget.color,
+                                )
+                              : InkWell(
+                                  borderRadius: BorderRadius.circular(64),
+                                  // #Pangea
+                                  // onLongPress: () =>
+                                  //     widget.event.saveFile(context),
+                                  onLongPress: () =>
+                                      widget.event?.saveFile(context),
+                                  // Pangea#
+                                  onTap: _onButtonTap,
+                                  child: Material(
+                                    color: widget.color.withAlpha(64),
+                                    borderRadius: BorderRadius.circular(64),
+                                    child: Icon(
+                                      audioPlayer?.playing == true &&
+                                              audioPlayer?.isAtEndPosition ==
+                                                  false
+                                          ? Icons.pause_outlined
+                                          : Icons.play_arrow_outlined,
+                                      color: widget.color,
                                     ),
                                   ),
                                 ),
+                        ),
+                        const SizedBox(width: 8),
+                        Expanded(
+                          child: Stack(
+                            children: [
+                              if (waveform != null)
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 16.0,
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      for (var i = 0;
+                                          i < AudioPlayerWidget.wavesCount;
+                                          i++)
+                                        Expanded(
+                                          child: Container(
+                                            height: 32,
+                                            alignment: Alignment.center,
+                                            child: Container(
+                                              margin:
+                                                  const EdgeInsets.symmetric(
+                                                horizontal: 1,
+                                              ),
+                                              decoration: BoxDecoration(
+                                                color: i < wavePosition
+                                                    ? widget.color
+                                                    : widget.color
+                                                        .withAlpha(128),
+                                                borderRadius:
+                                                    BorderRadius.circular(64),
+                                              ),
+                                              height: 32 * (waveform[i] / 1024),
+                                            ),
+                                          ),
+                                        ),
+                                    ],
+                                  ),
+                                ),
+                              SizedBox(
+                                height: 32,
+                                child: Slider(
+                                  // #Pangea
+                                  // thumbColor: widget.event.senderId ==
+                                  //         widget.event.room.client.userID
+                                  thumbColor: widget.senderId ==
+                                          Matrix.of(context).client.userID
+                                      // Pangea#
+                                      ? theme.colorScheme.onPrimary
+                                      : theme.colorScheme.primary,
+                                  activeColor: waveform == null
+                                      ? widget.color
+                                      : Colors.transparent,
+                                  inactiveColor: waveform == null
+                                      ? widget.color.withAlpha(128)
+                                      : Colors.transparent,
+                                  max: maxPosition,
+                                  value: currentPosition,
+                                  onChanged: (position) => audioPlayer == null
+                                      ? _onButtonTap()
+                                      : audioPlayer.seek(
+                                          Duration(
+                                            milliseconds: position.round(),
+                                          ),
+                                        ),
+                                ),
+                              ),
                             ],
                           ),
                         ),
-                      SizedBox(
-                        height: 32,
-                        child: Slider(
-                          thumbColor: widget.event?.senderId ==
-                                  widget.event?.room.client.userID
-                              ? theme.colorScheme.onPrimary
-                              : theme.colorScheme.primary,
-                          activeColor: waveform == null
-                              ? widget.color
-                              : Colors.transparent,
-                          inactiveColor: waveform == null
-                              ? widget.color.withAlpha(128)
-                              : Colors.transparent,
-                          max: maxPosition,
-                          value: currentPosition,
-                          onChanged: (position) => audioPlayer == null
-                              ? _startAction()
-                              : audioPlayer.seek(
-                                  Duration(milliseconds: position.round()),
-                                ),
+                        const SizedBox(width: 8),
+                        SizedBox(
+                          width: 36,
+                          child: Text(
+                            statusText,
+                            style: TextStyle(
+                              color: widget.color,
+                              fontSize: 12,
+                            ),
+                          ),
                         ),
+                        const SizedBox(width: 8),
+                        AnimatedCrossFade(
+                          firstChild: Padding(
+                            padding: const EdgeInsets.only(right: 8.0),
+                            child: Icon(
+                              Icons.mic_none_outlined,
+                              color: widget.color,
+                            ),
+                          ),
+                          secondChild: Material(
+                            color: widget.color.withAlpha(64),
+                            borderRadius:
+                                BorderRadius.circular(AppConfig.borderRadius),
+                            child: InkWell(
+                              borderRadius:
+                                  BorderRadius.circular(AppConfig.borderRadius),
+                              onTap: _toggleSpeed,
+                              child: SizedBox(
+                                width: 32,
+                                height: 20,
+                                child: Center(
+                                  child: Text(
+                                    '${audioPlayer?.speed.toString()}x',
+                                    style: TextStyle(
+                                      color: widget.color,
+                                      fontSize: 9,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          alignment: Alignment.center,
+                          crossFadeState: audioPlayer == null
+                              ? CrossFadeState.showFirst
+                              : CrossFadeState.showSecond,
+                          duration: FluffyThemes.animationDuration,
+                        ),
+                      ],
+                    ),
+                  ),
+                  if (fileDescription != null) ...[
+                    const SizedBox(height: 8),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 8,
                       ),
-                    ],
-                  ),
-                ),
-                // #Pangea
-                // const SizedBox(width: 8),
-                // SizedBox(
-                //   width: 36,
-                //   child:
-                // Pangea#
-                Text(
-                  statusText,
-                  style: TextStyle(
-                    color: widget.color,
-                    fontSize: 12,
-                  ),
-                ),
-                // #Pangea
-                // const SizedBox(width: 8),
-                // AnimatedCrossFade(
-                //   firstChild: Padding(
-                //     padding: const EdgeInsets.only(right: 8.0),
-                //     child: Icon(
-                //       Icons.mic_none_outlined,
-                //       color: widget.color,
-                //     ),
-                //   ),
-                //   secondChild: Material(
-                //     color: widget.color.withAlpha(64),
-                //     borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-                //     child: InkWell(
-                //       borderRadius:
-                //           BorderRadius.circular(AppConfig.borderRadius),
-                //       onTap: _toggleSpeed,
-                //       child: SizedBox(
-                //         width: 32,
-                //         height: 20,
-                //         child: Center(
-                //           child: Text(
-                //             '${audioPlayer?.speed.toString()}x',
-                //             style: TextStyle(
-                //               color: widget.color,
-                //               fontSize: 9,
-                //             ),
-                //           ),
-                //         ),
-                //       ),
-                //     ),
-                //   ),
-                //   alignment: Alignment.center,
-                //   crossFadeState: audioPlayer == null
-                //       ? CrossFadeState.showFirst
-                //       : CrossFadeState.showSecond,
-                //   duration: FluffyThemes.animationDuration,
-                // ),
-                // Pangea#
-              ],
-            ),
-          ),
-          if (fileDescription != null
-                  // #Pangea
-                  &&
-                  widget.event != null
-              // Pangea#
-              ) ...[
-            const SizedBox(height: 8),
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 16,
-                vertical: 8,
+                      child: Linkify(
+                        text: fileDescription,
+                        textScaleFactor:
+                            MediaQuery.textScalerOf(context).scale(1),
+                        style: TextStyle(
+                          color: widget.color,
+                          fontSize: widget.fontSize,
+                        ),
+                        options: const LinkifyOptions(humanize: false),
+                        linkStyle: TextStyle(
+                          color: widget.linkColor,
+                          fontSize: widget.fontSize,
+                          decoration: TextDecoration.underline,
+                          decorationColor: widget.linkColor,
+                        ),
+                        onOpen: (url) =>
+                            UrlLauncher(context, url.url).launchUrl(),
+                      ),
+                    ),
+                  ],
+                ],
               ),
-              child: Linkify(
-                text: fileDescription,
-                textScaleFactor: MediaQuery.textScalerOf(context).scale(1),
-                style: TextStyle(
-                  color: widget.color,
-                  fontSize: widget.fontSize,
-                ),
-                options: const LinkifyOptions(humanize: false),
-                linkStyle: TextStyle(
-                  color: widget.linkColor,
-                  fontSize: widget.fontSize,
-                  decoration: TextDecoration.underline,
-                  decorationColor: widget.linkColor,
-                ),
-                onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
-              ),
-            ),
-          ],
-        ],
-      ),
+            );
+          },
+        );
+      },
     );
   }
 }
@@ -608,6 +656,19 @@ class MatrixFileAudioSource extends StreamAudioSource {
       contentType: file.mimeType,
     );
   }
+}
+
+extension on AudioPlayer {
+  bool get isAtEndPosition {
+    final duration = this.duration;
+    if (duration == null) return true;
+    return position >= duration;
+  }
+}
+
+extension on Duration {
+  String get minuteSecondString =>
+      '${inMinutes.toString().padLeft(2, '0')}:${(inSeconds % 60).toString().padLeft(2, '0')}';
 }
 
 // #Pangea

@@ -234,7 +234,9 @@ class MessageContent extends StatelessWidget {
                 linkColor: linkColor,
                 fontSize: fontSize,
                 // #Pangea
-                isOverlay: overlayController != null,
+                eventId: event.eventId,
+                roomId: event.room.id,
+                senderId: event.senderId,
                 chatController: controller,
                 // Pangea#
               );
