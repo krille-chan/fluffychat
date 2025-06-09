@@ -8,13 +8,9 @@ jobs:
   add_to_project:
     runs-on: ubuntu-latest
     steps:
-      - name: Get project ID from project number
-        id: get_project_id
+      - name: Set project ID
         run: |
-          PROJECT_ID=$(gh api graphql -f query='query { organization(login: "pangeachat") { projectV2(number: 4) { id } } }' --jq '.data.organization.projectV2.id')
-          echo "PROJECT_ID=$PROJECT_ID" >> $GITHUB_ENV
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          echo "PROJECT_ID=PVT_kwDOBndSo84A7FWL" >> $GITHUB_ENV
       - name: Add issue to project
         run: |
           gh api graphql -f query='mutation($project:ID!, $contentId:ID!) { addProjectV2ItemById(input: {projectId: $project, contentId: $contentId}) { item { id } } }' -f project=$PROJECT_ID -f contentId=$ISSUE_ID

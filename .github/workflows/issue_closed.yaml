@@ -17,13 +17,9 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_REPO: ${{ github.repository }}
           NUMBER: ${{ github.event.issue.number }}
-      - name: Get project ID from project number
-        id: get_project_id
+      - name: Set project ID
         run: |
-          PROJECT_ID=$(gh api graphql -f query='query { organization(login: "pangeachat") { projectV2(number: 4) { id } } }' --jq '.data.organization.projectV2.id')
-          echo "PROJECT_ID=$PROJECT_ID" >> $GITHUB_ENV
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          echo "PROJECT_ID=PVT_kwDOBndSo84A7FWL" >> $GITHUB_ENV
       - name: Get item ID for issue in project
         id: get_item_id
         run: |
