@@ -21,9 +21,9 @@ jobs:
           flutter-version: ${{ env.FLUTTER_VERSION }}
       - uses: moonrepo/setup-rust@v1
       - run: rustup component add rust-src --toolchain nightly-x86_64-unknown-linux-gnu
-      - run: flutter pub get
       - name: Prepare web
         run: ./scripts/prepare-web.sh
+      - run: flutter pub get
       - name: Build Release Web
         run: flutter build web --dart-define=FLUTTER_WEB_CANVASKIT_URL=canvaskit/ --release --source-maps --base-href "/nightly/"
       - run: mv build/web/ public
