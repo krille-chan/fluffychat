@@ -3209,7 +3209,7 @@
       }
     }
   },
-  "sentVoiceMessage": "\uD83C\uDF99\uFE0F {duration} - {sender}",
+  "sentVoiceMessage": "🎙️ {duration} - {sender}",
   "@sentVoiceMessage": {
     "type": "String",
     "placeholders": {
@@ -3234,6 +3234,9 @@
   "optionalMessage": "(Optional) message...",
   "notSupportedOnThisDevice": "Not supported on this device",
   "enterNewChat": "Enter new chat",
+  "approve": "Approve",
+  "youHaveKnocked": "You have knocked",
+  "pleaseWaitUntilInvited": "Please wait now, until someone from the room invites you.",
   "accountInformation": "Account information",
   "addGroupDescription": "Add a chat description",
   "addNewFriend": "Add new friend",
@@ -4925,9 +4928,6 @@
   "ban": "Ban",
   "unban": "Unban",
   "kick": "Kick",
-  "approve": "Approve",
-  "youHaveKnocked": "You have knocked",
-  "pleaseWaitUntilInvited": "Please wait now, until someone from the room invites you.",
   "lemma": "Lemma",
   "grammarFeature": "Grammar feature",
   "grammarTag": "Grammar tag",

@@ -1119,11 +1119,6 @@
     "type": "String",
     "placeholders": {}
   },
-  "renderRichContent": "Mostrar el contenido con mensajes enriquecidos",
-  "@renderRichContent": {
-    "type": "String",
-    "placeholders": {}
-  },
   "reply": "Responder",
   "@reply": {
     "type": "String",
