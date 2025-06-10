@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/l10n.dart';
@@ -6,6 +8,7 @@ import 'package:material_symbols_icons/symbols.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pangea/common/config/environment.dart';
+import 'package:fluffychat/pangea/spaces/constants/space_constants.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -197,7 +200,12 @@ class PublicRoomBottomSheetState extends State<PublicRoomBottomSheet> {
                     spacing: 16.0,
                     children: [
                       Avatar(
-                        mxContent: chunk?.avatarUrl,
+                        mxContent: chunk?.avatarUrl ??
+                            Uri.parse(
+                              SpaceConstants.publicSpaceIcons[Random().nextInt(
+                                SpaceConstants.publicSpaceIcons.length,
+                              )],
+                            ),
                         name: chunk?.name,
                         size: 160.0,
                         borderRadius: BorderRadius.circular(24.0),
