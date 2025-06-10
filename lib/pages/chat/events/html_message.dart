@@ -34,6 +34,7 @@ class HtmlMessage extends StatelessWidget {
   final void Function(LinkableElement) onOpen;
   final String? eventId;
   final Set<Event>? checkboxCheckedEvents;
+  final bool limitHeight;
 
   // #Pangea
   final MessageOverlayController? overlayController;
@@ -59,6 +60,7 @@ class HtmlMessage extends StatelessWidget {
     required this.onOpen,
     this.eventId,
     this.checkboxCheckedEvents,
+    this.limitHeight = true,
     // #Pangea
     this.overlayController,
     required this.event,
@@ -829,6 +831,8 @@ class HtmlMessage extends StatelessWidget {
     //     fontSize: fontSize,
     //     color: textColor,
     //   ),
+    //   maxLines: limitHeight ? 64 : null,Add commentMore actions
+    //   overflow: TextOverflow.fade,
     // );
     dom.Node parsed = parser.parse(html).body ?? dom.Element.html('');
     if (tokens != null) {
@@ -860,6 +864,8 @@ class HtmlMessage extends StatelessWidget {
             fontSize: fontSize,
             color: textColor,
           ),
+          maxLines: limitHeight ? 64 : null,
+          overflow: TextOverflow.fade,
         ),
       ),
     );

@@ -31,6 +31,7 @@ class MessageContent extends StatelessWidget {
   final void Function(Event)? onInfoTab;
   final BorderRadius borderRadius;
   final Timeline timeline;
+  final bool selected;
 
   // #Pangea
   final PangeaMessageEvent? pangeaMessageEvent;
@@ -54,6 +55,7 @@ class MessageContent extends StatelessWidget {
     required this.textColor,
     required this.linkColor,
     required this.borderRadius,
+    required this.selected,
     // #Pangea
     this.pangeaMessageEvent,
     required this.immersionMode,
@@ -336,6 +338,7 @@ class MessageContent extends StatelessWidget {
                 textColor: textColor,
                 room: event.room,
                 fontSize: AppConfig.fontSizeFactor * AppConfig.messageFontSize,
+                limitHeight: !selected,
                 linkStyle: TextStyle(
                   color: linkColor,
                   fontSize:

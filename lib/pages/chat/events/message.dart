@@ -536,6 +536,7 @@ class Message extends StatelessWidget {
                                                   onInfoTab: onInfoTab,
                                                   borderRadius: borderRadius,
                                                   timeline: timeline,
+                                                  selected: selected,
                                                   // #Pangea
                                                   pangeaMessageEvent:
                                                       pangeaMessageEvent,
