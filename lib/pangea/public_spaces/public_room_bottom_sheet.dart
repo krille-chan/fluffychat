@@ -221,17 +221,17 @@ class PublicRoomBottomSheetState extends State<PublicRoomBottomSheet> {
                                   ),
                                 ],
                               ),
-                              if (chunk?.topic != null)
-                                Flexible(
-                                  child: SingleChildScrollView(
-                                    child: Text(
-                                      chunk!.topic!,
-                                      softWrap: true,
-                                      textAlign: TextAlign.start,
-                                      maxLines: null,
-                                    ),
+                              Flexible(
+                                child: SingleChildScrollView(
+                                  child: Text(
+                                    chunk?.topic ??
+                                        L10n.of(context).noSpaceDescriptionYet,
+                                    softWrap: true,
+                                    textAlign: TextAlign.start,
+                                    maxLines: null,
                                   ),
                                 ),
+                              ),
                             ],
                           ),
                         ),

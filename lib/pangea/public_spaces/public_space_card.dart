@@ -123,16 +123,16 @@ class PublicSpaceCard extends StatelessWidget {
                             ),
                           ],
                         ),
-                        if (space.topic != null)
-                          Flexible(
-                            child: Text(
-                              space.topic!,
-                              style: theme.textTheme.bodySmall,
-                              overflow: TextOverflow.ellipsis,
-                              textAlign: TextAlign.start,
-                              maxLines: 5,
-                            ),
+                        Flexible(
+                          child: Text(
+                            space.topic ??
+                                L10n.of(context).noSpaceDescriptionYet,
+                            style: theme.textTheme.bodySmall,
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.start,
+                            maxLines: 5,
                           ),
+                        ),
                       ],
                     ),
                   ),
