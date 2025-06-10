@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -67,17 +67,16 @@ class ClientChooserButton extends StatelessWidget {
           ],
         ),
       ),
-      if (!FluffyThemes.isColumnMode(context))
-        PopupMenuItem(
-          value: SettingsAction.settings,
-          child: Row(
-            children: [
-              const Icon(Icons.settings_outlined),
-              const SizedBox(width: 18),
-              Text(L10n.of(context).settings),
-            ],
-          ),
+      PopupMenuItem(
+        value: SettingsAction.settings,
+        child: Row(
+          children: [
+            const Icon(Icons.settings_outlined),
+            const SizedBox(width: 18),
+            Text(L10n.of(context).settings),
+          ],
         ),
+      ),
       const PopupMenuDivider(),
       for (final bundle in bundles) ...[
         if (matrix.accountBundles[bundle]!.length != 1 ||
@@ -157,19 +156,22 @@ class ClientChooserButton extends StatelessWidget {
     var clientCount = 0;
     matrix.accountBundles.forEach((key, value) => clientCount += value.length);
     return FutureBuilder<Profile>(
-      future: matrix.client.fetchOwnProfile(),
+      future: matrix.client.isLogged() ? matrix.client.fetchOwnProfile() : null,
       builder: (context, snapshot) => Material(
         clipBehavior: Clip.hardEdge,
         borderRadius: BorderRadius.circular(99),
         color: Colors.transparent,
         child: PopupMenuButton<Object>(
+          popUpAnimationStyle: FluffyThemes.isColumnMode(context)
+              ? AnimationStyle.noAnimation
+              : null, // https://github.com/flutter/flutter/issues/167180
           onSelected: (o) => _clientSelected(o, context),
           itemBuilder: _bundleMenuItems,
           child: Center(
             child: Avatar(
               mxContent: snapshot.data?.avatarUrl,
               name:
-                  snapshot.data?.displayName ?? matrix.client.userID!.localpart,
+                  snapshot.data?.displayName ?? matrix.client.userID?.localpart,
               size: 32,
             ),
           ),

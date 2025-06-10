@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 import 'package:country_picker/country_picker.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/learning_settings/pages/settings_learning.dart';
 import 'package:fluffychat/pangea/learning_settings/utils/country_display.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 
 enum LanguageLevelTypeEnum { preA1, a1, a2, b1, b2, c1, c2 }
 

@@ -1,5 +1,6 @@
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
+
+import 'package:fluffychat/l10n/l10n.dart';
 
 extension PushRuleExtension on PushRule {
   String getPushRuleName(L10n l10n) {

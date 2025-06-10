@@ -4,11 +4,39 @@ import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../common/utils/error_handler.dart';
+
+Future<void> _showInviteDialog(Room room, BuildContext context) async {
+  final acceptInvite = await showOkCancelAlertDialog(
+    context: context,
+    title: L10n.of(context).youreInvited,
+    message: room.isSpace
+        ? L10n.of(context).invitedToSpace(room.name, room.creatorId ?? "???")
+        : L10n.of(context).invitedToChat(room.name, room.creatorId ?? "???"),
+    okLabel: L10n.of(context).accept,
+    cancelLabel: L10n.of(context).decline,
+  );
+
+  await showFutureLoadingDialog(
+    context: context,
+    future: () async {
+      if (acceptInvite == OkCancelResult.ok) {
+        await room.join();
+        context.go(
+          room.isSpace ? "/rooms?spaceId=${room.id}" : "/rooms/${room.id}",
+        );
+        return;
+      }
+      await room.leave();
+    },
+  );
+}
 
 // ignore: curly_braces_in_flow_control_structures
 void chatListHandleSpaceTap(
@@ -57,7 +85,7 @@ void chatListHandleSpaceTap(
           justInputtedCode == space.classCode) {
         // do nothing
       } else {
-        controller.showInviteDialog(space);
+        _showInviteDialog(space, context);
       }
       break;
     case Membership.leave:

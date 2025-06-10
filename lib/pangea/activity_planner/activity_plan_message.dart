@@ -18,11 +18,13 @@ class ActivityPlanMessage extends StatelessWidget {
   final void Function()? resetAnimateIn;
   final ChatController controller;
   final bool highlightMarker;
+  final bool selected;
 
   const ActivityPlanMessage(
     this.event, {
     required this.timeline,
     required this.controller,
+    required this.selected,
     this.animateIn = false,
     this.resetAnimateIn,
     this.highlightMarker = false,
@@ -149,6 +151,7 @@ class ActivityPlanMessage extends StatelessWidget {
                                                   Brightness.light
                                               ? theme.colorScheme.primary
                                               : theme.colorScheme.onPrimary,
+                                          selected: selected,
                                         ),
                                         if (event.hasAggregatedEvents(
                                           timeline,

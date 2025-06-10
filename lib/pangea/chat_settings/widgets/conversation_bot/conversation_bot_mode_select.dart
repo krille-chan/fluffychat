@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/chat_settings/constants/bot_mode.dart';
 import 'package:fluffychat/pangea/common/widgets/dropdown_text_button.dart';
 

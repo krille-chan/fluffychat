@@ -1,0 +1,5018 @@
+{
+  "@@locale": "en",
+  "@@last_modified": "2021-08-14 12:38:37.885451",
+  "alwaysUse24HourFormat": "false",
+  "@alwaysUse24HourFormat": {
+    "description": "Set to true to always display time of day in 24 hour format."
+  },
+  "repeatPassword": "Repeat password",
+  "@repeatPassword": {},
+  "notAnImage": "Not an image file.",
+  "@notAnImage": {},
+  "setCustomPermissionLevel": "Set custom permission level",
+  "setPermissionsLevelDescription": "Please choose a predefined role below or enter a custom permission level between 0 and 100.",
+  "ignoreUser": "Ignore user",
+  "normalUser": "Normal user",
+  "remove": "Remove",
+  "@remove": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "importNow": "Import now",
+  "@importNow": {},
+  "importEmojis": "Import Emojis",
+  "@importEmojis": {},
+  "importFromZipFile": "Import from .zip file",
+  "@importFromZipFile": {},
+  "exportEmotePack": "Export Emote pack as .zip",
+  "@exportEmotePack": {},
+  "replace": "Replace",
+  "@replace": {},
+  "about": "About",
+  "aboutHomeserver": "About {homeserver}",
+  "@aboutHomeserver": {
+    "type": "String",
+    "placeholders": {
+      "homeserver": {
+        "type": "String"
+      }
+    }
+  },
+  "accept": "Accept",
+  "@accept": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "acceptedTheInvitation": "👍 {username} accepted the invitation",
+  "@acceptedTheInvitation": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "account": "Account",
+  "@account": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "activatedEndToEndEncryption": "🔐 {username} activated end to end encryption",
+  "@activatedEndToEndEncryption": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "addEmail": "Add email",
+  "@addEmail": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "confirmMatrixId": "Please confirm your Matrix ID in order to delete your account.",
+  "@confirmMatrixId": {},
+  "supposedMxid": "This should be {mxid}",
+  "@supposedMxid": {
+    "type": "String",
+    "placeholders": {
+      "mxid": {
+        "type": "String"
+      }
+    }
+  },
+  "addChatDescription": "Add a chat description...",
+  "@addChatDescription": {},
+  "addToSpace": "Add to space",
+  "@addToSpace": {},
+  "admin": "Admin",
+  "@admin": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "alias": "alias",
+  "@alias": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "all": "All",
+  "@all": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "allChats": "All chats",
+  "@allChats": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "commandHint_roomupgrade": "Upgrade this room to the given room version",
+  "commandHint_googly": "Send some googly eyes",
+  "@commandHint_googly": {},
+  "commandHint_cuddle": "Send a cuddle",
+  "@commandHint_cuddle": {},
+  "commandHint_hug": "Send a hug",
+  "@commandHint_hug": {},
+  "googlyEyesContent": "{senderName} sends you googly eyes",
+  "@googlyEyesContent": {
+    "type": "String",
+    "placeholders": {
+      "senderName": {
+        "type": "String"
+      }
+    }
+  },
+  "cuddleContent": "{senderName} cuddles you",
+  "@cuddleContent": {
+    "type": "String",
+    "placeholders": {
+      "senderName": {
+        "type": "String"
+      }
+    }
+  },
+  "hugContent": "{senderName} hugs you",
+  "@hugContent": {
+    "type": "String",
+    "placeholders": {
+      "senderName": {
+        "type": "String"
+      }
+    }
+  },
+  "answeredTheCall": "{senderName} answered the call",
+  "@answeredTheCall": {
+    "type": "String",
+    "placeholders": {
+      "senderName": {
+        "type": "String"
+      }
+    }
+  },
+  "anyoneCanJoin": "Anyone can join",
+  "@anyoneCanJoin": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "appLock": "App lock",
+  "@appLock": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "appLockDescription": "Lock the app when not using with a pin code",
+  "@appLockDescription": {},
+  "archive": "Archive",
+  "@archive": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "areGuestsAllowedToJoin": "Are guest users allowed to join",
+  "@areGuestsAllowedToJoin": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "areYouSure": "Are you sure?",
+  "@areYouSure": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "areYouSureYouWantToLogout": "Are you sure you want to log out?",
+  "@areYouSureYouWantToLogout": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "askSSSSSign": "To be able to sign the other person, please enter your secure store passphrase or recovery key.",
+  "@askSSSSSign": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "askVerificationRequest": "Accept this verification request from {username}?",
+  "@askVerificationRequest": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "autoplayImages": "Automatically play animated stickers and emotes",
+  "@autoplayImages": {
+    "type": "String",
+    "placeholder": {}
+  },
+  "badServerLoginTypesException": "The homeserver supports the login types:\n{serverVersions}\nBut this app supports only:\n{supportedVersions}",
+  "@badServerLoginTypesException": {
+    "type": "String",
+    "placeholders": {
+      "serverVersions": {
+        "type": "String"
+      },
+      "supportedVersions": {
+        "type": "String"
+      }
+    }
+  },
+  "sendTypingNotifications": "Send typing notifications",
+  "@sendTypingNotifications": {},
+  "swipeRightToLeftToReply": "Swipe right to left to reply",
+  "@swipeRightToLeftToReply": {},
+  "sendOnEnter": "Send on enter",
+  "@sendOnEnter": {},
+  "badServerVersionsException": "The homeserver supports the Spec versions:\n{serverVersions}\nBut this app supports only {supportedVersions}",
+  "@badServerVersionsException": {
+    "type": "String",
+    "placeholders": {
+      "serverVersions": {
+        "type": "String"
+      },
+      "supportedVersions": {
+        "type": "String"
+      }
+    }
+  },
+  "countChatsAndCountParticipants": "{chats} chats and {participants} participants",
+  "@countChatsAndCountParticipants": {
+    "type": "String",
+    "placeholders": {
+      "chats": {
+        "type": "int"
+      },
+      "participants": {
+        "type": "int"
+      }
+    }
+  },
+  "noMoreChatsFound": "No more chats found...",
+  "noChatsFoundHere": "No chats found here yet. Start a new chat with someone by using the button below. ⤵️",
+  "joinedChats": "Joined chats",
+  "unread": "Unread",
+  "space": "Space",
+  "spaces": "Spaces",
+  "banFromChat": "Ban from chat",
+  "@banFromChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "banned": "Banned",
+  "@banned": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "bannedUser": "{username} banned {targetName}",
+  "@bannedUser": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      },
+      "targetName": {
+        "type": "String"
+      }
+    }
+  },
+  "blockDevice": "Block Device",
+  "@blockDevice": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "blocked": "Blocked",
+  "@blocked": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "botMessages": "Bot messages",
+  "@botMessages": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "cancel": "Cancel",
+  "@cancel": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "cantOpenUri": "Can't open the URI {uri}",
+  "@cantOpenUri": {
+    "type": "String",
+    "placeholders": {
+      "uri": {
+        "type": "String"
+      }
+    }
+  },
+  "changeDeviceName": "Change device name",
+  "@changeDeviceName": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "changedTheChatAvatar": "{username} changed the chat avatar",
+  "@changedTheChatAvatar": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "changedTheChatDescriptionTo": "{username} changed the chat description to: '{description}'",
+  "@changedTheChatDescriptionTo": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      },
+      "description": {
+        "type": "String"
+      }
+    }
+  },
+  "changedTheChatNameTo": "{username} changed the chat name to: '{chatname}'",
+  "@changedTheChatNameTo": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      },
+      "chatname": {
+        "type": "String"
+      }
+    }
+  },
+  "changedTheChatPermissions": "{username} changed the chat permissions",
+  "@changedTheChatPermissions": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "changedTheDisplaynameTo": "{username} changed their displayname to: '{displayname}'",
+  "@changedTheDisplaynameTo": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      },
+      "displayname": {
+        "type": "String"
+      }
+    }
+  },
+  "changedTheGuestAccessRules": "{username} changed the guest access rules",
+  "@changedTheGuestAccessRules": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "changedTheGuestAccessRulesTo": "{username} changed the guest access rules to: {rules}",
+  "@changedTheGuestAccessRulesTo": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      },
+      "rules": {
+        "type": "String"
+      }
+    }
+  },
+  "changedTheHistoryVisibility": "{username} changed the history visibility",
+  "@changedTheHistoryVisibility": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "changedTheHistoryVisibilityTo": "{username} changed the history visibility to: {rules}",
+  "@changedTheHistoryVisibilityTo": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      },
+      "rules": {
+        "type": "String"
+      }
+    }
+  },
+  "changedTheJoinRules": "{username} changed the join rules",
+  "@changedTheJoinRules": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "changedTheJoinRulesTo": "{username} changed the join rules to: {joinRules}",
+  "@changedTheJoinRulesTo": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      },
+      "joinRules": {
+        "type": "String"
+      }
+    }
+  },
+  "changedTheProfileAvatar": "{username} changed their avatar",
+  "@changedTheProfileAvatar": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "changedTheRoomAliases": "{username} changed the room aliases",
+  "@changedTheRoomAliases": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "changedTheRoomInvitationLink": "{username} changed the invitation link",
+  "@changedTheRoomInvitationLink": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "changePassword": "Change password",
+  "@changePassword": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "changeTheHomeserver": "Change the homeserver",
+  "@changeTheHomeserver": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "changeTheme": "Change your style",
+  "@changeTheme": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "changeTheNameOfTheGroup": "Change the name of the group",
+  "@changeTheNameOfTheGroup": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "changeYourAvatar": "Change your avatar",
+  "@changeYourAvatar": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "channelCorruptedDecryptError": "The encryption has been corrupted",
+  "@channelCorruptedDecryptError": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "chat": "Chat",
+  "@chat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "yourChatBackupHasBeenSetUp": "Your chat backup has been set up.",
+  "@yourChatBackupHasBeenSetUp": {},
+  "chatBackup": "Chat backup",
+  "@chatBackup": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "chatBackupDescription": "Your old messages are secured with a recovery key. Please make sure you don't lose it.",
+  "@chatBackupDescription": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "chatDetails": "Chat details",
+  "@chatDetails": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "chatHasBeenAddedToThisSpace": "Chat has been added to this space",
+  "@chatHasBeenAddedToThisSpace": {},
+  "chats": "Chats",
+  "@chats": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "chooseAStrongPassword": "Choose a strong password",
+  "@chooseAStrongPassword": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "clearArchive": "Clear archive",
+  "@clearArchive": {},
+  "close": "Close",
+  "@close": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "commandHint_markasdm": "Mark as direct message room for the giving Matrix ID",
+  "@commandHint_markasdm": {},
+  "commandHint_markasgroup": "Mark as group",
+  "@commandHint_markasgroup": {},
+  "commandHint_ban": "Ban the given user from this room",
+  "@commandHint_ban": {
+    "type": "String",
+    "description": "Usage hint for the command /ban"
+  },
+  "commandHint_clearcache": "Clear cache",
+  "@commandHint_clearcache": {
+    "type": "String",
+    "description": "Usage hint for the command /clearcache"
+  },
+  "commandHint_create": "Create an empty group chat\nUse --no-encryption to disable encryption",
+  "@commandHint_create": {
+    "type": "String",
+    "description": "Usage hint for the command /create"
+  },
+  "commandHint_discardsession": "Discard session",
+  "@commandHint_discardsession": {
+    "type": "String",
+    "description": "Usage hint for the command /discardsession"
+  },
+  "commandHint_dm": "Start a direct chat\nUse --no-encryption to disable encryption",
+  "@commandHint_dm": {
+    "type": "String",
+    "description": "Usage hint for the command /dm"
+  },
+  "commandHint_html": "Send HTML-formatted text",
+  "@commandHint_html": {
+    "type": "String",
+    "description": "Usage hint for the command /html"
+  },
+  "commandHint_invite": "Invite the given user to this room",
+  "@commandHint_invite": {
+    "type": "String",
+    "description": "Usage hint for the command /invite"
+  },
+  "commandHint_join": "Join the given room",
+  "@commandHint_join": {
+    "type": "String",
+    "description": "Usage hint for the command /join"
+  },
+  "commandHint_kick": "Remove the given user from this room",
+  "@commandHint_kick": {
+    "type": "String",
+    "description": "Usage hint for the command /kick"
+  },
+  "commandHint_leave": "Leave this room",
+  "@commandHint_leave": {
+    "type": "String",
+    "description": "Usage hint for the command /leave"
+  },
+  "commandHint_me": "Describe yourself",
+  "@commandHint_me": {
+    "type": "String",
+    "description": "Usage hint for the command /me"
+  },
+  "commandHint_myroomavatar": "Set your picture for this room (by mxc-uri)",
+  "@commandHint_myroomavatar": {
+    "type": "String",
+    "description": "Usage hint for the command /myroomavatar"
+  },
+  "commandHint_myroomnick": "Set your display name for this room",
+  "@commandHint_myroomnick": {
+    "type": "String",
+    "description": "Usage hint for the command /myroomnick"
+  },
+  "commandHint_op": "Set the given user's power level (default: 50)",
+  "@commandHint_op": {
+    "type": "String",
+    "description": "Usage hint for the command /op"
+  },
+  "commandHint_plain": "Send unformatted text",
+  "@commandHint_plain": {
+    "type": "String",
+    "description": "Usage hint for the command /plain"
+  },
+  "commandHint_react": "Send reply as a reaction",
+  "@commandHint_react": {
+    "type": "String",
+    "description": "Usage hint for the command /react"
+  },
+  "commandHint_send": "Send text",
+  "@commandHint_send": {
+    "type": "String",
+    "description": "Usage hint for the command /send"
+  },
+  "commandHint_unban": "Unban the given user from this room",
+  "@commandHint_unban": {
+    "type": "String",
+    "description": "Usage hint for the command /unban"
+  },
+  "commandInvalid": "Command invalid",
+  "@commandInvalid": {
+    "type": "String"
+  },
+  "commandMissing": "{command} is not a command.",
+  "@commandMissing": {
+    "type": "String",
+    "placeholders": {
+      "command": {
+        "type": "String"
+      }
+    },
+    "description": "State that {command} is not a valid /command."
+  },
+  "compareEmojiMatch": "Please compare the emojis",
+  "@compareEmojiMatch": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "compareNumbersMatch": "Please compare the numbers",
+  "@compareNumbersMatch": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "configureChat": "Configure chat",
+  "@configureChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "confirm": "Confirm",
+  "@confirm": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "connect": "Connect",
+  "@connect": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "contactHasBeenInvitedToTheGroup": "Contact has been invited to the group",
+  "@contactHasBeenInvitedToTheGroup": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "containsDisplayName": "Contains display name",
+  "@containsDisplayName": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "containsUserName": "Contains username",
+  "@containsUserName": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "contentHasBeenReported": "The content has been reported to the server admins",
+  "@contentHasBeenReported": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "copiedToClipboard": "Copied to clipboard",
+  "@copiedToClipboard": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "copy": "Copy",
+  "@copy": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "copyToClipboard": "Copy to clipboard",
+  "@copyToClipboard": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "couldNotDecryptMessage": "Could not decrypt message: {error}",
+  "@couldNotDecryptMessage": {
+    "type": "String",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "checkList": "Check list",
+  "countParticipants": "{count} participants",
+  "@countParticipants": {
+    "type": "String",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "countInvited": "{count} invited",
+  "@countInvited": {
+    "type": "String",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "create": "Create",
+  "@create": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "createdTheChat": "💬 {username} created the chat",
+  "@createdTheChat": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "createGroup": "Create group",
+  "@createGroup": {},
+  "createNewSpace": "New space",
+  "@createNewSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "currentlyActive": "Currently active",
+  "@currentlyActive": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "darkTheme": "Dark",
+  "@darkTheme": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "dateAndTimeOfDay": "{date}, {timeOfDay}",
+  "@dateAndTimeOfDay": {
+    "type": "String",
+    "placeholders": {
+      "date": {
+        "type": "String"
+      },
+      "timeOfDay": {
+        "type": "String"
+      }
+    }
+  },
+  "dateWithoutYear": "{month}-{day}",
+  "@dateWithoutYear": {
+    "type": "String",
+    "placeholders": {
+      "month": {
+        "type": "String"
+      },
+      "day": {
+        "type": "String"
+      }
+    }
+  },
+  "dateWithYear": "{year}-{month}-{day}",
+  "@dateWithYear": {
+    "type": "String",
+    "placeholders": {
+      "year": {
+        "type": "String"
+      },
+      "month": {
+        "type": "String"
+      },
+      "day": {
+        "type": "String"
+      }
+    }
+  },
+  "deactivateAccountWarning": "This will deactivate your user account. This can not be undone! Are you sure?",
+  "@deactivateAccountWarning": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "defaultPermissionLevel": "Default permission level for new users",
+  "@defaultPermissionLevel": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "delete": "Delete",
+  "@delete": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "deleteAccount": "Delete account",
+  "@deleteAccount": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "deleteMessage": "Delete message",
+  "@deleteMessage": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "device": "Device",
+  "@device": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "deviceId": "Device ID",
+  "@deviceId": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "devices": "Devices",
+  "@devices": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "directChats": "Direct Chats",
+  "@directChats": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "allRooms": "All Group Chats",
+  "@allRooms": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "displaynameHasBeenChanged": "Displayname has been changed",
+  "@displaynameHasBeenChanged": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "downloadFile": "Download file",
+  "@downloadFile": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "edit": "Edit",
+  "@edit": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "editBlockedServers": "Edit blocked servers",
+  "@editBlockedServers": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "chatPermissions": "Chat permissions",
+  "@chatPermissions": {},
+  "editDisplayname": "Edit displayname",
+  "@editDisplayname": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "editRoomAliases": "Edit room aliases",
+  "@editRoomAliases": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "editRoomAvatar": "Edit room avatar",
+  "@editRoomAvatar": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "emoteExists": "Emote already exists!",
+  "@emoteExists": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "emoteInvalid": "Invalid emote shortcode!",
+  "@emoteInvalid": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "emoteKeyboardNoRecents": "Recently-used emotes will appear here...",
+  "@emoteKeyboardNoRecents": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "emotePacks": "Emote packs for room",
+  "@emotePacks": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "emoteSettings": "Emote Settings",
+  "@emoteSettings": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "globalChatId": "Global chat ID",
+  "@globalChatId": {},
+  "accessAndVisibility": "Access and visibility",
+  "@accessAndVisibility": {},
+  "accessAndVisibilityDescription": "Who is allowed to join this chat and how the chat can be discovered.",
+  "@accessAndVisibilityDescription": {},
+  "calls": "Calls",
+  "@calls": {},
+  "customEmojisAndStickers": "Custom emojis and stickers",
+  "@customEmojisAndStickers": {},
+  "customEmojisAndStickersBody": "Add or share custom emojis or stickers which can be used in any chat.",
+  "@customEmojisAndStickersBody": {},
+  "emoteShortcode": "Emote shortcode",
+  "@emoteShortcode": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "emoteWarnNeedToPick": "You need to pick an emote shortcode and an image!",
+  "@emoteWarnNeedToPick": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "emptyChat": "Empty chat",
+  "@emptyChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "enableEmotesGlobally": "Enable emote pack globally",
+  "@enableEmotesGlobally": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "enableEncryption": "Enable encryption",
+  "@enableEncryption": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "enableEncryptionWarning": "You won't be able to disable the encryption anymore. Are you sure?",
+  "@enableEncryptionWarning": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "encrypted": "Encrypted",
+  "@encrypted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "encryption": "Encryption",
+  "@encryption": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "encryptionNotEnabled": "Encryption is not enabled",
+  "@encryptionNotEnabled": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "endedTheCall": "{senderName} ended the call",
+  "@endedTheCall": {
+    "type": "String",
+    "placeholders": {
+      "senderName": {
+        "type": "String"
+      }
+    }
+  },
+  "enterAnEmailAddress": "Enter an email address",
+  "@enterAnEmailAddress": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "homeserver": "Homeserver",
+  "@homeserver": {},
+  "enterYourHomeserver": "Enter your homeserver",
+  "@enterYourHomeserver": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "errorObtainingLocation": "Error obtaining location: {error}",
+  "@errorObtainingLocation": {
+    "type": "String",
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "everythingReady": "Everything ready!",
+  "@everythingReady": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "extremeOffensive": "Extremely offensive",
+  "@extremeOffensive": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "fileName": "File name",
+  "@fileName": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "fluffychat": "FluffyChat",
+  "@fluffychat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "fontSize": "Font size",
+  "@fontSize": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "forward": "Forward",
+  "@forward": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "fromJoining": "From joining",
+  "@fromJoining": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "fromTheInvitation": "From the invitation",
+  "@fromTheInvitation": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "goToTheNewRoom": "Go to the new room",
+  "@goToTheNewRoom": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "group": "Group",
+  "@group": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "chatDescription": "Chat description",
+  "@chatDescription": {},
+  "chatDescriptionHasBeenChanged": "Chat description changed",
+  "@chatDescriptionHasBeenChanged": {},
+  "groupIsPublic": "Group is public",
+  "@groupIsPublic": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "groups": "Groups",
+  "@groups": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "groupWith": "Group with {displayname}",
+  "@groupWith": {
+    "type": "String",
+    "placeholders": {
+      "displayname": {
+        "type": "String"
+      }
+    }
+  },
+  "guestsAreForbidden": "Guests are forbidden",
+  "@guestsAreForbidden": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "guestsCanJoin": "Guests can join",
+  "@guestsCanJoin": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "hasWithdrawnTheInvitationFor": "{username} has withdrawn the invitation for {targetName}",
+  "@hasWithdrawnTheInvitationFor": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      },
+      "targetName": {
+        "type": "String"
+      }
+    }
+  },
+  "help": "Help",
+  "@help": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "hideRedactedEvents": "Hide redacted events",
+  "@hideRedactedEvents": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "hideRedactedMessages": "Hide redacted messages",
+  "@hideRedactedMessages": {},
+  "hideRedactedMessagesBody": "If someone redacts a message, this message won't be visible in the chat anymore.",
+  "@hideRedactedMessagesBody": {},
+  "hideInvalidOrUnknownMessageFormats": "Hide invalid or unknown message formats",
+  "@hideInvalidOrUnknownMessageFormats": {},
+  "howOffensiveIsThisContent": "How offensive is this content?",
+  "@howOffensiveIsThisContent": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "id": "ID",
+  "@id": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "identity": "Identity",
+  "@identity": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "block": "Block",
+  "@block": {},
+  "blockedUsers": "Blocked users",
+  "@blockedUsers": {},
+  "blockListDescription": "You can block users who are disturbing you. You won't be able to receive any messages or room invites from the users on your personal block list.",
+  "@blockListDescription": {},
+  "blockUsername": "Ignore username",
+  "@blockUsername": {},
+  "iHaveClickedOnLink": "I have clicked on the link",
+  "@iHaveClickedOnLink": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "incorrectPassphraseOrKey": "Incorrect passphrase or recovery key",
+  "@incorrectPassphraseOrKey": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "inoffensive": "Inoffensive",
+  "@inoffensive": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "inviteContact": "Invite contact",
+  "@inviteContact": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "inviteContactToGroupQuestion": "Do you want to invite {contact} to the chat \"{groupName}\"?",
+  "@inviteContactToGroupQuestion": {},
+  "inviteContactToGroup": "Invite contact to {groupName}",
+  "@inviteContactToGroup": {
+    "type": "String",
+    "placeholders": {
+      "groupName": {
+        "type": "String"
+      }
+    }
+  },
+  "noChatDescriptionYet": "No chat description created yet.",
+  "@noChatDescriptionYet": {},
+  "tryAgain": "Try again",
+  "@tryAgain": {},
+  "invalidServerName": "Invalid server name",
+  "@invalidServerName": {},
+  "invited": "Invited",
+  "@invited": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "redactMessageDescription": "The message will be redacted for all participants in this conversation. This cannot be undone.",
+  "@redactMessageDescription": {},
+  "optionalRedactReason": "(Optional) Reason for redacting this message...",
+  "@optionalRedactReason": {},
+  "invitedUser": "📩 {username} invited {targetName}",
+  "@invitedUser": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      },
+      "targetName": {
+        "type": "String"
+      }
+    }
+  },
+  "invitedUsersOnly": "Invited users only",
+  "@invitedUsersOnly": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "inviteForMe": "Invite for me",
+  "@inviteForMe": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "inviteText": "{username} invited you to FluffyChat.\n1. Visit fluffychat.im and install the app \n2. Sign up or sign in \n3. Open the invite link: \n {link}",
+  "@inviteText": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      },
+      "link": {
+        "type": "String"
+      }
+    }
+  },
+  "isTyping": "is typing…",
+  "@isTyping": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "joinedTheChat": "👋 {username} joined the chat",
+  "@joinedTheChat": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "joinRoom": "Join room",
+  "@joinRoom": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "kicked": "👞 {username} kicked {targetName}",
+  "@kicked": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      },
+      "targetName": {
+        "type": "String"
+      }
+    }
+  },
+  "kickedAndBanned": "🙅 {username} kicked and banned {targetName}",
+  "@kickedAndBanned": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      },
+      "targetName": {
+        "type": "String"
+      }
+    }
+  },
+  "kickFromChat": "Kick from chat",
+  "@kickFromChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "lastActiveAgo": "Last active: {localizedTimeShort}",
+  "@lastActiveAgo": {
+    "type": "String",
+    "placeholders": {
+      "localizedTimeShort": {
+        "type": "String"
+      }
+    }
+  },
+  "leave": "Leave",
+  "@leave": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "leftTheChat": "Left the chat",
+  "@leftTheChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "license": "License",
+  "@license": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "lightTheme": "Light",
+  "@lightTheme": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "loadCountMoreParticipants": "Load {count} more participants",
+  "@loadCountMoreParticipants": {
+    "type": "String",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "dehydrate": "Export session and wipe device",
+  "@dehydrate": {},
+  "dehydrateWarning": "This action cannot be undone. Ensure you safely store the backup file.",
+  "@dehydrateWarning": {},
+  "dehydrateTor": "TOR Users: Export session",
+  "@dehydrateTor": {},
+  "dehydrateTorLong": "For TOR users, it is recommended to export the session before closing the window.",
+  "@dehydrateTorLong": {},
+  "hydrateTor": "TOR Users: Import session export",
+  "@hydrateTor": {},
+  "hydrateTorLong": "Did you export your session last time on TOR? Quickly import it and continue chatting.",
+  "@hydrateTorLong": {},
+  "hydrate": "Restore from backup file",
+  "@hydrate": {},
+  "loadingPleaseWait": "Loading… Please wait.",
+  "@loadingPleaseWait": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "loadMore": "Load more…",
+  "@loadMore": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "locationDisabledNotice": "Location services are disabled. Please enable them to be able to share your location.",
+  "@locationDisabledNotice": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "locationPermissionDeniedNotice": "Location permission denied. Please grant them to be able to share your location.",
+  "@locationPermissionDeniedNotice": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "login": "Login",
+  "@login": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "logInTo": "Log in to {homeserver}",
+  "@logInTo": {
+    "type": "String",
+    "placeholders": {
+      "homeserver": {
+        "type": "String"
+      }
+    }
+  },
+  "logout": "Logout",
+  "@logout": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "memberChanges": "Member changes",
+  "@memberChanges": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "mention": "Mention",
+  "@mention": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "messages": "Messages",
+  "@messages": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "messagesStyle": "Messages:",
+  "@messagesStyle": {},
+  "moderator": "Moderator",
+  "@moderator": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "muteChat": "Mute chat",
+  "@muteChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "needPantalaimonWarning": "Please be aware that you need Pantalaimon to use end-to-end encryption for now.",
+  "@needPantalaimonWarning": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "newChat": "New chat",
+  "@newChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "newMessageInFluffyChat": "💬 New message in FluffyChat",
+  "@newMessageInFluffyChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "newVerificationRequest": "New verification request!",
+  "@newVerificationRequest": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "next": "Next",
+  "@next": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "no": "No",
+  "@no": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "noConnectionToTheServer": "No connection to the server",
+  "@noConnectionToTheServer": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "noEmotesFound": "No emotes found. 😕",
+  "@noEmotesFound": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "noEncryptionForPublicRooms": "You can only activate encryption as soon as the room is no longer publicly accessible.",
+  "@noEncryptionForPublicRooms": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "noGoogleServicesWarning": "Firebase Cloud Messaging doesn't appear to be available on your device. To still receive push notifications, we recommend installing ntfy. With ntfy or another Unified Push provider you can receive push notifications in a data secure way. You can download ntfy from the PlayStore or from F-Droid.",
+  "@noGoogleServicesWarning": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "noMatrixServer": "{server1} is no matrix server, use {server2} instead?",
+  "@noMatrixServer": {
+    "type": "String",
+    "placeholders": {
+      "server1": {
+        "type": "String"
+      },
+      "server2": {
+        "type": "String"
+      }
+    }
+  },
+  "shareInviteLink": "Share invite link",
+  "@shareInviteLink": {},
+  "scanQrCode": "Scan QR code",
+  "@scanQrCode": {},
+  "none": "None",
+  "@none": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "noPasswordRecoveryDescription": "You have not added a way to recover your password yet.",
+  "@noPasswordRecoveryDescription": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "noPermission": "No permission",
+  "@noPermission": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "noRoomsFound": "No rooms found…",
+  "@noRoomsFound": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "notifications": "Notifications",
+  "@notifications": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "notificationsEnabledForThisAccount": "Notifications enabled for this account",
+  "@notificationsEnabledForThisAccount": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "numUsersTyping": "{count} users are typing…",
+  "@numUsersTyping": {
+    "type": "String",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "obtainingLocation": "Obtaining location…",
+  "@obtainingLocation": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "offensive": "Offensive",
+  "@offensive": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "offline": "Offline",
+  "@offline": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "ok": "Ok",
+  "@ok": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "online": "Online",
+  "@online": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "onlineKeyBackupEnabled": "Online Key Backup is enabled",
+  "@onlineKeyBackupEnabled": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "oopsPushError": "Oops! Unfortunately, an error occurred when setting up the push notifications.",
+  "@oopsPushError": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "oopsSomethingWentWrong": "Oops, something went wrong…",
+  "@oopsSomethingWentWrong": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "openAppToReadMessages": "Open app to read messages",
+  "@openAppToReadMessages": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "openCamera": "Open camera",
+  "@openCamera": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "openVideoCamera": "Open camera for a video",
+  "@openVideoCamera": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "oneClientLoggedOut": "One of your clients has been logged out",
+  "@oneClientLoggedOut": {},
+  "addAccount": "Add account",
+  "@addAccount": {},
+  "editBundlesForAccount": "Edit bundles for this account",
+  "@editBundlesForAccount": {},
+  "addToBundle": "Add to bundle",
+  "@addToBundle": {},
+  "removeFromBundle": "Remove from this bundle",
+  "@removeFromBundle": {},
+  "bundleName": "Bundle name",
+  "@bundleName": {},
+  "enableMultiAccounts": "(BETA) Enable multi accounts on this device",
+  "@enableMultiAccounts": {},
+  "openInMaps": "Open in maps",
+  "@openInMaps": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "link": "Link",
+  "@link": {},
+  "serverRequiresEmail": "This server needs to validate your email address for registration.",
+  "@serverRequiresEmail": {},
+  "or": "Or",
+  "@or": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "participant": "Participant",
+  "@participant": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "passphraseOrKey": "passphrase or recovery key",
+  "@passphraseOrKey": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "password": "Password",
+  "@password": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "passwordForgotten": "Password forgotten",
+  "@passwordForgotten": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "passwordHasBeenChanged": "Password has been changed",
+  "@passwordHasBeenChanged": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "hideMemberChangesInPublicChats": "Hide member changes in public chats",
+  "@hideMemberChangesInPublicChats": {},
+  "hideMemberChangesInPublicChatsBody": "Do not show in the chat timeline if someone joins or leaves a public chat to improve readability.",
+  "@hideMemberChangesInPublicChatsBody": {},
+  "overview": "Overview",
+  "@overview": {},
+  "notifyMeFor": "Notify me for",
+  "@notifyMeFor": {},
+  "passwordRecoverySettings": "Password recovery settings",
+  "@passwordRecoverySettings": {},
+  "passwordRecovery": "Password recovery",
+  "@passwordRecovery": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "people": "People",
+  "@people": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "pickImage": "Pick an image",
+  "@pickImage": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "pin": "Pin",
+  "@pin": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "play": "Play {fileName}",
+  "@play": {
+    "type": "String",
+    "placeholders": {
+      "fileName": {
+        "type": "String"
+      }
+    }
+  },
+  "pleaseChoose": "Please choose",
+  "@pleaseChoose": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "pleaseChooseAPasscode": "Please choose a pass code",
+  "@pleaseChooseAPasscode": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "pleaseClickOnLink": "Please click on the link in the email and then proceed.",
+  "@pleaseClickOnLink": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "pleaseEnter4Digits": "Please enter 4 digits or leave empty to disable app lock.",
+  "@pleaseEnter4Digits": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "pleaseEnterRecoveryKey": "Please enter your recovery key:",
+  "@pleaseEnterRecoveryKey": {},
+  "pleaseEnterYourPassword": "Please enter your password",
+  "@pleaseEnterYourPassword": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "pleaseEnterYourPin": "Please enter your pin",
+  "@pleaseEnterYourPin": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "pleaseEnterYourUsername": "Please enter your username",
+  "@pleaseEnterYourUsername": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "pleaseFollowInstructionsOnWeb": "Please follow the instructions on the website and tap on next.",
+  "@pleaseFollowInstructionsOnWeb": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "privacy": "Privacy",
+  "@privacy": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "publicRooms": "Public Rooms",
+  "@publicRooms": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "pushRules": "Push rules",
+  "@pushRules": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "reason": "Reason",
+  "@reason": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "recording": "Recording",
+  "@recording": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "redactedBy": "Redacted by {username}",
+  "@redactedBy": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "directChat": "Direct chat",
+  "@directChat": {},
+  "redactedByBecause": "Redacted by {username} because: \"{reason}\"",
+  "@redactedByBecause": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      },
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "redactedAnEvent": "{username} redacted an event",
+  "@redactedAnEvent": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "redactMessage": "Redact message",
+  "@redactMessage": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "register": "Register",
+  "@register": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "reject": "Reject",
+  "@reject": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "rejectedTheInvitation": "{username} rejected the invitation",
+  "@rejectedTheInvitation": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "rejoin": "Rejoin",
+  "@rejoin": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "removeAllOtherDevices": "Remove all other devices",
+  "@removeAllOtherDevices": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "removedBy": "Removed by {username}",
+  "@removedBy": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "removeDevice": "Remove device",
+  "@removeDevice": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "unbanFromChat": "Unban from chat",
+  "@unbanFromChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "removeYourAvatar": "Remove your avatar",
+  "@removeYourAvatar": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "replaceRoomWithNewerVersion": "Replace room with newer version",
+  "@replaceRoomWithNewerVersion": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "reply": "Reply",
+  "@reply": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "reportMessage": "Report message",
+  "@reportMessage": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "requestPermission": "Request permission",
+  "@requestPermission": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "roomHasBeenUpgraded": "Room has been upgraded",
+  "@roomHasBeenUpgraded": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "roomVersion": "Room version",
+  "@roomVersion": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "saveFile": "Save file",
+  "@saveFile": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "search": "Search",
+  "@search": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "security": "Security",
+  "@security": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "recoveryKey": "Recovery key",
+  "@recoveryKey": {},
+  "recoveryKeyLost": "Recovery key lost?",
+  "@recoveryKeyLost": {},
+  "seenByUser": "Seen by {username}",
+  "@seenByUser": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "send": "Send",
+  "@send": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "sendAMessage": "Send a message",
+  "@sendAMessage": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "sendAsText": "Send as text",
+  "@sendAsText": {
+    "type": "String"
+  },
+  "sendAudio": "Send audio",
+  "@sendAudio": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "sendFile": "Send file",
+  "@sendFile": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "sendImage": "Send image",
+  "@sendImage": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "sendImages": "Send {count} image",
+  "@sendImages": {
+    "type": "String",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "sendMessages": "Send messages",
+  "@sendMessages": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "sendOriginal": "Send original",
+  "@sendOriginal": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "sendSticker": "Send sticker",
+  "@sendSticker": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "sendVideo": "Send video",
+  "@sendVideo": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "sentAFile": "📁 {username} sent a file",
+  "@sentAFile": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "sentAnAudio": "🎤 {username} sent an audio",
+  "@sentAnAudio": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "sentAPicture": "🖼️ {username} sent a picture",
+  "@sentAPicture": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "sentASticker": "😊 {username} sent a sticker",
+  "@sentASticker": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "sentAVideo": "🎥 {username} sent a video",
+  "@sentAVideo": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "sentCallInformations": "{senderName} sent call information",
+  "@sentCallInformations": {
+    "type": "String",
+    "placeholders": {
+      "senderName": {
+        "type": "String"
+      }
+    }
+  },
+  "separateChatTypes": "Separate Direct Chats and Groups",
+  "@separateChatTypes": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "setAsCanonicalAlias": "Set as main alias",
+  "@setAsCanonicalAlias": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "setCustomEmotes": "Set custom emotes",
+  "@setCustomEmotes": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "setChatDescription": "Set chat description",
+  "@setChatDescription": {},
+  "setInvitationLink": "Set invitation link",
+  "@setInvitationLink": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "setPermissionsLevel": "Set permissions level",
+  "@setPermissionsLevel": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "setStatus": "Set status",
+  "@setStatus": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "settings": "Settings",
+  "@settings": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "share": "Share",
+  "@share": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "sharedTheLocation": "{username} shared their location",
+  "@sharedTheLocation": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "shareLocation": "Share location",
+  "@shareLocation": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "showPassword": "Show password",
+  "@showPassword": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "presenceStyle": "Presence:",
+  "@presenceStyle": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "presencesToggle": "Show status messages from other users",
+  "@presencesToggle": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "singlesignon": "Single Sign on",
+  "@singlesignon": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "skip": "Skip",
+  "@skip": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "sourceCode": "Source code",
+  "@sourceCode": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "spaceIsPublic": "Space is public",
+  "@spaceIsPublic": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "spaceName": "Space name",
+  "@spaceName": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "startedACall": "{senderName} started a call",
+  "@startedACall": {
+    "type": "String",
+    "placeholders": {
+      "senderName": {
+        "type": "String"
+      }
+    }
+  },
+  "startFirstChat": "Start your first chat",
+  "@startFirstChat": {},
+  "status": "Status",
+  "@status": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "statusExampleMessage": "How are you today?",
+  "@statusExampleMessage": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "submit": "Submit",
+  "@submit": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "synchronizingPleaseWait": "Synchronizing… Please wait.",
+  "@synchronizingPleaseWait": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "synchronizingPleaseWaitCounter": " Synchronizing… ({percentage}%)",
+  "@synchronizingPleaseWaitCounter": {
+    "type": "String",
+    "placeholders": {
+      "percentage": {
+        "type": "String"
+      }
+    }
+  },
+  "systemTheme": "System",
+  "@systemTheme": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "theyDontMatch": "They Don't Match",
+  "@theyDontMatch": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "theyMatch": "They Match",
+  "@theyMatch": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "title": "FluffyChat",
+  "@title": {
+    "description": "Title for the application",
+    "type": "String",
+    "placeholders": {}
+  },
+  "toggleFavorite": "Toggle Favorite",
+  "@toggleFavorite": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "toggleMuted": "Toggle Muted",
+  "@toggleMuted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "toggleUnread": "Mark Read/Unread",
+  "@toggleUnread": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "tooManyRequestsWarning": "Too many requests. Please try again later!",
+  "@tooManyRequestsWarning": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "transferFromAnotherDevice": "Transfer from another device",
+  "@transferFromAnotherDevice": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "tryToSendAgain": "Try to send again",
+  "@tryToSendAgain": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "unavailable": "Unavailable",
+  "@unavailable": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "unbannedUser": "{username} unbanned {targetName}",
+  "@unbannedUser": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      },
+      "targetName": {
+        "type": "String"
+      }
+    }
+  },
+  "unblockDevice": "Unblock Device",
+  "@unblockDevice": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "unknownDevice": "Unknown device",
+  "@unknownDevice": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "unknownEncryptionAlgorithm": "Unknown encryption algorithm",
+  "@unknownEncryptionAlgorithm": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "unknownEvent": "Unknown event '{type}'",
+  "@unknownEvent": {
+    "type": "String",
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "unmuteChat": "Unmute chat",
+  "@unmuteChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "unpin": "Unpin",
+  "@unpin": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "unreadChats": "{unreadCount, plural, =1{1 unread chat} other{{unreadCount} unread chats}}",
+  "@unreadChats": {
+    "type": "String",
+    "placeholders": {
+      "unreadCount": {
+        "type": "int"
+      }
+    }
+  },
+  "userAndOthersAreTyping": "{username} and {count} others are typing…",
+  "@userAndOthersAreTyping": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "userAndUserAreTyping": "{username} and {username2} are typing…",
+  "@userAndUserAreTyping": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      },
+      "username2": {
+        "type": "String"
+      }
+    }
+  },
+  "userIsTyping": "{username} is typing…",
+  "@userIsTyping": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "userLeftTheChat": "🚪 {username} left the chat",
+  "@userLeftTheChat": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "username": "Username",
+  "@username": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "userSentUnknownEvent": "{username} sent a {type} event",
+  "@userSentUnknownEvent": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      },
+      "type": {
+        "type": "String"
+      }
+    }
+  },
+  "unverified": "Unverified",
+  "@unverified": {},
+  "verified": "Verified",
+  "@verified": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "verify": "Verify",
+  "@verify": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "verifyStart": "Start Verification",
+  "@verifyStart": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "verifySuccess": "You successfully verified!",
+  "@verifySuccess": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "verifyTitle": "Verifying other account",
+  "@verifyTitle": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "videoCall": "Video call",
+  "@videoCall": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "visibilityOfTheChatHistory": "Visibility of the chat history",
+  "@visibilityOfTheChatHistory": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "visibleForAllParticipants": "Visible for all participants",
+  "@visibleForAllParticipants": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "visibleForEveryone": "Visible for everyone",
+  "@visibleForEveryone": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "voiceMessage": "Voice message",
+  "@voiceMessage": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "waitingPartnerAcceptRequest": "Waiting for partner to accept the request…",
+  "@waitingPartnerAcceptRequest": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "waitingPartnerEmoji": "Waiting for partner to accept the emoji…",
+  "@waitingPartnerEmoji": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "waitingPartnerNumbers": "Waiting for partner to accept the numbers…",
+  "@waitingPartnerNumbers": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "wallpaper": "Wallpaper:",
+  "@wallpaper": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "warning": "Warning!",
+  "@warning": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "weSentYouAnEmail": "We sent you an email",
+  "@weSentYouAnEmail": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "whoCanPerformWhichAction": "Who can perform which action",
+  "@whoCanPerformWhichAction": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "whoIsAllowedToJoinThisGroup": "Who is allowed to join this group",
+  "@whoIsAllowedToJoinThisGroup": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "whyDoYouWantToReportThis": "Why do you want to report this?",
+  "@whyDoYouWantToReportThis": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "wipeChatBackup": "Wipe your chat backup to create a new recovery key?",
+  "@wipeChatBackup": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "withTheseAddressesRecoveryDescription": "With these addresses you can recover your password.",
+  "@withTheseAddressesRecoveryDescription": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "writeAMessage": "Write a message…",
+  "@writeAMessage": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "yes": "Yes",
+  "@yes": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "you": "You",
+  "@you": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "youAreNoLongerParticipatingInThisChat": "You are no longer participating in this chat",
+  "@youAreNoLongerParticipatingInThisChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "youHaveBeenBannedFromThisChat": "You have been banned from this chat",
+  "@youHaveBeenBannedFromThisChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "yourPublicKey": "Your public key",
+  "@yourPublicKey": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "messageInfo": "Message info",
+  "@messageInfo": {},
+  "time": "Time",
+  "@time": {},
+  "messageType": "Message Type",
+  "@messageType": {},
+  "sender": "Sender",
+  "@sender": {},
+  "openGallery": "Open gallery",
+  "@openGallery": {},
+  "removeFromSpace": "Remove from space",
+  "@removeFromSpace": {},
+  "addToSpaceDescription": "Select a space to add this chat to it.",
+  "@addToSpaceDescription": {},
+  "start": "Start",
+  "@start": {},
+  "pleaseEnterRecoveryKeyDescription": "To unlock your old messages, please enter your recovery key that has been generated in a previous session. Your recovery key is NOT your password.",
+  "@pleaseEnterRecoveryKeyDescription": {},
+  "publish": "Publish",
+  "@publish": {},
+  "videoWithSize": "Video ({size})",
+  "@videoWithSize": {
+    "type": "String",
+    "placeholders": {
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "openChat": "Open Chat",
+  "@openChat": {},
+  "markAsRead": "Mark as read",
+  "@markAsRead": {},
+  "reportUser": "Report user",
+  "@reportUser": {},
+  "dismiss": "Dismiss",
+  "@dismiss": {},
+  "reactedWith": "{sender} reacted with {reaction}",
+  "@reactedWith": {
+    "type": "String",
+    "placeholders": {
+      "sender": {
+        "type": "String"
+      },
+      "reaction": {
+        "type": "String"
+      }
+    }
+  },
+  "pinMessage": "Pin to room",
+  "@pinMessage": {},
+  "confirmEventUnpin": "Are you sure to permanently unpin the event?",
+  "@confirmEventUnpin": {},
+  "emojis": "Emojis",
+  "@emojis": {},
+  "placeCall": "Place call",
+  "@placeCall": {},
+  "voiceCall": "Voice call",
+  "@voiceCall": {},
+  "unsupportedAndroidVersion": "Unsupported Android version",
+  "@unsupportedAndroidVersion": {},
+  "unsupportedAndroidVersionLong": "This feature requires a newer Android version. Please check for updates or Lineage OS support.",
+  "@unsupportedAndroidVersionLong": {},
+  "videoCallsBetaWarning": "Please note that video calls are currently in beta. They might not work as expected or work at all on all platforms.",
+  "@videoCallsBetaWarning": {},
+  "experimentalVideoCalls": "Experimental video calls",
+  "@experimentalVideoCalls": {},
+  "emailOrUsername": "Email or username",
+  "@emailOrUsername": {},
+  "indexedDbErrorTitle": "Private mode issues",
+  "@indexedDbErrorTitle": {},
+  "indexedDbErrorLong": "The message storage is unfortunately not enabled in private mode by default.\nPlease visit\n - about:config\n - set dom.indexedDB.privateBrowsing.enabled to true\nOtherwise, it is not possible to run FluffyChat.",
+  "@indexedDbErrorLong": {},
+  "switchToAccount": "Switch to account {number}",
+  "@switchToAccount": {
+    "type": "number",
+    "placeholders": {
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "nextAccount": "Next account",
+  "@nextAccount": {},
+  "previousAccount": "Previous account",
+  "@previousAccount": {},
+  "addWidget": "Add widget",
+  "@addWidget": {},
+  "widgetVideo": "Video",
+  "@widgetVideo": {},
+  "widgetEtherpad": "Text note",
+  "@widgetEtherpad": {},
+  "widgetJitsi": "Jitsi Meet",
+  "@widgetJitsi": {},
+  "widgetCustom": "Custom",
+  "@widgetCustom": {},
+  "widgetName": "Name",
+  "@widgetName": {},
+  "widgetUrlError": "This is not a valid URL.",
+  "@widgetUrlError": {},
+  "widgetNameError": "Please provide a display name.",
+  "@widgetNameError": {},
+  "errorAddingWidget": "Error adding the widget.",
+  "@errorAddingWidget": {},
+  "youRejectedTheInvitation": "You rejected the invitation",
+  "@youRejectedTheInvitation": {},
+  "youJoinedTheChat": "You joined the chat",
+  "@youJoinedTheChat": {},
+  "youAcceptedTheInvitation": "👍 You accepted the invitation",
+  "@youAcceptedTheInvitation": {},
+  "youBannedUser": "You banned {user}",
+  "@youBannedUser": {
+    "placeholders": {
+      "user": {
+        "type": "String"
+      }
+    }
+  },
+  "youHaveWithdrawnTheInvitationFor": "You have withdrawn the invitation for {user}",
+  "@youHaveWithdrawnTheInvitationFor": {
+    "placeholders": {
+      "user": {
+        "type": "String"
+      }
+    }
+  },
+  "youInvitedToBy": "📩 You have been invited via link to:\n{alias}",
+  "@youInvitedToBy": {
+    "placeholders": {
+      "alias": {
+        "type": "String"
+      }
+    }
+  },
+  "youInvitedBy": "📩 You have been invited by {user}",
+  "@youInvitedBy": {
+    "placeholders": {
+      "user": {
+        "type": "String"
+      }
+    }
+  },
+  "invitedBy": "📩 Invited by {user}",
+  "@invitedBy": {
+    "placeholders": {
+      "user": {
+        "type": "String"
+      }
+    }
+  },
+  "youInvitedUser": "📩 You invited {user}",
+  "@youInvitedUser": {
+    "placeholders": {
+      "user": {
+        "type": "String"
+      }
+    }
+  },
+  "youKicked": "👞 You kicked {user}",
+  "@youKicked": {
+    "placeholders": {
+      "user": {
+        "type": "String"
+      }
+    }
+  },
+  "youKickedAndBanned": "🙅 You kicked and banned {user}",
+  "@youKickedAndBanned": {
+    "placeholders": {
+      "user": {
+        "type": "String"
+      }
+    }
+  },
+  "youUnbannedUser": "You unbanned {user}",
+  "@youUnbannedUser": {
+    "placeholders": {
+      "user": {
+        "type": "String"
+      }
+    }
+  },
+  "hasKnocked": "🚪 {user} has knocked",
+  "@hasKnocked": {
+    "placeholders": {
+      "user": {
+        "type": "String"
+      }
+    }
+  },
+  "usersMustKnock": "Users must knock",
+  "@usersMustKnock": {},
+  "noOneCanJoin": "No one can join",
+  "@noOneCanJoin": {},
+  "userWouldLikeToChangeTheChat": "{user} would like to join the chat.",
+  "@userWouldLikeToChangeTheChat": {
+    "placeholders": {
+      "user": {
+        "type": "String"
+      }
+    }
+  },
+  "noPublicLinkHasBeenCreatedYet": "No public link has been created yet",
+  "@noPublicLinkHasBeenCreatedYet": {},
+  "knock": "Knock",
+  "@knock": {},
+  "users": "Users",
+  "@users": {},
+  "unlockOldMessages": "Unlock old messages",
+  "@unlockOldMessages": {},
+  "storeInSecureStorageDescription": "Store the recovery key in the secure storage of this device.",
+  "@storeInSecureStorageDescription": {},
+  "saveKeyManuallyDescription": "Save this key manually by triggering the system share dialog or clipboard.",
+  "@saveKeyManuallyDescription": {},
+  "storeInAndroidKeystore": "Store in Android KeyStore",
+  "@storeInAndroidKeystore": {},
+  "storeInAppleKeyChain": "Store in Apple KeyChain",
+  "@storeInAppleKeyChain": {},
+  "storeSecurlyOnThisDevice": "Store securely on this device",
+  "@storeSecurlyOnThisDevice": {},
+  "countFiles": "{count} files",
+  "@countFiles": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "user": "User",
+  "@user": {},
+  "custom": "Custom",
+  "@custom": {},
+  "foregroundServiceRunning": "This notification appears when the foreground service is running.",
+  "@foregroundServiceRunning": {},
+  "screenSharingTitle": "screen sharing",
+  "@screenSharingTitle": {},
+  "screenSharingDetail": "You are sharing your screen in FuffyChat",
+  "@screenSharingDetail": {},
+  "callingPermissions": "Calling permissions",
+  "@callingPermissions": {},
+  "callingAccount": "Calling account",
+  "@callingAccount": {},
+  "callingAccountDetails": "Allows FluffyChat to use the native android dialer app.",
+  "@callingAccountDetails": {},
+  "appearOnTop": "Appear on top",
+  "@appearOnTop": {},
+  "appearOnTopDetails": "Allows the app to appear on top (not needed if you already have Fluffychat setup as a calling account)",
+  "@appearOnTopDetails": {},
+  "otherCallingPermissions": "Microphone, camera and other FluffyChat permissions",
+  "@otherCallingPermissions": {},
+  "whyIsThisMessageEncrypted": "Why is this message unreadable?",
+  "@whyIsThisMessageEncrypted": {},
+  "noKeyForThisMessage": "This can happen if the message was sent before you have signed in to your account at this device.\n\nIt is also possible that the sender has blocked your device or something went wrong with the internet connection.\n\nAre you able to read the message on another session? Then you can transfer the message from it! Go to Settings > Devices and make sure that your devices have verified each other. When you open the room the next time and both sessions are in the foreground, the keys will be transmitted automatically.\n\nDo you not want to lose the keys when logging out or switching devices? Make sure that you have enabled the chat backup in the settings.",
+  "@noKeyForThisMessage": {},
+  "newGroup": "New group",
+  "@newGroup": {},
+  "newSpace": "New space",
+  "@newSpace": {},
+  "enterSpace": "Enter space",
+  "@enterSpace": {},
+  "enterRoom": "Enter room",
+  "@enterRoom": {},
+  "allSpaces": "All spaces",
+  "@allSpaces": {},
+  "numChats": "{number} chats",
+  "@numChats": {
+    "type": "number",
+    "placeholders": {
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "hideUnimportantStateEvents": "Hide unimportant state events",
+  "@hideUnimportantStateEvents": {},
+  "hidePresences": "Hide Status List?",
+  "@hidePresences": {},
+  "doNotShowAgain": "Do not show again",
+  "@doNotShowAgain": {},
+  "wasDirectChatDisplayName": "Empty chat (was {oldDisplayName})",
+  "@wasDirectChatDisplayName": {
+    "type": "String",
+    "placeholders": {
+      "oldDisplayName": {
+        "type": "String"
+      }
+    }
+  },
+  "newSpaceDescription": "Spaces allows you to consolidate your chats and build private or public communities.",
+  "@newSpaceDescription": {},
+  "encryptThisChat": "Encrypt this chat",
+  "@encryptThisChat": {},
+  "disableEncryptionWarning": "For security reasons you can not disable encryption in a chat, where it has been enabled before.",
+  "@disableEncryptionWarning": {},
+  "sorryThatsNotPossible": "Sorry... that is not possible",
+  "@sorryThatsNotPossible": {},
+  "deviceKeys": "Device keys:",
+  "@deviceKeys": {},
+  "reopenChat": "Reopen chat",
+  "@reopenChat": {},
+  "noBackupWarning": "Warning! Without enabling chat backup, you will lose access to your encrypted messages. It is highly recommended to enable the chat backup first before logging out.",
+  "@noBackupWarning": {},
+  "noOtherDevicesFound": "No other devices found",
+  "@noOtherDevicesFound": {},
+  "fileIsTooBigForServer": "Unable to send! The server only supports attachments up to {max}.",
+  "@fileIsTooBigForServer": {
+    "type": "String",
+    "placeholders": {
+      "max": {
+        "type": "String"
+      }
+    }
+  },
+  "fileHasBeenSavedAt": "File has been saved at {path}",
+  "@fileHasBeenSavedAt": {
+    "type": "String",
+    "placeholders": {
+      "path": {
+        "type": "String"
+      }
+    }
+  },
+  "jumpToLastReadMessage": "Jump to last read message",
+  "@jumpToLastReadMessage": {},
+  "readUpToHere": "Read up to here",
+  "@readUpToHere": {},
+  "jump": "Jump",
+  "@jump": {},
+  "openLinkInBrowser": "Open link in browser",
+  "@openLinkInBrowser": {},
+  "reportErrorDescription": "😭 Oh no. Something went wrong. If you want, you can report this bug to the developers.",
+  "@reportErrorDescription": {},
+  "report": "report",
+  "@report": {},
+  "signInWithPassword": "Sign in with password",
+  "@signInWithPassword": {},
+  "pleaseTryAgainLaterOrChooseDifferentServer": "Please try again later or choose a different server.",
+  "@pleaseTryAgainLaterOrChooseDifferentServer": {},
+  "signInWith": "Sign in with {provider}",
+  "@signInWith": {
+    "type": "String",
+    "placeholders": {
+      "provider": {
+        "type": "String"
+      }
+    }
+  },
+  "profileNotFound": "The user could not be found on the server. Maybe there is a connection problem or the user doesn't exist.",
+  "@profileNotFound": {},
+  "setTheme": "Set theme:",
+  "@setTheme": {},
+  "setColorTheme": "Set color theme:",
+  "@setColorTheme": {},
+  "invite": "Invite",
+  "@invite": {},
+  "inviteGroupChat": "📨 Invite group chat",
+  "@inviteGroupChat": {},
+  "invitePrivateChat": "📨 Invite private chat",
+  "@invitePrivateChat": {},
+  "invalidInput": "Invalid input!",
+  "@invalidInput": {},
+  "wrongPinEntered": "Wrong pin entered! Try again in {seconds} seconds...",
+  "@wrongPinEntered": {
+    "type": "String",
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "pleaseEnterANumber": "Please enter a number greater than 0",
+  "@pleaseEnterANumber": {},
+  "archiveRoomDescription": "The chat will be moved to the archive. Other users will be able to see that you have left the chat.",
+  "@archiveRoomDescription": {},
+  "roomUpgradeDescription": "The chat will then be recreated with the new room version. All participants will be notified that they need to switch to the new chat. You can find out more about room versions at https://spec.matrix.org/latest/rooms/",
+  "@roomUpgradeDescription": {},
+  "removeDevicesDescription": "You will be logged out of this device and will no longer be able to receive messages.",
+  "@removeDevicesDescription": {},
+  "banUserDescription": "The user will be banned from the chat and will not be able to enter the chat again until they are unbanned.",
+  "@banUserDescription": {},
+  "unbanUserDescription": "The user will be able to enter the chat again if they try.",
+  "@unbanUserDescription": {},
+  "kickUserDescription": "The user is kicked out of the chat but not banned. In public chats, the user can rejoin at any time.",
+  "@kickUserDescription": {},
+  "makeAdminDescription": "Once you make this user admin, you may not be able to undo this as they will then have the same permissions as you.",
+  "@makeAdminDescription": {},
+  "pushNotificationsNotAvailable": "Push notifications not available",
+  "@pushNotificationsNotAvailable": {},
+  "learnMore": "Learn more",
+  "@learnMore": {},
+  "yourGlobalUserIdIs": "Your global user-ID is: ",
+  "@yourGlobalUserIdIs": {},
+  "noUsersFoundWithQuery": "Unfortunately no user could be found with \"{query}\". Please check whether you made a typo.",
+  "@noUsersFoundWithQuery": {
+    "type": "String",
+    "placeholders": {
+      "query": {
+        "type": "String"
+      }
+    }
+  },
+  "knocking": "Knocking",
+  "@knocking": {},
+  "chatCanBeDiscoveredViaSearchOnServer": "Chat can be discovered via the search on {server}",
+  "@chatCanBeDiscoveredViaSearchOnServer": {
+    "type": "String",
+    "placeholders": {
+      "server": {
+        "type": "String"
+      }
+    }
+  },
+  "searchChatsRooms": "Search for #chats, @users...",
+  "@searchChatsRooms": {},
+  "nothingFound": "Nothing found...",
+  "@nothingFound": {},
+  "groupName": "Group name",
+  "@groupName": {},
+  "createGroupAndInviteUsers": "Create a group and invite users",
+  "@createGroupAndInviteUsers": {},
+  "groupCanBeFoundViaSearch": "Group can be found via search",
+  "@groupCanBeFoundViaSearch": {},
+  "wrongRecoveryKey": "Sorry... this does not seem to be the correct recovery key.",
+  "@wrongRecoveryKey": {},
+  "startConversation": "Start conversation",
+  "@startConversation": {},
+  "commandHint_sendraw": "Send raw json",
+  "@commandHint_sendraw": {},
+  "databaseMigrationTitle": "Database is optimized",
+  "@databaseMigrationTitle": {},
+  "databaseMigrationBody": "Please wait. This may take a moment.",
+  "@databaseMigrationBody": {},
+  "leaveEmptyToClearStatus": "Leave empty to clear your status.",
+  "@leaveEmptyToClearStatus": {},
+  "select": "Select",
+  "@select": {},
+  "searchForUsers": "Search for @users...",
+  "@searchForUsers": {},
+  "pleaseEnterYourCurrentPassword": "Please enter your current password",
+  "@pleaseEnterYourCurrentPassword": {},
+  "newPassword": "New password",
+  "@newPassword": {},
+  "pleaseChooseAStrongPassword": "Please choose a strong password",
+  "@pleaseChooseAStrongPassword": {},
+  "passwordsDoNotMatch": "Passwords do not match",
+  "@passwordsDoNotMatch": {},
+  "passwordIsWrong": "Your entered password is wrong",
+  "@passwordIsWrong": {},
+  "publicLink": "Public link",
+  "@publicLink": {},
+  "publicChatAddresses": "Public chat addresses",
+  "@publicChatAddresses": {},
+  "createNewAddress": "Create new address",
+  "@createNewAddress": {},
+  "joinSpace": "Join space",
+  "@joinSpace": {},
+  "publicSpaces": "Public spaces",
+  "@publicSpaces": {},
+  "addChatOrSubSpace": "Add chat or sub space",
+  "@addChatOrSubSpace": {},
+  "subspace": "Subspace",
+  "@subspace": {},
+  "decline": "Decline",
+  "@decline": {},
+  "thisDevice": "This device:",
+  "@thisDevice": {},
+  "initAppError": "An error occured while init the app",
+  "@initAppError": {},
+  "userRole": "User role",
+  "@userRole": {},
+  "minimumPowerLevel": "{level} is the minimum power level.",
+  "@minimumPowerLevel": {
+    "type": "String",
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
+  "searchIn": "Search in chat \"{chat}\"...",
+  "@searchIn": {
+    "type": "String",
+    "placeholders": {
+      "chat": {
+        "type": "String"
+      }
+    }
+  },
+  "searchMore": "Search more...",
+  "@searchMore": {},
+  "gallery": "Gallery",
+  "@gallery": {},
+  "files": "Files",
+  "@files": {},
+  "databaseBuildErrorBody": "Unable to build the SQlite database. The app tries to use the legacy database for now. Please report this error to the developers at {url}. The error message is: {error}",
+  "@databaseBuildErrorBody": {
+    "type": "String",
+    "placeholders": {
+      "url": {
+        "type": "String"
+      },
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "sessionLostBody": "Your session is lost. Please report this error to the developers at {url}. The error message is: {error}",
+  "@sessionLostBody": {
+    "type": "String",
+    "placeholders": {
+      "url": {
+        "type": "String"
+      },
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "restoreSessionBody": "The app now tries to restore your session from the backup. Please report this error to the developers at {url}. The error message is: {error}",
+  "@restoreSessionBody": {
+    "type": "String",
+    "placeholders": {
+      "url": {
+        "type": "String"
+      },
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "forwardMessageTo": "Forward message to {roomName}?",
+  "@forwardMessageTo": {
+    "type": "String",
+    "placeholders": {
+      "roomName": {
+        "type": "String"
+      }
+    }
+  },
+  "sendReadReceipts": "Send read receipts",
+  "@sendReadReceipts": {},
+  "sendTypingNotificationsDescription": "Other participants in a chat can see when you are typing a new message.",
+  "@sendTypingNotificationsDescription": {},
+  "sendReadReceiptsDescription": "Other participants in a chat can see when you have read a message.",
+  "@sendReadReceiptsDescription": {},
+  "formattedMessages": "Formatted messages",
+  "@formattedMessages": {},
+  "formattedMessagesDescription": "Display rich message content like bold text using markdown.",
+  "@formattedMessagesDescription": {},
+  "verifyOtherUser": "🔐 Verify other user",
+  "@verifyOtherUser": {},
+  "verifyOtherUserDescription": "If you verify another user, you can be sure that you know who you are really writing to. 💪\n\nWhen you start a verification, you and the other user will see a popup in the app. There you will then see a series of emojis or numbers that you have to compare with each other.\n\nThe best way to do this is to meet up or start a video call. 👭",
+  "@verifyOtherUserDescription": {},
+  "verifyOtherDevice": "🔐 Verify other device",
+  "@verifyOtherDevice": {},
+  "verifyOtherDeviceDescription": "When you verify another device, those devices can exchange keys, increasing your overall security. 💪 When you start a verification, a popup will appear in the app on both devices. There you will then see a series of emojis or numbers that you have to compare with each other. It's best to have both devices handy before you start the verification. 🤳",
+  "@verifyOtherDeviceDescription": {},
+  "acceptedKeyVerification": "{sender} accepted key verification",
+  "@acceptedKeyVerification": {
+    "type": "String",
+    "placeholders": {
+      "sender": {
+        "type": "String"
+      }
+    }
+  },
+  "canceledKeyVerification": "{sender} canceled key verification",
+  "@canceledKeyVerification": {
+    "type": "String",
+    "placeholders": {
+      "sender": {
+        "type": "String"
+      }
+    }
+  },
+  "completedKeyVerification": "{sender} completed key verification",
+  "@completedKeyVerification": {
+    "type": "String",
+    "placeholders": {
+      "sender": {
+        "type": "String"
+      }
+    }
+  },
+  "isReadyForKeyVerification": "{sender} is ready for key verification",
+  "@isReadyForKeyVerification": {
+    "type": "String",
+    "placeholders": {
+      "sender": {
+        "type": "String"
+      }
+    }
+  },
+  "requestedKeyVerification": "{sender} requested key verification",
+  "@requestedKeyVerification": {
+    "type": "String",
+    "placeholders": {
+      "sender": {
+        "type": "String"
+      }
+    }
+  },
+  "startedKeyVerification": "{sender} started key verification",
+  "@startedKeyVerification": {
+    "type": "String",
+    "placeholders": {
+      "sender": {
+        "type": "String"
+      }
+    }
+  },
+  "transparent": "Transparent",
+  "@transparent": {},
+  "incomingMessages": "Incoming messages",
+  "@incomingMessages": {},
+  "stickers": "Stickers",
+  "@stickers": {},
+  "discover": "Discover",
+  "@discover": {},
+  "commandHint_ignore": "Ignore the given matrix ID",
+  "@commandHint_ignore": {},
+  "commandHint_unignore": "Unignore the given matrix ID",
+  "@commandHint_unignore": {},
+  "unreadChatsInApp": "{appname}: {unread} unread chats",
+  "@unreadChatsInApp": {
+    "type": "String",
+    "placeholders": {
+      "appname": {
+        "type": "String"
+      },
+      "unread": {
+        "type": "String"
+      }
+    }
+  },
+  "noDatabaseEncryption": "Database encryption is not supported on this platform",
+  "@noDatabaseEncryption": {},
+  "thereAreCountUsersBlocked": "Right now there are {count} users blocked.",
+  "@thereAreCountUsersBlocked": {
+    "type": "String",
+    "count": {}
+  },
+  "restricted": "Restricted",
+  "@restricted": {},
+  "knockRestricted": "Knock restricted",
+  "@knockRestricted": {},
+  "goToSpace": "Go to space: {space}",
+  "@goToSpace": {
+    "type": "String",
+    "space": {}
+  },
+  "markAsUnread": "Mark as unread",
+  "userLevel": "{level} - User",
+  "@userLevel": {
+    "type": "String",
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
+  "moderatorLevel": "{level} - Moderator",
+  "@moderatorLevel": {
+    "type": "String",
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
+  "adminLevel": "{level} - Admin",
+  "@adminLevel": {
+    "type": "String",
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
+  "changeGeneralChatSettings": "Change general chat settings",
+  "inviteOtherUsers": "Invite other users to this chat",
+  "changeTheChatPermissions": "Change the chat permissions",
+  "changeTheVisibilityOfChatHistory": "Change the visibility of the chat history",
+  "changeTheCanonicalRoomAlias": "Change the main public chat address",
+  "sendRoomNotifications": "Send a @room notifications",
+  "changeTheDescriptionOfTheGroup": "Change the description of the chat",
+  "chatPermissionsDescription": "Define which power level is necessary for certain actions in this chat. The power levels 0, 50 and 100 are usually representing users, moderators and admins, but any gradation is possible.",
+  "updateInstalled": "🎉 Update {version} installed!",
+  "@updateInstalled": {
+    "type": "String",
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "changelog": "Changelog",
+  "sendCanceled": "Sending canceled",
+  "loginWithMatrixId": "Login with Matrix-ID",
+  "discoverHomeservers": "Discover homeservers",
+  "whatIsAHomeserver": "What is a homeserver?",
+  "homeserverDescription": "All your data is stored on the homeserver, just like an email provider. You can choose which homeserver you want to use, while you can still communicate with everyone. Learn more at at https://matrix.org.",
+  "doesNotSeemToBeAValidHomeserver": "Doesn't seem to be a compatible homeserver. Wrong URL?",
+  "calculatingFileSize": "Calculating file size...",
+  "prepareSendingAttachment": "Prepare sending attachment...",
+  "sendingAttachment": "Sending attachment...",
+  "generatingVideoThumbnail": "Generating video thumbnail...",
+  "compressVideo": "Compressing video...",
+  "sendingAttachmentCountOfCount": "Sending attachment {index} of {length}...",
+  "@sendingAttachmentCountOfCount": {
+    "type": "integer",
+    "placeholders": {
+      "index": {
+        "type": "int"
+      },
+      "length": {
+        "type": "int"
+      }
+    }
+  },
+  "serverLimitReached": "Server limit reached! Waiting {seconds} seconds...",
+  "@serverLimitReached": {
+    "type": "integer",
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "oneOfYourDevicesIsNotVerified": "One of your devices is not verified",
+  "noticeChatBackupDeviceVerification": "Note: When you connect all your devices to the chat backup, they are automatically verified.",
+  "continueText": "Continue",
+  "welcomeText": "Hey Hey 👋 This is FluffyChat. You can sign in to any homeserver, which is compatible with https://matrix.org. And then chat with anyone. It's a huge decentralized messaging network!",
+  "blur": "Blur:",
+  "opacity": "Opacity:",
+  "setWallpaper": "Set wallpaper",
+  "manageAccount": "Manage account",
+  "noContactInformationProvided": "Server does not provide any valid contact information",
+  "contactServerAdmin": "Contact server admin",
+  "contactServerSecurity": "Contact server security",
+  "supportPage": "Support page",
+  "serverInformation": "Server information:",
+  "name": "Name",
+  "version": "Version",
+  "website": "Website",
+  "compress": "Compress",
+  "boldText": "Bold text",
+  "italicText": "Italic text",
+  "strikeThrough": "Strikethrough",
+  "pleaseFillOut": "Please fill out",
+  "invalidUrl": "Invalid url",
+  "addLink": "Add link",
+  "unableToJoinChat": "Unable to join chat. Maybe the other party has already closed the conversation.",
+  "previous": "Previous",
+  "otherPartyNotLoggedIn": "The other party is currently not logged in and therefore cannot receive messages!",
+  "appWantsToUseForLogin": "Use '{server}' to log in",
+  "@appWantsToUseForLogin": {
+    "type": "String",
+    "placeholders": {
+      "server": {
+        "type": "String"
+      }
+    }
+  },
+  "appWantsToUseForLoginDescription": "You hereby allow the app and website to share information about you.",
+  "open": "Open",
+  "waitingForServer": "Waiting for server...",
+  "appIntroduction": "FluffyChat lets you chat with your friends across different messengers. Learn more at https://matrix.org or just tap *Continue*.",
+  "newChatRequest": "📩 New chat request",
+  "contentNotificationSettings": "Content notification settings",
+  "generalNotificationSettings": "General notification settings",
+  "roomNotificationSettings": "Room notification settings",
+  "userSpecificNotificationSettings": "User specific notification settings",
+  "otherNotificationSettings": "Other notification settings",
+  "notificationRuleContainsUserName": "Contains User Name",
+  "notificationRuleContainsUserNameDescription": "Notifies the user when a message contains their username.",
+  "notificationRuleMaster": "Mute all notifications",
+  "notificationRuleMasterDescription": "Overrides all other rules and disables all notifications.",
+  "notificationRuleSuppressNotices": "Suppress Automated Messages",
+  "notificationRuleSuppressNoticesDescription": "Suppresses notifications from automated clients like bots.",
+  "notificationRuleInviteForMe": "Invite for Me",
+  "notificationRuleInviteForMeDescription": "Notifies the user when they are invited to a room.",
+  "notificationRuleMemberEvent": "Member Event",
+  "notificationRuleMemberEventDescription": "Suppresses notifications for membership events.",
+  "notificationRuleIsUserMention": "User Mention",
+  "notificationRuleIsUserMentionDescription": "Notifies the user when they are directly mentioned in a message.",
+  "notificationRuleContainsDisplayName": "Contains Display Name",
+  "notificationRuleContainsDisplayNameDescription": "Notifies the user when a message contains their display name.",
+  "notificationRuleIsRoomMention": "Room Mention",
+  "notificationRuleIsRoomMentionDescription": "Notifies the user when there is a room mention.",
+  "notificationRuleRoomnotif": "Room Notification",
+  "notificationRuleRoomnotifDescription": "Notifies the user when a message contains '@room'.",
+  "notificationRuleTombstone": "Tombstone",
+  "notificationRuleTombstoneDescription": "Notifies the user about room deactivation messages.",
+  "notificationRuleReaction": "Reaction",
+  "notificationRuleReactionDescription": "Suppresses notifications for reactions.",
+  "notificationRuleRoomServerAcl": "Room Server ACL",
+  "notificationRuleRoomServerAclDescription": "Suppresses notifications for room server access control lists (ACL).",
+  "notificationRuleSuppressEdits": "Suppress Edits",
+  "notificationRuleSuppressEditsDescription": "Suppresses notifications for edited messages.",
+  "notificationRuleCall": "Call",
+  "notificationRuleCallDescription": "Notifies the user about calls.",
+  "notificationRuleEncryptedRoomOneToOne": "Encrypted Room One-to-One",
+  "notificationRuleEncryptedRoomOneToOneDescription": "Notifies the user about messages in encrypted one-to-one rooms.",
+  "notificationRuleRoomOneToOne": "Room One-to-One",
+  "notificationRuleRoomOneToOneDescription": "Notifies the user about messages in one-to-one rooms.",
+  "notificationRuleMessage": "Message",
+  "notificationRuleMessageDescription": "Notifies the user about general messages.",
+  "notificationRuleEncrypted": "Encrypted",
+  "notificationRuleEncryptedDescription": "Notifies the user about messages in encrypted rooms.",
+  "notificationRuleJitsi": "Jitsi",
+  "notificationRuleJitsiDescription": "Notifies the user about Jitsi widget events.",
+  "notificationRuleServerAcl": "Suppress Server ACL Events",
+  "notificationRuleServerAclDescription": "Suppresses notifications for Server ACL events.",
+  "unknownPushRule": "Unknown push rule '{rule}'",
+  "@unknownPushRule": {
+    "type": "String",
+    "placeholders": {
+      "rule": {
+        "type": "String"
+      }
+    }
+  },
+  "sentVoiceMessage": "🎙️ {duration} - Voice message from {sender}",
+  "@sentVoiceMessage": {
+    "type": "String",
+    "placeholders": {
+      "sender": {
+        "type": "String"
+      },
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "deletePushRuleCanNotBeUndone": "If you delete this notification setting, this can not be undone.",
+  "more": "More",
+  "shareKeysWith": "Share keys with...",
+  "shareKeysWithDescription": "Which devices should be trusted so that they can read along your messages in encrypted chats?",
+  "allDevices": "All devices",
+  "crossVerifiedDevicesIfEnabled": "Cross verified devices if enabled",
+  "crossVerifiedDevices": "Cross verified devices",
+  "verifiedDevicesOnly": "Verified devices only",
+  "takeAPhoto": "Take a photo",
+  "recordAVideo": "Record a video",
+  "optionalMessage": "(Optional) message...",
+  "notSupportedOnThisDevice": "Not supported on this device",
+  "enterNewChat": "Enter new chat",
+  "approve": "Approve",
+  "youHaveKnocked": "You have knocked",
+  "pleaseWaitUntilInvited": "Please wait now, until someone from the room invites you.",
+  "commandHint_logout": "Logout your current device",
+  "commandHint_logoutall": "Logout all active devices",
+  "displayNavigationRail": "Show navigation rail on mobile",
+  "accountInformation": "Account information",
+  "addGroupDescription": "Add a chat description",
+  "addNewFriend": "Add new friend",
+  "alreadyHaveAnAccount": "Already have an account?",
+  "createNewGroup": "Create a new chat",
+  "editChatPermissions": "Edit chat permissions",
+  "ignore": "Block",
+  "ignoredUsers": "Blocked users",
+  "writeAMessageLangCodes": "Type in {l1} or {l2}...",
+  "@writeAMessageLangCodes": {
+    "type": "String",
+    "placeholders": {
+      "l1": {
+        "type": "String"
+      },
+      "l2": {
+        "type": "String"
+      }
+    }
+  },
+  "requests": "Requests",
+  "allCorrect": "That's how I would say it! Nice!",
+  "newWayAllGood": "That's not how I would have said it but it looks good!",
+  "othersAreBetter": "Hm, there might be a better way to say that.",
+  "holdForInfo": "Click and hold for word info.",
+  "greenFeedback": "That's what I would put!",
+  "yellowFeedback": "Hm, you can try that and see if it works! To use this word, just click it again.",
+  "redFeedback": "I don't think that's right...",
+  "itInstructionsTitle": "I can help you translate!",
+  "itInstructionsBody": "You can click and hold choices for word info.",
+  "oneday": "Last 24 hours",
+  "oneweek": "Last 7 days",
+  "onemonth": "Past month",
+  "gaTooltip": "L2 use with grammar assistance",
+  "taTooltip": "L2 use with translation assistance",
+  "unTooltip": "Other",
+  "interactiveTranslatorSliderHeader": "Interactive Translator",
+  "interactiveGrammarSliderHeader": "Interactive Grammar Checker",
+  "interactiveTranslatorNotAllowed": "Disabled",
+  "interactiveTranslatorAllowed": "Student Choice",
+  "interactiveTranslatorRequired": "Required",
+  "notYetSet": "Not yet set",
+  "multiLingualSpace": "Multilingual Space",
+  "myLearning": "My Analytics",
+  "waTooltip": "L2 use without assistance",
+  "changeDateRange": "Change date range",
+  "classDescription": "Description",
+  "addStudents": "Invite users by link or code",
+  "copyClassLink": "Copy invite link",
+  "copyClassLinkDesc": "Clicking this link will take users to the app, direct them to make an account and they will automatically join this space.",
+  "copyClassCode": "Copy invite code",
+  "inviteStudentByUserName": "Invite users by username",
+  "languageSettings": "Language Settings",
+  "languageSettingsDesc": "Edit space languages and proficiency level.",
+  "interactiveTranslator": "Translation assistance",
+  "shareVideo": "Share Video",
+  "shareVideoDesc": "Toggle this on to allow students to share videos in chats.",
+  "shareFiles": "Share Files",
+  "selectLanguageLevel": "Select language level",
+  "noIdenticalLanguages": "Please choose different base and target languages",
+  "iWantALanguagePartnerFrom": "Is from:",
+  "worldWide": "Worldwide",
+  "noResults": "No results! Try broadening your search.",
+  "searchBy": "Search by country and languages",
+  "iWantAConversationPartner": "I want a conversation partner who",
+  "iWantALanguagePartnerWhoSpeaks": "Speaks:",
+  "iWantALanguagePartnerWhoIsLearning": "Is learning:",
+  "joinWithClassCode": "Join space",
+  "joinWithClassCodeHint": "Enter invite code",
+  "unableToFindClass": "There's no space with that code. Please try again.",
+  "languageLevelPreA1": "True Beginner (Pre A1)",
+  "languageLevelA1": "Beginner (A1)",
+  "languageLevelA2": "Elementary (A2)",
+  "languageLevelB1": "Intermediate (B1)",
+  "languageLevelB2": "Upper Intermediate (B2)",
+  "languageLevelC1": "Advanced (C1)",
+  "languageLevelC2": "Mastery (C2)",
+  "changeTheNameOfTheClass": "Change the name",
+  "changeTheNameOfTheChat": "Change the name of the chat",
+  "askPangeaBot": "Ask Pangea Bot for a contextual definition.",
+  "sorryNoResults": "Sorry, no results.",
+  "ignoreInThisText": "Ignore",
+  "helpMeTranslate": "Yes!",
+  "needsItShortMessage": "Out of target",
+  "needsItMessage": "Wait, that's not {targetLanguage}! Do you need help translating?",
+  "@needsItMessage": {
+    "type": "String",
+    "placeholders": {
+      "targetLanguage": {
+        "type": "String"
+      }
+    }
+  },
+  "needsIgcMessage": "This message has a grammar error.",
+  "tokenTranslationTitle": "A word is in your base language.",
+  "spanTranslationDesc": "See possible translations below.",
+  "spanTranslationTitle": "Some words are in your base language.",
+  "l1SpanAndGrammarTitle": "Outside target language",
+  "l1SpanAndGrammarDesc": "This could in your base language or it could be a grammar error.",
+  "otherTitle": "You have an error.",
+  "otherDesc": "See possible corrections below.",
+  "countryInformation": "My country",
+  "myLanguages": "My base and target languages",
+  "targetLanguage": "Target Language",
+  "sourceLanguage": "Base language",
+  "languagesISpeak": "Languages I speak",
+  "updateLanguage": "My languages",
+  "whatLanguageYouWantToLearn": "What language do you want to learn?",
+  "whatIsYourBaseLanguage": "What is your base language?",
+  "saveChanges": "Save changes",
+  "publicProfileTitle": "Allow my profile to be found in search",
+  "publicProfileDesc": "By turning on, you enable other users to find your profile in the global search bar and send requests to chat. At this point, you can choose to accept or deny the request.",
+  "errorDisableIT": "Translation assistance is turned off.",
+  "errorDisableIGC": "Grammar assistance is turned off.",
+  "errorDisableLanguageAssistance": "Translation assistance and grammar assistance are turned off.",
+  "errorDisableITUserDesc": "Click here to update translation assistance settings",
+  "errorDisableIGCUserDesc": "Click here to update grammar assistance settings",
+  "errorDisableLanguageAssistanceUserDesc": "Click here to update translation assistance and grammar assistance settings",
+  "errorDisableITClassDesc": "Translation assistance is turned off for the space that this chat is in.",
+  "errorDisableIGCClassDesc": "Grammar assistance is turned off for the space that this chat is in.",
+  "errorDisableLanguageAssistanceClassDesc": "Translation assistance and grammar assistance are turned off for the space that this chat is in.",
+  "itIsDisabled": "Interactive Translation is disabled",
+  "igcIsDisabled": "Interactive Grammar Checking is disabled",
+  "goToLearningSettings": "Go to Learning Settings",
+  "error405Title": "Languages not set",
+  "error405Desc": "Please set your languages in Main Menu > Learning Settings.",
+  "loginOrSignup": "Sign in with",
+  "iAgreeToThe": "I agree to the ",
+  "termsAndConditions": "Terms and Conditions",
+  "andCertifyIAmAtLeast13YearsOfAge": " and certify I am at least 16 years of age.",
+  "error502504Title": "Wow, there are a lot of students online!",
+  "error502504Desc": "Translation and grammar tools may be slow or unavailable while the Pangea bots catch up.",
+  "error404Title": "Translation error!",
+  "error404Desc": "Pangea Bot isn't sure how to translate that...",
+  "errorPleaseRefresh": "We're looking into it! Please reload and try again.",
+  "findAClass": "Find a class (coming soon)",
+  "toggleIT": "Interactive Translation",
+  "toggleIGC": "Interactive Grammar Checking",
+  "toggleToolSettingsDescription": "Here you can toggle your individual language tool settings.",
+  "connectedToStaging": "Connected to Staging",
+  "learningSettings": "Learning settings",
+  "classNameRequired": "Please enter a space name",
+  "sendVoiceNotes": "Send Voice Notes",
+  "sendVoiceNotesDesc": "Toggle this on to allow students to send voice notes in chats.",
+  "chatTopic": "Chat topic",
+  "chatTopicDesc": "Set a chat topic",
+  "inviteStudentByUserNameDesc": "If your student already has an account, you can search for them.",
+  "classRoster": "Participants",
+  "almostPerfect": "That seems right! Here's what I would have said.",
+  "prettyGood": "Pretty good! Here's what I would have said.",
+  "letMeThink": "Hmm, let's see how you did!",
+  "clickMessageTitle": "Need help?",
+  "clickMessageBody": "Click a message for language tools like translation, play back and more!",
+  "understandingMessagesTitle": "Definitions and translations!",
+  "understandingMessagesBody": "Click underlined words for definitions. Translate with message options (upper right).",
+  "allDone": "All done!",
+  "vocab": "Vocab",
+  "low": "We have evidence the user does not understand these words.",
+  "medium": "These words have been used. It is unclear if the words are fully understood or not.",
+  "high": "We have evidence the user understands these words.",
+  "unknownProficiency": "These words have not been used in Pangea Chat.",
+  "changeView": "Switch views.",
+  "clearAll": "Clear all words?",
+  "generateVocabulary": "Generate vocabulary from title and description",
+  "generatePrompts": "Generate prompts",
+  "subscribe": "Subscribe",
+  "getAccess": "Subscribe now!",
+  "subscriptionDesc": "Messaging is free! Subscribe to unlock interactive translation, grammar checking and learning analytics.",
+  "subscriptionManagement": "Subscription Management",
+  "currentSubscription": "Current Subscription",
+  "changeSubscription": "Change your subscription",
+  "cancelSubscription": "Cancel your subscription",
+  "selectYourPlan": "Select Your Plan",
+  "subsciptionPlatformTooltip": "Please login to your original device to manage your subscription plan",
+  "subscriptionManagementUnavailable": "Subscription management not available",
+  "paymentMethod": "Payment Method",
+  "paymentHistory": "Payment History",
+  "emptyChatDownloadWarning": "Cannot download empty chat",
+  "update": "Update",
+  "updateDesc": "You can now update this app from {localVersion} to {storeVersion}",
+  "@updateDesc": {
+    "type": "String",
+    "placeholders": {
+      "storeVersion": {
+        "type": "String"
+      },
+      "localVersion": {
+        "type": "String"
+      }
+    }
+  },
+  "maybeLater": "Maybe Later",
+  "mainMenu": "Main Menu",
+  "toggleImmersionMode": "Immersion Mode",
+  "toggleImmersionModeDesc": "When enabled, all messages are displayed in your target language. This setting is most useful in language exchanges.",
+  "itToggleDescription": "This language learning tool will identify words in your base language and help you translate them to your target language. Though rare, the AI can make translation errors.",
+  "igcToggleDescription": "This language learning tool will identify common spelling, grammar and punctuation errors in your message and suggest corrections. Though rare, the AI can make correction errors.",
+  "sendOnEnterDescription": "Turn this off to be able to add line spaces in messages. When the toggle is off on the browser app, you can press Shift + Enter to start a new line. When the toggle is off on mobile apps, just Enter will start a new line.",
+  "alreadyInClass": "You are already in this space.",
+  "pleaseLoginFirst": "Please login or sign up first and then you will be added to your space.",
+  "originalMessage": "Original Message",
+  "sentMessage": "Sent Message",
+  "useType": "Use Type",
+  "notAvailable": "Not Available",
+  "taAndGaTooltip": "L2 use with translation assistance and grammar assistance",
+  "definitionsToolName": "Word Definitions",
+  "messageTranslationsToolName": "Message Translations",
+  "definitionsToolDescription": "When enabled, words underlined in blue can be clicked for definitions. Click messages to access definitions.",
+  "translationsToolDescrption": "When enabled, click a message and the translation icon to see a message in your base language.",
+  "welcomeBack": "Welcome back! If you were part of the 2023-2024 pilot, please contact us for your special pilot subscription. If you are a teacher who has (or whose institution has) purchased licenses for your class, contact us for your teacher subscription.",
+  "createNewClass": "New class space",
+  "kickAllStudents": "Kick All Students",
+  "kickAllStudentsConfirmation": "Are you sure you want to kick all students?",
+  "inviteAllStudents": "Invite All Students",
+  "inviteAllStudentsConfirmation": "Are you sure you want to invite all students?",
+  "inviteStudentsFromOtherClasses": "Invite students from other spaces",
+  "inviteUsersFromPangea": "Add admins",
+  "redeemPromoCode": "Redeem Promo Code",
+  "enterPromoCode": "Enter Promo Code",
+  "downloadTxtFile": "Download Text File",
+  "downloadCSVFile": "Download CSV File",
+  "promotionalSubscriptionDesc": "You currently have a lifetime promotional subscription. Message support@pangea.chat for help changing your subscription.",
+  "originalSubscriptionPlatform": "Subscription purchased through {purchasePlatform}",
+  "@originalSubscriptionPlatform": {
+    "placeholders": {
+      "purchasePlatform": {
+        "type": "String"
+      }
+    }
+  },
+  "oneWeekTrial": "One Week Trial",
+  "creatingSpacePleaseWait": "Creating space. Please wait...",
+  "downloadXLSXFile": "Download Excel File",
+  "abDisplayName": "Abkhaz",
+  "aaDisplayName": "Afar",
+  "afDisplayName": "Afrikaans",
+  "akDisplayName": "Akan",
+  "sqDisplayName": "Albanian",
+  "amDisplayName": "Amharic",
+  "arDisplayName": "Arabic",
+  "anDisplayName": "Aragonese",
+  "hyDisplayName": "Armenian",
+  "asDisplayName": "Assamese",
+  "avDisplayName": "Avaric",
+  "aeDisplayName": "Avestan",
+  "ayDisplayName": "Aymara",
+  "azDisplayName": "Azerbaijani",
+  "bmDisplayName": "Bambara",
+  "baDisplayName": "Bashkir",
+  "euDisplayName": "Basque",
+  "beDisplayName": "Belarusian",
+  "bnDisplayName": "Bengali",
+  "bhDisplayName": "Bihari",
+  "biDisplayName": "Bislama",
+  "bsDisplayName": "Bosnian",
+  "brDisplayName": "Breton",
+  "bgDisplayName": "Bulgarian",
+  "myDisplayName": "Burmese",
+  "caDisplayName": "Catalan, Valencian",
+  "chDisplayName": "Chamorro",
+  "ceDisplayName": "Chechen",
+  "nyDisplayName": "Chichewa, Chewa, Nyanja",
+  "zhDisplayName": "Chinese",
+  "cvDisplayName": "Chuvash",
+  "kwDisplayName": "Cornish",
+  "coDisplayName": "Corsican",
+  "crDisplayName": "Cree",
+  "hrDisplayName": "Croatian",
+  "csDisplayName": "Czech",
+  "daDisplayName": "Danish",
+  "dvDisplayName": "Divehi; Dhivehi; Maldivian;",
+  "nlDisplayName": "Dutch",
+  "enDisplayName": "English",
+  "eoDisplayName": "Esperanto",
+  "etDisplayName": "Estonian",
+  "eeDisplayName": "Ewe",
+  "foDisplayName": "Faroese",
+  "fjDisplayName": "Fijian",
+  "fiDisplayName": "Finnish",
+  "frDisplayName": "French",
+  "ffDisplayName": "Fula; Fulah; Pulaar; Pular",
+  "glDisplayName": "Galician",
+  "kaDisplayName": "Georgian",
+  "deDisplayName": "German",
+  "elDisplayName": "Greek, Modern",
+  "gnDisplayName": "Guaraní",
+  "guDisplayName": "Gujarati",
+  "htDisplayName": "Haitian, Haitian Creole",
+  "haDisplayName": "Hausa",
+  "heDisplayName": "Hebrew (modern)",
+  "hzDisplayName": "Herero",
+  "hiDisplayName": "Hindi",
+  "hoDisplayName": "Hiri Motu",
+  "huDisplayName": "Hungarian",
+  "iaDisplayName": "Interlingua",
+  "idDisplayName": "Indonesian",
+  "ieDisplayName": "Interlingue",
+  "gaDisplayName": "Irish",
+  "igDisplayName": "Igbo",
+  "ikDisplayName": "Inupiaq",
+  "ioDisplayName": "Ido",
+  "isDisplayName": "Icelandic",
+  "itDisplayName": "Italian",
+  "iuDisplayName": "Inuktitut",
+  "jaDisplayName": "Japanese",
+  "jvDisplayName": "Javanese",
+  "klDisplayName": "Kalaallisut, Greenlandic",
+  "knDisplayName": "Kannada",
+  "krDisplayName": "Kanuri",
+  "ksDisplayName": "Kashmiri",
+  "kkDisplayName": "Kazakh",
+  "kmDisplayName": "Khmer",
+  "kiDisplayName": "Kikuyu, Gikuyu",
+  "rwDisplayName": "Kinyarwanda",
+  "kyDisplayName": "Kirghiz, Kyrgyz",
+  "kvDisplayName": "Komi",
+  "kgDisplayName": "Kongo",
+  "koDisplayName": "Korean",
+  "kuDisplayName": "Kurdish",
+  "kjDisplayName": "Kwanyama, Kuanyama",
+  "laDisplayName": "Latin",
+  "lbDisplayName": "Luxembourgish, Letzeburgesch",
+  "lgDisplayName": "Luganda",
+  "liDisplayName": "Limburgish, Limburgan, Limburger",
+  "lnDisplayName": "Lingala",
+  "loDisplayName": "Lao",
+  "ltDisplayName": "Lithuanian",
+  "luDisplayName": "Luba-Katanga",
+  "lvDisplayName": "Latvian",
+  "gvDisplayName": "Manx",
+  "mkDisplayName": "Macedonian",
+  "mgDisplayName": "Malagasy",
+  "msDisplayName": "Malay",
+  "mlDisplayName": "Malayalam",
+  "mtDisplayName": "Maltese",
+  "miDisplayName": "Māori",
+  "mrDisplayName": "Marathi (Marāṭhī)",
+  "mhDisplayName": "Marshallese",
+  "mnDisplayName": "Mongolian",
+  "naDisplayName": "Nauru",
+  "nvDisplayName": "Navajo, Navaho",
+  "nbDisplayName": "Norwegian Bokmål",
+  "ndDisplayName": "North Ndebele",
+  "neDisplayName": "Nepali",
+  "ngDisplayName": "Ndonga",
+  "nnDisplayName": "Norwegian Nynorsk",
+  "noDisplayName": "Norwegian",
+  "iiDisplayName": "Nuosu",
+  "nrDisplayName": "South Ndebele",
+  "ocDisplayName": "Occitan",
+  "ojDisplayName": "Ojibwe, Ojibwa",
+  "cuDisplayName": "Old Church Slavonic, Church Slavic, Church Slavonic, Old Bulgarian, Old Slavonic",
+  "omDisplayName": "Oromo",
+  "orDisplayName": "Oriya",
+  "osDisplayName": "Ossetian, Ossetic",
+  "paDisplayName": "Panjabi, Punjabi",
+  "piDisplayName": "Pāli",
+  "faDisplayName": "Persian",
+  "plDisplayName": "Polish",
+  "psDisplayName": "Pashto, Pushto",
+  "ptDisplayName": "Portuguese",
+  "quDisplayName": "Quechua",
+  "rmDisplayName": "Romansh",
+  "rnDisplayName": "Kirundi",
+  "roDisplayName": "Romanian, Moldavian, Moldovan",
+  "ruDisplayName": "Russian",
+  "saDisplayName": "Sanskrit (Saṁskṛta)",
+  "scDisplayName": "Sardinian",
+  "sdDisplayName": "Sindhi",
+  "seDisplayName": "Northern Sami",
+  "smDisplayName": "Samoan",
+  "sgDisplayName": "Sango",
+  "srDisplayName": "Serbian",
+  "gdDisplayName": "Scottish Gaelic, Gaelic",
+  "snDisplayName": "Shona",
+  "siDisplayName": "Sinhala, Sinhalese",
+  "skDisplayName": "Slovak",
+  "slDisplayName": "Slovene",
+  "soDisplayName": "Somali",
+  "stDisplayName": "Southern Sotho",
+  "esDisplayName": "Spanish",
+  "suDisplayName": "Sundanese",
+  "swDisplayName": "Swahili",
+  "ssDisplayName": "Swati",
+  "svDisplayName": "Swedish",
+  "taDisplayName": "Tamil",
+  "teDisplayName": "Telugu",
+  "tgDisplayName": "Tajik",
+  "thDisplayName": "Thai",
+  "tiDisplayName": "Tigrinya",
+  "boDisplayName": "Tibetan Standard, Tibetan, Central",
+  "tkDisplayName": "Turkmen",
+  "tlDisplayName": "Tagalog",
+  "tnDisplayName": "Tswana",
+  "toDisplayName": "Tonga (Tonga Islands)",
+  "trDisplayName": "Turkish",
+  "tsDisplayName": "Tsonga",
+  "ttDisplayName": "Tatar",
+  "twDisplayName": "Twi",
+  "tyDisplayName": "Tahitian",
+  "ugDisplayName": "Uighur, Uyghur",
+  "ukDisplayName": "Ukrainian",
+  "urDisplayName": "Urdu",
+  "uzDisplayName": "Uzbek",
+  "veDisplayName": "Venda",
+  "viDisplayName": "Vietnamese",
+  "voDisplayName": "Volapük",
+  "waDisplayName": "Walloon",
+  "cyDisplayName": "Welsh",
+  "woDisplayName": "Wolof",
+  "fyDisplayName": "Western Frisian",
+  "xhDisplayName": "Xhosa",
+  "yiDisplayName": "Yiddish",
+  "yoDisplayName": "Yoruba",
+  "zaDisplayName": "Zhuang, Chuang",
+  "unkDisplayName": "Unknown",
+  "zuDisplayName": "Zulu",
+  "hawDisplayName": "Hawaiian",
+  "hmnDisplayName": "Hmong",
+  "multiDisplayName": "Multi",
+  "cebDisplayName": "Cebuano",
+  "dzDisplayName": "Dzongkha",
+  "iwDisplayName": "Hebrew",
+  "jwDisplayName": "Javanese",
+  "moDisplayName": "Moldavian",
+  "shDisplayName": "Serbo-Croatian",
+  "wwCountryDisplayName": "World Wide",
+  "afCountryDisplayName": "Afghanistan",
+  "axCountryDisplayName": "Aland Islands",
+  "alCountryDisplayName": "Albania",
+  "dzCountryDisplayName": "Algeria",
+  "asCountryDisplayName": "American Samoa",
+  "adCountryDisplayName": "Andorra",
+  "aoCountryDisplayName": "Angola",
+  "aiCountryDisplayName": "Anguilla",
+  "agCountryDisplayName": "Antigua and Barbuda",
+  "arCountryDisplayName": "Argentina",
+  "amCountryDisplayName": "Armenia",
+  "awCountryDisplayName": "Aruba",
+  "acCountryDisplayName": "Ascension Island",
+  "auCountryDisplayName": "Australia",
+  "atCountryDisplayName": "Austria",
+  "azCountryDisplayName": "Azerbaijan",
+  "bsCountryDisplayName": "Bahamas",
+  "bhCountryDisplayName": "Bahrain",
+  "bdCountryDisplayName": "Bangladesh",
+  "bbCountryDisplayName": "Barbados",
+  "byCountryDisplayName": "Belarus",
+  "beCountryDisplayName": "Belgium",
+  "bzCountryDisplayName": "Belize",
+  "bjCountryDisplayName": "Benin",
+  "bmCountryDisplayName": "Bermuda",
+  "btCountryDisplayName": "Bhutan",
+  "boCountryDisplayName": "Bolivia",
+  "baCountryDisplayName": "Bosnia and Herzegovina",
+  "bwCountryDisplayName": "Botswana",
+  "brCountryDisplayName": "Brazil",
+  "ioCountryDisplayName": "British Indian Ocean Territory",
+  "vgCountryDisplayName": "British Virgin Islands",
+  "bnCountryDisplayName": "Brunei",
+  "bgCountryDisplayName": "Bulgaria",
+  "bfCountryDisplayName": "Burkina Faso",
+  "biCountryDisplayName": "Burundi",
+  "khCountryDisplayName": "Cambodia",
+  "cmCountryDisplayName": "Cameroon",
+  "caCountryDisplayName": "Canada",
+  "cvCountryDisplayName": "Cape Verde",
+  "bqCountryDisplayName": "Caribbean Netherlands",
+  "kyCountryDisplayName": "Cayman Islands",
+  "cfCountryDisplayName": "Central African Republic",
+  "tdCountryDisplayName": "Chad",
+  "clCountryDisplayName": "Chile",
+  "cnCountryDisplayName": "China",
+  "cxCountryDisplayName": "Christmas Island",
+  "ccCountryDisplayName": "Cocos [Keeling] Islands",
+  "coCountryDisplayName": "Colombia",
+  "kmCountryDisplayName": "Comoros",
+  "cdCountryDisplayName": "Democratic Republic Congo",
+  "cgCountryDisplayName": "Republic of Congo",
+  "ckCountryDisplayName": "Cook Islands",
+  "crCountryDisplayName": "Costa Rica",
+  "ciCountryDisplayName": "Côte d'Ivoire",
+  "hrCountryDisplayName": "Croatia",
+  "cuCountryDisplayName": "Cuba",
+  "cwCountryDisplayName": "Curaçao",
+  "cyCountryDisplayName": "Cyprus",
+  "czCountryDisplayName": "Czech Republic",
+  "dkCountryDisplayName": "Denmark",
+  "djCountryDisplayName": "Djibouti",
+  "dmCountryDisplayName": "Dominica",
+  "doCountryDisplayName": "Dominican Republic",
+  "tlCountryDisplayName": "East Timor",
+  "ecCountryDisplayName": "Ecuador",
+  "egCountryDisplayName": "Egypt",
+  "svCountryDisplayName": "El Salvador",
+  "gqCountryDisplayName": "Equatorial Guinea",
+  "erCountryDisplayName": "Eritrea",
+  "eeCountryDisplayName": "Estonia",
+  "szCountryDisplayName": "Eswatini",
+  "etCountryDisplayName": "Ethiopia",
+  "fkCountryDisplayName": "Falkland Islands",
+  "foCountryDisplayName": "Faroe Islands",
+  "fjCountryDisplayName": "Fiji",
+  "fiCountryDisplayName": "Finland",
+  "frCountryDisplayName": "France",
+  "gfCountryDisplayName": "French Guiana",
+  "pfCountryDisplayName": "French Polynesia",
+  "gaCountryDisplayName": "Gabon",
+  "gmCountryDisplayName": "Gambia",
+  "geCountryDisplayName": "Georgia",
+  "deCountryDisplayName": "Germany",
+  "ghCountryDisplayName": "Ghana",
+  "giCountryDisplayName": "Gibraltar",
+  "grCountryDisplayName": "Greece",
+  "glCountryDisplayName": "Greenland",
+  "gdCountryDisplayName": "Grenada",
+  "gpCountryDisplayName": "Guadeloupe",
+  "guCountryDisplayName": "Guam",
+  "gtCountryDisplayName": "Guatemala",
+  "ggCountryDisplayName": "Guernsey",
+  "gnCountryDisplayName": "Guinea Conakry",
+  "gwCountryDisplayName": "Guinea-Bissau",
+  "gyCountryDisplayName": "Guyana",
+  "htCountryDisplayName": "Haiti",
+  "hmCountryDisplayName": "Heard Island and McDonald Islands",
+  "hnCountryDisplayName": "Honduras",
+  "hkCountryDisplayName": "Hong Kong",
+  "huCountryDisplayName": "Hungary",
+  "isCountryDisplayName": "Iceland",
+  "inCountryDisplayName": "India",
+  "idCountryDisplayName": "Indonesia",
+  "irCountryDisplayName": "Iran",
+  "iqCountryDisplayName": "Iraq",
+  "ieCountryDisplayName": "Ireland",
+  "imCountryDisplayName": "Isle of Man",
+  "ilCountryDisplayName": "Israel",
+  "itCountryDisplayName": "Italy",
+  "jmCountryDisplayName": "Jamaica",
+  "jpCountryDisplayName": "Japan",
+  "jeCountryDisplayName": "Jersey",
+  "joCountryDisplayName": "Jordan",
+  "kzCountryDisplayName": "Kazakhstan",
+  "keCountryDisplayName": "Kenya",
+  "kiCountryDisplayName": "Kiribati",
+  "xkCountryDisplayName": "Kosovo",
+  "kwCountryDisplayName": "Kuwait",
+  "kgCountryDisplayName": "Kyrgyzstan",
+  "laCountryDisplayName": "Laos",
+  "lvCountryDisplayName": "Latvia",
+  "lbCountryDisplayName": "Lebanon",
+  "lsCountryDisplayName": "Lesotho",
+  "lrCountryDisplayName": "Liberia",
+  "lyCountryDisplayName": "Libya",
+  "liCountryDisplayName": "Liechtenstein",
+  "ltCountryDisplayName": "Lithuania",
+  "luCountryDisplayName": "Luxembourg",
+  "moCountryDisplayName": "Macau",
+  "mkCountryDisplayName": "Macedonia",
+  "mgCountryDisplayName": "Madagascar",
+  "mwCountryDisplayName": "Malawi",
+  "myCountryDisplayName": "Malaysia",
+  "mvCountryDisplayName": "Maldives",
+  "mlCountryDisplayName": "Mali",
+  "mtCountryDisplayName": "Malta",
+  "mhCountryDisplayName": "Marshall Islands",
+  "mqCountryDisplayName": "Martinique",
+  "mrCountryDisplayName": "Mauritania",
+  "muCountryDisplayName": "Mauritius",
+  "ytCountryDisplayName": "Mayotte",
+  "mxCountryDisplayName": "Mexico",
+  "fmCountryDisplayName": "Micronesia",
+  "mdCountryDisplayName": "Moldova",
+  "mcCountryDisplayName": "Monaco",
+  "mnCountryDisplayName": "Mongolia",
+  "meCountryDisplayName": "Montenegro",
+  "msCountryDisplayName": "Montserrat",
+  "maCountryDisplayName": "Morocco",
+  "mzCountryDisplayName": "Mozambique",
+  "mmCountryDisplayName": "Myanmar (Burma)",
+  "naCountryDisplayName": "Namibia",
+  "nrCountryDisplayName": "Nauru",
+  "npCountryDisplayName": "Nepal",
+  "nlCountryDisplayName": "Netherlands",
+  "ncCountryDisplayName": "New Caledonia",
+  "nzCountryDisplayName": "New Zealand",
+  "niCountryDisplayName": "Nicaragua",
+  "neCountryDisplayName": "Niger",
+  "ngCountryDisplayName": "Nigeria",
+  "nuCountryDisplayName": "Niue",
+  "nfCountryDisplayName": "Norfolk Island",
+  "kpCountryDisplayName": "North Korea",
+  "mpCountryDisplayName": "Northern Mariana Islands",
+  "noCountryDisplayName": "Norway",
+  "omCountryDisplayName": "Oman",
+  "pkCountryDisplayName": "Pakistan",
+  "pwCountryDisplayName": "Palau",
+  "psCountryDisplayName": "Palestinian Territories",
+  "paCountryDisplayName": "Panama",
+  "pgCountryDisplayName": "Papua New Guinea",
+  "pyCountryDisplayName": "Paraguay",
+  "peCountryDisplayName": "Peru",
+  "phCountryDisplayName": "Philippines",
+  "plCountryDisplayName": "Poland",
+  "ptCountryDisplayName": "Portugal",
+  "prCountryDisplayName": "Puerto Rico",
+  "qaCountryDisplayName": "Qatar",
+  "reCountryDisplayName": "Réunion",
+  "roCountryDisplayName": "Romania",
+  "ruCountryDisplayName": "Russia",
+  "rwCountryDisplayName": "Rwanda",
+  "blCountryDisplayName": "Saint Barthélemy",
+  "shCountryDisplayName": "Saint Helena",
+  "knCountryDisplayName": "St. Kitts",
+  "lcCountryDisplayName": "St. Lucia",
+  "mfCountryDisplayName": "Saint Martin",
+  "pmCountryDisplayName": "Saint Pierre and Miquelon",
+  "vcCountryDisplayName": "St. Vincent",
+  "wsCountryDisplayName": "Samoa",
+  "smCountryDisplayName": "San Marino",
+  "stCountryDisplayName": "São Tomé and Príncipe",
+  "saCountryDisplayName": "Saudi Arabia",
+  "snCountryDisplayName": "Senegal",
+  "rsCountryDisplayName": "Serbia",
+  "scCountryDisplayName": "Seychelles",
+  "slCountryDisplayName": "Sierra Leone",
+  "sgCountryDisplayName": "Singapore",
+  "sxCountryDisplayName": "Sint Maarten",
+  "skCountryDisplayName": "Slovakia",
+  "siCountryDisplayName": "Slovenia",
+  "sbCountryDisplayName": "Solomon Islands",
+  "soCountryDisplayName": "Somalia",
+  "zaCountryDisplayName": "South Africa",
+  "gsCountryDisplayName": "South Georgia and the South Sandwich Islands",
+  "krCountryDisplayName": "South Korea",
+  "ssCountryDisplayName": "South Sudan",
+  "esCountryDisplayName": "Spain",
+  "lkCountryDisplayName": "Sri Lanka",
+  "sdCountryDisplayName": "Sudan",
+  "srCountryDisplayName": "Suriname",
+  "sjCountryDisplayName": "Svalbard and Jan Mayen",
+  "seCountryDisplayName": "Sweden",
+  "chCountryDisplayName": "Switzerland",
+  "syCountryDisplayName": "Syria",
+  "twCountryDisplayName": "Taiwan",
+  "tjCountryDisplayName": "Tajikistan",
+  "tzCountryDisplayName": "Tanzania",
+  "thCountryDisplayName": "Thailand",
+  "tgCountryDisplayName": "Togo",
+  "tkCountryDisplayName": "Tokelau",
+  "toCountryDisplayName": "Tonga",
+  "ttCountryDisplayName": "Trinidad/Tobago",
+  "tnCountryDisplayName": "Tunisia",
+  "trCountryDisplayName": "Turkey",
+  "tmCountryDisplayName": "Turkmenistan",
+  "tcCountryDisplayName": "Turks and Caicos Islands",
+  "tvCountryDisplayName": "Tuvalu",
+  "viCountryDisplayName": "U.S. Virgin Islands",
+  "ugCountryDisplayName": "Uganda",
+  "uaCountryDisplayName": "Ukraine",
+  "aeCountryDisplayName": "United Arab Emirates",
+  "gbCountryDisplayName": "United Kingdom",
+  "usCountryDisplayName": "United States",
+  "uyCountryDisplayName": "Uruguay",
+  "uzCountryDisplayName": "Uzbekistan",
+  "vuCountryDisplayName": "Vanuatu",
+  "vaCountryDisplayName": "Vatican City",
+  "veCountryDisplayName": "Venezuela",
+  "vnCountryDisplayName": "Vietnam",
+  "wfCountryDisplayName": "Wallis and Futuna",
+  "ehCountryDisplayName": "Western Sahara",
+  "yeCountryDisplayName": "Yemen",
+  "zmCountryDisplayName": "Zambia",
+  "zwCountryDisplayName": "Zimbabwe",
+  "pay": "Pay",
+  "allPrivateChats": "Direct chats",
+  "unknownPrivateChat": "Unknown private chat",
+  "copyClassCodeDesc": "Users who are already in the app can 'Join space' via the main menu.",
+  "addToSpaceDesc": "Adding a chat to a space will make the chat appear within the space for students and give them access.",
+  "invitedToSpace": "{user} has invited you to join a space: {space}! Do you wish to accept?",
+  "@invitedToSpace": {
+    "placeholders": {
+      "space": {
+        "type": "String"
+      },
+      "user": {
+        "type": "String"
+      }
+    }
+  },
+  "declinedInvitation": "Declined invitation",
+  "acceptedInvitation": "Accepted invitation",
+  "youreInvited": "📩 You're invited!",
+  "studentPermissionsDesc": "Set permissions for this space. They will only apply to the space. They will override individual user settings.",
+  "noEligibleSpaces": "There are no eligible spaces to add this to.",
+  "youAddedToSpace": "You added {child} to {space}",
+  "@youAddedToSpace": {
+    "placeholders": {
+      "child": {
+        "type": "String"
+      },
+      "space": {
+        "type": "String"
+      }
+    }
+  },
+  "youRemovedFromSpace": "You removed {child} from {space}",
+  "@youRemovedFromSpace": {
+    "placeholders": {
+      "child": {
+        "type": "String"
+      },
+      "space": {
+        "type": "String"
+      }
+    }
+  },
+  "invitedToChat": "{user} has invited you to join a chat: {name}! Do you wish to accept?",
+  "@invitedToChat": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "user": {
+        "type": "String"
+      }
+    }
+  },
+  "monthlySubscription": "Monthly",
+  "yearlySubscription": "Yearly",
+  "defaultSubscription": "Pangea Chat Subscription",
+  "freeTrial": "Free Trial",
+  "grammarAnalytics": "Error Analytics",
+  "total": "Total: ",
+  "noDataFound": "No data found",
+  "promoSubscriptionExpirationDesc": "Your current subscription is promotional and expires on {expiration}. Message support@pangea.chat for help changing your subscription.",
+  "@promoSubscriptionExpirationDesc": {
+    "placeholders": {
+      "expiration": {
+        "type": "String"
+      }
+    }
+  },
+  "emptyChatNameWarning": "Please enter a name for this chat",
+  "emptyClassNameWarning": "Please enter a name for this class",
+  "emptySpaceNameWarning": "Please enter a name for this space",
+  "blurMeansTranslateTitle": "Why is the message blurred?",
+  "blurMeansTranslateBody": "While Immersion Mode is on, messages that are sent in your base language will be blurred while Pangea Bot translates them to your target language. Immersion Mode can be toggled in individual and space settings.",
+  "someErrorTitle": "Hm, something's not right",
+  "someErrorBody": "It could be an error or something in your base language.",
+  "bestCorrectionFeedback": "That's correct!",
+  "distractorFeedback": "That's not quite right.",
+  "bestAnswerFeedback": "That's correct!",
+  "definitionDefaultPrompt": "What does this word mean?",
+  "practiceDefaultPrompt": "What is the best answer?",
+  "correctionDefaultPrompt": "What is the best replacement?",
+  "itStartDefaultPrompt": "Do you want help translating?",
+  "languageLevelWarning": "Please select a space language level",
+  "lockedChatWarning": "🔒 This chat has been locked",
+  "lockSpace": "Lock Space",
+  "lockChat": "Lock Chat",
+  "archiveSpace": "Archive Space",
+  "suggestToChat": "Suggest this chat",
+  "suggestToChatDesc": "Suggested chats will appear in chat lists",
+  "acceptSelection": "Accept Correction",
+  "acceptSelectionAnyway": "Use this anyway",
+  "makingActivity": "Making activity",
+  "why": "Why?",
+  "definition": "Definition",
+  "exampleSentence": "Example Sentence",
+  "reportToTeacher": "Who do you want to report this message to?",
+  "reportMessageTitle": "{reportingUserId} has reported a message from {reportedUserId} in the chat {roomName}",
+  "@reportMessageTitle": {
+    "placeholders": {
+      "reportingUserId": {
+        "type": "String"
+      },
+      "reportedUserId": {
+        "type": "String"
+      },
+      "roomName": {
+        "type": "String"
+      }
+    }
+  },
+  "reportMessageBody": "Message: {reportedMessage}\nReason: {reason}",
+  "@reportMessageBody": {
+    "placeholders": {
+      "reportedMessage": {
+        "type": "String"
+      },
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "noTeachersFound": "No teachers found to report to",
+  "createClass": "Create class",
+  "viewArchive": "View Archive",
+  "trialExpiration": "Your free trial expires on {expiration}",
+  "@trialExpiration": {
+    "placeholders": {
+      "expiration": {
+        "type": "String"
+      }
+    }
+  },
+  "freeTrialDesc": "New users recieve a one week free trial of Pangea Chat",
+  "activateTrial": "Free 7-Day Trial",
+  "inNoSpaces": "You are not a member of any spaces",
+  "successfullySubscribed": "You have successfully subscribed!",
+  "clickToManageSubscription": "Click here to manage your subscription.",
+  "emptyInviteWarning": "Add this chat to a space to invite other users.",
+  "errorGettingAudio": "Error getting audio. Please refresh and try again.",
+  "signUp": "Sign up",
+  "pleaseChooseAtLeastChars": "Please choose at least {min} characters.",
+  "@pleaseChooseAtLeastChars": {
+    "type": "String",
+    "placeholders": {
+      "min": {
+        "type": "String"
+      }
+    }
+  },
+  "noEmailWarning": "Please enter a valid email address. Otherwise you won't be able to reset your password. If you don't want to, tap again on the button to continue.",
+  "pleaseEnterValidEmail": "Please enter a valid email address.",
+  "noAddToSpacePermissions": "You can't add a chat to this space",
+  "alreadyInSpace": "The chat is already in this space",
+  "pleaseChooseAUsername": "Please choose a username",
+  "chooseAUsername": "Choose a username",
+  "define": "Define",
+  "listen": "Listen",
+  "addConversationBot": "Enable Conversation Bot",
+  "addConversationBotDesc": "Add a bot to this chat",
+  "convoBotSettingsDescription": "Edit conversation topic and difficulty",
+  "enterAConversationTopic": "Enter a conversation topic",
+  "conversationTopic": "Conversation topic",
+  "enableModeration": "Enable moderation",
+  "enableModerationDesc": "Enable automatic moderation to review messages before they are sent",
+  "conversationLanguageLevel": "What is the language level of this conversation?",
+  "showDefinition": "Show Definition",
+  "subscriptionPopupTitle": "This sentence could have a grammar mistake...",
+  "subscriptionPopupDesc": "Subscribe today to unlock translation and grammar correction!",
+  "seeOptions": "See options",
+  "continuedWithoutSubscription": "Continue without subscribing",
+  "trialPeriodExpired": "Your trial period has expired",
+  "selectToDefine": "Click any word to see its definition!",
+  "translations": "translations",
+  "messageAudio": "message audio",
+  "definitions": "definitions",
+  "subscribedToUnlockTools": "Subscribe to unlock interactive translation and grammar checking, audio playback, personalized practice activities, and learning analytics!",
+  "translationTooltip": "Translate",
+  "audioTooltip": "Play Audio",
+  "speechToTextTooltip": "Transcript",
+  "certifyAge": "I certify that I am over {age} years of age",
+  "@certifyAge": {
+    "type": "String",
+    "placeholders": {
+      "age": {
+        "type": "String"
+      }
+    }
+  },
+  "kickBotWarning": "Kicking Pangea Bot will remove the conversation bot from this chat.",
+  "joinToView": "Join this room to view details",
+  "refresh": "Refresh",
+  "autoPlayTitle": "Auto Play Messages",
+  "autoPlayDesc": "When enabled, the text-to-speech audio of messages will play automatically when selected.",
+  "messageAnalytics": "Message Analytics",
+  "words": "Words",
+  "score": "Score",
+  "accuracy": "Accuracy",
+  "points": "Points",
+  "noPaymentInfo": "No payment info necessary!",
+  "conversationBotModeSelectDescription": "Chat activity",
+  "conversationBotModeSelectOption_discussion": "Discussion",
+  "conversationBotModeSelectOption_custom": "Custom",
+  "conversationBotModeSelectOption_conversation": "Conversation",
+  "conversationBotModeSelectOption_textAdventure": "Text Adventure",
+  "conversationBotModeSelectOption_storyGame": "Story Game",
+  "conversationBotDiscussionZone_title": "Discussion Settings",
+  "conversationBotDiscussionZone_discussionTopicLabel": "Discussion Topic",
+  "conversationBotDiscussionZone_discussionTopicPlaceholder": "Set discussion topic",
+  "conversationBotDiscussionZone_discussionKeywordsLabel": "Discussion Keywords",
+  "conversationBotDiscussionZone_discussionKeywordsPlaceholder": "Set discussion keywords",
+  "conversationBotDiscussionZone_discussionKeywordsHintText": "Comma separated list of keywords to guide the discussion",
+  "conversationBotDiscussionZone_discussionTriggerScheduleEnabledLabel": "Send discussion prompt on a schedule",
+  "conversationBotDiscussionZone_discussionTriggerScheduleHourIntervalLabel": "Hours between discussion prompts",
+  "conversationBotDiscussionZone_discussionTriggerReactionEnabledLabel": "Responds on ⏩ reaction",
+  "conversationBotDiscussionZone_discussionTriggerReactionKeyLabel": "Reaction to send discussion prompt",
+  "conversationBotCustomZone_title": "Custom Settings",
+  "conversationBotCustomZone_customSystemPromptLabel": "System prompt",
+  "conversationBotCustomZone_customSystemPromptPlaceholder": "Set custom system prompt",
+  "conversationBotCustomZone_customSystemPromptEmptyError": "Missing custom system prompt",
+  "botConfig": "Bot and activity settings",
+  "botConfigNoPermissionTitle": "No permission",
+  "botConfigNoPermissionMessage": "Contact room admin to change bot configuration",
+  "addConversationBotDialogTitleInvite": "Confirm inviting conversation bot",
+  "addConversationBotButtonInvite": "Invite",
+  "addConversationBotDialogInviteConfirmation": "Invite",
+  "addConversationBotButtonTitleRemove": "Confirm removing conversation bot",
+  "addConversationBotButtonRemove": "Remove",
+  "addConversationBotDialogRemoveConfirmation": "Remove",
+  "conversationBotConfigConfirmChange": "Confirm",
+  "conversationBotStatus": "Invite bot",
+  "conversationBotTextAdventureZone_title": "Text Adventure",
+  "conversationBotTextAdventureZone_instructionLabel": "Game Master Instructions",
+  "conversationBotTextAdventureZone_instructionPlaceholder": "Set game master instructions",
+  "conversationBotCustomZone_instructionSystemPromptEmptyError": "Missing game master instructions",
+  "studentAnalyticsNotAvailable": "Student data not currently available",
+  "roomDataMissing": "Some data may be missing from rooms in which you are not a member.",
+  "updatePhoneOS": "You may need to update your device's OS version.",
+  "wordsPerMinute": "Words per minute",
+  "autoIGCToolName": "Run Pangea writing assistance automatically",
+  "autoIGCToolDescription": "Automatically run Pangea Chat grammar and translation writing assistance before sending my message.",
+  "runGrammarCorrection": "Check message",
+  "grammarCorrectionFailed": "Issues to address",
+  "grammarCorrectionComplete": "Looks good!",
+  "tooltipInstructionsTitle": "Not sure what that does?",
+  "tooltipInstructionsMobileBody": "Press and hold items to view tooltips.",
+  "tooltipInstructionsBrowserBody": "Hover over items to view tooltips.",
+  "addSpaceToSpaceDescription": "Select a space to add as a parent",
+  "chatCapacity": "Chat capacity",
+  "spaceCapacity": "Space capacity",
+  "roomFull": "This room is already at capacity.",
+  "topicNotSet": "The topic has not been set.",
+  "chatCapacityNotSet": "This chat has no capacity limit.",
+  "spaceCapacityNotSet": "This space has no capacity limit.",
+  "chatCapacityHasBeenChanged": "Chat capacity changed",
+  "spaceCapacityHasBeenChanged": "Space capacity changed",
+  "chatCapacitySetTooLow": "Chat capacity cannot be set below the current number of members.",
+  "spaceCapacitySetTooLow": "Space capacity cannot be set below the current number of members.",
+  "chatCapacityExplanation": "Chat capacity limits the number of members allowed in a chat.",
+  "spaceCapacityExplanation": "Space capacity limits the number of members allowed in a space.",
+  "chatExceedsCapacity": "This chat exceeds its capacity.",
+  "spaceExceedsCapacity": "This space exceeds its capacity.",
+  "tooManyRequest": "Too many request, please try again later.",
+  "enterNumber": "Please enter a whole number value.",
+  "buildTranslation": "Build your translation from the choices above",
+  "nonexistentSelection": "Selection no longer exists.",
+  "cantAddSpaceChild": "You do not have permission to add a child to this space.",
+  "roomAddedToSpace": "Room(s) have been added to the selected space.",
+  "addChatToSpaceDesc": "Adding a chat to a space will make the chat appear within the space for students and give them access.",
+  "addSpaceToSpaceDesc": "Adding a sub space to space will make the sub space appear in the main space's chat list.",
+  "spaceAnalytics": "Space Analytics",
+  "changeAnalyticsLanguage": "Change Analytics Language",
+  "suggestToSpace": "Suggest this space",
+  "suggestToSpaceDesc": "Suggested sub spaces will appear in their main space's chat list",
+  "practice": "Practice",
+  "noLanguagesSet": "No languages set",
+  "noActivitiesFound": "That's enough on this for now! Come back later for more.",
+  "hintTitle": "Hint:",
+  "speechToTextBody": "For voice messages, you can see a transcript as well as the speaker's Words Per Minute score.",
+  "versionNotFound": "Version Not Found",
+  "fetchingVersion": "Fetching version...",
+  "versionFetchError": "Error fetching version",
+  "versionText": "Version: {version}+{buildNumber}",
+  "@versionText": {
+    "description": "Text displaying the app version and build number.",
+    "type": "String",
+    "placeholders": {
+      "version": {
+        "type": "String",
+        "description": "The current version of the app."
+      },
+      "buildNumber": {
+        "type": "String",
+        "description": "The build number of the app."
+      }
+    }
+  },
+  "languageButtonLabel": "Language: {currentLanguage}",
+  "@languageButtonLabel": {
+    "type": "String",
+    "placeholders": {
+      "currentLanguage": {
+        "type": "String"
+      }
+    }
+  },
+  "interactiveTranslatorAutoPlaySliderHeader": "Autoplay translation",
+  "interactiveTranslatorAutoPlayDesc": "Launches the interactive translator without asking.",
+  "changeAnalyticsView": "Change Analytics View",
+  "l1TranslationBody": "Messages in your base language will not be translated.",
+  "deleteSubscriptionWarningTitle": "You have an active subscription",
+  "deleteSubscriptionWarningBody": "Deleting your account will not automatically cancel your subscription.",
+  "manageSubscription": "Manage Subscription",
+  "createSpace": "Create space",
+  "createChat": "Create chat",
+  "error520Title": "Please try again.",
+  "error520Desc": "Sorry, we could not understand your message...",
+  "wordsUsed": "Words Used",
+  "errorTypes": "Error Types",
+  "level": "Level",
+  "canceledSend": "Canceled send",
+  "morphsUsed": "Morphs Used",
+  "translationChoicesBody": "Click and hold an option for a hint.",
+  "grammar": "Grammar",
+  "contactHasBeenInvitedToTheChat": "Contact has been invited to the chat",
+  "inviteChat": "📨 Invite chat",
+  "chatName": "Chat name",
+  "reportContentIssueTitle": "Report content issue",
+  "feedback": "Optional feedback",
+  "reportContentIssueDescription": "Uh oh! AI can faciliate personalized learning experiences but... also hallucinates. Please provide any feedback you have and we'll try again.",
+  "changeContent": "Uh oh! AI can faciliate personalized learning experiences but... also hallucinates. What should it be?",
+  "clickTheWordAgainToDeselect": "Click the selected word to deselect it.",
+  "l2SupportNa": "Not Available",
+  "l2SupportAlpha": "Alpha",
+  "l2SupportBeta": "Beta",
+  "l2SupportFull": "Full",
+  "missingVoiceTitle": "Missing voice",
+  "voiceNotAvailable": "You don't have a voice installed for this language.",
+  "openVoiceSettings": "Open voice settings",
+  "playAudio": "Play",
+  "stop": "Stop",
+  "grammarCopyPOSsconj": "Subordinating Conjunction",
+  "grammarCopyPOSnum": "Number",
+  "grammarCopyPOSverb": "Verb",
+  "grammarCopyPOSaffix": "Affix",
+  "grammarCopyPOSpart": "Particle",
+  "grammarCopyPOSadj": "Adjective",
+  "grammarCopyPOScconj": "Coordinating Conjunction",
+  "grammarCopyPOSpunct": "Punctuation",
+  "grammarCopyPOSadv": "Adverb",
+  "grammarCopyPOSaux": "Auxiliary",
+  "grammarCopyPOSspace": "Space",
+  "grammarCopyPOSsym": "Symbol",
+  "grammarCopyPOSdet": "Determiner",
+  "grammarCopyPOSpron": "Pronoun",
+  "grammarCopyPOSadp": "Adposition",
+  "grammarCopyPOSpropn": "Proper Noun",
+  "grammarCopyPOSnoun": "Noun",
+  "grammarCopyPOSintj": "Interjection",
+  "grammarCopyPOSx": "Other",
+  "grammarCopyGENDERfem": "Feminine",
+  "grammarCopyPERSON2": "Second Person",
+  "grammarCopyMOODimp": "Imperative",
+  "grammarCopyPUNCTTYPEqest": "Question",
+  "grammarCopyASPECTperf": "Perfect",
+  "grammarCopyCASEaccnom": "Accusative, Nominative",
+  "grammarCopyCASEobl": "Oblique",
+  "grammarCopyVOICEact": "Active",
+  "grammarCopyPUNCTTYPEbrck": "Bracket",
+  "grammarCopyNOUNTYPEart": "Article",
+  "grammarCopyNUMBERsing": "Singular",
+  "grammarCopyGENDERmasc": "Masculine",
+  "grammarCopyVERBTYPEmod": "Modal",
+  "grammarCopyADVTYPEadverbial": "Adverbial",
+  "grammarCopyTENSEperi": "Periphrastic",
+  "grammarCopyNUMFORMdigit": "Digit",
+  "grammarCopyNOUNTYPEnot_proper": "Not Proper",
+  "grammarCopyNUMTYPEcard": "Cardinal",
+  "grammarCopyNOUNTYPEprop": "Proper",
+  "grammarCopyPUNCTTYPEdash": "Dash",
+  "grammarCopyPUNCTTYPEyes": "Yes",
+  "grammarCopyPUNCTTYPEsemi": "Semicolon",
+  "grammarCopyPUNCTTYPEcomm": "Comma",
+  "grammarCopyMOODcnd": "Conditional",
+  "grammarCopyCASEacc": "Accusative",
+  "grammarCopyPARTTYPEpart": "Partitive",
+  "grammarCopyTENSEpast": "Past",
+  "grammarCopyDEGREEsup": "Superlative",
+  "grammarCopyPUNCTTYPEcolo": "Colon",
+  "grammarCopyPERSON3": "Third Person",
+  "grammarCopyNUMBERplur": "Plural",
+  "grammarCopyPRONTYPEnpr": "Proper Noun",
+  "grammarCopyPRONTYPEinterrogative": "Interrogative",
+  "grammarCopyPOLITEinfm": "Informal",
+  "grammarCopyADVTYPEtim": "Time",
+  "grammarCopyPOLARITYneg": "Negative",
+  "grammarCopyNUMTYPEtot": "Total",
+  "grammarCopyADVTYPEadnomial": "Adnominal",
+  "grammarCopyASPECTprog": "Progressive",
+  "grammarCopyMOODsub": "Subjunctive",
+  "grammarCopyVERBFORMcomplementive": "Complementive",
+  "grammarCopyCASEnom": "Nominative",
+  "grammarCopyTENSEfut": "Future",
+  "grammarCopyCASEdat": "Dative",
+  "grammarCopyTENSEpres": "Present",
+  "grammarCopyGENDERneut": "Neuter",
+  "grammarCopyPRONTYPErel": "Relative",
+  "grammarCopyVERBFORMfinalEnding": "Final Ending",
+  "grammarCopyPRONTYPEdem": "Demonstrative",
+  "grammarCopyPREPCASEpre": "Prepositional",
+  "grammarCopyVERBFORMfin": "Finite",
+  "grammarCopyDEGREEpos": "Positive",
+  "grammarCopyPUNCTTYPEquot": "Quotation",
+  "grammarCopyVERBFORMger": "Gerund",
+  "grammarCopyVOICEpass": "Passive",
+  "grammarCopyCASEgen": "Genitive",
+  "grammarCopyTENSEprs": "Present",
+  "grammarCopyDEFINITEdef": "Definite",
+  "grammarCopyNUMTYPEord": "Ordinal",
+  "grammarCopyCASEins": "Instrumental",
+  "grammarCopyVERBFORMinf": "Infinitive",
+  "grammarCopyVERBFORMaux": "Auxiliary",
+  "grammarCopyNUMFORMlong": "Long",
+  "grammarCopyCASEloc": "Locative",
+  "grammarCopyMOODind": "Indicative",
+  "grammarCopyDEGREEcmp": "Comparative",
+  "grammarCopyCASErelativeCase": "Relative",
+  "grammarCopyPUNCTTYPEexcl": "Exclamative",
+  "grammarCopyPERSON1": "First Person",
+  "grammarCopyPUNCTSIDEini": "Initial",
+  "grammarCopyGENDERperson": "Person",
+  "grammarCopyFOREIGNyes": "Foreign",
+  "grammarCopyVOICEvoice": "Voice",
+  "grammarCopyVERBTYPEverbType": "Verb",
+  "grammarCopyPOSSpass": "Possessive",
+  "grammarCopyPREPCASEprepCase": "Prepositional",
+  "grammarCopyNUMTYPEnumType": "Numeral",
+  "grammarCopyNOUNTYPEnounType": "Noun",
+  "grammarCopyREFLEXreflex": "Reflexive",
+  "grammarCopyPRONTYPEpronType": "Pronoun",
+  "grammarCopyPUNCTSIDEpunctSide": "Punctuation Side",
+  "grammarCopyVERBFORMverbForm": "Verb",
+  "grammarCopyGENDERgender": "Gender",
+  "grammarCopyMOODmood": "Mood",
+  "grammarCopyASPECTaspect": "Aspect",
+  "grammarCopyPUNCTTYPEpunctType": "Punctuation",
+  "grammarCopyTENSEtense": "Tense",
+  "grammarCopyDEGREEdegree": "Degree",
+  "grammarCopyPOLITEpolite": "Politeness",
+  "grammarCopyADVTYPEadvType": "Adverb",
+  "grammarCopyNUMFORMnumber": "Number",
+  "grammarCopyCONJTYPEconjType": "Conjunction",
+  "grammarCopyPOLARITYpolarity": "Polarity",
+  "grammarCopyCASEcase": "Case",
+  "grammarCopyDEFINITEdefinite": "Definiteness",
+  "grammarCopyNUMFORMnumForm": "Numeral",
+  "grammarCopyPRONTYPEadn": "Adnominal",
+  "grammarCopyVOCvoc": "Vocative",
+  "grammarCopyCMPLcmpl": "Complementizer",
+  "grammarCopyADVadv": "Adverbial",
+  "grammarCopyMOODjus": "Jussive",
+  "grammarCopyGENDERcom": "Common",
+  "grammarCopyREFLEXrflx": "Reflexive",
+  "grammarCopyPARTTYPEpar": "Partitive",
+  "grammarCopySPCspc": "Specific",
+  "grammarCopyTENSEpqp": "Pluperfect",
+  "grammarCopyREFLEXref": "Reflexive",
+  "grammarCopyPUNCTTYPEnshrt": "Short",
+  "grammarCopyNUMBERdual": "Dual",
+  "grammarCopyNUMFORMlng": "Long",
+  "grammarCopyVOICEmid": "Middle",
+  "grammarCopyINTRELintRel": "Interrogative, Relative",
+  "grammarCopyINTint": "Interrogative",
+  "grammarCopyVOICEcaus": "Causative",
+  "grammarCopyUnknown": "Unknown",
+  "grammarCopyEVIDENTevident": "Evidentiality",
+  "grammarCopyNUMFORMnumberPsor": "Possessor's Number",
+  "grammarCopyASPECThab": "Habitual",
+  "grammarCopyCASEabl": "Ablative",
+  "grammarCopyCASEall": "Allative",
+  "grammarCopyCASEess": "Essive",
+  "grammarCopyCASEtra": "Translative",
+  "grammarCopyCASEequ": "Equative",
+  "grammarCopyCASEdis": "Distributive",
+  "grammarCopyCASEabs": "Absolutive",
+  "grammarCopyCASEerg": "Ergative",
+  "grammarCopyCASEcau": "Causal",
+  "grammarCopyCASEben": "Benefactive",
+  "grammarCopyCASEtem": "Temporal",
+  "grammarCopyCONJTYPEcoord": "Coordinating",
+  "grammarCopyDEFINITEcons": "Construct State",
+  "grammarCopyDEGREEabs": "Absolute Degree",
+  "grammarCopyEVIDENTfh": "Factual Evidentiality",
+  "grammarCopyEVIDENTnfh": "Non-factual Evidentiality",
+  "grammarCopyMOODopt": "Optative",
+  "grammarCopyMOODadm": "Admirative",
+  "grammarCopyMOODdes": "Desiderative",
+  "grammarCopyMOODnec": "Necessitative",
+  "grammarCopyMOODpot": "Potential",
+  "grammarCopyMOODprp": "Propositive",
+  "grammarCopyMOODqot": "Quotative",
+  "grammarCopyNUMFORMword": "Word Form",
+  "grammarCopyNUMFORMroman": "Roman Numeral",
+  "grammarCopyNUMFORMletter": "Letter Form",
+  "grammarCopyNUMTYPEmult": "Multiplicative",
+  "grammarCopyNUMTYPEfrac": "Fractional",
+  "grammarCopyNUMTYPEsets": "Set",
+  "grammarCopyNUMTYPErange": "Range",
+  "grammarCopyNUMTYPEdist": "Distributive",
+  "grammarCopyNUMBERtri": "Trial",
+  "grammarCopyNUMBERpauc": "Paucal",
+  "grammarCopyNUMBERgrpa": "Greater Paucal",
+  "grammarCopyNUMBERgrpl": "Greater Plural",
+  "grammarCopyNUMBERinv": "Inverse",
+  "grammarCopyPERSON0": "Zero",
+  "grammarCopyPERSON4": "Fourth",
+  "grammarCopyPOLITEform": "Formal",
+  "grammarCopyPOLITEelev": "Elevated",
+  "grammarCopyPOLITEhumb": "Humble",
+  "grammarCopyPRONTYPEemp": "Emphatic",
+  "grammarCopyPRONTYPEexc": "Exclamative",
+  "grammarCopyPRONTYPErcp": "Reciprocal",
+  "grammarCopyPRONTYPEintRelPronType": "Interrogative-Relative",
+  "grammarCopyTENSEaor": "Aorist",
+  "grammarCopyTENSEeps": "Epistemic",
+  "grammarCopyTENSEprosp": "Prospective",
+  "grammarCopyVERBFORMpart": "Participle",
+  "grammarCopyVERBFORMconv": "Converb",
+  "grammarCopyVERBFORMvnoun": "Verbal Noun",
+  "grammarCopyVOICEantip": "Antipassive",
+  "grammarCopyVOICEcauVoice": "Causative",
+  "grammarCopyVOICedir": "Direct",
+  "grammarCopyVOICEinvVoice": "Inverse",
+  "grammarCopyVOICErcpVoice": "Reciprocal",
+  "grammarCopyPOS": "Part of Speech",
+  "grammarCopyGENDER": "Gender",
+  "grammarCopyPERSON": "Person",
+  "grammarCopyMOOD": "Mood",
+  "grammarCopyPUNCTTYPE": "Punctuation Type",
+  "grammarCopyASPECT": "Aspect",
+  "grammarCopyCASE": "Case",
+  "grammarCopyVOICE": "Voice",
+  "grammarCopyNOUNTYPE": "Noun Type",
+  "grammarCopyVERBTYPE": "Verb Type",
+  "grammarCopyADVTYPE": "Adverb Type",
+  "grammarCopyNUMFORM": "Numeral Form",
+  "grammarCopyNUMTYPE": "Numeral Type",
+  "grammarCopyNUMBER": "Number",
+  "grammarCopyDEFINITE": "Definiteness",
+  "grammarCopyDEGREE": "Degree",
+  "grammarCopyEVIDENT": "Evidentiality",
+  "grammarCopyFOREIGN": "Foreign",
+  "grammarCopyPOLARITY": "Polarity",
+  "grammarCopyPOLITE": "Politeness",
+  "grammarCopyPREPCASE": "Prepositional Case",
+  "grammarCopyPRONTYPE": "Pronoun Type",
+  "grammarCopyPUNCTSIDE": "Punctuation Side",
+  "grammarCopyREFLEX": "Reflexive",
+  "grammarCopyTENSE": "Tense",
+  "grammarCopyVERBFORM": "Verb Form",
+  "grammarCopyCONJTYPE": "Conjunction Type",
+  "grammarCopySPC": "Specificity",
+  "grammarCopyPARTTYPE": "Partitive Type",
+  "grammarCopyINTREL": "Interrogative-Relative",
+  "grammarCopyNUMFORMpsor": "Possessor's Number",
+  "grammarCopyUNKNOWN": "Unknown",
+  "grammarCopyNUMBERPSOR": "Possessor's Number",
+  "grammarCopyPOSS": "Possessive",
+  "grammarCopyASPECTimp": "Imperfective Aspect",
+  "grammarCopyCASEvoc": "Vocative",
+  "grammarCopyCASEcom": "Comitative",
+  "grammarCopyCASEpar": "Partitive",
+  "grammarCopyCASEadv": "Adverbial",
+  "grammarCopyCASEref": "Referential",
+  "grammarCopyCASErel": "Relative",
+  "grammarCopyCASEsub": "Subessive",
+  "grammarCopyCASEsup": "Superessive",
+  "grammarCopyCASEaccdat": "Accusative-Dative",
+  "grammarCopyCASEpre": "Prepositional",
+  "grammarCopyCONJTYPEsub": "Subordinating",
+  "grammarCopyCONJTYPEcmp": "Comparative",
+  "grammarCopyDEFINITEind": "Indefinite",
+  "grammarCopyMOODint": "Interrogative Mood",
+  "grammarCopyNOUNTYPEcomm": "Common Noun",
+  "grammarCopyNUMBERPSORsing": "Possessor's Singular",
+  "grammarCopyNUMBERPSORplur": "Possessor's Plural",
+  "grammarCopyNUMBERPSORdual": "Possessor's Dual",
+  "grammarCopyPOLARITYpos": "Positive Polarity",
+  "grammarCopyPOSSyes": "Possessive",
+  "grammarCopyPREPCASEnpr": "Non-prepositional",
+  "grammarCopyPRONTYPEprs": "Personal",
+  "grammarCopyPRONTYPEint": "Interrogative",
+  "grammarCopyPRONTYPEtot": "Total",
+  "grammarCopyPRONTYPEneg": "Negative",
+  "grammarCopyPRONTYPEart": "Article",
+  "grammarCopyPRONTYPEind": "Indefinite",
+  "grammarCopyPRONTYPEintrel": "Interrogative-Relative",
+  "grammarCopyPUNCTSIDEfin": "Final Punctuation",
+  "grammarCopyPUNCTTYPEperi": "Period",
+  "grammarCopyREFLEXyes": "Reflexive",
+  "grammarCopyTENSEimp": "Imperfect",
+  "grammarCopyVERBFORMsup": "SuApine",
+  "grammarCopyVERBFORMadn": "Adnominal",
+  "grammarCopyVERBFORMlng": "Long",
+  "grammarCopyVERBTYPEcaus": "Causative Verb",
+  "grammarCopyVOICEcau": "Causative",
+  "grammarCopyVOICEdir": "Direct",
+  "grammarCopyVOICEinv": "Inverse",
+  "grammarCopyVOICErcp": "Reciprocal",
+  "enterPrompt": "Please enter a system prompt",
+  "selectBotLanguage": "Select bot language",
+  "chooseVoice": "Choose a voice",
+  "enterLanguageLevel": "Please enter a language level",
+  "enterDiscussionTopic": "Please enter a discussion topic",
+  "selectBotChatMode": "Select chat mode",
+  "messageNotInTargetLang": "Message not in target language",
+  "other": "Other",
+  "levelShort": "LVL {level}",
+  "@levelShort": {
+    "type": "String",
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
+  "botModeValidation": "Please select a chat mode",
+  "clickBestOption": "Choose the best options to translate your message!",
+  "completeActivitiesToUnlock": "Complete at least one activity to unlock the translation!",
+  "botSettingsSubtitle": "Invite bot to moderate chat activity",
+  "invitePeople": "Invite users",
+  "noCapacityLimit": "No capacity limit",
+  "downloadGroupText": "Download group text",
+  "spaceDescription": "Space description",
+  "addSpaceDescription": "Add a space description",
+  "notificationsOn": "Notifications on",
+  "notificationsOff": "Notifications off",
+  "spaceCanBeFoundViaSearch": "Space can be found via search",
+  "chatCanBeFoundViaSearch": "Chat can be found via search",
+  "requireCodeToJoin": "Require code to join",
+  "canFindInSearch": "Can find in search",
+  "addSubspaceWarning": "Once you add this, it will not appear in public search results, and it will be visible to all members of the parent space.",
+  "nestedSpaceError": "Spaces should not be added as children of other spaces",
+  "addChatToSpace": "Add chat",
+  "createChatAndInviteUsers": "Create chat and invite users",
+  "updatedNewSpaceDescription": "Spaces allow you to consolidate your chats and build private or public communities.",
+  "joinWithCode": "Join with code",
+  "enterCodeToJoin": "Enter code to join",
+  "updateNow": "Update Now",
+  "updateLater": "Later",
+  "constructUseWaDesc": "Used without help",
+  "constructUseGaDesc": "Grammar assistance",
+  "constructUseTaDesc": "Translation assistance",
+  "constructUseUnkDesc": "Unknown",
+  "constructUseCorITDesc": "Correct in translation",
+  "constructUseIgnITDesc": "Ignored in translation",
+  "constructUseIncITDesc": "Incorrect in translation",
+  "constructUseIgnIGCDesc": "Ignored in grammar correction",
+  "constructUseCorIGCDesc": "Correct in grammar correction",
+  "constructUseIncIGCDesc": "Incorrect in grammar correction",
+  "constructUseCorPADesc": "Correct in word meaning activity",
+  "constructUseIgnPADesc": "Ignored in word meaning activity",
+  "constructUseIncPADesc": "Incorrect in word meaning activity",
+  "constructUseCorWLDesc": "Correct in word listening activity",
+  "constructUseIncWLDesc": "Incorrect in word listening activity",
+  "constructUseIngWLDesc": "Ignored in word listening activity",
+  "constructUseCorHWLDesc": "Correct in hidden word activity",
+  "constructUseIncHWLDesc": "Incorrect in hidden word activity",
+  "constructUseIgnHWLDesc": "Ignored in hidden word activity",
+  "constructUseCorLDesc": "Correct in lemma activity",
+  "constructUseIncLDesc": "Incorrect in lemma activity",
+  "constructUseIgnLDesc": "Ignored in lemma activity",
+  "constructUseCorMDesc": "Correct in grammar activity",
+  "constructUseIncMDesc": "Incorrect in grammar activity",
+  "constructUseIgnMDesc": "Ignored in grammar activity",
+  "constructUseEmojiDesc": "Correct in emoji activity",
+  "constructUseNanDesc": "Not applicable",
+  "xpIntoLevel": "{currentXP} / {maxXP} XP",
+  "@xpIntoLevel": {
+    "type": "String",
+    "placeholders": {
+      "currentXP": {
+        "type": "int"
+      },
+      "maxXP": {
+        "type": "int"
+      }
+    }
+  },
+  "signInWithUsername": "Sign in with username and password",
+  "registrationEmailMessage": "Please verify your email with a link sent there. In some cases, the email takes up to 5 minutes to arrive. Please also check your spam folder.",
+  "enableTTSToolName": "Enabled text-to-speech",
+  "enableTTSToolDescription": "Allow the app to generate text-to-speech output for portions of text in your target language.",
+  "couldNotFindTTS": "We couldn't find a text-to-speech engine for your current target language. ",
+  "ttsInstructionsHyperlink": "Click here to view instructions for downloading a new voice on your device.",
+  "createAnAccount": "Create an account",
+  "signIn": "Sign in",
+  "signUpWithEmail": "Sign up with Email",
+  "signUpWithGoogle": "Sign up with Google",
+  "signUpWithApple": "Sign up with Apple",
+  "yourUsername": "Your username",
+  "yourEmail": "Your email",
+  "pleaseEnterAnEmail": "Please enter an email address",
+  "signInWithGoogle": "Sign in with Google",
+  "signInWithApple": "Sign in with Apple",
+  "chooseYourAvatar": "Choose your avatar",
+  "iWantToLearn": "I want to learn",
+  "letsStart": "Let's start",
+  "pleaseAgreeToTOS": "Please agree to the Terms and Conditions",
+  "pleaseEnterEmail": "Please enter a valid email address.",
+  "pleaseSelectALanguage": "Please select a language",
+  "myBaseLanguage": "My base language",
+  "clickWordsInstructions": "🕵️ Click any word for details. 🧐",
+  "chooseBestDefinition": "What does this word mean?",
+  "meaningSectionHeader": "Meaning:",
+  "formSectionHeader": "Forms used in chats:",
+  "noEmojiSelectedTooltip": "No emoji selected",
+  "writingExercisesTooltip": "Writing practice",
+  "listeningExercisesTooltip": "Listening practice",
+  "readingExercisesTooltip": "Reading practice",
+  "meaningNotFound": "Meaning could not be found.",
+  "formsNotFound": "Forms could not be found.",
+  "chooseBaseForm": "Choose the base form",
+  "notTheCodeError": "Sorry, that's not the code!",
+  "totalXP": "Total XP",
+  "numLemmas": "Total number of lemmas",
+  "numLemmasUsedCorrectly": "Number of lemmas used correctly at least once",
+  "numLemmasUsedIncorrectly": "Number of lemmas used correctly 0 times",
+  "numLemmasSmallXP": "Number of lemmas with 0 - 30 XP",
+  "numLemmasMediumXP": "Number of lemmas with 31 - 200 XP",
+  "numLemmasLargeXP": "Number of lemmas with > 200 XP",
+  "numGrammarConcepts": "Number of grammar concepts",
+  "listGrammarConcepts": "Grammar concepts",
+  "listGrammarConceptsUsedCorrectly": "Grammar concepts used correctly in original messages at least 80% of the time",
+  "listGrammarConceptsUsedIncorrectly": "Grammar concepts used correctly in original messages less than 80% of the time",
+  "listGrammarConceptsUseCorrectlySystemGenerated": "Grammar concepts chosen correctly from system-generated suggestions at least 80% of the time",
+  "listGrammarConceptsUseIncorrectlySystemGenerated": "Grammar concepts chosen correctly from system-generated suggestions less than 80% of the time",
+  "listGrammarConceptsSmallXP": "Grammar concepts with 0-50 xp",
+  "listGrammarConceptsMediumXP": "Grammar concepts with 51-200 xp",
+  "listGrammarConceptsLargeXP": "Grammar concepts 201-500 xp",
+  "listGrammarConceptsHugeXP": "Grammar concepts >500 xp",
+  "numMessagesSent": "Number of messages sent",
+  "numWordsTyped": "Number of words typed in original messages",
+  "numCorrectChoices": "Number of correct words chosen from system-generated suggestions",
+  "numIncorrectChoices": "Number of incorrect words chosen from system-generated suggestions",
+  "downloadSpaceAnalytics": "Download space analytics",
+  "commaSeparatedFile": "CSV",
+  "excelFile": "Excel",
+  "fileType": "File type",
+  "download": "Download",
+  "analyticsNotAvailable": "User analytics not available",
+  "downloading": "Downloading...",
+  "failedFetchUserAnalytics": "Failed to download user analytics",
+  "downloadComplete": "Download complete!",
+  "whatIsTheMorphTag": "What is the {morphologicalFeature} of '{wordForm}'?",
+  "@whatIsTheMorphTag": {
+    "type": "String",
+    "placeholders": {
+      "morphologicalFeature": {
+        "type": "String"
+      },
+      "wordForm": {
+        "type": "String"
+      }
+    }
+  },
+  "dataAvailable": "Data availability",
+  "available": "Available",
+  "pangeaBotIsFallible": "Pangea Bot makes mistakes too!",
+  "whatIsMeaning": "What does '{lemma}' mean?",
+  "@whatIsMeaning": {
+    "type": "String",
+    "placeholders": {
+      "lemma": {
+        "type": "String"
+      },
+      "partOfSpeech": {
+        "type": "String"
+      }
+    }
+  },
+  "pickAnEmoji": "What's your favorite emoji for '{lemma}'?",
+  "@pickAnEmoji": {
+    "type": "String",
+    "placeholders": {
+      "lemma": {
+        "type": "String"
+      },
+      "partOfSpeech": {
+        "type": "String"
+      }
+    }
+  },
+  "chooseLemmaMeaningInstructionsBody": "Match meanings with the words in the message!",
+  "doubleClickToEdit": "Double-click to edit.",
+  "removeFeature": "Remove {feature}",
+  "@removeFeature": {
+    "type": "String",
+    "placeholders": {
+      "feature": {
+        "type": "String"
+      }
+    }
+  },
+  "notInClass": "Not in a class!",
+  "noClassCode": "No class code!",
+  "chooseCorrectLabel": "Choose the correct label.",
+  "levelPopupTitle": "Congratulations on reaching\nLevel {level}",
+  "@levelPopupTitle": {
+    "type": "String",
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
+  "activityPlannerTitle": "Activity Planner",
+  "topicLabel": "Topic",
+  "topicPlaceholder": "Choose a topic...",
+  "modeLabel": "Mode",
+  "modePlaceholder": "Choose a mode...",
+  "learningObjectiveLabel": "Learning Objective",
+  "learningObjectivePlaceholder": "Choose a learning objective...",
+  "mediaLabel": "Media learners should share",
+  "languageOfInstructionsLabel": "Language of activity instructions",
+  "targetLanguageLabel": "Target language",
+  "cefrLevelLabel": "CEFR level",
+  "generateActivitiesButton": "Generate Activities",
+  "launchActivityButton": "Launch Activity",
+  "image": "Image",
+  "video": "Video",
+  "nan": "Not applicable",
+  "activityPlannerOverviewInstructionsBody": "Choose a topic, mode, learning objective and generate an activity for the chat!",
+  "myBookmarkedActivities": "My Bookmarked Activities",
+  "noBookmarkedActivities": "No bookmarked activities",
+  "activityTitle": "Activity Title",
+  "addVocabulary": "Add vocabulary",
+  "instructions": "Instructions",
+  "bookmark": "Bookmark this activity",
+  "numberOfLearners": "Number of learners",
+  "mustBeInteger": "Must be an integer e.g. 1, 2, 3, ...",
+  "noLemmasFound": "There's no vocabulary with more than {xp} XP. Keep practicing!",
+  "@noLemmasFound": {
+    "type": "String",
+    "placeholders": {
+      "xp": {
+        "type": "int"
+      }
+    }
+  },
+  "constructUsePvmDesc": "Produced in voice message",
+  "lockedMorphFeature": "Waiting to be unlocked",
+  "leaveSpaceDescription": "By leaving the space, you will leave all of the chats within it. Other users will see that you have left the space.",
+  "whatIsLemma": "What is the lemma?",
+  "constructUseCorMmDesc": "Correct message meaning",
+  "constructUseIncMmDesc": "Incorrect message meaning",
+  "constructUseIgnMmDesc": "Ignored message meaning",
+  "clickForMeaningActivity": "Click here for a Meaning Challenge",
+  "meaning": "Meaning",
+  "chatWith": "Group with {displayname}",
+  "@chatWith": {
+    "type": "String",
+    "placeholders": {
+      "displayname": {
+        "type": "String"
+      }
+    }
+  },
+  "slightlyOffensive": "Slightly offensive",
+  "clickOnEmailLink": "Please click on the link in the email and then proceed. In rare cases, the email can be sent to spam or take up to 5 minutes to arrive.",
+  "whoIsAllowedToJoinThisChat": "Who is allowed to join this chat",
+  "dontForgetPassword": "Don't forget your password!",
+  "enableAutocorrectToolName": "Enable device autocorrect",
+  "enableAutocorrectDescription": "If your device supports the language your learning, you can enable device autocorrect to fix common errors as you type.",
+  "ttsDisbledTitle": "Text-to-speech disabled",
+  "ttsDisabledBody": "You can enable text-to-speech in your learning settings",
+  "noSpaceDescriptionYet": "No space description created yet.",
+  "tooLargeToSend": "This message is too large to send",
+  "exitWithoutSaving": "Are you sure you want to leave without saving?",
+  "enableAutocorrectPopupTitle": "Add your target language keyboard by going to:",
+  "enableAutocorrectPopupSteps": "  \u2022 Settings\n  \u2022 General\n  \u2022 Keyboard\n  \u2022 Keyboards\n  \u2022 Add New Keyboard",
+  "enableAutocorrectPopupDescription": "Once the language is selected, you can click the small globe icon on the bottom left of your keyboard to activate the newly installed keyboard.",
+  "downloadGboardTitle": "Download Gboard from the Google Play Store to enable autocorrect and other keyboard features:",
+  "downloadGboardSteps": " \u2022 Download Gboard\n  \u2022 Open app\n  \u2022 Languages\n  \u2022 Add keyboard\n  \u2022 Select Language\n  \u2022 Select keyboard type\n  \u2022 Done",
+  "downloadGboardDescription": "Once the language is selected, you can click the small globe icon on the bottom left of your keyboard to activate the newly installed keyboard.",
+  "enableAutocorrectWarning": "Warning! Requires adding your target language keyboard",
+  "tooLargeToSend": "This message is too large to send",
+  "displayName": "Display name",
+  "leaveRoomDescription": "You're about to leave this chat. Other users will see that you have left the chat.",
+  "confirmUserId": "Please confirm your Pangea Chat username in order to delete your account.",
+  "startingToday": "Starting today",
+  "oneWeekFreeTrial": "One week free trial",
+  "paidSubscriptionStarts": "Starting {startDate}",
+  "@paidSubscriptionStarts": {
+    "type": "String",
+    "placeholders": {
+      "startDate": {
+        "type": "String"
+      }
+    }
+  },
+  "cancelInSubscriptionSettings": "• Cancel at any time in subscription settings",
+  "cancelToAvoidCharges": "• Cancel before {trialEnds} to avoid charges",
+  "@cancelToAvoidCharges": {
+    "type": "String",
+    "placeholders": {
+      "trialEnds": {
+        "type": "String"
+      }
+    }
+  },
+  "downloadGboard": "Download Gboard",
+  "autocorrectNotAvailable": "Unfortunately your platform is not currently supported for this feature. Stay tuned for further development!",
+  "pleaseUpdateApp": "Please update the app to continue.",
+  "chooseEmojiInstructionsBody": "Match emojis with the words they best represent. Don't worry! No points off for disagreeing. 😅",
+  "pickAnEmojiFor": "Pick an emoji for ${lemma}",
+  "@pickAnEmojiFor": {
+    "type": "String",
+    "placeholders": {
+      "lemma": {
+        "type": "String"
+      }
+    }
+  },
+  "analyticsVocabListBody": "This is all your vocabulary! As you earn XP for each word, they'll go from seedling to full bloom. Click on any word to see more details.",
+  "morphAnalyticsListBody": "These are all the grammar concepts in the language you're learning! You'll unlock them as you encounter them while chatting. Click for details.",
+  "knockSpaceSuccess": "You have requested to join this space! An admin will respond to your request when they receive it 😀",
+  "joinByCode": "Join by code",
+  "createASpace": "Create a space",
+  "chooseWordAudioInstructionsBody": "Listen to the complete message. Then match the audios with the words.",
+  "chooseMorphsInstructionsBody": "Click the puzzle pieces for grammar questions!",
+  "inviteAndLaunch": "Launch and invite",
+  "createOwnChat": "Create your own chat",
+  "pleaseEnterInt": "Please enter a number",
+  "home": "Home",
+  "join": "Join",
+  "readingAssistanceOverviewBody": "Click the buttons below for mini-games on matching emojis, audios, word meanings, and grammar concepts. Or click on any word for details.",
+  "learnByTexting": "Learn by texting",
+  "levelSummaryTrigger": "View summary",
+  "levelSummaryPopupTitle": "Level {level} Summary",
+  "@levelSummaryPopupTitle": {
+    "type": "String",
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
+  "referFriends": "Refer friends",
+  "referFriendDialogTitle": "Invite a friend to your conversation",
+  "referFriendDialogDesc": "Do you have a friend who is excited to learn a new language with you? Then copy and send this invitation link to join and start chatting with you today.",
+  "youUnlocked": "You've unlocked",
+  "resetInstructionTooltipsTitle": "Reset instruction tooltips",
+  "resetInstructionTooltipsDesc": "Click to show instruction tooltips like for a brand new user.",
+  "selectForGrammar": "Select a grammar icon for activities and details.",
+  "newChatActivityTitle": "Add a fun activity?",
+  "newChatActivityDesc": "Choose one of the activities below to add to your chat or skip this step and create an activity later.",
+  "exploreMore": "Explore more",
+  "randomize": "Randomize",
+  "clear": "Clear",
+  "makeYourOwnActivity": "Make your own activity",
+  "featuredActivities": "Featured",
+  "yourBookmarks": "Bookmarked",
+  "goToChat": "Go to chat",
+  "save": "Save",
+  "selectActivity": "Select activity",
+  "newChatActivityDesc": "Make every group chat an adventure with Activity Planner! Set captivating topics and objectives for the group, and bring conversations to life with stunning images. Spark imaginative discussions and keep the fun flowing effortlessly!",
+  "exploreMore": "Explore more",
+  "wordFocusListeningMultipleChoice": "Which audio matches the word?",
+  "createActivity": "Create activity",
+  "startChat": "Start a chat",
+  "translationProblem": "Translation problem",
+  "perfectTranslation": "Perfect translation!",
+  "greatJobTranslation": "Great job with this translation!",
+  "goodJobTranslation": "Good work on this translation.",
+  "makingProgress": "You're making progress!",
+  "keepPracticing": "Keep practicing!",
+  "niceJob": "Nice job!",
+  "publicSpacesTitle": "Learning communities",
+  "askToJoin": "Ask to join",
+  "emptyChatWarningTitle": "Chat is empty",
+  "emptyChatWarningDesc": "You haven't invited anyone to your chat. Go to Chat settings to invite your contacts or the Bot. You can also do this later.",
+  "areYouLikeMe": "Are you like me?",
+  "tryAgainLater": "Too many attempts made. Please try again in 5 minutes.",
+  "enterSpaceCode": "Enter space code",
+  "shareSpaceLink": "Share link",
+  "byUsingPangeaChat": "By using Pangea Chat, I agree to the ",
+  "details": "Details",
+  "languageLevelPreA1Desc": "I have never learned or used the language.",
+  "languageLevelA1Desc": "I can understand and use some familiar everyday expressions and very basic phrases.",
+  "languageLevelA2Desc": "I can understand sentences and frequently used expressions related to areas of immediate relevance",
+  "languageLevelB1Desc": "I can deal with most familiar situations and can produce simple connected text on familiar topics.",
+  "languageLevelB2Desc": "I can understand the mains ideas of complex texts and interact with a degree of fluency and spontaneity.",
+  "languageLevelC1Desc": "I can express ideas fluently and spontaneously without much struggle and understand a wide range of demanding texts.",
+  "languageLevelC2Desc": "I can understand virtually everything heard or read and express myself fluently and precisely.",
+  "newVocab": "New vocab",
+  "newGrammar": "New grammar concepts",
+  "congratulationsOnReaching": "You've reached Level {level}!",
+  "@congratulationsOnReaching": {
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
+  "seeDetails": "See Details",
+  "choosePracticeMode": "Click on one of the buttons above to start a practice activity",
+  "userWouldLikeToChangeTheSpace": "{user} would like to join the space.",
+  "@userWouldLikeToChangeTheSpace": {
+    "placeholders": {
+      "user": {
+        "type": "String"
+      }
+    }
+  },
+  "ban": "Ban",
+  "unban": "Unban",
+  "kick": "Kick",
+  "lemma": "Lemma",
+  "grammarFeature": "Grammar feature",
+  "grammarTag": "Grammar tag",
+  "forms": "Forms",
+  "exampleMessages": "Example messages",
+  "timesUsedIndependently": "Times used independently",
+  "timesUsedWithAssistance": "Times used with assistance",
+  "goToSpaceButton": "Go to space",
+  "shareInviteCode": "Share invite code: {code}",
+  "@shareInviteCode": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "leaderboard": "Leaderboard",
+  "welcomeUser": "Welcome {user}",
+  "@welcomeUser": {
+    "placeholders": {
+      "user": {
+        "type": "String"
+      }
+    }
+  },
+  "joinSpaceOnboardingDesc": "Do you have an invite code or link to a learning community?",
+  "skipForNow": "Skip for now",
+  "permissions": "Permissions",
+  "spaceChildPermission": "Who can add new chats and subspaces to this space",
+  "addEnvironmentOverride": "Add environment override",
+  "defaultOption": "Default",
+  "deleteChatDesc": "Are you sure you want to delete this chat? It will be deleted for all participants and all messages within the chat will no longer be available for practice or learning analytics.",
+  "deleteSpaceDesc": "The space and any selected chats and/or subspaces will be deleted for all participants and all messages within the chat will no longer be available for practice or learning analytics. This action cannot be undone.",
+  "chatWithActivities": "Chat with activities",
+  "findYourPeople": "Find your people",
+  "launch": "Launch",
+  "launchActivityToChats": "Launch activity to chats",
+  "searchChats": "Search chats",
+  "selectChats": "Select chats",
+  "selectChatToStart": "Complete! Select a chat to start",
+  "maxFifty": "Max 50",
+  "configureSpace": "Configure space",
+  "pinMessages": "Pin messages",
+  "setJoinRules": "Set join rules",
+  "changeGeneralSettings": "Change general settings",
+  "inviteOtherUsersToRoom": "Invite other users",
+  "changeTheNameOfTheSpace": "Change the name of the space",
+  "changeTheDescription": "Change the description",
+  "changeThePermissions": "Change the permissions",
+  "introductions": "Introductions",
+  "announcements": "Announcements",
+  "activities": "Activities",
+  "access": "Access",
+  "addSubspace": "Add subspace",
+  "botSettings": "Bot settings",
+  "activitySuggestionTimeoutMessage": "We are working hard to generate activities for you, please check back in a minute",
+  "accessSettingsWarning": "Oops! It looks like you don't have permission to set the Access rules of this room. You should check these to make sure they're what you need and talk to a room admin if you need to change them",
+  "howSpaceCanBeFound": "How this space can be found",
+  "private": "Private",
+  "cannotBeFoundInSearch": "Cannot be found in search",
+  "public": "Public",
+  "visibleToCommunity": "Visible to the broader Pangea Chat community via \"Find your people\"",
+  "howSpaceCanBeJoined": "How this space can be joined",
+  "restricted": "Restricted",
+  "canBeFoundVia": "Can be found via:",
+  "canBeFoundViaInvitation": "\u2022 invitation",
+  "canBeFoundViaCodeOrLink": "\u2022 code or link",
+  "canBeFoundViaKnock": "\u2022 request to join and admin approval",
+  "anyoneCanJoin": "Anyone can join! However, admin can kick and ban whoever misbehaves. Those who are banned may not return!",
+  "createYourSpace": "Create your space",
+  "sendActivities": "Send activities",
+  "getStarted": "Get Started",
+  "getStartedBotChatDesc": "Chatting with AI is a great place to start and Pangea reading, writing, listening and speaking tools make it easy!",
+  "getStartedCommunitiesDesc": "Learning with a community is where Pangea Chat shines!\nYou can join your class, find a school, or even make your own!",
+  "getStartedFriendsDesc": "Do you have a friend that wants to learn with you?",
+  "getStartedBotChatComplete": "Well-done! You're chatting with the bot!",
+  "getStartedCommunitiesComplete": "Great, you have joined a space!",
+  "getStartedComplete": "You've completed this section!\nKeep exploring our amazing features by chatting with friends!",
+  "getStartedFriendsComplete": "Woohoo! You've got friends! 😉",
+  "getStartedBotChatButton": "Start chatting!",
+  "getStartedFriendsButton": "Invite a friend",
+  "groupChat": "Group Chat",
+  "directMessage": "Direct Message",
+  "newDirectMessage": "New direct message"
+}

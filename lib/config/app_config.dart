@@ -141,6 +141,7 @@ abstract class AppConfig {
   static bool? sendOnEnter;
   static bool showPresences = true;
   // #Pangea
+  // static bool displayNavigationRail = false;
   static bool displayNavigationRail = true;
   // Pangea#
   static bool experimentalVoip = false;
