@@ -1614,6 +1614,15 @@ class ChatController extends State<ChatPageWithRoom>
     // keep this event selected in case the user wants to send another emoji
     // setState(() => selectedEvents.clear());
     // Pangea#
+    // if reaction already exists, don't send it again
+    if (timeline == null ||
+        events.any(
+          (e) => e.aggregatedEvents(timeline!, RelationshipTypes.reaction).any(
+              (re) => re.content.tryGetMap('m.relates_to')?['key'] == emoji),
+        )) {
+      return;
+    }
+
     for (final event in events) {
       await room.sendReaction(
         event.eventId,
