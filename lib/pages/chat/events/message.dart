@@ -618,7 +618,12 @@ class Message extends StatelessWidget {
         crossAxisAlignment:
             ownMessage ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: <Widget>[
-          if (displayTime || selected)
+          // #Pangea
+          if (displayTime)
+            // we don't need to display the time if the message is selected
+            // we have the background blotted out so you can't see the time anyway
+            // if (displayTime || selected)
+            // Pangea#
             Padding(
               padding: displayTime
                   ? const EdgeInsets.symmetric(vertical: 8.0)
