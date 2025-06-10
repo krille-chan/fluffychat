@@ -1175,12 +1175,11 @@ packages:
   matrix:
     dependency: "direct main"
     description:
-      path: "."
-      ref: "krille/vodozemac"
-      resolved-ref: "81ab30dd5948408964507a04bfc53f42045ee0a3"
-      url: "https://github.com/famedly/matrix-dart-sdk.git"
-    source: git
-    version: "0.40.0"
+      name: matrix
+      sha256: "127cc89a030e1555fc02c3434f443feca942320af6248122b36c56448e59fb19"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   meta:
     dependency: transitive
     description:
