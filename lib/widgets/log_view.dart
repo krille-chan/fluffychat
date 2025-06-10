@@ -36,6 +36,7 @@ class LogViewerState extends State<LogViewer> {
             onPressed: () => setState(() => fontSize--),
           ),
           PopupMenuButton<Level>(
+            useRootNavigator: true,
             itemBuilder: (context) => Level.values
                 .map(
                   (level) => PopupMenuItem(

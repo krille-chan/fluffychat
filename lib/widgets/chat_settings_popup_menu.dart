@@ -52,6 +52,7 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
       children: [
         const SizedBox.shrink(),
         PopupMenuButton<ChatPopupMenuActions>(
+          useRootNavigator: true,
           onSelected: (choice) async {
             switch (choice) {
               case ChatPopupMenuActions.leave:

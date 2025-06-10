@@ -579,9 +579,6 @@ class _SpaceViewState extends State<SpaceView> {
                                 widget.toParentSpace(joinedParents.first.id),
                           )
                         : PopupMenuButton(
-                            popUpAnimationStyle: AnimationStyle(
-                              duration: const Duration(milliseconds: 0),
-                            ),
                             tooltip: null,
                             useRootNavigator: true,
                             icon: const Icon(Icons.arrow_back_outlined),
@@ -635,6 +632,7 @@ class _SpaceViewState extends State<SpaceView> {
             ),
             actions: [
               PopupMenuButton<SpaceActions>(
+                useRootNavigator: true,
                 onSelected: _onSpaceAction,
                 itemBuilder: (context) => [
                   PopupMenuItem(
