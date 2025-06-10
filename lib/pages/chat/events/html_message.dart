@@ -166,28 +166,23 @@ class HtmlMessage extends StatelessWidget {
         (token) => token.text.offset == offset && token.text.length == length,
       );
 
-  /// Wrap token spans in token tags so styling / functions can be applied
-  dom.Node _tokenizeHtml(
-    dom.Node element,
-    String fullHtml,
-    List<PangeaToken> remainingTokens,
-  ) {
+  String _addTokenTags() {
     final regex = RegExp(r'(<[^>]+>)');
 
-    final matches = regex.allMatches(fullHtml);
+    final matches = regex.allMatches(html);
     final List<String> result = <String>[];
     int lastEnd = 0;
 
     for (final match in matches) {
       if (match.start > lastEnd) {
-        result.add(fullHtml.substring(lastEnd, match.start)); // Text before tag
+        result.add(html.substring(lastEnd, match.start)); // Text before tag
       }
       result.add(match.group(0)!); // The tag itself
       lastEnd = match.end;
     }
 
-    if (lastEnd < fullHtml.length) {
-      result.add(fullHtml.substring(lastEnd)); // Remaining text after last tag
+    if (lastEnd < html.length) {
+      result.add(html.substring(lastEnd)); // Remaining text after last tag
     }
 
     for (final PangeaToken token in tokens ?? []) {
@@ -217,7 +212,7 @@ class HtmlMessage extends StatelessWidget {
       ]);
     }
 
-    return dom.Element.html('<span>${result.join()}</span>');
+    return result.join();
   }
   // Pangea#
 
@@ -834,10 +829,7 @@ class HtmlMessage extends StatelessWidget {
     //   maxLines: limitHeight ? 64 : null,Add commentMore actions
     //   overflow: TextOverflow.fade,
     // );
-    dom.Node parsed = parser.parse(html).body ?? dom.Element.html('');
-    if (tokens != null) {
-      parsed = _tokenizeHtml(parsed, html, List.from(tokens!));
-    }
+    final parsed = parser.parse(_addTokenTags()).body ?? dom.Element.html('');
     return SelectionArea(
       child: GestureDetector(
         onTap: () {
