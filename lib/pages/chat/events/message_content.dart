@@ -328,6 +328,10 @@ class MessageContent extends StatelessWidget {
             if (event.messageType == MessageTypes.Emote) {
               html = '* $html';
             }
+
+            final bigEmotes = event.onlyEmotes &&
+                event.numberEmotes > 0 &&
+                event.numberEmotes <= 3;
             return Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: 16,
@@ -337,7 +341,9 @@ class MessageContent extends StatelessWidget {
                 html: html,
                 textColor: textColor,
                 room: event.room,
-                fontSize: AppConfig.fontSizeFactor * AppConfig.messageFontSize,
+                fontSize: AppConfig.fontSizeFactor *
+                    AppConfig.messageFontSize *
+                    (bigEmotes ? 5 : 1),
                 limitHeight: !selected,
                 linkStyle: TextStyle(
                   color: linkColor,
