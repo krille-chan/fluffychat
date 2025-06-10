@@ -361,6 +361,6 @@ class MatrixLocals extends MatrixLocalizations {
         senderName,
         duration == null
             ? ''
-            : '${duration.inMinutes}:${duration.inSeconds % 60}',
+            : '${duration.inMinutes.toString().padLeft(2, '0')}:${(duration.inSeconds % 60).toString().padLeft(2, '0')}',
       );
 }

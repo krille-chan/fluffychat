@@ -3209,7 +3209,7 @@
       }
     }
   },
-  "sentVoiceMessage": "🎙️ {duration} - {sender}",
+  "sentVoiceMessage": "🎙️ {duration} - Voice message from {sender}",
   "@sentVoiceMessage": {
     "type": "String",
     "placeholders": {
@@ -4928,6 +4928,9 @@
   "ban": "Ban",
   "unban": "Unban",
   "kick": "Kick",
+  "approve": "Approve",
+  "youHaveKnocked": "You have knocked",
+  "pleaseWaitUntilInvited": "Please wait now, until someone from the room invites you.",
   "lemma": "Lemma",
   "grammarFeature": "Grammar feature",
   "grammarTag": "Grammar tag",
