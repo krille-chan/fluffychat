@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/events/message_content.dart';
 import 'package:fluffychat/pages/chat/events/reply_content.dart';
@@ -136,8 +137,7 @@ class OverlayMessage extends StatelessWidget {
     final showTranslation = overlayController.showTranslation &&
         overlayController.translationText != null;
 
-    final showTranscription = overlayController.showTranscription &&
-        overlayController.transcriptText != null;
+    final showTranscription = pangeaMessageEvent?.isAudioMessage == true;
 
     final content = Container(
       decoration: BoxDecoration(
@@ -278,17 +278,37 @@ class OverlayMessage extends StatelessWidget {
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(12.0),
-                  child: SingleChildScrollView(
-                    child: Text(
-                      overlayController.transcriptText!,
-                      style: AppConfig.messageTextStyle(
-                        event,
-                        textColor,
-                      ).copyWith(
-                        fontStyle: FontStyle.italic,
-                      ),
-                    ),
-                  ),
+                  child: overlayController.transcriptionError != null
+                      ? Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(
+                              Icons.error_outline,
+                              color: Theme.of(context).colorScheme.error,
+                            ),
+                            const SizedBox(width: 8),
+                            Text(
+                              L10n.of(context).oopsSomethingWentWrong,
+                              style: AppConfig.messageTextStyle(
+                                event,
+                                textColor,
+                              ).copyWith(fontStyle: FontStyle.italic),
+                            ),
+                          ],
+                        )
+                      : overlayController.transcriptionText != null
+                          ? SingleChildScrollView(
+                              child: Text(
+                                overlayController.transcriptionText!,
+                                style: AppConfig.messageTextStyle(
+                                  event,
+                                  textColor,
+                                ).copyWith(
+                                  fontStyle: FontStyle.italic,
+                                ),
+                              ),
+                            )
+                          : const LinearProgressIndicator(),
                 ),
               ),
             sizeAnimation != null

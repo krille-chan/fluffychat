@@ -27,7 +27,7 @@ enum SelectMode {
   audio(Icons.volume_up),
   translate(Icons.translate),
   practice(Symbols.fitness_center),
-  transcription(Icons.translate);
+  speechTranslation(Icons.translate);
 
   final IconData icon;
   const SelectMode(this.icon);
@@ -41,7 +41,7 @@ enum SelectMode {
         return l10n.translationTooltip;
       case SelectMode.practice:
         return l10n.practice;
-      case SelectMode.transcription:
+      case SelectMode.speechTranslation:
         return l10n.speechToTextTooltip;
     }
   }
@@ -72,7 +72,7 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
       ];
 
   static List<SelectMode> get audioModes => [
-        SelectMode.transcription,
+        SelectMode.speechTranslation,
         SelectMode.practice,
       ];
 
@@ -91,9 +91,7 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
   PangeaRepresentation? _repEvent;
   String? _translationError;
 
-  bool _isLoadingTranscription = false;
   SpeechToTextModel? _speechToTextResponse;
-  String? _transcriptionError;
 
   @override
   void initState() {
@@ -113,6 +111,10 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
         );
       }
     });
+
+    if (messageEvent?.isAudioMessage == true) {
+      _loadTranscription();
+    }
   }
 
   @override
@@ -135,17 +137,12 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
     setState(() {
       _audioError = null;
       _translationError = null;
-      _transcriptionError = null;
     });
 
     widget.overlayController.updateSelectedSpan(null);
 
     if (_selectedMode == SelectMode.translate) {
       widget.overlayController.setShowTranslation(false, null);
-    }
-
-    if (_selectedMode == SelectMode.transcription) {
-      widget.overlayController.setShowTranscription(false, null);
     }
   }
 
@@ -181,20 +178,6 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
 
     if (_selectedMode == SelectMode.translate) {
       await _loadTranslation();
-      if (_repEvent == null) return;
-      widget.overlayController.setShowTranslation(
-        true,
-        _repEvent!.text,
-      );
-    }
-
-    if (_selectedMode == SelectMode.transcription) {
-      await _loadTranscription();
-      if (_speechToTextResponse == null) return;
-      widget.overlayController.setShowTranscription(
-        true,
-        _speechToTextResponse!.transcript.text,
-      );
     }
   }
 
@@ -312,6 +295,14 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
 
     try {
       await _fetchRepresentation();
+      if (_repEvent == null) {
+        throw "No representation found for the selected language.";
+      }
+
+      widget.overlayController.setShowTranslation(
+        true,
+        _repEvent!.text,
+      );
     } catch (err) {
       _translationError = err.toString();
       ErrorHandler.logError(
@@ -326,21 +317,19 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
   }
 
   Future<void> _loadTranscription() async {
-    if (!mounted) return;
-    setState(() => _isLoadingTranscription = true);
-
     try {
       await _fetchTranscription();
+      widget.overlayController.setTranscriptionText(
+        _speechToTextResponse!.transcript.text,
+      );
     } catch (err) {
-      _transcriptionError = err.toString();
+      widget.overlayController.setTranscriptionError(
+        err.toString(),
+      );
       ErrorHandler.logError(
         e: err,
         data: {},
       );
-    }
-
-    if (mounted) {
-      setState(() => _isLoadingTranscription = false);
     }
   }
 
@@ -350,8 +339,6 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
         return _audioError != null;
       case SelectMode.translate:
         return _translationError != null;
-      case SelectMode.transcription:
-        return _transcriptionError != null;
       default:
         return false;
     }
@@ -363,8 +350,6 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
         return _isLoadingAudio;
       case SelectMode.translate:
         return _isLoadingTranslation;
-      case SelectMode.transcription:
-        return _isLoadingTranscription;
       default:
         return false;
     }

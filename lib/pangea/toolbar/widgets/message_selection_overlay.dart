@@ -94,8 +94,8 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   bool showTranslation = false;
   String? translationText;
 
-  bool showTranscription = false;
-  String? transcriptText;
+  String? transcriptionText;
+  String? transcriptionError;
 
   double maxWidth = AppConfig.toolbarMinWidth;
 
@@ -586,14 +586,20 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     }
   }
 
-  void setShowTranscription(bool show, String? transcription) {
-    if (showTranscription == show) return;
-    if (show && transcription == null) return;
-
+  void setTranscriptionText(String transcription) {
     if (mounted) {
       setState(() {
-        showTranscription = show;
-        transcriptText = show ? transcription : null;
+        transcriptionError = null;
+        transcriptionText = transcription;
+      });
+    }
+  }
+
+  void setTranscriptionError(String error) {
+    if (mounted) {
+      setState(() {
+        transcriptionText = null;
+        transcriptionError = error;
       });
     }
   }
