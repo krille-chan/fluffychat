@@ -138,6 +138,9 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
   void dispose() {
     _animationController.dispose();
     _reactionSubscription?.cancel();
+    MatrixState.pangeaController.matrixState.audioPlayer
+      ?..stop()
+      ..dispose();
     super.dispose();
   }
 

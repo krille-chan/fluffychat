@@ -74,7 +74,6 @@ class MatchActivityCard extends StatelessWidget {
           MessageAudioCard(
             messageEvent: overlayController.pangeaMessageEvent!,
             overlayController: overlayController,
-            setIsPlayingAudio: overlayController.setIsPlayingAudio,
           ),
         Wrap(
           alignment: WrapAlignment.center,

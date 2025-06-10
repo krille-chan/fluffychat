@@ -86,7 +86,6 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
   List<PangeaTokenText>? _highlightedTokens;
   bool initialized = false;
-  bool isPlayingAudio = false;
 
   final GlobalKey<ReadingAssistanceContentState> wordZoomKey = GlobalKey();
 
@@ -573,12 +572,6 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     return _highlightedTokens!.any(
       (t) => t.offset == token.text.offset && t.length == token.text.length,
     );
-  }
-
-  void setIsPlayingAudio(bool isPlaying) {
-    if (mounted) {
-      setState(() => isPlayingAudio = isPlaying);
-    }
   }
 
   void setShowTranslation(bool show, String? translation) {
