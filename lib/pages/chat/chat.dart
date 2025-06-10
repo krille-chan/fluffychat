@@ -1091,6 +1091,8 @@ class ChatController extends State<ChatPageWithRoom>
     // #Pangea
     stopMediaStream.add(null);
     // Pangea#
+    room.client.getConfig(); // Preload server file configuration.
+
     final scaffoldMessenger = ScaffoldMessenger.of(context);
     if (PlatformInfos.isAndroid) {
       final info = await DeviceInfoPlugin().androidInfo;
@@ -1756,12 +1758,9 @@ class ChatController extends State<ChatPageWithRoom>
     FocusScope.of(context).requestFocus(inputFocus);
   }
 
-  //#Pangea
-  void onAddPopupMenuButtonSelected(String? choice) {
-    // void onAddPopupMenuButtonSelected(String choice) {
-    debugger(when: kDebugMode && choice == null);
+  void onAddPopupMenuButtonSelected(String choice) {
+    room.client.getConfig(); // Preload server file configuration.
 
-    //Pangea#
     if (choice == 'file') {
       sendFileAction();
     }
