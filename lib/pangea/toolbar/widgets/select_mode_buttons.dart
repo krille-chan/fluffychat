@@ -18,6 +18,7 @@ import 'package:fluffychat/pangea/common/widgets/pressable_button.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/events/extensions/pangea_event_extension.dart';
 import 'package:fluffychat/pangea/events/models/representation_content_model.dart';
+import 'package:fluffychat/pangea/toolbar/models/speech_to_text_models.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_audio_card.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -25,7 +26,8 @@ import 'package:fluffychat/widgets/matrix.dart';
 enum SelectMode {
   audio(Icons.volume_up),
   translate(Icons.translate),
-  practice(Symbols.fitness_center);
+  practice(Symbols.fitness_center),
+  transcription(Icons.translate);
 
   final IconData icon;
   const SelectMode(this.icon);
@@ -39,6 +41,8 @@ enum SelectMode {
         return l10n.translationTooltip;
       case SelectMode.practice:
         return l10n.practice;
+      case SelectMode.transcription:
+        return l10n.speechToTextTooltip;
     }
   }
 }
@@ -61,6 +65,17 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
   static const double iconWidth = 36.0;
   static const double buttonSize = 40.0;
 
+  static List<SelectMode> get textModes => [
+        SelectMode.audio,
+        SelectMode.translate,
+        SelectMode.practice,
+      ];
+
+  static List<SelectMode> get audioModes => [
+        SelectMode.transcription,
+        SelectMode.practice,
+      ];
+
   SelectMode? _selectedMode;
 
   final AudioPlayer _audioPlayer = AudioPlayer();
@@ -74,6 +89,11 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
 
   bool _isLoadingTranslation = false;
   PangeaRepresentation? _repEvent;
+  String? _translationError;
+
+  bool _isLoadingTranscription = false;
+  SpeechToTextModel? _speechToTextResponse;
+  String? _transcriptionError;
 
   @override
   void initState() {
@@ -112,11 +132,20 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
       MatrixState.pangeaController.languageController.activeL2Code();
 
   void _clear() {
-    setState(() => _audioError = null);
+    setState(() {
+      _audioError = null;
+      _translationError = null;
+      _transcriptionError = null;
+    });
+
     widget.overlayController.updateSelectedSpan(null);
 
     if (_selectedMode == SelectMode.translate) {
       widget.overlayController.setShowTranslation(false, null);
+    }
+
+    if (_selectedMode == SelectMode.transcription) {
+      widget.overlayController.setShowTranscription(false, null);
     }
   }
 
@@ -156,6 +185,15 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
       widget.overlayController.setShowTranslation(
         true,
         _repEvent!.text,
+      );
+    }
+
+    if (_selectedMode == SelectMode.transcription) {
+      await _loadTranscription();
+      if (_speechToTextResponse == null) return;
+      widget.overlayController.setShowTranscription(
+        true,
+        _speechToTextResponse!.transcript.text,
       );
     }
   }
@@ -257,6 +295,17 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
     }
   }
 
+  Future<void> _fetchTranscription() async {
+    if (l1Code == null || messageEvent == null || _repEvent != null) {
+      return;
+    }
+
+    _speechToTextResponse ??= await messageEvent!.getSpeechToText(
+      l1Code!,
+      l2Code!,
+    );
+  }
+
   Future<void> _loadTranslation() async {
     if (!mounted) return;
     setState(() => _isLoadingTranslation = true);
@@ -264,6 +313,7 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
     try {
       await _fetchRepresentation();
     } catch (err) {
+      _translationError = err.toString();
       ErrorHandler.logError(
         e: err,
         data: {},
@@ -275,50 +325,78 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
     }
   }
 
-  Widget icon(SelectMode mode) {
-    if (mode == SelectMode.audio) {
-      if (_audioError != null) {
-        return Icon(
-          Icons.error_outline,
-          size: 20,
-          color: Theme.of(context).colorScheme.error,
-        );
-      }
-      if (_isLoadingAudio) {
-        return const Center(
-          child: SizedBox(
-            height: 20.0,
-            width: 20.0,
-            child: CircularProgressIndicator.adaptive(),
-          ),
-        );
-      } else {
-        return Icon(
-          _audioPlayer.playerState.playing == true
-              ? Icons.pause_outlined
-              : Icons.volume_up,
-          size: 20,
-          color: mode == _selectedMode ? Colors.white : null,
-        );
-      }
+  Future<void> _loadTranscription() async {
+    if (!mounted) return;
+    setState(() => _isLoadingTranscription = true);
+
+    try {
+      await _fetchTranscription();
+    } catch (err) {
+      _transcriptionError = err.toString();
+      ErrorHandler.logError(
+        e: err,
+        data: {},
+      );
     }
 
-    if (mode == SelectMode.translate) {
-      if (_isLoadingTranslation) {
-        return const Center(
-          child: SizedBox(
-            height: 20.0,
-            width: 20.0,
-            child: CircularProgressIndicator.adaptive(),
-          ),
-        );
-      } else if (_repEvent != null) {
-        return Icon(
-          mode.icon,
-          size: 20,
-          color: mode == _selectedMode ? Colors.white : null,
-        );
-      }
+    if (mounted) {
+      setState(() => _isLoadingTranscription = false);
+    }
+  }
+
+  bool get _isError {
+    switch (_selectedMode) {
+      case SelectMode.audio:
+        return _audioError != null;
+      case SelectMode.translate:
+        return _translationError != null;
+      case SelectMode.transcription:
+        return _transcriptionError != null;
+      default:
+        return false;
+    }
+  }
+
+  bool get _isLoading {
+    switch (_selectedMode) {
+      case SelectMode.audio:
+        return _isLoadingAudio;
+      case SelectMode.translate:
+        return _isLoadingTranslation;
+      case SelectMode.transcription:
+        return _isLoadingTranscription;
+      default:
+        return false;
+    }
+  }
+
+  Widget icon(SelectMode mode) {
+    if (_isError && mode == _selectedMode) {
+      return Icon(
+        Icons.error_outline,
+        size: 20,
+        color: Theme.of(context).colorScheme.error,
+      );
+    }
+
+    if (_isLoading && mode == _selectedMode) {
+      return const Center(
+        child: SizedBox(
+          height: 20.0,
+          width: 20.0,
+          child: CircularProgressIndicator.adaptive(),
+        ),
+      );
+    }
+
+    if (mode == SelectMode.audio) {
+      return Icon(
+        _audioPlayer.playerState.playing == true
+            ? Icons.pause_outlined
+            : Icons.volume_up,
+        size: 20,
+        color: mode == _selectedMode ? Colors.white : null,
+      );
     }
 
     return Icon(
@@ -330,6 +408,8 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
 
   @override
   Widget build(BuildContext context) {
+    final modes = messageEvent?.isAudioMessage == true ? audioModes : textModes;
+
     return Container(
       height: AppConfig.toolbarButtonsHeight,
       alignment: Alignment.bottomCenter,
@@ -338,7 +418,7 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
         mainAxisSize: MainAxisSize.min,
         spacing: 4.0,
         children: [
-          for (final mode in SelectMode.values)
+          for (final mode in modes)
             Tooltip(
               message: mode.tooltip(context),
               child: PressableButton(

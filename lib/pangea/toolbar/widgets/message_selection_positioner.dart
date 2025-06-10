@@ -490,10 +490,22 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
 
   // measurement for items in the toolbar
 
-  bool get _showButtons =>
-      (widget.pangeaMessageEvent?.shouldShowToolbar ?? false) &&
-      widget.pangeaMessageEvent?.event.messageType == MessageTypes.Text &&
-      (widget.pangeaMessageEvent?.messageDisplayLangIsL2 ?? false);
+  bool get _showButtons {
+    if (!(widget.pangeaMessageEvent?.shouldShowToolbar ?? false)) {
+      return false;
+    }
+
+    final type = widget.pangeaMessageEvent?.event.messageType;
+    if (![MessageTypes.Text, MessageTypes.Audio].contains(type)) {
+      return false;
+    }
+
+    if (type == MessageTypes.Text) {
+      return widget.pangeaMessageEvent?.messageDisplayLangIsL2 ?? false;
+    }
+
+    return true;
+  }
 
   bool get showPracticeButtons =>
       _showButtons &&

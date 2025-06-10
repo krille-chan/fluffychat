@@ -11,7 +11,6 @@ import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dar
 import 'package:fluffychat/pangea/events/extensions/pangea_event_extension.dart';
 import 'package:fluffychat/pangea/toolbar/enums/reading_assistance_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
-import 'package:fluffychat/pangea/toolbar/widgets/message_speech_to_text_card.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/file_description.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -137,7 +136,8 @@ class OverlayMessage extends StatelessWidget {
     final showTranslation = overlayController.showTranslation &&
         overlayController.translationText != null;
 
-    final showTranscription = pangeaMessageEvent?.isAudioMessage == true;
+    final showTranscription = overlayController.showTranscription &&
+        overlayController.transcriptText != null;
 
     final content = Container(
       decoration: BoxDecoration(
@@ -270,6 +270,27 @@ class OverlayMessage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            if (showTranscription)
+              Container(
+                width: messageWidth,
+                constraints: const BoxConstraints(
+                  maxHeight: AppConfig.audioTranscriptionMaxHeight,
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: SingleChildScrollView(
+                    child: Text(
+                      overlayController.transcriptText!,
+                      style: AppConfig.messageTextStyle(
+                        event,
+                        textColor,
+                      ).copyWith(
+                        fontStyle: FontStyle.italic,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
             sizeAnimation != null
                 ? AnimatedBuilder(
                     animation: sizeAnimation!,
@@ -282,7 +303,7 @@ class OverlayMessage extends StatelessWidget {
                     },
                   )
                 : content,
-            if (showTranscription || showTranslation)
+            if (showTranslation)
               Container(
                 width: messageWidth,
                 constraints: const BoxConstraints(
@@ -296,20 +317,15 @@ class OverlayMessage extends StatelessWidget {
                     12.0,
                   ),
                   child: SingleChildScrollView(
-                    child: showTranscription
-                        ? MessageSpeechToTextCard(
-                            messageEvent: pangeaMessageEvent!,
-                            textColor: textColor,
-                          )
-                        : Text(
-                            overlayController.translationText!,
-                            style: AppConfig.messageTextStyle(
-                              event,
-                              textColor,
-                            ).copyWith(
-                              fontStyle: FontStyle.italic,
-                            ),
-                          ),
+                    child: Text(
+                      overlayController.translationText!,
+                      style: AppConfig.messageTextStyle(
+                        event,
+                        textColor,
+                      ).copyWith(
+                        fontStyle: FontStyle.italic,
+                      ),
+                    ),
                   ),
                 ),
               ),

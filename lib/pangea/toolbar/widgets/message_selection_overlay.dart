@@ -91,8 +91,12 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   final GlobalKey<ReadingAssistanceContentState> wordZoomKey = GlobalKey();
 
   ReadingAssistanceMode? readingAssistanceMode; // default mode
+
   bool showTranslation = false;
   String? translationText;
+
+  bool showTranscription = false;
+  String? transcriptText;
 
   double maxWidth = AppConfig.toolbarMinWidth;
 
@@ -585,6 +589,18 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
       setState(() {
         showTranslation = show;
         translationText = show ? translation : null;
+      });
+    }
+  }
+
+  void setShowTranscription(bool show, String? transcription) {
+    if (showTranscription == show) return;
+    if (show && transcription == null) return;
+
+    if (mounted) {
+      setState(() {
+        showTranscription = show;
+        transcriptText = show ? transcription : null;
       });
     }
   }
