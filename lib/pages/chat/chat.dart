@@ -1780,14 +1780,6 @@ class ChatController extends State<ChatPageWithRoom>
     if (choice == 'location') {
       sendLocationAction();
     }
-    if (choice == 'checklist') {
-      if (sendController.text.isEmpty) {
-        sendController.text = '- [ ] ';
-      } else {
-        sendController.text += '\n- [ ] ';
-      }
-      inputFocus.requestFocus();
-    }
   }
 
   unpinEvent(String eventId) async {

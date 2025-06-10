@@ -124,18 +124,6 @@ class ChatInputRow extends StatelessWidget {
                   onSelected: controller.onAddPopupMenuButtonSelected,
                   itemBuilder: (BuildContext context) =>
                       <PopupMenuEntry<String>>[
-                    PopupMenuItem<String>(
-                      value: 'checklist',
-                      child: ListTile(
-                        leading: CircleAvatar(
-                          backgroundColor: theme.colorScheme.onPrimaryContainer,
-                          foregroundColor: theme.colorScheme.primaryContainer,
-                          child: const Icon(Icons.check_circle_outlined),
-                        ),
-                        title: Text(L10n.of(context).checkList),
-                        contentPadding: const EdgeInsets.all(0),
-                      ),
-                    ),
                     if (PlatformInfos.isMobile)
                       PopupMenuItem<String>(
                         value: 'location',

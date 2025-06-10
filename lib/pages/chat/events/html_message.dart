@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
@@ -508,12 +509,11 @@ class HtmlMessage extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: SizedBox.square(
-                          dimension: fontSize,
-                          child: Checkbox.adaptive(
+                          dimension: fontSize + 2,
+                          child: CupertinoCheckbox(
                             checkColor: textColor,
                             side: BorderSide(color: textColor),
                             activeColor: textColor.withAlpha(64),
-                            visualDensity: VisualDensity.compact,
                             value:
                                 staticallyChecked || checkedByReaction != null,
                             onChanged: eventId == null ||
