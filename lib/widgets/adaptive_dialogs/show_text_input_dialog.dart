@@ -31,11 +31,11 @@ Future<String?> showTextInputDialog({
   bool autoSubmit = false,
   // Pangea#
 }) {
+  final controller = TextEditingController(text: initialText);
   return showAdaptiveDialog<String>(
     context: context,
     useRootNavigator: useRootNavigator,
     builder: (context) {
-      final controller = TextEditingController(text: initialText);
       final error = ValueNotifier<String?>(null);
       return ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 512),
