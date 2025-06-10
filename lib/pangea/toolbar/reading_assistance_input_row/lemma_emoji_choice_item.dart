@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 
@@ -21,7 +22,10 @@ class LemmaEmojiChoiceItemState extends State<LemmaEmojiChoiceItem> {
 
   Color color(BuildContext context) {
     if (_isHovered) {
-      return Theme.of(context).colorScheme.primaryContainer;
+      return Theme.of(context)
+          .colorScheme
+          .primaryContainer
+          .withAlpha((0.4 * 255).toInt());
     }
 
     return Colors.transparent;
@@ -30,9 +34,11 @@ class LemmaEmojiChoiceItemState extends State<LemmaEmojiChoiceItem> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(8),
+      height: 40,
+      width: 40,
+      alignment: Alignment.center,
       decoration: BoxDecoration(
-        color: color(context).withAlpha((0.4 * 255).toInt()),
+        color: color(context),
         borderRadius: BorderRadius.circular(AppConfig.borderRadius),
       ),
       child: InkWell(
@@ -47,6 +53,33 @@ class LemmaEmojiChoiceItemState extends State<LemmaEmojiChoiceItem> {
         child: Text(
           widget.content,
           style: Theme.of(context).textTheme.headlineSmall,
+        ),
+      ),
+    );
+  }
+}
+
+class LemmaEmojiChoicePlaceholder extends StatelessWidget {
+  const LemmaEmojiChoicePlaceholder({
+    super.key,
+    this.size = 40,
+  });
+
+  final double size;
+
+  @override
+  Widget build(BuildContext context) {
+    return Shimmer.fromColors(
+      baseColor: Colors.transparent,
+      highlightColor:
+          Theme.of(context).colorScheme.primaryContainer.withAlpha(0xAA),
+      child: Container(
+        height: size,
+        width: size,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.primaryContainer.withAlpha(0x66),
+          borderRadius: BorderRadius.circular(AppConfig.borderRadius),
         ),
       ),
     );

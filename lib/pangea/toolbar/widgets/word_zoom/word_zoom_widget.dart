@@ -8,13 +8,10 @@ import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/learning_settings/constants/language_constants.dart';
 import 'package:fluffychat/pangea/lemmas/construct_xp_widget.dart';
 import 'package:fluffychat/pangea/lemmas/lemma_reaction_picker.dart';
-import 'package:fluffychat/pangea/morphs/morph_features_enum.dart';
 import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
-import 'package:fluffychat/pangea/toolbar/widgets/practice_activity/word_audio_button.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/word_zoom/lemma_meaning_widget.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/word_zoom/lemma_widget.dart';
-import 'package:fluffychat/pangea/toolbar/widgets/word_zoom/morphological_list_item.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class WordZoomWidget extends StatelessWidget {
@@ -161,41 +158,41 @@ class WordZoomWidget extends StatelessWidget {
                 ],
               ),
             ),
-            const SizedBox(
-              height: 8.0,
-            ),
-            Wrap(
-              alignment: WrapAlignment.center,
-              crossAxisAlignment: WrapCrossAlignment.center,
-              spacing: 8.0,
-              children: [
-                if (token.text.content.toLowerCase() !=
-                    token.lemma.text.toLowerCase()) ...[
-                  Text(
-                    _selectedToken.text.content,
-                    style: Theme.of(context).textTheme.bodyLarge,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  WordAudioButton(
-                    text: _selectedToken.text.content,
-                    baseOpacity: 0.4,
-                    uniqueID: "word-zoom-audio-${_selectedToken.text.content}",
-                    langCode: overlayController
-                        .pangeaMessageEvent!.messageDisplayLangCode,
-                  ),
-                ],
-                ..._selectedToken.morphsBasicallyEligibleForPracticeByPriority
-                    .map(
-                  (cId) => MorphologicalListItem(
-                    morphFeature: MorphFeaturesEnumExtension.fromString(
-                      cId.category,
-                    ),
-                    token: _selectedToken,
-                    overlayController: overlayController,
-                  ),
-                ),
-              ],
-            ),
+            // const SizedBox(
+            //   height: 8.0,
+            // ),
+            // Wrap(
+            //   alignment: WrapAlignment.center,
+            //   crossAxisAlignment: WrapCrossAlignment.center,
+            //   spacing: 8.0,
+            //   children: [
+            //     if (token.text.content.toLowerCase() !=
+            //         token.lemma.text.toLowerCase()) ...[
+            //       Text(
+            //         _selectedToken.text.content,
+            //         style: Theme.of(context).textTheme.bodyLarge,
+            //         overflow: TextOverflow.ellipsis,
+            //       ),
+            //       WordAudioButton(
+            //         text: _selectedToken.text.content,
+            //         baseOpacity: 0.4,
+            //         uniqueID: "word-zoom-audio-${_selectedToken.text.content}",
+            //         langCode: overlayController
+            //             .pangeaMessageEvent!.messageDisplayLangCode,
+            //       ),
+            //     ],
+            //     ..._selectedToken.morphsBasicallyEligibleForPracticeByPriority
+            //         .map(
+            //       (cId) => MorphologicalListItem(
+            //         morphFeature: MorphFeaturesEnumExtension.fromString(
+            //           cId.category,
+            //         ),
+            //         token: _selectedToken,
+            //         overlayController: overlayController,
+            //       ),
+            //     ),
+            //   ],
+            // ),
           ],
         ),
       ),

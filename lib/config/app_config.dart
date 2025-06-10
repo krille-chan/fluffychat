@@ -28,7 +28,7 @@ abstract class AppConfig {
   static const bool enableRegistration = true;
   // #Pangea
   static const double toolbarMaxHeight = 250.0;
-  static const double toolbarMinHeight = 200.0;
+  static const double toolbarMinHeight = 150.0;
   static const double toolbarMinWidth = 350.0;
   static const double defaultHeaderHeight = 56.0;
   static const double toolbarButtonsHeight = 50.0;
