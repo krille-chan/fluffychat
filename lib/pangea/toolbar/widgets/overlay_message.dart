@@ -219,6 +219,7 @@ class OverlayMessage extends StatelessWidget {
               prevEvent: previousEvent,
               isTransitionAnimation: isTransitionAnimation,
               readingAssistanceMode: readingAssistanceMode,
+              selected: true,
             ),
             if (event.hasAggregatedEvents(
               timeline,

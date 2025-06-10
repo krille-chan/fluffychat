@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
 import 'package:fluffychat/pages/chat_list/dummy_chat_list_item.dart';
@@ -183,9 +183,11 @@ class ChatListViewBody extends StatelessWidget {
                     //           ActiveFilter.messages
                     //         else
                     //           ActiveFilter.allChats,
+                    //         ActiveFilter.groups,
                     //         ActiveFilter.unread,
                     //         if (spaceDelegateCandidates.isNotEmpty &&
-                    //             !controller.widget.displayNavigationRail)
+                    //             !AppConfig.displayNavigationRail &&
+                    //             !FluffyThemes.isColumnMode(context))
                     //           ActiveFilter.spaces,
                     //       ]
                     //           .map(
@@ -197,9 +199,8 @@ class ChatListViewBody extends StatelessWidget {
                     //                 selected: filter == controller.activeFilter,
                     //                 onSelected: (_) =>
                     //                     controller.setActiveFilter(filter),
-                    //                 label: Text(
-                    //                   filter.toLocalizedString(context),
-                    //                 ),
+                    //                 label:
+                    //                     Text(filter.toLocalizedString(context)),
                     //               ),
                     //             ),
                     //           )

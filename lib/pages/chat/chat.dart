@@ -12,7 +12,6 @@ import 'package:flutter/services.dart';
 import 'package:collection/collection.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:matrix/matrix.dart';
@@ -24,6 +23,7 @@ import 'package:universal_html/html.dart' as html;
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/chat_view.dart';
 import 'package:fluffychat/pages/chat/event_info_dialog.dart';
 import 'package:fluffychat/pages/chat/recording_dialog.dart';
@@ -336,9 +336,10 @@ class ChatController extends State<ChatPageWithRoom>
     );
   }
 
-  KeyEventResult _shiftEnterKeyHandling(FocusNode node, KeyEvent evt) {
+  KeyEventResult _customEnterKeyHandling(FocusNode node, KeyEvent evt) {
     if (!HardwareKeyboard.instance.isShiftPressed &&
-        evt.logicalKey.keyLabel == 'Enter') {
+        evt.logicalKey.keyLabel == 'Enter' &&
+        (AppConfig.sendOnEnter ?? !PlatformInfos.isMobile)) {
       if (evt is KeyDownEvent) {
         // #Pangea
         // send();
@@ -346,6 +347,36 @@ class ChatController extends State<ChatPageWithRoom>
         // Pangea#
       }
       return KeyEventResult.handled;
+    } else if (evt.logicalKey.keyLabel == 'Enter' && evt is KeyDownEvent) {
+      final currentLineNum = sendController.text
+              .substring(
+                0,
+                sendController.selection.baseOffset,
+              )
+              .split('\n')
+              .length -
+          1;
+      final currentLine = sendController.text.split('\n')[currentLineNum];
+
+      for (final pattern in [
+        '- [ ] ',
+        '- [x] ',
+        '* [ ] ',
+        '* [x] ',
+        '- ',
+        '* ',
+        '+ ',
+      ]) {
+        if (currentLine.startsWith(pattern)) {
+          if (currentLine == pattern) {
+            return KeyEventResult.ignored;
+          }
+          sendController.text += '\n$pattern';
+          return KeyEventResult.handled;
+        }
+      }
+
+      return KeyEventResult.ignored;
     } else {
       return KeyEventResult.ignored;
     }
@@ -353,11 +384,7 @@ class ChatController extends State<ChatPageWithRoom>
 
   @override
   void initState() {
-    inputFocus = FocusNode(
-      onKeyEvent: (AppConfig.sendOnEnter ?? !PlatformInfos.isMobile)
-          ? _shiftEnterKeyHandling
-          : null,
-    );
+    inputFocus = FocusNode(onKeyEvent: _customEnterKeyHandling);
 
     scrollController.addListener(_updateScrollController);
     inputFocus.addListener(_inputFocusListener);
@@ -1064,6 +1091,8 @@ class ChatController extends State<ChatPageWithRoom>
     // #Pangea
     stopMediaStream.add(null);
     // Pangea#
+    room.client.getConfig(); // Preload server file configuration.
+
     final scaffoldMessenger = ScaffoldMessenger.of(context);
     if (PlatformInfos.isAndroid) {
       final info = await DeviceInfoPlugin().androidInfo;
@@ -1088,10 +1117,19 @@ class ChatController extends State<ChatPageWithRoom>
     );
     if (result == null) return;
     final audioFile = XFile(result.path);
+
+    final bytesResult = await showFutureLoadingDialog(
+      context: context,
+      future: audioFile.readAsBytes,
+    );
+    final bytes = bytesResult.result;
+    if (bytes == null) return;
+
     final file = MatrixAudioFile(
-      bytes: await audioFile.readAsBytes(),
+      bytes: bytes,
       name: result.fileName ?? audioFile.path,
     );
+
     await room.sendFileEvent(
       file,
       inReplyTo: replyEvent,
@@ -1576,6 +1614,15 @@ class ChatController extends State<ChatPageWithRoom>
     // keep this event selected in case the user wants to send another emoji
     // setState(() => selectedEvents.clear());
     // Pangea#
+    // if reaction already exists, don't send it again
+    if (timeline == null ||
+        events.any(
+          (e) => e.aggregatedEvents(timeline!, RelationshipTypes.reaction).any(
+              (re) => re.content.tryGetMap('m.relates_to')?['key'] == emoji),
+        )) {
+      return;
+    }
+
     for (final event in events) {
       await room.sendReaction(
         event.eventId,
@@ -1638,13 +1685,18 @@ class ChatController extends State<ChatPageWithRoom>
   }
 
   void goToNewRoomAction() async {
+    final newRoomId = room
+        .getState(EventTypes.RoomTombstone)!
+        .parsedTombstoneContent
+        .replacementRoom;
     final result = await showFutureLoadingDialog(
       context: context,
-      future: () => room.client.joinRoomById(
+      future: () => room.client.joinRoom(
         room
             .getState(EventTypes.RoomTombstone)!
             .parsedTombstoneContent
             .replacementRoom,
+        via: [newRoomId.domain!],
       ),
     );
     if (result.error != null) return;
@@ -1715,12 +1767,9 @@ class ChatController extends State<ChatPageWithRoom>
     FocusScope.of(context).requestFocus(inputFocus);
   }
 
-  //#Pangea
-  void onAddPopupMenuButtonSelected(String? choice) {
-    // void onAddPopupMenuButtonSelected(String choice) {
-    debugger(when: kDebugMode && choice == null);
+  void onAddPopupMenuButtonSelected(String choice) {
+    room.client.getConfig(); // Preload server file configuration.
 
-    //Pangea#
     if (choice == 'file') {
       sendFileAction();
     }
@@ -2029,41 +2078,35 @@ class ChatController extends State<ChatPageWithRoom>
         Expanded(
           child: ChatView(this),
         ),
-        AnimatedSize(
-          duration: FluffyThemes.animationDuration,
-          curve: FluffyThemes.animationCurve,
-          child: ValueListenableBuilder(
-            valueListenable: _displayChatDetailsColumn,
-            builder: (context, displayChatDetailsColumn, _) {
-              if (!FluffyThemes.isThreeColumnMode(context) ||
-                  room.membership != Membership.join ||
-                  !displayChatDetailsColumn) {
-                return const SizedBox(
-                  height: double.infinity,
-                  width: 0,
-                );
-              }
-              return Container(
-                width: FluffyThemes.columnWidth,
-                clipBehavior: Clip.hardEdge,
-                decoration: BoxDecoration(
-                  border: Border(
-                    left: BorderSide(
-                      width: 1,
-                      color: theme.dividerColor,
+        ValueListenableBuilder(
+          valueListenable: _displayChatDetailsColumn,
+          builder: (context, displayChatDetailsColumn, _) =>
+              !FluffyThemes.isThreeColumnMode(context) ||
+                      room.membership != Membership.join ||
+                      !displayChatDetailsColumn
+                  ? const SizedBox(
+                      height: double.infinity,
+                      width: 0,
+                    )
+                  : Container(
+                      width: FluffyThemes.columnWidth,
+                      clipBehavior: Clip.hardEdge,
+                      decoration: BoxDecoration(
+                        border: Border(
+                          left: BorderSide(
+                            width: 1,
+                            color: theme.dividerColor,
+                          ),
+                        ),
+                      ),
+                      child: ChatDetails(
+                        roomId: roomId,
+                        embeddedCloseButton: IconButton(
+                          icon: const Icon(Icons.close),
+                          onPressed: toggleDisplayChatDetailsColumn,
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-                child: ChatDetails(
-                  roomId: roomId,
-                  embeddedCloseButton: IconButton(
-                    icon: const Icon(Icons.close),
-                    onPressed: toggleDisplayChatDetailsColumn,
-                  ),
-                ),
-              );
-            },
-          ),
         ),
       ],
     );

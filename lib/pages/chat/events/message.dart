@@ -2,11 +2,11 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 import 'package:swipe_to_action/swipe_to_action.dart';
 
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/events/room_creation_state_event.dart';
 import 'package:fluffychat/pangea/common/widgets/pressable_button.dart';
@@ -536,6 +536,7 @@ class Message extends StatelessWidget {
                                                   onInfoTab: onInfoTab,
                                                   borderRadius: borderRadius,
                                                   timeline: timeline,
+                                                  selected: selected,
                                                   // #Pangea
                                                   pangeaMessageEvent:
                                                       pangeaMessageEvent,
@@ -618,7 +619,12 @@ class Message extends StatelessWidget {
         crossAxisAlignment:
             ownMessage ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: <Widget>[
-          if (displayTime || selected)
+          // #Pangea
+          if (displayTime)
+            // we don't need to display the time if the message is selected
+            // we have the background blotted out so you can't see the time anyway
+            // if (displayTime || selected)
+            // Pangea#
             Padding(
               padding: displayTime
                   ? const EdgeInsets.symmetric(vertical: 8.0)

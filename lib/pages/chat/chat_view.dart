@@ -3,11 +3,11 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 
 import 'package:badges/badges.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/chat_app_bar_list_tile.dart';
 import 'package:fluffychat/pages/chat/chat_app_bar_title.dart';
@@ -68,6 +68,7 @@ class ChatView extends StatelessWidget {
           ),
         if (controller.selectedEvents.length == 1)
           PopupMenuButton<_EventContextAction>(
+            useRootNavigator: true,
             onSelected: (action) {
               switch (action) {
                 case _EventContextAction.info:

@@ -1,15 +1,13 @@
 import 'dart:math';
 
-import 'package:flutter/material.dart';
-
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/pangea/common/widgets/pressable_button.dart';
 import 'package:fluffychat/pangea/public_spaces/public_room_bottom_sheet.dart';
 import 'package:fluffychat/pangea/spaces/constants/space_constants.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:matrix/matrix.dart';
 
 class PublicSpaceCard extends StatelessWidget {
   final PublicRoomsChunk space;

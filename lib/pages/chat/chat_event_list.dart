@@ -167,6 +167,8 @@ class ChatEventList extends StatelessWidget {
                           },
                           highlightMarker:
                               controller.scrollToEventIdMarker == event.eventId,
+                          selected: controller.selectedEvents
+                              .any((e) => e.eventId == event.eventId),
                         )
                       :
                       // Pangea#

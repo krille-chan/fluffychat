@@ -21,7 +21,7 @@ String commandHint(L10n l10n, String command) {
 $(sed -n \
   's/[[:blank:]]*\"\(commandHint_\([[:lower:]]*\)\)\".*/    case "\2":\
       return l10n.\1;/p' \
-  assets/l10n/intl_en.arb
+  lib/l10n/intl_en.arb
 )
     default:
       return \"\";

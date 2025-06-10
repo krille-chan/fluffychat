@@ -28,7 +28,7 @@ abstract class AppConfig {
   static const bool enableRegistration = true;
   // #Pangea
   static const double toolbarMaxHeight = 250.0;
-  static const double toolbarMinHeight = 200.0;
+  static const double toolbarMinHeight = 150.0;
   static const double toolbarMinWidth = 350.0;
   static const double defaultHeaderHeight = 56.0;
   static const double toolbarButtonsHeight = 50.0;
@@ -37,8 +37,8 @@ abstract class AppConfig {
   static const double readingAssistanceInputBarHeight = 140.0;
   static const double reactionsPickerHeight = 48.0;
   static const double chatInputRowOverlayPadding = 8.0;
-  static const double selectModeInputBarHeight =
-      reactionsPickerHeight + (chatInputRowOverlayPadding * 2) + toolbarSpacing;
+  static const double selectModeInputBarHeight = 0;
+  // reactionsPickerHeight + (chatInputRowOverlayPadding * 2) + toolbarSpacing;
   static const double practiceModeInputBarHeight =
       readingAssistanceInputBarHeight +
           toolbarButtonsHeight +
@@ -141,6 +141,7 @@ abstract class AppConfig {
   static bool? sendOnEnter;
   static bool showPresences = true;
   // #Pangea
+  // static bool displayNavigationRail = false;
   static bool displayNavigationRail = true;
   // Pangea#
   static bool experimentalVoip = false;

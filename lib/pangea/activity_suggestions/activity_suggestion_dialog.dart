@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:collection/collection.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_planner_builder.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_room_selection.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_suggestion_card_row.dart';

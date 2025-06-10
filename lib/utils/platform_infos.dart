@@ -3,12 +3,12 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:universal_html/html.dart' as html;
 import 'package:url_launcher/url_launcher_string.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import '../config/app_config.dart';
 
 abstract class PlatformInfos {
@@ -32,6 +32,12 @@ abstract class PlatformInfos {
   static bool get isDesktop => isLinux || isWindows || isMacOS;
 
   static bool get usesTouchscreen => !isMobile;
+
+  static bool get supportsVideoPlayer =>
+      // #Pangea
+      // !PlatformInfos.isWindows && !PlatformInfos.isLinux;
+      !PlatformInfos.isLinux;
+  // Pangea#
 
   /// Web could also record in theory but currently only wav which is too large
   /// #Pangea
