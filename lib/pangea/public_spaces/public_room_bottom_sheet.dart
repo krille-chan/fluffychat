@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_symbols_icons/symbols.dart';
@@ -199,17 +200,25 @@ class PublicRoomBottomSheetState extends State<PublicRoomBottomSheet> {
                   Row(
                     spacing: 16.0,
                     children: [
-                      Avatar(
-                        mxContent: chunk?.avatarUrl ??
-                            Uri.parse(
-                              SpaceConstants.publicSpaceIcons[Random().nextInt(
-                                SpaceConstants.publicSpaceIcons.length,
-                              )],
+                      (chunk?.avatarUrl != null)
+                          ? Avatar(
+                              mxContent: chunk?.avatarUrl,
+                              name: chunk?.name,
+                              size: 160.0,
+                              borderRadius: BorderRadius.circular(24.0),
+                            )
+                          : ClipRRect(
+                              borderRadius: BorderRadius.circular(24.0),
+                              child: CachedNetworkImage(
+                                imageUrl: SpaceConstants
+                                    .publicSpaceIcons[Random().nextInt(
+                                  SpaceConstants.publicSpaceIcons.length,
+                                )],
+                                width: 160.0,
+                                height: 160.0,
+                                fit: BoxFit.cover,
+                              ),
                             ),
-                        name: chunk?.name,
-                        size: 160.0,
-                        borderRadius: BorderRadius.circular(24.0),
-                      ),
                       Expanded(
                         child: SizedBox(
                           height: 160.0,

@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
@@ -62,17 +63,22 @@ class PublicSpaceCard extends StatelessWidget {
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(24.0),
-                    child: MxcImage(
-                      uri: space.avatarUrl ??
-                          Uri.parse(
-                            SpaceConstants.publicSpaceIcons[Random().nextInt(
+                    child: space.avatarUrl != null
+                        ? MxcImage(
+                            uri: space.avatarUrl!,
+                            width: width,
+                            height: width,
+                            fit: BoxFit.cover,
+                          )
+                        : CachedNetworkImage(
+                            imageUrl: SpaceConstants
+                                .publicSpaceIcons[Random().nextInt(
                               SpaceConstants.publicSpaceIcons.length,
                             )],
+                            width: width,
+                            height: width,
+                            fit: BoxFit.cover,
                           ),
-                      width: width,
-                      height: width,
-                      fit: BoxFit.cover,
-                    ),
                   ),
                 ),
                 Expanded(
