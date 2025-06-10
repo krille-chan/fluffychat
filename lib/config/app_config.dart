@@ -140,9 +140,7 @@ abstract class AppConfig {
   static bool swipeRightToLeftToReply = true;
   static bool? sendOnEnter;
   static bool showPresences = true;
-  // #Pangea
-  static bool displayNavigationRail = true;
-  // Pangea#
+  static bool displayNavigationRail = false;
   static bool experimentalVoip = false;
   static const bool hideTypingUsernames = false;
   static const bool hideAllStateEvents = false;

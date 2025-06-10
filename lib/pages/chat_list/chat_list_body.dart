@@ -183,9 +183,11 @@ class ChatListViewBody extends StatelessWidget {
                     //           ActiveFilter.messages
                     //         else
                     //           ActiveFilter.allChats,
+                    //         ActiveFilter.groups,
                     //         ActiveFilter.unread,
                     //         if (spaceDelegateCandidates.isNotEmpty &&
-                    //             !controller.widget.displayNavigationRail)
+                    //             !AppConfig.displayNavigationRail &&
+                    //             !FluffyThemes.isColumnMode(context))
                     //           ActiveFilter.spaces,
                     //       ]
                     //           .map(
@@ -197,9 +199,8 @@ class ChatListViewBody extends StatelessWidget {
                     //                 selected: filter == controller.activeFilter,
                     //                 onSelected: (_) =>
                     //                     controller.setActiveFilter(filter),
-                    //                 label: Text(
-                    //                   filter.toLocalizedString(context),
-                    //                 ),
+                    //                 label:
+                    //                     Text(filter.toLocalizedString(context)),
                     //               ),
                     //             ),
                     //           )
