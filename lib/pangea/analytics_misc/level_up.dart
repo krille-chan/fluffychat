@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:audioplayers/audioplayers.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -16,6 +17,7 @@ import 'package:fluffychat/pangea/constructs/construct_repo.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 class LevelUpConstants {
@@ -97,9 +99,6 @@ class LevelUpBannerState extends State<LevelUpBanner>
   late AnimationController _sizeController;
 
   final bool _showedDetails = false;
-
-  ConstructSummary? _constructSummary;
-  String? _error;
 
   @override
   void initState() {
@@ -323,6 +322,7 @@ class _LevelUpBarAnimationState extends State<LevelUpBarAnimation>
   late final ConfettiController _confettiController;
 
   ConstructSummary? _constructSummary;
+  String? _error;
 
   int displayedLevel = -1;
   bool _hasBlastedConfetti = false;
@@ -341,9 +341,9 @@ class _LevelUpBarAnimationState extends State<LevelUpBarAnimation>
 
     displayedLevel = widget.prevLevel;
     _confettiController =
-        ConfettiController(duration: const Duration(seconds: 1));
+        ConfettiController(duration: const Duration(seconds: 3));
 
-    _loadConstructSummary();
+    _setConstructSummary();
 
     _controller = AnimationController(
       duration: _animationDuration,
@@ -360,7 +360,7 @@ class _LevelUpBarAnimationState extends State<LevelUpBarAnimation>
     });
 
     _controller.addListener(() {
-      if (_controller.value >= 0.5 && !_hasBlastedConfetti) {
+      if (_controller.value >= 0.4 && !_hasBlastedConfetti) {
         _confettiController.play();
         _hasBlastedConfetti = true;
       }
@@ -392,7 +392,7 @@ class _LevelUpBarAnimationState extends State<LevelUpBarAnimation>
       ),
     );
 
-    _shrinkMultiplier = Tween<double>(begin: 1.0, end: 0.5).animate(
+    _shrinkMultiplier = Tween<double>(begin: 1.0, end: 0.3).animate(
       CurvedAnimation(
         parent: _controller,
         curve: const Interval(0.7, 1.0, curve: Curves.easeInOut),
@@ -402,10 +402,16 @@ class _LevelUpBarAnimationState extends State<LevelUpBarAnimation>
     _controller.forward();
   }
 
-  Future<void> _loadConstructSummary() async {
-    final summary = await MatrixState.pangeaController.getAnalytics
-        .generateLevelUpAnalytics(widget.level, widget.prevLevel);
-    setState(() => _constructSummary = summary);
+  Future<void> _setConstructSummary() async {
+    try {
+      _constructSummary = await MatrixState.pangeaController.getAnalytics
+          .generateLevelUpAnalytics(
+        widget.level,
+        widget.prevLevel,
+      );
+    } catch (e) {
+      _error = e.toString();
+    }
   }
 
   int _getSkillXP(LearningSkillsEnum skill) {
@@ -454,8 +460,8 @@ class _LevelUpBarAnimationState extends State<LevelUpBarAnimation>
                     ClipOval(
                       child: Image.asset(
                         './assets/favicon.png',
-                        width: 150 * _shrinkMultiplier.value,
-                        height: 150 * _shrinkMultiplier.value,
+                        width: 200 * _shrinkMultiplier.value,
+                        height: 200 * _shrinkMultiplier.value,
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -471,8 +477,6 @@ class _LevelUpBarAnimationState extends State<LevelUpBarAnimation>
                   ],
                 ),
               ),
-              const SizedBox(height: 20),
-
               // Progress bar + Level
               AnimatedBuilder(
                 animation: _progressAnimation,
@@ -530,55 +534,109 @@ class _LevelUpBarAnimationState extends State<LevelUpBarAnimation>
                   ],
                 ),
               ),
-              const SizedBox(height: 32),
+              const SizedBox(height: 16),
 
               // Skills section
               AnimatedBuilder(
                 animation: _skillsOpacity,
                 builder: (_, __) => Opacity(
                   opacity: _skillsOpacity.value,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      _buildSkillsTable(context),
-                      const SizedBox(height: 24),
-                      if (_constructSummary?.textSummary != null)
-                        Padding(
-                          padding: const EdgeInsets.only(top: 16),
-                          child: Text(
-                            _constructSummary!.textSummary,
-                            textAlign: TextAlign.left,
-                            style: Theme.of(context).textTheme.bodyMedium,
-                          ),
+                  child: _error == null
+                      ? Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            _buildSkillsTable(context),
+                            const SizedBox(height: 8),
+                            if (_constructSummary?.textSummary != null)
+                              Padding(
+                                padding: const EdgeInsets.only(top: 16),
+                                child: Text(
+                                  _constructSummary!.textSummary,
+                                  textAlign: TextAlign.left,
+                                  style: Theme.of(context).textTheme.bodyMedium,
+                                ),
+                              ),
+                            //const SizedBox(height: 16),
+                            Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: CachedNetworkImage(
+                                imageUrl:
+                                    "${AppConfig.assetsBaseURL}/${LevelUpConstants.dinoLevelUPFileName}",
+                                width: 400,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ],
+                        )
+                      // if error getting construct summary
+                      : Row(
+                          children: [
+                            Tooltip(
+                              message: L10n.of(context).oopsSomethingWentWrong,
+                              child: Icon(
+                                Icons.error,
+                                color: Theme.of(context).colorScheme.error,
+                              ),
+                            ),
+                          ],
                         ),
-                      const SizedBox(height: 24),
-                      CachedNetworkImage(
-                        imageUrl:
-                            "${AppConfig.assetsBaseURL}/${LevelUpConstants.dinoLevelUPFileName}",
-                        width: 400,
-                        fit: BoxFit.cover,
-                      ),
-                    ],
+                ),
+              ),
+              // Share button, currently no functionality
+              ElevatedButton(
+                onPressed: () {
+                  // Add share functionality
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white,
+                  foregroundColor: Colors.black,
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 12,
+                    horizontal: 24,
                   ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                child: const Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      "Share with Friends",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 8,
+                    ),
+                    Icon(
+                      Icons.ios_share,
+                      size: 20,
+                    ),
+                  ],
                 ),
               ),
             ],
           ),
         ),
-
         // Confetti overlay
         Align(
           alignment: Alignment.topCenter,
           child: ConfettiWidget(
             confettiController: _confettiController,
-            blastDirectionality: BlastDirectionality.explosive,
-            emissionFrequency: 0.2,
-            numberOfParticles: 30,
-            gravity: 0.4,
+            blastDirectionality: BlastDirectionality
+                .explosive, // don't specify a direction, blast randomly
+            shouldLoop:
+                true, // start again as soon as the animation is finished
+            emissionFrequency: 0.1,
+            numberOfParticles: 7,
             colors: const [
               AppConfig.goldLight,
               AppConfig.gold,
-            ],
+            ], // manually specify the colors to be used
+            createParticlePath: drawStar, // define a custom shape/path.
           ),
         ),
       ],
@@ -587,74 +645,91 @@ class _LevelUpBarAnimationState extends State<LevelUpBarAnimation>
 
   Widget _buildSkillsTable(BuildContext context) {
     final visibleSkills = LearningSkillsEnum.values
-        .where(
-          (skill) => skill.isVisible && _getSkillXP(skill) > -1,
-        )
+        .where((skill) => _getSkillXP(skill) > -1)
         .toList();
 
-    const int itemsPerRow = 3;
-
-    // Break skills into chunks of 3
-    final List<List<LearningSkillsEnum>> rows = [];
-    for (var i = 0; i < visibleSkills.length; i += itemsPerRow) {
-      rows.add(
+    const itemsPerRow = 3;
+    // chunk into rows of up to 3
+    final rows = <List<LearningSkillsEnum>>[
+      for (var i = 0; i < visibleSkills.length; i += itemsPerRow)
         visibleSkills.sublist(
           i,
-          i + itemsPerRow > visibleSkills.length
-              ? visibleSkills.length
-              : i + itemsPerRow,
+          min(i + itemsPerRow, visibleSkills.length),
         ),
-      );
-    }
+    ];
 
     return Column(
       children: rows.map((row) {
         return Padding(
-          padding: const EdgeInsets.symmetric(vertical: 12.0),
+          padding: const EdgeInsets.symmetric(vertical: 8),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: List.generate(3, (index) {
-              if (index < row.length) {
-                final skill = row[index];
-                return Expanded(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        skill.tooltip(context),
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                        ),
-                        textAlign: TextAlign.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: row.map((skill) {
+              return Flexible(
+                fit: FlexFit.loose,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      skill.tooltip(context),
+                      style: const TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600,
                       ),
-                      const SizedBox(height: 8),
-                      Icon(
-                        skill.icon,
-                        size: 30,
-                        color: Theme.of(context).colorScheme.onSurface,
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 4),
+                    Icon(
+                      skill.icon,
+                      size: 25,
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      '+ ${_getSkillXP(skill)} XP',
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: AppConfig.gold,
                       ),
-                      const SizedBox(height: 8),
-                      Text(
-                        "+ ${_getSkillXP(skill)} XP",
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: AppConfig.gold,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
-                );
-              } else {
-                // Empty spacer to keep spacing consistent
-                return const Expanded(child: SizedBox());
-              }
-            }),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+              );
+            }).toList(),
           ),
         );
       }).toList(),
     );
+  }
+
+  Path drawStar(Size size) {
+    // Method to convert degrees to radians
+    double degToRad(double deg) => deg * (pi / 180.0);
+
+    const numberOfPoints = 5;
+    final halfWidth = size.width / 2;
+    final externalRadius = halfWidth;
+    final internalRadius = halfWidth / 2.5;
+    final degreesPerStep = degToRad(360 / numberOfPoints);
+    final halfDegreesPerStep = degreesPerStep / 2;
+    final path = Path();
+    final fullAngle = degToRad(360);
+    path.moveTo(size.width, halfWidth);
+
+    for (double step = 0; step < fullAngle; step += degreesPerStep) {
+      path.lineTo(
+        halfWidth + externalRadius * cos(step),
+        halfWidth + externalRadius * sin(step),
+      );
+      path.lineTo(
+        halfWidth + internalRadius * cos(step + halfDegreesPerStep),
+        halfWidth + internalRadius * sin(step + halfDegreesPerStep),
+      );
+    }
+    path.close();
+    return path;
   }
 }
