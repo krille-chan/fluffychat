@@ -1512,10 +1512,10 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: "3fb6836b3f8b37091b5874b194aa25b17bb12b32"
+      resolved-ref: ed15eb6a1a947ebc1add3b70ec422c1f29666bda
       url: "https://github.com/pangeachat/matrix-dart-sdk.git"
     source: git
-    version: "0.40.0"
+    version: "0.40.2"
   meta:
     dependency: transitive
     description:
