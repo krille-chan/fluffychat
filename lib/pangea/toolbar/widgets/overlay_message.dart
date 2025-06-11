@@ -142,6 +142,86 @@ class OverlayMessage extends StatelessWidget {
     final showSpeechTranslation = overlayController.showSpeechTranslation &&
         overlayController.speechTranslation != null;
 
+    final transcription = showTranscription
+        ? Container(
+            width: messageWidth,
+            constraints: const BoxConstraints(
+              maxHeight: AppConfig.audioTranscriptionMaxHeight,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: overlayController.transcriptionError != null
+                  ? Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(
+                          Icons.error_outline,
+                          color: Theme.of(context).colorScheme.error,
+                        ),
+                        const SizedBox(width: 8),
+                        Text(
+                          L10n.of(context).oopsSomethingWentWrong,
+                          style: AppConfig.messageTextStyle(
+                            event,
+                            textColor,
+                          ).copyWith(fontStyle: FontStyle.italic),
+                        ),
+                      ],
+                    )
+                  : overlayController.transcription != null
+                      ? SingleChildScrollView(
+                          child: Text(
+                            overlayController.transcription!.transcript.text,
+                            style: AppConfig.messageTextStyle(
+                              event,
+                              textColor,
+                            ).copyWith(
+                              fontStyle: FontStyle.italic,
+                            ),
+                          ),
+                        )
+                      : Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            CircularProgressIndicator.adaptive(
+                              backgroundColor: textColor,
+                            ),
+                          ],
+                        ),
+            ),
+          )
+        : const SizedBox();
+
+    final translation = showTranslation || showSpeechTranslation
+        ? Container(
+            width: messageWidth,
+            constraints: const BoxConstraints(
+              maxHeight: AppConfig.audioTranscriptionMaxHeight,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(
+                12.0,
+                20.0,
+                12.0,
+                12.0,
+              ),
+              child: SingleChildScrollView(
+                child: Text(
+                  showTranslation
+                      ? overlayController.translation!
+                      : overlayController.speechTranslation!,
+                  style: AppConfig.messageTextStyle(
+                    event,
+                    textColor,
+                  ).copyWith(
+                    fontStyle: FontStyle.italic,
+                  ),
+                ),
+              ),
+            ),
+          )
+        : const SizedBox();
+
     final content = Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(
@@ -159,6 +239,8 @@ class OverlayMessage extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            if (readingAssistanceMode == ReadingAssistanceMode.transitionMode)
+              transcription,
             if (event.relationshipType == RelationshipTypes.reply)
               FutureBuilder<Event?>(
                 future: event.getReplyEvent(
@@ -257,6 +339,8 @@ class OverlayMessage extends StatelessWidget {
                   ],
                 ),
               ),
+            if (readingAssistanceMode == ReadingAssistanceMode.transitionMode)
+              translation,
           ],
         ),
       ),
@@ -273,48 +357,8 @@ class OverlayMessage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            if (showTranscription)
-              Container(
-                width: messageWidth,
-                constraints: const BoxConstraints(
-                  maxHeight: AppConfig.audioTranscriptionMaxHeight,
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: overlayController.transcriptionError != null
-                      ? Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(
-                              Icons.error_outline,
-                              color: Theme.of(context).colorScheme.error,
-                            ),
-                            const SizedBox(width: 8),
-                            Text(
-                              L10n.of(context).oopsSomethingWentWrong,
-                              style: AppConfig.messageTextStyle(
-                                event,
-                                textColor,
-                              ).copyWith(fontStyle: FontStyle.italic),
-                            ),
-                          ],
-                        )
-                      : overlayController.transcription != null
-                          ? SingleChildScrollView(
-                              child: Text(
-                                overlayController
-                                    .transcription!.transcript.text,
-                                style: AppConfig.messageTextStyle(
-                                  event,
-                                  textColor,
-                                ).copyWith(
-                                  fontStyle: FontStyle.italic,
-                                ),
-                              ),
-                            )
-                          : const LinearProgressIndicator(),
-                ),
-              ),
+            if (readingAssistanceMode != ReadingAssistanceMode.transitionMode)
+              transcription,
             sizeAnimation != null
                 ? AnimatedBuilder(
                     animation: sizeAnimation!,
@@ -327,34 +371,8 @@ class OverlayMessage extends StatelessWidget {
                     },
                   )
                 : content,
-            if (showTranslation || showSpeechTranslation)
-              Container(
-                width: messageWidth,
-                constraints: const BoxConstraints(
-                  maxHeight: AppConfig.audioTranscriptionMaxHeight,
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(
-                    12.0,
-                    20.0,
-                    12.0,
-                    12.0,
-                  ),
-                  child: SingleChildScrollView(
-                    child: Text(
-                      showTranslation
-                          ? overlayController.translation!
-                          : overlayController.speechTranslation!,
-                      style: AppConfig.messageTextStyle(
-                        event,
-                        textColor,
-                      ).copyWith(
-                        fontStyle: FontStyle.italic,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+            if (readingAssistanceMode != ReadingAssistanceMode.transitionMode)
+              translation,
           ],
         ),
       ),

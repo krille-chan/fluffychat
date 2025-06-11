@@ -245,6 +245,7 @@ class SpeechToTextModel {
     );
     for (final sstToken in transcript.sttTokens) {
       final token = sstToken.token;
+      if (!token.lemma.saveVocab) continue;
       constructs.addAll(
         token.allUses(
           ConstructUseTypeEnum.pvm,
