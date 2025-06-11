@@ -21,7 +21,8 @@ class LoginView extends StatelessWidget {
     final titleParts = title.split(homeserver);
 
     return LoginScaffold(
-      enforceMobileMode: Matrix.of(context).client.isLogged(),
+      enforceMobileMode:
+          Matrix.of(context).widget.clients.any((client) => client.isLogged()),
       appBar: AppBar(
         leading: controller.loading ? null : const Center(child: BackButton()),
         automaticallyImplyLeading: !controller.loading,
