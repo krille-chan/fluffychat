@@ -1,10 +1,14 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/common/widgets/pressable_button.dart';
 import 'package:fluffychat/pangea/public_spaces/public_room_bottom_sheet.dart';
+import 'package:fluffychat/pangea/spaces/constants/space_constants.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
 
 class PublicSpaceCard extends StatelessWidget {
@@ -66,7 +70,15 @@ class PublicSpaceCard extends StatelessWidget {
                             height: width,
                             fit: BoxFit.cover,
                           )
-                        : const SizedBox(),
+                        : CachedNetworkImage(
+                            imageUrl: SpaceConstants
+                                .publicSpaceIcons[Random().nextInt(
+                              SpaceConstants.publicSpaceIcons.length,
+                            )],
+                            width: width,
+                            height: width,
+                            fit: BoxFit.cover,
+                          ),
                   ),
                 ),
                 Expanded(
@@ -123,16 +135,16 @@ class PublicSpaceCard extends StatelessWidget {
                             ),
                           ],
                         ),
-                        if (space.topic != null)
-                          Flexible(
-                            child: Text(
-                              space.topic!,
-                              style: theme.textTheme.bodySmall,
-                              overflow: TextOverflow.ellipsis,
-                              textAlign: TextAlign.start,
-                              maxLines: 5,
-                            ),
+                        Flexible(
+                          child: Text(
+                            space.topic ??
+                                L10n.of(context).noSpaceDescriptionYet,
+                            style: theme.textTheme.bodySmall,
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.start,
+                            maxLines: 5,
                           ),
+                        ),
                       ],
                     ),
                   ),

@@ -1,11 +1,15 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/common/config/environment.dart';
+import 'package:fluffychat/pangea/spaces/constants/space_constants.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -196,12 +200,25 @@ class PublicRoomBottomSheetState extends State<PublicRoomBottomSheet> {
                   Row(
                     spacing: 16.0,
                     children: [
-                      Avatar(
-                        mxContent: chunk?.avatarUrl,
-                        name: chunk?.name,
-                        size: 160.0,
-                        borderRadius: BorderRadius.circular(24.0),
-                      ),
+                      (chunk?.avatarUrl != null)
+                          ? Avatar(
+                              mxContent: chunk?.avatarUrl,
+                              name: chunk?.name,
+                              size: 160.0,
+                              borderRadius: BorderRadius.circular(24.0),
+                            )
+                          : ClipRRect(
+                              borderRadius: BorderRadius.circular(24.0),
+                              child: CachedNetworkImage(
+                                imageUrl: SpaceConstants
+                                    .publicSpaceIcons[Random().nextInt(
+                                  SpaceConstants.publicSpaceIcons.length,
+                                )],
+                                width: 160.0,
+                                height: 160.0,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
                       Expanded(
                         child: SizedBox(
                           height: 160.0,
@@ -221,17 +238,17 @@ class PublicRoomBottomSheetState extends State<PublicRoomBottomSheet> {
                                   ),
                                 ],
                               ),
-                              if (chunk?.topic != null)
-                                Flexible(
-                                  child: SingleChildScrollView(
-                                    child: Text(
-                                      chunk!.topic!,
-                                      softWrap: true,
-                                      textAlign: TextAlign.start,
-                                      maxLines: null,
-                                    ),
+                              Flexible(
+                                child: SingleChildScrollView(
+                                  child: Text(
+                                    chunk?.topic ??
+                                        L10n.of(context).noSpaceDescriptionYet,
+                                    softWrap: true,
+                                    textAlign: TextAlign.start,
+                                    maxLines: null,
                                   ),
                                 ),
+                              ),
                             ],
                           ),
                         ),
