@@ -63,7 +63,11 @@ class OverlayHeaderState extends State<OverlayHeader> {
                     padding: const EdgeInsets.symmetric(vertical: 8.0),
                     child: Row(
                       children: [
-                        if (controller.selectedEvents.length == 1)
+                        // #Pangea
+                        // if (controller.selectedEvents.length == 1)
+                        if (controller.selectedEvents.length == 1 &&
+                            controller.room.canSendDefaultMessages)
+                          // Pangea#
                           IconButton(
                             icon: const Icon(Symbols.reply_all),
                             tooltip: l10n.reply,

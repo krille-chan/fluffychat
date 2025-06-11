@@ -40,12 +40,12 @@ class OnboardingController extends State<Onboarding> {
           (r) => r.isSpace,
         );
       case OnboardingStepsEnum.inviteFriends:
-        return hasInvitedFriends;
+        return MatrixState.pangeaController.matrixState.client.rooms.any(
+          (r) =>
+              r.isDirectChat && r.directChatMatrixID != BotName.byEnvironment,
+        );
     }
   }
-
-  static bool get hasInvitedFriends =>
-      _onboardingStorage.read('invite_friends') ?? false;
 
   static bool get hasBotDM =>
       MatrixState.pangeaController.matrixState.client.rooms.any((room) {
@@ -66,8 +66,6 @@ class OnboardingController extends State<Onboarding> {
 
   Future<void> inviteFriends() async {
     FluffyShare.shareInviteLink(context);
-    await _onboardingStorage.write('invite_friends', true);
-    if (mounted) setState(() {});
   }
 
   Future<void> startChatWithBot() async {

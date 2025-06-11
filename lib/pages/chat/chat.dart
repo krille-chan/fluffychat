@@ -51,6 +51,7 @@ import 'package:fluffychat/pangea/events/models/representation_content_model.dar
 import 'package:fluffychat/pangea/events/models/tokens_event_content_model.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/instructions/instructions_enum.dart';
+import 'package:fluffychat/pangea/learning_settings/constants/language_constants.dart';
 import 'package:fluffychat/pangea/learning_settings/widgets/p_language_dialog.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
@@ -924,31 +925,7 @@ class ChatController extends State<ChatPageWithRoom>
             ),
           ];
 
-          final newGrammarConstructs =
-              pangeaController.getAnalytics.newConstructCount(
-            constructs,
-            ConstructTypeEnum.morph,
-          );
-
-          final newVocabConstructs =
-              pangeaController.getAnalytics.newConstructCount(
-            constructs,
-            ConstructTypeEnum.vocab,
-          );
-
-          OverlayUtil.showOverlay(
-            overlayKey: "msg_analytics_feedback_$msgEventId",
-            followerAnchor: Alignment.bottomRight,
-            targetAnchor: Alignment.topRight,
-            context: context,
-            child: MessageAnalyticsFeedback(
-              overlayId: "msg_analytics_feedback_$msgEventId",
-              newGrammarConstructs: newGrammarConstructs,
-              newVocabConstructs: newVocabConstructs,
-            ),
-            transformTargetId: msgEventId,
-            ignorePointer: true,
-          );
+          _showAnalyticsFeedback(constructs, msgEventId);
 
           pangeaController.putAnalytics.setState(
             AnalyticsStream(
@@ -1130,44 +1107,54 @@ class ChatController extends State<ChatPageWithRoom>
       name: result.fileName ?? audioFile.path,
     );
 
-    await room.sendFileEvent(
-      file,
-      inReplyTo: replyEvent,
-      extraContent: {
-        'info': {
-          ...file.info,
-          'duration': result.duration,
-        },
-        'org.matrix.msc3245.voice': {},
-        'org.matrix.msc1767.audio': {
-          'duration': result.duration,
-          'waveform': result.waveform,
-        },
-      },
-      // #Pangea
-      // ).catchError((e) {
-    ).catchError((e, s) {
-      ErrorHandler.logError(
-        e: e,
-        s: s,
-        data: {
-          'roomId': roomId,
-          'file': file.name,
-          'duration': result.duration,
-          'waveform': result.waveform,
-        },
-      );
-      // Pangea#
-      scaffoldMessenger.showSnackBar(
-        SnackBar(
-          content: Text(
-            (e as Object).toLocalizedString(context),
-          ),
-        ),
-      );
-      return null;
-    });
-    // #Pangea
+    await room
+        .sendFileEvent(
+          file,
+          inReplyTo: replyEvent,
+          extraContent: {
+            'info': {
+              ...file.info,
+              'duration': result.duration,
+            },
+            'org.matrix.msc3245.voice': {},
+            'org.matrix.msc1767.audio': {
+              'duration': result.duration,
+              'waveform': result.waveform,
+            },
+          },
+          // #Pangea
+        )
+        .then(_sendVoiceMessageAnalytics)
+        .catchError((e, s) {
+          ErrorHandler.logError(
+            e: e,
+            s: s,
+            data: {
+              'roomId': roomId,
+              'file': file.name,
+              'duration': result.duration,
+              'waveform': result.waveform,
+            },
+          );
+          scaffoldMessenger.showSnackBar(
+            SnackBar(
+              content: Text(
+                (e as Object).toLocalizedString(context),
+              ),
+            ),
+          );
+          return null;
+        });
+    // ).catchError((e) {
+    //   scaffoldMessenger.showSnackBar(
+    //     SnackBar(
+    //       content: Text(
+    //         (e as Object).toLocalizedString(context),
+    //       ),
+    //     ),
+    //   );
+    //   return null;
+    // });
     // setState(() {
     //   replyEvent = null;
     // });
@@ -1618,7 +1605,8 @@ class ChatController extends State<ChatPageWithRoom>
     if (timeline == null ||
         events.any(
           (e) => e.aggregatedEvents(timeline!, RelationshipTypes.reaction).any(
-              (re) => re.content.tryGetMap('m.relates_to')?['key'] == emoji),
+                (re) => re.content.tryGetMap('m.relates_to')?['key'] == emoji,
+              ),
         )) {
       return;
     }
@@ -2057,6 +2045,97 @@ class ChatController extends State<ChatPageWithRoom>
       // if not set, default to false
       return false;
     }
+  }
+
+  Future<void> _sendVoiceMessageAnalytics(String? eventId) async {
+    if (eventId == null) {
+      ErrorHandler.logError(
+        e: Exception('eventID null in voiceMessageAction'),
+        s: StackTrace.current,
+        data: {
+          'roomId': roomId,
+        },
+      );
+      return;
+    }
+
+    final event = await room.getEventById(eventId);
+    if (event == null) {
+      ErrorHandler.logError(
+        e: Exception('Event not found after sending voice message'),
+        s: StackTrace.current,
+        data: {
+          'roomId': roomId,
+        },
+      );
+      return;
+    }
+
+    try {
+      final messageEvent = PangeaMessageEvent(
+        event: event,
+        timeline: timeline!,
+        ownMessage: true,
+      );
+
+      final stt = await messageEvent.getSpeechToText(
+        choreographer.l1Lang?.langCodeShort ?? LanguageKeys.unknownLanguage,
+        choreographer.l2Lang?.langCodeShort ?? LanguageKeys.unknownLanguage,
+      );
+      if (stt == null || stt.transcript.sttTokens.isEmpty) return;
+      final constructs = stt.constructs(roomId, eventId);
+      if (constructs.isEmpty) return;
+
+      _showAnalyticsFeedback(constructs, eventId);
+      MatrixState.pangeaController.putAnalytics.setState(
+        AnalyticsStream(
+          eventId: eventId,
+          targetID: eventId,
+          roomId: room.id,
+          constructs: constructs,
+        ),
+      );
+    } catch (e, s) {
+      ErrorHandler.logError(
+        e: e,
+        s: s,
+        data: {
+          'roomId': roomId,
+          'eventId': eventId,
+        },
+      );
+    }
+  }
+
+  void _showAnalyticsFeedback(
+    List<OneConstructUse> constructs,
+    String eventId,
+  ) {
+    final newGrammarConstructs =
+        pangeaController.getAnalytics.newConstructCount(
+      constructs,
+      ConstructTypeEnum.morph,
+    );
+
+    final newVocabConstructs = pangeaController.getAnalytics.newConstructCount(
+      constructs,
+      ConstructTypeEnum.vocab,
+    );
+
+    OverlayUtil.showOverlay(
+      overlayKey: "msg_analytics_feedback_$eventId",
+      followerAnchor: Alignment.bottomRight,
+      targetAnchor: Alignment.topRight,
+      context: context,
+      child: MessageAnalyticsFeedback(
+        overlayId: "msg_analytics_feedback_$eventId",
+        newGrammarConstructs: newGrammarConstructs,
+        newVocabConstructs: newVocabConstructs,
+      ),
+      transformTargetId: eventId,
+      ignorePointer: true,
+      closePrevOverlay: false,
+    );
   }
   // Pangea#
 
