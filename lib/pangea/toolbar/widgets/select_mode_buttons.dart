@@ -72,7 +72,7 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
 
   static List<SelectMode> get audioModes => [
         SelectMode.speechTranslation,
-        SelectMode.practice,
+        // SelectMode.practice,
       ];
 
   SelectMode? _selectedMode;
