@@ -12,6 +12,7 @@ import 'package:fluffychat/pangea/onboarding/onboarding_constants.dart';
 import 'package:fluffychat/pangea/onboarding/onboarding_step.dart';
 import 'package:fluffychat/pangea/onboarding/onboarding_steps_enum.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
+import 'package:fluffychat/widgets/layouts/empty_page.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
@@ -27,6 +28,10 @@ class OnboardingView extends StatelessWidget {
   Widget build(BuildContext context) {
     final client = Matrix.of(context).client;
     final isColumnMode = FluffyThemes.isColumnMode(context);
+
+    if (OnboardingController.isClosed && isColumnMode) {
+      return const EmptyPage();
+    }
 
     final screenheight = MediaQuery.of(context).size.height;
 

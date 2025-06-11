@@ -25,6 +25,15 @@ class Onboarding extends StatefulWidget {
 class OnboardingController extends State<Onboarding> {
   static final GetStorage _onboardingStorage = GetStorage('onboarding_storage');
 
+  @override
+  void initState() {
+    super.initState();
+    // Initialize the storage if needed
+    GetStorage.init('onboarding_storage').then((_) {
+      if (mounted) setState(() {});
+    });
+  }
+
   static bool get isClosed => _onboardingStorage.read('closed') ?? false;
 
   static bool get isComplete => OnboardingStepsEnum.values.every(
