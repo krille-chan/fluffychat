@@ -621,7 +621,7 @@ gon(){return"\u63d0\u9192\u7528\u6237 Jitsi \u5c0f\u90e8\u4ef6\u7684\u4e8b\u4ef6
 goC(){return"\u9690\u85cf\u670d\u52a1\u5668 ACL \u4e8b\u4ef6"},
 goD(){return"\u9690\u85cf\u670d\u52a1\u5668 ACL \u4e8b\u4ef6\u7684\u901a\u77e5\u3002"},
 oS(d){return"\u672a\u77e5\u63a8\u9001\u89c4\u5219 '"+d+"'"},
-p5(d,e){return"\ud83c\udf99\ufe0f "+e+" - "+d},
+p5(d,e){return"\ud83c\udf99\ufe0f "+e+" - \u6765\u81ea "+d+" \u7684\u8bed\u97f3\u6d88\u606f"},
 gkZ(){return"\u5220\u9664\u8fd9\u4e2a\u901a\u77e5\u8bbe\u7f6e\u7684\u64cd\u4f5c\u65e0\u6cd5\u64a4\u9500\u3002"},
 glH(){return"\u66f4\u591a"},
 gkd(){return"\u4e0e\u54ea\u4e9b\u8bbe\u5907\u5206\u4eab\u5bc6\u94a5\u2026"},
@@ -636,9 +636,9 @@ gnS(){return"\u8fdb\u5165\u65b0\u804a\u5929"},
 gnw(){return"\u6279\u51c6"},
 gp0(){return"\u4f60\u5df2\u8bf7\u6c42\u52a0\u5165"},
 goO(){return"\u5728\u6765\u81ea\u8be5\u804a\u5929\u5ba4\u7684\u67d0\u4eba\u9080\u8bf7\u4f60\u4e4b\u524d\u8bf7\u7b49\u5f85\u3002"},
-gp7(){return"Logout your current device"},
-gp8(){return"Logout all active devices"},
-gpa(){return"Show navigation rail on mobile"},
+gp7(){return"\u6ce8\u9500\u5f53\u524d\u8bbe\u5907"},
+gp8(){return"\u6ce8\u9500\u6240\u6709\u6d3b\u52a8\u8bbe\u5907"},
+gpa(){return"\u5728\u79fb\u52a8\u8bbe\u5907\u4e0a\u663e\u793a\u5bfc\u822a\u680f"},
 B(d,e){return this.gb9(this).$1(e)}}
 A.FL.prototype={
 gku(){return"false"},
@@ -1270,5 +1270,5 @@ y(A.Af,C.aF)
 y(A.FL,A.Af)})()
 B.dQ(b.typeUniverse,JSON.parse('{"Af":{"aF":[]},"FL":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_1",e:"endPart",h:b})})($__dart_deferred_initializers__,"r22xZuw7E4SqqnNIlw9tmvpAMhY=");
+a.eventLog.push({p:"main.dart.js_1",e:"endPart",h:b})})($__dart_deferred_initializers__,"//7Q9Qzn/0CYBEx6EVGLq3idfqM=");
 //# sourceMappingURL=main.dart.js_1.part.js.map

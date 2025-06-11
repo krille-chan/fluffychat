@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_203",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cBB(){return new A.F_(B.dc("bo"))},
-F_:function F_(d){this.a=d}}
+cBA(){return new A.EZ(B.dc("bn"))},
+EZ:function EZ(d){this.a=d}}
 B=c[0]
 C=c[54]
-A=a.updateHolder(c[8],A)
-A.F_.prototype={
+A=a.updateHolder(c[7],A)
+A.EZ.prototype={
 gku(){return"false"},
 gjv(){return"Repeat password"},
 glR(){return"Not an image file."},
@@ -21,11 +21,11 @@ glo(){return"Import Emojis"},
 glp(){return"Import from .zip file"},
 gl6(){return"Export Emote pack as .zip"},
 gme(d){return"Replace"},
-gep(){return"About"},
+gep(){return"\u09b8\u09ae\u09cd\u09aa\u09b0\u09cd\u0995\u09c7"},
 kp(d){return"About "+d},
-geP(d){return"Accept"},
-fY(d){return"\ud83d\udc4d "+d+" accepted the invitation"},
-gh_(){return"Account"},
+geP(d){return"\u09b8\u09cd\u09ac\u09c0\u0995\u09be\u09b0 \u0995\u09b0\u09bf"},
+fY(d){return d+" \u0986\u09ae\u09a8\u09cd\u09a4\u09cd\u09b0\u09a3 \u0997\u09cd\u09b0\u09b9\u09a3 \u0995\u09b0\u09c7\u099b\u09c7"},
+gh_(){return"\u0985\u09cd\u09af\u09be\u0995\u09be\u0989\u09a8\u09cd\u099f"},
 h0(d){return"\ud83d\udd10 "+d+" activated end to end encryption"},
 gh1(){return"Add email"},
 gkN(){return"Please confirm your Matrix ID in order to delete your account."},
@@ -639,8 +639,8 @@ gp8(){return"Logout all active devices"},
 gpa(){return"Show navigation rail on mobile"},
 B(d,e){return this.gb9(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.F_,C.aF)})()
-B.dQ(b.typeUniverse,JSON.parse('{"F_":{"aF":[]}}'))};
+y(A.EZ,C.aF)})()
+B.dQ(b.typeUniverse,JSON.parse('{"EZ":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_203",e:"endPart",h:b})})($__dart_deferred_initializers__,"542pbeUeXMw2j2cYcNRvC5mLnrA=");
+a.eventLog.push({p:"main.dart.js_203",e:"endPart",h:b})})($__dart_deferred_initializers__,"L/usLQuovpb6zjOi5zqYz3bu2rs=");
 //# sourceMappingURL=main.dart.js_203.part.js.map
