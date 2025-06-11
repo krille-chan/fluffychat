@@ -97,7 +97,6 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
       setState(() {
         _activityItems.clear();
         _loading = true;
-        _timeout = false;
       });
 
       final ActivityPlanRequest request = ActivityPlanRequest(
@@ -124,10 +123,16 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
           Future.delayed(const Duration(seconds: 5), () {
             if (mounted) _setActivityItems(retries: retries + 1);
           });
-          return ActivityPlanResponse(activityPlans: []);
+
+          return Future<ActivityPlanResponse>.error(
+            TimeoutException(
+              L10n.of(context).activitySuggestionTimeoutMessage,
+            ),
+          );
         },
       );
       _activityItems.addAll(resp.activityPlans);
+      _timeout = false;
     } finally {
       if (mounted) setState(() => _loading = false);
     }
