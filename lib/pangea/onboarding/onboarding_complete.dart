@@ -14,31 +14,34 @@ class OnboardingComplete extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FluffyThemes.isColumnMode(context)
-        ? Text(
-            L10n.of(context).getStartedComplete,
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontSize: 32.0,
+    final isColumnMode = FluffyThemes.isColumnMode(context);
+    return Stack(
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.onSurface.withAlpha(20),
+            borderRadius: BorderRadius.circular(
+              10.0,
             ),
-          )
-        : Stack(
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.onSurface.withAlpha(20),
-                  borderRadius: BorderRadius.circular(
-                    10.0,
-                  ),
-                ),
-                margin: const EdgeInsets.all(12.0),
-                padding: const EdgeInsets.fromLTRB(
+          ),
+          margin: const EdgeInsets.all(12.0),
+          padding: isColumnMode
+              ? const EdgeInsets.all(48.0)
+              : const EdgeInsets.fromLTRB(
                   48.0,
                   8.0,
                   48.0,
                   0.0,
                 ),
-                child: Column(
+          child: isColumnMode
+              ? Text(
+                  L10n.of(context).getStartedComplete,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 32.0,
+                  ),
+                )
+              : Column(
                   mainAxisSize: MainAxisSize.min,
                   spacing: 24.0,
                   children: [
@@ -56,16 +59,16 @@ class OnboardingComplete extends StatelessWidget {
                     ),
                   ],
                 ),
-              ),
-              Positioned(
-                right: 16.0,
-                top: 16.0,
-                child: IconButton(
-                  icon: const Icon(Icons.close),
-                  onPressed: controller.closeCompletedMessage,
-                ),
-              ),
-            ],
-          );
+        ),
+        Positioned(
+          right: 16.0,
+          top: 16.0,
+          child: IconButton(
+            icon: const Icon(Icons.close),
+            onPressed: controller.closeCompletedMessage,
+          ),
+        ),
+      ],
+    );
   }
 }
