@@ -1390,12 +1390,6 @@ class ChatController extends State<ChatPageWithRoom>
     return true;
   }
 
-// #Pangea
-  bool get canReplySelectedEvents {
-    return room.canSendDefaultMessages;
-  }
-  // Pangea#
-
   bool get canPinSelectedEvents {
     if (isArchived ||
         !room.canChangeStateEvent(EventTypes.RoomPinnedEvents) ||
