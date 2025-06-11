@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_212",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cBy(){return new A.F1(B.dc("cs"))},
+cBD(){return new A.F1(B.dc("cs"))},
 F1:function F1(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -640,7 +640,7 @@ gpa(){return"Show navigation rail on mobile"},
 B(d,e){return this.gb9(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.F1,C.aF)})()
-B.dP(b.typeUniverse,JSON.parse('{"F1":{"aF":[]}}'))};
+B.dQ(b.typeUniverse,JSON.parse('{"F1":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_212",e:"endPart",h:b})})($__dart_deferred_initializers__,"73Zry2kO5BqLulthFJoAttthxeg=");
+a.eventLog.push({p:"main.dart.js_212",e:"endPart",h:b})})($__dart_deferred_initializers__,"EwiQM9MXjBBPUBDy/wmgJ5oG+AY=");
 //# sourceMappingURL=main.dart.js_212.part.js.map
