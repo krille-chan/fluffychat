@@ -210,9 +210,8 @@ class UserSettingsState extends State<UserSettingsPage> {
         _pangeaController.subscriptionController.reinitialize(),
         _pangeaController.userController.updateProfile(
           (profile) {
-            if (_systemLanguage != null) {
-              profile.userSettings.sourceLanguage = _systemLanguage!.langCode;
-            }
+            profile.userSettings.sourceLanguage =
+                selectedBaseLanguage?.langCode ?? _systemLanguage?.langCode;
             profile.userSettings.targetLanguage =
                 selectedTargetLanguage!.langCode;
             profile.userSettings.cefrLevel = selectedCefrLevel;
