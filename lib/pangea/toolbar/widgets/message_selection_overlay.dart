@@ -30,6 +30,7 @@ import 'package:fluffychat/pangea/toolbar/controllers/text_to_speech_controller.
 import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/enums/reading_assistance_mode_enum.dart';
+import 'package:fluffychat/pangea/toolbar/models/speech_to_text_models.dart';
 import 'package:fluffychat/pangea/toolbar/reading_assistance_input_row/morph_selection.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_positioner.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/reading_assistance_content.dart';
@@ -91,11 +92,14 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
   ReadingAssistanceMode? readingAssistanceMode; // default mode
 
-  bool showTranslation = false;
-  String? translationText;
-
-  String? transcriptionText;
+  SpeechToTextModel? transcription;
   String? transcriptionError;
+
+  bool showTranslation = false;
+  String? translation;
+
+  bool showSpeechTranslation = false;
+  String? speechTranslation;
 
   double maxWidth = AppConfig.toolbarMinWidth;
 
@@ -574,33 +578,50 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     );
   }
 
-  void setShowTranslation(bool show, String? translation) {
-    if (showTranslation == show) return;
-    if (show && translation == null) return;
-
+  void setTranslation(String value) {
     if (mounted) {
-      setState(() {
-        showTranslation = show;
-        translationText = show ? translation : null;
-      });
+      setState(() => translation = value);
     }
   }
 
-  void setTranscriptionText(String transcription) {
+  void setShowTranslation(bool show) {
+    if (!mounted) return;
+    if (translation == null) {
+      setState(() => showTranslation = false);
+    }
+
+    if (showTranslation == show) return;
+    setState(() => showTranslation = show);
+  }
+
+  void setSpeechTranslation(String value) {
+    if (mounted) {
+      setState(() => speechTranslation = value);
+    }
+  }
+
+  void setShowSpeechTranslation(bool show) {
+    if (!mounted) return;
+    if (speechTranslation == null) {
+      setState(() => showSpeechTranslation = false);
+    }
+
+    if (showSpeechTranslation == show) return;
+    setState(() => showSpeechTranslation = show);
+  }
+
+  void setTranscription(SpeechToTextModel value) {
     if (mounted) {
       setState(() {
         transcriptionError = null;
-        transcriptionText = transcription;
+        transcription = value;
       });
     }
   }
 
-  void setTranscriptionError(String error) {
+  void setTranscriptionError(String value) {
     if (mounted) {
-      setState(() {
-        transcriptionText = null;
-        transcriptionError = error;
-      });
+      setState(() => transcriptionError = value);
     }
   }
 

@@ -18,7 +18,6 @@ import 'package:fluffychat/pangea/common/widgets/pressable_button.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/events/extensions/pangea_event_extension.dart';
 import 'package:fluffychat/pangea/events/models/representation_content_model.dart';
-import 'package:fluffychat/pangea/toolbar/models/speech_to_text_models.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_audio_card.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -88,10 +87,12 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
   StreamSubscription? _onAudioPositionChanged;
 
   bool _isLoadingTranslation = false;
-  PangeaRepresentation? _repEvent;
   String? _translationError;
 
-  SpeechToTextModel? _speechToTextResponse;
+  bool _isLoadingSpeechTranslation = false;
+  String? _speechTranslationError;
+
+  Completer<String>? _transcriptionCompleter;
 
   @override
   void initState() {
@@ -113,7 +114,7 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
     });
 
     if (messageEvent?.isAudioMessage == true) {
-      _loadTranscription();
+      _fetchTranscription();
     }
   }
 
@@ -129,9 +130,9 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
       widget.overlayController.pangeaMessageEvent;
 
   String? get l1Code =>
-      MatrixState.pangeaController.languageController.activeL1Code();
+      MatrixState.pangeaController.languageController.userL1?.langCodeShort;
   String? get l2Code =>
-      MatrixState.pangeaController.languageController.activeL2Code();
+      MatrixState.pangeaController.languageController.userL2?.langCodeShort;
 
   void _clear() {
     setState(() {
@@ -140,10 +141,8 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
     });
 
     widget.overlayController.updateSelectedSpan(null);
-
-    if (_selectedMode == SelectMode.translate) {
-      widget.overlayController.setShowTranslation(false, null);
-    }
+    widget.overlayController.setShowTranslation(false);
+    widget.overlayController.setShowSpeechTranslation(false);
   }
 
   Future<void> _updateMode(SelectMode? mode) async {
@@ -177,7 +176,13 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
     }
 
     if (_selectedMode == SelectMode.translate) {
-      await _loadTranslation();
+      await _fetchTranslation();
+      widget.overlayController.setShowTranslation(true);
+    }
+
+    if (_selectedMode == SelectMode.speechTranslation) {
+      await _fetchSpeechTranslation();
+      widget.overlayController.setShowSpeechTranslation(true);
     }
   }
 
@@ -265,71 +270,112 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
     }
   }
 
-  Future<void> _fetchRepresentation() async {
-    if (l1Code == null || messageEvent == null || _repEvent != null) {
+  Future<void> _fetchTranslation() async {
+    if (l1Code == null ||
+        messageEvent == null ||
+        widget.overlayController.translation != null) {
       return;
     }
 
-    _repEvent = messageEvent!.representationByLanguage(l1Code!)?.content;
-    if (_repEvent == null && mounted) {
-      _repEvent = await messageEvent?.representationByLanguageGlobal(
+    try {
+      if (mounted) setState(() => _isLoadingTranslation = true);
+
+      PangeaRepresentation? rep =
+          messageEvent!.representationByLanguage(l1Code!)?.content;
+
+      rep ??= await messageEvent?.representationByLanguageGlobal(
         langCode: l1Code!,
       );
+
+      widget.overlayController.setTranslation(rep!.text);
+    } catch (e, s) {
+      _translationError = e.toString();
+      ErrorHandler.logError(
+        e: e,
+        s: s,
+        m: 'Error fetching translation',
+        data: {
+          'l1Code': l1Code,
+          'messageEvent': messageEvent?.event.toJson(),
+        },
+      );
+    } finally {
+      if (mounted) setState(() => _isLoadingTranslation = false);
     }
   }
 
   Future<void> _fetchTranscription() async {
-    if (l1Code == null || messageEvent == null || _repEvent != null) {
-      return;
-    }
-
-    _speechToTextResponse ??= await messageEvent!.getSpeechToText(
-      l1Code!,
-      l2Code!,
-    );
-  }
-
-  Future<void> _loadTranslation() async {
-    if (!mounted) return;
-    setState(() => _isLoadingTranslation = true);
-
     try {
-      await _fetchRepresentation();
-      if (_repEvent == null) {
-        throw "No representation found for the selected language.";
+      if (_transcriptionCompleter != null) {
+        // If a transcription is already in progress, wait for it to complete
+        await _transcriptionCompleter!.future;
+        return;
       }
 
-      widget.overlayController.setShowTranslation(
-        true,
-        _repEvent!.text,
-      );
-    } catch (err) {
-      _translationError = err.toString();
-      ErrorHandler.logError(
-        e: err,
-        data: {},
-      );
-    }
+      _transcriptionCompleter = Completer<String>();
+      if (l1Code == null || messageEvent == null) {
+        _transcriptionCompleter?.completeError(
+          'Language code or message event is null',
+        );
+        return;
+      }
 
-    if (mounted) {
-      setState(() => _isLoadingTranslation = false);
-    }
-  }
-
-  Future<void> _loadTranscription() async {
-    try {
-      await _fetchTranscription();
-      widget.overlayController.setTranscriptionText(
-        _speechToTextResponse!.transcript.text,
+      final resp = await messageEvent!.getSpeechToText(
+        l1Code!,
+        l2Code!,
       );
+
+      widget.overlayController.setTranscription(resp!);
+      _transcriptionCompleter?.complete(resp.transcript.text);
     } catch (err) {
       widget.overlayController.setTranscriptionError(
         err.toString(),
       );
+      _transcriptionCompleter?.completeError(err);
       ErrorHandler.logError(
         e: err,
         data: {},
       );
+    }
+  }
+
+  Future<void> _fetchSpeechTranslation() async {
+    if (messageEvent == null ||
+        l1Code == null ||
+        l2Code == null ||
+        widget.overlayController.speechTranslation != null) {
+      return;
+    }
+
+    try {
+      setState(() => _isLoadingSpeechTranslation = true);
+
+      if (widget.overlayController.transcription == null) {
+        await _fetchTranscription();
+        if (widget.overlayController.transcription == null) {
+          throw Exception('Transcription is null');
+        }
+      }
+
+      final translation = await messageEvent!.sttTranslationByLanguageGlobal(
+        langCode: l1Code!,
+        l1Code: l1Code!,
+        l2Code: l2Code!,
+      );
+      if (translation == null) {
+        throw Exception('Translation is null');
+      }
+
+      widget.overlayController.setSpeechTranslation(translation.translation);
+    } catch (err, s) {
+      debugPrint("Error fetching speech translation: $err, $s");
+      _speechTranslationError = err.toString();
+      ErrorHandler.logError(
+        e: err,
+        data: {},
+      );
+    } finally {
+      if (mounted) setState(() => _isLoadingSpeechTranslation = false);
     }
   }
 
@@ -339,6 +385,8 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
         return _audioError != null;
       case SelectMode.translate:
         return _translationError != null;
+      case SelectMode.speechTranslation:
+        return _speechTranslationError != null;
       default:
         return false;
     }
@@ -350,6 +398,8 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
         return _isLoadingAudio;
       case SelectMode.translate:
         return _isLoadingTranslation;
+      case SelectMode.speechTranslation:
+        return _isLoadingSpeechTranslation;
       default:
         return false;
     }

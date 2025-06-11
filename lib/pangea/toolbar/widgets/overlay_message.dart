@@ -135,9 +135,12 @@ class OverlayMessage extends StatelessWidget {
             event.numberEmotes <= 3);
 
     final showTranslation = overlayController.showTranslation &&
-        overlayController.translationText != null;
+        overlayController.translation != null;
 
     final showTranscription = pangeaMessageEvent?.isAudioMessage == true;
+
+    final showSpeechTranslation = overlayController.showSpeechTranslation &&
+        overlayController.speechTranslation != null;
 
     final content = Container(
       decoration: BoxDecoration(
@@ -296,10 +299,11 @@ class OverlayMessage extends StatelessWidget {
                             ),
                           ],
                         )
-                      : overlayController.transcriptionText != null
+                      : overlayController.transcription != null
                           ? SingleChildScrollView(
                               child: Text(
-                                overlayController.transcriptionText!,
+                                overlayController
+                                    .transcription!.transcript.text,
                                 style: AppConfig.messageTextStyle(
                                   event,
                                   textColor,
@@ -323,7 +327,7 @@ class OverlayMessage extends StatelessWidget {
                     },
                   )
                 : content,
-            if (showTranslation)
+            if (showTranslation || showSpeechTranslation)
               Container(
                 width: messageWidth,
                 constraints: const BoxConstraints(
@@ -338,7 +342,9 @@ class OverlayMessage extends StatelessWidget {
                   ),
                   child: SingleChildScrollView(
                     child: Text(
-                      overlayController.translationText!,
+                      showTranslation
+                          ? overlayController.translation!
+                          : overlayController.speechTranslation!,
                       style: AppConfig.messageTextStyle(
                         event,
                         textColor,
