@@ -1,3 +1,14 @@
+## v2.0.0
+
+This version migrates to Vodozemac and Matrix Dart SDK 1.0.0. This is a breaking
+change. The user should not notice the migration at all but downgrading from
+v2.0.0 to a previous version is not possible without losing the session.
+
+- build: Switch to matrix sdk 1.0.0 (Christian Kußowski)
+- build: Upgrade flutter to 3.32.2 (krille-chan)
+- chore: Add missing mounted check (Christian Kußowski)
+- refactor: sdk 1.0 (Christian Kußowski)
+
 ## v1.27.0
 - feat: Add confirmation dialog before accepting invite (krille-chan)
 - feat: Add feature flag for refresh tokens (Christian Kußowski)
