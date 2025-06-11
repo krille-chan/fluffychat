@@ -1390,6 +1390,12 @@ class ChatController extends State<ChatPageWithRoom>
     return true;
   }
 
+// #Pangea
+  bool get canReplySelectedEvents {
+    return room.canSendDefaultMessages;
+  }
+  // Pangea#
+
   bool get canPinSelectedEvents {
     if (isArchived ||
         !room.canChangeStateEvent(EventTypes.RoomPinnedEvents) ||
@@ -1618,7 +1624,8 @@ class ChatController extends State<ChatPageWithRoom>
     if (timeline == null ||
         events.any(
           (e) => e.aggregatedEvents(timeline!, RelationshipTypes.reaction).any(
-              (re) => re.content.tryGetMap('m.relates_to')?['key'] == emoji),
+                (re) => re.content.tryGetMap('m.relates_to')?['key'] == emoji,
+              ),
         )) {
       return;
     }
