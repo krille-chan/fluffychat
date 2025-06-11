@@ -10,7 +10,9 @@ import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_planner_builder.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_room_selection.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_suggestion_card_row.dart';
+import 'package:fluffychat/pangea/chat_settings/widgets/language_level_dropdown.dart';
 import 'package:fluffychat/pangea/common/widgets/full_width_dialog.dart';
+import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_enum.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
 
@@ -291,6 +293,26 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
                                             widget.controller.updatedActivity
                                                 .req.numberOfParticipants,
                                           ),
+                                          style: theme.textTheme.bodyLarge,
+                                        ),
+                                      ),
+                                    if (widget.controller.isEditing)
+                                      ActivitySuggestionCardRow(
+                                        icon: Icons.school_outlined,
+                                        child: LanguageLevelDropdown(
+                                          initialLevel:
+                                              widget.controller.languageLevel,
+                                          onChanged: widget
+                                              .controller.setLanguageLevel,
+                                        ),
+                                      )
+                                    else
+                                      ActivitySuggestionCardRow(
+                                        icon: Icons.school_outlined,
+                                        child: Text(
+                                          widget.controller.updatedActivity.req
+                                              .cefrLevel
+                                              .title(context),
                                           style: theme.textTheme.bodyLarge,
                                         ),
                                       ),
