@@ -12,11 +12,13 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:fluffychat/pangea/choreographer/event_wrappers/pangea_choreo_event.dart';
 import 'package:fluffychat/pangea/choreographer/models/choreo_record.dart';
 import 'package:fluffychat/pangea/choreographer/models/language_detection_model.dart';
+import 'package:fluffychat/pangea/choreographer/repo/full_text_translation_repo.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/events/extensions/pangea_event_extension.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/events/models/representation_content_model.dart';
+import 'package:fluffychat/pangea/events/models/stt_translation_model.dart';
 import 'package:fluffychat/pangea/events/models/tokens_event_content_model.dart';
 import 'package:fluffychat/pangea/events/repo/token_api_models.dart';
 import 'package:fluffychat/pangea/learning_settings/constants/language_constants.dart';
@@ -206,6 +208,71 @@ class RepresentationEvent {
         langCode: langCode,
         senderL1: userl1,
         senderL2: userl2,
+      ),
+    );
+  }
+
+  List<SttTranslationModel> get sttTranslations {
+    if (content.speechToText == null) return [];
+    if (_event == null) {
+      Sentry.addBreadcrumb(
+        Breadcrumb(
+          message: "_event and _sttTranslations both null",
+        ),
+      );
+      return [];
+    }
+
+    final Set<Event> sttEvents = _event!.aggregatedEvents(
+      timeline,
+      PangeaEventTypes.sttTranslation,
+    );
+
+    if (sttEvents.isEmpty) return [];
+    final List<SttTranslationModel> sttTranslations = [];
+    for (final event in sttEvents) {
+      try {
+        sttTranslations.add(
+          SttTranslationModel.fromJson(event.content),
+        );
+      } catch (e) {
+        Sentry.addBreadcrumb(
+          Breadcrumb(
+            message: "Failed to parse STT translation",
+            data: {
+              "eventID": event.eventId,
+              "content": event.content,
+              "error": e.toString(),
+            },
+          ),
+        );
+      }
+    }
+
+    return sttTranslations;
+  }
+
+  Future<SttTranslationModel> getSttTranslation({
+    required String userL1,
+    required String userL2,
+  }) async {
+    if (content.speechToText == null) {
+      throw Exception(
+        "RepresentationEvent.getSttTranslation called on a representation without speechToText",
+      );
+    }
+
+    final local = sttTranslations.firstWhereOrNull((t) => t.langCode == userL1);
+    if (local != null) return local;
+
+    return MatrixState.pangeaController.messageData.getSttTranslation(
+      repEventId: _event?.eventId,
+      room: _event?.room,
+      req: FullTextTranslationRequestModel(
+        text: content.speechToText!.transcript.text,
+        tgtLang: userL1,
+        userL2: userL2,
+        userL1: userL1,
       ),
     );
   }
