@@ -5014,5 +5014,6 @@
   "getStartedFriendsButton": "Invite a friend",
   "groupChat": "Group Chat",
   "directMessage": "Direct Message",
-  "newDirectMessage": "New direct message"
+  "newDirectMessage": "New direct message",
+  "speakingExercisesTooltip": "Speaking practice"
 }

@@ -18,14 +18,12 @@ import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart
 class MessageAudioCard extends StatefulWidget {
   final PangeaMessageEvent messageEvent;
   final MessageOverlayController overlayController;
-  final Function(bool) setIsPlayingAudio;
   final VoidCallback? onError;
 
   const MessageAudioCard({
     super.key,
     required this.messageEvent,
     required this.overlayController,
-    required this.setIsPlayingAudio,
     this.onError,
   });
 
@@ -91,7 +89,6 @@ class MessageAudioCardState extends State<MessageAudioCard> {
                 senderId: widget.messageEvent.senderId,
                 matrixFile: audioFile,
                 color: Theme.of(context).colorScheme.onPrimaryContainer,
-                setIsPlayingAudio: widget.setIsPlayingAudio,
                 fontSize: AppConfig.messageFontSize * AppConfig.fontSizeFactor,
                 chatController: widget.overlayController.widget.chatController,
                 overlayController: widget.overlayController,

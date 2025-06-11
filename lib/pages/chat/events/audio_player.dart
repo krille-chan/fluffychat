@@ -22,7 +22,7 @@ import 'package:fluffychat/utils/file_description.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/event_extension.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
-import '../../../widgets/fluffy_chat_app.dart';
+import 'package:fluffychat/widgets/fluffy_chat_app.dart';
 import '../../../widgets/matrix.dart';
 
 class AudioPlayerWidget extends StatefulWidget {
@@ -36,9 +36,10 @@ class AudioPlayerWidget extends StatefulWidget {
   final String roomId;
   final String senderId;
   final PangeaAudioFile? matrixFile;
-  final Function(bool)? setIsPlayingAudio;
   final ChatController chatController;
   final MessageOverlayController? overlayController;
+  final VoidCallback? onPlay;
+  final bool autoplay;
   // Pangea#
 
   static const int wavesCount = 40;
@@ -53,9 +54,10 @@ class AudioPlayerWidget extends StatefulWidget {
     required this.roomId,
     required this.senderId,
     this.matrixFile,
-    this.setIsPlayingAudio,
     required this.chatController,
     this.overlayController,
+    this.onPlay,
+    this.autoplay = false,
     // Pangea#
     super.key,
   });
@@ -76,9 +78,7 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
   String? _durationString;
 
   // #Pangea
-  StreamSubscription? _onShowToolbar;
   StreamSubscription? _onAudioPositionChanged;
-  StreamSubscription? _onPlayerStateChanged;
   // Pangea#
 
   @override
@@ -163,9 +163,7 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
       audioPlayer.dispose();
       matrix.voiceMessageEventId.value = matrix.audioPlayer = null;
       // #Pangea
-      _onShowToolbar?.cancel();
       _onAudioPositionChanged?.cancel();
-      _onPlayerStateChanged?.cancel();
       // Pangea#
     }
   }
@@ -253,6 +251,8 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
     // #Pangea
     // if (matrix.voiceMessageEventId.value != widget.event.eventId) return;
     if (matrix.voiceMessageEventId.value != widget.eventId) return;
+
+    matrix.audioPlayer?.dispose();
     // Pangea#
 
     final audioPlayer = matrix.audioPlayer = AudioPlayer();
@@ -269,13 +269,6 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
         );
       }
     });
-
-    _onPlayerStateChanged?.cancel();
-    _onPlayerStateChanged = audioPlayer.playingStream.listen(
-      (isPlaying) => setState(() {
-        widget.setIsPlayingAudio?.call(isPlaying);
-      }),
-    );
     // Pangea#
 
     // #Pangea
@@ -394,6 +387,10 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
       final duration = Duration(milliseconds: durationInt);
       _durationString = duration.minuteSecondString;
     }
+
+    // #Pangea
+    if (widget.autoplay) _onButtonTap();
+    // Pangea#
   }
 
   @override
@@ -465,7 +462,11 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
                                   onLongPress: () =>
                                       widget.event?.saveFile(context),
                                   // Pangea#
-                                  onTap: _onButtonTap,
+                                  onTap: () {
+                                    widget.onPlay != null
+                                        ? widget.onPlay!.call()
+                                        : _onButtonTap();
+                                  },
                                   child: Material(
                                     color: widget.color.withAlpha(64),
                                     borderRadius: BorderRadius.circular(64),
