@@ -138,6 +138,7 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
     setState(() {
       _audioError = null;
       _translationError = null;
+      _speechTranslationError = null;
     });
 
     widget.overlayController.updateSelectedSpan(null);
