@@ -7,7 +7,7 @@ class ActivityPlanRequest {
   final String mode;
   final String objective;
   final MediaEnum media;
-  final LanguageLevelTypeEnum cefrLevel;
+  LanguageLevelTypeEnum cefrLevel;
   final String languageOfInstructions;
   final String targetLanguage;
   final int count;
