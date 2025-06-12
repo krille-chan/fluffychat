@@ -258,7 +258,7 @@ class OverlayMessage extends StatelessWidget {
                             'msgtype': 'm.text',
                             'body': '...',
                           },
-                          senderId: event.senderId,
+                          senderId: "",
                           type: 'm.room.message',
                           room: event.room,
                           status: EventStatus.sent,
