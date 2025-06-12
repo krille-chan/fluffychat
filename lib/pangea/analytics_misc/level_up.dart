@@ -7,6 +7,7 @@ import 'package:confetti/confetti.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/analytics_misc/analytics_constants.dart';
+import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/learning_skills_enum.dart';
 import 'package:fluffychat/pangea/analytics_summary/progress_bar/progress_bar.dart';
 import 'package:fluffychat/pangea/analytics_summary/progress_bar/progress_bar_details.dart';
@@ -15,10 +16,12 @@ import 'package:fluffychat/pangea/common/utils/overlay.dart';
 import 'package:fluffychat/pangea/common/widgets/full_width_dialog.dart';
 import 'package:fluffychat/pangea/constructs/construct_repo.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:fluffychat/widgets/mxc_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:material_symbols_icons/symbols.dart';
+import 'package:matrix/matrix_api_lite/generated/model.dart';
 
 class LevelUpConstants {
   static const String starFileName = "star.png";
@@ -144,151 +147,162 @@ class LevelUpBannerState extends State<LevelUpBanner>
   }
 
   Future<void> _toggleDetails() async {
-    if (!Environment.isStagingEnvironment) return;
-
     await _close();
 
     //if (!mounted) return;
 
     await showDialog(
       context: context,
-      builder: (context) => FullWidthDialog(
-        maxWidth: 400,
-        maxHeight: 800,
-        dialogContent: Scaffold(
-          appBar: AppBar(
-            centerTitle: true,
-            title: kIsWeb
-                ? const Text(
-                    "You have leveled up!",
-                    style: TextStyle(
-                      color: AppConfig.gold,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  )
-                : null,
-          ),
-          body: LevelUpBarAnimation(
-            prevLevel: widget.prevLevel,
-            level: widget.level,
-          ),
-        ),
-      ),
+      builder: (context) => LevelUpPopup(widget: widget),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    final style = FluffyThemes.isColumnMode(context)
+    final isColumnMode = FluffyThemes.isColumnMode(context);
+
+    final style = isColumnMode
         ? Theme.of(context).textTheme.titleLarge?.copyWith(
-              color: Theme.of(context).colorScheme.onSecondaryContainer,
+              color: AppConfig.gold,
               fontWeight: FontWeight.bold,
               letterSpacing: 0.5,
             )
         : Theme.of(context).textTheme.bodyLarge?.copyWith(
-              color: Theme.of(context).colorScheme.onSecondaryContainer,
+              color: AppConfig.gold,
               fontWeight: FontWeight.bold,
               letterSpacing: 0.5,
             );
 
     return SafeArea(
       child: Material(
-        color: Colors.transparent,
-        child: Stack(
-          children: [
-            SlideTransition(
-              position: _slideAnimation,
-              child: Align(
-                alignment: Alignment.topCenter,
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints(
-                    maxWidth: 600.0,
+        type: MaterialType.transparency,
+        child: SlideTransition(
+          position: _slideAnimation,
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              return GestureDetector(
+                onPanUpdate: (details) {
+                  if (details.delta.dy < -10) _close();
+                },
+                onTap: _toggleDetails,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 16.0,
+                    horizontal: 4.0,
                   ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.surface,
+                    border: Border(
+                      bottom: BorderSide(
+                        color: AppConfig.gold.withAlpha(200),
+                        width: 2.0,
+                      ),
+                    ),
+                    borderRadius: const BorderRadius.only(
+                      bottomLeft: Radius.circular(AppConfig.borderRadius),
+                      bottomRight: Radius.circular(AppConfig.borderRadius),
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      GestureDetector(
-                        onPanUpdate: (details) {
-                          if (details.delta.dy < -10) _close();
-                        },
-                        onTap: _toggleDetails,
-                        child: Container(
-                          margin: const EdgeInsets.only(
-                            top: 16,
+                      // Spacer for symmetry
+                      SizedBox(
+                        width: constraints.maxWidth >= 600 ? 120.0 : 65.0,
+                      ),
+                      // Centered content
+                      Expanded(
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: isColumnMode ? 16.0 : 8.0,
                           ),
-                          decoration: BoxDecoration(
-                            color: Theme.of(context).colorScheme.surface,
-                            borderRadius: BorderRadius.circular(8),
-                            border: Border.all(
-                              color: AppConfig.gold,
-                            ),
-                          ),
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 16,
-                            horizontal: 24,
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            spacing: 8.0,
+                          child: Wrap(
+                            spacing: 16.0,
+                            alignment: WrapAlignment.center,
+                            crossAxisAlignment: WrapCrossAlignment.center,
                             children: [
-                              Flexible(
-                                child: RichText(
-                                  text: TextSpan(
-                                    children: [
-                                      TextSpan(
-                                        //Hardcoded for now, put in translations later
-                                        text: "Level up",
-                                        style: style,
-                                      ),
-                                      TextSpan(
-                                        text: "  ",
-                                        style: style,
-                                      ),
-                                      WidgetSpan(
-                                        child: CachedNetworkImage(
-                                          imageUrl:
-                                              "${AppConfig.assetsBaseURL}/${LevelUpConstants.starFileName}",
-                                          height: 24,
-                                          width: 24,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
+                              Text(
+                                "Level up",
+                                style: style,
+                                overflow: TextOverflow.ellipsis,
                               ),
-                              Row(
-                                children: [
-                                  if (Environment.isStagingEnvironment)
-                                    AnimatedSize(
-                                      duration: FluffyThemes.animationDuration,
-                                      child: IconButton(
-                                        style: IconButton.styleFrom(
-                                          padding: const EdgeInsets.symmetric(
-                                            vertical: 4.0,
-                                            horizontal: 16.0,
-                                          ),
-                                        ),
-                                        onPressed: _toggleDetails,
-                                        icon: Icon(
-                                          Icons.arrow_drop_down,
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .onSurface,
-                                        ),
-                                      ),
-                                    ),
-                                ],
+                              CachedNetworkImage(
+                                imageUrl:
+                                    "${AppConfig.assetsBaseURL}/${LevelUpConstants.starFileName}",
+                                height: 24,
+                                width: 24,
                               ),
                             ],
                           ),
                         ),
                       ),
+                      // Optional staging-only dropdown icon
+                      SizedBox(
+                        width: constraints.maxWidth >= 600 ? 120.0 : 65.0,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            if (Environment.isStagingEnvironment)
+                              SizedBox(
+                                width: 32.0,
+                                height: 32.0,
+                                child: Center(
+                                  child: IconButton(
+                                    icon: const Icon(Icons.arrow_drop_down),
+                                    style: IconButton.styleFrom(
+                                      padding: const EdgeInsets.all(4.0),
+                                    ),
+                                    onPressed: _toggleDetails,
+                                    constraints: const BoxConstraints(),
+                                    color:
+                                        Theme.of(context).colorScheme.onSurface,
+                                  ),
+                                ),
+                              ),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),
-              ),
-            ),
-          ],
+              );
+            },
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class LevelUpPopup extends StatelessWidget {
+  const LevelUpPopup({
+    super.key,
+    required this.widget,
+  });
+
+  final LevelUpBanner widget;
+
+  @override
+  Widget build(BuildContext context) {
+    return FullWidthDialog(
+      maxWidth: 400,
+      maxHeight: 800,
+      dialogContent: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: kIsWeb
+              ? const Text(
+                  "You have leveled up!",
+                  style: TextStyle(
+                    color: AppConfig.gold,
+                    fontWeight: FontWeight.w600,
+                  ),
+                )
+              : null,
+        ),
+        body: LevelUpBarAnimation(
+          prevLevel: widget.prevLevel,
+          level: widget.level,
         ),
       ),
     );
@@ -312,12 +326,16 @@ class LevelUpBarAnimation extends StatefulWidget {
 
 class _LevelUpBarAnimationState extends State<LevelUpBarAnimation>
     with SingleTickerProviderStateMixin {
+  late int _endGrammar;
+  late int _endVocab;
   late final AnimationController _controller;
   late final Animation<double> _progressAnimation;
   late final Animation<int> _vocabAnimation;
   late final Animation<int> _grammarAnimation;
   late final Animation<double> _skillsOpacity;
   late final Animation<double> _shrinkMultiplier;
+  late final Uri? avatarUrl;
+  late final Future<Profile> profile;
 
   late final ConfettiController _confettiController;
 
@@ -327,10 +345,8 @@ class _LevelUpBarAnimationState extends State<LevelUpBarAnimation>
   int displayedLevel = -1;
   bool _hasBlastedConfetti = false;
 
-  static const int _startGrammar = 23;
-  static const int _endGrammar = 78;
-  static const int _startVocab = 54;
-  static const int _endVocab = 64;
+  static const int _startGrammar = 0;
+  static const int _startVocab = 0;
   static const String language = "ES";
 
   static const Duration _animationDuration = Duration(seconds: 6);
@@ -344,6 +360,14 @@ class _LevelUpBarAnimationState extends State<LevelUpBarAnimation>
         ConfettiController(duration: const Duration(seconds: 3));
 
     _setConstructSummary();
+    _setGrammarAndVocab();
+
+    final client = Matrix.of(context).client;
+    client.fetchOwnProfile().then((profile) {
+      setState(() {
+        avatarUrl = profile.avatarUrl;
+      });
+    });
 
     _controller = AnimationController(
       duration: _animationDuration,
@@ -414,6 +438,20 @@ class _LevelUpBarAnimationState extends State<LevelUpBarAnimation>
     }
   }
 
+  void _setGrammarAndVocab() {
+    _endGrammar = MatrixState.pangeaController.getAnalytics.constructListModel
+        .unlockedLemmas(
+          ConstructTypeEnum.morph,
+        )
+        .length;
+
+    _endVocab = MatrixState.pangeaController.getAnalytics.constructListModel
+        .unlockedLemmas(
+          ConstructTypeEnum.vocab,
+        )
+        .length;
+  }
+
   int _getSkillXP(LearningSkillsEnum skill) {
     return switch (skill) {
       LearningSkillsEnum.writing =>
@@ -451,19 +489,64 @@ class _LevelUpBarAnimationState extends State<LevelUpBarAnimation>
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              // Avatar and language
               AnimatedBuilder(
                 animation: _progressAnimation,
                 builder: (_, __) => Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    ClipOval(
-                      child: Image.asset(
-                        './assets/favicon.png',
-                        width: 200 * _shrinkMultiplier.value,
-                        height: 200 * _shrinkMultiplier.value,
-                        fit: BoxFit.cover,
+                    avatarUrl == null
+                        ? const CircularProgressIndicator()
+                        : Padding(
+                            padding: const EdgeInsets.all(24.0),
+                            child: MxcImage(
+                              uri: avatarUrl,
+                              width: 150 * _shrinkMultiplier.value,
+                              height: 150 * _shrinkMultiplier.value,
+                            ),
+                          ),
+                    Text(
+                      language,
+                      style: TextStyle(
+                        fontSize: 24 * _skillsOpacity.value,
+                        color: AppConfig.goldLight,
+                        fontWeight: FontWeight.bold,
                       ),
+                    ),
+                  ],
+                ),
+              ),
+              // Avatar and language
+              /*AnimatedBuilder(
+                animation: _progressAnimation,
+                builder: (_, __) => Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    FutureBuilder<Profile>(
+                      future: client.fetchOwnProfile(),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState != ConnectionState.done) {
+                          return const CircularProgressIndicator(); // Or a skeleton
+                        }
+                        if (snapshot.hasError) {
+                          print("Profile fetch error: ${snapshot.error}");
+                          return const Text("Error loading profile");
+                        }
+
+                        if (!snapshot.hasData || snapshot.data == null) {
+                          print("No profile data!");
+                          return const Text("No data");
+                        }
+
+
+                        return ListTile(
+                          leading: Avatar(
+                            mxContent: snapshot.data?.avatarUrl,
+                            size: 20,
+                          ),
+                          title: Text(profile?.displayName ?? client.userID!),
+                          contentPadding: EdgeInsets.zero,
+                        );
+                      },
                     ),
                     const SizedBox(width: 16),
                     Text(
@@ -476,7 +559,7 @@ class _LevelUpBarAnimationState extends State<LevelUpBarAnimation>
                     ),
                   ],
                 ),
-              ),
+              ),*/
               // Progress bar + Level
               AnimatedBuilder(
                 animation: _progressAnimation,
@@ -558,7 +641,7 @@ class _LevelUpBarAnimationState extends State<LevelUpBarAnimation>
                               ),
                             //const SizedBox(height: 16),
                             Padding(
-                              padding: const EdgeInsets.all(16.0),
+                              padding: const EdgeInsets.all(24.0),
                               child: CachedNetworkImage(
                                 imageUrl:
                                     "${AppConfig.assetsBaseURL}/${LevelUpConstants.dinoLevelUPFileName}",
