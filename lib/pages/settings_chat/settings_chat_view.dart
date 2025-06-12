@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 //import for testing level up
-import '../../pangea/analytics_misc/level_up.dart';
+import '../../pangea/analytics_misc/level_up/level_up_banner.dart';
 import 'settings_chat.dart';
 
 class SettingsChatView extends StatelessWidget {
@@ -34,8 +34,8 @@ class SettingsChatView extends StatelessWidget {
                 // Test button for leveling up
                 onPressed: () {
                   LevelUpUtil.showLevelUpDialog(
-                    5,
                     4,
+                    3,
                     context,
                   );
                 },
