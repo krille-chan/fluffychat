@@ -79,6 +79,7 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
 
   // #Pangea
   StreamSubscription? _onAudioPositionChanged;
+  StreamSubscription? _onAudioStateChanged;
   // Pangea#
 
   @override
@@ -164,6 +165,7 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
       matrix.voiceMessageEventId.value = matrix.audioPlayer = null;
       // #Pangea
       _onAudioPositionChanged?.cancel();
+      _onAudioStateChanged?.cancel();
       // Pangea#
     }
   }
@@ -251,7 +253,6 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
     // #Pangea
     // if (matrix.voiceMessageEventId.value != widget.event.eventId) return;
     if (matrix.voiceMessageEventId.value != widget.eventId) return;
-
     matrix.audioPlayer?.dispose();
     // Pangea#
 
@@ -267,6 +268,15 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
           state.inMilliseconds,
           widget.matrixFile!.tokens,
         );
+      }
+    });
+
+    _onAudioStateChanged?.cancel();
+    _onAudioStateChanged =
+        matrix.audioPlayer!.playerStateStream.listen((state) {
+      if (state.processingState == ProcessingState.completed) {
+        matrix.audioPlayer!.stop();
+        matrix.audioPlayer!.seek(Duration.zero);
       }
     });
     // Pangea#
