@@ -893,30 +893,56 @@ class MatrixPill extends StatelessWidget {
     return InkWell(
       splashColor: Colors.transparent,
       onTap: UrlLauncher(outerContext, uri).launchUrl,
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Avatar(
-            mxContent: avatar,
-            name: name,
-            size: 16,
-            // #Pangea
-            userId: userId,
-            // Pangea#
-          ),
-          const SizedBox(width: 6),
-          Text(
-            name,
-            style: TextStyle(
-              color: color,
-              decorationColor: color,
-              decoration: TextDecoration.underline,
-              fontSize: fontSize,
-              height: 1.25,
+      // #Pangea
+      child: RichText(
+        textScaler: TextScaler.noScaling,
+        text: TextSpan(
+          children: [
+            WidgetSpan(
+              alignment: PlaceholderAlignment.middle,
+              child: Avatar(
+                mxContent: avatar,
+                name: name,
+                size: 16,
+                userId: userId,
+              ),
             ),
-          ),
-        ],
+            const WidgetSpan(child: SizedBox(width: 6)),
+            TextSpan(
+              text: name,
+              style: TextStyle(
+                color: color,
+                decorationColor: color,
+                decoration: TextDecoration.underline,
+                fontSize: fontSize,
+                height: 1.25,
+              ),
+            ),
+          ],
+        ),
       ),
+      // child: Row(
+      //   mainAxisSize: MainAxisSize.min,
+      //   children: [
+      //     Avatar(
+      //       mxContent: avatar,
+      //       name: name,
+      //       size: 16,
+      //     ),
+      //     const SizedBox(width: 6),
+      //     Text(
+      //       name,
+      //       style: TextStyle(
+      //         color: color,
+      //         decorationColor: color,
+      //         decoration: TextDecoration.underline,
+      //         fontSize: fontSize,
+      //         height: 1.25,
+      //       ),
+      //     ),
+      //   ],
+      // ),
+      // Pangea#
     );
   }
 }
