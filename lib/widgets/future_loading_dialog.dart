@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import 'package:async/async.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/adaptive_dialog_action.dart';
 
@@ -22,7 +22,7 @@ Future<Result<T>> showFutureLoadingDialog<T>({
   ExceptionContext? exceptionContext,
   bool ignoreError = false,
   // #Pangea
-  String? Function(Object, StackTrace?)? onError,
+  Object? Function(Object, StackTrace?)? onError,
   String? Function()? onSuccess,
   VoidCallback? onDismiss,
   // Pangea#
@@ -82,7 +82,7 @@ class LoadingDialog<T> extends StatefulWidget {
   final Future<T> future;
   final ExceptionContext? exceptionContext;
   // #Pangea
-  final String? Function(Object, StackTrace?)? onError;
+  final Object? Function(Object, StackTrace?)? onError;
   final String? Function()? onSuccess;
   final VoidCallback? onDismiss;
   // Pangea#

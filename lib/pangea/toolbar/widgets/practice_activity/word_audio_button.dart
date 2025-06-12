@@ -2,8 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
@@ -91,8 +90,16 @@ class WordAudioButtonState extends State<WordAudioButton> {
                         context: context,
                         targetID: 'word-audio-button-${widget.uniqueID}',
                         langCode: widget.langCode,
-                        onStart: () => setState(() => _isPlaying = true),
-                        onStop: () => setState(() => _isPlaying = false),
+                        onStart: () {
+                          if (mounted) {
+                            setState(() => _isPlaying = true);
+                          }
+                        },
+                        onStop: () {
+                          if (mounted) {
+                            setState(() => _isPlaying = false);
+                          }
+                        },
                       );
                     }
                   },

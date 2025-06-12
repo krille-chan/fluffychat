@@ -2,8 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/choreographer/enums/assistance_state_enum.dart';
 import '../../../pages/chat/chat.dart';
 

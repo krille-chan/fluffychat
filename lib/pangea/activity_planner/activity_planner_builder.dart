@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +9,7 @@ import 'package:matrix/matrix.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_enum.dart';
 import 'package:fluffychat/utils/client_download_content_extension.dart';
 import 'package:fluffychat/utils/file_selector.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -25,8 +24,6 @@ class ActivityPlannerBuilder extends StatefulWidget {
   final Future<void> Function(
     String,
     ActivityPlanModel,
-    Uint8List?,
-    String?,
   )? onEdit;
 
   const ActivityPlannerBuilder({
@@ -56,6 +53,7 @@ class ActivityPlannerBuilderState extends State<ActivityPlannerBuilder> {
       TextEditingController();
 
   final List<Vocab> vocab = [];
+  late LanguageLevelTypeEnum languageLevel;
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
@@ -83,6 +81,7 @@ class ActivityPlannerBuilderState extends State<ActivityPlannerBuilder> {
 
     final updatedReq = widget.initialActivity.req;
     updatedReq.numberOfParticipants = participants;
+    updatedReq.cefrLevel = languageLevel;
 
     return ActivityPlanModel(
       req: updatedReq,
@@ -109,6 +108,8 @@ class ActivityPlannerBuilderState extends State<ActivityPlannerBuilder> {
     vocab.clear();
     vocab.addAll(widget.initialActivity.vocab);
 
+    languageLevel = widget.initialActivity.req.cefrLevel;
+
     imageURL = widget.initialActivity.imageURL;
     filename = widget.initialFilename;
     await _setAvatarByURL();
@@ -134,6 +135,11 @@ class ActivityPlannerBuilderState extends State<ActivityPlannerBuilder> {
 
   void removeVocab(int index) {
     vocab.removeAt(index);
+    if (mounted) setState(() {});
+  }
+
+  void setLanguageLevel(LanguageLevelTypeEnum level) {
+    languageLevel = level;
     if (mounted) setState(() {});
   }
 
@@ -204,8 +210,6 @@ class ActivityPlannerBuilderState extends State<ActivityPlannerBuilder> {
       await widget.onEdit!(
         widget.initialActivity.bookmarkId,
         updatedActivity,
-        avatar,
-        filename,
       );
     }
   }
@@ -220,11 +224,11 @@ class ActivityPlannerBuilderState extends State<ActivityPlannerBuilder> {
   }
 
   Future<void> launchToRoom() async {
-    return widget.room?.sendActivityPlan(
+    if (room == null || room!.isSpace) return;
+    return room?.sendActivityPlan(
       updatedActivity,
       avatar: avatar,
       filename: filename,
-      avatarURL: imageURL,
     );
   }
 

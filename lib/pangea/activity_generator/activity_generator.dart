@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/activity_generator/activity_generator_view.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_mode_list_repo.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_generation_repo.dart';

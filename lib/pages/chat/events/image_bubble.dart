@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:matrix/matrix.dart';
 
@@ -112,17 +113,39 @@ class ImageBubble extends StatelessWidget {
             borderRadius: borderRadius,
             child: Hero(
               tag: event.eventId,
-              child: MxcImage(
-                event: event,
-                width: width,
-                height: height,
-                fit: fit,
-                animated: animated,
-                isThumbnail: thumbnailOnly,
-                placeholder: event.messageType == MessageTypes.Sticker
-                    ? null
-                    : _buildPlaceholder,
-              ),
+              // #Pangea
+              child: event.content['url'] is String &&
+                      !(event.content['url'] as String).startsWith('mxc')
+                  ? CachedNetworkImage(
+                      imageUrl: event.content['url'] as String,
+                      width: width,
+                      height: height,
+                      fit: fit,
+                      placeholder: (context, url) => _buildPlaceholder(context),
+                    )
+                  : MxcImage(
+                      event: event,
+                      width: width,
+                      height: height,
+                      fit: fit,
+                      animated: animated,
+                      isThumbnail: thumbnailOnly,
+                      placeholder: event.messageType == MessageTypes.Sticker
+                          ? null
+                          : _buildPlaceholder,
+                    ),
+              // child: MxcImage(
+              //   event: event,
+              //   width: width,
+              //   height: height,
+              //   fit: fit,
+              //   animated: animated,
+              //   isThumbnail: thumbnailOnly,
+              //   placeholder: event.messageType == MessageTypes.Sticker
+              //       ? null
+              //       : _buildPlaceholder,
+              // ),
+              // Pangea#
             ),
           ),
         ),

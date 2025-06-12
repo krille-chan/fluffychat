@@ -16,6 +16,7 @@ class PangeaEventTypes {
   static const tokens = "pangea.tokens";
   static const choreoRecord = "pangea.record";
   static const representation = "pangea.representation";
+  static const sttTranslation = "pangea.stt_translation";
 
   // static const vocab = "p.vocab";
   static const roomInfo = "pangea.roomtopic";

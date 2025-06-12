@@ -90,6 +90,7 @@ class ModelKey {
   static const String messageTagMorphEdit = "morph_edit";
   static const String messageTagLemmaEdit = "lemma_edit";
   static const String messageTagActivityPlan = "activity_plan";
+  static const String tempEventId = "temporary_event_id";
 
   static const String baseDefinition = "base_definition";
   static const String targetDefinition = "target_definition";

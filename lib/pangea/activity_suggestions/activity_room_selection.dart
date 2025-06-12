@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:collection/collection.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_planner_builder.dart';
 import 'package:fluffychat/pangea/bot/utils/bot_name.dart';
@@ -128,7 +128,6 @@ class ActivityRoomSelectionState extends State<ActivityRoomSelection> {
         widget.controller.updatedActivity,
         avatar: widget.controller.avatar,
         filename: widget.controller.filename,
-        avatarURL: widget.controller.imageURL,
       );
       _launchStatus[room.id] = 1;
     } catch (e, s) {
@@ -179,12 +178,8 @@ class ActivityRoomSelectionState extends State<ActivityRoomSelection> {
             preset: CreateRoomPreset.trustedPrivateChat,
             initialState: [
               BotOptionsModel(mode: BotMode.directChat).toStateEvent,
-              StateEvent(
-                type: EventTypes.RoomPowerLevels,
-                stateKey: '',
-                content: defaultPowerLevels(
-                  Matrix.of(context).client.userID!,
-                ),
+              RoomDefaults.defaultPowerLevels(
+                Matrix.of(context).client.userID!,
               ),
               if (avatar != null && avatarUrl != null)
                 StateEvent(
@@ -209,7 +204,6 @@ class ActivityRoomSelectionState extends State<ActivityRoomSelection> {
           widget.controller.updatedActivity,
           avatar: widget.controller.avatar,
           filename: widget.controller.filename,
-          avatarURL: widget.controller.imageURL,
         );
       }
       _launchStatus["placeholder"] = 1;

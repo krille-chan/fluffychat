@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/pangea/login/pages/pangea_login_scaffold.dart';
 import 'package:fluffychat/pangea/login/widgets/app_config_dialog.dart';

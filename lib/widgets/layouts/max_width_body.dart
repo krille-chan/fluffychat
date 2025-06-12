@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/config/themes.dart';
 
 class MaxWidthBody extends StatelessWidget {
   final Widget child;
@@ -31,7 +30,10 @@ class MaxWidthBody extends StatelessWidget {
         builder: (context, constraints) {
           final theme = Theme.of(context);
 
-          const desiredWidth = FluffyThemes.columnWidth * 1.5;
+          // #Pangea
+          // const desiredWidth = FluffyThemes.columnWidth * 1.5;
+          final desiredWidth = maxWidth;
+          // Pangea#
           final body = constraints.maxWidth <= desiredWidth
               ? child
               : Container(
@@ -41,9 +43,14 @@ class MaxWidthBody extends StatelessWidget {
                   padding: padding ?? const EdgeInsets.all(32),
                   // Pangea#
                   child: ConstrainedBox(
-                    constraints: const BoxConstraints(
-                      maxWidth: FluffyThemes.columnWidth * 1.5,
+                    // #Pangea
+                    // constraints: const BoxConstraints(
+                    //   maxWidth: FluffyThemes.columnWidth * 1.5,
+                    // ),
+                    constraints: BoxConstraints(
+                      maxWidth: maxWidth,
                     ),
+                    // Pangea#
                     child: Material(
                       shape: RoundedRectangleBorder(
                         borderRadius:

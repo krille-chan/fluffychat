@@ -108,6 +108,10 @@ class LoadParticipantsUtilState extends State<LoadParticipantsUtil> {
     }
   }
 
+  PublicProfileModel? getPublicProfile(String userId) {
+    return _levelsCache[userId];
+  }
+
   @override
   Widget build(BuildContext context) {
     return widget.builder(this);

@@ -296,13 +296,14 @@ class MessageTokenButtonContent extends StatelessWidget {
       BorderRadius.circular(AppConfig.borderRadius - 4);
 
   Color _color(BuildContext context) {
-    if (activity == null) {
-      return Theme.of(context).colorScheme.primary;
-    }
-    if (isActivityCompleteOrNullForToken) {
-      return AppConfig.gold;
-    }
-    return Theme.of(context).colorScheme.primary;
+    final bool isLight = Theme.of(context).brightness == Brightness.light;
+    final defaultColor = isLight
+        ? Theme.of(context).colorScheme.primary
+        : Theme.of(context).colorScheme.primaryContainer;
+
+    return activity != null && isActivityCompleteOrNullForToken
+        ? AppConfig.gold
+        : defaultColor;
   }
 
   @override
@@ -377,6 +378,8 @@ class MessageTokenButtonContent extends StatelessWidget {
             (selectedChoice != null ? 0.4 : 0.0) +
             (accepted.isNotEmpty ? 0.3 : 0.0);
 
+        final theme = Theme.of(context);
+
         return InkWell(
           onTap: selectedChoice != null
               ? () => onMatch?.call(selectedChoice!)
@@ -384,10 +387,11 @@ class MessageTokenButtonContent extends StatelessWidget {
           borderRadius: _borderRadius,
           child: CustomPaint(
             painter: DottedBorderPainter(
-              color: Theme.of(context)
-                  .colorScheme
-                  .primary
-                  .withAlpha((colorAlpha * 255).toInt()),
+              color: theme.brightness == Brightness.light
+                  ? theme.colorScheme.primary
+                      .withAlpha((colorAlpha * 255).toInt())
+                  : theme.colorScheme.primaryContainer
+                      .withAlpha((colorAlpha * 255).toInt()),
               borderRadius: _borderRadius,
             ),
             child: Container(
@@ -396,9 +400,7 @@ class MessageTokenButtonContent extends StatelessWidget {
               width: max(width, 24.0),
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: Theme.of(context)
-                    .colorScheme
-                    .primary
+                color: theme.colorScheme.primary
                     .withAlpha((max(0, colorAlpha - 0.7) * 255).toInt()),
                 borderRadius: _borderRadius,
               ),

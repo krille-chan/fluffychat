@@ -66,6 +66,7 @@ class _MxcImageState extends State<MxcImage> {
   }
 
   Future<void> _load() async {
+    if (!mounted) return;
     final client =
         widget.client ?? widget.event?.room.client ?? Matrix.of(context).client;
     final uri = widget.uri;
@@ -96,7 +97,7 @@ class _MxcImageState extends State<MxcImage> {
       final data = await event.downloadAndDecryptAttachment(
         getThumbnail: widget.isThumbnail,
       );
-      if (data.detectFileType is MatrixImageFile) {
+      if (data.detectFileType is MatrixImageFile || widget.isThumbnail) {
         if (!mounted) return;
         setState(() {
           _imageData = data.bytes;

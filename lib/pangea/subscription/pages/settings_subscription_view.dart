@@ -2,9 +2,9 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:intl/intl.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/subscription/pages/change_subscription.dart';
 import 'package:fluffychat/pangea/subscription/pages/settings_subscription.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';

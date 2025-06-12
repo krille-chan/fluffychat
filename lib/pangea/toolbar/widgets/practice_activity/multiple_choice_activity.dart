@@ -236,7 +236,6 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
             messageEvent:
                 widget.practiceCardController.widget.pangeaMessageEvent,
             overlayController: widget.overlayController,
-            setIsPlayingAudio: widget.overlayController.setIsPlayingAudio,
             onError: widget.onError,
           ),
         ChoicesArray(
@@ -247,8 +246,7 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
           choices: choices(context),
           isActive: true,
           id: currentRecordModel?.hashCode.toString(),
-          enableAudio: !widget.overlayController.isPlayingAudio &&
-              practiceActivity.activityType.includeTTSOnClick,
+          enableAudio: practiceActivity.activityType.includeTTSOnClick,
           langCode:
               MatrixState.pangeaController.languageController.activeL2Code(),
           getDisplayCopy: _getDisplayCopy,

@@ -4,23 +4,24 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart' as sdk;
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
 import 'package:fluffychat/pages/chat_list/search_title.dart';
 import 'package:fluffychat/pangea/chat_settings/constants/pangea_room_types.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/onboarding/onboarding.dart';
 import 'package:fluffychat/pangea/public_spaces/public_room_bottom_sheet.dart';
 import 'package:fluffychat/pangea/spaces/constants/space_constants.dart';
 import 'package:fluffychat/pangea/spaces/widgets/knocking_users_indicator.dart';
-import 'package:fluffychat/pangea/spaces/widgets/space_view_leaderboard.dart';
+import 'package:fluffychat/pangea/spaces/widgets/leaderboard_participant_list.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
@@ -177,13 +178,17 @@ class _SpaceViewState extends State<SpaceView> {
       await _joinDefaultChats();
     } catch (e, s) {
       Logs().w('Unable to load hierarchy', e, s);
-      if (!mounted) return;
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text(e.toLocalizedString(context))));
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(e.toLocalizedString(context))),
+        );
+      }
     } finally {
-      setState(() {
-        _isLoading = false;
-      });
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+        });
+      }
     }
   }
 
@@ -574,9 +579,6 @@ class _SpaceViewState extends State<SpaceView> {
                                 widget.toParentSpace(joinedParents.first.id),
                           )
                         : PopupMenuButton(
-                            popUpAnimationStyle: AnimationStyle(
-                              duration: const Duration(milliseconds: 0),
-                            ),
                             tooltip: null,
                             useRootNavigator: true,
                             icon: const Icon(Icons.arrow_back_outlined),
@@ -630,6 +632,7 @@ class _SpaceViewState extends State<SpaceView> {
             ),
             actions: [
               PopupMenuButton<SpaceActions>(
+                useRootNavigator: true,
                 onSelected: _onSpaceAction,
                 itemBuilder: (context) => [
                   PopupMenuItem(
@@ -679,8 +682,9 @@ class _SpaceViewState extends State<SpaceView> {
               // #Pangea
               // onPressed: _addChatOrSubspace,
               // label: Text(L10n.of(context).group),
-              onPressed: () => context.go("/rooms/newgroup/${widget.spaceId}"),
-              label: Text(L10n.of(context).chat),
+              onPressed: () =>
+                  context.go("/rooms/newgroup?space=${widget.spaceId}"),
+              label: Text(L10n.of(context).groupChat),
               // Pangea#
               icon: const Icon(Icons.group_add_outlined),
             )
@@ -722,16 +726,6 @@ class _SpaceViewState extends State<SpaceView> {
                 final filter = _filterController.text.trim().toLowerCase();
                 return CustomScrollView(
                   slivers: [
-                    // #Pangea
-                    SliverList.builder(
-                      itemCount: 1,
-                      itemBuilder: (context, i) {
-                        return SpaceViewLeaderboard(
-                          space: room,
-                        );
-                      },
-                    ),
-                    // Pangea#
                     SliverAppBar(
                       floating: true,
                       toolbarHeight: 72,
@@ -812,6 +806,14 @@ class _SpaceViewState extends State<SpaceView> {
                     //   },
                     // ),
                     KnockingUsersIndicator(room: room),
+                    SliverList.builder(
+                      itemCount: 1,
+                      itemBuilder: (context, i) {
+                        return LeaderboardParticipantList(
+                          space: room,
+                        );
+                      },
+                    ),
                     // Pangea#
                     SliverList.builder(
                       itemCount: joinedRooms.length,
@@ -953,6 +955,16 @@ class _SpaceViewState extends State<SpaceView> {
                         );
                       },
                     ),
+                    // #Pangea
+                    const SliverPadding(padding: EdgeInsets.all(12.0)),
+                    if (!FluffyThemes.isColumnMode(context))
+                      SliverList.builder(
+                        itemCount: 1,
+                        itemBuilder: (context, _) {
+                          return const Onboarding();
+                        },
+                      ),
+                    // Pangea#
                     const SliverPadding(padding: EdgeInsets.only(top: 32)),
                   ],
                 );

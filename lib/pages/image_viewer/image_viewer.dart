@@ -33,7 +33,13 @@ class ImageViewerController extends State<ImageViewer> {
   void initState() {
     super.initState();
     allEvents = widget.timeline?.events
-            .where((event) => event.messageType == MessageTypes.Image)
+            .where(
+              (event) => {
+                MessageTypes.Image,
+                MessageTypes.Sticker,
+                if (PlatformInfos.supportsVideoPlayer) MessageTypes.Video,
+              }.contains(event.messageType),
+            )
             .toList()
             .reversed
             .toList() ??
@@ -50,10 +56,10 @@ class ImageViewerController extends State<ImageViewer> {
 
   void onKeyEvent(KeyEvent event) {
     switch (event.logicalKey) {
-      case LogicalKeyboardKey.arrowLeft:
+      case LogicalKeyboardKey.arrowUp:
         if (canGoBack) prevImage();
         break;
-      case LogicalKeyboardKey.arrowRight:
+      case LogicalKeyboardKey.arrowDown:
         if (canGoNext) nextImage();
         break;
     }

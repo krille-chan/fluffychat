@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 import 'package:universal_html/html.dart' as html;
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/invitation_selection/invitation_selection.dart';
 import 'package:fluffychat/pangea/analytics_misc/level_display_name.dart';
 import 'package:fluffychat/pangea/chat_settings/constants/room_settings_constants.dart';
@@ -54,17 +54,17 @@ class InvitationSelectionView extends StatelessWidget {
         title: Text(L10n.of(context).inviteContact),
         // #Pangea
         actions: [
-          if (room.isSpace && room.classCode(context) != null)
+          if (room.isSpace && room.classCode != null)
             PopupMenuButton<int>(
               icon: const Icon(Icons.share_outlined),
               onSelected: (value) async {
-                final spaceCode = room.classCode(context)!;
+                final spaceCode = room.classCode!;
                 String toCopy = spaceCode;
                 if (value == 0) {
                   final String initialUrl =
                       kIsWeb ? html.window.origin! : Environment.frontendURL;
                   toCopy =
-                      "$initialUrl/#/join_with_link?${SpaceConstants.classCode}=${room.classCode(context)}";
+                      "$initialUrl/#/join_with_link?${SpaceConstants.classCode}=${room.classCode}";
                 }
 
                 await Clipboard.setData(ClipboardData(text: toCopy));
@@ -92,8 +92,7 @@ class InvitationSelectionView extends StatelessWidget {
                   child: ListTile(
                     leading: const Icon(Icons.share_outlined),
                     title: Text(
-                      L10n.of(context)
-                          .shareInviteCode(room.classCode(context)!),
+                      L10n.of(context).shareInviteCode(room.classCode!),
                     ),
                     contentPadding: const EdgeInsets.all(0),
                   ),

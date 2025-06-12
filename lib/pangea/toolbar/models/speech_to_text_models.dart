@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/pangea/analytics_misc/construct_use_type_enum.dart';
+import 'package:fluffychat/pangea/analytics_misc/constructs_model.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/toolbar/enums/audio_encoding_enum.dart';
 
@@ -230,4 +232,28 @@ class SpeechToTextModel {
   Map<String, dynamic> toJson() => {
         "results": results.map((e) => e.toJson()).toList(),
       };
+
+  List<OneConstructUse> constructs(
+    String roomId,
+    String eventId,
+  ) {
+    final List<OneConstructUse> constructs = [];
+    final metadata = ConstructUseMetaData(
+      roomId: roomId,
+      eventId: eventId,
+      timeStamp: DateTime.now(),
+    );
+    for (final sstToken in transcript.sttTokens) {
+      final token = sstToken.token;
+      if (!token.lemma.saveVocab) continue;
+      constructs.addAll(
+        token.allUses(
+          ConstructUseTypeEnum.pvm,
+          metadata,
+          ConstructUseTypeEnum.pvm.pointValue,
+        ),
+      );
+    }
+    return constructs;
+  }
 }

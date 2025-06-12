@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -9,6 +8,7 @@ import 'package:url_launcher/url_launcher_string.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -165,6 +165,25 @@ class SettingsView extends StatelessWidget {
                                     //    style: const TextStyle(fontSize: 12),
                                   ),
                                 ),
+                                // #Pangea
+                                TextButton.icon(
+                                  onPressed: controller.setStatus,
+                                  icon: const Icon(
+                                    Icons.add,
+                                    size: 14,
+                                  ),
+                                  style: TextButton.styleFrom(
+                                    foregroundColor:
+                                        theme.colorScheme.secondary,
+                                    iconColor: theme.colorScheme.secondary,
+                                  ),
+                                  label: Text(
+                                    L10n.of(context).setStatus,
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                                // Pangea#
                               ],
                             ),
                           ),

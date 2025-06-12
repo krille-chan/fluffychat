@@ -3,9 +3,9 @@ import 'dart:developer';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_use_model.dart';
 import 'package:fluffychat/pangea/analytics_misc/text_loading_shimmer.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';

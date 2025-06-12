@@ -121,12 +121,7 @@ class Environment {
     try {
       final String jsonString = await rootBundle.loadString('envs.json');
       data = jsonDecode(jsonString);
-    } catch (e, s) {
-      ErrorHandler.logError(
-        e: e,
-        s: s,
-        data: {},
-      );
+    } catch (e) {
       return [];
     }
 

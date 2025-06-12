@@ -114,7 +114,9 @@ class Choreographer {
               maxWidth: 325,
               transformTargetId: inputTransformTargetKey,
             )
-          : chatController.send();
+          : chatController.send(
+              message: chatController.sendController.text,
+            );
       return;
     }
 
@@ -135,7 +137,12 @@ class Choreographer {
       return;
     }
 
-    chatController.sendFakeMessage();
+    if (chatController.sendController.text.trim().isEmpty) {
+      return;
+    }
+
+    final message = chatController.sendController.text;
+    final fakeEventId = chatController.sendFakeMessage();
     final PangeaRepresentation? originalWritten =
         choreoRecord.includedIT && itController.sourceText != null
             ? PangeaRepresentation(
@@ -156,7 +163,7 @@ class Choreographer {
               repEventId: null,
               room: chatController.room,
               req: TokensRequestModel(
-                fullText: currentText,
+                fullText: message,
                 senderL1: l1LangCode!,
                 senderL2: l2LangCode!,
               ),
@@ -167,7 +174,7 @@ class Choreographer {
       originalSent = PangeaRepresentation(
         langCode: res?.detections.firstOrNull?.langCode ??
             LanguageKeys.unknownLanguage,
-        text: currentText,
+        text: message,
         originalSent: true,
         originalWritten: originalWritten == null,
       );
@@ -183,7 +190,7 @@ class Choreographer {
         e: e,
         s: s,
         data: {
-          "currentText": currentText,
+          "currentText": message,
           "l1LangCode": l1LangCode,
           "l2LangCode": l2LangCode,
           "choreoRecord": choreoRecord.toJson(),
@@ -191,9 +198,11 @@ class Choreographer {
       );
     } finally {
       chatController.send(
+        message: message,
         originalSent: originalSent,
         tokensSent: tokensSent,
         choreo: choreoRecord,
+        tempEventId: fakeEventId,
       );
       clear();
     }
@@ -558,8 +567,6 @@ class Choreographer {
     choreoRecord = ChoreoRecord.newRecord;
     itController.clear();
     igc.dispose();
-    //@ggurdin - why is this commented out?
-    // errorService.clear();
     _resetDebounceTimer();
   }
 

@@ -2,11 +2,11 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart' as sdk;
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/new_group/new_group_view.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
 import 'package:fluffychat/pangea/chat/constants/default_power_level.dart';
@@ -140,11 +140,22 @@ class NewGroupController extends State<NewGroup> {
                 content: {'url': avatarUrl.toString()},
               ),
             // #Pangea
-            StateEvent(
-              type: EventTypes.RoomPowerLevels,
-              stateKey: '',
-              content: defaultPowerLevels(Matrix.of(context).client.userID!),
+            RoomDefaults.defaultPowerLevels(
+              Matrix.of(context).client.userID!,
             ),
+            if (widget.spaceId != null)
+              StateEvent(
+                type: EventTypes.RoomJoinRules,
+                content: {
+                  'join_rule': 'knock_restricted',
+                  'allow': [
+                    {
+                      "type": "m.room_membership",
+                      "room_id": widget.spaceId,
+                    }
+                  ],
+                },
+              ),
             // Pangea#
           ],
           // #Pangea
@@ -164,7 +175,7 @@ class NewGroupController extends State<NewGroup> {
     if (widget.spaceId != null) {
       try {
         final space = client.getRoomById(widget.spaceId!);
-        await space?.pangeaSetSpaceChild(room.id);
+        await space?.addToSpace(room.id);
       } catch (err) {
         ErrorHandler.logError(
           e: "Failed to add room to space",
@@ -187,7 +198,7 @@ class NewGroupController extends State<NewGroup> {
         );
       }
     }
-    context.go('/rooms/$roomId/invite?filter=groups');
+    context.go('/rooms/$roomId/invite');
     // Pangea#
   }
 
@@ -231,7 +242,7 @@ class NewGroupController extends State<NewGroup> {
 
     final room = Matrix.of(context).client.getRoomById(spaceId);
     if (room == null) return;
-    final spaceCode = room.classCode(context);
+    final spaceCode = room.classCode;
     if (spaceCode != null) {
       GoogleAnalytics.createClass(room.name, spaceCode);
     }

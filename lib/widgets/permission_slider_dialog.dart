@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/adaptive_dialog_action.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/dialog_text_field.dart';
 
@@ -72,6 +71,13 @@ Future<int?> showPermissionChooser(
             onPressed: () => Navigator.of(context).pop<int>(0),
             child: Text(L10n.of(context).normalUser),
           ),
+        // #Pangea
+        AdaptiveDialogAction(
+          bigButtons: true,
+          onPressed: () => Navigator.of(context).pop(),
+          child: Text(L10n.of(context).close),
+        ),
+        // Pangea#
       ],
     ),
   );
