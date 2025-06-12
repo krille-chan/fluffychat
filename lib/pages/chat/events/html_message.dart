@@ -277,6 +277,21 @@ class HtmlMessage extends StatelessWidget {
     // We must not render tags which are not in the allow list:
     if (!allowedHtmlTags.contains(node.localName)) return const TextSpan();
 
+    // #Pangea
+    final renderer = TokenRenderingUtil(
+      pangeaMessageEvent: pangeaMessageEvent,
+      readingAssistanceMode: readingAssistanceMode,
+      existingStyle: textStyle.merge(
+        AppConfig.messageTextStyle(
+          pangeaMessageEvent!.event,
+          textColor,
+        ),
+      ),
+      overlayController: overlayController,
+      isTransitionAnimation: isTransitionAnimation,
+    );
+    // Pangea#
+
     switch (node.localName) {
       // #Pangea
       case 'token':
@@ -289,19 +304,6 @@ class HtmlMessage extends StatelessWidget {
         final selected = token != null && isSelected != null
             ? isSelected!.call(token)
             : false;
-
-        final renderer = TokenRenderingUtil(
-          pangeaMessageEvent: pangeaMessageEvent,
-          readingAssistanceMode: readingAssistanceMode,
-          existingStyle: textStyle.merge(
-            AppConfig.messageTextStyle(
-              pangeaMessageEvent!.event,
-              textColor,
-            ),
-          ),
-          overlayController: overlayController,
-          isTransitionAnimation: isTransitionAnimation,
-        );
 
         final tokenWidth = renderer.tokenTextWidthForContainer(
           context,
@@ -493,11 +495,33 @@ class HtmlMessage extends StatelessWidget {
               TextSpan(
                 children: [
                   if (node.parent?.localName == 'ul')
-                    const TextSpan(text: '• '),
+                    // #Pangea
+                    // const TextSpan(text: '• '),
+                    TextSpan(
+                      text: '• ',
+                      style: renderer.style(
+                        context,
+                        color: renderer.backgroundColor(
+                          context,
+                          false,
+                        ),
+                      ),
+                    ),
+                  // Pangea#
                   if (node.parent?.localName == 'ol')
                     TextSpan(
                       text:
                           '${(node.parent?.nodes.whereType<dom.Element>().toList().indexOf(node) ?? 0) + (int.tryParse(node.parent?.attributes['start'] ?? '1') ?? 1)}. ',
+                      // #Pangea
+                      // style: textStyle,
+                      style: renderer.style(
+                        context,
+                        color: renderer.backgroundColor(
+                          context,
+                          false,
+                        ),
+                      ),
+                      // Pangea#
                     ),
                   if (node.className == 'task-list-item')
                     WidgetSpan(
