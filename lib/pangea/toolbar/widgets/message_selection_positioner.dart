@@ -685,7 +685,10 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
                                 OverlayCenterContent(
                                   event: widget.event,
                                   messageHeight: _originalMessageSize.height,
-                                  messageWidth: _originalMessageSize.width,
+                                  messageWidth: widget
+                                          .overlayController.showingExtraContent
+                                      ? max(_originalMessageSize.width, 150)
+                                      : _originalMessageSize.width,
                                   maxWidth: widget.overlayController.maxWidth,
                                   overlayController: widget.overlayController,
                                   chatController: widget.chatController,

@@ -108,11 +108,6 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   /////////////////////////////////////
 
   @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
   void initState() {
     initializeTokensAndMode();
     super.initState();
@@ -200,20 +195,6 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
       updateToolbarMode(MessageMode.practiceActivity);
       return;
     }
-
-    // if (selectedToken != null) {
-    //   updateToolbarMode(selectedToken!.modeForToken);
-    //   return;
-    // }
-
-    // Note: this setting is now hidden so this will always be false
-    // leaving this here in case we want to bring it back
-    // if (MatrixState.pangeaController.userController.profile.userSettings
-    //     .autoPlayMessages) {
-    //   return setState(() => toolbarMode = MessageMode.textToSpeech);
-    // }
-
-    // defaults to noneSelected
   }
 
   /// Decides whether an _initialSelectedToken should be used
@@ -477,6 +458,12 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   bool get isSelection => _selectedSpan != null || _highlightedTokens != null;
 
   PangeaTokenText? get selectedSpan => _selectedSpan;
+
+  bool get showingExtraContent =>
+      (showTranslation && translation != null) ||
+      (showSpeechTranslation && speechTranslation != null) ||
+      transcription != null ||
+      transcriptionError != null;
 
   ///////////////////////////////////
   /// Functions
