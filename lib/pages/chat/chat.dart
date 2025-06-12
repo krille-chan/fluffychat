@@ -1406,7 +1406,17 @@ class ChatController extends State<ChatPageWithRoom>
       context: context,
       builder: (context) => ShareScaffoldDialog(
         items: selectedEvents
-            .map((event) => ContentShareItem(event.content))
+            // #Pangea
+            // https://github.com/pangeachat/client/issues/2934
+            // .map((event) => ContentShareItem(event.content))
+            .map(
+              (event) => timeline != null
+                  ? ContentShareItem(
+                      event.getDisplayEvent(timeline!).content,
+                    )
+                  : ContentShareItem(event.content),
+            )
+            // Pangea#
             .toList(),
       ),
     );
