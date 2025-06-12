@@ -700,9 +700,20 @@ class _SpaceViewState extends State<SpaceView> {
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          const Icon(Icons.delete_outlined),
+                          Icon(
+                            Icons.delete_outlined,
+                            color:
+                                Theme.of(context).colorScheme.onErrorContainer,
+                          ),
                           const SizedBox(width: 12),
-                          Text(L10n.of(context).delete),
+                          Text(
+                            L10n.of(context).delete,
+                            style: TextStyle(
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onErrorContainer,
+                            ),
+                          ),
                         ],
                       ),
                     ),
