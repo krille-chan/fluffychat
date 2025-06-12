@@ -5015,5 +5015,6 @@
   "groupChat": "Group Chat",
   "directMessage": "Direct Message",
   "newDirectMessage": "New direct message",
-  "speakingExercisesTooltip": "Speaking practice"
+  "speakingExercisesTooltip": "Speaking practice",
+  "noChatsFoundHereYet": "No chats found here yet"
 }

@@ -120,6 +120,7 @@ class PangeaController {
     'class_storage',
     'subscription_storage',
     'vocab_storage',
+    'onboarding_storage',
   ];
 
   Future<void> clearCache() async {
