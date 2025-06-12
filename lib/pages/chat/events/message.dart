@@ -477,8 +477,11 @@ class Message extends StatelessWidget {
                                                                     'body':
                                                                         '...',
                                                                   },
-                                                                  senderId: event
-                                                                      .senderId,
+                                                                  // #Pangea
+                                                                  // senderId: event
+                                                                  //     .senderId,
+                                                                  senderId: "",
+                                                                  // Pangea#
                                                                   type:
                                                                       'm.room.message',
                                                                   room: event
