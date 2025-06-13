@@ -86,4 +86,7 @@ class PApiUrls {
   static String rcProductsTrial = "${PApiUrls.subscriptionEndpoint}/free_trial";
 
   static String rcSubscription = PApiUrls.subscriptionEndpoint;
+
+  static String phoneticTranscription =
+      "${PApiUrls.choreoEndpoint}/phonetic_transcription";
 }
