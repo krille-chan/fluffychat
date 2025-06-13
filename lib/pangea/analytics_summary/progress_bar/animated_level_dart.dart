@@ -27,8 +27,9 @@ class AnimatedLevelBarState extends State<AnimatedLevelBar>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
 
-  double get _beginWidth => max(20, widget.beginWidth);
-  double get _endWidth => max(20, widget.endWidth);
+  double get _beginWidth =>
+      widget.beginWidth == 0 ? 0 : max(20, widget.beginWidth);
+  double get _endWidth => widget.endWidth == 0 ? 0 : max(20, widget.endWidth);
 
   /// Whether the animation has run for the first time during initState. Don't
   /// want the animation to run when the widget mounts, only when points are gained.
@@ -48,7 +49,8 @@ class AnimatedLevelBarState extends State<AnimatedLevelBar>
   @override
   void didUpdateWidget(covariant AnimatedLevelBar oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (max(20, oldWidget.endWidth) != max(20, widget.endWidth)) {
+    if ((oldWidget.endWidth == 0 ? 0 : max(20, oldWidget.endWidth)) !=
+        (widget.endWidth == 0 ? 0 : max(20, widget.endWidth))) {
       _controller.reset();
       _controller.forward();
     }
