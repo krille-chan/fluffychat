@@ -135,6 +135,10 @@ class UserSettingsState extends State<UserSettingsPage> {
     final bytes = await selectedFile?.readAsBytes();
     final path = selectedFile?.path;
 
+    if (bytes == null || path == null) {
+      return;
+    }
+
     setState(() {
       selectedAvatarPath = null;
       avatar = bytes;
