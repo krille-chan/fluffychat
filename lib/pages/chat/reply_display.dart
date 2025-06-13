@@ -69,6 +69,9 @@ class _EditContent extends StatelessWidget {
         ),
         Container(width: 15.0),
         Text(
+          // #Pangea
+          textScaler: TextScaler.noScaling,
+          // Pangea#
           event.calcLocalizedBodyFallback(
             MatrixLocals(L10n.of(context)),
             withSenderNamePrefix: false,

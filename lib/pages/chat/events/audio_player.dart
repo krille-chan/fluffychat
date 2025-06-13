@@ -554,16 +554,25 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
                           ),
                         ),
                         const SizedBox(width: 8),
-                        SizedBox(
-                          width: 36,
-                          child: Text(
-                            statusText,
-                            style: TextStyle(
-                              color: widget.color,
-                              fontSize: 12,
-                            ),
+                        // #Pangea
+                        // SizedBox(
+                        //   width: 36,
+                        //   child: Text(
+                        //     statusText,
+                        //     style: TextStyle(
+                        //       color: widget.color,
+                        //       fontSize: 12,
+                        //     ),
+                        //   ),
+                        // ),
+                        Text(
+                          statusText,
+                          style: TextStyle(
+                            color: widget.color,
+                            fontSize: 12,
                           ),
                         ),
+                        // Pangea#
                         const SizedBox(width: 8),
                         AnimatedCrossFade(
                           firstChild: Padding(
