@@ -1,28 +1,38 @@
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
+import 'package:fluffychat/pangea/analytics_misc/level_up/level_up_banner.dart';
 import 'package:fluffychat/pangea/constructs/construct_repo.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 
 class LevelUpManager {
+  // Singleton instance
+  static final LevelUpManager instance = LevelUpManager._internal();
+
+  // Private constructor
   LevelUpManager._internal();
-  factory LevelUpManager() {
-    return _instance;
-  }
-  static final LevelUpManager _instance = LevelUpManager._internal();
 
-  int? prevLevel;
-  int? level;
+  int prevLevel = 0;
+  int level = 0;
 
-  int? prevGrammar;
-  int? nextGrammar;
-  int? prevVocab;
-  int? nextVocab;
+  int prevGrammar = 0;
+  int nextGrammar = 0;
+  int prevVocab = 0;
+  int nextVocab = 0;
+
+  String? userL2Code;
 
   ConstructSummary? constructSummary;
 
   bool hasSeenPopup = false;
   bool shouldAutoPopup = false;
   String? error;
+
+  bool _isShowingLevelUp = false;
+
+  int get vocabCount =>
+      MatrixState.pangeaController.getAnalytics.constructListModel
+          .unlockedLemmas(ConstructTypeEnum.vocab)
+          .length;
 
   Future<void> preloadAnalytics(
     BuildContext context,
@@ -32,22 +42,22 @@ class LevelUpManager {
     this.level = level;
     this.prevLevel = prevLevel;
 
-    //grammar and vocab
-    nextGrammar = MatrixState.pangeaController.getAnalytics.constructListModel
-        .unlockedLemmas(
-          ConstructTypeEnum.morph,
-        )
-        .length;
+    shouldAutoPopup = true;
 
-    nextVocab = MatrixState.pangeaController.getAnalytics.constructListModel
-        .unlockedLemmas(
-          ConstructTypeEnum.vocab,
-        )
-        .length;
+    //grammar and vocab
+    nextGrammar = MatrixState
+        .pangeaController.getAnalytics.constructListModel.grammarLemmas;
+    nextVocab = MatrixState
+        .pangeaController.getAnalytics.constructListModel.vocabLemmas;
 
     //for now idk how to get these
-    prevGrammar = 0;
-    prevVocab = 0;
+    prevGrammar = nextGrammar < 20 ? 0 : nextGrammar - 20;
+
+    prevVocab = nextVocab < 20 ? 0 : nextVocab - 20;
+
+    userL2Code = MatrixState.pangeaController.languageController
+        .activeL2Code()
+        ?.toUpperCase();
 
     //fetch construct summary
     try {
@@ -72,6 +82,8 @@ class LevelUpManager {
     print('Previous Level: $prevLevel');
     print('Next Grammar: $nextGrammar');
     print('Next Vocab: $nextVocab');
+    print("should show popup: $shouldAutoPopup");
+    print("has seen popup: $hasSeenPopup");
     if (constructSummary != null) {
       print('Construct Summary: ${constructSummary!.toJson()}');
     } else {
@@ -79,17 +91,37 @@ class LevelUpManager {
     }
   }
 
+  Future<void> handleLevelUp(
+    BuildContext context,
+    int level,
+    int prevLevel,
+  ) async {
+    if (_isShowingLevelUp) return;
+    _isShowingLevelUp = true;
+
+    await preloadAnalytics(context, level, prevLevel);
+
+    if (!context.mounted) {
+      _isShowingLevelUp = false;
+      return;
+    }
+
+    await LevelUpUtil.showLevelUpDialog(level, prevLevel, context);
+    _isShowingLevelUp = false;
+  }
+
   void reset() {
     hasSeenPopup = false;
     shouldAutoPopup = false;
-    prevLevel = null;
-    level = null;
-    prevGrammar = null;
-    nextGrammar = null;
-    prevVocab = null;
-    nextVocab = null;
+    prevLevel = 0;
+    level = 0;
+    prevGrammar = 0;
+    nextGrammar = 0;
+    prevVocab = 0;
+    nextVocab = 0;
     constructSummary = null;
     error = null;
+    _isShowingLevelUp = false;
     // Reset any other state if necessary
   }
 }

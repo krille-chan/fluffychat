@@ -4,10 +4,10 @@ import 'dart:math';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:confetti/confetti.dart';
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/learning_skills_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/level_up/level_up_banner.dart';
-import 'package:fluffychat/pangea/analytics_summary/progress_bar/progress_bar.dart';
+import 'package:fluffychat/pangea/analytics_misc/level_up/level_up_manager.dart';
+import 'package:fluffychat/pangea/analytics_summary/progress_bar/level_bar.dart';
 import 'package:fluffychat/pangea/analytics_summary/progress_bar/progress_bar_details.dart';
 import 'package:fluffychat/pangea/common/widgets/full_width_dialog.dart';
 import 'package:fluffychat/pangea/constructs/construct_repo.dart';
@@ -22,10 +22,7 @@ import 'package:matrix/matrix_api_lite/generated/model.dart';
 class LevelUpPopup extends StatelessWidget {
   const LevelUpPopup({
     super.key,
-    required this.widget,
   });
-
-  final LevelUpBanner widget;
 
   @override
   Widget build(BuildContext context) {
@@ -36,18 +33,18 @@ class LevelUpPopup extends StatelessWidget {
         appBar: AppBar(
           centerTitle: true,
           title: kIsWeb
-              ? const Text(
-                  "You have leveled up!",
-                  style: TextStyle(
+              ? Text(
+                  L10n.of(context).youHaveLeveledUp,
+                  style: const TextStyle(
                     color: AppConfig.gold,
                     fontWeight: FontWeight.w600,
                   ),
                 )
               : null,
         ),
-        body: LevelUpBarAnimation(
-          prevLevel: widget.prevLevel,
-          level: widget.level,
+        body: LevelUpPopupContent(
+          prevLevel: LevelUpManager.instance.prevLevel ?? 0,
+          level: LevelUpManager.instance.level ?? 0,
         ),
       ),
     );
@@ -55,57 +52,55 @@ class LevelUpPopup extends StatelessWidget {
 }
 
 //animated progress bar -- move to own file later
-class LevelUpBarAnimation extends StatefulWidget {
+class LevelUpPopupContent extends StatefulWidget {
   final int prevLevel;
   final int level;
 
-  const LevelUpBarAnimation({
+  const LevelUpPopupContent({
     super.key,
     required this.prevLevel,
     required this.level,
   });
 
   @override
-  State<LevelUpBarAnimation> createState() => _LevelUpBarAnimationState();
+  State<LevelUpPopupContent> createState() => _LevelUpPopupContentState();
 }
 
-class _LevelUpBarAnimationState extends State<LevelUpBarAnimation>
+class _LevelUpPopupContentState extends State<LevelUpPopupContent>
     with SingleTickerProviderStateMixin {
   late int _endGrammar;
   late int _endVocab;
   late final AnimationController _controller;
-  late final Animation<double> _progressAnimation;
-  late final Animation<int> _vocabAnimation;
-  late final Animation<int> _grammarAnimation;
-  late final Animation<double> _skillsOpacity;
-  late final Animation<double> _shrinkMultiplier;
+
   Uri? avatarUrl;
   late final Future<Profile> profile;
 
   late final ConfettiController _confettiController;
 
-  ConstructSummary? _constructSummary;
-  String? _error;
-
   int displayedLevel = -1;
   bool _hasBlastedConfetti = false;
 
-  static const int _startGrammar = 0;
-  static const int _startVocab = 0;
-  static const String language = "ES";
+  static final int _startGrammar = LevelUpManager.instance.prevGrammar ?? 0;
+  static final int _startVocab = LevelUpManager.instance.prevVocab ?? 0;
+  static final ConstructSummary? _constructSummary =
+      LevelUpManager.instance.constructSummary;
+  static final String? _error = LevelUpManager.instance.error;
+  static final String language = LevelUpManager.instance.userL2Code ?? "N/A";
 
-  static const Duration _animationDuration = Duration(seconds: 6);
+  static const Duration _animationDuration = Duration(seconds: 5);
 
   @override
   void initState() {
     super.initState();
+    LevelUpManager.instance.markPopupSeen();
 
     displayedLevel = widget.prevLevel;
     _confettiController =
         ConfettiController(duration: const Duration(seconds: 3));
 
-    _setConstructSummary();
-    _setGrammarAndVocab();
+    // Use LevelUpManager stats instead of fetching separately
+    _endGrammar = LevelUpManager.instance.nextGrammar ?? 0;
+    _endVocab = LevelUpManager.instance.nextVocab ?? 0;
 
     final client = Matrix.of(context).client;
     client.fetchOwnProfile().then((profile) {
@@ -135,70 +130,10 @@ class _LevelUpBarAnimationState extends State<LevelUpBarAnimation>
       }
     });
 
-    _progressAnimation = Tween<double>(begin: 0, end: 1).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeOutBack),
-    );
-
-    _vocabAnimation = IntTween(begin: _startVocab, end: _endVocab).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: const Interval(0.0, 0.5, curve: Curves.easeInOutQuad),
-      ),
-    );
-
-    _grammarAnimation =
-        IntTween(begin: _startGrammar, end: _endGrammar).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: const Interval(0.0, 0.5, curve: Curves.easeInOutQuad),
-      ),
-    );
-
-    _skillsOpacity = Tween<double>(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: const Interval(0.7, 1.0, curve: Curves.easeIn),
-      ),
-    );
-
-    _shrinkMultiplier = Tween<double>(begin: 1.0, end: 0.3).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: const Interval(0.7, 1.0, curve: Curves.easeInOut),
-      ),
-    );
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _controller.forward(); // or start your animation
-    });
+    _controller.forward();
   }
 
-  Future<void> _setConstructSummary() async {
-    try {
-      _constructSummary = await MatrixState.pangeaController.getAnalytics
-          .generateLevelUpAnalytics(
-        widget.level,
-        widget.prevLevel,
-      );
-    } catch (e) {
-      _error = e.toString();
-    }
-  }
-
-  void _setGrammarAndVocab() {
-    _endGrammar = MatrixState.pangeaController.getAnalytics.constructListModel
-        .unlockedLemmas(
-          ConstructTypeEnum.morph,
-        )
-        .length;
-
-    _endVocab = MatrixState.pangeaController.getAnalytics.constructListModel
-        .unlockedLemmas(
-          ConstructTypeEnum.vocab,
-        )
-        .length;
-  }
-
+  // Use LevelUpManager's constructSummary instead of local _constructSummary
   int _getSkillXP(LearningSkillsEnum skill) {
     return switch (skill) {
       LearningSkillsEnum.writing =>
@@ -217,12 +152,50 @@ class _LevelUpBarAnimationState extends State<LevelUpBarAnimation>
   void dispose() {
     _controller.dispose();
     _confettiController.dispose();
+    LevelUpManager.instance.reset();
     super.dispose();
   }
 
   @override
   @override
   Widget build(BuildContext context) {
+    final Animation<double> progressAnimation =
+        Tween<double>(begin: 0, end: 1).animate(
+      CurvedAnimation(parent: _controller, curve: const Interval(0.0, 0.5)),
+    );
+
+    final Animation<int> vocabAnimation =
+        IntTween(begin: _startVocab, end: _endVocab).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: const Interval(0.0, 0.5, curve: Curves.easeInOutQuad),
+      ),
+    );
+
+    final Animation<int> grammarAnimation =
+        IntTween(begin: _startGrammar, end: _endGrammar).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: const Interval(0.0, 0.5, curve: Curves.easeInOutQuad),
+      ),
+    );
+
+    final Animation<double> skillsOpacity =
+        Tween<double>(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: const Interval(0.7, 1.0, curve: Curves.easeIn),
+      ),
+    );
+
+    final Animation<double> shrinkMultiplier =
+        Tween<double>(begin: 1.0, end: 0.3).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: const Interval(0.7, 1.0, curve: Curves.easeInOut),
+      ),
+    );
+
     final colorScheme = Theme.of(context).colorScheme;
     final grammarVocabStyle = Theme.of(context).textTheme.titleLarge?.copyWith(
           fontWeight: FontWeight.bold,
@@ -237,24 +210,26 @@ class _LevelUpBarAnimationState extends State<LevelUpBarAnimation>
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               AnimatedBuilder(
-                animation: _progressAnimation,
+                animation: _controller,
                 builder: (_, __) => Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    avatarUrl == null
-                        ? const CircularProgressIndicator()
-                        : Padding(
-                            padding: const EdgeInsets.all(24.0),
-                            child: MxcImage(
-                              uri: avatarUrl,
-                              width: 150 * _shrinkMultiplier.value,
-                              height: 150 * _shrinkMultiplier.value,
+                    Padding(
+                      padding: const EdgeInsets.all(24.0),
+                      child: avatarUrl == null
+                          ? const CircularProgressIndicator()
+                          : ClipOval(
+                              child: MxcImage(
+                                uri: avatarUrl,
+                                width: 150 * shrinkMultiplier.value,
+                                height: 150 * shrinkMultiplier.value,
+                              ),
                             ),
-                          ),
+                    ),
                     Text(
                       language,
                       style: TextStyle(
-                        fontSize: 24 * _skillsOpacity.value,
+                        fontSize: 24 * skillsOpacity.value,
                         color: AppConfig.goldLight,
                         fontWeight: FontWeight.bold,
                       ),
@@ -264,19 +239,26 @@ class _LevelUpBarAnimationState extends State<LevelUpBarAnimation>
               ),
               // Progress bar + Level
               AnimatedBuilder(
-                animation: _progressAnimation,
+                animation: _controller,
                 builder: (_, __) => Row(
                   children: [
                     Expanded(
-                      child: ProgressBar(
-                        levelBars: [
-                          LevelBarDetails(
-                            widthMultiplier: _progressAnimation.value,
-                            currentPoints: 0,
-                            fillColor: AppConfig.goldLight,
-                          ),
-                        ],
-                        height: 20,
+                      child: LayoutBuilder(
+                        builder: (context, constraints) {
+                          return LevelBar(
+                            details: const LevelBarDetails(
+                              fillColor: Colors.green,
+                              currentPoints: 0,
+                              widthMultiplier: 1,
+                            ),
+                            progressBarDetails: ProgressBarDetails(
+                              totalWidth: constraints.maxWidth *
+                                  progressAnimation.value,
+                              height: 20,
+                              borderColor: colorScheme.surface,
+                            ),
+                          );
+                        },
                       ),
                     ),
                     const SizedBox(width: 8),
@@ -304,7 +286,7 @@ class _LevelUpBarAnimationState extends State<LevelUpBarAnimation>
                       size: 35,
                     ),
                     const SizedBox(width: 8),
-                    Text('${_vocabAnimation.value}', style: grammarVocabStyle),
+                    Text('${vocabAnimation.value}', style: grammarVocabStyle),
                     const SizedBox(width: 40),
                     Icon(
                       Symbols.toys_and_games,
@@ -313,7 +295,7 @@ class _LevelUpBarAnimationState extends State<LevelUpBarAnimation>
                     ),
                     const SizedBox(width: 8),
                     Text(
-                      '${_grammarAnimation.value}',
+                      '${grammarAnimation.value}',
                       style: grammarVocabStyle,
                     ),
                   ],
@@ -323,9 +305,9 @@ class _LevelUpBarAnimationState extends State<LevelUpBarAnimation>
 
               // Skills section
               AnimatedBuilder(
-                animation: _skillsOpacity,
+                animation: skillsOpacity,
                 builder: (_, __) => Opacity(
-                  opacity: _skillsOpacity.value,
+                  opacity: skillsOpacity.value,
                   child: _error == null
                       ? Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -415,8 +397,9 @@ class _LevelUpBarAnimationState extends State<LevelUpBarAnimation>
                 .explosive, // don't specify a direction, blast randomly
             shouldLoop:
                 true, // start again as soon as the animation is finished
-            emissionFrequency: 0.1,
-            numberOfParticles: 7,
+            emissionFrequency: 0.2,
+            numberOfParticles: 15,
+            gravity: 0.1,
             colors: const [
               AppConfig.goldLight,
               AppConfig.gold,

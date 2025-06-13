@@ -23,29 +23,21 @@ class LevelUpUtil {
     int prevLevel,
     BuildContext context,
   ) async {
+    // Remove delay since GetAnalyticsController._onLevelUp is already async
     final player = AudioPlayer();
 
-    final snackbarRegex = RegExp(r'_snackbar$');
+    // Wait for any existing snackbars to dismiss
+    await _waitForSnackbars(context);
 
-    while (MatrixState.pAnyState.activeOverlays
-        .any((overlayId) => snackbarRegex.hasMatch(overlayId))) {
-      await Future.delayed(const Duration(milliseconds: 100));
-    }
+    await player.play(
+      UrlSource(
+        "${AppConfig.assetsBaseURL}/${AnalyticsConstants.levelUpAudioFileName}",
+      ),
+    );
 
-    player
-        .play(
-          UrlSource(
-            "${AppConfig.assetsBaseURL}/${AnalyticsConstants.levelUpAudioFileName}",
-          ),
-        )
-        .then(
-          (_) => Future.delayed(
-            const Duration(seconds: 2),
-            () => player.dispose(),
-          ),
-        );
+    if (!context.mounted) return;
 
-    OverlayUtil.showOverlay(
+    await OverlayUtil.showOverlay(
       overlayKey: "level_up_notification",
       context: context,
       child: LevelUpBanner(
@@ -54,7 +46,7 @@ class LevelUpUtil {
         backButtonOverride: IconButton(
           icon: const Icon(Icons.close),
           onPressed: () {
-            Navigator.of(context).pop();
+            MatrixState.pAnyState.closeOverlay("level_up_notification");
           },
         ),
       ),
@@ -64,6 +56,17 @@ class LevelUpUtil {
       closePrevOverlay: false,
       canPop: false,
     );
+
+    await Future.delayed(const Duration(seconds: 2));
+    player.dispose();
+  }
+
+  static Future<void> _waitForSnackbars(BuildContext context) async {
+    final snackbarRegex = RegExp(r'_snackbar$');
+    while (MatrixState.pAnyState.activeOverlays
+        .any((id) => snackbarRegex.hasMatch(id))) {
+      await Future.delayed(const Duration(milliseconds: 100));
+    }
   }
 }
 
@@ -94,15 +97,12 @@ class LevelUpBannerState extends State<LevelUpBanner>
   void initState() {
     super.initState();
 
-    LevelUpManager().preloadAnalytics(
+    LevelUpManager.instance.preloadAnalytics(
       context,
       widget.level,
       widget.prevLevel,
     );
-
-    LevelUpManager().shouldAutoPopup = true;
-
-    LevelUpManager().printAnalytics();
+    LevelUpManager.instance.printAnalytics();
 
     _slideController = AnimationController(
       vsync: this,
@@ -122,8 +122,9 @@ class LevelUpBannerState extends State<LevelUpBanner>
     _slideController.forward();
 
     Future.delayed(const Duration(seconds: 10), () async {
-      if (mounted && !_showedDetails) {}
-      _close();
+      if (mounted && !_showedDetails) {
+        _close();
+      }
     });
   }
 
@@ -140,12 +141,12 @@ class LevelUpBannerState extends State<LevelUpBanner>
 
   Future<void> _toggleDetails() async {
     await _close();
-    LevelUpManager().markPopupSeen();
+    LevelUpManager.instance.markPopupSeen();
     _showedDetails = true;
 
     await showDialog(
       context: context,
-      builder: (context) => LevelUpPopup(widget: widget),
+      builder: (context) => const LevelUpPopup(),
     );
   }
 
@@ -228,7 +229,6 @@ class LevelUpBannerState extends State<LevelUpBanner>
                           ),
                         ),
                       ),
-                      // Optional staging-only dropdown icon
                       SizedBox(
                         width: constraints.maxWidth >= 600 ? 120.0 : 65.0,
                         child: Row(

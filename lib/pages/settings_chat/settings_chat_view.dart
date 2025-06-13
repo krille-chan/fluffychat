@@ -7,8 +7,6 @@ import 'package:fluffychat/widgets/settings_switch_list_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/l10n.dart';
 
-//import for testing level up
-import '../../pangea/analytics_misc/level_up/level_up_banner.dart';
 import 'settings_chat.dart';
 
 class SettingsChatView extends StatelessWidget {
@@ -30,17 +28,6 @@ class SettingsChatView extends StatelessWidget {
         child: MaxWidthBody(
           child: Column(
             children: [
-              ElevatedButton(
-                // Test button for leveling up
-                onPressed: () {
-                  LevelUpUtil.showLevelUpDialog(
-                    4,
-                    3,
-                    context,
-                  );
-                },
-                child: const Text("Test Level Up Dialog"),
-              ),
               // #Pangea
               // SettingsSwitchListTile.adaptive(
               //   title: L10n.of(context).formattedMessages,
