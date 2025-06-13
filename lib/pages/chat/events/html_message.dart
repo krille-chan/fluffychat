@@ -281,12 +281,14 @@ class HtmlMessage extends StatelessWidget {
     final renderer = TokenRenderingUtil(
       pangeaMessageEvent: pangeaMessageEvent,
       readingAssistanceMode: readingAssistanceMode,
-      existingStyle: textStyle.merge(
-        AppConfig.messageTextStyle(
-          pangeaMessageEvent!.event,
-          textColor,
-        ),
-      ),
+      existingStyle: pangeaMessageEvent != null
+          ? textStyle.merge(
+              AppConfig.messageTextStyle(
+                pangeaMessageEvent!.event,
+                textColor,
+              ),
+            )
+          : textStyle,
       overlayController: overlayController,
       isTransitionAnimation: isTransitionAnimation,
     );
