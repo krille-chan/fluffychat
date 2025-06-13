@@ -89,12 +89,16 @@ class ChatListItemSubtitle extends StatelessWidget {
           return Text(
             pangeaMessageEvent.messageDisplayText,
             style: style,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
           );
         }
 
         return Text(
           L10n.of(context).emptyChat,
           style: style,
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
         );
       },
     );
