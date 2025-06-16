@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/events/message_content.dart';
 import 'package:fluffychat/pages/chat/events/reply_content.dart';
@@ -11,7 +12,6 @@ import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dar
 import 'package:fluffychat/pangea/events/extensions/pangea_event_extension.dart';
 import 'package:fluffychat/pangea/toolbar/enums/reading_assistance_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
-import 'package:fluffychat/pangea/toolbar/widgets/message_speech_to_text_card.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/file_description.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -135,9 +135,92 @@ class OverlayMessage extends StatelessWidget {
             event.numberEmotes <= 3);
 
     final showTranslation = overlayController.showTranslation &&
-        overlayController.translationText != null;
+        overlayController.translation != null;
 
     final showTranscription = pangeaMessageEvent?.isAudioMessage == true;
+
+    final showSpeechTranslation = overlayController.showSpeechTranslation &&
+        overlayController.speechTranslation != null;
+
+    final transcription = showTranscription
+        ? Container(
+            width: messageWidth,
+            constraints: const BoxConstraints(
+              maxHeight: AppConfig.audioTranscriptionMaxHeight,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: overlayController.transcriptionError != null
+                  ? Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(
+                          Icons.error_outline,
+                          color: Theme.of(context).colorScheme.error,
+                        ),
+                        const SizedBox(width: 8),
+                        Text(
+                          L10n.of(context).oopsSomethingWentWrong,
+                          style: AppConfig.messageTextStyle(
+                            event,
+                            textColor,
+                          ).copyWith(fontStyle: FontStyle.italic),
+                        ),
+                      ],
+                    )
+                  : overlayController.transcription != null
+                      ? SingleChildScrollView(
+                          child: Text(
+                            overlayController.transcription!.transcript.text,
+                            style: AppConfig.messageTextStyle(
+                              event,
+                              textColor,
+                            ).copyWith(
+                              fontStyle: FontStyle.italic,
+                            ),
+                          ),
+                        )
+                      : Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            CircularProgressIndicator.adaptive(
+                              backgroundColor: textColor,
+                            ),
+                          ],
+                        ),
+            ),
+          )
+        : const SizedBox();
+
+    final translation = showTranslation || showSpeechTranslation
+        ? Container(
+            width: messageWidth,
+            constraints: const BoxConstraints(
+              maxHeight: AppConfig.audioTranscriptionMaxHeight,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(
+                12.0,
+                20.0,
+                12.0,
+                12.0,
+              ),
+              child: SingleChildScrollView(
+                child: Text(
+                  showTranslation
+                      ? overlayController.translation!
+                      : overlayController.speechTranslation!,
+                  style: AppConfig.messageTextStyle(
+                    event,
+                    textColor,
+                  ).copyWith(
+                    fontStyle: FontStyle.italic,
+                  ),
+                ),
+              ),
+            ),
+          )
+        : const SizedBox();
 
     final content = Container(
       decoration: BoxDecoration(
@@ -156,6 +239,8 @@ class OverlayMessage extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            if (readingAssistanceMode == ReadingAssistanceMode.transitionMode)
+              transcription,
             if (event.relationshipType == RelationshipTypes.reply)
               FutureBuilder<Event?>(
                 future: event.getReplyEvent(
@@ -173,7 +258,7 @@ class OverlayMessage extends StatelessWidget {
                             'msgtype': 'm.text',
                             'body': '...',
                           },
-                          senderId: event.senderId,
+                          senderId: "",
                           type: 'm.room.message',
                           room: event.room,
                           status: EventStatus.sent,
@@ -219,6 +304,7 @@ class OverlayMessage extends StatelessWidget {
               prevEvent: previousEvent,
               isTransitionAnimation: isTransitionAnimation,
               readingAssistanceMode: readingAssistanceMode,
+              selected: true,
             ),
             if (event.hasAggregatedEvents(
               timeline,
@@ -253,6 +339,8 @@ class OverlayMessage extends StatelessWidget {
                   ],
                 ),
               ),
+            if (readingAssistanceMode == ReadingAssistanceMode.transitionMode)
+              translation,
           ],
         ),
       ),
@@ -269,6 +357,8 @@ class OverlayMessage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            if (readingAssistanceMode != ReadingAssistanceMode.transitionMode)
+              transcription,
             sizeAnimation != null
                 ? AnimatedBuilder(
                     animation: sizeAnimation!,
@@ -281,37 +371,8 @@ class OverlayMessage extends StatelessWidget {
                     },
                   )
                 : content,
-            if (showTranscription || showTranslation)
-              Container(
-                width: messageWidth,
-                constraints: const BoxConstraints(
-                  maxHeight: AppConfig.audioTranscriptionMaxHeight,
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(
-                    12.0,
-                    20.0,
-                    12.0,
-                    12.0,
-                  ),
-                  child: SingleChildScrollView(
-                    child: showTranscription
-                        ? MessageSpeechToTextCard(
-                            messageEvent: pangeaMessageEvent!,
-                            textColor: textColor,
-                          )
-                        : Text(
-                            overlayController.translationText!,
-                            style: AppConfig.messageTextStyle(
-                              event,
-                              textColor,
-                            ).copyWith(
-                              fontStyle: FontStyle.italic,
-                            ),
-                          ),
-                  ),
-                ),
-              ),
+            if (readingAssistanceMode != ReadingAssistanceMode.transitionMode)
+              translation,
           ],
         ),
       ),

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import '../../widgets/layouts/max_width_body.dart';
 import '../../widgets/matrix.dart';
@@ -144,9 +144,30 @@ class ChatMembersView extends StatelessWidget {
                                           Membership.ban =>
                                             L10n.of(context).banned,
                                           Membership.invite =>
-                                            L10n.of(context).invited,
+                                            L10n.of(context).countInvited(
+                                              room.summary
+                                                      .mInvitedMemberCount ??
+                                                  controller.members
+                                                      ?.where(
+                                                        (member) =>
+                                                            member.membership ==
+                                                            Membership.invite,
+                                                      )
+                                                      .length ??
+                                                  0,
+                                            ),
                                           Membership.join =>
-                                            L10n.of(context).all,
+                                            L10n.of(context).countParticipants(
+                                              room.summary.mJoinedMemberCount ??
+                                                  controller.members
+                                                      ?.where(
+                                                        (member) =>
+                                                            member.membership ==
+                                                            Membership.join,
+                                                      )
+                                                      .length ??
+                                                  0,
+                                            ),
                                           Membership.knock =>
                                             L10n.of(context).knocking,
                                           Membership.leave =>

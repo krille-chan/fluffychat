@@ -4,17 +4,19 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_planner_builder.dart';
 import 'package:fluffychat/pangea/activity_planner/bookmarked_activities_repo.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_room_selection.dart';
+import 'package:fluffychat/pangea/chat_settings/widgets/language_level_dropdown.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/common/widgets/full_width_dialog.dart';
+import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_enum.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 
 class ActivityPlanCard extends StatefulWidget {
@@ -257,6 +259,32 @@ class ActivityPlanCardState extends State<ActivityPlanCard> {
                                 : Text(
                                     widget.controller.updatedActivity
                                         .instructions,
+                                    style:
+                                        Theme.of(context).textTheme.bodyMedium,
+                                  ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: itemPadding),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.school_outlined,
+                            color: Theme.of(context).colorScheme.secondary,
+                          ),
+                          const SizedBox(width: itemPadding),
+                          Expanded(
+                            child: widget.controller.isEditing
+                                ? LanguageLevelDropdown(
+                                    initialLevel:
+                                        widget.controller.languageLevel,
+                                    onChanged:
+                                        widget.controller.setLanguageLevel,
+                                  )
+                                : Text(
+                                    widget.controller.updatedActivity.req
+                                        .cefrLevel
+                                        .title(context),
                                     style:
                                         Theme.of(context).textTheme.bodyMedium,
                                   ),

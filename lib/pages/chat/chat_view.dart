@@ -3,11 +3,11 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 
 import 'package:badges/badges.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/chat_app_bar_list_tile.dart';
 import 'package:fluffychat/pages/chat/chat_app_bar_title.dart';
@@ -68,6 +68,7 @@ class ChatView extends StatelessWidget {
           ),
         if (controller.selectedEvents.length == 1)
           PopupMenuButton<_EventContextAction>(
+            useRootNavigator: true,
             onSelected: (action) {
               switch (action) {
                 case _EventContextAction.info:
@@ -109,44 +110,43 @@ class ChatView extends StatelessWidget {
             ],
           ),
       ];
+    } else if (!controller.room.isArchived) {
       // #Pangea
+      return [
+        IconButton(
+          icon: const Icon(Icons.search_outlined),
+          tooltip: L10n.of(context).search,
+          onPressed: () {
+            context.go('/rooms/${controller.room.id}/search');
+          },
+        ),
+        IconButton(
+          icon: const Icon(Icons.settings_outlined),
+          tooltip: L10n.of(context).chatDetails,
+          onPressed: () {
+            if (GoRouterState.of(context).uri.path.endsWith('/details')) {
+              context.go('/rooms/${controller.room.id}');
+            } else {
+              context.go('/rooms/${controller.room.id}/details');
+            }
+          },
+        ),
+      ];
+      // return [
+      //   if (AppConfig.experimentalVoip &&
+      //       Matrix.of(context).voipPlugin != null &&
+      //       controller.room.isDirectChat)
+      //     IconButton(
+      //       onPressed: controller.onPhoneButtonTap,
+      //       icon: const Icon(Icons.call_outlined),
+      //       tooltip: L10n.of(context).placeCall,
+      //     ),
+      //   EncryptionButton(controller.room),
+      //   ChatSettingsPopupMenu(controller.room, true),
+      // ];
+      // Pangea#
     }
-    // } else if (!controller.room.isArchived) {
-    //   return [
-    //     if (AppConfig.experimentalVoip &&
-    //         Matrix.of(context).voipPlugin != null &&
-    //         controller.room.isDirectChat)
-    //       IconButton(
-    //         onPressed: controller.onPhoneButtonTap,
-    //         icon: const Icon(Icons.call_outlined),
-    //         tooltip: L10n.of(context).placeCall,
-    //       ),
-    //     EncryptionButton(controller.room),
-    //     ChatSettingsPopupMenu(controller.room, true),
-    //   ];
-    // }
-    // return [];
-    return [
-      IconButton(
-        icon: const Icon(Icons.search_outlined),
-        tooltip: L10n.of(context).search,
-        onPressed: () {
-          context.go('/rooms/${controller.room.id}/search');
-        },
-      ),
-      IconButton(
-        icon: const Icon(Icons.settings_outlined),
-        tooltip: L10n.of(context).chatDetails,
-        onPressed: () {
-          if (GoRouterState.of(context).uri.path.endsWith('/details')) {
-            context.go('/rooms/${controller.room.id}');
-          } else {
-            context.go('/rooms/${controller.room.id}/details');
-          }
-        },
-      ),
-    ];
-    // Pangea#
+    return [];
   }
 
   @override

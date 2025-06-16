@@ -9,6 +9,7 @@ abstract class AppConfig {
   // static String _applicationName = 'FluffyChat';
   static String _applicationName = 'Pangea Chat';
   // #Pangea
+
   static String get applicationName => _applicationName;
   static String? _applicationWelcomeMessage;
 
@@ -16,7 +17,8 @@ abstract class AppConfig {
   // #Pangea
   // static String _defaultHomeserver = 'matrix.org';
   static String get _defaultHomeserver => Environment.synapseURL;
-  // #Pangea
+  // Pangea#
+
   static String get defaultHomeserver => _defaultHomeserver;
   static double fontSizeFactor = 1;
   static const Color chatColor = primaryColor;
@@ -24,8 +26,9 @@ abstract class AppConfig {
   static const double messageFontSize = 16.0;
   static const bool allowOtherHomeservers = true;
   static const bool enableRegistration = true;
+  // #Pangea
   static const double toolbarMaxHeight = 250.0;
-  static const double toolbarMinHeight = 200.0;
+  static const double toolbarMinHeight = 150.0;
   static const double toolbarMinWidth = 350.0;
   static const double defaultHeaderHeight = 56.0;
   static const double toolbarButtonsHeight = 50.0;
@@ -34,8 +37,8 @@ abstract class AppConfig {
   static const double readingAssistanceInputBarHeight = 140.0;
   static const double reactionsPickerHeight = 48.0;
   static const double chatInputRowOverlayPadding = 8.0;
-  static const double selectModeInputBarHeight =
-      reactionsPickerHeight + (chatInputRowOverlayPadding * 2) + toolbarSpacing;
+  static const double selectModeInputBarHeight = 0;
+  // reactionsPickerHeight + (chatInputRowOverlayPadding * 2) + toolbarSpacing;
   static const double practiceModeInputBarHeight =
       readingAssistanceInputBarHeight +
           toolbarButtonsHeight +
@@ -82,6 +85,7 @@ abstract class AppConfig {
   //     'https://gitlab.com/famedly/fluffychat/-/blob/main/PRIVACY.md';
   static String _privacyUrl = "https://www.pangeachat.com/privacy";
   //Pangea#
+
   static String get privacyUrl => _privacyUrl;
   // #Pangea
   // static const String website = 'https://fluffychat.im';
@@ -97,19 +101,21 @@ abstract class AppConfig {
   // #Pangea
   // static const String appOpenUrlScheme = 'im.fluffychat';
   static const String appOpenUrlScheme = 'matrix.pangea.chat';
-  static String _webBaseUrl = 'https://fluffychat.im/web';
   // Pangea#
+  static String _webBaseUrl = 'https://fluffychat.im/web';
+
   static String get webBaseUrl => _webBaseUrl;
-  //#Pangea
-  static const String sourceCodeUrl = 'https://gitlab.com/famedly/fluffychat';
+  static const String sourceCodeUrl =
+      'https://github.com/krille-chan/fluffychat';
+  // #Pangea
   // static const String supportUrl =
-  //     'https://gitlab.com/famedly/fluffychat/issues';
+  //     'https://github.com/krille-chan/fluffychat/issues';
+  // static const String changelogUrl =
+  //     'https://github.com/krille-chan/fluffychat/blob/main/CHANGELOG.md';
   static const String supportUrl = 'https://www.pangeachat.com/faqs';
   static const String termsOfServiceUrl =
       'https://www.pangeachat.com/terms-of-service';
-  // static const String changelogUrl =
-  //     'https://github.com/krille-chan/fluffychat/blob/main/CHANGELOG.md';
-  //Pangea#
+  // Pangea#
   static final Uri newIssueUrl = Uri(
     scheme: 'https',
     host: 'github.com',
@@ -135,6 +141,7 @@ abstract class AppConfig {
   static bool? sendOnEnter;
   static bool showPresences = true;
   // #Pangea
+  // static bool displayNavigationRail = false;
   static bool displayNavigationRail = true;
   // Pangea#
   static bool experimentalVoip = false;
@@ -145,21 +152,9 @@ abstract class AppConfig {
   static const String schemePrefix = 'matrix:';
   // #Pangea
   // static const String pushNotificationsChannelId = 'fluffychat_push';
-  // static const String pushNotificationsChannelName = 'FluffyChat push channel';
-  // static const String pushNotificationsChannelDescription =
-  //     'Push notifications for FluffyChat';
   // static const String pushNotificationsAppId = 'chat.fluffy.fluffychat';
-  // static const String pushNotificationsGatewayUrl =
-  //     'https://push.fluffychat.im/_matrix/push/v1/notify';
-  // static const String pushNotificationsPusherFormat = 'event_id_only';
   static const String pushNotificationsChannelId = 'pangeachat_push';
-  static const String pushNotificationsChannelName = 'Pangea Chat push channel';
-  static const String pushNotificationsChannelDescription =
-      'Push notifications for Pangea Chat';
   static const String pushNotificationsAppId = 'com.talktolearn.chat';
-  static const String pushNotificationsGatewayUrl =
-      'https://sygnal.pangea.chat/_matrix/push/v1/notify';
-  static const String? pushNotificationsPusherFormat = null;
   // Pangea#
   static const double borderRadius = 18.0;
   static const double columnWidth = 360.0;

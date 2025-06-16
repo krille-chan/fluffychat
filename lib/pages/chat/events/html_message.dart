@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
@@ -18,7 +19,9 @@ import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/enums/reading_assistance_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/utils/token_rendering_util.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
+import 'package:fluffychat/utils/event_checkbox_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
+import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
 import '../../../utils/url_launcher.dart';
@@ -30,6 +33,10 @@ class HtmlMessage extends StatelessWidget {
   final double fontSize;
   final TextStyle linkStyle;
   final void Function(LinkableElement) onOpen;
+  final String? eventId;
+  final Set<Event>? checkboxCheckedEvents;
+  final bool limitHeight;
+
   // #Pangea
   final MessageOverlayController? overlayController;
   final PangeaMessageEvent? pangeaMessageEvent;
@@ -52,6 +59,9 @@ class HtmlMessage extends StatelessWidget {
     required this.linkStyle,
     this.textColor = Colors.black,
     required this.onOpen,
+    this.eventId,
+    this.checkboxCheckedEvents,
+    this.limitHeight = true,
     // #Pangea
     this.overlayController,
     required this.event,
@@ -156,28 +166,23 @@ class HtmlMessage extends StatelessWidget {
         (token) => token.text.offset == offset && token.text.length == length,
       );
 
-  /// Wrap token spans in token tags so styling / functions can be applied
-  dom.Node _tokenizeHtml(
-    dom.Node element,
-    String fullHtml,
-    List<PangeaToken> remainingTokens,
-  ) {
+  String _addTokenTags() {
     final regex = RegExp(r'(<[^>]+>)');
 
-    final matches = regex.allMatches(fullHtml);
+    final matches = regex.allMatches(html);
     final List<String> result = <String>[];
     int lastEnd = 0;
 
     for (final match in matches) {
       if (match.start > lastEnd) {
-        result.add(fullHtml.substring(lastEnd, match.start)); // Text before tag
+        result.add(html.substring(lastEnd, match.start)); // Text before tag
       }
       result.add(match.group(0)!); // The tag itself
       lastEnd = match.end;
     }
 
-    if (lastEnd < fullHtml.length) {
-      result.add(fullHtml.substring(lastEnd)); // Remaining text after last tag
+    if (lastEnd < html.length) {
+      result.add(html.substring(lastEnd)); // Remaining text after last tag
     }
 
     for (final PangeaToken token in tokens ?? []) {
@@ -207,7 +212,7 @@ class HtmlMessage extends StatelessWidget {
       ]);
     }
 
-    return dom.Element.html('<span>${result.join()}</span>');
+    return result.join();
   }
   // Pangea#
 
@@ -272,6 +277,23 @@ class HtmlMessage extends StatelessWidget {
     // We must not render tags which are not in the allow list:
     if (!allowedHtmlTags.contains(node.localName)) return const TextSpan();
 
+    // #Pangea
+    final renderer = TokenRenderingUtil(
+      pangeaMessageEvent: pangeaMessageEvent,
+      readingAssistanceMode: readingAssistanceMode,
+      existingStyle: pangeaMessageEvent != null
+          ? textStyle.merge(
+              AppConfig.messageTextStyle(
+                pangeaMessageEvent!.event,
+                textColor,
+              ),
+            )
+          : textStyle,
+      overlayController: overlayController,
+      isTransitionAnimation: isTransitionAnimation,
+    );
+    // Pangea#
+
     switch (node.localName) {
       // #Pangea
       case 'token':
@@ -284,19 +306,6 @@ class HtmlMessage extends StatelessWidget {
         final selected = token != null && isSelected != null
             ? isSelected!.call(token)
             : false;
-
-        final renderer = TokenRenderingUtil(
-          pangeaMessageEvent: pangeaMessageEvent,
-          readingAssistanceMode: readingAssistanceMode,
-          existingStyle: textStyle.merge(
-            AppConfig.messageTextStyle(
-              pangeaMessageEvent!.event,
-              textColor,
-            ),
-          ),
-          overlayController: overlayController,
-          isTransitionAnimation: isTransitionAnimation,
-        );
 
         final tokenWidth = renderer.tokenTextWidthForContainer(
           context,
@@ -389,6 +398,9 @@ class HtmlMessage extends StatelessWidget {
           if (matrixId.sigil == '@') {
             final user = room.unsafeGetUserFromMemoryOrFallback(matrixId);
             return WidgetSpan(
+              // #Pangea
+              alignment: PlaceholderAlignment.middle,
+              // Pangea#
               child: MatrixPill(
                 key: Key('user_pill_$matrixId'),
                 name: user.calcDisplayname(),
@@ -397,6 +409,9 @@ class HtmlMessage extends StatelessWidget {
                 outerContext: context,
                 fontSize: fontSize,
                 color: linkStyle.color,
+                // #Pangea
+                userId: user.id,
+                // Pangea#
               ),
             );
           }
@@ -405,6 +420,9 @@ class HtmlMessage extends StatelessWidget {
                 ? this.room.client.getRoomById(matrixId)
                 : this.room.client.getRoomByAlias(matrixId);
             return WidgetSpan(
+              // #Pangea
+              alignment: PlaceholderAlignment.middle,
+              // Pangea#
               child: MatrixPill(
                 name: room?.getLocalizedDisplayname() ?? matrixId,
                 avatar: room?.avatar,
@@ -451,6 +469,24 @@ class HtmlMessage extends StatelessWidget {
         if (!{'ol', 'ul'}.contains(node.parent?.localName)) {
           continue block;
         }
+        final eventId = this.eventId;
+
+        final isCheckbox = node.className == 'task-list-item';
+        final checkboxIndex = isCheckbox
+            ? node.rootElement
+                    .getElementsByClassName('task-list-item')
+                    .indexOf(node) +
+                1
+            : null;
+        final checkedByReaction = !isCheckbox
+            ? null
+            : checkboxCheckedEvents?.firstWhereOrNull(
+                (event) => event.checkedCheckboxId == checkboxIndex,
+              );
+        final staticallyChecked = !isCheckbox
+            ? false
+            : node.children.first.attributes['checked'] == 'true';
+
         return WidgetSpan(
           child: Padding(
             padding: EdgeInsets.only(left: fontSize),
@@ -461,11 +497,68 @@ class HtmlMessage extends StatelessWidget {
               TextSpan(
                 children: [
                   if (node.parent?.localName == 'ul')
-                    const TextSpan(text: '• '),
+                    // #Pangea
+                    // const TextSpan(text: '• '),
+                    TextSpan(
+                      text: '• ',
+                      style: renderer.style(
+                        context,
+                        color: renderer.backgroundColor(
+                          context,
+                          false,
+                        ),
+                      ),
+                    ),
+                  // Pangea#
                   if (node.parent?.localName == 'ol')
                     TextSpan(
                       text:
                           '${(node.parent?.nodes.whereType<dom.Element>().toList().indexOf(node) ?? 0) + (int.tryParse(node.parent?.attributes['start'] ?? '1') ?? 1)}. ',
+                      // #Pangea
+                      // style: textStyle,
+                      style: renderer.style(
+                        context,
+                        color: renderer.backgroundColor(
+                          context,
+                          false,
+                        ),
+                      ),
+                      // Pangea#
+                    ),
+                  if (node.className == 'task-list-item')
+                    WidgetSpan(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        child: SizedBox.square(
+                          dimension: fontSize + 2,
+                          child: CupertinoCheckbox(
+                            checkColor: textColor,
+                            side: BorderSide(color: textColor),
+                            activeColor: textColor.withAlpha(64),
+                            value:
+                                staticallyChecked || checkedByReaction != null,
+                            onChanged: eventId == null ||
+                                    checkboxIndex == null ||
+                                    staticallyChecked ||
+                                    !room.canSendDefaultMessages ||
+                                    (checkedByReaction != null &&
+                                        checkedByReaction.senderId !=
+                                            room.client.userID)
+                                ? null
+                                : (_) => showFutureLoadingDialog(
+                                      context: context,
+                                      future: () => checkedByReaction != null
+                                          ? room.redactEvent(
+                                              checkedByReaction.eventId,
+                                            )
+                                          : room.checkCheckbox(
+                                              eventId,
+                                              checkboxIndex,
+                                            ),
+                                    ),
+                          ),
+                        ),
+                      ),
                     ),
                   ..._renderWithLineBreaks(
                     node.nodes,
@@ -752,11 +845,17 @@ class HtmlMessage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // #Pangea
+    // final element = parser.parse(html).body ?? dom.Element.html('');
     // return Text.rich(
-    dom.Node parsed = parser.parse(html).body ?? dom.Element.html('');
-    if (tokens != null) {
-      parsed = _tokenizeHtml(parsed, html, List.from(tokens!));
-    }
+    //   _renderHtml(element, context),
+    //   style: TextStyle(
+    //     fontSize: fontSize,
+    //     color: textColor,
+    //   ),
+    //   maxLines: limitHeight ? 64 : null,Add commentMore actions
+    //   overflow: TextOverflow.fade,
+    // );
+    final parsed = parser.parse(_addTokenTags()).body ?? dom.Element.html('');
     return SelectionArea(
       child: GestureDetector(
         onTap: () {
@@ -771,24 +870,20 @@ class HtmlMessage extends StatelessWidget {
         },
         child: Text.rich(
           textScaler: TextScaler.noScaling,
-          // Pangea#
           _renderHtml(
-            // #Pangea
-            // parser.parse(html).body ?? dom.Element.html(''),
             parsed,
-            // Pangea#
             context,
-            // #Pangea
             TextStyle(
               fontSize: fontSize,
               color: textColor,
             ),
-            // Pangea#
           ),
           style: TextStyle(
             fontSize: fontSize,
             color: textColor,
           ),
+          maxLines: limitHeight ? 64 : null,
+          overflow: TextOverflow.fade,
         ),
       ),
     );
@@ -802,6 +897,9 @@ class MatrixPill extends StatelessWidget {
   final String uri;
   final double? fontSize;
   final Color? color;
+  // #Pangea
+  final String? userId;
+  // Pangea#
 
   const MatrixPill({
     super.key,
@@ -811,6 +909,9 @@ class MatrixPill extends StatelessWidget {
     required this.uri,
     required this.fontSize,
     required this.color,
+    // #Pangea
+    this.userId,
+    // Pangea#
   });
 
   @override
@@ -818,27 +919,56 @@ class MatrixPill extends StatelessWidget {
     return InkWell(
       splashColor: Colors.transparent,
       onTap: UrlLauncher(outerContext, uri).launchUrl,
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Avatar(
-            mxContent: avatar,
-            name: name,
-            size: 16,
-          ),
-          const SizedBox(width: 6),
-          Text(
-            name,
-            style: TextStyle(
-              color: color,
-              decorationColor: color,
-              decoration: TextDecoration.underline,
-              fontSize: fontSize,
-              height: 1.25,
+      // #Pangea
+      child: RichText(
+        textScaler: TextScaler.noScaling,
+        text: TextSpan(
+          children: [
+            WidgetSpan(
+              alignment: PlaceholderAlignment.middle,
+              child: Avatar(
+                mxContent: avatar,
+                name: name,
+                size: 16,
+                userId: userId,
+              ),
             ),
-          ),
-        ],
+            const WidgetSpan(child: SizedBox(width: 6)),
+            TextSpan(
+              text: name,
+              style: TextStyle(
+                color: color,
+                decorationColor: color,
+                decoration: TextDecoration.underline,
+                fontSize: fontSize,
+                height: 1.25,
+              ),
+            ),
+          ],
+        ),
       ),
+      // child: Row(
+      //   mainAxisSize: MainAxisSize.min,
+      //   children: [
+      //     Avatar(
+      //       mxContent: avatar,
+      //       name: name,
+      //       size: 16,
+      //     ),
+      //     const SizedBox(width: 6),
+      //     Text(
+      //       name,
+      //       style: TextStyle(
+      //         color: color,
+      //         decorationColor: color,
+      //         decoration: TextDecoration.underline,
+      //         fontSize: fontSize,
+      //         height: 1.25,
+      //       ),
+      //     ),
+      //   ],
+      // ),
+      // Pangea#
     );
   }
 }
@@ -851,4 +981,8 @@ extension on String {
     final colorValue = int.tryParse(hexCode, radix: 16);
     return colorValue == null ? null : Color(colorValue);
   }
+}
+
+extension on dom.Element {
+  dom.Element get rootElement => parent?.rootElement ?? this;
 }

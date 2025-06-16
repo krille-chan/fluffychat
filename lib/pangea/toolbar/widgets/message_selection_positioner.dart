@@ -138,6 +138,9 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
   void dispose() {
     _animationController.dispose();
     _reactionSubscription?.cancel();
+    MatrixState.pangeaController.matrixState.audioPlayer
+      ?..stop()
+      ..dispose();
     super.dispose();
   }
 
@@ -283,7 +286,7 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
       );
 
   double get _columnWidth => FluffyThemes.isColumnMode(context)
-      ? (FluffyThemes.columnWidth + FluffyThemes.navRailWidth)
+      ? (FluffyThemes.columnWidth + FluffyThemes.navRailWidth + 1.0)
       : 0;
 
   /// Available vertical space not taken up by the header and footer
@@ -490,10 +493,22 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
 
   // measurement for items in the toolbar
 
-  bool get _showButtons =>
-      (widget.pangeaMessageEvent?.shouldShowToolbar ?? false) &&
-      widget.pangeaMessageEvent?.event.messageType == MessageTypes.Text &&
-      (widget.pangeaMessageEvent?.messageDisplayLangIsL2 ?? false);
+  bool get _showButtons {
+    if (!(widget.pangeaMessageEvent?.shouldShowToolbar ?? false)) {
+      return false;
+    }
+
+    final type = widget.pangeaMessageEvent?.event.messageType;
+    if (![MessageTypes.Text, MessageTypes.Audio].contains(type)) {
+      return false;
+    }
+
+    if (type == MessageTypes.Text) {
+      return widget.pangeaMessageEvent?.messageDisplayLangIsL2 ?? false;
+    }
+
+    return true;
+  }
 
   bool get showPracticeButtons =>
       _showButtons &&
@@ -670,7 +685,10 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
                                 OverlayCenterContent(
                                   event: widget.event,
                                   messageHeight: _originalMessageSize.height,
-                                  messageWidth: _originalMessageSize.width,
+                                  messageWidth: widget
+                                          .overlayController.showingExtraContent
+                                      ? max(_originalMessageSize.width, 150)
+                                      : _originalMessageSize.width,
                                   maxWidth: widget.overlayController.maxWidth,
                                   overlayController: widget.overlayController,
                                   chatController: widget.chatController,

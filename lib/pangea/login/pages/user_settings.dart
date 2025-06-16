@@ -4,10 +4,10 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_enum.dart';
@@ -16,6 +16,7 @@ import 'package:fluffychat/pangea/learning_settings/utils/p_language_store.dart'
 import 'package:fluffychat/pangea/login/pages/user_settings_view.dart';
 import 'package:fluffychat/utils/file_selector.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
+import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class UserSettingsPage extends StatefulWidget {
@@ -134,6 +135,10 @@ class UserSettingsState extends State<UserSettingsPage> {
     final bytes = await selectedFile?.readAsBytes();
     final path = selectedFile?.path;
 
+    if (bytes == null || path == null) {
+      return;
+    }
+
     setState(() {
       selectedAvatarPath = null;
       avatar = bytes;
@@ -210,9 +215,8 @@ class UserSettingsState extends State<UserSettingsPage> {
         _pangeaController.subscriptionController.reinitialize(),
         _pangeaController.userController.updateProfile(
           (profile) {
-            if (_systemLanguage != null) {
-              profile.userSettings.sourceLanguage = _systemLanguage!.langCode;
-            }
+            profile.userSettings.sourceLanguage =
+                selectedBaseLanguage?.langCode ?? _systemLanguage?.langCode;
             profile.userSettings.targetLanguage =
                 selectedTargetLanguage!.langCode;
             profile.userSettings.cefrLevel = selectedCefrLevel;
@@ -227,11 +231,15 @@ class UserSettingsState extends State<UserSettingsPage> {
           level: 1,
         ),
       ];
-      await Future.wait(updateFuture).timeout(
-        const Duration(seconds: 30),
-        onTimeout: () {
-          throw TimeoutException(L10n.of(context).oopsSomethingWentWrong);
-        },
+
+      await showFutureLoadingDialog(
+        context: context,
+        future: () => Future.wait(updateFuture).timeout(
+          const Duration(seconds: 30),
+          onTimeout: () {
+            throw TimeoutException(L10n.of(context).oopsSomethingWentWrong);
+          },
+        ),
       );
       context.go(
         _pangeaController.classController.cachedClassCode == null

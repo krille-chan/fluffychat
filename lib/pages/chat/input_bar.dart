@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:emojis/emoji.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:matrix/matrix.dart';
 import 'package:slugify/slugify.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/igc/pangea_text_controller.dart';
 import 'package:fluffychat/pangea/toolbar/utils/shrinkable_text.dart';
 import 'package:fluffychat/utils/markdown_context_builder.dart';
@@ -429,16 +429,7 @@ class InputBar extends StatelessWidget {
       direction: VerticalDirection.up,
       hideOnEmpty: true,
       hideOnLoading: true,
-      // #Pangea
-      // if should obscure text (to make it looks that a message has been sent after sending fake message),
-      // use hideTextController
-
-      // controller: controller,
-      controller:
-          (controller?.choreographer.chatController.obscureText) ?? false
-              ? controller?.choreographer.chatController.hideTextController
-              : controller,
-      // Pangea#
+      controller: controller,
       focusNode: focusNode,
       hideOnSelect: false,
       debounceDuration: const Duration(milliseconds: 50),
@@ -447,14 +438,10 @@ class InputBar extends StatelessWidget {
       builder: (context, _, focusNode) {
         final textField = TextField(
           enableSuggestions: enableAutocorrect,
-          readOnly: controller != null &&
-              (controller!.choreographer.isRunningIT ||
-                  controller!.choreographer.chatController.obscureText),
+          readOnly:
+              controller != null && (controller!.choreographer.isRunningIT),
           autocorrect: enableAutocorrect,
-          controller:
-              (controller?.choreographer.chatController.obscureText) ?? false
-                  ? controller?.choreographer.chatController.hideTextController
-                  : controller,
+          controller: controller,
           focusNode: focusNode,
           contextMenuBuilder: (c, e) => markdownContextBuilder(
             c,

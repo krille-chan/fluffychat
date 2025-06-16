@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import '../../../config/app_config.dart';
 
@@ -68,6 +68,9 @@ class ReplyContent extends StatelessWidget {
                   future: displayEvent.fetchSenderUser(),
                   builder: (context, snapshot) {
                     return Text(
+                      // #Pangea
+                      textScaler: TextScaler.noScaling,
+                      // Pangea#
                       '${snapshot.data?.calcDisplayname() ?? displayEvent.senderFromMemoryOrFallback.calcDisplayname()}:',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -85,6 +88,9 @@ class ReplyContent extends StatelessWidget {
                   },
                 ),
                 Text(
+                  // #Pangea
+                  textScaler: TextScaler.noScaling,
+                  // Pangea#
                   displayEvent.calcLocalizedBodyFallback(
                     MatrixLocals(L10n.of(context)),
                     withSenderNamePrefix: false,

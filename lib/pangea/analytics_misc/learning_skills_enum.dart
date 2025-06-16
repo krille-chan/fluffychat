@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:material_symbols_icons/symbols.dart';
+
+import 'package:fluffychat/l10n/l10n.dart';
 
 enum LearningSkillsEnum {
   writing(isVisible: true, icon: Symbols.edit_square),
   reading(isVisible: true, icon: Symbols.two_pager),
-  speaking(isVisible: false),
+  speaking(isVisible: true, icon: Icons.mic_outlined),
   hearing(isVisible: true, icon: Icons.volume_up),
   other(isVisible: false);
 
@@ -26,6 +27,8 @@ enum LearningSkillsEnum {
         return L10n.of(context).readingExercisesTooltip;
       case LearningSkillsEnum.hearing:
         return L10n.of(context).listeningExercisesTooltip;
+      case LearningSkillsEnum.speaking:
+        return L10n.of(context).speakingExercisesTooltip;
       default:
         return "";
     }

@@ -2,10 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'matrix.dart';
@@ -52,6 +52,7 @@ class ChatSettingsPopupMenuState extends State<ChatSettingsPopupMenu> {
       children: [
         const SizedBox.shrink(),
         PopupMenuButton<ChatPopupMenuActions>(
+          useRootNavigator: true,
           onSelected: (choice) async {
             switch (choice) {
               case ChatPopupMenuActions.leave:

@@ -5,12 +5,12 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 import 'package:shimmer/shimmer.dart';
 
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_request.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_response.dart';
@@ -97,7 +97,6 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
       setState(() {
         _activityItems.clear();
         _loading = true;
-        _timeout = false;
       });
 
       final ActivityPlanRequest request = ActivityPlanRequest(
@@ -114,18 +113,26 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
       final resp = await ActivitySearchRepo.get(request).timeout(
         const Duration(seconds: 5),
         onTimeout: () {
-          setState(() {
-            _timeout = true;
-            _loading = false;
-          });
+          if (mounted) {
+            setState(() {
+              _timeout = true;
+              _loading = false;
+            });
+          }
 
           Future.delayed(const Duration(seconds: 5), () {
-            _setActivityItems(retries: retries + 1);
+            if (mounted) _setActivityItems(retries: retries + 1);
           });
-          return ActivityPlanResponse(activityPlans: []);
+
+          return Future<ActivityPlanResponse>.error(
+            TimeoutException(
+              L10n.of(context).activitySuggestionTimeoutMessage,
+            ),
+          );
         },
       );
       _activityItems.addAll(resp.activityPlans);
+      _timeout = false;
     } finally {
       if (mounted) setState(() => _loading = false);
     }
@@ -206,7 +213,7 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
                 ),
               ),
               IconButton(
-                icon: const Icon(Icons.menu_outlined),
+                icon: const Icon(Icons.event_note_outlined),
                 onPressed: () => context.go('/rooms/homepage/planner'),
                 tooltip: L10n.of(context).activityPlannerTitle,
               ),

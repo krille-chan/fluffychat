@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pangea/chat_list/widgets/chat_list_view_body_wrapper.dart';
+import 'package:fluffychat/pangea/onboarding/onboarding.dart';
+import 'package:fluffychat/pangea/onboarding/onboarding_steps_enum.dart';
 import 'package:fluffychat/widgets/navigation_rail.dart';
 
 class ChatListView extends StatelessWidget {
@@ -31,12 +33,8 @@ class ChatListView extends StatelessWidget {
       },
       child: Row(
         children: [
-          // #Pangea
-          // if (FluffyThemes.isColumnMode(context) &&
-          //     controller.widget.displayNavigationRail) ...[
           if (FluffyThemes.isColumnMode(context) ||
               AppConfig.displayNavigationRail) ...[
-            // Pangea#
             SpacesNavigationRail(
               activeSpaceId: controller.activeSpaceId,
               onGoToChats: controller.clearActiveSpace,
@@ -59,14 +57,25 @@ class ChatListView extends StatelessWidget {
                 // #Pangea
                 // body: ChatListViewBody(controller),
                 body: ChatListViewBodyWrapper(controller: controller),
-                // Pangea#
+                // floatingActionButton: !controller.isSearchMode &&
+                //         controller.activeSpaceId == null
                 floatingActionButton: !controller.isSearchMode &&
-                        controller.activeSpaceId == null
+                        controller.activeSpaceId == null &&
+                        OnboardingController.complete(
+                          OnboardingStepsEnum.chatWithBot,
+                        )
+                    // Pangea#
                     ? FloatingActionButton.extended(
                         onPressed: () => context.go('/rooms/newprivatechat'),
-                        icon: const Icon(Icons.add_outlined),
+                        // #Pangea
+                        icon: const Icon(Icons.chat_bubble_outline),
+                        // icon: const Icon(Icons.add_outlined),
+                        // Pangea#
                         label: Text(
-                          L10n.of(context).chat,
+                          // #Pangea
+                          L10n.of(context).directMessage,
+                          // L10n.of(context).chat,
+                          // Pangea#
                           overflow: TextOverflow.fade,
                         ),
                       )

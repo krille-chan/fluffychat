@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/analytics_misc/level_display_name.dart';
 import 'package:fluffychat/pangea/bot/utils/bot_name.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -20,6 +21,7 @@ void showMemberActionsPopupMenu({
   final displayname = user.calcDisplayname();
   // #Pangea
   // final isMe = user.room.client.userID == user.id;
+  final dmRoomId = user.room.client.getDirectChatFromUserId(user.id);
   // Pangea#
 
   final overlay = Overlay.of(context).context.findRenderObject() as RenderBox;
@@ -87,6 +89,22 @@ void showMemberActionsPopupMenu({
         ),
       ),
       const PopupMenuDivider(),
+      // #Pangea
+      PopupMenuItem(
+        value: _MemberActions.chat,
+        child: Row(
+          children: [
+            const Icon(Icons.forum_outlined),
+            const SizedBox(width: 18),
+            Text(
+              dmRoomId == null
+                  ? L10n.of(context).startConversation
+                  : L10n.of(context).sendAMessage,
+            ),
+          ],
+        ),
+      ),
+      // Pangea#
       if (onMention != null)
         PopupMenuItem(
           value: _MemberActions.mention,
@@ -295,6 +313,19 @@ void showMemberActionsPopupMenu({
     //     SnackBar(content: Text(L10n.of(context).contentHasBeenReported)),
     //   );
     //   return;
+    case _MemberActions.chat:
+      final router = GoRouter.of(context);
+      final roomIdResult = await showFutureLoadingDialog(
+        context: context,
+        future: () => user.room.client.startDirectChat(
+          user.id,
+          enableEncryption: false,
+        ),
+      );
+      Navigator.of(context).pop();
+      final roomId = roomIdResult.result;
+      if (roomId == null) return;
+      router.go('/rooms/$roomId');
     // Pangea#
     case _MemberActions.info:
       await UserDialog.show(
@@ -333,5 +364,6 @@ enum _MemberActions {
   unban,
   // #Pangea
   // report,
+  chat,
   // Pangea#
 }

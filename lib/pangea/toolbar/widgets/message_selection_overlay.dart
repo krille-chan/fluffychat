@@ -30,6 +30,7 @@ import 'package:fluffychat/pangea/toolbar/controllers/text_to_speech_controller.
 import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/enums/reading_assistance_mode_enum.dart';
+import 'package:fluffychat/pangea/toolbar/models/speech_to_text_models.dart';
 import 'package:fluffychat/pangea/toolbar/reading_assistance_input_row/morph_selection.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_positioner.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/reading_assistance_content.dart';
@@ -86,24 +87,25 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
   List<PangeaTokenText>? _highlightedTokens;
   bool initialized = false;
-  bool isPlayingAudio = false;
 
   final GlobalKey<ReadingAssistanceContentState> wordZoomKey = GlobalKey();
 
   ReadingAssistanceMode? readingAssistanceMode; // default mode
+
+  SpeechToTextModel? transcription;
+  String? transcriptionError;
+
   bool showTranslation = false;
-  String? translationText;
+  String? translation;
+
+  bool showSpeechTranslation = false;
+  String? speechTranslation;
 
   double maxWidth = AppConfig.toolbarMinWidth;
 
   /////////////////////////////////////
   /// Lifecycle
   /////////////////////////////////////
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
 
   @override
   void initState() {
@@ -193,20 +195,6 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
       updateToolbarMode(MessageMode.practiceActivity);
       return;
     }
-
-    // if (selectedToken != null) {
-    //   updateToolbarMode(selectedToken!.modeForToken);
-    //   return;
-    // }
-
-    // Note: this setting is now hidden so this will always be false
-    // leaving this here in case we want to bring it back
-    // if (MatrixState.pangeaController.userController.profile.userSettings
-    //     .autoPlayMessages) {
-    //   return setState(() => toolbarMode = MessageMode.textToSpeech);
-    // }
-
-    // defaults to noneSelected
   }
 
   /// Decides whether an _initialSelectedToken should be used
@@ -471,6 +459,12 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
   PangeaTokenText? get selectedSpan => _selectedSpan;
 
+  bool get showingExtraContent =>
+      (showTranslation && translation != null) ||
+      (showSpeechTranslation && speechTranslation != null) ||
+      transcription != null ||
+      transcriptionError != null;
+
   ///////////////////////////////////
   /// Functions
   /////////////////////////////////////
@@ -571,21 +565,50 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     );
   }
 
-  void setIsPlayingAudio(bool isPlaying) {
+  void setTranslation(String value) {
     if (mounted) {
-      setState(() => isPlayingAudio = isPlaying);
+      setState(() => translation = value);
     }
   }
 
-  void setShowTranslation(bool show, String? translation) {
-    if (showTranslation == show) return;
-    if (show && translation == null) return;
+  void setShowTranslation(bool show) {
+    if (!mounted) return;
+    if (translation == null) {
+      setState(() => showTranslation = false);
+    }
 
+    if (showTranslation == show) return;
+    setState(() => showTranslation = show);
+  }
+
+  void setSpeechTranslation(String value) {
+    if (mounted) {
+      setState(() => speechTranslation = value);
+    }
+  }
+
+  void setShowSpeechTranslation(bool show) {
+    if (!mounted) return;
+    if (speechTranslation == null) {
+      setState(() => showSpeechTranslation = false);
+    }
+
+    if (showSpeechTranslation == show) return;
+    setState(() => showSpeechTranslation = show);
+  }
+
+  void setTranscription(SpeechToTextModel value) {
     if (mounted) {
       setState(() {
-        showTranslation = show;
-        translationText = show ? translation : null;
+        transcriptionError = null;
+        transcription = value;
       });
+    }
+  }
+
+  void setTranscriptionError(String value) {
+    if (mounted) {
+      setState(() => transcriptionError = value);
     }
   }
 

@@ -32,10 +32,8 @@ abstract class SettingKeys {
       'chat.fluffy.swipeRightToLeftToReply';
   static const String experimentalVoip = 'chat.fluffy.experimental_voip';
   static const String showPresences = 'chat.fluffy.show_presences';
-  // #Pangea
   static const String displayNavigationRail =
       'chat.fluffy.display_navigation_rail';
-  // Pangea#
 }
 
 enum AppSettings<T> {
@@ -50,7 +48,10 @@ enum AppSettings<T> {
   // Pangea#
   pushNotificationsGatewayUrl<String>(
     'pushNotificationsGatewayUrl',
-    'https://push.fluffychat.im/_matrix/push/v1/notify',
+    // #Pangea
+    // 'https://push.fluffychat.im/_matrix/push/v1/notify',
+    'https://sygnal.pangea.chat/_matrix/push/v1/notify',
+    // Pangea#
   ),
   pushNotificationsPusherFormat<String>(
     'pushNotificationsPusherFormat',
@@ -64,7 +65,8 @@ enum AppSettings<T> {
   displayChatDetailsColumn(
     'chat.fluffy.display_chat_details_column',
     false,
-  );
+  ),
+  enableSoftLogout<bool>('chat.fluffy.enable_soft_logout', false);
 
   final String key;
   final T defaultValue;

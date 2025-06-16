@@ -6,11 +6,11 @@ import 'package:flutter/material.dart';
 
 import 'package:csv/csv.dart';
 import 'package:excel/excel.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:intl/intl.dart';
 import 'package:matrix/matrix.dart';
 import 'package:matrix/src/models/timeline_chunk.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/chat_settings/utils/download_file.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';

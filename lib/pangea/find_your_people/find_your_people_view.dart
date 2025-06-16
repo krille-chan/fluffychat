@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/find_your_people/find_your_people.dart';
 import 'package:fluffychat/pangea/find_your_people/public_space_tile.dart';
 import 'package:fluffychat/pangea/spaces/utils/space_code.dart';
@@ -34,7 +34,7 @@ class FindYourPeopleView extends StatelessWidget {
               ),
               title: Icon(
                 Icons.groups_outlined,
-                size: 20.0,
+                size: 24.0,
                 color: theme.colorScheme.primary,
               ),
               centerTitle: false,
@@ -46,14 +46,14 @@ class FindYourPeopleView extends StatelessWidget {
                       Icon(
                         Icons.join_full,
                         color: theme.colorScheme.primary,
-                        size: 20.0,
+                        size: 24.0,
                       ),
                       const SizedBox(width: 8.0),
                       Text(
                         L10n.of(context).joinWithCode,
                         style: TextStyle(
                           color: theme.colorScheme.primary,
-                          fontSize: 10.0,
+                          fontSize: 14.0,
                         ),
                       ),
                     ],
@@ -126,7 +126,8 @@ class FindYourPeopleView extends StatelessWidget {
                                       : BorderSide.none,
                                   borderRadius: BorderRadius.circular(100),
                                 ),
-                                contentPadding: EdgeInsets.zero,
+                                contentPadding:
+                                    const EdgeInsets.fromLTRB(0, 0, 20.0, 0),
                                 hintText: L10n.of(context).findYourPeople,
                                 hintStyle: TextStyle(
                                   color: theme.colorScheme.onPrimaryContainer,
@@ -160,7 +161,7 @@ class FindYourPeopleView extends StatelessWidget {
                                   L10n.of(context).joinWithCode,
                                   style: TextStyle(
                                     color: theme.colorScheme.onPrimaryContainer,
-                                    fontSize: 14.0,
+                                    fontSize: 16.0,
                                   ),
                                 ),
                               ],
@@ -182,7 +183,7 @@ class FindYourPeopleView extends StatelessWidget {
                                   L10n.of(context).createYourSpace,
                                   style: TextStyle(
                                     color: theme.colorScheme.onPrimaryContainer,
-                                    fontSize: 14.0,
+                                    fontSize: 16.0,
                                   ),
                                 ),
                               ],

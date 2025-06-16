@@ -202,6 +202,7 @@ extension EventsRoomExtension on Room {
     PangeaMessageTokens? tokensWritten,
     ChoreoRecord? choreo,
     String? messageTag,
+    String? tempEventId,
   }) {
     // if (parseCommands) {
     //   return client.parseAndRunCommand(this, message,
@@ -232,6 +233,9 @@ extension EventsRoomExtension on Room {
     }
     if (messageTag != null) {
       event[ModelKey.messageTags] = messageTag;
+    }
+    if (tempEventId != null) {
+      event[ModelKey.tempEventId] = tempEventId;
     }
 
     if (parseMarkdown) {
@@ -269,15 +273,21 @@ extension EventsRoomExtension on Room {
   Future<void> sendActivityPlan(
     ActivityPlanModel activity, {
     Uint8List? avatar,
-    String? avatarURL,
     String? filename,
   }) async {
     BookmarkedActivitiesRepo.save(activity);
+
+    String? imageURL = activity.imageURL;
+    final eventId = await pangeaSendTextEvent(
+      activity.markdown,
+      messageTag: ModelKey.messageTagActivityPlan,
+    );
+
     Uint8List? bytes = avatar;
-    if (avatarURL != null && bytes == null) {
+    if (imageURL != null && bytes == null) {
       try {
         final resp = await http
-            .get(Uri.parse(avatarURL))
+            .get(Uri.parse(imageURL))
             .timeout(const Duration(seconds: 5));
         bytes = resp.bodyBytes;
       } catch (e, s) {
@@ -285,10 +295,18 @@ extension EventsRoomExtension on Room {
           e: e,
           s: s,
           data: {
-            "avatarURL": avatarURL,
+            "avatarURL": imageURL,
           },
         );
       }
+    }
+
+    if (bytes != null && imageURL == null) {
+      final url = await client.uploadContent(
+        bytes,
+        filename: filename,
+      );
+      imageURL = url.toString();
     }
 
     MatrixFile? file;
@@ -298,19 +316,16 @@ extension EventsRoomExtension on Room {
         name: filename,
       );
     }
-    final eventId = await pangeaSendTextEvent(
-      activity.markdown,
-      messageTag: ModelKey.messageTagActivityPlan,
-    );
 
     if (file != null) {
-      await sendFileEvent(
-        file,
-        shrinkImageMaxDimension: 1600,
-        extraContent: {
-          ModelKey.messageTags: ModelKey.messageTagActivityPlan,
-        },
-      );
+      final content = <String, dynamic>{
+        'msgtype': file.msgType,
+        'body': file.name,
+        'filename': file.name,
+        'url': imageURL,
+        ModelKey.messageTags: ModelKey.messageTagActivityPlan,
+      };
+      await sendEvent(content);
     }
 
     if (canSendDefaultStates) {

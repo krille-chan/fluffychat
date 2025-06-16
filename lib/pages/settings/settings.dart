@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/user/utils/p_logout.dart';
 import 'package:fluffychat/utils/file_selector.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -206,6 +206,36 @@ class SettingsController extends State<Settings> {
     // checkBootstrap();
     // Pangea#
   }
+
+  // #Pangea
+  void setStatus() async {
+    final client = Matrix.of(context).client;
+    final currentPresence = await client.fetchCurrentPresence(client.userID!);
+    final input = await showTextInputDialog(
+      useRootNavigator: false,
+      context: context,
+      title: L10n.of(context).setStatus,
+      message: L10n.of(context).leaveEmptyToClearStatus,
+      okLabel: L10n.of(context).ok,
+      cancelLabel: L10n.of(context).cancel,
+      hintText: L10n.of(context).statusExampleMessage,
+      maxLines: 6,
+      minLines: 1,
+      maxLength: 255,
+      initialText: currentPresence.statusMsg,
+    );
+    if (input == null) return;
+    if (!mounted) return;
+    await showFutureLoadingDialog(
+      context: context,
+      future: () => client.setPresence(
+        client.userID!,
+        PresenceType.online,
+        statusMsg: input,
+      ),
+    );
+  }
+  // Pangea#
 
   @override
   Widget build(BuildContext context) {

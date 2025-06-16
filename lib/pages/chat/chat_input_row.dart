@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:animations/animations.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/other_party_can_receive.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -118,6 +118,7 @@ class ChatInputRow extends StatelessWidget {
                 decoration: const BoxDecoration(),
                 clipBehavior: Clip.hardEdge,
                 child: PopupMenuButton<String>(
+                  useRootNavigator: true,
                   icon: const Icon(Icons.add_circle_outline),
                   iconColor: theme.colorScheme.onPrimaryContainer,
                   onSelected: controller.onAddPopupMenuButtonSelected,
@@ -186,6 +187,7 @@ class ChatInputRow extends StatelessWidget {
                   decoration: const BoxDecoration(),
                   clipBehavior: Clip.hardEdge,
                   child: PopupMenuButton(
+                    useRootNavigator: true,
                     icon: const Icon(Icons.camera_alt_outlined),
                     onSelected: controller.onAddPopupMenuButtonSelected,
                     iconColor: theme.colorScheme.onPrimaryContainer,
@@ -320,7 +322,12 @@ class ChatInputRow extends StatelessWidget {
                       )
                     : FloatingActionButton.small(
                         tooltip: L10n.of(context).send,
-                        onPressed: controller.send,
+                        // #Pangea
+                        // onPressed: controller.send,
+                        onPressed: () => controller.send(
+                          message: controller.sendController.text,
+                        ),
+                        // Pangea#
                         elevation: 0,
                         heroTag: null,
                         shape: RoundedRectangleBorder(
@@ -360,6 +367,7 @@ class _ChatAccountPicker extends StatelessWidget {
       child: FutureBuilder<Profile>(
         future: controller.sendingClient.fetchOwnProfile(),
         builder: (context, snapshot) => PopupMenuButton<String>(
+          useRootNavigator: true,
           onSelected: (mxid) => _popupMenuButtonSelected(mxid, context),
           itemBuilder: (BuildContext context) => clients
               .map(
