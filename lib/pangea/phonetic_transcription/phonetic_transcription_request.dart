@@ -1,33 +1,33 @@
+import 'package:fluffychat/pangea/events/models/pangea_token_text_model.dart';
+import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
+
 class PhoneticTranscriptionRequest {
-  final String l1;
-  final String l2;
-  final String content;
+  final LanguageArc arc;
+  final PangeaTokenText content;
   final bool requiresTokenization;
 
   PhoneticTranscriptionRequest({
-    required this.l1,
-    required this.l2,
+    required this.arc,
     required this.content,
-    this.requiresTokenization = true,
+    this.requiresTokenization = false,
   });
 
   factory PhoneticTranscriptionRequest.fromJson(Map<String, dynamic> json) {
     return PhoneticTranscriptionRequest(
-      l1: json['l1'] as String,
-      l2: json['l2'] as String,
-      content: json['content'] as String,
+      arc: LanguageArc.fromJson(json['arc'] as Map<String, dynamic>),
+      content:
+          PangeaTokenText.fromJson(json['content'] as Map<String, dynamic>),
       requiresTokenization: json['requires_tokenization'] ?? true,
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'l1': l1,
-      'l2': l2,
-      'content': content,
+      'arc': arc.toJson(),
+      'content': content.toJson(),
       'requires_tokenization': requiresTokenization,
     };
   }
 
-  String get storageKey => 'l1:$l1,l2:$l2,content:$content';
+  String get storageKey => '${arc.l1}-${arc.l2}-${content.hashCode}';
 }

@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-
 import 'package:collection/collection.dart';
-
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/analytics_details_popup/analytics_details_popup_content.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_use_model.dart';
@@ -15,6 +12,7 @@ import 'package:fluffychat/pangea/phonetic_transcription/phonetic_transcription_
 import 'package:fluffychat/pangea/toolbar/widgets/practice_activity/word_text_with_audio_button.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/word_zoom/lemma_meaning_widget.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
 
 /// Displays information about selected lemma, and its usage
 class VocabDetailsView extends StatelessWidget {
@@ -53,14 +51,33 @@ class VocabDetailsView extends StatelessWidget {
         : _construct.lemmaCategory.darkColor(context));
 
     return AnalyticsDetailsViewContent(
-      title: WordTextWithAudioButton(
-        text: _construct.lemma,
-        style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-              color: textColor,
+      title: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          WordTextWithAudioButton(
+            text: _construct.lemma,
+            style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                  color: textColor,
+                ),
+            iconSize: _iconSize,
+            uniqueID: "${_construct.lemma}-${_construct.category}",
+            langCode: _userL2!,
+          ),
+          if (MatrixState.pangeaController.languageController.userL2 != null)
+            Padding(
+              padding: const EdgeInsets.only(top: 4.0),
+              child: PhoneticTranscriptionWidget(
+                text: _construct.lemma,
+                textLanguage:
+                    MatrixState.pangeaController.languageController.userL2!,
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: textColor.withAlpha((0.7 * 255).toInt()),
+                      fontSize: 18,
+                    ),
+                iconSize: _iconSize * 0.8,
+              ),
             ),
-        iconSize: _iconSize,
-        uniqueID: "${_construct.lemma}-${_construct.category}",
-        langCode: _userL2!,
+        ],
       ),
       subtitle: Column(
         children: [
