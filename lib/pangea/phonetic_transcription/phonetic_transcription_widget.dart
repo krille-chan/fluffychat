@@ -122,10 +122,12 @@ class _PhoneticTranscriptionWidgetState
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(
-                    "/${transcription.isNotEmpty ? transcription : widget.text}/",
-                    style:
-                        widget.style ?? Theme.of(context).textTheme.bodyMedium,
+                  Flexible(
+                    child: Text(
+                      "/${transcription.isNotEmpty ? transcription : widget.text}/",
+                      style: widget.style ??
+                          Theme.of(context).textTheme.bodyMedium,
+                    ),
                   ),
                   const SizedBox(width: 8),
                   Tooltip(

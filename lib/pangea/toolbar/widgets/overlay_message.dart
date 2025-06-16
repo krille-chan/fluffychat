@@ -10,6 +10,9 @@ import 'package:fluffychat/pages/chat/events/message_content.dart';
 import 'package:fluffychat/pages/chat/events/reply_content.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/events/extensions/pangea_event_extension.dart';
+import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
+import 'package:fluffychat/pangea/learning_settings/utils/p_language_store.dart';
+import 'package:fluffychat/pangea/phonetic_transcription/phonetic_transcription_widget.dart';
 import 'package:fluffychat/pangea/toolbar/enums/reading_assistance_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
@@ -170,14 +173,34 @@ class OverlayMessage extends StatelessWidget {
                     )
                   : overlayController.transcription != null
                       ? SingleChildScrollView(
-                          child: Text(
-                            overlayController.transcription!.transcript.text,
-                            style: AppConfig.messageTextStyle(
-                              event,
-                              textColor,
-                            ).copyWith(
-                              fontStyle: FontStyle.italic,
-                            ),
+                          child: Column(
+                            spacing: 8.0,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                overlayController
+                                    .transcription!.transcript.text,
+                                style: AppConfig.messageTextStyle(
+                                  event,
+                                  textColor,
+                                ).copyWith(
+                                  fontStyle: FontStyle.italic,
+                                ),
+                              ),
+                              PhoneticTranscriptionWidget(
+                                text: overlayController
+                                    .transcription!.transcript.text,
+                                textLanguage: PLanguageStore.byLangCode(
+                                      pangeaMessageEvent!
+                                          .messageDisplayLangCode,
+                                    ) ??
+                                    LanguageModel.unknown,
+                                style: AppConfig.messageTextStyle(
+                                  event,
+                                  textColor,
+                                ),
+                              ),
+                            ],
                           ),
                         )
                       : Row(
