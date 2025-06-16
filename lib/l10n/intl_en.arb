@@ -5016,5 +5016,6 @@
   "directMessage": "Direct Message",
   "newDirectMessage": "New direct message",
   "speakingExercisesTooltip": "Speaking practice",
-  "noChatsFoundHereYet": "No chats found here yet"
+  "noChatsFoundHereYet": "No chats found here yet",
+  "transcriptionFailed": "Failed to transcribe audio"
 }
