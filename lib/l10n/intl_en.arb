@@ -5016,5 +5016,9 @@
   "directMessage": "Direct Message",
   "newDirectMessage": "New direct message",
   "speakingExercisesTooltip": "Speaking practice",
-  "noChatsFoundHereYet": "No chats found here yet"
+  "noChatsFoundHereYet": "No chats found here yet",
+  "endNow": "End now",
+  "setDuration": "Set duration",
+  "activityEnded": "That’s a wrap for this activity! Big thanks to everyone for chatting, learning, and making this space so lively. Language grows with conversation, and every word exchanged brings us closer to confidence and fluency.\n\nKeep practicing, stay curious, and don’t be shy to keep the conversation going!",
+  "duration": "Duration"
 }
