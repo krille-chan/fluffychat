@@ -11,6 +11,8 @@ import 'package:fluffychat/pangea/lemmas/lemma_emoji_row.dart';
 import 'package:fluffychat/pangea/morphs/get_grammar_copy.dart';
 import 'package:fluffychat/pangea/morphs/morph_features_enum.dart';
 import 'package:fluffychat/pangea/morphs/morph_icon.dart';
+import 'package:fluffychat/pangea/phonetic_transcription/phonetic_transcription_widget.dart';
+import 'package:fluffychat/pangea/toolbar/utils/shrinkable_text.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/practice_activity/word_text_with_audio_button.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/word_zoom/lemma_meaning_widget.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -25,6 +27,9 @@ class VocabDetailsView extends StatelessWidget {
   });
 
   ConstructUses get _construct => constructId.constructUses;
+
+  String? get _userL1 =>
+      MatrixState.pangeaController.languageController.userL1?.langCode;
 
   /// Get the language code for the current lemma
   String? get _userL2 =>
@@ -49,14 +54,34 @@ class VocabDetailsView extends StatelessWidget {
         : _construct.lemmaCategory.darkColor(context));
 
     return AnalyticsDetailsViewContent(
-      title: WordTextWithAudioButton(
-        text: _construct.lemma,
-        style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-              color: textColor,
+      title: Column(
+        children: [
+          LayoutBuilder(
+            builder: (context, constraints) {
+              return ShrinkableText(
+                text: _construct.lemma,
+                maxWidth: constraints.maxWidth - 40.0,
+                style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                      color: textColor,
+                    ),
+              );
+            },
+          ),
+          if (MatrixState.pangeaController.languageController.userL2 != null)
+            Padding(
+              padding: const EdgeInsets.only(top: 4.0),
+              child: PhoneticTranscriptionWidget(
+                text: _construct.lemma,
+                textLanguage:
+                    MatrixState.pangeaController.languageController.userL2!,
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: textColor.withAlpha((0.7 * 255).toInt()),
+                      fontSize: 18,
+                    ),
+                iconSize: _iconSize * 0.8,
+              ),
             ),
-        iconSize: _iconSize,
-        uniqueID: "${_construct.lemma}-${_construct.category}",
-        langCode: _userL2!,
+        ],
       ),
       subtitle: Column(
         children: [
