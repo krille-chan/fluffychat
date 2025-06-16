@@ -158,7 +158,9 @@ class _Reaction extends StatelessWidget {
       borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
       child: Container(
         decoration: BoxDecoration(
-          color: color,
+          // #Pangea
+          // color: color,
+          // Pangea#
           borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
         ),
         padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
