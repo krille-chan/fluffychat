@@ -11,6 +11,7 @@ import 'package:fluffychat/pangea/lemmas/lemma_emoji_row.dart';
 import 'package:fluffychat/pangea/morphs/get_grammar_copy.dart';
 import 'package:fluffychat/pangea/morphs/morph_features_enum.dart';
 import 'package:fluffychat/pangea/morphs/morph_icon.dart';
+import 'package:fluffychat/pangea/phonetic_transcription/phonetic_transcription_widget.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/practice_activity/word_text_with_audio_button.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/word_zoom/lemma_meaning_widget.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -25,6 +26,9 @@ class VocabDetailsView extends StatelessWidget {
   });
 
   ConstructUses get _construct => constructId.constructUses;
+
+  String? get _userL1 =>
+      MatrixState.pangeaController.languageController.userL1?.langCode;
 
   /// Get the language code for the current lemma
   String? get _userL2 =>
@@ -60,6 +64,12 @@ class VocabDetailsView extends StatelessWidget {
       ),
       subtitle: Column(
         children: [
+          if (_userL1 != null && _userL2 != null)
+            PhoneticTranscription(
+              text: _construct.lemma,
+              l1: _userL1!,
+              l2: _userL2!,
+            ),
           Row(
             mainAxisSize: MainAxisSize.min,
             spacing: 8.0,
