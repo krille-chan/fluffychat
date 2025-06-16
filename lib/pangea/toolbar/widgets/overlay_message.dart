@@ -160,7 +160,7 @@ class OverlayMessage extends StatelessWidget {
                         ),
                         const SizedBox(width: 8),
                         Text(
-                          L10n.of(context).oopsSomethingWentWrong,
+                          L10n.of(context).transcriptionFailed,
                           style: AppConfig.messageTextStyle(
                             event,
                             textColor,
