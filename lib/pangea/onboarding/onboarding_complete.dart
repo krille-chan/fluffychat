@@ -19,7 +19,10 @@ class OnboardingComplete extends StatelessWidget {
       children: [
         Container(
           decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.onSurface.withAlpha(20),
+            color: Theme.of(context)
+                .colorScheme
+                .surfaceContainerHigh
+                .withAlpha(170),
             borderRadius: BorderRadius.circular(
               10.0,
             ),

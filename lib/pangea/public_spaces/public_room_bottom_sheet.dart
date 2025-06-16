@@ -200,12 +200,14 @@ class PublicRoomBottomSheetState extends State<PublicRoomBottomSheet> {
                   Row(
                     spacing: 16.0,
                     children: [
-                      (chunk?.avatarUrl != null)
+                      (chunk?.avatarUrl != null || chunk?.roomType != 'm.space')
                           ? Avatar(
                               mxContent: chunk?.avatarUrl,
                               name: chunk?.name,
                               size: 160.0,
-                              borderRadius: BorderRadius.circular(24.0),
+                              borderRadius: BorderRadius.circular(
+                                chunk?.roomType != 'm.space' ? 80 : 24.0,
+                              ),
                             )
                           : ClipRRect(
                               borderRadius: BorderRadius.circular(24.0),
@@ -242,7 +244,11 @@ class PublicRoomBottomSheetState extends State<PublicRoomBottomSheet> {
                                 child: SingleChildScrollView(
                                   child: Text(
                                     chunk?.topic ??
-                                        L10n.of(context).noSpaceDescriptionYet,
+                                        (chunk?.roomType != 'm.space'
+                                            ? L10n.of(context)
+                                                .noChatDescriptionYet
+                                            : L10n.of(context)
+                                                .noSpaceDescriptionYet),
                                     softWrap: true,
                                     textAlign: TextAlign.start,
                                     maxLines: null,

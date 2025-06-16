@@ -5017,5 +5017,5 @@
   "newDirectMessage": "New direct message",
   "speakingExercisesTooltip": "Speaking practice",
   "noChatsFoundHereYet": "No chats found here yet",
-  "phoneticTranscriptionError": "Phonetic transcription failed"
+  "transcriptionFailed": "Failed to transcribe audio"
 }
