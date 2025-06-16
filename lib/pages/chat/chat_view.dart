@@ -15,7 +15,6 @@ import 'package:fluffychat/pages/chat/chat_app_bar_title.dart';
 import 'package:fluffychat/pages/chat/chat_event_list.dart';
 import 'package:fluffychat/pages/chat/encryption_button.dart';
 import 'package:fluffychat/pages/chat/pinned_events.dart';
-import 'package:fluffychat/pages/chat/reactions_picker.dart';
 import 'package:fluffychat/pages/chat/reply_display.dart';
 import 'package:fluffychat/utils/account_config.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
@@ -38,12 +37,6 @@ class ChatView extends StatelessWidget {
   List<Widget> _appBarActions(BuildContext context) {
     if (controller.selectMode) {
       return [
-        if (controller.canEditSelectedEvents)
-          IconButton(
-            icon: const Icon(Icons.edit_outlined),
-            tooltip: L10n.of(context).edit,
-            onPressed: controller.editSelectedEventAction,
-          ),
         IconButton(
           icon: const Icon(Icons.copy_outlined),
           tooltip: L10n.of(context).copy,
@@ -353,7 +346,6 @@ class ChatView extends StatelessWidget {
                                     : Column(
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
-                                          ReactionsPicker(controller),
                                           ReplyDisplay(controller),
                                           ChatInputRow(controller),
                                           ChatEmojiPicker(controller),

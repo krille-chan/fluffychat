@@ -192,8 +192,6 @@ class ChatController extends State<ChatPageWithRoom>
     context.go('/rooms');
   }
 
-  EmojiPickerType emojiPickerType = EmojiPickerType.keyboard;
-
   void requestHistory([_]) async {
     Logs().v('Requesting history...');
     await timeline?.requestHistory(historyCount: _loadHistoryCount);
@@ -708,13 +706,11 @@ class ChatController extends State<ChatPageWithRoom>
     } else {
       inputFocus.unfocus();
     }
-    emojiPickerType = EmojiPickerType.keyboard;
     setState(() => showEmojiPicker = !showEmojiPicker);
   }
 
   void _inputFocusListener() {
     if (showEmojiPicker && inputFocus.hasFocus) {
-      emojiPickerType = EmojiPickerType.keyboard;
       setState(() => showEmojiPicker = false);
     }
   }
@@ -895,16 +891,6 @@ class ChatController extends State<ChatPageWithRoom>
     return true;
   }
 
-  bool get canEditSelectedEvents {
-    if (isArchived ||
-        selectedEvents.length != 1 ||
-        !selectedEvents.first.status.isSent) {
-      return false;
-    }
-    return currentRoomBundle
-        .any((cl) => selectedEvents.first.senderId == cl!.userID);
-  }
-
   void forwardEventsAction() async {
     if (selectedEvents.isEmpty) return;
     await showScaffoldDialog(
@@ -998,27 +984,8 @@ class ChatController extends State<ChatPageWithRoom>
   }
 
   void onEmojiSelected(_, Emoji? emoji) {
-    switch (emojiPickerType) {
-      case EmojiPickerType.reaction:
-        senEmojiReaction(emoji);
-        break;
-      case EmojiPickerType.keyboard:
-        typeEmoji(emoji);
-        onInputBarChanged(sendController.text);
-        break;
-    }
-  }
-
-  void senEmojiReaction(Emoji? emoji) {
-    setState(() => showEmojiPicker = false);
-    if (emoji == null) return;
-    // make sure we don't send the same emoji twice
-    if (_allReactionEvents.any(
-      (e) => e.content.tryGetMap('m.relates_to')?['key'] == emoji.emoji,
-    )) {
-      return;
-    }
-    return sendEmojiAction(emoji.emoji);
+    typeEmoji(emoji);
+    onInputBarChanged(sendController.text);
   }
 
   void typeEmoji(Emoji? emoji) {
@@ -1037,38 +1004,12 @@ class ChatController extends State<ChatPageWithRoom>
     );
   }
 
-  late Iterable<Event> _allReactionEvents;
-
   void emojiPickerBackspace() {
-    switch (emojiPickerType) {
-      case EmojiPickerType.reaction:
-        setState(() => showEmojiPicker = false);
-        break;
-      case EmojiPickerType.keyboard:
-        sendController
-          ..text = sendController.text.characters.skipLast(1).toString()
-          ..selection = TextSelection.fromPosition(
-            TextPosition(offset: sendController.text.length),
-          );
-        break;
-    }
-  }
-
-  void pickEmojiReactionAction(Iterable<Event> allReactionEvents) async {
-    _allReactionEvents = allReactionEvents;
-    emojiPickerType = EmojiPickerType.reaction;
-    setState(() => showEmojiPicker = true);
-  }
-
-  void sendEmojiAction(String? emoji) async {
-    final events = List<Event>.from(selectedEvents);
-    setState(() => selectedEvents.clear());
-    for (final event in events) {
-      await room.sendReaction(
-        event.eventId,
-        emoji!,
+    sendController
+      ..text = sendController.text.characters.skipLast(1).toString()
+      ..selection = TextSelection.fromPosition(
+        TextPosition(offset: sendController.text.length),
       );
-    }
   }
 
   void clearSelectedEvents() => setState(() {
@@ -1391,5 +1332,3 @@ class ChatController extends State<ChatPageWithRoom>
     );
   }
 }
-
-enum EmojiPickerType { reaction, keyboard }

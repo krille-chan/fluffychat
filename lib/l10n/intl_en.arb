@@ -3239,5 +3239,6 @@
     "pleaseWaitUntilInvited": "Please wait now, until someone from the room invites you.",
     "commandHint_logout": "Logout your current device",
     "commandHint_logoutall": "Logout all active devices",
-    "displayNavigationRail": "Show navigation rail on mobile"
+    "displayNavigationRail": "Show navigation rail on mobile",
+    "customReaction": "Custom reaction"
 }
