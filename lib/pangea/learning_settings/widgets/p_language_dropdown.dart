@@ -239,15 +239,17 @@ class LanguageDropDownEntry extends StatelessWidget {
         Expanded(
           child: Row(
             children: [
-              Text(
-                languageModel.getDisplayName(context) ?? "",
-                style: const TextStyle().copyWith(
-                  color: enabled
-                      ? Theme.of(context).textTheme.bodyLarge!.color
-                      : Theme.of(context).disabledColor,
-                  fontSize: 14,
+              Flexible(
+                child: Text(
+                  languageModel.getDisplayName(context) ?? "",
+                  style: const TextStyle().copyWith(
+                    color: enabled
+                        ? Theme.of(context).textTheme.bodyLarge!.color
+                        : Theme.of(context).disabledColor,
+                    fontSize: 14,
+                  ),
+                  overflow: TextOverflow.ellipsis,
                 ),
-                overflow: TextOverflow.ellipsis,
               ),
               const SizedBox(width: 10),
               if (isL2List && languageModel.l2Support != L2SupportEnum.full)
