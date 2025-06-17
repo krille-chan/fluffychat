@@ -277,7 +277,7 @@ extension EventsRoomExtension on Room {
   }) async {
     BookmarkedActivitiesRepo.save(activity);
 
-    if (canSendDefaultStates) {
+    if (canChangeStateEvent(PangeaEventTypes.activityPlan)) {
       await client.setRoomStateWithKey(
         id,
         PangeaEventTypes.activityPlan,
