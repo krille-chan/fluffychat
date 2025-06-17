@@ -22,7 +22,7 @@ class CountDown extends StatefulWidget {
 }
 
 class CountDownState extends State<CountDown> {
-  late Timer _timer;
+  Timer? _timer;
 
   @override
   void initState() {
@@ -30,23 +30,11 @@ class CountDownState extends State<CountDown> {
     _timer = Timer.periodic(const Duration(seconds: 1), (_) {
       setState(() {});
     });
-
-    // final now = DateTime.now();
-    // final delay = widget.deadline?.difference(now);
-
-    // if (delay != null && delay > Duration.zero) {
-    //   _endTimer = Timer(delay, () {
-    //     setState(
-    //       () => setState(() {}),
-    //     );
-    //   });
-    // }
   }
 
   @override
   void dispose() {
-    _timer.cancel();
-    // _endTimer.cancel();
+    _timer?.cancel();
     super.dispose();
   }
 
@@ -66,20 +54,18 @@ class CountDownState extends State<CountDown> {
     return parts.join(" ");
   }
 
-  Duration? get remainingTime {
+  Duration? get _remainingTime {
     if (widget.deadline == null) {
       return null;
     }
 
     final now = DateTime.now();
-    return widget.deadline!.isAfter(now)
-        ? widget.deadline!.difference(now)
-        : Duration.zero;
+    return widget.deadline!.difference(now);
   }
 
   @override
   Widget build(BuildContext context) {
-    final remainingTime = this.remainingTime;
+    final remainingTime = _remainingTime;
     final durationString = _formatDuration(remainingTime ?? Duration.zero);
 
     return ConstrainedBox(
@@ -98,7 +84,7 @@ class CountDownState extends State<CountDown> {
           Flexible(
             child: Text(
               remainingTime != null &&
-                      remainingTime > Duration.zero &&
+                      remainingTime >= Duration.zero &&
                       durationString != null
                   ? durationString
                   : L10n.of(context).duration,

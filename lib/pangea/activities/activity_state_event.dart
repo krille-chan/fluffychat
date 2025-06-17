@@ -26,7 +26,7 @@ class ActivityStateEvent extends StatefulWidget {
 }
 
 class ActivityStateEventState extends State<ActivityStateEvent> {
-  late final Timer _timer;
+  Timer? _timer;
 
   @override
   void initState() {
@@ -45,7 +45,7 @@ class ActivityStateEventState extends State<ActivityStateEvent> {
 
   @override
   void dispose() {
-    _timer.cancel();
+    _timer?.cancel();
     super.dispose();
   }
 

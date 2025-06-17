@@ -125,7 +125,14 @@ class Message extends StatelessWidget {
       }
       // #Pangea
       if (event.type == PangeaEventTypes.activityPlan) {
-        return ActivityStateEvent(event: event);
+        final state = event.room.getState(PangeaEventTypes.activityPlan);
+        if (state == null || state is! Event) {
+          return const SizedBox.shrink();
+        }
+
+        return state.originServerTs == event.originServerTs
+            ? ActivityStateEvent(event: event)
+            : const SizedBox();
       }
       // Pangea#
       return StateMessage(event);
