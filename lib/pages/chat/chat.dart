@@ -450,6 +450,7 @@ class ChatController extends State<ChatPageWithRoom>
   Future<void>? _setReadMarkerFuture;
 
   void setReadMarker({String? eventId}) {
+    if (eventId?.isValidMatrixId == false) return;
     if (_setReadMarkerFuture != null) return;
     if (_scrolledUp) return;
     if (scrollUpBannerEventId != null) return;
