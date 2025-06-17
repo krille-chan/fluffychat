@@ -48,15 +48,6 @@ class ChatView extends StatelessWidget {
           tooltip: L10n.of(context).copy,
           onPressed: controller.copyEventsAction,
         ),
-        if (controller.canSaveSelectedEvent)
-          // Use builder context to correctly position the share dialog on iPad
-          Builder(
-            builder: (context) => IconButton(
-              icon: Icon(Icons.adaptive.share),
-              tooltip: L10n.of(context).share,
-              onPressed: () => controller.saveSelectedEvent(context),
-            ),
-          ),
         if (controller.canPinSelectedEvents)
           IconButton(
             icon: const Icon(Icons.push_pin_outlined),
@@ -84,6 +75,19 @@ class ChatView extends StatelessWidget {
               }
             },
             itemBuilder: (context) => [
+              if (controller.canSaveSelectedEvent)
+                PopupMenuItem(
+                  onTap: () => controller.saveSelectedEvent(context),
+                  value: null,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(Icons.download_outlined),
+                      const SizedBox(width: 12),
+                      Text(L10n.of(context).downloadFile),
+                    ],
+                  ),
+                ),
               PopupMenuItem(
                 value: _EventContextAction.info,
                 child: Row(
