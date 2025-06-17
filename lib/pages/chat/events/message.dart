@@ -205,7 +205,7 @@ class Message extends StatelessWidget {
         onSwipe: (_) => onSwipe(),
         child: Container(
           constraints: const BoxConstraints(
-            maxWidth: FluffyThemes.columnWidth * 2.5,
+            maxWidth: FluffyThemes.maxTimelineWidth,
           ),
           padding: EdgeInsets.only(
             left: 8.0,
