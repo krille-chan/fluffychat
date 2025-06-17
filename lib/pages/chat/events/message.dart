@@ -10,6 +10,7 @@ import 'package:swipe_to_action/swipe_to_action.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/events/room_creation_state_event.dart';
+import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/file_description.dart';
 import 'package:fluffychat/utils/string_color.dart';
@@ -705,41 +706,28 @@ class Message extends StatelessWidget {
                                                       .customReaction,
                                                   onPressed: () async {
                                                     final emoji =
-                                                        await showDialog<
+                                                        await showAdaptiveBottomSheet<
                                                             String>(
                                                       context: context,
                                                       builder: (context) =>
-                                                          AlertDialog(
-                                                        title: Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.min,
-                                                          spacing: 4,
-                                                          children: [
-                                                            CloseButton(
-                                                              onPressed: () =>
-                                                                  Navigator.of(
-                                                                context,
-                                                              ).pop(
-                                                                null,
-                                                              ),
+                                                          Scaffold(
+                                                        appBar: AppBar(
+                                                          title: Text(
+                                                            L10n.of(context)
+                                                                .customReaction,
+                                                          ),
+                                                          leading: CloseButton(
+                                                            onPressed: () =>
+                                                                Navigator.of(
+                                                              context,
+                                                            ).pop(
+                                                              null,
                                                             ),
-                                                            Text(
-                                                              L10n.of(context)
-                                                                  .customReaction,
-                                                            ),
-                                                          ],
+                                                          ),
                                                         ),
-                                                        titlePadding:
-                                                            const EdgeInsets
-                                                                .all(8),
-                                                        contentPadding:
-                                                            const EdgeInsets
-                                                                .all(0),
-                                                        clipBehavior:
-                                                            Clip.hardEdge,
-                                                        content: SizedBox(
-                                                          width: 350,
-                                                          height: 350,
+                                                        body: SizedBox(
+                                                          height:
+                                                              double.infinity,
                                                           child: EmojiPicker(
                                                             onEmojiSelected: (
                                                               _,
