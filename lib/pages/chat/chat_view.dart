@@ -174,15 +174,18 @@ class ChatView extends StatelessWidget {
                 actionsIconTheme: IconThemeData(
                   color: controller.selectedEvents.isEmpty
                       ? null
-                      : theme.colorScheme.tertiary,
+                      : theme.colorScheme.onTertiaryContainer,
                 ),
+                backgroundColor: controller.selectedEvents.isEmpty
+                    ? null
+                    : theme.colorScheme.tertiaryContainer,
                 automaticallyImplyLeading: false,
                 leading: controller.selectMode
                     ? IconButton(
                         icon: const Icon(Icons.close),
                         onPressed: controller.clearSelectedEvents,
                         tooltip: L10n.of(context).close,
-                        color: theme.colorScheme.tertiary,
+                        color: theme.colorScheme.onTertiaryContainer,
                       )
                     : FluffyThemes.isColumnMode(context)
                         ? null
@@ -308,7 +311,9 @@ class ChatView extends StatelessWidget {
                               alignment: Alignment.center,
                               child: Material(
                                 clipBehavior: Clip.hardEdge,
-                                color: theme.colorScheme.surfaceContainerHigh,
+                                color: controller.selectedEvents.isNotEmpty
+                                    ? theme.colorScheme.tertiaryContainer
+                                    : theme.colorScheme.surfaceContainerHigh,
                                 borderRadius: const BorderRadius.all(
                                   Radius.circular(24),
                                 ),

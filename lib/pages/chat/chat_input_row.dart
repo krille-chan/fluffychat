@@ -37,6 +37,10 @@ class ChatInputRow extends StatelessWidget {
       );
     }
 
+    final selectedTextButtonStyle = TextButton.styleFrom(
+      foregroundColor: theme.colorScheme.onTertiaryContainer,
+    );
+
     return Row(
       crossAxisAlignment: CrossAxisAlignment.end,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -63,6 +67,7 @@ class ChatInputRow extends StatelessWidget {
                 SizedBox(
                   height: height,
                   child: TextButton(
+                    style: selectedTextButtonStyle,
                     onPressed: controller.forwardEventsAction,
                     child: Row(
                       children: <Widget>[
@@ -80,6 +85,7 @@ class ChatInputRow extends StatelessWidget {
                       ? SizedBox(
                           height: height,
                           child: TextButton(
+                            style: selectedTextButtonStyle,
                             onPressed: controller.replyAction,
                             child: Row(
                               children: <Widget>[
@@ -92,6 +98,7 @@ class ChatInputRow extends StatelessWidget {
                       : SizedBox(
                           height: height,
                           child: TextButton(
+                            style: selectedTextButtonStyle,
                             onPressed: controller.sendAgainAction,
                             child: Row(
                               children: <Widget>[
