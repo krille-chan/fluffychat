@@ -52,7 +52,7 @@ class ChatInputRow extends StatelessWidget {
                   height: height,
                   child: TextButton(
                     style: TextButton.styleFrom(
-                      foregroundColor: theme.colorScheme.error,
+                      foregroundColor: Colors.orange,
                     ),
                     onPressed: controller.deleteErrorEventsAction,
                     child: Row(
