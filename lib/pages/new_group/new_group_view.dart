@@ -4,7 +4,6 @@ import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/new_group/new_group.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_suggestion_carousel.dart';
-import 'package:fluffychat/pangea/spaces/utils/space_code.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 
@@ -38,20 +37,6 @@ class NewGroupView extends StatelessWidget {
               : L10n.of(context).newChat,
           // Pangea#
         ),
-        actions: [
-          if (controller.createGroupType == CreateGroupType.space)
-            TextButton(
-              onPressed: controller.loading
-                  ? null
-                  : () => SpaceCodeUtil.joinWithSpaceCodeDialog(context),
-              child: Text(
-                L10n.of(context).joinByCode,
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.primary,
-                ),
-              ),
-            ),
-        ],
       ),
       body: MaxWidthBody(
         // #Pangea
@@ -141,51 +126,33 @@ class NewGroupView extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             // #Pangea
-            if (controller.createGroupType == CreateGroupType.space)
-              // Pangea#
-              SwitchListTile.adaptive(
-                contentPadding: const EdgeInsets.symmetric(horizontal: 32),
-                secondary: const Icon(Icons.public_outlined),
-                // #Pangea
-                // title: Text(
-                //   controller.createGroupType == CreateGroupType.space
-                //       ? L10n.of(context).spaceIsPublic
-                //       : L10n.of(context).groupIsPublic,
-                // ),
-                title: Text(L10n.of(context).requireCodeToJoin),
-                // value: controller.publicGroup,
-                // onChanged:
-                //     controller.loading ? null : controller.setPublicGroup,
-                value: controller.requiredCodeToJoin,
-                onChanged:
-                    controller.loading ? null : controller.setRequireCode,
-                // Pangea#
-              ),
-            // #Pangea
-            if (controller.createGroupType == CreateGroupType.space)
-              // Pangea#
-              AnimatedSize(
-                duration: FluffyThemes.animationDuration,
-                curve: FluffyThemes.animationCurve,
-                child:
-                    // #Pangea
-                    // controller.publicGroup ?
-                    // Pangea#
-                    SwitchListTile.adaptive(
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 32),
-                  secondary: const Icon(Icons.search_outlined),
-                  // #Pangea
-                  // title: Text(L10n.of(context).groupCanBeFoundViaSearch),
-                  title: Text(L10n.of(context).canFindInSearch),
-                  // Pangea#
-                  value: controller.groupCanBeFound,
-                  onChanged:
-                      controller.loading ? null : controller.setGroupCanBeFound,
-                ),
-                // #Pangea
-                // : const SizedBox.shrink(),
-                // Pangea#
-              ),
+            // SwitchListTile.adaptive(
+            //   contentPadding: const EdgeInsets.symmetric(horizontal: 32),
+            //   secondary: const Icon(Icons.public_outlined),
+            //   title: Text(
+            //     controller.createGroupType == CreateGroupType.space
+            //         ? L10n.of(context).spaceIsPublic
+            //         : L10n.of(context).groupIsPublic,
+            //   ),
+            //   value: controller.publicGroup,
+            //   onChanged: controller.loading ? null : controller.setPublicGroup,
+            // ),
+            // AnimatedSize(
+            //   duration: FluffyThemes.animationDuration,
+            //   curve: FluffyThemes.animationCurve,
+            //   child: controller.publicGroup
+            //       ? SwitchListTile.adaptive(
+            //           contentPadding:
+            //               const EdgeInsets.symmetric(horizontal: 32),
+            //           secondary: const Icon(Icons.search_outlined),
+            //           title: Text(L10n.of(context).groupCanBeFoundViaSearch),
+            //           value: controller.groupCanBeFound,
+            //           onChanged: controller.loading
+            //               ? null
+            //               : controller.setGroupCanBeFound,
+            //         )
+            //       : const SizedBox.shrink(),
+            // ),
             // AnimatedSize(
             //   duration: FluffyThemes.animationDuration,
             //   curve: FluffyThemes.animationCurve,
