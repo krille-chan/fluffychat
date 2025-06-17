@@ -407,7 +407,10 @@ class HtmlMessage extends StatelessWidget {
                 avatar: user.avatarUrl,
                 uri: href,
                 outerContext: context,
-                fontSize: fontSize,
+                // #Pangea
+                // fontSize: fontSize,
+                fontSize: renderer.fontSize(context),
+                // Pangea#
                 color: linkStyle.color,
                 // #Pangea
                 userId: user.id,
@@ -428,7 +431,10 @@ class HtmlMessage extends StatelessWidget {
                 avatar: room?.avatar,
                 uri: href,
                 outerContext: context,
-                fontSize: fontSize,
+                // #Pangea
+                // fontSize: fontSize,
+                fontSize: renderer.fontSize(context),
+                // Pangea#
                 color: linkStyle.color,
               ),
             );
