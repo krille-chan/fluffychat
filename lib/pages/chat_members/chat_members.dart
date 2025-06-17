@@ -105,6 +105,19 @@ class ChatMembersController extends State<ChatMembersPage> {
 
       if (!mounted) return;
 
+      // #Pangea
+      final availableFilters = (participants ?? [])
+          .map(
+            (p) => p.membership,
+          )
+          .toSet();
+
+      if (availableFilters.length == 1 &&
+          membershipFilter != availableFilters.first) {
+        membershipFilter = availableFilters.first;
+      }
+      // Pangea#
+
       setState(() {
         members = participants;
       });
