@@ -24,7 +24,7 @@ abstract class AppConfig {
   static String _privacyUrl =
       'https://github.com/krille-chan/fluffychat/blob/main/PRIVACY.md';
 
-  static const Set<String> defaultReactions = {'👍', '❤️', '😊'};
+  static const Set<String> defaultReactions = {'👍', '❤️', '😂', '😮', '😢'};
 
   static String get privacyUrl => _privacyUrl;
   static const String website = 'https://fluffychat.im';

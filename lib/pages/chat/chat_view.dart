@@ -37,6 +37,12 @@ class ChatView extends StatelessWidget {
   List<Widget> _appBarActions(BuildContext context) {
     if (controller.selectMode) {
       return [
+        if (controller.canEditSelectedEvents)
+          IconButton(
+            icon: const Icon(Icons.edit_outlined),
+            tooltip: L10n.of(context).edit,
+            onPressed: controller.editSelectedEventAction,
+          ),
         IconButton(
           icon: const Icon(Icons.copy_outlined),
           tooltip: L10n.of(context).copy,
