@@ -904,10 +904,17 @@ class ChatController extends State<ChatPageWithRoom>
 
   void forwardEventsAction() async {
     if (selectedEvents.isEmpty) return;
+    final timeline = this.timeline;
+    if (timeline == null) return;
+
+    final forwardEvents = List<Event>.from(selectedEvents)
+        .map((event) => event.getDisplayEvent(timeline))
+        .toList();
+
     await showScaffoldDialog(
       context: context,
       builder: (context) => ShareScaffoldDialog(
-        items: selectedEvents
+        items: forwardEvents
             .map((event) => ContentShareItem(event.content))
             .toList(),
       ),
