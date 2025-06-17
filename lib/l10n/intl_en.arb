@@ -5017,5 +5017,15 @@
   "newDirectMessage": "New direct message",
   "speakingExercisesTooltip": "Speaking practice",
   "noChatsFoundHereYet": "No chats found here yet",
-  "transcriptionFailed": "Failed to transcribe audio"
+  "transcriptionFailed": "Failed to transcribe audio",
+  "aUserIsKnocking": "1 user is requesting to join your space",
+  "usersAreKnocking": "{users} users are requesting to join your space",
+  "@usersAreKnocking": {
+      "type": "int",
+      "placeholders": {
+          "users": {
+              "type": "int"
+          }
+      }
+  }
 }
