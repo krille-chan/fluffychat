@@ -141,22 +141,24 @@ class ActivityDurationPopupState extends State<ActivityDurationPopup> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Row(
-                            spacing: 12.0,
-                            children: [
-                              _DatePickerInput(
-                                type: "d",
-                                controller: _daysController,
-                              ),
-                              _DatePickerInput(
-                                type: "h",
-                                controller: _hoursController,
-                              ),
-                              _DatePickerInput(
-                                type: "m",
-                                controller: _minutesController,
-                              ),
-                            ],
+                          SelectionArea(
+                            child: Row(
+                              spacing: 12.0,
+                              children: [
+                                _DatePickerInput(
+                                  type: "d",
+                                  controller: _daysController,
+                                ),
+                                _DatePickerInput(
+                                  type: "h",
+                                  controller: _hoursController,
+                                ),
+                                _DatePickerInput(
+                                  type: "m",
+                                  controller: _minutesController,
+                                ),
+                              ],
+                            ),
                           ),
                           const Icon(
                             Icons.alarm,
