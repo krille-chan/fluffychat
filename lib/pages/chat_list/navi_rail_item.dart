@@ -89,39 +89,45 @@ class NaviRailItem extends StatelessWidget {
                   // color: isSelected
                   //     ? theme.colorScheme.primaryContainer
                   //     : theme.colorScheme.surfaceContainerHigh,
-                  child: Container(
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      color: backgroundColor ??
-                          (isSelected
-                              ? theme.colorScheme.primaryContainer
-                              : theme.colorScheme.surfaceContainerHigh),
-                      borderRadius: borderRadius,
+                  child: UnreadRoomsBadge(
+                    filter: unreadBadgeFilter ?? (_) => false,
+                    badgePosition: BadgePosition.topEnd(
+                      top: -4,
+                      end: isColumnMode ? 8 : 4,
                     ),
-                    margin: EdgeInsets.symmetric(
-                      horizontal: isColumnMode ? 16.0 : 12.0,
-                      vertical: isColumnMode ? 8.0 : 6.0,
-                    ),
-                    // Pangea#
-                    child: Tooltip(
-                      message: toolTip,
-                      child: InkWell(
+                    child: Container(
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: backgroundColor ??
+                            (isSelected
+                                ? theme.colorScheme.primaryContainer
+                                : theme.colorScheme.surfaceContainerHigh),
                         borderRadius: borderRadius,
-                        onTap: onTap,
-                        child: unreadBadgeFilter == null
-                            ? icon
-                            : UnreadRoomsBadge(
-                                filter: unreadBadgeFilter,
-                                badgePosition: BadgePosition.topEnd(
-                                  // #Pangea
-                                  // top: -12,
-                                  // end: -8,
-                                  top: -20,
-                                  end: -16,
-                                  // Pangea#
-                                ),
-                                child: icon,
-                              ),
+                      ),
+                      margin: EdgeInsets.symmetric(
+                        horizontal: isColumnMode ? 16.0 : 12.0,
+                        vertical: isColumnMode ? 8.0 : 6.0,
+                      ),
+                      // Pangea#
+                      child: Tooltip(
+                        message: toolTip,
+                        child: InkWell(
+                          borderRadius: borderRadius,
+                          onTap: onTap,
+                          // #Pangea
+                          child: icon,
+                          // child: unreadBadgeFilter == null
+                          //     ? icon
+                          //     : UnreadRoomsBadge(
+                          //         filter: unreadBadgeFilter,
+                          //         badgePosition: BadgePosition.topEnd(
+                          //           top: -12,
+                          //           end: -8,
+                          //         ),
+                          //         child: icon,
+                          //       ),
+                          // Pangea#
+                        ),
                       ),
                     ),
                   ),
