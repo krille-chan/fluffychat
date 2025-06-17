@@ -22,6 +22,14 @@ class PangeaTokenText {
     );
   }
 
+  static PangeaTokenText fromString(String content) {
+    return PangeaTokenText(
+      offset: 0,
+      content: content,
+      length: content.length,
+    );
+  }
+
   static const String _offsetKey = "offset";
   static const String _contentKey = "content";
   static const String _lengthKey = "length";

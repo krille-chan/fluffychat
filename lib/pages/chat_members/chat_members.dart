@@ -9,8 +9,18 @@ import 'chat_members_view.dart';
 
 class ChatMembersPage extends StatefulWidget {
   final String roomId;
+  // #Pangea
+  final String? filter;
+  // Pangea#
 
-  const ChatMembersPage({required this.roomId, super.key});
+  // #Pangea
+  // const ChatMembersPage({required this.roomId, super.key});
+  const ChatMembersPage({
+    required this.roomId,
+    this.filter,
+    super.key,
+  });
+  // Pangea#
 
   @override
   State<ChatMembersPage> createState() => ChatMembersController();
@@ -23,6 +33,22 @@ class ChatMembersController extends State<ChatMembersPage> {
   Membership membershipFilter = Membership.join;
 
   final TextEditingController filterController = TextEditingController();
+
+  // #Pangea
+  @override
+  void didUpdateWidget(ChatMembersPage oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // Update the membership filter if the widget's filter changes
+    if (oldWidget.filter != widget.filter) {
+      setState(() {
+        membershipFilter = Membership.values.firstWhere(
+          (membership) => membership.name == widget.filter,
+          orElse: () => Membership.join,
+        );
+      });
+    }
+  }
+  // Pangea#
 
   void setMembershipFilter(Membership membership) {
     membershipFilter = membership;
@@ -79,6 +105,19 @@ class ChatMembersController extends State<ChatMembersPage> {
 
       if (!mounted) return;
 
+      // #Pangea
+      final availableFilters = (participants ?? [])
+          .map(
+            (p) => p.membership,
+          )
+          .toSet();
+
+      if (availableFilters.length == 1 &&
+          membershipFilter != availableFilters.first) {
+        membershipFilter = availableFilters.first;
+      }
+      // Pangea#
+
       setState(() {
         members = participants;
       });
@@ -110,6 +149,15 @@ class ChatMembersController extends State<ChatMembersPage> {
               false,
         )
         .listen(refreshMembers);
+
+    // #Pangea
+    if (widget.filter != null) {
+      membershipFilter = Membership.values.firstWhere(
+        (membership) => membership.name == widget.filter,
+        orElse: () => Membership.join,
+      );
+    }
+    // Pangea#
   }
 
   @override

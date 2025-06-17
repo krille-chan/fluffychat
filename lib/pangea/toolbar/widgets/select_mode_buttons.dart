@@ -37,11 +37,10 @@ enum SelectMode {
       case SelectMode.audio:
         return l10n.playAudio;
       case SelectMode.translate:
+      case SelectMode.speechTranslation:
         return l10n.translationTooltip;
       case SelectMode.practice:
         return l10n.practice;
-      case SelectMode.speechTranslation:
-        return l10n.speechToTextTooltip;
     }
   }
 }

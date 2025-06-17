@@ -28,16 +28,34 @@ class LemmaReactionPickerState extends State<LemmaReactionPicker> {
   @override
   void initState() {
     super.initState();
-    widget.cId.getLemmaInfo().then((info) {
-      loading = false;
-      setState(() => displayEmoji = info.emoji);
-    }).catchError((e, s) {
-      ErrorHandler.logError(data: widget.cId.toJson(), e: e, s: s);
-      setState(() => loading = false);
-    });
+    _refresh();
+  }
+
+  @override
+  void didUpdateWidget(LemmaReactionPicker oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.cId != widget.cId) {
+      _refresh();
+    }
   }
 
   void setEmoji(String emoji) => widget.controller.sendEmojiAction(emoji);
+
+  Future<void> _refresh() async {
+    setState(() {
+      loading = true;
+      displayEmoji = [];
+    });
+
+    try {
+      final info = await widget.cId.getLemmaInfo();
+      displayEmoji = info.emoji;
+    } catch (e, s) {
+      ErrorHandler.logError(data: widget.cId.toJson(), e: e, s: s);
+    } finally {
+      setState(() => loading = false);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

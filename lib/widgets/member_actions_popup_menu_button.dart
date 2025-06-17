@@ -90,20 +90,21 @@ void showMemberActionsPopupMenu({
       ),
       const PopupMenuDivider(),
       // #Pangea
-      PopupMenuItem(
-        value: _MemberActions.chat,
-        child: Row(
-          children: [
-            const Icon(Icons.forum_outlined),
-            const SizedBox(width: 18),
-            Text(
-              dmRoomId == null
-                  ? L10n.of(context).startConversation
-                  : L10n.of(context).sendAMessage,
-            ),
-          ],
+      if (user.room.client.userID != user.id)
+        PopupMenuItem(
+          value: _MemberActions.chat,
+          child: Row(
+            children: [
+              const Icon(Icons.forum_outlined),
+              const SizedBox(width: 18),
+              Text(
+                dmRoomId == null
+                    ? L10n.of(context).startConversation
+                    : L10n.of(context).sendAMessage,
+              ),
+            ],
+          ),
         ),
-      ),
       // Pangea#
       if (onMention != null)
         PopupMenuItem(
