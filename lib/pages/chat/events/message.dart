@@ -274,8 +274,13 @@ class Message extends StatelessWidget {
                                 left: 0,
                                 right: 0,
                                 child: InkWell(
-                                  onTap: () => onSelect(event),
-                                  onLongPress: () => onSelect(event),
+                                  hoverColor: longPressSelect
+                                      ? Colors.transparent
+                                      : null,
+                                  enableFeedback: !selected,
+                                  onTap: longPressSelect
+                                      ? null
+                                      : () => onSelect(event),
                                   borderRadius: BorderRadius.circular(
                                     AppConfig.borderRadius / 2,
                                   ),
@@ -300,6 +305,7 @@ class Message extends StatelessWidget {
                                       width: Avatar.defaultSize,
                                       child: IconButton(
                                         padding: EdgeInsets.zero,
+                                        tooltip: L10n.of(context).select,
                                         icon: Icon(
                                           selected
                                               ? Icons.check_circle
