@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_233",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cBG(){return new A.F7(B.dc("es"))},
+cBH(){return new A.F7(B.dc("es"))},
 F7:function F7(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -11,10 +11,10 @@ A.F7.prototype={
 gkv(){return"falso"},
 gjv(){return"Repite la contrase\xf1a"},
 glS(){return"El archivo no es una imagen."},
-gkb(){return"Set custom permission level"},
-gkc(){return"Please choose a predefined role below or enter a custom permission level between 0 and 100."},
-glo(){return"Ignore user"},
-go4(){return"Normal user"},
+gkb(){return"Agregar nivel personalizado de permiso"},
+gkc(){return"Por favor elige un rol predeterminado o un nivel de permiso personalizado entre 0 a 100."},
+glo(){return"Ignorar usuario"},
+go4(){return"Usuario normal"},
 gb9(d){return"Eliminar"},
 glr(){return"Importar ahora"},
 glp(){return"Importar emojis"},
@@ -34,7 +34,7 @@ gh3(){return"Agregar al espacio"},
 geQ(){return"Administrador"},
 gh4(){return"alias"},
 gh5(){return"Todo"},
-gnJ(){return"Upgrade this room to the given room version"},
+gnJ(){return"Actualizar este chat a la versi\xf3n de chat dada"},
 gkF(){return"Enviar unos ojos saltones"},
 gkE(){return"Enviar un abrazo"},
 gkG(){return"Mandar un abrazo"},
@@ -127,9 +127,9 @@ ghZ(){return"Copiado al portapapeles"},
 ges(d){return"Copiar"},
 gi_(){return"Copiar al portapapeles"},
 i0(d){return"No se pudo descifrar el mensaje: "+d},
-gp8(){return"Check list"},
+gp8(){return"Lista de tareas"},
 dD(d){return""+d+" participantes"},
-pb(d){return""+d+" invited"},
+pb(d){return""+d+" invitado"},
 gi1(d){return"Crear"},
 i2(d){return"\ud83d\udcac"+d+" cre\xf3 el chat"},
 ge3(){return"Crear grupo"},
@@ -620,7 +620,7 @@ gop(){return"Notifica al usuario sobre eventos del componente de Jitsi."},
 goE(){return"Suprimir eventos de ACL del servidor"},
 goF(){return"Suprime notificaciones de eventos de ACL del servidor."},
 oU(d){return"Regla de notificaci\xf3n desconocida '"+d+"'"},
-p7(d,e){return"\ud83c\udf99\ufe0f "+e+" - Voice message from "+d},
+p7(d,e){return"\ud83c\udf99\ufe0f "+e+" - Mensaje de voz de "+d},
 gl_(){return"Si eliminas este ajuste de notificaci\xf3n, esto no se puede deshacer."},
 glI(){return"M\xe1s"},
 gke(){return"Compartir claves con..."},
@@ -632,17 +632,17 @@ goY(){return"Solo dispositivos verificados"},
 goO(){return"(Opcional) mensaje..."},
 go5(){return"No es compatible con este dispositivo"},
 gnU(){return"Ingresar a nuevo chat"},
-gnx(){return"Approve"},
-gp6(){return"You have knocked"},
-goQ(){return"Please wait now, until someone from the room invites you."},
-gp9(){return"Logout your current device"},
-gpa(){return"Logout all active devices"},
-gpc(){return"Show navigation rail on mobile"},
+gnx(){return"Aprobar"},
+gp6(){return"Has sido golpeado"},
+goQ(){return"Por favor espera, hasta que alguien del chat te invite."},
+gp9(){return"Salir del dispositivo actual"},
+gpa(){return"Salir de todos los dispositivos activos"},
+gpc(){return"Mostrar carril de navegaci\xf3n en m\xf3vil"},
 gnR(){return"Custom reaction"},
 B(d,e){return this.gb9(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.F7,C.aF)})()
 B.dQ(b.typeUniverse,JSON.parse('{"F7":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_233",e:"endPart",h:b})})($__dart_deferred_initializers__,"Uiyjl6JNlnkJJjA4fRsx+3ia9/c=");
+a.eventLog.push({p:"main.dart.js_233",e:"endPart",h:b})})($__dart_deferred_initializers__,"SymhRtggt7+ilDorb0Byfr2mq7I=");
 //# sourceMappingURL=main.dart.js_233.part.js.map
