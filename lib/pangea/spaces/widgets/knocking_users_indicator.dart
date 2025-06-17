@@ -7,6 +7,7 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
 
@@ -89,15 +90,16 @@ class KnockingUsersIndicatorState extends State<KnockingUsersIndicator> {
                           Expanded(
                             child: Text(
                               _knockingUsers.length == 1
-                                  ? "1 user is requesting to join your space"
-                                  : "${_knockingUsers.length} users are requesting to join your space",
+                                  ? L10n.of(context).aUserIsKnocking
+                                  : L10n.of(context)
+                                      .usersAreKnocking(_knockingUsers.length),
                               style: Theme.of(context).textTheme.bodyMedium,
                             ),
                           ),
                         ],
                       ),
                       onTap: () => context.push(
-                        "/rooms/${widget.room.id}/details/members",
+                        "/rooms/${widget.room.id}/details/members?filter=knock",
                       ),
                     ),
                   ),

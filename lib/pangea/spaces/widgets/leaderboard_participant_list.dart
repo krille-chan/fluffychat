@@ -48,7 +48,10 @@ class LeaderboardParticipantListState
         return LoadParticipantsUtil(
           space: widget.space,
           builder: (participantsLoader) {
-            final participants = participantsLoader.filteredParticipants("");
+            final participants = participantsLoader
+                .filteredParticipants("")
+                .where((p) => p.membership == Membership.join)
+                .toList();
 
             return AnimatedSize(
               duration: FluffyThemes.animationDuration,
