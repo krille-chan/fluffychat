@@ -199,7 +199,7 @@ class OverlayMessage extends StatelessWidget {
                                   event,
                                   textColor,
                                 ),
-                                lightBackground: ownMessage ? true : null,
+                                iconColor: textColor,
                               ),
                             ],
                           ),
