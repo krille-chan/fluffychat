@@ -46,6 +46,7 @@ import '../../widgets/matrix.dart';
 import 'package:fluffychat/utils/tor_stub.dart'
     if (dart.library.html) 'package:tor_detector_web/tor_detector_web.dart';
 
+
 enum PopupMenuAction {
   settings,
   invite,
@@ -743,20 +744,24 @@ class ChatListController extends State<ChatList>
           value: ChatContextAction.open,
           child: Row(
             mainAxisSize: MainAxisSize.min,
+            spacing: 12.0,
             children: [
               Avatar(
                 mxContent: room.avatar,
-                size: Avatar.defaultSize / 2,
                 name: displayname,
                 // #Pangea
                 userId: room.directChatMatrixID,
                 // Pangea#
               ),
-              const SizedBox(width: 12),
-              Text(
-                displayname,
-                style:
-                    TextStyle(color: Theme.of(context).colorScheme.onSurface),
+              ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 128),
+                child: Text(
+                  displayname,
+                  style:
+                      TextStyle(color: Theme.of(context).colorScheme.onSurface),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
             ],
           ),
