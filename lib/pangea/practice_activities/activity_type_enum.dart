@@ -190,4 +190,20 @@ extension ActivityTypeExtension on ActivityTypeEnum {
         return null; // TODO: Add to L10n
     }
   }
+
+  /// The minimum number of tokens in a message for this activity type to be available.
+  /// Matching activities don't make sense for a single-word message.
+  int get minTokensForMatchActivity {
+    switch (this) {
+      case ActivityTypeEnum.wordMeaning:
+      case ActivityTypeEnum.lemmaId:
+      case ActivityTypeEnum.wordFocusListening:
+        return 2;
+      case ActivityTypeEnum.hiddenWordListening:
+      case ActivityTypeEnum.emoji:
+      case ActivityTypeEnum.morphId:
+      case ActivityTypeEnum.messageMeaning:
+        return 1;
+    }
+  }
 }

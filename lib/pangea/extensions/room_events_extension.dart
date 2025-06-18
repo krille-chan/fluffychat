@@ -277,68 +277,13 @@ extension EventsRoomExtension on Room {
   }) async {
     BookmarkedActivitiesRepo.save(activity);
 
-    String? imageURL = activity.imageURL;
-    final eventId = await pangeaSendTextEvent(
-      activity.markdown,
-      messageTag: ModelKey.messageTagActivityPlan,
-    );
-
-    Uint8List? bytes = avatar;
-    if (imageURL != null && bytes == null) {
-      try {
-        final resp = await http
-            .get(Uri.parse(imageURL))
-            .timeout(const Duration(seconds: 5));
-        bytes = resp.bodyBytes;
-      } catch (e, s) {
-        ErrorHandler.logError(
-          e: e,
-          s: s,
-          data: {
-            "avatarURL": imageURL,
-          },
-        );
-      }
-    }
-
-    if (bytes != null && imageURL == null) {
-      final url = await client.uploadContent(
-        bytes,
-        filename: filename,
-      );
-      imageURL = url.toString();
-    }
-
-    MatrixFile? file;
-    if (filename != null && bytes != null) {
-      file = MatrixFile(
-        bytes: bytes,
-        name: filename,
-      );
-    }
-
-    if (file != null) {
-      final content = <String, dynamic>{
-        'msgtype': file.msgType,
-        'body': file.name,
-        'filename': file.name,
-        'url': imageURL,
-        ModelKey.messageTags: ModelKey.messageTagActivityPlan,
-      };
-      await sendEvent(content);
-    }
-
-    if (canSendDefaultStates) {
+    if (canChangeStateEvent(PangeaEventTypes.activityPlan)) {
       await client.setRoomStateWithKey(
         id,
         PangeaEventTypes.activityPlan,
         "",
         activity.toJson(),
       );
-
-      if (eventId != null) {
-        await setPinnedEvents([eventId]);
-      }
     }
   }
 

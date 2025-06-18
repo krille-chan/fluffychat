@@ -35,6 +35,8 @@ class TtsController {
   static final StreamController<bool> loadingChoreoStream =
       StreamController<bool>.broadcast();
 
+  static final audioPlayer = AudioPlayer();
+
   static bool get _useAlternativeTTS {
     return PlatformInfos.isWindows;
   }
@@ -120,6 +122,7 @@ class TtsController {
       // https://pub.dev/packages/flutter_tts
       final result =
           await (_useAlternativeTTS ? _alternativeTTS.stop() : _tts.stop());
+      audioPlayer.stop();
 
       if (!_useAlternativeTTS && result != 1) {
         ErrorHandler.logError(
@@ -187,6 +190,8 @@ class TtsController {
     VoidCallback? onStop,
   }) async {
     chatController?.stopMediaStream.add(null);
+    MatrixState.pangeaController.matrixState.audioPlayer?.stop();
+
     await _setSpeakingLanguage(langCode);
 
     final enableTTS = MatrixState
@@ -306,7 +311,6 @@ class TtsController {
 
     if (ttsRes == null) return;
 
-    final audioPlayer = AudioPlayer();
     try {
       Logs().i('Speaking from choreo: $text, langCode: $langCode');
       final audioContent = base64Decode(ttsRes.audioContent);
@@ -326,8 +330,6 @@ class TtsController {
           'text': text,
         },
       );
-    } finally {
-      await audioPlayer.dispose();
     }
   }
 

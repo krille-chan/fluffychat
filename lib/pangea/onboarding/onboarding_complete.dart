@@ -41,7 +41,7 @@ class OnboardingComplete extends StatelessWidget {
                   L10n.of(context).getStartedComplete,
                   textAlign: TextAlign.center,
                   style: const TextStyle(
-                    fontSize: 32.0,
+                    fontSize: 14,
                   ),
                 )
               : Column(

@@ -9,6 +9,7 @@ import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
 import 'package:fluffychat/pangea/phonetic_transcription/phonetic_transcription_repo.dart';
 import 'package:fluffychat/pangea/phonetic_transcription/phonetic_transcription_request.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
+import 'package:fluffychat/widgets/hover_builder.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class PhoneticTranscriptionWidget extends StatefulWidget {
@@ -34,51 +35,61 @@ class PhoneticTranscriptionWidget extends StatefulWidget {
 
 class _PhoneticTranscriptionWidgetState
     extends State<PhoneticTranscriptionWidget> {
-  late Future<String?> _transcriptionFuture;
-  bool _hovering = false;
   bool _isPlaying = false;
   bool _isLoading = false;
-  late final StreamSubscription _loadingChoreoSubscription;
+  Object? _error;
+
+  String? _transcription;
 
   @override
   void initState() {
     super.initState();
-    _transcriptionFuture = _fetchTranscription();
-    _loadingChoreoSubscription =
-        TtsController.loadingChoreoStream.stream.listen((val) {
-      if (mounted) setState(() => _isLoading = val);
-    });
+    _fetchTranscription();
   }
 
-  @override
-  void dispose() {
-    TtsController.stop();
-    _loadingChoreoSubscription.cancel();
-    super.dispose();
-  }
+  Future<void> _fetchTranscription() async {
+    try {
+      setState(() {
+        _isLoading = true;
+        _error = null;
+        _transcription = null;
+      });
 
-  Future<String?> _fetchTranscription() async {
-    if (MatrixState.pangeaController.languageController.userL1 == null) {
+      if (MatrixState.pangeaController.languageController.userL1 == null) {
+        ErrorHandler.logError(
+          e: Exception('User L1 is not set'),
+          data: {
+            'text': widget.text,
+            'textLanguageCode': widget.textLanguage.langCode,
+          },
+        );
+        _error = Exception('User L1 is not set');
+        return;
+      }
+      final req = PhoneticTranscriptionRequest(
+        arc: LanguageArc(
+          l1: MatrixState.pangeaController.languageController.userL1!,
+          l2: widget.textLanguage,
+        ),
+        content: PangeaTokenText.fromString(widget.text),
+        // arc can be omitted for default empty map
+      );
+      final res = await PhoneticTranscriptionRepo.get(req);
+      _transcription = res.phoneticTranscriptionResult.phoneticTranscription
+          .first.phoneticL1Transcription.content;
+    } catch (e, s) {
+      _error = e;
       ErrorHandler.logError(
-        e: Exception('User L1 is not set'),
+        e: e,
+        s: s,
         data: {
           'text': widget.text,
           'textLanguageCode': widget.textLanguage.langCode,
         },
       );
-      return widget.text; // Fallback to original text if no L1 is set
+    } finally {
+      if (mounted) setState(() => _isLoading = false);
     }
-    final req = PhoneticTranscriptionRequest(
-      arc: LanguageArc(
-        l1: MatrixState.pangeaController.languageController.userL1!,
-        l2: widget.textLanguage,
-      ),
-      content: PangeaTokenText.fromString(widget.text),
-      // arc can be omitted for default empty map
-    );
-    final res = await PhoneticTranscriptionRepo.get(req);
-    return res.phoneticTranscriptionResult.phoneticTranscription.first
-        .phoneticL1Transcription.content;
   }
 
   Future<void> _handleAudioTap(BuildContext context) async {
@@ -103,65 +114,71 @@ class _PhoneticTranscriptionWidgetState
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<String?>(
-      future: _transcriptionFuture,
-      builder: (context, snapshot) {
-        final transcription = snapshot.data ?? '';
-        return MouseRegion(
-          onEnter: (_) => setState(() => _hovering = true),
-          onExit: (_) => setState(() => _hovering = false),
-          child: GestureDetector(
-            onTap: () => _handleAudioTap(context),
-            child: AnimatedContainer(
-              duration: const Duration(milliseconds: 150),
-              decoration: BoxDecoration(
-                color: _hovering
-                    ? Colors.grey.withAlpha((0.2 * 255).round())
-                    : Colors.transparent,
-                borderRadius: BorderRadius.circular(6),
-              ),
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
+    return HoverBuilder(
+      builder: (context, hovering) {
+        return GestureDetector(
+          onTap: () => _handleAudioTap(context),
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 150),
+            decoration: BoxDecoration(
+              color: hovering
+                  ? Colors.grey.withAlpha((0.2 * 255).round())
+                  : Colors.transparent,
+              borderRadius: BorderRadius.circular(6),
+            ),
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                if (_error != null)
+                  Row(
+                    spacing: 8.0,
+                    children: [
+                      Icon(
+                        Icons.error_outline,
+                        size: widget.iconSize ?? 24,
+                        color: Theme.of(context).colorScheme.error,
+                      ),
+                      Text(
+                        L10n.of(context).failedToFetchTranscription,
+                        style: widget.style,
+                      ),
+                    ],
+                  )
+                else if (_isLoading || _transcription == null)
+                  const SizedBox(
+                    width: 16,
+                    height: 16,
+                    child: CircularProgressIndicator.adaptive(),
+                  )
+                else
                   Flexible(
                     child: Text(
-                      "/${transcription.isNotEmpty ? transcription : widget.text}/",
+                      "/$_transcription/",
                       style: widget.style ??
                           Theme.of(context).textTheme.bodyMedium,
                     ),
                   ),
-                  const SizedBox(width: 8),
+                const SizedBox(width: 8),
+                if (_transcription != null && _error == null)
                   Tooltip(
                     message: _isPlaying
                         ? L10n.of(context).stop
                         : L10n.of(context).playAudio,
-                    child: _isLoading
-                        ? const SizedBox(
-                            width: 16,
-                            height: 16,
-                            child: CircularProgressIndicator(strokeWidth: 3),
-                          )
-                        : Icon(
-                            _isPlaying ? Icons.pause_outlined : Icons.volume_up,
-                            size: widget.iconSize ?? 24,
-                            color: widget.lightBackground ??
-                                    Theme.of(context).brightness ==
-                                        Brightness.light
-                                ? _isPlaying
-                                    ? Theme.of(context)
-                                        .colorScheme
-                                        .onPrimaryFixed
-                                    : Theme.of(context)
-                                        .colorScheme
-                                        .onTertiaryFixed
-                                : _isPlaying
-                                    ? Theme.of(context).colorScheme.primary
-                                    : Theme.of(context).iconTheme.color,
-                          ),
+                    child: Icon(
+                      _isPlaying ? Icons.pause_outlined : Icons.volume_up,
+                      size: widget.iconSize ?? 24,
+                      color: widget.lightBackground ??
+                              Theme.of(context).brightness == Brightness.light
+                          ? _isPlaying
+                              ? Theme.of(context).colorScheme.onPrimaryFixed
+                              : Theme.of(context).colorScheme.onTertiaryFixed
+                          : _isPlaying
+                              ? Theme.of(context).colorScheme.primary
+                              : Theme.of(context).iconTheme.color,
+                    ),
                   ),
-                ],
-              ),
+              ],
             ),
           ),
         );

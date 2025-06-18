@@ -18,6 +18,7 @@ import 'package:fluffychat/pangea/common/widgets/pressable_button.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/events/extensions/pangea_event_extension.dart';
 import 'package:fluffychat/pangea/events/models/representation_content_model.dart';
+import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_audio_card.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -76,7 +77,6 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
 
   SelectMode? _selectedMode;
 
-  final AudioPlayer _audioPlayer = AudioPlayer();
   bool _isLoadingAudio = false;
   PangeaAudioFile? _audioBytes;
   File? _audioFile;
@@ -93,17 +93,26 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
 
   Completer<String>? _transcriptionCompleter;
 
+  AudioPlayer? get _audioPlayer => Matrix.of(context).audioPlayer!;
+
   @override
   void initState() {
     super.initState();
-    _onPlayerStateChanged = _audioPlayer.playerStateStream.listen((state) {
+
+    final matrix = Matrix.of(context);
+    matrix.audioPlayer?.dispose();
+    matrix.audioPlayer = AudioPlayer();
+    matrix.voiceMessageEventId.value =
+        widget.overlayController.pangeaMessageEvent?.eventId;
+
+    _onPlayerStateChanged = _audioPlayer?.playerStateStream.listen((state) {
       if (state.processingState == ProcessingState.completed) {
         _updateMode(null);
       }
       setState(() {});
     });
 
-    _onAudioPositionChanged ??= _audioPlayer.positionStream.listen((state) {
+    _onAudioPositionChanged ??= _audioPlayer?.positionStream.listen((state) {
       if (_audioBytes != null) {
         widget.overlayController.highlightCurrentText(
           state.inMilliseconds,
@@ -119,7 +128,10 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
 
   @override
   void dispose() {
-    _audioPlayer.dispose();
+    _audioPlayer?.dispose();
+    Matrix.of(context).audioPlayer = null;
+    Matrix.of(context).voiceMessageEventId.value = null;
+
     _onPlayerStateChanged?.cancel();
     _onAudioPositionChanged?.cancel();
     super.dispose();
@@ -150,8 +162,8 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
 
     if (mode == null) {
       setState(() {
-        _audioPlayer.stop();
-        _audioPlayer.seek(null);
+        _audioPlayer?.stop();
+        _audioPlayer?.seek(null);
         _selectedMode = null;
       });
       return;
@@ -166,8 +178,8 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
       _playAudio();
       return;
     } else {
-      _audioPlayer.stop();
-      _audioPlayer.seek(null);
+      _audioPlayer?.stop();
+      _audioPlayer?.seek(null);
     }
 
     if (_selectedMode == SelectMode.practice) {
@@ -232,11 +244,12 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
 
   Future<void> _playAudio() async {
     try {
-      if (_audioPlayer.playerState.playing) {
-        await _audioPlayer.pause();
+      if (_audioPlayer != null && _audioPlayer!.playerState.playing) {
+        await _audioPlayer?.pause();
         return;
-      } else if (_audioPlayer.position != Duration.zero) {
-        await _audioPlayer.play();
+      } else if (_audioPlayer?.position != Duration.zero) {
+        TtsController.stop();
+        await _audioPlayer?.play();
         return;
       }
 
@@ -247,16 +260,18 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
       if (_audioBytes == null) return;
 
       if (_audioFile != null) {
-        await _audioPlayer.setFilePath(_audioFile!.path);
+        await _audioPlayer?.setFilePath(_audioFile!.path);
       } else {
-        await _audioPlayer.setAudioSource(
+        await _audioPlayer?.setAudioSource(
           BytesAudioSource(
             _audioBytes!.bytes,
             _audioBytes!.mimeType,
           ),
         );
       }
-      _audioPlayer.play();
+
+      TtsController.stop();
+      _audioPlayer?.play();
     } catch (e, s) {
       setState(() => _audioError = e.toString());
       ErrorHandler.logError(
@@ -426,7 +441,7 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
 
     if (mode == SelectMode.audio) {
       return Icon(
-        _audioPlayer.playerState.playing == true
+        _audioPlayer?.playerState.playing == true
             ? Icons.pause_outlined
             : Icons.volume_up,
         size: 20,
