@@ -744,28 +744,23 @@ class ChatListController extends State<ChatList>
           value: ChatContextAction.open,
           child: Row(
             mainAxisSize: MainAxisSize.min,
+            spacing: 12.0,
             children: [
               Avatar(
                 mxContent: room.avatar,
-                size: Avatar.defaultSize / 2,
                 name: displayname,
                 // #Pangea
                 userId: room.directChatMatrixID,
                 // Pangea#
               ),
-              const SizedBox(width: 12),
-              // #Pangea
-              Flexible(
-                child:
-                    // Pangea#
-                    Text(
+              ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 128),
+                child: Text(
                   displayname,
                   style:
                       TextStyle(color: Theme.of(context).colorScheme.onSurface),
-                  // #Pangea
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  // Pangea#
                 ),
               ),
             ],
