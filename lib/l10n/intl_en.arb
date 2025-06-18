@@ -5031,5 +5031,6 @@
               "type": "int"
           }
       }
-  }
+  },
+  "failedToFetchTranscription": "Failed to fetch transcription"
 }
