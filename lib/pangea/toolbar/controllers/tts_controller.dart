@@ -35,7 +35,7 @@ class TtsController {
   static final StreamController<bool> loadingChoreoStream =
       StreamController<bool>.broadcast();
 
-  static final audioPlayer = AudioPlayer();
+  static AudioPlayer? audioPlayer;
 
   static bool get _useAlternativeTTS {
     return PlatformInfos.isWindows;
@@ -122,7 +122,7 @@ class TtsController {
       // https://pub.dev/packages/flutter_tts
       final result =
           await (_useAlternativeTTS ? _alternativeTTS.stop() : _tts.stop());
-      audioPlayer.stop();
+      audioPlayer?.stop();
 
       if (!_useAlternativeTTS && result != 1) {
         ErrorHandler.logError(
@@ -173,8 +173,6 @@ class TtsController {
       onStart: onStart,
       onStop: onStop,
     );
-
-    onStop?.call();
   }
 
   /// A safer version of speak, that handles the case of
@@ -314,13 +312,15 @@ class TtsController {
     try {
       Logs().i('Speaking from choreo: $text, langCode: $langCode');
       final audioContent = base64Decode(ttsRes.audioContent);
-      await audioPlayer.setAudioSource(
+      audioPlayer?.dispose();
+      audioPlayer = AudioPlayer();
+      await audioPlayer!.setAudioSource(
         BytesAudioSource(
           audioContent,
           ttsRes.mimeType,
         ),
       );
-      await audioPlayer.play();
+      await audioPlayer!.play();
     } catch (e, s) {
       ErrorHandler.logError(
         e: 'Error playing audio',
@@ -330,6 +330,9 @@ class TtsController {
           'text': text,
         },
       );
+    } finally {
+      audioPlayer?.dispose();
+      audioPlayer = null;
     }
   }
 
