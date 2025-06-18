@@ -17,6 +17,7 @@ class PhoneticTranscriptionWidget extends StatefulWidget {
   final LanguageModel textLanguage;
   final TextStyle? style;
   final double? iconSize;
+  final Color? iconColor;
 
   const PhoneticTranscriptionWidget({
     super.key,
@@ -24,6 +25,7 @@ class PhoneticTranscriptionWidget extends StatefulWidget {
     required this.textLanguage,
     this.style,
     this.iconSize,
+    this.iconColor,
   });
 
   @override
@@ -166,9 +168,8 @@ class _PhoneticTranscriptionWidgetState
                     child: Icon(
                       _isPlaying ? Icons.pause_outlined : Icons.volume_up,
                       size: widget.iconSize ?? 24,
-                      color: _isPlaying
-                          ? Theme.of(context).colorScheme.primary
-                          : Theme.of(context).iconTheme.color,
+                      color:
+                          widget.iconColor ?? Theme.of(context).iconTheme.color,
                     ),
                   ),
               ],
