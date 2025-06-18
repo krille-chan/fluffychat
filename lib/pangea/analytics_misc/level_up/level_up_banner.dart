@@ -102,7 +102,6 @@ class LevelUpBannerState extends State<LevelUpBanner>
       widget.level,
       widget.prevLevel,
     );
-    LevelUpManager.instance.printAnalytics();
 
     _slideController = AnimationController(
       vsync: this,

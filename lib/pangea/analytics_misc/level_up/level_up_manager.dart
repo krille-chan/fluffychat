@@ -1,5 +1,4 @@
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
-import 'package:fluffychat/pangea/analytics_misc/level_up/level_up_banner.dart';
 import 'package:fluffychat/pangea/constructs/construct_repo.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
@@ -27,8 +26,6 @@ class LevelUpManager {
   bool shouldAutoPopup = false;
   String? error;
 
-  bool _isShowingLevelUp = false;
-
   int get vocabCount =>
       MatrixState.pangeaController.getAnalytics.constructListModel
           .unlockedLemmas(ConstructTypeEnum.vocab)
@@ -51,15 +48,46 @@ class LevelUpManager {
         .pangeaController.getAnalytics.constructListModel.vocabLemmas;
 
     //for now idk how to get these
-    prevGrammar = nextGrammar < 20 ? 0 : nextGrammar - 20;
+    prevGrammar = nextGrammar < 30 ? 0 : nextGrammar - 30;
 
-    prevVocab = nextVocab < 20 ? 0 : nextVocab - 20;
+    prevVocab = nextVocab < 30 ? 0 : nextVocab - 30;
 
     userL2Code = MatrixState.pangeaController.languageController
         .activeL2Code()
         ?.toUpperCase();
 
-    //fetch construct summary
+    /*for testing, just fetch last level up
+    constructSummary = MatrixState.pangeaController.getAnalytics
+        .getConstructSummaryFromStateEvent();
+    debugPrint(
+      "Last saved construct summary: ${constructSummary?.toJson()}",
+    );
+
+    final client = MatrixState.pangeaController.matrixState.client;
+
+    final Room? analyticsRoom = client.analyticsRoomLocal(
+      MatrixState.pangeaController.languageController.userL2!,
+    );
+
+    // Get all summary events in the timeline
+    final timeline = await analyticsRoom!.getTimeline();
+    final summaryEvents = timeline.events
+        .where(
+          (e) => e.type == PangeaEventTypes.constructSummary,
+        )
+        .map(
+          (e) => ConstructSummary.fromJson(e.content),
+        )
+        .toList();
+    debugPrint("List of previous summaries from timeline: $summaryEvents");
+
+    for (final summary in summaryEvents) {
+      debugPrint("Individual summaries from timeline: ${summary.toJson()}");
+    }
+
+    */
+
+    // fetch construct summary for actual app, not while testing since level up isn't true
     try {
       constructSummary = await MatrixState.pangeaController.getAnalytics
           .generateLevelUpAnalytics(
@@ -69,45 +97,29 @@ class LevelUpManager {
     } catch (e) {
       error = e.toString();
     }
+    // end of that block
+    await Future.delayed(
+      const Duration(seconds: 1),
+      () => LevelUpManager.instance.printAnalytics(),
+    );
+  }
+
+  void printAnalytics() {
+    debugPrint('Level Up Analytics:');
+    debugPrint('Current Level: $level');
+    debugPrint('Previous Level: $prevLevel');
+    debugPrint('Next Grammar: $nextGrammar');
+    debugPrint('Next Vocab: $nextVocab');
+    if (constructSummary != null) {
+      debugPrint('Construct Summary: ${constructSummary!.toJson()}');
+    } else {
+      debugPrint('Construct Summary: Not available');
+    }
   }
 
   void markPopupSeen() {
     hasSeenPopup = true;
     shouldAutoPopup = false;
-  }
-
-  void printAnalytics() {
-    print('Level Up Analytics:');
-    print('Current Level: $level');
-    print('Previous Level: $prevLevel');
-    print('Next Grammar: $nextGrammar');
-    print('Next Vocab: $nextVocab');
-    print("should show popup: $shouldAutoPopup");
-    print("has seen popup: $hasSeenPopup");
-    if (constructSummary != null) {
-      print('Construct Summary: ${constructSummary!.toJson()}');
-    } else {
-      print('Construct Summary: Not available');
-    }
-  }
-
-  Future<void> handleLevelUp(
-    BuildContext context,
-    int level,
-    int prevLevel,
-  ) async {
-    if (_isShowingLevelUp) return;
-    _isShowingLevelUp = true;
-
-    await preloadAnalytics(context, level, prevLevel);
-
-    if (!context.mounted) {
-      _isShowingLevelUp = false;
-      return;
-    }
-
-    await LevelUpUtil.showLevelUpDialog(level, prevLevel, context);
-    _isShowingLevelUp = false;
   }
 
   void reset() {
@@ -121,7 +133,6 @@ class LevelUpManager {
     nextVocab = 0;
     constructSummary = null;
     error = null;
-    _isShowingLevelUp = false;
     // Reset any other state if necessary
   }
 }

@@ -136,6 +136,7 @@ dependencies:
   text_to_speech:
     git: https://github.com/pangeachat/text_to_speech.git
   flutter_tts: ^4.2.0
+  animated_flip_counter: ^0.3.4
   # Pangea#
 
 dev_dependencies:

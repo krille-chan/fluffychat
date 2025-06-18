@@ -1,17 +1,7 @@
 import 'dart:io';
 
-import 'package:flutter/foundation.dart';
-
 import 'package:collection/collection.dart';
 import 'package:desktop_notifications/desktop_notifications.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:hive_flutter/hive_flutter.dart';
-import 'package:matrix/encryption/utils/key_verification.dart';
-import 'package:matrix/matrix.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:universal_html/html.dart' as html;
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/pangea/common/constants/model_keys.dart';
@@ -129,6 +119,7 @@ abstract class ClientManager {
         PangeaEventTypes.userSetLemmaInfo,
         EventTypes.RoomJoinRules,
         PangeaEventTypes.activityPlan,
+        PangeaEventTypes.constructSummary,
         // Pangea#
       },
       logLevel: kReleaseMode ? Level.warning : Level.verbose,
