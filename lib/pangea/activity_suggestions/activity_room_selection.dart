@@ -69,6 +69,13 @@ class ActivityRoomSelectionState extends State<ActivityRoomSelection> {
           return a.name.toLowerCase().compareTo(b.name.toLowerCase());
         });
 
+    final room = widget.controller.room;
+    if (room != null && room.isSpace) {
+      _launchableRooms = _launchableRooms.where((r) {
+        return room.spaceChildren.any((child) => child.roomId == r.id);
+      }).toList();
+    }
+
     _hasBotDM = Matrix.of(context).client.rooms.any((room) {
       if (room.isDirectChat &&
           room.directChatMatrixID == BotName.byEnvironment) {
