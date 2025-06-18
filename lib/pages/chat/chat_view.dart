@@ -191,7 +191,9 @@ class ChatView extends StatelessWidget {
               appbarBottomHeight += ChatAppBarListTile.fixedHeight;
             }
             // #Pangea
-            if (controller.room.activityPlan != null) {
+            if (controller.room.activityPlan != null &&
+                controller.room.activityPlan!.endAt != null &&
+                controller.room.activityPlan!.endAt!.isAfter(DateTime.now())) {
               appbarBottomHeight += ChatAppBarListTile.fixedHeight;
             }
             // Pangea#
