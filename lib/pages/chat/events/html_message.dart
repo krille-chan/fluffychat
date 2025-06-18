@@ -185,6 +185,23 @@ class HtmlMessage extends StatelessWidget {
       result.add(html.substring(lastEnd)); // Remaining text after last tag
     }
 
+    final replyTagIndex = result.indexWhere(
+      (string) => string.contains('<mx-reply>'),
+    );
+    if (replyTagIndex != -1) {
+      final closingReplyTagIndex = result.indexWhere(
+        (string) => string.contains('</mx-reply>'),
+        replyTagIndex,
+      );
+      if (closingReplyTagIndex != -1) {
+        result.replaceRange(
+          replyTagIndex,
+          closingReplyTagIndex + 1,
+          [result.sublist(replyTagIndex, closingReplyTagIndex + 1).join()],
+        );
+      }
+    }
+
     for (final PangeaToken token in tokens ?? []) {
       final String tokenText = token.text.content;
       final substringIndex = result.indexWhere(
