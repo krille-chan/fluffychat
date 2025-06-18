@@ -1,12 +1,15 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:animated_flip_counter/animated_flip_counter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:confetti/confetti.dart';
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/analytics_misc/learning_skills_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/level_up/level_up_banner.dart';
 import 'package:fluffychat/pangea/analytics_misc/level_up/level_up_manager.dart';
+import 'package:fluffychat/pangea/analytics_misc/level_up/rain_confetti.dart';
 import 'package:fluffychat/pangea/analytics_summary/progress_bar/level_bar.dart';
 import 'package:fluffychat/pangea/analytics_summary/progress_bar/progress_bar_details.dart';
 import 'package:fluffychat/pangea/common/widgets/full_width_dialog.dart';
@@ -15,7 +18,6 @@ import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:matrix/matrix_api_lite/generated/model.dart';
 
@@ -43,8 +45,8 @@ class LevelUpPopup extends StatelessWidget {
               : null,
         ),
         body: LevelUpPopupContent(
-          prevLevel: LevelUpManager.instance.prevLevel ?? 0,
-          level: LevelUpManager.instance.level ?? 0,
+          prevLevel: LevelUpManager.instance.prevLevel,
+          level: LevelUpManager.instance.level,
         ),
       ),
     );
@@ -80,12 +82,11 @@ class _LevelUpPopupContentState extends State<LevelUpPopupContent>
   int displayedLevel = -1;
   bool _hasBlastedConfetti = false;
 
-  static final int _startGrammar = LevelUpManager.instance.prevGrammar ?? 0;
-  static final int _startVocab = LevelUpManager.instance.prevVocab ?? 0;
-  static final ConstructSummary? _constructSummary =
-      LevelUpManager.instance.constructSummary;
-  static final String? _error = LevelUpManager.instance.error;
-  static final String language = LevelUpManager.instance.userL2Code ?? "N/A";
+  final int _startGrammar = LevelUpManager.instance.prevGrammar;
+  final int _startVocab = LevelUpManager.instance.prevVocab;
+  late ConstructSummary? _constructSummary;
+  final String? _error = LevelUpManager.instance.error;
+  String language = LevelUpManager.instance.userL2Code ?? "N/A";
 
   static const Duration _animationDuration = Duration(seconds: 5);
 
@@ -96,11 +97,12 @@ class _LevelUpPopupContentState extends State<LevelUpPopupContent>
 
     displayedLevel = widget.prevLevel;
     _confettiController =
-        ConfettiController(duration: const Duration(seconds: 3));
+        ConfettiController(duration: const Duration(seconds: 1));
 
     // Use LevelUpManager stats instead of fetching separately
-    _endGrammar = LevelUpManager.instance.nextGrammar ?? 0;
-    _endVocab = LevelUpManager.instance.nextVocab ?? 0;
+    _endGrammar = LevelUpManager.instance.nextGrammar;
+    _endVocab = LevelUpManager.instance.nextVocab;
+    _constructSummary = LevelUpManager.instance.constructSummary;
 
     final client = Matrix.of(context).client;
     client.fetchOwnProfile().then((profile) {
@@ -124,9 +126,10 @@ class _LevelUpPopupContentState extends State<LevelUpPopupContent>
     });
 
     _controller.addListener(() {
-      if (_controller.value >= 0.4 && !_hasBlastedConfetti) {
-        _confettiController.play();
+      if (_controller.value >= 0.5 && !_hasBlastedConfetti) {
+        //_confettiController.play();
         _hasBlastedConfetti = true;
+        rainConfetti(context);
       }
     });
 
@@ -153,6 +156,7 @@ class _LevelUpPopupContentState extends State<LevelUpPopupContent>
     _controller.dispose();
     _confettiController.dispose();
     LevelUpManager.instance.reset();
+    stopConfetti();
     super.dispose();
   }
 
@@ -217,7 +221,12 @@ class _LevelUpPopupContentState extends State<LevelUpPopupContent>
                     Padding(
                       padding: const EdgeInsets.all(24.0),
                       child: avatarUrl == null
-                          ? const CircularProgressIndicator()
+                          ? MxcImage(
+                              client: Matrix.of(context).client,
+                              fit: BoxFit.cover,
+                              width: 150 * shrinkMultiplier.value,
+                              height: 150 * shrinkMultiplier.value,
+                            )
                           : ClipOval(
                               child: MxcImage(
                                 uri: avatarUrl,
@@ -255,7 +264,7 @@ class _LevelUpPopupContentState extends State<LevelUpPopupContent>
                               totalWidth: constraints.maxWidth *
                                   progressAnimation.value,
                               height: 20,
-                              borderColor: colorScheme.surface,
+                              borderColor: colorScheme.primary,
                             ),
                           );
                         },
@@ -263,11 +272,23 @@ class _LevelUpPopupContentState extends State<LevelUpPopupContent>
                     ),
                     const SizedBox(width: 8),
                     Text(
-                      "⭐ $displayedLevel",
-                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            fontWeight: FontWeight.bold,
-                            color: AppConfig.goldLight,
-                          ),
+                      "⭐",
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: AnimatedFlipCounter(
+                        value: displayedLevel,
+                        textStyle: Theme.of(context)
+                            .textTheme
+                            .headlineMedium
+                            ?.copyWith(
+                              fontWeight: FontWeight.bold,
+                              color: AppConfig.goldLight,
+                            ),
+                        duration: const Duration(milliseconds: 1000),
+                        curve: Curves.easeInOut,
+                      ),
                     ),
                   ],
                 ),
@@ -388,35 +409,16 @@ class _LevelUpPopupContentState extends State<LevelUpPopupContent>
             ],
           ),
         ),
-        // Confetti overlay
-        Align(
-          alignment: Alignment.topCenter,
-          child: ConfettiWidget(
-            confettiController: _confettiController,
-            blastDirectionality: BlastDirectionality
-                .explosive, // don't specify a direction, blast randomly
-            shouldLoop:
-                true, // start again as soon as the animation is finished
-            emissionFrequency: 0.2,
-            numberOfParticles: 15,
-            gravity: 0.1,
-            colors: const [
-              AppConfig.goldLight,
-              AppConfig.gold,
-            ], // manually specify the colors to be used
-            createParticlePath: drawStar, // define a custom shape/path.
-          ),
-        ),
       ],
     );
   }
 
   Widget _buildSkillsTable(BuildContext context) {
     final visibleSkills = LearningSkillsEnum.values
-        .where((skill) => _getSkillXP(skill) > -1)
+        .where((skill) => (_getSkillXP(skill) > -1) && skill.isVisible)
         .toList();
 
-    const itemsPerRow = 3;
+    const itemsPerRow = 4;
     // chunk into rows of up to 3
     final rows = <List<LearningSkillsEnum>>[
       for (var i = 0; i < visibleSkills.length; i += itemsPerRow)
