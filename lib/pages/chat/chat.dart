@@ -1651,6 +1651,13 @@ class ChatController extends State<ChatPageWithRoom>
       showEmojiPicker = false;
     });
   }
+
+  void setSelectedEvent(Event event) {
+    setState(() {
+      selectedEvents.clear();
+      selectedEvents.add(event);
+    });
+  }
   // Pangea#
 
   void clearSingleSelectedEvent() {

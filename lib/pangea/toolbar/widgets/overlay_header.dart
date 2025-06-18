@@ -36,9 +36,10 @@ class OverlayHeaderState extends State<OverlayHeader> {
   Widget build(BuildContext context) {
     final l10n = L10n.of(context);
     final theme = Theme.of(context);
-    final pinned = controller.room.pinnedEventIds.contains(
-      controller.selectedEvents.first.eventId,
-    );
+    final pinned = controller.selectedEvents.length == 1 &&
+        controller.room.pinnedEventIds.contains(
+          controller.selectedEvents.first.eventId,
+        );
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       decoration: BoxDecoration(
