@@ -408,7 +408,7 @@ class HtmlMessage extends StatelessWidget {
                 outerContext: context,
                 // #Pangea
                 // fontSize: fontSize,
-                fontSize: renderer.fontSize(context),
+                fontSize: renderer.fontSize(context) ?? fontSize,
                 // Pangea#
                 color: linkStyle.color,
                 // #Pangea
@@ -432,7 +432,7 @@ class HtmlMessage extends StatelessWidget {
                 outerContext: context,
                 // #Pangea
                 // fontSize: fontSize,
-                fontSize: renderer.fontSize(context),
+                fontSize: renderer.fontSize(context) ?? fontSize,
                 // Pangea#
                 color: linkStyle.color,
               ),
