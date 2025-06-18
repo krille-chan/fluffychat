@@ -109,8 +109,19 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
   @override
   void initState() {
-    initializeTokensAndMode();
     super.initState();
+    initializeTokensAndMode();
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) => widget.chatController.setSelectedEvent(event),
+    );
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) => widget.chatController.clearSelectedEvents(),
+    );
+    super.dispose();
   }
 
   Future<void> initializeTokensAndMode() async {
