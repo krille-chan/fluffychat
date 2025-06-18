@@ -345,7 +345,20 @@ class _InviteContactListTile extends StatelessWidget {
       //     color: theme.colorScheme.secondary,
       //   ),
       // ),
-      subtitle: LevelDisplayName(userId: profile.userId),
+      subtitle: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // https://github.com/pangeachat/client/issues/3047
+          const SizedBox(height: 2.0),
+          Text(
+            profile.userId,
+            style: const TextStyle(
+              fontSize: 12.0,
+            ),
+          ),
+          LevelDisplayName(userId: profile.userId),
+        ],
+      ),
       // Pangea#
       trailing: TextButton.icon(
         onPressed: isMember ? null : onTap,
