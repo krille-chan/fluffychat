@@ -304,7 +304,6 @@ class RoomDetailsButtonRowState extends State<RoomDetailsButtonRow> {
     super.dispose();
   }
 
-  final double _buttonWidth = 125.0;
   final double _buttonHeight = 84.0;
   final double _miniButtonWidth = 50.0;
 
@@ -327,6 +326,7 @@ class RoomDetailsButtonRowState extends State<RoomDetailsButtonRow> {
         onPressed: () => context.go('/rooms/${room.id}/details/permissions'),
         visible: (room.isRoomAdmin && !room.isDirectChat) || room.isSpace,
         enabled: room.isRoomAdmin && !room.isDirectChat,
+        showInMainView: false,
       ),
       ButtonDetails(
         title: l10n.access,
@@ -389,6 +389,7 @@ class RoomDetailsButtonRowState extends State<RoomDetailsButtonRow> {
         icon: const Icon(Icons.download_outlined, size: 30.0),
         onPressed: widget.controller.downloadChatAction,
         visible: room.ownPowerLevel >= 50 && !room.isSpace,
+        showInMainView: false,
       ),
       ButtonDetails(
         title: l10n.botSettings,
@@ -411,6 +412,7 @@ class RoomDetailsButtonRowState extends State<RoomDetailsButtonRow> {
         onPressed: widget.controller.setRoomCapacity,
         visible:
             !room.isSpace && !room.isDirectChat && room.canSendDefaultStates,
+        showInMainView: false,
       ),
       ButtonDetails(
         title: l10n.leave,
@@ -492,23 +494,14 @@ class RoomDetailsButtonRowState extends State<RoomDetailsButtonRow> {
       child: LayoutBuilder(
         builder: (context, constraints) {
           final availableWidth = constraints.maxWidth;
-          final fullButtonCapacity =
-              (availableWidth / _buttonWidth).floor() - 1;
-          final miniButtonCapacity =
-              (availableWidth / _miniButtonWidth).floor() - 1;
+          final fullButtonCapacity = (availableWidth / 120.0).floor() - 1;
 
           final mini = fullButtonCapacity < 4;
-          final capacity = mini ? miniButtonCapacity : fullButtonCapacity;
 
-          List<ButtonDetails> mainViewButtons =
+          final List<ButtonDetails> mainViewButtons =
               buttons.where((button) => button.showInMainView).toList();
           final List<ButtonDetails> otherButtons =
               buttons.where((button) => !button.showInMainView).toList();
-
-          if (capacity < mainViewButtons.length) {
-            otherButtons.addAll(mainViewButtons.skip(capacity));
-            mainViewButtons = mainViewButtons.take(capacity).toList();
-          }
 
           return Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -518,44 +511,46 @@ class RoomDetailsButtonRowState extends State<RoomDetailsButtonRow> {
                   return const SizedBox();
                 }
 
-                return PopupMenuButton(
-                  useRootNavigator: true,
-                  onSelected: (button) => button.onPressed?.call(),
-                  itemBuilder: (context) {
-                    return otherButtons
-                        .map(
-                          (button) => PopupMenuItem(
-                            value: button,
-                            child: Row(
-                              children: [
-                                button.icon,
-                                const SizedBox(width: 8),
-                                Text(button.title),
-                              ],
+                return Expanded(
+                  child: PopupMenuButton(
+                    useRootNavigator: true,
+                    onSelected: (button) => button.onPressed?.call(),
+                    itemBuilder: (context) {
+                      return otherButtons
+                          .map(
+                            (button) => PopupMenuItem(
+                              value: button,
+                              child: Row(
+                                children: [
+                                  button.icon,
+                                  const SizedBox(width: 8),
+                                  Text(button.title),
+                                ],
+                              ),
                             ),
-                          ),
-                        )
-                        .toList();
-                  },
-                  child: RoomDetailsButton(
-                    mini: mini,
-                    buttonDetails: ButtonDetails(
-                      title: L10n.of(context).more,
-                      icon: const Icon(Icons.more_horiz_outlined),
-                      visible: true,
+                          )
+                          .toList();
+                    },
+                    child: RoomDetailsButton(
+                      mini: mini,
+                      buttonDetails: ButtonDetails(
+                        title: L10n.of(context).more,
+                        icon: const Icon(Icons.more_horiz_outlined),
+                        visible: true,
+                      ),
+                      height: mini ? _miniButtonWidth : _buttonHeight,
                     ),
-                    width: mini ? _miniButtonWidth : _buttonWidth,
-                    height: mini ? _miniButtonWidth : _buttonHeight,
                   ),
                 );
               }
 
               final button = buttons[index];
-              return RoomDetailsButton(
-                mini: mini,
-                buttonDetails: button,
-                width: mini ? _miniButtonWidth : _buttonWidth,
-                height: mini ? _miniButtonWidth : _buttonHeight,
+              return Expanded(
+                child: RoomDetailsButton(
+                  mini: mini,
+                  buttonDetails: button,
+                  height: mini ? _miniButtonWidth : _buttonHeight,
+                ),
               );
             }),
           );
@@ -567,14 +562,6 @@ class RoomDetailsButtonRowState extends State<RoomDetailsButtonRow> {
 
 class RoomDetailsButton extends StatelessWidget {
   final bool mini;
-  // final bool visible;
-  // final bool enabled;
-
-  // final String title;
-  // final Widget icon;
-  // final VoidCallback? onPressed;
-
-  final double width;
   final double height;
 
   final ButtonDetails buttonDetails;
@@ -582,14 +569,8 @@ class RoomDetailsButton extends StatelessWidget {
   const RoomDetailsButton({
     super.key,
     required this.buttonDetails,
-    // required this.visible,
-    // required this.title,
-    // required this.icon,
     required this.mini,
-    required this.width,
     required this.height,
-    // this.enabled = true,
-    // this.onPressed,
   });
 
   @override
@@ -613,7 +594,7 @@ class RoomDetailsButton extends StatelessWidget {
                   child: Opacity(
                     opacity: buttonDetails.enabled ? 1.0 : 0.5,
                     child: Container(
-                      width: width,
+                      alignment: Alignment.center,
                       height: height,
                       decoration: BoxDecoration(
                         color: hovered
