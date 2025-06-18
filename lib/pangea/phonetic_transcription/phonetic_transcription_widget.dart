@@ -16,11 +16,13 @@ class PhoneticTranscriptionWidget extends StatefulWidget {
   final LanguageModel textLanguage;
   final TextStyle? style;
   final double? iconSize;
+  final bool? lightBackground;
 
   const PhoneticTranscriptionWidget({
     super.key,
     required this.text,
     required this.textLanguage,
+    this.lightBackground,
     this.style,
     this.iconSize,
   });
@@ -143,9 +145,19 @@ class _PhoneticTranscriptionWidgetState
                         : Icon(
                             _isPlaying ? Icons.pause_outlined : Icons.volume_up,
                             size: widget.iconSize ?? 24,
-                            color: _isPlaying
-                                ? Theme.of(context).colorScheme.primary
-                                : Theme.of(context).iconTheme.color,
+                            color: widget.lightBackground ??
+                                    Theme.of(context).brightness ==
+                                        Brightness.light
+                                ? _isPlaying
+                                    ? Theme.of(context)
+                                        .colorScheme
+                                        .onPrimaryFixed
+                                    : Theme.of(context)
+                                        .colorScheme
+                                        .onTertiaryFixed
+                                : _isPlaying
+                                    ? Theme.of(context).colorScheme.primary
+                                    : Theme.of(context).iconTheme.color,
                           ),
                   ),
                 ],
