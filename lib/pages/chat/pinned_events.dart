@@ -79,10 +79,20 @@ class PinnedEvents extends StatelessWidget {
             iconSize: 18,
             color: theme.colorScheme.onSurfaceVariant,
             icon: const Icon(Icons.push_pin),
-            tooltip: L10n.of(context).unpin,
-            onPressed: controller.room.canSendEvent(EventTypes.RoomPinnedEvents)
-                ? () => controller.unpinEvent(event!.eventId)
-                : null,
+            // #Pangea
+            // tooltip: L10n.of(context).unpin,
+            // onPressed: controller.room.canSendEvent(EventTypes.RoomPinnedEvents)
+            //     ? () => controller.unpinEvent(event!.eventId)
+            //     : null,
+            tooltip:
+                controller.room.canChangeStateEvent(EventTypes.RoomPinnedEvents)
+                    ? L10n.of(context).unpin
+                    : null,
+            onPressed:
+                controller.room.canChangeStateEvent(EventTypes.RoomPinnedEvents)
+                    ? () => controller.unpinEvent(event!.eventId)
+                    : null,
+            // Pangea#
           ),
           onTap: () => _displayPinnedEventsDialog(context),
         );
