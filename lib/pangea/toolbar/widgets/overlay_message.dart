@@ -1,8 +1,3 @@
-import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
-
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
@@ -18,6 +13,9 @@ import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/file_description.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
+import 'package:matrix/matrix.dart';
 
 // @ggurdin be great to explain the need/function of a widget like this
 class OverlayMessage extends StatelessWidget {
@@ -187,20 +185,22 @@ class OverlayMessage extends StatelessWidget {
                                   fontStyle: FontStyle.italic,
                                 ),
                               ),
-                              PhoneticTranscriptionWidget(
-                                text: overlayController
-                                    .transcription!.transcript.text,
-                                textLanguage: PLanguageStore.byLangCode(
-                                      pangeaMessageEvent!
-                                          .messageDisplayLangCode,
-                                    ) ??
-                                    LanguageModel.unknown,
-                                style: AppConfig.messageTextStyle(
-                                  event,
-                                  textColor,
+                              if (MatrixState.pangeaController
+                                  .languageController.showTrancription)
+                                PhoneticTranscriptionWidget(
+                                  text: overlayController
+                                      .transcription!.transcript.text,
+                                  textLanguage: PLanguageStore.byLangCode(
+                                        pangeaMessageEvent!
+                                            .messageDisplayLangCode,
+                                      ) ??
+                                      LanguageModel.unknown,
+                                  style: AppConfig.messageTextStyle(
+                                    event,
+                                    textColor,
+                                  ),
+                                  iconColor: textColor,
                                 ),
-                                iconColor: textColor,
-                              ),
                             ],
                           ),
                         )
