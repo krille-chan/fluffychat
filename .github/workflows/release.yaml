@@ -30,6 +30,7 @@ jobs:
       - run: flutter pub get
       - name: Prepare web
         run: ./scripts/prepare-web.sh
+      - run: rm ./assets/vodozemac/.gitignore
       - name: Build Release Web
         run: flutter build web --dart-define=FLUTTER_WEB_CANVASKIT_URL=canvaskit/ --release --source-maps --base-href "/web/"
       - name: Create archive
