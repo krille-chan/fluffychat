@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -97,9 +98,12 @@ extension LocalNotificationsExtension on MatrixState {
         ],
       );
       notification.action.then((actionStr) {
-        final action = DesktopNotificationActions.values
-            .singleWhere((a) => a.name == actionStr);
-        switch (action) {
+        var action = DesktopNotificationActions.values
+            .singleWhereOrNull((a) => a.name == actionStr);
+        if (action == null && actionStr == "default") {
+          action = DesktopNotificationActions.openChat;
+        }
+        switch (action!) {
           case DesktopNotificationActions.seen:
             event.room.setReadMarker(
               event.eventId,
