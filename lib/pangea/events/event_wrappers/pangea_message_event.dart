@@ -232,13 +232,7 @@ class PangeaMessageEvent {
             null;
       }).toSet();
 
-  SpeechToTextModel? getSpeechToTextLocal(
-    String? l1Code,
-    String? l2Code,
-  ) {
-    if (l1Code == null || l2Code == null) {
-      return null;
-    }
+  SpeechToTextModel? getSpeechToTextLocal() {
     return representations
         .firstWhereOrNull(
           (element) => element.content.speechToText != null,

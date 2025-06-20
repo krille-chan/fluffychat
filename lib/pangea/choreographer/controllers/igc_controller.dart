@@ -256,14 +256,7 @@ class IgcController {
               timeline: choreographer.chatController.timeline!,
               ownMessage: event.senderId ==
                   choreographer.pangeaController.matrixState.client.userID,
-            )
-              .getSpeechToTextLocal(
-                choreographer.l1LangCode,
-                choreographer.l2LangCode,
-              )
-              ?.transcript
-              .text
-              .trim(); // trim whitespace
+            ).getSpeechToTextLocal()?.transcript.text.trim(); // trim whitespace
       if (content == null) continue;
       messages.add(
         PreviousMessage(
