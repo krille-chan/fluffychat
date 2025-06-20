@@ -801,7 +801,13 @@ class ChatListController extends State<ChatList>
     await client.accountDataLoading;
     await client.userDeviceKeysLoading;
     if (client.prevBatch == null) {
-      await client.onSync.stream.first;
+      await client.onSyncStatus.stream
+          .firstWhere((status) => status.status == SyncStatus.finished);
+
+      if (!mounted) return;
+      setState(() {
+        waitForFirstSync = true;
+      });
 
       // Display first login bootstrap if enabled
       if (client.encryption?.keyManager.enabled == true) {
