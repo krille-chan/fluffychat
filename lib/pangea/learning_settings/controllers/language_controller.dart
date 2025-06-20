@@ -112,4 +112,14 @@ class LanguageController {
     // final model = activeL2 != null ? PangeaLanguage.byLangCode(activeL2) : null;
     // return model;
   }
+
+  bool get showTrancription =>
+      (_pangeaController.languageController.userL1 != null &&
+          _pangeaController.languageController.userL2 != null &&
+          _pangeaController.languageController.userL1?.script !=
+              _pangeaController.languageController.userL2?.script) ||
+      (_pangeaController.languageController.userL1?.script !=
+              LanguageKeys.unknownLanguage ||
+          _pangeaController.languageController.userL2?.script ==
+              LanguageKeys.unknownLanguage);
 }

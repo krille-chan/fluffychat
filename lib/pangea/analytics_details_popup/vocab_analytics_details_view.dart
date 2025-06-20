@@ -67,7 +67,7 @@ class VocabDetailsView extends StatelessWidget {
               );
             },
           ),
-          if (MatrixState.pangeaController.languageController.userL2 != null)
+          if (MatrixState.pangeaController.languageController.showTrancription)
             Padding(
               padding: const EdgeInsets.only(top: 4.0),
               child: PhoneticTranscriptionWidget(

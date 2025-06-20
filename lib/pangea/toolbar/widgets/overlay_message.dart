@@ -187,20 +187,22 @@ class OverlayMessage extends StatelessWidget {
                                   fontStyle: FontStyle.italic,
                                 ),
                               ),
-                              PhoneticTranscriptionWidget(
-                                text: overlayController
-                                    .transcription!.transcript.text,
-                                textLanguage: PLanguageStore.byLangCode(
-                                      pangeaMessageEvent!
-                                          .messageDisplayLangCode,
-                                    ) ??
-                                    LanguageModel.unknown,
-                                style: AppConfig.messageTextStyle(
-                                  event,
-                                  textColor,
+                              if (MatrixState.pangeaController
+                                  .languageController.showTrancription)
+                                PhoneticTranscriptionWidget(
+                                  text: overlayController
+                                      .transcription!.transcript.text,
+                                  textLanguage: PLanguageStore.byLangCode(
+                                        pangeaMessageEvent!
+                                            .messageDisplayLangCode,
+                                      ) ??
+                                      LanguageModel.unknown,
+                                  style: AppConfig.messageTextStyle(
+                                    event,
+                                    textColor,
+                                  ),
+                                  iconColor: textColor,
                                 ),
-                                iconColor: textColor,
-                              ),
                             ],
                           ),
                         )

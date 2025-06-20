@@ -7,11 +7,13 @@ import 'package:fluffychat/pangea/learning_settings/enums/l2_support_enum.dart';
 class LanguageModel {
   final String langCode;
   final String displayName;
+  final String script;
   final L2SupportEnum l2Support;
 
   LanguageModel({
     required this.langCode,
     required this.displayName,
+    this.script = LanguageKeys.unknownLanguage,
     this.l2Support = L2SupportEnum.na,
   });
 
@@ -28,12 +30,14 @@ class LanguageModel {
       l2Support: json['l2_support'] != null
           ? L2SupportEnum.na.fromStorageString(json['l2_support'])
           : L2SupportEnum.na,
+      script: json['script'] ?? LanguageKeys.unknownLanguage,
     );
   }
 
   toJson() => {
         'language_code': langCode,
         'language_name': displayName,
+        'script': script,
         'l2_support': l2Support.storageString,
       };
 
