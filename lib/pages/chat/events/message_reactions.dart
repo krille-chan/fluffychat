@@ -5,6 +5,7 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -158,12 +159,17 @@ class _Reaction extends StatelessWidget {
       borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
       child: Container(
         decoration: BoxDecoration(
-          // #Pangea
-          // color: color,
-          // Pangea#
+          color: color,
           borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
         ),
-        padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+        // #Pangea
+        // issue: https://github.com/pangeachat/client/issues/3100
+        // fix: https://github.com/flutter/flutter/issues/119623#issuecomment-2476719745
+        padding: PlatformInfos.isIOS
+            ? const EdgeInsets.fromLTRB(5.5, 1, 3, 2.5)
+            : const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+        // padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+        // Pangea#
         child: content,
       ),
     );
