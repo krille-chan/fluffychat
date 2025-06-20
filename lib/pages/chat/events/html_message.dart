@@ -326,7 +326,7 @@ class HtmlMessage extends StatelessWidget {
 
         final tokenWidth = renderer.tokenTextWidthForContainer(
           context,
-          node.innerHtml,
+          node.text,
         );
 
         return WidgetSpan(
@@ -380,7 +380,7 @@ class HtmlMessage extends StatelessWidget {
                       text: TextSpan(
                         children: [
                           LinkifySpan(
-                            text: node.innerHtml,
+                            text: node.text,
                             style: renderer.style(
                               context,
                               color: renderer.backgroundColor(
