@@ -1,11 +1,11 @@
 import 'dart:io';
 
 import 'package:collection/collection.dart';
+import 'package:fluffychat/widgets/fluffy_chat_app.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:desktop_notifications/desktop_notifications.dart';
-import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 import 'package:universal_html/html.dart' as html;
 
@@ -112,7 +112,7 @@ extension LocalNotificationsExtension on MatrixState {
             );
             break;
           case DesktopNotificationActions.openChat:
-            context.go('/rooms/${event.room.id}');
+            FluffyChatApp.router.go('/rooms/${event.room.id}');
             break;
         }
       });
