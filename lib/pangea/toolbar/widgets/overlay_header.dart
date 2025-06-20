@@ -36,6 +36,10 @@ class OverlayHeaderState extends State<OverlayHeader> {
   Widget build(BuildContext context) {
     final l10n = L10n.of(context);
     final theme = Theme.of(context);
+    final pinned = controller.selectedEvents.length == 1 &&
+        controller.room.pinnedEventIds.contains(
+          controller.selectedEvents.first.eventId,
+        );
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       decoration: BoxDecoration(
@@ -102,9 +106,11 @@ class OverlayHeaderState extends State<OverlayHeader> {
                           ),
                         if (controller.canPinSelectedEvents)
                           IconButton(
-                            icon: const Icon(Icons.push_pin_outlined),
+                            icon: pinned
+                                ? const Icon(Icons.push_pin)
+                                : const Icon(Icons.push_pin_outlined),
                             onPressed: controller.pinEvent,
-                            tooltip: l10n.pinMessage,
+                            tooltip: pinned ? l10n.unpin : l10n.pinMessage,
                             color: theme.colorScheme.primary,
                           ),
                         if (controller.canEditSelectedEvents &&

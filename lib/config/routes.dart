@@ -653,6 +653,9 @@ abstract class AppRoutes {
                         state,
                         ChatMembersPage(
                           roomId: state.pathParameters['roomid']!,
+                          // #Pangea
+                          filter: state.uri.queryParameters['filter'],
+                          // Pangea#
                         ),
                       ),
                       redirect: loggedOutRedirect,

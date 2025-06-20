@@ -185,6 +185,23 @@ class HtmlMessage extends StatelessWidget {
       result.add(html.substring(lastEnd)); // Remaining text after last tag
     }
 
+    final replyTagIndex = result.indexWhere(
+      (string) => string.contains('<mx-reply>'),
+    );
+    if (replyTagIndex != -1) {
+      final closingReplyTagIndex = result.indexWhere(
+        (string) => string.contains('</mx-reply>'),
+        replyTagIndex,
+      );
+      if (closingReplyTagIndex != -1) {
+        result.replaceRange(
+          replyTagIndex,
+          closingReplyTagIndex + 1,
+          [result.sublist(replyTagIndex, closingReplyTagIndex + 1).join()],
+        );
+      }
+    }
+
     for (final PangeaToken token in tokens ?? []) {
       final String tokenText = token.text.content;
       final substringIndex = result.indexWhere(
@@ -309,11 +326,10 @@ class HtmlMessage extends StatelessWidget {
 
         final tokenWidth = renderer.tokenTextWidthForContainer(
           context,
-          node.innerHtml,
+          node.text,
         );
 
         return WidgetSpan(
-          alignment: PlaceholderAlignment.middle,
           child: CompositedTransformTarget(
             link: token != null && renderer.assignTokenKey
                 ? MatrixState.pAnyState
@@ -364,7 +380,7 @@ class HtmlMessage extends StatelessWidget {
                       text: TextSpan(
                         children: [
                           LinkifySpan(
-                            text: node.innerHtml,
+                            text: node.text,
                             style: renderer.style(
                               context,
                               color: renderer.backgroundColor(
@@ -407,7 +423,10 @@ class HtmlMessage extends StatelessWidget {
                 avatar: user.avatarUrl,
                 uri: href,
                 outerContext: context,
-                fontSize: fontSize,
+                // #Pangea
+                // fontSize: fontSize,
+                fontSize: renderer.fontSize(context) ?? fontSize,
+                // Pangea#
                 color: linkStyle.color,
                 // #Pangea
                 userId: user.id,
@@ -428,7 +447,10 @@ class HtmlMessage extends StatelessWidget {
                 avatar: room?.avatar,
                 uri: href,
                 outerContext: context,
-                fontSize: fontSize,
+                // #Pangea
+                // fontSize: fontSize,
+                fontSize: renderer.fontSize(context) ?? fontSize,
+                // Pangea#
                 color: linkStyle.color,
               ),
             );

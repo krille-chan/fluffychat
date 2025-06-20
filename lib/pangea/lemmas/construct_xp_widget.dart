@@ -91,7 +91,7 @@ class ConstructXpWidgetState extends State<ConstructXpWidget>
   Stream<AnalyticsStreamUpdate> get stream =>
       MatrixState.pangeaController.getAnalytics.analyticsStream.stream;
 
-  Widget get svg => constructLemmaCategory?.icon() ?? const SizedBox();
+  Widget? get svg => constructLemmaCategory?.icon();
 
   @override
   void dispose() {
@@ -106,9 +106,10 @@ class ConstructXpWidgetState extends State<ConstructXpWidget>
       width: widget.size,
       height: widget.size,
       child: GestureDetector(
-        onTap: widget.onTap,
+        onTap: svg != null ? widget.onTap : null,
         child: MouseRegion(
-          cursor: SystemMouseCursors.click,
+          cursor:
+              svg != null ? SystemMouseCursors.click : SystemMouseCursors.basic,
           child: Stack(
             alignment: Alignment.center,
             children: [

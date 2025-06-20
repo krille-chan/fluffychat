@@ -155,6 +155,11 @@ class PracticeSelection {
       return [];
     }
 
+    if (tokens.length < activityType.minTokensForMatchActivity) {
+      // if we only have one token, we don't need to do an emoji activity
+      return [];
+    }
+
     return [
       PracticeTarget(
         activityType: activityType,

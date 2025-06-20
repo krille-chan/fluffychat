@@ -38,6 +38,8 @@ class NewGroupController extends State<NewGroup> {
   TextEditingController nameController = TextEditingController();
 
   // #Pangea
+  // bool publicGroup = false;
+  // bool groupCanBeFound = false;
   ActivityPlanModel? selectedActivity;
   Uint8List? selectedActivityImage;
   String? selectedActivityImageFilename;
@@ -45,12 +47,8 @@ class NewGroupController extends State<NewGroup> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final FocusNode focusNode = FocusNode();
 
-  bool requiredCodeToJoin = false;
-  // bool publicGroup = false;
-
   bool get canSubmit => nameController.text.trim().isNotEmpty;
   // Pangea#
-  bool groupCanBeFound = false;
 
   Uint8List? avatar;
 
@@ -71,7 +69,6 @@ class NewGroupController extends State<NewGroup> {
   // #Pangea
   // void setPublicGroup(bool b) =>
   //     setState(() => publicGroup = groupCanBeFound = b);
-  void setRequireCode(bool b) => setState(() => requiredCodeToJoin = b);
 
   void setSelectedActivity(
     ActivityPlanModel? activity,
@@ -103,7 +100,9 @@ class NewGroupController extends State<NewGroup> {
   }
   // Pangea#
 
-  void setGroupCanBeFound(bool b) => setState(() => groupCanBeFound = b);
+  // #Pangea
+  // void setGroupCanBeFound(bool b) => setState(() => groupCanBeFound = b);
+  // Pangea#
 
   void selectPhoto() async {
     final photo = await selectFiles(
@@ -230,10 +229,8 @@ class NewGroupController extends State<NewGroup> {
           name: nameController.text,
           introChatName: L10n.of(context).introductions,
           announcementsChatName: L10n.of(context).announcements,
-          visibility:
-              groupCanBeFound ? sdk.Visibility.public : sdk.Visibility.private,
-          joinRules:
-              requiredCodeToJoin ? sdk.JoinRules.knock : sdk.JoinRules.public,
+          visibility: sdk.Visibility.private,
+          joinRules: sdk.JoinRules.knock,
           avatar: avatar,
           avatarUrl: avatarUrl,
         );

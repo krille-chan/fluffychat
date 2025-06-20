@@ -27,7 +27,7 @@ class TokenRenderingUtil {
     return readingAssistanceMode == ReadingAssistanceMode.transitionMode;
   }
 
-  double? _fontSize(BuildContext context) => showCenterStyling
+  double? fontSize(BuildContext context) => showCenterStyling
       ? overlayController != null && overlayController!.maxWidth > 600
           ? Theme.of(context).textTheme.titleLarge?.fontSize
           : Theme.of(context).textTheme.bodyLarge?.fontSize
@@ -38,14 +38,14 @@ class TokenRenderingUtil {
     Color? color,
   }) =>
       existingStyle.copyWith(
-        fontSize: _fontSize(context),
+        fontSize: fontSize(context),
         decoration: TextDecoration.underline,
         decorationThickness: 4,
         decorationColor: color ?? Colors.white.withAlpha(0),
       );
 
   double tokenTextWidthForContainer(BuildContext context, String text) {
-    final tokenSizeKey = "$text-${_fontSize(context)}";
+    final tokenSizeKey = "$text-${fontSize(context)}";
     if (_tokensWidthCache.containsKey(tokenSizeKey)) {
       return _tokensWidthCache[tokenSizeKey]!;
     }

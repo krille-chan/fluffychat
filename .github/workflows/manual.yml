@@ -78,12 +78,3 @@ jobs:
           bundle update fastlane
           bundle exec fastlane deploy_internal_test
           cd ..
-
-  deploy_ios_testflight: # stashed on old.yml
-    environment: 
-      name: ${{ inputs.environment }}
-    env:
-      WEB_APP_ENV: ${{ vars.WEB_APP_ENV }}
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4

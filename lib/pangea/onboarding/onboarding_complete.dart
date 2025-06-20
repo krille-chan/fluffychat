@@ -19,7 +19,10 @@ class OnboardingComplete extends StatelessWidget {
       children: [
         Container(
           decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.onSurface.withAlpha(20),
+            color: Theme.of(context)
+                .colorScheme
+                .surfaceContainerHigh
+                .withAlpha(170),
             borderRadius: BorderRadius.circular(
               10.0,
             ),
@@ -38,7 +41,7 @@ class OnboardingComplete extends StatelessWidget {
                   L10n.of(context).getStartedComplete,
                   textAlign: TextAlign.center,
                   style: const TextStyle(
-                    fontSize: 32.0,
+                    fontSize: 14,
                   ),
                 )
               : Column(

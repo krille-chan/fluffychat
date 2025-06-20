@@ -11,6 +11,8 @@ class ActivityPlanModel {
   final String instructions;
   final List<Vocab> vocab;
   final String? imageURL;
+  final DateTime? endAt;
+  final Duration? duration;
 
   ActivityPlanModel({
     required this.req,
@@ -19,31 +21,70 @@ class ActivityPlanModel {
     required this.instructions,
     required this.vocab,
     this.imageURL,
+    this.endAt,
+    this.duration,
   }) : bookmarkId =
             "${title.hashCode ^ learningObjective.hashCode ^ instructions.hashCode ^ imageURL.hashCode ^ vocab.map((v) => v.hashCode).reduce((a, b) => a ^ b)}";
 
+  ActivityPlanModel copyWith({
+    String? title,
+    String? learningObjective,
+    String? instructions,
+    List<Vocab>? vocab,
+    String? imageURL,
+    DateTime? endAt,
+    Duration? duration,
+  }) {
+    return ActivityPlanModel(
+      req: req,
+      title: title ?? this.title,
+      learningObjective: learningObjective ?? this.learningObjective,
+      instructions: instructions ?? this.instructions,
+      vocab: vocab ?? this.vocab,
+      imageURL: imageURL ?? this.imageURL,
+      endAt: endAt ?? this.endAt,
+      duration: duration ?? this.duration,
+    );
+  }
+
   factory ActivityPlanModel.fromJson(Map<String, dynamic> json) {
     return ActivityPlanModel(
+      imageURL: json[ModelKey.activityPlanImageURL],
+      instructions: json[ModelKey.activityPlanInstructions],
       req: ActivityPlanRequest.fromJson(json[ModelKey.activityPlanRequest]),
       title: json[ModelKey.activityPlanTitle],
       learningObjective: json[ModelKey.activityPlanLearningObjective],
-      instructions: json[ModelKey.activityPlanInstructions],
       vocab: List<Vocab>.from(
         json[ModelKey.activityPlanVocab].map((vocab) => Vocab.fromJson(vocab)),
       ),
-      imageURL: json[ModelKey.activityPlanImageURL],
+      endAt: json[ModelKey.activityPlanEndAt] != null
+          ? DateTime.parse(json[ModelKey.activityPlanEndAt])
+          : null,
+      duration: json[ModelKey.activityPlanDuration] != null
+          ? Duration(
+              days: json[ModelKey.activityPlanDuration]['days'] ?? 0,
+              hours: json[ModelKey.activityPlanDuration]['hours'] ?? 0,
+              minutes: json[ModelKey.activityPlanDuration]['minutes'] ?? 0,
+            )
+          : null,
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
+      ModelKey.activityPlanBookmarkId: bookmarkId,
+      ModelKey.activityPlanImageURL: imageURL,
+      ModelKey.activityPlanInstructions: instructions,
       ModelKey.activityPlanRequest: req.toJson(),
       ModelKey.activityPlanTitle: title,
       ModelKey.activityPlanLearningObjective: learningObjective,
-      ModelKey.activityPlanInstructions: instructions,
       ModelKey.activityPlanVocab: vocab.map((vocab) => vocab.toJson()).toList(),
-      ModelKey.activityPlanImageURL: imageURL,
-      ModelKey.activityPlanBookmarkId: bookmarkId,
+      ModelKey.activityPlanEndAt: endAt?.toIso8601String(),
+      ModelKey.activityPlanDuration: {
+        'days': duration?.inDays ?? 0,
+        'hours': duration?.inHours.remainder(24) ?? 0,
+        'minutes': duration?.inMinutes.remainder(60) ?? 0,
+      },
     };
   }
 

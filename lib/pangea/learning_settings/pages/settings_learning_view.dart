@@ -192,13 +192,15 @@ class SettingsLearningView extends StatelessWidget {
                                                       .colorScheme
                                                       .error,
                                                 ),
-                                                Text(
-                                                  L10n.of(context)
-                                                      .noIdenticalLanguages,
-                                                  style: TextStyle(
-                                                    color: Theme.of(context)
-                                                        .colorScheme
-                                                        .error,
+                                                Flexible(
+                                                  child: Text(
+                                                    L10n.of(context)
+                                                        .noIdenticalLanguages,
+                                                    style: TextStyle(
+                                                      color: Theme.of(context)
+                                                          .colorScheme
+                                                          .error,
+                                                    ),
                                                   ),
                                                 ),
                                               ],
