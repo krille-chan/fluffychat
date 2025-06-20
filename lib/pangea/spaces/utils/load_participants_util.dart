@@ -89,6 +89,14 @@ class LoadParticipantsUtilState extends State<LoadParticipantsUtil> {
         return -1;
       }
 
+      if (a.membership != Membership.join && b.membership != Membership.join) {
+        return a.displayName?.compareTo(b.displayName ?? '') ?? 0;
+      } else if (a.membership != Membership.join) {
+        return 1;
+      } else if (b.membership != Membership.join) {
+        return -1;
+      }
+
       final PublicProfileModel? aProfile = _levelsCache[a.id];
       final PublicProfileModel? bProfile = _levelsCache[b.id];
 
@@ -100,7 +108,7 @@ class LoadParticipantsUtilState extends State<LoadParticipantsUtil> {
 
   Future<void> _cacheLevels() async {
     for (final user in participants) {
-      if (_levelsCache[user.id] == null) {
+      if (_levelsCache[user.id] == null && user.membership == Membership.join) {
         _levelsCache[user.id] = await MatrixState
             .pangeaController.userController
             .getPublicProfile(user.id);
