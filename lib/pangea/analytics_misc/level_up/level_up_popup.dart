@@ -53,7 +53,6 @@ class LevelUpPopup extends StatelessWidget {
   }
 }
 
-//animated progress bar -- move to own file later
 class LevelUpPopupContent extends StatefulWidget {
   final int prevLevel;
   final int level;
@@ -85,6 +84,7 @@ class _LevelUpPopupContentState extends State<LevelUpPopupContent>
   final int _startGrammar = LevelUpManager.instance.prevGrammar;
   final int _startVocab = LevelUpManager.instance.prevVocab;
   late ConstructSummary? _constructSummary;
+  Timer? _summaryPollTimer;
   final String? _error = LevelUpManager.instance.error;
   String language = LevelUpManager.instance.userL2Code ?? "N/A";
 
@@ -94,23 +94,31 @@ class _LevelUpPopupContentState extends State<LevelUpPopupContent>
   void initState() {
     super.initState();
     LevelUpManager.instance.markPopupSeen();
-
     displayedLevel = widget.prevLevel;
     _confettiController =
         ConfettiController(duration: const Duration(seconds: 1));
-
-    // Use LevelUpManager stats instead of fetching separately
     _endGrammar = LevelUpManager.instance.nextGrammar;
     _endVocab = LevelUpManager.instance.nextVocab;
     _constructSummary = LevelUpManager.instance.constructSummary;
-
+    // Poll for constructSummary if not available
+    if (_constructSummary == null) {
+      _summaryPollTimer =
+          Timer.periodic(const Duration(milliseconds: 300), (timer) {
+        final summary = LevelUpManager.instance.constructSummary;
+        if (summary != null) {
+          setState(() {
+            _constructSummary = summary;
+          });
+          timer.cancel();
+        }
+      });
+    }
     final client = Matrix.of(context).client;
     client.fetchOwnProfile().then((profile) {
       setState(() {
         avatarUrl = profile.avatarUrl;
       });
     });
-
     _controller = AnimationController(
       duration: _animationDuration,
       vsync: this,
@@ -136,8 +144,18 @@ class _LevelUpPopupContentState extends State<LevelUpPopupContent>
     _controller.forward();
   }
 
-  // Use LevelUpManager's constructSummary instead of local _constructSummary
+  @override
+  void dispose() {
+    _summaryPollTimer?.cancel();
+    _controller.dispose();
+    _confettiController.dispose();
+    LevelUpManager.instance.reset();
+    stopConfetti();
+    super.dispose();
+  }
+
   int _getSkillXP(LearningSkillsEnum skill) {
+    if (_constructSummary == null) return 0;
     return switch (skill) {
       LearningSkillsEnum.writing =>
         _constructSummary?.writingConstructScore ?? 0,
@@ -149,15 +167,6 @@ class _LevelUpPopupContentState extends State<LevelUpPopupContent>
         _constructSummary?.hearingConstructScore ?? 0,
       _ => 0,
     };
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    _confettiController.dispose();
-    LevelUpManager.instance.reset();
-    stopConfetti();
-    super.dispose();
   }
 
   @override
@@ -335,15 +344,15 @@ class _LevelUpPopupContentState extends State<LevelUpPopupContent>
                           children: [
                             _buildSkillsTable(context),
                             const SizedBox(height: 8),
-                            if (_constructSummary?.textSummary != null)
-                              Padding(
-                                padding: const EdgeInsets.only(top: 16),
-                                child: Text(
-                                  _constructSummary!.textSummary,
-                                  textAlign: TextAlign.left,
-                                  style: Theme.of(context).textTheme.bodyMedium,
-                                ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 16),
+                              child: Text(
+                                _constructSummary?.textSummary ??
+                                    L10n.of(context).loadingPleaseWait,
+                                textAlign: TextAlign.left,
+                                style: Theme.of(context).textTheme.bodyMedium,
                               ),
+                            ),
                             //const SizedBox(height: 16),
                             Padding(
                               padding: const EdgeInsets.all(24.0),
