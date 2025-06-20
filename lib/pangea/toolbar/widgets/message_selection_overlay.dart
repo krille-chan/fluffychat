@@ -461,9 +461,18 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
       pangeaMessageEvent?.messageDisplayLangCode.split("-")[0] ==
       MatrixState.pangeaController.languageController.userL2?.langCodeShort;
 
-  PangeaToken? get selectedToken =>
-      pangeaMessageEvent?.messageDisplayRepresentation?.tokens
-          ?.firstWhereOrNull(isTokenSelected);
+  PangeaToken? get selectedToken {
+    if (pangeaMessageEvent?.isAudioMessage == true) {
+      final stt = pangeaMessageEvent!.getSpeechToTextLocal();
+      if (stt == null || stt.transcript.sttTokens.isEmpty) return null;
+      return stt.transcript.sttTokens
+          .firstWhereOrNull((t) => isTokenSelected(t.token))
+          ?.token;
+    }
+
+    return pangeaMessageEvent?.messageDisplayRepresentation?.tokens
+        ?.firstWhereOrNull(isTokenSelected);
+  }
 
   /// Whether the overlay is currently displaying a selection
   bool get isSelection => _selectedSpan != null || _highlightedTokens != null;
