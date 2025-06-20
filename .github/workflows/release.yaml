@@ -180,28 +180,6 @@ jobs:
           fi
           cd ..
 
-  promote_snapcraft:
-    runs-on: ubuntu-latest
-    env:
-      SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_TOKEN }}
-    steps:
-      - name: Check out Git repository
-        uses: actions/checkout@v4
-      - name: Install Snapcraft
-        uses: samuelmeuli/action-snapcraft@v3
-      - name: Get Tag Name
-        id: tag_name
-        run: echo "::set-output name=tag::$(echo ${GITHUB_REF#refs/tags/})"
-      - name: Promote Snap
-        env: # Workaround for https://github.com/snapcore/snapcraft/issues/4439
-          SNAPCRAFT_HAS_TTY: "true"
-        run: |
-          if [[ $GITHUB_REF_NAME == rc* ]]; then
-              yes | snapcraft promote fluffychat --from-channel edge --to-channel candidate
-          else
-              yes | snapcraft promote fluffychat --from-channel edge --to-channel stable
-          fi
-
   deploy_docker:
     runs-on: ubuntu-latest
     permissions:
