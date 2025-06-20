@@ -225,14 +225,6 @@ class MessageContent extends StatelessWidget {
                 eventId: event.eventId,
                 roomId: event.room.id,
                 senderId: event.senderId,
-                onPlay: overlayController == null
-                    ? () {
-                        controller.showToolbar(
-                          pangeaMessageEvent!.event,
-                          pangeaMessageEvent: pangeaMessageEvent,
-                        );
-                      }
-                    : null,
                 autoplay: overlayController != null,
                 // Pangea#
               );
