@@ -138,6 +138,10 @@ class ReadingAssistanceContentState extends State<ReadingAssistanceContent> {
         child: Container(
           decoration: BoxDecoration(
             color: Theme.of(context).cardColor,
+            border: Border.all(
+              color: Theme.of(context).colorScheme.primary,
+              width: 4.0,
+            ),
             borderRadius: const BorderRadius.all(
               Radius.circular(AppConfig.borderRadius),
             ),
