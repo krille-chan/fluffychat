@@ -104,7 +104,7 @@ class MessageAudioCardState extends State<MessageAudioCard> {
 
 class PangeaAudioFile extends MatrixAudioFile {
   List<int>? waveform;
-  List<TTSToken> tokens;
+  List<TTSToken>? tokens;
 
   PangeaAudioFile({
     required super.bytes,

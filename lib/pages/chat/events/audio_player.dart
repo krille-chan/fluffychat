@@ -256,10 +256,10 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
     _onAudioPositionChanged =
         matrix.audioPlayer!.positionStream.listen((state) {
       // Pass current timestamp to overlay, so it can highlight as necessary
-      if (widget.matrixFile != null) {
+      if (widget.matrixFile?.tokens != null) {
         widget.overlayController?.highlightCurrentText(
           state.inMilliseconds,
-          widget.matrixFile!.tokens,
+          widget.matrixFile!.tokens!,
         );
       }
     });
