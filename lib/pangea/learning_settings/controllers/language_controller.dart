@@ -1,13 +1,12 @@
 // ignore_for_file: depend_on_referenced_packages
 
-import 'package:flutter/material.dart';
-
-import 'package:universal_io/io.dart';
-
 import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/learning_settings/constants/language_constants.dart';
 import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
 import 'package:fluffychat/pangea/learning_settings/utils/p_language_store.dart';
+import 'package:flutter/material.dart';
+import 'package:universal_io/io.dart';
+
 import '../widgets/p_language_dialog.dart';
 
 class LanguageController {
@@ -114,8 +113,19 @@ class LanguageController {
   }
 
   bool get showTrancription =>
+<<<<<<< Updated upstream
       _pangeaController.languageController.userL1 != null &&
       _pangeaController.languageController.userL2 != null &&
       _pangeaController.languageController.userL1?.script !=
           _pangeaController.languageController.userL2?.script;
+=======
+      (_pangeaController.languageController.userL1 != null &&
+          _pangeaController.languageController.userL2 != null &&
+          _pangeaController.languageController.userL1?.script !=
+              _pangeaController.languageController.userL2?.script) ||
+      (_pangeaController.languageController.userL1?.script !=
+              LanguageKeys.unknownLanguage ||
+          _pangeaController.languageController.userL2?.script ==
+              LanguageKeys.unknownLanguage);
+>>>>>>> Stashed changes
 }
