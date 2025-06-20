@@ -113,12 +113,6 @@ class LanguageController {
   }
 
   bool get showTrancription =>
-<<<<<<< Updated upstream
-      _pangeaController.languageController.userL1 != null &&
-      _pangeaController.languageController.userL2 != null &&
-      _pangeaController.languageController.userL1?.script !=
-          _pangeaController.languageController.userL2?.script;
-=======
       (_pangeaController.languageController.userL1 != null &&
           _pangeaController.languageController.userL2 != null &&
           _pangeaController.languageController.userL1?.script !=
@@ -127,5 +121,4 @@ class LanguageController {
               LanguageKeys.unknownLanguage ||
           _pangeaController.languageController.userL2?.script ==
               LanguageKeys.unknownLanguage);
->>>>>>> Stashed changes
 }
