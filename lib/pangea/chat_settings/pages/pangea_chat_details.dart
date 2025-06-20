@@ -544,7 +544,7 @@ class RoomDetailsButtonRowState extends State<RoomDetailsButtonRow> {
                 );
               }
 
-              final button = buttons[index];
+              final button = mainViewButtons[index];
               return Expanded(
                 child: RoomDetailsButton(
                   mini: mini,
@@ -729,66 +729,70 @@ class RoomParticipantsSection extends StatelessWidget {
                     padding: EdgeInsets.all(_padding),
                     child: SizedBox(
                       width: _width,
-                      child: Column(
-                        children: [
-                          Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              if (gradient != null)
-                                CircleAvatar(
-                                  radius: _width / 2,
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      gradient: gradient,
-                                    ),
-                                  ),
-                                )
-                              else
-                                SizedBox(
-                                  height: _width,
-                                  width: _width,
-                                ),
-                              Builder(
-                                builder: (context) {
-                                  return MouseRegion(
-                                    cursor: SystemMouseCursors.click,
-                                    child: GestureDetector(
-                                      onTap: () => showMemberActionsPopupMenu(
-                                        context: context,
-                                        user: user,
+                      child: Opacity(
+                        opacity: user.membership == Membership.join ? 1.0 : 0.5,
+                        child: Column(
+                          children: [
+                            Stack(
+                              alignment: Alignment.center,
+                              children: [
+                                if (gradient != null)
+                                  CircleAvatar(
+                                    radius: _width / 2,
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        gradient: gradient,
                                       ),
-                                      child: Center(
-                                        child: Avatar(
-                                          mxContent: user.avatarUrl,
-                                          name: user.calcDisplayname(),
-                                          size: _width - 6.0,
-                                          presenceUserId: user.id,
-                                          showPresence: false,
+                                    ),
+                                  )
+                                else
+                                  SizedBox(
+                                    height: _width,
+                                    width: _width,
+                                  ),
+                                Builder(
+                                  builder: (context) {
+                                    return MouseRegion(
+                                      cursor: SystemMouseCursors.click,
+                                      child: GestureDetector(
+                                        onTap: () => showMemberActionsPopupMenu(
+                                          context: context,
+                                          user: user,
+                                        ),
+                                        child: Center(
+                                          child: Avatar(
+                                            mxContent: user.avatarUrl,
+                                            name: user.calcDisplayname(),
+                                            size: _width - 6.0,
+                                            presenceUserId: user.id,
+                                            showPresence: false,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  );
-                                },
-                              ),
-                            ],
-                          ),
-                          Text(
-                            user.calcDisplayname(),
-                            style: Theme.of(context)
-                                .textTheme
-                                .labelLarge
-                                ?.copyWith(
-                                  color: Theme.of(context).colorScheme.primary,
-                                  fontWeight: FontWeight.bold,
+                                    );
+                                  },
                                 ),
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          LevelDisplayName(
-                            userId: user.id,
-                            textStyle: Theme.of(context).textTheme.labelSmall,
-                          ),
-                        ],
+                              ],
+                            ),
+                            Text(
+                              user.calcDisplayname(),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .labelLarge
+                                  ?.copyWith(
+                                    color:
+                                        Theme.of(context).colorScheme.primary,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            LevelDisplayName(
+                              userId: user.id,
+                              textStyle: Theme.of(context).textTheme.labelSmall,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   );
