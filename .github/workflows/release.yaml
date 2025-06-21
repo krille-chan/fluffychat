@@ -151,6 +151,7 @@ jobs:
           ruby-version: '3.3'
       - uses: moonrepo/setup-rust@v1
       - name: Install Fastlane
+        working-directory: android
         run: gem install fastlane -NV
       - name: Apply Google Services Patch
         run: git apply ./scripts/enable-android-google-services.patch

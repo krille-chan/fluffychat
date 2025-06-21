@@ -67,6 +67,9 @@ jobs:
         run: ./scripts/prepare-android-release.sh
       - name: Build Android Release
         run: flutter build appbundle --target-platform android-arm,android-arm64,android-x64
+      - name: Set changelog
+        working-directory: android/fastlane/metadata/android/en-US/changelogs
+        run: git log --no-merges -1 --pretty=%B > default.txt
       - name: Deploy Android Release
         run: |
           mkdir -p build/android

@@ -1,0 +1,2 @@
+build: Do not delete vodozemac on web release
+
