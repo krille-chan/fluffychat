@@ -339,6 +339,24 @@ class ChatController extends State<ChatPageWithRoom>
     }
   }
 
+  final Set<String> expandedEventIds = {};
+
+  void expandEventsFrom(Event event, bool expand) {
+    final events = timeline!.events.filterByVisibleInGui();
+    final start = events.indexOf(event);
+    setState(() {
+      for (var i = start; i < events.length; i++) {
+        final event = events[i];
+        if (!event.isCollapsedState) return;
+        if (expand) {
+          expandedEventIds.add(event.eventId);
+        } else {
+          expandedEventIds.remove(event.eventId);
+        }
+      }
+    });
+  }
+
   void _tryLoadTimeline() async {
     final initialEventId = widget.eventId;
     loadTimelineFuture = _getTimeline();
