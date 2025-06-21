@@ -3377,5 +3377,7 @@
   "commandHint_logoutall": "Logi kõikidest aktiivsetest seadmetest välja",
   "@commandHint_logoutall": {},
   "commandHint_logout": "Logi oma praegusest seadmest välja",
-  "@commandHint_logout": {}
+  "@commandHint_logout": {},
+  "displayNavigationRail": "Näita mobiilis külgmist tööriistariba",
+  "@displayNavigationRail": {}
 }
