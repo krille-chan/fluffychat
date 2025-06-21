@@ -77,6 +77,30 @@ extension LocalNotificationsExtension on MatrixState {
         tag: event.room.id,
       );
     } else if (Platform.isLinux) {
+      final avatarUrl = event.senderFromMemoryOrFallback.avatarUrl;
+      final hints = [NotificationHint.soundName('message-new-instant')];
+
+      if (avatarUrl != null) {
+        const size = 64;
+        const thumbnailMethod = ThumbnailMethod.crop;
+        // Pre-cache so that we can later just set the thumbnail uri as icon:
+        final data = await client.downloadMxcCached(
+          avatarUrl,
+          width: size,
+          height: size,
+          thumbnailMethod: thumbnailMethod,
+          isThumbnail: true,
+        );
+        hints.add(
+          NotificationHint.imageData(
+            size,
+            size,
+            data,
+            rowStride: 256,
+            channels: 4,
+          ),
+        );
+      }
       final notification = await linuxNotifications!.notify(
         title,
         body: body,
@@ -93,9 +117,7 @@ extension LocalNotificationsExtension on MatrixState {
             L10n.of(context).markAsRead,
           ),
         ],
-        hints: [
-          NotificationHint.soundName('message-new-instant'),
-        ],
+        hints: hints,
       );
       notification.action.then((actionStr) {
         var action = DesktopNotificationActions.values
