@@ -395,7 +395,7 @@ packages:
     description:
       path: "."
       ref: xdppicker
-      resolved-ref: e7ae7cebc5ba4ffbfeedb190859a0f443bb0f079
+      resolved-ref: "9be4a01935a27d426a6c43407a5dbbea44e12085"
       url: "https://github.com/Decodetalkers/flutter_file_picker"
     source: git
     version: "10.2.0"
