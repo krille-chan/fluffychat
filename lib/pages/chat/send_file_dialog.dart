@@ -59,16 +59,22 @@ class SendFileDialogState extends State<SendFileDialog> {
         final length = await xfile.length();
         final mimeType = xfile.mimeType ?? lookupMimeType(xfile.path);
 
+        // Generate video thumbnail
+        if (PlatformInfos.isMobile &&
+            mimeType != null &&
+            mimeType.startsWith('video')) {
+          scaffoldMessenger.showLoadingSnackBar(l10n.generatingVideoThumbnail);
+          thumbnail = await xfile.getVideoThumbnail();
+        }
+
         // If file is a video, shrink it!
         if (PlatformInfos.isMobile &&
             mimeType != null &&
-            mimeType.startsWith('video') &&
-            length > minSizeToCompress &&
-            compress) {
+            mimeType.startsWith('video')) {
           scaffoldMessenger.showLoadingSnackBar(l10n.compressVideo);
-          file = await xfile.resizeVideo();
-          scaffoldMessenger.showLoadingSnackBar(l10n.generatingVideoThumbnail);
-          thumbnail = await xfile.getVideoThumbnail();
+          file = await xfile.getVideoInfo(
+            compress: length > minSizeToCompress && compress,
+          );
         } else {
           if (length > maxUploadSize) {
             throw FileTooBigMatrixException(length, maxUploadSize);

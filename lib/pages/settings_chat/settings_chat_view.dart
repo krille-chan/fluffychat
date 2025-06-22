@@ -39,13 +39,6 @@ class SettingsChatView extends StatelessWidget {
                 defaultValue: AppConfig.renderHtml,
               ),
               SettingsSwitchListTile.adaptive(
-                title: L10n.of(context).hideMemberChangesInPublicChats,
-                subtitle: L10n.of(context).hideMemberChangesInPublicChatsBody,
-                onChanged: (b) => AppConfig.hideUnimportantStateEvents = b,
-                storeKey: SettingKeys.hideUnimportantStateEvents,
-                defaultValue: AppConfig.hideUnimportantStateEvents,
-              ),
-              SettingsSwitchListTile.adaptive(
                 title: L10n.of(context).hideRedactedMessages,
                 subtitle: L10n.of(context).hideRedactedMessagesBody,
                 onChanged: (b) => AppConfig.hideRedactedEvents = b,
