@@ -19,17 +19,12 @@ extension MatrixFileExtension on MatrixFile {
       return;
     }
 
-    final downloadPath = !PlatformInfos.isMobile
-        ? (await FilePicker.platform.saveFile(
-            fileName: name,
-            confirmButtonText: L10n.of(context).saveFile,
-          ))
-        : await FilePicker.platform.saveFile(
-            dialogTitle: L10n.of(context).saveFile,
-            fileName: name,
-            type: filePickerFileType,
-            bytes: bytes,
-          );
+    final downloadPath = await FilePicker.platform.saveFile(
+      dialogTitle: L10n.of(context).saveFile,
+      fileName: name,
+      type: filePickerFileType,
+      bytes: bytes,
+    );
     if (downloadPath == null) return;
 
     if (PlatformInfos.isDesktop) {
