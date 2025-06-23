@@ -54,7 +54,7 @@ abstract class AppConfig {
     final bigEmotes = event != null &&
         event.onlyEmotes &&
         event.numberEmotes > 0 &&
-        event.numberEmotes <= 10;
+        event.numberEmotes <= 3;
 
     return TextStyle(
       color: textColor,
