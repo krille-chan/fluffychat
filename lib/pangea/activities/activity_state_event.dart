@@ -57,11 +57,6 @@ class ActivityStateEventState extends State<ActivityStateEvent> {
     }
   }
 
-  bool get _activityIsOver {
-    return activityPlan?.endAt != null &&
-        DateTime.now().isAfter(activityPlan!.endAt!);
-  }
-
   @override
   Widget build(BuildContext context) {
     if (activityPlan == null) {
@@ -83,188 +78,200 @@ class ActivityStateEventState extends State<ActivityStateEvent> {
           spacing: 12.0,
           children: [
             Container(
-              padding: EdgeInsets.all(_activityIsOver ? 24.0 : 16.0),
+              padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
                 color: theme.colorScheme.primaryContainer,
                 borderRadius: BorderRadius.circular(18),
               ),
               child: AnimatedSize(
                 duration: FluffyThemes.animationDuration,
-                child: _activityIsOver
-                    ? Column(
-                        spacing: 12.0,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            L10n.of(context).activityEnded,
-                            style: TextStyle(
-                              color: theme.colorScheme.onPrimaryContainer,
-                              fontSize: 16.0,
-                            ),
-                          ),
-                          CachedNetworkImage(
-                            width: 120.0,
-                            imageUrl:
-                                "${AppConfig.assetsBaseURL}/${ActivityConstants.activityFinishedAsset}",
-                            fit: BoxFit.cover,
-                            placeholder: (context, url) => const Center(
-                              child: CircularProgressIndicator(),
-                            ),
-                            errorWidget: (context, url, error) =>
-                                const SizedBox(),
-                          ),
-                        ],
-                      )
-                    : Text(
-                        activityPlan!.markdown,
-                        style: TextStyle(
-                          color: theme.colorScheme.onPrimaryContainer,
-                          fontSize: AppConfig.fontSizeFactor *
-                              AppConfig.messageFontSize,
-                        ),
-                      ),
+                child: Text(
+                  activityPlan!.markdown,
+                  style: TextStyle(
+                    color: theme.colorScheme.onPrimaryContainer,
+                    fontSize:
+                        AppConfig.fontSizeFactor * AppConfig.messageFontSize,
+                  ),
+                ),
               ),
             ),
             AnimatedSize(
               duration: FluffyThemes.animationDuration,
-              child: _activityIsOver
-                  ? const SizedBox()
-                  : IntrinsicHeight(
-                      child: Row(
-                        spacing: 12.0,
+              child: IntrinsicHeight(
+                child: Row(
+                  spacing: 12.0,
+                  children: [
+                    Container(
+                      height: imageWidth,
+                      width: imageWidth,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(16),
+                        child: activityPlan!.imageURL != null
+                            ? activityPlan!.imageURL!.startsWith("mxc")
+                                ? MxcImage(
+                                    uri: Uri.parse(
+                                      activityPlan!.imageURL!,
+                                    ),
+                                    width: imageWidth,
+                                    height: imageWidth,
+                                    cacheKey: activityPlan!.bookmarkId,
+                                    fit: BoxFit.cover,
+                                  )
+                                : CachedNetworkImage(
+                                    imageUrl: activityPlan!.imageURL!,
+                                    fit: BoxFit.cover,
+                                    placeholder: (context, url) => const Center(
+                                      child: CircularProgressIndicator(),
+                                    ),
+                                    errorWidget: (
+                                      context,
+                                      url,
+                                      error,
+                                    ) =>
+                                        const SizedBox(),
+                                  )
+                            : const SizedBox(),
+                      ),
+                    ),
+                    Expanded(
+                      child: Column(
+                        spacing: 9.0,
+                        mainAxisSize: MainAxisSize.max,
                         children: [
-                          Container(
-                            height: imageWidth,
-                            width: imageWidth,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(16),
-                              child: activityPlan!.imageURL != null
-                                  ? activityPlan!.imageURL!.startsWith("mxc")
-                                      ? MxcImage(
-                                          uri: Uri.parse(
-                                            activityPlan!.imageURL!,
-                                          ),
-                                          width: imageWidth,
-                                          height: imageWidth,
-                                          cacheKey: activityPlan!.bookmarkId,
-                                          fit: BoxFit.cover,
-                                        )
-                                      : CachedNetworkImage(
-                                          imageUrl: activityPlan!.imageURL!,
-                                          fit: BoxFit.cover,
-                                          placeholder: (context, url) =>
-                                              const Center(
-                                            child: CircularProgressIndicator(),
-                                          ),
-                                          errorWidget: (
-                                            context,
-                                            url,
-                                            error,
-                                          ) =>
-                                              const SizedBox(),
-                                        )
-                                  : const SizedBox(),
-                            ),
-                          ),
                           Expanded(
-                            child: Column(
-                              spacing: 9.0,
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Expanded(
-                                  child: SizedBox.expand(
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(20),
-                                        ),
-                                        backgroundColor:
-                                            theme.colorScheme.primaryContainer,
-                                        foregroundColor: theme
-                                            .colorScheme.onPrimaryContainer,
-                                      ),
-                                      onPressed: () async {
-                                        final Duration? duration =
-                                            await showDialog(
-                                          context: context,
-                                          builder: (context) {
-                                            return ActivityDurationPopup(
-                                              initialValue:
-                                                  activityPlan?.duration ??
-                                                      const Duration(days: 1),
-                                            );
-                                          },
-                                        );
-
-                                        if (duration == null) return;
-
-                                        showFutureLoadingDialog(
-                                          context: context,
-                                          future: () => widget.event.room
-                                              .sendActivityPlan(
-                                            activityPlan!.copyWith(
-                                              endAt:
-                                                  DateTime.now().add(duration),
-                                              duration: duration,
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                      child: CountDown(
-                                        deadline: activityPlan!.endAt,
-                                        iconSize: 20.0,
-                                        textSize: 16.0,
-                                      ),
-                                    ),
+                            child: SizedBox.expand(
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20),
                                   ),
-                                ), // Optional spacing between buttons
-                                Expanded(
-                                  child: SizedBox.expand(
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(20),
-                                        ),
-                                        backgroundColor:
-                                            theme.colorScheme.error,
-                                        foregroundColor:
-                                            theme.colorScheme.onPrimary,
-                                      ),
-                                      onPressed: () {
-                                        showFutureLoadingDialog(
-                                          context: context,
-                                          future: () => widget.event.room
-                                              .sendActivityPlan(
-                                            activityPlan!.copyWith(
-                                              endAt: DateTime.now(),
-                                              duration: Duration.zero,
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                      child: Text(
-                                        L10n.of(context).endNow,
-                                        style: const TextStyle(
-                                          fontSize: 24,
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                                  backgroundColor:
+                                      theme.colorScheme.primaryContainer,
+                                  foregroundColor:
+                                      theme.colorScheme.onPrimaryContainer,
+                                ),
+                                onPressed: () async {
+                                  final Duration? duration = await showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return ActivityDurationPopup(
+                                        initialValue: activityPlan?.duration ??
+                                            const Duration(days: 1),
+                                      );
+                                    },
+                                  );
+
+                                  if (duration == null) return;
+
+                                  showFutureLoadingDialog(
+                                    context: context,
+                                    future: () =>
+                                        widget.event.room.sendActivityPlan(
+                                      activityPlan!.copyWith(
+                                        endAt: DateTime.now().add(duration),
+                                        duration: duration,
                                       ),
                                     ),
+                                  );
+                                },
+                                child: CountDown(
+                                  deadline: activityPlan!.endAt,
+                                  iconSize: 20.0,
+                                  textSize: 16.0,
+                                ),
+                              ),
+                            ),
+                          ), // Optional spacing between buttons
+                          Expanded(
+                            child: SizedBox.expand(
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  backgroundColor: theme.colorScheme.error,
+                                  foregroundColor: theme.colorScheme.onPrimary,
+                                ),
+                                onPressed: () {
+                                  showFutureLoadingDialog(
+                                    context: context,
+                                    future: () =>
+                                        widget.event.room.sendActivityPlan(
+                                      activityPlan!.copyWith(
+                                        endAt: DateTime.now(),
+                                        duration: Duration.zero,
+                                      ),
+                                    ),
+                                  );
+                                },
+                                child: Text(
+                                  L10n.of(context).endNow,
+                                  style: const TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                              ],
+                              ),
                             ),
                           ),
                         ],
                       ),
                     ),
+                  ],
+                ),
+              ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class ActivityFinishedEvent extends StatelessWidget {
+  const ActivityFinishedEvent({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Center(
+      child: Container(
+        constraints: const BoxConstraints(
+          maxWidth: 400.0,
+        ),
+        margin: const EdgeInsets.all(18.0),
+        child: Container(
+          padding: const EdgeInsets.all(24.0),
+          decoration: BoxDecoration(
+            color: theme.colorScheme.primaryContainer,
+            borderRadius: BorderRadius.circular(18),
+          ),
+          child: Column(
+            spacing: 12.0,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                L10n.of(context).activityEnded,
+                style: TextStyle(
+                  color: theme.colorScheme.onPrimaryContainer,
+                  fontSize: 16.0,
+                ),
+              ),
+              CachedNetworkImage(
+                width: 120.0,
+                imageUrl:
+                    "${AppConfig.assetsBaseURL}/${ActivityConstants.activityFinishedAsset}",
+                fit: BoxFit.cover,
+                placeholder: (context, url) => const Center(
+                  child: CircularProgressIndicator(),
+                ),
+                errorWidget: (context, url, error) => const SizedBox(),
+              ),
+            ],
+          ),
         ),
       ),
     );
