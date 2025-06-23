@@ -101,6 +101,7 @@ class LevelUpBannerState extends State<LevelUpBanner>
       context,
       widget.level,
       widget.prevLevel,
+      true, //value true if testing, false if real data
     );
 
     _slideController = AnimationController(

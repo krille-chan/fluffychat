@@ -1,13 +1,15 @@
-import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
+import 'package:fluffychat/pangea/analytics_misc/client_analytics_extension.dart';
 import 'package:fluffychat/pangea/constructs/construct_repo.dart';
+import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
+import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
+import 'package:matrix/matrix.dart';
 
 class LevelUpManager {
-  // Singleton instance
+  // Singleton instance so analytics can be generated when level up is initiated, and be ready by the time user clicks on banner
   static final LevelUpManager instance = LevelUpManager._internal();
 
-  // Private constructor
   LevelUpManager._internal();
 
   int prevLevel = 0;
@@ -26,15 +28,11 @@ class LevelUpManager {
   bool shouldAutoPopup = false;
   String? error;
 
-  int get vocabCount =>
-      MatrixState.pangeaController.getAnalytics.constructListModel
-          .unlockedLemmas(ConstructTypeEnum.vocab)
-          .length;
-
   Future<void> preloadAnalytics(
     BuildContext context,
     int level,
     int prevLevel,
+    bool test,
   ) async {
     this.level = level;
     this.prevLevel = prevLevel;
@@ -47,75 +45,95 @@ class LevelUpManager {
     nextVocab = MatrixState
         .pangeaController.getAnalytics.constructListModel.vocabLemmas;
 
-    //for now idk how to get these
-    prevGrammar = nextGrammar < 30 ? 0 : nextGrammar - 30;
-
-    prevVocab = nextVocab < 30 ? 0 : nextVocab - 30;
-
     userL2Code = MatrixState.pangeaController.languageController
         .activeL2Code()
         ?.toUpperCase();
 
-    /*for testing, just fetch last level up
+    // fetch construct summary based on test value
+    if (test) {
+      getConstructFromButton();
+    } else {
+      getConstructFromLevelUp();
+    }
+
+    final LanguageModel? l2 =
+        MatrixState.pangeaController.languageController.userL2;
+    final Room? analyticsRoom =
+        MatrixState.pangeaController.matrixState.client.analyticsRoomLocal(l2!);
+
+    if (analyticsRoom != null) {
+      // How to get all summary events in the timeline
+      final timeline = await analyticsRoom.getTimeline();
+      final summaryEvents = timeline.events
+          .where(
+            (e) => e.type == PangeaEventTypes.constructSummary,
+          )
+          .map(
+            (e) => ConstructSummary.fromJson(e.content),
+          )
+          .toList();
+
+      debugPrint("List of all previous level up summaries: $summaryEvents");
+      for (final summary in summaryEvents) {
+        debugPrint("${summary.toJson()}");
+      }
+      //Find previous summary to get grammar constructs and vocab numbers from
+      final lastSummary = summaryEvents
+              .where((summary) => summary.upperLevel == prevLevel)
+              .toList()
+              .isNotEmpty
+          ? summaryEvents
+              .firstWhere((summary) => summary.upperLevel == prevLevel)
+          : null;
+
+      //Set grammar and vocab from last level summary, if there is one. Otherwise set to placeholder data
+      debugPrint("Last construct summary is: ${lastSummary?.toJson()}");
+      if (lastSummary != null &&
+          lastSummary.levelVocabConstructs != null &&
+          lastSummary.levelGrammarConstructs != null) {
+        prevVocab = lastSummary.levelVocabConstructs!;
+        prevGrammar = lastSummary.levelGrammarConstructs!;
+      } else {
+        prevGrammar = nextGrammar < 30 ? 0 : nextGrammar - 30;
+        prevVocab = nextVocab < 30 ? 0 : nextVocab - 30;
+      }
+    }
+  }
+
+  void getConstructFromButton() {
+    //for testing, just fetch last level up from saved analytics
     constructSummary = MatrixState.pangeaController.getAnalytics
         .getConstructSummaryFromStateEvent();
     debugPrint(
-      "Last saved construct summary: ${constructSummary?.toJson()}",
+      "Last saved construct summary from analytics controller function: ${constructSummary?.toJson()}",
     );
+  }
 
-    final client = MatrixState.pangeaController.matrixState.client;
-
-    final Room? analyticsRoom = client.analyticsRoomLocal(
-      MatrixState.pangeaController.languageController.userL2!,
-    );
-
-    // Get all summary events in the timeline
-    final timeline = await analyticsRoom!.getTimeline();
-    final summaryEvents = timeline.events
-        .where(
-          (e) => e.type == PangeaEventTypes.constructSummary,
-        )
-        .map(
-          (e) => ConstructSummary.fromJson(e.content),
-        )
-        .toList();
-    debugPrint("List of previous summaries from timeline: $summaryEvents");
-
-    for (final summary in summaryEvents) {
-      debugPrint("Individual summaries from timeline: ${summary.toJson()}");
-    }
-
-    */
-
-    // fetch construct summary for actual app, not while testing since level up isn't true
+  void getConstructFromLevelUp() async {
+    //for getting real level up data when leveled up
     try {
       constructSummary = await MatrixState.pangeaController.getAnalytics
           .generateLevelUpAnalytics(
-        level,
         prevLevel,
+        level,
       );
     } catch (e) {
       error = e.toString();
     }
-    // end of that block
-    await Future.delayed(
-      const Duration(seconds: 1),
-      () => LevelUpManager.instance.printAnalytics(),
-    );
   }
 
-  void printAnalytics() {
-    debugPrint('Level Up Analytics:');
-    debugPrint('Current Level: $level');
-    debugPrint('Previous Level: $prevLevel');
-    debugPrint('Next Grammar: $nextGrammar');
-    debugPrint('Next Vocab: $nextVocab');
-    if (constructSummary != null) {
-      debugPrint('Construct Summary: ${constructSummary!.toJson()}');
-    } else {
-      debugPrint('Construct Summary: Not available');
-    }
-  }
+  // void printAnalytics() {
+  //   debugPrint('Level Up Analytics:');
+  //   debugPrint('Current Level: $level');
+  //   debugPrint('Previous Level: $prevLevel');
+  //   debugPrint('Next Grammar: $nextGrammar');
+  //   debugPrint('Next Vocab: $nextVocab');
+  //   if (constructSummary != null) {
+  //     debugPrint('Construct Summary: ${constructSummary!.toJson()}');
+  //   } else {
+  //     debugPrint('Construct Summary: Not available');
+  //   }
+  // }
 
   void markPopupSeen() {
     hasSeenPopup = true;

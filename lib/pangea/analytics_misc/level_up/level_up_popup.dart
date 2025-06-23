@@ -14,6 +14,7 @@ import 'package:fluffychat/pangea/analytics_summary/progress_bar/level_bar.dart'
 import 'package:fluffychat/pangea/analytics_summary/progress_bar/progress_bar_details.dart';
 import 'package:fluffychat/pangea/common/widgets/full_width_dialog.dart';
 import 'package:fluffychat/pangea/constructs/construct_repo.dart';
+import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
 import 'package:flutter/foundation.dart';
@@ -214,6 +215,8 @@ class _LevelUpPopupContentState extends State<LevelUpPopupContent>
           fontWeight: FontWeight.bold,
           color: colorScheme.primary,
         );
+    final username =
+        Matrix.of(context).client.userID?.split(':').first.substring(1) ?? '';
 
     return Stack(
       children: [
@@ -230,11 +233,10 @@ class _LevelUpPopupContentState extends State<LevelUpPopupContent>
                     Padding(
                       padding: const EdgeInsets.all(24.0),
                       child: avatarUrl == null
-                          ? MxcImage(
-                              client: Matrix.of(context).client,
-                              fit: BoxFit.cover,
-                              width: 150 * shrinkMultiplier.value,
-                              height: 150 * shrinkMultiplier.value,
+                          ? Avatar(
+                              name: username,
+                              showPresence: false,
+                              size: 150 * shrinkMultiplier.value,
                             )
                           : ClipOval(
                               child: MxcImage(
@@ -310,23 +312,58 @@ class _LevelUpPopupContentState extends State<LevelUpPopupContent>
                 builder: (_, __) => Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(
-                      Symbols.dictionary,
-                      color: colorScheme.primary,
-                      size: 35,
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text(
+                          "+ ${_endVocab - _startVocab}",
+                          style: const TextStyle(
+                            color: Colors.lightGreen,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Row(
+                          children: [
+                            Icon(
+                              Symbols.dictionary,
+                              color: colorScheme.primary,
+                              size: 35,
+                            ),
+                            const SizedBox(width: 8),
+                            Text(
+                              '${vocabAnimation.value}',
+                              style: grammarVocabStyle,
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
-                    const SizedBox(width: 8),
-                    Text('${vocabAnimation.value}', style: grammarVocabStyle),
                     const SizedBox(width: 40),
-                    Icon(
-                      Symbols.toys_and_games,
-                      color: colorScheme.primary,
-                      size: 35,
-                    ),
-                    const SizedBox(width: 8),
-                    Text(
-                      '${grammarAnimation.value}',
-                      style: grammarVocabStyle,
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text(
+                          "+ ${_endGrammar - _startGrammar}",
+                          style: const TextStyle(
+                            color: Colors.lightGreen,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Row(
+                          children: [
+                            Icon(
+                              Symbols.toys_and_games,
+                              color: colorScheme.primary,
+                              size: 35,
+                            ),
+                            const SizedBox(width: 8),
+                            Text(
+                              '${grammarAnimation.value}',
+                              style: grammarVocabStyle,
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
                   ],
                 ),

@@ -16,6 +16,7 @@ import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_selection_repo.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:matrix/matrix.dart';
@@ -478,8 +479,8 @@ class GetAnalyticsController extends BaseController {
     // generate level up analytics as a construct summary
     ConstructSummary summary;
     try {
-      final int maxXP = constructListModel.calculateXpWithLevel(lowerLevel);
-      final int minXP = constructListModel.calculateXpWithLevel(upperLevel);
+      final int maxXP = constructListModel.calculateXpWithLevel(upperLevel);
+      final int minXP = constructListModel.calculateXpWithLevel(lowerLevel);
       int diffXP = maxXP - minXP;
       debugPrint("minXP: $minXP, maxXP: $maxXP, diffXP: $diffXP");
       if (diffXP < 0) diffXP = 0;
@@ -523,6 +524,10 @@ class GetAnalyticsController extends BaseController {
 
       final response = await ConstructRepo.generateConstructSummary(request);
       summary = response.summary;
+      summary.levelVocabConstructs = MatrixState
+          .pangeaController.getAnalytics.constructListModel.vocabLemmas;
+      summary.levelGrammarConstructs = MatrixState
+          .pangeaController.getAnalytics.constructListModel.grammarLemmas;
     } catch (e) {
       debugPrint("Error generating level up analytics: $e");
       ErrorHandler.logError(e: e, data: {'e': e});
