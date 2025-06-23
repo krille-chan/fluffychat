@@ -59,24 +59,22 @@ extension PangeaEvent on Event {
         content.tryGetMap<String, dynamic>(ModelKey.transcription);
     final audioContent =
         content.tryGetMap<String, dynamic>('org.matrix.msc1767.audio');
-    if (transcription == null || audioContent == null) {
-      ErrorHandler.logError(
-        e: "Called getPangeaAudioFile on an audio message without transcription or audio content",
-        data: {},
-      );
-      return null;
-    }
 
     final matrixFile = await downloadAndDecryptAttachment();
-    final duration = audioContent.tryGet<int>('duration');
-    final waveform = audioContent.tryGetList<int>('waveform');
+
+    final duration = audioContent?.tryGet<int>('duration') ??
+        content.tryGetMap<String, dynamic>('info')?.tryGet<int>('duration');
+
+    final waveform = audioContent?.tryGetList<int>('waveform') ??
+        content
+            .tryGetMap<String, dynamic>('org.matrix.msc1767.audio')
+            ?.tryGetList<int>('waveform');
 
     // old audio messages will not have tokens
-    final tokensContent = transcription.tryGetList(ModelKey.tokens);
-    if (tokensContent == null) return null;
+    final tokensContent = transcription?.tryGetList(ModelKey.tokens);
 
     final tokens = tokensContent
-        .map((e) => TTSToken.fromJson(e as Map<String, dynamic>))
+        ?.map((e) => TTSToken.fromJson(e as Map<String, dynamic>))
         .toList();
 
     return PangeaAudioFile(

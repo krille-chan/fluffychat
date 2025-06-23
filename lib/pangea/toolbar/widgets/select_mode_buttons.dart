@@ -113,10 +113,10 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
     });
 
     _onAudioPositionChanged ??= _audioPlayer?.positionStream.listen((state) {
-      if (_audioBytes != null) {
+      if (_audioBytes?.tokens != null) {
         widget.overlayController.highlightCurrentText(
           state.inMilliseconds,
-          _audioBytes!.tokens,
+          _audioBytes!.tokens!,
         );
       }
     });
