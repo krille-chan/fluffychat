@@ -475,7 +475,7 @@ class RoomDetailsButtonRowState extends State<RoomDetailsButtonRow> {
             context.go("/rooms?spaceId=clear");
           }
         },
-        visible: room.isRoomAdmin,
+        visible: room.isRoomAdmin && !room.isDirectChat,
         showInMainView: false,
       ),
     ];
