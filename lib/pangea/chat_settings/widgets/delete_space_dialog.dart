@@ -115,6 +115,7 @@ class DeleteSpaceDialogState extends State<DeleteSpaceDialog> {
       child: Container(
         constraints: const BoxConstraints(
           maxWidth: 400,
+          maxHeight: 600,
         ),
         padding: const EdgeInsets.symmetric(vertical: 20),
         decoration: BoxDecoration(
@@ -138,75 +139,78 @@ class DeleteSpaceDialogState extends State<DeleteSpaceDialog> {
                 vertical: 8.0,
               ),
               child: Text(
-                L10n.of(context).deleteSpaceDesc,
+                widget.space.spaceChildCount > 0
+                    ? L10n.of(context).deleteSpaceDesc
+                    : L10n.of(context).deleteEmptySpaceDesc,
                 textAlign: TextAlign.center,
                 style: TextStyle(color: Theme.of(context).colorScheme.error),
               ),
             ),
-            SizedBox(
-              height: 300,
-              child: Builder(
-                builder: (context) {
-                  if (_loadingRooms) {
-                    return const Center(
-                      child: SizedBox(
-                        height: 20,
-                        width: 20,
-                        child: CircularProgressIndicator.adaptive(),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Builder(
+                  builder: (context) {
+                    if (_loadingRooms) {
+                      return const Center(
+                        child: SizedBox(
+                          height: 20,
+                          width: 20,
+                          child: CircularProgressIndicator.adaptive(),
+                        ),
+                      );
+                    }
+
+                    if (_roomLoadError != null) {
+                      return Center(
+                        child: Column(
+                          spacing: 8.0,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(
+                              Icons.error_outline,
+                              color: Theme.of(context).colorScheme.error,
+                            ),
+                            Text(L10n.of(context).oopsSomethingWentWrong),
+                          ],
+                        ),
+                      );
+                    }
+
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 16.0),
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: _rooms.length,
+                        itemBuilder: (context, index) {
+                          final chunk = _rooms[index];
+
+                          final room =
+                              widget.space.client.getRoomById(chunk.roomId);
+                          final isMember = room != null &&
+                              room.membership == Membership.join &&
+                              room.isRoomAdmin;
+
+                          final displayname = chunk.name ??
+                              chunk.canonicalAlias ??
+                              L10n.of(context).emptyChat;
+
+                          return AnimatedOpacity(
+                            duration: FluffyThemes.animationDuration,
+                            opacity: isMember ? 1 : 0.5,
+                            child: CheckboxListTile(
+                              value: _roomsToDelete.contains(chunk),
+                              onChanged: isMember
+                                  ? (value) => _onRoomSelected(value, chunk)
+                                  : null,
+                              title: Text(displayname),
+                              controlAffinity: ListTileControlAffinity.leading,
+                            ),
+                          );
+                        },
                       ),
                     );
-                  }
-
-                  if (_roomLoadError != null) {
-                    return Center(
-                      child: Column(
-                        spacing: 8.0,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Icon(
-                            Icons.error_outline,
-                            color: Theme.of(context).colorScheme.error,
-                          ),
-                          Text(L10n.of(context).oopsSomethingWentWrong),
-                        ],
-                      ),
-                    );
-                  }
-
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 16.0),
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: _rooms.length,
-                      itemBuilder: (context, index) {
-                        final chunk = _rooms[index];
-
-                        final room =
-                            widget.space.client.getRoomById(chunk.roomId);
-                        final isMember = room != null &&
-                            room.membership == Membership.join &&
-                            room.isRoomAdmin;
-
-                        final displayname = chunk.name ??
-                            chunk.canonicalAlias ??
-                            L10n.of(context).emptyChat;
-
-                        return AnimatedOpacity(
-                          duration: FluffyThemes.animationDuration,
-                          opacity: isMember ? 1 : 0.5,
-                          child: CheckboxListTile(
-                            value: _roomsToDelete.contains(chunk),
-                            onChanged: isMember
-                                ? (value) => _onRoomSelected(value, chunk)
-                                : null,
-                            title: Text(displayname),
-                            controlAffinity: ListTileControlAffinity.leading,
-                          ),
-                        );
-                      },
-                    ),
-                  );
-                },
+                  },
+                ),
               ),
             ),
             Padding(

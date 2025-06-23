@@ -5032,5 +5032,6 @@
           }
       }
   },
-  "failedToFetchTranscription": "Failed to fetch transcription"
+  "failedToFetchTranscription": "Failed to fetch transcription",
+  "deleteEmptySpaceDesc": "The space will be deleted for all participants. This action cannot be undone."
 }
