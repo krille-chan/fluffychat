@@ -53,7 +53,7 @@ class LemmaReactionPickerState extends State<LemmaReactionPicker> {
     } catch (e, s) {
       ErrorHandler.logError(data: widget.cId.toJson(), e: e, s: s);
     } finally {
-      setState(() => loading = false);
+      if (mounted) setState(() => loading = false);
     }
   }
 

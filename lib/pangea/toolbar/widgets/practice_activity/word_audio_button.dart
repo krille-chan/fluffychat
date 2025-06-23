@@ -13,6 +13,7 @@ class WordAudioButton extends StatefulWidget {
   final String uniqueID;
   final String langCode;
   final EdgeInsets? padding;
+  final double? iconSize;
 
   /// If defined, this callback will be called instead of the default one
   final void Function()? callbackOverride;
@@ -26,6 +27,7 @@ class WordAudioButton extends StatefulWidget {
     this.baseOpacity = 1,
     this.callbackOverride,
     this.padding,
+    this.iconSize,
   });
 
   @override
@@ -118,6 +120,7 @@ class WordAudioButtonState extends State<WordAudioButton> {
                         color: _isPlaying
                             ? Theme.of(context).colorScheme.primary
                             : null,
+                        size: widget.iconSize,
                       ),
               ),
             ),
