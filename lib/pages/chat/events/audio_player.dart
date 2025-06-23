@@ -37,7 +37,6 @@ class AudioPlayerWidget extends StatefulWidget {
   final PangeaAudioFile? matrixFile;
   final ChatController chatController;
   final MessageOverlayController? overlayController;
-  final VoidCallback? onPlay;
   final bool autoplay;
   // Pangea#
 
@@ -55,7 +54,6 @@ class AudioPlayerWidget extends StatefulWidget {
     this.matrixFile,
     required this.chatController,
     this.overlayController,
-    this.onPlay,
     this.autoplay = false,
     // Pangea#
     super.key,
@@ -465,11 +463,7 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
                                   onLongPress: () =>
                                       widget.event?.saveFile(context),
                                   // Pangea#
-                                  onTap: () {
-                                    widget.onPlay != null
-                                        ? widget.onPlay!.call()
-                                        : _onButtonTap();
-                                  },
+                                  onTap: _onButtonTap,
                                   child: Material(
                                     color: widget.color.withAlpha(64),
                                     borderRadius: BorderRadius.circular(64),

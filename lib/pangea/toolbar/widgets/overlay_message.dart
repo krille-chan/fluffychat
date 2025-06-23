@@ -16,6 +16,7 @@ import 'package:fluffychat/pangea/learning_settings/utils/p_language_store.dart'
 import 'package:fluffychat/pangea/phonetic_transcription/phonetic_transcription_widget.dart';
 import 'package:fluffychat/pangea/toolbar/enums/reading_assistance_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
+import 'package:fluffychat/pangea/toolbar/widgets/stt_transcript_tokens.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/file_description.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -178,15 +179,17 @@ class OverlayMessage extends StatelessWidget {
                             spacing: 8.0,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                overlayController
-                                    .transcription!.transcript.text,
+                              SttTranscriptTokens(
+                                model: overlayController.transcription!,
                                 style: AppConfig.messageTextStyle(
                                   event,
                                   textColor,
                                 ).copyWith(
                                   fontStyle: FontStyle.italic,
                                 ),
+                                onClick: overlayController
+                                    .onClickOverlayMessageToken,
+                                isSelected: overlayController.isTokenSelected,
                               ),
                               if (MatrixState.pangeaController
                                   .languageController.showTrancription)

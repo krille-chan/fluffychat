@@ -28,9 +28,6 @@ class VocabDetailsView extends StatelessWidget {
 
   ConstructUses get _construct => constructId.constructUses;
 
-  String? get _userL1 =>
-      MatrixState.pangeaController.languageController.userL1?.langCode;
-
   /// Get the language code for the current lemma
   String? get _userL2 =>
       MatrixState.pangeaController.languageController.userL2?.langCode;
