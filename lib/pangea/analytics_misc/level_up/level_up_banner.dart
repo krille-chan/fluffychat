@@ -1,10 +1,7 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
-
 import 'package:audioplayers/audioplayers.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/analytics_misc/analytics_constants.dart';
@@ -13,6 +10,7 @@ import 'package:fluffychat/pangea/analytics_misc/level_up/level_up_popup.dart';
 import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/pangea/common/utils/overlay.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
 
 class LevelUpConstants {
   static const String starFileName = "star.png";
@@ -103,7 +101,6 @@ class LevelUpBannerState extends State<LevelUpBanner>
       context,
       widget.level,
       widget.prevLevel,
-      true, //value true if testing, false if real data
     );
 
     _slideController = AnimationController(

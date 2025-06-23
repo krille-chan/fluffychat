@@ -1,15 +1,9 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
 import 'package:animated_flip_counter/animated_flip_counter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:confetti/confetti.dart';
-import 'package:material_symbols_icons/symbols.dart';
-import 'package:matrix/matrix_api_lite/generated/model.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/analytics_misc/learning_skills_enum.dart';
@@ -23,6 +17,10 @@ import 'package:fluffychat/pangea/constructs/construct_repo.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:material_symbols_icons/symbols.dart';
+import 'package:matrix/matrix_api_lite/generated/model.dart';
 
 class LevelUpPopup extends StatelessWidget {
   const LevelUpPopup({
@@ -74,24 +72,21 @@ class _LevelUpPopupContentState extends State<LevelUpPopupContent>
     with SingleTickerProviderStateMixin {
   late int _endGrammar;
   late int _endVocab;
-  late final AnimationController _controller;
-
-  Uri? avatarUrl;
-  late final Future<Profile> profile;
-
-  late final ConfettiController _confettiController;
-
-  int displayedLevel = -1;
-  bool _hasBlastedConfetti = false;
-
   final int _startGrammar = LevelUpManager.instance.prevGrammar;
   final int _startVocab = LevelUpManager.instance.prevVocab;
-  late ConstructSummary? _constructSummary;
   Timer? _summaryPollTimer;
   final String? _error = LevelUpManager.instance.error;
   String language = LevelUpManager.instance.userL2Code ?? "N/A";
 
-  static const Duration _animationDuration = Duration(seconds: 5);
+  late final AnimationController _controller;
+  late final ConfettiController _confettiController;
+  bool _hasBlastedConfetti = false;
+  final Duration _animationDuration = const Duration(seconds: 5);
+
+  Uri? avatarUrl;
+  late final Future<Profile> profile;
+  int displayedLevel = -1;
+  late ConstructSummary? _constructSummary;
 
   @override
   void initState() {
@@ -269,7 +264,7 @@ class _LevelUpPopupContentState extends State<LevelUpPopupContent>
                         builder: (context, constraints) {
                           return LevelBar(
                             details: const LevelBarDetails(
-                              fillColor: Colors.green,
+                              fillColor: AppConfig.goldLight,
                               currentPoints: 0,
                               widthMultiplier: 1,
                             ),
@@ -392,7 +387,6 @@ class _LevelUpPopupContentState extends State<LevelUpPopupContent>
                                 style: Theme.of(context).textTheme.bodyMedium,
                               ),
                             ),
-                            //const SizedBox(height: 16),
                             Padding(
                               padding: const EdgeInsets.all(24.0),
                               child: CachedNetworkImage(
@@ -419,41 +413,41 @@ class _LevelUpPopupContentState extends State<LevelUpPopupContent>
                 ),
               ),
               // Share button, currently no functionality
-              ElevatedButton(
-                onPressed: () {
-                  // Add share functionality
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white,
-                  foregroundColor: Colors.black,
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 12,
-                    horizontal: 24,
-                  ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                ),
-                child: const Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      "Share with Friends",
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 8,
-                    ),
-                    Icon(
-                      Icons.ios_share,
-                      size: 20,
-                    ),
-                  ],
-                ),
-              ),
+              // ElevatedButton(
+              //   onPressed: () {
+              //     // Add share functionality
+              //   },
+              //   style: ElevatedButton.styleFrom(
+              //     backgroundColor: Colors.white,
+              //     foregroundColor: Colors.black,
+              //     padding: const EdgeInsets.symmetric(
+              //       vertical: 12,
+              //       horizontal: 24,
+              //     ),
+              //     shape: RoundedRectangleBorder(
+              //       borderRadius: BorderRadius.circular(8),
+              //     ),
+              //   ),
+              //   child: const Row(
+              //     mainAxisSize: MainAxisSize.min,
+              //     children: [
+              //       Text(
+              //         "Share with Friends",
+              //         style: TextStyle(
+              //           fontSize: 16,
+              //           fontWeight: FontWeight.bold,
+              //         ),
+              //       ),
+              //       SizedBox(
+              //         width: 8,
+              //       ),
+              //       Icon(
+              //         Icons.ios_share,
+              //         size: 20,
+              //       ),
+              //     ],
+              //   ),
+              // ),
             ],
           ),
         ),
@@ -467,7 +461,7 @@ class _LevelUpPopupContentState extends State<LevelUpPopupContent>
         .toList();
 
     const itemsPerRow = 4;
-    // chunk into rows of up to 3
+    // chunk into rows of up to 4
     final rows = <List<LearningSkillsEnum>>[
       for (var i = 0; i < visibleSkills.length; i += itemsPerRow)
         visibleSkills.sublist(
@@ -521,33 +515,5 @@ class _LevelUpPopupContentState extends State<LevelUpPopupContent>
         );
       }).toList(),
     );
-  }
-
-  Path drawStar(Size size) {
-    // Method to convert degrees to radians
-    double degToRad(double deg) => deg * (pi / 180.0);
-
-    const numberOfPoints = 5;
-    final halfWidth = size.width / 2;
-    final externalRadius = halfWidth;
-    final internalRadius = halfWidth / 2.5;
-    final degreesPerStep = degToRad(360 / numberOfPoints);
-    final halfDegreesPerStep = degreesPerStep / 2;
-    final path = Path();
-    final fullAngle = degToRad(360);
-    path.moveTo(size.width, halfWidth);
-
-    for (double step = 0; step < fullAngle; step += degreesPerStep) {
-      path.lineTo(
-        halfWidth + externalRadius * cos(step),
-        halfWidth + externalRadius * sin(step),
-      );
-      path.lineTo(
-        halfWidth + internalRadius * cos(step + halfDegreesPerStep),
-        halfWidth + internalRadius * sin(step + halfDegreesPerStep),
-      );
-    }
-    path.close();
-    return path;
   }
 }

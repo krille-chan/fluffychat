@@ -1,16 +1,15 @@
 import 'dart:math';
 
-import 'package:flutter/material.dart';
-
 import 'package:collection/collection.dart';
-
 import 'package:fluffychat/pangea/analytics_misc/analytics_constants.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_use_model.dart';
 import 'package:fluffychat/pangea/analytics_misc/constructs_model.dart';
+import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
 import 'package:fluffychat/pangea/morphs/get_grammar_copy.dart';
+import 'package:flutter/material.dart';
 
 /// A wrapper around a list of [OneConstructUse]s, used to simplify
 /// the process of filtering / sorting / displaying the events.
@@ -35,7 +34,8 @@ class ConstructListModel {
 
   /// [D] is the "compression factor". It determines how quickly
   /// or slowly the level grows relative to XP
-  final double D = 1500;
+
+  final double D = Environment.isStagingEnvironment ? 500 : 1500;
 
   List<ConstructIdentifier> unlockedLemmas(
     ConstructTypeEnum type, {

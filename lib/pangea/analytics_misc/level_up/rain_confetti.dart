@@ -20,7 +20,6 @@ void rainConfetti(BuildContext context) {
   _rainController!.play();
 
   final screenWidth = MediaQuery.of(context).size.width;
-  final screenHeight = MediaQuery.of(context).size.height;
   final isSmallScreen = screenWidth < 600;
   final count = isSmallScreen ? 2 : 5;
   final spacing = screenWidth / (count + 1);

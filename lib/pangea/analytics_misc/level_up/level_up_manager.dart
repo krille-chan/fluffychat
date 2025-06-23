@@ -1,12 +1,10 @@
-import 'package:flutter/material.dart';
-
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/pangea/analytics_misc/client_analytics_extension.dart';
 import 'package:fluffychat/pangea/constructs/construct_repo.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
+import 'package:matrix/matrix.dart';
 
 class LevelUpManager {
   // Singleton instance so analytics can be generated when level up is initiated, and be ready by the time user clicks on banner
@@ -34,14 +32,13 @@ class LevelUpManager {
     BuildContext context,
     int level,
     int prevLevel,
-    bool test,
   ) async {
     this.level = level;
     this.prevLevel = prevLevel;
 
+    //For on route change behavior, if added in the future
     shouldAutoPopup = true;
 
-    //grammar and vocab
     nextGrammar = MatrixState
         .pangeaController.getAnalytics.constructListModel.grammarLemmas;
     nextVocab = MatrixState
@@ -51,12 +48,7 @@ class LevelUpManager {
         .activeL2Code()
         ?.toUpperCase();
 
-    // fetch construct summary based on test value
-    if (test) {
-      getConstructFromButton();
-    } else {
-      getConstructFromLevelUp();
-    }
+    getConstructFromLevelUp();
 
     final LanguageModel? l2 =
         MatrixState.pangeaController.languageController.userL2;
@@ -75,10 +67,6 @@ class LevelUpManager {
           )
           .toList();
 
-      debugPrint("List of all previous level up summaries: $summaryEvents");
-      for (final summary in summaryEvents) {
-        debugPrint("${summary.toJson()}");
-      }
       //Find previous summary to get grammar constructs and vocab numbers from
       final lastSummary = summaryEvents
               .where((summary) => summary.upperLevel == prevLevel)
@@ -89,21 +77,20 @@ class LevelUpManager {
           : null;
 
       //Set grammar and vocab from last level summary, if there is one. Otherwise set to placeholder data
-      debugPrint("Last construct summary is: ${lastSummary?.toJson()}");
       if (lastSummary != null &&
           lastSummary.levelVocabConstructs != null &&
           lastSummary.levelGrammarConstructs != null) {
         prevVocab = lastSummary.levelVocabConstructs!;
         prevGrammar = lastSummary.levelGrammarConstructs!;
       } else {
-        prevGrammar = nextGrammar < 30 ? 0 : nextGrammar - 30;
-        prevVocab = nextVocab < 30 ? 0 : nextVocab - 30;
+        prevGrammar = (nextGrammar / prevLevel) as int;
+        prevVocab = (nextVocab / prevLevel) as int;
       }
     }
   }
 
+  //for testing, just fetch last level up from saved analytics
   void getConstructFromButton() {
-    //for testing, just fetch last level up from saved analytics
     constructSummary = MatrixState.pangeaController.getAnalytics
         .getConstructSummaryFromStateEvent();
     debugPrint(
@@ -111,8 +98,8 @@ class LevelUpManager {
     );
   }
 
+  //for getting real level up data when leveled up
   void getConstructFromLevelUp() async {
-    //for getting real level up data when leveled up
     try {
       constructSummary = await MatrixState.pangeaController.getAnalytics
           .generateLevelUpAnalytics(
@@ -123,19 +110,6 @@ class LevelUpManager {
       error = e.toString();
     }
   }
-
-  // void printAnalytics() {
-  //   debugPrint('Level Up Analytics:');
-  //   debugPrint('Current Level: $level');
-  //   debugPrint('Previous Level: $prevLevel');
-  //   debugPrint('Next Grammar: $nextGrammar');
-  //   debugPrint('Next Vocab: $nextVocab');
-  //   if (constructSummary != null) {
-  //     debugPrint('Construct Summary: ${constructSummary!.toJson()}');
-  //   } else {
-  //     debugPrint('Construct Summary: Not available');
-  //   }
-  // }
 
   void markPopupSeen() {
     hasSeenPopup = true;
@@ -153,6 +127,5 @@ class LevelUpManager {
     nextVocab = 0;
     constructSummary = null;
     error = null;
-    // Reset any other state if necessary
   }
 }
