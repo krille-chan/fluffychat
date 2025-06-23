@@ -222,10 +222,11 @@ class MessageContent extends StatelessWidget {
                 fontSize: fontSize,
                 // #Pangea
                 chatController: controller,
-                eventId: event.eventId,
+                eventId:
+                    "${event.eventId}${overlayController != null ? '_overlay' : ''}",
                 roomId: event.room.id,
                 senderId: event.senderId,
-                autoplay: overlayController != null,
+                autoplay: overlayController != null && isTransitionAnimation,
                 // Pangea#
               );
             }

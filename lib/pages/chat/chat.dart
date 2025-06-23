@@ -488,7 +488,9 @@ class ChatController extends State<ChatPageWithRoom>
       final botAudioEvent = timeline.events!.firstWhereOrNull(
         (e) =>
             e.senderId == BotName.byEnvironment &&
-            e.content.tryGet<String>('msgtype') == MessageTypes.Audio,
+            e.content.tryGet<String>('msgtype') == MessageTypes.Audio &&
+            DateTime.now().difference(e.originServerTs) <
+                const Duration(seconds: 10),
       );
       if (botAudioEvent == null) return;
 
