@@ -40,14 +40,17 @@ class RecordingDialogState extends State<RecordingDialog> {
   Future<void> startRecording() async {
     final store = Matrix.of(context).store;
     try {
-      final codec = kIsWeb
-          // Web seems to create webm instead of ogg when using opus encoder
-          // which does not play on iOS right now. So we use wav for now:
-          ? AudioEncoder.wav
-          // Everywhere else we use opus if supported by the platform:
-          : await _audioRecorder.isEncoderSupported(AudioEncoder.opus)
-              ? AudioEncoder.opus
-              : AudioEncoder.aacLc;
+      // #Pangea
+      // final codec = kIsWeb
+      //     // Web seems to create webm instead of ogg when using opus encoder
+      //     // which does not play on iOS right now. So we use wav for now:
+      //     ? AudioEncoder.wav
+      //     // Everywhere else we use opus if supported by the platform:
+      //     : await _audioRecorder.isEncoderSupported(AudioEncoder.opus)
+      //         ? AudioEncoder.opus
+      //         : AudioEncoder.aacLc;
+      const codec = AudioEncoder.wav;
+      // Pangea#
       fileName =
           'recording${DateTime.now().microsecondsSinceEpoch}.${codec.fileExtension}';
       String? path;

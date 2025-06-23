@@ -54,7 +54,7 @@ abstract class AppConfig {
     final bigEmotes = event != null &&
         event.onlyEmotes &&
         event.numberEmotes > 0 &&
-        event.numberEmotes <= 10;
+        event.numberEmotes <= 3;
 
     return TextStyle(
       color: textColor,
@@ -78,6 +78,10 @@ abstract class AppConfig {
   static const Color silver = Color.fromARGB(255, 192, 192, 192);
   static const Color bronze = Color.fromARGB(255, 205, 127, 50);
   static const Color goldLight = Color.fromARGB(255, 254, 223, 73);
+
+  static const Color yellowLight = Color.fromARGB(255, 247, 218, 120);
+  static const Color yellowDark = Color.fromARGB(255, 253, 191, 1);
+
   static const Color error = Colors.red;
   static const int overlayAnimationDuration = 250;
   static const int roomCreationTimeoutSeconds = 15;
