@@ -29,6 +29,17 @@ class ActivityPlannerPageAppBar extends StatelessWidget
     final theme = Theme.of(context);
 
     return AppBar(
+      leadingWidth: FluffyThemes.isColumnMode(context) ? 150.0 : null,
+      leading: FluffyThemes.isColumnMode(context)
+          ? Row(
+              children: [
+                const SizedBox(width: 8.0),
+                BackButton(
+                  onPressed: Navigator.of(context).pop,
+                ),
+              ],
+            )
+          : null,
       title: pageMode == PageMode.savedActivities
           ? Row(
               mainAxisAlignment: MainAxisAlignment.center,
