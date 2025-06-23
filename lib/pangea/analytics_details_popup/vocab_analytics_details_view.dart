@@ -132,8 +132,6 @@ class VocabDetailsView extends StatelessWidget {
                   : LemmaMeaningWidget(
                       constructUse: _construct,
                       langCode: _userL2!,
-                      controller: null,
-                      token: null,
                       style: Theme.of(context).textTheme.bodyLarge,
                       leading: TextSpan(
                         text: L10n.of(context).meaningSectionHeader,
