@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'package:matrix/matrix.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 
 import 'package:fluffychat/config/app_config.dart';
@@ -10,7 +11,9 @@ import 'package:fluffychat/pages/chat/events/message.dart';
 import 'package:fluffychat/pages/chat/seen_by_row.dart';
 import 'package:fluffychat/pages/chat/typing_indicators.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_message.dart';
+import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/events/extensions/pangea_event_extension.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/utils/account_config.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/filtered_timeline_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -40,6 +43,30 @@ class ChatEventList extends StatelessWidget {
     final horizontalPadding = FluffyThemes.isColumnMode(context) ? 8.0 : 0.0;
 
     final events = timeline.events.filterByVisibleInGui();
+    // #Pangea
+    if (timeline.room.activityPlan?.endAt != null &&
+        timeline.room.activityPlan!.endAt!.isBefore(DateTime.now())) {
+      final eventIndex = events.indexWhere(
+        (e) => e.originServerTs.isBefore(
+          timeline.room.activityPlan!.endAt!,
+        ),
+      );
+
+      if (eventIndex != -1) {
+        events.insert(
+          eventIndex,
+          Event(
+            type: PangeaEventTypes.activityPlanEnd,
+            eventId: timeline.room.client.generateUniqueTransactionId(),
+            senderId: timeline.room.client.userID!,
+            originServerTs: timeline.room.activityPlan!.endAt!,
+            room: timeline.room,
+            content: {},
+          ),
+        );
+      }
+    }
+    // Pangea#
     final animateInEventIndex = controller.animateInEventIndex;
 
     // create a map of eventId --> index to greatly improve performance of
