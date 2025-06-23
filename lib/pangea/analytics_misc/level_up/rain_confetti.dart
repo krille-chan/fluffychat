@@ -1,8 +1,10 @@
 import 'dart:math';
 
-import 'package:confetti/confetti.dart';
-import 'package:fluffychat/config/app_config.dart';
 import 'package:flutter/material.dart';
+
+import 'package:confetti/confetti.dart';
+
+import 'package:fluffychat/config/app_config.dart';
 
 OverlayEntry? _confettiEntry;
 ConfettiController? _blastController;

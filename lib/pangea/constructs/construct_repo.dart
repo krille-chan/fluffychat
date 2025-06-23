@@ -1,11 +1,12 @@
 import 'dart:convert';
 
+import 'package:http/http.dart';
+
 import 'package:fluffychat/pangea/analytics_misc/constructs_model.dart';
 import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/pangea/common/network/requests.dart';
 import 'package:fluffychat/pangea/common/network/urls.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:http/http.dart';
 
 class ConstructSummary {
   final int upperLevel;
