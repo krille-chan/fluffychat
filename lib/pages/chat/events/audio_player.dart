@@ -308,19 +308,34 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
     final audioPlayer = matrix.audioPlayer;
     if (audioPlayer == null) return;
     switch (audioPlayer.speed) {
+      // #Pangea
+      // case 1.0:
+      //   await audioPlayer.setSpeed(1.25);
+      //   break;
+      // case 1.25:
+      //   await audioPlayer.setSpeed(1.5);
+      //   break;
+      // case 1.5:
+      //   await audioPlayer.setSpeed(2.0);
+      //   break;
+      // case 2.0:
+      //   await audioPlayer.setSpeed(0.5);
+      //   break;
+      // case 0.5:
       case 1.0:
+        await audioPlayer.setSpeed(0.75);
+        break;
+      case 0.75:
+        await audioPlayer.setSpeed(0.5);
+        break;
+      case 0.5:
         await audioPlayer.setSpeed(1.25);
         break;
       case 1.25:
         await audioPlayer.setSpeed(1.5);
         break;
       case 1.5:
-        await audioPlayer.setSpeed(2.0);
-        break;
-      case 2.0:
-        await audioPlayer.setSpeed(0.5);
-        break;
-      case 0.5:
+      // Pangea#
       default:
         await audioPlayer.setSpeed(1.0);
         break;
