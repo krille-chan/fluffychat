@@ -3018,7 +3018,7 @@
   "@searchMore": {},
   "gallery": "Gailearaí",
   "@gallery": {},
-  "alwaysUse24HourFormat": "bréagach",
+  "alwaysUse24HourFormat": "",
   "@alwaysUse24HourFormat": {
     "description": "Set to true to always display time of day in 24 hour format."
   },
