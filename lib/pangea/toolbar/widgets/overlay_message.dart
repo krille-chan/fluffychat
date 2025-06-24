@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/events/message_content.dart';
@@ -149,9 +150,9 @@ class OverlayMessage extends StatelessWidget {
 
     final transcription = showTranscription
         ? Container(
-            width: messageWidth,
-            constraints: const BoxConstraints(
-              maxHeight: AppConfig.audioTranscriptionMaxHeight,
+            constraints: BoxConstraints(
+              maxHeight: maxHeight - (messageHeight ?? 0),
+              maxWidth: FluffyThemes.columnWidth * 1.5,
             ),
             child: Padding(
               padding: const EdgeInsets.all(12.0),
@@ -178,6 +179,7 @@ class OverlayMessage extends StatelessWidget {
                           child: Column(
                             spacing: 8.0,
                             crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
                             children: [
                               SttTranscriptTokens(
                                 model: overlayController.transcription!,
