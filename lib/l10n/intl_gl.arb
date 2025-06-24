@@ -3375,5 +3375,9 @@
   "commandHint_logoutall": "Fechar a sesión en todos os dispositivos activos",
   "@commandHint_logoutall": {},
   "commandHint_logout": "Fechar a sesión no dispositivo actual",
-  "@commandHint_logout": {}
+  "@commandHint_logout": {},
+  "moreEvents": "Máis eventos",
+  "@moreEvents": {},
+  "customReaction": "Reacción personalizada",
+  "@customReaction": {}
 }
