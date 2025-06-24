@@ -51,6 +51,17 @@ class _PhoneticTranscriptionWidgetState
     _fetchTranscription();
   }
 
+  @override
+  void didUpdateWidget(
+    covariant PhoneticTranscriptionWidget oldWidget,
+  ) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.text != widget.text ||
+        oldWidget.textLanguage != widget.textLanguage) {
+      _fetchTranscription();
+    }
+  }
+
   Future<void> _fetchTranscription() async {
     try {
       setState(() {
