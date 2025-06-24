@@ -719,7 +719,7 @@
       }
     }
   },
-  "alwaysUse24HourFormat": "Không",
+  "alwaysUse24HourFormat": "",
   "@alwaysUse24HourFormat": {
     "description": "Set to true to always display time of day in 24 hour format."
   },
