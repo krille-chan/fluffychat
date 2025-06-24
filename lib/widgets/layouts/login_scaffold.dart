@@ -29,7 +29,15 @@ class LoginScaffold extends StatelessWidget {
       return Scaffold(
         key: const Key('LoginScaffold'),
         appBar: appBar,
-        body: SafeArea(child: body),
+        body: Center(
+          child: Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 64.0),
+            child: SafeArea(
+              child: body,
+            ),
+          ),
+        ),
       );
     }
     return Container(
@@ -44,34 +52,34 @@ class LoginScaffold extends StatelessWidget {
           end: Alignment.bottomRight,
         ),
       ),
-      child: Column(
-        children: [
-          const SizedBox(height: 16),
-          Expanded(
-            child: Center(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Material(
-                  borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-                  clipBehavior: Clip.hardEdge,
-                  elevation: theme.appBarTheme.scrolledUnderElevation ?? 4,
-                  shadowColor: theme.appBarTheme.shadowColor,
-                  child: ConstrainedBox(
-                    constraints: isMobileMode
-                        ? const BoxConstraints()
-                        : const BoxConstraints(maxWidth: 480, maxHeight: 640),
-                    child: Scaffold(
-                      key: const Key('LoginScaffold'),
-                      appBar: appBar,
-                      body: SafeArea(child: body),
-                    ),
-                  ),
-                ),
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 64.0),
+          child: Material(
+            color: theme.colorScheme.primaryContainer,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+              side: BorderSide(
+                color: theme.colorScheme.secondary,
+                width: 2,
+              ),
+            ),
+            clipBehavior: Clip.hardEdge,
+            elevation: theme.appBarTheme.scrolledUnderElevation ?? 4,
+            shadowColor: theme.appBarTheme.shadowColor,
+            child: ConstrainedBox(
+              constraints: isMobileMode
+                  ? const BoxConstraints()
+                  : const BoxConstraints(maxWidth: 480, maxHeight: 640),
+              child: Scaffold(
+                backgroundColor: Colors.transparent,
+                key: const Key('LoginScaffold'),
+                appBar: appBar,
+                body: SafeArea(child: body),
               ),
             ),
           ),
-          const _PrivacyButtons(mainAxisAlignment: MainAxisAlignment.center),
-        ],
+        ),
       ),
     );
   }

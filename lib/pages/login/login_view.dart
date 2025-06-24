@@ -1,8 +1,10 @@
+import 'package:fluffychat/config/app_config.dart';
 import 'package:flutter/material.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/widgets/layouts/login_scaffold.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'login.dart';
 
 class LoginView extends StatelessWidget {
@@ -14,47 +16,58 @@ class LoginView extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    final homeserver = controller.widget.client.homeserver
-        .toString()
-        .replaceFirst('https://', '');
-    final title = L10n.of(context).logInTo(homeserver);
-    final titleParts = title.split(homeserver);
-
     return LoginScaffold(
       enforceMobileMode:
           Matrix.of(context).widget.clients.any((client) => client.isLogged()),
-      appBar: AppBar(
-        leading: controller.loading ? null : const Center(child: BackButton()),
-        automaticallyImplyLeading: !controller.loading,
-        titleSpacing: !controller.loading ? 0 : null,
-        title: Text.rich(
-          TextSpan(
-            children: [
-              TextSpan(text: titleParts.first),
-              TextSpan(
-                text: homeserver,
-                style: const TextStyle(fontWeight: FontWeight.bold),
-              ),
-              TextSpan(text: titleParts.last),
-            ],
-          ),
-          style: const TextStyle(fontSize: 18),
-        ),
-      ),
+      appBar: null,
       body: Builder(
         builder: (context) {
           return AutofillGroup(
             child: ListView(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
               children: <Widget>[
-                Hero(
-                  tag: 'info-logo',
-                  child: Image.asset('assets/banner_transparent.png'),
+                Padding(
+                  padding: EdgeInsets.only(
+                    left: MediaQuery.of(context).size.height * 0.05,
+                    right: MediaQuery.of(context).size.height * 0.05,
+                    top: MediaQuery.of(context).size.height * 0.05,
+                  ),
+                  child: Text(
+                    L10n.of(context).login,
+                    style: GoogleFonts.righteous(
+                      fontSize: 20,
+                      color: theme.colorScheme.onSurface,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    vertical: MediaQuery.of(context).size.height * 0.05,
+                  ),
+                  child: Center(
+                    child: FractionallySizedBox(
+                      widthFactor: 0.5,
+                      child: ConstrainedBox(
+                        constraints: BoxConstraints(
+                          maxHeight: MediaQuery.of(context).size.height * 0.2,
+                          minWidth: 150,
+                        ),
+                        child: Image.asset(
+                          'assets/logo_horizontal_semfundo.png',
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
                 const SizedBox(height: 16),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24.0),
                   child: TextField(
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.normal,
+                      fontFamily: 'Roboto',
+                    ),
                     readOnly: controller.loading,
                     autocorrect: false,
                     autofocus: true,
@@ -68,7 +81,6 @@ class LoginView extends StatelessWidget {
                       prefixIcon: const Icon(Icons.account_box_outlined),
                       errorText: controller.usernameError,
                       errorStyle: const TextStyle(color: Colors.orange),
-                      hintText: '@username:domain',
                       labelText: L10n.of(context).emailOrUsername,
                     ),
                   ),
@@ -77,6 +89,11 @@ class LoginView extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24.0),
                   child: TextField(
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.normal,
+                      fontFamily: 'Roboto',
+                    ),
                     readOnly: controller.loading,
                     autocorrect: false,
                     autofillHints:
@@ -95,10 +112,9 @@ class LoginView extends StatelessWidget {
                           controller.showPassword
                               ? Icons.visibility_off_outlined
                               : Icons.visibility_outlined,
-                          color: Colors.black,
+                          color: theme.colorScheme.onSurface,
                         ),
                       ),
-                      hintText: '******',
                       labelText: L10n.of(context).password,
                     ),
                   ),
@@ -107,10 +123,6 @@ class LoginView extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24.0),
                   child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: theme.colorScheme.primary,
-                      foregroundColor: theme.colorScheme.onPrimary,
-                    ),
                     onPressed: controller.loading ? null : controller.login,
                     child: controller.loading
                         ? const LinearProgressIndicator()
@@ -125,7 +137,7 @@ class LoginView extends StatelessWidget {
                         ? () {}
                         : controller.passwordForgotten,
                     style: TextButton.styleFrom(
-                      foregroundColor: theme.colorScheme.error,
+                      foregroundColor: theme.colorScheme.primary,
                     ),
                     child: Text(L10n.of(context).passwordForgotten),
                   ),
