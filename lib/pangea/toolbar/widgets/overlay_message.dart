@@ -8,6 +8,7 @@ import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/events/message_content.dart';
 import 'package:fluffychat/pages/chat/events/reply_content.dart';
+import 'package:fluffychat/pangea/bot/utils/bot_name.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/events/extensions/pangea_event_extension.dart';
 import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
@@ -205,6 +206,8 @@ class OverlayMessage extends StatelessWidget {
                                     textColor,
                                   ),
                                   iconColor: textColor,
+                                  enabled:
+                                      event.senderId != BotName.byEnvironment,
                                 ),
                             ],
                           ),

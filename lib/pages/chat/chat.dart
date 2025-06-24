@@ -14,6 +14,7 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:matrix/matrix.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
@@ -26,6 +27,7 @@ import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/chat_view.dart';
 import 'package:fluffychat/pages/chat/event_info_dialog.dart';
+import 'package:fluffychat/pages/chat/events/audio_player.dart';
 import 'package:fluffychat/pages/chat/recording_dialog.dart';
 import 'package:fluffychat/pages/chat_details/chat_details.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
@@ -33,6 +35,7 @@ import 'package:fluffychat/pangea/analytics_misc/constructs_model.dart';
 import 'package:fluffychat/pangea/analytics_misc/gain_points_animation.dart';
 import 'package:fluffychat/pangea/analytics_misc/level_up/level_up_banner.dart';
 import 'package:fluffychat/pangea/analytics_misc/put_analytics_controller.dart';
+import 'package:fluffychat/pangea/bot/utils/bot_name.dart';
 import 'package:fluffychat/pangea/chat/utils/unlocked_morphs_snackbar.dart';
 import 'package:fluffychat/pangea/chat/widgets/event_too_large_dialog.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
@@ -46,6 +49,7 @@ import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/common/utils/firebase_analytics.dart';
 import 'package:fluffychat/pangea/common/utils/overlay.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
+import 'package:fluffychat/pangea/events/extensions/pangea_event_extension.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/events/models/representation_content_model.dart';
 import 'package:fluffychat/pangea/events/models/tokens_event_content_model.dart';
@@ -149,6 +153,7 @@ class ChatController extends State<ChatPageWithRoom>
 
   StreamSubscription? _levelSubscription;
   StreamSubscription? _analyticsSubscription;
+  StreamSubscription? _botAudioSubscription;
   // Pangea#
   Room get room => sendingClient.getRoomById(roomId) ?? widget.room;
 
@@ -473,6 +478,43 @@ class ChatController extends State<ChatPageWithRoom>
         ignorePointer: true,
       );
     });
+
+    _botAudioSubscription = room.client.onSync.stream
+        .where(
+      (update) => update.rooms?.join?[roomId]?.timeline?.events != null,
+    )
+        .listen((update) async {
+      final timeline = update.rooms!.join![roomId]!.timeline!;
+      final botAudioEvent = timeline.events!.firstWhereOrNull(
+        (e) =>
+            e.senderId == BotName.byEnvironment &&
+            e.content.tryGet<String>('msgtype') == MessageTypes.Audio &&
+            DateTime.now().difference(e.originServerTs) <
+                const Duration(seconds: 10),
+      );
+      if (botAudioEvent == null) return;
+
+      final matrix = Matrix.of(context);
+      matrix.voiceMessageEventId.value = botAudioEvent.eventId;
+      matrix.audioPlayer?.dispose();
+      matrix.audioPlayer = AudioPlayer();
+
+      final event = Event.fromMatrixEvent(botAudioEvent, room);
+      final audioFile = await event.getPangeaAudioFile();
+      debugPrint(
+        "audiofile: ${audioFile?.mimeType} ${audioFile?.bytes.length}",
+      );
+      if (audioFile == null) return;
+
+      matrix.audioPlayer!.setAudioSource(
+        BytesAudioSource(
+          audioFile.bytes,
+          audioFile.mimeType,
+        ),
+      );
+
+      matrix.audioPlayer!.play();
+    });
     // Pangea#
     _tryLoadTimeline();
     if (kIsWeb) {
@@ -719,6 +761,7 @@ class ChatController extends State<ChatPageWithRoom>
     stopMediaStream.close();
     _levelSubscription?.cancel();
     _analyticsSubscription?.cancel();
+    _botAudioSubscription?.cancel();
     _router.routeInformationProvider.removeListener(_onRouteChanged);
     //Pangea#
     super.dispose();

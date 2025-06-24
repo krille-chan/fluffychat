@@ -550,7 +550,7 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
         return 0.8;
       case ReadingAssistanceMode.selectMode:
       case null:
-        return 0.4;
+        return 0.6;
     }
   }
 

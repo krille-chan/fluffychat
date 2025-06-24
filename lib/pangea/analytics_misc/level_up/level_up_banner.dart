@@ -145,6 +145,8 @@ class LevelUpBannerState extends State<LevelUpBanner>
     LevelUpManager.instance.markPopupSeen();
     _showedDetails = true;
 
+    FocusScope.of(context).unfocus();
+
     await showDialog(
       context: context,
       builder: (context) => const LevelUpPopup(),

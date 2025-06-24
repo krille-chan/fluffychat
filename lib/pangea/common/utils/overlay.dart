@@ -246,7 +246,7 @@ class TransparentBackdropState extends State<TransparentBackdrop>
         curve: FluffyThemes.animationCurve,
       ),
     );
-    _blurTween = Tween<double>(begin: 0.0, end: 2.5).animate(
+    _blurTween = Tween<double>(begin: 0.0, end: 3.0).animate(
       CurvedAnimation(
         parent: _controller,
         curve: FluffyThemes.animationCurve,

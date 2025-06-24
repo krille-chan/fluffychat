@@ -923,7 +923,7 @@ class ChatListController extends State<ChatList>
           ),
         ),
         // #Pangea
-        if (room.isRoomAdmin)
+        if (room.isRoomAdmin && !room.isDirectChat)
           PopupMenuItem(
             value: ChatContextAction.delete,
             child: Row(
