@@ -13,11 +13,9 @@ import 'package:fluffychat/pages/chat/chat_app_bar_list_tile.dart';
 import 'package:fluffychat/pages/chat/chat_app_bar_title.dart';
 import 'package:fluffychat/pages/chat/chat_event_list.dart';
 import 'package:fluffychat/pages/chat/pinned_events.dart';
-import 'package:fluffychat/pangea/activities/pinned_activity_message.dart';
 import 'package:fluffychat/pangea/chat/widgets/chat_input_bar.dart';
 import 'package:fluffychat/pangea/chat/widgets/chat_input_bar_header.dart';
 import 'package:fluffychat/pangea/chat/widgets/chat_view_background.dart';
-import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/utils/account_config.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
@@ -190,13 +188,6 @@ class ChatView extends StatelessWidget {
             if (scrollUpBannerEventId != null) {
               appbarBottomHeight += ChatAppBarListTile.fixedHeight;
             }
-            // #Pangea
-            if (controller.room.activityPlan != null &&
-                controller.room.activityPlan!.endAt != null &&
-                controller.room.activityPlan!.endAt!.isAfter(DateTime.now())) {
-              appbarBottomHeight += ChatAppBarListTile.fixedHeight;
-            }
-            // Pangea#
             return Scaffold(
               appBar: AppBar(
                 actionsIconTheme: IconThemeData(
@@ -235,9 +226,6 @@ class ChatView extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       PinnedEvents(controller),
-                      // #Pangea
-                      PinnedActivityMessage(controller),
-                      // Pangea#
                       if (scrollUpBannerEventId != null)
                         ChatAppBarListTile(
                           leading: IconButton(

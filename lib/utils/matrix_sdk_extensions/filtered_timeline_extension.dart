@@ -1,7 +1,6 @@
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pangea/common/constants/model_keys.dart';
-import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import '../../config/app_config.dart';
 
 extension VisibleInGuiExtension on List<Event> {
@@ -23,12 +22,7 @@ extension IsStateExtension on Event {
       // if we enabled to hide all redacted events, don't show those
       (!AppConfig.hideRedactedEvents || !redacted) &&
       // if we enabled to hide all unknown events, don't show those
-      // #Pangea
-      // (!AppConfig.hideUnknownEvents || isEventTypeKnown) &&
-      (!AppConfig.hideUnknownEvents ||
-          isEventTypeKnown ||
-          importantStateEvents.contains(type)) &&
-      // Pangea#
+      (!AppConfig.hideUnknownEvents || isEventTypeKnown) &&
       // remove state events that we don't want to render
       (isState || !AppConfig.hideAllStateEvents) &&
       // #Pangea
@@ -64,8 +58,6 @@ extension IsStateExtension on Event {
     EventTypes.RoomMember,
     EventTypes.RoomTombstone,
     EventTypes.CallInvite,
-    PangeaEventTypes.activityPlan,
-    PangeaEventTypes.activityPlanEnd,
   };
   // Pangea#
 }
