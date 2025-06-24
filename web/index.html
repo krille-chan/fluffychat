@@ -70,6 +70,33 @@
       });
     });
   </script>
+
+  <!-- #Pangea -->
+  <script>
+    (function() {
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+      const isAndroid = /android/i.test(userAgent);
+      const isIOS = /iPhone|iPad|iPod/i.test(userAgent);
+      const isMobile = isAndroid || isIOS;
+
+      if (!isMobile) return; // Exit if not a mobile device
+
+      const appScheme = 'pangea://'; // Replace with your app's scheme
+      const fallbackURL = isIOS
+        ? 'https://apps.apple.com/app/pangea-chat/id1445118630'
+        : 'https://play.google.com/store/apps/details?id=com.talktolearn.chat';
+
+      // Try opening the app
+      window.location = appScheme;
+
+      // Fallback to App Store / Play Store if not installed
+      setTimeout(() => {
+        window.location = fallbackURL;
+      }, 1500);
+    })();
+  </script>
+  <!-- Pangea# -->
+
   <picture id="splash">
     <!-- #Pangea -->
     <!-- <source
