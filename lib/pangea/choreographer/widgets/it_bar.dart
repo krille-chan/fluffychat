@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:fluffychat/pangea/choreographer/constants/choreo_constants.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/it_controller.dart';
+import 'package:fluffychat/pangea/choreographer/widgets/igc/word_data_card.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/it_feedback_card.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/instructions/instructions_enum.dart';
@@ -17,7 +18,6 @@ import '../../common/utils/overlay.dart';
 import '../controllers/it_feedback_controller.dart';
 import '../models/it_response_model.dart';
 import 'choice_array.dart';
-import 'igc/word_data_card.dart';
 
 class ITBar extends StatefulWidget {
   final Choreographer choreographer;
@@ -333,7 +333,13 @@ class ITChoices extends StatelessWidget {
               fullTextLang: sourceText != null
                   ? controller.sourceLangCode
                   : controller.targetLangCode,
-              hasInfo: controller.currentITStep!.continuances[index].hasInfo,
+              // IMPORTANT COMMENT TO KEEP: We're going to forace hasInfo to false for now
+              // because we don't want to show the word data card for correct choices and the contextual definition
+              // for incorrect choices. This gives away the answer (if you're Kel at least).
+              // The reason hasInfo is false for incorrect choices is that we're not includng the tokens for distractors.
+              // Correct choices will have the tokens, but we don't want to show something different for them.
+              // hasInfo: controller.currentITStep!.continuances[index].hasInfo,
+              hasInfo: false,
               choiceFeedback: choiceFeedback,
               room: controller.choreographer.chatController.room,
             )
