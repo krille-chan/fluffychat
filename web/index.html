@@ -24,47 +24,43 @@
   <!-- iOS meta tags & icons -->
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="FluffyChat">
+  <meta name="apple-mobile-web-app-title" content="RadioHemp">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
-
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png" />
-
-  <title>FluffyChat</title>
+  <link rel="icon" type="image/png" href="/assets/logo_single_semfundo.png" />
+  <title>Radio Hemp</title>
   <link rel="manifest" href="manifest.json">
-  <link rel="stylesheet" type="text/css" href="splash/style.css">
+   <link rel="stylesheet" type="text/css" href="splash/style.css">
+    <!-- This script adds the flutter initialization JS code -->
+    <script src="flutter.js" defer></script>
+  </head>
 
-  <!-- This script adds the flutter initialization JS code -->
-  <script src="flutter.js" defer></script>
-</head>
+  <body>
+    <script>
+      window.addEventListener('load', function (ev) {
+        {{flutter_js}}
+        {{flutter_build_config}}
 
-<body>
-  <script>
-    window.addEventListener('load', function (ev) {
-      {{flutter_js}}
-      {{flutter_build_config}}
-
-      _flutter.loader.load({
-        serviceWorker: {
-          serviceWorkerVersion: {{flutter_service_worker_version}},
-        },
-      onEntrypointLoaded: function (engineInitializer) {
-        engineInitializer.initializeEngine({ useColorEmoji: true }).then(function (appRunner) {
-          appRunner.runApp();
+        _flutter.loader.load({
+          serviceWorker: {
+            serviceWorkerVersion: {{flutter_service_worker_version}},
+          },
+        onEntrypointLoaded: function (engineInitializer) {
+          engineInitializer.initializeEngine({ useColorEmoji: true }).then(function (appRunner) {
+            appRunner.runApp();
+          });
+        }
         });
-      }
       });
-    });
-  </script>
-  <picture id="splash">
+    </script>
+    <picture id="splash">
     <source
       srcset="splash/img/light-1x.png 1x, splash/img/light-2x.png 2x, splash/img/light-3x.png 3x, splash/img/light-4x.png 4x"
       media="(prefers-color-scheme: light) or (prefers-color-scheme: no-preference)">
     <source
       srcset="splash/img/dark-1x.png 1x, splash/img/dark-2x.png 2x, splash/img/dark-3x.png 3x, splash/img/dark-4x.png 4x"
       media="(prefers-color-scheme: dark)">
-    <img class="center" src="splash/img/light-1x.png" />
+    <img class="center contain fade-in" src="splash/img/light-1x.png" />
   </picture>
-</body>
-
+  </body>
 </html>
