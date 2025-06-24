@@ -2972,7 +2972,7 @@
   "@gallery": {},
   "swipeRightToLeftToReply": "اسحب من اليمين إلى اليسار للرد",
   "@swipeRightToLeftToReply": {},
-  "alwaysUse24HourFormat": "خطأ",
+  "alwaysUse24HourFormat": "",
   "@alwaysUse24HourFormat": {
     "description": "Set to true to always display time of day in 24 hour format."
   },
