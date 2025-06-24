@@ -134,10 +134,6 @@ class Message extends StatelessWidget {
             ? ActivityStateEvent(event: event)
             : const SizedBox();
       }
-
-      if (event.type == PangeaEventTypes.activityPlanEnd) {
-        return const ActivityFinishedEvent();
-      }
       // Pangea#
       return StateMessage(event);
     }
