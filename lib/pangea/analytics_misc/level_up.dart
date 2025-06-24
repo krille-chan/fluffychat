@@ -176,6 +176,8 @@ class LevelUpBannerState extends State<LevelUpBanner>
   Future<void> _toggleDetails() async {
     if (!Environment.isStagingEnvironment) return;
 
+    FocusScope.of(context).unfocus();
+
     if (mounted) {
       setState(() {
         _showDetails = !_showDetails;
