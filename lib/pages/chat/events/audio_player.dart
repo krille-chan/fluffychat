@@ -585,43 +585,68 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
                         ),
                         // Pangea#
                         const SizedBox(width: 8),
-                        AnimatedCrossFade(
-                          firstChild: Padding(
-                            padding: const EdgeInsets.only(right: 8.0),
-                            child: Icon(
-                              Icons.mic_none_outlined,
-                              color: widget.color,
-                            ),
-                          ),
-                          secondChild: Material(
-                            color: widget.color.withAlpha(64),
+                        // #Pangea
+                        Material(
+                          color: widget.color.withAlpha(64),
+                          borderRadius:
+                              BorderRadius.circular(AppConfig.borderRadius),
+                          child: InkWell(
                             borderRadius:
                                 BorderRadius.circular(AppConfig.borderRadius),
-                            child: InkWell(
-                              borderRadius:
-                                  BorderRadius.circular(AppConfig.borderRadius),
-                              onTap: _toggleSpeed,
-                              child: SizedBox(
-                                width: 32,
-                                height: 20,
-                                child: Center(
-                                  child: Text(
-                                    '${audioPlayer?.speed.toString()}x',
-                                    style: TextStyle(
-                                      color: widget.color,
-                                      fontSize: 9,
-                                    ),
+                            onTap: _toggleSpeed,
+                            child: SizedBox(
+                              width: 32,
+                              height: 20,
+                              child: Center(
+                                child: Text(
+                                  '${audioPlayer?.speed.toString() ?? 1}x',
+                                  style: TextStyle(
+                                    color: widget.color,
+                                    fontSize: 9,
                                   ),
                                 ),
                               ),
                             ),
                           ),
-                          alignment: Alignment.center,
-                          crossFadeState: audioPlayer == null
-                              ? CrossFadeState.showFirst
-                              : CrossFadeState.showSecond,
-                          duration: FluffyThemes.animationDuration,
                         ),
+                        // AnimatedCrossFade(
+                        //   firstChild: Padding(
+                        //     padding: const EdgeInsets.only(right: 8.0),
+                        //     child: Icon(
+                        //       Icons.mic_none_outlined,
+                        //       color: widget.color,
+                        //     ),
+                        //   ),
+                        //   secondChild: Material(
+                        //     color: widget.color.withAlpha(64),
+                        //     borderRadius:
+                        //         BorderRadius.circular(AppConfig.borderRadius),
+                        //     child: InkWell(
+                        //       borderRadius:
+                        //           BorderRadius.circular(AppConfig.borderRadius),
+                        //       onTap: _toggleSpeed,
+                        //       child: SizedBox(
+                        //         width: 32,
+                        //         height: 20,
+                        //         child: Center(
+                        //           child: Text(
+                        //             '${audioPlayer?.speed.toString()}x',
+                        //             style: TextStyle(
+                        //               color: widget.color,
+                        //               fontSize: 9,
+                        //             ),
+                        //           ),
+                        //         ),
+                        //       ),
+                        //     ),
+                        //   ),
+                        //   alignment: Alignment.center,
+                        //   crossFadeState: audioPlayer == null
+                        //       ? CrossFadeState.showFirst
+                        //       : CrossFadeState.showSecond,
+                        //   duration: FluffyThemes.animationDuration,
+                        // ),
+                        // Pangea#
                       ],
                     ),
                   ),
