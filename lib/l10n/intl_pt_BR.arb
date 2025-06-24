@@ -82,7 +82,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "areGuestsAllowedToJoin": "Usuários visitantes podem participar?",
+  "areGuestsAllowedToJoin": "Visitantes podem participar?",
   "@areGuestsAllowedToJoin": {
     "type": "String",
     "placeholders": {}
@@ -250,7 +250,7 @@
       }
     }
   },
-  "changedTheGuestAccessRules": "{username} alterou as regras de acesso dos convidados",
+  "changedTheGuestAccessRules": "{username} alterou as regras de acesso dos visitantes",
   "@changedTheGuestAccessRules": {
     "type": "String",
     "placeholders": {
@@ -259,7 +259,7 @@
       }
     }
   },
-  "changedTheGuestAccessRulesTo": "{username} alterou as regras de acesso dos convidados para: {rules}",
+  "changedTheGuestAccessRulesTo": "{username} alterou as regras de acesso dos visitantes para: {rules}",
   "@changedTheGuestAccessRulesTo": {
     "type": "String",
     "placeholders": {
@@ -879,7 +879,7 @@
       }
     }
   },
-  "guestsAreForbidden": "Convidados estão proibidos",
+  "guestsAreForbidden": "Visitantes são proibidos",
   "@guestsAreForbidden": {
     "type": "String",
     "placeholders": {}
@@ -1434,7 +1434,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "recording": "Gravando",
+  "recording": "Gravação",
   "@recording": {
     "type": "String",
     "placeholders": {}
@@ -3378,5 +3378,9 @@
   "previous": "Anterior",
   "@previous": {},
   "otherPartyNotLoggedIn": "A outra pessoa não está online no momento e portanto não consegue receber mensagens!",
-  "@otherPartyNotLoggedIn": {}
+  "@otherPartyNotLoggedIn": {},
+  "customReaction": "Reação personalizada",
+  "@customReaction": {},
+  "moreEvents": "Mais eventos",
+  "@moreEvents": {}
 }
