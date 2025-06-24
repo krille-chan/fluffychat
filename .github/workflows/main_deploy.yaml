@@ -50,6 +50,11 @@ jobs:
           cp public/.env public/assets/.env
           touch public/assets/envs.json
           echo "$ENV_OVERRIDES" >> public/assets/envs.json
+          mkdir -p public/.well-known
+          curl https://app.pangea.chat/.well-known/apple-app-site-association \
+            -o public/.well-known/apple-app-site-association
+          curl https://app.pangea.chat/.well-known/assetlinks.json \
+            -o public/.well-known/assetlinks.json
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
