@@ -2828,7 +2828,7 @@
   "@website": {},
   "compress": "சுருக்க",
   "@compress": {},
-  "alwaysUse24HourFormat": "தவறு",
+  "alwaysUse24HourFormat": "",
   "@alwaysUse24HourFormat": {
     "description": "Set to true to always display time of day in 24 hour format."
   },
