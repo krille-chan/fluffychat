@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:fluffychat/pages/login/auto_login.dart';
 import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
@@ -54,7 +55,7 @@ abstract class AppRoutes {
   ) =>
       Matrix.of(context).widget.clients.any((client) => client.isLogged())
           ? null
-          : '/home';
+          : '/homeserver';
 
   AppRoutes();
 
@@ -64,27 +65,32 @@ abstract class AppRoutes {
       redirect: (context, state) =>
           Matrix.of(context).widget.clients.any((client) => client.isLogged())
               ? '/rooms'
-              : '/home',
+              : '/homeserver',
     ),
     GoRoute(
-      path: '/home',
+      path: '/homeserver',
       pageBuilder: (context, state) => defaultPageBuilder(
         context,
         state,
-        const HomeserverPicker(addMultiAccount: false),
+        const AutoLoginScreen(),
       ),
-      redirect: loggedInRedirect,
-      routes: [
-        GoRoute(
-          path: 'login',
-          pageBuilder: (context, state) => defaultPageBuilder(
-            context,
-            state,
-            Login(client: state.extra as Client),
-          ),
-          redirect: loggedInRedirect,
-        ),
-      ],
+    ),
+    GoRoute(
+      path: '/login',
+      builder: (context, state) {
+        final extra = state.extra;
+
+        if (extra == null || extra is! Client) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            context.go('/');
+          });
+
+          return const SizedBox.shrink();
+        }
+
+        final client = extra;
+        return Login(client: client);
+      },
     ),
     GoRoute(
       path: '/logs',
