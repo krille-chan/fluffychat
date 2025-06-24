@@ -76,6 +76,7 @@ class WordZoomWidget extends StatelessWidget {
                 Flexible(
                   child: Text(
                     token.text.content,
+                    textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 32.0,
                       fontWeight: FontWeight.w600,
