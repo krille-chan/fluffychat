@@ -537,11 +537,13 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
                                   // #Pangea
                                   // thumbColor: widget.event.senderId ==
                                   //         widget.event.room.client.userID
+                                  //       ? theme.colorScheme.onPrimary
+                                  //       : theme.colorScheme.primary,
                                   thumbColor: widget.senderId ==
                                           Matrix.of(context).client.userID
-                                      // Pangea#
                                       ? widget.color
                                       : theme.colorScheme.onSurface,
+                                  // Pangea#
                                   activeColor: waveform == null
                                       ? widget.color
                                       : Colors.transparent,
