@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'app_config.dart';
 
@@ -43,15 +44,28 @@ abstract class FluffyThemes {
     Brightness brightness, [
     Color? seed,
   ]) {
-    final colorScheme = ColorScheme.fromSeed(
-      brightness: brightness,
-      seedColor: seed ?? AppConfig.colorSchemeSeed ?? AppConfig.primaryColor,
+    const colorScheme = ColorScheme(
+      brightness: Brightness.dark,
+      primary: Color(0xFFE3ED55),
+      onPrimary: Color(0xFF212529),
+      secondary: Color(0xFFEE7F4B),
+      onSecondary: Colors.white,
+      primaryContainer: Color(0xFF3D3D3D),
+      onPrimaryContainer: Colors.white,
+      surface: Color(0xFF212529),
+      onSurface: Color(0xFFADB5BD),
+      error: Color.fromARGB(255, 145, 37, 37),
+      onError: Color(0xFF212529),
     );
+
     final isColumnMode = FluffyThemes.isColumnMode(context);
     return ThemeData(
+      textTheme: GoogleFonts.fredokaTextTheme(
+        Theme.of(context).textTheme,
+      ),
       visualDensity: VisualDensity.standard,
       useMaterial3: true,
-      brightness: brightness,
+      brightness: Brightness.dark,
       colorScheme: colorScheme,
       dividerColor: brightness == Brightness.dark
           ? colorScheme.surfaceContainerHighest
@@ -75,10 +89,35 @@ abstract class FluffyThemes {
         selectionHandleColor: colorScheme.secondary,
       ),
       inputDecorationTheme: InputDecorationTheme(
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-        ),
+        filled: true,
+        fillColor: colorScheme.surface,
         contentPadding: const EdgeInsets.all(12),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(AppConfig.inputBorderRadius),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(AppConfig.inputBorderRadius),
+          borderSide: BorderSide(color: colorScheme.onSurface, width: 0.3),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(AppConfig.inputBorderRadius),
+          borderSide: BorderSide(color: colorScheme.secondary),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(AppConfig.inputBorderRadius),
+          borderSide: BorderSide(color: colorScheme.error),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(AppConfig.inputBorderRadius),
+          borderSide: BorderSide(color: colorScheme.secondary),
+        ),
+        labelStyle: TextStyle(
+          fontFamily: 'Roboto',
+          fontSize: 16,
+          fontWeight: FontWeight.normal,
+          color: colorScheme.onSurface,
+        ),
+        prefixIconColor: colorScheme.onSurface,
       ),
       chipTheme: ChipThemeData(
         showCheckmark: false,
@@ -106,10 +145,10 @@ abstract class FluffyThemes {
         style: OutlinedButton.styleFrom(
           side: BorderSide(
             width: 1,
-            color: colorScheme.primary,
+            color: colorScheme.secondary,
           ),
           shape: RoundedRectangleBorder(
-            side: BorderSide(color: colorScheme.primary),
+            side: BorderSide(color: colorScheme.secondary),
             borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
           ),
         ),
@@ -122,11 +161,14 @@ abstract class FluffyThemes {
           : const SnackBarThemeData(behavior: SnackBarBehavior.floating),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor: colorScheme.secondaryContainer,
-          foregroundColor: colorScheme.onSecondaryContainer,
+          backgroundColor: colorScheme.primary,
+          foregroundColor: colorScheme.surface,
           elevation: 0,
           padding: const EdgeInsets.all(16),
-          textStyle: const TextStyle(fontSize: 16),
+          textStyle: const TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
     );
