@@ -77,6 +77,8 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
   // #Pangea
   StreamSubscription? _onAudioPositionChanged;
   StreamSubscription? _onAudioStateChanged;
+
+  double playbackSpeed = 1.0;
   // Pangea#
 
   @override
@@ -175,6 +177,9 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
             : matrix.audioPlayer;
 
     if (currentPlayer != null) {
+      // #Pangea
+      currentPlayer.setSpeed(playbackSpeed);
+      // Pangea#
       if (currentPlayer.isAtEndPosition) {
         currentPlayer.seek(Duration.zero);
       } else if (currentPlayer.playing) {
@@ -250,6 +255,7 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
     final audioPlayer = matrix.audioPlayer = AudioPlayer();
 
     // #Pangea
+    audioPlayer.setSpeed(playbackSpeed);
     _onAudioPositionChanged?.cancel();
     _onAudioPositionChanged =
         matrix.audioPlayer!.positionStream.listen((state) {
@@ -306,7 +312,25 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
 
   void _toggleSpeed() async {
     final audioPlayer = matrix.audioPlayer;
-    if (audioPlayer == null) return;
+    // #Pangea
+    // if (audioPlayer == null) return;
+    if (audioPlayer == null ||
+        matrix.voiceMessageEventId.value != widget.eventId) {
+      switch (playbackSpeed) {
+        case 1.0:
+          setState(() => playbackSpeed = 0.75);
+        case 0.75:
+          setState(() => playbackSpeed = 0.5);
+        case 0.5:
+          setState(() => playbackSpeed = 1.25);
+        case 1.25:
+          setState(() => playbackSpeed = 1.5);
+        default:
+          setState(() => playbackSpeed = 1.0);
+      }
+      return;
+    }
+    // Pangea#
     switch (audioPlayer.speed) {
       // #Pangea
       // case 1.0:
@@ -537,11 +561,13 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
                                   // #Pangea
                                   // thumbColor: widget.event.senderId ==
                                   //         widget.event.room.client.userID
+                                  //       ? theme.colorScheme.onPrimary
+                                  //       : theme.colorScheme.primary,
                                   thumbColor: widget.senderId ==
                                           Matrix.of(context).client.userID
-                                      // Pangea#
-                                      ? theme.colorScheme.onPrimary
-                                      : theme.colorScheme.primary,
+                                      ? widget.color
+                                      : theme.colorScheme.onSurface,
+                                  // Pangea#
                                   activeColor: waveform == null
                                       ? widget.color
                                       : Colors.transparent,
@@ -583,43 +609,68 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
                         ),
                         // Pangea#
                         const SizedBox(width: 8),
-                        AnimatedCrossFade(
-                          firstChild: Padding(
-                            padding: const EdgeInsets.only(right: 8.0),
-                            child: Icon(
-                              Icons.mic_none_outlined,
-                              color: widget.color,
-                            ),
-                          ),
-                          secondChild: Material(
-                            color: widget.color.withAlpha(64),
+                        // #Pangea
+                        Material(
+                          color: widget.color.withAlpha(64),
+                          borderRadius:
+                              BorderRadius.circular(AppConfig.borderRadius),
+                          child: InkWell(
                             borderRadius:
                                 BorderRadius.circular(AppConfig.borderRadius),
-                            child: InkWell(
-                              borderRadius:
-                                  BorderRadius.circular(AppConfig.borderRadius),
-                              onTap: _toggleSpeed,
-                              child: SizedBox(
-                                width: 32,
-                                height: 20,
-                                child: Center(
-                                  child: Text(
-                                    '${audioPlayer?.speed.toString()}x',
-                                    style: TextStyle(
-                                      color: widget.color,
-                                      fontSize: 9,
-                                    ),
+                            onTap: _toggleSpeed,
+                            child: SizedBox(
+                              width: 32,
+                              height: 20,
+                              child: Center(
+                                child: Text(
+                                  '${audioPlayer?.speed.toString() ?? playbackSpeed}x',
+                                  style: TextStyle(
+                                    color: widget.color,
+                                    fontSize: 9,
                                   ),
                                 ),
                               ),
                             ),
                           ),
-                          alignment: Alignment.center,
-                          crossFadeState: audioPlayer == null
-                              ? CrossFadeState.showFirst
-                              : CrossFadeState.showSecond,
-                          duration: FluffyThemes.animationDuration,
                         ),
+                        // AnimatedCrossFade(
+                        //   firstChild: Padding(
+                        //     padding: const EdgeInsets.only(right: 8.0),
+                        //     child: Icon(
+                        //       Icons.mic_none_outlined,
+                        //       color: widget.color,
+                        //     ),
+                        //   ),
+                        //   secondChild: Material(
+                        //     color: widget.color.withAlpha(64),
+                        //     borderRadius:
+                        //         BorderRadius.circular(AppConfig.borderRadius),
+                        //     child: InkWell(
+                        //       borderRadius:
+                        //           BorderRadius.circular(AppConfig.borderRadius),
+                        //       onTap: _toggleSpeed,
+                        //       child: SizedBox(
+                        //         width: 32,
+                        //         height: 20,
+                        //         child: Center(
+                        //           child: Text(
+                        //             '${audioPlayer?.speed.toString()}x',
+                        //             style: TextStyle(
+                        //               color: widget.color,
+                        //               fontSize: 9,
+                        //             ),
+                        //           ),
+                        //         ),
+                        //       ),
+                        //     ),
+                        //   ),
+                        //   alignment: Alignment.center,
+                        //   crossFadeState: audioPlayer == null
+                        //       ? CrossFadeState.showFirst
+                        //       : CrossFadeState.showSecond,
+                        //   duration: FluffyThemes.animationDuration,
+                        // ),
+                        // Pangea#
                       ],
                     ),
                   ),
