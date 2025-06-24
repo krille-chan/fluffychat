@@ -3355,7 +3355,7 @@
   "@notificationRuleServerAcl": {},
   "notificationRuleMemberEventDescription": "Unterdrückt Benachrichtigungen zu Mitgliedschaftsereignissen.",
   "@notificationRuleMemberEventDescription": {},
-  "sentVoiceMessage": "🎙️ {duration} - {sender}",
+  "sentVoiceMessage": "🎙️ {duration} - Sprachnachricht von {sender}",
   "@sentVoiceMessage": {
     "type": "String",
     "placeholders": {
@@ -3380,5 +3380,15 @@
   "pleaseWaitUntilInvited": "Bitte warte nun, bis dich jemand aus dem Raum auffordert.",
   "@pleaseWaitUntilInvited": {},
   "notificationRuleTombstone": "Tombstone",
-  "@notificationRuleTombstone": {}
+  "@notificationRuleTombstone": {},
+  "commandHint_logout": "Aktuelles Gerät abmelden",
+  "@commandHint_logout": {},
+  "commandHint_logoutall": "Alle aktiven Geräte abmelden",
+  "@commandHint_logoutall": {},
+  "displayNavigationRail": "Navigationsleiste auf dem Smartphone anzeigen",
+  "@displayNavigationRail": {},
+  "customReaction": "Benutzerdefinierte Reaktion",
+  "@customReaction": {},
+  "moreEvents": "Weitere Ereignisse",
+  "@moreEvents": {}
 }
