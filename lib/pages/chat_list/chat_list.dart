@@ -587,7 +587,6 @@ class ChatListController extends State<ChatList>
           if (space != null) {
             chatListHandleSpaceTap(
               context,
-              this,
               space,
             );
           }
