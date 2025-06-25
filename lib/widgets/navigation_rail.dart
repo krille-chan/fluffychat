@@ -7,6 +7,7 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_list/navi_rail_item.dart';
+import 'package:fluffychat/pangea/chat_list/utils/chat_list_handle_space_tap.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -175,7 +176,20 @@ class SpacesNavigationRail extends StatelessWidget {
                         return NaviRailItem(
                           toolTip: displayname,
                           isSelected: activeSpaceId == space.id,
-                          onTap: () => onGoToSpaceId(rootSpaces[i].id),
+                          // #Pangea
+                          // onTap: () => onGoToSpaceId(rootSpaces[i].id),
+                          onTap: () {
+                            final room = client.getRoomById(rootSpaces[i].id);
+                            if (room != null) {
+                              chatListHandleSpaceTap(
+                                context,
+                                room,
+                              );
+                            } else {
+                              onGoToSpaceId(rootSpaces[i].id);
+                            }
+                          },
+                          // Pangea#
                           unreadBadgeFilter: (room) =>
                               spaceChildrenIds.contains(room.id),
                           icon: Avatar(
