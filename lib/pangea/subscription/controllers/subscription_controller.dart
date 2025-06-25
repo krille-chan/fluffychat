@@ -58,7 +58,7 @@ class SubscriptionController extends BaseController {
     final bool hasSubscription =
         currentSubscriptionInfo?.currentSubscriptionId != null;
 
-    return hasSubscription;
+    return hasSubscription || _userController.inTrialWindow();
   }
 
   bool _isInitializing = false;
