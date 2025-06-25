@@ -3379,5 +3379,9 @@
   "commandHint_logout": "Logi oma praegusest seadmest välja",
   "@commandHint_logout": {},
   "displayNavigationRail": "Näita mobiilis külgmist tööriistariba",
-  "@displayNavigationRail": {}
+  "@displayNavigationRail": {},
+  "customReaction": "Kohandatud reaktsioon",
+  "@customReaction": {},
+  "moreEvents": "Veel sündmusi",
+  "@moreEvents": {}
 }

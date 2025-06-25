@@ -82,7 +82,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "areGuestsAllowedToJoin": "Usuários visitantes podem participar?",
+  "areGuestsAllowedToJoin": "Visitantes podem participar?",
   "@areGuestsAllowedToJoin": {
     "type": "String",
     "placeholders": {}
@@ -92,7 +92,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "areYouSureYouWantToLogout": "Tem certeza que deseja sair?",
+  "areYouSureYouWantToLogout": "Tem certeza que deseja se desconectar?",
   "@areYouSureYouWantToLogout": {
     "type": "String",
     "placeholders": {}
@@ -250,7 +250,7 @@
       }
     }
   },
-  "changedTheGuestAccessRules": "{username} alterou as regras de acesso dos convidados",
+  "changedTheGuestAccessRules": "{username} alterou as regras de acesso dos visitantes",
   "@changedTheGuestAccessRules": {
     "type": "String",
     "placeholders": {
@@ -259,7 +259,7 @@
       }
     }
   },
-  "changedTheGuestAccessRulesTo": "{username} alterou as regras de acesso dos convidados para: {rules}",
+  "changedTheGuestAccessRulesTo": "{username} alterou as regras de acesso dos visitantes para: {rules}",
   "@changedTheGuestAccessRulesTo": {
     "type": "String",
     "placeholders": {
@@ -840,12 +840,12 @@
     "type": "String",
     "placeholders": {}
   },
-  "fromJoining": "Desde que participou",
+  "fromJoining": "De que participou",
   "@fromJoining": {
     "type": "String",
     "placeholders": {}
   },
-  "fromTheInvitation": "Desde o convite",
+  "fromTheInvitation": "Do convite",
   "@fromTheInvitation": {
     "type": "String",
     "placeholders": {}
@@ -879,7 +879,7 @@
       }
     }
   },
-  "guestsAreForbidden": "Convidados estão proibidos",
+  "guestsAreForbidden": "Visitantes são proibidos",
   "@guestsAreForbidden": {
     "type": "String",
     "placeholders": {}
@@ -1115,12 +1115,12 @@
     "type": "String",
     "placeholders": {}
   },
-  "login": "Entrar",
+  "login": "Conectar-se",
   "@login": {
     "type": "String",
     "placeholders": {}
   },
-  "logInTo": "Entrar em {homeserver}",
+  "logInTo": "Conectar com {homeserver}",
   "@logInTo": {
     "type": "String",
     "placeholders": {
@@ -1129,7 +1129,7 @@
       }
     }
   },
-  "logout": "Sair",
+  "logout": "Desconectar-se",
   "@logout": {
     "type": "String",
     "placeholders": {}
@@ -1434,7 +1434,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "recording": "Gravando",
+  "recording": "Gravação",
   "@recording": {
     "type": "String",
     "placeholders": {}
@@ -2051,7 +2051,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "writeAMessage": "Escreva uma mensagem…",
+  "writeAMessage": "Digite sua mensagem…",
   "@writeAMessage": {
     "type": "String",
     "placeholders": {}
@@ -2081,7 +2081,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "oneClientLoggedOut": "Um dos seus clientes foi desvinculado",
+  "oneClientLoggedOut": "Um dos seus clientes foi desconectado",
   "@oneClientLoggedOut": {},
   "addAccount": "Adicionar conta",
   "@addAccount": {},
@@ -2448,7 +2448,7 @@
       }
     }
   },
-  "noKeyForThisMessage": "Isto pode ocorrer caso a mensagem tenha sido enviada antes da entrada na sua conta com este dispositivo.\n\nTambém é possível que o remetente tenha bloqueado o seu dispositivo ou ocorreu algum problema com a conexão.\n\nVocê consegue ler as mensagens em outra sessão? Então, pode transferir as mensagens de lá! Vá em Configurações > Dispositivos e confira se os dispositivos verificaram um ao outro. Quando abrir a sala da próxima vez e ambas as sessões estiverem abertas, as chaves serão transmitidas automaticamente.\n\nNão gostaria de perder suas chaves quando sair ou trocar de dispositivos? Certifique-se que o backup de conversas esteja ativado nas configurações.",
+  "noKeyForThisMessage": "Isto pode ocorrer caso a mensagem tenha sido enviada antes de você ter se conectado à sua conta com este dispositivo.\n\nTambém é possível que o remetente tenha bloqueado o seu dispositivo ou ocorreu algum problema com a conexão.\n\nVocê consegue ler as mensagens em outra sessão? Então, pode transferir as mensagens de lá! Vá em Configurações > Dispositivos e confira se os dispositivos verificaram um ao outro. Quando abrir a sala da próxima vez e ambas as sessões estiverem abertas, as chaves serão transmitidas automaticamente.\n\nNão gostaria de perder suas chaves ao desconectar ou trocar de dispositivos? Certifique-se que o backup de conversas esteja ativado nas configurações.",
   "@noKeyForThisMessage": {},
   "allRooms": "Todas as conversas em grupo",
   "@allRooms": {
@@ -2479,7 +2479,7 @@
   "@setColorTheme": {},
   "banUserDescription": "O usuário será banido da conversa e não poderá participar novamente até que sejam desbanidos.",
   "@banUserDescription": {},
-  "removeDevicesDescription": "Você será desvinculado deste dispositivo e não poderá mais receber mensagens.",
+  "removeDevicesDescription": "Você será desconectado deste dispositivo e não poderá mais receber mensagens.",
   "@removeDevicesDescription": {},
   "tryAgain": "Tentar novamente",
   "@tryAgain": {},
@@ -2501,7 +2501,7 @@
   "@invalidServerName": {},
   "chatPermissions": "Permissões da conversa",
   "@chatPermissions": {},
-  "signInWithPassword": "Entrar com senha",
+  "signInWithPassword": "Conectar com senha",
   "@signInWithPassword": {},
   "makeAdminDescription": "Assim que promover este usuário a administrador, não poderá desfazer isto e ele terá as mesmas permissões que você.",
   "@makeAdminDescription": {},
@@ -2518,7 +2518,7 @@
       }
     }
   },
-  "signInWith": "Entrar com {provider}",
+  "signInWith": "Conectar com {provider}",
   "@signInWith": {
     "type": "String",
     "placeholders": {
@@ -2633,7 +2633,7 @@
   "@pleaseTryAgainLaterOrChooseDifferentServer": {},
   "createGroup": "Criar grupo",
   "@createGroup": {},
-  "noBackupWarning": "Atenção! Se não ativar o backup de conversas, você perderá acesso a suas mensagens criptografas. É altamente recomendável ativar o backup antes de sair.",
+  "noBackupWarning": "Atenção! Se não ativar o backup de conversas, você perderá acesso a suas mensagens criptografadas. É altamente recomendável ativar o backup antes de sair.",
   "@noBackupWarning": {},
   "kickUserDescription": "O usuário foi expulso da conversa, mas não banido. Em conversas públicas, o usuário pode participar a qualquer momento.",
   "@kickUserDescription": {},
@@ -3119,7 +3119,7 @@
   "@italicText": {},
   "strikeThrough": "Risco",
   "@strikeThrough": {},
-  "appWantsToUseForLogin": "Usar '{server}' para entrar",
+  "appWantsToUseForLogin": "Usar '{server}' para conectar",
   "@appWantsToUseForLogin": {
     "type": "String",
     "placeholders": {
@@ -3201,7 +3201,7 @@
   },
   "discoverHomeservers": "Explorar servidores",
   "@discoverHomeservers": {},
-  "loginWithMatrixId": "Entrar com ID Matrix",
+  "loginWithMatrixId": "Conectar com ID Matrix",
   "@loginWithMatrixId": {},
   "calculatingFileSize": "Calculando o tamanho do arquivo...",
   "@calculatingFileSize": {},
@@ -3233,7 +3233,7 @@
       }
     }
   },
-  "enterNewChat": "Entrar em uma nova conversa",
+  "enterNewChat": "Entrar na conversa nova",
   "@enterNewChat": {},
   "notificationRuleSuppressNoticesDescription": "Omite notificações de clientes automatizados, como bots.",
   "@notificationRuleSuppressNoticesDescription": {},
@@ -3265,7 +3265,7 @@
       }
     }
   },
-  "welcomeText": "Olá! 👋 Este é o FluffyChat. Você pode entrar em qualquer servidor que é compatível com o https://matrix.org. E então conversar com qualquer um. É uma rede gigante e descentralizada de conversa!",
+  "welcomeText": "Olá! 👋 Este é o FluffyChat. Você pode se conectar com qualquer servidor que é compatível com o https://matrix.org. E então conversar com qualquer um. É uma rede gigante e descentralizada de conversa!",
   "@welcomeText": {},
   "notificationRuleRoomServerAclDescription": "Omite notificações de listas de controle de acesso de servidor de uma sala (ACL).",
   "@notificationRuleRoomServerAclDescription": {},
@@ -3369,14 +3369,18 @@
   "@notificationRuleTombstoneDescription": {},
   "notificationRuleReactionDescription": "Omite notificações de reações.",
   "@notificationRuleReactionDescription": {},
-  "commandHint_logout": "Sair do seu dispositivo atual",
+  "commandHint_logout": "Desconecte-se do seu dispositivo atual",
   "@commandHint_logout": {},
-  "commandHint_logoutall": "Sair de todos os dispositivos ativos",
+  "commandHint_logoutall": "Desconecte-se de todos os dispositivos ativos",
   "@commandHint_logoutall": {},
   "displayNavigationRail": "Mostrar trilha de navegação em dispositivo móvel",
   "@displayNavigationRail": {},
   "previous": "Anterior",
   "@previous": {},
-  "otherPartyNotLoggedIn": "A outra pessoa não está online no momento e portanto não consegue receber mensagens!",
-  "@otherPartyNotLoggedIn": {}
+  "otherPartyNotLoggedIn": "A outra pessoa não há nenhum dispositivo conectado no momento e portanto não consegue receber mensagens!",
+  "@otherPartyNotLoggedIn": {},
+  "customReaction": "Reação personalizada",
+  "@customReaction": {},
+  "moreEvents": "Mais eventos",
+  "@moreEvents": {}
 }

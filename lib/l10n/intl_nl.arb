@@ -1208,7 +1208,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "Firebase Cloud Messaging lijkt niet beschikbaar op je apparaat. Om nog steeds pushmeldingen te krijgen, adviseren we om ntfy te installeren. Met ntfy of een andere Unified Push provider kun je pushmeldingen ontvangen op een veilige manier. Je kunt ntfy downloaden van de PlayStore of van F-Droid.",
+  "noGoogleServicesWarning": "Firebase Cloud Messaging lijkt niet beschikbaar op je apparaat. Om pushmeldingen te krijgen, adviseren we om ntfy te installeren. Met ntfy of een andere Unified Push-provider kun je pushmeldingen ontvangen op een veilige manier. Je kunt ntfy downloaden in de PlayStore of F-Droid.",
   "@noGoogleServicesWarning": {
     "type": "String",
     "placeholders": {}
@@ -2195,7 +2195,7 @@
   "@placeCall": {},
   "unsupportedAndroidVersion": "Niet-ondersteunde Android-versie",
   "@unsupportedAndroidVersion": {},
-  "unsupportedAndroidVersionLong": "Voor deze functie is een nieuwere Android-versie vereist. Controleer op updates of Lineage OS-ondersteuning.",
+  "unsupportedAndroidVersionLong": "Voor deze functie is een nieuwe Android-versie verplicht. Controleer je updates of Lineage OS-ondersteuning.",
   "@unsupportedAndroidVersionLong": {},
   "videoCallsBetaWarning": "Houd er rekening mee dat videogesprekken momenteel in bèta zijn. Ze werken misschien niet zoals je verwacht of werken niet op alle platformen.",
   "@videoCallsBetaWarning": {},
@@ -2394,7 +2394,7 @@
   "@callingAccountDetails": {},
   "appearOnTop": "Bovenaan verschijnen",
   "@appearOnTop": {},
-  "appearOnTopDetails": "Laat de app bovenaan verschijnen (niet nodig als je FluffyChat al hebt ingesteld als een belaccount)",
+  "appearOnTopDetails": "Laat de app bovenaan verschijnen (niet nodig als je FluffyChat al hebt ingesteld als een bel-account)",
   "@appearOnTopDetails": {},
   "otherCallingPermissions": "Microfoon, camera en andere FluffyChat-rechten",
   "@otherCallingPermissions": {},
@@ -3350,7 +3350,7 @@
   "@approve": {},
   "youHaveKnocked": "Je hebt geklopt",
   "@youHaveKnocked": {},
-  "sentVoiceMessage": "🎙️ {duration} - {sender}",
+  "sentVoiceMessage": "🎙️ {duration} - Spraakbericht van {sender}",
   "@sentVoiceMessage": {
     "type": "String",
     "placeholders": {
@@ -3372,5 +3372,15 @@
     }
   },
   "checkList": "Checklist",
-  "@checkList": {}
+  "@checkList": {},
+  "commandHint_logout": "Uw huidige apparaat uitloggen",
+  "@commandHint_logout": {},
+  "commandHint_logoutall": "Alle actieve apparaten uitloggen",
+  "@commandHint_logoutall": {},
+  "displayNavigationRail": "Navigatiebalk op mobiel tonen",
+  "@displayNavigationRail": {},
+  "moreEvents": "Meer gebeurtenissen",
+  "@moreEvents": {},
+  "customReaction": "Aangepaste reactie",
+  "@customReaction": {}
 }

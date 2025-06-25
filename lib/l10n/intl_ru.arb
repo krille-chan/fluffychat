@@ -3061,7 +3061,7 @@
   "@doesNotSeemToBeAValidHomeserver": {},
   "noMoreChatsFound": "Больше чатов не обнаружено...",
   "@noMoreChatsFound": {},
-  "alwaysUse24HourFormat": "нет",
+  "alwaysUse24HourFormat": "",
   "@alwaysUse24HourFormat": {
     "description": "Set to true to always display time of day in 24 hour format."
   },

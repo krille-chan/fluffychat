@@ -2805,7 +2805,7 @@
   "@noOneCanJoin": {},
   "usersMustKnock": "Gli utenti devono bussare",
   "@usersMustKnock": {},
-  "alwaysUse24HourFormat": "disattivato",
+  "alwaysUse24HourFormat": "",
   "@alwaysUse24HourFormat": {
     "description": "Set to true to always display time of day in 24 hour format."
   },

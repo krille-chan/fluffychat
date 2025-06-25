@@ -1055,7 +1055,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "您手機上沒有安裝 Google 服務框架。這或許對於保護您的隱私而言是個好事！但為了收到 FluffyChat 的推播通知，我們建議您使用 https://microg.org 或 https://unifiedpush.org。",
+  "noGoogleServicesWarning": "未能在你的裝置找到 Firebase Cloud Messaging(FCM). 如果想要收到通知消息的推送，我們建議安裝 ntfy。在有 ntfy 或其他 Unified Push 應用，便能在資料安全的情況下收到通知的推送。你可以在 Play store 或 F-Droid 下載並安裝 ntfy。",
   "@noGoogleServicesWarning": {
     "type": "String",
     "placeholders": {}
@@ -3210,7 +3210,7 @@
   "@version": {},
   "unableToJoinChat": "無法加入聊天室。對話可能以被其他方結束。",
   "@unableToJoinChat": {},
-  "appWantsToUseForLogin": "使用伺服器「{server} 」登入",
+  "appWantsToUseForLogin": "使用「{server} 」伺服器登入",
   "@appWantsToUseForLogin": {
     "type": "String",
     "placeholders": {
