@@ -17,8 +17,8 @@ html {
 
 .contain {
   display: block;
-  max-width: 250px;
-  width: 80%;
+  max-width: 300px;
+  width: 100%;
   height: auto;
   object-fit: contain;
 }
