@@ -23,7 +23,7 @@ class InputBar extends StatelessWidget {
   final ValueChanged<Uint8List?>? onSubmitImage;
   final FocusNode? focusNode;
   final TextEditingController? controller;
-  final InputDecoration? decoration;
+  final InputDecoration decoration;
   final ValueChanged<String>? onChanged;
   final bool? autofocus;
   final bool readOnly;
@@ -37,7 +37,7 @@ class InputBar extends StatelessWidget {
     this.onSubmitImage,
     this.focusNode,
     this.controller,
-    this.decoration,
+    required this.decoration,
     this.onChanged,
     this.autofocus,
     this.textInputAction,
@@ -437,7 +437,8 @@ class InputBar extends StatelessWidget {
           // it sets the types for the callback incorrectly
           onSubmitted!(text);
         },
-        decoration: decoration!,
+        maxLength: 16384,
+        decoration: decoration,
         onChanged: (text) {
           // fix for the library for now
           // it sets the types for the callback incorrectly
@@ -445,6 +446,7 @@ class InputBar extends StatelessWidget {
         },
         textCapitalization: TextCapitalization.sentences,
       ),
+
       suggestionsCallback: getSuggestions,
       itemBuilder: (c, s) => buildSuggestion(c, s, Matrix.of(context).client),
       onSelected: (Map<String, String?> suggestion) =>
