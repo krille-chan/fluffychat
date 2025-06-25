@@ -70,9 +70,11 @@ class OverlayCenterContent extends StatelessWidget {
               MeasureRenderBox(
                 onChange: onChangeMessageSize,
                 child: OverlayMessage(
-                  key: MatrixState.pAnyState
-                      .layerLinkAndKey('overlay_message_${event.eventId}')
-                      .key,
+                  key: isTransitionAnimation
+                      ? MatrixState.pAnyState
+                          .layerLinkAndKey('overlay_message_${event.eventId}')
+                          .key
+                      : null,
                   event,
                   pangeaMessageEvent: pangeaMessageEvent,
                   immersionMode: chatController.choreographer.immersionMode,
