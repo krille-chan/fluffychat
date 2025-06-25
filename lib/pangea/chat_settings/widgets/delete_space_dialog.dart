@@ -146,7 +146,7 @@ class DeleteSpaceDialogState extends State<DeleteSpaceDialog> {
                 style: TextStyle(color: Theme.of(context).colorScheme.error),
               ),
             ),
-            Expanded(
+            Flexible(
               child: SingleChildScrollView(
                 child: Builder(
                   builder: (context) {
