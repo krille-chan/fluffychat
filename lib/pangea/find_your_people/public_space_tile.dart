@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
@@ -8,8 +6,8 @@ import 'package:matrix/matrix.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/analytics_summary/learning_progress_indicator_button.dart';
+import 'package:fluffychat/pangea/extensions/pangea_rooms_chunk_extension.dart';
 import 'package:fluffychat/pangea/public_spaces/public_room_bottom_sheet.dart';
-import 'package:fluffychat/pangea/spaces/constants/space_constants.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 
 class PublicSpaceTile extends StatelessWidget {
@@ -53,10 +51,7 @@ class PublicSpaceTile extends StatelessWidget {
                             10,
                           ),
                           child: CachedNetworkImage(
-                            imageUrl: SpaceConstants
-                                .publicSpaceIcons[Random().nextInt(
-                              SpaceConstants.publicSpaceIcons.length,
-                            )],
+                            imageUrl: space.defaultAvatar(),
                             width: isColumnMode ? 80.0 : 58.0,
                             height: isColumnMode ? 80.0 : 58.0,
                             fit: BoxFit.cover,
