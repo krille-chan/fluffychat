@@ -171,7 +171,7 @@ class SignupPageController extends State<SignupPage> {
   }
 
   Future<void> _signupFuture() async {
-    final client = Matrix.of(context).getLoginClient();
+    final client = await Matrix.of(context).getLoginClient();
     final email = emailController.text;
     if (email.isNotEmpty) {
       Matrix.of(context).currentClientSecret =

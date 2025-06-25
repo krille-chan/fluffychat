@@ -80,9 +80,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   BackgroundPush? backgroundPush;
 
   Client get client {
-    if (widget.clients.isEmpty) {
-      widget.clients.add(getLoginClient());
-    }
     if (_activeClient < 0 || _activeClient >= widget.clients.length) {
       // #Pangea
       currentBundle!.first!.homeserver =
@@ -167,29 +164,31 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   AudioPlayer? audioPlayer;
   final ValueNotifier<String?> voiceMessageEventId = ValueNotifier(null);
 
-  Client getLoginClient() {
+  Future<Client> getLoginClient() async {
     if (widget.clients.isNotEmpty && !client.isLogged()) {
       return client;
     }
-    final candidate = _loginClientCandidate ??= ClientManager.createClient(
+    final candidate =
+        _loginClientCandidate ??= await ClientManager.createClient(
       '${AppConfig.applicationName}-${DateTime.now().millisecondsSinceEpoch}',
       store,
-    )..onLoginStateChanged
-          .stream
-          .where((l) => l == LoginState.loggedIn)
-          .first
-          .then((_) {
-        if (!widget.clients.contains(_loginClientCandidate)) {
-          widget.clients.add(_loginClientCandidate!);
-        }
-        ClientManager.addClientNameToStore(
-          _loginClientCandidate!.clientName,
-          store,
-        );
-        _registerSubs(_loginClientCandidate!.clientName);
-        _loginClientCandidate = null;
-        FluffyChatApp.router.go('/rooms');
-      });
+    )
+          ..onLoginStateChanged
+              .stream
+              .where((l) => l == LoginState.loggedIn)
+              .first
+              .then((_) {
+            if (!widget.clients.contains(_loginClientCandidate)) {
+              widget.clients.add(_loginClientCandidate!);
+            }
+            ClientManager.addClientNameToStore(
+              _loginClientCandidate!.clientName,
+              store,
+            );
+            _registerSubs(_loginClientCandidate!.clientName);
+            _loginClientCandidate = null;
+            FluffyChatApp.router.go('/rooms');
+          });
     // #Pangea
     candidate.homeserver = Uri.parse("https://${AppConfig.defaultHomeserver}");
     // Pangea#

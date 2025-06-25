@@ -8,7 +8,6 @@ import 'package:fluffychat/pages/homeserver_picker/homeserver_picker.dart';
 import 'package:fluffychat/pangea/login/utils/sso_login_action.dart';
 import 'package:fluffychat/pangea/login/widgets/full_width_button.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
-import 'package:fluffychat/widgets/matrix.dart';
 
 enum SSOProvider { google, apple }
 
@@ -67,7 +66,6 @@ class PangeaSsoButton extends StatelessWidget {
           id: provider.id,
           name: provider.name,
         ),
-        Matrix.of(context).getLoginClient(),
         context,
       ),
       onError: (e, s) {

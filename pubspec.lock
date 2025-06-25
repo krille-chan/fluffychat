@@ -222,6 +222,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.2"
+  build_cli_annotations:
+    dependency: transitive
+    description:
+      name: build_cli_annotations
+      sha256: b59d2769769efd6c9ff6d4c4cede0be115a566afc591705c2040b707534b1172
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.0"
   cached_network_image:
     dependency: "direct main"
     description:
@@ -852,14 +860,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.1"
-  flutter_olm:
-    dependency: "direct main"
-    description:
-      name: flutter_olm
-      sha256: "5e6211af8cba1abf7d1f92e543f6d573dfe6017fe4742e0d04ba84beab47f940"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.0"
   flutter_openssl_crypto:
     dependency: "direct main"
     description:
@@ -876,6 +876,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.28"
+  flutter_rust_bridge:
+    dependency: transitive
+    description:
+      name: flutter_rust_bridge
+      sha256: b416ff56002789e636244fb4cc449f587656eff995e5a7169457eb0593fcaddb
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.10.0"
   flutter_secure_storage:
     dependency: "direct main"
     description:
@@ -963,6 +971,14 @@ packages:
       url: "https://github.com/famedly/flutter_typeahead.git"
     source: git
     version: "5.2.0"
+  flutter_vodozemac:
+    dependency: "direct main"
+    description:
+      name: flutter_vodozemac
+      sha256: e9a6257ccdefacd2bf0128fcf41086d809f05fb34e9a4ebe0f50e7e3ff4c0970
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.0"
   flutter_web_auth_2:
     dependency: "direct main"
     description:
@@ -1511,11 +1527,11 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: main
-      resolved-ref: "9e47d07f6c78c72b7ee7269497622ba1fce5c94a"
+      ref: merge-upstream
+      resolved-ref: "6c6cc5cec17a47e1da26b5cdef14a99301661b61"
       url: "https://github.com/pangeachat/matrix-dart-sdk.git"
     source: git
-    version: "0.40.2"
+    version: "1.0.1"
   meta:
     dependency: transitive
     description:
@@ -1580,14 +1596,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.0"
-  olm:
-    dependency: transitive
-    description:
-      name: olm
-      sha256: "6a3fe1e5170b954dd9e4ba3b27513e6aa9b7591eb7bb0d7f6f32140b7f140c6f"
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.1.0"
   open_file:
     dependency: "direct main"
     description:
@@ -2770,6 +2778,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "15.0.0"
+  vodozemac:
+    dependency: transitive
+    description:
+      name: vodozemac
+      sha256: dba14017e042748fb22d270e8ab1d3e46965b89788dd3857dba938ec07571968
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.0"
   wakelock_plus:
     dependency: "direct main"
     description:

@@ -63,7 +63,7 @@ Future<void> _loginFuture({
     identifier = AuthenticationUserIdentifier(user: username);
   }
 
-  final client = matrix.getLoginClient();
+  final client = await matrix.getLoginClient();
 
   final redirect = client.onLoginStateChanged.stream
       .where((state) => state == LoginState.loggedIn)
