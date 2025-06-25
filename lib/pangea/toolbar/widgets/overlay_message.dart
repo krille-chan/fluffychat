@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/events/message_content.dart';
@@ -149,9 +150,8 @@ class OverlayMessage extends StatelessWidget {
 
     final transcription = showTranscription
         ? Container(
-            width: messageWidth,
             constraints: const BoxConstraints(
-              maxHeight: AppConfig.audioTranscriptionMaxHeight,
+              maxWidth: FluffyThemes.columnWidth * 1.5,
             ),
             child: Padding(
               padding: const EdgeInsets.all(12.0),
@@ -178,6 +178,7 @@ class OverlayMessage extends StatelessWidget {
                           child: Column(
                             spacing: 8.0,
                             crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
                             children: [
                               SttTranscriptTokens(
                                 model: overlayController.transcription!,
@@ -208,6 +209,9 @@ class OverlayMessage extends StatelessWidget {
                                   iconColor: textColor,
                                   enabled:
                                       event.senderId != BotName.byEnvironment,
+                                  onTranscriptionFetched: () =>
+                                      overlayController.contentChangedStream
+                                          .add(true),
                                 ),
                             ],
                           ),
@@ -226,9 +230,8 @@ class OverlayMessage extends StatelessWidget {
 
     final translation = showTranslation || showSpeechTranslation
         ? Container(
-            width: messageWidth,
             constraints: const BoxConstraints(
-              maxHeight: AppConfig.audioTranscriptionMaxHeight,
+              maxWidth: FluffyThemes.columnWidth * 1.5,
             ),
             child: Padding(
               padding: const EdgeInsets.fromLTRB(
@@ -271,8 +274,6 @@ class OverlayMessage extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            if (readingAssistanceMode == ReadingAssistanceMode.transitionMode)
-              transcription,
             if (event.relationshipType == RelationshipTypes.reply)
               FutureBuilder<Event?>(
                 future: event.getReplyEvent(
@@ -371,8 +372,6 @@ class OverlayMessage extends StatelessWidget {
                   ],
                 ),
               ),
-            if (readingAssistanceMode == ReadingAssistanceMode.transitionMode)
-              translation,
           ],
         ),
       ),
@@ -386,26 +385,31 @@ class OverlayMessage extends StatelessWidget {
           color: noBubble ? Colors.transparent : color,
           borderRadius: borderRadius,
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            if (readingAssistanceMode != ReadingAssistanceMode.transitionMode)
+        constraints: BoxConstraints(
+          maxWidth: FluffyThemes.columnWidth * 1.5,
+          maxHeight: maxHeight,
+        ),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
               transcription,
-            sizeAnimation != null
-                ? AnimatedBuilder(
-                    animation: sizeAnimation!,
-                    builder: (context, child) {
-                      return SizedBox(
-                        height: sizeAnimation!.value.height,
-                        width: sizeAnimation!.value.width,
-                        child: content,
-                      );
-                    },
-                  )
-                : content,
-            if (readingAssistanceMode != ReadingAssistanceMode.transitionMode)
+              sizeAnimation != null
+                  ? AnimatedBuilder(
+                      animation: sizeAnimation!,
+                      builder: (context, child) {
+                        return SizedBox(
+                          height: sizeAnimation!.value.height,
+                          width: sizeAnimation!.value.width,
+                          child: content,
+                        );
+                      },
+                    )
+                  : content,
               translation,
-          ],
+            ],
+          ),
         ),
       ),
     );
