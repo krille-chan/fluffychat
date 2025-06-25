@@ -150,8 +150,7 @@ class OverlayMessage extends StatelessWidget {
 
     final transcription = showTranscription
         ? Container(
-            constraints: BoxConstraints(
-              maxHeight: maxHeight - (messageHeight ?? 0),
+            constraints: const BoxConstraints(
               maxWidth: FluffyThemes.columnWidth * 1.5,
             ),
             child: Padding(
@@ -210,6 +209,9 @@ class OverlayMessage extends StatelessWidget {
                                   iconColor: textColor,
                                   enabled:
                                       event.senderId != BotName.byEnvironment,
+                                  onTranscriptionFetched: () =>
+                                      overlayController.contentChangedStream
+                                          .add(true),
                                 ),
                             ],
                           ),
@@ -228,9 +230,8 @@ class OverlayMessage extends StatelessWidget {
 
     final translation = showTranslation || showSpeechTranslation
         ? Container(
-            width: messageWidth,
             constraints: const BoxConstraints(
-              maxHeight: AppConfig.audioTranscriptionMaxHeight,
+              maxWidth: FluffyThemes.columnWidth * 1.5,
             ),
             child: Padding(
               padding: const EdgeInsets.fromLTRB(
@@ -273,8 +274,6 @@ class OverlayMessage extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            if (readingAssistanceMode == ReadingAssistanceMode.transitionMode)
-              transcription,
             if (event.relationshipType == RelationshipTypes.reply)
               FutureBuilder<Event?>(
                 future: event.getReplyEvent(
@@ -373,8 +372,6 @@ class OverlayMessage extends StatelessWidget {
                   ],
                 ),
               ),
-            if (readingAssistanceMode == ReadingAssistanceMode.transitionMode)
-              translation,
           ],
         ),
       ),
@@ -388,26 +385,31 @@ class OverlayMessage extends StatelessWidget {
           color: noBubble ? Colors.transparent : color,
           borderRadius: borderRadius,
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            if (readingAssistanceMode != ReadingAssistanceMode.transitionMode)
+        constraints: BoxConstraints(
+          maxWidth: FluffyThemes.columnWidth * 1.5,
+          maxHeight: maxHeight,
+        ),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
               transcription,
-            sizeAnimation != null
-                ? AnimatedBuilder(
-                    animation: sizeAnimation!,
-                    builder: (context, child) {
-                      return SizedBox(
-                        height: sizeAnimation!.value.height,
-                        width: sizeAnimation!.value.width,
-                        child: content,
-                      );
-                    },
-                  )
-                : content,
-            if (readingAssistanceMode != ReadingAssistanceMode.transitionMode)
+              sizeAnimation != null
+                  ? AnimatedBuilder(
+                      animation: sizeAnimation!,
+                      builder: (context, child) {
+                        return SizedBox(
+                          height: sizeAnimation!.value.height,
+                          width: sizeAnimation!.value.width,
+                          child: content,
+                        );
+                      },
+                    )
+                  : content,
               translation,
-          ],
+            ],
+          ),
         ),
       ),
     );

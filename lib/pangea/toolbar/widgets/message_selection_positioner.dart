@@ -71,6 +71,7 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
   Offset? _currentOffset;
 
   StreamSubscription? _reactionSubscription;
+  StreamSubscription? _contentChangedSubscription;
 
   final _animationDuration = const Duration(
     milliseconds: AppConfig.overlayAnimationDuration,
@@ -106,6 +107,10 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
       },
     ).listen((_) => setState(() {}));
 
+    _contentChangedSubscription = widget
+        .overlayController.contentChangedStream.stream
+        .listen(_onContentSizeChanged);
+
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await _centeredMessageCompleter.future;
       if (!mounted) return;
@@ -138,6 +143,7 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
   void dispose() {
     _animationController.dispose();
     _reactionSubscription?.cancel();
+    _contentChangedSubscription?.cancel();
     MatrixState.pangeaController.matrixState.audioPlayer
       ?..stop()
       ..dispose();
@@ -196,34 +202,9 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
     }
 
     if (mode == ReadingAssistanceMode.selectMode) {
-      _overlayOffsetAnimation = Tween<Offset>(
-        begin: _currentOffset,
-        end: _adjustedOriginalMessageOffset,
-      ).animate(
-        CurvedAnimation(
-          parent: _animationController,
-          curve: FluffyThemes.animationCurve,
-        ),
-      )..addListener(() {
-          if (mounted) {
-            setState(() => _currentOffset = _overlayOffsetAnimation?.value);
-          }
-        });
+      _resetOffsetAnimation(_adjustedOriginalMessageOffset);
     } else if (mode == ReadingAssistanceMode.practiceMode) {
-      _overlayOffsetAnimation = Tween<Offset>(
-        begin: _currentOffset,
-        end: _centeredMessageOffset!,
-      ).animate(
-        CurvedAnimation(
-          parent: _animationController,
-          curve: FluffyThemes.animationCurve,
-        ),
-      )..addListener(() {
-          if (mounted) {
-            setState(() => _currentOffset = _overlayOffsetAnimation?.value);
-          }
-        });
-
+      _resetOffsetAnimation(_centeredMessageOffset!);
       _messageSizeAnimation = Tween<Size>(
         begin: Size(
           _originalMessageSize.width,
@@ -242,6 +223,40 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
     if (mounted) {
       setState(() => widget.overlayController.readingAssistanceMode = mode);
     }
+  }
+
+  void _onContentSizeChanged(_) {
+    Future.delayed(FluffyThemes.animationDuration, () {
+      final offset = _overlayMessageRenderBox?.localToGlobal(Offset.zero);
+      if (offset == null || !_overlayMessageRenderBox!.hasSize) {
+        return null;
+      }
+
+      final newOffset = _adjustedMessageOffset(
+        _overlayMessageRenderBox!.size,
+        offset,
+      );
+
+      if (newOffset == _currentOffset) return;
+      _resetOffsetAnimation(newOffset);
+      _animationController.forward(from: 0);
+    });
+  }
+
+  void _resetOffsetAnimation(Offset offset) {
+    _overlayOffsetAnimation = Tween<Offset>(
+      begin: _currentOffset,
+      end: offset,
+    ).animate(
+      CurvedAnimation(
+        parent: _animationController,
+        curve: FluffyThemes.animationCurve,
+      ),
+    )..addListener(() {
+        if (mounted) {
+          setState(() => _currentOffset = _overlayOffsetAnimation?.value);
+        }
+      });
   }
 
   T _runWithLogging<T>(
@@ -326,6 +341,14 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
         null,
       );
 
+  RenderBox? get _overlayMessageRenderBox => _runWithLogging<RenderBox?>(
+        () => MatrixState.pAnyState.getRenderBox(
+          'overlay_message_${widget.event.eventId}',
+        ),
+        "Error getting overlay message render box",
+        null,
+      );
+
   Size get _defaultMessageSize => const Size(FluffyThemes.columnWidth / 2, 100);
 
   /// The size of the message in the chat list (as opposed to the expanded size in the center overlay)
@@ -394,17 +417,28 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
   }
 
   Offset get _adjustedOriginalMessageOffset {
+    return _adjustedMessageOffset(
+      _originalMessageSize,
+      _originalMessageOffset,
+    );
+  }
+
+  Offset _adjustedMessageOffset(
+    Size messageSize,
+    Offset messageOffset,
+  ) {
     if (_messageRenderBox == null || !_messageRenderBox!.hasSize) {
       return _defaultMessageOffset;
     }
 
-    final topOffset = _originalMessageOffset.dy;
-    final bottomOffset = _originalMessageBottomOffset -
-        _reactionsHeight -
-        _selectionButtonsHeight;
+    final topOffset = messageOffset.dy;
+    final bottomOffset =
+        (_mediaQuery!.size.height - topOffset - messageSize.height) -
+            _reactionsHeight -
+            _selectionButtonsHeight;
 
-    final hasHeaderOverflow = topOffset <
-        (_headerHeight + AppConfig.toolbarSpacing + _audioTranscriptionHeight);
+    final hasHeaderOverflow =
+        topOffset < (_headerHeight + AppConfig.toolbarSpacing);
     final hasFooterOverflow =
         bottomOffset < (_footerHeight + AppConfig.toolbarSpacing);
 
@@ -416,15 +450,12 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
     }
 
     if (hasHeaderOverflow) {
-      final difference = topOffset -
-          (_headerHeight +
-              AppConfig.toolbarSpacing +
-              _audioTranscriptionHeight);
+      final difference = topOffset - (_headerHeight + AppConfig.toolbarSpacing);
 
       double newBottomOffset = _mediaQuery!.size.height -
-          _originalMessageOffset.dy +
+          topOffset +
           difference -
-          _originalMessageSize.height -
+          messageSize.height -
           _selectionButtonsHeight;
 
       if (newBottomOffset < _footerHeight + AppConfig.toolbarSpacing) {
@@ -522,12 +553,6 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
 
   double get _selectionButtonsHeight {
     return showSelectionButtons ? AppConfig.toolbarButtonsHeight : 0;
-  }
-
-  double get _audioTranscriptionHeight {
-    return widget.pangeaMessageEvent?.isAudioMessage ?? false
-        ? AppConfig.audioTranscriptionMaxHeight
-        : 0;
   }
 
   bool get _hasReactions {

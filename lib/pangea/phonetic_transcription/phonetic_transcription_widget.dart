@@ -22,6 +22,8 @@ class PhoneticTranscriptionWidget extends StatefulWidget {
 
   final bool enabled;
 
+  final VoidCallback? onTranscriptionFetched;
+
   const PhoneticTranscriptionWidget({
     super.key,
     required this.text,
@@ -30,6 +32,7 @@ class PhoneticTranscriptionWidget extends StatefulWidget {
     this.iconSize,
     this.iconColor,
     this.enabled = true,
+    this.onTranscriptionFetched,
   });
 
   @override
@@ -103,7 +106,12 @@ class _PhoneticTranscriptionWidgetState
         },
       );
     } finally {
-      if (mounted) setState(() => _isLoading = false);
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+          widget.onTranscriptionFetched?.call();
+        });
+      }
     }
   }
 
