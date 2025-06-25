@@ -155,7 +155,9 @@ class HtmlMessage extends StatelessWidget {
 
   // #Pangea
   List<PangeaToken>? get tokens =>
-      pangeaMessageEvent?.messageDisplayRepresentation?.tokens;
+      pangeaMessageEvent?.messageDisplayRepresentation?.tokens
+          ?.where((t) => t.pos != "PUNCT")
+          .toList();
 
   PangeaToken? getToken(
     String text,

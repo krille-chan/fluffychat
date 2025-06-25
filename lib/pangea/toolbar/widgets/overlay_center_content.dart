@@ -9,6 +9,7 @@ import 'package:fluffychat/pangea/toolbar/enums/reading_assistance_mode_enum.dar
 import 'package:fluffychat/pangea/toolbar/widgets/measure_render_box.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/overlay_message.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 
 class OverlayCenterContent extends StatelessWidget {
   final Event event;
@@ -69,6 +70,9 @@ class OverlayCenterContent extends StatelessWidget {
               MeasureRenderBox(
                 onChange: onChangeMessageSize,
                 child: OverlayMessage(
+                  key: MatrixState.pAnyState
+                      .layerLinkAndKey('overlay_message_${event.eventId}')
+                      .key,
                   event,
                   pangeaMessageEvent: pangeaMessageEvent,
                   immersionMode: chatController.choreographer.immersionMode,
