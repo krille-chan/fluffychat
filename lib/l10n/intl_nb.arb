@@ -1863,5 +1863,251 @@
     }
   },
   "commandHint_hug": "Send en klem",
-  "@commandHint_hug": {}
+  "@commandHint_hug": {},
+  "markAsRead": "Marker som lest",
+  "@markAsRead": {},
+  "openLinkInBrowser": "Åpne lenke i nettleser",
+  "@openLinkInBrowser": {},
+  "start": "Start",
+  "@start": {},
+  "passwordsDoNotMatch": "Passordene stemmer ikke overens",
+  "@passwordsDoNotMatch": {},
+  "decline": "Avslå",
+  "@decline": {},
+  "emailOrUsername": "E-post eller brukernavn",
+  "@emailOrUsername": {},
+  "encryptThisChat": "Krypter denne chatten",
+  "@encryptThisChat": {},
+  "nextAccount": "Neste konto",
+  "@nextAccount": {},
+  "doNotShowAgain": "Ikke vis igjen",
+  "@doNotShowAgain": {},
+  "notificationRuleContainsUserName": "Inneholder brukernavn",
+  "@notificationRuleContainsUserName": {},
+  "notificationRuleMaster": "Demp alle varslinger",
+  "@notificationRuleMaster": {},
+  "presenceStyle": "Tilstedeværelse:",
+  "@presenceStyle": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "verified": "Verifisert",
+  "@verified": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "saveFile": "Lagre fil",
+  "@saveFile": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "recoveryKey": "Gjenopprettingsnøkkel",
+  "@recoveryKey": {},
+  "sendSticker": "Send sticker",
+  "@sendSticker": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "shareLocation": "Del lokasjon",
+  "@shareLocation": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "showPassword": "Vis passord",
+  "@showPassword": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "synchronizingPleaseWait": "Synkroniserer … Vent litt.",
+  "@synchronizingPleaseWait": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "dismiss": "Avvis",
+  "@dismiss": {},
+  "openChat": "Åpne chat",
+  "@openChat": {},
+  "addWidget": "Legg til widget",
+  "@addWidget": {},
+  "reopenChat": "Gjenåpne chat",
+  "@reopenChat": {},
+  "changeTheDescriptionOfTheGroup": "Endre beskrivelsen til chatten",
+  "@changeTheDescriptionOfTheGroup": {},
+  "inviteOtherUsers": "Inviter andre brukere til denne chatten",
+  "@inviteOtherUsers": {},
+  "open": "Åpne",
+  "@open": {},
+  "waitingForServer": "Venter på server...",
+  "@waitingForServer": {},
+  "notificationRuleJitsi": "Jitsi",
+  "@notificationRuleJitsi": {},
+  "takeAPhoto": "Ta et bilde",
+  "@takeAPhoto": {},
+  "setChatDescription": "Sett chat beskrivelse",
+  "@setChatDescription": {},
+  "singlesignon": "Single Sign on (SSO)",
+  "@singlesignon": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "openGallery": "Åpne galleri",
+  "@openGallery": {},
+  "widgetCustom": "Egendefinert",
+  "@widgetCustom": {},
+  "widgetVideo": "Video",
+  "@widgetVideo": {},
+  "pushNotificationsNotAvailable": "Push-varsler er ikke tilgjengelige",
+  "@pushNotificationsNotAvailable": {},
+  "gallery": "Galleri",
+  "@gallery": {},
+  "moderatorLevel": "{level} - Moderator",
+  "@moderatorLevel": {
+    "type": "String",
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
+  "adminLevel": "{level} - Admin",
+  "@adminLevel": {
+    "type": "String",
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
+  "restricted": "Begrenset",
+  "@restricted": {},
+  "updateInstalled": "🎉 Oppdatering {versjon} installert!",
+  "@updateInstalled": {
+    "type": "String",
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "calculatingFileSize": "Beregner filstørrelse...",
+  "@calculatingFileSize": {},
+  "continueText": "Fortsett",
+  "@continueText": {},
+  "serverInformation": "Serverinformasjon:",
+  "@serverInformation": {},
+  "previous": "Forrige",
+  "@previous": {},
+  "name": "Navn",
+  "@name": {},
+  "version": "Versjon",
+  "@version": {},
+  "invalidUrl": "Ugyldig url",
+  "@invalidUrl": {},
+  "notificationRuleReaction": "Reaksjon",
+  "@notificationRuleReaction": {},
+  "notificationRuleMessage": "Melding",
+  "@notificationRuleMessage": {},
+  "notificationRuleEncrypted": "Kkryptert",
+  "@notificationRuleEncrypted": {},
+  "more": "Mer",
+  "@more": {},
+  "passwordIsWrong": "Det inntastede passordet ditt er feil",
+  "@passwordIsWrong": {},
+  "startConversation": "Start samtale",
+  "@startConversation": {},
+  "manageAccount": "Administrer konto",
+  "@manageAccount": {},
+  "nothingFound": "Ingenting funnet...",
+  "@nothingFound": {},
+  "incomingMessages": "Innkommende meldinger",
+  "@incomingMessages": {},
+  "changelog": "Endringslogg",
+  "@changelog": {},
+  "contactServerAdmin": "Kontakt serveradministrator",
+  "@contactServerAdmin": {},
+  "setWallpaper": "Sett bakgrunnsbilde",
+  "@setWallpaper": {},
+  "unsupportedAndroidVersion": "Usupportert Android-versjon",
+  "@unsupportedAndroidVersion": {},
+  "widgetName": "Navn",
+  "@widgetName": {},
+  "youJoinedTheChat": "Du har blitt med i chatten",
+  "@youJoinedTheChat": {},
+  "widgetJitsi": "Jitsi Meet",
+  "@widgetJitsi": {},
+  "widgetNameError": "Vennligst oppgi et visningsnavn.",
+  "@widgetNameError": {},
+  "youRejectedTheInvitation": "Du har avvist invitasjonen",
+  "@youRejectedTheInvitation": {},
+  "formattedMessages": "Formaterte meldinger",
+  "@formattedMessages": {},
+  "allDevices": "Alle enheter",
+  "@allDevices": {},
+  "learnMore": "Lær mer",
+  "@learnMore": {},
+  "sorryThatsNotPossible": "Beklager... det er ikke mulig",
+  "@sorryThatsNotPossible": {},
+  "markAsUnread": "Marker som ulest",
+  "@markAsUnread": {},
+  "newGroup": "Ny gruppe",
+  "@newGroup": {},
+  "userRole": "Brukerrolle",
+  "@userRole": {},
+  "addLink": "Legg til lenke",
+  "@addLink": {},
+  "synchronizingPleaseWaitCounter": " Synkroniserer… ({percentage}%)",
+  "@synchronizingPleaseWaitCounter": {
+    "type": "String",
+    "placeholders": {
+      "percentage": {
+        "type": "String"
+      }
+    }
+  },
+  "unverified": "Ikke verifisert",
+  "@unverified": {},
+  "thisDevice": "Denne enheten:",
+  "@thisDevice": {},
+  "sendingAttachment": "Sender vedlegg...",
+  "@sendingAttachment": {},
+  "removeYourAvatar": "Fjern din avatar",
+  "@removeYourAvatar": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "importFromZipFile": "Importer fra .zip-fil",
+  "@importFromZipFile": {},
+  "select": "Velg",
+  "@select": {},
+  "databaseMigrationTitle": "Databasen er optimalisert",
+  "@databaseMigrationTitle": {},
+  "newPassword": "Nytt passord",
+  "@newPassword": {},
+  "files": "Filer",
+  "@files": {},
+  "searchIn": "Søk i chatten «{chat}»...",
+  "@searchIn": {
+    "type": "String",
+    "placeholders": {
+      "chat": {
+        "type": "String"
+      }
+    }
+  },
+  "approve": "Godkjenn",
+  "@approve": {},
+  "goToSpace": "Gå til område: {space}",
+  "@goToSpace": {
+    "type": "String",
+    "space": {}
+  },
+  "userLevel": "{level} - Bruker",
+  "@userLevel": {
+    "type": "String",
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  }
 }
