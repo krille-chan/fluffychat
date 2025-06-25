@@ -135,7 +135,7 @@ index fb3e3ca4..039b2ccc 100644
 +++ b/pubspec.yaml
 @@ -25,7 +25,7 @@ dependencies:
    dynamic_color: ^1.7.0
-   emoji_picker_flutter: ^3.1.0
+   emoji_picker_flutter: ^4.3.0
    emojis: ^0.9.9
 -  #fcm_shared_isolate: ^0.2.0
 +  fcm_shared_isolate: ^0.2.0
