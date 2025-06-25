@@ -670,6 +670,7 @@ class ChatController extends State<ChatPageWithRoom>
     }
     // Pangea#
     if (state != AppLifecycleState.resumed) return;
+    if (!mounted) return;
     setReadMarker();
   }
 
