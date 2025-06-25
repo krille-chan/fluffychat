@@ -52,17 +52,17 @@ class LoginController extends State<Login> {
     // TODO: implement initState
     super.initState();
     loadingSignIn = true;
-    // pangeaController.checkHomeServerAction().then((value) {
-    //   setState(() {
-    //     loadingSignIn = false;
-    //   });
-    // }).catchError((e) {
-    //   final String err = e.toString();
-    //   setState(() {
-    //     loadingSignIn = false;
-    //     passwordError = err.toLocalizedString(context);
-    //   });
-    // });
+    pangeaController.checkHomeServerAction().then((value) {
+      setState(() {
+        loadingSignIn = false;
+      });
+    }).catchError((e) {
+      final String err = e.toString();
+      setState(() {
+        loadingSignIn = false;
+        passwordError = err.toLocalizedString(context);
+      });
+    });
 
     usernameController.addListener(() => setState(() {}));
     passwordController.addListener(() => setState(() {}));

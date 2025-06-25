@@ -7,6 +7,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:matrix/matrix.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/analytics_misc/get_analytics_controller.dart';
 import 'package:fluffychat/pangea/analytics_misc/put_analytics_controller.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/contextual_definition_controller.dart';
@@ -130,29 +131,30 @@ class PangeaController {
     await Future.wait(futures);
   }
 
-  // Future<void> checkHomeServerAction() async {
-  //   if (matrixState.getLoginClient().homeserver != null) {
-  //     await Future.delayed(Duration.zero);
-  //     return;
-  //   }
+  Future<void> checkHomeServerAction() async {
+    final client = await matrixState.getLoginClient();
+    if (client.homeserver != null) {
+      await Future.delayed(Duration.zero);
+      return;
+    }
 
-  //   final String homeServer =
-  //       AppConfig.defaultHomeserver.trim().toLowerCase().replaceAll(' ', '-');
-  //   var homeserver = Uri.parse(homeServer);
-  //   if (homeserver.scheme.isEmpty) {
-  //     homeserver = Uri.https(homeServer, '');
-  //   }
+    final String homeServer =
+        AppConfig.defaultHomeserver.trim().toLowerCase().replaceAll(' ', '-');
+    var homeserver = Uri.parse(homeServer);
+    if (homeserver.scheme.isEmpty) {
+      homeserver = Uri.https(homeServer, '');
+    }
 
-  //   try {
-  //     await matrixState.getLoginClient().register();
-  //     matrixState.loginRegistrationSupported = true;
-  //   } on MatrixException catch (e) {
-  //     matrixState.loginRegistrationSupported =
-  //         e.requireAdditionalAuthentication;
-  //   }
+    try {
+      await client.register();
+      matrixState.loginRegistrationSupported = true;
+    } on MatrixException catch (e) {
+      matrixState.loginRegistrationSupported =
+          e.requireAdditionalAuthentication;
+    }
 
-  //   //  setState(() => error = (e).toLocalizedString(context));
-  // }
+    //  setState(() => error = (e).toLocalizedString(context));
+  }
 
   /// check user information if not found then redirect to Date of birth page
   _handleLoginStateChange(LoginState state) {

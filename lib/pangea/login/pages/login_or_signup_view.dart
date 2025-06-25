@@ -7,6 +7,7 @@ import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/pangea/login/pages/pangea_login_scaffold.dart';
 import 'package:fluffychat/pangea/login/widgets/app_config_dialog.dart';
 import 'package:fluffychat/pangea/login/widgets/full_width_button.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 
 class LoginOrSignupView extends StatefulWidget {
   const LoginOrSignupView({super.key});
@@ -61,7 +62,10 @@ class LoginOrSignupViewState extends State<LoginOrSignupView> {
         ),
         FullWidthButton(
           title: L10n.of(context).signIn,
-          onPressed: () => context.go('/home/login'),
+          onPressed: () => context.go(
+            '/home/login',
+            extra: Matrix.of(context).client,
+          ),
         ),
       ],
     );
