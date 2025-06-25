@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:matrix/matrix.dart';
 
 abstract class AppConfig {
-  static String _applicationName = 'FluffyChat';
+  static String _applicationName = 'Radio Hemp';
 
   static String get applicationName => _applicationName;
   static String? _applicationWelcomeMessage;
@@ -18,9 +18,9 @@ abstract class AppConfig {
   static const double messageFontSize = 16.0;
   static const bool allowOtherHomeservers = true;
   static const bool enableRegistration = true;
-  static const Color primaryColor = Color(0xFF5625BA);
-  static const Color primaryColorLight = Color(0xFFCCBDEA);
-  static const Color secondaryColor = Color(0xFF41a2bc);
+  static const Color primaryColor = Color(0XFFE3ED55);
+  static const Color primaryColorLight = Color(0xFFEE7F4B);
+  static const Color secondaryColor = Color(0xFFEE7F4B);
   static String _privacyUrl =
       'https://github.com/krille-chan/fluffychat/blob/main/PRIVACY.md';
 

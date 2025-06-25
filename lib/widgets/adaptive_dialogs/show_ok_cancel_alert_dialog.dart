@@ -29,15 +29,8 @@ Future<OkCancelResult?> showOkCancelAlertDialog({
           constraints: const BoxConstraints(maxWidth: 256),
           child: message == null
               ? null
-              : SelectableLinkify(
-                  text: message,
-                  textScaleFactor: MediaQuery.textScalerOf(context).scale(1),
-                  linkStyle: TextStyle(
-                    color: Theme.of(context).colorScheme.primary,
-                    decorationColor: Theme.of(context).colorScheme.primary,
-                  ),
-                  options: const LinkifyOptions(humanize: false),
-                  onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
+              : Text(
+                  message,
                 ),
         ),
         actions: [
@@ -53,7 +46,7 @@ Future<OkCancelResult?> showOkCancelAlertDialog({
             child: Text(
               okLabel ?? L10n.of(context).ok,
               style: isDestructive
-                  ? TextStyle(color: Theme.of(context).colorScheme.error)
+                  ? TextStyle(color: Theme.of(context).colorScheme.primary)
                   : null,
             ),
           ),

@@ -6,6 +6,7 @@ import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/adaptive_dialog_action.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/dialog_text_field.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 Future<String?> showTextInputDialog({
   required BuildContext context,
@@ -29,6 +30,8 @@ Future<String?> showTextInputDialog({
   bool autocorrect = true,
 }) {
   final controller = TextEditingController(text: initialText);
+  final theme = Theme.of(context);
+
   return showAdaptiveDialog<String>(
     context: context,
     useRootNavigator: useRootNavigator,
@@ -39,24 +42,16 @@ Future<String?> showTextInputDialog({
         child: AlertDialog.adaptive(
           title: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 256),
-            child: Text(title),
+            child: Text(
+              title,
+            ),
           ),
           content: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 256),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                if (message != null)
-                  SelectableLinkify(
-                    text: message,
-                    textScaleFactor: MediaQuery.textScalerOf(context).scale(1),
-                    linkStyle: TextStyle(
-                      color: Theme.of(context).colorScheme.primary,
-                      decorationColor: Theme.of(context).colorScheme.primary,
-                    ),
-                    options: const LinkifyOptions(humanize: false),
-                    onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
-                  ),
+                if (message != null) Text(message),
                 const SizedBox(height: 16),
                 ValueListenableBuilder<String?>(
                   valueListenable: error,
@@ -98,7 +93,7 @@ Future<String?> showTextInputDialog({
               child: Text(
                 okLabel ?? L10n.of(context).ok,
                 style: isDestructive
-                    ? TextStyle(color: Theme.of(context).colorScheme.error)
+                    ? TextStyle(color: theme.colorScheme.error)
                     : null,
               ),
             ),

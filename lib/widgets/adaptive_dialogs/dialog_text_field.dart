@@ -53,6 +53,11 @@ class DialogTextField extends StatelessWidget {
           maxLength: maxLength,
           keyboardType: keyboardType,
           autocorrect: autocorrect,
+          style: const TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.normal,
+            fontFamily: 'Roboto',
+          ),
           decoration: InputDecoration(
             errorText: errorText,
             hintText: hintText,

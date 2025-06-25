@@ -171,6 +171,15 @@ abstract class FluffyThemes {
           ),
         ),
       ),
+      dialogTheme: DialogThemeData(
+        backgroundColor: colorScheme.surface,
+        titleTextStyle:
+            GoogleFonts.righteous(color: colorScheme.primary, fontSize: 18),
+        contentTextStyle: TextStyle(
+          color: colorScheme.onSurface,
+          decorationColor: colorScheme.onSurface,
+        ),
+      ),
     );
   }
 }
