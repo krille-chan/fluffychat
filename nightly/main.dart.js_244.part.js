@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_244",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cBR(){return new A.Fa(B.dd("eu"))},
+cBT(){return new A.Fa(B.dd("eu"))},
 Fa:function Fa(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -644,5 +644,5 @@ x(A.Fa,C.aF)})()
 B.dR(b.typeUniverse,JSON.parse('{"Fa":{"aF":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_244",e:"endPart",h:b})})($__dart_deferred_initializers__,"x/l2E5Im08unh2CTGO4S2KiFiHE=");
+a.eventLog.push({p:"main.dart.js_244",e:"endPart",h:b})})($__dart_deferred_initializers__,"5SuQMOyWnNAUbh4FgpvWAJt6Q2A=");
 //# sourceMappingURL=main.dart.js_244.part.js.map
