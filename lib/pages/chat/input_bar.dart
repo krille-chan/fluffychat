@@ -1,3 +1,4 @@
+import 'package:fluffychat/config/setting_keys.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -437,7 +438,8 @@ class InputBar extends StatelessWidget {
           // it sets the types for the callback incorrectly
           onSubmitted!(text);
         },
-        maxLength: 16384,
+        maxLength:
+            AppSettings.textMessageMaxLength.getItem(Matrix.of(context).store),
         decoration: decoration,
         onChanged: (text) {
           // fix for the library for now
