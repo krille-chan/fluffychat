@@ -51,8 +51,9 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // #Pangea
-  // await vod.init();
+  // await vod.init(wasmPath: './assets/assets/vodozemac/');
   // Pangea#
+
   Logs().nativeColors = !PlatformInfos.isIOS;
   final store = await SharedPreferences.getInstance();
   final clients = await ClientManager.getClients(store: store);
