@@ -221,7 +221,7 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
           ),
         AnimatedSize(
           duration: FluffyThemes.animationDuration,
-          child: _timeout
+          child: (_timeout || !_loading && cards.isEmpty)
               ? Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: RichText(
@@ -236,8 +236,10 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
                         ),
                         const TextSpan(text: "  "),
                         TextSpan(
-                          text:
-                              L10n.of(context).activitySuggestionTimeoutMessage,
+                          text: _timeout
+                              ? L10n.of(context)
+                                  .activitySuggestionTimeoutMessage
+                              : L10n.of(context).oopsSomethingWentWrong,
                         ),
                       ],
                     ),
