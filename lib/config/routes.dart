@@ -59,7 +59,9 @@ abstract class AppRoutes {
     GoRouterState state,
   ) {
     // #Pangea
-    // Matrix.of(context).client.isLogged() ? '/rooms' : null;
+    // Matrix.of(context).widget.clients.any((client) => client.isLogged())
+    //       ? '/rooms'
+    //       : null;
     return PAuthGaurd.loggedInRedirect(context, state);
     // Pangea#
   }
@@ -69,7 +71,9 @@ abstract class AppRoutes {
     GoRouterState state,
   ) {
     // #Pangea
-    // Matrix.of(context).client.isLogged() ? null : '/home';
+    // Matrix.of(context).widget.clients.any((client) => client.isLogged())
+    //     ? null
+    //     : '/home';
     return PAuthGaurd.loggedOutRedirect(context, state);
     // Pangea#
   }
@@ -80,7 +84,9 @@ abstract class AppRoutes {
     GoRoute(
       path: '/',
       redirect: (context, state) =>
-          Matrix.of(context).client.isLogged() ? '/rooms' : '/home',
+          Matrix.of(context).widget.clients.any((client) => client.isLogged())
+              ? '/rooms'
+              : '/home',
     ),
     GoRoute(
       path: '/home',

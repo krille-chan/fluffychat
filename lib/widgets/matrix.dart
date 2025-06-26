@@ -30,12 +30,12 @@ import 'package:fluffychat/utils/voip_plugin.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/fluffy_chat_app.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
-import 'package:fluffychat/widgets/local_notifications_extension.dart';
 import '../config/app_config.dart';
 import '../config/setting_keys.dart';
 import '../pages/key_verification/key_verification_dialog.dart';
 import '../utils/account_bundles.dart';
 import '../utils/background_push.dart';
+import 'local_notifications_extension.dart';
 
 // import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
@@ -192,6 +192,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     // #Pangea
     candidate.homeserver = Uri.parse("https://${AppConfig.defaultHomeserver}");
     // Pangea#
+    if (widget.clients.isEmpty) widget.clients.add(candidate);
     return candidate;
   }
 
@@ -312,15 +313,15 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     onLoginStateChanged[name] ??=
         c.onLoginStateChanged.stream.listen((state) async {
       final loggedInWithMultipleClients = widget.clients.length > 1;
-      // #Pangea
-      // if (state == LoginState.loggedOut) {
-      //   InitWithRestoreExtension.deleteSessionBackup(name);
-      // }
-      // Pangea#
-      if (loggedInWithMultipleClients && state != LoginState.loggedIn) {
+      if (state == LoginState.loggedOut) {
         _cancelSubs(c.clientName);
         widget.clients.remove(c);
         ClientManager.removeClientNameFromStore(c.clientName, store);
+        // #Pangea
+        // InitWithRestoreExtension.deleteSessionBackup(name);
+        // Pangea#
+      }
+      if (loggedInWithMultipleClients && state != LoginState.loggedIn) {
         ScaffoldMessenger.of(
           FluffyChatApp.router.routerDelegate.navigatorKey.currentContext ??
               context,
@@ -431,12 +432,14 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     Logs().v('AppLifecycleState = $state');
     final foreground = state != AppLifecycleState.inactive &&
         state != AppLifecycleState.paused;
-    client.syncPresence =
-        state == AppLifecycleState.resumed ? null : PresenceType.unavailable;
-    if (PlatformInfos.isMobile) {
-      client.backgroundSync = foreground;
-      client.requestHistoryOnLimitedTimeline = !foreground;
-      Logs().v('Set background sync to', foreground);
+    for (final client in widget.clients) {
+      client.syncPresence =
+          state == AppLifecycleState.resumed ? null : PresenceType.unavailable;
+      if (PlatformInfos.isMobile) {
+        client.backgroundSync = foreground;
+        client.requestHistoryOnLimitedTimeline = !foreground;
+        Logs().v('Set background sync to', foreground);
+      }
     }
   }
 
