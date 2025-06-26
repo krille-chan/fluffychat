@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
@@ -9,7 +7,7 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/common/config/environment.dart';
-import 'package:fluffychat/pangea/spaces/constants/space_constants.dart';
+import 'package:fluffychat/pangea/extensions/pangea_rooms_chunk_extension.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -212,10 +210,7 @@ class PublicRoomBottomSheetState extends State<PublicRoomBottomSheet> {
                           : ClipRRect(
                               borderRadius: BorderRadius.circular(24.0),
                               child: CachedNetworkImage(
-                                imageUrl: SpaceConstants
-                                    .publicSpaceIcons[Random().nextInt(
-                                  SpaceConstants.publicSpaceIcons.length,
-                                )],
+                                imageUrl: chunk!.defaultAvatar(),
                                 width: 160.0,
                                 height: 160.0,
                                 fit: BoxFit.cover,

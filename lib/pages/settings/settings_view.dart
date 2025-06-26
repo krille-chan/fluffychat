@@ -87,7 +87,14 @@ class SettingsView extends StatelessWidget {
                       return Row(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.all(32.0),
+                            // #Pangea
+                            // padding: const EdgeInsets.all(32.0),
+                            padding: const EdgeInsets.only(
+                              top: 32.0,
+                              bottom: 32.0,
+                              left: 12.0,
+                            ),
+                            // Pangea#
                             child: Stack(
                               children: [
                                 Avatar(

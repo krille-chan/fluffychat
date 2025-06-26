@@ -3,16 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../common/utils/error_handler.dart';
 
-Future<void> _showInviteDialog(Room room, BuildContext context) async {
+Future<void> showInviteDialog(Room room, BuildContext context) async {
+  if (room.membership != Membership.invite) return;
   final acceptInvite = await showOkCancelAlertDialog(
     context: context,
     title: L10n.of(context).youreInvited,
@@ -23,7 +22,7 @@ Future<void> _showInviteDialog(Room room, BuildContext context) async {
     cancelLabel: L10n.of(context).decline,
   );
 
-  await showFutureLoadingDialog(
+  final resp = await showFutureLoadingDialog(
     context: context,
     future: () async {
       if (acceptInvite == OkCancelResult.ok) {
@@ -31,28 +30,24 @@ Future<void> _showInviteDialog(Room room, BuildContext context) async {
         context.go(
           room.isSpace ? "/rooms?spaceId=${room.id}" : "/rooms/${room.id}",
         );
-        return;
+        return room.id;
       }
       await room.leave();
     },
   );
+
+  if (!resp.isError && resp.result is String) {
+    context.go("/rooms?spaceId=${resp.result}");
+  }
 }
 
 // ignore: curly_braces_in_flow_control_structures
 void chatListHandleSpaceTap(
   BuildContext context,
-  ChatListController controller,
   Room space,
 ) {
   void setActiveSpaceAndCloseChat() {
-    controller.setActiveSpace(space.id);
-
-    if (FluffyThemes.isColumnMode(context)) {
-      context.go('/rooms/${space.id}');
-    } else if (controller.activeChat != null &&
-        !space.isFirstOrSecondChild(controller.activeChat!)) {
-      context.go("/rooms");
-    }
+    context.go("/rooms?spaceId=${space.id}");
   }
 
   void autoJoin(Room space) {
@@ -85,7 +80,7 @@ void chatListHandleSpaceTap(
           justInputtedCode == space.classCode) {
         // do nothing
       } else {
-        _showInviteDialog(space, context);
+        showInviteDialog(space, context);
       }
       break;
     case Membership.leave:

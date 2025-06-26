@@ -396,7 +396,15 @@ class PangeaMessageEvent {
             ),
           );
         }
-        _representations!.add(sent);
+
+        // If originalSent has no tokens, there is not way to generate a tokens event
+        // and send it as a related event, since original sent has not eventID to set
+        // as parentEventId. In this case, it's better to generate a new representation
+        // with an eventID and send the related tokens event to that representation.
+        // This is a rare situation, and has only been seen with some bot messages.
+        if (sent.tokens != null) {
+          _representations!.add(sent);
+        }
       } catch (err, s) {
         ErrorHandler.logError(
           m: "error parsing originalSent",
