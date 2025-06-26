@@ -73,11 +73,13 @@ extension LocalizedActiveFilter on ActiveFilter {
 class ChatList extends StatefulWidget {
   static BuildContext? contextForVoip;
   final String? activeChat;
+  final String? activeSpaceId;
   final bool displayNavigationRail;
 
   const ChatList({
     super.key,
     required this.activeChat,
+    this.activeSpaceId,
     this.displayNavigationRail = false,
   });
 
@@ -496,6 +498,8 @@ class ChatListController extends State<ChatList>
     });
 
     _checkTorBrowser();
+
+    _activeSpaceId = widget.activeSpaceId;
 
     super.initState();
   }
