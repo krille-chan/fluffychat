@@ -31,8 +31,9 @@ Future<void> showInviteDialog(Room room, BuildContext context) async {
           room.isSpace ? "/rooms?spaceId=${room.id}" : "/rooms/${room.id}",
         );
         return room.id;
+      } else if (acceptInvite == OkCancelResult.cancel) {
+        await room.leave();
       }
-      await room.leave();
     },
   );
 
