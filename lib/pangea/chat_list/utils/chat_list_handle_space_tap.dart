@@ -10,7 +10,8 @@ import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../common/utils/error_handler.dart';
 
-Future<void> _showInviteDialog(Room room, BuildContext context) async {
+Future<void> showInviteDialog(Room room, BuildContext context) async {
+  if (room.membership != Membership.invite) return;
   final acceptInvite = await showOkCancelAlertDialog(
     context: context,
     title: L10n.of(context).youreInvited,
@@ -79,7 +80,7 @@ void chatListHandleSpaceTap(
           justInputtedCode == space.classCode) {
         // do nothing
       } else {
-        _showInviteDialog(space, context);
+        showInviteDialog(space, context);
       }
       break;
     case Membership.leave:
