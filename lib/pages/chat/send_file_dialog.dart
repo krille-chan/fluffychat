@@ -98,8 +98,6 @@ class SendFileDialogState extends State<SendFileDialog> {
               widget.files.length,
             ),
           );
-        } else {
-          scaffoldMessenger.clearSnackBars();
         }
 
         final label = _labelTextController.text.trim();
