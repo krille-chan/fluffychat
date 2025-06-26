@@ -240,7 +240,7 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
     matrix?.audioPlayer?.dispose();
     matrix?.audioPlayer = AudioPlayer();
     matrix?.voiceMessageEventId.value =
-        widget.overlayController.pangeaMessageEvent?.eventId;
+        "${widget.overlayController.pangeaMessageEvent?.eventId}_button";
 
     _onPlayerStateChanged =
         matrix?.audioPlayer?.playerStateStream.listen((state) {
