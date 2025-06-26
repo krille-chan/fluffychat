@@ -3373,5 +3373,15 @@
   "youHaveKnocked": "Zapukałeś/-aś",
   "@youHaveKnocked": {},
   "pleaseWaitUntilInvited": "Proszę zaczekać na zaproszenie przez kogoś z pokoju.",
-  "@pleaseWaitUntilInvited": {}
+  "@pleaseWaitUntilInvited": {},
+  "commandHint_logout": "Wyloguj bieżące urządzenie",
+  "@commandHint_logout": {},
+  "commandHint_logoutall": "Wyloguj wszystkie aktywne urządzenia",
+  "@commandHint_logoutall": {},
+  "displayNavigationRail": "Pokazuj pasek nawigacyjny na urządzeniach mobilnych",
+  "@displayNavigationRail": {},
+  "customReaction": "Własna reakcja",
+  "@customReaction": {},
+  "moreEvents": "Więcej zdarzeń",
+  "@moreEvents": {}
 }
