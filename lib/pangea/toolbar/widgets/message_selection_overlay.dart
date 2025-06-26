@@ -121,7 +121,8 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     newTokens = pangeaMessageEvent?.messageDisplayRepresentation?.tokens
             ?.where((token) {
           return token.lemma.saveVocab == true &&
-              token.vocabConstruct.uses.isEmpty;
+              token.vocabConstruct.uses.isEmpty &&
+              messageInUserL2;
         }).toList() ??
         [];
   }
@@ -611,7 +612,6 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
                 t.text.offset == token.text.offset &&
                 t.text.length == token.text.length,
           );
-          debugPrint("$token.text has been removed from newTokens list.");
         });
       }
     });

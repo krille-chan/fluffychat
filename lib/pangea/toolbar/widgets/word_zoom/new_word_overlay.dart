@@ -43,10 +43,9 @@ class _NewWordOverlayState extends State<NewWordOverlay>
     );
     _fadeAnim = CurvedAnimation(
       parent: _controller,
-      curve: const Interval(0.7, 1.0, curve: Curves.easeOut),
+      curve: const Interval(0.5, 1.0, curve: Curves.easeOut),
     );
 
-    // Alignment animation: stays center until 0.5, then animates to topRight
     _alignmentAnim = AlignmentTween(
       begin: Alignment.center,
       end: Alignment.topRight,
@@ -105,7 +104,10 @@ class _NewWordOverlayState extends State<NewWordOverlay>
                         translation: _offsetAnim.value,
                         child: ScaleTransition(
                           scale: _xpScaleAnim,
-                          child: xpSeedWidget,
+                          child: Transform.scale(
+                            scale: 2 * (1 - _fadeAnim.value),
+                            child: xpSeedWidget,
+                          ),
                         ),
                       ),
                     );
