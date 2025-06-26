@@ -46,6 +46,7 @@ import '../../widgets/matrix.dart';
 import 'package:fluffychat/utils/tor_stub.dart'
     if (dart.library.html) 'package:tor_detector_web/tor_detector_web.dart';
 
+
 enum PopupMenuAction {
   settings,
   invite,
@@ -668,6 +669,10 @@ class ChatListController extends State<ChatList>
 
     _activeSpaceId =
         widget.activeSpaceId == 'clear' ? null : widget.activeSpaceId;
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _joinInvitedSpaces();
+    });
     // Pangea#
 
     super.initState();
@@ -682,6 +687,16 @@ class ChatListController extends State<ChatList>
       widget.activeSpaceId == 'clear'
           ? clearActiveSpace()
           : setActiveSpace(widget.activeSpaceId!);
+    }
+  }
+
+  Future<void> _joinInvitedSpaces() async {
+    final invitedSpaces = Matrix.of(context).client.rooms.where(
+          (r) => r.isSpace && r.membership == Membership.invite,
+        );
+
+    for (final space in invitedSpaces) {
+      await showInviteDialog(space, context);
     }
   }
   // Pangea#
