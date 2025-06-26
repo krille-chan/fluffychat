@@ -73,7 +73,7 @@ dependencies:
     git:
       url: https://github.com/pangeachat/matrix-dart-sdk.git # repo
       ref: merge-upstream
-  # matrix: ^0.40.2
+  # matrix: ^1.0.0
   # Pangea#
   mime: ^1.0.6
   native_imaging: ^0.2.0
