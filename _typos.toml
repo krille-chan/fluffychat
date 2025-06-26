@@ -1,0 +1,15 @@
+[files]
+extend-exclude = [
+	"lib/l10n/*",
+	"assets/*",
+	"integration_test/",
+	"lib/config/*",
+	"ios/",
+	"macos/",
+	"*.patch",
+]
+
+[default.extend-words]
+Caf = "Caf"
+OIS = "OIS"
+PN = "PN"
