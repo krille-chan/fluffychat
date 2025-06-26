@@ -2109,5 +2109,13 @@
         "type": "int"
       }
     }
-  }
+  },
+  "oneOfYourDevicesIsNotVerified": "En av dine enheter er ikke verifisert",
+  "@oneOfYourDevicesIsNotVerified": {},
+  "website": "Nettside",
+  "@website": {},
+  "boldText": "Fet skrift",
+  "@boldText": {},
+  "pleaseFillOut": "Vennligst fyll ut",
+  "@pleaseFillOut": {}
 }
