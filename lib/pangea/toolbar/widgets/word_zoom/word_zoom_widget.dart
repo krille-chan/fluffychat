@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/analytics_details_popup/analytics_details_popup.dart';
@@ -15,18 +13,22 @@ import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/practice_activity/word_audio_button.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/word_zoom/lemma_meaning_builder.dart';
+import 'package:fluffychat/pangea/toolbar/widgets/word_zoom/new_word_overlay.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:flutter/material.dart';
 
 class WordZoomWidget extends StatelessWidget {
   final PangeaToken token;
   final PangeaMessageEvent messageEvent;
   final MessageOverlayController overlayController;
+  final bool wordIsNew;
 
   const WordZoomWidget({
     super.key,
     required this.token,
     required this.messageEvent,
     required this.overlayController,
+    required this.wordIsNew,
   });
 
   PangeaToken get _selectedToken => overlayController.selectedToken!;
@@ -41,7 +43,9 @@ class WordZoomWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    final isNewWord = wordIsNew;
+    final overlayColor = Theme.of(context).scaffoldBackgroundColor;
+    Widget card = Container(
       padding: const EdgeInsets.all(12.0),
       constraints: const BoxConstraints(
         minHeight: AppConfig.toolbarMinHeight - 8,
@@ -241,5 +245,13 @@ class WordZoomWidget extends StatelessWidget {
         ),
       ),
     );
+    if (isNewWord) {
+      card = NewWordOverlay(
+        show: true,
+        overlayColor: overlayColor,
+        child: card,
+      );
+    }
+    return card;
   }
 }

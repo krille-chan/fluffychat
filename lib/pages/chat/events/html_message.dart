@@ -1,14 +1,4 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-
 import 'package:collection/collection.dart';
-import 'package:flutter_highlighter/flutter_highlighter.dart';
-import 'package:flutter_highlighter/themes/shades-of-purple.dart';
-import 'package:flutter_linkify/flutter_linkify.dart';
-import 'package:html/dom.dart' as dom;
-import 'package:html/parser.dart' as parser;
-import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/common/utils/any_state_holder.dart';
@@ -24,6 +14,15 @@ import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_highlighter/flutter_highlighter.dart';
+import 'package:flutter_highlighter/themes/shades-of-purple.dart';
+import 'package:flutter_linkify/flutter_linkify.dart';
+import 'package:html/dom.dart' as dom;
+import 'package:html/parser.dart' as parser;
+import 'package:matrix/matrix.dart';
+
 import '../../../utils/url_launcher.dart';
 
 class HtmlMessage extends StatelessWidget {
@@ -324,6 +323,10 @@ class HtmlMessage extends StatelessWidget {
             ? isSelected!.call(token)
             : false;
 
+        final isNew = token != null &&
+            overlayController != null &&
+            overlayController!.isNewToken(token);
+
         final tokenWidth = renderer.tokenTextWidthForContainer(
           context,
           node.text,
@@ -352,6 +355,7 @@ class HtmlMessage extends StatelessWidget {
                       color: renderer.backgroundColor(
                         context,
                         selected,
+                        isNew,
                       ),
                     ),
                     width: tokenWidth,
@@ -386,6 +390,7 @@ class HtmlMessage extends StatelessWidget {
                               color: renderer.backgroundColor(
                                 context,
                                 selected,
+                                isNew,
                               ),
                             ),
                             linkStyle: linkStyle,
@@ -528,6 +533,7 @@ class HtmlMessage extends StatelessWidget {
                         color: renderer.backgroundColor(
                           context,
                           false,
+                          false,
                         ),
                       ),
                     ),
@@ -542,6 +548,7 @@ class HtmlMessage extends StatelessWidget {
                         context,
                         color: renderer.backgroundColor(
                           context,
+                          false,
                           false,
                         ),
                       ),
