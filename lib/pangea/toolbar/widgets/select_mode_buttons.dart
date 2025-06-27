@@ -125,7 +125,8 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
 
   void _clear() {
     setState(() {
-      _audioError = null;
+      // Audio errors do not go away when I switch modes and back
+      // Is there any reason to wipe error records on clear?
       _translationError = null;
       _speechTranslationError = null;
     });
@@ -148,8 +149,10 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
     }
 
     setState(
-      () => _selectedMode =
-          _selectedMode == mode && mode != SelectMode.audio ? null : mode,
+      () => _selectedMode = _selectedMode == mode &&
+              (mode != SelectMode.audio || _audioError != null)
+          ? null
+          : mode,
     );
 
     if (_selectedMode == SelectMode.audio) {
@@ -486,7 +489,7 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
         children: [
           for (final mode in modes)
             Tooltip(
-              message: mode.tooltip(context),
+              message: _isError ? null : mode.tooltip(context),
               child: PressableButton(
                 depressed: mode == _selectedMode,
                 borderRadius: BorderRadius.circular(20),
