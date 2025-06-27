@@ -3342,6 +3342,51 @@
   "@notSupportedOnThisDevice": {},
   "enterNewChat": "Ingresar a nuevo chat",
   "@enterNewChat": {},
+  "pleaseWaitUntilInvited": "Por favor espera, hasta que alguien del chat te invite.",
+  "@pleaseWaitUntilInvited": {},
+  "commandHint_roomupgrade": "Actualizar este chat a la versión de chat dada",
+  "@commandHint_roomupgrade": {},
+  "checkList": "Lista de tareas",
+  "@checkList": {},
+  "countInvited": "{count} invitado",
+  "@countInvited": {
+    "type": "String",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "sentVoiceMessage": "🎙️ {duration} - Mensaje de voz de {sender}",
+  "@sentVoiceMessage": {
+    "type": "String",
+    "placeholders": {
+      "sender": {
+        "type": "String"
+      },
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "setCustomPermissionLevel": "Agregar nivel personalizado de permiso",
+  "@setCustomPermissionLevel": {},
+  "setPermissionsLevelDescription": "Por favor elige un rol predeterminado o un nivel de permiso personalizado entre 0 a 100.",
+  "@setPermissionsLevelDescription": {},
+  "ignoreUser": "Ignorar usuario",
+  "@ignoreUser": {},
+  "normalUser": "Usuario normal",
+  "@normalUser": {},
+  "commandHint_logout": "Salir del dispositivo actual",
+  "@commandHint_logout": {},
+  "commandHint_logoutall": "Salir de todos los dispositivos activos",
+  "@commandHint_logoutall": {},
+  "displayNavigationRail": "Mostrar carril de navegación en móvil",
+  "@displayNavigationRail": {},
+  "youHaveKnocked": "Has sido golpeado",
+  "@youHaveKnocked": {}
+  "approve": "Aprobar",
+  "@approve": {},
   "accountInformation": "Información de la cuenta",
   "addGroupDescription": "Agregar una descripción al grupo",
   "alreadyHaveAnAccount": "¿Ya tiene una cuenta?",
@@ -5454,11 +5499,6 @@
   },
   "downloadGboard": "Descargar Gboard",
   "autocorrectNotAvailable": "Desafortunadamente, tu plataforma no es compatible actualmente con esta función. ¡Mantente atento a futuros desarrollos!",
-  "setCustomPermissionLevel": "Establecer nivel de permiso personalizado",
-  "setPermissionsLevelDescription": "Por favor, elige un rol predefinido a continuación o ingresa un nivel de permiso personalizado entre 0 y 100.",
-  "ignoreUser": "Ignorar usuario",
-  "normalUser": "Usuario normal",
-  "commandHint_roomupgrade": "Mejorar esta sala a la versión de sala dada",
   "completeActivitiesToUnlock": "¡Completa al menos una actividad para desbloquear la traducción!",
   "constructUseGaDesc": "Asistencia gramatical",
   "constructUseTaDesc": "Asistencia de traducción",
@@ -5536,9 +5576,6 @@
   "ban": "Prohibir",
   "unban": "Desbloquear",
   "kick": "Expulsar",
-  "approve": "Aprobar",
-  "youHaveKnocked": "Has llamado",
-  "pleaseWaitUntilInvited": "Por favor, espera hasta que alguien de la sala te invite.",
   "lemma": "Lema",
   "grammarFeature": "Característica gramatical",
   "grammarTag": "Etiqueta gramatical",
@@ -5566,7 +5603,6 @@
   "configureSpace": "Configurar espacio",
   "pinMessages": "Fijar mensajes",
   "setJoinRules": "Establecer reglas de unión",
-  "displayNavigationRail": "Mostrar barra de navegación en móvil",
   "changeGeneralSettings": "Cambiar configuraciones generales",
   "inviteOtherUsersToRoom": "Invitar a otros usuarios",
   "changeTheNameOfTheSpace": "Cambiar el nombre del espacio",
@@ -5574,26 +5610,6 @@
   "changeThePermissions": "Cambiar los permisos",
   "introductions": "Introducciones",
   "announcements": "Anuncios",
-  "@setCustomPermissionLevel": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "@setPermissionsLevelDescription": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "@ignoreUser": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "@normalUser": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "@commandHint_roomupgrade": {
-    "type": "String",
-    "placeholders": {}
-  },
   "@completeActivitiesToUnlock": {
     "type": "String",
     "placeholders": {}
@@ -5918,18 +5934,6 @@
     "type": "String",
     "placeholders": {}
   },
-  "@approve": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "@youHaveKnocked": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "@pleaseWaitUntilInvited": {
-    "type": "String",
-    "placeholders": {}
-  },
   "@lemma": {
     "type": "String",
     "placeholders": {}
@@ -6043,10 +6047,6 @@
     "placeholders": {}
   },
   "@setJoinRules": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "@displayNavigationRail": {
     "type": "String",
     "placeholders": {}
   },
