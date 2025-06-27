@@ -37,15 +37,16 @@ class RoomCreationStateEvent extends StatelessWidget {
                     name: roomName,
                     size: Avatar.defaultSize * 2,
                   ),
-                  Text(
-                    roomName,
-                    style: theme.textTheme.bodyLarge,
-                    textAlign: TextAlign.center,
-                  ),
                   const SizedBox(height: 8),
                   Text(
+                    roomName,
+                    style: TextStyle(color: theme.colorScheme.primary),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
                     '${event.originServerTs.localizedTime(context)} | ${l10n.countParticipants((event.room.summary.mJoinedMemberCount ?? 1) + (event.room.summary.mInvitedMemberCount ?? 0))}',
-                    style: theme.textTheme.labelSmall,
+                    style: TextStyle(color: theme.colorScheme.onSurface),
                     textAlign: TextAlign.center,
                   ),
                 ],

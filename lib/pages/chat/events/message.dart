@@ -279,8 +279,8 @@ class Message extends StatelessWidget {
                                 left: 0,
                                 right: 0,
                                 child: InkWell(
-                                  hoverColor: theme.colorScheme.primary
-                                      .withValues(alpha: 0.1),
+                                  hoverColor: theme.colorScheme.surface
+                                      .withValues(alpha: 0.3),
                                   enableFeedback: !selected,
                                   onTap: longPressSelect
                                       ? null

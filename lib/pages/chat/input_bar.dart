@@ -404,6 +404,7 @@ class InputBar extends StatelessWidget {
       debounceDuration: const Duration(milliseconds: 50),
       // show suggestions after 50ms idle time (default is 300)
       builder: (context, controller, focusNode) => TextField(
+        style: TextStyle(color: Theme.of(context).colorScheme.onTertiary),
         controller: controller,
         focusNode: focusNode,
         readOnly: readOnly,

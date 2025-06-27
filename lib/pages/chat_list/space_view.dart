@@ -538,6 +538,8 @@ class _SpaceViewState extends State<SpaceView> {
                                     ),
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                    color: theme.colorScheme.onTertiary),
                               ),
                             ),
                           ),

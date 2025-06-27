@@ -48,7 +48,7 @@ abstract class FluffyThemes {
       brightness: Brightness.dark,
       primary: Color(0xFFE3ED55),
       onPrimary: Color(0xFF212529),
-      primaryContainer: Color.fromARGB(255, 129, 136, 39),
+      primaryContainer: Color.fromARGB(255, 113, 119, 29),
       onPrimaryContainer: Color(0xFF212529),
       secondary: Color(0xFFEE7F4B),
       onSecondary: Color(0xFF212529),

@@ -290,6 +290,8 @@ class ChatInputRow extends StatelessWidget {
                       hintMaxLines: 1,
                       border: InputBorder.none,
                       enabledBorder: InputBorder.none,
+                      focusedBorder: InputBorder.none,
+                      disabledBorder: InputBorder.none,
                       filled: false,
                     ),
                     onChanged: controller.onInputBarChanged,

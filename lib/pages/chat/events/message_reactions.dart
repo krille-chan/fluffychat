@@ -157,12 +157,6 @@ class _Reaction extends StatelessWidget {
           color: reacted == true
               ? theme.colorScheme.primaryContainer
               : theme.colorScheme.surfaceContainerHigh,
-          border: Border.all(
-            color: reacted == true
-                ? theme.colorScheme.primary
-                : theme.colorScheme.surfaceContainerHigh,
-            width: 1,
-          ),
           borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
         ),
         padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
