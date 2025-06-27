@@ -492,7 +492,7 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
                 borderRadius: BorderRadius.circular(20),
                 color: Theme.of(context).colorScheme.primaryContainer,
                 onPressed: () => _updateMode(mode),
-                playSound: true,
+                playSound: mode != SelectMode.audio,
                 colorFactor: Theme.of(context).brightness == Brightness.light
                     ? 0.55
                     : 0.3,
