@@ -150,7 +150,7 @@ class NewPrivateChatView extends StatelessWidget {
                     if (PlatformInfos.isMobile)
                       ListTile(
                         leading: CircleAvatar(
-                          backgroundColor: theme.colorScheme.primaryContainer,
+                          backgroundColor: theme.colorScheme.tertiary,
                           foregroundColor: theme.colorScheme.onPrimaryContainer,
                           child: const Icon(Icons.qr_code_scanner_outlined),
                         ),

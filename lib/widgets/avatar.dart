@@ -52,9 +52,7 @@ class Avatar extends StatelessWidget {
           width: size,
           height: size,
           child: Material(
-            color: theme.brightness == Brightness.light
-                ? Colors.white
-                : Colors.black,
+            color: theme.colorScheme.primary,
             shape: RoundedRectangleBorder(
               borderRadius: borderRadius,
               side: border ?? BorderSide.none,
@@ -86,7 +84,7 @@ class Avatar extends StatelessWidget {
                     placeholder: (_) => Center(
                       child: Icon(
                         Icons.person_2,
-                        color: theme.colorScheme.tertiary,
+                        color: theme.colorScheme.primaryContainer,
                         size: size / 1.5,
                       ),
                     ),
@@ -115,7 +113,8 @@ class Avatar extends StatelessWidget {
                   width: 16,
                   height: 16,
                   decoration: BoxDecoration(
-                    color: presenceBackgroundColor ?? theme.colorScheme.surface,
+                    color:
+                        presenceBackgroundColor ?? theme.colorScheme.tertiary,
                     borderRadius: BorderRadius.circular(32),
                   ),
                   alignment: Alignment.center,

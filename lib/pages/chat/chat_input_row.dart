@@ -124,7 +124,7 @@ class ChatInputRow extends StatelessWidget {
                 child: PopupMenuButton<String>(
                   useRootNavigator: true,
                   icon: const Icon(Icons.add_circle_outline),
-                  iconColor: theme.colorScheme.onPrimaryContainer,
+                  iconColor: theme.colorScheme.onTertiary,
                   onSelected: controller.onAddPopupMenuButtonSelected,
                   itemBuilder: (BuildContext context) =>
                       <PopupMenuEntry<String>>[
@@ -133,9 +133,8 @@ class ChatInputRow extends StatelessWidget {
                         value: 'location',
                         child: ListTile(
                           leading: CircleAvatar(
-                            backgroundColor:
-                                theme.colorScheme.onPrimaryContainer,
-                            foregroundColor: theme.colorScheme.primaryContainer,
+                            backgroundColor: theme.colorScheme.tertiary,
+                            foregroundColor: theme.colorScheme.onTertiary,
                             child: const Icon(Icons.gps_fixed_outlined),
                           ),
                           title: Text(L10n.of(context).shareLocation),
@@ -146,8 +145,8 @@ class ChatInputRow extends StatelessWidget {
                       value: 'image',
                       child: ListTile(
                         leading: CircleAvatar(
-                          backgroundColor: theme.colorScheme.onPrimaryContainer,
-                          foregroundColor: theme.colorScheme.primaryContainer,
+                          backgroundColor: theme.colorScheme.tertiary,
+                          foregroundColor: theme.colorScheme.onTertiary,
                           child: const Icon(Icons.photo_outlined),
                         ),
                         title: Text(L10n.of(context).sendImage),
@@ -158,8 +157,8 @@ class ChatInputRow extends StatelessWidget {
                       value: 'video',
                       child: ListTile(
                         leading: CircleAvatar(
-                          backgroundColor: theme.colorScheme.onPrimaryContainer,
-                          foregroundColor: theme.colorScheme.primaryContainer,
+                          backgroundColor: theme.colorScheme.tertiary,
+                          foregroundColor: theme.colorScheme.onTertiary,
                           child: const Icon(Icons.video_camera_back_outlined),
                         ),
                         title: Text(L10n.of(context).sendVideo),
@@ -170,8 +169,8 @@ class ChatInputRow extends StatelessWidget {
                       value: 'file',
                       child: ListTile(
                         leading: CircleAvatar(
-                          backgroundColor: theme.colorScheme.onPrimaryContainer,
-                          foregroundColor: theme.colorScheme.primaryContainer,
+                          backgroundColor: theme.colorScheme.tertiary,
+                          foregroundColor: theme.colorScheme.onTertiary,
                           child: const Icon(Icons.attachment_outlined),
                         ),
                         title: Text(L10n.of(context).sendFile),
@@ -200,9 +199,8 @@ class ChatInputRow extends StatelessWidget {
                         value: 'camera-video',
                         child: ListTile(
                           leading: CircleAvatar(
-                            backgroundColor:
-                                theme.colorScheme.onPrimaryContainer,
-                            foregroundColor: theme.colorScheme.primaryContainer,
+                            backgroundColor: theme.colorScheme.tertiary,
+                            foregroundColor: theme.colorScheme.onTertiary,
                             child: const Icon(Icons.videocam_outlined),
                           ),
                           title: Text(L10n.of(context).recordAVideo),
@@ -213,9 +211,8 @@ class ChatInputRow extends StatelessWidget {
                         value: 'camera',
                         child: ListTile(
                           leading: CircleAvatar(
-                            backgroundColor:
-                                theme.colorScheme.onPrimaryContainer,
-                            foregroundColor: theme.colorScheme.primaryContainer,
+                            backgroundColor: theme.colorScheme.tertiary,
+                            foregroundColor: theme.colorScheme.onTertiary,
                             child: const Icon(Icons.camera_alt_outlined),
                           ),
                           title: Text(L10n.of(context).takeAPhoto),
@@ -231,7 +228,7 @@ class ChatInputRow extends StatelessWidget {
                 alignment: Alignment.center,
                 child: IconButton(
                   tooltip: L10n.of(context).emojis,
-                  color: theme.colorScheme.onPrimaryContainer,
+                  color: theme.colorScheme.onTertiary,
                   icon: PageTransitionSwitcher(
                     transitionBuilder: (
                       Widget child,

@@ -156,8 +156,9 @@ class PublicRoomDialog extends StatelessWidget {
                                   ),
                                   TextSpan(text: roomLink),
                                 ],
-                                style: theme.textTheme.bodyMedium
-                                    ?.copyWith(fontSize: 10),
+                                style: TextStyle(
+                                  color: theme.colorScheme.onSurface,
+                                ),
                               ),
                               textAlign: TextAlign.center,
                             ),

@@ -56,7 +56,7 @@ class LoginScaffold extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 64.0),
           child: Material(
-            color: theme.colorScheme.primaryContainer,
+            color: theme.colorScheme.tertiary,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(AppConfig.borderRadius),
               side: BorderSide(

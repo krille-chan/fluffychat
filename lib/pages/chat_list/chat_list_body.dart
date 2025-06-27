@@ -216,7 +216,7 @@ class ChatListViewBody extends StatelessWidget {
                               Icon(
                                 CupertinoIcons.chat_bubble_text_fill,
                                 size: 128,
-                                color: theme.colorScheme.secondary,
+                                color: theme.colorScheme.onSurface,
                               ),
                             ],
                           ),
@@ -229,7 +229,7 @@ class ChatListViewBody extends StatelessWidget {
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 18,
-                                color: theme.colorScheme.secondary,
+                                color: theme.colorScheme.onSurface,
                               ),
                             ),
                           ),
@@ -347,7 +347,8 @@ class _SearchItem extends StatelessWidget {
                   maxLines: 2,
                   textAlign: TextAlign.center,
                   overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onTertiary,
                     fontSize: 12,
                   ),
                 ),

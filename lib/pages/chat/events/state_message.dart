@@ -68,6 +68,7 @@ class StateMessage extends StatelessWidget {
                         ),
                         textAlign: TextAlign.center,
                         style: TextStyle(
+                          color: theme.colorScheme.onSurface,
                           fontSize: 12 * AppConfig.fontSizeFactor,
                           decoration: event.redacted
                               ? TextDecoration.lineThrough

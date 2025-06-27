@@ -48,14 +48,24 @@ abstract class FluffyThemes {
       brightness: Brightness.dark,
       primary: Color(0xFFE3ED55),
       onPrimary: Color(0xFF212529),
+      primaryContainer: Color.fromARGB(255, 129, 136, 39),
+      onPrimaryContainer: Color(0xFF212529),
       secondary: Color(0xFFEE7F4B),
-      onSecondary: Colors.white,
-      primaryContainer: Color(0xFF3D3D3D),
-      onPrimaryContainer: Colors.white,
+      onSecondary: Color(0xFF212529),
+      secondaryContainer: Color(0xFFEE7F4B),
+      onSecondaryContainer: Color(0xFF212529),
+      tertiary: Color(0xFF3D3D3D),
+      onTertiary: Color(0XFFFFFFFF),
+      tertiaryContainer: Color(0xFF3D3D3D),
+      onTertiaryContainer: Color(0xFFADB5BD),
       surface: Color(0xFF212529),
       onSurface: Color(0xFFADB5BD),
-      error: Color.fromARGB(255, 145, 37, 37),
-      onError: Color(0xFF212529),
+      error: Color(0xFFB00020),
+      onError: Color(0xFFFFFFFF),
+      errorContainer: Color(0xFFCF6679),
+      onErrorContainer: Color(0xFF000000),
+      surfaceTint: Color(0xFFE3ED55),
+      outline: Color(0xFFEE7F4B),
     );
 
     final isColumnMode = FluffyThemes.isColumnMode(context);
@@ -63,6 +73,7 @@ abstract class FluffyThemes {
       textTheme: GoogleFonts.fredokaTextTheme(
         Theme.of(context).textTheme,
       ),
+      splashColor: colorScheme.primary.withValues(alpha: 0.1),
       visualDensity: VisualDensity.standard,
       useMaterial3: true,
       brightness: Brightness.dark,
@@ -121,10 +132,14 @@ abstract class FluffyThemes {
       ),
       chipTheme: ChipThemeData(
         showCheckmark: false,
-        backgroundColor: colorScheme.surfaceContainer,
+        backgroundColor: colorScheme.tertiary,
+        selectedColor: colorScheme.primary.withValues(alpha: 0.1),
         side: BorderSide.none,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+        ),
+        labelStyle: TextStyle(
+          color: colorScheme.onTertiary, // ou qualquer cor que deseje
         ),
       ),
       appBarTheme: AppBarTheme(
@@ -192,15 +207,11 @@ extension on Brightness {
 extension BubbleColorTheme on ThemeData {
   Color get bubbleColor => brightness == Brightness.light
       ? colorScheme.primary
-      : colorScheme.primaryContainer;
+      : colorScheme.primary.withValues(alpha: 0.1);
 
-  Color get onBubbleColor => brightness == Brightness.light
-      ? colorScheme.onPrimary
-      : colorScheme.onPrimaryContainer;
+  Color get onBubbleColor => colorScheme.onTertiary;
 
-  Color get secondaryBubbleColor => HSLColor.fromColor(
-        brightness == Brightness.light
-            ? colorScheme.tertiary
-            : colorScheme.tertiaryContainer,
-      ).withSaturation(0.5).toColor();
+  Color get secondaryBubbleColor => brightness == Brightness.light
+      ? colorScheme.tertiary
+      : colorScheme.secondary.withValues(alpha: 0.5);
 }

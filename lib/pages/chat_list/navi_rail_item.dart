@@ -68,8 +68,8 @@ class NaviRailItem extends StatelessWidget {
                   child: Material(
                     borderRadius: borderRadius,
                     color: isSelected
-                        ? theme.colorScheme.primaryContainer
-                        : theme.colorScheme.surfaceContainerHigh,
+                        ? theme.colorScheme.primary.withValues(alpha: 0.5)
+                        : theme.colorScheme.tertiary,
                     child: Tooltip(
                       message: toolTip,
                       child: InkWell(

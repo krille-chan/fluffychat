@@ -47,22 +47,31 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
               text,
               globalSearch: globalSearch,
             ),
+            style: TextStyle(
+              color: theme.colorScheme.onTertiary,
+            ),
             decoration: InputDecoration(
               filled: true,
-              fillColor: theme.colorScheme.secondaryContainer,
-              border: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(99),
-              ),
+              fillColor: theme.colorScheme.tertiary,
               contentPadding: EdgeInsets.zero,
               hintText: hide
                   ? L10n.of(context).searchChatsRooms
                   : status.calcLocalizedString(context),
               hintStyle: TextStyle(
-                color: status.error != null
-                    ? Colors.orange
-                    : theme.colorScheme.onPrimaryContainer,
+                color: theme.colorScheme.onTertiary,
                 fontWeight: FontWeight.normal,
+              ),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(99),
+                borderSide: BorderSide.none,
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(99),
+                borderSide: BorderSide.none,
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(99),
+                borderSide: BorderSide.none,
               ),
               prefixIcon: hide
                   ? controller.isSearchMode
@@ -70,13 +79,13 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                           tooltip: L10n.of(context).cancel,
                           icon: const Icon(Icons.close_outlined),
                           onPressed: controller.cancelSearch,
-                          color: theme.colorScheme.onPrimaryContainer,
+                          color: theme.colorScheme.onTertiary,
                         )
                       : IconButton(
                           onPressed: controller.startSearch,
                           icon: Icon(
                             Icons.search_outlined,
-                            color: theme.colorScheme.onPrimaryContainer,
+                            color: theme.colorScheme.onTertiary,
                           ),
                         )
                   : Container(
@@ -88,45 +97,12 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                           strokeWidth: 2,
                           value: status.progress,
                           valueColor: status.error != null
-                              ? const AlwaysStoppedAnimation<Color>(
-                                  Colors.orange,
+                              ? AlwaysStoppedAnimation<Color>(
+                                  theme.colorScheme.secondary,
                                 )
                               : null,
                         ),
                       ),
-                    ),
-              suffixIcon: controller.isSearchMode && globalSearch
-                  ? controller.isSearching
-                      ? const Padding(
-                          padding: EdgeInsets.symmetric(
-                            vertical: 10.0,
-                            horizontal: 12,
-                          ),
-                          child: SizedBox.square(
-                            dimension: 24,
-                            child: CircularProgressIndicator.adaptive(
-                              strokeWidth: 2,
-                            ),
-                          ),
-                        )
-                      : TextButton.icon(
-                          onPressed: controller.setServer,
-                          style: TextButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(99),
-                            ),
-                            textStyle: const TextStyle(fontSize: 12),
-                          ),
-                          icon: const Icon(Icons.edit_outlined, size: 16),
-                          label: Text(
-                            controller.searchServer ??
-                                Matrix.of(context).client.homeserver!.host,
-                            maxLines: 2,
-                          ),
-                        )
-                  : SizedBox(
-                      width: 0,
-                      child: ClientChooserButton(controller),
                     ),
             ),
           );

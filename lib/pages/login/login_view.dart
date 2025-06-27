@@ -1,4 +1,3 @@
-import 'package:fluffychat/config/app_config.dart';
 import 'package:flutter/material.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
@@ -46,15 +45,10 @@ class LoginView extends StatelessWidget {
                   child: Center(
                     child: FractionallySizedBox(
                       widthFactor: 0.5,
-                      child: ConstrainedBox(
-                        constraints: BoxConstraints(
-                          maxHeight: MediaQuery.of(context).size.height * 0.2,
-                          minWidth: 150,
-                        ),
-                        child: Image.asset(
-                          'assets/logo_horizontal_semfundo.png',
-                          fit: BoxFit.contain,
-                        ),
+                      child: Image.asset(
+                        'assets/logo_horizontal_semfundo.png',
+                        fit: BoxFit.contain,
+                        filterQuality: FilterQuality.high,
                       ),
                     ),
                   ),
@@ -80,7 +74,7 @@ class LoginView extends StatelessWidget {
                     decoration: InputDecoration(
                       prefixIcon: const Icon(Icons.account_box_outlined),
                       errorText: controller.usernameError,
-                      errorStyle: const TextStyle(color: Colors.orange),
+                      errorStyle: TextStyle(color: theme.colorScheme.secondary),
                       labelText: L10n.of(context).emailOrUsername,
                     ),
                   ),
@@ -105,7 +99,7 @@ class LoginView extends StatelessWidget {
                     decoration: InputDecoration(
                       prefixIcon: const Icon(Icons.lock_outlined),
                       errorText: controller.passwordError,
-                      errorStyle: const TextStyle(color: Colors.orange),
+                      errorStyle: TextStyle(color: theme.colorScheme.secondary),
                       suffixIcon: IconButton(
                         onPressed: controller.toggleShowPassword,
                         icon: Icon(
@@ -129,9 +123,11 @@ class LoginView extends StatelessWidget {
                         : Text(L10n.of(context).login),
                   ),
                 ),
-                const SizedBox(height: 16),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 24.0,
+                    vertical: 16.0,
+                  ),
                   child: TextButton(
                     onPressed: controller.loading
                         ? () {}
@@ -142,7 +138,6 @@ class LoginView extends StatelessWidget {
                     child: Text(L10n.of(context).passwordForgotten),
                   ),
                 ),
-                const SizedBox(height: 16),
               ],
             ),
           );

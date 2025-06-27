@@ -124,7 +124,7 @@ class Message extends StatelessWidget {
         previousEvent!.originServerTs.sameEnvironment(event.originServerTs);
 
     final textColor =
-        ownMessage ? theme.onBubbleColor : theme.colorScheme.onSurface;
+        ownMessage ? theme.onBubbleColor : theme.colorScheme.onTertiary;
 
     final linkColor = ownMessage
         ? theme.brightness == Brightness.light
@@ -245,7 +245,7 @@ class Message extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 12 * AppConfig.fontSizeFactor,
                               fontWeight: FontWeight.bold,
-                              color: theme.colorScheme.secondary,
+                              color: theme.colorScheme.onSurface,
                             ),
                           ),
                         ),
@@ -279,9 +279,8 @@ class Message extends StatelessWidget {
                                 left: 0,
                                 right: 0,
                                 child: InkWell(
-                                  hoverColor: longPressSelect
-                                      ? Colors.transparent
-                                      : null,
+                                  hoverColor: theme.colorScheme.primary
+                                      .withValues(alpha: 0.1),
                                   enableFeedback: !selected,
                                   onTap: longPressSelect
                                       ? null
@@ -294,8 +293,8 @@ class Message extends StatelessWidget {
                                       AppConfig.borderRadius / 2,
                                     ),
                                     color: selected || highlightMarker
-                                        ? theme.colorScheme.secondaryContainer
-                                            .withAlpha(128)
+                                        ? theme.colorScheme.primaryContainer
+                                            .withValues(alpha: 0.5)
                                         : Colors.transparent,
                                   ),
                                 ),
@@ -803,7 +802,7 @@ class Message extends StatelessWidget {
                                                                               0.75,
                                                                             )!,
                                                                             indicatorColor:
-                                                                                theme.colorScheme.onSurface,
+                                                                                theme.colorScheme.onTertiary,
                                                                           ),
                                                                         ),
                                                                       ),

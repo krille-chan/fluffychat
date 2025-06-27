@@ -53,89 +53,101 @@ class SpacesNavigationRail extends StatelessWidget {
                 )
                 .toList();
 
-            return SizedBox(
-              width: FluffyThemes.isColumnMode(context)
-                  ? FluffyThemes.navRailWidth
-                  : FluffyThemes.navRailWidth * 0.75,
-              child: Column(
-                children: [
-                  Expanded(
-                    child: ListView.builder(
-                      scrollDirection: Axis.vertical,
-                      itemCount: rootSpaces.length + 2,
-                      itemBuilder: (context, i) {
-                        if (i == 0) {
-                          return NaviRailItem(
-                            isSelected: activeSpaceId == null && !isSettings,
-                            onTap: onGoToChats,
-                            icon: const Padding(
-                              padding: EdgeInsets.all(10.0),
-                              child: Icon(Icons.forum_outlined),
-                            ),
-                            selectedIcon: const Padding(
-                              padding: EdgeInsets.all(10.0),
-                              child: Icon(Icons.forum),
-                            ),
-                            toolTip: L10n.of(context).chats,
-                            unreadBadgeFilter: (room) => true,
-                          );
-                        }
-                        i--;
-                        if (i == rootSpaces.length) {
-                          return NaviRailItem(
-                            isSelected: false,
-                            onTap: () => context.go('/rooms/newspace'),
-                            icon: const Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Icon(Icons.add),
-                            ),
-                            toolTip: L10n.of(context).createNewSpace,
-                          );
-                        }
-                        final space = rootSpaces[i];
-                        final displayname =
-                            rootSpaces[i].getLocalizedDisplayname(
-                          MatrixLocals(L10n.of(context)),
-                        );
-                        final spaceChildrenIds =
-                            space.spaceChildren.map((c) => c.roomId).toSet();
-                        return NaviRailItem(
-                          toolTip: displayname,
-                          isSelected: activeSpaceId == space.id,
-                          onTap: () => onGoToSpaceId(rootSpaces[i].id),
-                          unreadBadgeFilter: (room) =>
-                              spaceChildrenIds.contains(room.id),
-                          icon: Avatar(
-                            mxContent: rootSpaces[i].avatar,
-                            name: displayname,
-                            border: BorderSide(
-                              width: 1,
-                              color: Theme.of(context).dividerColor,
-                            ),
-                            borderRadius: BorderRadius.circular(
-                              AppConfig.borderRadius / 2,
-                            ),
-                          ),
-                        );
-                      },
+            return Container(
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.surface,
+                  border: Border(
+                    right: BorderSide(
+                      color: Theme.of(context).colorScheme.tertiary,
+                      width: 2.0,
                     ),
                   ),
-                  NaviRailItem(
-                    isSelected: isSettings,
-                    onTap: () => context.go('/rooms/settings'),
-                    icon: const Padding(
-                      padding: EdgeInsets.all(10.0),
-                      child: Icon(Icons.settings_outlined),
-                    ),
-                    selectedIcon: const Padding(
-                      padding: EdgeInsets.all(10.0),
-                      child: Icon(Icons.settings),
-                    ),
-                    toolTip: L10n.of(context).settings,
+                ),
+                child: SizedBox(
+                  width: FluffyThemes.isColumnMode(context)
+                      ? FluffyThemes.navRailWidth
+                      : FluffyThemes.navRailWidth * 0.75,
+                  child: Column(
+                    children: [
+                      Expanded(
+                        child: ListView.builder(
+                          scrollDirection: Axis.vertical,
+                          itemCount: rootSpaces.length + 2,
+                          itemBuilder: (context, i) {
+                            if (i == 0) {
+                              return NaviRailItem(
+                                isSelected:
+                                    activeSpaceId == null && !isSettings,
+                                onTap: onGoToChats,
+                                icon: const Padding(
+                                  padding: EdgeInsets.all(10.0),
+                                  child: Icon(Icons.forum_outlined),
+                                ),
+                                selectedIcon: const Padding(
+                                  padding: EdgeInsets.all(10.0),
+                                  child: Icon(Icons.forum),
+                                ),
+                                toolTip: L10n.of(context).chats,
+                                unreadBadgeFilter: (room) => true,
+                              );
+                            }
+                            i--;
+                            if (i == rootSpaces.length) {
+                              return NaviRailItem(
+                                isSelected: false,
+                                onTap: () => context.go('/rooms/newspace'),
+                                icon: const Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Icon(Icons.add),
+                                ),
+                                toolTip: L10n.of(context).createNewSpace,
+                              );
+                            }
+                            final space = rootSpaces[i];
+                            final displayname =
+                                rootSpaces[i].getLocalizedDisplayname(
+                              MatrixLocals(L10n.of(context)),
+                            );
+                            final spaceChildrenIds = space.spaceChildren
+                                .map((c) => c.roomId)
+                                .toSet();
+                            return NaviRailItem(
+                              toolTip: displayname,
+                              isSelected: activeSpaceId == space.id,
+                              onTap: () => onGoToSpaceId(rootSpaces[i].id),
+                              unreadBadgeFilter: (room) =>
+                                  spaceChildrenIds.contains(room.id),
+                              icon: Avatar(
+                                mxContent: rootSpaces[i].avatar,
+                                name: displayname,
+                                border: BorderSide(
+                                  width: 1,
+                                  color: Theme.of(context).dividerColor,
+                                ),
+                                borderRadius: BorderRadius.circular(
+                                  AppConfig.borderRadius / 2,
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                      NaviRailItem(
+                        isSelected: isSettings,
+                        onTap: () => context.go('/rooms/settings'),
+                        icon: const Padding(
+                          padding: EdgeInsets.all(10.0),
+                          child: Icon(Icons.settings_outlined),
+                        ),
+                        selectedIcon: const Padding(
+                          padding: EdgeInsets.all(10.0),
+                          child: Icon(Icons.settings),
+                        ),
+                        toolTip: L10n.of(context).settings,
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            );
+                ));
           },
         ),
       ),

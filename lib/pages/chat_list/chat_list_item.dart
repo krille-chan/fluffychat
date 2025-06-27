@@ -79,7 +79,7 @@ class ChatListItem extends StatelessWidget {
         : 0.0;
     final hasNotifications = room.notificationCount > 0;
     final backgroundColor =
-        activeChat ? theme.colorScheme.secondaryContainer : null;
+        activeChat ? theme.colorScheme.primary.withValues(alpha: 0.1) : null;
     final displayname = room.getLocalizedDisplayname(
       MatrixLocals(L10n.of(context)),
     );
@@ -179,11 +179,14 @@ class ChatListItem extends StatelessWidget {
                               curve: FluffyThemes.animationCurve,
                               scale: listTileHovered ? 1.0 : 0.0,
                               child: Material(
-                                color: backgroundColor,
+                                color: activeChat
+                                    ? theme.colorScheme.primaryContainer
+                                    : theme.colorScheme.tertiary,
                                 borderRadius: BorderRadius.circular(16),
-                                child: const Icon(
+                                child: Icon(
                                   Icons.arrow_drop_down_circle_outlined,
                                   size: 18,
+                                  color: theme.colorScheme.onTertiary,
                                 ),
                               ),
                             ),
@@ -203,6 +206,7 @@ class ChatListItem extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       softWrap: false,
                       style: TextStyle(
+                        color: theme.colorScheme.primary,
                         fontWeight: unread || room.hasNewMessages
                             ? FontWeight.w500
                             : null,
@@ -237,7 +241,7 @@ class ChatListItem extends StatelessWidget {
                         lastEvent.originServerTs.localizedTimeShort(context),
                         style: TextStyle(
                           fontSize: 12,
-                          color: theme.colorScheme.outline,
+                          color: theme.colorScheme.onSurface,
                         ),
                       ),
                     ),
@@ -266,7 +270,7 @@ class ChatListItem extends StatelessWidget {
                     padding: const EdgeInsets.only(right: 4),
                     child: Icon(
                       Icons.edit_outlined,
-                      color: theme.colorScheme.secondary,
+                      color: theme.colorScheme.primary,
                       size: 14,
                     ),
                   ),
@@ -277,13 +281,14 @@ class ChatListItem extends StatelessWidget {
                               room.spaceChildren.length,
                               (room.summary.mJoinedMemberCount ?? 1),
                             ),
-                            style: TextStyle(color: theme.colorScheme.outline),
+                            style: TextStyle(
+                                color: theme.colorScheme.onPrimaryContainer),
                           )
                         : typingText.isNotEmpty
                             ? Text(
                                 typingText,
                                 style: TextStyle(
-                                  color: theme.colorScheme.primary,
+                                  color: theme.colorScheme.onPrimaryContainer,
                                 ),
                                 maxLines: 1,
                                 softWrap: false,
@@ -335,8 +340,8 @@ class ChatListItem extends StatelessWidget {
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
                                     color: unread || room.hasNewMessages
-                                        ? theme.colorScheme.onSurface
-                                        : theme.colorScheme.outline,
+                                        ? theme.colorScheme.onTertiary
+                                        : theme.colorScheme.onSurface,
                                     decoration: room.lastEvent?.redacted == true
                                         ? TextDecoration.lineThrough
                                         : null,
