@@ -1,3 +1,4 @@
+import 'package:fluffychat/pangea/analytics_misc/gain_points_animation.dart';
 import 'package:fluffychat/pangea/constructs/construct_level_enum.dart';
 import 'package:flutter/material.dart';
 
@@ -26,7 +27,7 @@ class _NewWordOverlayState extends State<NewWordOverlay>
   late final Animation<double> _fadeAnim;
   late final Animation<Alignment> _alignmentAnim;
   late final Animation<Offset> _offsetAnim;
-  final bool _showOverlay = true;
+  bool pointsBlast = false;
   Widget xpSeedWidget = const SizedBox();
   Widget? get svg => ConstructLevelEnum.seeds.icon();
   @override
@@ -34,7 +35,7 @@ class _NewWordOverlayState extends State<NewWordOverlay>
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 2500),
+      duration: const Duration(milliseconds: 2000),
     );
 
     _xpScaleAnim = CurvedAnimation(
@@ -43,7 +44,7 @@ class _NewWordOverlayState extends State<NewWordOverlay>
     );
     _fadeAnim = CurvedAnimation(
       parent: _controller,
-      curve: const Interval(0.5, 1.0, curve: Curves.easeOut),
+      curve: const Interval(0.7, 1.0, curve: Curves.easeOut),
     );
 
     _alignmentAnim = AlignmentTween(
@@ -67,6 +68,14 @@ class _NewWordOverlayState extends State<NewWordOverlay>
       ),
     );
 
+    _controller.addListener(() {
+      if (!pointsBlast && _controller.value >= 0.6) {
+        setState(() {
+          pointsBlast = true;
+        });
+      }
+    });
+
     xpSeedWidget = Container(
       child: svg,
     );
@@ -84,37 +93,51 @@ class _NewWordOverlayState extends State<NewWordOverlay>
 
   @override
   Widget build(BuildContext context) {
-    if (!_showOverlay) return widget.child;
+    if (!widget.show) return widget.child;
     return Stack(
       children: [
         widget.child,
-        Positioned.fill(
-          child: FadeTransition(
-            opacity: ReverseAnimation(_fadeAnim),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                color: widget.overlayColor,
-                child: AnimatedBuilder(
-                  animation: _controller,
-                  builder: (context, child) {
-                    return Align(
-                      alignment: _alignmentAnim.value,
-                      child: FractionalTranslation(
-                        translation: _offsetAnim.value,
-                        child: ScaleTransition(
-                          scale: _xpScaleAnim,
-                          child: Transform.scale(
-                            scale: 2 * (1 - _fadeAnim.value),
-                            child: xpSeedWidget,
+        Positioned(
+          left: 5,
+          right: 5,
+          top: 5,
+          bottom: 5,
+          child: Stack(
+            children: [
+              FadeTransition(
+                opacity: ReverseAnimation(_fadeAnim),
+                child: Container(
+                  color: widget.overlayColor,
+                  child: AnimatedBuilder(
+                    animation: _controller,
+                    builder: (context, child) {
+                      return Align(
+                        alignment: _alignmentAnim.value,
+                        child: FractionalTranslation(
+                          translation: _offsetAnim.value,
+                          child: ScaleTransition(
+                            scale: _xpScaleAnim,
+                            child: Transform.scale(
+                              scale: 2 * (.8 - _fadeAnim.value),
+                              child: xpSeedWidget,
+                            ),
                           ),
                         ),
-                      ),
-                    );
-                  },
+                      );
+                    },
+                  ),
                 ),
               ),
-            ),
+              pointsBlast
+                  ? const Align(
+                      alignment: Alignment.bottomCenter,
+                      child: PointsGainedAnimation(
+                        points: 10,
+                        targetID: "",
+                      ),
+                    )
+                  : const SizedBox.shrink(),
+            ],
           ),
         ),
       ],
