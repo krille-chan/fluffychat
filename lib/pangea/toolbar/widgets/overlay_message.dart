@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -20,6 +22,7 @@ import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart
 import 'package:fluffychat/pangea/toolbar/widgets/stt_transcript_tokens.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/file_description.dart';
+import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 // @ggurdin be great to explain the need/function of a widget like this
@@ -150,8 +153,13 @@ class OverlayMessage extends StatelessWidget {
 
     final transcription = showTranscription
         ? Container(
-            constraints: const BoxConstraints(
-              maxWidth: FluffyThemes.columnWidth * 1.5,
+            constraints: BoxConstraints(
+              maxWidth: min(
+                FluffyThemes.columnWidth * 1.5,
+                MediaQuery.of(context).size.width -
+                    (ownMessage ? 0 : Avatar.defaultSize) -
+                    24.0,
+              ),
             ),
             child: Padding(
               padding: const EdgeInsets.all(12.0),
@@ -198,8 +206,8 @@ class OverlayMessage extends StatelessWidget {
                                   text: overlayController
                                       .transcription!.transcript.text,
                                   textLanguage: PLanguageStore.byLangCode(
-                                        pangeaMessageEvent!
-                                            .messageDisplayLangCode,
+                                        overlayController
+                                            .transcription!.langCode,
                                       ) ??
                                       LanguageModel.unknown,
                                   style: AppConfig.messageTextStyle(
@@ -230,8 +238,13 @@ class OverlayMessage extends StatelessWidget {
 
     final translation = showTranslation || showSpeechTranslation
         ? Container(
-            constraints: const BoxConstraints(
-              maxWidth: FluffyThemes.columnWidth * 1.5,
+            constraints: BoxConstraints(
+              maxWidth: min(
+                FluffyThemes.columnWidth * 1.5,
+                MediaQuery.of(context).size.width -
+                    (ownMessage ? 0 : Avatar.defaultSize) -
+                    24.0,
+              ),
             ),
             child: Padding(
               padding: const EdgeInsets.fromLTRB(

@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
@@ -126,7 +125,8 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
 
   void _clear() {
     setState(() {
-      _audioError = null;
+      // Audio errors do not go away when I switch modes and back
+      // Is there any reason to wipe error records on clear?
       _translationError = null;
       _speechTranslationError = null;
     });
@@ -149,8 +149,10 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
     }
 
     setState(
-      () => _selectedMode =
-          _selectedMode == mode && mode != SelectMode.audio ? null : mode,
+      () => _selectedMode = _selectedMode == mode &&
+              (mode != SelectMode.audio || _audioError != null)
+          ? null
+          : mode,
     );
 
     if (_selectedMode == SelectMode.audio) {
@@ -202,12 +204,10 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
         File? file;
         file = File('${tempDir.path}/${_audioBytes!.name}');
         await file.writeAsBytes(_audioBytes!.bytes);
-        setState(() => _audioFile = file);
+        _audioFile = file;
       }
-
-      if (mounted) setState(() => _isLoadingAudio = false);
     } catch (e, s) {
-      debugger(when: kDebugMode);
+      _audioError = e.toString();
       ErrorHandler.logError(
         e: e,
         s: s,
@@ -217,6 +217,7 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
               messageEvent?.messageDisplayLangCode,
         },
       );
+    } finally {
       if (mounted) setState(() => _isLoadingAudio = false);
     }
   }
@@ -289,7 +290,7 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
       }
 
       TtsController.stop();
-      matrix?.audioPlayer?.play();
+      await matrix?.audioPlayer?.play();
     } catch (e, s) {
       setState(() => _audioError = e.toString());
       ErrorHandler.logError(
@@ -487,25 +488,28 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
         spacing: 4.0,
         children: [
           for (final mode in modes)
-            Tooltip(
-              message: mode.tooltip(context),
-              child: PressableButton(
-                depressed: mode == _selectedMode,
-                borderRadius: BorderRadius.circular(20),
-                color: Theme.of(context).colorScheme.primaryContainer,
-                onPressed: () => _updateMode(mode),
-                playSound: true,
-                colorFactor: Theme.of(context).brightness == Brightness.light
-                    ? 0.55
-                    : 0.3,
-                child: Container(
-                  height: buttonSize,
-                  width: buttonSize,
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.primaryContainer,
-                    shape: BoxShape.circle,
+            TooltipVisibility(
+              visible: (!_isError || mode != _selectedMode),
+              child: Tooltip(
+                message: mode.tooltip(context),
+                child: PressableButton(
+                  depressed: mode == _selectedMode,
+                  borderRadius: BorderRadius.circular(20),
+                  color: Theme.of(context).colorScheme.primaryContainer,
+                  onPressed: () => _updateMode(mode),
+                  playSound: mode != SelectMode.audio,
+                  colorFactor: Theme.of(context).brightness == Brightness.light
+                      ? 0.55
+                      : 0.3,
+                  child: Container(
+                    height: buttonSize,
+                    width: buttonSize,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.primaryContainer,
+                      shape: BoxShape.circle,
+                    ),
+                    child: icon(mode),
                   ),
-                  child: icon(mode),
                 ),
               ),
             ),

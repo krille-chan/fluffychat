@@ -125,9 +125,12 @@ class SettingsLearningController extends State<SettingsLearning> {
     if (formKey.currentState!.validate()) {
       await showFutureLoadingDialog(
         context: context,
-        future: () async => pangeaController.userController.updateProfile(
-          (_) => _profile,
-        ),
+        future: () async => pangeaController.userController
+            .updateProfile(
+              (_) => _profile,
+              waitForDataInSync: true,
+            )
+            .timeout(const Duration(seconds: 15)),
       );
       Navigator.of(context).pop();
     }
