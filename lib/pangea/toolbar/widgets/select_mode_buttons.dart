@@ -488,25 +488,28 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
         spacing: 4.0,
         children: [
           for (final mode in modes)
-            Tooltip(
-              message: _isError ? null : mode.tooltip(context),
-              child: PressableButton(
-                depressed: mode == _selectedMode,
-                borderRadius: BorderRadius.circular(20),
-                color: Theme.of(context).colorScheme.primaryContainer,
-                onPressed: () => _updateMode(mode),
-                playSound: mode != SelectMode.audio,
-                colorFactor: Theme.of(context).brightness == Brightness.light
-                    ? 0.55
-                    : 0.3,
-                child: Container(
-                  height: buttonSize,
-                  width: buttonSize,
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.primaryContainer,
-                    shape: BoxShape.circle,
+            TooltipVisibility(
+              visible: (!_isError || mode != _selectedMode),
+              child: Tooltip(
+                message: mode.tooltip(context),
+                child: PressableButton(
+                  depressed: mode == _selectedMode,
+                  borderRadius: BorderRadius.circular(20),
+                  color: Theme.of(context).colorScheme.primaryContainer,
+                  onPressed: () => _updateMode(mode),
+                  playSound: mode != SelectMode.audio,
+                  colorFactor: Theme.of(context).brightness == Brightness.light
+                      ? 0.55
+                      : 0.3,
+                  child: Container(
+                    height: buttonSize,
+                    width: buttonSize,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.primaryContainer,
+                      shape: BoxShape.circle,
+                    ),
+                    child: icon(mode),
                   ),
-                  child: icon(mode),
                 ),
               ),
             ),
