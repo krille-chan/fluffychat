@@ -1,5 +1,11 @@
-FROM ghcr.io/cirruslabs/flutter as builder
-RUN sudo apt update && sudo apt install curl wget jq build-essential -y
+FROM dart:stable AS builder
+
+RUN apt-get update && apt-get install -y curl wget jq build-essential git
+
+RUN git clone https://github.com/flutter/flutter.git /usr/local/flutter
+ENV PATH="/usr/local/flutter/bin:/usr/local/flutter/bin/cache/dart-sdk/bin:${PATH}"
+RUN flutter precache
+RUN flutter config --enable-web
 
 WORKDIR /tmp
 RUN wget https://github.com/mikefarah/yq/releases/download/v4.40.5/yq_linux_amd64.tar.gz
