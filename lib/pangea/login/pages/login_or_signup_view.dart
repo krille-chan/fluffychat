@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
+import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/common/config/environment.dart';
@@ -17,12 +18,17 @@ class LoginOrSignupView extends StatefulWidget {
 }
 
 class LoginOrSignupViewState extends State<LoginOrSignupView> {
+  Client? client;
   List<AppConfigOverride> _overrides = [];
 
   @override
   void initState() {
     super.initState();
     _loadOverrides();
+
+    Matrix.of(context).getLoginClient().then((c) {
+      if (mounted) setState(() => client = c);
+    });
   }
 
   Future<void> _loadOverrides() async {
@@ -62,10 +68,12 @@ class LoginOrSignupViewState extends State<LoginOrSignupView> {
         ),
         FullWidthButton(
           title: L10n.of(context).signIn,
-          onPressed: () => context.go(
-            '/home/login',
-            extra: Matrix.of(context).client,
-          ),
+          onPressed: client != null
+              ? () => context.go(
+                    '/home/login',
+                    extra: Matrix.of(context).client,
+                  )
+              : null,
         ),
       ],
     );

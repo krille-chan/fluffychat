@@ -157,7 +157,7 @@ class PangeaController {
   }
 
   /// check user information if not found then redirect to Date of birth page
-  _handleLoginStateChange(LoginState state) {
+  _handleLoginStateChange(LoginState state, String? userID) {
     switch (state) {
       case LoginState.loggedOut:
       case LoginState.softLoggedOut:
@@ -181,12 +181,12 @@ class PangeaController {
     Sentry.configureScope(
       (scope) => scope.setUser(
         SentryUser(
-          id: matrixState.client.userID,
-          name: matrixState.client.userID,
+          id: userID,
+          name: userID,
         ),
       ),
     );
-    GoogleAnalytics.analyticsUserUpdate(matrixState.client.userID);
+    GoogleAnalytics.analyticsUserUpdate(userID);
   }
 
   Future<void> resetAnalytics() async {
@@ -197,8 +197,9 @@ class PangeaController {
   }
 
   void _subscribeToStreams() {
+    final userID = matrixState.client.userID;
     matrixState.client.onLoginStateChanged.stream
-        .listen(_handleLoginStateChange);
+        .listen((state) => _handleLoginStateChange(state, userID));
     _setLanguageStream();
   }
 

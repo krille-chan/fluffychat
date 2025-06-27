@@ -16,7 +16,10 @@ class PAuthGaurd {
     GoRouterState state,
   ) async {
     if (pController != null) {
-      if (Matrix.of(context).client.isLogged()) {
+      if (Matrix.of(context)
+          .widget
+          .clients
+          .any((client) => client.isLogged())) {
         final bool dobIsSet =
             await pController!.userController.isUserDataAvailableAndL2Set;
         return dobIsSet ? '/rooms' : '/user_age';
@@ -34,7 +37,10 @@ class PAuthGaurd {
     GoRouterState state,
   ) async {
     if (pController != null) {
-      if (!Matrix.of(context).client.isLogged()) {
+      if (!Matrix.of(context)
+          .widget
+          .clients
+          .any((client) => client.isLogged())) {
         return '/home';
       }
       final bool dobIsSet =

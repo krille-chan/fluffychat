@@ -80,7 +80,6 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
     _analyticsStream = null;
     _languageStream?.cancel();
     _languageStream = null;
-    _refreshAnalyticsIfOutdated();
     clearMessagesSinceUpdate();
   }
 
