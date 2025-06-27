@@ -34,12 +34,6 @@ class ChatView extends StatelessWidget {
   List<Widget> _appBarActions(BuildContext context) {
     if (controller.selectMode) {
       return [
-        if (controller.canEditSelectedEvents)
-          IconButton(
-            icon: const Icon(Icons.edit_outlined),
-            tooltip: L10n.of(context).edit,
-            onPressed: controller.editSelectedEventAction,
-          ),
         IconButton(
           icon: const Icon(Icons.copy_outlined),
           tooltip: L10n.of(context).copy,
@@ -310,13 +304,14 @@ class ChatView extends StatelessWidget {
                                 child: ChatEventList(controller: controller),
                               ),
                             ),
+                            if (controller.showScrollDownButton)
+                              Divider(
+                                height: 1,
+                                color: theme.dividerColor,
+                              ),
                             if (controller.room.isExtinct)
                               Container(
-                                margin: EdgeInsets.only(
-                                  bottom: bottomSheetPadding,
-                                  left: bottomSheetPadding,
-                                  right: bottomSheetPadding,
-                                ),
+                                margin: EdgeInsets.all(bottomSheetPadding),
                                 width: double.infinity,
                                 child: ElevatedButton.icon(
                                   icon: const Icon(Icons.chevron_right),
@@ -327,11 +322,7 @@ class ChatView extends StatelessWidget {
                             else if (controller.room.canSendDefaultMessages &&
                                 controller.room.membership == Membership.join)
                               Container(
-                                margin: EdgeInsets.only(
-                                  bottom: bottomSheetPadding,
-                                  left: bottomSheetPadding,
-                                  right: bottomSheetPadding,
-                                ),
+                                margin: EdgeInsets.all(bottomSheetPadding),
                                 constraints: const BoxConstraints(
                                   maxWidth: FluffyThemes.columnWidth * 2.5,
                                 ),
@@ -386,7 +377,6 @@ class ChatView extends StatelessWidget {
                                   // : Column(
                                   //     mainAxisSize: MainAxisSize.min,
                                   //     children: [
-                                  //       ReactionsPicker(controller),
                                   //       ReplyDisplay(controller),
                                   //       ChatInputRow(controller),
                                   //       ChatEmojiPicker(controller),

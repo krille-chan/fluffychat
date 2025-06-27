@@ -6,7 +6,6 @@ import 'package:matrix/matrix.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
-import 'package:fluffychat/pangea/events/extensions/pangea_event_extension.dart';
 import 'package:fluffychat/pangea/events/utils/report_message.dart';
 
 class OverlayHeader extends StatefulWidget {
@@ -118,14 +117,14 @@ class OverlayHeaderState extends State<OverlayHeader> {
                             color: theme.colorScheme.primary,
                           ),
 
-                        if (controller.canEditSelectedEvents &&
-                            !controller.selectedEvents.first.isActivityMessage)
-                          IconButton(
-                            icon: const Icon(Icons.edit_outlined),
-                            tooltip: l10n.edit,
-                            onPressed: controller.editSelectedEventAction,
-                            color: theme.colorScheme.primary,
-                          ),
+                        // if (controller.canEditSelectedEvents &&
+                        //     !controller.selectedEvents.first.isActivityMessage)
+                        //   IconButton(
+                        //     icon: const Icon(Icons.edit_outlined),
+                        //     tooltip: l10n.edit,
+                        //     onPressed: controller.editSelectedEventAction,
+                        //     color: theme.colorScheme.primary,
+                        //   ),
                         if (controller.canRedactSelectedEvents)
                           IconButton(
                             icon: const Icon(Icons.delete_outlined),

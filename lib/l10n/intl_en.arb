@@ -3240,6 +3240,7 @@
   "commandHint_logout": "Logout your current device",
   "commandHint_logoutall": "Logout all active devices",
   "displayNavigationRail": "Show navigation rail on mobile",
+  "customReaction": "Custom reaction",
   "accountInformation": "Account information",
   "addGroupDescription": "Add a chat description",
   "addNewFriend": "Add new friend",

@@ -1,9 +1,6 @@
-// ignore_for_file: depend_on_referenced_packages, implementation_imports
-
 import 'dart:async';
 import 'dart:developer';
 import 'dart:io';
-import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -250,8 +247,6 @@ class ChatController extends State<ChatPageWithRoom>
     if (success.error != null) return;
     context.go('/rooms');
   }
-
-  EmojiPickerType emojiPickerType = EmojiPickerType.keyboard;
 
   // #Pangea
   // void requestHistory([_]) async {
@@ -924,7 +919,6 @@ class ChatController extends State<ChatPageWithRoom>
     //   editEventId: editEvent?.eventId,
     //   parseCommands: parseCommands,
     // );
-
     // If the message and the sendController text don't match, it's possible
     // that there was a delay in tokenization before send, and the user started
     // typing a new message. We don't want to erase that, so only reset the input
@@ -1031,7 +1025,6 @@ class ChatController extends State<ChatPageWithRoom>
     //   text: pendingText,
     //   selection: const TextSelection.collapsed(offset: 0),
     // );
-    // Pangea#
 
     setState(() {
       // #Pangea
@@ -1226,13 +1219,11 @@ class ChatController extends State<ChatPageWithRoom>
     } else {
       inputFocus.unfocus();
     }
-    emojiPickerType = EmojiPickerType.keyboard;
     setState(() => showEmojiPicker = !showEmojiPicker);
   }
 
   void _inputFocusListener() {
     if (showEmojiPicker && inputFocus.hasFocus) {
-      emojiPickerType = EmojiPickerType.keyboard;
       setState(() => showEmojiPicker = false);
     }
   }
@@ -1431,19 +1422,6 @@ class ChatController extends State<ChatPageWithRoom>
     return true;
   }
 
-  bool get canEditSelectedEvents {
-    if (isArchived ||
-        selectedEvents.length != 1 ||
-        // #Pangea
-        selectedEvents.single.messageType != MessageTypes.Text ||
-        // Pangea#
-        !selectedEvents.first.status.isSent) {
-      return false;
-    }
-    return currentRoomBundle
-        .any((cl) => selectedEvents.first.senderId == cl!.userID);
-  }
-
   void forwardEventsAction() async {
     if (selectedEvents.isEmpty) return;
     await showScaffoldDialog(
@@ -1567,34 +1545,8 @@ class ChatController extends State<ChatPageWithRoom>
   }
 
   void onEmojiSelected(_, Emoji? emoji) {
-    switch (emojiPickerType) {
-      case EmojiPickerType.reaction:
-        senEmojiReaction(emoji);
-        break;
-      case EmojiPickerType.keyboard:
-        typeEmoji(emoji);
-        onInputBarChanged(sendController.text);
-        break;
-    }
-  }
-
-  void senEmojiReaction(Emoji? emoji) {
-    setState(() => showEmojiPicker = false);
-    if (emoji == null) return;
-    // make sure we don't send the same emoji twice
-    if (_allReactionEvents.any(
-      (e) => e.content.tryGetMap('m.relates_to')?['key'] == emoji.emoji,
-    )) {
-      return;
-    }
-    // #Pangea
-    // return sendEmojiAction(emoji.emoji);
-    sendEmojiAction(emoji.emoji);
-
-    // don't need to clear these when sending while in select mode,
-    // but do need to clear these when reacting from the large emoji picker
-    setState(() => selectedEvents.clear());
-    // Pangea#
+    typeEmoji(emoji);
+    onInputBarChanged(sendController.text);
   }
 
   void typeEmoji(Emoji? emoji) {
@@ -1609,7 +1561,6 @@ class ChatController extends State<ChatPageWithRoom>
       );
     }
     // Pangea#
-
     final selection = sendController.selection;
     final newText = sendController.text.isEmpty
         ? emoji.emoji
@@ -1623,54 +1574,12 @@ class ChatController extends State<ChatPageWithRoom>
     );
   }
 
-  late Iterable<Event> _allReactionEvents;
-
   void emojiPickerBackspace() {
-    switch (emojiPickerType) {
-      case EmojiPickerType.reaction:
-        setState(() => showEmojiPicker = false);
-        break;
-      case EmojiPickerType.keyboard:
-        sendController
-          ..text = sendController.text.characters.skipLast(1).toString()
-          ..selection = TextSelection.fromPosition(
-            TextPosition(offset: sendController.text.length),
-          );
-        break;
-    }
-  }
-
-  void pickEmojiReactionAction(Iterable<Event> allReactionEvents) async {
-    // #Pangea
-    closeSelectionOverlay();
-    // Pangea#
-    _allReactionEvents = allReactionEvents;
-    emojiPickerType = EmojiPickerType.reaction;
-    setState(() => showEmojiPicker = true);
-  }
-
-  void sendEmojiAction(String? emoji) async {
-    final events = List<Event>.from(selectedEvents);
-    // #Pangea
-    // keep this event selected in case the user wants to send another emoji
-    // setState(() => selectedEvents.clear());
-    // Pangea#
-    // if reaction already exists, don't send it again
-    if (timeline == null ||
-        events.any(
-          (e) => e.aggregatedEvents(timeline!, RelationshipTypes.reaction).any(
-                (re) => re.content.tryGetMap('m.relates_to')?['key'] == emoji,
-              ),
-        )) {
-      return;
-    }
-
-    for (final event in events) {
-      await room.sendReaction(
-        event.eventId,
-        emoji!,
+    sendController
+      ..text = sendController.text.characters.skipLast(1).toString()
+      ..selection = TextSelection.fromPosition(
+        TextPosition(offset: sendController.text.length),
       );
-    }
   }
 
   // #Pangea
@@ -1702,7 +1611,6 @@ class ChatController extends State<ChatPageWithRoom>
       selectedEvents.add(event);
     });
   }
-  // Pangea#
 
   void clearSingleSelectedEvent() {
     if (selectedEvents.length <= 1) {
@@ -1776,9 +1684,8 @@ class ChatController extends State<ChatPageWithRoom>
       final matches = selectedEvents.where((e) => e.eventId == event.eventId);
       if (matches.isNotEmpty) {
         setState(() => selectedEvents.remove(matches.first));
-      }
-      // Pangea#
-      else {
+        // Pangea#
+      } else {
         setState(
           () => selectedEvents.add(event),
         );
@@ -1883,7 +1790,7 @@ class ChatController extends State<ChatPageWithRoom>
   }
 
   Timer? _storeInputTimeoutTimer;
-  Duration storeInputTimeout = const Duration(milliseconds: 500);
+  static const Duration _storeInputTimeout = Duration(milliseconds: 500);
 
   void onInputBarChanged(String text) {
     if (_inputTextIsEmpty != text.isEmpty) {
@@ -1893,7 +1800,7 @@ class ChatController extends State<ChatPageWithRoom>
     }
 
     _storeInputTimeoutTimer?.cancel();
-    _storeInputTimeoutTimer = Timer(storeInputTimeout, () async {
+    _storeInputTimeoutTimer = Timer(_storeInputTimeout, () async {
       final prefs = await SharedPreferences.getInstance();
       await prefs.setString('draft_$roomId', text);
     });
@@ -1937,12 +1844,14 @@ class ChatController extends State<ChatPageWithRoom>
   bool get isArchived =>
       {Membership.leave, Membership.ban}.contains(room.membership);
 
+  // #Pangea
+  // void showEventInfo([Event? event]) =>
+  //     (event ?? selectedEvents.single).showInfoDialog(context);
   void showEventInfo([Event? event]) {
     (event ?? selectedEvents.single).showInfoDialog(context);
-    // #Pangea
     clearSelectedEvents();
-    // Pangea#
   }
+  // Pangea#
 
   void onPhoneButtonTap() async {
     // VoIP required Android SDK 21
@@ -2000,7 +1909,6 @@ class ChatController extends State<ChatPageWithRoom>
         replyEvent = null;
         editEvent = null;
       });
-
   // #Pangea
   String? get buttonEventID => timeline!.events
       .firstWhereOrNull(
@@ -2261,5 +2169,3 @@ class ChatController extends State<ChatPageWithRoom>
     );
   }
 }
-
-enum EmojiPickerType { reaction, keyboard }

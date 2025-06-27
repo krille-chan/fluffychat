@@ -201,6 +201,10 @@ class ChatEventList extends StatelessWidget {
                           // Pangea#
                           selected: controller.selectedEvents
                               .any((e) => e.eventId == event.eventId),
+                          singleSelected:
+                              controller.selectedEvents.singleOrNull?.eventId ==
+                                  event.eventId,
+                          onEdit: () => controller.editSelectedEventAction(),
                           timeline: timeline,
                           displayReadMarker: i > 0 &&
                               controller.readMarkerEventId == event.eventId,

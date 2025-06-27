@@ -89,6 +89,8 @@ abstract class AppConfig {
   static String _privacyUrl = "https://www.pangeachat.com/privacy";
   //Pangea#
 
+  static const Set<String> defaultReactions = {'👍', '❤️', '😊'};
+
   static String get privacyUrl => _privacyUrl;
   // #Pangea
   // static const String website = 'https://fluffychat.im';
