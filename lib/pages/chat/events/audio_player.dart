@@ -323,22 +323,19 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
     final audioPlayer = matrix.audioPlayer;
     // #Pangea
     // if (audioPlayer == null) return;
-    if (audioPlayer == null ||
-        matrix.voiceMessageEventId.value != widget.eventId) {
-      switch (playbackSpeed) {
-        case 1.0:
-          setState(() => playbackSpeed = 0.75);
-        case 0.75:
-          setState(() => playbackSpeed = 0.5);
-        case 0.5:
-          setState(() => playbackSpeed = 1.25);
-        case 1.25:
-          setState(() => playbackSpeed = 1.5);
-        default:
-          setState(() => playbackSpeed = 1.0);
-      }
-      return;
+    switch (playbackSpeed) {
+      case 1.0:
+        setState(() => playbackSpeed = 0.75);
+      case 0.75:
+        setState(() => playbackSpeed = 0.5);
+      case 0.5:
+        setState(() => playbackSpeed = 1.25);
+      case 1.25:
+        setState(() => playbackSpeed = 1.5);
+      default:
+        setState(() => playbackSpeed = 1.0);
     }
+    if (audioPlayer == null) return;
     // Pangea#
     switch (audioPlayer.speed) {
       // #Pangea
