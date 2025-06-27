@@ -206,8 +206,8 @@ class OverlayMessage extends StatelessWidget {
                                   text: overlayController
                                       .transcription!.transcript.text,
                                   textLanguage: PLanguageStore.byLangCode(
-                                        pangeaMessageEvent!
-                                            .messageDisplayLangCode,
+                                        overlayController
+                                            .transcription!.langCode,
                                       ) ??
                                       LanguageModel.unknown,
                                   style: AppConfig.messageTextStyle(
