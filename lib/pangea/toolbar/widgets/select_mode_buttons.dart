@@ -125,7 +125,8 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
 
   void _clear() {
     setState(() {
-      _audioError = null;
+      // Audio errors do not go away when I switch modes and back
+      // Is there any reason to wipe error records on clear?
       _translationError = null;
       _speechTranslationError = null;
     });
@@ -148,8 +149,10 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
     }
 
     setState(
-      () => _selectedMode =
-          _selectedMode == mode && mode != SelectMode.audio ? null : mode,
+      () => _selectedMode = _selectedMode == mode &&
+              (mode != SelectMode.audio || _audioError != null)
+          ? null
+          : mode,
     );
 
     if (_selectedMode == SelectMode.audio) {
@@ -485,25 +488,28 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
         spacing: 4.0,
         children: [
           for (final mode in modes)
-            Tooltip(
-              message: mode.tooltip(context),
-              child: PressableButton(
-                depressed: mode == _selectedMode,
-                borderRadius: BorderRadius.circular(20),
-                color: Theme.of(context).colorScheme.primaryContainer,
-                onPressed: () => _updateMode(mode),
-                playSound: mode != SelectMode.audio,
-                colorFactor: Theme.of(context).brightness == Brightness.light
-                    ? 0.55
-                    : 0.3,
-                child: Container(
-                  height: buttonSize,
-                  width: buttonSize,
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.primaryContainer,
-                    shape: BoxShape.circle,
+            TooltipVisibility(
+              visible: (!_isError || mode != _selectedMode),
+              child: Tooltip(
+                message: mode.tooltip(context),
+                child: PressableButton(
+                  depressed: mode == _selectedMode,
+                  borderRadius: BorderRadius.circular(20),
+                  color: Theme.of(context).colorScheme.primaryContainer,
+                  onPressed: () => _updateMode(mode),
+                  playSound: mode != SelectMode.audio,
+                  colorFactor: Theme.of(context).brightness == Brightness.light
+                      ? 0.55
+                      : 0.3,
+                  child: Container(
+                    height: buttonSize,
+                    width: buttonSize,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.primaryContainer,
+                      shape: BoxShape.circle,
+                    ),
+                    child: icon(mode),
                   ),
-                  child: icon(mode),
                 ),
               ),
             ),
