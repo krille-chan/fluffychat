@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
@@ -202,12 +201,10 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
         File? file;
         file = File('${tempDir.path}/${_audioBytes!.name}');
         await file.writeAsBytes(_audioBytes!.bytes);
-        setState(() => _audioFile = file);
+        _audioFile = file;
       }
-
-      if (mounted) setState(() => _isLoadingAudio = false);
     } catch (e, s) {
-      debugger(when: kDebugMode);
+      _audioError = e.toString();
       ErrorHandler.logError(
         e: e,
         s: s,
@@ -217,6 +214,7 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
               messageEvent?.messageDisplayLangCode,
         },
       );
+    } finally {
       if (mounted) setState(() => _isLoadingAudio = false);
     }
   }
@@ -289,7 +287,7 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
       }
 
       TtsController.stop();
-      matrix?.audioPlayer?.play();
+      await matrix?.audioPlayer?.play();
     } catch (e, s) {
       setState(() => _audioError = e.toString());
       ErrorHandler.logError(
