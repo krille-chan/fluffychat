@@ -3378,5 +3378,9 @@
   "commandHint_logoutall": "Keluarkan semua perangkat aktif",
   "@commandHint_logoutall": {},
   "displayNavigationRail": "Tampilkan jalur navigasi pada ponsel",
-  "@displayNavigationRail": {}
+  "@displayNavigationRail": {},
+  "customReaction": "Reaksi khusus",
+  "@customReaction": {},
+  "moreEvents": "Peristiwa tambahan",
+  "@moreEvents": {}
 }

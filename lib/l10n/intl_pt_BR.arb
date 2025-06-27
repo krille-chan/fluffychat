@@ -145,7 +145,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "banned": "Banido",
+  "banned": "Banidos",
   "@banned": {
     "type": "String",
     "placeholders": {}
@@ -2589,7 +2589,7 @@
       }
     }
   },
-  "inviteGroupChat": "📨 Convidar conversa em grupo",
+  "inviteGroupChat": "📨 Convidar grupo",
   "@inviteGroupChat": {},
   "invitePrivateChat": "📨 Convidar conversa privada",
   "@invitePrivateChat": {},
