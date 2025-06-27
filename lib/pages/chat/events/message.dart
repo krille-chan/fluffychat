@@ -2,7 +2,6 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 
-import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:matrix/matrix.dart';
 import 'package:swipe_to_action/swipe_to_action.dart';
 
@@ -275,7 +274,10 @@ class Message extends StatelessWidget {
             crossAxisAlignment:
                 ownMessage ? CrossAxisAlignment.end : CrossAxisAlignment.start,
             children: <Widget>[
-              if (displayTime || selected)
+              // #Pangea
+              // if (displayTime || selected)
+              if (displayTime)
+                // Pangea#
                 Padding(
                   padding: displayTime
                       ? const EdgeInsets.symmetric(vertical: 8.0)
@@ -762,148 +764,150 @@ class Message extends StatelessWidget {
                   );
                 },
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: Avatar.defaultSize + 8.0),
-                child: AnimatedSize(
-                  duration: FluffyThemes.animationDuration,
-                  curve: FluffyThemes.animationCurve,
-                  alignment: Alignment.bottomCenter,
-                  child: singleSelected && event.room.canSendDefaultMessages
-                      ? Padding(
-                          padding: const EdgeInsets.only(bottom: 4.0),
-                          child: Material(
-                            elevation: 4,
-                            borderRadius:
-                                BorderRadius.circular(AppConfig.borderRadius),
-                            shadowColor: theme.appBarTheme.shadowColor,
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                IconButton(
-                                  icon: const Icon(Icons.reply_outlined),
-                                  tooltip: L10n.of(context).reply,
-                                  onPressed: onSwipe,
-                                ),
-                                if (ownMessage)
-                                  IconButton(
-                                    icon: const Icon(Icons.edit_outlined),
-                                    tooltip: L10n.of(context).edit,
-                                    onPressed: onEdit,
-                                  ),
-                                IconButton(
-                                  icon: const Icon(Icons.add_reaction_outlined),
-                                  tooltip: L10n.of(context).customReaction,
-                                  onPressed: () async {
-                                    final emoji = await showDialog<String>(
-                                      context: context,
-                                      builder: (context) => AlertDialog(
-                                        title: Row(
-                                          mainAxisSize: MainAxisSize.min,
-                                          spacing: 4,
-                                          children: [
-                                            CloseButton(
-                                              onPressed: () =>
-                                                  Navigator.of(context)
-                                                      .pop(null),
-                                            ),
-                                            Text(
-                                              L10n.of(context).customReaction,
-                                            ),
-                                          ],
-                                        ),
-                                        titlePadding: const EdgeInsets.all(8),
-                                        contentPadding: const EdgeInsets.all(0),
-                                        clipBehavior: Clip.hardEdge,
-                                        content: SizedBox(
-                                          width: 350,
-                                          height: 350,
-                                          child: EmojiPicker(
-                                            onEmojiSelected: (_, emoji) =>
-                                                Navigator.of(context)
-                                                    .pop(emoji.emoji),
-                                            config: Config(
-                                              emojiViewConfig:
-                                                  const EmojiViewConfig(
-                                                backgroundColor:
-                                                    Colors.transparent,
-                                              ),
-                                              bottomActionBarConfig:
-                                                  const BottomActionBarConfig(
-                                                enabled: false,
-                                              ),
-                                              categoryViewConfig:
-                                                  CategoryViewConfig(
-                                                initCategory: Category.SMILEYS,
-                                                backspaceColor:
-                                                    theme.colorScheme.primary,
-                                                iconColor: theme
-                                                    .colorScheme.primary
-                                                    .withAlpha(128),
-                                                iconColorSelected:
-                                                    theme.colorScheme.primary,
-                                                indicatorColor:
-                                                    theme.colorScheme.primary,
-                                                backgroundColor:
-                                                    theme.colorScheme.surface,
-                                              ),
-                                              skinToneConfig: SkinToneConfig(
-                                                dialogBackgroundColor:
-                                                    Color.lerp(
-                                                  theme.colorScheme.surface,
-                                                  theme.colorScheme
-                                                      .primaryContainer,
-                                                  0.75,
-                                                )!,
-                                                indicatorColor:
-                                                    theme.colorScheme.onSurface,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    );
-                                    if (emoji == null) return;
-                                    if (sentReactions.contains(emoji)) return;
+              // #Pangea
+              // Padding(
+              //   padding: const EdgeInsets.only(left: Avatar.defaultSize + 8.0),
+              //   child: AnimatedSize(
+              //     duration: FluffyThemes.animationDuration,
+              //     curve: FluffyThemes.animationCurve,
+              //     alignment: Alignment.bottomCenter,
+              //     child: singleSelected && event.room.canSendDefaultMessages
+              //         ? Padding(
+              //             padding: const EdgeInsets.only(bottom: 4.0),
+              //             child: Material(
+              //               elevation: 4,
+              //               borderRadius:
+              //                   BorderRadius.circular(AppConfig.borderRadius),
+              //               shadowColor: theme.appBarTheme.shadowColor,
+              //               child: Row(
+              //                 mainAxisSize: MainAxisSize.min,
+              //                 children: [
+              //                   IconButton(
+              //                     icon: const Icon(Icons.reply_outlined),
+              //                     tooltip: L10n.of(context).reply,
+              //                     onPressed: onSwipe,
+              //                   ),
+              //                   if (ownMessage)
+              //                     IconButton(
+              //                       icon: const Icon(Icons.edit_outlined),
+              //                       tooltip: L10n.of(context).edit,
+              //                       onPressed: onEdit,
+              //                     ),
+              //                   IconButton(
+              //                     icon: const Icon(Icons.add_reaction_outlined),
+              //                     tooltip: L10n.of(context).customReaction,
+              //                     onPressed: () async {
+              //                       final emoji = await showDialog<String>(
+              //                         context: context,
+              //                         builder: (context) => AlertDialog(
+              //                           title: Row(
+              //                             mainAxisSize: MainAxisSize.min,
+              //                             spacing: 4,
+              //                             children: [
+              //                               CloseButton(
+              //                                 onPressed: () =>
+              //                                     Navigator.of(context)
+              //                                         .pop(null),
+              //                               ),
+              //                               Text(
+              //                                 L10n.of(context).customReaction,
+              //                               ),
+              //                             ],
+              //                           ),
+              //                           titlePadding: const EdgeInsets.all(8),
+              //                           contentPadding: const EdgeInsets.all(0),
+              //                           clipBehavior: Clip.hardEdge,
+              //                           content: SizedBox(
+              //                             width: 350,
+              //                             height: 350,
+              //                             child: EmojiPicker(
+              //                               onEmojiSelected: (_, emoji) =>
+              //                                   Navigator.of(context)
+              //                                       .pop(emoji.emoji),
+              //                               config: Config(
+              //                                 emojiViewConfig:
+              //                                     const EmojiViewConfig(
+              //                                   backgroundColor:
+              //                                       Colors.transparent,
+              //                                 ),
+              //                                 bottomActionBarConfig:
+              //                                     const BottomActionBarConfig(
+              //                                   enabled: false,
+              //                                 ),
+              //                                 categoryViewConfig:
+              //                                     CategoryViewConfig(
+              //                                   initCategory: Category.SMILEYS,
+              //                                   backspaceColor:
+              //                                       theme.colorScheme.primary,
+              //                                   iconColor: theme
+              //                                       .colorScheme.primary
+              //                                       .withAlpha(128),
+              //                                   iconColorSelected:
+              //                                       theme.colorScheme.primary,
+              //                                   indicatorColor:
+              //                                       theme.colorScheme.primary,
+              //                                   backgroundColor:
+              //                                       theme.colorScheme.surface,
+              //                                 ),
+              //                                 skinToneConfig: SkinToneConfig(
+              //                                   dialogBackgroundColor:
+              //                                       Color.lerp(
+              //                                     theme.colorScheme.surface,
+              //                                     theme.colorScheme
+              //                                         .primaryContainer,
+              //                                     0.75,
+              //                                   )!,
+              //                                   indicatorColor:
+              //                                       theme.colorScheme.onSurface,
+              //                                 ),
+              //                               ),
+              //                             ),
+              //                           ),
+              //                         ),
+              //                       );
+              //                       if (emoji == null) return;
+              //                       if (sentReactions.contains(emoji)) return;
 
-                                    await event.room.sendReaction(
-                                      event.eventId,
-                                      emoji,
-                                    );
-                                  },
-                                ),
-                                ...AppConfig.defaultReactions.map(
-                                  (emoji) => IconButton(
-                                    padding: EdgeInsets.zero,
-                                    icon: Center(
-                                      child: Opacity(
-                                        opacity: sentReactions.contains(emoji)
-                                            ? 0.33
-                                            : 1,
-                                        child: Text(
-                                          emoji,
-                                          style: const TextStyle(fontSize: 20),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ),
-                                    ),
-                                    onPressed: sentReactions.contains(emoji)
-                                        ? null
-                                        : () {
-                                            onSelect(event);
-                                            event.room.sendReaction(
-                                              event.eventId,
-                                              emoji,
-                                            );
-                                          },
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        )
-                      : const SizedBox.shrink(),
-                ),
-              ),
+              //                       await event.room.sendReaction(
+              //                         event.eventId,
+              //                         emoji,
+              //                       );
+              //                     },
+              //                   ),
+              //                   ...AppConfig.defaultReactions.map(
+              //                     (emoji) => IconButton(
+              //                       padding: EdgeInsets.zero,
+              //                       icon: Center(
+              //                         child: Opacity(
+              //                           opacity: sentReactions.contains(emoji)
+              //                               ? 0.33
+              //                               : 1,
+              //                           child: Text(
+              //                             emoji,
+              //                             style: const TextStyle(fontSize: 20),
+              //                             textAlign: TextAlign.center,
+              //                           ),
+              //                         ),
+              //                       ),
+              //                       onPressed: sentReactions.contains(emoji)
+              //                           ? null
+              //                           : () {
+              //                               onSelect(event);
+              //                               event.room.sendReaction(
+              //                                 event.eventId,
+              //                                 emoji,
+              //                               );
+              //                             },
+              //                     ),
+              //                   ),
+              //                 ],
+              //               ),
+              //             ),
+              //           )
+              //         : const SizedBox.shrink(),
+              //   ),
+              // ),
+              // Pangea#
               AnimatedSize(
                 duration: FluffyThemes.animationDuration,
                 curve: FluffyThemes.animationCurve,

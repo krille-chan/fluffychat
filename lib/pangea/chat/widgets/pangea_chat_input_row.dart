@@ -124,9 +124,6 @@ class PangeaChatInputRowState extends State<PangeaChatInputRow> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    if (_controller.showEmojiPicker) {
-      return const SizedBox.shrink();
-    }
     const height = 48.0;
 
     return Column(
