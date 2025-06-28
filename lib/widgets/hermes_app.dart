@@ -33,7 +33,7 @@ class BackAction extends Action<BackIntent> {
   @override
   Object? invoke(covariant BackIntent intent) {
     // Use a very obvious print statement
-    final BuildContext? currentContext =
+    final currentContext =
         primaryFocus?.context; // Try to get context from focus
     if (currentContext != null) {
       Navigator.maybePop(currentContext);
@@ -70,10 +70,10 @@ class HermesApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Map<ShortcutActivator, Intent> globalShortcuts = {
+    final globalShortcuts = <ShortcutActivator, Intent>{
       const SingleActivator(LogicalKeyboardKey.escape): const BackIntent(),
     };
-    final Map<Type, Action<Intent>> globalActions = {
+    final globalActions = <Type, Action<Intent>>{
       BackIntent: BackAction(),
     };
     return ThemeBuilder(

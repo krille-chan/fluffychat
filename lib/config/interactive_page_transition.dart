@@ -5,11 +5,11 @@ class InteractivePageTransition extends Page {
   final bool isLeftToRight;
 
   const InteractivePageTransition({
-    required LocalKey key,
+    required LocalKey super.key,
     required this.child,
-    String? restorationId,
+    super.restorationId,
     this.isLeftToRight = true,
-  }) : super(key: key, restorationId: restorationId);
+  });
 
   @override
   Route createRoute(BuildContext context) {
@@ -28,8 +28,8 @@ class InteractivePageRoute extends PageRoute {
   InteractivePageRoute({
     required this.builder,
     required this.isLeftToRight,
-    RouteSettings? settings,
-  }) : super(settings: settings, fullscreenDialog: false);
+    super.settings,
+  }) : super(fullscreenDialog: false);
 
   @override
   bool get opaque => false;
@@ -68,10 +68,12 @@ class InteractivePageRoute extends PageRoute {
           begin:
               isLeftToRight ? const Offset(1.0, 0.0) : const Offset(-1.0, 0.0),
           end: Offset.zero,
-        ).animate(CurvedAnimation(
-          parent: animation,
-          curve: Curves.easeInOut,
-        )),
+        ).animate(
+          CurvedAnimation(
+            parent: animation,
+            curve: Curves.easeInOut,
+          ),
+        ),
         child: child,
       ),
     );
@@ -93,11 +95,11 @@ class SwipeBackDetector extends StatefulWidget {
   final bool isLeftToRight;
 
   const SwipeBackDetector({
-    Key? key,
+    super.key,
     required this.child,
     required this.onSwipeBack,
     this.isLeftToRight = true,
-  }) : super(key: key);
+  });
 
   @override
   State<SwipeBackDetector> createState() => _SwipeBackDetectorState();
@@ -196,7 +198,8 @@ class _SwipeBackDetectorState extends State<SwipeBackDetector>
                   child: FractionalTranslation(
                     translation: Offset(-1 + slideAmount, 0),
                     child: Container(
-                        color: Theme.of(context).scaffoldBackgroundColor),
+                      color: Theme.of(context).scaffoldBackgroundColor,
+                    ),
                   ),
                 ),
 
@@ -220,7 +223,7 @@ class _SwipeBackDetectorState extends State<SwipeBackDetector>
                       decoration: BoxDecoration(
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.3),
+                            color: Colors.black.withValues(alpha: 0.3),
                             blurRadius: 5.0,
                             spreadRadius: 2.0,
                           ),

@@ -723,7 +723,6 @@ class ChatController extends State<ChatPageWithRoom>
     } else {
       inputFocus.unfocus();
     }
-    emojiPickerType = EmojiPickerType.keyboard;
     setState(() {
       showEmojiPicker = !showEmojiPicker;
       emojiPickerIndex = 1;
@@ -1114,7 +1113,7 @@ class ChatController extends State<ChatPageWithRoom>
         break;
       case LogicalKeyboardKey.arrowUp:
       case LogicalKeyboardKey.keyK:
-        print("DEBUG: " + event.logicalKey.toString());
+        // print("DEBUG: ${event.logicalKey}");
         if (event is KeyDownEvent && HardwareKeyboard.instance.isAltPressed) {
           goToNextRoomAction(true);
         }
@@ -1159,7 +1158,7 @@ class ChatController extends State<ChatPageWithRoom>
     );
     if (result.error != null) return;
     if (!mounted) return;
-    context.go('/rooms/${nextID}');
+    context.go('/rooms/$nextID');
   }
 
   void goToNewRoomAction() async {

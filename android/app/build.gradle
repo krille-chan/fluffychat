@@ -2,7 +2,7 @@ plugins {
     id "com.android.application"
     id "kotlin-android"
     id "dev.flutter.flutter-gradle-plugin"
-    //id "com.google.gms.google-services"
+    id "com.google.gms.google-services"
 }
 
 def localProperties = new Properties()
@@ -98,11 +98,12 @@ flutter {
 }
 
 dependencies {
-    //implementation 'com.google.firebase:firebase-messaging:19.0.1' // Workaround for https://github.com/microg/android_packages_apps_GmsCore/issues/313#issuecomment-617651698
+    implementation 'com.google.firebase:firebase-messaging:19.0.1'
+    // Workaround for https://github.com/microg/android_packages_apps_GmsCore/issues/313#issuecomment-617651698
     implementation 'androidx.multidex:multidex:2.0.1'
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")
 }
 
 configurations.all {
-    exclude group: 'com.google.android.gms'
+    //exclude group: 'com.google.android.gms'
 }
