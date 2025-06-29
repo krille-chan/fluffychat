@@ -48,14 +48,14 @@ abstract class FluffyThemes {
       brightness: Brightness.dark,
       primary: Color(0xFFE3ED55),
       onPrimary: Color(0xFF212529),
-      primaryContainer: Color.fromARGB(255, 113, 119, 29),
+      primaryContainer: Color(0xFF82893F),
       onPrimaryContainer: Color(0xFF212529),
       secondary: Color(0xFFEE7F4B),
-      onSecondary: Color(0xFF212529),
+      onSecondary: Color(0xFFADB5BD),
       secondaryContainer: Color(0xFFEE7F4B),
-      onSecondaryContainer: Color(0xFF212529),
+      onSecondaryContainer: Color(0xFFADB5BD),
       tertiary: Color(0xFF3D3D3D),
-      onTertiary: Color(0XFFFFFFFF),
+      onTertiary: Color(0xFFFFFFFF),
       tertiaryContainer: Color(0xFF3D3D3D),
       onTertiaryContainer: Color(0xFFADB5BD),
       surface: Color(0xFF212529),
@@ -65,7 +65,7 @@ abstract class FluffyThemes {
       errorContainer: Color(0xFFCF6679),
       onErrorContainer: Color(0xFF000000),
       surfaceTint: Color(0xFFE3ED55),
-      outline: Color(0xFFEE7F4B),
+      outline: Color(0xFFE3ED55),
     );
 
     final isColumnMode = FluffyThemes.isColumnMode(context);
@@ -91,8 +91,8 @@ abstract class FluffyThemes {
       ),
       segmentedButtonTheme: SegmentedButtonThemeData(
         style: SegmentedButton.styleFrom(
-          iconColor: colorScheme.onSurface,
-          disabledIconColor: colorScheme.onSurface,
+          iconColor: colorScheme.onPrimary,
+          selectedBackgroundColor: colorScheme.primary,
         ),
       ),
       textSelectionTheme: TextSelectionThemeData(
@@ -133,7 +133,7 @@ abstract class FluffyThemes {
       chipTheme: ChipThemeData(
         showCheckmark: false,
         backgroundColor: colorScheme.tertiary,
-        selectedColor: colorScheme.primary.withValues(alpha: 0.1),
+        selectedColor: colorScheme.primary.withValues(alpha: 0.2),
         side: BorderSide.none,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppConfig.borderRadius),

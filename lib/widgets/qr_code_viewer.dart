@@ -101,7 +101,7 @@ class QrCodeViewer extends StatelessWidget {
           margin: const EdgeInsets.all(32.0),
           padding: const EdgeInsets.all(32.0),
           decoration: BoxDecoration(
-            color: theme.colorScheme.primaryContainer,
+            color: theme.colorScheme.primary,
             borderRadius: BorderRadius.circular(AppConfig.borderRadius),
           ),
           child: Column(

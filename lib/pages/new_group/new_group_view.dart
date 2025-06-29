@@ -43,11 +43,27 @@ class NewGroupView extends StatelessWidget {
                 segments: [
                   ButtonSegment(
                     value: CreateGroupType.group,
-                    label: Text(L10n.of(context).group),
+                    label: Text(
+                      L10n.of(context).group,
+                      style: TextStyle(
+                        color:
+                            controller.createGroupType == CreateGroupType.group
+                                ? theme.colorScheme.onPrimary
+                                : theme.colorScheme.onSurface,
+                      ),
+                    ),
                   ),
                   ButtonSegment(
                     value: CreateGroupType.space,
-                    label: Text(L10n.of(context).space),
+                    label: Text(
+                      L10n.of(context).space,
+                      style: TextStyle(
+                        color:
+                            controller.createGroupType == CreateGroupType.space
+                                ? theme.colorScheme.onPrimary
+                                : theme.colorScheme.onSurface,
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -58,6 +74,7 @@ class NewGroupView extends StatelessWidget {
               onTap: controller.loading ? null : controller.selectPhoto,
               child: CircleAvatar(
                 radius: Avatar.defaultSize,
+                backgroundColor: theme.colorScheme.primary,
                 child: avatar == null
                     ? const Icon(Icons.add_a_photo_outlined)
                     : ClipRRect(

@@ -133,7 +133,9 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                   minLines: 2,
                   maxLines: 4,
                   readOnly: true,
-                  style: const TextStyle(fontFamily: 'RobotoMono'),
+                  style: TextStyle(
+                      fontFamily: 'RobotoMono',
+                      color: theme.colorScheme.onSurface),
                   controller: TextEditingController(text: key),
                   decoration: const InputDecoration(
                     contentPadding: EdgeInsets.all(16),
@@ -262,7 +264,7 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                       decoration: InputDecoration(
                         contentPadding: const EdgeInsets.all(16),
                         hintStyle: TextStyle(
-                          fontFamily: theme.textTheme.bodyLarge?.fontFamily,
+                          color: theme.colorScheme.onSurface,
                         ),
                         prefixIcon: const Icon(Icons.key_outlined),
                         labelText: L10n.of(context).recoveryKey,
@@ -274,7 +276,7 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                     const SizedBox(height: 16),
                     ElevatedButton.icon(
                       style: ElevatedButton.styleFrom(
-                        foregroundColor: theme.colorScheme.onPrimary,
+                        foregroundColor: theme.colorScheme.onSurface,
                         iconColor: theme.colorScheme.onPrimary,
                         backgroundColor: theme.colorScheme.primary,
                       ),
