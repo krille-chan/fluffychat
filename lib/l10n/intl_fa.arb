@@ -2511,7 +2511,7 @@
   "@pleaseTryAgainLaterOrChooseDifferentServer": {},
   "notAnImage": "یک فایل تصویری نیست.",
   "@notAnImage": {},
-  "alwaysUse24HourFormat": "",
+  "alwaysUse24HourFormat": "false",
   "@alwaysUse24HourFormat": {
     "description": "Set to true to always display time of day in 24 hour format."
   },
@@ -2705,7 +2705,7 @@
       }
     }
   },
-  "youInvitedToBy": "📩 شما با پیوند دعوت شده‌اید به: {alias}",
+  "youInvitedToBy": "📩 شما با پیوند دعوت شده‌اید به:\n{alias}",
   "@youInvitedToBy": {
     "placeholders": {
       "alias": {
@@ -3300,7 +3300,7 @@
   "@notificationRuleEncryptedRoomOneToOneDescription": {},
   "notificationRuleRoomOneToOne": "اتاق یک‌به‌یک",
   "@notificationRuleRoomOneToOne": {},
-  "notificationRuleRoomOneToOneDescription": "کاربر را  از پیام‌ها در اتاق‌های یک‌به‌یک آگاه میکند.",
+  "notificationRuleRoomOneToOneDescription": "کاربر را از پیام‌ها در اتاق‌های یک‌به‌یک آگاه میکند.",
   "@notificationRuleRoomOneToOneDescription": {},
   "notificationRuleMessage": "پیام",
   "@notificationRuleMessage": {},
