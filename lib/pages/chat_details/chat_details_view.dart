@@ -127,10 +127,13 @@ class ChatDetailsView extends StatelessWidget {
                                       bottom: 0,
                                       right: 0,
                                       child: FloatingActionButton.small(
+                                        backgroundColor:
+                                            theme.colorScheme.secondary,
                                         onPressed: controller.setAvatarAction,
                                         heroTag: null,
-                                        child: const Icon(
+                                        child: Icon(
                                           Icons.camera_alt_outlined,
+                                          color: theme.colorScheme.onSecondary,
                                         ),
                                       ),
                                     ),
@@ -175,7 +178,10 @@ class ChatDetailsView extends StatelessWidget {
                                           : displayname,
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
-                                      style: const TextStyle(fontSize: 18),
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        color: theme.colorScheme.primary,
+                                      ),
                                     ),
                                   ),
                                   TextButton.icon(
@@ -184,9 +190,10 @@ class ChatDetailsView extends StatelessWidget {
                                         : context.push(
                                             '/rooms/${controller.roomId}/details/members',
                                           ),
-                                    icon: const Icon(
+                                    icon: Icon(
                                       Icons.group_outlined,
                                       size: 14,
+                                      color: theme.colorScheme.onSurface,
                                     ),
                                     style: TextButton.styleFrom(
                                       foregroundColor:
@@ -196,6 +203,9 @@ class ChatDetailsView extends StatelessWidget {
                                     label: Text(
                                       L10n.of(context).countParticipants(
                                         actualMembersCount,
+                                      ),
+                                      style: TextStyle(
+                                        color: theme.colorScheme.onSurface,
                                       ),
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
@@ -226,12 +236,9 @@ class ChatDetailsView extends StatelessWidget {
                               label: Text(L10n.of(context).setChatDescription),
                               icon: const Icon(Icons.edit_outlined),
                               style: TextButton.styleFrom(
-                                iconColor:
-                                    theme.colorScheme.onSecondaryContainer,
-                                backgroundColor:
-                                    theme.colorScheme.secondaryContainer,
-                                foregroundColor:
-                                    theme.colorScheme.onSecondaryContainer,
+                                iconColor: theme.colorScheme.onPrimary,
+                                backgroundColor: theme.colorScheme.primary,
+                                foregroundColor: theme.colorScheme.onPrimary,
                               ),
                             ),
                           ),
@@ -255,9 +262,8 @@ class ChatDetailsView extends StatelessWidget {
                               fontStyle: room.topic.isEmpty
                                   ? FontStyle.italic
                                   : FontStyle.normal,
-                              color: theme.textTheme.bodyMedium!.color,
-                              decorationColor:
-                                  theme.textTheme.bodyMedium!.color,
+                              color: theme.colorScheme.onSurface,
+                              decorationColor: theme.colorScheme.onSurface,
                             ),
                             onOpen: (url) =>
                                 UrlLauncher(context, url.url).launchUrl(),
@@ -269,8 +275,9 @@ class ChatDetailsView extends StatelessWidget {
                           leading: CircleAvatar(
                             backgroundColor: theme.scaffoldBackgroundColor,
                             foregroundColor: iconColor,
-                            child: const Icon(
+                            child: Icon(
                               Icons.insert_emoticon_outlined,
+                              color: theme.colorScheme.primary,
                             ),
                           ),
                           title: Text(L10n.of(context).customEmojisAndStickers),
@@ -283,7 +290,10 @@ class ChatDetailsView extends StatelessWidget {
                             leading: CircleAvatar(
                               backgroundColor: theme.scaffoldBackgroundColor,
                               foregroundColor: iconColor,
-                              child: const Icon(Icons.shield_outlined),
+                              child: Icon(
+                                Icons.shield_outlined,
+                                color: theme.colorScheme.primary,
+                              ),
                             ),
                             title: Text(
                               L10n.of(context).accessAndVisibility,
@@ -304,8 +314,9 @@ class ChatDetailsView extends StatelessWidget {
                             leading: CircleAvatar(
                               backgroundColor: theme.scaffoldBackgroundColor,
                               foregroundColor: iconColor,
-                              child: const Icon(
+                              child: Icon(
                                 Icons.edit_attributes_outlined,
+                                color: theme.colorScheme.primary,
                               ),
                             ),
                             trailing: const Icon(Icons.chevron_right_outlined),
@@ -319,7 +330,7 @@ class ChatDetailsView extends StatelessWidget {
                               actualMembersCount,
                             ),
                             style: TextStyle(
-                              color: theme.colorScheme.secondary,
+                              color: theme.colorScheme.primary,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -328,10 +339,8 @@ class ChatDetailsView extends StatelessWidget {
                           ListTile(
                             title: Text(L10n.of(context).inviteContact),
                             leading: CircleAvatar(
-                              backgroundColor:
-                                  theme.colorScheme.primaryContainer,
-                              foregroundColor:
-                                  theme.colorScheme.onPrimaryContainer,
+                              backgroundColor: theme.colorScheme.secondary,
+                              foregroundColor: theme.colorScheme.onSecondary,
                               radius: Avatar.defaultSize / 2,
                               child: const Icon(Icons.add_outlined),
                             ),

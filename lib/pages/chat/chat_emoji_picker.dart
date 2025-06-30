@@ -102,7 +102,7 @@ class NoRecent extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Text(
           L10n.of(context).emoteKeyboardNoRecents,
-          style: Theme.of(context).textTheme.bodyLarge,
+          style: TextStyle(color: Theme.of(context).colorScheme.onSurface),
           textAlign: TextAlign.center,
         ),
       ),

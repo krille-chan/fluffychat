@@ -42,6 +42,7 @@ class ChatSearchFilesTab extends StatelessWidget {
                     MatrixLocals(L10n.of(context)),
                   ),
                 ),
+                style: TextStyle(color: theme.colorScheme.onSurface),
               ),
             ],
           );
@@ -53,7 +54,10 @@ class ChatSearchFilesTab extends StatelessWidget {
             children: [
               const Icon(Icons.file_present_outlined, size: 64),
               const SizedBox(height: 8),
-              Text(L10n.of(context).nothingFound),
+              Text(
+                L10n.of(context).nothingFound,
+                style: TextStyle(color: theme.colorScheme.onSurface),
+              ),
             ],
           );
         }
@@ -93,7 +97,10 @@ class ChatSearchFilesTab extends StatelessWidget {
                       icon: const Icon(
                         Icons.arrow_downward_outlined,
                       ),
-                      label: Text(L10n.of(context).searchMore),
+                      label: Text(
+                        L10n.of(context).searchMore,
+                        style: TextStyle(color: theme.colorScheme.onSurface),
+                      ),
                     ),
                   ),
                 );
@@ -133,7 +140,9 @@ class ChatSearchFilesTab extends StatelessWidget {
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
                               event.originServerTs.localizedTime(context),
-                              style: theme.textTheme.labelSmall,
+                              style: TextStyle(
+                                  fontSize: 12,
+                                  color: theme.colorScheme.onSurface),
                               textAlign: TextAlign.center,
                             ),
                           ),
@@ -158,6 +167,7 @@ class ChatSearchFilesTab extends StatelessWidget {
                           filename,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
+                          style: TextStyle(color: theme.colorScheme.onTertiary),
                         ),
                         subtitle: Text('$sizeString | $filetype'),
                         onTap: () => event.saveFile(context),

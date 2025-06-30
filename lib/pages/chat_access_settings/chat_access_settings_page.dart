@@ -40,7 +40,7 @@ class ChatAccessSettingsPageView extends StatelessWidget {
                   title: Text(
                     L10n.of(context).visibilityOfTheChatHistory,
                     style: TextStyle(
-                      color: theme.colorScheme.secondary,
+                      color: theme.colorScheme.primary,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -63,7 +63,7 @@ class ChatAccessSettingsPageView extends StatelessWidget {
                   title: Text(
                     L10n.of(context).whoIsAllowedToJoinThisGroup,
                     style: TextStyle(
-                      color: theme.colorScheme.secondary,
+                      color: theme.colorScheme.primary,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -88,7 +88,7 @@ class ChatAccessSettingsPageView extends StatelessWidget {
                     title: Text(
                       L10n.of(context).areGuestsAllowedToJoin,
                       style: TextStyle(
-                        color: theme.colorScheme.secondary,
+                        color: theme.colorScheme.primary,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -112,7 +112,7 @@ class ChatAccessSettingsPageView extends StatelessWidget {
                     title: Text(
                       L10n.of(context).publicChatAddresses,
                       style: TextStyle(
-                        color: theme.colorScheme.secondary,
+                        color: theme.colorScheme.primary,
                         fontWeight: FontWeight.bold,
                       ),
                     ),

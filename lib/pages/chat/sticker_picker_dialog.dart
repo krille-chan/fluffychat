@@ -132,7 +132,12 @@ class StickerPickerDialogState extends State<StickerPickerDialog> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text(L10n.of(context).noEmotesFound),
+                      Text(
+                        L10n.of(context).noEmotesFound,
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.onSurface,
+                        ),
+                      ),
                       const SizedBox(height: 12),
                       OutlinedButton.icon(
                         onPressed: () => UrlLauncher(

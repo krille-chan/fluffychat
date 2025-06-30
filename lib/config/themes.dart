@@ -51,7 +51,7 @@ abstract class FluffyThemes {
       primaryContainer: Color(0xFF82893F),
       onPrimaryContainer: Color(0xFF212529),
       secondary: Color(0xFFEE7F4B),
-      onSecondary: Color(0xFFADB5BD),
+      onSecondary: Color(0xFFFFFFFF),
       secondaryContainer: Color(0xFFEE7F4B),
       onSecondaryContainer: Color(0xFFADB5BD),
       tertiary: Color(0xFF3D3D3D),
@@ -78,9 +78,7 @@ abstract class FluffyThemes {
       useMaterial3: true,
       brightness: Brightness.dark,
       colorScheme: colorScheme,
-      dividerColor: brightness == Brightness.dark
-          ? colorScheme.surfaceContainerHighest
-          : colorScheme.surfaceContainer,
+      dividerColor: colorScheme.tertiary,
       popupMenuTheme: PopupMenuThemeData(
         color: colorScheme.surfaceContainerLow,
         iconColor: colorScheme.onSurface,

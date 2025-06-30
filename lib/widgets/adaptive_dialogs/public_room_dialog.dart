@@ -185,7 +185,9 @@ class PublicRoomDialog extends StatelessWidget {
                         profile?.numJoinedMembers ?? 0,
                       ),
                       style: TextStyle(
-                          fontSize: 10, color: theme.colorScheme.onTertiary),
+                        fontSize: 10,
+                        color: theme.colorScheme.onTertiary,
+                      ),
                       textAlign: TextAlign.center,
                     ),
                   if (topic != null && topic.isNotEmpty)

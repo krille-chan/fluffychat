@@ -56,12 +56,6 @@ class SpacesNavigationRail extends StatelessWidget {
             return Container(
                 decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.surface,
-                  border: Border(
-                    right: BorderSide(
-                      color: Theme.of(context).colorScheme.tertiary,
-                      width: 2.0,
-                    ),
-                  ),
                 ),
                 child: SizedBox(
                   width: FluffyThemes.isColumnMode(context)

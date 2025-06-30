@@ -45,6 +45,7 @@ class ChatSearchImagesTab extends StatelessWidget {
                     MatrixLocals(L10n.of(context)),
                   ),
                 ),
+                style: TextStyle(color: theme.colorScheme.onSurface),
               ),
             ],
           );
@@ -55,7 +56,10 @@ class ChatSearchImagesTab extends StatelessWidget {
             children: [
               const Icon(Icons.photo_outlined, size: 64),
               const SizedBox(height: 8),
-              Text(L10n.of(context).nothingFound),
+              Text(
+                L10n.of(context).nothingFound,
+                style: TextStyle(color: theme.colorScheme.onSurface),
+              ),
             ],
           );
         }
@@ -105,7 +109,8 @@ class ChatSearchImagesTab extends StatelessWidget {
                     icon: const Icon(
                       Icons.arrow_downward_outlined,
                     ),
-                    label: Text(L10n.of(context).searchMore),
+                    label: Text(L10n.of(context).searchMore,
+                        style: TextStyle(color: theme.colorScheme.onSurface)),
                   ),
                 ),
               );
@@ -130,7 +135,10 @@ class ChatSearchImagesTab extends StatelessWidget {
                         DateFormat.yMMMM(
                           Localizations.localeOf(context).languageCode,
                         ).format(eventsByMonthList[i].key),
-                        style: theme.textTheme.labelSmall,
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: theme.colorScheme.onSurface,
+                        ),
                         textAlign: TextAlign.center,
                       ),
                     ),

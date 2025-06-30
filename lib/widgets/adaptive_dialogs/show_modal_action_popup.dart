@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 Future<T?> showModalActionPopup<T>({
   required BuildContext context,
@@ -34,9 +35,20 @@ Future<T?> showModalActionPopup<T>({
                     ? null
                     : Text(
                         title,
-                        style: theme.textTheme.labelSmall,
+                        style: GoogleFonts.righteous(
+                          fontSize: 20,
+                          color: theme.colorScheme.primary,
+                        ),
                       ),
-                subtitle: message == null ? null : Text(message),
+                subtitle: message == null
+                    ? null
+                    : Text(
+                        message,
+                        style: TextStyle(
+                          fontSize: 15,
+                          color: theme.colorScheme.onSurface,
+                        ),
+                      ),
               ),
               const Divider(height: 1),
             ],

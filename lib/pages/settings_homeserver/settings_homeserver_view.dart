@@ -44,7 +44,7 @@ class SettingsHomeserverView extends StatelessWidget {
                 title: Text(
                   L10n.of(context).serverInformation,
                   style: TextStyle(
-                    color: theme.colorScheme.secondary,
+                    color: theme.colorScheme.primary,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -224,7 +224,7 @@ class SettingsHomeserverView extends StatelessWidget {
                         title: Text(
                           'Client-Well-Known Information:',
                           style: TextStyle(
-                            color: theme.colorScheme.secondary,
+                            color: theme.colorScheme.primary,
                             fontWeight: FontWeight.bold,
                           ),
                         ),

@@ -73,7 +73,6 @@ class ChatDetailsController extends State<ChatDetails> {
       okLabel: L10n.of(context).ok,
       cancelLabel: L10n.of(context).cancel,
       hintText: L10n.of(context).noChatDescriptionYet,
-      initialText: room.topic,
       minLines: 4,
       maxLines: 8,
     );

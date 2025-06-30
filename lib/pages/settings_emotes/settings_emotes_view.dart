@@ -73,7 +73,6 @@ class EmotesSettingsView extends StatelessWidget {
                   leading: Container(
                     width: 180.0,
                     height: 38,
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
                     decoration: BoxDecoration(
                       borderRadius: const BorderRadius.all(Radius.circular(10)),
                       color: theme.secondaryHeaderColor,
@@ -105,9 +104,9 @@ class EmotesSettingsView extends StatelessWidget {
                   ),
                   trailing: InkWell(
                     onTap: controller.addImageAction,
-                    child: const Icon(
+                    child: Icon(
                       Icons.add_outlined,
-                      color: Colors.green,
+                      color: theme.colorScheme.secondary,
                       size: 32.0,
                     ),
                   ),
@@ -127,7 +126,10 @@ class EmotesSettingsView extends StatelessWidget {
                       padding: const EdgeInsets.all(16),
                       child: Text(
                         L10n.of(context).noEmotesFound,
-                        style: const TextStyle(fontSize: 20),
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Theme.of(context).colorScheme.onSurface,
+                        ),
                       ),
                     ),
                   )

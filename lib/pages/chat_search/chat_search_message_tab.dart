@@ -46,6 +46,7 @@ class ChatSearchMessageTab extends StatelessWidget {
                     MatrixLocals(L10n.of(context)),
                   ),
                 ),
+                style: TextStyle(color: theme.colorScheme.onSurface),
               ),
             ],
           );
@@ -142,11 +143,13 @@ class _MessageSearchResultListTile extends StatelessWidget {
           const SizedBox(width: 8),
           Text(
             displayname,
+            style: TextStyle(fontSize: 15, color: theme.colorScheme.onTertiary),
           ),
           Expanded(
             child: Text(
               ' | ${event.originServerTs.localizedTimeShort(context)}',
-              style: const TextStyle(fontSize: 12),
+              style:
+                  TextStyle(fontSize: 12, color: theme.colorScheme.onTertiary),
             ),
           ),
         ],
@@ -170,6 +173,9 @@ class _MessageSearchResultListTile extends StatelessWidget {
             )
             .trim(),
         maxLines: 7,
+        style: TextStyle(
+          color: theme.colorScheme.onTertiary,
+        ),
         overflow: TextOverflow.ellipsis,
       ),
       trailing: IconButton(

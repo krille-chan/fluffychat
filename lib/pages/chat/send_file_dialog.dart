@@ -319,7 +319,9 @@ class SendFileDialogState extends State<SendFileDialog> {
                                 ),
                                 Text(
                                   '$sizeString - $fileTypes',
-                                  style: theme.textTheme.labelSmall,
+                                  style: TextStyle(
+                                      color: theme.colorScheme.onSurface,
+                                      fontSize: 10),
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                 ),
@@ -372,7 +374,9 @@ class SendFileDialogState extends State<SendFileDialog> {
                                 children: [
                                   Text(
                                     L10n.of(context).compress,
-                                    style: theme.textTheme.titleMedium,
+                                    style: TextStyle(
+                                      color: theme.colorScheme.onSurface,
+                                    ),
                                     textAlign: TextAlign.left,
                                   ),
                                 ],

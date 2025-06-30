@@ -313,6 +313,7 @@ class _SpaceViewState extends State<SpaceView> {
               onPressed: _addChatOrSubspace,
               label: Text(L10n.of(context).group),
               icon: const Icon(Icons.group_add_outlined),
+              backgroundColor: theme.colorScheme.primary,
             )
           : null,
       body: room == null
@@ -358,16 +359,17 @@ class _SpaceViewState extends State<SpaceView> {
                         onChanged: (_) => setState(() {}),
                         textInputAction: TextInputAction.search,
                         decoration: InputDecoration(
-                          filled: true,
-                          fillColor: theme.colorScheme.secondaryContainer,
                           border: OutlineInputBorder(
-                            borderSide: BorderSide.none,
+                            borderSide: BorderSide(
+                              color: theme.colorScheme.onSurface,
+                              width: 2,
+                            ),
                             borderRadius: BorderRadius.circular(99),
                           ),
                           contentPadding: EdgeInsets.zero,
                           hintText: L10n.of(context).search,
                           hintStyle: TextStyle(
-                            color: theme.colorScheme.onPrimaryContainer,
+                            color: theme.colorScheme.onSurface,
                             fontWeight: FontWeight.normal,
                           ),
                           floatingLabelBehavior: FloatingLabelBehavior.never,
@@ -375,10 +377,11 @@ class _SpaceViewState extends State<SpaceView> {
                             onPressed: () {},
                             icon: Icon(
                               Icons.search_outlined,
-                              color: theme.colorScheme.onPrimaryContainer,
+                              color: theme.colorScheme.onSecondary,
                             ),
                           ),
                         ),
+                        style: TextStyle(color: theme.colorScheme.onSecondary),
                       ),
                     ),
                     SliverList.builder(
@@ -455,7 +458,9 @@ class _SpaceViewState extends State<SpaceView> {
                               child: Center(
                                 child: Text(
                                   L10n.of(context).noMoreChatsFound,
-                                  style: const TextStyle(fontSize: 13),
+                                  style: TextStyle(
+                                      fontSize: 13,
+                                      color: theme.colorScheme.onSurface),
                                 ),
                               ),
                             );

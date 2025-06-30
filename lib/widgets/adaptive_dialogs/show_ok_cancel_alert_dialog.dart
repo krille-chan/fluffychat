@@ -82,6 +82,8 @@ Future<OkCancelResult?> showOkAlertDialog({
                   ),
                   options: const LinkifyOptions(humanize: false),
                   onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
+                  style:
+                      TextStyle(color: Theme.of(context).colorScheme.onSurface),
                 ),
         ),
         actions: [

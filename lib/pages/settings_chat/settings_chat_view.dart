@@ -75,7 +75,7 @@ class SettingsChatView extends StatelessWidget {
                 title: Text(
                   L10n.of(context).customEmojisAndStickers,
                   style: TextStyle(
-                    color: theme.colorScheme.secondary,
+                    color: theme.colorScheme.primary,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -94,7 +94,7 @@ class SettingsChatView extends StatelessWidget {
                 title: Text(
                   L10n.of(context).calls,
                   style: TextStyle(
-                    color: theme.colorScheme.secondary,
+                    color: theme.colorScheme.primary,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

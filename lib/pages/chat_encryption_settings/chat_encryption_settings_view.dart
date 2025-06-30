@@ -45,8 +45,8 @@ class ChatEncryptionSettingsView extends StatelessWidget {
             children: [
               SwitchListTile(
                 secondary: CircleAvatar(
-                  foregroundColor: theme.colorScheme.onPrimaryContainer,
-                  backgroundColor: theme.colorScheme.primaryContainer,
+                  foregroundColor: theme.colorScheme.onPrimary,
+                  backgroundColor: theme.colorScheme.primary,
                   child: const Icon(Icons.lock_outlined),
                 ),
                 title: Text(L10n.of(context).encryptThisChat),
@@ -67,7 +67,10 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                     child: ElevatedButton.icon(
                       onPressed: controller.startVerification,
                       icon: const Icon(Icons.verified_outlined),
-                      label: Text(L10n.of(context).verifyStart),
+                      label: Text(
+                        L10n.of(context).verifyStart,
+                        style: TextStyle(color: theme.colorScheme.onSurface),
+                      ),
                     ),
                   ),
                 ),
@@ -76,9 +79,9 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                 ListTile(
                   title: Text(
                     L10n.of(context).deviceKeys,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: theme.colorScheme.onSurface),
                   ),
                 ),
                 StreamBuilder(
@@ -112,7 +115,7 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                           value: !deviceKeys[i].blocked,
                           activeColor: deviceKeys[i].verified
                               ? Colors.green
-                              : Colors.orange,
+                              : theme.colorScheme.secondary,
                           onChanged: (_) =>
                               controller.toggleDeviceKey(deviceKeys[i]),
                           title: Row(
@@ -127,13 +130,16 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                                     ? Colors.green
                                     : deviceKeys[i].blocked
                                         ? Colors.red
-                                        : Colors.orange,
+                                        : theme.colorScheme.secondary,
                                 size: 20,
                               ),
                               const SizedBox(width: 4),
                               Text(
                                 deviceKeys[i].deviceId ??
                                     L10n.of(context).unknownDevice,
+                                style: TextStyle(
+                                  color: theme.colorScheme.onSurface,
+                                ),
                               ),
                               const SizedBox(width: 4),
                               Flexible(
@@ -170,7 +176,7 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                                 L10n.of(context).unknownEncryptionAlgorithm,
                             style: TextStyle(
                               fontFamily: 'RobotoMono',
-                              color: theme.colorScheme.secondary,
+                              color: theme.colorScheme.primary,
                             ),
                           ),
                         ),
@@ -184,8 +190,9 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                   child: Center(
                     child: Text(
                       L10n.of(context).encryptionNotEnabled,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontStyle: FontStyle.italic,
+                        color: theme.colorScheme.onSurface,
                       ),
                     ),
                   ),

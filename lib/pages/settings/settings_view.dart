@@ -94,11 +94,14 @@ class SettingsView extends StatelessWidget {
                                     bottom: 0,
                                     right: 0,
                                     child: FloatingActionButton.small(
+                                      backgroundColor:
+                                          theme.colorScheme.secondary,
                                       elevation: 2,
                                       onPressed: controller.setAvatarAction,
                                       heroTag: null,
-                                      child: const Icon(
+                                      child: Icon(
                                         Icons.camera_alt_outlined,
+                                        color: theme.colorScheme.onSecondary,
                                       ),
                                     ),
                                   ),
@@ -138,9 +141,8 @@ class SettingsView extends StatelessWidget {
                                     size: 14,
                                   ),
                                   style: TextButton.styleFrom(
-                                    foregroundColor:
-                                        theme.colorScheme.secondary,
-                                    iconColor: theme.colorScheme.secondary,
+                                    foregroundColor: theme.colorScheme.primary,
+                                    iconColor: theme.colorScheme.primary,
                                   ),
                                   label: Text(
                                     mxid,
@@ -227,20 +229,6 @@ class SettingsView extends StatelessWidget {
                             : null,
                   ),
                   Divider(color: theme.dividerColor),
-                  ListTile(
-                    leading: const Icon(Icons.dns_outlined),
-                    title: Text(
-                      L10n.of(context).aboutHomeserver(
-                        Matrix.of(context).client.userID?.domain ??
-                            'homeserver',
-                      ),
-                    ),
-                    onTap: () => context.go('/rooms/settings/homeserver'),
-                    tileColor:
-                        activeRoute.startsWith('/rooms/settings/homeserver')
-                            ? theme.colorScheme.surfaceContainerHigh
-                            : null,
-                  ),
                   ListTile(
                     leading: const Icon(Icons.privacy_tip_outlined),
                     title: Text(L10n.of(context).privacy),

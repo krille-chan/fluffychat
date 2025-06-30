@@ -46,14 +46,15 @@ class InvitationSelectionView extends StatelessWidget {
               child: TextField(
                 textInputAction: TextInputAction.search,
                 decoration: InputDecoration(
-                  filled: true,
-                  fillColor: theme.colorScheme.secondaryContainer,
                   border: OutlineInputBorder(
-                    borderSide: BorderSide.none,
+                    borderSide: BorderSide(
+                      color: theme.colorScheme.secondary,
+                      width: 2,
+                    ),
                     borderRadius: BorderRadius.circular(99),
                   ),
                   hintStyle: TextStyle(
-                    color: theme.colorScheme.onPrimaryContainer,
+                    color: theme.colorScheme.onSurface,
                     fontWeight: FontWeight.normal,
                   ),
                   hintText: L10n.of(context).inviteContactToGroup(groupName),

@@ -74,14 +74,14 @@ class PermissionsListTile extends StatelessWidget {
     final theme = Theme.of(context);
 
     final color = permission >= 100
-        ? Colors.orangeAccent
+        ? theme.colorScheme.secondary
         : permission >= 50
-            ? Colors.blueAccent
-            : Colors.greenAccent;
+            ? const Color.fromARGB(255, 169, 198, 250)
+            : const Color.fromARGB(255, 171, 253, 213);
     return ListTile(
       title: Text(
         getLocalizedPowerLevelString(context),
-        style: theme.textTheme.titleSmall,
+        style: TextStyle(color: theme.colorScheme.onSurface),
       ),
       trailing: Material(
         color: color.withAlpha(32),
@@ -97,6 +97,7 @@ class PermissionsListTile extends StatelessWidget {
               value: permission < 50 ? permission : 0,
               child: Text(
                 L10n.of(context).userLevel(permission < 50 ? permission : 0),
+                style: TextStyle(color: theme.colorScheme.onSurface),
               ),
             ),
             DropdownMenuItem(
@@ -105,6 +106,7 @@ class PermissionsListTile extends StatelessWidget {
                 L10n.of(context).moderatorLevel(
                   permission < 100 && permission >= 50 ? permission : 50,
                 ),
+                style: TextStyle(color: theme.colorScheme.onSurface),
               ),
             ),
             DropdownMenuItem(
@@ -112,11 +114,15 @@ class PermissionsListTile extends StatelessWidget {
               child: Text(
                 L10n.of(context)
                     .adminLevel(permission >= 100 ? permission : 100),
+                style: TextStyle(color: theme.colorScheme.onSurface),
               ),
             ),
             DropdownMenuItem(
               value: null,
-              child: Text(L10n.of(context).custom),
+              child: Text(
+                L10n.of(context).custom,
+                style: TextStyle(color: theme.colorScheme.onSurface),
+              ),
             ),
           ],
         ),

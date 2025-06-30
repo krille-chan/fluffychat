@@ -124,11 +124,6 @@ class ChatListItem extends StatelessWidget {
                             top: 0,
                             left: 0,
                             child: Avatar(
-                              border: BorderSide(
-                                width: 2,
-                                color: backgroundColor ??
-                                    theme.colorScheme.surface,
-                              ),
                               borderRadius: BorderRadius.circular(
                                 AppConfig.borderRadius / 4,
                               ),
@@ -142,18 +137,6 @@ class ChatListItem extends StatelessWidget {
                           bottom: 0,
                           right: 0,
                           child: Avatar(
-                            border: space == null
-                                ? room.isSpace
-                                    ? BorderSide(
-                                        width: 1,
-                                        color: theme.dividerColor,
-                                      )
-                                    : null
-                                : BorderSide(
-                                    width: 2,
-                                    color: backgroundColor ??
-                                        theme.colorScheme.surface,
-                                  ),
                             borderRadius: room.isSpace
                                 ? BorderRadius.circular(
                                     AppConfig.borderRadius / 4,
@@ -281,14 +264,14 @@ class ChatListItem extends StatelessWidget {
                               room.spaceChildren.length,
                               (room.summary.mJoinedMemberCount ?? 1),
                             ),
-                            style: TextStyle(
-                                color: theme.colorScheme.onPrimaryContainer),
+                            style:
+                                TextStyle(color: theme.colorScheme.onSurface),
                           )
                         : typingText.isNotEmpty
                             ? Text(
                                 typingText,
                                 style: TextStyle(
-                                  color: theme.colorScheme.onPrimaryContainer,
+                                  color: theme.colorScheme.onSurface,
                                 ),
                                 maxLines: 1,
                                 softWrap: false,

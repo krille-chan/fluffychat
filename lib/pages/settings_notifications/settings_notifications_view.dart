@@ -54,7 +54,7 @@ class SettingsNotificationsView extends StatelessWidget {
                         title: Text(
                           category.kind.localized(L10n.of(context)),
                           style: TextStyle(
-                            color: theme.colorScheme.secondary,
+                            color: theme.colorScheme.primary,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -112,7 +112,7 @@ class SettingsNotificationsView extends StatelessWidget {
                     title: Text(
                       L10n.of(context).devices,
                       style: TextStyle(
-                        color: theme.colorScheme.secondary,
+                        color: theme.colorScheme.primary,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -140,7 +140,12 @@ class SettingsNotificationsView extends StatelessWidget {
                         return Center(
                           child: Padding(
                             padding: const EdgeInsets.only(bottom: 16.0),
-                            child: Text(L10n.of(context).noOtherDevicesFound),
+                            child: Text(
+                              L10n.of(context).noOtherDevicesFound,
+                              style: TextStyle(
+                                color: theme.colorScheme.onSurface,
+                              ),
+                            ),
                           ),
                         );
                       }

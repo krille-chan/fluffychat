@@ -54,7 +54,7 @@ class SettingsSecurityView extends StatelessWidget {
                     title: Text(
                       L10n.of(context).privacy,
                       style: TextStyle(
-                        color: theme.colorScheme.secondary,
+                        color: theme.colorScheme.primary,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -99,11 +99,14 @@ class SettingsSecurityView extends StatelessWidget {
                     title: Text(
                       L10n.of(context).shareKeysWith,
                       style: TextStyle(
-                        color: theme.colorScheme.secondary,
+                        color: theme.colorScheme.primary,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    subtitle: Text(L10n.of(context).shareKeysWithDescription),
+                    subtitle: Text(
+                      L10n.of(context).shareKeysWithDescription,
+                      style: TextStyle(color: theme.colorScheme.onSurface),
+                    ),
                   ),
                   ListTile(
                     title: Material(
@@ -121,7 +124,12 @@ class SettingsSecurityView extends StatelessWidget {
                             .map(
                               (share) => DropdownMenuItem(
                                 value: share,
-                                child: Text(share.localized(L10n.of(context))),
+                                child: Text(
+                                  share.localized(L10n.of(context)),
+                                  style: TextStyle(
+                                    color: theme.colorScheme.onSurface,
+                                  ),
+                                ),
                               ),
                             )
                             .toList(),
@@ -134,7 +142,7 @@ class SettingsSecurityView extends StatelessWidget {
                     title: Text(
                       L10n.of(context).account,
                       style: TextStyle(
-                        color: theme.colorScheme.secondary,
+                        color: theme.colorScheme.primary,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -157,11 +165,11 @@ class SettingsSecurityView extends StatelessWidget {
                           context.go('/rooms/settings/security/password'),
                     ),
                   ListTile(
-                    iconColor: Colors.orange,
+                    iconColor: theme.colorScheme.secondary,
                     leading: const Icon(Icons.delete_sweep_outlined),
                     title: Text(
                       L10n.of(context).dehydrate,
-                      style: const TextStyle(color: Colors.orange),
+                      style: TextStyle(color: theme.colorScheme.secondary),
                     ),
                     onTap: controller.dehydrateAction,
                   ),

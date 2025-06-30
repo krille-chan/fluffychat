@@ -45,7 +45,7 @@ class SettingsStyleView extends StatelessWidget {
               title: Text(
                 L10n.of(context).messagesStyle,
                 style: TextStyle(
-                  color: theme.colorScheme.secondary,
+                  color: theme.colorScheme.primary,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -185,9 +185,8 @@ class SettingsStyleView extends StatelessWidget {
                     ListTile(
                       title: TextButton.icon(
                         style: TextButton.styleFrom(
-                          backgroundColor: theme.colorScheme.secondaryContainer,
-                          foregroundColor:
-                              theme.colorScheme.onSecondaryContainer,
+                          backgroundColor: theme.colorScheme.primary,
+                          foregroundColor: theme.colorScheme.onPrimary,
                         ),
                         onPressed: controller.setWallpaper,
                         icon: const Icon(Icons.edit_outlined),
@@ -246,7 +245,7 @@ class SettingsStyleView extends StatelessWidget {
               title: Text(
                 L10n.of(context).overview,
                 style: TextStyle(
-                  color: theme.colorScheme.secondary,
+                  color: theme.colorScheme.primary,
                   fontWeight: FontWeight.bold,
                 ),
               ),
