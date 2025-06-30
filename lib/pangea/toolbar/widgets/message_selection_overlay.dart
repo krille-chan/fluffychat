@@ -16,8 +16,6 @@ import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dar
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_representation_event.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_text_model.dart';
-import 'package:fluffychat/pangea/events/models/tokens_event_content_model.dart';
-import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/lemmas/lemma_info_response.dart';
 import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_activity_model.dart';
@@ -103,6 +101,8 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   bool showSpeechTranslation = false;
   String? speechTranslation;
 
+  final StreamController contentChangedStream = StreamController.broadcast();
+
   double maxWidth = AppConfig.toolbarMinWidth;
 
   List<PangeaToken> newTokens = [];
@@ -132,6 +132,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     WidgetsBinding.instance.addPostFrameCallback(
       (_) => widget.chatController.clearSelectedEvents(),
     );
+    contentChangedStream.close();
     super.dispose();
   }
 
@@ -143,7 +144,11 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
       RepresentationEvent? repEvent =
           pangeaMessageEvent?.messageDisplayRepresentation;
-      repEvent ??= await _fetchNewRepEvent();
+
+      if (repEvent == null ||
+          (repEvent.event == null && repEvent.tokens == null)) {
+        repEvent = await _fetchNewRepEvent();
+      }
 
       if (repEvent?.event != null) {
         await repEvent!.sendTokensEvent(
@@ -151,24 +156,6 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
           widget._event.room,
           MatrixState.pangeaController.languageController.userL1!.langCode,
           MatrixState.pangeaController.languageController.userL2!.langCode,
-        );
-      }
-      // If repEvent is originalSent but it's missing tokens, then fetch tokens.
-      // An edge case, but has happened with some bot message.
-      else if (repEvent != null &&
-          repEvent.tokens == null &&
-          repEvent.content.originalSent) {
-        final tokens = await repEvent.tokensGlobal(
-          pangeaMessageEvent!.senderId,
-          pangeaMessageEvent!.event.originServerTs,
-        );
-        await pangeaMessageEvent!.room.pangeaSendTextEvent(
-          pangeaMessageEvent!.messageDisplayText,
-          editEventId: pangeaMessageEvent!.eventId,
-          originalSent: pangeaMessageEvent!.originalSent?.content,
-          originalWritten: pangeaMessageEvent!.originalWritten?.content,
-          tokensSent: PangeaMessageTokens(tokens: tokens),
-          choreo: pangeaMessageEvent!.originalSent?.choreo,
         );
       }
 
@@ -642,7 +629,10 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
   void setTranslation(String value) {
     if (mounted) {
-      setState(() => translation = value);
+      setState(() {
+        translation = value;
+        contentChangedStream.add(true);
+      });
     }
   }
 
@@ -653,12 +643,18 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     }
 
     if (showTranslation == show) return;
-    setState(() => showTranslation = show);
+    setState(() {
+      showTranslation = show;
+      contentChangedStream.add(true);
+    });
   }
 
   void setSpeechTranslation(String value) {
     if (mounted) {
-      setState(() => speechTranslation = value);
+      setState(() {
+        speechTranslation = value;
+        contentChangedStream.add(true);
+      });
     }
   }
 
@@ -669,7 +665,10 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     }
 
     if (showSpeechTranslation == show) return;
-    setState(() => showSpeechTranslation = show);
+    setState(() {
+      showSpeechTranslation = show;
+      contentChangedStream.add(true);
+    });
   }
 
   void setTranscription(SpeechToTextModel value) {
@@ -677,13 +676,17 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
       setState(() {
         transcriptionError = null;
         transcription = value;
+        contentChangedStream.add(true);
       });
     }
   }
 
   void setTranscriptionError(String value) {
     if (mounted) {
-      setState(() => transcriptionError = value);
+      setState(() {
+        transcriptionError = value;
+        contentChangedStream.add(true);
+      });
     }
   }
 

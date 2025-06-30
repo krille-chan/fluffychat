@@ -209,28 +209,37 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
 
       // #Pangea
       // if (!kIsWeb) {
-      if (!kIsWeb && matrixFile != null) {
-        // Pangea#
-        final tempDir = await getTemporaryDirectory();
-        final fileName = Uri.encodeComponent(
-          // #Pangea
-          // widget.event.attachmentOrThumbnailMxcUrl()!.pathSegments.last,
-          widget.event!.attachmentOrThumbnailMxcUrl()!.pathSegments.last,
+      if (!kIsWeb) {
+        if (matrixFile != null) {
           // Pangea#
-        );
-        file = File('${tempDir.path}/${fileName}_${matrixFile.name}');
+          final tempDir = await getTemporaryDirectory();
+          final fileName = Uri.encodeComponent(
+            // #Pangea
+            // widget.event.attachmentOrThumbnailMxcUrl()!.pathSegments.last,
+            widget.event!.attachmentOrThumbnailMxcUrl()!.pathSegments.last,
+            // Pangea#
+          );
+          file = File('${tempDir.path}/${fileName}_${matrixFile.name}');
 
-        await file.writeAsBytes(matrixFile.bytes);
+          await file.writeAsBytes(matrixFile.bytes);
 
-        if (Platform.isIOS &&
-            matrixFile.mimeType.toLowerCase() == 'audio/ogg') {
-          Logs().v('Convert ogg audio file for iOS...');
-          final convertedFile = File('${file.path}.caf');
-          if (await convertedFile.exists() == false) {
-            OpusCaf().convertOpusToCaf(file.path, convertedFile.path);
+          if (Platform.isIOS &&
+              matrixFile.mimeType.toLowerCase() == 'audio/ogg') {
+            Logs().v('Convert ogg audio file for iOS...');
+            final convertedFile = File('${file.path}.caf');
+            if (await convertedFile.exists() == false) {
+              OpusCaf().convertOpusToCaf(file.path, convertedFile.path);
+            }
+            file = convertedFile;
           }
-          file = convertedFile;
+          // #Pangea
+        } else if (widget.matrixFile != null) {
+          final tempDir = await getTemporaryDirectory();
+
+          file = File('${tempDir.path}/${widget.matrixFile!.name}');
+          await file.writeAsBytes(widget.matrixFile!.bytes);
         }
+        // Pangea#
       }
 
       setState(() {
@@ -314,22 +323,19 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
     final audioPlayer = matrix.audioPlayer;
     // #Pangea
     // if (audioPlayer == null) return;
-    if (audioPlayer == null ||
-        matrix.voiceMessageEventId.value != widget.eventId) {
-      switch (playbackSpeed) {
-        case 1.0:
-          setState(() => playbackSpeed = 0.75);
-        case 0.75:
-          setState(() => playbackSpeed = 0.5);
-        case 0.5:
-          setState(() => playbackSpeed = 1.25);
-        case 1.25:
-          setState(() => playbackSpeed = 1.5);
-        default:
-          setState(() => playbackSpeed = 1.0);
-      }
-      return;
+    switch (playbackSpeed) {
+      case 1.0:
+        setState(() => playbackSpeed = 0.75);
+      case 0.75:
+        setState(() => playbackSpeed = 0.5);
+      case 0.5:
+        setState(() => playbackSpeed = 1.25);
+      case 1.25:
+        setState(() => playbackSpeed = 1.5);
+      default:
+        setState(() => playbackSpeed = 1.0);
     }
+    if (audioPlayer == null) return;
     // Pangea#
     switch (audioPlayer.speed) {
       // #Pangea

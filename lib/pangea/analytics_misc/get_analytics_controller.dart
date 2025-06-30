@@ -477,8 +477,8 @@ class GetAnalyticsController extends BaseController {
     // generate level up analytics as a construct summary
     ConstructSummary summary;
     try {
-      final int maxXP = constructListModel.calculateXpWithLevel(upperLevel);
-      final int minXP = constructListModel.calculateXpWithLevel(lowerLevel);
+      final int minXP = constructListModel.calculateXpWithLevel(upperLevel);
+      final int maxXP = constructListModel.calculateXpWithLevel(lowerLevel);
       int diffXP = maxXP - minXP;
       if (diffXP < 0) diffXP = 0;
 
@@ -492,23 +492,41 @@ class GetAnalyticsController extends BaseController {
       }
 
       // extract construct use message bodies for analytics
-      List<String?>? constructUseMessageContentBodies = [];
+      final Map<String, Set<String>> useEventIds = {};
       for (final use in constructUseOfCurrentLevel) {
-        try {
-          final useMessage = await use.getEvent(_client);
-          final useMessageBody = useMessage?.content["body"];
-          if (useMessageBody is String) {
-            constructUseMessageContentBodies.add(useMessageBody);
-          } else {
-            constructUseMessageContentBodies.add(null);
-          }
-        } catch (e) {
-          constructUseMessageContentBodies.add(null);
-        }
+        if (use.metadata.roomId == null) continue;
+        if (use.metadata.eventId == null) continue;
+        useEventIds[use.metadata.roomId!] ??= {};
+        useEventIds[use.metadata.roomId!]!.add(use.metadata.eventId!);
       }
-      if (constructUseMessageContentBodies.length !=
-          constructUseOfCurrentLevel.length) {
-        constructUseMessageContentBodies = null;
+
+      final List<String?> constructUseMessageContentBodies = [];
+      for (final entry in useEventIds.entries) {
+        final String roomId = entry.key;
+        final room = _client.getRoomById(roomId);
+        if (room == null) continue;
+        final List<String?> messageBodies = [];
+        for (final eventId in entry.value) {
+          try {
+            final Event? event = await room.getEventById(eventId);
+            if (event?.content["body"] is! String) continue;
+            final String body = event?.content["body"] as String;
+            if (body.isEmpty) continue;
+            messageBodies.add(body);
+          } catch (e, s) {
+            debugPrint("Error getting event by ID: $e");
+            ErrorHandler.logError(
+              e: e,
+              s: s,
+              data: {
+                'roomId': roomId,
+                'eventId': eventId,
+              },
+            );
+            continue;
+          }
+        }
+        constructUseMessageContentBodies.addAll(messageBodies);
       }
 
       final request = ConstructSummaryRequest(

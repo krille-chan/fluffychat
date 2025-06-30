@@ -26,7 +26,6 @@ class PangeaEventTypes {
   static const capacity = "pangea.capacity";
 
   static const activityPlan = "pangea.activity_plan";
-  static const activityPlanEnd = "pangea.activity.end";
 
   static const userAge = "pangea.user_age";
 

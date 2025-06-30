@@ -109,10 +109,15 @@ class OverlayHeaderState extends State<OverlayHeader> {
                             icon: pinned
                                 ? const Icon(Icons.push_pin)
                                 : const Icon(Icons.push_pin_outlined),
-                            onPressed: controller.pinEvent,
+                            onPressed: () {
+                              controller
+                                  .pinEvent()
+                                  .then((_) => setState(() {}));
+                            },
                             tooltip: pinned ? l10n.unpin : l10n.pinMessage,
                             color: theme.colorScheme.primary,
                           ),
+
                         if (controller.canEditSelectedEvents &&
                             !controller.selectedEvents.first.isActivityMessage)
                           IconButton(
