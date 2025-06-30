@@ -143,7 +143,7 @@
       }
     }
   },
-  "areGuestsAllowedToJoin": "آیا مهمانان اجازه پیوستن دارند؟",
+  "areGuestsAllowedToJoin": "آیا مهمانان اجازه پیوستن دارند",
   "@areGuestsAllowedToJoin": {
     "type": "String",
     "placeholders": {}
@@ -1792,7 +1792,7 @@
       }
     }
   },
-  "remove": "پاک کردن",
+  "remove": "برداشتن",
   "@remove": {
     "type": "String",
     "placeholders": {}
@@ -2032,7 +2032,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "wallpaper": "کاغذدیواری",
+  "wallpaper": "کاغذدیواری:",
   "@wallpaper": {
     "type": "String",
     "placeholders": {}
@@ -2322,7 +2322,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "whoIsAllowedToJoinThisGroup": "چه کسی اجازه پیوستن به این گروه را دارد؟",
+  "whoIsAllowedToJoinThisGroup": "چه کسی اجازه پیوستن به این گروه را دارد",
   "@whoIsAllowedToJoinThisGroup": {
     "type": "String",
     "placeholders": {}
@@ -2511,7 +2511,7 @@
   "@pleaseTryAgainLaterOrChooseDifferentServer": {},
   "notAnImage": "یک فایل تصویری نیست.",
   "@notAnImage": {},
-  "alwaysUse24HourFormat": "خیر",
+  "alwaysUse24HourFormat": "",
   "@alwaysUse24HourFormat": {
     "description": "Set to true to always display time of day in 24 hour format."
   },
@@ -2705,7 +2705,7 @@
       }
     }
   },
-  "youInvitedToBy": "📩 شما با پیوند به: {alias} دعوت شده‌اید",
+  "youInvitedToBy": "📩 شما با پیوند دعوت شده‌اید به: {alias}",
   "@youInvitedToBy": {
     "placeholders": {
       "alias": {
@@ -3209,7 +3209,7 @@
   "@previous": {},
   "otherPartyNotLoggedIn": "طرف مقابل اکنون وارد نشده است و بنابراین نمیتواند پیام دریافت کند!",
   "@otherPartyNotLoggedIn": {},
-  "appWantsToUseForLogin": "برای ورود از «{server}» استفاده کنید",
+  "appWantsToUseForLogin": "برای ورود از '{server}' استفاده کنید",
   "@appWantsToUseForLogin": {
     "type": "String",
     "placeholders": {
