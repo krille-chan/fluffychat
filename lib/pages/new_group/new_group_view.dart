@@ -102,6 +102,7 @@ class NewGroupView extends StatelessWidget {
                       ? L10n.of(context).spaceName
                       : L10n.of(context).groupName,
                 ),
+                style: TextStyle(color: theme.colorScheme.onTertiary),
               ),
             ),
             const SizedBox(height: 16),

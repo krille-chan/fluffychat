@@ -95,6 +95,8 @@ class MessageContent extends StatelessWidget {
                 event.calcLocalizedBodyFallback(
                   MatrixLocals(l10n),
                 ),
+                style:
+                    TextStyle(color: Theme.of(context).colorScheme.onSurface),
               ),
             ],
           ),

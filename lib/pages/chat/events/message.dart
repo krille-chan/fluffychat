@@ -886,8 +886,8 @@ class Message extends StatelessWidget {
                       child: Text(
                         L10n.of(context).readUpToHere,
                         style: TextStyle(
-                          fontSize: 12 * AppConfig.fontSizeFactor,
-                        ),
+                            fontSize: 12 * AppConfig.fontSizeFactor,
+                            color: theme.colorScheme.onSurface),
                       ),
                     ),
                     Expanded(
