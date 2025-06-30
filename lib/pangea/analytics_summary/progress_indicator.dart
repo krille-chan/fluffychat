@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-
 import 'package:fluffychat/pangea/analytics_summary/progress_indicators_enum.dart';
+import 'package:flutter/material.dart';
 
 /// A badge that represents one learning progress indicator (i.e., construct uses)
 class ProgressIndicatorBadge extends StatelessWidget {
@@ -30,13 +29,9 @@ class ProgressIndicatorBadge extends StatelessWidget {
           ),
           const SizedBox(width: 6.0),
           !loading
-              ? Text(
-                  points.toString(),
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    color: indicator.color(context),
-                  ),
+              ? _AnimatedFloatingNumber(
+                  number: points,
+                  indicator: indicator,
                 )
               : const SizedBox(
                   height: 8,
@@ -47,6 +42,92 @@ class ProgressIndicatorBadge extends StatelessWidget {
                 ),
         ],
       ),
+    );
+  }
+}
+
+class _AnimatedFloatingNumber extends StatefulWidget {
+  final int number;
+  final ProgressIndicatorEnum indicator;
+  final Duration duration;
+
+  const _AnimatedFloatingNumber({
+    required this.number,
+    required this.indicator,
+    this.duration = const Duration(milliseconds: 900),
+  });
+
+  @override
+  State<_AnimatedFloatingNumber> createState() =>
+      _AnimatedFloatingNumberState();
+}
+
+class _AnimatedFloatingNumberState extends State<_AnimatedFloatingNumber>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _fadeAnim;
+  late Animation<Offset> _offsetAnim;
+  int? _lastNumber;
+  int? _floatingNumber;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(vsync: this, duration: widget.duration);
+    _fadeAnim = CurvedAnimation(parent: _controller, curve: Curves.easeOut);
+    _offsetAnim = Tween<Offset>(
+      begin: const Offset(0, 0),
+      end: const Offset(0, -0.7),
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOut));
+    _lastNumber = widget.number;
+  }
+
+  @override
+  void didUpdateWidget(covariant _AnimatedFloatingNumber oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.number > _lastNumber!) {
+      _floatingNumber = widget.number;
+      _controller.forward(from: 0.0).then((_) {
+        setState(() {
+          _lastNumber = widget.number;
+          _floatingNumber = null;
+        });
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final TextStyle indicatorStyle = TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.bold,
+      color: widget.indicator.color(context),
+    );
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        if (_floatingNumber != null)
+          SlideTransition(
+            position: _offsetAnim,
+            child: FadeTransition(
+              opacity: ReverseAnimation(_fadeAnim),
+              child: Text(
+                "$_floatingNumber",
+                style: indicatorStyle,
+              ),
+            ),
+          ),
+        Text(
+          widget.number.toString(),
+          style: indicatorStyle,
+        ),
+      ],
     );
   }
 }
