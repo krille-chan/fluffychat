@@ -5,7 +5,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -25,14 +24,11 @@ import 'package:fluffychat/widgets/matrix.dart';
 
 class ActivitySuggestionsArea extends StatefulWidget {
   final Axis? scrollDirection;
-  final bool showTitle;
-
   final Room? room;
 
   const ActivitySuggestionsArea({
     super.key,
     this.scrollDirection,
-    this.showTitle = false,
     this.room,
   });
   @override
@@ -141,7 +137,6 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final isColumnMode = FluffyThemes.isColumnMode(context);
 
     final List<Widget> cards = _loading
         ? List.generate(5, (i) {
@@ -196,29 +191,6 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
       spacing: 8.0,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (widget.showTitle)
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Flexible(
-                child: Text(
-                  L10n.of(context).chatWithActivities,
-                  style: isColumnMode
-                      ? theme.textTheme.titleLarge
-                          ?.copyWith(fontWeight: FontWeight.bold)
-                      : theme.textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
-              IconButton(
-                icon: const Icon(Icons.event_note_outlined),
-                onPressed: () => context.go('/rooms/homepage/planner'),
-                tooltip: L10n.of(context).activityPlannerTitle,
-              ),
-            ],
-          ),
         AnimatedSize(
           duration: FluffyThemes.animationDuration,
           child: (_timeout || !_loading && cards.isEmpty)

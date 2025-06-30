@@ -42,7 +42,7 @@ class SpacesNavigationRail extends StatelessWidget {
         .startsWith('/rooms/settings');
     // #Pangea
     final path = GoRouter.of(context).routeInformationProvider.value.uri.path;
-    final isHomepage = path.contains('homepage');
+    final isAnalytics = path.contains('analytics');
     final isCommunities = path.contains('communities');
     final isColumnMode = FluffyThemes.isColumnMode(context);
 
@@ -89,10 +89,10 @@ class SpacesNavigationRail extends StatelessWidget {
                         // #Pangea
                         if (i == 0) {
                           return NaviRailItem(
-                            isSelected: isHomepage,
+                            isSelected: isAnalytics,
                             onTap: () {
                               clearActiveSpace?.call();
-                              context.go("/rooms/homepage");
+                              context.go("/rooms/analytics");
                             },
                             backgroundColor: Colors.transparent,
                             icon: FutureBuilder<Profile>(
@@ -125,7 +125,7 @@ class SpacesNavigationRail extends StatelessWidget {
                             // isSelected: activeSpaceId == null && !isSettings,
                             isSelected: activeSpaceId == null &&
                                 !isSettings &&
-                                !isHomepage &&
+                                !isAnalytics &&
                                 !isCommunities,
                             // Pangea#
                             onTap: onGoToChats,

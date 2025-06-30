@@ -99,11 +99,9 @@ class MessageAnalyticsFeedbackState extends State<MessageAnalyticsFeedback>
   }
 
   void _showAnalyticsDialog(ConstructTypeEnum? type) {
-    showDialog<AnalyticsPopupWrapper>(
-      context: context,
-      builder: (context) => AnalyticsPopupWrapper(
-        view: type ?? ConstructTypeEnum.vocab,
-      ),
+    AnalyticsPopupWrapper.show(
+      context,
+      view: type ?? ConstructTypeEnum.vocab,
     );
   }
 

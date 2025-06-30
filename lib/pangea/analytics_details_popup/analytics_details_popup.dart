@@ -26,11 +26,33 @@ class AnalyticsPopupWrapper extends StatefulWidget {
     this.constructZoom,
     required this.view,
     this.backButtonOverride,
+    this.showAppBar = true,
   });
 
   final ConstructTypeEnum view;
   final ConstructIdentifier? constructZoom;
   final Widget? backButtonOverride;
+  final bool showAppBar;
+
+  static void show(
+    BuildContext context, {
+    ConstructIdentifier? constructZoom,
+    ConstructTypeEnum view = ConstructTypeEnum.vocab,
+    Widget? backButtonOverride,
+  }) {
+    showDialog<AnalyticsPopupWrapper>(
+      context: context,
+      builder: (context) => FullWidthDialog(
+        maxWidth: 600,
+        maxHeight: 800,
+        dialogContent: AnalyticsPopupWrapper(
+          constructZoom: constructZoom,
+          view: view,
+          backButtonOverride: backButtonOverride,
+        ),
+      ),
+    );
+  }
 
   @override
   AnalyticsPopupWrapperState createState() => AnalyticsPopupWrapperState();
@@ -56,6 +78,19 @@ class AnalyticsPopupWrapperState extends State<AnalyticsPopupWrapper> {
     searchController.addListener(() {
       if (mounted) setState(() {});
     });
+  }
+
+  @override
+  void didUpdateWidget(covariant AnalyticsPopupWrapper oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.constructZoom != oldWidget.constructZoom) {
+      setConstructZoom(widget.constructZoom);
+    }
+    if (widget.view != oldWidget.view) {
+      localView = widget.view;
+      localConstructZoom = null;
+      setState(() {});
+    }
   }
 
   @override
@@ -109,74 +144,80 @@ class AnalyticsPopupWrapperState extends State<AnalyticsPopupWrapper> {
 
   @override
   Widget build(BuildContext context) {
-    return FullWidthDialog(
-      dialogContent: Scaffold(
-        appBar: AppBar(
-          title: kIsWeb
-              ? Text(
-                  localView == ConstructTypeEnum.morph
-                      ? ConstructTypeEnum.morph.indicator.tooltip(context)
-                      : ConstructTypeEnum.vocab.indicator.tooltip(context),
-                )
-              : null,
-          leading: widget.backButtonOverride ??
-              IconButton(
-                icon: localConstructZoom == null
-                    ? const Icon(Icons.close)
-                    : const Icon(Icons.arrow_back),
-                onPressed: localConstructZoom == null
-                    ? () => Navigator.of(context).pop()
-                    : () => setConstructZoom(null),
-              ),
-          actions: [
-            TextButton.icon(
-              style: TextButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+    return Scaffold(
+      appBar: widget.showAppBar
+          ? AppBar(
+              title: kIsWeb
+                  ? Text(
+                      localView == ConstructTypeEnum.morph
+                          ? ConstructTypeEnum.morph.indicator.tooltip(context)
+                          : ConstructTypeEnum.vocab.indicator.tooltip(context),
+                    )
+                  : null,
+              leading: widget.backButtonOverride ??
+                  IconButton(
+                    icon: localConstructZoom == null
+                        ? const Icon(Icons.close)
+                        : const Icon(Icons.arrow_back),
+                    onPressed: localConstructZoom == null
+                        ? () => Navigator.of(context).pop()
+                        : () => setConstructZoom(null),
+                  ),
+              actions: [
+                TextButton.icon(
+                  style: TextButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    backgroundColor: localView == ConstructTypeEnum.vocab
+                        ? Theme.of(context).colorScheme.primary.withAlpha(50)
+                        : Theme.of(context).colorScheme.surface,
+                  ),
+                  label: Text(L10n.of(context).vocab),
+                  icon: const Icon(Symbols.dictionary),
+                  onPressed: () => setState(() {
+                    localView = ConstructTypeEnum.vocab;
+                    localConstructZoom = null;
+                  }),
                 ),
-                backgroundColor: localView == ConstructTypeEnum.vocab
-                    ? Theme.of(context).colorScheme.primary.withAlpha(50)
-                    : Theme.of(context).colorScheme.surface,
-              ),
-              label: Text(L10n.of(context).vocab),
-              icon: const Icon(Symbols.dictionary),
-              onPressed: () => setState(() {
-                localView = ConstructTypeEnum.vocab;
-                localConstructZoom = null;
-              }),
-            ),
-            const SizedBox(width: 4.0),
-            TextButton.icon(
-              style: TextButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+                const SizedBox(width: 4.0),
+                TextButton.icon(
+                  style: TextButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    backgroundColor: localView == ConstructTypeEnum.morph
+                        ? Theme.of(context).colorScheme.primary.withAlpha(50)
+                        : Theme.of(context).colorScheme.surface,
+                  ),
+                  label: Text(L10n.of(context).grammar),
+                  icon: const Icon(Symbols.toys_and_games),
+                  onPressed: () => setState(() {
+                    localView = ConstructTypeEnum.morph;
+                    localConstructZoom = null;
+                  }),
                 ),
-                backgroundColor: localView == ConstructTypeEnum.morph
-                    ? Theme.of(context).colorScheme.primary.withAlpha(50)
-                    : Theme.of(context).colorScheme.surface,
-              ),
-              label: Text(L10n.of(context).grammar),
-              icon: const Icon(Symbols.toys_and_games),
-              onPressed: () => setState(() {
-                localView = ConstructTypeEnum.morph;
-                localConstructZoom = null;
-              }),
+                const SizedBox(width: 4.0),
+                if (kIsWeb) const DownloadAnalyticsButton(),
+                if (kIsWeb) const SizedBox(width: 4.0),
+              ],
+            )
+          : AppBar(
+              leading: widget.backButtonOverride ??
+                  (localConstructZoom != null
+                      ? IconButton(
+                          icon: const Icon(Icons.arrow_back),
+                          onPressed: () => setConstructZoom(null),
+                        )
+                      : const SizedBox()),
             ),
-            const SizedBox(width: 4.0),
-            if (kIsWeb) const DownloadAnalyticsButton(),
-            if (kIsWeb) const SizedBox(width: 4.0),
-          ],
-        ),
-        body: localView == ConstructTypeEnum.morph
-            ? localConstructZoom == null
-                ? MorphAnalyticsListView(controller: this)
-                : MorphDetailsView(constructId: localConstructZoom!)
-            : localConstructZoom == null
-                ? VocabAnalyticsListView(controller: this)
-                : VocabDetailsView(constructId: localConstructZoom!),
-      ),
-      maxWidth: 600,
-      maxHeight: 800,
+      body: localView == ConstructTypeEnum.morph
+          ? localConstructZoom == null
+              ? MorphAnalyticsListView(controller: this)
+              : MorphDetailsView(constructId: localConstructZoom!)
+          : localConstructZoom == null
+              ? VocabAnalyticsListView(controller: this)
+              : VocabDetailsView(constructId: localConstructZoom!),
     );
   }
 }

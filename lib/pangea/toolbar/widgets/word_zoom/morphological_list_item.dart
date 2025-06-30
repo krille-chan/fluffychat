@@ -278,16 +278,14 @@ class MorphMeaningPopupState extends State<MorphMeaningPopup> {
                                 null)
                               ConstructXpWidget(
                                 id: widget.cId,
-                                onTap: () => showDialog<AnalyticsPopupWrapper>(
-                                  context: context,
-                                  builder: (context) => AnalyticsPopupWrapper(
-                                    constructZoom: widget.cId,
-                                    view: ConstructTypeEnum.morph,
-                                    backButtonOverride: IconButton(
-                                      icon: const Icon(Icons.close),
-                                      onPressed: () =>
-                                          Navigator.of(context).pop(),
-                                    ),
+                                onTap: () => AnalyticsPopupWrapper.show(
+                                  context,
+                                  constructZoom: widget.cId,
+                                  view: ConstructTypeEnum.morph,
+                                  backButtonOverride: IconButton(
+                                    icon: const Icon(Icons.close),
+                                    onPressed: () =>
+                                        Navigator.of(context).pop(),
                                   ),
                                 ),
                               ),
