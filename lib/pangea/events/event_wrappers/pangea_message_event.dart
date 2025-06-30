@@ -266,6 +266,21 @@ class PangeaMessageEvent {
       final botTranscription = SpeechToTextModel.fromJson(
         Map<String, dynamic>.from(rawBotTranscription),
       );
+
+      _representations?.add(
+        RepresentationEvent(
+          timeline: timeline,
+          parentMessageEvent: _event,
+          content: PangeaRepresentation(
+            langCode: botTranscription.langCode,
+            text: botTranscription.transcript.text,
+            originalSent: false,
+            originalWritten: false,
+            speechToText: botTranscription,
+          ),
+        ),
+      );
+
       return botTranscription;
     }
 
