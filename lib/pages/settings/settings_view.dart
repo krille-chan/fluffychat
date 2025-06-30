@@ -168,71 +168,8 @@ class SettingsView extends StatelessWidget {
                         mode: LaunchMode.inAppBrowserView,
                       ),
                     ),
-                  Divider(color: theme.dividerColor),
-                  if (showChatBackupBanner == null)
-                    ListTile(
-                      leading: const Icon(Icons.backup_outlined),
-                      title: Text(L10n.of(context).chatBackup),
-                      trailing: const CircularProgressIndicator.adaptive(),
-                    )
-                  else
-                    SwitchListTile.adaptive(
-                      controlAffinity: ListTileControlAffinity.trailing,
-                      value: controller.showChatBackupBanner == false,
-                      secondary: const Icon(Icons.backup_outlined),
-                      title: Text(L10n.of(context).chatBackup),
-                      onChanged: controller.firstRunBootstrapAction,
-                    ),
                   Divider(
                     color: theme.dividerColor,
-                  ),
-                  ListTile(
-                    leading: const Icon(Icons.format_paint_outlined),
-                    title: Text(L10n.of(context).changeTheme),
-                    tileColor: activeRoute.startsWith('/rooms/settings/style')
-                        ? theme.colorScheme.surfaceContainerHigh
-                        : null,
-                    onTap: () => context.go('/rooms/settings/style'),
-                  ),
-                  ListTile(
-                    leading: const Icon(Icons.notifications_outlined),
-                    title: Text(L10n.of(context).notifications),
-                    tileColor:
-                        activeRoute.startsWith('/rooms/settings/notifications')
-                            ? theme.colorScheme.surfaceContainerHigh
-                            : null,
-                    onTap: () => context.go('/rooms/settings/notifications'),
-                  ),
-                  ListTile(
-                    leading: const Icon(Icons.devices_outlined),
-                    title: Text(L10n.of(context).devices),
-                    onTap: () => context.go('/rooms/settings/devices'),
-                    tileColor: activeRoute.startsWith('/rooms/settings/devices')
-                        ? theme.colorScheme.surfaceContainerHigh
-                        : null,
-                  ),
-                  ListTile(
-                    leading: const Icon(Icons.forum_outlined),
-                    title: Text(L10n.of(context).chat),
-                    onTap: () => context.go('/rooms/settings/chat'),
-                    tileColor: activeRoute.startsWith('/rooms/settings/chat')
-                        ? theme.colorScheme.surfaceContainerHigh
-                        : null,
-                  ),
-                  ListTile(
-                    leading: const Icon(Icons.shield_outlined),
-                    title: Text(L10n.of(context).security),
-                    onTap: () => context.go('/rooms/settings/security'),
-                    tileColor:
-                        activeRoute.startsWith('/rooms/settings/security')
-                            ? theme.colorScheme.surfaceContainerHigh
-                            : null,
-                  ),
-                  Divider(color: theme.dividerColor),
-                  ListTile(
-                    leading: const Icon(Icons.privacy_tip_outlined),
-                    title: Text(L10n.of(context).privacy),
-                    onTap: () => launchUrlString(AppConfig.privacyUrl),
                   ),
                   ListTile(
                     leading: const Icon(Icons.info_outline_rounded),
