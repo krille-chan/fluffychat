@@ -73,7 +73,7 @@ class ActivityGeneratorState extends State<ActivityGenerator> {
 
   ActivitySettingRequestSchema get req => ActivitySettingRequestSchema(
         langCode:
-            MatrixState.pangeaController.languageController.userL2?.langCode ??
+            MatrixState.pangeaController.languageController.userL1?.langCode ??
                 LanguageKeys.defaultLanguage,
       );
 
