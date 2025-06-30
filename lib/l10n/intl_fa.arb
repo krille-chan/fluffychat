@@ -160,7 +160,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "changedTheChatDescriptionTo": "{username} توضیح گپ را به «{description}» تغییر داد",
+  "changedTheChatDescriptionTo": "{username} توضیح گپ را به {description} تغییر داد",
   "@changedTheChatDescriptionTo": {
     "type": "String",
     "placeholders": {
