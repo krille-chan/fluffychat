@@ -49,12 +49,10 @@ class ProgressIndicatorBadge extends StatelessWidget {
 class _AnimatedFloatingNumber extends StatefulWidget {
   final int number;
   final ProgressIndicatorEnum indicator;
-  final Duration duration;
 
   const _AnimatedFloatingNumber({
     required this.number,
     required this.indicator,
-    this.duration = const Duration(milliseconds: 900),
   });
 
   @override
@@ -73,7 +71,8 @@ class _AnimatedFloatingNumberState extends State<_AnimatedFloatingNumber>
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this, duration: widget.duration);
+    _controller = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 900));
     _fadeAnim = CurvedAnimation(parent: _controller, curve: Curves.easeOut);
     _offsetAnim = Tween<Offset>(
       begin: const Offset(0, 0),

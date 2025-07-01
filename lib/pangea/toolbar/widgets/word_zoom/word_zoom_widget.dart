@@ -43,8 +43,10 @@ class WordZoomWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final GlobalKey cardKey = GlobalKey();
     final overlayColor = Theme.of(context).scaffoldBackgroundColor;
     final Widget card = Container(
+      key: cardKey,
       padding: const EdgeInsets.all(12.0),
       constraints: const BoxConstraints(
         minHeight: AppConfig.toolbarMinHeight - 8,
@@ -244,10 +246,11 @@ class WordZoomWidget extends StatelessWidget {
         ),
       ),
     );
-    // Only wrap in NewWordOverlay if wordIsNew is true
+
     return NewWordOverlay(
       show: wordIsNew,
       overlayColor: overlayColor,
+      cardKey: cardKey,
       child: card,
     );
   }
