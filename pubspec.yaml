@@ -170,8 +170,8 @@ flutter:
     # #Pangea
     # uncomment this to enable mobile builds
     # causes error with github actions
-    - .env
-    - assets/.env
+    # - .env
+    # - assets/.env
     - assets/pangea/
     - assets/pangea/bot_faces/
     # Pangea#
