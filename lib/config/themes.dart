@@ -71,7 +71,33 @@ abstract class FluffyThemes {
     final isColumnMode = FluffyThemes.isColumnMode(context);
     return ThemeData(
       textTheme: GoogleFonts.fredokaTextTheme(
-        Theme.of(context).textTheme,
+        Theme.of(context).textTheme.copyWith(
+              bodyMedium: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.normal,
+                color: colorScheme.onSurface,
+              ),
+              bodySmall: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.normal,
+                color: colorScheme.onSurface,
+              ),
+              headlineSmall: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: colorScheme.onSurface,
+              ),
+              titleLarge: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+                color: colorScheme.onSurface,
+              ),
+              titleSmall: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+                color: colorScheme.onSurface,
+              ),
+            ),
       ),
       splashColor: colorScheme.primary.withValues(alpha: 0.1),
       visualDensity: VisualDensity.standard,
@@ -153,6 +179,7 @@ abstract class FluffyThemes {
           systemNavigationBarIconBrightness: brightness.reversed,
           systemNavigationBarColor: colorScheme.surface,
         ),
+        foregroundColor: colorScheme.onSurface,
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
