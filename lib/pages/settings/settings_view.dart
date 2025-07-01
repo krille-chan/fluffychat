@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -9,12 +8,14 @@ import 'package:url_launcher/url_launcher_string.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/navigation_rail.dart';
+import '../../widgets/mxc_image_viewer.dart';
 import 'settings.dart';
 
 class SettingsView extends StatelessWidget {
@@ -40,7 +41,11 @@ class SettingsView extends StatelessWidget {
     // Pangea#
     return Row(
       children: [
-        if (FluffyThemes.isColumnMode(context)) ...[
+        // #Pangea
+        // if (FluffyThemes.isColumnMode(context)) ...[
+        if (FluffyThemes.isColumnMode(context) ||
+            AppConfig.displayNavigationRail) ...[
+          // Pangea#
           SpacesNavigationRail(
             activeSpaceId: null,
             onGoToChats: () => context.go('/rooms'),
@@ -74,6 +79,7 @@ class SettingsView extends StatelessWidget {
                     future: controller.profileFuture,
                     builder: (context, snapshot) {
                       final profile = snapshot.data;
+                      final avatar = profile?.avatarUrl;
                       final mxid = Matrix.of(context).client.userID ??
                           L10n.of(context).user;
                       final displayname =
@@ -81,16 +87,30 @@ class SettingsView extends StatelessWidget {
                       return Row(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.all(32.0),
+                            // #Pangea
+                            // padding: const EdgeInsets.all(32.0),
+                            padding: const EdgeInsets.only(
+                              top: 32.0,
+                              bottom: 32.0,
+                              left: 12.0,
+                            ),
+                            // Pangea#
                             child: Stack(
                               children: [
                                 Avatar(
-                                  mxContent: profile?.avatarUrl,
+                                  mxContent: avatar,
                                   name: displayname,
                                   // #Pangea
                                   userId: profile?.userId,
                                   // Pangea#
                                   size: Avatar.defaultSize * 2.5,
+                                  onTap: avatar != null
+                                      ? () => showDialog(
+                                            context: context,
+                                            builder: (_) =>
+                                                MxcImageViewer(avatar),
+                                          )
+                                      : null,
                                 ),
                                 if (profile != null)
                                   Positioned(
@@ -152,6 +172,25 @@ class SettingsView extends StatelessWidget {
                                     //    style: const TextStyle(fontSize: 12),
                                   ),
                                 ),
+                                // #Pangea
+                                TextButton.icon(
+                                  onPressed: controller.setStatus,
+                                  icon: const Icon(
+                                    Icons.add,
+                                    size: 14,
+                                  ),
+                                  style: TextButton.styleFrom(
+                                    foregroundColor:
+                                        theme.colorScheme.secondary,
+                                    iconColor: theme.colorScheme.secondary,
+                                  ),
+                                  label: Text(
+                                    L10n.of(context).setStatus,
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                                // Pangea#
                               ],
                             ),
                           ),
@@ -321,7 +360,7 @@ class SettingsView extends StatelessWidget {
                     },
                   ),
                   // Conditional ListTile based on the environment (staging or not)
-                  if (Environment.isStaging)
+                  if (Environment.isStagingEnvironment)
                     ListTile(
                       leading: const Icon(Icons.bug_report_outlined),
                       title: Text(L10n.of(context).connectedToStaging),

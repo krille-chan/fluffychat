@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
-import 'package:fluffychat/pages/chat/reactions_picker.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/enums/reading_assistance_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_mode_locked_card.dart';
@@ -27,7 +25,8 @@ class ReadingAssistanceInputBar extends StatelessWidget {
   Widget barContent(BuildContext context) {
     if (overlayController.readingAssistanceMode !=
         ReadingAssistanceMode.practiceMode) {
-      return ReactionsPicker(controller);
+      return const SizedBox();
+      // return ReactionsPicker(controller);
     }
 
     Widget? content;
@@ -42,7 +41,8 @@ class ReadingAssistanceInputBar extends StatelessWidget {
             : null;
 
     if (overlayController.pangeaMessageEvent?.isAudioMessage == true) {
-      return ReactionsPicker(controller);
+      return const SizedBox();
+      // return ReactionsPicker(controller);
     } else {
       switch (overlayController.toolbarMode) {
         case MessageMode.messageSpeechToText:

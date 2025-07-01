@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import '../../config/themes.dart';
 import 'chat.dart';
@@ -38,7 +38,6 @@ class ReplyDisplay extends StatelessWidget {
                 ? ReplyContent(
                     controller.replyEvent!,
                     timeline: controller.timeline!,
-                    backgroundColor: Colors.transparent,
                   )
                 : _EditContent(
                     controller.editEvent?.getDisplayEvent(controller.timeline!),
@@ -70,6 +69,9 @@ class _EditContent extends StatelessWidget {
         ),
         Container(width: 15.0),
         Text(
+          // #Pangea
+          textScaler: TextScaler.noScaling,
+          // Pangea#
           event.calcLocalizedBodyFallback(
             MatrixLocals(L10n.of(context)),
             withSenderNamePrefix: false,

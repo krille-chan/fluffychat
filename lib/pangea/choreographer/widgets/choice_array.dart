@@ -4,9 +4,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/choice_animation.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -28,10 +28,6 @@ class ChoicesArray extends StatefulWidget {
   final ChoiceCallback? onLongPress;
   final int? selectedChoiceIndex;
   final String originalSpan;
-
-  /// If null then should not be used
-  /// We don't want tts in the case of L1 options
-  final TtsController? tts;
 
   final bool enableAudio;
 
@@ -62,7 +58,6 @@ class ChoicesArray extends StatefulWidget {
     required this.onPressed,
     required this.originalSpan,
     required this.selectedChoiceIndex,
-    required this.tts,
     this.enableAudio = true,
     this.langCode,
     this.isActive = true,
@@ -111,10 +106,8 @@ class ChoicesArrayState extends State<ChoicesArray> {
                 ? (String value, int index) {
                     widget.onPressed(value, index);
                     // TODO - what to pass here as eventID?
-                    if (widget.enableAudio &&
-                        widget.tts != null &&
-                        widget.langCode != null) {
-                      widget.tts?.tryToSpeak(
+                    if (widget.enableAudio && widget.langCode != null) {
+                      TtsController.tryToSpeak(
                         value,
                         targetID: null,
                         langCode: widget.langCode!,

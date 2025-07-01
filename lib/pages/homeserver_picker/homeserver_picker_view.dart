@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/adaptive_dialog_action.dart';
 import 'package:fluffychat/widgets/layouts/login_scaffold.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -35,6 +35,7 @@ class HomeserverPickerView extends StatelessWidget {
         ),
         actions: [
           PopupMenuButton<MoreLoginActions>(
+            useRootNavigator: true,
             onSelected: controller.onMoreAction,
             itemBuilder: (_) => [
               PopupMenuItem(
@@ -122,6 +123,8 @@ class HomeserverPickerView extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 32.0),
                       child: SelectableLinkify(
                         text: L10n.of(context).appIntroduction,
+                        textScaleFactor:
+                            MediaQuery.textScalerOf(context).scale(1),
                         textAlign: TextAlign.center,
                         linkStyle: TextStyle(
                           color: theme.colorScheme.secondary,
@@ -169,6 +172,19 @@ class HomeserverPickerView extends StatelessWidget {
                                       content: Linkify(
                                         text: L10n.of(context)
                                             .homeserverDescription,
+                                        textScaleFactor:
+                                            MediaQuery.textScalerOf(context)
+                                                .scale(1),
+                                        options: const LinkifyOptions(
+                                          humanize: false,
+                                        ),
+                                        linkStyle: TextStyle(
+                                          color: theme.colorScheme.primary,
+                                          decorationColor:
+                                              theme.colorScheme.primary,
+                                        ),
+                                        onOpen: (link) =>
+                                            launchUrlString(link.url),
                                       ),
                                       actions: [
                                         AdaptiveDialogAction(

@@ -3,17 +3,16 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 
 import 'package:badges/badges.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/chat_app_bar_list_tile.dart';
 import 'package:fluffychat/pages/chat/chat_app_bar_title.dart';
 import 'package:fluffychat/pages/chat/chat_event_list.dart';
 import 'package:fluffychat/pages/chat/pinned_events.dart';
-import 'package:fluffychat/pangea/activity_planner/activity_plan_page_launch_icon_button.dart';
 import 'package:fluffychat/pangea/chat/widgets/chat_input_bar.dart';
 import 'package:fluffychat/pangea/chat/widgets/chat_input_bar_header.dart';
 import 'package:fluffychat/pangea/chat/widgets/chat_view_background.dart';
@@ -69,6 +68,7 @@ class ChatView extends StatelessWidget {
           ),
         if (controller.selectedEvents.length == 1)
           PopupMenuButton<_EventContextAction>(
+            useRootNavigator: true,
             onSelected: (action) {
               switch (action) {
                 case _EventContextAction.info:
@@ -110,45 +110,43 @@ class ChatView extends StatelessWidget {
             ],
           ),
       ];
+    } else if (!controller.room.isArchived) {
       // #Pangea
+      return [
+        IconButton(
+          icon: const Icon(Icons.search_outlined),
+          tooltip: L10n.of(context).search,
+          onPressed: () {
+            context.go('/rooms/${controller.room.id}/search');
+          },
+        ),
+        IconButton(
+          icon: const Icon(Icons.settings_outlined),
+          tooltip: L10n.of(context).chatDetails,
+          onPressed: () {
+            if (GoRouterState.of(context).uri.path.endsWith('/details')) {
+              context.go('/rooms/${controller.room.id}');
+            } else {
+              context.go('/rooms/${controller.room.id}/details');
+            }
+          },
+        ),
+      ];
+      // return [
+      //   if (AppConfig.experimentalVoip &&
+      //       Matrix.of(context).voipPlugin != null &&
+      //       controller.room.isDirectChat)
+      //     IconButton(
+      //       onPressed: controller.onPhoneButtonTap,
+      //       icon: const Icon(Icons.call_outlined),
+      //       tooltip: L10n.of(context).placeCall,
+      //     ),
+      //   EncryptionButton(controller.room),
+      //   ChatSettingsPopupMenu(controller.room, true),
+      // ];
+      // Pangea#
     }
-    // } else if (!controller.room.isArchived) {
-    //   return [
-    //     if (AppConfig.experimentalVoip &&
-    //         Matrix.of(context).voipPlugin != null &&
-    //         controller.room.isDirectChat)
-    //       IconButton(
-    //         onPressed: controller.onPhoneButtonTap,
-    //         icon: const Icon(Icons.call_outlined),
-    //         tooltip: L10n.of(context).placeCall,
-    //       ),
-    //     EncryptionButton(controller.room),
-    //     ChatSettingsPopupMenu(controller.room, true),
-    //   ];
-    // }
-    // return [];
-    return [
-      IconButton(
-        icon: const Icon(Icons.search_outlined),
-        tooltip: L10n.of(context).search,
-        onPressed: () {
-          context.go('/rooms/${controller.room.id}/search');
-        },
-      ),
-      ActivityPlanPageLaunchIconButton(controller: controller),
-      IconButton(
-        icon: const Icon(Icons.settings_outlined),
-        tooltip: L10n.of(context).chatDetails,
-        onPressed: () {
-          if (GoRouterState.of(context).uri.path.endsWith('/details')) {
-            context.go('/rooms/${controller.room.id}');
-          } else {
-            context.go('/rooms/${controller.room.id}/details');
-          }
-        },
-      ),
-    ];
-    // Pangea#
+    return [];
   }
 
   @override
@@ -190,11 +188,6 @@ class ChatView extends StatelessWidget {
             if (scrollUpBannerEventId != null) {
               appbarBottomHeight += ChatAppBarListTile.fixedHeight;
             }
-            final tombstoneEvent =
-                controller.room.getState(EventTypes.RoomTombstone);
-            if (tombstoneEvent != null) {
-              appbarBottomHeight += ChatAppBarListTile.fixedHeight;
-            }
             return Scaffold(
               appBar: AppBar(
                 actionsIconTheme: IconThemeData(
@@ -233,18 +226,6 @@ class ChatView extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       PinnedEvents(controller),
-                      if (tombstoneEvent != null)
-                        ChatAppBarListTile(
-                          title: tombstoneEvent.parsedTombstoneContent.body,
-                          leading: const Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Icon(Icons.upgrade_outlined),
-                          ),
-                          trailing: TextButton(
-                            onPressed: controller.goToNewRoomAction,
-                            child: Text(L10n.of(context).goToTheNewRoom),
-                          ),
-                        ),
                       if (scrollUpBannerEventId != null)
                         ChatAppBarListTile(
                           leading: IconButton(
@@ -329,7 +310,21 @@ class ChatView extends StatelessWidget {
                                 child: ChatEventList(controller: controller),
                               ),
                             ),
-                            if (controller.room.canSendDefaultMessages &&
+                            if (controller.room.isExtinct)
+                              Container(
+                                margin: EdgeInsets.only(
+                                  bottom: bottomSheetPadding,
+                                  left: bottomSheetPadding,
+                                  right: bottomSheetPadding,
+                                ),
+                                width: double.infinity,
+                                child: ElevatedButton.icon(
+                                  icon: const Icon(Icons.chevron_right),
+                                  label: Text(L10n.of(context).enterNewChat),
+                                  onPressed: controller.goToNewRoomAction,
+                                ),
+                              )
+                            else if (controller.room.canSendDefaultMessages &&
                                 controller.room.membership == Membership.join)
                               Container(
                                 margin: EdgeInsets.only(
@@ -403,13 +398,20 @@ class ChatView extends StatelessWidget {
                             // #Pangea
                             // Keep messages above minimum input bar height
                             if (!controller.room.isAbandonedDMRoom)
-                              SizedBox(height: controller.inputBarHeight),
+                              AnimatedSize(
+                                duration: const Duration(milliseconds: 200),
+                                child: SizedBox(
+                                  height: controller.inputBarHeight,
+                                ),
+                              ),
                             // Pangea#
                           ],
                         ),
                         // #Pangea
                         ChatViewBackground(controller.choreographer),
-                        if (!controller.room.isAbandonedDMRoom)
+                        if (!controller.room.isAbandonedDMRoom &&
+                            controller.room.canSendDefaultMessages &&
+                            controller.room.membership == Membership.join)
                           Positioned(
                             left: 0,
                             right: 0,

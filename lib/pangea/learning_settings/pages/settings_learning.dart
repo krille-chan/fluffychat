@@ -4,8 +4,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:country_picker/country_picker.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/instructions/instruction_settings.dart';
@@ -35,7 +35,6 @@ class SettingsLearning extends StatefulWidget {
 class SettingsLearningController extends State<SettingsLearning> {
   PangeaController pangeaController = MatrixState.pangeaController;
   late Profile _profile;
-  final tts = TtsController();
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   String? languageMatchError;
@@ -46,12 +45,12 @@ class SettingsLearningController extends State<SettingsLearning> {
   void initState() {
     super.initState();
     _profile = pangeaController.userController.profile.copy();
-    tts.setAvailableLanguages().then((_) => setState(() {}));
+    TtsController.setAvailableLanguages().then((_) => setState(() {}));
   }
 
   @override
   void dispose() {
-    tts.dispose();
+    TtsController.stop();
     scrollController.dispose();
     super.dispose();
   }
@@ -97,9 +96,12 @@ class SettingsLearningController extends State<SettingsLearning> {
     }
   }
 
+  bool get hasIdenticalLanguages =>
+      selectedSourceLanguage?.langCodeShort ==
+      selectedTargetLanguage?.langCodeShort;
+
   Future<void> submit() async {
-    if (selectedSourceLanguage?.langCodeShort ==
-        selectedTargetLanguage?.langCodeShort) {
+    if (hasIdenticalLanguages) {
       setState(() {
         languageMatchError = L10n.of(context).noIdenticalLanguages;
       });
@@ -123,10 +125,12 @@ class SettingsLearningController extends State<SettingsLearning> {
     if (formKey.currentState!.validate()) {
       await showFutureLoadingDialog(
         context: context,
-        future: () async => pangeaController.userController.updateProfile(
-          (_) => _profile,
-          waitForDataInSync: true,
-        ),
+        future: () async => pangeaController.userController
+            .updateProfile(
+              (_) => _profile,
+              waitForDataInSync: true,
+            )
+            .timeout(const Duration(seconds: 15)),
       );
       Navigator.of(context).pop();
     }
@@ -247,22 +251,29 @@ class SettingsLearningController extends State<SettingsLearning> {
       _profile.userSettings.targetLanguage != null && _targetLanguage != null;
 
   LanguageModel? get selectedSourceLanguage {
-    return userL1 ?? pangeaController.languageController.systemLanguage;
+    return _selectedBaseLanguage ??
+        pangeaController.languageController.systemLanguage;
   }
 
   LanguageModel? get selectedTargetLanguage {
-    return userL2 ??
+    return _selectedTargetLanguage ??
         ((selectedSourceLanguage?.langCode != 'en')
             ? PLanguageStore.byLangCode('en')
             : PLanguageStore.byLangCode('es'));
   }
 
-  LanguageModel? get userL1 => _profile.userSettings.sourceLanguage != null
-      ? PLanguageStore.byLangCode(_profile.userSettings.sourceLanguage!)
-      : null;
-  LanguageModel? get userL2 => _profile.userSettings.targetLanguage != null
-      ? PLanguageStore.byLangCode(_profile.userSettings.targetLanguage!)
-      : null;
+  LanguageModel? get _selectedBaseLanguage =>
+      _profile.userSettings.sourceLanguage != null
+          ? PLanguageStore.byLangCode(_profile.userSettings.sourceLanguage!)
+          : null;
+
+  LanguageModel? get _selectedTargetLanguage =>
+      _profile.userSettings.targetLanguage != null
+          ? PLanguageStore.byLangCode(_profile.userSettings.targetLanguage!)
+          : null;
+
+  LanguageModel? get userL1 => pangeaController.languageController.userL1;
+  LanguageModel? get userL2 => pangeaController.languageController.userL2;
 
   bool get publicProfile => _profile.userSettings.publicProfile ?? true;
 

@@ -26,8 +26,6 @@ class CustomizedSvg extends StatefulWidget {
   /// If you want to keep the aspect ratio, set only the width
   final double? height;
 
-  static final GetStorage _svgStorage = GetStorage('svg_cache');
-
   const CustomizedSvg({
     super.key,
     required this.svgUrl,
@@ -46,6 +44,8 @@ class _CustomizedSvgState extends State<CustomizedSvg> {
   bool _isLoading = true;
   bool _hasError = false;
   bool _showProgressIndicator = false;
+
+  static final GetStorage _svgStorage = GetStorage('svg_cache');
 
   @override
   void initState() {
@@ -76,8 +76,6 @@ class _CustomizedSvgState extends State<CustomizedSvg> {
       _loadSvg();
     }
   }
-
-  final DateTime _cacheClearDate = DateTime(2025, 4, 13);
 
   Future<void> _loadSvg() async {
     try {
@@ -116,7 +114,7 @@ class _CustomizedSvgState extends State<CustomizedSvg> {
           "svgUrl": widget.svgUrl,
         },
       );
-      await CustomizedSvg._svgStorage.write(
+      await _svgStorage.write(
         widget.svgUrl,
         {'timestamp': DateTime.now().millisecondsSinceEpoch},
       );
@@ -124,7 +122,7 @@ class _CustomizedSvgState extends State<CustomizedSvg> {
     }
 
     final String svgContent = response.body;
-    await CustomizedSvg._svgStorage.write(widget.svgUrl, {
+    await _svgStorage.write(widget.svgUrl, {
       'svg': svgContent,
       'timestamp': DateTime.now().millisecondsSinceEpoch,
     });
@@ -141,13 +139,13 @@ class _CustomizedSvgState extends State<CustomizedSvg> {
   }
 
   String? _getSvgFromCache() {
-    final cachedSvgEntry = CustomizedSvg._svgStorage.read(widget.svgUrl);
+    final cachedSvgEntry = _svgStorage.read(widget.svgUrl);
     if (cachedSvgEntry != null &&
         cachedSvgEntry is Map<String, dynamic> &&
         cachedSvgEntry['svg'] is String &&
         cachedSvgEntry['timestamp'] is int &&
         DateTime.fromMillisecondsSinceEpoch(cachedSvgEntry['timestamp'])
-            .isAfter(_cacheClearDate)) {
+            .isAfter(DateTime.now().subtract(const Duration(days: 1)))) {
       return _modifySVG(cachedSvgEntry['svg'] as String);
     }
     return null;

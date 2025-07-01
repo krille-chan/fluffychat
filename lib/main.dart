@@ -15,7 +15,6 @@ import 'package:fluffychat/pangea/common/utils/firebase_analytics.dart';
 import 'package:fluffychat/pangea/learning_settings/utils/p_language_store.dart';
 import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
-import 'package:fluffychat/widgets/error_widget.dart';
 import 'config/setting_keys.dart';
 import 'utils/background_push.dart';
 import 'widgets/fluffy_chat_app.dart';
@@ -102,15 +101,13 @@ Future<void> startGui(List<Client> clients, SharedPreferences store) async {
   await firstClient?.roomsLoading;
   await firstClient?.accountDataLoading;
 
-  ErrorWidget.builder = (details) => FluffyChatErrorWidget(details);
-
   // #Pangea
   // errors seems to happen a lot when users switch better production / staging
   // while testing by accident. If the account is a production account but server is
   // staging or vice versa, logout.
   if (firstClient?.userID?.domain != null) {
     final isStagingUser = firstClient!.userID!.domain!.contains("staging");
-    final isStagingServer = Environment.isStaging;
+    final isStagingServer = Environment.synapseURL.contains("staging");
     if (isStagingServer != isStagingUser) {
       await firstClient.logout();
     }

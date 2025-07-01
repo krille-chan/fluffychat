@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_planner_page_appbar.dart';
 import 'package:fluffychat/pangea/activity_planner/bookmarked_activity_list.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_suggestions_area.dart';
@@ -14,8 +14,8 @@ enum PageMode {
 }
 
 class ActivityPlannerPage extends StatefulWidget {
-  final String roomID;
-  const ActivityPlannerPage({super.key, required this.roomID});
+  final String? roomID;
+  const ActivityPlannerPage({super.key, this.roomID});
 
   @override
   ActivityPlannerPageState createState() => ActivityPlannerPageState();
@@ -23,7 +23,9 @@ class ActivityPlannerPage extends StatefulWidget {
 
 class ActivityPlannerPageState extends State<ActivityPlannerPage> {
   PageMode pageMode = PageMode.featuredActivities;
-  Room? get room => Matrix.of(context).client.getRoomById(widget.roomID);
+  Room? get room => widget.roomID != null
+      ? Matrix.of(context).client.getRoomById(widget.roomID!)
+      : null;
 
   void _setPageMode(PageMode? mode) {
     if (mode == null) return;

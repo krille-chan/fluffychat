@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/adaptive_dialog_action.dart';
 
@@ -31,6 +31,7 @@ Future<OkCancelResult?> showOkCancelAlertDialog({
               ? null
               : SelectableLinkify(
                   text: message,
+                  textScaleFactor: MediaQuery.textScalerOf(context).scale(1),
                   linkStyle: TextStyle(
                     color: Theme.of(context).colorScheme.primary,
                     decorationColor: Theme.of(context).colorScheme.primary,
@@ -81,6 +82,7 @@ Future<OkCancelResult?> showOkAlertDialog({
               ? null
               : SelectableLinkify(
                   text: message,
+                  textScaleFactor: MediaQuery.textScalerOf(context).scale(1),
                   linkStyle: TextStyle(
                     color: Theme.of(context).colorScheme.primary,
                     decorationColor: Theme.of(context).colorScheme.primary,

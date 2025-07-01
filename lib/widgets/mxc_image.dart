@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
@@ -65,6 +66,7 @@ class _MxcImageState extends State<MxcImage> {
   }
 
   Future<void> _load() async {
+    if (!mounted) return;
     final client =
         widget.client ?? widget.event?.room.client ?? Matrix.of(context).client;
     final uri = widget.uri;
@@ -95,7 +97,7 @@ class _MxcImageState extends State<MxcImage> {
       final data = await event.downloadAndDecryptAttachment(
         getThumbnail: widget.isThumbnail,
       );
-      if (data.detectFileType is MatrixImageFile) {
+      if (data.detectFileType is MatrixImageFile || widget.isThumbnail) {
         if (!mounted) return;
         setState(() {
           _imageData = data.bytes;
@@ -162,10 +164,20 @@ class _MxcImageState extends State<MxcImage> {
               fit: widget.fit,
               filterQuality:
                   widget.isThumbnail ? FilterQuality.low : FilterQuality.medium,
-              errorBuilder: (context, __, ___) {
-                _imageData = null;
-                WidgetsBinding.instance.addPostFrameCallback(_tryLoad);
-                return placeholder(context);
+              errorBuilder: (context, e, s) {
+                Logs().d('Unable to render mxc image', e, s);
+                return SizedBox(
+                  width: widget.width,
+                  height: widget.height,
+                  child: Material(
+                    color: Theme.of(context).colorScheme.surfaceContainer,
+                    child: Icon(
+                      Icons.broken_image_outlined,
+                      size: min(widget.height ?? 64, 64),
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
+                  ),
+                );
               },
             )
           : SizedBox(

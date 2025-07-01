@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import 'package:fluffychat/config/app_config.dart';
@@ -8,7 +10,6 @@ class AnimatedLevelBar extends StatefulWidget {
   final double beginWidth;
   final double endWidth;
   final Color primaryColor;
-  final Color highlightColor;
 
   const AnimatedLevelBar({
     super.key,
@@ -16,7 +17,6 @@ class AnimatedLevelBar extends StatefulWidget {
     required this.beginWidth,
     required this.endWidth,
     required this.primaryColor,
-    required this.highlightColor,
   });
 
   @override
@@ -26,6 +26,10 @@ class AnimatedLevelBar extends StatefulWidget {
 class AnimatedLevelBarState extends State<AnimatedLevelBar>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
+
+  double get _beginWidth =>
+      widget.beginWidth == 0 ? 0 : max(20, widget.beginWidth);
+  double get _endWidth => widget.endWidth == 0 ? 0 : max(20, widget.endWidth);
 
   /// Whether the animation has run for the first time during initState. Don't
   /// want the animation to run when the widget mounts, only when points are gained.
@@ -45,7 +49,8 @@ class AnimatedLevelBarState extends State<AnimatedLevelBar>
   @override
   void didUpdateWidget(covariant AnimatedLevelBar oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.endWidth != widget.endWidth) {
+    if ((oldWidget.endWidth == 0 ? 0 : max(20, oldWidget.endWidth)) !=
+        (widget.endWidth == 0 ? 0 : max(20, widget.endWidth))) {
       _controller.reset();
       _controller.forward();
     }
@@ -63,15 +68,15 @@ class AnimatedLevelBarState extends State<AnimatedLevelBar>
     // would remove the animation for first points gained. It would remove the need for a flag though.
     if (_init) {
       return Tween<double>(
-        begin: widget.endWidth,
-        end: widget.endWidth,
+        begin: _endWidth,
+        end: _endWidth,
       ).animate(_controller);
     }
 
     // animate the width of the bar
     return Tween<double>(
-      begin: widget.beginWidth,
-      end: widget.endWidth,
+      begin: _beginWidth,
+      end: _endWidth,
     ).animate(_controller);
   }
 
@@ -89,28 +94,6 @@ class AnimatedLevelBarState extends State<AnimatedLevelBar>
                 color: widget.primaryColor,
                 borderRadius: const BorderRadius.all(
                   Radius.circular(AppConfig.borderRadius),
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withAlpha(50),
-                    spreadRadius: 0,
-                    blurRadius: 5,
-                    offset: const Offset(5, 0),
-                  ),
-                ],
-              ),
-            ),
-            Positioned(
-              top: 2,
-              left: 8,
-              child: Container(
-                height: 6,
-                width: _animation.value >= 16 ? _animation.value - 16 : 0,
-                decoration: BoxDecoration(
-                  color: widget.highlightColor,
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(AppConfig.borderRadius),
-                  ),
                 ),
               ),
             ),

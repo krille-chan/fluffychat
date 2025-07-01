@@ -7,7 +7,10 @@ import 'app_config.dart';
 abstract class FluffyThemes {
   static const double columnWidth = 380.0;
 
-  static const double navRailWidth = 80.0;
+  // #Pangea
+  // static const double navRailWidth = 80.0;
+  static const double navRailWidth = 72.0;
+  // Pangea#
 
   static bool isColumnModeByWidth(double width) =>
       width > columnWidth * 2 + navRailWidth;
@@ -17,27 +20,6 @@ abstract class FluffyThemes {
 
   static bool isThreeColumnMode(BuildContext context) =>
       MediaQuery.of(context).size.width > FluffyThemes.columnWidth * 3.5;
-
-  static const fallbackTextStyle = TextStyle(
-    fontFamily: 'Ubuntu',
-    fontFamilyFallback: ['NotoEmoji'],
-  );
-
-  static var fallbackTextTheme = const TextTheme(
-    bodyLarge: fallbackTextStyle,
-    bodyMedium: fallbackTextStyle,
-    labelLarge: fallbackTextStyle,
-    bodySmall: fallbackTextStyle,
-    labelSmall: fallbackTextStyle,
-    displayLarge: fallbackTextStyle,
-    displayMedium: fallbackTextStyle,
-    displaySmall: fallbackTextStyle,
-    headlineMedium: fallbackTextStyle,
-    headlineSmall: fallbackTextStyle,
-    titleLarge: fallbackTextStyle,
-    titleMedium: fallbackTextStyle,
-    titleSmall: fallbackTextStyle,
-  );
 
   static LinearGradient backgroundGradient(
     BuildContext context,
@@ -77,11 +59,6 @@ abstract class FluffyThemes {
       useMaterial3: true,
       brightness: brightness,
       colorScheme: colorScheme,
-      // #Pangea
-      // causes memory leak on iOS
-      // textTheme: fallbackTextTheme,
-      // textTheme: scaleTextTheme(Theme.of(context).textTheme, MediaQuery.of(context).size),
-      // Pangea#
       dividerColor: brightness == Brightness.dark
           ? colorScheme.surfaceContainerHighest
           : colorScheme.surfaceContainer,
@@ -105,7 +82,14 @@ abstract class FluffyThemes {
           borderRadius: BorderRadius.circular(AppConfig.borderRadius),
         ),
         contentPadding: const EdgeInsets.all(12),
-        filled: false,
+      ),
+      chipTheme: ChipThemeData(
+        showCheckmark: false,
+        backgroundColor: colorScheme.surfaceContainer,
+        side: BorderSide.none,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+        ),
       ),
       appBarTheme: AppBarTheme(
         toolbarHeight: isColumnMode ? 72 : 56,
@@ -197,6 +181,7 @@ extension BubbleColorTheme on ThemeData {
   Color get bubbleColor => brightness == Brightness.light
       ? colorScheme.primary
       : colorScheme.primaryContainer;
+
   Color get onBubbleColor => brightness == Brightness.light
       ? colorScheme.onPrimary
       : colorScheme.onPrimaryContainer;

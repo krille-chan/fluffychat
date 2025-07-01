@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Directory containing the ARB files
-l10n_dir="./assets/l10n"
+l10n_dir="./lib/l10n"
 # Target directory for the locale_config.xml file
 xml_dir="./android/app/src/main/res/xml"
 

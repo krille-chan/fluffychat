@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:fluffychat/pangea/choreographer/constants/choreo_constants.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/it_controller.dart';
-import 'package:fluffychat/pangea/choreographer/widgets/it_bar_buttons.dart';
+import 'package:fluffychat/pangea/choreographer/widgets/igc/word_data_card.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/it_feedback_card.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/instructions/instructions_enum.dart';
@@ -18,7 +18,6 @@ import '../../common/utils/overlay.dart';
 import '../controllers/it_feedback_controller.dart';
 import '../models/it_response_model.dart';
 import 'choice_array.dart';
-import 'igc/word_data_card.dart';
 
 class ITBar extends StatefulWidget {
   final Choreographer choreographer;
@@ -116,9 +115,13 @@ class ITBarState extends State<ITBar> with SingleTickerProviderStateMixin {
             Container(
               key: widget.choreographer.itBarLinkAndKey.key,
               decoration: BoxDecoration(
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(24),
+                  topRight: Radius.circular(24),
+                ),
                 color: Theme.of(context).colorScheme.surfaceContainer,
               ),
-              padding: const EdgeInsets.fromLTRB(0, 3, 3, 3),
+              padding: const EdgeInsets.all(3),
               child: SingleChildScrollView(
                 child: Column(
                   children: [
@@ -202,12 +205,14 @@ class ITBarState extends State<ITBar> with SingleTickerProviderStateMixin {
                     if (!itController.isEditingSourceText)
                       Padding(
                         padding: const EdgeInsets.only(top: 8.0),
-                        child: itController.sourceText != null
-                            ? Text(
-                                itController.sourceText!,
-                                textAlign: TextAlign.center,
-                              )
-                            : const LinearProgressIndicator(),
+                        child: !itController.willOpen
+                            ? const SizedBox()
+                            : itController.sourceText != null
+                                ? Text(
+                                    itController.sourceText!,
+                                    textAlign: TextAlign.center,
+                                  )
+                                : const LinearProgressIndicator(),
                       ),
                     const SizedBox(height: 8.0),
                     Container(
@@ -328,7 +333,13 @@ class ITChoices extends StatelessWidget {
               fullTextLang: sourceText != null
                   ? controller.sourceLangCode
                   : controller.targetLangCode,
-              hasInfo: controller.currentITStep!.continuances[index].hasInfo,
+              // IMPORTANT COMMENT TO KEEP: We're going to forace hasInfo to false for now
+              // because we don't want to show the word data card for correct choices and the contextual definition
+              // for incorrect choices. This gives away the answer (if you're Kel at least).
+              // The reason hasInfo is false for incorrect choices is that we're not includng the tokens for distractors.
+              // Correct choices will have the tokens, but we don't want to show something different for them.
+              // hasInfo: controller.currentITStep!.continuances[index].hasInfo,
+              hasInfo: false,
               choiceFeedback: choiceFeedback,
               room: controller.choreographer.chatController.room,
             )
@@ -387,10 +398,12 @@ class ITChoices extends StatelessWidget {
         return const SizedBox();
       }
       if (controller.currentITStep == null) {
-        return CircularProgressIndicator(
-          strokeWidth: 2.0,
-          color: Theme.of(context).colorScheme.primary,
-        );
+        return controller.willOpen
+            ? CircularProgressIndicator(
+                strokeWidth: 2.0,
+                color: Theme.of(context).colorScheme.primary,
+              )
+            : const SizedBox();
       }
       return ChoicesArray(
         id: controller.currentITStep.hashCode.toString(),
@@ -414,7 +427,6 @@ class ITChoices extends StatelessWidget {
         onPressed: (value, index) => selectContinuance(index, context),
         onLongPress: (value, index) => showCard(context, index),
         selectedChoiceIndex: null,
-        tts: controller.choreographer.tts,
         langCode: controller.choreographer.pangeaController.languageController
             .activeL2Code(),
       );
@@ -435,23 +447,38 @@ class ITError extends StatelessWidget {
     final ErrorCopy errorCopy = ErrorCopy(context, error);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 300),
-            child: Text(
-              // Text(
-              "${errorCopy.title}\n${errorCopy.body}",
-              // Haga clic en su mensaje para ver los significados de las palabras.
-              style: TextStyle(
-                fontStyle: FontStyle.italic,
+      child: RichText(
+        text: TextSpan(
+          children: [
+            WidgetSpan(
+              alignment: PlaceholderAlignment.middle,
+              child: Icon(
+                Icons.error_outline,
+                size: 20,
                 color: Theme.of(context).colorScheme.error,
               ),
             ),
+            TextSpan(text: "  ${errorCopy.title}  "),
+            WidgetSpan(
+              alignment: PlaceholderAlignment.middle,
+              child: IconButton(
+                onPressed: () {
+                  controller.closeIT();
+                  controller.choreographer.errorService.resetError();
+                },
+                icon: const Icon(
+                  Icons.close,
+                  size: 20,
+                ),
+              ),
+            ),
+          ],
+          style: TextStyle(
+            fontStyle: FontStyle.italic,
+            color: Theme.of(context).colorScheme.error,
           ),
-          ITRestartButton(controller: controller),
-        ],
+        ),
+        textAlign: TextAlign.center,
       ),
     );
   }

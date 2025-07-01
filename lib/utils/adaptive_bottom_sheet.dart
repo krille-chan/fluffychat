@@ -12,21 +12,41 @@ Future<T?> showAdaptiveBottomSheet<T>({
   bool isScrollControlled = true,
   bool useRootNavigator = true,
 }) {
-  final maxHeight = min(MediaQuery.of(context).size.height - 32, 600);
-  final dialogMode = FluffyThemes.isColumnMode(context);
-  return showModalBottomSheet(
+  if (FluffyThemes.isColumnMode(context)) {
+    return showDialog<T>(
+      context: context,
+      useRootNavigator: useRootNavigator,
+      barrierDismissible: isDismissible,
+      useSafeArea: true,
+      builder: (context) => Center(
+        child: Container(
+          margin: const EdgeInsets.all(16),
+          constraints: const BoxConstraints(
+            maxWidth: 480,
+            maxHeight: 720,
+          ),
+          child: Material(
+            elevation: Theme.of(context).dialogTheme.elevation ?? 4,
+            shadowColor: Theme.of(context).dialogTheme.shadowColor,
+            borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+            color: Theme.of(context).scaffoldBackgroundColor,
+            clipBehavior: Clip.hardEdge,
+            child: builder(context),
+          ),
+        ),
+      ),
+    );
+  }
+
+  return showModalBottomSheet<T>(
     context: context,
     builder: (context) => Padding(
-      padding: dialogMode
-          ? const EdgeInsets.symmetric(vertical: 32.0)
-          : EdgeInsets.zero,
+      padding: EdgeInsets.zero,
       child: ClipRRect(
-        borderRadius: dialogMode
-            ? BorderRadius.circular(AppConfig.borderRadius)
-            : const BorderRadius.only(
-                topLeft: Radius.circular(AppConfig.borderRadius),
-                topRight: Radius.circular(AppConfig.borderRadius),
-              ),
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(AppConfig.borderRadius / 2),
+          topRight: Radius.circular(AppConfig.borderRadius / 2),
+        ),
         child: builder(context),
       ),
     ),
@@ -34,7 +54,7 @@ Future<T?> showAdaptiveBottomSheet<T>({
     isDismissible: isDismissible,
     isScrollControlled: isScrollControlled,
     constraints: BoxConstraints(
-      maxHeight: maxHeight + (dialogMode ? 64 : 0),
+      maxHeight: min(MediaQuery.of(context).size.height - 32, 600),
       maxWidth: FluffyThemes.columnWidth * 1.25,
     ),
     backgroundColor: Colors.transparent,

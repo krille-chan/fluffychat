@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_permissions_settings/chat_permissions_settings.dart';
 import 'package:fluffychat/pages/chat_permissions_settings/permission_list_tile.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
@@ -20,7 +20,10 @@ class ChatPermissionsSettingsView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: const Center(child: BackButton()),
-        title: Text(L10n.of(context).chatPermissions),
+        // #Pangea
+        // title: Text(L10n.of(context).chatPermissions),
+        title: Text(L10n.of(context).permissions),
+        // Pangea#
       ),
       body: MaxWidthBody(
         child: StreamBuilder(
@@ -36,28 +39,39 @@ class ChatPermissionsSettingsView extends StatelessWidget {
             final powerLevelsContent = Map<String, Object?>.from(
               room.getState(EventTypes.RoomPowerLevels)?.content ?? {},
             );
-            final powerLevels =
-                Map<String, dynamic>.from(powerLevelsContent) // #Pangea
-                  // ..removeWhere((k, v) => v is! int);
-                  ..removeWhere(
-                    (k, v) =>
-                        v is! int ||
-                        k.equals("m.call.invite") ||
-                        k.equals("historical") ||
-                        k.equals("state_default"),
-                  );
-            // Pangea#
+            final powerLevels = Map<String, dynamic>.from(powerLevelsContent)
+              ..removeWhere((k, v) => v is! int);
             final eventsPowerLevels = Map<String, int?>.from(
               powerLevelsContent.tryGetMap<String, int?>('events') ?? {},
-              // #Pangea
+            )..removeWhere((k, v) => v is! int);
+            // #Pangea
+            final defaults = Map<String, dynamic>.from(
+              controller.defaultPowerLevels,
+            );
+
+            Map<String, dynamic> missingPowerLevels = Map<String, dynamic>.from(
+              defaults,
+            )..removeWhere((k, v) => v is! int || powerLevels.containsKey(k));
+
+            missingPowerLevels = missingPowerLevels.map(
+              (key, value) => MapEntry(key, controller.getDefaultValue(key)),
+            );
+
+            Map<String, int?> missingEventsPowerLevels = Map<String, int?>.from(
+              defaults.tryGetMap<String, int?>('events') ?? {},
             )..removeWhere(
-                (k, v) =>
-                    v is! int ||
-                    k.equals("m.space.child") ||
-                    k.equals("pangea.usranalytics") ||
-                    k.equals(EventTypes.RoomPowerLevels),
+                (k, v) => v is! int || eventsPowerLevels.containsKey(k),
               );
-            // )..removeWhere((k, v) => v is! int);
+
+            missingEventsPowerLevels = missingEventsPowerLevels.map(
+              (key, value) => MapEntry(
+                key,
+                controller.getDefaultValue(key, category: 'events'),
+              ),
+            );
+
+            powerLevels.addAll(missingPowerLevels);
+            eventsPowerLevels.addAll(missingEventsPowerLevels);
             // Pangea#
             return Column(
               children: [
@@ -70,7 +84,10 @@ class ChatPermissionsSettingsView extends StatelessWidget {
                 Divider(color: theme.dividerColor),
                 ListTile(
                   title: Text(
-                    L10n.of(context).chatPermissions,
+                    // #Pangea
+                    // L10n.of(context).chatPermissions,
+                    L10n.of(context).permissions,
+                    // Pangea#
                     style: TextStyle(
                       color: theme.colorScheme.primary,
                       fontWeight: FontWeight.bold,
@@ -91,48 +108,57 @@ class ChatPermissionsSettingsView extends StatelessWidget {
                           newLevel: level,
                         ),
                         canEdit: room.canChangePowerLevel,
+                        // #Pangea
+                        room: room,
+                        // Pangea#
                       ),
-                    // #Pangea
-                    // Divider(color: theme.dividerColor),
-                    // ListTile(
-                    //   title: Text(
-                    //     L10n.of(context).notifications,
-                    //     style: TextStyle(
-                    //       color: theme.colorScheme.primary,
-                    //       fontWeight: FontWeight.bold,
-                    //     ),
-                    //   ),
-                    // ),
-                    // Builder(
-                    //   builder: (context) {
-                    //     const key = 'rooms';
-                    //     final value = powerLevelsContent
-                    //             .containsKey('notifications')
-                    //         ? powerLevelsContent
-                    //                 .tryGetMap<String, Object?>('notifications')
-                    //                 ?.tryGet<int>('rooms') ??
-                    //             0
-                    //         : 0;
-                    //     return PermissionsListTile(
-                    //       permissionKey: key,
-                    //       permission: value,
-                    //       category: 'notifications',
-                    //       canEdit: room.canChangePowerLevel,
-                    //       onChanged: (level) => controller.editPowerLevel(
-                    //         context,
-                    //         key,
-                    //         value,
-                    //         newLevel: level,
-                    //         category: 'notifications',
-                    //       ),
-                    //     );
-                    //   },
-                    // ),
-                    // Pangea#
                     Divider(color: theme.dividerColor),
                     ListTile(
                       title: Text(
-                        L10n.of(context).configureChat,
+                        L10n.of(context).notifications,
+                        style: TextStyle(
+                          color: theme.colorScheme.primary,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    Builder(
+                      builder: (context) {
+                        const key = 'rooms';
+                        final value = powerLevelsContent
+                                .containsKey('notifications')
+                            ? powerLevelsContent
+                                    .tryGetMap<String, Object?>('notifications')
+                                    ?.tryGet<int>('rooms') ??
+                                0
+                            : 0;
+                        return PermissionsListTile(
+                          permissionKey: key,
+                          permission: value,
+                          category: 'notifications',
+                          canEdit: room.canChangePowerLevel,
+                          onChanged: (level) => controller.editPowerLevel(
+                            context,
+                            key,
+                            value,
+                            newLevel: level,
+                            category: 'notifications',
+                          ),
+                          // #Pangea
+                          room: room,
+                          // Pangea#
+                        );
+                      },
+                    ),
+                    Divider(color: theme.dividerColor),
+                    ListTile(
+                      title: Text(
+                        // #Pangea
+                        // L10n.of(context).configureChat,
+                        room.isSpace
+                            ? L10n.of(context).configureSpace
+                            : L10n.of(context).configureChat,
+                        // Pangea#
                         style: TextStyle(
                           color: theme.colorScheme.primary,
                           fontWeight: FontWeight.bold,
@@ -152,6 +178,9 @@ class ChatPermissionsSettingsView extends StatelessWidget {
                           newLevel: level,
                           category: 'events',
                         ),
+                        // #Pangea
+                        room: room,
+                        // Pangea#
                       ),
                   ],
                 ),

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart' hide Visibility;
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/pages/chat_access_settings/chat_access_settings_page.dart';
+import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/pangea/chat_settings/pages/pangea_chat_access_settings.dart';
+import 'package:fluffychat/pangea/spaces/utils/client_spaces_extension.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_modal_action_popup.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
@@ -57,13 +59,22 @@ class ChatAccessSettingsController extends State<ChatAccessSettings> {
   }
 
   void setJoinRule(JoinRules? newJoinRules) async {
-    if (newJoinRules == null) return;
+    // #Pangea
+    // if (newJoinRules == null) return;
+    if (newJoinRules == null || room.joinRules == newJoinRules) return;
+    // Pangea#
     setState(() {
       joinRulesLoading = true;
     });
 
     try {
-      await room.setJoinRules(newJoinRules);
+      // #Pangea
+      // await room.setJoinRules(newJoinRules);
+      await room.client.pangeaSetJoinRules(
+        room.id,
+        newJoinRules.toString().replaceAll('JoinRules.', ''),
+      );
+      // Pangea#
     } catch (e, s) {
       Logs().w('Unable to change join rules', e, s);
       if (mounted) {
@@ -179,10 +190,13 @@ class ChatAccessSettingsController extends State<ChatAccessSettings> {
             )) {
       return;
     }
-    await showFutureLoadingDialog(
+    final result = await showFutureLoadingDialog(
       context: context,
       future: () => room.client.upgradeRoom(room.id, newVersion),
     );
+    if (result.error != null) return;
+    if (!mounted) return;
+    context.go('/rooms/${room.id}');
   }
 
   Future<void> addAlias() async {
@@ -291,6 +305,9 @@ class ChatAccessSettingsController extends State<ChatAccessSettings> {
 
   @override
   Widget build(BuildContext context) {
-    return ChatAccessSettingsPageView(this);
+    // #Pangea
+    // return ChatAccessSettingsPageView(this);
+    return PangeaChatAccessSettingsPageView(this);
+    // Pangea#
   }
 }

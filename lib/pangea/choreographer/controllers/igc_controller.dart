@@ -104,7 +104,9 @@ class IgcController {
       }
 
       final IGCTextData igcTextDataResponse =
-          await _igcTextDataCache[reqBody.hashCode]!.data;
+          await _igcTextDataCache[reqBody.hashCode]!
+              .data
+              .timeout((const Duration(seconds: 10)));
 
       // this will happen when the user changes the input while igc is fetching results
       if (igcTextDataResponse.originalInput != choreographer.currentText) {
@@ -254,14 +256,7 @@ class IgcController {
               timeline: choreographer.chatController.timeline!,
               ownMessage: event.senderId ==
                   choreographer.pangeaController.matrixState.client.userID,
-            )
-              .getSpeechToTextLocal(
-                choreographer.l1LangCode,
-                choreographer.l2LangCode,
-              )
-              ?.transcript
-              .text
-              .trim(); // trim whitespace
+            ).getSpeechToTextLocal()?.transcript.text.trim(); // trim whitespace
       if (content == null) continue;
       messages.add(
         PreviousMessage(

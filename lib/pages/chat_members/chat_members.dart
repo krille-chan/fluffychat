@@ -4,13 +4,23 @@ import 'package:flutter/material.dart';
 
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/utils/stream_extension.dart';
 import '../../widgets/matrix.dart';
 import 'chat_members_view.dart';
 
 class ChatMembersPage extends StatefulWidget {
   final String roomId;
-  const ChatMembersPage({required this.roomId, super.key});
+  // #Pangea
+  final String? filter;
+  // Pangea#
+
+  // #Pangea
+  // const ChatMembersPage({required this.roomId, super.key});
+  const ChatMembersPage({
+    required this.roomId,
+    this.filter,
+    super.key,
+  });
+  // Pangea#
 
   @override
   State<ChatMembersPage> createState() => ChatMembersController();
@@ -20,15 +30,38 @@ class ChatMembersController extends State<ChatMembersPage> {
   List<User>? members;
   List<User>? filteredMembers;
   Object? error;
+  Membership membershipFilter = Membership.join;
 
   final TextEditingController filterController = TextEditingController();
 
   // #Pangea
-  StreamSubscription? _subscription;
+  @override
+  void didUpdateWidget(ChatMembersPage oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // Update the membership filter if the widget's filter changes
+    if (oldWidget.filter != widget.filter) {
+      setState(() {
+        membershipFilter = Membership.values.firstWhere(
+          (membership) => membership.name == widget.filter,
+          orElse: () => Membership.join,
+        );
+      });
+    }
+  }
   // Pangea#
+
+  void setMembershipFilter(Membership membership) {
+    membershipFilter = membership;
+    setFilter();
+  }
 
   void setFilter([_]) async {
     final filter = filterController.text.toLowerCase().trim();
+
+    final members = this
+        .members
+        ?.where((member) => member.membership == membershipFilter)
+        .toList();
 
     if (filter.isEmpty) {
       setState(() {
@@ -49,7 +82,8 @@ class ChatMembersController extends State<ChatMembersPage> {
     });
   }
 
-  void refreshMembers() async {
+  void refreshMembers([_]) async {
+    Logs().d('Load room members from', widget.roomId);
     try {
       setState(() {
         error = null;
@@ -58,17 +92,31 @@ class ChatMembersController extends State<ChatMembersPage> {
           .client
           .getRoomById(widget.roomId)
           ?.requestParticipants(
-        // #Pangea
-        // without setting cache to true, each call to requestParticipants will
-        // result in a new entry in the roomState stream, because the member roomState is not
-        // stored in the database. This causes an infinite loop with the roomState listener.
-        [Membership.join, Membership.invite, Membership.knock],
-        false,
-        true,
-        // Pangea#
-      );
+            // #Pangea
+            // [...Membership.values]..remove(Membership.leave),
+            // without setting cache to true, each call to requestParticipants will
+            // result in a new entry in the roomState stream, because the member roomState is not
+            // stored in the database. This causes an infinite loop with the roomState listener.
+            [...Membership.values]..remove(Membership.leave),
+            false,
+            true,
+            // Pangea#
+          );
 
       if (!mounted) return;
+
+      // #Pangea
+      final availableFilters = (participants ?? [])
+          .map(
+            (p) => p.membership,
+          )
+          .toSet();
+
+      if (availableFilters.length == 1 &&
+          membershipFilter != availableFilters.first) {
+        membershipFilter = availableFilters.first;
+      }
+      // Pangea#
 
       setState(() {
         members = participants;
@@ -83,29 +131,43 @@ class ChatMembersController extends State<ChatMembersPage> {
     }
   }
 
+  StreamSubscription? _updateSub;
+
   @override
   void initState() {
     super.initState();
     refreshMembers();
-    // #Pangea
-    _subscription = Matrix.of(context)
+
+    _updateSub = Matrix.of(context)
         .client
-        .onRoomState
+        .onSync
         .stream
-        .where((update) => update.roomId == widget.roomId)
-        .rateLimit(const Duration(seconds: 1))
-        .listen((_) => refreshMembers());
+        .where(
+          (syncUpdate) =>
+              syncUpdate.rooms?.join?[widget.roomId]?.timeline?.events
+                  ?.any((state) => state.type == EventTypes.RoomMember) ??
+              false,
+        )
+        .listen(refreshMembers);
+
+    // #Pangea
+    if (widget.filter != null) {
+      membershipFilter = Membership.values.firstWhere(
+        (membership) => membership.name == widget.filter,
+        orElse: () => Membership.join,
+      );
+    }
     // Pangea#
   }
 
-  // #Pangea
   @override
   void dispose() {
-    _subscription?.cancel();
+    _updateSub?.cancel();
+    // #Pangea
     filterController.dispose();
+    // Pangea#
     super.dispose();
   }
-  // Pangea#
 
   @override
   Widget build(BuildContext context) => ChatMembersView(this);

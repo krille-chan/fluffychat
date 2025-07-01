@@ -48,6 +48,24 @@ class _PresenceBuilderState extends State<PresenceBuilder> {
     }
   }
 
+  // #Pangea
+  @override
+  void didUpdateWidget(PresenceBuilder oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.userId == widget.userId) return;
+
+    final client = widget.client ?? Matrix.of(context).client;
+    final userId = widget.userId;
+    if (userId != null) {
+      client.fetchCurrentPresence(userId).then(_updatePresence);
+      _sub?.cancel();
+      _sub = client.onPresenceChanged.stream
+          .where((presence) => presence.userid == userId)
+          .listen(_updatePresence);
+    }
+  }
+  // Pangea#
+
   @override
   void dispose() {
     _sub?.cancel();

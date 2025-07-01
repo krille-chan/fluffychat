@@ -19,7 +19,7 @@ class ConstructListModel {
   List<OneConstructUse> get uses => _uses;
   List<OneConstructUse> get truncatedUses => _uses.take(100).toList();
 
-  /// A map of lemmas to ConstructUses, each of which contains a lemma
+  /// A map of ConstructIdentifiers to ConstructUses, each of which contains a lemma
   /// key = lemma + constructType.string, value = ConstructUses
   final Map<String, ConstructUses> _constructMap = {};
 
@@ -27,14 +27,11 @@ class ConstructListModel {
   /// be accessed. It contains the same information as _constructMap, but sorted.
   List<ConstructUses> _constructList = [];
 
-  /// A map of categories to lists of ConstructUses
-  Map<String, List<ConstructUses>> _categoriesToUses = {};
-
   /// A list of unique vocab lemmas
-  List<String> vocabLemmasList = [];
+  List<String> _vocabLemmasList = [];
 
   /// A list of unique grammar lemmas
-  List<String> grammarLemmasList = [];
+  List<String> _grammarLemmasList = [];
 
   /// [D] is the "compression factor". It determines how quickly
   /// or slowly the level grows relative to XP
@@ -47,7 +44,7 @@ class ConstructListModel {
     final constructs = constructList(type: type);
     final List<ConstructIdentifier> unlocked = [];
     final constructsList =
-        type == ConstructTypeEnum.vocab ? vocabLemmasList : grammarLemmasList;
+        type == ConstructTypeEnum.vocab ? _vocabLemmasList : _grammarLemmasList;
 
     for (final lemma in constructsList) {
       final matches = constructs.where((m) => m.lemma == lemma);
@@ -74,10 +71,10 @@ class ConstructListModel {
     updateConstructs(uses, offset);
   }
 
-  int get totalLemmas => vocabLemmasList.length + grammarLemmasList.length;
-  int get vocabLemmas => vocabLemmasList.length;
-  int get grammarLemmas => grammarLemmasList.length;
-  List<String> get lemmasList => vocabLemmasList + grammarLemmasList;
+  int get totalLemmas => _vocabLemmasList.length + _grammarLemmasList.length;
+  int get vocabLemmas => _vocabLemmasList.length;
+  int get grammarLemmas => _grammarLemmasList.length;
+  List<String> get lemmasList => _vocabLemmasList + _grammarLemmasList;
 
   /// Given a list of new construct uses, update the map of construct
   /// IDs to ConstructUses and re-sort the list of ConstructUses
@@ -86,7 +83,6 @@ class ConstructListModel {
       _updateUsesList(newUses);
       _updateConstructMap(newUses);
       _updateConstructList();
-      _updateCategoriesToUses();
       _updateMetrics(offset);
     } catch (err, s) {
       ErrorHandler.logError(
@@ -157,22 +153,13 @@ class ConstructListModel {
     _constructList.sort(_sortConstructs);
   }
 
-  void _updateCategoriesToUses() {
-    _categoriesToUses = {};
-    for (final ConstructUses use in constructList()) {
-      final category = use.category;
-      _categoriesToUses.putIfAbsent(category, () => []);
-      _categoriesToUses[category]!.add(use);
-    }
-  }
-
   void _updateMetrics(int offset) {
-    vocabLemmasList = constructList(type: ConstructTypeEnum.vocab)
+    _vocabLemmasList = constructList(type: ConstructTypeEnum.vocab)
         .map((e) => e.lemma)
         .toSet()
         .toList();
 
-    grammarLemmasList = constructList(type: ConstructTypeEnum.morph)
+    _grammarLemmasList = constructList(type: ConstructTypeEnum.morph)
         .map((e) => e.lemma)
         .toSet()
         .toList();
@@ -261,19 +248,6 @@ class ConstructListModel {
         (constructUse) => type == null || constructUse.constructType == type,
       )
       .toList();
-
-  Map<String, List<ConstructUses>> categoriesToUses({ConstructTypeEnum? type}) {
-    if (type == null) return _categoriesToUses;
-    final entries = _categoriesToUses.entries.toList();
-    return Map.fromEntries(
-      entries.map((entry) {
-        return MapEntry(
-          entry.key,
-          entry.value.where((use) => use.constructType == type).toList(),
-        );
-      }).where((entry) => entry.value.isNotEmpty),
-    );
-  }
 
   // uses where points < AnalyticConstants.xpForGreens
   List<ConstructUses> get seeds => _constructList

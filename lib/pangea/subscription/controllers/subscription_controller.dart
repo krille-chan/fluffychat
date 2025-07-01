@@ -5,13 +5,13 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/pangea/common/constants/local.key.dart';
 import 'package:fluffychat/pangea/common/controllers/base_controller.dart';
@@ -37,6 +37,7 @@ enum SubscriptionStatus {
 }
 
 class SubscriptionController extends BaseController {
+  static final GetStorage subscriptionBox = GetStorage("subscription_storage");
   late PangeaController _pangeaController;
 
   CurrentSubscriptionInfo? currentSubscriptionInfo;
@@ -57,7 +58,7 @@ class SubscriptionController extends BaseController {
     final bool hasSubscription =
         currentSubscriptionInfo?.currentSubscriptionId != null;
 
-    return hasSubscription;
+    return hasSubscription || _userController.inTrialWindow();
   }
 
   bool _isInitializing = false;
@@ -81,7 +82,6 @@ class SubscriptionController extends BaseController {
     await initialize();
   }
 
-  final GetStorage subscriptionBox = GetStorage("subscription_storage");
   Future<void> _initialize() async {
     try {
       if (_userID == null) {
@@ -374,6 +374,37 @@ class SubscriptionController extends BaseController {
   String? get defaultManagementURL =>
       currentSubscriptionInfo?.currentSubscription
           ?.defaultManagementURL(availableSubscriptionInfo?.appIds);
+
+  Future<void> setCachedSubscriptionInfo(
+    AvailableSubscriptionsInfo info,
+  ) =>
+      subscriptionBox.write(
+        PLocalKey.availableSubscriptionInfo,
+        info.toJson(),
+      );
+
+  Future<AvailableSubscriptionsInfo?> getCachedSubscriptionInfo() async {
+    final entry = subscriptionBox.read(
+      PLocalKey.availableSubscriptionInfo,
+    );
+    if (entry is! Map<String, dynamic>) {
+      return null;
+    }
+
+    try {
+      final resp = AvailableSubscriptionsInfo.fromJson(entry);
+      return resp.lastUpdated == null ? null : resp;
+    } catch (e, s) {
+      ErrorHandler.logError(
+        e: e,
+        s: s,
+        data: {
+          "entry": entry,
+        },
+      );
+      return null;
+    }
+  }
 }
 
 enum SubscriptionDuration {

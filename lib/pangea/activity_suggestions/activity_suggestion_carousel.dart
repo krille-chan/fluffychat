@@ -5,12 +5,13 @@ import 'package:flutter/material.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:collection/collection.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:shimmer/shimmer.dart';
 
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_request.dart';
+import 'package:fluffychat/pangea/activity_planner/activity_planner_builder.dart';
 import 'package:fluffychat/pangea/activity_planner/media_enum.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_plan_search_repo.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_suggestion_card.dart';
@@ -44,8 +45,8 @@ class ActivitySuggestionCarousel extends StatefulWidget {
 
 class ActivitySuggestionCarouselState
     extends State<ActivitySuggestionCarousel> {
-  bool _isOpen = true;
   bool _loading = true;
+  bool _closed = false;
   String? _error;
 
   double get _cardWidth => _isColumnMode ? 250.0 : 175.0;
@@ -138,7 +139,9 @@ class ActivitySuggestionCarouselState
 
   void _close() {
     widget.onActivitySelected(null, null, null);
-    setState(() => _isOpen = false);
+    setState(() {
+      _closed = true;
+    });
   }
 
   void _onClickCard() {
@@ -150,13 +153,23 @@ class ActivitySuggestionCarouselState
       );
       return;
     }
+
     showDialog(
       context: context,
       builder: (context) {
-        return ActivitySuggestionDialog(
+        return ActivityPlannerBuilder(
           initialActivity: _currentActivity!,
-          buttonText: L10n.of(context).selectActivity,
-          onLaunch: widget.onActivitySelected,
+          builder: (controller) {
+            return ActivitySuggestionDialog(
+              controller: controller,
+              buttonText: L10n.of(context).selectActivity,
+              onLaunch: () => widget.onActivitySelected(
+                controller.updatedActivity,
+                controller.avatar,
+                controller.filename,
+              ),
+            );
+          },
         );
       },
     );
@@ -167,12 +180,12 @@ class ActivitySuggestionCarouselState
     final theme = Theme.of(context);
     return AnimatedSize(
       duration: FluffyThemes.animationDuration,
-      child: !_isOpen
-          ? const SizedBox.shrink()
-          : AnimatedOpacity(
-              duration: FluffyThemes.animationDuration,
-              opacity: widget.enabled ? 1.0 : 0.5,
-              child: Container(
+      child: AnimatedOpacity(
+        duration: FluffyThemes.animationDuration,
+        opacity: widget.enabled ? 1.0 : 0.5,
+        child: _closed
+            ? const SizedBox.shrink()
+            : Container(
                 decoration: BoxDecoration(
                   border: Border.all(color: theme.dividerColor),
                   borderRadius: BorderRadius.circular(24.0),
@@ -324,7 +337,7 @@ class ActivitySuggestionCarouselState
                   ],
                 ),
               ),
-            ),
+      ),
     );
   }
 }

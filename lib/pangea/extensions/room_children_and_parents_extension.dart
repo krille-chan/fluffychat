@@ -15,19 +15,14 @@ extension ChildrenAndParentsRoomExtension on Room {
   /// Wrapper around call to setSpaceChild with added functionality
   /// to prevent adding one room to multiple spaces, and resets the
   /// subspace's JoinRules and Visibility to defaults.
-  Future<void> pangeaSetSpaceChild(
+  Future<void> addToSpace(
     String roomId, {
     bool? suggested,
   }) async {
     final Room? child = client.getRoomById(roomId);
     if (child == null) return;
-    if (child.isSpace) {
-      throw NestedSpaceError();
-    }
 
-    final List<Room> spaceParents =
-        ChildrenAndParentsRoomExtension(child).pangeaSpaceParents;
-    for (final Room parent in spaceParents) {
+    for (final Room parent in pangeaSpaceParents) {
       try {
         await parent.removeSpaceChild(roomId);
       } catch (e) {
@@ -43,11 +38,9 @@ extension ChildrenAndParentsRoomExtension on Room {
     }
 
     try {
-      await setSpaceChild(roomId, suggested: suggested);
-      await child.setJoinRules(JoinRules.public);
-      await child.client.setRoomVisibilityOnDirectory(
+      await _trySetSpaceChild(
         roomId,
-        visibility: matrix.Visibility.private,
+        suggested: suggested,
       );
     } catch (err, stack) {
       ErrorHandler.logError(
@@ -59,6 +52,31 @@ extension ChildrenAndParentsRoomExtension on Room {
           "suggested": suggested,
         },
       );
+    }
+  }
+
+  Future<void> _trySetSpaceChild(
+    String roomId, {
+    bool? suggested,
+    int retries = 0,
+  }) async {
+    final Room? child = client.getRoomById(roomId);
+    if (child == null) return;
+
+    try {
+      await setSpaceChild(roomId, suggested: suggested);
+    } catch (err) {
+      retries++;
+      if (retries < 3) {
+        await Future.delayed(const Duration(seconds: 1));
+        return _trySetSpaceChild(
+          roomId,
+          suggested: suggested,
+          retries: retries,
+        );
+      } else {
+        rethrow;
+      }
     }
   }
 
@@ -80,9 +98,4 @@ extension ChildrenAndParentsRoomExtension on Room {
         ),
       )
       .length;
-}
-
-class NestedSpaceError extends Error {
-  @override
-  String toString() => 'Cannot add a space to another space';
 }

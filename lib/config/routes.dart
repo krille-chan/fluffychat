@@ -32,16 +32,20 @@ import 'package:fluffychat/pages/settings_style/settings_style.dart';
 import 'package:fluffychat/pangea/activity_generator/activity_generator.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_planner_page.dart';
 import 'package:fluffychat/pangea/activity_suggestions/suggestions_page.dart';
+import 'package:fluffychat/pangea/find_your_people/find_your_people.dart';
+import 'package:fluffychat/pangea/find_your_people/find_your_people_side_view.dart';
 import 'package:fluffychat/pangea/guard/p_vguard.dart';
-import 'package:fluffychat/pangea/layouts/bottom_nav_layout.dart';
 import 'package:fluffychat/pangea/learning_settings/pages/settings_learning.dart';
 import 'package:fluffychat/pangea/login/pages/login_or_signup_view.dart';
 import 'package:fluffychat/pangea/login/pages/signup.dart';
+import 'package:fluffychat/pangea/login/pages/space_code_onboarding.dart';
 import 'package:fluffychat/pangea/login/pages/user_settings.dart';
+import 'package:fluffychat/pangea/onboarding/onboarding.dart';
+import 'package:fluffychat/pangea/spaces/constants/space_constants.dart';
 import 'package:fluffychat/pangea/spaces/utils/join_with_alias.dart';
 import 'package:fluffychat/pangea/spaces/utils/join_with_link.dart';
 import 'package:fluffychat/pangea/subscription/pages/settings_subscription.dart';
-import 'package:fluffychat/pangea/user/pages/find_partner.dart';
+import 'package:fluffychat/widgets/config_viewer.dart';
 import 'package:fluffychat/widgets/layouts/empty_page.dart';
 import 'package:fluffychat/widgets/layouts/two_column_layout.dart';
 import 'package:fluffychat/widgets/log_view.dart';
@@ -130,24 +134,32 @@ abstract class AppRoutes {
         const LogViewer(),
       ),
     ),
+    GoRoute(
+      path: '/configs',
+      pageBuilder: (context, state) => defaultPageBuilder(
+        context,
+        state,
+        const ConfigViewer(),
+      ),
+    ),
     // #Pangea
     GoRoute(
       path: '/join_with_link',
       pageBuilder: (context, state) => defaultPageBuilder(
         context,
         state,
-        const JoinClassWithLink(),
+        JoinClassWithLink(
+          classCode: state.uri.queryParameters[SpaceConstants.classCode],
+        ),
       ),
     ),
     GoRoute(
       path: '/join_with_alias',
-      pageBuilder: (context, state) => Matrix.of(context).client.isLogged()
-          ? chatListShellRouteBuilder(context, state, const JoinWithAlias())
-          : defaultPageBuilder(
-              context,
-              state,
-              const JoinWithAlias(),
-            ),
+      pageBuilder: (context, state) => defaultPageBuilder(
+        context,
+        state,
+        JoinWithAlias(alias: state.uri.queryParameters['alias']),
+      ),
     ),
     GoRoute(
       path: '/user_age',
@@ -157,30 +169,17 @@ abstract class AppRoutes {
         const UserSettingsPage(),
       ),
       redirect: loggedOutRedirect,
-    ),
-    ShellRoute(
-      pageBuilder: chatListShellRouteBuilder,
       routes: [
         GoRoute(
-          path: '/homepage',
+          path: 'join_space',
+          pageBuilder: (context, state) {
+            return defaultPageBuilder(
+              context,
+              state,
+              const SpaceCodeOnboarding(),
+            );
+          },
           redirect: loggedOutRedirect,
-          pageBuilder: (context, state) => defaultPageBuilder(
-            context,
-            state,
-            const SuggestionsPage(),
-          ),
-          routes: [
-            ...newRoomRoutes,
-            GoRoute(
-              path: '/planner',
-              redirect: loggedOutRedirect,
-              pageBuilder: (context, state) => defaultPageBuilder(
-                context,
-                state,
-                const ActivityGenerator(),
-              ),
-            ),
-          ],
         ),
       ],
     ),
@@ -192,40 +191,61 @@ abstract class AppRoutes {
       pageBuilder: (context, state, child) => noTransitionPageBuilder(
         context,
         state,
+        // #Pangea
+        // FluffyThemes.isColumnMode(context) &&
+        //         state.fullPath?.startsWith('/rooms/settings') == false
         FluffyThemes.isColumnMode(context) &&
-                state.fullPath?.startsWith('/rooms/settings') == false
+                state.fullPath?.startsWith('/rooms/settings') == false &&
+                state.fullPath?.startsWith('/rooms/communities') == false
+            // Pangea#
             ? TwoColumnLayout(
                 mainView: ChatList(
                   activeChat: state.pathParameters['roomid'],
+                  // #Pangea
+                  activeSpaceId: state.uri.queryParameters['spaceId'],
+                  // Pangea#
                   displayNavigationRail:
                       state.path?.startsWith('/rooms/settings') != true,
                 ),
                 sideView: child,
               )
-            // #Pangea
-            // : child,
-            : FluffyThemes.isColumnMode(context) ||
-                    (state.fullPath?.split("/").reversed.elementAt(1) ==
-                            'rooms' &&
-                        state.pathParameters['roomid'] != null)
-                ? child
-                : BottomNavLayout(mainView: child),
-        // Pangea#
+            : child,
       ),
       routes: [
         GoRoute(
           path: '/rooms',
-          redirect: loggedOutRedirect,
+          // #Pangea
+          // redirect: loggedOutRedirect,
+          redirect: (context, state) async {
+            final resp = await loggedOutRedirect(context, state);
+            if (resp != null) return resp;
+            final isColumnMode = FluffyThemes.isColumnMode(context);
+
+            final spaceId = state.uri.queryParameters['spaceId'];
+            if (spaceId != null &&
+                spaceId != 'clear' &&
+                isColumnMode &&
+                state.fullPath != null &&
+                !state.fullPath!.contains('details')) {
+              return '/rooms/$spaceId/details?spaceId=$spaceId';
+            }
+
+            return null;
+          },
+          // Pangea#
           pageBuilder: (context, state) => defaultPageBuilder(
             context,
             state,
             FluffyThemes.isColumnMode(context)
                 // #Pangea
                 // ? const EmptyPage()
-                ? const SuggestionsPage()
+                ? const Onboarding()
                 // Pangea#
                 : ChatList(
                     activeChat: state.pathParameters['roomid'],
+                    // #Pangea
+                    activeSpaceId: state.uri.queryParameters['spaceId'],
+                    // Pangea#
                   ),
           ),
           routes: [
@@ -266,22 +286,12 @@ abstract class AppRoutes {
               pageBuilder: (context, state) => defaultPageBuilder(
                 context,
                 state,
-                const NewGroup(),
+                // #Pangea
+                // const NewGroup(),
+                NewGroup(spaceId: state.uri.queryParameters['space']),
+                // Pangea#
               ),
               redirect: loggedOutRedirect,
-              // #Pangea
-              routes: [
-                GoRoute(
-                  path: ':spaceid',
-                  pageBuilder: (context, state) => defaultPageBuilder(
-                    context,
-                    state,
-                    NewGroup(spaceId: state.pathParameters['spaceid']!),
-                  ),
-                  redirect: loggedOutRedirect,
-                ),
-              ],
-              // Pangea#
             ),
             GoRoute(
               path: 'newspace',
@@ -293,14 +303,61 @@ abstract class AppRoutes {
               redirect: loggedOutRedirect,
             ),
             // #Pangea
+            ShellRoute(
+              pageBuilder: (context, state, child) => defaultPageBuilder(
+                context,
+                state,
+                FluffyThemes.isColumnMode(context)
+                    ? TwoColumnLayout(
+                        mainView: const FindYourPeopleSideView(),
+                        sideView: child,
+                        dividerColor: Colors.transparent,
+                      )
+                    : child,
+              ),
+              routes: [
+                GoRoute(
+                  path: 'communities',
+                  redirect: loggedOutRedirect,
+                  pageBuilder: (context, state) => defaultPageBuilder(
+                    context,
+                    state,
+                    const FindYourPeople(),
+                  ),
+                ),
+              ],
+            ),
             GoRoute(
-              path: 'partner',
+              path: 'homepage',
+              redirect: loggedOutRedirect,
               pageBuilder: (context, state) => defaultPageBuilder(
                 context,
                 state,
-                const FindPartner(),
+                const SuggestionsPage(),
               ),
-              redirect: loggedOutRedirect,
+              routes: [
+                ...newRoomRoutes,
+                GoRoute(
+                  path: '/planner',
+                  pageBuilder: (context, state) => defaultPageBuilder(
+                    context,
+                    state,
+                    const ActivityPlannerPage(),
+                  ),
+                  redirect: loggedOutRedirect,
+                  routes: [
+                    GoRoute(
+                      path: '/generator',
+                      redirect: loggedOutRedirect,
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        state,
+                        const ActivityGenerator(),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
             // Pangea#
             ShellRoute(
@@ -521,30 +578,6 @@ abstract class AppRoutes {
                   redirect: loggedOutRedirect,
                 ),
                 // #Pangea
-                GoRoute(
-                  path: 'planner',
-                  pageBuilder: (context, state) => defaultPageBuilder(
-                    context,
-                    state,
-                    ActivityPlannerPage(
-                      roomID: state.pathParameters['roomid']!,
-                    ),
-                  ),
-                  redirect: loggedOutRedirect,
-                  routes: [
-                    GoRoute(
-                      path: '/generator',
-                      redirect: loggedOutRedirect,
-                      pageBuilder: (context, state) => defaultPageBuilder(
-                        context,
-                        state,
-                        ActivityGenerator(
-                          roomID: state.pathParameters['roomid']!,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
                 // GoRoute(
                 //   path: 'encryption',
                 //   pageBuilder: (context, state) => defaultPageBuilder(
@@ -576,6 +609,32 @@ abstract class AppRoutes {
                     ),
                   ),
                   routes: [
+                    // #Pangea
+                    GoRoute(
+                      path: 'planner',
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        state,
+                        ActivityPlannerPage(
+                          roomID: state.pathParameters['roomid']!,
+                        ),
+                      ),
+                      redirect: loggedOutRedirect,
+                      routes: [
+                        GoRoute(
+                          path: '/generator',
+                          redirect: loggedOutRedirect,
+                          pageBuilder: (context, state) => defaultPageBuilder(
+                            context,
+                            state,
+                            ActivityGenerator(
+                              roomID: state.pathParameters['roomid']!,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    // Pangea#
                     GoRoute(
                       path: 'access',
                       pageBuilder: (context, state) => defaultPageBuilder(
@@ -594,6 +653,9 @@ abstract class AppRoutes {
                         state,
                         ChatMembersPage(
                           roomId: state.pathParameters['roomid']!,
+                          // #Pangea
+                          filter: state.uri.queryParameters['filter'],
+                          // Pangea#
                         ),
                       ),
                       redirect: loggedOutRedirect,
@@ -704,31 +766,5 @@ abstract class AppRoutes {
           redirect: loggedOutRedirect,
         ),
       ];
-
-  static Page chatListShellRouteBuilder(
-    context,
-    state,
-    child,
-  ) =>
-      noTransitionPageBuilder(
-        context,
-        state,
-        FluffyThemes.isColumnMode(context) &&
-                state.fullPath?.startsWith('/rooms/settings') == false
-            ? TwoColumnLayout(
-                mainView: ChatList(
-                  activeChat: state.pathParameters['roomid'],
-                  displayNavigationRail:
-                      state.path?.startsWith('/rooms/settings') != true,
-                ),
-                sideView: child,
-              )
-            : FluffyThemes.isColumnMode(context) ||
-                    (state.fullPath?.split("/").reversed.elementAt(1) ==
-                            'rooms' &&
-                        state.pathParameters['roomid'] != null)
-                ? child
-                : BottomNavLayout(mainView: child),
-      );
   // Pangea#
 }

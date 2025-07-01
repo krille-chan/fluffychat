@@ -3,11 +3,11 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import 'package:animations/animations.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/input_bar.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/send_button.dart';
@@ -213,6 +213,7 @@ class PangeaChatInputRowState extends State<PangeaChatInputRow> {
                         clipBehavior: Clip.hardEdge,
                         decoration: const BoxDecoration(),
                         child: PopupMenuButton<String>(
+                          useRootNavigator: true,
                           icon: const Icon(Icons.add_outlined),
                           onSelected: _controller.onAddPopupMenuButtonSelected,
                           itemBuilder: (BuildContext context) =>

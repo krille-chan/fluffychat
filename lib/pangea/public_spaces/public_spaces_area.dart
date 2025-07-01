@@ -5,11 +5,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 import 'package:shimmer/shimmer.dart';
 
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/public_spaces/public_space_card.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
@@ -176,7 +176,7 @@ class PublicSpacesAreaState extends State<PublicSpacesArea> {
                   key: const ValueKey('title'),
                   children: [
                     Text(
-                      L10n.of(context).publicSpacesTitle,
+                      L10n.of(context).findYourPeople,
                       style: isColumnMode
                           ? theme.textTheme.titleLarge
                               ?.copyWith(fontWeight: FontWeight.bold)

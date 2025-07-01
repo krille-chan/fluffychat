@@ -1,0 +1,20 @@
+# Auto-add new issues to a GitHub project (replace PROJECT_ID and COLUMN_ID with your values)
+name: Add new issues to project
+on:
+  issues:
+    types:
+      - opened
+jobs:
+  add_to_project:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set project ID
+        run: |
+          echo "PROJECT_ID=PVT_kwDOBndSo84A7FWL" >> $GITHUB_ENV
+      - name: Add issue to project
+        run: |
+          gh api graphql -f query='mutation($project:ID!, $contentId:ID!) { addProjectV2ItemById(input: {projectId: $project, contentId: $contentId}) { item { id } } }' -f project=$PROJECT_ID -f contentId=$ISSUE_ID
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_ID: ${{ github.event.issue.node_id }}
+# To get your project ID, use: gh api graphql -f query='query { organization(login: "<ORG>") { projectV2(number: <PROJECT_NUMBER>) { id } } }'

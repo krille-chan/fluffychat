@@ -16,6 +16,7 @@ import 'package:fluffychat/pangea/events/event_wrappers/pangea_representation_ev
 import 'package:fluffychat/pangea/events/extensions/pangea_event_extension.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/events/models/representation_content_model.dart';
+import 'package:fluffychat/pangea/events/models/stt_translation_model.dart';
 import 'package:fluffychat/pangea/events/models/tokens_event_content_model.dart';
 import 'package:fluffychat/pangea/morphs/morph_features_enum.dart';
 import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
@@ -231,13 +232,7 @@ class PangeaMessageEvent {
             null;
       }).toSet();
 
-  SpeechToTextModel? getSpeechToTextLocal(
-    String? l1Code,
-    String? l2Code,
-  ) {
-    if (l1Code == null || l2Code == null) {
-      return null;
-    }
+  SpeechToTextModel? getSpeechToTextLocal() {
     return representations
         .firstWhereOrNull(
           (element) => element.content.speechToText != null,
@@ -271,6 +266,21 @@ class PangeaMessageEvent {
       final botTranscription = SpeechToTextModel.fromJson(
         Map<String, dynamic>.from(rawBotTranscription),
       );
+
+      _representations?.add(
+        RepresentationEvent(
+          timeline: timeline,
+          parentMessageEvent: _event,
+          content: PangeaRepresentation(
+            langCode: botTranscription.langCode,
+            text: botTranscription.transcript.text,
+            originalSent: false,
+            originalWritten: false,
+            speechToText: botTranscription,
+          ),
+        ),
+      );
+
       return botTranscription;
     }
 
@@ -281,32 +291,11 @@ class PangeaMessageEvent {
         ?.content
         .speechToText;
 
-    if (speechToTextLocal != null) return speechToTextLocal;
+    if (speechToTextLocal != null) {
+      return speechToTextLocal;
+    }
 
     final matrixFile = await _event.downloadAndDecryptAttachment();
-    // Pangea#
-    // File? file;
-
-    // TODO: Test on mobile and see if we need this case, doeesn't seem so
-    // if (!kIsWeb) {
-    //   final tempDir = await getTemporaryDirectory();
-    //   final fileName = Uri.encodeComponent(
-    //     // #Pangea
-    //     // widget.event.attachmentOrThumbnailMxcUrl()!.pathSegments.last,
-    //     widget.messageEvent.event
-    //         .attachmentOrThumbnailMxcUrl()!
-    //         .pathSegments
-    //         .last,
-    //     // Pangea#
-    //   );
-    //   file = File('${tempDir.path}/${fileName}_${matrixFile.name}');
-    //   await file.writeAsBytes(matrixFile.bytes);
-    // }
-
-    // audioFile = file;
-
-    debugPrint("mimeType ${matrixFile.mimeType}");
-    debugPrint("encoding ${mimeTypeToAudioEncoding(matrixFile.mimeType)}");
 
     final SpeechToTextModel response =
         await MatrixState.pangeaController.speechToText.get(
@@ -339,6 +328,25 @@ class PangeaMessageEvent {
     );
 
     return response;
+  }
+
+  Future<SttTranslationModel?> sttTranslationByLanguageGlobal({
+    required String langCode,
+    required String l1Code,
+    required String l2Code,
+  }) async {
+    if (!representations.any(
+      (element) => element.content.speechToText != null,
+    )) {
+      await getSpeechToText(l1Code, l2Code);
+    }
+
+    final rep = representations.firstWhereOrNull(
+      (element) => element.content.speechToText != null,
+    );
+
+    if (rep == null) return null;
+    return rep.getSttTranslation(userL1: l1Code, userL2: l2Code);
   }
 
   PangeaMessageTokens? _tokensSafe(Map<String, dynamic>? content) {
@@ -403,7 +411,15 @@ class PangeaMessageEvent {
             ),
           );
         }
-        _representations!.add(sent);
+
+        // If originalSent has no tokens, there is not way to generate a tokens event
+        // and send it as a related event, since original sent has not eventID to set
+        // as parentEventId. In this case, it's better to generate a new representation
+        // with an eventID and send the related tokens event to that representation.
+        // This is a rare situation, and has only been seen with some bot messages.
+        if (sent.tokens != null) {
+          _representations!.add(sent);
+        }
       } catch (err, s) {
         ErrorHandler.logError(
           m: "error parsing originalSent",

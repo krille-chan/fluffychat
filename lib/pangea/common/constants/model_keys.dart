@@ -90,6 +90,7 @@ class ModelKey {
   static const String messageTagMorphEdit = "morph_edit";
   static const String messageTagLemmaEdit = "lemma_edit";
   static const String messageTagActivityPlan = "activity_plan";
+  static const String tempEventId = "temporary_event_id";
 
   static const String baseDefinition = "base_definition";
   static const String targetDefinition = "target_definition";
@@ -162,6 +163,8 @@ class ModelKey {
   static const String activityPlanVocab = "vocab";
   static const String activityPlanImageURL = "image_url";
   static const String activityPlanBookmarkId = "bookmark_id";
+  static const String activityPlanEndAt = "end_at";
+  static const String activityPlanDuration = "duration";
 
   static const String activityRequestTopic = "topic";
   static const String activityRequestMode = "mode";

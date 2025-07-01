@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/common/widgets/pressable_button.dart';
-import 'package:fluffychat/pangea/public_spaces/pangea_public_room_bottom_sheet.dart';
-import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
+import 'package:fluffychat/pangea/extensions/pangea_rooms_chunk_extension.dart';
+import 'package:fluffychat/pangea/public_spaces/public_room_bottom_sheet.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
 
 class PublicSpaceCard extends StatelessWidget {
@@ -25,16 +26,10 @@ class PublicSpaceCard extends StatelessWidget {
     final theme = Theme.of(context);
 
     return PressableButton(
-      onPressed: () => showAdaptiveBottomSheet(
+      onPressed: () => PublicRoomBottomSheet.show(
+        roomAlias: space.canonicalAlias ?? space.roomId,
+        chunk: space,
         context: context,
-        // #Pangea
-        // builder: (c) => PublicRoomBottomSheet(
-        builder: (c) => PangeaPublicRoomBottomSheet(
-          // Pangea#
-          roomAlias: space.canonicalAlias ?? space.roomId,
-          outerContext: context,
-          chunk: space,
-        ),
       ),
       borderRadius: BorderRadius.circular(24.0),
       color: theme.brightness == Brightness.dark
@@ -73,7 +68,12 @@ class PublicSpaceCard extends StatelessWidget {
                             height: width,
                             fit: BoxFit.cover,
                           )
-                        : const SizedBox(),
+                        : CachedNetworkImage(
+                            imageUrl: space.defaultAvatar(),
+                            width: width,
+                            height: width,
+                            fit: BoxFit.cover,
+                          ),
                   ),
                 ),
                 Expanded(
@@ -81,7 +81,7 @@ class PublicSpaceCard extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
                       spacing: 4.0,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Column(
@@ -130,16 +130,16 @@ class PublicSpaceCard extends StatelessWidget {
                             ),
                           ],
                         ),
-                        if (space.topic != null)
-                          Flexible(
-                            child: Text(
-                              space.topic!,
-                              style: theme.textTheme.bodySmall,
-                              overflow: TextOverflow.ellipsis,
-                              textAlign: TextAlign.start,
-                              maxLines: 5,
-                            ),
+                        Flexible(
+                          child: Text(
+                            space.topic ??
+                                L10n.of(context).noSpaceDescriptionYet,
+                            style: theme.textTheme.bodySmall,
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.start,
+                            maxLines: 5,
                           ),
+                        ),
                       ],
                     ),
                   ),

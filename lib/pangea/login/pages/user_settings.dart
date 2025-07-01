@@ -1,12 +1,13 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_enum.dart';
@@ -15,6 +16,7 @@ import 'package:fluffychat/pangea/learning_settings/utils/p_language_store.dart'
 import 'package:fluffychat/pangea/login/pages/user_settings_view.dart';
 import 'package:fluffychat/utils/file_selector.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
+import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class UserSettingsPage extends StatefulWidget {
@@ -28,6 +30,9 @@ class UserSettingsState extends State<UserSettingsPage> {
   PangeaController get _pangeaController => MatrixState.pangeaController;
 
   LanguageModel? selectedTargetLanguage;
+  LanguageModel? selectedBaseLanguage;
+  bool showBaseLanguageDropdown = false;
+
   LanguageLevelTypeEnum selectedCefrLevel = LanguageLevelTypeEnum.a1;
 
   String? selectedLanguageError;
@@ -62,11 +67,16 @@ class UserSettingsState extends State<UserSettingsPage> {
   @override
   void initState() {
     super.initState();
+    selectedBaseLanguage =
+        _pangeaController.languageController.userL1 ?? _systemLanguage;
     selectedTargetLanguage = _pangeaController.languageController.userL2;
-    selectedAvatarPath = avatarPaths.first;
+
     displayNameController.text = Matrix.of(context).client.userID?.localpart ??
         Matrix.of(context).client.userID ??
         "";
+
+    final random = Random();
+    selectedAvatarPath = avatarPaths[random.nextInt(avatarPaths.length)];
   }
 
   @override
@@ -79,10 +89,20 @@ class UserSettingsState extends State<UserSettingsPage> {
     super.dispose();
   }
 
+  void setSelectedBaseLanguage(LanguageModel? language) {
+    setState(() {
+      selectedBaseLanguage = language;
+      selectedLanguageError = null;
+    });
+  }
+
   void setSelectedTargetLanguage(LanguageModel? language) {
     setState(() {
       selectedTargetLanguage = language;
       selectedLanguageError = null;
+      if (!showBaseLanguageDropdown && _hasIdenticalLanguages) {
+        showBaseLanguageDropdown = true;
+      }
     });
   }
 
@@ -114,6 +134,10 @@ class UserSettingsState extends State<UserSettingsPage> {
     final selectedFile = photo.singleOrNull;
     final bytes = await selectedFile?.readAsBytes();
     final path = selectedFile?.path;
+
+    if (bytes == null || path == null) {
+      return;
+    }
 
     setState(() {
       selectedAvatarPath = null;
@@ -174,6 +198,13 @@ class UserSettingsState extends State<UserSettingsPage> {
       return;
     }
 
+    if (_hasIdenticalLanguages) {
+      setState(() {
+        selectedLanguageError = L10n.of(context).noIdenticalLanguages;
+      });
+      return;
+    }
+
     if (!formKey.currentState!.validate()) return;
     setState(() => loading = true);
 
@@ -184,9 +215,8 @@ class UserSettingsState extends State<UserSettingsPage> {
         _pangeaController.subscriptionController.reinitialize(),
         _pangeaController.userController.updateProfile(
           (profile) {
-            if (_systemLanguage != null) {
-              profile.userSettings.sourceLanguage = _systemLanguage!.langCode;
-            }
+            profile.userSettings.sourceLanguage =
+                selectedBaseLanguage?.langCode ?? _systemLanguage?.langCode;
             profile.userSettings.targetLanguage =
                 selectedTargetLanguage!.langCode;
             profile.userSettings.cefrLevel = selectedCefrLevel;
@@ -201,13 +231,21 @@ class UserSettingsState extends State<UserSettingsPage> {
           level: 1,
         ),
       ];
-      await Future.wait(updateFuture).timeout(
-        const Duration(seconds: 30),
-        onTimeout: () {
-          throw TimeoutException(L10n.of(context).oopsSomethingWentWrong);
-        },
+
+      await showFutureLoadingDialog(
+        context: context,
+        future: () => Future.wait(updateFuture).timeout(
+          const Duration(seconds: 30),
+          onTimeout: () {
+            throw TimeoutException(L10n.of(context).oopsSomethingWentWrong);
+          },
+        ),
       );
-      context.go('/rooms');
+      context.go(
+        _pangeaController.classController.cachedClassCode == null
+            ? '/user_age/join_space'
+            : '/rooms',
+      );
     } catch (err) {
       if (err is MatrixException) {
         profileCreationError = err.errorMessage;
@@ -224,6 +262,14 @@ class UserSettingsState extends State<UserSettingsPage> {
 
   List<LanguageModel> get targetOptions =>
       _pangeaController.pLanguageStore.targetOptions;
+
+  List<LanguageModel> get baseOptions =>
+      MatrixState.pangeaController.pLanguageStore.baseOptions;
+
+  bool get _hasIdenticalLanguages =>
+      selectedBaseLanguage != null &&
+      selectedTargetLanguage?.langCodeShort ==
+          selectedBaseLanguage?.langCodeShort;
 
   @override
   Widget build(BuildContext context) => UserSettingsView(controller: this);

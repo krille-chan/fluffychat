@@ -12,8 +12,8 @@ import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
-import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/events/models/representation_content_model.dart';
+import 'package:fluffychat/pangea/events/models/stt_translation_model.dart';
 import 'package:fluffychat/pangea/events/models/tokens_event_content_model.dart';
 import 'package:fluffychat/pangea/events/repo/token_api_models.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
@@ -23,8 +23,9 @@ import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 class MessageDataController extends BaseController {
   late PangeaController _pangeaController;
 
-  final Map<int, Future<List<PangeaToken>>> _tokensCache = {};
+  final Map<int, Future<TokensResponseModel>> _tokensCache = {};
   final Map<int, Future<PangeaRepresentation>> _representationCache = {};
+  final Map<int, Future<SttTranslationModel>> _sttTranslationCache = {};
   late Timer _cacheTimer;
 
   MessageDataController(PangeaController pangeaController) {
@@ -43,6 +44,7 @@ class MessageDataController extends BaseController {
   void _clearCache() {
     _tokensCache.clear();
     _representationCache.clear();
+    _sttTranslationCache.clear();
     debugPrint("message data cache cleared.");
   }
 
@@ -54,7 +56,7 @@ class MessageDataController extends BaseController {
 
   /// get tokens from the server
   /// if repEventId is not null, send the tokens to the room
-  Future<List<PangeaToken>> _getTokens({
+  Future<TokensResponseModel> _getTokens({
     required String? repEventId,
     required TokensRequestModel req,
     required Room? room,
@@ -83,13 +85,13 @@ class MessageDataController extends BaseController {
           );
     }
 
-    return res.tokens;
+    return res;
   }
 
   /// get tokens from the server
   /// first check if the tokens are in the cache
   /// if repEventId is not null, send the tokens to the room
-  Future<List<PangeaToken>> getTokens({
+  Future<TokensResponseModel> getTokens({
     required String? repEventId,
     required TokensRequestModel req,
     required Room? room,
@@ -98,7 +100,10 @@ class MessageDataController extends BaseController {
         repEventId: repEventId,
         req: req,
         room: room,
-      );
+      ).catchError((e, s) {
+        _tokensCache.remove(req.hashCode);
+        return Future<TokensResponseModel>.error(e, s);
+      });
 
   /////// translation ////////
 
@@ -216,5 +221,54 @@ class MessageDataController extends BaseController {
         data: req.toJson(),
       );
     }
+  }
+
+  Future<SttTranslationModel> getSttTranslation({
+    required String? repEventId,
+    required FullTextTranslationRequestModel req,
+    required Room? room,
+  }) =>
+      _sttTranslationCache[req.hashCode] ??= _getSttTranslation(
+        repEventId: repEventId,
+        req: req,
+        room: room,
+      ).catchError((e, s) {
+        _sttTranslationCache.remove(req.hashCode);
+        return Future<SttTranslationModel>.error(e, s);
+      });
+
+  Future<SttTranslationModel> _getSttTranslation({
+    required String? repEventId,
+    required FullTextTranslationRequestModel req,
+    required Room? room,
+  }) async {
+    final res = await FullTextTranslationRepo.translate(
+      accessToken: _pangeaController.userController.accessToken,
+      request: req,
+    );
+
+    final translation = SttTranslationModel(
+      translation: res.bestTranslation,
+      langCode: req.tgtLang,
+    );
+
+    if (repEventId != null && room != null) {
+      room
+          .sendPangeaEvent(
+            content: translation.toJson(),
+            parentEventId: repEventId,
+            type: PangeaEventTypes.sttTranslation,
+          )
+          .catchError(
+            (e) => ErrorHandler.logError(
+              m: "error in _getSttTranslation.sendPangeaEvent",
+              e: e,
+              s: StackTrace.current,
+              data: req.toJson(),
+            ),
+          );
+    }
+
+    return translation;
   }
 }

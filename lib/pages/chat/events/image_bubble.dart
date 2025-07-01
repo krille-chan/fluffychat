@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:matrix/matrix.dart';
 
@@ -79,11 +80,18 @@ class ImageBubble extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    final borderRadius =
+    var borderRadius =
         this.borderRadius ?? BorderRadius.circular(AppConfig.borderRadius);
 
     final fileDescription = event.fileDescription;
     final textColor = this.textColor;
+
+    if (fileDescription != null) {
+      borderRadius = borderRadius.copyWith(
+        bottomLeft: Radius.zero,
+        bottomRight: Radius.zero,
+      );
+    }
 
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -105,37 +113,68 @@ class ImageBubble extends StatelessWidget {
             borderRadius: borderRadius,
             child: Hero(
               tag: event.eventId,
-              child: MxcImage(
-                event: event,
-                width: width,
-                height: height,
-                fit: fit,
-                animated: animated,
-                isThumbnail: thumbnailOnly,
-                placeholder: event.messageType == MessageTypes.Sticker
-                    ? null
-                    : _buildPlaceholder,
-              ),
+              // #Pangea
+              child: event.content['url'] is String &&
+                      !(event.content['url'] as String).startsWith('mxc')
+                  ? CachedNetworkImage(
+                      imageUrl: event.content['url'] as String,
+                      width: width,
+                      height: height,
+                      fit: fit,
+                      placeholder: (context, url) => _buildPlaceholder(context),
+                    )
+                  : MxcImage(
+                      event: event,
+                      width: width,
+                      height: height,
+                      fit: fit,
+                      animated: animated,
+                      isThumbnail: thumbnailOnly,
+                      placeholder: event.messageType == MessageTypes.Sticker
+                          ? null
+                          : _buildPlaceholder,
+                    ),
+              // child: MxcImage(
+              //   event: event,
+              //   width: width,
+              //   height: height,
+              //   fit: fit,
+              //   animated: animated,
+              //   isThumbnail: thumbnailOnly,
+              //   placeholder: event.messageType == MessageTypes.Sticker
+              //       ? null
+              //       : _buildPlaceholder,
+              // ),
+              // Pangea#
             ),
           ),
         ),
         if (fileDescription != null && textColor != null)
           SizedBox(
             width: width,
-            child: Linkify(
-              text: fileDescription,
-              style: TextStyle(
-                color: textColor,
-                fontSize: AppConfig.fontSizeFactor * AppConfig.messageFontSize,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 8,
               ),
-              options: const LinkifyOptions(humanize: false),
-              linkStyle: TextStyle(
-                color: linkColor,
-                fontSize: AppConfig.fontSizeFactor * AppConfig.messageFontSize,
-                decoration: TextDecoration.underline,
-                decorationColor: linkColor,
+              child: Linkify(
+                text: fileDescription,
+                textScaleFactor: MediaQuery.textScalerOf(context).scale(1),
+                style: TextStyle(
+                  color: textColor,
+                  fontSize:
+                      AppConfig.fontSizeFactor * AppConfig.messageFontSize,
+                ),
+                options: const LinkifyOptions(humanize: false),
+                linkStyle: TextStyle(
+                  color: linkColor,
+                  fontSize:
+                      AppConfig.fontSizeFactor * AppConfig.messageFontSize,
+                  decoration: TextDecoration.underline,
+                  decorationColor: linkColor,
+                ),
+                onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
               ),
-              onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
             ),
           ),
       ],

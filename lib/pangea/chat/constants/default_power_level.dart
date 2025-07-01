@@ -1,28 +1,82 @@
-Map<String, dynamic> defaultPowerLevels(String userID) => {
-      "defaults": {
-        "ban": 50,
-        "events_default": 0,
-        "invite": 50,
-        "kick": 50,
-        "notifications": {
-          "room": 50,
+import 'package:matrix/matrix.dart';
+
+import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
+
+class RoomDefaults {
+  static StateEvent defaultPowerLevels(String userID) => StateEvent(
+        type: EventTypes.RoomPowerLevels,
+        stateKey: '',
+        content: {
+          "ban": 50,
+          "kick": 50,
+          "invite": 50,
+          "redact": 50,
+          "events": {
+            PangeaEventTypes.activityPlan: 0,
+            "m.room.power_levels": 100,
+            "m.room.pinned_events": 50,
+          },
+          "events_default": 0,
+          "state_default": 50,
+          "users": {
+            userID: 100,
+          },
+          "users_default": 0,
+          "notifications": {
+            "room": 50,
+          },
         },
-        "redact": 50,
-        "state_default": 50,
-        "users_default": 0,
-      },
-      "events": {
-        "m.room.avatar": 50,
-        "m.room.canonical_alias": 50,
-        "m.room.encryption": 100,
-        "m.room.history_visibility": 100,
-        "m.room.name": 50,
-        "m.room.power_levels": 100,
-        "m.room.server_acl": 100,
-        "m.room.tombstone": 100,
-      },
-      "users": {
-        "@bot:staging.pangea.chat": 50,
-        userID: 100,
-      },
-    };
+      );
+
+  static StateEvent restrictedPowerLevels(String userID) => StateEvent(
+        type: EventTypes.RoomPowerLevels,
+        stateKey: '',
+        content: {
+          "ban": 50,
+          "kick": 50,
+          "invite": 50,
+          "redact": 50,
+          "events": {
+            PangeaEventTypes.activityPlan: 50,
+            "m.room.power_levels": 100,
+            "m.room.pinned_events": 50,
+          },
+          "events_default": 50,
+          "state_default": 50,
+          "users": {
+            userID: 100,
+          },
+          "users_default": 0,
+          "notifications": {
+            "room": 50,
+          },
+        },
+      );
+
+  static StateEvent defaultSpacePowerLevels(String userID) => StateEvent(
+        type: EventTypes.RoomPowerLevels,
+        stateKey: '',
+        content: {
+          "ban": 50,
+          "kick": 50,
+          "invite": 50,
+          "redact": 50,
+          "events": {
+            "m.room.power_levels": 100,
+            "m.room.join_rules": 100,
+            "m.space.child": 50,
+          },
+          "events_default": 0,
+          "state_default": 50,
+          "users": {
+            userID: 100,
+          },
+          "users_default": 0,
+          "notifications": {
+            "room": 50,
+          },
+        },
+      );
+
+  static Visibility spaceChildVisibility = Visibility.private;
+}

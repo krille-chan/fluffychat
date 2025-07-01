@@ -1,6 +1,7 @@
 import 'package:fluffychat/pangea/choreographer/models/language_detection_model.dart';
 import 'package:fluffychat/pangea/common/constants/model_keys.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
+import 'package:fluffychat/pangea/learning_settings/constants/language_constants.dart';
 
 class TokensRequestModel {
   /// the text to be tokenized
@@ -24,16 +25,16 @@ class TokensRequestModel {
 
   TokensRequestModel({
     required this.fullText,
-    required this.langCode,
     required this.senderL1,
     required this.senderL2,
+    this.langCode,
   });
 
   Map<String, dynamic> toJson() => {
         ModelKey.fullText: fullText,
         ModelKey.userL1: senderL1,
         ModelKey.userL2: senderL2,
-        ModelKey.langCode: langCode,
+        ModelKey.langCode: langCode ?? LanguageKeys.unknownLanguage,
       };
 
   // override equals and hashcode

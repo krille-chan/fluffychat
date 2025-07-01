@@ -1,19 +1,28 @@
+import 'dart:math';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/events/message_content.dart';
 import 'package:fluffychat/pages/chat/events/reply_content.dart';
+import 'package:fluffychat/pangea/bot/utils/bot_name.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/events/extensions/pangea_event_extension.dart';
+import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
+import 'package:fluffychat/pangea/learning_settings/utils/p_language_store.dart';
+import 'package:fluffychat/pangea/phonetic_transcription/phonetic_transcription_widget.dart';
 import 'package:fluffychat/pangea/toolbar/enums/reading_assistance_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
-import 'package:fluffychat/pangea/toolbar/widgets/message_speech_to_text_card.dart';
+import 'package:fluffychat/pangea/toolbar/widgets/stt_transcript_tokens.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/file_description.dart';
+import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 // @ggurdin be great to explain the need/function of a widget like this
@@ -23,7 +32,7 @@ class OverlayMessage extends StatelessWidget {
   final MessageOverlayController overlayController;
   final ChatController controller;
   final Event? nextEvent;
-  final Event? prevEvent;
+  final Event? previousEvent;
   final Timeline timeline;
   final bool immersionMode;
 
@@ -46,7 +55,7 @@ class OverlayMessage extends StatelessWidget {
     required this.maxHeight,
     this.pangeaMessageEvent,
     this.nextEvent,
-    this.prevEvent,
+    this.previousEvent,
     this.sizeAnimation,
     this.isTransitionAnimation = false,
     this.readingAssistanceMode,
@@ -71,15 +80,28 @@ class OverlayMessage extends StatelessWidget {
         nextEvent!.senderId == event.senderId &&
         !displayTime;
 
-    final previousEventSameSender = prevEvent != null &&
+    final previousEventSameSender = previousEvent != null &&
         {
           EventTypes.Message,
           EventTypes.Sticker,
           EventTypes.Encrypted,
-        }.contains(prevEvent!.type) &&
-        prevEvent!.senderId == event.senderId &&
-        prevEvent!.originServerTs.sameEnvironment(event.originServerTs);
+        }.contains(previousEvent!.type) &&
+        previousEvent!.senderId == event.senderId &&
+        previousEvent!.originServerTs.sameEnvironment(event.originServerTs);
 
+    final textColor = event.isActivityMessage
+        ? ThemeData.light().colorScheme.onPrimary
+        : ownMessage
+            ? ThemeData.dark().colorScheme.onPrimary
+            : theme.colorScheme.onSurface;
+
+    final linkColor = theme.brightness == Brightness.light
+        ? theme.colorScheme.primary
+        : ownMessage
+            ? theme.colorScheme.onPrimary
+            : theme.colorScheme.onSurface;
+
+    final displayEvent = event.getDisplayEvent(timeline);
     const hardCorner = Radius.circular(4);
     const roundedCorner = Radius.circular(AppConfig.borderRadius);
     final borderRadius = BorderRadius.only(
@@ -91,7 +113,6 @@ class OverlayMessage extends StatelessWidget {
           ownMessage && previousEventSameSender ? hardCorner : roundedCorner,
     );
 
-    final displayEvent = event.getDisplayEvent(timeline);
     // ignore: deprecated_member_use
     var color = theme.colorScheme.surfaceContainerHigh;
     if (ownMessage) {
@@ -121,21 +142,133 @@ class OverlayMessage extends StatelessWidget {
             event.onlyEmotes &&
             event.numberEmotes > 0 &&
             event.numberEmotes <= 3);
-    final noPadding = {
-      MessageTypes.File,
-      MessageTypes.Audio,
-    }.contains(event.messageType);
-
-    final textColor = event.isActivityMessage
-        ? ThemeData.light().colorScheme.onPrimary
-        : ownMessage
-            ? ThemeData.dark().colorScheme.onPrimary
-            : theme.colorScheme.onSurface;
 
     final showTranslation = overlayController.showTranslation &&
-        overlayController.translationText != null;
+        overlayController.translation != null;
 
     final showTranscription = pangeaMessageEvent?.isAudioMessage == true;
+
+    final showSpeechTranslation = overlayController.showSpeechTranslation &&
+        overlayController.speechTranslation != null;
+
+    final transcription = showTranscription
+        ? Container(
+            constraints: BoxConstraints(
+              maxWidth: min(
+                FluffyThemes.columnWidth * 1.5,
+                MediaQuery.of(context).size.width -
+                    (ownMessage ? 0 : Avatar.defaultSize) -
+                    24.0,
+              ),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: overlayController.transcriptionError != null
+                  ? Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(
+                          Icons.error_outline,
+                          color: Theme.of(context).colorScheme.error,
+                        ),
+                        const SizedBox(width: 8),
+                        Text(
+                          L10n.of(context).transcriptionFailed,
+                          style: AppConfig.messageTextStyle(
+                            event,
+                            textColor,
+                          ).copyWith(fontStyle: FontStyle.italic),
+                        ),
+                      ],
+                    )
+                  : overlayController.transcription != null
+                      ? SingleChildScrollView(
+                          child: Column(
+                            spacing: 8.0,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              SttTranscriptTokens(
+                                model: overlayController.transcription!,
+                                style: AppConfig.messageTextStyle(
+                                  event,
+                                  textColor,
+                                ).copyWith(
+                                  fontStyle: FontStyle.italic,
+                                ),
+                                onClick: overlayController
+                                    .onClickOverlayMessageToken,
+                                isSelected: overlayController.isTokenSelected,
+                              ),
+                              if (MatrixState.pangeaController
+                                  .languageController.showTrancription)
+                                PhoneticTranscriptionWidget(
+                                  text: overlayController
+                                      .transcription!.transcript.text,
+                                  textLanguage: PLanguageStore.byLangCode(
+                                        overlayController
+                                            .transcription!.langCode,
+                                      ) ??
+                                      LanguageModel.unknown,
+                                  style: AppConfig.messageTextStyle(
+                                    event,
+                                    textColor,
+                                  ),
+                                  iconColor: textColor,
+                                  enabled:
+                                      event.senderId != BotName.byEnvironment,
+                                  onTranscriptionFetched: () =>
+                                      overlayController.contentChangedStream
+                                          .add(true),
+                                ),
+                            ],
+                          ),
+                        )
+                      : Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            CircularProgressIndicator.adaptive(
+                              backgroundColor: textColor,
+                            ),
+                          ],
+                        ),
+            ),
+          )
+        : const SizedBox();
+
+    final translation = showTranslation || showSpeechTranslation
+        ? Container(
+            constraints: BoxConstraints(
+              maxWidth: min(
+                FluffyThemes.columnWidth * 1.5,
+                MediaQuery.of(context).size.width -
+                    (ownMessage ? 0 : Avatar.defaultSize) -
+                    24.0,
+              ),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(
+                12.0,
+                20.0,
+                12.0,
+                12.0,
+              ),
+              child: SingleChildScrollView(
+                child: Text(
+                  showTranslation
+                      ? overlayController.translation!
+                      : overlayController.speechTranslation!,
+                  style: AppConfig.messageTextStyle(
+                    event,
+                    textColor,
+                  ).copyWith(
+                    fontStyle: FontStyle.italic,
+                  ),
+                ),
+              ),
+            ),
+          )
+        : const SizedBox();
 
     final content = Container(
       decoration: BoxDecoration(
@@ -143,12 +276,6 @@ class OverlayMessage extends StatelessWidget {
           AppConfig.borderRadius,
         ),
       ),
-      padding: noBubble || noPadding
-          ? EdgeInsets.zero
-          : const EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 8,
-            ),
       width: messageWidth,
       height: messageHeight,
       constraints: BoxConstraints(
@@ -177,7 +304,7 @@ class OverlayMessage extends StatelessWidget {
                             'msgtype': 'm.text',
                             'body': '...',
                           },
-                          senderId: event.senderId,
+                          senderId: "",
                           type: 'm.room.message',
                           room: event.room,
                           status: EventStatus.sent,
@@ -185,18 +312,24 @@ class OverlayMessage extends StatelessWidget {
                         );
                   return Padding(
                     padding: const EdgeInsets.only(
-                      bottom: 4.0,
+                      left: 16,
+                      right: 16,
+                      top: 8,
                     ),
-                    child: InkWell(
+                    child: Material(
+                      color: Colors.transparent,
                       borderRadius: ReplyContent.borderRadius,
-                      onTap: () => controller.scrollToEventId(
-                        replyEvent.eventId,
-                      ),
-                      child: AbsorbPointer(
-                        child: ReplyContent(
-                          replyEvent,
-                          ownMessage: ownMessage,
-                          timeline: timeline,
+                      child: InkWell(
+                        borderRadius: ReplyContent.borderRadius,
+                        onTap: () => controller.scrollToEventId(
+                          replyEvent.eventId,
+                        ),
+                        child: AbsorbPointer(
+                          child: ReplyContent(
+                            replyEvent,
+                            ownMessage: ownMessage,
+                            timeline: timeline,
+                          ),
                         ),
                       ),
                     ),
@@ -204,23 +337,20 @@ class OverlayMessage extends StatelessWidget {
                 },
               ),
             MessageContent(
-              event.getDisplayEvent(timeline),
+              displayEvent,
               textColor: textColor,
+              linkColor: linkColor,
+              borderRadius: borderRadius,
+              timeline: timeline,
               pangeaMessageEvent: pangeaMessageEvent,
               immersionMode: immersionMode,
               overlayController: overlayController,
               controller: controller,
               nextEvent: nextEvent,
-              prevEvent: prevEvent,
-              borderRadius: borderRadius,
-              timeline: timeline,
-              linkColor: theme.brightness == Brightness.light
-                  ? theme.colorScheme.primary
-                  : ownMessage
-                      ? theme.colorScheme.onPrimary
-                      : theme.colorScheme.onSurface,
+              prevEvent: previousEvent,
               isTransitionAnimation: isTransitionAnimation,
               readingAssistanceMode: readingAssistanceMode,
+              selected: true,
             ),
             if (event.hasAggregatedEvents(
               timeline,
@@ -228,30 +358,30 @@ class OverlayMessage extends StatelessWidget {
             ))
               Padding(
                 padding: const EdgeInsets.only(
-                  top: 4.0,
+                  bottom: 8.0,
+                  left: 16.0,
+                  right: 16.0,
                 ),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
+                  spacing: 4.0,
                   children: [
-                    if (event.hasAggregatedEvents(
-                      timeline,
-                      RelationshipTypes.edit,
-                    )) ...[
-                      Icon(
-                        Icons.edit_outlined,
-                        color: textColor.withAlpha(164),
-                        size: 14,
+                    Icon(
+                      Icons.edit_outlined,
+                      color: textColor.withAlpha(164),
+                      size: 14,
+                    ),
+                    Text(
+                      displayEvent.originServerTs.localizedTimeShort(
+                        context,
                       ),
-                      Text(
-                        ' - ${displayEvent.originServerTs.localizedTimeShort(context)}',
-                        style: TextStyle(
-                          color: textColor.withAlpha(
-                            164,
-                          ),
-                          fontSize: 12,
+                      style: TextStyle(
+                        color: textColor.withAlpha(
+                          164,
                         ),
+                        fontSize: 11,
                       ),
-                    ],
+                    ),
                   ],
                 ),
               ),
@@ -268,53 +398,31 @@ class OverlayMessage extends StatelessWidget {
           color: noBubble ? Colors.transparent : color,
           borderRadius: borderRadius,
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            sizeAnimation != null
-                ? AnimatedBuilder(
-                    animation: sizeAnimation!,
-                    builder: (context, child) {
-                      return SizedBox(
-                        height: sizeAnimation!.value.height,
-                        width: sizeAnimation!.value.width,
-                        child: content,
-                      );
-                    },
-                  )
-                : content,
-            if (showTranscription || showTranslation)
-              Container(
-                width: messageWidth,
-                constraints: const BoxConstraints(
-                  maxHeight: AppConfig.audioTranscriptionMaxHeight,
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(
-                    12.0,
-                    20.0,
-                    12.0,
-                    12.0,
-                  ),
-                  child: SingleChildScrollView(
-                    child: showTranscription
-                        ? MessageSpeechToTextCard(
-                            messageEvent: pangeaMessageEvent!,
-                            textColor: textColor,
-                          )
-                        : Text(
-                            overlayController.translationText!,
-                            style: AppConfig.messageTextStyle(
-                              event,
-                              textColor,
-                            ).copyWith(
-                              fontStyle: FontStyle.italic,
-                            ),
-                          ),
-                  ),
-                ),
-              ),
-          ],
+        constraints: BoxConstraints(
+          maxWidth: FluffyThemes.columnWidth * 1.5,
+          maxHeight: maxHeight,
+        ),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              transcription,
+              sizeAnimation != null
+                  ? AnimatedBuilder(
+                      animation: sizeAnimation!,
+                      builder: (context, child) {
+                        return SizedBox(
+                          height: sizeAnimation!.value.height,
+                          width: sizeAnimation!.value.width,
+                          child: content,
+                        );
+                      },
+                    )
+                  : content,
+              translation,
+            ],
+          ),
         ),
       ),
     );

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
@@ -18,7 +19,9 @@ import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/enums/reading_assistance_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/utils/token_rendering_util.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
+import 'package:fluffychat/utils/event_checkbox_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
+import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
 import '../../../utils/url_launcher.dart';
@@ -30,6 +33,10 @@ class HtmlMessage extends StatelessWidget {
   final double fontSize;
   final TextStyle linkStyle;
   final void Function(LinkableElement) onOpen;
+  final String? eventId;
+  final Set<Event>? checkboxCheckedEvents;
+  final bool limitHeight;
+
   // #Pangea
   final MessageOverlayController? overlayController;
   final PangeaMessageEvent? pangeaMessageEvent;
@@ -52,6 +59,9 @@ class HtmlMessage extends StatelessWidget {
     required this.linkStyle,
     this.textColor = Colors.black,
     required this.onOpen,
+    this.eventId,
+    this.checkboxCheckedEvents,
+    this.limitHeight = true,
     // #Pangea
     this.overlayController,
     required this.event,
@@ -70,6 +80,7 @@ class HtmlMessage extends StatelessWidget {
   static const Set<String> allowedHtmlTags = {
     'font',
     'del',
+    's',
     'h1',
     'h2',
     'h3',
@@ -144,7 +155,9 @@ class HtmlMessage extends StatelessWidget {
 
   // #Pangea
   List<PangeaToken>? get tokens =>
-      pangeaMessageEvent?.messageDisplayRepresentation?.tokens;
+      pangeaMessageEvent?.messageDisplayRepresentation?.tokens
+          ?.where((t) => t.pos != "PUNCT")
+          .toList();
 
   PangeaToken? getToken(
     String text,
@@ -155,71 +168,91 @@ class HtmlMessage extends StatelessWidget {
         (token) => token.text.offset == offset && token.text.length == length,
       );
 
-  /// Wrap token spans in token tags so styling / functions can be applied
-  dom.Node _tokenizeHtml(
-    dom.Node element,
-    String fullHtml,
-    List<PangeaToken> remainingTokens,
-  ) {
-    for (final node in element.nodes) {
-      node.replaceWith(_tokenizeHtml(node, fullHtml, remainingTokens));
-    }
+  String _addTokenTags() {
+    final regex = RegExp(r'(<[^>]+>)');
 
-    if (element is dom.Text) {
-      // once a text element in reached in the HTML tree, find and
-      // wrap all the spans with matching tokens until all tokens
-      // have been wrapped or no more text elements remain
-      String tokenizedText = element.text;
-      while (remainingTokens.isNotEmpty) {
-        final tokenText = remainingTokens.first.text.content;
+    final matches = regex.allMatches(html);
+    final List<String> result = <String>[];
+    int lastEnd = 0;
 
-        int startIndex = tokenizedText.lastIndexOf('</token>');
-        startIndex = startIndex == -1 ? 0 : startIndex + 8;
-        final int tokenIndex = tokenizedText.indexOf(
-          tokenText,
-          startIndex,
-        );
-
-        // if the token is not found in the text, check if the token exist in the full HTML.
-        // If not, remove the token and continue. If so, break to move on to the next node in the HTML.
-        if (tokenIndex == -1) {
-          final fullHtmlIndex = fullHtml.indexOf(tokenText);
-          if (fullHtmlIndex == -1) {
-            remainingTokens.removeAt(0);
-            continue;
-          } else {
-            break;
-          }
-        }
-
-        final token = remainingTokens.removeAt(0);
-        final tokenEnd = tokenIndex + tokenText.length;
-        final before = tokenizedText.substring(0, tokenIndex);
-        final after = tokenizedText.substring(tokenEnd);
-
-        tokenizedText =
-            "$before<token offset=\"${token.text.offset}\" length=\"${token.text.length}\">$tokenText</token>$after";
+    for (final match in matches) {
+      if (match.start > lastEnd) {
+        result.add(html.substring(lastEnd, match.start)); // Text before tag
       }
-
-      final newElement = dom.Element.html('<span>$tokenizedText</span>');
-      return newElement;
+      result.add(match.group(0)!); // The tag itself
+      lastEnd = match.end;
     }
 
-    return element;
+    if (lastEnd < html.length) {
+      result.add(html.substring(lastEnd)); // Remaining text after last tag
+    }
+
+    final replyTagIndex = result.indexWhere(
+      (string) => string.contains('<mx-reply>'),
+    );
+    if (replyTagIndex != -1) {
+      final closingReplyTagIndex = result.indexWhere(
+        (string) => string.contains('</mx-reply>'),
+        replyTagIndex,
+      );
+      if (closingReplyTagIndex != -1) {
+        result.replaceRange(
+          replyTagIndex,
+          closingReplyTagIndex + 1,
+          [result.sublist(replyTagIndex, closingReplyTagIndex + 1).join()],
+        );
+      }
+    }
+
+    for (final PangeaToken token in tokens ?? []) {
+      final String tokenText = token.text.content;
+      final substringIndex = result.indexWhere(
+        (string) =>
+            string.contains(tokenText) &&
+            !(string.startsWith('<') && string.endsWith('>')),
+      );
+
+      if (substringIndex == -1) continue;
+      final int tokenIndex = result[substringIndex].indexOf(tokenText);
+      if (tokenIndex == -1) continue;
+
+      final int tokenLength = tokenText.characters.length;
+      final before =
+          result[substringIndex].characters.take(tokenIndex).toString();
+      final after = result[substringIndex]
+          .characters
+          .skip(tokenIndex + tokenLength)
+          .toString();
+
+      result.replaceRange(substringIndex, substringIndex + 1, [
+        if (before.isNotEmpty) before,
+        '<token offset="${token.text.offset}" length="${token.text.length}">$tokenText</token>',
+        if (after.isNotEmpty) after,
+      ]);
+    }
+
+    return result.join();
   }
   // Pangea#
 
   /// Adding line breaks before block elements.
   List<InlineSpan> _renderWithLineBreaks(
     dom.NodeList nodes,
-    BuildContext context, {
+    // #Pangea
+    // BuildContext context, {
+    BuildContext context,
+    TextStyle textStyle, {
+    // Pangea#
     int depth = 1,
   }) {
     final onlyElements = nodes.whereType<dom.Element>().toList();
     return [
       for (var i = 0; i < nodes.length; i++) ...[
         // Actually render the node child:
-        _renderHtml(nodes[i], context, depth: depth + 1),
+        // #Pangea
+        // _renderHtml(nodes[i], context, depth: depth + 1),
+        _renderHtml(nodes[i], context, textStyle, depth: depth + 1),
+        // Pangea#
         // Add linebreaks between blocks:
         if (nodes[i] is dom.Element &&
             onlyElements.indexOf(nodes[i] as dom.Element) <
@@ -236,7 +269,11 @@ class HtmlMessage extends StatelessWidget {
   /// Transforms a Node to an InlineSpan.
   InlineSpan _renderHtml(
     dom.Node node,
-    BuildContext context, {
+    // #Pangea
+    // BuildContext context, {
+    BuildContext context,
+    TextStyle textStyle, {
+    // Pangea#
     int depth = 1,
   }) {
     // We must not render elements nested more than 100 elements deep:
@@ -259,6 +296,25 @@ class HtmlMessage extends StatelessWidget {
     // We must not render tags which are not in the allow list:
     if (!allowedHtmlTags.contains(node.localName)) return const TextSpan();
 
+    // #Pangea
+    final renderer = TokenRenderingUtil(
+      pangeaMessageEvent: pangeaMessageEvent,
+      readingAssistanceMode: readingAssistanceMode,
+      existingStyle: pangeaMessageEvent != null
+          ? textStyle.merge(
+              AppConfig.messageTextStyle(
+                pangeaMessageEvent!.event,
+                textColor,
+              ),
+            )
+          : textStyle,
+      overlayController: overlayController,
+      isTransitionAnimation: isTransitionAnimation,
+    );
+
+    final fontSize = renderer.fontSize(context) ?? this.fontSize;
+    // Pangea#
+
     switch (node.localName) {
       // #Pangea
       case 'token':
@@ -272,24 +328,12 @@ class HtmlMessage extends StatelessWidget {
             ? isSelected!.call(token)
             : false;
 
-        final renderer = TokenRenderingUtil(
-          pangeaMessageEvent: pangeaMessageEvent,
-          readingAssistanceMode: readingAssistanceMode,
-          existingStyle: AppConfig.messageTextStyle(
-            pangeaMessageEvent!.event,
-            textColor,
-          ),
-          overlayController: overlayController,
-          isTransitionAnimation: isTransitionAnimation,
-        );
-
         final tokenWidth = renderer.tokenTextWidthForContainer(
           context,
-          node.innerHtml,
+          node.text,
         );
 
         return WidgetSpan(
-          alignment: PlaceholderAlignment.middle,
           child: CompositedTransformTarget(
             link: token != null && renderer.assignTokenKey
                 ? MatrixState.pAnyState
@@ -332,15 +376,15 @@ class HtmlMessage extends StatelessWidget {
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
                   child: GestureDetector(
+                    behavior: HitTestBehavior.translucent,
                     onTap: onClick != null && token != null
                         ? () => onClick?.call(token)
                         : null,
-                    child: Text.rich(
-                      textScaler: TextScaler.noScaling,
-                      TextSpan(
+                    child: RichText(
+                      text: TextSpan(
                         children: [
                           LinkifySpan(
-                            text: node.innerHtml,
+                            text: node.text,
                             style: renderer.style(
                               context,
                               color: renderer.backgroundColor(
@@ -374,6 +418,9 @@ class HtmlMessage extends StatelessWidget {
           if (matrixId.sigil == '@') {
             final user = room.unsafeGetUserFromMemoryOrFallback(matrixId);
             return WidgetSpan(
+              // #Pangea
+              alignment: PlaceholderAlignment.middle,
+              // Pangea#
               child: MatrixPill(
                 key: Key('user_pill_$matrixId'),
                 name: user.calcDisplayname(),
@@ -382,6 +429,9 @@ class HtmlMessage extends StatelessWidget {
                 outerContext: context,
                 fontSize: fontSize,
                 color: linkStyle.color,
+                // #Pangea
+                userId: user.id,
+                // Pangea#
               ),
             );
           }
@@ -390,6 +440,9 @@ class HtmlMessage extends StatelessWidget {
                 ? this.room.client.getRoomById(matrixId)
                 : this.room.client.getRoomByAlias(matrixId);
             return WidgetSpan(
+              // #Pangea
+              alignment: PlaceholderAlignment.middle,
+              // Pangea#
               child: MatrixPill(
                 name: room?.getLocalizedDisplayname() ?? matrixId,
                 avatar: room?.avatar,
@@ -418,6 +471,11 @@ class HtmlMessage extends StatelessWidget {
                   children: _renderWithLineBreaks(
                     node.nodes,
                     context,
+                    // #Pangea
+                    textStyle.merge(
+                      linkStyle.copyWith(height: 1.25),
+                    ),
+                    // Pangea#
                     depth: depth,
                   ),
                   style: linkStyle,
@@ -431,6 +489,24 @@ class HtmlMessage extends StatelessWidget {
         if (!{'ol', 'ul'}.contains(node.parent?.localName)) {
           continue block;
         }
+        final eventId = this.eventId;
+
+        final isCheckbox = node.className == 'task-list-item';
+        final checkboxIndex = isCheckbox
+            ? node.rootElement
+                    .getElementsByClassName('task-list-item')
+                    .indexOf(node) +
+                1
+            : null;
+        final checkedByReaction = !isCheckbox
+            ? null
+            : checkboxCheckedEvents?.firstWhereOrNull(
+                (event) => event.checkedCheckboxId == checkboxIndex,
+              );
+        final staticallyChecked = !isCheckbox
+            ? false
+            : node.children.first.attributes['checked'] == 'true';
+
         return WidgetSpan(
           child: Padding(
             padding: EdgeInsets.only(left: fontSize),
@@ -441,15 +517,75 @@ class HtmlMessage extends StatelessWidget {
               TextSpan(
                 children: [
                   if (node.parent?.localName == 'ul')
-                    const TextSpan(text: '• '),
+                    // #Pangea
+                    // const TextSpan(text: '• '),
+                    TextSpan(
+                      text: '• ',
+                      style: renderer.style(
+                        context,
+                        color: renderer.backgroundColor(
+                          context,
+                          false,
+                        ),
+                      ),
+                    ),
+                  // Pangea#
                   if (node.parent?.localName == 'ol')
                     TextSpan(
                       text:
-                          '${(node.parent?.nodes.indexOf(node) ?? 0) + (int.tryParse(node.parent?.attributes['start'] ?? '1') ?? 1)}. ',
+                          '${(node.parent?.nodes.whereType<dom.Element>().toList().indexOf(node) ?? 0) + (int.tryParse(node.parent?.attributes['start'] ?? '1') ?? 1)}. ',
+                      // #Pangea
+                      // style: textStyle,
+                      style: renderer.style(
+                        context,
+                        color: renderer.backgroundColor(
+                          context,
+                          false,
+                        ),
+                      ),
+                      // Pangea#
+                    ),
+                  if (node.className == 'task-list-item')
+                    WidgetSpan(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        child: SizedBox.square(
+                          dimension: fontSize + 2,
+                          child: CupertinoCheckbox(
+                            checkColor: textColor,
+                            side: BorderSide(color: textColor),
+                            activeColor: textColor.withAlpha(64),
+                            value:
+                                staticallyChecked || checkedByReaction != null,
+                            onChanged: eventId == null ||
+                                    checkboxIndex == null ||
+                                    staticallyChecked ||
+                                    !room.canSendDefaultMessages ||
+                                    (checkedByReaction != null &&
+                                        checkedByReaction.senderId !=
+                                            room.client.userID)
+                                ? null
+                                : (_) => showFutureLoadingDialog(
+                                      context: context,
+                                      future: () => checkedByReaction != null
+                                          ? room.redactEvent(
+                                              checkedByReaction.eventId,
+                                            )
+                                          : room.checkCheckbox(
+                                              eventId,
+                                              checkboxIndex,
+                                            ),
+                                    ),
+                          ),
+                        ),
+                      ),
                     ),
                   ..._renderWithLineBreaks(
                     node.nodes,
                     context,
+                    // #Pangea
+                    textStyle,
+                    // Pangea#
                     depth: depth,
                   ),
                 ],
@@ -466,7 +602,7 @@ class HtmlMessage extends StatelessWidget {
               border: Border(
                 left: BorderSide(
                   color: textColor,
-                  width: 3,
+                  width: 5,
                 ),
               ),
             ),
@@ -478,6 +614,9 @@ class HtmlMessage extends StatelessWidget {
                 children: _renderWithLineBreaks(
                   node.nodes,
                   context,
+                  // #Pangea
+                  textStyle.copyWith(fontStyle: FontStyle.italic),
+                  // Pangea#
                   depth: depth,
                 ),
               ),
@@ -514,7 +653,7 @@ class HtmlMessage extends StatelessWidget {
                 ),
                 textStyle: TextStyle(
                   fontSize: fontSize,
-                  fontFamily: 'UbuntuMono',
+                  fontFamily: 'RobotoMono',
                 ),
               ),
             ),
@@ -576,12 +715,28 @@ class HtmlMessage extends StatelessWidget {
                                 node.localName == 'summary',
                           )
                           .map(
-                            (node) => _renderHtml(node, context, depth: depth),
+                            // #Pangea
+                            // (node) => _renderHtml(node, context, depth: depth),
+                            (node) => _renderHtml(
+                              node,
+                              context,
+                              textStyle.merge(
+                                TextStyle(
+                                  fontSize: fontSize,
+                                  color: textColor,
+                                ),
+                              ),
+                              depth: depth,
+                            ),
+                            // Pangea#
                           )
                     else
                       ..._renderWithLineBreaks(
                         node.nodes,
                         context,
+                        // #Pangea
+                        textStyle,
+                        // Pangea#
                         depth: depth,
                       ),
                   ],
@@ -614,6 +769,11 @@ class HtmlMessage extends StatelessWidget {
                   children: _renderWithLineBreaks(
                     node.nodes,
                     context,
+                    // #Pangea
+                    textStyle.copyWith(
+                      backgroundColor: obscure ? textColor : null,
+                    ),
+                    // Pangea#
                     depth: depth,
                   ),
                 ),
@@ -628,6 +788,36 @@ class HtmlMessage extends StatelessWidget {
         );
       block:
       default:
+        // #Pangea
+        final style = switch (node.localName) {
+          'body' => TextStyle(
+              fontSize: fontSize,
+              color: textColor,
+            ),
+          'a' => linkStyle,
+          'strong' => const TextStyle(fontWeight: FontWeight.bold),
+          'em' || 'i' => const TextStyle(fontStyle: FontStyle.italic),
+          'del' ||
+          'strikethrough' =>
+            const TextStyle(decoration: TextDecoration.lineThrough),
+          'u' => const TextStyle(decoration: TextDecoration.underline),
+          'h1' => TextStyle(fontSize: fontSize * 1.6, height: 2),
+          'h2' => TextStyle(fontSize: fontSize * 1.5, height: 2),
+          'h3' => TextStyle(fontSize: fontSize * 1.4, height: 2),
+          'h4' => TextStyle(fontSize: fontSize * 1.3, height: 1.75),
+          'h5' => TextStyle(fontSize: fontSize * 1.2, height: 1.75),
+          'h6' => TextStyle(fontSize: fontSize * 1.1, height: 1.5),
+          'span' => TextStyle(
+              color: node.attributes['color']?.hexToColor ??
+                  node.attributes['data-mx-color']?.hexToColor ??
+                  textColor,
+              backgroundColor: node.attributes['data-mx-bg-color']?.hexToColor,
+            ),
+          'sup' => const TextStyle(fontFeatures: [FontFeature.superscripts()]),
+          'sub' => const TextStyle(fontFeatures: [FontFeature.subscripts()]),
+          _ => null,
+        };
+        // Pangea#
         return TextSpan(
           style: switch (node.localName) {
             'body' => TextStyle(
@@ -638,6 +828,7 @@ class HtmlMessage extends StatelessWidget {
             'strong' => const TextStyle(fontWeight: FontWeight.bold),
             'em' || 'i' => const TextStyle(fontStyle: FontStyle.italic),
             'del' ||
+            's' ||
             'strikethrough' =>
               const TextStyle(decoration: TextDecoration.lineThrough),
             'u' => const TextStyle(decoration: TextDecoration.underline),
@@ -662,6 +853,9 @@ class HtmlMessage extends StatelessWidget {
           children: _renderWithLineBreaks(
             node.nodes,
             context,
+            // #Pangea
+            textStyle.merge(style ?? const TextStyle()),
+            // Pangea#
             depth: depth,
           ),
         );
@@ -671,10 +865,17 @@ class HtmlMessage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // #Pangea
-    dom.Node parsed = parser.parse(html).body ?? dom.Element.html('');
-    if (tokens != null) {
-      parsed = _tokenizeHtml(parsed, html, List.from(tokens!));
-    }
+    // final element = parser.parse(html).body ?? dom.Element.html('');
+    // return Text.rich(
+    //   _renderHtml(element, context),
+    //   style: TextStyle(
+    //     fontSize: fontSize,
+    //     color: textColor,
+    //   ),
+    //   maxLines: limitHeight ? 64 : null,Add commentMore actions
+    //   overflow: TextOverflow.fade,
+    // );
+    final parsed = parser.parse(_addTokenTags()).body ?? dom.Element.html('');
     return SelectionArea(
       child: GestureDetector(
         onTap: () {
@@ -687,22 +888,22 @@ class HtmlMessage extends StatelessWidget {
             );
           }
         },
-        // Pangea#
         child: Text.rich(
-          // #Pangea
           textScaler: TextScaler.noScaling,
-          // Pangea#
           _renderHtml(
-            // #Pangea
-            // parser.parse(html).body ?? dom.Element.html(''),
             parsed,
-            // Pangea#
             context,
+            TextStyle(
+              fontSize: fontSize,
+              color: textColor,
+            ),
           ),
           style: TextStyle(
             fontSize: fontSize,
             color: textColor,
           ),
+          maxLines: limitHeight ? 64 : null,
+          overflow: TextOverflow.fade,
         ),
       ),
     );
@@ -716,6 +917,9 @@ class MatrixPill extends StatelessWidget {
   final String uri;
   final double? fontSize;
   final Color? color;
+  // #Pangea
+  final String? userId;
+  // Pangea#
 
   const MatrixPill({
     super.key,
@@ -725,6 +929,9 @@ class MatrixPill extends StatelessWidget {
     required this.uri,
     required this.fontSize,
     required this.color,
+    // #Pangea
+    this.userId,
+    // Pangea#
   });
 
   @override
@@ -732,27 +939,56 @@ class MatrixPill extends StatelessWidget {
     return InkWell(
       splashColor: Colors.transparent,
       onTap: UrlLauncher(outerContext, uri).launchUrl,
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Avatar(
-            mxContent: avatar,
-            name: name,
-            size: 16,
-          ),
-          const SizedBox(width: 6),
-          Text(
-            name,
-            style: TextStyle(
-              color: color,
-              decorationColor: color,
-              decoration: TextDecoration.underline,
-              fontSize: fontSize,
-              height: 1.25,
+      // #Pangea
+      child: RichText(
+        textScaler: TextScaler.noScaling,
+        text: TextSpan(
+          children: [
+            WidgetSpan(
+              alignment: PlaceholderAlignment.middle,
+              child: Avatar(
+                mxContent: avatar,
+                name: name,
+                size: 16,
+                userId: userId,
+              ),
             ),
-          ),
-        ],
+            const WidgetSpan(child: SizedBox(width: 6)),
+            TextSpan(
+              text: name,
+              style: TextStyle(
+                color: color,
+                decorationColor: color,
+                decoration: TextDecoration.underline,
+                fontSize: fontSize,
+                height: 1.25,
+              ),
+            ),
+          ],
+        ),
       ),
+      // child: Row(
+      //   mainAxisSize: MainAxisSize.min,
+      //   children: [
+      //     Avatar(
+      //       mxContent: avatar,
+      //       name: name,
+      //       size: 16,
+      //     ),
+      //     const SizedBox(width: 6),
+      //     Text(
+      //       name,
+      //       style: TextStyle(
+      //         color: color,
+      //         decorationColor: color,
+      //         decoration: TextDecoration.underline,
+      //         fontSize: fontSize,
+      //         height: 1.25,
+      //       ),
+      //     ),
+      //   ],
+      // ),
+      // Pangea#
     );
   }
 }
@@ -765,4 +1001,8 @@ extension on String {
     final colorValue = int.tryParse(hexCode, radix: 16);
     return colorValue == null ? null : Color(colorValue);
   }
+}
+
+extension on dom.Element {
+  dom.Element get rootElement => parent?.rootElement ?? this;
 }

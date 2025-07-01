@@ -1,124 +1,56 @@
-import 'dart:io';
+import 'dart:math';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:chewie/chewie.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:matrix/matrix.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:universal_html/html.dart' as html;
-import 'package:video_player/video_player.dart';
 
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/pages/chat/events/image_bubble.dart';
 import 'package:fluffychat/utils/file_description.dart';
-import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/event_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/blur_hash.dart';
-import '../../../utils/error_reporter.dart';
+import 'package:fluffychat/widgets/mxc_image.dart';
+import '../../image_viewer/image_viewer.dart';
 
-class EventVideoPlayer extends StatefulWidget {
+class EventVideoPlayer extends StatelessWidget {
   final Event event;
+  final Timeline? timeline;
   final Color? textColor;
   final Color? linkColor;
+
   const EventVideoPlayer(
     this.event, {
+    this.timeline,
     this.textColor,
     this.linkColor,
     super.key,
   });
 
-  @override
-  EventVideoPlayerState createState() => EventVideoPlayerState();
-}
-
-class EventVideoPlayerState extends State<EventVideoPlayer> {
-  ChewieController? _chewieManager;
-  bool _isDownloading = false;
-  String? _networkUri;
-  File? _tmpFile;
-
-  void _downloadAction() async {
-    if (PlatformInfos.isDesktop) {
-      widget.event.saveFile(context);
-      return;
-    }
-    setState(() => _isDownloading = true);
-    try {
-      final videoFile = await widget.event.downloadAndDecryptAttachment();
-      if (kIsWeb) {
-        final blob = html.Blob([videoFile.bytes]);
-        _networkUri = html.Url.createObjectUrlFromBlob(blob);
-      } else {
-        final tempDir = await getTemporaryDirectory();
-        final fileName = Uri.encodeComponent(
-          widget.event.attachmentOrThumbnailMxcUrl()!.pathSegments.last,
-        );
-        final file = File('${tempDir.path}/${fileName}_${videoFile.name}');
-        if (await file.exists() == false) {
-          await file.writeAsBytes(videoFile.bytes);
-        }
-        _tmpFile = file;
-      }
-      final tmpFile = _tmpFile;
-      final networkUri = _networkUri;
-      if (kIsWeb && networkUri != null && _chewieManager == null) {
-        _chewieManager ??= ChewieController(
-          videoPlayerController:
-              VideoPlayerController.networkUrl(Uri.parse(networkUri)),
-          autoPlay: true,
-          autoInitialize: true,
-        );
-      } else if (!kIsWeb && tmpFile != null && _chewieManager == null) {
-        _chewieManager ??= ChewieController(
-          useRootNavigator: false,
-          videoPlayerController: VideoPlayerController.file(tmpFile),
-          autoPlay: true,
-          autoInitialize: true,
-        );
-      }
-    } on IOException catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(e.toLocalizedString(context)),
-        ),
-      );
-    } catch (e, s) {
-      ErrorReporter(context, 'Unable to play video').onErrorCallback(e, s);
-    } finally {
-      // Workaround for Chewie needs time to get the aspectRatio
-      await Future.delayed(const Duration(milliseconds: 100));
-      setState(() => _isDownloading = false);
-    }
-  }
-
-  @override
-  void dispose() {
-    _chewieManager?.dispose();
-    super.dispose();
-  }
-
   static const String fallbackBlurHash = 'L5H2EC=PM+yV0g-mq.wG9c010J}I';
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    final supportsVideoPlayer = PlatformInfos.supportsVideoPlayer;
 
-    final hasThumbnail = widget.event.hasThumbnail;
-    final blurHash = (widget.event.infoMap as Map<String, dynamic>)
+    final blurHash = (event.infoMap as Map<String, dynamic>)
             .tryGet<String>('xyz.amorgan.blurhash') ??
         fallbackBlurHash;
-    final fileDescription = widget.event.fileDescription;
-    final textColor = widget.textColor;
-    final linkColor = widget.linkColor;
+    final fileDescription = event.fileDescription;
+    const maxDimension = 300.0;
+    final infoMap = event.content.tryGetMap<String, Object?>('info');
+    final videoWidth = infoMap?.tryGet<int>('w') ?? maxDimension;
+    final videoHeight = infoMap?.tryGet<int>('h') ?? maxDimension;
 
-    const width = 300.0;
+    final modifier = max(videoWidth, videoHeight) / maxDimension;
+    final width = videoWidth / modifier;
+    final height = videoHeight / modifier;
 
-    final chewieManager = _chewieManager;
+    final durationInt = infoMap?.tryGet<int>('duration');
+    final duration =
+        durationInt == null ? null : Duration(milliseconds: durationInt);
+
     return Column(
       mainAxisSize: MainAxisSize.min,
       spacing: 8,
@@ -126,69 +58,97 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
         Material(
           color: Colors.black,
           borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-          child: SizedBox(
-            height: width,
-            child: chewieManager != null
-                ? Center(child: Chewie(controller: chewieManager))
-                : Stack(
-                    children: [
-                      if (hasThumbnail)
-                        Center(
-                          child: ImageBubble(
-                            widget.event,
-                            tapToView: false,
-                            textColor: widget.textColor,
-                          ),
-                        )
-                      else
-                        BlurHash(
+          child: InkWell(
+            onTap: () => supportsVideoPlayer
+                ? showDialog(
+                    context: context,
+                    builder: (_) => ImageViewer(
+                      event,
+                      timeline: timeline,
+                      outerContext: context,
+                    ),
+                  )
+                : event.saveFile(context),
+            borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+            child: SizedBox(
+              width: width,
+              height: height,
+              child: Hero(
+                tag: event.eventId,
+                child: Stack(
+                  children: [
+                    if (event.hasThumbnail)
+                      MxcImage(
+                        event: event,
+                        isThumbnail: true,
+                        width: width,
+                        height: height,
+                        fit: BoxFit.cover,
+                        placeholder: (context) => BlurHash(
                           blurhash: blurHash,
                           width: width,
-                          height: width,
+                          height: height,
+                          fit: BoxFit.cover,
                         ),
-                      Center(
-                        child: IconButton(
-                          style: IconButton.styleFrom(
-                            backgroundColor: theme.colorScheme.surface,
+                      )
+                    else
+                      BlurHash(
+                        blurhash: blurHash,
+                        width: width,
+                        height: height,
+                        fit: BoxFit.cover,
+                      ),
+                    Center(
+                      child: CircleAvatar(
+                        child: supportsVideoPlayer
+                            ? const Icon(Icons.play_arrow_outlined)
+                            : const Icon(Icons.file_download_outlined),
+                      ),
+                    ),
+                    if (duration != null)
+                      Positioned(
+                        bottom: 8,
+                        left: 16,
+                        child: Text(
+                          '${duration.inMinutes.toString().padLeft(2, '0')}:${(duration.inSeconds % 60).toString().padLeft(2, '0')}',
+                          style: TextStyle(
+                            color: Colors.white,
+                            backgroundColor: Colors.black.withAlpha(32),
                           ),
-                          icon: _isDownloading
-                              ? const SizedBox(
-                                  width: 24,
-                                  height: 24,
-                                  child: CircularProgressIndicator.adaptive(
-                                    strokeWidth: 2,
-                                  ),
-                                )
-                              : const Icon(Icons.play_circle_outlined),
-                          tooltip: _isDownloading
-                              ? L10n.of(context).loadingPleaseWait
-                              : L10n.of(context).videoWithSize(
-                                  widget.event.sizeString ?? '?MB',
-                                ),
-                          onPressed: _isDownloading ? null : _downloadAction,
                         ),
                       ),
-                    ],
-                  ),
+                  ],
+                ),
+              ),
+            ),
           ),
         ),
         if (fileDescription != null && textColor != null && linkColor != null)
           SizedBox(
             width: width,
-            child: Linkify(
-              text: fileDescription,
-              style: TextStyle(
-                color: textColor,
-                fontSize: AppConfig.fontSizeFactor * AppConfig.messageFontSize,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 8,
               ),
-              options: const LinkifyOptions(humanize: false),
-              linkStyle: TextStyle(
-                color: linkColor,
-                fontSize: AppConfig.fontSizeFactor * AppConfig.messageFontSize,
-                decoration: TextDecoration.underline,
-                decorationColor: linkColor,
+              child: Linkify(
+                text: fileDescription,
+                textScaleFactor: MediaQuery.textScalerOf(context).scale(1),
+                style: TextStyle(
+                  color: textColor,
+                  fontSize:
+                      AppConfig.fontSizeFactor * AppConfig.messageFontSize,
+                ),
+                options: const LinkifyOptions(humanize: false),
+                linkStyle: TextStyle(
+                  color: linkColor,
+                  fontSize:
+                      AppConfig.fontSizeFactor * AppConfig.messageFontSize,
+                  decoration: TextDecoration.underline,
+                  decorationColor: linkColor,
+                ),
+                onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
               ),
-              onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
             ),
           ),
       ],

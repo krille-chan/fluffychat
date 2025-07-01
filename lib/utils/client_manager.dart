@@ -24,6 +24,7 @@ import 'matrix_sdk_extensions/flutter_matrix_dart_sdk_database/builder.dart';
 
 abstract class ClientManager {
   static const String clientNamespace = 'im.fluffychat.store.clients';
+
   static Future<List<Client>> getClients({
     bool initialize = true,
     required SharedPreferences store,
@@ -103,7 +104,8 @@ abstract class ClientManager {
       : NativeImplementationsIsolate(compute);
 
   static Client createClient(String clientName, SharedPreferences store) {
-    final shareKeysWith = store.getString(SettingKeys.shareKeysWith) ?? 'all';
+    final shareKeysWith = AppSettings.shareKeysWith.getItem(store);
+    final enableSoftLogout = AppSettings.enableSoftLogout.getItem(store);
 
     return Client(
       clientName,
@@ -131,9 +133,6 @@ abstract class ClientManager {
       },
       logLevel: kReleaseMode ? Level.warning : Level.verbose,
       databaseBuilder: flutterMatrixSdkDatabaseBuilder,
-      // #Pangea
-      // legacyDatabaseBuilder: FlutterHiveCollectionsDatabase.databaseBuilder,
-      // Pangea#
       supportedLoginTypes: {
         AuthenticationTypes.password,
         AuthenticationTypes.sso,
@@ -146,6 +145,8 @@ abstract class ClientManager {
               .singleWhereOrNull((share) => share.name == shareKeysWith) ??
           ShareKeysWith.all,
       convertLinebreaksInFormatting: false,
+      onSoftLogout:
+          enableSoftLogout ? (client) => client.refreshAccessToken() : null,
       // #Pangea
       syncFilter: Filter(
         room: RoomFilter(
@@ -162,7 +163,9 @@ abstract class ClientManager {
         return event.content.tryGet(ModelKey.transcription) == null &&
             !event.type.startsWith("p.") &&
             !event.type.startsWith("pangea.") &&
-            event.type != EventTypes.RoomPinnedEvents;
+            event.type != EventTypes.RoomPinnedEvents &&
+            event.type != EventTypes.SpaceChild &&
+            event.type != EventTypes.SpaceParent;
       },
       // Pangea#
     );

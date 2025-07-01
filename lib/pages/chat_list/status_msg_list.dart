@@ -4,15 +4,15 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
-import 'package:fluffychat/pages/user_bottom_sheet/user_bottom_sheet.dart';
-import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/hover_builder.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import '../../widgets/adaptive_dialogs/user_dialog.dart';
 
 class StatusMessageList extends StatelessWidget {
   final void Function() onStatusEdit;
+
   const StatusMessageList({
     required this.onStatusEdit,
     super.key,
@@ -24,12 +24,9 @@ class StatusMessageList extends StatelessWidget {
     final client = Matrix.of(context).client;
     if (profile.userId == client.userID) return onStatusEdit();
 
-    showAdaptiveBottomSheet(
+    UserDialog.show(
       context: context,
-      builder: (c) => UserBottomSheet(
-        profile: profile,
-        outerContext: context,
-      ),
+      profile: profile,
     );
     return;
   }
@@ -101,11 +98,21 @@ class PresenceAvatar extends StatelessWidget {
   final CachedPresence presence;
   final double height;
   final void Function(Profile) onTap;
+  // #Pangea
+  final LinearGradient? gradient;
+  final Widget? floatingIndicator;
+  final bool showPresence;
+  // Pangea#
 
   const PresenceAvatar({
     required this.presence,
     required this.height,
     required this.onTap,
+    // #Pangea
+    this.gradient,
+    this.showPresence = true,
+    this.floatingIndicator,
+    // Pangea#
     super.key,
   });
 
@@ -149,7 +156,11 @@ class PresenceAvatar extends StatelessWidget {
                               Container(
                                 padding: const EdgeInsets.all(3),
                                 decoration: BoxDecoration(
-                                  gradient: presence.gradient,
+                                  // #Pangea
+                                  // gradient: presence.gradient,
+                                  gradient: gradient ??
+                                      (showPresence ? presence.gradient : null),
+                                  // Pangea#
                                   borderRadius:
                                       BorderRadius.circular(avatarSize),
                                 ),
@@ -162,7 +173,11 @@ class PresenceAvatar extends StatelessWidget {
                                   size: avatarSize - 6,
                                 ),
                               ),
-                              if (presence.userid == client.userID)
+                              // #Pangea
+                              // if (presence.userid == client.userID)
+                              if (floatingIndicator == null &&
+                                  presence.userid == client.userID)
+                                // Pangea#
                                 Positioned(
                                   right: 0,
                                   bottom: 0,
@@ -185,6 +200,9 @@ class PresenceAvatar extends StatelessWidget {
                                     ),
                                   ),
                                 ),
+                              // #Pangea
+                              if (floatingIndicator != null) floatingIndicator!,
+                              // Pangea#
                               if (statusMsg != null) ...[
                                 Positioned(
                                   left: 0,
@@ -293,6 +311,7 @@ extension on CachedPresence {
       (currentlyActive == true
           ? DateTime.now()
           : DateTime.fromMillisecondsSinceEpoch(0));
+
   LinearGradient get gradient => presence.isOnline == true
       ? LinearGradient(
           colors: [

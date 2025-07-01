@@ -18,8 +18,6 @@ import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dar
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_representation_event.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_text_model.dart';
-import 'package:fluffychat/pangea/events/models/tokens_event_content_model.dart';
-import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/lemmas/lemma_info_response.dart';
 import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_activity_model.dart';
@@ -27,8 +25,10 @@ import 'package:fluffychat/pangea/practice_activities/practice_choice.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_selection.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_selection_repo.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/text_to_speech_controller.dart';
+import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/enums/reading_assistance_mode_enum.dart';
+import 'package:fluffychat/pangea/toolbar/models/speech_to_text_models.dart';
 import 'package:fluffychat/pangea/toolbar/reading_assistance_input_row/morph_selection.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_positioner.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/reading_assistance_content.dart';
@@ -85,13 +85,21 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
   List<PangeaTokenText>? _highlightedTokens;
   bool initialized = false;
-  bool isPlayingAudio = false;
 
   final GlobalKey<ReadingAssistanceContentState> wordZoomKey = GlobalKey();
 
   ReadingAssistanceMode? readingAssistanceMode; // default mode
+
+  SpeechToTextModel? transcription;
+  String? transcriptionError;
+
   bool showTranslation = false;
-  String? translationText;
+  String? translation;
+
+  bool showSpeechTranslation = false;
+  String? speechTranslation;
+
+  final StreamController contentChangedStream = StreamController.broadcast();
 
   double maxWidth = AppConfig.toolbarMinWidth;
 
@@ -100,14 +108,21 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   /////////////////////////////////////
 
   @override
-  void dispose() {
-    super.dispose();
+  void initState() {
+    super.initState();
+    initializeTokensAndMode();
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) => widget.chatController.setSelectedEvent(event),
+    );
   }
 
   @override
-  void initState() {
-    initializeTokensAndMode();
-    super.initState();
+  void dispose() {
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) => widget.chatController.clearSelectedEvents(),
+    );
+    contentChangedStream.close();
+    super.dispose();
   }
 
   Future<void> initializeTokensAndMode() async {
@@ -118,7 +133,11 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
       RepresentationEvent? repEvent =
           pangeaMessageEvent?.messageDisplayRepresentation;
-      repEvent ??= await _fetchNewRepEvent();
+
+      if (repEvent == null ||
+          (repEvent.event == null && repEvent.tokens == null)) {
+        repEvent = await _fetchNewRepEvent();
+      }
 
       if (repEvent?.event != null) {
         await repEvent!.sendTokensEvent(
@@ -126,24 +145,6 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
           widget._event.room,
           MatrixState.pangeaController.languageController.userL1!.langCode,
           MatrixState.pangeaController.languageController.userL2!.langCode,
-        );
-      }
-      // If repEvent is originalSent but it's missing tokens, then fetch tokens.
-      // An edge case, but has happened with some bot message.
-      else if (repEvent != null &&
-          repEvent.tokens == null &&
-          repEvent.content.originalSent) {
-        final tokens = await repEvent.tokensGlobal(
-          pangeaMessageEvent!.senderId,
-          pangeaMessageEvent!.event.originServerTs,
-        );
-        await pangeaMessageEvent!.room.pangeaSendTextEvent(
-          pangeaMessageEvent!.messageDisplayText,
-          editEventId: pangeaMessageEvent!.eventId,
-          originalSent: pangeaMessageEvent!.originalSent?.content,
-          originalWritten: pangeaMessageEvent!.originalWritten?.content,
-          tokensSent: PangeaMessageTokens(tokens: tokens),
-          choreo: pangeaMessageEvent!.originalSent?.choreo,
         );
       }
 
@@ -192,20 +193,6 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
       updateToolbarMode(MessageMode.practiceActivity);
       return;
     }
-
-    // if (selectedToken != null) {
-    //   updateToolbarMode(selectedToken!.modeForToken);
-    //   return;
-    // }
-
-    // Note: this setting is now hidden so this will always be false
-    // leaving this here in case we want to bring it back
-    // if (MatrixState.pangeaController.userController.profile.userSettings
-    //     .autoPlayMessages) {
-    //   return setState(() => toolbarMode = MessageMode.textToSpeech);
-    // }
-
-    // defaults to noneSelected
   }
 
   /// Decides whether an _initialSelectedToken should be used
@@ -461,14 +448,29 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
       pangeaMessageEvent?.messageDisplayLangCode.split("-")[0] ==
       MatrixState.pangeaController.languageController.userL2?.langCodeShort;
 
-  PangeaToken? get selectedToken =>
-      pangeaMessageEvent?.messageDisplayRepresentation?.tokens
-          ?.firstWhereOrNull(isTokenSelected);
+  PangeaToken? get selectedToken {
+    if (pangeaMessageEvent?.isAudioMessage == true) {
+      final stt = pangeaMessageEvent!.getSpeechToTextLocal();
+      if (stt == null || stt.transcript.sttTokens.isEmpty) return null;
+      return stt.transcript.sttTokens
+          .firstWhereOrNull((t) => isTokenSelected(t.token))
+          ?.token;
+    }
+
+    return pangeaMessageEvent?.messageDisplayRepresentation?.tokens
+        ?.firstWhereOrNull(isTokenSelected);
+  }
 
   /// Whether the overlay is currently displaying a selection
   bool get isSelection => _selectedSpan != null || _highlightedTokens != null;
 
   PangeaTokenText? get selectedSpan => _selectedSpan;
+
+  bool get showingExtraContent =>
+      (showTranslation && translation != null) ||
+      (showSpeechTranslation && speechTranslation != null) ||
+      transcription != null ||
+      transcriptionError != null;
 
   ///////////////////////////////////
   /// Functions
@@ -546,7 +548,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
                 ) ==
                 false ||
         !hideWordCardContent) {
-      widget.chatController.choreographer.tts.tryToSpeak(
+      TtsController.tryToSpeak(
         token.text.content,
         targetID: null,
         langCode: pangeaMessageEvent!.messageDisplayLangCode,
@@ -570,20 +572,65 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     );
   }
 
-  void setIsPlayingAudio(bool isPlaying) {
+  void setTranslation(String value) {
     if (mounted) {
-      setState(() => isPlayingAudio = isPlaying);
+      setState(() {
+        translation = value;
+        contentChangedStream.add(true);
+      });
     }
   }
 
-  void setShowTranslation(bool show, String? translation) {
-    if (showTranslation == show) return;
-    if (show && translation == null) return;
+  void setShowTranslation(bool show) {
+    if (!mounted) return;
+    if (translation == null) {
+      setState(() => showTranslation = false);
+    }
 
+    if (showTranslation == show) return;
+    setState(() {
+      showTranslation = show;
+      contentChangedStream.add(true);
+    });
+  }
+
+  void setSpeechTranslation(String value) {
     if (mounted) {
       setState(() {
-        showTranslation = show;
-        translationText = show ? translation : null;
+        speechTranslation = value;
+        contentChangedStream.add(true);
+      });
+    }
+  }
+
+  void setShowSpeechTranslation(bool show) {
+    if (!mounted) return;
+    if (speechTranslation == null) {
+      setState(() => showSpeechTranslation = false);
+    }
+
+    if (showSpeechTranslation == show) return;
+    setState(() {
+      showSpeechTranslation = show;
+      contentChangedStream.add(true);
+    });
+  }
+
+  void setTranscription(SpeechToTextModel value) {
+    if (mounted) {
+      setState(() {
+        transcriptionError = null;
+        transcription = value;
+        contentChangedStream.add(true);
+      });
+    }
+  }
+
+  void setTranscriptionError(String value) {
+    if (mounted) {
+      setState(() {
+        transcriptionError = value;
+        contentChangedStream.add(true);
       });
     }
   }

@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/activity_generator/activity_generator.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_card.dart';
+import 'package:fluffychat/pangea/activity_planner/activity_planner_builder.dart';
 import 'package:fluffychat/pangea/activity_planner/suggestion_form_field.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_suggestions_constants.dart';
+import 'package:fluffychat/pangea/chat_settings/widgets/language_level_dropdown.dart';
 import 'package:fluffychat/pangea/instructions/instructions_enum.dart';
 import 'package:fluffychat/pangea/instructions/instructions_inline_tooltip.dart';
 import 'package:fluffychat/pangea/learning_settings/utils/p_language_store.dart';
@@ -53,13 +55,15 @@ class ActivityGeneratorView extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         itemCount: controller.activities!.length,
         itemBuilder: (context, index) {
-          return ActivityPlanCard(
-            activity: controller.activities![index],
+          return ActivityPlannerBuilder(
+            initialActivity: controller.activities![index],
+            initialFilename: controller.filename,
             room: controller.room,
-            onEdit: (updatedActivity) =>
-                controller.onEdit(index, updatedActivity),
-            onChange: controller.update,
-            initialImageURL: controller.filename,
+            builder: (c) {
+              return ActivityPlanCard(
+                controller: c,
+              );
+            },
           );
         },
       );
@@ -173,6 +177,9 @@ class ActivityGeneratorView extends StatelessWidget {
                         if (n == null || n <= 0) {
                           return l10n.mustBeInteger;
                         }
+                        if (n > 50) {
+                          return l10n.maxFifty;
+                        }
                         return null;
                       },
                       onChanged: (val) => controller
@@ -187,6 +194,11 @@ class ActivityGeneratorView extends StatelessWidget {
                           controller.generate();
                         }
                       },
+                    ),
+                    const SizedBox(height: 16.0),
+                    LanguageLevelDropdown(
+                      onChanged: controller.setSelectedCefrLevel,
+                      initialLevel: controller.selectedCefrLevel,
                     ),
                     const SizedBox(height: 16.0),
                     Row(

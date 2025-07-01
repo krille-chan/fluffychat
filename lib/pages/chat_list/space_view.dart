@@ -4,21 +4,24 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart' as sdk;
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
 import 'package:fluffychat/pages/chat_list/search_title.dart';
 import 'package:fluffychat/pangea/chat_settings/constants/pangea_room_types.dart';
+import 'package:fluffychat/pangea/chat_settings/widgets/delete_space_dialog.dart';
+import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
-import 'package:fluffychat/pangea/public_spaces/pangea_public_room_bottom_sheet.dart';
+import 'package:fluffychat/pangea/public_spaces/public_room_bottom_sheet.dart';
+import 'package:fluffychat/pangea/spaces/constants/space_constants.dart';
 import 'package:fluffychat/pangea/spaces/widgets/knocking_users_indicator.dart';
-import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
+import 'package:fluffychat/pangea/spaces/widgets/leaderboard_participant_list.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
@@ -26,10 +29,7 @@ import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
-enum AddRoomType {
-  chat,
-  subspace,
-}
+enum AddRoomType { chat, subspace }
 
 class SpaceView extends StatefulWidget {
   final String spaceId;
@@ -92,7 +92,7 @@ class _SpaceViewState extends State<SpaceView> {
     // and reload the hierarchy when they come through
     final client = Matrix.of(context).client;
     _roomSubscription ??= client.onSync.stream
-        .where(hasHierarchyUpdate)
+        .where(_hasHierarchyUpdate)
         .listen((update) => loadHierarchy(hasUpdate: true));
     // Pangea#
     super.initState();
@@ -127,6 +127,44 @@ class _SpaceViewState extends State<SpaceView> {
     super.dispose();
   }
 
+  Future<void> _joinDefaultChats() async {
+    if (_discoveredChildren == null) return;
+    final found = List<SpaceRoomsChunk>.from(_discoveredChildren!);
+
+    final List<Future> joinFutures = [];
+    for (final chunk in found) {
+      if (chunk.canonicalAlias == null) continue;
+      final alias = chunk.canonicalAlias!;
+
+      final isDefaultChat = (alias.localpart ?? '')
+              .startsWith(SpaceConstants.announcementsChatAlias) ||
+          (alias.localpart ?? '')
+              .startsWith(SpaceConstants.introductionChatAlias);
+
+      if (!isDefaultChat) continue;
+
+      joinFutures.add(
+        Matrix.of(context).client.joinRoom(alias).then((_) {
+          _discoveredChildren?.remove(chunk);
+        }).catchError((e, s) {
+          ErrorHandler.logError(
+            e: e,
+            s: s,
+            data: {
+              'alias': alias,
+              'spaceId': widget.spaceId,
+            },
+          );
+          return null;
+        }),
+      );
+    }
+
+    if (joinFutures.isNotEmpty) {
+      await Future.wait(joinFutures);
+    }
+  }
+
   Future<void> loadHierarchy({hasUpdate = false}) async {
     final room = Matrix.of(context).client.getRoomById(widget.spaceId);
     if (room == null) return;
@@ -137,15 +175,20 @@ class _SpaceViewState extends State<SpaceView> {
 
     try {
       await _loadHierarchy(activeSpace: room, hasUpdate: hasUpdate);
+      await _joinDefaultChats();
     } catch (e, s) {
       Logs().w('Unable to load hierarchy', e, s);
-      if (!mounted) return;
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text(e.toLocalizedString(context))));
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(e.toLocalizedString(context))),
+        );
+      }
     } finally {
-      setState(() {
-        _isLoading = false;
-      });
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+        });
+      }
     }
   }
 
@@ -211,12 +254,12 @@ class _SpaceViewState extends State<SpaceView> {
 
       // finally, set the response to the last response for this space
       // and set the current next batch token
-      currentHierarchy = filterHierarchyResponse(activeSpace, response.rooms);
+      currentHierarchy = _filterHierarchyResponse(activeSpace, response.rooms);
       currentNextBatch = response.nextBatch;
     }
 
     _discoveredChildren = currentHierarchy;
-    _discoveredChildren?.sort(sortSpaceChildren);
+    _discoveredChildren?.sort(_sortSpaceChildren);
     _nextBatch = currentNextBatch;
   }
 
@@ -263,24 +306,34 @@ class _SpaceViewState extends State<SpaceView> {
     final client = Matrix.of(context).client;
     final space = client.getRoomById(widget.spaceId);
 
-    final joined = await showAdaptiveBottomSheet<bool>(
+    // #Pangea
+    // final joined = await showAdaptiveDialog<bool>(
+    //   context: context,
+    //   builder: (_) => PublicRoomDialog(
+    //     chunk: item,
+    //     via: space?.spaceChildren
+    //         .firstWhereOrNull(
+    //           (child) => child.roomId == item.roomId,
+    //         )
+    //         ?.via,
+    //   ),
+    // );
+    final joined = await PublicRoomBottomSheet.show(
       context: context,
-      // #Pangea
-      // builder: (_) => PublicRoomBottomSheet(
-      builder: (_) => PangeaPublicRoomBottomSheet(
-        // Pangea#
-        outerContext: context,
-        chunk: item,
-        via: space?.spaceChildren
-            .firstWhereOrNull(
-              (child) => child.roomId == item.roomId,
-            )
-            ?.via,
-      ),
+      chunk: item,
+      via: space?.spaceChildren
+          .firstWhereOrNull(
+            (child) => child.roomId == item.roomId,
+          )
+          ?.via,
     );
+    // Pangea#
     if (mounted && joined == true) {
       setState(() {
+        // #Pangea
+        // _discoveredChildren.remove(item);
         _discoveredChildren?.remove(item);
+        // Pangea#
       });
     }
   }
@@ -322,6 +375,23 @@ class _SpaceViewState extends State<SpaceView> {
         if (!mounted) return;
         if (success.error != null) return;
         widget.onBack();
+      // #Pangea
+      case SpaceActions.delete:
+        if (space == null) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(L10n.of(context).oopsSomethingWentWrong)),
+          );
+          return;
+        }
+        final resp = await showDialog<bool?>(
+          context: context,
+          builder: (_) => DeleteSpaceDialog(space: space),
+        );
+
+        if (resp == true) {
+          context.go("/rooms?spaceId=clear");
+        }
+      // Pangea#
     }
   }
 
@@ -398,7 +468,7 @@ class _SpaceViewState extends State<SpaceView> {
   // Pangea#
 
   // #Pangea
-  bool includeSpaceChild(
+  bool _includeSpaceChild(
     Room space,
     SpaceRoomsChunk hierarchyMember,
   ) {
@@ -416,7 +486,7 @@ class _SpaceViewState extends State<SpaceView> {
     return !isAnalyticsRoom && (isMember || isSuggested);
   }
 
-  List<SpaceRoomsChunk> filterHierarchyResponse(
+  List<SpaceRoomsChunk> _filterHierarchyResponse(
     Room space,
     List<SpaceRoomsChunk> hierarchyResponse,
   ) {
@@ -432,7 +502,7 @@ class _SpaceViewState extends State<SpaceView> {
       );
       if (isDuplicate) continue;
 
-      if (includeSpaceChild(space, child)) {
+      if (_includeSpaceChild(space, child)) {
         filteredChildren.add(child);
       }
     }
@@ -441,7 +511,7 @@ class _SpaceViewState extends State<SpaceView> {
 
   /// Used to filter out sync updates with hierarchy updates for the active
   /// space so that the view can be auto-reloaded in the room subscription
-  bool hasHierarchyUpdate(SyncUpdate update) {
+  bool _hasHierarchyUpdate(SyncUpdate update) {
     final joinTimeline = update.rooms?.join?[widget.spaceId]?.timeline;
     final leaveTimeline = update.rooms?.leave?[widget.spaceId]?.timeline;
     if (joinTimeline == null && leaveTimeline == null) return false;
@@ -456,7 +526,7 @@ class _SpaceViewState extends State<SpaceView> {
     return hasJoinUpdate || hasLeaveUpdate;
   }
 
-  int sortSpaceChildren(
+  int _sortSpaceChildren(
     SpaceRoomsChunk a,
     SpaceRoomsChunk b,
   ) {
@@ -470,19 +540,6 @@ class _SpaceViewState extends State<SpaceView> {
     }
     return 0;
   }
-
-  List<Room>? get joinedRooms {
-    final room = Matrix.of(context).client.getRoomById(widget.spaceId);
-    if (room == null) return null;
-
-    final spaceChildIds =
-        room.spaceChildren.map((c) => c.roomId).whereType<String>().toSet();
-
-    return room.client.rooms
-        .where((room) => spaceChildIds.contains(room.id))
-        .where((room) => !room.isAnalyticsRoom)
-        .toList();
-  }
   // Pangea#
 
   @override
@@ -492,6 +549,18 @@ class _SpaceViewState extends State<SpaceView> {
     final room = Matrix.of(context).client.getRoomById(widget.spaceId);
     final displayname =
         room?.getLocalizedDisplayname() ?? L10n.of(context).nothingFound;
+
+    // #Pangea
+    final joinedParents = room?.spaceParents
+        .map((parent) {
+          final roomId = parent.roomId;
+          if (roomId == null) return null;
+          return room.client.getRoomById(roomId);
+        })
+        .whereType<Room>()
+        .toList();
+    // Pangea#
+
     return Scaffold(
       // #Pangea
       // appBar: AppBar(
@@ -504,14 +573,48 @@ class _SpaceViewState extends State<SpaceView> {
             _onSpaceAction(SpaceActions.settings);
           },
           child: AppBar(
-            // Pangea#
-            leading: FluffyThemes.isColumnMode(context)
-                ? null
+            // leading: FluffyThemes.isColumnMode(context)
+            //     ? null
+            //     : Center(
+            //         child: CloseButton(
+            //           onPressed: widget.onBack,
+            //         ),
+            //       ),
+            leading: joinedParents?.isEmpty ?? true
+                ? FluffyThemes.isColumnMode(context)
+                    ? null
+                    : Center(
+                        child: CloseButton(
+                          onPressed: widget.onBack,
+                        ),
+                      )
                 : Center(
-                    child: CloseButton(
-                      onPressed: widget.onBack,
-                    ),
+                    child: joinedParents!.length == 1
+                        ? IconButton(
+                            icon: const Icon(Icons.arrow_back_outlined),
+                            onPressed: () =>
+                                widget.toParentSpace(joinedParents.first.id),
+                          )
+                        : PopupMenuButton(
+                            tooltip: null,
+                            useRootNavigator: true,
+                            icon: const Icon(Icons.arrow_back_outlined),
+                            itemBuilder: (context) {
+                              return [
+                                ...joinedParents.mapIndexed((i, room) {
+                                  return PopupMenuItem(
+                                    value: i,
+                                    child: Text(room.getLocalizedDisplayname()),
+                                  );
+                                }),
+                              ];
+                            },
+                            onSelected: (i) {
+                              widget.toParentSpace(joinedParents[i].id);
+                            },
+                          ),
                   ),
+            // Pangea#
             automaticallyImplyLeading: false,
             titleSpacing: FluffyThemes.isColumnMode(context) ? null : 0,
             title: ListTile(
@@ -546,6 +649,7 @@ class _SpaceViewState extends State<SpaceView> {
             ),
             actions: [
               PopupMenuButton<SpaceActions>(
+                useRootNavigator: true,
                 onSelected: _onSpaceAction,
                 itemBuilder: (context) => [
                   PopupMenuItem(
@@ -575,12 +679,44 @@ class _SpaceViewState extends State<SpaceView> {
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        const Icon(Icons.delete_outlined),
+                        // #Pangea
+                        // const Icon(Icons.delete_outlined),
+                        const Icon(Icons.logout_outlined),
+                        // Pangea#
                         const SizedBox(width: 12),
                         Text(L10n.of(context).leave),
                       ],
                     ),
                   ),
+                  // #Pangea
+                  if (Matrix.of(context)
+                          .client
+                          .getRoomById(widget.spaceId)
+                          ?.isRoomAdmin ??
+                      false)
+                    PopupMenuItem(
+                      value: SpaceActions.delete,
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            Icons.delete_outlined,
+                            color:
+                                Theme.of(context).colorScheme.onErrorContainer,
+                          ),
+                          const SizedBox(width: 12),
+                          Text(
+                            L10n.of(context).delete,
+                            style: TextStyle(
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onErrorContainer,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  // Pangea#
                 ],
               ),
             ],
@@ -595,8 +731,9 @@ class _SpaceViewState extends State<SpaceView> {
               // #Pangea
               // onPressed: _addChatOrSubspace,
               // label: Text(L10n.of(context).group),
-              onPressed: () => context.go("/rooms/newgroup/${widget.spaceId}"),
-              label: Text(L10n.of(context).chat),
+              onPressed: () =>
+                  context.go("/rooms/newgroup?space=${widget.spaceId}"),
+              label: Text(L10n.of(context).groupChat),
               // Pangea#
               icon: const Icon(Icons.group_add_outlined),
             )
@@ -625,14 +762,16 @@ class _SpaceViewState extends State<SpaceView> {
                     // Pangea#
                     .toList();
 
-                final joinedParents = room.spaceParents
-                    .map((parent) {
-                      final roomId = parent.roomId;
-                      if (roomId == null) return null;
-                      return room.client.getRoomById(roomId);
-                    })
-                    .whereType<Room>()
-                    .toList();
+                // #Pangea
+                // final joinedParents = room.spaceParents
+                //     .map((parent) {
+                //       final roomId = parent.roomId;
+                //       if (roomId == null) return null;
+                //       return room.client.getRoomById(roomId);
+                //     })
+                //     .whereType<Room>()
+                //     .toList();
+                // Pangea#
                 final filter = _filterController.text.trim().toLowerCase();
                 return CustomScrollView(
                   slivers: [
@@ -670,52 +809,60 @@ class _SpaceViewState extends State<SpaceView> {
                         ),
                       ),
                     ),
+                    // #Pangea
+                    // SliverList.builder(
+                    //   itemCount: joinedParents.length,
+                    //   itemBuilder: (context, i) {
+                    //     final displayname =
+                    //         joinedParents[i].getLocalizedDisplayname();
+                    //     return Padding(
+                    //       padding: const EdgeInsets.symmetric(
+                    //         horizontal: 8,
+                    //         vertical: 1,
+                    //       ),
+                    //       child: Material(
+                    //         borderRadius:
+                    //             BorderRadius.circular(AppConfig.borderRadius),
+                    //         clipBehavior: Clip.hardEdge,
+                    //         child: ListTile(
+                    //           minVerticalPadding: 0,
+                    //           leading: Icon(
+                    //             Icons.adaptive.arrow_back_outlined,
+                    //             size: 16,
+                    //           ),
+                    //           title: Row(
+                    //             children: [
+                    //               Avatar(
+                    //                 mxContent: joinedParents[i].avatar,
+                    //                 name: displayname,
+                    //                 // #Pangea
+                    //                 userId: joinedParents[i].directChatMatrixID,
+                    //                 // Pangea#
+                    //                 size: Avatar.defaultSize / 2,
+                    //                 borderRadius: BorderRadius.circular(
+                    //                   AppConfig.borderRadius / 4,
+                    //                 ),
+                    //               ),
+                    //               const SizedBox(width: 8),
+                    //               Expanded(child: Text(displayname)),
+                    //             ],
+                    //           ),
+                    //           onTap: () =>
+                    //               widget.toParentSpace(joinedParents[i].id),
+                    //         ),
+                    //       ),
+                    //     );
+                    //   },
+                    // ),
+                    KnockingUsersIndicator(room: room),
                     SliverList.builder(
-                      itemCount: joinedParents.length,
+                      itemCount: 1,
                       itemBuilder: (context, i) {
-                        final displayname =
-                            joinedParents[i].getLocalizedDisplayname();
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 8,
-                            vertical: 1,
-                          ),
-                          child: Material(
-                            borderRadius:
-                                BorderRadius.circular(AppConfig.borderRadius),
-                            clipBehavior: Clip.hardEdge,
-                            child: ListTile(
-                              minVerticalPadding: 0,
-                              leading: Icon(
-                                Icons.adaptive.arrow_back_outlined,
-                                size: 16,
-                              ),
-                              title: Row(
-                                children: [
-                                  Avatar(
-                                    mxContent: joinedParents[i].avatar,
-                                    name: displayname,
-                                    // #Pangea
-                                    userId: joinedParents[i].directChatMatrixID,
-                                    // Pangea#
-                                    size: Avatar.defaultSize / 2,
-                                    borderRadius: BorderRadius.circular(
-                                      AppConfig.borderRadius / 4,
-                                    ),
-                                  ),
-                                  const SizedBox(width: 8),
-                                  Expanded(child: Text(displayname)),
-                                ],
-                              ),
-                              onTap: () =>
-                                  widget.toParentSpace(joinedParents[i].id),
-                            ),
-                          ),
+                        return LeaderboardParticipantList(
+                          space: room,
                         );
                       },
                     ),
-                    // #Pangea
-                    KnockingUsersIndicator(room: room),
                     // Pangea#
                     SliverList.builder(
                       itemCount: joinedRooms.length,
@@ -734,7 +881,10 @@ class _SpaceViewState extends State<SpaceView> {
                       },
                     ),
                     SliverList.builder(
+                      // #Pangea
+                      // itemCount: _discoveredChildren.length + 2,
                       itemCount: (_discoveredChildren?.length ?? 0) + 2,
+                      // Pangea#
                       itemBuilder: (context, i) {
                         if (i == 0) {
                           return SearchTitle(
@@ -743,7 +893,10 @@ class _SpaceViewState extends State<SpaceView> {
                           );
                         }
                         i--;
+                        // #Pangea
+                        // if (i == _discoveredChildren.length) {
                         if (i == (_discoveredChildren?.length ?? 0)) {
+                          // Pangea#
                           if (_noMoreRooms) {
                             return Padding(
                               padding: const EdgeInsets.all(12.0),
@@ -761,7 +914,10 @@ class _SpaceViewState extends State<SpaceView> {
                               vertical: 2.0,
                             ),
                             child: TextButton(
+                              // #Pangea
+                              // onPressed: _isLoading ? null : _loadHierarchy,
                               onPressed: _isLoading ? null : loadHierarchy,
+                              // Pangea#
                               child: _isLoading
                                   ? LinearProgressIndicator(
                                       borderRadius: BorderRadius.circular(
@@ -772,7 +928,10 @@ class _SpaceViewState extends State<SpaceView> {
                             ),
                           );
                         }
+                        // #Pangea
+                        // final item = _discoveredChildren[i];
                         final item = _discoveredChildren![i];
+                        // Pangea#
                         final displayname = item.name ??
                             item.canonicalAlias ??
                             L10n.of(context).emptyChat;
@@ -858,4 +1017,7 @@ enum SpaceActions {
   settings,
   invite,
   leave,
+  // #Pangea
+  delete,
+  // Pangea#
 }

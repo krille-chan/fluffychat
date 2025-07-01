@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 import 'package:fluffychat/config/themes.dart';
@@ -16,24 +18,32 @@ class FullWidthDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final content = ConstrainedBox(
-      constraints: FluffyThemes.isColumnMode(context)
-          ? BoxConstraints(
-              maxWidth: maxWidth,
-              maxHeight: maxHeight,
-            )
-          : BoxConstraints(
-              maxWidth: MediaQuery.of(context).size.width,
-              maxHeight: MediaQuery.of(context).size.height,
-            ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(20.0),
-        child: dialogContent,
+    final isColumnMode = FluffyThemes.isColumnMode(context);
+    final content = AnimatedSize(
+      duration: FluffyThemes.animationDuration,
+      child: ConstrainedBox(
+        constraints: isColumnMode
+            ? BoxConstraints(
+                maxWidth: maxWidth,
+                maxHeight: maxHeight,
+              )
+            : BoxConstraints(
+                maxWidth: MediaQuery.of(context).size.width,
+                maxHeight: MediaQuery.of(context).size.height,
+              ),
+        child: ClipRRect(
+          borderRadius:
+              isColumnMode ? BorderRadius.circular(20.0) : BorderRadius.zero,
+          child: dialogContent,
+        ),
       ),
     );
 
-    return FluffyThemes.isColumnMode(context)
-        ? Dialog(child: content)
-        : Dialog.fullscreen(child: content);
+    return BackdropFilter(
+      filter: ImageFilter.blur(sigmaX: 2.5, sigmaY: 2.5),
+      child: isColumnMode
+          ? Dialog(child: content)
+          : Dialog.fullscreen(child: content),
+    );
   }
 }

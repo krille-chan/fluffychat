@@ -13,11 +13,11 @@ class PApiUrls {
   static String subscriptionPrefix = "/subscription";
   static String accountPrefix = "/account";
 
-  static String choreoEndpoint =
+  static String get choreoEndpoint =>
       "${Environment.choreoApi}${PApiUrls.choreoPrefix}";
-  static String subscriptionEndpoint =
+  static String get subscriptionEndpoint =>
       "${Environment.choreoApi}${PApiUrls.subscriptionPrefix}";
-  static String accountEndpoint =
+  static String get accountEndpoint =>
       "${Environment.choreoApi}${PApiUrls.accountPrefix}";
 
   ///  ---------------------- Util --------------------------------------
@@ -86,4 +86,7 @@ class PApiUrls {
   static String rcProductsTrial = "${PApiUrls.subscriptionEndpoint}/free_trial";
 
   static String rcSubscription = PApiUrls.subscriptionEndpoint;
+
+  static String phoneticTranscription =
+      "${PApiUrls.choreoEndpoint}/phonetic_transcription";
 }

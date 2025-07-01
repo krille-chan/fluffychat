@@ -6,10 +6,10 @@ import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
 import 'package:desktop_notifications/desktop_notifications.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:matrix/encryption.dart';
 import 'package:matrix/matrix.dart';
 import 'package:provider/provider.dart';
@@ -18,8 +18,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:universal_html/html.dart' as html;
 import 'package:url_launcher/url_launcher_string.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/common/utils/any_state_holder.dart';
+import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
 import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_file_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -162,6 +164,9 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
 
   Client? _loginClientCandidate;
 
+  AudioPlayer? audioPlayer;
+  final ValueNotifier<String?> voiceMessageEventId = ValueNotifier(null);
+
   Client getLoginClient() {
     if (widget.clients.isNotEmpty && !client.isLogged()) {
       return client;
@@ -249,6 +254,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       ),
     );
     pangeaController = PangeaController(matrix: widget, matrixState: this);
+    TtsController.initialize();
     // Pangea#
   }
 
@@ -482,6 +488,10 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
 
     AppConfig.showPresences =
         store.getBool(SettingKeys.showPresences) ?? AppConfig.showPresences;
+
+    AppConfig.displayNavigationRail =
+        store.getBool(SettingKeys.displayNavigationRail) ??
+            AppConfig.displayNavigationRail;
   }
 
   @override

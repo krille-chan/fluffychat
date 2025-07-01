@@ -2,13 +2,13 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:matrix/matrix.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import '../../widgets/matrix.dart';
@@ -169,6 +169,8 @@ class SettingsHomeserverView extends StatelessWidget {
                         title: const Text('Federation Base URL'),
                         subtitle: Linkify(
                           text: data.federationBaseUrl.toString(),
+                          textScaleFactor:
+                              MediaQuery.textScalerOf(context).scale(1),
                           options: const LinkifyOptions(humanize: false),
                           linkStyle: TextStyle(
                             color: theme.colorScheme.primary,
@@ -231,6 +233,8 @@ class SettingsHomeserverView extends StatelessWidget {
                         title: const Text('Base URL'),
                         subtitle: Linkify(
                           text: wellKnown.mHomeserver.baseUrl.toString(),
+                          textScaleFactor:
+                              MediaQuery.textScalerOf(context).scale(1),
                           options: const LinkifyOptions(humanize: false),
                           linkStyle: TextStyle(
                             color: theme.colorScheme.primary,
@@ -244,6 +248,8 @@ class SettingsHomeserverView extends StatelessWidget {
                           title: const Text('Identity Server:'),
                           subtitle: Linkify(
                             text: identityServer.baseUrl.toString(),
+                            textScaleFactor:
+                                MediaQuery.textScalerOf(context).scale(1),
                             options: const LinkifyOptions(humanize: false),
                             linkStyle: TextStyle(
                               color: theme.colorScheme.primary,

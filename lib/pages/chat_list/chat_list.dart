@@ -6,7 +6,6 @@ import 'package:flutter/services.dart';
 
 import 'package:app_links/app_links.dart';
 import 'package:cross_file/cross_file.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_shortcuts_new/flutter_shortcuts_new.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart' as sdk;
@@ -15,20 +14,24 @@ import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_view.dart';
 import 'package:fluffychat/pangea/chat_list/utils/app_version_util.dart';
 import 'package:fluffychat/pangea/chat_list/utils/chat_list_handle_space_tap.dart';
 import 'package:fluffychat/pangea/chat_settings/constants/pangea_room_types.dart';
-import 'package:fluffychat/pangea/common/constants/local.key.dart';
+import 'package:fluffychat/pangea/chat_settings/utils/delete_room.dart';
+import 'package:fluffychat/pangea/chat_settings/widgets/delete_space_dialog.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/common/utils/firebase_analytics.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/spaces/utils/client_spaces_extension.dart';
 import 'package:fluffychat/pangea/subscription/widgets/subscription_snackbar.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/show_scaffold_dialog.dart';
 import 'package:fluffychat/utils/show_update_snackbar.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/adaptive_dialog_action.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_modal_action_popup.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_text_input_dialog.dart';
@@ -80,11 +83,17 @@ extension LocalizedActiveFilter on ActiveFilter {
 class ChatList extends StatefulWidget {
   static BuildContext? contextForVoip;
   final String? activeChat;
+  // #Pangea
+  final String? activeSpaceId;
+  // Pangea#
   final bool displayNavigationRail;
 
   const ChatList({
     super.key,
     required this.activeChat,
+    // #Pangea
+    this.activeSpaceId,
+    // Pangea#
     this.displayNavigationRail = false,
   });
 
@@ -131,61 +140,99 @@ class ChatListController extends State<ChatList>
     });
     context.go("/rooms");
   }
-
-  /// show alert dialog prompting user to accept invite or reject invite
-  Future<void> showInviteDialog(Room room) async {
-    final acceptInvite = await showOkCancelAlertDialog(
-      context: context,
-      title: L10n.of(context).youreInvited,
-      message: room.isSpace
-          ? L10n.of(context).invitedToSpace(room.name, room.creatorId ?? "???")
-          : L10n.of(context).invitedToChat(room.name, room.creatorId ?? "???"),
-      okLabel: L10n.of(context).accept,
-      cancelLabel: L10n.of(context).decline,
-    );
-
-    await showFutureLoadingDialog(
-      context: context,
-      future: () async {
-        if (acceptInvite == OkCancelResult.ok) {
-          await room.join();
-          if (room.isSpace) {
-            setActiveSpace(room.id);
-            context.go(
-              FluffyThemes.isColumnMode(context)
-                  ? "/rooms/${room.id}/details"
-                  : "/rooms",
-            );
-            return;
-          }
-          context.go("/rooms/${room.id}");
-          return;
-        }
-        await room.leave();
-      },
-    );
-  }
   // Pangea#
 
   void onChatTap(Room room) async {
     if (room.membership == Membership.invite) {
-      // #Pangea
-      await showInviteDialog(room);
-      return;
-      // final joinResult = await showFutureLoadingDialog(
-      //   context: context,
-      //   future: () async {
-      //     final waitForRoom = room.client.waitForRoomInSync(
-      //       room.id,
-      //       join: true,
-      //     );
-      //     await room.join();
-      //     await waitForRoom;
-      //   },
-      //   exceptionContext: ExceptionContext.joinRoom,
-      // );
-      // if (joinResult.error != null) return;
-      // Pangea#
+      final theme = Theme.of(context);
+      final inviteEvent = room.getState(
+        EventTypes.RoomMember,
+        room.client.userID!,
+      );
+      final matrixLocals = MatrixLocals(L10n.of(context));
+      final action = await showAdaptiveDialog<InviteAction>(
+        context: context,
+        builder: (context) => AlertDialog.adaptive(
+          title: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 256),
+            child: Center(
+              child: Text(
+                room.getLocalizedDisplayname(matrixLocals),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
+          content: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 256, maxHeight: 256),
+            child: Text(
+              inviteEvent == null
+                  ? L10n.of(context).inviteForMe
+                  : inviteEvent.content.tryGet<String>('reason') ??
+                      L10n.of(context).youInvitedBy(
+                        room
+                            .unsafeGetUserFromMemoryOrFallback(
+                              inviteEvent.senderId,
+                            )
+                            .calcDisplayname(i18n: matrixLocals),
+                      ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          actions: [
+            AdaptiveDialogAction(
+              onPressed: () => Navigator.of(context).pop(InviteAction.accept),
+              bigButtons: true,
+              child: Text(L10n.of(context).accept),
+            ),
+            AdaptiveDialogAction(
+              onPressed: () => Navigator.of(context).pop(InviteAction.decline),
+              bigButtons: true,
+              child: Text(
+                L10n.of(context).decline,
+                style: TextStyle(color: theme.colorScheme.error),
+              ),
+            ),
+            AdaptiveDialogAction(
+              onPressed: () => Navigator.of(context).pop(InviteAction.block),
+              bigButtons: true,
+              child: Text(
+                L10n.of(context).block,
+                style: TextStyle(color: theme.colorScheme.error),
+              ),
+            ),
+          ],
+        ),
+      );
+      switch (action) {
+        case null:
+          return;
+        case InviteAction.accept:
+          break;
+        case InviteAction.decline:
+          await showFutureLoadingDialog(
+            context: context,
+            future: () => room.leave(),
+          );
+          return;
+        case InviteAction.block:
+          final userId = inviteEvent?.senderId;
+          context.go('/rooms/settings/security/ignorelist', extra: userId);
+          return;
+      }
+      if (!mounted) return;
+      final joinResult = await showFutureLoadingDialog(
+        context: context,
+        future: () async {
+          final waitForRoom = room.client.waitForRoomInSync(
+            room.id,
+            join: true,
+          );
+          await room.join();
+          await waitForRoom;
+        },
+        exceptionContext: ExceptionContext.joinRoom,
+      );
+      if (joinResult.error != null) return;
     }
 
     if (room.membership == Membership.ban) {
@@ -218,24 +265,21 @@ class ChatListController extends State<ChatList>
         return (room) => !room.isAnalyticsRoom && !room.isSpace;
       // Pangea#
       case ActiveFilter.messages:
+        // #Pangea
+        // return (room) => !room.isSpace && room.isDirectChat;
         return (room) =>
-            !room.isSpace &&
-            room.isDirectChat // #Pangea
-            &&
-            !room.isAnalyticsRoom;
+            !room.isSpace && room.isDirectChat && !room.isAnalyticsRoom;
       // Pangea#
       case ActiveFilter.groups:
+        // #Pangea
+        // return (room) => !room.isSpace && !room.isDirectChat;
         return (room) =>
-            !room.isSpace &&
-            !room.isDirectChat // #Pangea
-            &&
-            !room.isAnalyticsRoom;
+            !room.isSpace && !room.isDirectChat && !room.isAnalyticsRoom;
       // Pangea#
       case ActiveFilter.unread:
-        return (room) =>
-            room.isUnreadOrInvited // #Pangea
-            &&
-            !room.isAnalyticsRoom;
+        // #Pangea
+        // return (room) => room.isUnreadOrInvited;
+        return (room) => room.isUnreadOrInvited && !room.isAnalyticsRoom;
       // Pangea#
       case ActiveFilter.spaces:
         return (room) => room.isSpace;
@@ -475,7 +519,6 @@ class ChatListController extends State<ChatList>
   }
 
   //#Pangea
-  StreamSubscription? classStream;
   StreamSubscription? _invitedSpaceSubscription;
   StreamSubscription? _subscriptionStatusStream;
   StreamSubscription? _spaceChildSubscription;
@@ -510,20 +553,6 @@ class ChatListController extends State<ChatList>
     _checkTorBrowser();
 
     //#Pangea
-    classStream = MatrixState.pangeaController.classController.stateStream
-        .listen((event) {
-      if (!mounted || event is! Map<String, dynamic>) return;
-      if (event.containsKey("activeSpaceId")) {
-        final setSpaceID = event["activeSpaceId"];
-        setSpaceID != null ? setActiveSpace(setSpaceID) : clearActiveSpace();
-        if (setSpaceID != null) {
-          context.push("/rooms/$setSpaceID/details");
-        }
-      } else if (event.containsKey("activeFilter")) {
-        setActiveFilter(event["activeFilter"]);
-      }
-    });
-
     _invitedSpaceSubscription = MatrixState
         .pangeaController.matrixState.client.onSync.stream
         .where((event) => event.rooms?.invite != null)
@@ -548,18 +577,16 @@ class ChatListController extends State<ChatList>
             spaceId,
           );
 
-          // #Pangea
           final String? justInputtedCode =
-              MatrixState.pangeaController.classController.chatBox.read(
-            PLocalKey.justInputtedCode,
-          );
-          final newSpaceCode = space?.classCode(context);
-          if (newSpaceCode == justInputtedCode) return;
+              MatrixState.pangeaController.classController.justInputtedCode();
+          final newSpaceCode = space?.classCode;
+          if (newSpaceCode?.toLowerCase() == justInputtedCode?.toLowerCase()) {
+            return;
+          }
 
           if (space != null) {
             chatListHandleSpaceTap(
               context,
-              this,
               space,
             );
           }
@@ -638,6 +665,13 @@ class ChatListController extends State<ChatList>
         );
       }
     });
+
+    _activeSpaceId =
+        widget.activeSpaceId == 'clear' ? null : widget.activeSpaceId;
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _joinInvitedSpaces();
+    });
     // Pangea#
 
     super.initState();
@@ -647,15 +681,22 @@ class ChatListController extends State<ChatList>
   @override
   void didUpdateWidget(ChatList oldWidget) {
     super.didUpdateWidget(oldWidget);
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      final params = GoRouterState.of(context).uri.queryParameters;
-      if (!params.containsKey("filter") || params['filter'] != 'groups') return;
-      setActiveFilter(
-        AppConfig.separateChatTypes
-            ? ActiveFilter.groups
-            : ActiveFilter.allChats,
-      );
-    });
+    if (widget.activeSpaceId != oldWidget.activeSpaceId &&
+        widget.activeSpaceId != null) {
+      widget.activeSpaceId == 'clear'
+          ? clearActiveSpace()
+          : setActiveSpace(widget.activeSpaceId!);
+    }
+  }
+
+  Future<void> _joinInvitedSpaces() async {
+    final invitedSpaces = Matrix.of(context).client.rooms.where(
+          (r) => r.isSpace && r.membership == Membership.invite,
+        );
+
+    for (final space in invitedSpaces) {
+      await showInviteDialog(space, context);
+    }
   }
   // Pangea#
 
@@ -665,7 +706,6 @@ class ChatListController extends State<ChatList>
     _intentFileStreamSubscription?.cancel();
     _intentUriStreamSubscription?.cancel();
     //#Pangea
-    classStream?.cancel();
     _invitedSpaceSubscription?.cancel();
     _subscriptionStatusStream?.cancel();
     _spaceChildSubscription?.cancel();
@@ -716,20 +756,24 @@ class ChatListController extends State<ChatList>
           value: ChatContextAction.open,
           child: Row(
             mainAxisSize: MainAxisSize.min,
+            spacing: 12.0,
             children: [
               Avatar(
                 mxContent: room.avatar,
-                size: Avatar.defaultSize / 2,
                 name: displayname,
                 // #Pangea
                 userId: room.directChatMatrixID,
                 // Pangea#
               ),
-              const SizedBox(width: 12),
-              Text(
-                displayname,
-                style:
-                    TextStyle(color: Theme.of(context).colorScheme.onSurface),
+              ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 128),
+                child: Text(
+                  displayname,
+                  style:
+                      TextStyle(color: Theme.of(context).colorScheme.onSurface),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
             ],
           ),
@@ -824,12 +868,11 @@ class ChatListController extends State<ChatList>
               ],
             ),
           ),
-          if (spacesWithPowerLevels.isNotEmpty
-                  // #Pangea
-                  &&
-                  !room.isSpace
-              // Pangea#
-              )
+          // #Pangea
+          // if (spacesWithPowerLevels.isNotEmpty)
+          if (spacesWithPowerLevels.isNotEmpty &&
+              room.canChangeStateEvent(EventTypes.SpaceParent))
+            // Pangea#
             PopupMenuItem(
               value: ChatContextAction.addToSpace,
               child: Row(
@@ -848,8 +891,11 @@ class ChatListController extends State<ChatList>
           // if the room has a parent for which the user has a high enough power level
           // to set parent's space child events, show option to remove the room from the space
           if (room.spaceParents.isNotEmpty &&
+              room.canChangeStateEvent(EventTypes.SpaceParent) &&
               room.pangeaSpaceParents.any(
-                (r) => r.canChangeStateEvent(EventTypes.SpaceChild),
+                (r) =>
+                    r.canChangeStateEvent(EventTypes.SpaceChild) &&
+                    r.id == activeSpaceId,
               ) &&
               activeSpaceId != null)
             PopupMenuItem(
@@ -865,31 +911,16 @@ class ChatListController extends State<ChatList>
             ),
           // Pangea#
         ],
-        if (room.membership == Membership.invite)
-          PopupMenuItem(
-            value: ChatContextAction.block,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(
-                  Icons.block_outlined,
-                  color: Theme.of(context).colorScheme.error,
-                ),
-                const SizedBox(width: 12),
-                Text(
-                  L10n.of(context).block,
-                  style: TextStyle(color: Theme.of(context).colorScheme.error),
-                ),
-              ],
-            ),
-          ),
         PopupMenuItem(
           value: ChatContextAction.leave,
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               Icon(
-                Icons.delete_outlined,
+                // #Pangea
+                // Icons.delete_outlined,
+                Icons.logout_outlined,
+                // Pangea#
                 color: Theme.of(context).colorScheme.onErrorContainer,
               ),
               const SizedBox(width: 12),
@@ -904,6 +935,28 @@ class ChatListController extends State<ChatList>
             ],
           ),
         ),
+        // #Pangea
+        if (room.isRoomAdmin && !room.isDirectChat)
+          PopupMenuItem(
+            value: ChatContextAction.delete,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  Icons.delete_outlined,
+                  color: Theme.of(context).colorScheme.onErrorContainer,
+                ),
+                const SizedBox(width: 12),
+                Text(
+                  L10n.of(context).delete,
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onErrorContainer,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        // Pangea#
       ],
     );
 
@@ -999,55 +1052,75 @@ class ChatListController extends State<ChatList>
           context: context,
           // #Pangea
           // future: () => space.setSpaceChild(room.id),
-          future: () async {
-            try {
-              await space.pangeaSetSpaceChild(room.id);
-            } catch (err) {
-              if (err is NestedSpaceError) {
-                throw L10n.of(context).nestedSpaceError;
-              } else {
-                rethrow;
-              }
-            }
-          },
+          future: () => space.addToSpace(room.id),
           // Pangea#
         );
         // #Pangea
+        try {
+          await space.client.setSpaceChildAccess(room.id);
+        } catch (e) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(L10n.of(context).accessSettingsWarning),
+              duration: const Duration(seconds: 10),
+            ),
+          );
+        }
         return;
       case ChatContextAction.removeFromSpace:
         await showFutureLoadingDialog(
           context: context,
           future: () async {
-            final futures = room.pangeaSpaceParents
-                .where((r) => r.canChangeStateEvent(EventTypes.SpaceChild))
-                .map((space) => removeSpaceChild(space, room.id));
-            await Future.wait(futures);
+            final activeSpace = room.client.getRoomById(activeSpaceId!);
+            if (activeSpace == null) return;
+            await activeSpace.removeSpaceChild(room.id);
           },
         );
+        try {
+          await room.client.resetSpaceChildAccess(room.id);
+        } catch (e) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(L10n.of(context).accessSettingsWarning),
+              duration: const Duration(seconds: 10),
+            ),
+          );
+        }
+        return;
+      case ChatContextAction.delete:
+        if (room.isSpace) {
+          final resp = await showDialog<bool?>(
+            context: context,
+            builder: (_) => DeleteSpaceDialog(space: room),
+          );
+          if (resp == true && mounted) {
+            context.go("/rooms?spaceId=clear");
+          }
+        } else {
+          final confirmed = await showOkCancelAlertDialog(
+            context: context,
+            title: L10n.of(context).areYouSure,
+            okLabel: L10n.of(context).delete,
+            cancelLabel: L10n.of(context).cancel,
+            isDestructive: true,
+            message: room.isSpace
+                ? L10n.of(context).deleteSpaceDesc
+                : L10n.of(context).deleteChatDesc,
+          );
+          if (confirmed != OkCancelResult.ok) return;
+          if (!mounted) return;
+
+          final resp = await showFutureLoadingDialog(
+            context: context,
+            future: room.delete,
+          );
+          if (resp.isError) return;
+          if (mounted) context.go("/rooms?spaceId=clear");
+        }
         return;
       // Pangea#
-      case ChatContextAction.block:
-        final userId =
-            room.getState(EventTypes.RoomMember, room.client.userID!)?.senderId;
-        context.go('/rooms/settings/security/ignorelist', extra: userId);
     }
   }
-
-  // #Pangea
-  /// Remove a room from a space. Often, the user will have permission to set
-  /// the SpaceChild event for the parent space, but not the SpaceParent event.
-  /// This would cause a permissions error, but the child will still be removed
-  /// via the SpaceChild event. If that's the case, silence the error.
-  Future<void> removeSpaceChild(Room space, String roomId) async {
-    try {
-      await space.removeSpaceChild(roomId);
-    } catch (err) {
-      if ((err as MatrixException).error != MatrixError.M_FORBIDDEN) {
-        rethrow;
-      }
-    }
-  }
-  // Pangea#
 
   void dismissStatusList() async {
     final result = await showOkCancelAlertDialog(
@@ -1127,34 +1200,34 @@ class ChatListController extends State<ChatList>
     });
 
     // #Pangea
-    // if (client.userDeviceKeys[client.userID!]?.deviceKeys.values
-    //         .any((device) => !device.verified && !device.blocked) ??
-    //     false) {
-    //   late final ScaffoldFeatureController controller;
-    //   final theme = Theme.of(context);
-    //   controller = ScaffoldMessenger.of(context).showSnackBar(
-    //     SnackBar(
-    //       duration: const Duration(seconds: 15),
-    //       showCloseIcon: true,
-    //       backgroundColor: theme.colorScheme.errorContainer,
-    //       closeIconColor: theme.colorScheme.onErrorContainer,
-    //       content: Text(
-    //         L10n.of(context).oneOfYourDevicesIsNotVerified,
-    //         style: TextStyle(
-    //           color: theme.colorScheme.onErrorContainer,
+    //   if (client.userDeviceKeys[client.userID!]?.deviceKeys.values
+    //           .any((device) => !device.verified && !device.blocked) ??
+    //       false) {
+    //     late final ScaffoldFeatureController controller;
+    //     final theme = Theme.of(context);
+    //     controller = ScaffoldMessenger.of(context).showSnackBar(
+    //       SnackBar(
+    //         duration: const Duration(seconds: 15),
+    //         showCloseIcon: true,
+    //         backgroundColor: theme.colorScheme.errorContainer,
+    //         closeIconColor: theme.colorScheme.onErrorContainer,
+    //         content: Text(
+    //           L10n.of(context).oneOfYourDevicesIsNotVerified,
+    //           style: TextStyle(
+    //             color: theme.colorScheme.onErrorContainer,
+    //           ),
+    //         ),
+    //         action: SnackBarAction(
+    //           onPressed: () {
+    //             controller.close();
+    //             router.go('/rooms/settings/devices');
+    //           },
+    //           textColor: theme.colorScheme.onErrorContainer,
+    //           label: L10n.of(context).settings,
     //         ),
     //       ),
-    //       action: SnackBarAction(
-    //         onPressed: () {
-    //           controller.close();
-    //           router.go('/rooms/settings/devices');
-    //         },
-    //         textColor: theme.colorScheme.onErrorContainer,
-    //         label: L10n.of(context).settings,
-    //       ),
-    //     ),
-    //   );
-    // }
+    //     );
+    //   }
     // Pangea#
   }
 
@@ -1296,8 +1369,10 @@ enum ChatContextAction {
   mute,
   leave,
   addToSpace,
-  block,
   // #Pangea
   removeFromSpace,
+  delete,
   // Pangea#
 }
+
+enum InviteAction { accept, decline, block }

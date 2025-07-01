@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/invitation_selection/invitation_selection_view.dart';
 import 'package:fluffychat/pangea/bot/utils/bot_name.dart';
 import 'package:fluffychat/pangea/common/config/environment.dart';
@@ -35,6 +35,36 @@ class InvitationSelectionController extends State<InvitationSelection> {
   String? get roomId => widget.roomId;
 
   // #Pangea
+  final viewportKey = GlobalKey();
+
+  final participantListItemHeight = 72.0;
+  final goToChatButtonHeight = 50.0;
+  final shareButtonsHeight = 150.0;
+  final padding = 16.0 * 2;
+  final fixedParticipantHeight = 72.0;
+
+  double? viewportHeight;
+  double get availableHeight =>
+      (viewportHeight ?? 0) -
+      goToChatButtonHeight -
+      shareButtonsHeight -
+      padding;
+
+  bool showShareButtons(int numParticipants) =>
+      (fixedParticipantHeight * numParticipants) < availableHeight;
+
+  @override
+  initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final context = viewportKey.currentContext;
+      if (context == null) return;
+      final renderBox = context.findRenderObject() as RenderBox;
+      final size = renderBox.size;
+      setState(() => viewportHeight = size.height);
+    });
+    super.initState();
+  }
+
   List<User>? get participants {
     final room = Matrix.of(context).client.getRoomById(roomId!);
     return room?.getParticipants();

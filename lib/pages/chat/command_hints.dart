@@ -1,6 +1,6 @@
 // This file is auto-generated using scripts/generate_command_hints_glue.sh.
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 
 String commandExample(String command) {
   switch (command) {
@@ -78,6 +78,12 @@ String commandHint(L10n l10n, String command) {
       return l10n.commandHint_ignore;
     case 'unignore':
       return l10n.commandHint_unignore;
+    case 'roomupgrade':
+      return l10n.commandHint_roomupgrade;
+    case 'logout':
+      return l10n.commandHint_logout;
+    case 'logoutall':
+      return l10n.commandHint_logoutall;
     default:
       return "";
   }

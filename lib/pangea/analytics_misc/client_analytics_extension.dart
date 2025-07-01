@@ -132,7 +132,11 @@ extension AnalyticsClientExtension on Client {
   /// so other members of the space need to add their analytics rooms to the space.
   Future<void> addAnalyticsRoomsToSpaces() async {
     if (userID == null || userID == BotName.byEnvironment) return;
-    final spaces = rooms.where((room) => room.isSpace).toList();
+    final spaces = rooms
+        .where(
+          (room) => room.isSpace && room.membership == Membership.join,
+        )
+        .toList();
 
     final Random random = Random();
     for (final space in spaces) {

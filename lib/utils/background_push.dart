@@ -27,7 +27,6 @@ import 'package:flutter/material.dart';
 import 'package:fcm_shared_isolate/fcm_shared_isolate.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_new_badger/flutter_new_badger.dart';
 import 'package:http/http.dart' as http;
@@ -35,6 +34,7 @@ import 'package:matrix/matrix.dart';
 import 'package:unifiedpush/unifiedpush.dart';
 import 'package:unifiedpush_ui/unifiedpush_ui.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/learning_settings/constants/language_constants.dart';
 import 'package:fluffychat/utils/push_helper.dart';
@@ -82,8 +82,6 @@ class BackgroundPush {
   void _init() async {
     try {
       // #Pangea
-      onLogin ??=
-          client.onLoginStateChanged.stream.listen(handleLoginStateChanged);
       FirebaseMessaging.instance.getInitialMessage().then(_onOpenNotification);
       FirebaseMessaging.onMessageOpenedApp.listen(_onOpenNotification);
       // Pangea#
@@ -279,7 +277,8 @@ class BackgroundPush {
           // Pangea#
           currentPushers.first.data.url.toString() == gatewayUrl &&
           currentPushers.first.data.format ==
-              AppConfig.pushNotificationsPusherFormat &&
+              AppSettings.pushNotificationsPusherFormat
+                  .getItem(matrix!.store) &&
           mapEquals(
             currentPushers.single.data.additionalProperties,
             {"data_message": pusherDataMessageFormat},
@@ -322,7 +321,8 @@ class BackgroundPush {
             // Pangea#
             data: PusherData(
               url: Uri.parse(gatewayUrl!),
-              format: AppConfig.pushNotificationsPusherFormat,
+              format: AppSettings.pushNotificationsPusherFormat
+                  .getItem(matrix!.store),
               additionalProperties: {"data_message": pusherDataMessageFormat},
             ),
             kind: 'http',
@@ -421,7 +421,8 @@ class BackgroundPush {
       }
     }
     await setupPusher(
-      gatewayUrl: AppConfig.pushNotificationsGatewayUrl,
+      gatewayUrl:
+          AppSettings.pushNotificationsGatewayUrl.getItem(matrix!.store),
       token: _fcmToken,
     );
   }
@@ -557,7 +558,10 @@ class BackgroundPush {
 }
 
 class UPFunctions extends UnifiedPushFunctions {
-  final List<String> features = [/*list of features*/];
+  final List<String> features = [
+    /*list of features*/
+  ];
+
   @override
   Future<String?> getDistributor() async {
     return await UnifiedPush.getDistributor();

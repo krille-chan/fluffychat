@@ -1,17 +1,15 @@
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
+import 'package:fluffychat/pangea/activity_planner/activity_planner_builder.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_planner_page.dart';
 import 'package:fluffychat/pangea/activity_planner/bookmarked_activities_repo.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_suggestion_card.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_suggestion_dialog.dart';
-import 'package:fluffychat/widgets/matrix.dart';
 
 class BookmarkedActivitiesList extends StatefulWidget {
   final Room? room;
@@ -41,27 +39,7 @@ class BookmarkedActivitiesListState extends State<BookmarkedActivitiesList> {
   Future<void> _onEdit(
     String activityId,
     ActivityPlanModel activity,
-    Uint8List? avatar,
-    String? filename,
   ) async {
-    if (avatar != null) {
-      final url = await Matrix.of(context).client.uploadContent(
-            avatar,
-            filename: filename,
-          );
-      if (!mounted) return;
-      setState(() {
-        activity = ActivityPlanModel(
-          req: activity.req,
-          title: activity.title,
-          learningObjective: activity.learningObjective,
-          instructions: activity.instructions,
-          vocab: activity.vocab,
-          imageURL: url.toString(),
-        );
-      });
-    }
-
     await BookmarkedActivitiesRepo.remove(activityId);
     await BookmarkedActivitiesRepo.save(activity);
     if (mounted) setState(() {});
@@ -97,11 +75,16 @@ class BookmarkedActivitiesListState extends State<BookmarkedActivitiesList> {
                   showDialog(
                     context: context,
                     builder: (context) {
-                      return ActivitySuggestionDialog(
+                      return ActivityPlannerBuilder(
                         initialActivity: activity,
-                        buttonText: L10n.of(context).inviteAndLaunch,
-                        room: widget.room,
                         onEdit: _onEdit,
+                        room: widget.room,
+                        builder: (controller) {
+                          return ActivitySuggestionDialog(
+                            controller: controller,
+                            buttonText: l10n.launch,
+                          );
+                        },
                       );
                     },
                   );

@@ -9,7 +9,7 @@
 // import 'package:fluffychat/pangea/instructions/instructions_inline_tooltip.dart';
 // import 'package:fluffychat/widgets/matrix.dart';
 // import 'package:flutter/material.dart';
-// import 'package:flutter_gen/gen_l10n/l10n.dart';
+// import 'package:fluffychat/l10n/l10n.dart';
 
 // class WordEmojiChoice extends StatefulWidget {
 //   const WordEmojiChoice({

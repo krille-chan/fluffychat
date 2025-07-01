@@ -37,8 +37,7 @@ class LevelBarState extends State<LevelBar> {
       height: widget.progressBarDetails.height,
       beginWidth: prevWidth,
       endWidth: width,
-      primaryColor: AppConfig.gold,
-      highlightColor: AppConfig.goldLight,
+      primaryColor: AppConfig.goldLight,
     );
   }
 }

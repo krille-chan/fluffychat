@@ -98,7 +98,7 @@ class VocabAnalyticsListView extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ConstrainedBox(
-                    constraints: const BoxConstraints(maxWidth: 225.0),
+                    constraints: const BoxConstraints(maxWidth: 250.0),
                     child: AnimatedSwitcher(
                       duration: const Duration(milliseconds: 300),
                       transitionBuilder: (child, animation) => FadeTransition(

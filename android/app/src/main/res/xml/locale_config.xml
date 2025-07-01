@@ -6,6 +6,7 @@
     <locale android:name="bo"/>
     <locale android:name="ca"/>
     <locale android:name="cs"/>
+    <locale android:name="da"/>
     <locale android:name="de"/>
     <locale android:name="el"/>
     <locale android:name="en"/>
@@ -45,10 +46,12 @@
     <locale android:name="sr"/>
     <locale android:name="sv"/>
     <locale android:name="ta"/>
+    <locale android:name="te"/>
     <locale android:name="th"/>
     <locale android:name="tr"/>
     <locale android:name="uk"/>
     <locale android:name="vi"/>
+    <locale android:name="yue"/>
     <locale android:name="zh"/>
     <locale android:name="zh"/>
 </locale-config>
