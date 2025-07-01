@@ -26,30 +26,6 @@ import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
 import '../../../utils/url_launcher.dart';
 
-class _TokenPosition {
-  final PangeaToken token;
-  final int startIndex;
-  final int endIndex;
-
-  _TokenPosition({
-    required this.token,
-    required this.startIndex,
-    required this.endIndex,
-  });
-}
-
-class _MessageChunk {
-  final int startIndex;
-  final int endIndex;
-  final String text;
-
-  _MessageChunk({
-    required this.startIndex,
-    required this.endIndex,
-    required this.text,
-  });
-}
-
 class HtmlMessage extends StatelessWidget {
   final String html;
   final Room room;
