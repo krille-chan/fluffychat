@@ -6,7 +6,7 @@ description: Learn a language while texting your friends.
 # Pangea#
 publish_to: none
 # On version bump also increase the build number for F-Droid
-version: 4.1.10+2
+version: 4.1.12+2
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
@@ -168,8 +168,8 @@ flutter:
     # #Pangea
     # uncomment this to enable mobile builds
     # causes error with github actions
-    # - .env
-    # - assets/.env
+    - .env
+    - assets/.env
     - assets/pangea/
     - assets/pangea/bot_faces/
     # Pangea#
