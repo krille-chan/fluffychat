@@ -6,17 +6,17 @@ import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/widgets/layouts/login_scaffold.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'login.dart';
+import 'register.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:flutter/gestures.dart';
 import 'package:go_router/go_router.dart';
 
-class LoginView extends StatelessWidget {
-  final LoginController controller;
+class RegisterView extends StatelessWidget {
+  final RegisterController controller;
   final bool enforceMobileMode;
   final Client client;
 
-  const LoginView(
+  const RegisterView(
     this.controller, {
     super.key,
     this.enforceMobileMode = false,
@@ -46,7 +46,7 @@ class LoginView extends StatelessWidget {
             top: MediaQuery.of(context).size.height * 0.05,
           ),
           child: Text(
-            L10n.of(context).login,
+            'Cadastrar',
             style: GoogleFonts.righteous(
               fontSize: 20,
               color: theme.colorScheme.onSurface,
@@ -121,7 +121,7 @@ class LoginView extends StatelessWidget {
                       prefixIcon: const Icon(Icons.account_box_outlined),
                       errorText: controller.usernameError,
                       errorStyle: TextStyle(color: theme.colorScheme.secondary),
-                      labelText: L10n.of(context).emailOrUsername,
+                      labelText: "Nome de usuário",
                     ),
                   ),
                 ),
@@ -141,7 +141,7 @@ class LoginView extends StatelessWidget {
                     controller: controller.passwordController,
                     textInputAction: TextInputAction.go,
                     obscureText: !controller.showPassword,
-                    onSubmitted: (_) => controller.login(),
+                    onSubmitted: (_) => controller.register(),
                     decoration: InputDecoration(
                       prefixIcon: const Icon(Icons.lock_outlined),
                       errorText: controller.passwordError,
@@ -155,7 +155,7 @@ class LoginView extends StatelessWidget {
                           color: theme.colorScheme.onSurface,
                         ),
                       ),
-                      labelText: L10n.of(context).password,
+                      labelText: "Senha",
                     ),
                   ),
                 ),
@@ -163,27 +163,13 @@ class LoginView extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24.0),
                   child: ElevatedButton(
-                    onPressed: controller.loading ? null : controller.login,
+                    onPressed: controller.loading ? null : controller.register,
                     child: controller.loading
                         ? const LinearProgressIndicator()
-                        : Text(L10n.of(context).login),
+                        : const Text("Criar conta"),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 24.0,
-                    vertical: 16.0,
-                  ),
-                  child: TextButton(
-                    onPressed: controller.loading
-                        ? () {}
-                        : controller.passwordForgotten,
-                    style: TextButton.styleFrom(
-                      foregroundColor: theme.colorScheme.primary,
-                    ),
-                    child: Text(L10n.of(context).passwordForgotten),
-                  ),
-                ),
+                const SizedBox(height: 10),
                 Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 24.0,
@@ -195,7 +181,7 @@ class LoginView extends StatelessWidget {
                       text: TextSpan(
                         children: [
                           TextSpan(
-                            text: "Novo aqui? ",
+                            text: "Já tem uma conta?",
                             style: TextStyle(
                               color: theme.colorScheme.onSurface,
                               fontSize: 15,
@@ -203,7 +189,7 @@ class LoginView extends StatelessWidget {
                             ),
                           ),
                           TextSpan(
-                            text: "Crie uma conta",
+                            text: "Entrar",
                             style: TextStyle(
                               color: theme.colorScheme.primary,
                               fontSize: 15,

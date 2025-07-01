@@ -20,6 +20,7 @@ import 'package:fluffychat/pages/device_settings/device_settings.dart';
 import 'package:fluffychat/pages/homeserver_picker/homeserver_picker.dart';
 import 'package:fluffychat/pages/invitation_selection/invitation_selection.dart';
 import 'package:fluffychat/pages/login/login.dart';
+import 'package:fluffychat/pages/register/register.dart';
 import 'package:fluffychat/pages/new_group/new_group.dart';
 import 'package:fluffychat/pages/new_private_chat/new_private_chat.dart';
 import 'package:fluffychat/pages/settings/settings.dart';
@@ -90,6 +91,23 @@ abstract class AppRoutes {
 
         final client = extra;
         return Login(client: client);
+      },
+    ),
+    GoRoute(
+      path: '/register',
+      builder: (context, state) {
+        final extra = state.extra;
+
+        if (extra == null || extra is! Client) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            context.go('/');
+          });
+
+          return const SizedBox.shrink();
+        }
+
+        final client = extra;
+        return Register(client: client);
       },
     ),
     GoRoute(

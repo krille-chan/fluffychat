@@ -11,17 +11,17 @@ import 'package:fluffychat/widgets/adaptive_dialogs/show_text_input_dialog.dart'
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/platform_infos.dart';
-import 'login_view.dart';
+import 'register_view.dart';
 
-class Login extends StatefulWidget {
+class Register extends StatefulWidget {
   final Client client;
-  const Login({required this.client, super.key});
+  const Register({required this.client, super.key});
 
   @override
-  LoginController createState() => LoginController();
+  RegisterController createState() => RegisterController();
 }
 
-class LoginController extends State<Login> {
+class RegisterController extends State<Register> {
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   String? usernameError;
@@ -32,7 +32,7 @@ class LoginController extends State<Login> {
   void toggleShowPassword() =>
       setState(() => showPassword = !loading && !showPassword);
 
-  void login() async {
+  void register() async {
     final matrix = Matrix.of(context);
     if (usernameController.text.isEmpty) {
       setState(() => usernameError = L10n.of(context).pleaseEnterYourUsername);
@@ -69,17 +69,17 @@ class LoginController extends State<Login> {
       } else {
         identifier = AuthenticationUserIdentifier(user: username);
       }
+
       final client = await matrix.getLoginClient();
-      await client.login(
-        LoginType.mLoginPassword,
-        identifier: identifier,
-        // To stay compatible with older server versions
-        // ignore: deprecated_member_use
-        user: identifier.type == AuthenticationIdentifierTypes.userId
-            ? username
-            : null,
+
+      await client.register(
+        username: username,
         password: passwordController.text,
         initialDeviceDisplayName: PlatformInfos.clientName,
+        auth: AuthenticationData.fromJson({
+          'type': 'm.login.registration_token',
+          'registration_token': 'proerd',
+        }),
       );
     } on MatrixException catch (exception) {
       setState(() => passwordError = exception.errorMessage);
@@ -226,14 +226,14 @@ class LoginController extends State<Login> {
       );
       usernameController.text = input;
       passwordController.text = password;
-      login();
+      register();
     }
   }
 
   static int sendAttempt = 0;
 
   @override
-  Widget build(BuildContext context) => LoginView(
+  Widget build(BuildContext context) => RegisterView(
         this,
         client: widget.client,
       );
