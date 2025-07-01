@@ -3241,5 +3241,9 @@
     "commandHint_logoutall": "Logout all active devices",
     "displayNavigationRail": "Show navigation rail on mobile",
     "customReaction": "Custom reaction",
-    "moreEvents": "More events"
-}
+    "moreEvents": "More events",
+    "errorInvalidCredentials": "Invalid username or password.",
+    "errorMissingParam": "Missing information required to proceed.",
+    "errorSessionExpired": "Session expired or invalid. Please log in again.",
+    "errorUnknown": "Unexpected error. Please try again."
+  }

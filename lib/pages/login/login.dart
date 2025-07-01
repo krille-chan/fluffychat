@@ -82,7 +82,26 @@ class LoginController extends State<Login> {
         initialDeviceDisplayName: PlatformInfos.clientName,
       );
     } on MatrixException catch (exception) {
-      setState(() => passwordError = exception.errorMessage);
+      String errorMessage;
+
+      switch (exception.error) {
+        case MatrixError.M_FORBIDDEN:
+          errorMessage = L10n.of(context).errorInvalidCredentials;
+          break;
+        case MatrixError.M_MISSING_PARAM:
+          errorMessage = L10n.of(context).errorMissingParam;
+          break;
+        case MatrixError.M_UNKNOWN_TOKEN:
+          errorMessage = L10n.of(context).errorSessionExpired;
+          break;
+        default:
+          errorMessage = L10n.of(context).errorUnknown;
+      }
+
+      setState(() {
+        passwordError = errorMessage;
+      });
+
       return setState(() => loading = false);
     } catch (exception) {
       setState(() => passwordError = exception.toString());
