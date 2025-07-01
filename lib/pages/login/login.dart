@@ -234,6 +234,10 @@ class LoginController extends State<Login> {
 
   @override
   Widget build(BuildContext context) => LoginView(this);
+
+  void onMoreAction(MoreLoginActions action) {
+    PlatformInfos.showDialog(context);
+  }
 }
 
 extension on String {
@@ -245,3 +249,5 @@ extension on String {
 
   bool get isPhoneNumber => _phoneRegex.hasMatch(this);
 }
+
+enum MoreLoginActions { importBackup, privacy, about }

@@ -5,39 +5,79 @@ import 'package:fluffychat/widgets/layouts/login_scaffold.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'login.dart';
+import 'package:fluffychat/config/themes.dart';
 
 class LoginView extends StatelessWidget {
   final LoginController controller;
+  final bool enforceMobileMode;
 
-  const LoginView(this.controller, {super.key});
+  const LoginView(
+    this.controller, {
+    super.key,
+    this.enforceMobileMode = false,
+  });
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
+    final isMobileMode =
+        enforceMobileMode || !FluffyThemes.isColumnMode(context);
+
     return LoginScaffold(
       enforceMobileMode:
           Matrix.of(context).widget.clients.any((client) => client.isLogged()),
-      appBar: null,
+      appBar: AppBar(
+        backgroundColor: isMobileMode
+            ? theme.colorScheme.surface
+            : theme.colorScheme.tertiary,
+        toolbarHeight: isMobileMode
+            ? MediaQuery.of(context).size.height * 0.15
+            : MediaQuery.of(context).size.height * 0.1,
+        title: Padding(
+          padding: EdgeInsets.only(
+            left: MediaQuery.of(context).size.height * 0.025,
+            top: MediaQuery.of(context).size.height * 0.05,
+          ),
+          child: Text(
+            L10n.of(context).login,
+            style: GoogleFonts.righteous(
+              fontSize: 20,
+              color: theme.colorScheme.onSurface,
+            ),
+          ),
+        ),
+        actions: [
+          Padding(
+            padding: EdgeInsets.only(
+              right: MediaQuery.of(context).size.height * 0.025,
+              top: MediaQuery.of(context).size.height * 0.05,
+            ),
+            child: PopupMenuButton<MoreLoginActions>(
+              useRootNavigator: true,
+              onSelected: controller.onMoreAction,
+              itemBuilder: (_) => [
+                PopupMenuItem(
+                  value: MoreLoginActions.about,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(Icons.info_outlined),
+                      const SizedBox(width: 12),
+                      Text(L10n.of(context).about),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
       body: Builder(
         builder: (context) {
           return AutofillGroup(
             child: ListView(
               children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.only(
-                    left: MediaQuery.of(context).size.height * 0.05,
-                    right: MediaQuery.of(context).size.height * 0.05,
-                    top: MediaQuery.of(context).size.height * 0.05,
-                  ),
-                  child: Text(
-                    L10n.of(context).login,
-                    style: GoogleFonts.righteous(
-                      fontSize: 20,
-                      color: theme.colorScheme.onSurface,
-                    ),
-                  ),
-                ),
                 Padding(
                   padding: EdgeInsets.symmetric(
                     vertical: MediaQuery.of(context).size.height * 0.05,
@@ -53,7 +93,7 @@ class LoginView extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 40),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24.0),
                   child: TextField(
