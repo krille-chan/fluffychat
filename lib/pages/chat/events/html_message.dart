@@ -155,7 +155,9 @@ class HtmlMessage extends StatelessWidget {
 
   // #Pangea
   List<PangeaToken>? get tokens =>
-      pangeaMessageEvent?.messageDisplayRepresentation?.tokens;
+      pangeaMessageEvent?.messageDisplayRepresentation?.tokens
+          ?.where((t) => t.pos != "PUNCT")
+          .toList();
 
   PangeaToken? getToken(
     String text,
@@ -309,6 +311,8 @@ class HtmlMessage extends StatelessWidget {
       overlayController: overlayController,
       isTransitionAnimation: isTransitionAnimation,
     );
+
+    final fontSize = renderer.fontSize(context) ?? this.fontSize;
     // Pangea#
 
     switch (node.localName) {
@@ -423,10 +427,7 @@ class HtmlMessage extends StatelessWidget {
                 avatar: user.avatarUrl,
                 uri: href,
                 outerContext: context,
-                // #Pangea
-                // fontSize: fontSize,
-                fontSize: renderer.fontSize(context) ?? fontSize,
-                // Pangea#
+                fontSize: fontSize,
                 color: linkStyle.color,
                 // #Pangea
                 userId: user.id,
@@ -447,10 +448,7 @@ class HtmlMessage extends StatelessWidget {
                 avatar: room?.avatar,
                 uri: href,
                 outerContext: context,
-                // #Pangea
-                // fontSize: fontSize,
-                fontSize: renderer.fontSize(context) ?? fontSize,
-                // Pangea#
+                fontSize: fontSize,
                 color: linkStyle.color,
               ),
             );

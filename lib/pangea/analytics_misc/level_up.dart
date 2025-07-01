@@ -91,6 +91,7 @@ class LevelUpBannerState extends State<LevelUpBanner>
 
   ConstructSummary? _constructSummary;
   String? _error;
+  bool _loading = true;
 
   @override
   void initState() {
@@ -143,6 +144,7 @@ class LevelUpBannerState extends State<LevelUpBanner>
 
   Future<void> _setConstructSummary() async {
     try {
+      setState(() => _loading = true);
       _constructSummary = await MatrixState.pangeaController.getAnalytics
           .generateLevelUpAnalytics(
         widget.level,
@@ -150,6 +152,10 @@ class LevelUpBannerState extends State<LevelUpBanner>
       );
     } catch (e) {
       _error = e.toString();
+    } finally {
+      if (mounted) {
+        setState(() => _loading = false);
+      }
     }
   }
 
@@ -364,144 +370,178 @@ class LevelUpBannerState extends State<LevelUpBanner>
                             borderRadius: BorderRadius.circular(8),
                           ),
                           padding: const EdgeInsets.all(16),
-                          child: SingleChildScrollView(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              spacing: 24.0,
-                              children: [
-                                Table(
-                                  columnWidths: const {
-                                    0: IntrinsicColumnWidth(),
-                                    1: FlexColumnWidth(),
-                                    2: IntrinsicColumnWidth(),
-                                  },
-                                  defaultVerticalAlignment:
-                                      TableCellVerticalAlignment.middle,
-                                  children: [
-                                    ...LearningSkillsEnum.values
-                                        .where(
-                                      (v) =>
-                                          v.isVisible && _skillsPoints(v) > -1,
+                          child: _loading
+                              ? const Center(
+                                  child: CircularProgressIndicator.adaptive(),
+                                )
+                              : _error != null
+                                  ? Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Icon(
+                                          Icons.error,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .error,
+                                        ),
+                                        const SizedBox(width: 8.0),
+                                        Text(
+                                          L10n.of(context)
+                                              .oopsSomethingWentWrong,
+                                        ),
+                                      ],
                                     )
-                                        .map((skill) {
-                                      return TableRow(
+                                  : SingleChildScrollView(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        spacing: 24.0,
                                         children: [
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                              vertical: 9.0,
-                                              horizontal: 18.0,
-                                            ),
-                                            child: Icon(
-                                              skill.icon,
-                                              size: 25,
-                                              color: Colors.white,
-                                            ),
+                                          Table(
+                                            columnWidths: const {
+                                              0: IntrinsicColumnWidth(),
+                                              1: FlexColumnWidth(),
+                                              2: IntrinsicColumnWidth(),
+                                            },
+                                            defaultVerticalAlignment:
+                                                TableCellVerticalAlignment
+                                                    .middle,
+                                            children: [
+                                              ...LearningSkillsEnum.values
+                                                  .where(
+                                                (v) =>
+                                                    v.isVisible &&
+                                                    _skillsPoints(v) > -1,
+                                              )
+                                                  .map((skill) {
+                                                return TableRow(
+                                                  children: [
+                                                    Padding(
+                                                      padding: const EdgeInsets
+                                                          .symmetric(
+                                                        vertical: 9.0,
+                                                        horizontal: 18.0,
+                                                      ),
+                                                      child: Icon(
+                                                        skill.icon,
+                                                        size: 25,
+                                                        color: Colors.white,
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding: const EdgeInsets
+                                                          .symmetric(
+                                                        vertical: 9.0,
+                                                        horizontal: 18.0,
+                                                      ),
+                                                      child: Text(
+                                                        skill.tooltip(context),
+                                                        style: const TextStyle(
+                                                          fontSize: 16,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                          color: Colors.white,
+                                                        ),
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding: const EdgeInsets
+                                                          .symmetric(
+                                                        vertical: 9.0,
+                                                        horizontal: 18.0,
+                                                      ),
+                                                      child: Text(
+                                                        "+ ${_skillsPoints(skill)} XP",
+                                                        style: const TextStyle(
+                                                          fontSize: 16,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                          color: Colors.white,
+                                                        ),
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                );
+                                              }),
+                                            ],
                                           ),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                              vertical: 9.0,
-                                              horizontal: 18.0,
-                                            ),
-                                            child: Text(
-                                              skill.tooltip(context),
-                                              style: const TextStyle(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.w600,
-                                                color: Colors.white,
+                                          CachedNetworkImage(
+                                            imageUrl:
+                                                "${AppConfig.assetsBaseURL}/${LevelUpConstants.dinoLevelUPFileName}",
+                                            width: 400,
+                                            fit: BoxFit.cover,
+                                          ),
+                                          if (_constructSummary?.textSummary !=
+                                              null)
+                                            Container(
+                                              padding: const EdgeInsets.all(12),
+                                              decoration: BoxDecoration(
+                                                color: Theme.of(context)
+                                                    .colorScheme
+                                                    .secondaryContainer,
+                                                borderRadius:
+                                                    BorderRadius.circular(8),
                                               ),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                              vertical: 9.0,
-                                              horizontal: 18.0,
-                                            ),
-                                            child: Text(
-                                              "+ ${_skillsPoints(skill)} XP",
-                                              style: const TextStyle(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.w600,
-                                                color: Colors.white,
+                                              child: Text(
+                                                _constructSummary!.textSummary,
+                                                style: TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: Theme.of(context)
+                                                      .colorScheme
+                                                      .onSecondaryContainer,
+                                                ),
+                                                textAlign: TextAlign.center,
                                               ),
-                                              textAlign: TextAlign.center,
                                             ),
+                                          const SizedBox(
+                                            height: 24,
                                           ),
+                                          // Share button, currently no functionality
+                                          // ElevatedButton(
+                                          //   onPressed: () {
+                                          //     // Add share functionality
+                                          //   },
+                                          //   style: ElevatedButton.styleFrom(
+                                          //     backgroundColor: Colors.white,
+                                          //     foregroundColor: Colors.black,
+                                          //     padding: const EdgeInsets.symmetric(
+                                          //       vertical: 12,
+                                          //       horizontal: 24,
+                                          //     ),
+                                          //     shape: RoundedRectangleBorder(
+                                          //       borderRadius: BorderRadius.circular(8),
+                                          //     ),
+                                          //   ),
+                                          //   child: const Row(
+                                          //     mainAxisSize: MainAxisSize
+                                          //         .min,
+                                          //     children: [
+                                          //       Text(
+                                          //         "Share with Friends",
+                                          //         style: TextStyle(
+                                          //           fontSize: 16,
+                                          //           fontWeight: FontWeight.bold,
+                                          //         ),
+                                          //       ),
+                                          //       SizedBox(
+                                          //         width: 8,
+                                          //       ),
+                                          //       Icon(
+                                          //         Icons.ios_share,
+                                          //         size: 20,
+                                          //       ),
+                                          //     ),
+                                          //   ),
+                                          // ),
                                         ],
-                                      );
-                                    }),
-                                  ],
-                                ),
-                                CachedNetworkImage(
-                                  imageUrl:
-                                      "${AppConfig.assetsBaseURL}/${LevelUpConstants.dinoLevelUPFileName}",
-                                  width: 400,
-                                  fit: BoxFit.cover,
-                                ),
-                                if (_constructSummary?.textSummary != null)
-                                  Container(
-                                    padding: const EdgeInsets.all(12),
-                                    decoration: BoxDecoration(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .secondaryContainer,
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
-                                    child: Text(
-                                      _constructSummary!.textSummary,
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w600,
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .onSecondaryContainer,
                                       ),
-                                      textAlign: TextAlign.center,
                                     ),
-                                  ),
-                                const SizedBox(
-                                  height: 24,
-                                ),
-                                // Share button, currently no functionality
-                                // ElevatedButton(
-                                //   onPressed: () {
-                                //     // Add share functionality
-                                //   },
-                                //   style: ElevatedButton.styleFrom(
-                                //     backgroundColor: Colors.white,
-                                //     foregroundColor: Colors.black,
-                                //     padding: const EdgeInsets.symmetric(
-                                //       vertical: 12,
-                                //       horizontal: 24,
-                                //     ),
-                                //     shape: RoundedRectangleBorder(
-                                //       borderRadius: BorderRadius.circular(8),
-                                //     ),
-                                //   ),
-                                //   child: const Row(
-                                //     mainAxisSize: MainAxisSize
-                                //         .min,
-                                //     children: [
-                                //       Text(
-                                //         "Share with Friends",
-                                //         style: TextStyle(
-                                //           fontSize: 16,
-                                //           fontWeight: FontWeight.bold,
-                                //         ),
-                                //       ),
-                                //       SizedBox(
-                                //         width: 8,
-                                //       ),
-                                //       Icon(
-                                //         Icons.ios_share,
-                                //         size: 20,
-                                //       ),
-                                //     ),
-                                //   ),
-                                // ),
-                              ],
-                            ),
-                          ),
                         ),
                       ),
                     ],
