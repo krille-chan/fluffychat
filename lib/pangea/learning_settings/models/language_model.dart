@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
 
-import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/learning_settings/constants/language_constants.dart';
 import 'package:fluffychat/pangea/learning_settings/enums/l2_support_enum.dart';
 import 'package:fluffychat/pangea/learning_settings/utils/p_language_store.dart';
@@ -69,13 +68,6 @@ class LanguageModel {
   static LanguageModel get unknown => LanguageModel(
         langCode: LanguageKeys.unknownLanguage,
         displayName: "Unknown",
-      );
-
-  static LanguageModel multiLingual([BuildContext? context]) => LanguageModel(
-        displayName: context != null
-            ? L10n.of(context).multiLingualSpace
-            : "Multilingual Space",
-        langCode: LanguageKeys.multiLanguage,
       );
 
   String? getDisplayName(BuildContext context) {

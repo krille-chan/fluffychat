@@ -22,6 +22,7 @@ import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_selection_repo.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 
 /// A minimized version of AnalyticsController that get the logged in user's analytics
 class GetAnalyticsController extends BaseController {
@@ -455,10 +456,13 @@ class GetAnalyticsController extends BaseController {
 //       int diffXP = maxXP - minXP;
 //       if (diffXP < 0) diffXP = 0;
 
-  Future<ConstructSummary?> getConstructSummaryFromStateEvent() async {
+  ConstructSummary? getConstructSummaryFromStateEvent() {
     try {
       final Room? analyticsRoom = _client.analyticsRoomLocal(_l2!);
-      if (analyticsRoom == null) return null;
+      if (analyticsRoom == null) {
+        debugPrint("Analytics room is null");
+        return null;
+      }
       final state =
           analyticsRoom.getState(PangeaEventTypes.constructSummary, '');
       if (state == null) return null;
@@ -492,23 +496,41 @@ class GetAnalyticsController extends BaseController {
       }
 
       // extract construct use message bodies for analytics
-      List<String?>? constructUseMessageContentBodies = [];
+      final Map<String, Set<String>> useEventIds = {};
       for (final use in constructUseOfCurrentLevel) {
-        try {
-          final useMessage = await use.getEvent(_client);
-          final useMessageBody = useMessage?.content["body"];
-          if (useMessageBody is String) {
-            constructUseMessageContentBodies.add(useMessageBody);
-          } else {
-            constructUseMessageContentBodies.add(null);
-          }
-        } catch (e) {
-          constructUseMessageContentBodies.add(null);
-        }
+        if (use.metadata.roomId == null) continue;
+        if (use.metadata.eventId == null) continue;
+        useEventIds[use.metadata.roomId!] ??= {};
+        useEventIds[use.metadata.roomId!]!.add(use.metadata.eventId!);
       }
-      if (constructUseMessageContentBodies.length !=
-          constructUseOfCurrentLevel.length) {
-        constructUseMessageContentBodies = null;
+
+      final List<String?> constructUseMessageContentBodies = [];
+      for (final entry in useEventIds.entries) {
+        final String roomId = entry.key;
+        final room = _client.getRoomById(roomId);
+        if (room == null) continue;
+        final List<String?> messageBodies = [];
+        for (final eventId in entry.value) {
+          try {
+            final Event? event = await room.getEventById(eventId);
+            if (event?.content["body"] is! String) continue;
+            final String body = event?.content["body"] as String;
+            if (body.isEmpty) continue;
+            messageBodies.add(body);
+          } catch (e, s) {
+            debugPrint("Error getting event by ID: $e");
+            ErrorHandler.logError(
+              e: e,
+              s: s,
+              data: {
+                'roomId': roomId,
+                'eventId': eventId,
+              },
+            );
+            continue;
+          }
+        }
+        constructUseMessageContentBodies.addAll(messageBodies);
       }
 
       final request = ConstructSummaryRequest(
@@ -521,6 +543,10 @@ class GetAnalyticsController extends BaseController {
 
       final response = await ConstructRepo.generateConstructSummary(request);
       summary = response.summary;
+      summary.levelVocabConstructs = MatrixState
+          .pangeaController.getAnalytics.constructListModel.vocabLemmas;
+      summary.levelGrammarConstructs = MatrixState
+          .pangeaController.getAnalytics.constructListModel.grammarLemmas;
     } catch (e) {
       debugPrint("Error generating level up analytics: $e");
       ErrorHandler.logError(e: e, data: {'e': e});

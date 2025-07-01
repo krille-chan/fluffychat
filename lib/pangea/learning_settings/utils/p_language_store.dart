@@ -42,7 +42,6 @@ class PLanguageStore {
       _langList = _langList.toSet().toList();
 
       _langList.sort((a, b) => a.displayName.compareTo(b.displayName));
-      _langList.insert(0, LanguageModel.multiLingual());
     } catch (err, stack) {
       debugger(when: kDebugMode);
       ErrorHandler.logError(

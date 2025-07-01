@@ -80,17 +80,16 @@ class OnboardingController extends State<Onboarding> {
   Future<void> startChatWithBot() async {
     final resp = await showFutureLoadingDialog<String>(
       context: context,
-      future: () => Matrix.of(context).client.createRoom(
-            invite: [BotName.byEnvironment],
-            isDirect: true,
-            preset: CreateRoomPreset.trustedPrivateChat,
-            initialState: [
-              BotOptionsModel(mode: BotMode.directChat).toStateEvent,
-              RoomDefaults.defaultPowerLevels(
-                Matrix.of(context).client.userID!,
-              ),
-            ],
+      future: () => Matrix.of(context).client.startDirectChat(
+        BotName.byEnvironment,
+        preset: CreateRoomPreset.trustedPrivateChat,
+        initialState: [
+          BotOptionsModel(mode: BotMode.directChat).toStateEvent,
+          RoomDefaults.defaultPowerLevels(
+            Matrix.of(context).client.userID!,
           ),
+        ],
+      ),
     );
     if (resp.isError) return;
     context.go("/rooms/${resp.result}");

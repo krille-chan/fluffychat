@@ -73,15 +73,18 @@ class WordZoomWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                Text(
-                  token.text.content,
-                  style: TextStyle(
-                    fontSize: 32.0,
-                    fontWeight: FontWeight.w600,
-                    height: 1.2,
-                    color: Theme.of(context).brightness == Brightness.light
-                        ? AppConfig.yellowDark
-                        : AppConfig.yellowLight,
+                Flexible(
+                  child: Text(
+                    token.text.content,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 32.0,
+                      fontWeight: FontWeight.w600,
+                      height: 1.2,
+                      color: Theme.of(context).brightness == Brightness.light
+                          ? AppConfig.yellowDark
+                          : AppConfig.yellowLight,
+                    ),
                   ),
                 ),
                 ConstructXpWidget(

@@ -587,7 +587,6 @@ class ChatListController extends State<ChatList>
           if (space != null) {
             chatListHandleSpaceTap(
               context,
-              this,
               space,
             );
           }
@@ -669,6 +668,10 @@ class ChatListController extends State<ChatList>
 
     _activeSpaceId =
         widget.activeSpaceId == 'clear' ? null : widget.activeSpaceId;
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _joinInvitedSpaces();
+    });
     // Pangea#
 
     super.initState();
@@ -683,6 +686,16 @@ class ChatListController extends State<ChatList>
       widget.activeSpaceId == 'clear'
           ? clearActiveSpace()
           : setActiveSpace(widget.activeSpaceId!);
+    }
+  }
+
+  Future<void> _joinInvitedSpaces() async {
+    final invitedSpaces = Matrix.of(context).client.rooms.where(
+          (r) => r.isSpace && r.membership == Membership.invite,
+        );
+
+    for (final space in invitedSpaces) {
+      await showInviteDialog(space, context);
     }
   }
   // Pangea#
