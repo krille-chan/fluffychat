@@ -106,4 +106,19 @@ class PLanguageStore {
     }
     return null;
   }
+
+  static final List<String> rtlLanguageCodes = [
+    'ar',
+    'arc',
+    'dv',
+    'fa',
+    'ha',
+    'he',
+    'khw',
+    'ks',
+    'ku',
+    'ps',
+    'ur',
+    'yi',
+  ];
 }

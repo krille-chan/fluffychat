@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
 
@@ -18,6 +19,7 @@ import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/events/models/representation_content_model.dart';
 import 'package:fluffychat/pangea/events/models/stt_translation_model.dart';
 import 'package:fluffychat/pangea/events/models/tokens_event_content_model.dart';
+import 'package:fluffychat/pangea/learning_settings/utils/p_language_store.dart';
 import 'package:fluffychat/pangea/morphs/morph_features_enum.dart';
 import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
 import 'package:fluffychat/pangea/spaces/models/space_model.dart';
@@ -791,4 +793,9 @@ class PangeaMessageEvent {
       tag: tag,
     );
   }
+
+  TextDirection get textDirection =>
+      PLanguageStore.rtlLanguageCodes.contains(messageDisplayLangCode)
+          ? TextDirection.rtl
+          : TextDirection.ltr;
 }
