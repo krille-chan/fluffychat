@@ -255,15 +255,20 @@ class HtmlMessage extends StatelessWidget {
       ]);
     }
 
-    for (int i = 0; i < result.length; i++) {
-      final tag = result[i];
-      if (blockHtmlTags.contains(tag.htmlTagName) ||
-          fullLineHtmlTag.contains(tag.htmlTagName)) {
-        result[i] = ", ";
-      }
-    }
-
     if (pangeaMessageEvent?.textDirection == TextDirection.rtl) {
+      for (int i = 0; i < result.length; i++) {
+        final tag = result[i];
+        if (blockHtmlTags.contains(tag.htmlTagName) ||
+            fullLineHtmlTag.contains(tag.htmlTagName)) {
+          if (i > 0 && result[i - 1] == ", ") {
+            result[i - 1] = "";
+          }
+          result[i] = ", ";
+        }
+      }
+      result.removeWhere((element) => element == "");
+      if (result[0] == ", ") result[0] = "";
+      if (result.last == ", ") result.last = "";
       final inverted = _invertTags(result);
       return inverted.join().trim();
     }
