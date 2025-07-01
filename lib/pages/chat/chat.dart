@@ -1856,7 +1856,10 @@ class ChatController extends State<ChatPageWithRoom>
     }
   }
 
-  void pinEvent() {
+  // #Pangea
+  // void pinEvent() {
+  Future<void> pinEvent() async {
+    // Pangea#
     final pinnedEventIds = room.pinnedEventIds;
     final selectedEventIds = selectedEvents.map((e) => e.eventId).toSet();
     final unpin = selectedEventIds.length == 1 &&
@@ -1866,10 +1869,16 @@ class ChatController extends State<ChatPageWithRoom>
     } else {
       pinnedEventIds.addAll(selectedEventIds);
     }
-    showFutureLoadingDialog(
+    // #Pangea
+    // showFutureLoadingDialog(
+    //   context: context,
+    //   future: () => room.setPinnedEvents(pinnedEventIds),
+    // );
+    await showFutureLoadingDialog(
       context: context,
       future: () => room.setPinnedEvents(pinnedEventIds),
     );
+    // Pangea#
   }
 
   Timer? _storeInputTimeoutTimer;

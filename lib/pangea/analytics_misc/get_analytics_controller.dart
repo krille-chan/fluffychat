@@ -481,8 +481,8 @@ class GetAnalyticsController extends BaseController {
     // generate level up analytics as a construct summary
     ConstructSummary summary;
     try {
-      final int maxXP = constructListModel.calculateXpWithLevel(upperLevel);
-      final int minXP = constructListModel.calculateXpWithLevel(lowerLevel);
+      final int minXP = constructListModel.calculateXpWithLevel(upperLevel);
+      final int maxXP = constructListModel.calculateXpWithLevel(lowerLevel);
       int diffXP = maxXP - minXP;
       if (diffXP < 0) diffXP = 0;
 
