@@ -204,12 +204,14 @@ class HtmlMessage extends StatelessWidget {
       }
     }
 
+    int position = 0;
     for (final PangeaToken token in tokens ?? []) {
       final String tokenText = token.text.content;
       final substringIndex = result.indexWhere(
         (string) =>
             string.contains(tokenText) &&
             !(string.startsWith('<') && string.endsWith('>')),
+        position,
       );
 
       if (substringIndex == -1) continue;
@@ -229,6 +231,8 @@ class HtmlMessage extends StatelessWidget {
         '<token offset="${token.text.offset}" length="${token.text.length}">$tokenText</token>',
         if (after.isNotEmpty) after,
       ]);
+
+      position = substringIndex;
     }
 
     if (pangeaMessageEvent?.textDirection == TextDirection.rtl) {
