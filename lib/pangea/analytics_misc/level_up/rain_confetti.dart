@@ -12,9 +12,15 @@ ConfettiController? _rainController;
 
 void rainConfetti(BuildContext context) {
   if (_confettiEntry != null) return; // Prevent duplicates
+  int numParticles = 2;
 
   _blastController = ConfettiController(duration: const Duration(seconds: 1));
-  _rainController = ConfettiController(duration: const Duration(seconds: 3));
+  _rainController = ConfettiController(duration: const Duration(seconds: 8));
+  Future.delayed(const Duration(seconds: 4), () {
+    if (_rainController!.state == ConfettiControllerState.playing) {
+      numParticles = 1;
+    }
+  });
 
   _blastController!.play();
   _rainController!.play();
@@ -61,14 +67,14 @@ void rainConfetti(BuildContext context) {
                 confettiController: _rainController!,
                 blastDirectionality: BlastDirectionality.directional,
                 blastDirection: 3 * pi / 2,
-                shouldLoop: true,
+                shouldLoop: false,
                 maxBlastForce: 5,
                 minBlastForce: 2,
                 minimumSize: const Size(20, 20),
                 maximumSize: const Size(25, 25),
                 gravity: 0.07,
                 emissionFrequency: 0.1,
-                numberOfParticles: 2,
+                numberOfParticles: numParticles,
                 colors: const [AppConfig.goldLight, AppConfig.gold],
                 createParticlePath: drawStar,
               ),
