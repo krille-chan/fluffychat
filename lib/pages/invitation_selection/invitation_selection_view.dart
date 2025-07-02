@@ -73,6 +73,7 @@ class InvitationSelectionView extends StatelessWidget {
                         )
                       : const Icon(Icons.search_outlined),
                 ),
+                style: TextStyle(color: theme.colorScheme.onTertiary),
                 onChanged: controller.searchUserWithCoolDown,
               ),
             ),
