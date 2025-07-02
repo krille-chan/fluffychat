@@ -202,15 +202,17 @@ class AnalyticsPopupWrapperState extends State<AnalyticsPopupWrapper> {
                 if (kIsWeb) const SizedBox(width: 4.0),
               ],
             )
-          : AppBar(
-              leading: widget.backButtonOverride ??
-                  (localConstructZoom != null
-                      ? IconButton(
-                          icon: const Icon(Icons.arrow_back),
-                          onPressed: () => setConstructZoom(null),
-                        )
-                      : const SizedBox()),
-            ),
+          : localConstructZoom != null
+              ? AppBar(
+                  leading: widget.backButtonOverride ??
+                      (localConstructZoom != null
+                          ? IconButton(
+                              icon: const Icon(Icons.arrow_back),
+                              onPressed: () => setConstructZoom(null),
+                            )
+                          : const SizedBox()),
+                )
+              : null,
       body: localView == ConstructTypeEnum.morph
           ? localConstructZoom == null
               ? MorphAnalyticsListView(controller: this)

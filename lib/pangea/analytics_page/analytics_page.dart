@@ -11,7 +11,7 @@ class AnalyticsPage extends StatefulWidget {
 }
 
 class AnalyticsPageState extends State<AnalyticsPage> {
-  ProgressIndicatorEnum? selectedIndicator = ProgressIndicatorEnum.level;
+  ProgressIndicatorEnum? selectedIndicator = ProgressIndicatorEnum.wordsUsed;
 
   void onIndicatorSelected(ProgressIndicatorEnum indicator) => setState(() {
         selectedIndicator = indicator;
