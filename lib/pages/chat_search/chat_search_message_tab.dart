@@ -143,14 +143,25 @@ class _MessageSearchResultListTile extends StatelessWidget {
             size: 16,
           ),
           const SizedBox(width: 8),
-          Text(
-            displayname,
-          ),
-          Expanded(
-            child: Text(
-              ' | ${event.originServerTs.localizedTimeShort(context)}',
-              style: const TextStyle(fontSize: 12),
+          // #Pangea
+          Flexible(
+            child:
+                // Pangea#
+                Text(
+              displayname,
+              // #Pangea
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              // Pangea#
             ),
+          ),
+          // #Pangea
+          // Expanded(
+          //   child:
+          // Pangea#
+          Text(
+            ' | ${event.originServerTs.localizedTimeShort(context)}',
+            style: const TextStyle(fontSize: 12),
           ),
         ],
       ),
