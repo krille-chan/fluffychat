@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/constructs/construct_level_enum.dart';
 import 'package:flutter/material.dart';
 
@@ -30,7 +31,7 @@ class _NewWordOverlayState extends State<NewWordOverlay>
   Offset position = const Offset(0, 0);
   OverlayEntry? _overlayEntry;
   bool _animationStarted = false;
-
+  bool columnMode = false;
   Widget? get svg => ConstructLevelEnum.seeds.icon();
 
   void _initAndStartAnimation() {
@@ -48,6 +49,7 @@ class _NewWordOverlayState extends State<NewWordOverlay>
     );
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      columnMode = FluffyThemes.isColumnMode(context);
       calculateSizeAndPosition();
       _showFlyingWidget();
       _controller?.forward();
@@ -71,12 +73,17 @@ class _NewWordOverlayState extends State<NewWordOverlay>
   }
 
   void calculateSizeAndPosition() {
-    final RenderBox? box =
+    //find position of word card and overlaybox(chat view) to figure out where seed should start
+    final RenderBox? cardBox =
         widget.cardKey.currentContext?.findRenderObject() as RenderBox?;
-    if (box != null) {
+    final RenderBox? overlayBox =
+        Overlay.of(context).context.findRenderObject() as RenderBox?;
+    if (cardBox != null && overlayBox != null) {
+      final cardGlobal = cardBox.localToGlobal(Offset.zero);
+      final overlayGlobal = overlayBox.localToGlobal(Offset.zero);
       setState(() {
-        position = box.localToGlobal(const Offset(-455, 0));
-        size = box.size;
+        position = cardGlobal - overlayGlobal;
+        size = cardBox.size;
       });
     }
   }
@@ -91,19 +98,18 @@ class _NewWordOverlayState extends State<NewWordOverlay>
         builder: (context, child) {
           final scale = _xpScaleAnim!.value;
           final fade = 1.0 - (_fadeAnim!.value);
-          // Calculate t for move to top left after 0.7
           double t = 0.0;
           if ((_controller!.value) >= 0.7) {
             t = ((_controller!.value) - 0.7) / 0.3;
             t = t.clamp(0.0, 1.0);
           }
-          // Start position: center of card, End position: top left (0,0)
           final startX = position.dx + size.width / 2 - (37 * scale);
           final startY = position.dy + size.height / 2 + 20 - (37 * scale);
-          const endX = 0.0;
-          const endY = 0.0;
+          final endX = (columnMode) ? 0.0 : position.dx + size.width;
+          final endY = (columnMode) ? 0.0 : position.dy + 30;
           final currentX = startX * (1 - t) + endX * t;
           final currentY = startY * (1 - t) + endY * t;
+
           return Positioned(
             left: currentX,
             top: currentY,
@@ -112,8 +118,9 @@ class _NewWordOverlayState extends State<NewWordOverlay>
               child: Transform.rotate(
                 angle: scale * 2 * pi,
                 child: SizedBox(
-                  width: 75 * scale,
-                  height: 75 * scale,
+                  //if going to top right, shrinks as it moves to match word card seed size
+                  width: 75 * scale * ((!columnMode) ? fade : 1),
+                  height: 75 * scale * ((!columnMode) ? fade : 1),
                   child: svg ?? const SizedBox(),
                 ),
               ),
