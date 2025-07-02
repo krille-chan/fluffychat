@@ -11,6 +11,8 @@ import 'package:fluffychat/widgets/matrix.dart';
 class ConstructSummary {
   final int upperLevel;
   final int lowerLevel;
+  int? levelVocabConstructs;
+  int? levelGrammarConstructs;
   final String language;
   final String textSummary;
   final int writingConstructScore;
@@ -21,6 +23,8 @@ class ConstructSummary {
   ConstructSummary({
     required this.upperLevel,
     required this.lowerLevel,
+    this.levelVocabConstructs,
+    this.levelGrammarConstructs,
     required this.language,
     required this.textSummary,
     required this.writingConstructScore,
@@ -33,6 +37,8 @@ class ConstructSummary {
     return {
       'upper_level': upperLevel,
       'lower_level': lowerLevel,
+      'level_grammar_constructs': levelGrammarConstructs,
+      'level_vocab_constructs': levelVocabConstructs,
       'language': language,
       'text_summary': textSummary,
       'writing_construct_score': writingConstructScore,
@@ -46,6 +52,8 @@ class ConstructSummary {
     return ConstructSummary(
       upperLevel: json['upper_level'],
       lowerLevel: json['lower_level'],
+      levelGrammarConstructs: json['level_grammar_constructs'],
+      levelVocabConstructs: json['level_vocab_constructs'],
       language: json['language'],
       textSummary: json['text_summary'],
       writingConstructScore: json['writing_construct_score'],

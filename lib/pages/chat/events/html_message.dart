@@ -204,12 +204,14 @@ class HtmlMessage extends StatelessWidget {
       }
     }
 
+    int position = 0;
     for (final PangeaToken token in tokens ?? []) {
       final String tokenText = token.text.content;
       final substringIndex = result.indexWhere(
         (string) =>
             string.contains(tokenText) &&
             !(string.startsWith('<') && string.endsWith('>')),
+        position,
       );
 
       if (substringIndex == -1) continue;
@@ -229,9 +231,68 @@ class HtmlMessage extends StatelessWidget {
         '<token offset="${token.text.offset}" length="${token.text.length}">$tokenText</token>',
         if (after.isNotEmpty) after,
       ]);
+
+      position = substringIndex;
     }
 
-    return result.join();
+    if (pangeaMessageEvent?.textDirection == TextDirection.rtl) {
+      for (int i = 0; i < result.length; i++) {
+        final tag = result[i];
+        if (blockHtmlTags.contains(tag.htmlTagName) ||
+            fullLineHtmlTag.contains(tag.htmlTagName)) {
+          if (i > 0 && result[i - 1] == ", ") {
+            result[i - 1] = "";
+          }
+          result[i] = ", ";
+        }
+      }
+      result.removeWhere((element) => element == "");
+      if (result[0] == ", ") result[0] = "";
+      if (result.last == ", ") result.last = "";
+      final inverted = _invertTags(result);
+      return inverted.join().trim();
+    }
+    return result.join().trim();
+  }
+
+  List<String> _invertTags(List<String> tags) {
+    final List<(String, int)> stack = [];
+    final List<(int, int)> invertedTags = [];
+    for (int i = 0; i < tags.length; i++) {
+      final tag = tags[i];
+      if (!tag.contains('<') || tag.contains("<token")) {
+        continue;
+      }
+
+      int match = -1;
+      if (tag.contains("</")) {
+        match = stack.indexWhere(
+          (element) =>
+              element.$1.htmlTagName == tag.htmlTagName &&
+              !element.$1.contains("</"),
+        );
+      }
+
+      if (match != -1) {
+        // If the tag is already in the stack, we remove it
+        final (matchTag, matchIndex) = stack.removeAt(match);
+        invertedTags.add((matchIndex, i));
+      } else {
+        // If the tag is not in the stack, we add it
+        stack.insert(0, (tag, i));
+      }
+    }
+
+    for (final (start, end) in invertedTags) {
+      final startTag = tags[start];
+      final endTag = tags[end];
+
+      tags[start] = endTag;
+      tags[end] = startTag;
+    }
+
+    final inverted = tags.reversed.toList();
+    return inverted;
   }
   // Pangea#
 
@@ -381,6 +442,7 @@ class HtmlMessage extends StatelessWidget {
                         ? () => onClick?.call(token)
                         : null,
                     child: RichText(
+                      textDirection: pangeaMessageEvent?.textDirection,
                       text: TextSpan(
                         children: [
                           LinkifySpan(
@@ -1005,4 +1067,9 @@ extension on String {
 
 extension on dom.Element {
   dom.Element get rootElement => parent?.rootElement ?? this;
+}
+
+extension on String {
+  String get htmlTagName =>
+      replaceAll('<', '').replaceAll('>', '').replaceAll('/', '').split(' ')[0];
 }
