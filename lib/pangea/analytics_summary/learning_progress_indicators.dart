@@ -19,7 +19,13 @@ import 'package:fluffychat/widgets/matrix.dart';
 /// messages sent,  words used, and error types, which can
 /// be clicked to access more fine-grained analytics data.
 class LearningProgressIndicators extends StatefulWidget {
-  const LearningProgressIndicators({super.key});
+  final ProgressIndicatorEnum? selected;
+  final Function(ProgressIndicatorEnum)? onIndicatorSelected;
+  const LearningProgressIndicators({
+    super.key,
+    this.selected,
+    this.onIndicatorSelected,
+  });
 
   @override
   State<LearningProgressIndicators> createState() =>
@@ -106,12 +112,18 @@ class LearningProgressIndicatorsState
                       children: ConstructTypeEnum.values
                           .map(
                             (c) => HoverButton(
+                              selected: widget.selected == c.indicator,
                               onPressed: () {
-                                showDialog<AnalyticsPopupWrapper>(
-                                  context: context,
-                                  builder: (context) => AnalyticsPopupWrapper(
-                                    view: c,
-                                  ),
+                                if (widget.onIndicatorSelected != null) {
+                                  widget.onIndicatorSelected?.call(
+                                    c.indicator,
+                                  );
+                                  return;
+                                }
+
+                                AnalyticsPopupWrapper.show(
+                                  context,
+                                  view: c,
                                 );
                               },
                               child: ProgressIndicatorBadge(
@@ -168,6 +180,12 @@ class LearningProgressIndicatorsState
                   cursor: SystemMouseCursors.click,
                   child: GestureDetector(
                     onTap: () {
+                      if (widget.onIndicatorSelected != null) {
+                        widget.onIndicatorSelected
+                            ?.call(ProgressIndicatorEnum.level);
+                        return;
+                      }
+
                       showDialog<LevelBarPopup>(
                         context: context,
                         builder: (c) => const LevelBarPopup(),

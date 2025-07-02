@@ -153,15 +153,13 @@ class ConstructNotificationOverlayState
   }
 
   void _showDetails() {
-    showDialog<AnalyticsPopupWrapper>(
-      context: context,
-      builder: (context) => AnalyticsPopupWrapper(
-        constructZoom: widget.construct,
-        view: ConstructTypeEnum.morph,
-        backButtonOverride: IconButton(
-          icon: const Icon(Icons.close),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
+    AnalyticsPopupWrapper.show(
+      context,
+      constructZoom: widget.construct,
+      view: ConstructTypeEnum.morph,
+      backButtonOverride: IconButton(
+        icon: const Icon(Icons.close),
+        onPressed: () => Navigator.of(context).pop(),
       ),
     );
   }
