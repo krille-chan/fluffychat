@@ -10,7 +10,6 @@ import 'package:fluffychat/pangea/activity_planner/activity_mode_list_repo.dart'
 import 'package:fluffychat/pangea/activity_planner/activity_plan_generation_repo.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_request.dart';
-import 'package:fluffychat/pangea/activity_planner/activity_plan_response.dart';
 import 'package:fluffychat/pangea/activity_planner/learning_objective_list_repo.dart';
 import 'package:fluffychat/pangea/activity_planner/list_request_schema.dart';
 import 'package:fluffychat/pangea/activity_planner/media_enum.dart';
@@ -166,11 +165,6 @@ class ActivityGeneratorState extends State<ActivityGenerator> {
     setState(() => selectedCefrLevel = value);
   }
 
-  void setSelectedMedia(MediaEnum? value) {
-    if (value == null) return;
-    setState(() => selectedMedia = value);
-  }
-
   Future<ActivitySettingResponseSchema?> get _selectedMode async {
     final modes = await modeItems;
     return modes.firstWhereOrNull(
@@ -203,30 +197,18 @@ class ActivityGeneratorState extends State<ActivityGenerator> {
     });
   }
 
-  Future<void> onEdit(int index, ActivityPlanModel updatedActivity) async {
-    // in this case we're editing an activity plan that was generated recently
-    // via the repo and should be updated in the cached response
-    if (activities != null) {
-      activities?[index] = updatedActivity;
-      ActivityPlanGenerationRepo.set(
-        planRequest,
-        ActivityPlanResponse(activityPlans: activities!),
-      );
-    }
-
-    setState(() {});
-  }
-
-  void update() => setState(() {});
-
-  Future<void> generate() async {
+  Future<void> generate({bool force = false}) async {
     setState(() {
       loading = true;
       error = null;
+      activities = null;
     });
 
     try {
-      final resp = await ActivityPlanGenerationRepo.get(planRequest);
+      final resp = await ActivityPlanGenerationRepo.get(
+        planRequest,
+        force: force,
+      );
       activities = resp.activityPlans;
       await _setModeImageURL();
     } catch (e, s) {
