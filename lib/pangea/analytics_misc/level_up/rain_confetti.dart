@@ -17,7 +17,7 @@ void rainConfetti(BuildContext context) {
   _blastController = ConfettiController(duration: const Duration(seconds: 1));
   _rainController = ConfettiController(duration: const Duration(seconds: 8));
   Future.delayed(const Duration(seconds: 4), () {
-    if (_rainController!.state == ConfettiControllerState.playing) {
+    if (_rainController?.state == ConfettiControllerState.playing) {
       numParticles = 1;
     }
   });
