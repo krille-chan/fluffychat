@@ -2117,5 +2117,20 @@
   "boldText": "Fet skrift",
   "@boldText": {},
   "pleaseFillOut": "Vennligst fyll ut",
-  "@pleaseFillOut": {}
+  "@pleaseFillOut": {},
+  "importEmojis": "Importer emojier",
+  "@importEmojis": {},
+  "supposedMxid": "Denne bør være {mxid}",
+  "@supposedMxid": {
+    "type": "String",
+    "placeholders": {
+      "mxid": {
+        "type": "String"
+      }
+    }
+  },
+  "addChatDescription": "Legg til chat beskrivelse...",
+  "@addChatDescription": {},
+  "commandHint_roomupgrade": "Oppgrader dette rommet til den gitte romversjonen",
+  "@commandHint_roomupgrade": {}
 }
