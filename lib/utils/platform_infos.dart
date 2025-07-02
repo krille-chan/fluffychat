@@ -47,11 +47,9 @@ abstract class PlatformInfos {
   }
 
   static void showDialog(BuildContext context) async {
-    final version = await PlatformInfos.getVersion();
     showAboutDialog(
       context: context,
       children: [
-        Text('Version: $version'),
         TextButton.icon(
           onPressed: () => launchUrlString(AppConfig.sourceCodeUrl),
           icon: const Icon(Icons.source_outlined),
@@ -64,7 +62,7 @@ abstract class PlatformInfos {
         height: 64,
         filterQuality: FilterQuality.medium,
       ),
-      applicationName: "FluffyChat",
+      applicationName: AppConfig.applicationName,
     );
   }
 }

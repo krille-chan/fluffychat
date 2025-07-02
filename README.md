@@ -1,3 +1,5 @@
+This software is a modified version of [FluffyChat](https://github.com/fluffychat/fluffychat) and is licensed under the [AGPLv3](https://www.gnu.org/licenses/agpl-3.0.html).
+
 ![Screenshot](https://github.com/krille-chan/fluffychat/blob/main/assets/banner_transparent.png?raw=true)
 
 [FluffyChat](https://fluffychat.im) is an open source, nonprofit and cute [[matrix](https://matrix.org)] client written in [Flutter](https://flutter.dev). The goal of the app is to create an easy to use instant messenger which is open source and accessible for everyone.
@@ -38,7 +40,6 @@
 
 ... and much more.
 
-
 # Installation
 
 Please visit the website for installation instructions:
@@ -51,17 +52,16 @@ Please visit the [Wiki](https://github.com/krille-chan/fluffychat/wiki) for buil
 
 - https://github.com/krille-chan/fluffychat/wiki/How-To-Build
 
-
 # Special thanks
 
-* <a href="https://github.com/fabiyamada">Fabiyamada</a> is a graphics designer and has made the fluffychat logo and the banner. Big thanks for her great designs.
+- <a href="https://github.com/fabiyamada">Fabiyamada</a> is a graphics designer and has made the fluffychat logo and the banner. Big thanks for her great designs.
 
-* <a href="https://github.com/advocatux">Advocatux</a> has made the Spanish translation with great love and care. He always stands by my side and supports my work with great commitment.
+- <a href="https://github.com/advocatux">Advocatux</a> has made the Spanish translation with great love and care. He always stands by my side and supports my work with great commitment.
 
-* Thanks to MTRNord and Sorunome for developing.
+- Thanks to MTRNord and Sorunome for developing.
 
-* Also thanks to all translators and testers! With your help, fluffychat is now available in more than 12 languages.
+- Also thanks to all translators and testers! With your help, fluffychat is now available in more than 12 languages.
 
-* <a href="https://github.com/madsrh/WoodenBeaver">WoodenBeaver</a> sound theme for the notification sound.
+- <a href="https://github.com/madsrh/WoodenBeaver">WoodenBeaver</a> sound theme for the notification sound.
 
-* The Matrix Foundation for making and maintaining the [emoji translations](https://github.com/matrix-org/matrix-spec/blob/main/data-definitions/sas-emoji.json) used for emoji verification, licensed Apache 2.0
+- The Matrix Foundation for making and maintaining the [emoji translations](https://github.com/matrix-org/matrix-spec/blob/main/data-definitions/sas-emoji.json) used for emoji verification, licensed Apache 2.0
