@@ -61,6 +61,7 @@ class ActivityGeneratorView extends StatelessWidget {
             room: controller.room,
             builder: (c) {
               return ActivityPlanCard(
+                regenerate: () => controller.generate(force: true),
                 controller: c,
               );
             },

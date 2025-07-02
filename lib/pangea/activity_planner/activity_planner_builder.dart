@@ -7,6 +7,7 @@ import 'package:http/http.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
+import 'package:fluffychat/pangea/activity_planner/bookmarked_activities_repo.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_enum.dart';
@@ -21,18 +22,12 @@ class ActivityPlannerBuilder extends StatefulWidget {
 
   final Widget Function(ActivityPlannerBuilderState) builder;
 
-  final Future<void> Function(
-    String,
-    ActivityPlanModel,
-  )? onEdit;
-
   const ActivityPlannerBuilder({
     super.key,
     required this.initialActivity,
     this.initialFilename,
     this.room,
     required this.builder,
-    this.onEdit,
   });
 
   @override
@@ -206,12 +201,10 @@ class ActivityPlannerBuilderState extends State<ActivityPlannerBuilder> {
     if (!formKey.currentState!.validate()) return;
     await updateImageURL();
     setEditing(false);
-    if (widget.onEdit != null) {
-      await widget.onEdit!(
-        widget.initialActivity.bookmarkId,
-        updatedActivity,
-      );
-    }
+
+    await BookmarkedActivitiesRepo.remove(widget.initialActivity.bookmarkId);
+    await BookmarkedActivitiesRepo.save(updatedActivity);
+    if (mounted) setState(() {});
   }
 
   Future<void> clearEdits() async {
