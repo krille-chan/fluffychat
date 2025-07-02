@@ -16,6 +16,7 @@ import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:matrix/matrix.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -506,12 +507,21 @@ class ChatController extends State<ChatPageWithRoom>
       );
       if (audioFile == null) return;
 
-      matrix.audioPlayer!.setAudioSource(
-        BytesAudioSource(
-          audioFile.bytes,
-          audioFile.mimeType,
-        ),
-      );
+      if (!kIsWeb) {
+        final tempDir = await getTemporaryDirectory();
+
+        File? file;
+        file = File('${tempDir.path}/${audioFile.name}');
+        await file.writeAsBytes(audioFile.bytes);
+        matrix.audioPlayer!.setFilePath(file.path);
+      } else {
+        matrix.audioPlayer!.setAudioSource(
+          BytesAudioSource(
+            audioFile.bytes,
+            audioFile.mimeType,
+          ),
+        );
+      }
 
       matrix.audioPlayer!.play();
     });
