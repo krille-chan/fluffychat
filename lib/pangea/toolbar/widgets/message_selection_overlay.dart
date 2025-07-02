@@ -569,7 +569,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
     updateSelectedSpan(token.text);
 
-    Future.delayed(const Duration(seconds: 2), () {
+    Future.delayed(const Duration(milliseconds: 1700), () {
       if (isNewToken(token)) {
         MatrixState.pangeaController.putAnalytics.setState(
           AnalyticsStream(
@@ -593,12 +593,15 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
             targetID: token.text.uniqueKey,
           ),
         );
-        // Remove the token from newTokens so it is no longer highlighted as "new"
+        // Remove the token (and all tokens of same lemma but different form) from newTokens
         setState(() {
           newTokens.removeWhere(
             (t) =>
                 t.text.offset == token.text.offset &&
                 t.text.length == token.text.length,
+          );
+          newTokens.removeWhere(
+            (t) => t.lemma.text.equals(token.lemma.text),
           );
         });
       }

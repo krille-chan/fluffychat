@@ -245,11 +245,12 @@ class WordZoomWidget extends StatelessWidget {
       ),
     );
 
-    return NewWordOverlay(
-      show: wordIsNew,
-      overlayColor: overlayColor,
-      cardKey: cardKey,
-      child: card,
-    );
+    return wordIsNew
+        ? NewWordOverlay(
+            overlayColor: overlayColor,
+            cardKey: cardKey,
+            child: card,
+          )
+        : card;
   }
 }

@@ -6,14 +6,12 @@ import 'package:flutter/material.dart';
 
 class NewWordOverlay extends StatefulWidget {
   final Widget child;
-  final bool show;
   final Color overlayColor;
   final GlobalKey cardKey;
 
   const NewWordOverlay({
     super.key,
     required this.child,
-    required this.show,
     required this.overlayColor,
     required this.cardKey,
   });
@@ -30,14 +28,15 @@ class _NewWordOverlayState extends State<NewWordOverlay>
   Size size = const Size(0, 0);
   Offset position = const Offset(0, 0);
   OverlayEntry? _overlayEntry;
-  bool _animationStarted = false;
   bool columnMode = false;
   Widget? get svg => ConstructLevelEnum.seeds.icon();
 
-  void _initAndStartAnimation() {
+  @override
+  void initState() {
+    super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 2000),
+      duration: const Duration(milliseconds: 1700),
     );
     _xpScaleAnim = CurvedAnimation(
       parent: _controller!,
@@ -54,15 +53,6 @@ class _NewWordOverlayState extends State<NewWordOverlay>
       _showFlyingWidget();
       _controller?.forward();
     });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    if (widget.show) {
-      _initAndStartAnimation();
-      _animationStarted = true;
-    }
   }
 
   @override
@@ -89,6 +79,7 @@ class _NewWordOverlayState extends State<NewWordOverlay>
   }
 
   void _showFlyingWidget() {
+    _overlayEntry?.remove(); // Remove any existing overlay
     if (_controller == null || _xpScaleAnim == null || _fadeAnim == null) {
       return;
     }
@@ -103,12 +94,16 @@ class _NewWordOverlayState extends State<NewWordOverlay>
             t = ((_controller!.value) - 0.7) / 0.3;
             t = t.clamp(0.0, 1.0);
           }
+          //move starting position as seed grows so it stays centered
           final startX = position.dx + size.width / 2 - (37 * scale);
           final startY = position.dy + size.height / 2 + 20 - (37 * scale);
+          //end is top left if column mode (going towards vocab stats) or top right of card otherwise
           final endX = (columnMode) ? 0.0 : position.dx + size.width;
           final endY = (columnMode) ? 0.0 : position.dy + 30;
           final currentX = startX * (1 - t) + endX * t;
           final currentY = startY * (1 - t) + endY * t;
+          //Grows into frame, and then shrinks if going to top right so it matches card seed size
+          final seedSize = 75 * scale * ((!columnMode) ? fade : 1);
 
           return Positioned(
             left: currentX,
@@ -118,9 +113,9 @@ class _NewWordOverlayState extends State<NewWordOverlay>
               child: Transform.rotate(
                 angle: scale * 2 * pi,
                 child: SizedBox(
-                  //if going to top right, shrinks as it moves to match word card seed size
-                  width: 75 * scale * ((!columnMode) ? fade : 1),
-                  height: 75 * scale * ((!columnMode) ? fade : 1),
+                  //if going to card top right, shrinks as it moves to match word card seed size
+                  width: seedSize,
+                  height: seedSize,
                   child: svg ?? const SizedBox(),
                 ),
               ),
@@ -140,7 +135,6 @@ class _NewWordOverlayState extends State<NewWordOverlay>
 
   @override
   Widget build(BuildContext context) {
-    if (!widget.show && !_animationStarted) return widget.child;
     return Stack(
       children: [
         widget.child,
