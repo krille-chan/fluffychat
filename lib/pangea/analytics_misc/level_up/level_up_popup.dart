@@ -20,12 +20,15 @@ import 'package:fluffychat/pangea/analytics_summary/progress_bar/level_bar.dart'
 import 'package:fluffychat/pangea/analytics_summary/progress_bar/progress_bar_details.dart';
 import 'package:fluffychat/pangea/common/widgets/full_width_dialog.dart';
 import 'package:fluffychat/pangea/constructs/construct_repo.dart';
+import 'package:fluffychat/pangea/learning_settings/constants/language_constants.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
 
 class LevelUpPopup extends StatelessWidget {
+  final Completer<ConstructSummary> constructSummaryCompleter;
   const LevelUpPopup({
+    required this.constructSummaryCompleter,
     super.key,
   });
 
@@ -50,6 +53,7 @@ class LevelUpPopup extends StatelessWidget {
         body: LevelUpPopupContent(
           prevLevel: LevelUpManager.instance.prevLevel,
           level: LevelUpManager.instance.level,
+          constructSummaryCompleter: constructSummaryCompleter,
         ),
       ),
     );
@@ -59,11 +63,13 @@ class LevelUpPopup extends StatelessWidget {
 class LevelUpPopupContent extends StatefulWidget {
   final int prevLevel;
   final int level;
+  final Completer<ConstructSummary> constructSummaryCompleter;
 
   const LevelUpPopupContent({
     super.key,
     required this.prevLevel,
     required this.level,
+    required this.constructSummaryCompleter,
   });
 
   @override
@@ -72,55 +78,39 @@ class LevelUpPopupContent extends StatefulWidget {
 
 class _LevelUpPopupContentState extends State<LevelUpPopupContent>
     with SingleTickerProviderStateMixin {
-  late int _endGrammar;
-  late int _endVocab;
-  final int _startGrammar = LevelUpManager.instance.prevGrammar;
-  final int _startVocab = LevelUpManager.instance.prevVocab;
-  Timer? _summaryPollTimer;
-  final String? _error = LevelUpManager.instance.error;
-  String language = LevelUpManager.instance.userL2Code ?? "N/A";
-
   late final AnimationController _controller;
   late final ConfettiController _confettiController;
-  bool _hasBlastedConfetti = false;
-  final Duration _animationDuration = const Duration(seconds: 5);
-
-  Uri? avatarUrl;
   late final Future<Profile> profile;
+
   int displayedLevel = -1;
-  late ConstructSummary? _constructSummary;
+  Uri? avatarUrl;
+  bool _hasBlastedConfetti = false;
+
+  String language = MatrixState.pangeaController.languageController
+          .activeL2Code()
+          ?.toUpperCase() ??
+      LanguageKeys.unknownLanguage;
+
+  ConstructSummary? _constructSummary;
+  Object? _error;
+  bool _loading = true;
 
   @override
   void initState() {
     super.initState();
+    _loadConstructSummary();
     LevelUpManager.instance.markPopupSeen();
     displayedLevel = widget.prevLevel;
     _confettiController =
         ConfettiController(duration: const Duration(seconds: 1));
-    _endGrammar = LevelUpManager.instance.nextGrammar;
-    _endVocab = LevelUpManager.instance.nextVocab;
-    _constructSummary = LevelUpManager.instance.constructSummary;
-    // Poll for constructSummary if not available
-    if (_constructSummary == null) {
-      _summaryPollTimer =
-          Timer.periodic(const Duration(milliseconds: 300), (timer) {
-        final summary = LevelUpManager.instance.constructSummary;
-        if (summary != null) {
-          setState(() {
-            _constructSummary = summary;
-          });
-          timer.cancel();
-        }
-      });
-    }
+
     final client = Matrix.of(context).client;
     client.fetchOwnProfile().then((profile) {
-      setState(() {
-        avatarUrl = profile.avatarUrl;
-      });
+      setState(() => avatarUrl = profile.avatarUrl);
     });
+
     _controller = AnimationController(
-      duration: _animationDuration,
+      duration: const Duration(seconds: 5),
       vsync: this,
     );
 
@@ -135,7 +125,6 @@ class _LevelUpPopupContentState extends State<LevelUpPopupContent>
 
     _controller.addListener(() {
       if (_controller.value >= 0.5 && !_hasBlastedConfetti) {
-        //_confettiController.play();
         _hasBlastedConfetti = true;
         rainConfetti(context);
       }
@@ -146,12 +135,27 @@ class _LevelUpPopupContentState extends State<LevelUpPopupContent>
 
   @override
   void dispose() {
-    _summaryPollTimer?.cancel();
     _controller.dispose();
     _confettiController.dispose();
     LevelUpManager.instance.reset();
     stopConfetti();
     super.dispose();
+  }
+
+  int get _startGrammar => LevelUpManager.instance.prevGrammar;
+  int get _startVocab => LevelUpManager.instance.prevVocab;
+
+  get _endGrammar => LevelUpManager.instance.nextGrammar;
+  get _endVocab => LevelUpManager.instance.nextVocab;
+
+  Future<void> _loadConstructSummary() async {
+    try {
+      _constructSummary = await widget.constructSummaryCompleter.future;
+    } catch (e) {
+      _error = e;
+    } finally {
+      setState(() => _loading = false);
+    }
   }
 
   int _getSkillXP(LearningSkillsEnum skill) {
@@ -368,52 +372,60 @@ class _LevelUpPopupContentState extends State<LevelUpPopupContent>
                 ),
               ),
               const SizedBox(height: 16),
-
-              // Skills section
-              AnimatedBuilder(
-                animation: skillsOpacity,
-                builder: (_, __) => Opacity(
-                  opacity: skillsOpacity.value,
-                  child: _error == null
-                      ? Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            _buildSkillsTable(context),
-                            const SizedBox(height: 8),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 16),
-                              child: Text(
-                                _constructSummary?.textSummary ??
-                                    L10n.of(context).loadingPleaseWait,
-                                textAlign: TextAlign.left,
-                                style: Theme.of(context).textTheme.bodyMedium,
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(24.0),
-                              child: CachedNetworkImage(
-                                imageUrl:
-                                    "${AppConfig.assetsBaseURL}/${LevelUpConstants.dinoLevelUPFileName}",
-                                width: 400,
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ],
-                        )
-                      // if error getting construct summary
-                      : Row(
-                          children: [
-                            Tooltip(
-                              message: L10n.of(context).oopsSomethingWentWrong,
-                              child: Icon(
-                                Icons.error,
-                                color: Theme.of(context).colorScheme.error,
-                              ),
-                            ),
-                          ],
+              if (_loading)
+                const Center(
+                  child: SizedBox(
+                    height: 50,
+                    width: 50,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2.0,
+                      color: AppConfig.goldLight,
+                    ),
+                  ),
+                )
+              else if (_error != null)
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Text(
+                    L10n.of(context).oopsSomethingWentWrong,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.error,
+                      fontSize: 16,
+                    ),
+                  ),
+                )
+              else if (_constructSummary != null)
+                // Skills section
+                AnimatedBuilder(
+                  animation: skillsOpacity,
+                  builder: (_, __) => Opacity(
+                    opacity: skillsOpacity.value,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        _buildSkillsTable(context),
+                        const SizedBox(height: 8),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 16),
+                          child: Text(
+                            _constructSummary!.textSummary,
+                            textAlign: TextAlign.left,
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
                         ),
+                        Padding(
+                          padding: const EdgeInsets.all(24.0),
+                          child: CachedNetworkImage(
+                            imageUrl:
+                                "${AppConfig.assetsBaseURL}/${LevelUpConstants.dinoLevelUPFileName}",
+                            width: 400,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-              ),
               // Share button, currently no functionality
               // ElevatedButton(
               //   onPressed: () {
