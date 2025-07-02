@@ -158,7 +158,10 @@ class OverlayMessage extends StatelessWidget {
                 FluffyThemes.columnWidth * 1.5,
                 MediaQuery.of(context).size.width -
                     (ownMessage ? 0 : Avatar.defaultSize) -
-                    24.0,
+                    32.0 -
+                    (FluffyThemes.isColumnMode(context)
+                        ? FluffyThemes.columnWidth + FluffyThemes.navRailWidth
+                        : 0.0),
               ),
             ),
             child: Padding(
@@ -243,7 +246,10 @@ class OverlayMessage extends StatelessWidget {
                 FluffyThemes.columnWidth * 1.5,
                 MediaQuery.of(context).size.width -
                     (ownMessage ? 0 : Avatar.defaultSize) -
-                    24.0,
+                    32.0 -
+                    (FluffyThemes.isColumnMode(context)
+                        ? FluffyThemes.columnWidth + FluffyThemes.navRailWidth
+                        : 0.0),
               ),
             ),
             child: Padding(
