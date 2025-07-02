@@ -500,15 +500,24 @@ class _LevelUpPopupContentState extends State<LevelUpPopupContent>
                       color: Theme.of(context).colorScheme.onSurface,
                     ),
                     const SizedBox(height: 4),
-                    Text(
-                      '+ ${_getSkillXP(skill)} XP',
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: AppConfig.gold,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
+                    (_constructSummary != null)
+                        ? Text(
+                            '+ ${_getSkillXP(skill)} XP',
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: AppConfig.gold,
+                            ),
+                            textAlign: TextAlign.center,
+                          )
+                        : const SizedBox(
+                            height: 6.0,
+                            width: 6.0,
+                            child: CircularProgressIndicator(
+                              strokeWidth: 2.0,
+                              color: AppConfig.gold,
+                            ),
+                          ),
                   ],
                 ),
               );
