@@ -15,7 +15,6 @@ import 'package:fluffychat/pangea/common/utils/any_state_holder.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/message_token_text/message_token_button.dart';
-import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/enums/reading_assistance_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/utils/token_rendering_util.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
@@ -395,6 +394,9 @@ class HtmlMessage extends StatelessWidget {
         );
 
         return WidgetSpan(
+          alignment: readingAssistanceMode == ReadingAssistanceMode.practiceMode
+              ? PlaceholderAlignment.bottom
+              : PlaceholderAlignment.middle,
           child: CompositedTransformTarget(
             link: token != null && renderer.assignTokenKey
                 ? MatrixState.pAnyState
@@ -421,18 +423,6 @@ class HtmlMessage extends StatelessWidget {
                     ),
                     width: tokenWidth,
                     animateIn: isTransitionAnimation,
-                    practiceTargetForToken:
-                        overlayController?.toolbarMode.associatedActivityType !=
-                                null
-                            ? overlayController?.practiceSelection
-                                ?.activities(
-                                  overlayController!
-                                      .toolbarMode.associatedActivityType!,
-                                )
-                                .firstWhereOrNull(
-                                  (a) => a.tokens.contains(token),
-                                )
-                            : null,
                   ),
                 MouseRegion(
                   cursor: SystemMouseCursors.click,
