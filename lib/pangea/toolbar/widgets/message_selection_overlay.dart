@@ -22,6 +22,7 @@ import 'package:fluffychat/pangea/practice_activities/practice_activity_model.da
 import 'package:fluffychat/pangea/practice_activities/practice_choice.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_selection.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_selection_repo.dart';
+import 'package:fluffychat/pangea/practice_activities/practice_target.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/text_to_speech_controller.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
@@ -602,6 +603,13 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
         });
       }
     });
+  }
+
+  PracticeTarget? practiceTargetForToken(PangeaToken token) {
+    if (toolbarMode.associatedActivityType == null) return null;
+    return practiceSelection
+        ?.activities(toolbarMode.associatedActivityType!)
+        .firstWhereOrNull((a) => a.tokens.contains(token));
   }
 
   /// Whether the given token is currently selected or highlighted

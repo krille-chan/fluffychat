@@ -94,12 +94,10 @@ class WordZoomWidget extends StatelessWidget {
                 ),
                 ConstructXpWidget(
                   id: token.vocabConstructID,
-                  onTap: () => showDialog<AnalyticsPopupWrapper>(
-                    context: context,
-                    builder: (context) => AnalyticsPopupWrapper(
-                      constructZoom: token.vocabConstructID,
-                      view: ConstructTypeEnum.vocab,
-                    ),
+                  onTap: () => AnalyticsPopupWrapper.show(
+                    context,
+                    constructZoom: token.vocabConstructID,
+                    view: ConstructTypeEnum.vocab,
                   ),
                 ),
               ],

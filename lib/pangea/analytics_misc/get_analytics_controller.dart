@@ -22,6 +22,7 @@ import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_selection_repo.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 
 /// A minimized version of AnalyticsController that get the logged in user's analytics
 class GetAnalyticsController extends BaseController {
@@ -455,10 +456,13 @@ class GetAnalyticsController extends BaseController {
 //       int diffXP = maxXP - minXP;
 //       if (diffXP < 0) diffXP = 0;
 
-  Future<ConstructSummary?> getConstructSummaryFromStateEvent() async {
+  ConstructSummary? getConstructSummaryFromStateEvent() {
     try {
       final Room? analyticsRoom = _client.analyticsRoomLocal(_l2!);
-      if (analyticsRoom == null) return null;
+      if (analyticsRoom == null) {
+        debugPrint("Analytics room is null");
+        return null;
+      }
       final state =
           analyticsRoom.getState(PangeaEventTypes.constructSummary, '');
       if (state == null) return null;
@@ -477,8 +481,8 @@ class GetAnalyticsController extends BaseController {
     // generate level up analytics as a construct summary
     ConstructSummary summary;
     try {
-      final int minXP = constructListModel.calculateXpWithLevel(upperLevel);
-      final int maxXP = constructListModel.calculateXpWithLevel(lowerLevel);
+      final int maxXP = constructListModel.calculateXpWithLevel(upperLevel);
+      final int minXP = constructListModel.calculateXpWithLevel(lowerLevel);
       int diffXP = maxXP - minXP;
       if (diffXP < 0) diffXP = 0;
 
@@ -539,6 +543,10 @@ class GetAnalyticsController extends BaseController {
 
       final response = await ConstructRepo.generateConstructSummary(request);
       summary = response.summary;
+      summary.levelVocabConstructs = MatrixState
+          .pangeaController.getAnalytics.constructListModel.vocabLemmas;
+      summary.levelGrammarConstructs = MatrixState
+          .pangeaController.getAnalytics.constructListModel.grammarLemmas;
     } catch (e) {
       debugPrint("Error generating level up analytics: $e");
       ErrorHandler.logError(e: e, data: {'e': e});

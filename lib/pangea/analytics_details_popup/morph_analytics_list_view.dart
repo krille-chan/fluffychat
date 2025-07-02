@@ -227,18 +227,22 @@ class MorphTagChip extends StatelessWidget {
                         color: Colors.white,
                       ),
               ),
-              Text(
-                getGrammarCopy(
-                      category: morphFeature,
-                      lemma: morphTag,
-                      context: context,
-                    ) ??
-                    morphTag,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: theme.brightness == Brightness.dark
-                      ? Colors.white
-                      : Colors.black,
+              Flexible(
+                child: Text(
+                  getGrammarCopy(
+                        category: morphFeature,
+                        lemma: morphTag,
+                        context: context,
+                      ) ??
+                      morphTag,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: theme.brightness == Brightness.dark
+                        ? Colors.white
+                        : Colors.black,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
             ],
