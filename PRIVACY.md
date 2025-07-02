@@ -1,6 +1,6 @@
 # Privacy
 
-FluffyChat is available on Android, iOS and as a web version. Desktop versions for Windows, Linux and macOS may follow.
+FluffyChat is available on Android, iOS, Linux and as a web version. Desktop versions for Windows and macOS may follow.
 
 *   [Matrix](#matrix)
 *   [Database](#database)
@@ -92,3 +92,21 @@ A typical push notification could look like this:
 ```
 
 FluffyChat sets the `event_id_only` flag at the Matrix Server. This server is then responsible to send the correct data.
+
+
+# Explanation of FluffyChat's Compliance with Google Play Store's Safety Standards
+
+FluffyChat is committed to promoting a safe and respectful environment for all users. As a Matrix client, FluffyChat connects users to various Matrix servers. Please note that FluffyChat does not host or manage any servers directly, and as such, we do not have the capability to enforce content moderation or deletion within the app itself.
+
+To enhance user safety and help protect against the sexual abuse and exploitation of children, FluffyChat enables users to report inappropriate content directly to server administrators.
+
+#### Reporting Content or Users:
+
+1. Mark a message in the chat: Tap and hold the message you wish to report.
+2. Report the message: Select the "Report" option.
+3. Provide a reason and score: Enter the reason for reporting and assign a score from 1-100 to indicate how offensive the content is.
+4. Notification to admin: The server administrator will be notified of the reported content.
+
+In addition to reporting messages, users can also report other users following a similar process.
+
+We encourage server administrators to adhere to strict safety standards and provide mechanisms for addressing and moderating inappropriate content. For more information on the Matrix protocol and its safety standards, please refer to the following link: https://matrix.org/docs/older/moderation/

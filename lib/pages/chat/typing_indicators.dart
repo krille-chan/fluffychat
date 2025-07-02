@@ -34,7 +34,7 @@ class TypingIndicators extends StatelessWidget {
           alignment: Alignment.center,
           child: AnimatedContainer(
             constraints:
-                const BoxConstraints(maxWidth: FluffyThemes.columnWidth * 2.5),
+                const BoxConstraints(maxWidth: FluffyThemes.maxTimelineWidth),
             height: typingUsers.isEmpty ? 0 : avatarSize + 8,
             duration: FluffyThemes.animationDuration,
             curve: FluffyThemes.animationCurve,
@@ -81,9 +81,7 @@ class TypingIndicators extends StatelessWidget {
                 ),
                 const SizedBox(width: 8),
                 Material(
-                  color:
-                      // ignore: deprecated_member_use
-                      theme.colorScheme.surfaceVariant,
+                  color: theme.colorScheme.surfaceContainerHigh,
                   borderRadius: const BorderRadius.all(
                     Radius.circular(AppConfig.borderRadius),
                   ),

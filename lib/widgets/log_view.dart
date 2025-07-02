@@ -36,6 +36,7 @@ class LogViewerState extends State<LogViewer> {
             onPressed: () => setState(() => fontSize--),
           ),
           PopupMenuButton<Level>(
+            useRootNavigator: true,
             itemBuilder: (context) => Level.values
                 .map(
                   (level) => PopupMenuItem(
@@ -78,7 +79,6 @@ extension on LogEvent {
       case Level.debug:
         return Colors.white;
       case Level.verbose:
-      default:
         return Colors.grey;
     }
   }

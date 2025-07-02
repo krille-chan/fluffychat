@@ -30,7 +30,8 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    compileSdkVersion 34
+    compileSdk = 35
+    namespace = "chat.fluffy.fluffychat"
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
@@ -43,7 +44,7 @@ android {
     defaultConfig {
         applicationId "chat.fluffy.fluffychat"
         minSdkVersion 21
-        targetSdkVersion 34
+        targetSdkVersion 35
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -66,6 +67,8 @@ android {
             versionNameSuffix "-debug"
         }
         release {
+            minifyEnabled false
+            shrinkResources false
             signingConfig signingConfigs.release
         }
     }
@@ -76,7 +79,18 @@ android {
         pickFirst 'lib/armeabi-v7a/libc++_shared.so'
         pickFirst 'lib/arm64-v8a/libc++_shared.so'
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+        coreLibraryDesugaringEnabled true
+    }
+
+    kotlinOptions {
+        jvmTarget = "17"
+    }
 }
+
 
 flutter {
     source '../..'
@@ -85,4 +99,9 @@ flutter {
 dependencies {
     //implementation 'com.google.firebase:firebase-messaging:19.0.1' // Workaround for https://github.com/microg/android_packages_apps_GmsCore/issues/313#issuecomment-617651698
     implementation 'androidx.multidex:multidex:2.0.1'
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")
+}
+
+configurations.all {
+    exclude group: 'com.google.android.gms'
 }

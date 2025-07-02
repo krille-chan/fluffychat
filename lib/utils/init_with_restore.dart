@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'dart:ui';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 
@@ -70,7 +70,9 @@ extension InitWithRestoreExtension on Client {
 
     try {
       await init(
-        onMigration: onMigration,
+        onInitStateChanged: (state) {
+          if (state == InitState.migratingDatabase) onMigration?.call();
+        },
         waitForFirstSync: false,
         waitUntilLoadCompletedLoaded: false,
       );
@@ -101,7 +103,7 @@ extension InitWithRestoreExtension on Client {
       }
     } catch (e, s) {
       Logs().wtf('Client init failed!', e, s);
-      final l10n = lookupL10n(PlatformDispatcher.instance.locale);
+      final l10n = await lookupL10n(PlatformDispatcher.instance.locale);
       final sessionBackupString = await storage?.read(key: storageKey);
       if (sessionBackupString == null) {
         ClientManager.sendInitNotification(
@@ -122,7 +124,9 @@ extension InitWithRestoreExtension on Client {
           newUserID: sessionBackup.userId,
           waitForFirstSync: false,
           waitUntilLoadCompletedLoaded: false,
-          onMigration: onMigration,
+          onInitStateChanged: (state) {
+            if (state == InitState.migratingDatabase) onMigration?.call();
+          },
         );
         ClientManager.sendInitNotification(
           l10n.initAppError,

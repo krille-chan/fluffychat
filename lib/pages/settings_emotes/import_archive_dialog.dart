@@ -3,14 +3,14 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:adaptive_dialog/adaptive_dialog.dart';
 import 'package:archive/archive.dart';
 import 'package:collection/collection.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/settings_emotes/settings_emotes.dart';
 import 'package:fluffychat/utils/client_manager.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class ImportEmoteArchiveDialog extends StatefulWidget {
@@ -44,7 +44,7 @@ class _ImportEmoteArchiveDialogState extends State<ImportEmoteArchiveDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(L10n.of(context)!.importEmojis),
+      title: Text(L10n.of(context).importEmojis),
       content: _loading
           ? Center(
               child: CircularProgressIndicator(
@@ -73,7 +73,7 @@ class _ImportEmoteArchiveDialogState extends State<ImportEmoteArchiveDialog> {
       actions: [
         TextButton(
           onPressed: _loading ? null : Navigator.of(context).pop,
-          child: Text(L10n.of(context)!.cancel),
+          child: Text(L10n.of(context).cancel),
         ),
         TextButton(
           onPressed: _loading
@@ -81,7 +81,7 @@ class _ImportEmoteArchiveDialogState extends State<ImportEmoteArchiveDialog> {
               : _importMap.isNotEmpty
                   ? _addEmotePack
                   : null,
-          child: Text(L10n.of(context)!.importNow),
+          child: Text(L10n.of(context).importNow),
         ),
       ],
     );
@@ -121,10 +121,10 @@ class _ImportEmoteArchiveDialogState extends State<ImportEmoteArchiveDialog> {
           final result = await showOkCancelAlertDialog(
             useRootNavigator: false,
             context: context,
-            title: L10n.of(context)!.emoteExists,
+            title: L10n.of(context).emoteExists,
             message: imageCode,
-            cancelLabel: L10n.of(context)!.replace,
-            okLabel: L10n.of(context)!.skip,
+            cancelLabel: L10n.of(context).replace,
+            okLabel: L10n.of(context).skip,
           );
           completer.complete(result);
         });
@@ -242,7 +242,7 @@ class _EmojiImportPreviewState extends State<_EmojiImportPreview> {
         IconButton(
           onPressed: widget.onRemove,
           icon: const Icon(Icons.remove_circle),
-          tooltip: L10n.of(context)!.remove,
+          tooltip: L10n.of(context).remove,
         ),
         ValueListenableBuilder(
           valueListenable: hasErrorNotifier,
@@ -278,7 +278,7 @@ class _EmojiImportPreviewState extends State<_EmojiImportPreview> {
                     minLines: 1,
                     maxLines: 1,
                     decoration: InputDecoration(
-                      hintText: L10n.of(context)!.emoteShortcode,
+                      hintText: L10n.of(context).emoteShortcode,
                       prefixText: ': ',
                       suffixText: ':',
                       border: const OutlineInputBorder(),
@@ -329,7 +329,7 @@ class _ImageFileError extends StatelessWidget {
           children: [
             const Icon(Icons.error),
             Text(
-              L10n.of(context)!.notAnImage,
+              L10n.of(context).notAnImage,
               textAlign: TextAlign.center,
               style: theme.textTheme.labelSmall,
             ),

@@ -2,6 +2,12 @@ import 'package:matrix/matrix.dart';
 
 import '../../config/app_config.dart';
 
+extension VisibleInGuiExtension on List<Event> {
+  List<Event> filterByVisibleInGui({String? exceptionEventId}) => where(
+        (event) => event.isVisibleInGui || event.eventId == exceptionEventId,
+      ).toList();
+}
+
 extension IsStateExtension on Event {
   bool get isVisibleInGui =>
       // always filter out edit and reaction relationships
@@ -15,19 +21,19 @@ extension IsStateExtension on Event {
       // if we enabled to hide all redacted events, don't show those
       (!AppConfig.hideRedactedEvents || !redacted) &&
       // if we enabled to hide all unknown events, don't show those
-      (!AppConfig.hideUnknownEvents || isEventTypeKnown) &&
-      // remove state events that we don't want to render
-      (isState || !AppConfig.hideAllStateEvents) &&
-      // hide simple join/leave member events in public rooms
-      (!AppConfig.hideUnimportantStateEvents ||
-          type != EventTypes.RoomMember ||
-          room.joinRules != JoinRules.public ||
-          content.tryGet<String>('membership') == 'ban' ||
-          stateKey != senderId);
+      (!AppConfig.hideUnknownEvents || isEventTypeKnown);
 
   bool get isState => !{
         EventTypes.Message,
         EventTypes.Sticker,
         EventTypes.Encrypted,
+      }.contains(type);
+
+  bool get isCollapsedState => !{
+        EventTypes.Message,
+        EventTypes.Sticker,
+        EventTypes.Encrypted,
+        EventTypes.RoomCreate,
+        EventTypes.RoomTombstone,
       }.contains(type);
 }

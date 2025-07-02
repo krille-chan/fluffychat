@@ -1,0 +1,15 @@
+{
+  "alwaysUse24HourFormat": "",
+  "@alwaysUse24HourFormat": {
+    "description": "Set to true to always display time of day in 24 hour format."
+  },
+  "notAnImage": "ఇమేజ్ ఫైల్ కాదు.",
+  "@notAnImage": {},
+  "repeatPassword": "పాస్‌వర్డ్‌ను పునరావృతం చేయండి",
+  "@repeatPassword": {},
+  "remove": "తొలగించు",
+  "@remove": {
+    "type": "String",
+    "placeholders": {}
+  }
+}

@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_encryption_settings/chat_encryption_settings.dart';
 import 'package:fluffychat/utils/beautify_string_extension.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
@@ -31,11 +31,11 @@ class ChatEncryptionSettingsView extends StatelessWidget {
             icon: const Icon(Icons.close_outlined),
             onPressed: () => context.go('/rooms/${controller.roomId!}'),
           ),
-          title: Text(L10n.of(context)!.encryption),
+          title: Text(L10n.of(context).encryption),
           actions: [
             TextButton(
               onPressed: () => launchUrlString(AppConfig.encryptionTutorial),
-              child: Text(L10n.of(context)!.help),
+              child: Text(L10n.of(context).help),
             ),
           ],
         ),
@@ -49,7 +49,7 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                   backgroundColor: theme.colorScheme.primaryContainer,
                   child: const Icon(Icons.lock_outlined),
                 ),
-                title: Text(L10n.of(context)!.encryptThisChat),
+                title: Text(L10n.of(context).encryptThisChat),
                 value: room.encrypted,
                 onChanged: controller.enableEncryption,
               ),
@@ -67,7 +67,7 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                     child: ElevatedButton.icon(
                       onPressed: controller.startVerification,
                       icon: const Icon(Icons.verified_outlined),
-                      label: Text(L10n.of(context)!.verifyStart),
+                      label: Text(L10n.of(context).verifyStart),
                     ),
                   ),
                 ),
@@ -75,7 +75,7 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                 const SizedBox(height: 16),
                 ListTile(
                   title: Text(
-                    L10n.of(context)!.deviceKeys,
+                    L10n.of(context).deviceKeys,
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
@@ -91,7 +91,7 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                       if (snapshot.hasError) {
                         return Center(
                           child: Text(
-                            '${L10n.of(context)!.oopsSomethingWentWrong}: ${snapshot.error}',
+                            '${L10n.of(context).oopsSomethingWentWrong}: ${snapshot.error}',
                           ),
                         );
                       }
@@ -133,7 +133,7 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                               const SizedBox(width: 4),
                               Text(
                                 deviceKeys[i].deviceId ??
-                                    L10n.of(context)!.unknownDevice,
+                                    L10n.of(context).unknownDevice,
                               ),
                               const SizedBox(width: 4),
                               Flexible(
@@ -167,7 +167,7 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                           ),
                           subtitle: Text(
                             deviceKeys[i].ed25519Key?.beautified ??
-                                L10n.of(context)!.unknownEncryptionAlgorithm,
+                                L10n.of(context).unknownEncryptionAlgorithm,
                             style: TextStyle(
                               fontFamily: 'RobotoMono',
                               color: theme.colorScheme.secondary,
@@ -183,7 +183,7 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                   padding: const EdgeInsets.all(16.0),
                   child: Center(
                     child: Text(
-                      L10n.of(context)!.encryptionNotEnabled,
+                      L10n.of(context).encryptionNotEnabled,
                       style: const TextStyle(
                         fontStyle: FontStyle.italic,
                       ),

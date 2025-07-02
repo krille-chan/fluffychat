@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
+import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/device_settings/device_settings.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'user_device_list_item.dart';
@@ -15,8 +15,9 @@ class DevicesSettingsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const Center(child: BackButton()),
-        title: Text(L10n.of(context)!.devices),
+        automaticallyImplyLeading: !FluffyThemes.isColumnMode(context),
+        centerTitle: FluffyThemes.isColumnMode(context),
+        title: Text(L10n.of(context).devices),
       ),
       body: MaxWidthBody(
         child: FutureBuilder<bool>(
@@ -48,6 +49,19 @@ class DevicesSettingsView extends StatelessWidget {
                   return Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
+                      if (controller.chatBackupEnabled == false)
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: ListTile(
+                            leading: const CircleAvatar(
+                              child: Icon(Icons.info_outlined),
+                            ),
+                            subtitle: Text(
+                              L10n.of(context)
+                                  .noticeChatBackupDeviceVerification,
+                            ),
+                          ),
+                        ),
                       if (controller.thisDevice != null) ...[
                         Container(
                           padding: const EdgeInsets.symmetric(
@@ -56,7 +70,7 @@ class DevicesSettingsView extends StatelessWidget {
                           ),
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            L10n.of(context)!.thisDevice,
+                            L10n.of(context).thisDevice,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: theme.colorScheme.primary,
@@ -83,25 +97,19 @@ class DevicesSettingsView extends StatelessWidget {
                             width: double.infinity,
                             child: TextButton.icon(
                               label: Text(
-                                controller.errorDeletingDevices ??
-                                    L10n.of(context)!.removeAllOtherDevices,
+                                L10n.of(context).removeAllOtherDevices,
                               ),
                               style: TextButton.styleFrom(
+                                iconColor: theme.colorScheme.onErrorContainer,
                                 foregroundColor:
                                     theme.colorScheme.onErrorContainer,
                                 backgroundColor:
                                     theme.colorScheme.errorContainer,
                               ),
-                              icon: controller.loadingDeletingDevices
-                                  ? const CircularProgressIndicator.adaptive(
-                                      strokeWidth: 2,
-                                    )
-                                  : const Icon(Icons.delete_outline),
-                              onPressed: controller.loadingDeletingDevices
-                                  ? null
-                                  : () => controller.removeDevicesAction(
-                                        controller.notThisDevice,
-                                      ),
+                              icon: const Icon(Icons.delete_outline),
+                              onPressed: () => controller.removeDevicesAction(
+                                controller.notThisDevice,
+                              ),
                             ),
                           ),
                         )
@@ -109,7 +117,7 @@ class DevicesSettingsView extends StatelessWidget {
                         Center(
                           child: Padding(
                             padding: const EdgeInsets.all(16.0),
-                            child: Text(L10n.of(context)!.noOtherDevicesFound),
+                            child: Text(L10n.of(context).noOtherDevicesFound),
                           ),
                         ),
                     ],

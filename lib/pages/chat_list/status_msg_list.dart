@@ -4,15 +4,15 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
-import 'package:fluffychat/pages/user_bottom_sheet/user_bottom_sheet.dart';
-import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/hover_builder.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import '../../widgets/adaptive_dialogs/user_dialog.dart';
 
 class StatusMessageList extends StatelessWidget {
   final void Function() onStatusEdit;
+
   const StatusMessageList({
     required this.onStatusEdit,
     super.key,
@@ -24,12 +24,9 @@ class StatusMessageList extends StatelessWidget {
     final client = Matrix.of(context).client;
     if (profile.userId == client.userID) return onStatusEdit();
 
-    showAdaptiveBottomSheet(
+    UserDialog.show(
       context: context,
-      builder: (c) => UserBottomSheet(
-        profile: profile,
-        outerContext: context,
-      ),
+      profile: profile,
     );
     return;
   }
@@ -126,7 +123,7 @@ class PresenceAvatar extends StatelessWidget {
 
         const statusMsgBubbleElevation = 6.0;
         final statusMsgBubbleShadowColor = theme.colorScheme.surface;
-        final statusMsgBubbleColor = Colors.white.withOpacity(0.9);
+        final statusMsgBubbleColor = Colors.white.withAlpha(230);
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: SizedBox(
@@ -290,6 +287,7 @@ extension on CachedPresence {
       (currentlyActive == true
           ? DateTime.now()
           : DateTime.fromMillisecondsSinceEpoch(0));
+
   LinearGradient get gradient => presence.isOnline == true
       ? LinearGradient(
           colors: [

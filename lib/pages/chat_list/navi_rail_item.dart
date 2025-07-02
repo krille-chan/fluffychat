@@ -35,16 +35,20 @@ class NaviRailItem extends StatelessWidget {
     return HoverBuilder(
       builder: (context, hovered) {
         return SizedBox(
-          height: FluffyThemes.navRailWidth,
+          height: 72,
           width: FluffyThemes.navRailWidth,
           child: Stack(
             children: [
               Positioned(
-                top: 16,
-                bottom: 16,
+                top: 8,
+                bottom: 8,
                 left: 0,
                 child: AnimatedContainer(
-                  width: isSelected ? 4 : 0,
+                  width: isSelected
+                      ? FluffyThemes.isColumnMode(context)
+                          ? 8
+                          : 4
+                      : 0,
                   duration: FluffyThemes.animationDuration,
                   curve: FluffyThemes.animationCurve,
                   decoration: BoxDecoration(
@@ -58,35 +62,29 @@ class NaviRailItem extends StatelessWidget {
               ),
               Center(
                 child: AnimatedScale(
-                  scale: hovered ? 1.2 : 1.0,
+                  scale: hovered ? 1.1 : 1.0,
                   duration: FluffyThemes.animationDuration,
                   curve: FluffyThemes.animationCurve,
                   child: Material(
                     borderRadius: borderRadius,
                     color: isSelected
                         ? theme.colorScheme.primaryContainer
-                        : theme.colorScheme.surface,
+                        : theme.colorScheme.surfaceContainerHigh,
                     child: Tooltip(
                       message: toolTip,
                       child: InkWell(
                         borderRadius: borderRadius,
                         onTap: onTap,
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 8.0,
-                            vertical: 8.0,
-                          ),
-                          child: unreadBadgeFilter == null
-                              ? icon
-                              : UnreadRoomsBadge(
-                                  filter: unreadBadgeFilter,
-                                  badgePosition: BadgePosition.topEnd(
-                                    top: -12,
-                                    end: -8,
-                                  ),
-                                  child: icon,
+                        child: unreadBadgeFilter == null
+                            ? icon
+                            : UnreadRoomsBadge(
+                                filter: unreadBadgeFilter,
+                                badgePosition: BadgePosition.topEnd(
+                                  top: -12,
+                                  end: -8,
                                 ),
-                        ),
+                                child: icon,
+                              ),
                       ),
                     ),
                   ),

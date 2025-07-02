@@ -5,6 +5,8 @@ import 'package:dynamic_color/dynamic_color.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'package:fluffychat/utils/color_value.dart';
+
 class ThemeBuilder extends StatefulWidget {
   final Widget Function(
     BuildContext context,
@@ -72,7 +74,7 @@ class ThemeController extends State<ThemeBuilder> {
     } else {
       await preferences.setInt(
         widget.primaryColorSettingsKey,
-        newPrimaryColor.value,
+        newPrimaryColor.hexValue,
       );
     }
     setState(() {

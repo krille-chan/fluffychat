@@ -79,7 +79,7 @@ class _VideoRendererState extends State<VideoRenderer> {
               filterQuality: FilterQuality.medium,
               objectFit: widget.fit,
               placeholderBuilder: (_) =>
-                  Container(color: Colors.white.withOpacity(0.18)),
+                  Container(color: Colors.white.withAlpha(45)),
             );
           },
         );

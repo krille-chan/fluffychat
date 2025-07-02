@@ -1,0 +1,1 @@
+FluffyChat 2.0.0 now uses the Vodozemac encryption library and brings bugfixes and performance improvements, together with an improved user experience when interacting with messages.

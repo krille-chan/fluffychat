@@ -2,10 +2,9 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/events/video_player.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
@@ -13,6 +12,7 @@ import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../../config/app_config.dart';
+import '../../../utils/event_checkbox_extension.dart';
 import '../../../utils/platform_infos.dart';
 import '../../../utils/url_launcher.dart';
 import '../../bootstrap/bootstrap_dialog.dart';
@@ -26,19 +26,25 @@ import 'message_download_content.dart';
 class MessageContent extends StatelessWidget {
   final Event event;
   final Color textColor;
+  final Color linkColor;
   final void Function(Event)? onInfoTab;
   final BorderRadius borderRadius;
+  final Timeline timeline;
+  final bool selected;
 
   const MessageContent(
     this.event, {
     this.onInfoTab,
     super.key,
+    required this.timeline,
     required this.textColor,
+    required this.linkColor,
     required this.borderRadius,
+    required this.selected,
   });
 
   void _verifyOrRequestKey(BuildContext context) async {
-    final l10n = L10n.of(context)!;
+    final l10n = L10n.of(context);
     if (event.content['can_request_session'] != true) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -137,6 +143,8 @@ class MessageContent extends StatelessWidget {
               height: height,
               fit: fit,
               borderRadius: borderRadius,
+              timeline: timeline,
+              textColor: textColor,
             );
           case CuteEventContent.eventType:
             return CuteContent(event);
@@ -151,39 +159,35 @@ class MessageContent extends StatelessWidget {
               return AudioPlayerWidget(
                 event,
                 color: textColor,
+                linkColor: linkColor,
+                fontSize: fontSize,
               );
             }
-            return MessageDownloadContent(event, textColor);
+            return MessageDownloadContent(
+              event,
+              textColor: textColor,
+              linkColor: linkColor,
+            );
           case MessageTypes.Video:
-            return EventVideoPlayer(event);
+            return EventVideoPlayer(
+              event,
+              textColor: textColor,
+              linkColor: linkColor,
+              timeline: timeline,
+            );
           case MessageTypes.File:
-            return MessageDownloadContent(event, textColor);
-
-          case MessageTypes.Text:
-          case MessageTypes.Notice:
-          case MessageTypes.Emote:
-            if (AppConfig.renderHtml &&
-                !event.redacted &&
-                event.isRichMessage) {
-              var html = event.formattedText;
-              if (event.messageType == MessageTypes.Emote) {
-                html = '* $html';
-              }
-              return HtmlMessage(
-                html: html,
-                textColor: textColor,
-                room: event.room,
-              );
-            }
-            // else we fall through to the normal message rendering
-            continue textmessage;
+            return MessageDownloadContent(
+              event,
+              textColor: textColor,
+              linkColor: linkColor,
+            );
           case MessageTypes.BadEncrypted:
           case EventTypes.Encrypted:
             return _ButtonContent(
               textColor: buttonTextColor,
               onPressed: () => _verifyOrRequestKey(context),
               icon: '🔒',
-              label: L10n.of(context)!.encrypted,
+              label: L10n.of(context).encrypted,
               fontSize: fontSize,
             );
           case MessageTypes.Location:
@@ -212,7 +216,7 @@ class MessageContent extends StatelessWidget {
                       onPressed:
                           UrlLauncher(context, geoUri.toString()).launchUrl,
                       label: Text(
-                        L10n.of(context)!.openInMaps,
+                        L10n.of(context).openInMaps,
                         style: TextStyle(color: textColor),
                       ),
                     ),
@@ -221,6 +225,9 @@ class MessageContent extends StatelessWidget {
               }
             }
             continue textmessage;
+          case MessageTypes.Text:
+          case MessageTypes.Notice:
+          case MessageTypes.Emote:
           case MessageTypes.None:
           textmessage:
           default:
@@ -232,43 +239,59 @@ class MessageContent extends StatelessWidget {
                       event.redactedBecause?.content.tryGet<String>('reason');
                   final redactedBy = snapshot.data?.calcDisplayname() ??
                       event.redactedBecause?.senderId.localpart ??
-                      L10n.of(context)!.user;
+                      L10n.of(context).user;
                   return _ButtonContent(
                     label: reason == null
-                        ? L10n.of(context)!.redactedBy(redactedBy)
-                        : L10n.of(context)!.redactedByBecause(
+                        ? L10n.of(context).redactedBy(redactedBy)
+                        : L10n.of(context).redactedByBecause(
                             redactedBy,
                             reason,
                           ),
                     icon: '🗑️',
-                    textColor: buttonTextColor,
+                    textColor: buttonTextColor.withAlpha(128),
                     onPressed: () => onInfoTab!(event),
                     fontSize: fontSize,
                   );
                 },
               );
             }
+            var html = AppConfig.renderHtml && event.isRichMessage
+                ? event.formattedText
+                : event.body;
+            if (event.messageType == MessageTypes.Emote) {
+              html = '* $html';
+            }
+
             final bigEmotes = event.onlyEmotes &&
                 event.numberEmotes > 0 &&
-                event.numberEmotes <= 10;
-            return Linkify(
-              text: event.calcLocalizedBodyFallback(
-                MatrixLocals(L10n.of(context)!),
-                hideReply: true,
+                event.numberEmotes <= 3;
+            return Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 8,
               ),
-              style: TextStyle(
-                color: textColor,
-                fontSize: bigEmotes ? fontSize * 3 : fontSize,
-                decoration: event.redacted ? TextDecoration.lineThrough : null,
+              child: HtmlMessage(
+                html: html,
+                textColor: textColor,
+                room: event.room,
+                fontSize: AppConfig.fontSizeFactor *
+                    AppConfig.messageFontSize *
+                    (bigEmotes ? 5 : 1),
+                limitHeight: !selected,
+                linkStyle: TextStyle(
+                  color: linkColor,
+                  fontSize:
+                      AppConfig.fontSizeFactor * AppConfig.messageFontSize,
+                  decoration: TextDecoration.underline,
+                  decorationColor: linkColor,
+                ),
+                onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
+                eventId: event.eventId,
+                checkboxCheckedEvents: event.aggregatedEvents(
+                  timeline,
+                  EventCheckboxRoomExtension.relationshipType,
+                ),
               ),
-              options: const LinkifyOptions(humanize: false),
-              linkStyle: TextStyle(
-                color: textColor.withAlpha(150),
-                fontSize: bigEmotes ? fontSize * 3 : fontSize,
-                decoration: TextDecoration.underline,
-                decorationColor: textColor.withAlpha(150),
-              ),
-              onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
             );
         }
       case EventTypes.CallInvite:
@@ -276,7 +299,7 @@ class MessageContent extends StatelessWidget {
           future: event.fetchSenderUser(),
           builder: (context, snapshot) {
             return _ButtonContent(
-              label: L10n.of(context)!.startedACall(
+              label: L10n.of(context).startedACall(
                 snapshot.data?.calcDisplayname() ??
                     event.senderFromMemoryOrFallback.calcDisplayname(),
               ),
@@ -292,7 +315,7 @@ class MessageContent extends StatelessWidget {
           future: event.fetchSenderUser(),
           builder: (context, snapshot) {
             return _ButtonContent(
-              label: L10n.of(context)!.userSentUnknownEvent(
+              label: L10n.of(context).userSentUnknownEvent(
                 snapshot.data?.calcDisplayname() ??
                     event.senderFromMemoryOrFallback.calcDisplayname(),
                 event.type,
@@ -325,13 +348,19 @@ class _ButtonContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onPressed,
-      child: Text(
-        '$icon  $label',
-        style: TextStyle(
-          color: textColor,
-          fontSize: fontSize,
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 16,
+        vertical: 8,
+      ),
+      child: InkWell(
+        onTap: onPressed,
+        child: Text(
+          '$icon  $label',
+          style: TextStyle(
+            color: textColor,
+            fontSize: fontSize,
+          ),
         ),
       ),
     );

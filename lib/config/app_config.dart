@@ -5,10 +5,13 @@ import 'package:matrix/matrix.dart';
 
 abstract class AppConfig {
   static String _applicationName = 'FluffyChat';
+
   static String get applicationName => _applicationName;
   static String? _applicationWelcomeMessage;
+
   static String? get applicationWelcomeMessage => _applicationWelcomeMessage;
   static String _defaultHomeserver = 'matrix.org';
+
   static String get defaultHomeserver => _defaultHomeserver;
   static double fontSizeFactor = 1;
   static const Color chatColor = primaryColor;
@@ -21,7 +24,11 @@ abstract class AppConfig {
   static const Color secondaryColor = Color(0xFF41a2bc);
   static String _privacyUrl =
       'https://github.com/krille-chan/fluffychat/blob/main/PRIVACY.md';
+
+  static const Set<String> defaultReactions = {'👍', '❤️', '😂', '😮', '😢'};
+
   static String get privacyUrl => _privacyUrl;
+  static const String website = 'https://fluffychat.im';
   static const String enablePushTutorial =
       'https://github.com/krille-chan/fluffychat/wiki/Push-Notifications-without-Google-Services';
   static const String encryptionTutorial =
@@ -31,6 +38,7 @@ abstract class AppConfig {
   static const String appId = 'im.fluffychat.FluffyChat';
   static const String appOpenUrlScheme = 'im.fluffychat';
   static String _webBaseUrl = 'https://fluffychat.im/web';
+
   static String get webBaseUrl => _webBaseUrl;
   static const String sourceCodeUrl =
       'https://github.com/krille-chan/fluffychat';
@@ -46,7 +54,6 @@ abstract class AppConfig {
   static bool renderHtml = true;
   static bool hideRedactedEvents = false;
   static bool hideUnknownEvents = true;
-  static bool hideUnimportantStateEvents = true;
   static bool separateChatTypes = false;
   static bool autoplayImages = true;
   static bool sendTypingNotifications = true;
@@ -54,22 +61,16 @@ abstract class AppConfig {
   static bool swipeRightToLeftToReply = true;
   static bool? sendOnEnter;
   static bool showPresences = true;
+  static bool displayNavigationRail = false;
   static bool experimentalVoip = false;
   static Map<String, int> spaceViewOptions = {};
   static Set<String> collapsedSpace = HashSet();
   static const bool hideTypingUsernames = false;
-  static const bool hideAllStateEvents = false;
   static const String inviteLinkPrefix = 'https://matrix.to/#/';
   static const String deepLinkPrefix = 'im.fluffychat://chat/';
   static const String schemePrefix = 'matrix:';
   static const String pushNotificationsChannelId = 'fluffychat_push';
   static const String pushNotificationsAppId = 'chat.fluffy.fluffychat';
-  static const String pushNotificationsGatewayUrl =
-      'https://push.fluffychat.im/_matrix/push/v1/notify';
-  static const String pushNotificationsPusherFormat = 'event_id_only';
-  static const String emojiFontName = 'Noto Emoji';
-  static const String emojiFontUrl =
-      'https://github.com/googlefonts/noto-emoji/';
   static const double borderRadius = 18.0;
   static const double columnWidth = 360.0;
   static final Uri homeserverList = Uri(

@@ -3,8 +3,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:qr_code_scanner_plus/qr_code_scanner_plus.dart';
+
+import 'package:fluffychat/l10n/l10n.dart';
 
 class QrScannerModal extends StatefulWidget {
   final void Function(String) onScan;
@@ -35,9 +36,9 @@ class QrScannerModalState extends State<QrScannerModal> {
         leading: IconButton(
           icon: const Icon(Icons.close_outlined),
           onPressed: Navigator.of(context).pop,
-          tooltip: L10n.of(context)!.close,
+          tooltip: L10n.of(context).close,
         ),
-        title: Text(L10n.of(context)!.scanQrCode),
+        title: Text(L10n.of(context).scanQrCode),
       ),
       body: Stack(
         children: [
@@ -71,11 +72,5 @@ class QrScannerModalState extends State<QrScannerModal> {
       final data = scanData.code;
       if (data != null) widget.onScan(data);
     });
-  }
-
-  @override
-  void dispose() {
-    controller?.dispose();
-    super.dispose();
   }
 }

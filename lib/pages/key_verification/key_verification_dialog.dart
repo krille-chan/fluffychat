@@ -4,13 +4,14 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:adaptive_dialog/adaptive_dialog.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/encryption.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/adaptive_dialog_action.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/avatar.dart';
+import 'package:fluffychat/widgets/future_loading_dialog.dart';
 
 class KeyVerificationDialog extends StatefulWidget {
   Future<void> show(BuildContext context) => showAdaptiveDialog(
@@ -87,7 +88,7 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
       await showOkAlertDialog(
         useRootNavigator: false,
         context: context,
-        message: L10n.of(context)!.incorrectPassphraseOrKey,
+        title: L10n.of(context).incorrectPassphraseOrKey,
       );
     }
   }
@@ -106,7 +107,7 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
     }
     final displayName =
         user?.calcDisplayname() ?? widget.request.userId.localpart!;
-    var title = Text(L10n.of(context)!.verifyTitle);
+    var title = Text(L10n.of(context).verifyTitle);
     Widget body;
     final buttons = <Widget>[];
 
@@ -124,7 +125,7 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               Text(
-                L10n.of(context)!.askSSSSSign,
+                L10n.of(context).askSSSSSign,
                 style: const TextStyle(fontSize: 20),
               ),
               Container(height: 10),
@@ -140,7 +141,7 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
                 maxLines: 1,
                 obscureText: true,
                 decoration: InputDecoration(
-                  hintText: L10n.of(context)!.passphraseOrKey,
+                  hintText: L10n.of(context).passphraseOrKey,
                   prefixStyle: TextStyle(color: theme.colorScheme.primary),
                   suffixStyle: TextStyle(color: theme.colorScheme.primary),
                   border: const OutlineInputBorder(),
@@ -150,24 +151,24 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
           ),
         );
         buttons.add(
-          TextButton(
+          AdaptiveDialogAction(
             child: Text(
-              L10n.of(context)!.submit,
+              L10n.of(context).submit,
             ),
             onPressed: () => checkInput(textEditingController.text),
           ),
         );
         buttons.add(
-          TextButton(
+          AdaptiveDialogAction(
             child: Text(
-              L10n.of(context)!.skip,
+              L10n.of(context).skip,
             ),
             onPressed: () => widget.request.openSSSS(skip: true),
           ),
         );
         break;
       case KeyVerificationState.askAccept:
-        title = Text(L10n.of(context)!.newVerificationRequest);
+        title = Text(L10n.of(context).newVerificationRequest);
         body = Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -179,25 +180,25 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
             ),
             const SizedBox(height: 16),
             Text(
-              L10n.of(context)!.askVerificationRequest(displayName),
+              L10n.of(context).askVerificationRequest(displayName),
             ),
           ],
         );
         buttons.add(
-          TextButton.icon(
-            icon: const Icon(Icons.close),
-            style: TextButton.styleFrom(foregroundColor: Colors.red),
-            label: Text(L10n.of(context)!.reject),
+          AdaptiveDialogAction(
             onPressed: () => widget.request
                 .rejectVerification()
                 .then((_) => Navigator.of(context, rootNavigator: false).pop()),
+            child: Text(
+              L10n.of(context).reject,
+              style: TextStyle(color: theme.colorScheme.error),
+            ),
           ),
         );
         buttons.add(
-          TextButton.icon(
-            icon: const Icon(Icons.check),
-            label: Text(L10n.of(context)!.accept),
+          AdaptiveDialogAction(
             onPressed: () => widget.request.acceptVerification(),
+            child: Text(L10n.of(context).accept),
           ),
         );
         break;
@@ -206,6 +207,7 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
         body = Center(
           child: Column(
             children: <Widget>[
+              const SizedBox(height: 16),
               Stack(
                 alignment: Alignment.center,
                 children: [
@@ -222,17 +224,16 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
               ),
               const SizedBox(height: 16),
               Text(
-                L10n.of(context)!.waitingPartnerAcceptRequest,
+                L10n.of(context).waitingPartnerAcceptRequest,
                 textAlign: TextAlign.center,
               ),
             ],
           ),
         );
         buttons.add(
-          TextButton.icon(
-            icon: const Icon(Icons.close),
-            label: Text(L10n.of(context)!.cancel),
+          AdaptiveDialogAction(
             onPressed: () => widget.request.cancel(),
+            child: Text(L10n.of(context).cancel),
           ),
         );
 
@@ -244,7 +245,7 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
 
         if (widget.request.sasTypes.contains('emoji')) {
           title = Text(
-            L10n.of(context)!.compareEmojiMatch,
+            L10n.of(context).compareEmojiMatch,
             maxLines: 1,
             style: const TextStyle(fontSize: 16),
           );
@@ -254,7 +255,7 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
                 .toList(),
           );
         } else {
-          title = Text(L10n.of(context)!.compareNumbersMatch);
+          title = Text(L10n.of(context).compareNumbersMatch);
           final numbers = widget.request.sasNumbers;
           final numbstr = '${numbers[0]}-${numbers[1]}-${numbers[2]}';
           compareWidget =
@@ -270,32 +271,31 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
           ],
         );
         buttons.add(
-          TextButton.icon(
-            icon: const Icon(Icons.close),
-            style: TextButton.styleFrom(
-              foregroundColor: Colors.red,
-            ),
-            label: Text(L10n.of(context)!.theyDontMatch),
+          AdaptiveDialogAction(
             onPressed: () => widget.request.rejectSas(),
+            child: Text(
+              L10n.of(context).theyDontMatch,
+              style: TextStyle(color: theme.colorScheme.error),
+            ),
           ),
         );
         buttons.add(
-          TextButton.icon(
-            icon: const Icon(Icons.check_outlined),
-            label: Text(L10n.of(context)!.theyMatch),
+          AdaptiveDialogAction(
             onPressed: () => widget.request.acceptSas(),
+            child: Text(L10n.of(context).theyMatch),
           ),
         );
         break;
       case KeyVerificationState.waitingSas:
         final acceptText = widget.request.sasTypes.contains('emoji')
-            ? L10n.of(context)!.waitingPartnerEmoji
-            : L10n.of(context)!.waitingPartnerNumbers;
+            ? L10n.of(context).waitingPartnerEmoji
+            : L10n.of(context).waitingPartnerNumbers;
         body = Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
+            const SizedBox(height: 16),
             const CircularProgressIndicator.adaptive(strokeWidth: 2),
-            const SizedBox(height: 10),
+            const SizedBox(height: 16),
             Text(
               acceptText,
               textAlign: TextAlign.center,
@@ -304,25 +304,19 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
         );
         break;
       case KeyVerificationState.done:
-        body = Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            const Icon(
-              Icons.check_circle_outlined,
-              color: Colors.green,
-              size: 128.0,
-            ),
-            const SizedBox(height: 10),
-            Text(
-              L10n.of(context)!.verifySuccess,
-              textAlign: TextAlign.center,
-            ),
-          ],
+        title = Text(L10n.of(context).verifySuccess);
+        body = const Padding(
+          padding: EdgeInsets.all(16.0),
+          child: Icon(
+            Icons.verified_outlined,
+            color: Colors.green,
+            size: 128.0,
+          ),
         );
         buttons.add(
-          TextButton(
+          AdaptiveDialogAction(
             child: Text(
-              L10n.of(context)!.close,
+              L10n.of(context).close,
             ),
             onPressed: () => Navigator.of(context, rootNavigator: false).pop(),
           ),
@@ -333,7 +327,8 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
         body = Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            const Icon(Icons.cancel, color: Colors.red, size: 128.0),
+            const SizedBox(height: 16),
+            Icon(Icons.cancel, color: theme.colorScheme.error, size: 64.0),
             const SizedBox(height: 16),
             // TODO: Add better error UI to user
             Text(
@@ -343,9 +338,9 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
           ],
         );
         buttons.add(
-          TextButton(
+          AdaptiveDialogAction(
             child: Text(
-              L10n.of(context)!.close,
+              L10n.of(context).close,
             ),
             onPressed: () => Navigator.of(context, rootNavigator: false).pop(),
           ),

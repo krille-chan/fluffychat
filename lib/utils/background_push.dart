@@ -24,13 +24,14 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_app_badger/flutter_app_badger.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_new_badger/flutter_new_badger.dart';
 import 'package:http/http.dart' as http;
 import 'package:matrix/matrix.dart';
 import 'package:unifiedpush/unifiedpush.dart';
+import 'package:unifiedpush_ui/unifiedpush_ui.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/push_helper.dart';
 import 'package:fluffychat/widgets/fluffy_chat_app.dart';
 import '../config/app_config.dart';
@@ -69,31 +70,46 @@ class BackgroundPush {
 
   bool upAction = false;
 
-  BackgroundPush._(this.client) {
-    firebase?.setListeners(
-      onMessage: (message) => pushHelper(
-        PushNotification.fromJson(
-          Map<String, dynamic>.from(message['data'] ?? message),
+  void _init() async {
+    try {
+      await _flutterLocalNotificationsPlugin.initialize(
+        const InitializationSettings(
+          android: AndroidInitializationSettings('notifications_icon'),
+          iOS: DarwinInitializationSettings(),
         ),
-        client: client,
-        l10n: l10n,
-        activeRoomId: matrix?.activeRoomId,
-        onSelectNotification: goToRoom,
-      ),
-    );
-    if (Platform.isAndroid) {
-      UnifiedPush.initialize(
-        onNewEndpoint: _newUpEndpoint,
-        onRegistrationFailed: _upUnregistered,
-        onUnregistered: _upUnregistered,
-        onMessage: _onUpMessage,
+        onDidReceiveNotificationResponse: goToRoom,
       );
+      Logs().v('Flutter Local Notifications initialized');
+      firebase?.setListeners(
+        onMessage: (message) => pushHelper(
+          PushNotification.fromJson(
+            Map<String, dynamic>.from(message['data'] ?? message),
+          ),
+          client: client,
+          l10n: l10n,
+          activeRoomId: matrix?.activeRoomId,
+          flutterLocalNotificationsPlugin: _flutterLocalNotificationsPlugin,
+        ),
+      );
+      if (Platform.isAndroid) {
+        await UnifiedPush.initialize(
+          onNewEndpoint: _newUpEndpoint,
+          onRegistrationFailed: _upUnregistered,
+          onUnregistered: _upUnregistered,
+          onMessage: _onUpMessage,
+        );
+      }
+    } catch (e, s) {
+      Logs().e('Unable to initialize Flutter local notifications', e, s);
     }
   }
 
+  BackgroundPush._(this.client) {
+    _init();
+  }
+
   factory BackgroundPush.clientOnly(Client client) {
-    _instance ??= BackgroundPush._(client);
-    return _instance!;
+    return _instance ??= BackgroundPush._(client);
   }
 
   factory BackgroundPush(
@@ -109,7 +125,7 @@ class BackgroundPush {
 
   Future<void> cancelNotification(String roomId) async {
     Logs().v('Cancel notification for room', roomId);
-    await FlutterLocalNotificationsPlugin().cancel(roomId.hashCode);
+    await _flutterLocalNotificationsPlugin.cancel(roomId.hashCode);
 
     // Workaround for app icon badge not updating
     if (Platform.isIOS) {
@@ -117,9 +133,9 @@ class BackgroundPush {
           .where((room) => room.isUnreadOrInvited && room.id != roomId)
           .length;
       if (unreadCount == 0) {
-        FlutterAppBadger.removeBadge();
+        FlutterNewBadger.removeBadge();
       } else {
-        FlutterAppBadger.updateBadgeCount(unreadCount);
+        FlutterNewBadger.setBadge(unreadCount);
       }
       return;
     }
@@ -133,7 +149,8 @@ class BackgroundPush {
   }) async {
     if (PlatformInfos.isIOS) {
       await firebase?.requestPermission();
-    } else if (PlatformInfos.isAndroid) {
+    }
+    if (PlatformInfos.isAndroid) {
       _flutterLocalNotificationsPlugin
           .resolvePlatformSpecificImplementation<
               AndroidFlutterLocalNotificationsPlugin>()
@@ -169,7 +186,8 @@ class BackgroundPush {
           currentPushers.first.lang == 'en' &&
           currentPushers.first.data.url.toString() == gatewayUrl &&
           currentPushers.first.data.format ==
-              AppConfig.pushNotificationsPusherFormat &&
+              AppSettings.pushNotificationsPusherFormat
+                  .getItem(matrix!.store) &&
           mapEquals(
             currentPushers.single.data.additionalProperties,
             {"data_message": pusherDataMessageFormat},
@@ -209,7 +227,8 @@ class BackgroundPush {
             lang: 'en',
             data: PusherData(
               url: Uri.parse(gatewayUrl!),
-              format: AppConfig.pushNotificationsPusherFormat,
+              format: AppSettings.pushNotificationsPusherFormat
+                  .getItem(matrix!.store),
               additionalProperties: {"data_message": pusherDataMessageFormat},
             ),
             kind: 'http',
@@ -298,7 +317,8 @@ class BackgroundPush {
       }
     }
     await setupPusher(
-      gatewayUrl: AppConfig.pushNotificationsGatewayUrl,
+      gatewayUrl:
+          AppSettings.pushNotificationsGatewayUrl.getItem(matrix!.store),
       token: _fcmToken,
     );
   }
@@ -312,6 +332,11 @@ class BackgroundPush {
       }
       await client.roomsLoading;
       await client.accountDataLoading;
+      if (client.getRoomById(roomId) == null) {
+        await client
+            .waitForRoomInSync(roomId)
+            .timeout(const Duration(seconds: 30));
+      }
       FluffyChatApp.router.go(
         client.getRoomById(roomId)?.membership == Membership.invite
             ? '/rooms'
@@ -323,7 +348,8 @@ class BackgroundPush {
   }
 
   Future<void> setupUp() async {
-    await UnifiedPush.registerAppWithDialog(matrix!.context);
+    await UnifiedPushUi(matrix!.context, ["default"], UPFunctions())
+        .registerAppWithDialog();
   }
 
   Future<void> _newUpEndpoint(String newEndpoint, String i) async {
@@ -398,6 +424,33 @@ class BackgroundPush {
       client: client,
       l10n: l10n,
       activeRoomId: matrix?.activeRoomId,
+      flutterLocalNotificationsPlugin: _flutterLocalNotificationsPlugin,
     );
+  }
+}
+
+class UPFunctions extends UnifiedPushFunctions {
+  final List<String> features = [
+    /*list of features*/
+  ];
+
+  @override
+  Future<String?> getDistributor() async {
+    return await UnifiedPush.getDistributor();
+  }
+
+  @override
+  Future<List<String>> getDistributors() async {
+    return await UnifiedPush.getDistributors(features);
+  }
+
+  @override
+  Future<void> registerApp(String instance) async {
+    await UnifiedPush.registerApp(instance, features);
+  }
+
+  @override
+  Future<void> saveDistributor(String distributor) async {
+    await UnifiedPush.saveDistributor(distributor);
   }
 }

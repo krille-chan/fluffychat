@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_search/chat_search_files_tab.dart';
 import 'package:fluffychat/pages/chat_search/chat_search_images_tab.dart';
 import 'package:fluffychat/pages/chat_search/chat_search_message_tab.dart';
@@ -20,12 +19,11 @@ class ChatSearchView extends StatelessWidget {
     final room = controller.room;
     if (room == null) {
       return Scaffold(
-        appBar: AppBar(title: Text(L10n.of(context)!.oopsSomethingWentWrong)),
+        appBar: AppBar(title: Text(L10n.of(context).oopsSomethingWentWrong)),
         body: Center(
           child: Padding(
             padding: const EdgeInsets.all(16),
-            child:
-                Text(L10n.of(context)!.youAreNoLongerParticipatingInThisChat),
+            child: Text(L10n.of(context).youAreNoLongerParticipatingInThisChat),
           ),
         ),
       );
@@ -38,8 +36,8 @@ class ChatSearchView extends StatelessWidget {
         leading: const Center(child: BackButton()),
         titleSpacing: 0,
         title: Text(
-          L10n.of(context)!.searchIn(
-            room.getLocalizedDisplayname(MatrixLocals(L10n.of(context)!)),
+          L10n.of(context).searchIn(
+            room.getLocalizedDisplayname(MatrixLocals(L10n.of(context))),
           ),
         ),
       ),
@@ -59,8 +57,8 @@ class ChatSearchView extends StatelessWidget {
                 autofocus: true,
                 enabled: controller.tabController.index == 0,
                 decoration: InputDecoration(
-                  hintText: L10n.of(context)!.search,
-                  suffixIcon: const Icon(Icons.search_outlined),
+                  hintText: L10n.of(context).search,
+                  prefixIcon: const Icon(Icons.search_outlined),
                   filled: true,
                   fillColor: theme.colorScheme.secondaryContainer,
                   border: OutlineInputBorder(
@@ -77,9 +75,9 @@ class ChatSearchView extends StatelessWidget {
             TabBar(
               controller: controller.tabController,
               tabs: [
-                Tab(child: Text(L10n.of(context)!.messages)),
-                Tab(child: Text(L10n.of(context)!.gallery)),
-                Tab(child: Text(L10n.of(context)!.files)),
+                Tab(child: Text(L10n.of(context).messages)),
+                Tab(child: Text(L10n.of(context).gallery)),
+                Tab(child: Text(L10n.of(context).files)),
               ],
             ),
             Expanded(

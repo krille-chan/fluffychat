@@ -29,6 +29,7 @@ extension ApplicationAccountConfigExtension on Client {
         wallpaperUrl: config.wallpaperUrl ?? currentConfig.wallpaperUrl,
         wallpaperOpacity:
             config.wallpaperOpacity ?? currentConfig.wallpaperOpacity,
+        wallpaperBlur: config.wallpaperBlur ?? currentConfig.wallpaperBlur,
       ).toJson(),
     );
   }
@@ -37,10 +38,12 @@ extension ApplicationAccountConfigExtension on Client {
 class ApplicationAccountConfig {
   final Uri? wallpaperUrl;
   final double? wallpaperOpacity;
+  final double? wallpaperBlur;
 
   const ApplicationAccountConfig({
     this.wallpaperUrl,
     this.wallpaperOpacity,
+    this.wallpaperBlur,
   });
 
   static double _sanitizedOpacity(double? opacity) {
@@ -56,10 +59,12 @@ class ApplicationAccountConfig {
             : null,
         wallpaperOpacity:
             _sanitizedOpacity(json.tryGet<double>('wallpaper_opacity')),
+        wallpaperBlur: json.tryGet<double>('wallpaper_blur'),
       );
 
   Map<String, dynamic> toJson() => {
         'wallpaper_url': wallpaperUrl?.toString(),
         'wallpaper_opacity': wallpaperOpacity,
+        'wallpaper_blur': wallpaperBlur,
       };
 }

@@ -1,0 +1,24 @@
+name: Completed Issue Comment
+
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  completed_issue_comment:
+    if: github.event.label.name == 'status:completed'
+    runs-on: ubuntu-latest
+    env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - run: |
+          gh issue comment ${{ github.event.issue.number }} --body "$(cat <<EOF
+          Thank you so much for reporting this issue and helping us improve FluffyChat! 💬💖
+
+          This project is built and maintained by volunteers in their free time.
+          If you enjoyed using FluffyChat and want to support the people behind it,
+          you can say thanks by buying us a coffee or chipping in:
+          ☕ https://ko-fi.com/krille  
+          💜 https://liberapay.com/KrilleChritzelius
+          EOF
+          )"

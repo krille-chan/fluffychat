@@ -4,10 +4,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:async/async.dart' as async;
-import 'package:future_loading_dialog/future_loading_dialog.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/utils/size_string.dart';
+import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'matrix_file_extension.dart';
 
 extension LocalizedBody on Event {
@@ -32,11 +32,11 @@ extension LocalizedBody on Event {
 
   bool get isAttachmentSmallEnough =>
       infoMap['size'] is int &&
-      infoMap['size'] < room.client.database!.maxFileSize;
+      infoMap['size'] < room.client.database.maxFileSize;
 
   bool get isThumbnailSmallEnough =>
       thumbnailInfoMap['size'] is int &&
-      thumbnailInfoMap['size'] < room.client.database!.maxFileSize;
+      thumbnailInfoMap['size'] < room.client.database.maxFileSize;
 
   bool get showThumbnail =>
       [MessageTypes.Image, MessageTypes.Sticker, MessageTypes.Video]

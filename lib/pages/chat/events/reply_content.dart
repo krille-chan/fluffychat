@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import '../../../config/app_config.dart';
 
@@ -10,14 +10,12 @@ class ReplyContent extends StatelessWidget {
   final Event replyEvent;
   final bool ownMessage;
   final Timeline? timeline;
-  final Color? backgroundColor;
 
   const ReplyContent(
     this.replyEvent, {
     this.ownMessage = false,
     super.key,
     this.timeline,
-    this.backgroundColor,
   });
 
   static const BorderRadius borderRadius = BorderRadius.only(
@@ -33,21 +31,25 @@ class ReplyContent extends StatelessWidget {
     final displayEvent =
         timeline != null ? replyEvent.getDisplayEvent(timeline) : replyEvent;
     final fontSize = AppConfig.messageFontSize * AppConfig.fontSizeFactor;
-    final color = ownMessage
-        ? theme.colorScheme.primaryContainer
-        : theme.colorScheme.primary;
+    final color = theme.brightness == Brightness.dark
+        ? theme.colorScheme.onTertiaryContainer
+        : ownMessage
+            ? theme.colorScheme.tertiaryContainer
+            : theme.colorScheme.tertiary;
 
     return Material(
-      color: backgroundColor ??
-          theme.colorScheme.surface.withOpacity(ownMessage ? 0.2 : 0.33),
+      color: Colors.transparent,
       borderRadius: borderRadius,
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Container(
-            width: 3,
+            width: 5,
             height: fontSize * 2 + 16,
-            color: color,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+              color: color,
+            ),
           ),
           const SizedBox(width: 6),
           Flexible(
@@ -56,6 +58,7 @@ class ReplyContent extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 FutureBuilder<User?>(
+                  initialData: displayEvent.senderFromMemoryOrFallback,
                   future: displayEvent.fetchSenderUser(),
                   builder: (context, snapshot) {
                     return Text(
@@ -72,16 +75,18 @@ class ReplyContent extends StatelessWidget {
                 ),
                 Text(
                   displayEvent.calcLocalizedBodyFallback(
-                    MatrixLocals(L10n.of(context)!),
+                    MatrixLocals(L10n.of(context)),
                     withSenderNamePrefix: false,
                     hideReply: true,
                   ),
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
                   style: TextStyle(
-                    color: ownMessage
-                        ? theme.colorScheme.onPrimary
-                        : theme.colorScheme.onSurface,
+                    color: theme.brightness == Brightness.dark
+                        ? theme.colorScheme.onSurface
+                        : ownMessage
+                            ? theme.colorScheme.onTertiary
+                            : theme.colorScheme.onSurface,
                     fontSize: fontSize,
                   ),
                 ),

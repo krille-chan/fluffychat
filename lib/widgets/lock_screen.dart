@@ -3,9 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:flutter_gen/gen_l10n/l10n.dart';
-
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/widgets/app_lock.dart';
 
 class LockScreen extends StatefulWidget {
@@ -30,7 +29,7 @@ class _LockScreenState extends State<LockScreen> {
     final enteredPin = int.tryParse(text);
     if (enteredPin == null || text.length != 4) {
       setState(() {
-        _errorText = L10n.of(context)!.invalidInput;
+        _errorText = L10n.of(context).invalidInput;
       });
       _textEditingController.clear();
       return;
@@ -46,7 +45,7 @@ class _LockScreenState extends State<LockScreen> {
     }
 
     setState(() {
-      _errorText = L10n.of(context)!.wrongPinEntered(_coolDownSeconds);
+      _errorText = L10n.of(context).wrongPinEntered(_coolDownSeconds);
       _inputBlocked = true;
     });
     Future.delayed(Duration(seconds: _coolDownSeconds)).then((_) {
@@ -63,7 +62,7 @@ class _LockScreenState extends State<LockScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(L10n.of(context)!.pleaseEnterYourPin),
+        title: Text(L10n.of(context).pleaseEnterYourPin),
         centerTitle: true,
       ),
       extendBodyBehindAppBar: true,

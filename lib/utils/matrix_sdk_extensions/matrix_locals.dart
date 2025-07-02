@@ -1,5 +1,6 @@
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
+
+import 'package:fluffychat/l10n/l10n.dart';
 
 /// This is a temporary helper class until there is a proper solution to this with the new system
 class MatrixLocals extends MatrixLocalizations {
@@ -346,8 +347,17 @@ class MatrixLocals extends MatrixLocalizations {
       l10n.startedKeyVerification(senderName);
 
   @override
-  String invitedBy(String senderName) => l10n.invitedBy(senderName);
+  String invitedBy(String senderName) => senderName;
 
   @override
   String get cancelledSend => l10n.sendCanceled;
+
+  @override
+  String voiceMessage(String senderName, Duration? duration) =>
+      l10n.sentVoiceMessage(
+        senderName,
+        duration == null
+            ? ''
+            : '${duration.inMinutes.toString().padLeft(2, '0')}:${(duration.inSeconds % 60).toString().padLeft(2, '0')}',
+      );
 }

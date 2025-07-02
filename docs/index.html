@@ -22,8 +22,7 @@
 <body
 	class="flex flex-col items-center min-h-screen w-full bg-gradient-to-t from-purple-200 to-blue-50 dark:from-purple-900 dark:to-slate-900"
 	style="font-family: 'Zen Kurenaido', sans-serif;">
-	<div
-		class="w-full md:h-12 min-h-12 bg-white dark:bg-gray-800 bg-opacity-50 border-b dark:border-gray-600 px-4 py-4 md:py-0 mb-8">
+	<div class="w-full md:h-12 min-h-12 px-4 py-4 md:py-0 mb-8">
 		<nav class="flex flex-wrap h-full justify-center items-center space-x-6 w-full max-w-4xl m-auto">
 			<a href="https://ko-fi.com/krille/posts"
 				class="text-lg dark:text-white hover:text-purple-800 dark:hover:text-purple-400">News</a>
@@ -47,7 +46,12 @@
 			target="_blank" class="text-xl underline hover:text-purple-800 dark:hover:text-purple-400">matrix</a>]
 	</p>
 
-	<img src="screenshots/screenshots.png" alt="Mobile and desktop screenshots" class="max-w-xl mb-16 w-full px-8" />
+	<div class="flex flex-wrap justify-center mb-16 w-full px-8 gap-4">
+		<img src="screenshots/mobile.png" alt="Mobile screenshot"
+			class="h-96 w-auto object-contain rounded-xl border border-gray-300 shadow-xl" />
+		<img src="screenshots/desktop.png" alt="Desktop screenshot"
+			class="h-96 w-auto object-contain rounded-xl border border-gray-300 shadow-xl" />
+	</div>
 
 	<div class="max-w-lg mb-16 flex justify-center flex-wrap">
 		<a href="https://apps.apple.com/app/fluffychat/id1551469600"><img src="appstore-badge.png"
@@ -59,8 +63,7 @@
 		</a>
 		<a href="https://fluffychat.im/web">
 			<img src="browser-badge.png" class="w-36 pr-2 mb-2  hover:scale-105 transition-transform inline"></a>
-		<a href="https://snapcraft.io/fluffychat"><img
-				src="https://snapcraft.io/static/images/badges/en/snap-store-black.svg"
+		<a href="https://snapcraft.io/fluffychat"><img src="snap-store-badge.svg"
 				class="w-36 pr-2 mb-2  hover:scale-105 transition-transform inline"></a>
 		<a href="https://flathub.org/apps/details/im.fluffychat.Fluffychat"><img src="flathub-badge-en.png"
 				class="w-36 pr-2 mb-2  hover:scale-105 transition-transform inline"></a>
@@ -138,7 +141,7 @@
 	</div>
 
 	<!--Footer-->
-	<div class="w-full bg-white dark:bg-gray-800 bg-opacity-50 border-t dark:border-gray-600 flex justify-center">
+	<div class="w-full flex justify-center">
 		<footer class="w-full text-center max-w-4xl p-4 text-slate-700 dark:text-slate-200">
 
 

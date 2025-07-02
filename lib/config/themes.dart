@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:fluffychat/utils/platform_infos.dart';
 import 'app_config.dart';
 
 abstract class FluffyThemes {
-  static const double columnWidth = 360.0;
+  static const double columnWidth = 380.0;
 
-  static const double navRailWidth = 64.0;
+  static const double maxTimelineWidth = columnWidth * 2;
+
+  static const double navRailWidth = 80.0;
 
   static bool isColumnModeByWidth(double width) =>
       width > columnWidth * 2 + navRailWidth;
@@ -17,27 +18,6 @@ abstract class FluffyThemes {
 
   static bool isThreeColumnMode(BuildContext context) =>
       MediaQuery.of(context).size.width > FluffyThemes.columnWidth * 3.5;
-
-  static const fallbackTextStyle = TextStyle(
-    fontFamily: 'Roboto',
-    fontFamilyFallback: ['NotoEmoji'],
-  );
-
-  static var fallbackTextTheme = const TextTheme(
-    bodyLarge: fallbackTextStyle,
-    bodyMedium: fallbackTextStyle,
-    labelLarge: fallbackTextStyle,
-    bodySmall: fallbackTextStyle,
-    labelSmall: fallbackTextStyle,
-    displayLarge: fallbackTextStyle,
-    displayMedium: fallbackTextStyle,
-    displaySmall: fallbackTextStyle,
-    headlineMedium: fallbackTextStyle,
-    headlineSmall: fallbackTextStyle,
-    titleLarge: fallbackTextStyle,
-    titleMedium: fallbackTextStyle,
-    titleSmall: fallbackTextStyle,
-  );
 
   static LinearGradient backgroundGradient(
     BuildContext context,
@@ -67,22 +47,27 @@ abstract class FluffyThemes {
       brightness: brightness,
       seedColor: seed ?? AppConfig.colorSchemeSeed ?? AppConfig.primaryColor,
     );
+    final isColumnMode = FluffyThemes.isColumnMode(context);
     return ThemeData(
       visualDensity: VisualDensity.standard,
       useMaterial3: true,
       brightness: brightness,
       colorScheme: colorScheme,
-      textTheme: PlatformInfos.isDesktop
-          ? brightness == Brightness.light
-              ? Typography.material2018().black.merge(fallbackTextTheme)
-              : Typography.material2018().white.merge(fallbackTextTheme)
-          : null,
-      dividerColor: brightness == Brightness.light
-          ? Colors.blueGrey.shade50
-          : Colors.blueGrey.shade900,
+      dividerColor: brightness == Brightness.dark
+          ? colorScheme.surfaceContainerHighest
+          : colorScheme.surfaceContainer,
       popupMenuTheme: PopupMenuThemeData(
+        color: colorScheme.surfaceContainerLow,
+        iconColor: colorScheme.onSurface,
+        textStyle: TextStyle(color: colorScheme.onSurface),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+          borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
+        ),
+      ),
+      segmentedButtonTheme: SegmentedButtonThemeData(
+        style: SegmentedButton.styleFrom(
+          iconColor: colorScheme.onSurface,
+          disabledIconColor: colorScheme.onSurface,
         ),
       ),
       textSelectionTheme: TextSelectionThemeData(
@@ -94,17 +79,21 @@ abstract class FluffyThemes {
           borderRadius: BorderRadius.circular(AppConfig.borderRadius),
         ),
         contentPadding: const EdgeInsets.all(12),
-        filled: false,
+      ),
+      chipTheme: ChipThemeData(
+        showCheckmark: false,
+        backgroundColor: colorScheme.surfaceContainer,
+        side: BorderSide.none,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+        ),
       ),
       appBarTheme: AppBarTheme(
-        toolbarHeight: FluffyThemes.isColumnMode(context) ? 72 : 56,
-        shadowColor: FluffyThemes.isColumnMode(context)
-            ? Colors.grey.withAlpha(64)
-            : null,
-        surfaceTintColor:
-            FluffyThemes.isColumnMode(context) ? colorScheme.surface : null,
-        backgroundColor:
-            FluffyThemes.isColumnMode(context) ? colorScheme.surface : null,
+        toolbarHeight: isColumnMode ? 72 : 56,
+        shadowColor:
+            isColumnMode ? colorScheme.surfaceContainer.withAlpha(128) : null,
+        surfaceTintColor: isColumnMode ? colorScheme.surface : null,
+        backgroundColor: isColumnMode ? colorScheme.surface : null,
         systemOverlayStyle: SystemUiOverlayStyle(
           statusBarColor: Colors.transparent,
           statusBarIconBrightness: brightness.reversed,
@@ -125,11 +114,12 @@ abstract class FluffyThemes {
           ),
         ),
       ),
-      dialogTheme: DialogTheme(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
-        ),
-      ),
+      snackBarTheme: isColumnMode
+          ? const SnackBarThemeData(
+              behavior: SnackBarBehavior.floating,
+              width: FluffyThemes.columnWidth * 1.5,
+            )
+          : const SnackBarThemeData(behavior: SnackBarBehavior.floating),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           backgroundColor: colorScheme.secondaryContainer,
@@ -146,4 +136,20 @@ abstract class FluffyThemes {
 extension on Brightness {
   Brightness get reversed =>
       this == Brightness.dark ? Brightness.light : Brightness.dark;
+}
+
+extension BubbleColorTheme on ThemeData {
+  Color get bubbleColor => brightness == Brightness.light
+      ? colorScheme.primary
+      : colorScheme.primaryContainer;
+
+  Color get onBubbleColor => brightness == Brightness.light
+      ? colorScheme.onPrimary
+      : colorScheme.onPrimaryContainer;
+
+  Color get secondaryBubbleColor => HSLColor.fromColor(
+        brightness == Brightness.light
+            ? colorScheme.tertiary
+            : colorScheme.tertiaryContainer,
+      ).withSaturation(0.5).toColor();
 }

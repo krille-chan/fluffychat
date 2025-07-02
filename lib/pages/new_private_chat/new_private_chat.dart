@@ -4,17 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:device_info_plus/device_info_plus.dart';
-import 'package:flutter_gen/gen_l10n/l10n.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/new_private_chat/new_private_chat_view.dart';
 import 'package:fluffychat/pages/new_private_chat/qr_scanner_modal.dart';
-import 'package:fluffychat/pages/user_bottom_sheet/user_bottom_sheet.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import '../../widgets/adaptive_dialogs/user_dialog.dart';
 
 class NewPrivateChat extends StatefulWidget {
   const NewPrivateChat({super.key});
@@ -74,7 +74,7 @@ class NewPrivateChatController extends State<NewPrivateChat> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              L10n.of(context)!.unsupportedAndroidVersionLong,
+              L10n.of(context).unsupportedAndroidVersionLong,
             ),
           ),
         );
@@ -94,16 +94,13 @@ class NewPrivateChatController extends State<NewPrivateChat> {
       ClipboardData(text: Matrix.of(context).client.userID!),
     );
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(L10n.of(context)!.copiedToClipboard)),
+      SnackBar(content: Text(L10n.of(context).copiedToClipboard)),
     );
   }
 
-  void openUserModal(Profile profile) => showAdaptiveBottomSheet(
+  void openUserModal(Profile profile) => UserDialog.show(
         context: context,
-        builder: (c) => UserBottomSheet(
-          profile: profile,
-          outerContext: context,
-        ),
+        profile: profile,
       );
 
   @override

@@ -25,13 +25,12 @@ jobs:
           cache: true
       - name: Install dependencies
         run: sudo apt-get update && sudo apt-get install nodejs -y
-      - name: Remove Emoji Font
-        run: |
-          rm -rf fonts/NotoEmoji
-          yq -i 'del( .flutter.fonts[] | select(.family == "NotoEmoji") )' pubspec.yaml
+      - uses: moonrepo/setup-rust@v1
+      - run: rustup component add rust-src --toolchain nightly-x86_64-unknown-linux-gnu
       - run: flutter pub get
       - name: Prepare web
         run: ./scripts/prepare-web.sh
+      - run: rm ./assets/vodozemac/.gitignore
       - name: Build Release Web
         run: flutter build web --dart-define=FLUTTER_WEB_CANVASKIT_URL=canvaskit/ --release --source-maps --base-href "/web/"
       - name: Create archive
@@ -50,9 +49,13 @@ jobs:
           asset_path: fluffychat-web.tar.gz
           asset_name: fluffychat-web.tar.gz
           asset_content_type: application/gzip
+      - name: Install and build tailwindcss
+        working-directory: docs
+        run: |
+          npm install tailwindcss @tailwindcss/cli
+          npx tailwindcss -o ./tailwind.css
       - name: Build Website
         run: |
-          cd docs && npx tailwindcss -o ./tailwind.css --minify && cd ..
           mv docs public
           mv repo public || true
           mv build/web/ public/web
@@ -81,10 +84,7 @@ jobs:
           cache: true
       - name: Apply Google Services Patch
         run: git apply ./scripts/enable-android-google-services.patch
-      - name: Remove Emoji Font
-        run: |
-          rm -rf fonts/NotoEmoji
-          yq -i 'del( .flutter.fonts[] | select(.family == "NotoEmoji") )' pubspec.yaml
+      - uses: moonrepo/setup-rust@v1
       - run: flutter pub get
       - name: Prepare Android Release Build
         env:
@@ -104,28 +104,32 @@ jobs:
           asset_content_type: application/vnd.android.package-archive
 
   build_linux:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        arch: [ x64, arm64 ]
+    runs-on: ${{ matrix.arch == 'arm64' && 'self-hosted' || 'ubuntu-latest'}}
     steps:
       - uses: actions/checkout@v4
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
-      - uses: subosito/flutter-action@v2
-        with:
-          flutter-version: ${{ env.FLUTTER_VERSION }}
-          cache: true
       - name: Install dependencies
-        run: sudo apt-get update && sudo apt-get install curl clang cmake ninja-build pkg-config libgtk-3-dev libblkid-dev liblzma-dev libjsoncpp-dev cmake-data libsecret-1-dev libsecret-1-0 librhash0 libssl-dev -y
-      - run: flutter pub get
-      - run: flutter build linux --release --target-platform linux-x64
+        run: sudo apt-get update && sudo apt-get install curl clang cmake ninja-build pkg-config libgtk-3-dev libblkid-dev liblzma-dev libjsoncpp-dev cmake-data libsecret-1-dev libsecret-1-0 librhash0 libssl-dev libwebkit2gtk-4.1-dev -y
+      - name: Install Flutter
+        run: |
+          git clone --branch ${{ env.FLUTTER_VERSION }} https://github.com/flutter/flutter.git
+          ./flutter/bin/flutter doctor
+      - uses: moonrepo/setup-rust@v1
+      - run: ./flutter/bin/flutter pub get
+      - run: ./flutter/bin/flutter build linux --target-platform linux-${{ matrix.arch }}
       - name: Create archive
-        run: tar -czf fluffychat-linux-x64.tar.gz -C build/linux/x64/release/bundle/ .
+        run: tar -czf fluffychat-linux-${{ matrix.arch }}.tar.gz -C build/linux/${{ matrix.arch }}/release/bundle/ .
       - name: Upload to release
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.PAGES_DEPLOY_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: fluffychat-linux-x64.tar.gz
-          asset_name: fluffychat-linux-x64.tar.gz
+          asset_path: fluffychat-linux-${{ matrix.arch }}.tar.gz
+          asset_name: fluffychat-linux-${{ matrix.arch }}.tar.gz
           asset_content_type: application/gzip
 
   deploy_playstore:
@@ -145,14 +149,12 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.3'
+      - uses: moonrepo/setup-rust@v1
       - name: Install Fastlane
+        working-directory: android
         run: gem install fastlane -NV
       - name: Apply Google Services Patch
         run: git apply ./scripts/enable-android-google-services.patch
-      - name: Remove Emoji Font
-        run: |
-          rm -rf fonts/NotoEmoji
-          yq -i 'del( .flutter.fonts[] | select(.family == "NotoEmoji") )' pubspec.yaml
       - run: flutter pub get
       - name: Prepare Android Release Build
         env:
@@ -179,28 +181,6 @@ jobs:
               bundle exec fastlane deploy_release
           fi
           cd ..
-
-  promote_snapcraft:
-    runs-on: ubuntu-latest
-    env:
-      SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_TOKEN }}
-    steps:
-      - name: Check out Git repository
-        uses: actions/checkout@v4
-      - name: Install Snapcraft
-        uses: samuelmeuli/action-snapcraft@v2
-      - name: Get Tag Name
-        id: tag_name
-        run: echo "::set-output name=tag::$(echo ${GITHUB_REF#refs/tags/})"
-      - name: Promote Snap
-        env: # Workaround for https://github.com/snapcore/snapcraft/issues/4439
-          SNAPCRAFT_HAS_TTY: "true"
-        run: |
-          if [[ $GITHUB_REF_NAME == rc* ]]; then
-              yes | snapcraft promote fluffychat --from-channel edge --to-channel candidate
-          else
-              yes | snapcraft promote fluffychat --from-channel edge --to-channel stable
-          fi
 
   deploy_docker:
     runs-on: ubuntu-latest

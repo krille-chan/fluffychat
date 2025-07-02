@@ -1,0 +1,35 @@
+{
+  "repeatPassword": "Gentag password",
+  "@repeatPassword": {},
+  "notAnImage": "Ikke en billedfil.",
+  "@notAnImage": {},
+  "setCustomPermissionLevel": "Indstil særligt tilladelsesniveau",
+  "@setCustomPermissionLevel": {},
+  "setPermissionsLevelDescription": "Vælg en prædefineret rolle herunder eller indtaste et særligt tilladelsesniveau mellem 0 og 100.",
+  "@setPermissionsLevelDescription": {},
+  "ignoreUser": "Ignorér bruger",
+  "@ignoreUser": {},
+  "remove": "Fjern",
+  "@remove": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "importNow": "Importer nu",
+  "@importNow": {},
+  "importEmojis": "Importer emojis",
+  "@importEmojis": {},
+  "normalUser": "Normal bruger",
+  "@normalUser": {},
+  "importFromZipFile": "Importer fra .zip fil",
+  "@importFromZipFile": {},
+  "alwaysUse24HourFormat": "true",
+  "@alwaysUse24HourFormat": {
+    "description": "Set to true to always display time of day in 24 hour format."
+  },
+  "exportEmotePack": "Eksportér Emote-pakke som .zip-fil",
+  "@exportEmotePack": {},
+  "replace": "Erstat",
+  "@replace": {},
+  "about": "Om",
+  "@about": {}
+}
