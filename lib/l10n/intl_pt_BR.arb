@@ -3241,5 +3241,9 @@
 "commandHint_logoutall": "Sair de todos os dispositivos ativos",
 "displayNavigationRail": "Mostrar trilha de navegação no celular",
 "customReaction": "Reação personalizada",
-"moreEvents": "Mais eventos"
+"moreEvents": "Mais eventos",
+"errorInvalidCredentials": "Nome de usuário ou senha inválida.",
+"errorMissingParam": "Faltam informações para continuar.",
+"errorSessionExpired": "Sessão expirada ou inválida. Faça login novamente.",
+"errorUnknown": "Erro inesperado. Tente novamente."
 }
