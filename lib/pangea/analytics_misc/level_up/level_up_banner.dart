@@ -12,6 +12,7 @@ import 'package:fluffychat/pangea/analytics_misc/level_up/level_up_manager.dart'
 import 'package:fluffychat/pangea/analytics_misc/level_up/level_up_popup.dart';
 import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/pangea/common/utils/overlay.dart';
+import 'package:fluffychat/pangea/constructs/construct_repo.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class LevelUpConstants {
@@ -95,9 +96,14 @@ class LevelUpBannerState extends State<LevelUpBanner>
 
   bool _showedDetails = false;
 
+  final Completer<ConstructSummary> _constructSummaryCompleter =
+      Completer<ConstructSummary>();
+
   @override
   void initState() {
     super.initState();
+
+    _loadConstructSummary();
 
     LevelUpManager.instance.preloadAnalytics(
       context,
@@ -149,8 +155,21 @@ class LevelUpBannerState extends State<LevelUpBanner>
 
     await showDialog(
       context: context,
-      builder: (context) => const LevelUpPopup(),
+      builder: (context) => LevelUpPopup(
+        constructSummaryCompleter: _constructSummaryCompleter,
+      ),
     );
+  }
+
+  Future<void> _loadConstructSummary() async {
+    try {
+      final summary = MatrixState.pangeaController.getAnalytics
+          .generateLevelUpAnalytics(widget.prevLevel, widget.level);
+      _constructSummaryCompleter.complete(summary);
+    } catch (e) {
+      debugPrint("Error generating level up analytics: $e");
+      _constructSummaryCompleter.completeError(e);
+    }
   }
 
   @override
