@@ -5,13 +5,11 @@ import 'package:fluffychat/pangea/constructs/construct_level_enum.dart';
 import 'package:flutter/material.dart';
 
 class NewWordOverlay extends StatefulWidget {
-  final Widget child;
   final Color overlayColor;
   final GlobalKey cardKey;
 
   const NewWordOverlay({
     super.key,
-    required this.child,
     required this.overlayColor,
     required this.cardKey,
   });
@@ -137,17 +135,20 @@ class _NewWordOverlayState extends State<NewWordOverlay>
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        widget.child,
+        Container(
+          height: size.height,
+          width: size.width,
+          color: Colors.transparent,
+        ),
         Positioned(
           left: 5,
           right: 5,
           top: 50,
           bottom: 5,
-          child: FadeTransition(
-            opacity: ReverseAnimation(_fadeAnim ?? kAlwaysCompleteAnimation),
-            child: Container(
-              color: widget.overlayColor,
-            ),
+          child: Container(
+            height: size.height,
+            width: size.width,
+            color: widget.overlayColor,
           ),
         ),
       ],
