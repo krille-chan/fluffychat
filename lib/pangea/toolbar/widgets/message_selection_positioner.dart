@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
@@ -13,12 +14,11 @@ import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
-import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
-import 'package:fluffychat/pangea/toolbar/enums/reading_assistance_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/overlay_center_content.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/reading_assistance_content.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/select_mode_buttons.dart';
+import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
@@ -51,31 +51,31 @@ class MessageSelectionPositioner extends StatefulWidget {
 
 class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
     with TickerProviderStateMixin {
-  late AnimationController _animationController;
+  // late AnimationController _animationController;
 
-  Offset? _centeredMessageOffset;
-  Size? _centeredMessageSize;
+  // Offset? _centeredMessageOffset;
+  // Size? _centeredMessageSize;
 
-  Size? _tooltipSize;
+  // Size? _tooltipSize;
 
-  final Completer _centeredMessageCompleter = Completer();
-  final Completer _tooltipCompleter = Completer();
+  // final Completer _centeredMessageCompleter = Completer();
+  // final Completer _tooltipCompleter = Completer();
 
-  MessageMode _currentMode = MessageMode.noneSelected;
+  // MessageMode _currentMode = MessageMode.noneSelected;
 
-  Animation<Offset>? _overlayOffsetAnimation;
-  Animation<Size>? _messageSizeAnimation;
-  Offset? _currentOffset;
+  // Animation<Offset>? _overlayOffsetAnimation;
+  // Animation<Size>? _messageSizeAnimation;
+  // Offset? _currentOffset;
 
   StreamSubscription? _reactionSubscription;
   StreamSubscription? _contentChangedSubscription;
 
   ScrollController? _scrollController;
 
-  final _animationDuration = const Duration(
-    milliseconds: AppConfig.overlayAnimationDuration,
-    // seconds: 5,
-  );
+  // final _animationDuration = const Duration(
+  //   milliseconds: AppConfig.overlayAnimationDuration,
+  //   // seconds: 5,
+  // );
 
   @override
   void initState() {
@@ -88,19 +88,19 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
           return;
         }
 
-        _scrollController!.animateTo(
-          _scrollController!.position.maxScrollExtent,
-          duration: FluffyThemes.animationDuration,
-          curve: FluffyThemes.animationCurve,
-        );
+        // _scrollController!.animateTo(
+        //   _scrollController!.position.maxScrollExtent,
+        //   duration: FluffyThemes.animationDuration,
+        //   curve: FluffyThemes.animationCurve,
+        // );
       },
     );
 
-    _currentMode = widget.overlayController.toolbarMode;
-    _animationController = AnimationController(
-      vsync: this,
-      duration: _animationDuration,
-    );
+    // // _currentMode = widget.overlayController.toolbarMode;
+    // _animationController = AnimationController(
+    //   vsync: this,
+    //   duration: _animationDuration,
+    // );
 
     _reactionSubscription =
         widget.chatController.room.client.onSync.stream.where(
@@ -126,37 +126,37 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
         .overlayController.contentChangedStream.stream
         .listen(_onContentSizeChanged);
 
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await _centeredMessageCompleter.future;
-      if (!mounted) return;
+    // WidgetsBinding.instance.addPostFrameCallback((_) async {
+    //   await _centeredMessageCompleter.future;
+    //   if (!mounted) return;
 
-      setState(() {
-        _currentOffset = Offset(
-          _ownMessage ? _messageRightOffset : _messageLeftOffset,
-          _originalMessageBottomOffset -
-              _reactionsHeight -
-              _selectionButtonsHeight,
-        );
-      });
+    //   setState(() {
+    //     _currentOffset = Offset(
+    //       _ownMessage ? _messageRightOffset : _messageLeftOffset,
+    //       _originalMessageBottomOffset -
+    //           _reactionsHeight -
+    //           _selectionButtonsHeight,
+    //     );
+    //   });
 
-      _setReadingAssistanceMode(
-        ReadingAssistanceMode.selectMode,
-      );
-    });
+    //   _setReadingAssistanceMode(
+    //     ReadingAssistanceMode.selectMode,
+    //   );
+    // });
   }
 
-  @override
-  void didUpdateWidget(MessageSelectionPositioner oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    final mode = widget.overlayController.toolbarMode;
-    if (mode != _currentMode) {
-      setState(() => _currentMode = mode);
-    }
-  }
+  // @override
+  // void didUpdateWidget(MessageSelectionPositioner oldWidget) {
+  //   super.didUpdateWidget(oldWidget);
+  //   final mode = widget.overlayController.toolbarMode;
+  //   if (mode != _currentMode) {
+  //     setState(() => _currentMode = mode);
+  //   }
+  // }
 
   @override
   void dispose() {
-    _animationController.dispose();
+    // _animationController.dispose();
     _reactionSubscription?.cancel();
     _contentChangedSubscription?.cancel();
     _scrollController?.dispose();
@@ -166,209 +166,132 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
     super.dispose();
   }
 
-  void _setCenteredMessageSize(RenderBox renderBox) {
-    if (_centeredMessageCompleter.isCompleted) return;
+  // void _setCenteredMessageSize(RenderBox renderBox) {
+  //   if (_centeredMessageCompleter.isCompleted) return;
 
-    _centeredMessageSize = renderBox.size;
-    final offset = renderBox.localToGlobal(Offset.zero);
-    _centeredMessageOffset = Offset(
-      offset.dx - _columnWidth - _horizontalPadding - 2.0,
-      _mediaQuery!.size.height -
-          (offset.dy -
-              ((AppConfig.practiceModeInputBarHeight -
-                      AppConfig.selectModeInputBarHeight) *
-                  0.75)) -
-          renderBox.size.height -
-          _reactionsHeight,
-    );
-    setState(() {});
+  //   _centeredMessageSize = renderBox.size;
+  //   final offset = renderBox.localToGlobal(Offset.zero);
+  //   _centeredMessageOffset = Offset(
+  //     offset.dx - _columnWidth - _horizontalPadding - 2.0,
+  //     _mediaQuery!.size.height -
+  //         (offset.dy -
+  //             ((AppConfig.practiceModeInputBarHeight -
+  //                     AppConfig.selectModeInputBarHeight) *
+  //                 0.75)) -
+  //         renderBox.size.height -
+  //         _reactionsHeight,
+  //   );
+  //   setState(() {});
 
-    if (!_centeredMessageCompleter.isCompleted) {
-      _centeredMessageCompleter.complete();
-    }
-  }
+  //   if (!_centeredMessageCompleter.isCompleted) {
+  //     _centeredMessageCompleter.complete();
+  //   }
+  // }
 
-  void _setTooltipSize(RenderBox renderBox) {
-    setState(() {
-      _tooltipSize = renderBox.size;
-    });
+  // void _setTooltipSize(RenderBox renderBox) {
+  //   setState(() {
+  //     _tooltipSize = renderBox.size;
+  //   });
 
-    if (!_tooltipCompleter.isCompleted) {
-      _tooltipCompleter.complete();
-    }
-  }
+  //   if (!_tooltipCompleter.isCompleted) {
+  //     _tooltipCompleter.complete();
+  //   }
+  // }
 
-  Future<void> _setReadingAssistanceMode(ReadingAssistanceMode mode) async {
-    if (mode == _readingAssistanceMode) {
-      return;
-    }
+  // Future<void> _setReadingAssistanceMode(ReadingAssistanceMode mode) async {
+  //   if (mode == _readingAssistanceMode) {
+  //     return;
+  //   }
 
-    await _centeredMessageCompleter.future;
+  //   await _centeredMessageCompleter.future;
 
-    if (mode == ReadingAssistanceMode.practiceMode) {
-      setState(
-        () => widget.overlayController.readingAssistanceMode =
-            ReadingAssistanceMode.transitionMode,
-      );
-    } else if (mode == ReadingAssistanceMode.selectMode) {
-      setState(
-        () => widget.overlayController.readingAssistanceMode =
-            ReadingAssistanceMode.selectMode,
-      );
-    }
+  //   if (mode == ReadingAssistanceMode.practiceMode) {
+  //     setState(
+  //       () => widget.overlayController.readingAssistanceMode =
+  //           ReadingAssistanceMode.transitionMode,
+  //     );
+  //   } else if (mode == ReadingAssistanceMode.selectMode) {
+  //     setState(
+  //       () => widget.overlayController.readingAssistanceMode =
+  //           ReadingAssistanceMode.selectMode,
+  //     );
+  //   }
 
-    if (mode == ReadingAssistanceMode.selectMode) {
-      _resetOffsetAnimation(_adjustedOriginalMessageOffset);
-    } else if (mode == ReadingAssistanceMode.practiceMode) {
-      _resetOffsetAnimation(_centeredMessageOffset!);
-      _messageSizeAnimation = Tween<Size>(
-        begin: Size(
-          _originalMessageSize.width,
-          _originalMessageSize.height,
-        ),
-        end: _adjustedCenteredMessageSize,
-      ).animate(
-        CurvedAnimation(
-          parent: _animationController,
-          curve: FluffyThemes.animationCurve,
-        ),
-      );
-    }
+  //   if (mode == ReadingAssistanceMode.selectMode) {
+  //     _resetOffsetAnimation(_adjustedOriginalMessageOffset);
+  //   } else if (mode == ReadingAssistanceMode.practiceMode) {
+  //     _resetOffsetAnimation(_centeredMessageOffset!);
+  //     _messageSizeAnimation = Tween<Size>(
+  //       begin: Size(
+  //         _originalMessageSize.width,
+  //         _originalMessageSize.height,
+  //       ),
+  //       end: _adjustedCenteredMessageSize,
+  //     ).animate(
+  //       CurvedAnimation(
+  //         parent: _animationController,
+  //         curve: FluffyThemes.animationCurve,
+  //       ),
+  //     );
+  //   }
 
-    await _animationController.forward(from: 0);
-    if (mounted) {
-      setState(() => widget.overlayController.readingAssistanceMode = mode);
-    }
-  }
+  //   await _animationController.forward(from: 0);
+  //   if (mounted) {
+  //     setState(() => widget.overlayController.readingAssistanceMode = mode);
+  //   }
+  // }
 
   void _onContentSizeChanged(_) {
     Future.delayed(FluffyThemes.animationDuration, () {
-      final offset = _overlayMessageRenderBox?.localToGlobal(Offset.zero);
-      if (offset == null || !_overlayMessageRenderBox!.hasSize) {
-        return null;
-      }
+      setState(() {});
+      // final offset = _overlayMessageRenderBox?.localToGlobal(Offset.zero);
+      // if (offset == null || !_overlayMessageRenderBox!.hasSize) {
+      //   return null;
+      // }
 
-      final newOffset = _adjustedMessageOffset(
-        _overlayMessageRenderBox!.size,
-        offset,
-      );
+      // final newOffset = _adjustedMessageOffset(
+      //   _overlayMessageRenderBox!.size,
+      //   offset,
+      // );
 
-      if (newOffset == _currentOffset) return;
-      _resetOffsetAnimation(newOffset);
-      _animationController.forward(from: 0);
+      // if (newOffset == _currentOffset) return;
+      // _resetOffsetAnimation(newOffset);
+      // _animationController.forward(from: 0);
     });
   }
 
-  void _resetOffsetAnimation(Offset offset) {
-    _overlayOffsetAnimation = Tween<Offset>(
-      begin: _currentOffset,
-      end: offset,
-    ).animate(
-      CurvedAnimation(
-        parent: _animationController,
-        curve: FluffyThemes.animationCurve,
-      ),
-    )..addListener(() {
-        if (mounted) {
-          setState(() => _currentOffset = _overlayOffsetAnimation?.value);
-        }
-      });
-  }
+  // void _resetOffsetAnimation(Offset offset) {
+  //   _overlayOffsetAnimation = Tween<Offset>(
+  //     begin: _currentOffset,
+  //     end: offset,
+  //   ).animate(
+  //     CurvedAnimation(
+  //       parent: _animationController,
+  //       curve: FluffyThemes.animationCurve,
+  //     ),
+  //   )..addListener(() {
+  //       if (mounted) {
+  //         setState(() => _currentOffset = _overlayOffsetAnimation?.value);
+  //       }
+  //     });
+  // }
 
-  T _runWithLogging<T>(
-    Function runner,
-    String errorMessage,
-    T defaultValue,
-  ) {
-    try {
-      return runner();
-    } catch (e, s) {
-      ErrorHandler.logError(
-        e: "$errorMessage: $e",
-        s: s,
-        data: {
-          "eventID": widget.event.eventId,
-        },
-      );
-      return defaultValue;
-    }
-  }
+  // double get _inputBarSize =>
+  //     _readingAssistanceMode == ReadingAssistanceMode.practiceMode ||
+  //             _readingAssistanceMode == ReadingAssistanceMode.transitionMode
+  //         ? AppConfig.practiceModeInputBarHeight
+  //         : AppConfig.selectModeInputBarHeight;
 
-  ReadingAssistanceMode? get _readingAssistanceMode =>
-      widget.overlayController.readingAssistanceMode;
-
-  double get _inputBarSize =>
-      _readingAssistanceMode == ReadingAssistanceMode.practiceMode ||
-              _readingAssistanceMode == ReadingAssistanceMode.transitionMode
-          ? AppConfig.practiceModeInputBarHeight
-          : AppConfig.selectModeInputBarHeight;
-
-  bool get _showDetails =>
-      AppSettings.displayChatDetailsColumn.getItem(Matrix.of(context).store) &&
-      FluffyThemes.isThreeColumnMode(context) &&
-      widget.chatController.room.membership == Membership.join;
-
-  // screen size
-
-  MediaQueryData? get _mediaQuery => _runWithLogging<MediaQueryData?>(
-        () => MediaQuery.of(context),
-        "Error getting media query",
-        null,
-      );
-
-  double get _columnWidth => FluffyThemes.isColumnMode(context)
-      ? (FluffyThemes.columnWidth + FluffyThemes.navRailWidth + 1.0)
-      : 0;
-
-  /// Available vertical space not taken up by the header and footer
-  double? get _verticalSpace {
-    if (_mediaQuery == null) return null;
-    return _mediaQuery!.size.height - _headerHeight - _footerHeight;
-  }
-
-  double get _toolbarMaxWidth {
-    const double messageMargin = 16.0;
-    // widget.event.isActivityMessage ? 0 : Avatar.defaultSize + 16 + 8;
-    final bool showingDetails = widget.chatController.displayChatDetailsColumn;
-    final double totalMaxWidth = (FluffyThemes.columnWidth * 2.5) -
-        (showingDetails ? FluffyThemes.columnWidth : 0) -
-        messageMargin;
-    double? maxWidth;
-
-    if (_mediaQuery != null) {
-      final chatViewWidth = _mediaQuery!.size.width - _columnWidth;
-      maxWidth = chatViewWidth - (2 * _horizontalPadding) - messageMargin;
-    }
-
-    if (maxWidth == null || maxWidth > totalMaxWidth) {
-      maxWidth = totalMaxWidth;
-    }
-
-    return maxWidth;
-  }
+  // /// Available vertical space not taken up by the header and footer
+  // double? get _verticalSpace {
+  //   if (_mediaQuery == null) return null;
+  //   return _mediaQuery!.size.height - _headerHeight - _footerHeight;
+  // }
 
   // original message size and offset
 
-  RenderBox? get _messageRenderBox => _runWithLogging<RenderBox?>(
-        () => MatrixState.pAnyState.getRenderBox(
-          widget.event.eventId,
-        ),
-        "Error getting message render box",
-        null,
-      );
-
-  RenderBox? get _overlayMessageRenderBox => _runWithLogging<RenderBox?>(
-        () => MatrixState.pAnyState.getRenderBox(
-          'overlay_message_${widget.event.eventId}',
-        ),
-        "Error getting overlay message render box",
-        null,
-      );
-
   // Offset? get _overlayMessageOffset =>
   //     _overlayMessageRenderBox?.localToGlobal(Offset.zero);
-
-  Size? get _overlayMessageSize => _overlayMessageRenderBox?.size;
 
   // double? get _buttonsTopOffset {
   //   if (_overlayMessageOffset == null ||
@@ -391,37 +314,275 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
   //   return _mediaQuery!.size.height - buttonsHeight - 4.0;
   // }
 
-  double get _neededTopSpace =>
-      (widget.pangeaMessageEvent != null &&
-              widget.overlayController.selectedToken != null
-          ? AppConfig.toolbarMaxHeight
-          : 40.0) +
-      4.0;
+  // Centered message size and offset
 
-  double? get _occupiedSpace {
-    if (_overlayMessageSize == null) return null;
-    return _overlayMessageSize!.height +
-        _reactionsHeight +
-        AppConfig.toolbarMenuHeight;
+  // bool get _centeredMessageHasOverflow {
+  //   if (_verticalSpace == null ||
+  //       _centeredMessageSize == null ||
+  //       _centeredMessageOffset == null) {
+  //     return false;
+  //   }
+
+  //   final finalMessageHeight = _centeredMessageSize!.height + _reactionsHeight;
+  //   return finalMessageHeight > _verticalSpace!;
+  // }
+
+  // /// Size of the centered overlay message adjusted for overflow
+  // Size? get _adjustedCenteredMessageSize {
+  //   if (_centeredMessageHasOverflow) {
+  //     return Size(
+  //       _centeredMessageSize!.width,
+  //       _verticalSpace! - (AppConfig.toolbarSpacing * 2),
+  //     );
+  //   }
+  //   return _centeredMessageSize;
+  // }
+
+  // Offset? get _adjustedCenteredMessageOffset {
+  //   if (_centeredMessageHasOverflow) {
+  //     return Offset(
+  //       _centeredMessageOffset!.dx,
+  //       _footerHeight + AppConfig.toolbarSpacing,
+  //     );
+  //   }
+  //   return _centeredMessageOffset;
+  // }
+
+  // message offset
+
+  // Offset get _adjustedOriginalMessageOffset {
+  //   return _adjustedMessageOffset(
+  //     _originalMessageSize,
+  //     _originalMessageOffset,
+  //   );
+  // }
+
+  // Offset _adjustedMessageOffset(
+  //   Size messageSize,
+  //   Offset messageOffset,
+  // ) {
+  //   if (_messageRenderBox == null || !_messageRenderBox!.hasSize) {
+  //     return _defaultMessageOffset;
+  //   }
+
+  //   final topOffset = messageOffset.dy;
+  //   final bottomOffset =
+  //       (_mediaQuery!.size.height - topOffset - messageSize.height) -
+  //           _reactionsHeight -
+  //           _selectionButtonsHeight;
+
+  //   final hasHeaderOverflow =
+  //       topOffset < (_headerHeight + AppConfig.toolbarSpacing);
+  //   final hasFooterOverflow =
+  //       bottomOffset < (_footerHeight + AppConfig.toolbarSpacing);
+
+  //   if (!hasHeaderOverflow && !hasFooterOverflow) {
+  //     return Offset(
+  //       _ownMessage ? _messageRightOffset : _messageLeftOffset,
+  //       bottomOffset,
+  //     );
+  //   }
+
+  //   if (hasHeaderOverflow) {
+  //     final difference = topOffset - (_headerHeight + AppConfig.toolbarSpacing);
+
+  //     double newBottomOffset = _mediaQuery!.size.height -
+  //         topOffset +
+  //         difference -
+  //         messageSize.height -
+  //         _selectionButtonsHeight;
+
+  //     if (newBottomOffset < _footerHeight + AppConfig.toolbarSpacing) {
+  //       newBottomOffset = _footerHeight + AppConfig.toolbarSpacing;
+  //     }
+
+  //     return Offset(
+  //       _ownMessage ? _messageRightOffset : _messageLeftOffset,
+  //       newBottomOffset,
+  //     );
+  //   } else {
+  //     return Offset(
+  //       _ownMessage ? _messageRightOffset : _messageLeftOffset,
+  //       _footerHeight + (AppConfig.toolbarSpacing * 2),
+  //     );
+  //   }
+  // }
+
+  // double get _originalMessageBottomOffset =>
+  //     _mediaQuery!.size.height -
+  //     _originalMessageOffset.dy -
+  //     _originalMessageSize.height;
+
+  // double? get _centeredMessageTopOffset {
+  //   if (_mediaQuery == null ||
+  //       _adjustedCenteredMessageOffset == null ||
+  //       _adjustedCenteredMessageSize == null) {
+  //     return null;
+  //   }
+  //   return _mediaQuery!.size.height -
+  //       _adjustedCenteredMessageOffset!.dy -
+  //       _adjustedCenteredMessageSize!.height -
+  //       _reactionsHeight;
+  // }
+
+  // double get _headerHeight {
+  //   return (Theme.of(context).appBarTheme.toolbarHeight ??
+  //           AppConfig.defaultHeaderHeight) +
+  //       (_mediaQuery?.padding.top ?? 0);
+  // }
+
+  // double get _footerHeight {
+  //   return _inputBarSize + (_mediaQuery?.padding.bottom ?? 0);
+  // }
+
+  // measurement for items in the toolbar
+
+  // bool get _showButtons {
+  //   if (!(widget.pangeaMessageEvent?.shouldShowToolbar ?? false)) {
+  //     return false;
+  //   }
+
+  //   final type = widget.pangeaMessageEvent?.event.messageType;
+  //   if (![MessageTypes.Text, MessageTypes.Audio].contains(type)) {
+  //     return false;
+  //   }
+
+  //   if (type == MessageTypes.Text) {
+  //     return widget.pangeaMessageEvent?.messageDisplayLangIsL2 ?? false;
+  //   }
+
+  //   return true;
+  // }
+
+  // bool get showPracticeButtons =>
+  //     _showButtons &&
+  //     widget.overlayController.readingAssistanceMode ==
+  //         ReadingAssistanceMode.practiceMode;
+
+  // bool get showSelectionButtons =>
+  //     _showButtons &&
+  //     [ReadingAssistanceMode.selectMode, null]
+  //         .contains(widget.overlayController.readingAssistanceMode);
+
+  // double get _selectionButtonsHeight {
+  //   return showSelectionButtons ? AppConfig.toolbarButtonsHeight : 0;
+  // }
+
+  // double get _readingAssistanceModeOpacity {
+  //   switch (_readingAssistanceMode) {
+  //     case ReadingAssistanceMode.practiceMode:
+  //     case ReadingAssistanceMode.transitionMode:
+  //       return 0.8;
+  //     case ReadingAssistanceMode.selectMode:
+  //     case null:
+  //       return 0.6;
+  //   }
+  // }
+
+  T _runWithLogging<T>(
+    Function runner,
+    String errorMessage,
+    T defaultValue,
+  ) {
+    try {
+      return runner();
+    } catch (e, s) {
+      ErrorHandler.logError(
+        e: "$errorMessage: $e",
+        s: s,
+        data: {
+          "eventID": widget.event.eventId,
+        },
+      );
+      return defaultValue;
+    }
   }
 
-  double? get _wordCardTopOffset {
-    if (_overlayMessageSize == null ||
-        _mediaQuery == null ||
-        _occupiedSpace == null) {
-      return null;
-    }
+  double get _horizontalPadding =>
+      FluffyThemes.isColumnMode(context) ? 8.0 : 0.0;
 
-    final availableSpace = (_mediaQuery!.size.height - _occupiedSpace!) / 2;
-
-    if (availableSpace >= _neededTopSpace) {
-      return availableSpace - _neededTopSpace;
-    }
-
-    return 0;
+  bool get _hasReactions {
+    final reactionsEvents = widget.event.aggregatedEvents(
+      widget.chatController.timeline!,
+      RelationshipTypes.reaction,
+    );
+    return reactionsEvents.where((e) => !e.redacted).isNotEmpty;
   }
+
+  double get _reactionsHeight => _hasReactions ? 32.0 : 0.0;
+
+  bool get _ownMessage =>
+      widget.event.senderId == widget.event.room.client.userID;
+
+  bool get _showDetails =>
+      AppSettings.displayChatDetailsColumn.getItem(Matrix.of(context).store) &&
+      FluffyThemes.isThreeColumnMode(context) &&
+      widget.chatController.room.membership == Membership.join;
+
+  MediaQueryData? get _mediaQuery => _runWithLogging<MediaQueryData?>(
+        () => MediaQuery.of(context),
+        "Error getting media query",
+        null,
+      );
+
+  double get _columnWidth => FluffyThemes.isColumnMode(context)
+      ? (FluffyThemes.columnWidth + FluffyThemes.navRailWidth + 1.0)
+      : 0;
+
+  double get _toolbarMaxWidth {
+    const double messageMargin = 16.0;
+    // widget.event.isActivityMessage ? 0 : Avatar.defaultSize + 16 + 8;
+    final bool showingDetails = widget.chatController.displayChatDetailsColumn;
+    final double totalMaxWidth = (FluffyThemes.columnWidth * 2.5) -
+        (showingDetails ? FluffyThemes.columnWidth : 0) -
+        messageMargin;
+    double? maxWidth;
+
+    if (_mediaQuery != null) {
+      final chatViewWidth = _mediaQuery!.size.width - _columnWidth;
+      maxWidth = chatViewWidth - (2 * _horizontalPadding) - messageMargin;
+    }
+
+    if (maxWidth == null || maxWidth > totalMaxWidth) {
+      maxWidth = totalMaxWidth;
+    }
+
+    return maxWidth;
+  }
+
+  static const Offset _defaultMessageOffset =
+      Offset(Avatar.defaultSize + 16 + 8, 300);
 
   Size get _defaultMessageSize => const Size(FluffyThemes.columnWidth / 2, 100);
+
+  RenderBox? get _overlayMessageRenderBox => _runWithLogging<RenderBox?>(
+        () => MatrixState.pAnyState.getRenderBox(
+          'overlay_message_${widget.event.eventId}',
+        ),
+        "Error getting overlay message render box",
+        null,
+      );
+
+  Size? get _overlayMessageSize => _overlayMessageRenderBox?.size;
+
+  RenderBox? get _messageRenderBox => _runWithLogging<RenderBox?>(
+        () => MatrixState.pAnyState.getRenderBox(
+          widget.event.eventId,
+        ),
+        "Error getting message render box",
+        null,
+      );
+
+  Offset get _originalMessageOffset {
+    if (_messageRenderBox == null || !_messageRenderBox!.hasSize) {
+      return _defaultMessageOffset;
+    }
+    return _runWithLogging(
+      () => _messageRenderBox?.localToGlobal(Offset.zero),
+      "Error getting message offset",
+      _defaultMessageOffset,
+    );
+  }
 
   /// The size of the message in the chat list (as opposed to the expanded size in the center overlay)
   Size get _originalMessageSize {
@@ -436,222 +597,60 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
     );
   }
 
-  static const _messageDefaultLeftMargin = Avatar.defaultSize + 16 + 8;
-
-  // Centered message size and offset
-
-  bool get _centeredMessageHasOverflow {
-    if (_verticalSpace == null ||
-        _centeredMessageSize == null ||
-        _centeredMessageOffset == null) {
-      return false;
-    }
-
-    final finalMessageHeight = _centeredMessageSize!.height + _reactionsHeight;
-    return finalMessageHeight > _verticalSpace!;
+  double? get _messageLeftOffset {
+    if (_ownMessage) return null;
+    return max(_originalMessageOffset.dx - _columnWidth, 0);
   }
 
-  /// Size of the centered overlay message adjusted for overflow
-  Size? get _adjustedCenteredMessageSize {
-    if (_centeredMessageHasOverflow) {
-      return Size(
-        _centeredMessageSize!.width,
-        _verticalSpace! - (AppConfig.toolbarSpacing * 2),
-      );
-    }
-    return _centeredMessageSize;
-  }
-
-  Offset? get _adjustedCenteredMessageOffset {
-    if (_centeredMessageHasOverflow) {
-      return Offset(
-        _centeredMessageOffset!.dx,
-        _footerHeight + AppConfig.toolbarSpacing,
-      );
-    }
-    return _centeredMessageOffset;
-  }
-
-  // message offset
-
-  static const Offset _defaultMessageOffset =
-      Offset(_messageDefaultLeftMargin, 300);
-
-  Offset get _originalMessageOffset {
-    if (_messageRenderBox == null || !_messageRenderBox!.hasSize) {
-      return _defaultMessageOffset;
-    }
-    return _runWithLogging(
-      () => _messageRenderBox?.localToGlobal(Offset.zero),
-      "Error getting message offset",
-      _defaultMessageOffset,
-    );
-  }
-
-  Offset get _adjustedOriginalMessageOffset {
-    return _adjustedMessageOffset(
-      _originalMessageSize,
-      _originalMessageOffset,
-    );
-  }
-
-  Offset _adjustedMessageOffset(
-    Size messageSize,
-    Offset messageOffset,
-  ) {
-    if (_messageRenderBox == null || !_messageRenderBox!.hasSize) {
-      return _defaultMessageOffset;
-    }
-
-    final topOffset = messageOffset.dy;
-    final bottomOffset =
-        (_mediaQuery!.size.height - topOffset - messageSize.height) -
-            _reactionsHeight -
-            _selectionButtonsHeight;
-
-    final hasHeaderOverflow =
-        topOffset < (_headerHeight + AppConfig.toolbarSpacing);
-    final hasFooterOverflow =
-        bottomOffset < (_footerHeight + AppConfig.toolbarSpacing);
-
-    if (!hasHeaderOverflow && !hasFooterOverflow) {
-      return Offset(
-        _ownMessage ? _messageRightOffset : _messageLeftOffset,
-        bottomOffset,
-      );
-    }
-
-    if (hasHeaderOverflow) {
-      final difference = topOffset - (_headerHeight + AppConfig.toolbarSpacing);
-
-      double newBottomOffset = _mediaQuery!.size.height -
-          topOffset +
-          difference -
-          messageSize.height -
-          _selectionButtonsHeight;
-
-      if (newBottomOffset < _footerHeight + AppConfig.toolbarSpacing) {
-        newBottomOffset = _footerHeight + AppConfig.toolbarSpacing;
-      }
-
-      return Offset(
-        _ownMessage ? _messageRightOffset : _messageLeftOffset,
-        newBottomOffset,
-      );
-    } else {
-      return Offset(
-        _ownMessage ? _messageRightOffset : _messageLeftOffset,
-        _footerHeight + (AppConfig.toolbarSpacing * 2),
-      );
-    }
-  }
-
-  double get _originalMessageBottomOffset =>
-      _mediaQuery!.size.height -
-      _originalMessageOffset.dy -
-      _originalMessageSize.height;
-
-  double? get _centeredMessageTopOffset {
-    if (_mediaQuery == null ||
-        _adjustedCenteredMessageOffset == null ||
-        _adjustedCenteredMessageSize == null) {
-      return null;
-    }
-    return _mediaQuery!.size.height -
-        _adjustedCenteredMessageOffset!.dy -
-        _adjustedCenteredMessageSize!.height -
-        _reactionsHeight;
-  }
-
-  double get _messageLeftOffset {
-    if (_ownMessage) return 0;
-    return max(
-      _originalMessageOffset.dx - _columnWidth - _horizontalPadding,
-      0,
-    );
-  }
-
-  double get _messageRightOffset {
-    if (_mediaQuery == null || !_ownMessage) {
-      return 0;
-    }
+  double? get _messageRightOffset {
+    if (_mediaQuery == null || !_ownMessage) return null;
     return _mediaQuery!.size.width -
         _originalMessageOffset.dx -
         _originalMessageSize.width -
-        _horizontalPadding -
         (_showDetails ? FluffyThemes.columnWidth : 0);
   }
 
-  // measurements for items around the toolbar
-
-  double get _horizontalPadding =>
-      FluffyThemes.isColumnMode(context) ? 8.0 : 0.0;
-
-  double get _headerHeight {
-    return (Theme.of(context).appBarTheme.toolbarHeight ??
-            AppConfig.defaultHeaderHeight) +
-        (_mediaQuery?.padding.top ?? 0);
+  double? get _contentHeight {
+    if (_overlayMessageSize == null) return null;
+    return _overlayMessageSize!.height +
+        _reactionsHeight +
+        AppConfig.toolbarMenuHeight +
+        4.0;
   }
 
-  double get _footerHeight {
-    return _inputBarSize + (_mediaQuery?.padding.bottom ?? 0);
+  double get _overheadContentHeight {
+    return widget.pangeaMessageEvent != null &&
+            widget.overlayController.selectedToken != null
+        ? AppConfig.toolbarMaxHeight
+        : 40.0;
   }
 
-  // measurement for items in the toolbar
+  double? get _availableSpaceAboveContent {
+    if (_contentHeight == null || _mediaQuery == null) return null;
+    return max(0, (_mediaQuery!.size.height - _contentHeight!) / 2);
+  }
 
-  bool get _showButtons {
-    if (!(widget.pangeaMessageEvent?.shouldShowToolbar ?? false)) {
-      return false;
+  double? get _wordCardTopOffset {
+    if (_contentHeight == null || _availableSpaceAboveContent == null) {
+      return null;
     }
 
-    final type = widget.pangeaMessageEvent?.event.messageType;
-    if (![MessageTypes.Text, MessageTypes.Audio].contains(type)) {
-      return false;
+    if (_availableSpaceAboveContent! >= _overheadContentHeight) {
+      return _availableSpaceAboveContent! - _overheadContentHeight - 4.0;
     }
 
-    if (type == MessageTypes.Text) {
-      return widget.pangeaMessageEvent?.messageDisplayLangIsL2 ?? false;
+    return 0;
+  }
+
+  double? get _wordCardLeftOffset {
+    if (_ownMessage) return null;
+    if (widget.pangeaMessageEvent != null &&
+        widget.overlayController.selectedToken != null &&
+        _mediaQuery != null &&
+        (_mediaQuery!.size.width < _toolbarMaxWidth + _messageLeftOffset!)) {
+      return _mediaQuery!.size.width - _toolbarMaxWidth - 8.0;
     }
-
-    return true;
-  }
-
-  bool get showPracticeButtons =>
-      _showButtons &&
-      widget.overlayController.readingAssistanceMode ==
-          ReadingAssistanceMode.practiceMode;
-
-  bool get showSelectionButtons =>
-      _showButtons &&
-      [ReadingAssistanceMode.selectMode, null]
-          .contains(widget.overlayController.readingAssistanceMode);
-
-  double get _selectionButtonsHeight {
-    return showSelectionButtons ? AppConfig.toolbarButtonsHeight : 0;
-  }
-
-  bool get _hasReactions {
-    final reactionsEvents = widget.event.aggregatedEvents(
-      widget.chatController.timeline!,
-      RelationshipTypes.reaction,
-    );
-    return reactionsEvents.where((e) => !e.redacted).isNotEmpty;
-  }
-
-  double get _reactionsHeight => _hasReactions ? 28 : 0;
-
-  bool get _ownMessage =>
-      widget.event.senderId == widget.event.room.client.userID;
-
-  double get _readingAssistanceModeOpacity {
-    switch (_readingAssistanceMode) {
-      case ReadingAssistanceMode.practiceMode:
-      case ReadingAssistanceMode.transitionMode:
-        return 0.8;
-      case ReadingAssistanceMode.selectMode:
-      case null:
-        return 0.6;
-    }
+    return _messageLeftOffset;
   }
 
   @override
@@ -661,11 +660,6 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
     }
 
     widget.overlayController.maxWidth = _toolbarMaxWidth;
-
-    debugPrint(
-      "width: ${_mediaQuery!.size.width - _columnWidth - (_showDetails ? FluffyThemes.columnWidth : 0)}",
-    );
-
     return Row(
       children: [
         Column(
@@ -685,16 +679,30 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
                       child: SingleChildScrollView(
                         controller: _scrollController,
                         padding: EdgeInsets.only(
-                          left: _messageLeftOffset + _horizontalPadding,
-                          right: _messageRightOffset + _horizontalPadding,
+                          left: _messageLeftOffset ?? 0.0,
+                          right: _messageRightOffset ?? 0.0,
                         ),
                         child: Column(
-                          spacing: 4.0,
                           crossAxisAlignment: _ownMessage
                               ? CrossAxisAlignment.end
                               : CrossAxisAlignment.start,
                           mainAxisSize: MainAxisSize.min,
                           children: [
+                            if (_contentHeight != null &&
+                                _mediaQuery != null &&
+                                _availableSpaceAboveContent != null &&
+                                _availableSpaceAboveContent! <
+                                    _overheadContentHeight)
+                              AnimatedContainer(
+                                duration: FluffyThemes.animationDuration,
+                                height:
+                                    _contentHeight! + _overheadContentHeight >
+                                            _mediaQuery!.size.height
+                                        ? _overheadContentHeight
+                                        : (_overheadContentHeight -
+                                                _availableSpaceAboveContent!) *
+                                            2,
+                              ),
                             CompositedTransformTarget(
                               link: MatrixState.pAnyState
                                   .layerLinkAndKey(
@@ -713,50 +721,51 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
                                 nextEvent: widget.nextEvent,
                                 prevEvent: widget.prevEvent,
                                 hasReactions: _hasReactions,
-                                sizeAnimation: _messageSizeAnimation,
+                                // sizeAnimation: _messageSizeAnimation,
                                 isTransitionAnimation: true,
-                                readingAssistanceMode: _readingAssistanceMode,
+                                readingAssistanceMode: widget
+                                    .overlayController.readingAssistanceMode,
                               ),
                             ),
+                            const SizedBox(height: 4.0),
                             SelectModeButtons(
                               controller: widget.chatController,
                               overlayController: widget.overlayController,
-                              lauchPractice: () {
-                                _setReadingAssistanceMode(
-                                  ReadingAssistanceMode.practiceMode,
-                                );
-                                widget.overlayController
-                                    .updateSelectedSpan(null);
-                              },
+                              lauchPractice: () {},
+                              // lauchPractice: () {
+                              //   _setReadingAssistanceMode(
+                              //     ReadingAssistanceMode.practiceMode,
+                              //   );
+                              //   widget.overlayController
+                              //       .updateSelectedSpan(null);
+                              // },
                             ),
                           ],
                         ),
                       ),
                     ),
-                    if (_wordCardTopOffset != null)
-                      AnimatedPositioned(
-                        top: _wordCardTopOffset,
-                        left: _ownMessage
-                            ? null
-                            : _messageLeftOffset + _horizontalPadding,
-                        right: _ownMessage
-                            ? _messageRightOffset + _horizontalPadding
-                            : null,
+                    AnimatedPositioned(
+                      top: _wordCardTopOffset,
+                      left: _wordCardLeftOffset,
+                      right: _messageRightOffset,
+                      duration: FluffyThemes.animationDuration,
+                      child: AnimatedSize(
                         duration: FluffyThemes.animationDuration,
-                        child: AnimatedSize(
-                          duration: FluffyThemes.animationDuration,
-                          child: widget.pangeaMessageEvent != null &&
-                                  widget.overlayController.selectedToken != null
-                              ? ReadingAssistanceContent(
-                                  pangeaMessageEvent:
-                                      widget.pangeaMessageEvent!,
-                                  overlayController: widget.overlayController,
-                                )
-                              : MessageReactionPicker(
-                                  chatController: widget.chatController,
-                                ),
-                        ),
+                        child: _wordCardTopOffset == null
+                            ? const SizedBox()
+                            : widget.pangeaMessageEvent != null &&
+                                    widget.overlayController.selectedToken !=
+                                        null
+                                ? ReadingAssistanceContent(
+                                    pangeaMessageEvent:
+                                        widget.pangeaMessageEvent!,
+                                    overlayController: widget.overlayController,
+                                  )
+                                : MessageReactionPicker(
+                                    chatController: widget.chatController,
+                                  ),
                       ),
+                    ),
                   ],
                 ),
               ),
@@ -769,312 +778,6 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
           ),
       ],
     );
-
-    // return Align(
-    //   alignment: Alignment.centerLeft,
-    //   child: SizedBox(
-    // width: _mediaQuery!.size.width -
-    //     _columnWidth -
-    //     (_showDetails ? FluffyThemes.columnWidth : 0),
-    //     height: _mediaQuery!.size.height,
-    //     child: SingleChildScrollView(
-    //       child: Container(
-    //         decoration: BoxDecoration(
-    //           border: Border.all(color: Colors.green),
-    //         ),
-    // padding: EdgeInsets.only(
-    //   left: _messageLeftOffset + _horizontalPadding,
-    //   right: _messageRightOffset + _horizontalPadding,
-    // ),
-    //         child: Stack(
-    //           alignment:
-    //               _ownMessage ? Alignment.centerRight : Alignment.centerLeft,
-    //           children: [
-    //             Positioned.fill(
-    //               child: InkWell(
-    //                 onTap: widget.chatController.clearSelectedEvents,
-    //               ),
-    //             ),
-    //             Column(
-    // spacing: 4.0,
-    // crossAxisAlignment: _ownMessage
-    //     ? CrossAxisAlignment.end
-    //     : CrossAxisAlignment.start,
-    //               children: [
-    // if (widget.pangeaMessageEvent != null)
-    //   AnimatedSize(
-    //     duration: FluffyThemes.animationDuration,
-    //     child: widget.overlayController.selectedToken != null
-    //         ? ReadingAssistanceContent(
-    //             pangeaMessageEvent: widget.pangeaMessageEvent!,
-    //             overlayController: widget.overlayController,
-    //           )
-    //         : const SizedBox.shrink(),
-    //   ),
-    // CompositedTransformTarget(
-    //   link: MatrixState.pAnyState
-    //       .layerLinkAndKey(
-    //         'overlay_message_${widget.event.eventId}',
-    //       )
-    //       .link,
-    //   child: OverlayCenterContent(
-    //     event: widget.event,
-    //     messageHeight: _originalMessageSize.height,
-    //     messageWidth:
-    //         widget.overlayController.showingExtraContent
-    //             ? max(_originalMessageSize.width, 150)
-    //             : _originalMessageSize.width,
-    //     overlayController: widget.overlayController,
-    //     chatController: widget.chatController,
-    //     nextEvent: widget.nextEvent,
-    //     prevEvent: widget.prevEvent,
-    //     hasReactions: _hasReactions,
-    //     sizeAnimation: _messageSizeAnimation,
-    //     isTransitionAnimation: true,
-    //     readingAssistanceMode: _readingAssistanceMode,
-    //   ),
-    // ),
-    //               ],
-    //             ),
-    //             if (showSelectionButtons)
-    //               Positioned(
-    // child: SelectModeButtons(
-    //   overlayController: widget.overlayController,
-    //   lauchPractice: () {
-    //     _setReadingAssistanceMode(
-    //       ReadingAssistanceMode.practiceMode,
-    //     );
-    //     widget.overlayController.updateSelectedSpan(null);
-    //   },
-    // ),
-    //               ),
-    //           ],
-    //         ),
-    //       ),
-    //     ),
-    //   ),
-    // );
-
-    // return Stack(
-    //   children: [
-    //     Positioned.fill(
-    //       child: IgnorePointer(
-    //         child: AnimatedOpacity(
-    //           duration: _animationDuration,
-    //           opacity: _readingAssistanceModeOpacity,
-    //           child: Container(
-    //             height: double.infinity,
-    //             width: double.infinity,
-    //             color: Colors.black,
-    //           ),
-    //         ),
-    //       ),
-    //     ),
-    //     Padding(
-    //       padding: EdgeInsets.only(
-    //         left: _horizontalPadding,
-    //         right: _horizontalPadding,
-    //       ),
-    //       child: Row(
-    //         children: [
-    //           Expanded(
-    //             child: Stack(
-    //               alignment: Alignment.center,
-    //               children: [
-    //                 Column(
-    //                   children: [
-    //                     Material(
-    //                       type: MaterialType.transparency,
-    //                       child: Column(
-    //                         children: [
-    //                           SizedBox(height: _mediaQuery?.padding.top ?? 0),
-    //                           OverlayHeader(controller: widget.chatController),
-    //                         ],
-    //                       ),
-    //                     ),
-    //                     const Expanded(
-    //                       flex: 3,
-    //                       child: SizedBox.shrink(),
-    //                     ),
-    //                     Opacity(
-    //                       opacity: _readingAssistanceMode ==
-    //                               ReadingAssistanceMode.practiceMode
-    //                           ? 1.0
-    //                           : 0.0,
-    //   child: OverlayCenterContent(
-    //     event: widget.event,
-    //     messageHeight: null,
-    //     messageWidth: null,
-    //     maxWidth: widget.overlayController.maxWidth,
-    //     overlayController: widget.overlayController,
-    //     chatController: widget.chatController,
-    //     pangeaMessageEvent: widget.pangeaMessageEvent,
-    //     nextEvent: widget.nextEvent,
-    //     prevEvent: widget.prevEvent,
-    //     hasReactions: _hasReactions,
-    //     onChangeMessageSize: _setCenteredMessageSize,
-    //     isTransitionAnimation: false,
-    //     maxHeight: _mediaQuery!.size.height -
-    //         _headerHeight -
-    //         _footerHeight -
-    //         AppConfig.toolbarSpacing * 2 -
-    //         _selectionButtonsHeight,
-    //     readingAssistanceMode: _readingAssistanceMode,
-    //   ),
-    // ),
-    //                     const Expanded(
-    //                       flex: 1,
-    //                       child: SizedBox.shrink(),
-    //                     ),
-    //                     Row(
-    //                       mainAxisSize: MainAxisSize.min,
-    //                       children: [
-    //                         Expanded(
-    //                           child: Column(
-    //                             mainAxisSize: MainAxisSize.min,
-    //                             children: [
-    //                               OverlayFooter(
-    //                                 controller: widget.chatController,
-    //                                 overlayController: widget.overlayController,
-    //                                 showToolbarButtons: showPracticeButtons,
-    //                                 readingAssistanceMode:
-    //                                     _readingAssistanceMode,
-    //                               ),
-    //                               SizedBox(
-    //                                 height: _mediaQuery?.padding.bottom ?? 0,
-    //                               ),
-    //                             ],
-    //                           ),
-    //                         ),
-    //                       ],
-    //                     ),
-    //                   ],
-    //                 ),
-    //                 if (_readingAssistanceMode !=
-    //                         ReadingAssistanceMode.practiceMode &&
-    //                     _readingAssistanceMode != null)
-    //                   AnimatedBuilder(
-    //                     animation:
-    //                         _overlayOffsetAnimation ?? _animationController,
-    //                     builder: (context, child) {
-    //                       return Positioned(
-    //                         left: _ownMessage
-    //                             ? null
-    //                             : (_overlayOffsetAnimation?.value)?.dx ??
-    //                                 _messageLeftOffset,
-    //                         right: _ownMessage
-    //                             ? (_overlayOffsetAnimation?.value)?.dx ??
-    //                                 _messageRightOffset
-    //                             : null,
-    //                         bottom: (_overlayOffsetAnimation?.value)?.dy ??
-    //                             _originalMessageBottomOffset -
-    //                                 _reactionsHeight -
-    //                                 _selectionButtonsHeight,
-    //                         child: Column(
-    //                           crossAxisAlignment: _ownMessage
-    //                               ? CrossAxisAlignment.end
-    //                               : CrossAxisAlignment.start,
-    //                           children: [
-    // OverlayCenterContent(
-    //   event: widget.event,
-    //   messageHeight: _originalMessageSize.height,
-    //   messageWidth: widget
-    //           .overlayController.showingExtraContent
-    //       ? max(_originalMessageSize.width, 150)
-    //       : _originalMessageSize.width,
-    //   maxWidth: widget.overlayController.maxWidth,
-    //   overlayController: widget.overlayController,
-    //   chatController: widget.chatController,
-    //   pangeaMessageEvent: widget.pangeaMessageEvent,
-    //   nextEvent: widget.nextEvent,
-    //   prevEvent: widget.prevEvent,
-    //   hasReactions: _hasReactions,
-    //   sizeAnimation: _messageSizeAnimation,
-    //   isTransitionAnimation: true,
-    //   maxHeight: _mediaQuery!.size.height -
-    //       _headerHeight -
-    //       _footerHeight -
-    //       AppConfig.toolbarSpacing * 2 -
-    //       _selectionButtonsHeight,
-    //   readingAssistanceMode: _readingAssistanceMode,
-    // ),
-    // if (showSelectionButtons)
-    //   SelectModeButtons(
-    //     overlayController: widget.overlayController,
-    //     lauchPractice: () {
-    //       _setReadingAssistanceMode(
-    //         ReadingAssistanceMode.practiceMode,
-    //       );
-    //       widget.overlayController
-    //           .updateSelectedSpan(null);
-    //     },
-    //   ),
-    //                           ],
-    //                         ),
-    //                       );
-    //                     },
-    //                   ),
-    //                 if (showPracticeButtons)
-    //                   Positioned(
-    //                     top: 0,
-    //                     child: IgnorePointer(
-    //                       child: MeasureRenderBox(
-    //                         onChange: _setTooltipSize,
-    //                         child: Opacity(
-    //                           opacity: 0.0,
-    //                           child: Container(
-    //                             constraints: BoxConstraints(
-    //                               minWidth: 200.0,
-    //                               maxWidth: _toolbarMaxWidth,
-    //                             ),
-    //                             child: InstructionsInlineTooltip(
-    //                               instructionsEnum: widget.overlayController
-    //                                       .toolbarMode.instructionsEnum ??
-    //                                   InstructionsEnum
-    //                                       .readingAssistanceOverview,
-    //                               bold: true,
-    //                             ),
-    //                           ),
-    //                         ),
-    //                       ),
-    //                     ),
-    //                   ),
-    //                 if (_centeredMessageTopOffset != null &&
-    //                     _tooltipSize != null &&
-    //                     widget.overlayController.toolbarMode !=
-    //                         MessageMode.noneSelected &&
-    //                     widget.overlayController.selectedToken == null)
-    //                   Positioned(
-    //                     top: max(
-    //                       ((_headerHeight + _centeredMessageTopOffset!) / 2) -
-    //                           (_tooltipSize!.height / 2),
-    //                       _headerHeight,
-    //                     ),
-    //                     child: Container(
-    //                       constraints: BoxConstraints(
-    //                         minWidth: 200.0,
-    //                         maxWidth: widget.overlayController.maxWidth,
-    //                       ),
-    //                       child: InstructionsInlineTooltip(
-    //                         instructionsEnum: widget.overlayController
-    //                                 .toolbarMode.instructionsEnum ??
-    //                             InstructionsEnum.readingAssistanceOverview,
-    //                         bold: true,
-    //                       ),
-    //                     ),
-    //                   ),
-    //               ],
-    //             ),
-    //           ),
-    //           if (_showDetails)
-    //             const SizedBox(
-    //               width: FluffyThemes.columnWidth,
-    //             ),
-    //         ],
-    //       ),
-    //     ),
-    //   ],
-    // );
   }
 }
 
@@ -1157,77 +860,69 @@ class MessageReactionPicker extends StatelessWidget {
               ),
               tooltip: L10n.of(context).customReaction,
               onPressed: () async {
-                // final emoji = await showAdaptiveBottomSheet<String>(
-                //   context: context,
-                //   builder: (context) => Scaffold(
-                //     appBar: AppBar(
-                //       title: Text(
-                //         L10n.of(context).customReaction,
-                //       ),
-                //       leading: CloseButton(
-                //         onPressed: () => Navigator.of(
-                //           context,
-                //         ).pop(
-                //           null,
-                //         ),
-                //       ),
-                //     ),
-                //     body: SizedBox(
-                //       height: double.infinity,
-                //       child: EmojiPicker(
-                //         onEmojiSelected: (
-                //           _,
-                //           emoji,
-                //         ) =>
-                //             Navigator.of(
-                //           context,
-                //         ).pop(
-                //           emoji.emoji,
-                //         ),
-                //         config: Config(
-                //           emojiViewConfig: const EmojiViewConfig(
-                //             backgroundColor: Colors.transparent,
-                //           ),
-                //           bottomActionBarConfig: const BottomActionBarConfig(
-                //             enabled: false,
-                //           ),
-                //           categoryViewConfig: CategoryViewConfig(
-                //             initCategory: Category.SMILEYS,
-                //             backspaceColor: theme.colorScheme.primary,
-                //             iconColor: theme.colorScheme.primary.withAlpha(
-                //               128,
-                //             ),
-                //             iconColorSelected: theme.colorScheme.primary,
-                //             indicatorColor: theme.colorScheme.primary,
-                //             backgroundColor: theme.colorScheme.surface,
-                //           ),
-                //           skinToneConfig: SkinToneConfig(
-                //             dialogBackgroundColor: Color.lerp(
-                //               theme.colorScheme.surface,
-                //               theme.colorScheme.primaryContainer,
-                //               0.75,
-                //             )!,
-                //             indicatorColor: theme.colorScheme.onSurface,
-                //           ),
-                //         ),
-                //       ),
-                //     ),
-                //   ),
-                // );
-                // if (emoji == null) {
-                //   return;
-                // }
-                // if (sentReactions.contains(
-                //   emoji,
-                // )) {
-                //   return;
-                // }
-                // onSelect(event);
-
-                // await event.room.sendReaction(
-                //   event.eventId,
-                //   emoji,
-                // );
+                final emoji = await showAdaptiveBottomSheet<String>(
+                  context: context,
+                  builder: (context) => Scaffold(
+                    appBar: AppBar(
+                      title: Text(
+                        L10n.of(context).customReaction,
+                      ),
+                      leading: CloseButton(
+                        onPressed: () => Navigator.of(
+                          context,
+                        ).pop(
+                          null,
+                        ),
+                      ),
+                    ),
+                    body: SizedBox(
+                      height: double.infinity,
+                      child: EmojiPicker(
+                        onEmojiSelected: (
+                          _,
+                          emoji,
+                        ) =>
+                            Navigator.of(
+                          context,
+                        ).pop(
+                          emoji.emoji,
+                        ),
+                        config: Config(
+                          emojiViewConfig: const EmojiViewConfig(
+                            backgroundColor: Colors.transparent,
+                          ),
+                          bottomActionBarConfig: const BottomActionBarConfig(
+                            enabled: false,
+                          ),
+                          categoryViewConfig: CategoryViewConfig(
+                            initCategory: Category.SMILEYS,
+                            backspaceColor: theme.colorScheme.primary,
+                            iconColor: theme.colorScheme.primary.withAlpha(
+                              128,
+                            ),
+                            iconColorSelected: theme.colorScheme.primary,
+                            indicatorColor: theme.colorScheme.primary,
+                            backgroundColor: theme.colorScheme.surface,
+                          ),
+                          skinToneConfig: SkinToneConfig(
+                            dialogBackgroundColor: Color.lerp(
+                              theme.colorScheme.surface,
+                              theme.colorScheme.primaryContainer,
+                              0.75,
+                            )!,
+                            indicatorColor: theme.colorScheme.onSurface,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+                if (emoji == null) return;
+                if (sentReactions.contains(emoji)) return;
+                await event.room.sendReaction(
+                  event.eventId,
+                  emoji,
+                );
               },
             ),
           ],
