@@ -1250,7 +1250,7 @@
       }
     }
   },
-  "waitingPartnerEmoji": "Gaida, līdz biedrs apstiprinās emocijzīmi…",
+  "waitingPartnerEmoji": "Gaida, līdz biedrs apstiprinās emocijzīmes…",
   "@waitingPartnerEmoji": {
     "type": "String",
     "placeholders": {}
