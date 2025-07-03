@@ -147,14 +147,13 @@ class ReadingAssistanceContentState extends State<ReadingAssistanceContent> {
             ),
           ),
           constraints: BoxConstraints(
-            maxHeight: AppConfig.toolbarMaxHeight,
             minWidth: min(
               AppConfig.toolbarMinWidth,
               widget.overlayController.maxWidth,
             ),
-            minHeight: AppConfig.toolbarMinHeight,
             maxWidth: widget.overlayController.maxWidth,
           ),
+          height: AppConfig.toolbarMaxHeight,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,

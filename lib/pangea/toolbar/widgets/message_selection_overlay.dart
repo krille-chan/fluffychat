@@ -217,16 +217,16 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
     updateSelectedSpan(widget._initialSelectedToken!.text);
 
-    int retries = 0;
-    while (retries < 5 &&
-        selectedToken != null &&
-        !MatrixState.pAnyState.isOverlayOpen(
-          selectedToken!.text.uniqueKey,
-        )) {
-      await Future.delayed(const Duration(milliseconds: 100));
-      _showReadingAssistanceContent();
-      retries++;
-    }
+    // int retries = 0;
+    // while (retries < 5 &&
+    //     selectedToken != null &&
+    //     !MatrixState.pAnyState.isOverlayOpen(
+    //       selectedToken!.text.uniqueKey,
+    //     )) {
+    //   await Future.delayed(const Duration(milliseconds: 100));
+    //   _showReadingAssistanceContent();
+    //   retries++;
+    // }
   }
 
   /////////////////////////////////////
@@ -296,9 +296,9 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     }
 
     if (mounted) setState(() {});
-    Future.delayed(const Duration(milliseconds: 10), () {
-      _showReadingAssistanceContent();
-    });
+    // Future.delayed(const Duration(milliseconds: 10), () {
+    //   _showReadingAssistanceContent();
+    // });
   }
 
   void _showReadingAssistanceContent() {

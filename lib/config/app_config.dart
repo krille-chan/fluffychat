@@ -27,9 +27,10 @@ abstract class AppConfig {
   static const bool allowOtherHomeservers = true;
   static const bool enableRegistration = true;
   // #Pangea
-  static const double toolbarMaxHeight = 250.0;
+  static const double toolbarMaxHeight = 225.0;
   static const double toolbarMinHeight = 150.0;
   static const double toolbarMinWidth = 350.0;
+  static const double toolbarMenuHeight = 300.0;
   static const double defaultHeaderHeight = 56.0;
   static const double toolbarButtonsHeight = 50.0;
   static const double toolbarSpacing = 8.0;
@@ -88,6 +89,8 @@ abstract class AppConfig {
   //     'https://gitlab.com/famedly/fluffychat/-/blob/main/PRIVACY.md';
   static String _privacyUrl = "https://www.pangeachat.com/privacy";
   //Pangea#
+
+  static const Set<String> defaultReactions = {'👍', '❤️', '😂', '😮', '😢'};
 
   static String get privacyUrl => _privacyUrl;
   // #Pangea
