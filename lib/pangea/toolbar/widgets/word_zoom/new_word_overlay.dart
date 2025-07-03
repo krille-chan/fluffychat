@@ -23,8 +23,8 @@ class _NewWordOverlayState extends State<NewWordOverlay>
   AnimationController? _controller;
   Animation<double>? _xpScaleAnim;
   Animation<double>? _fadeAnim;
-  Size size = const Size(0, 0);
-  Offset position = const Offset(0, 0);
+  Size cardSize = const Size(0, 0);
+  Offset cardPosition = const Offset(0, 0);
   OverlayEntry? _overlayEntry;
   bool columnMode = false;
   Widget? get svg => ConstructLevelEnum.seeds.icon();
@@ -70,8 +70,8 @@ class _NewWordOverlayState extends State<NewWordOverlay>
       final cardGlobal = cardBox.localToGlobal(Offset.zero);
       final overlayGlobal = overlayBox.localToGlobal(Offset.zero);
       setState(() {
-        position = cardGlobal - overlayGlobal;
-        size = cardBox.size;
+        cardPosition = cardGlobal - overlayGlobal;
+        cardSize = cardBox.size;
       });
     }
   }
@@ -93,15 +93,15 @@ class _NewWordOverlayState extends State<NewWordOverlay>
             t = t.clamp(0.0, 1.0);
           }
           //move starting position as seed grows so it stays centered
-          final startX = position.dx + size.width / 2 - (37 * scale);
-          final startY = position.dy + size.height / 2 + 20 - (37 * scale);
+          final seedSize = 75 * scale * ((!columnMode) ? fade : 1);
+          final startX = cardPosition.dx + cardSize.width / 2 - seedSize;
+          final startY = cardPosition.dy + cardSize.height / 2 + 20 - seedSize;
           //end is top left if column mode (going towards vocab stats) or top right of card otherwise
-          final endX = (columnMode) ? 0.0 : position.dx + size.width;
-          final endY = (columnMode) ? 0.0 : position.dy + 30;
+          final endX = (columnMode) ? 0.0 : cardPosition.dx + cardSize.width;
+          final endY = (columnMode) ? 0.0 : cardPosition.dy + 30;
           final currentX = startX * (1 - t) + endX * t;
           final currentY = startY * (1 - t) + endY * t;
           //Grows into frame, and then shrinks if going to top right so it matches card seed size
-          final seedSize = 75 * scale * ((!columnMode) ? fade : 1);
 
           return Positioned(
             left: currentX,
@@ -136,8 +136,8 @@ class _NewWordOverlayState extends State<NewWordOverlay>
     return Stack(
       children: [
         Container(
-          height: size.height,
-          width: size.width,
+          height: cardSize.height,
+          width: cardSize.width,
           color: Colors.transparent,
         ),
         Positioned(
@@ -146,8 +146,8 @@ class _NewWordOverlayState extends State<NewWordOverlay>
           top: 50,
           bottom: 5,
           child: Container(
-            height: size.height,
-            width: size.width,
+            height: cardSize.height,
+            width: cardSize.width,
             color: widget.overlayColor,
           ),
         ),
