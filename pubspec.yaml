@@ -30,6 +30,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_cache_manager: ^3.4.1
+  flutter_dotenv: ^5.1.0
   flutter_foreground_task: ^6.1.3
   flutter_highlighter: ^0.1.1
   flutter_linkify: ^6.0.0
@@ -122,6 +123,7 @@ flutter:
     - assets/
     - assets/sounds/
     - assets/vodozemac/
+    - .env
 
 msix_config:
   display_name: FluffyChat
