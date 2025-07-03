@@ -3377,7 +3377,7 @@
   "@displayNavigationRail": {},
   "previous": "Anterior",
   "@previous": {},
-  "otherPartyNotLoggedIn": "A outra pessoa não há nenhum dispositivo conectado no momento e portanto não consegue receber mensagens!",
+  "otherPartyNotLoggedIn": "A outra pessoa não tem nenhum dispositivo conectado no momento e portanto não consegue receber mensagens!",
   "@otherPartyNotLoggedIn": {},
   "customReaction": "Reação personalizada",
   "@customReaction": {},
