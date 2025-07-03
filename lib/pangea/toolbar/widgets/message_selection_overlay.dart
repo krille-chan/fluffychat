@@ -11,6 +11,10 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
+import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
+import 'package:fluffychat/pangea/analytics_misc/construct_use_type_enum.dart';
+import 'package:fluffychat/pangea/analytics_misc/constructs_model.dart';
+import 'package:fluffychat/pangea/analytics_misc/put_analytics_controller.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/common/utils/overlay.dart';
 import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
@@ -104,6 +108,8 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
   double maxWidth = AppConfig.toolbarMinWidth;
 
+  List<PangeaToken> newTokens = [];
+
   /////////////////////////////////////
   /// Lifecycle
   /////////////////////////////////////
@@ -115,6 +121,13 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     WidgetsBinding.instance.addPostFrameCallback(
       (_) => widget.chatController.setSelectedEvent(event),
     );
+    newTokens = pangeaMessageEvent?.messageDisplayRepresentation?.tokens
+            ?.where((token) {
+          return token.lemma.saveVocab == true &&
+              token.vocabConstruct.uses.isEmpty &&
+              messageInUserL2;
+        }).toList() ??
+        [];
   }
 
   @override
@@ -557,6 +570,44 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     }
 
     updateSelectedSpan(token.text);
+
+    if (isNewToken(token)) {
+      Future.delayed(const Duration(milliseconds: 1700), () {
+        MatrixState.pangeaController.putAnalytics.setState(
+          AnalyticsStream(
+            eventId: event.eventId,
+            roomId: event.room.id,
+            constructs: [
+              OneConstructUse(
+                useType: ConstructUseTypeEnum.click,
+                lemma: token.lemma.text,
+                constructType: ConstructTypeEnum.vocab,
+                metadata: ConstructUseMetaData(
+                  roomId: event.room.id,
+                  timeStamp: DateTime.now(),
+                  eventId: event.eventId,
+                ),
+                category: token.pos,
+                form: token.text.content,
+                xp: ConstructUseTypeEnum.click.pointValue,
+              ),
+            ],
+            targetID: token.text.uniqueKey,
+          ),
+        );
+
+        if (mounted) {
+          setState(() {
+            newTokens.removeWhere(
+              (t) =>
+                  t.text.offset == token.text.offset &&
+                  t.text.length == token.text.length &&
+                  t.lemma.text.equals(token.lemma.text),
+            );
+          });
+        }
+      });
+    }
   }
 
   PracticeTarget? practiceTargetForToken(PangeaToken token) {
@@ -571,6 +622,15 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     final isSelected = _selectedSpan?.offset == token.text.offset &&
         _selectedSpan?.length == token.text.length;
     return isSelected;
+  }
+
+  bool isNewToken(PangeaToken token) {
+    if (newTokens.isEmpty) return false;
+    return newTokens.any(
+      (t) =>
+          t.text.offset == token.text.offset &&
+          t.text.length == token.text.length,
+    );
   }
 
   bool isTokenHighlighted(PangeaToken token) {

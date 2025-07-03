@@ -4589,6 +4589,7 @@
   "constructUseIncMDesc": "Incorrect in grammar activity",
   "constructUseIgnMDesc": "Ignored in grammar activity",
   "constructUseEmojiDesc": "Correct in emoji activity",
+  "constructUseCollected": "Collected in chat",
   "constructUseNanDesc": "Not applicable",
   "xpIntoLevel": "{currentXP} / {maxXP} XP",
   "@xpIntoLevel": {

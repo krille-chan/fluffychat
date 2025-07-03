@@ -120,6 +120,8 @@ class ReadingAssistanceContentState extends State<ReadingAssistanceContent> {
           token: widget.overlayController.selectedToken!,
           messageEvent: widget.overlayController.pangeaMessageEvent!,
           overlayController: widget.overlayController,
+          wordIsNew: widget.overlayController
+              .isNewToken(widget.overlayController.selectedToken!),
         );
     }
   }

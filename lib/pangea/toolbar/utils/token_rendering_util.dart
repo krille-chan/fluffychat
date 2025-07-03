@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/toolbar/enums/reading_assistance_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
@@ -85,7 +86,10 @@ class TokenRenderingUtil {
     }
   }
 
-  Color backgroundColor(BuildContext context, bool selected) {
+  Color backgroundColor(BuildContext context, bool selected, bool isNew) {
+    if (isNew) {
+      return AppConfig.success;
+    }
     return selected
         ? Theme.of(context).colorScheme.primary
         : Colors.white.withAlpha(0);

@@ -388,6 +388,10 @@ class HtmlMessage extends StatelessWidget {
             ? isSelected!.call(token)
             : false;
 
+        final isNew = token != null &&
+            overlayController != null &&
+            overlayController!.isNewToken(token);
+
         final tokenWidth = renderer.tokenTextWidthForContainer(
           context,
           node.text,
@@ -419,6 +423,7 @@ class HtmlMessage extends StatelessWidget {
                       color: renderer.backgroundColor(
                         context,
                         selected,
+                        isNew,
                       ),
                     ),
                     width: tokenWidth,
@@ -442,6 +447,7 @@ class HtmlMessage extends StatelessWidget {
                               color: renderer.backgroundColor(
                                 context,
                                 selected,
+                                isNew,
                               ),
                             ),
                             linkStyle: linkStyle,
@@ -578,6 +584,7 @@ class HtmlMessage extends StatelessWidget {
                         color: renderer.backgroundColor(
                           context,
                           false,
+                          false,
                         ),
                       ),
                     ),
@@ -592,6 +599,7 @@ class HtmlMessage extends StatelessWidget {
                         context,
                         color: renderer.backgroundColor(
                           context,
+                          false,
                           false,
                         ),
                       ),
