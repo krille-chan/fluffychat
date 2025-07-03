@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import 'package:matrix/matrix.dart';
@@ -12,7 +11,6 @@ import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/events/message_content.dart';
 import 'package:fluffychat/pages/chat/events/reply_content.dart';
 import 'package:fluffychat/pangea/bot/utils/bot_name.dart';
-import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/events/extensions/pangea_event_extension.dart';
 import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
 import 'package:fluffychat/pangea/learning_settings/utils/p_language_store.dart';
@@ -28,7 +26,6 @@ import 'package:fluffychat/widgets/matrix.dart';
 // @ggurdin be great to explain the need/function of a widget like this
 class OverlayMessage extends StatelessWidget {
   final Event event;
-  final PangeaMessageEvent? pangeaMessageEvent;
   final MessageOverlayController overlayController;
   final ChatController controller;
   final Event? nextEvent;
@@ -39,7 +36,6 @@ class OverlayMessage extends StatelessWidget {
   final Animation<Size>? sizeAnimation;
   final double? messageWidth;
   final double? messageHeight;
-  final double maxHeight;
 
   final bool isTransitionAnimation;
   final ReadingAssistanceMode? readingAssistanceMode;
@@ -52,8 +48,6 @@ class OverlayMessage extends StatelessWidget {
     required this.timeline,
     required this.messageWidth,
     required this.messageHeight,
-    required this.maxHeight,
-    this.pangeaMessageEvent,
     this.nextEvent,
     this.previousEvent,
     this.sizeAnimation,
@@ -146,7 +140,8 @@ class OverlayMessage extends StatelessWidget {
     final showTranslation = overlayController.showTranslation &&
         overlayController.translation != null;
 
-    final showTranscription = pangeaMessageEvent?.isAudioMessage == true;
+    final showTranscription =
+        overlayController.pangeaMessageEvent?.isAudioMessage == true;
 
     final showSpeechTranslation = overlayController.showSpeechTranslation &&
         overlayController.speechTranslation != null;
@@ -284,115 +279,109 @@ class OverlayMessage extends StatelessWidget {
       ),
       width: messageWidth,
       height: messageHeight,
-      constraints: BoxConstraints(
-        maxHeight: maxHeight,
-      ),
-      child: SingleChildScrollView(
-        dragStartBehavior: DragStartBehavior.down,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            if (event.relationshipType == RelationshipTypes.reply)
-              FutureBuilder<Event?>(
-                future: event.getReplyEvent(
-                  timeline,
-                ),
-                builder: (
-                  BuildContext context,
-                  snapshot,
-                ) {
-                  final replyEvent = snapshot.hasData
-                      ? snapshot.data!
-                      : Event(
-                          eventId: event.relationshipEventId!,
-                          content: {
-                            'msgtype': 'm.text',
-                            'body': '...',
-                          },
-                          senderId: "",
-                          type: 'm.room.message',
-                          room: event.room,
-                          status: EventStatus.sent,
-                          originServerTs: DateTime.now(),
-                        );
-                  return Padding(
-                    padding: const EdgeInsets.only(
-                      left: 16,
-                      right: 16,
-                      top: 8,
-                    ),
-                    child: Material(
-                      color: Colors.transparent,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          if (event.relationshipType == RelationshipTypes.reply)
+            FutureBuilder<Event?>(
+              future: event.getReplyEvent(
+                timeline,
+              ),
+              builder: (
+                BuildContext context,
+                snapshot,
+              ) {
+                final replyEvent = snapshot.hasData
+                    ? snapshot.data!
+                    : Event(
+                        eventId: event.relationshipEventId!,
+                        content: {
+                          'msgtype': 'm.text',
+                          'body': '...',
+                        },
+                        senderId: "",
+                        type: 'm.room.message',
+                        room: event.room,
+                        status: EventStatus.sent,
+                        originServerTs: DateTime.now(),
+                      );
+                return Padding(
+                  padding: const EdgeInsets.only(
+                    left: 16,
+                    right: 16,
+                    top: 8,
+                  ),
+                  child: Material(
+                    color: Colors.transparent,
+                    borderRadius: ReplyContent.borderRadius,
+                    child: InkWell(
                       borderRadius: ReplyContent.borderRadius,
-                      child: InkWell(
-                        borderRadius: ReplyContent.borderRadius,
-                        onTap: () => controller.scrollToEventId(
-                          replyEvent.eventId,
-                        ),
-                        child: AbsorbPointer(
-                          child: ReplyContent(
-                            replyEvent,
-                            ownMessage: ownMessage,
-                            timeline: timeline,
-                          ),
+                      onTap: () => controller.scrollToEventId(
+                        replyEvent.eventId,
+                      ),
+                      child: AbsorbPointer(
+                        child: ReplyContent(
+                          replyEvent,
+                          ownMessage: ownMessage,
+                          timeline: timeline,
                         ),
                       ),
                     ),
-                  );
-                },
-              ),
-            MessageContent(
-              displayEvent,
-              textColor: textColor,
-              linkColor: linkColor,
-              borderRadius: borderRadius,
-              timeline: timeline,
-              pangeaMessageEvent: pangeaMessageEvent,
-              immersionMode: immersionMode,
-              overlayController: overlayController,
-              controller: controller,
-              nextEvent: nextEvent,
-              prevEvent: previousEvent,
-              isTransitionAnimation: isTransitionAnimation,
-              readingAssistanceMode: readingAssistanceMode,
-              selected: true,
+                  ),
+                );
+              },
             ),
-            if (event.hasAggregatedEvents(
-              timeline,
-              RelationshipTypes.edit,
-            ))
-              Padding(
-                padding: const EdgeInsets.only(
-                  bottom: 8.0,
-                  left: 16.0,
-                  right: 16.0,
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  spacing: 4.0,
-                  children: [
-                    Icon(
-                      Icons.edit_outlined,
-                      color: textColor.withAlpha(164),
-                      size: 14,
-                    ),
-                    Text(
-                      displayEvent.originServerTs.localizedTimeShort(
-                        context,
-                      ),
-                      style: TextStyle(
-                        color: textColor.withAlpha(
-                          164,
-                        ),
-                        fontSize: 11,
-                      ),
-                    ),
-                  ],
-                ),
+          MessageContent(
+            displayEvent,
+            textColor: textColor,
+            linkColor: linkColor,
+            borderRadius: borderRadius,
+            timeline: timeline,
+            pangeaMessageEvent: overlayController.pangeaMessageEvent,
+            immersionMode: immersionMode,
+            overlayController: overlayController,
+            controller: controller,
+            nextEvent: nextEvent,
+            prevEvent: previousEvent,
+            isTransitionAnimation: isTransitionAnimation,
+            readingAssistanceMode: readingAssistanceMode,
+            selected: true,
+          ),
+          if (event.hasAggregatedEvents(
+            timeline,
+            RelationshipTypes.edit,
+          ))
+            Padding(
+              padding: const EdgeInsets.only(
+                bottom: 8.0,
+                left: 16.0,
+                right: 16.0,
               ),
-          ],
-        ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                spacing: 4.0,
+                children: [
+                  Icon(
+                    Icons.edit_outlined,
+                    color: textColor.withAlpha(164),
+                    size: 14,
+                  ),
+                  Text(
+                    displayEvent.originServerTs.localizedTimeShort(
+                      context,
+                    ),
+                    style: TextStyle(
+                      color: textColor.withAlpha(
+                        164,
+                      ),
+                      fontSize: 11,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+        ],
       ),
     );
 
@@ -404,9 +393,8 @@ class OverlayMessage extends StatelessWidget {
           color: noBubble ? Colors.transparent : color,
           borderRadius: borderRadius,
         ),
-        constraints: BoxConstraints(
+        constraints: const BoxConstraints(
           maxWidth: FluffyThemes.columnWidth * 1.5,
-          maxHeight: maxHeight,
         ),
         child: SingleChildScrollView(
           child: Column(
