@@ -32,6 +32,12 @@ abstract class SettingKeys {
       'chat.fluffy.swipeRightToLeftToReply';
   static const String experimentalVoip = 'chat.fluffy.experimental_voip';
   static const String showPresences = 'chat.fluffy.show_presences';
+  static const String displayChatDetailsColumn =
+      'chat.fluffy.display_chat_details_column';
+  static const String noEncryptionWarningShown =
+      'chat.fluffy.no_encryption_warning_shown';
+  static const String spaceViewOptions = 'chat.fluffy.space_view_options';
+  static const String collapsedSpace = 'chat.fluffy.collapsed_space';
   static const String displayNavigationRail =
       'chat.fluffy.display_navigation_rail';
 }

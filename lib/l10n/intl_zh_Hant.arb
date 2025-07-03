@@ -3039,6 +3039,9 @@
       }
     }
   },
+  "spaceViewNormal": "正常",
+  "spaceViewRoomTop": "聊天室置頂",
+  "spaceViewCategorized": "分類",
   "doesNotSeemToBeAValidHomeserver": "似乎不是能匹配的歸屬伺服器。伺服器域名打錯了嗎？",
   "@doesNotSeemToBeAValidHomeserver": {},
   "noticeChatBackupDeviceVerification": "注意：當您將所有裝置連線到聊天備份時，它們會自動驗證。",

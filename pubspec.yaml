@@ -66,6 +66,7 @@ dependencies:
   native_imaging: ^0.2.0
   opus_caf_converter_dart: ^1.0.1
   package_info_plus: ^8.0.2
+  pair: ^0.1.2
   pasteboard: ^0.2.0
   path: ^1.9.0
   path_provider: ^2.1.2
