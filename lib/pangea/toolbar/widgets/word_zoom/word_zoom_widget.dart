@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'package:go_router/go_router.dart';
+
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/pangea/analytics_details_popup/analytics_details_popup.dart';
-import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
@@ -89,10 +89,9 @@ class WordZoomWidget extends StatelessWidget {
                 ),
                 ConstructXpWidget(
                   id: token.vocabConstructID,
-                  onTap: () => AnalyticsPopupWrapper.show(
-                    context,
-                    constructZoom: token.vocabConstructID,
-                    view: ConstructTypeEnum.vocab,
+                  onTap: () => context.go(
+                    "/rooms/analytics?mode=vocab",
+                    extra: token.vocabConstructID,
                   ),
                 ),
               ],

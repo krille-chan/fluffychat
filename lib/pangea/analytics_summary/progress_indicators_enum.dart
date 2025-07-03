@@ -8,7 +8,31 @@ import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 enum ProgressIndicatorEnum {
   level,
   wordsUsed,
-  morphsUsed,
+  morphsUsed;
+
+  static ProgressIndicatorEnum? fromString(String value) {
+    switch (value) {
+      case 'vocab':
+        return ProgressIndicatorEnum.wordsUsed;
+      case 'morphs':
+        return ProgressIndicatorEnum.morphsUsed;
+      case 'level':
+        return ProgressIndicatorEnum.level;
+      default:
+        return null;
+    }
+  }
+
+  String toShortString() {
+    switch (this) {
+      case ProgressIndicatorEnum.wordsUsed:
+        return 'vocab';
+      case ProgressIndicatorEnum.morphsUsed:
+        return 'morphs';
+      case ProgressIndicatorEnum.level:
+        return 'level';
+    }
+  }
 }
 
 extension ProgressIndicatorsExtension on ProgressIndicatorEnum {

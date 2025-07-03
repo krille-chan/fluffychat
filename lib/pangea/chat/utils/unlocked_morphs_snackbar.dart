@@ -4,11 +4,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+import 'package:go_router/go_router.dart';
+
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/pangea/analytics_details_popup/analytics_details_popup.dart';
-import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/gain_points_animation.dart';
 import 'package:fluffychat/pangea/common/utils/overlay.dart';
 import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
@@ -153,14 +153,9 @@ class ConstructNotificationOverlayState
   }
 
   void _showDetails() {
-    AnalyticsPopupWrapper.show(
-      context,
-      constructZoom: widget.construct,
-      view: ConstructTypeEnum.morph,
-      backButtonOverride: IconButton(
-        icon: const Icon(Icons.close),
-        onPressed: () => Navigator.of(context).pop(),
-      ),
+    context.go(
+      "/rooms/analytics?mode=morph",
+      extra: widget.construct,
     );
   }
 

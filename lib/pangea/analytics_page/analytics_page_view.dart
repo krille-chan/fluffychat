@@ -46,7 +46,6 @@ class AnalyticsPageView extends StatelessWidget {
                 children: [
                   LearningProgressIndicators(
                     selected: controller.selectedIndicator,
-                    onIndicatorSelected: controller.onIndicatorSelected,
                   ),
                   Expanded(
                     child: Builder(
@@ -56,13 +55,15 @@ class AnalyticsPageView extends StatelessWidget {
                           return const LevelDialogContent();
                         } else if (controller.selectedIndicator ==
                             ProgressIndicatorEnum.morphsUsed) {
-                          return const AnalyticsPopupWrapper(
+                          return AnalyticsPopupWrapper(
+                            constructZoom: controller.widget.constructZoom,
                             view: ConstructTypeEnum.morph,
                             showAppBar: false,
                           );
                         } else if (controller.selectedIndicator ==
                             ProgressIndicatorEnum.wordsUsed) {
-                          return const AnalyticsPopupWrapper(
+                          return AnalyticsPopupWrapper(
+                            constructZoom: controller.widget.constructZoom,
                             view: ConstructTypeEnum.vocab,
                             showAppBar: false,
                           );
