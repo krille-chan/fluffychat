@@ -22,13 +22,8 @@ class LevelUpManager {
   int prevVocab = 0;
   int nextVocab = 0;
 
-  String? userL2Code;
-
-  ConstructSummary? constructSummary;
-
   bool hasSeenPopup = false;
   bool shouldAutoPopup = false;
-  String? error;
 
   Future<void> preloadAnalytics(
     BuildContext context,
@@ -45,12 +40,6 @@ class LevelUpManager {
         .pangeaController.getAnalytics.constructListModel.grammarLemmas;
     nextVocab = MatrixState
         .pangeaController.getAnalytics.constructListModel.vocabLemmas;
-
-    userL2Code = MatrixState.pangeaController.languageController
-        .activeL2Code()
-        ?.toUpperCase();
-
-    getConstructFromLevelUp();
 
     final LanguageModel? l2 =
         MatrixState.pangeaController.languageController.userL2;
@@ -91,28 +80,6 @@ class LevelUpManager {
     }
   }
 
-  //for testing, just fetch last level up from saved analytics
-  void getConstructFromButton() {
-    constructSummary = MatrixState.pangeaController.getAnalytics
-        .getConstructSummaryFromStateEvent();
-    debugPrint(
-      "Last saved construct summary from analytics controller function: ${constructSummary?.toJson()}",
-    );
-  }
-
-  //for getting real level up data when leveled up
-  void getConstructFromLevelUp() async {
-    try {
-      constructSummary = await MatrixState.pangeaController.getAnalytics
-          .generateLevelUpAnalytics(
-        prevLevel,
-        level,
-      );
-    } catch (e) {
-      error = e.toString();
-    }
-  }
-
   void markPopupSeen() {
     hasSeenPopup = true;
     shouldAutoPopup = false;
@@ -127,7 +94,5 @@ class LevelUpManager {
     nextGrammar = 0;
     prevVocab = 0;
     nextVocab = 0;
-    constructSummary = null;
-    error = null;
   }
 }
