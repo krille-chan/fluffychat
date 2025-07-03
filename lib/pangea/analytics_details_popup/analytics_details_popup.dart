@@ -12,7 +12,6 @@ import 'package:fluffychat/pangea/analytics_downloads/analytics_download_button.
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_summary/progress_indicators_enum.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
-import 'package:fluffychat/pangea/common/widgets/full_width_dialog.dart';
 import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
 import 'package:fluffychat/pangea/constructs/construct_level_enum.dart';
 import 'package:fluffychat/pangea/morphs/default_morph_mapping.dart';
@@ -33,26 +32,6 @@ class AnalyticsPopupWrapper extends StatefulWidget {
   final ConstructIdentifier? constructZoom;
   final Widget? backButtonOverride;
   final bool showAppBar;
-
-  static void show(
-    BuildContext context, {
-    ConstructIdentifier? constructZoom,
-    ConstructTypeEnum view = ConstructTypeEnum.vocab,
-    Widget? backButtonOverride,
-  }) {
-    showDialog<AnalyticsPopupWrapper>(
-      context: context,
-      builder: (context) => FullWidthDialog(
-        maxWidth: 600,
-        maxHeight: 800,
-        dialogContent: AnalyticsPopupWrapper(
-          constructZoom: constructZoom,
-          view: view,
-          backButtonOverride: backButtonOverride,
-        ),
-      ),
-    );
-  }
 
   @override
   AnalyticsPopupWrapperState createState() => AnalyticsPopupWrapperState();

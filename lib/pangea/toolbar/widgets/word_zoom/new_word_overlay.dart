@@ -1,8 +1,9 @@
 import 'dart:math';
 
+import 'package:flutter/material.dart';
+
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/constructs/construct_level_enum.dart';
-import 'package:flutter/material.dart';
 
 class NewWordOverlay extends StatefulWidget {
   final Color overlayColor;

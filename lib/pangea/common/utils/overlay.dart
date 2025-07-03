@@ -21,7 +21,7 @@ class OverlayUtil {
   static showOverlay({
     required BuildContext context,
     required Widget child,
-    required String transformTargetId,
+    String? transformTargetId,
     backDropToDismiss = true,
     blurBackground = false,
     Color? borderColor,
@@ -37,6 +37,13 @@ class OverlayUtil {
     bool canPop = true,
   }) {
     try {
+      if (position == OverlayPositionEnum.transform) {
+        assert(
+          transformTargetId != null,
+          "transformTargetId must be provided when position is OverlayPositionEnum.transform",
+        );
+      }
+
       if (closePrevOverlay) {
         MatrixState.pAnyState.closeOverlay();
       }
@@ -77,7 +84,7 @@ class OverlayUtil {
                         followerAnchor:
                             followerAnchor ?? Alignment.bottomCenter,
                         link: MatrixState.pAnyState
-                            .layerLinkAndKey(transformTargetId)
+                            .layerLinkAndKey(transformTargetId!)
                             .link,
                         showWhenUnlinked: false,
                         offset: offset ?? Offset.zero,

@@ -1,5 +1,9 @@
 import 'dart:math';
 
+import 'package:flutter/material.dart';
+
+import 'package:matrix/matrix_api_lite/model/message_types.dart';
+
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
@@ -12,8 +16,6 @@ import 'package:fluffychat/pangea/toolbar/widgets/practice_activity/practice_act
 import 'package:fluffychat/pangea/toolbar/widgets/toolbar_content_loading_indicator.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/word_zoom/word_zoom_widget.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/material.dart';
-import 'package:matrix/matrix_api_lite/model/message_types.dart';
 
 const double minCardHeight = 70;
 
@@ -147,14 +149,13 @@ class ReadingAssistanceContentState extends State<ReadingAssistanceContent> {
             ),
           ),
           constraints: BoxConstraints(
-            maxHeight: AppConfig.toolbarMaxHeight,
             minWidth: min(
               AppConfig.toolbarMinWidth,
               widget.overlayController.maxWidth,
             ),
-            minHeight: AppConfig.toolbarMinHeight,
             maxWidth: widget.overlayController.maxWidth,
           ),
+          height: AppConfig.toolbarMaxHeight,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,

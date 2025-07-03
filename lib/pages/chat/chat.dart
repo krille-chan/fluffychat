@@ -2099,10 +2099,10 @@ class ChatController extends State<ChatPageWithRoom>
       OverlayUtil.showOverlay(
         context: context,
         child: overlayEntry!,
-        transformTargetId: "",
         position: OverlayPositionEnum.centered,
         onDismiss: clearSelectedEvents,
         blurBackground: true,
+        backgroundColor: Colors.black,
       );
 
       // select the message

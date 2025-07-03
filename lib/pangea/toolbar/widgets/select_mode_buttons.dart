@@ -11,12 +11,13 @@ import 'package:path_provider/path_provider.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/events/audio_player.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
-import 'package:fluffychat/pangea/common/widgets/pressable_button.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/events/extensions/pangea_event_extension.dart';
 import 'package:fluffychat/pangea/events/models/representation_content_model.dart';
+import 'package:fluffychat/pangea/events/utils/report_message.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_audio_card.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
@@ -45,13 +46,74 @@ enum SelectMode {
   }
 }
 
+enum MessageActions {
+  reply,
+  forward,
+  edit,
+  delete,
+  copy,
+  download,
+  pin,
+  report,
+  info;
+
+  IconData get icon {
+    switch (this) {
+      case MessageActions.reply:
+        return Icons.reply_all;
+      case MessageActions.forward:
+        return Symbols.forward;
+      case MessageActions.edit:
+        return Symbols.edit;
+      case MessageActions.delete:
+        return Symbols.delete;
+      case MessageActions.copy:
+        return Icons.copy_outlined;
+      case MessageActions.download:
+        return Symbols.download;
+      case MessageActions.pin:
+        return Symbols.push_pin;
+      case MessageActions.report:
+        return Icons.shield_outlined;
+      case MessageActions.info:
+        return Icons.info_outlined;
+    }
+  }
+
+  String tooltip(BuildContext context) {
+    final l10n = L10n.of(context);
+    switch (this) {
+      case MessageActions.reply:
+        return l10n.reply;
+      case MessageActions.forward:
+        return l10n.forward;
+      case MessageActions.edit:
+        return l10n.edit;
+      case MessageActions.delete:
+        return l10n.redactMessage;
+      case MessageActions.copy:
+        return l10n.copy;
+      case MessageActions.download:
+        return l10n.download;
+      case MessageActions.pin:
+        return l10n.pinMessage;
+      case MessageActions.report:
+        return l10n.reportMessage;
+      case MessageActions.info:
+        return l10n.messageInfo;
+    }
+  }
+}
+
 class SelectModeButtons extends StatefulWidget {
   final VoidCallback lauchPractice;
   final MessageOverlayController overlayController;
+  final ChatController controller;
 
   const SelectModeButtons({
     required this.lauchPractice,
     required this.overlayController,
+    required this.controller,
     super.key,
   });
 
@@ -475,46 +537,172 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
     );
   }
 
+  bool _messageActionEnabled(MessageActions action) {
+    if (messageEvent == null) return false;
+
+    switch (action) {
+      case MessageActions.reply:
+        return widget.controller.selectedEvents.length == 1 &&
+            widget.controller.room.canSendDefaultMessages;
+      case MessageActions.edit:
+        return widget.controller.canEditSelectedEvents &&
+            !widget.controller.selectedEvents.first.isActivityMessage;
+      case MessageActions.delete:
+        return widget.controller.canRedactSelectedEvents;
+      case MessageActions.copy:
+        return widget.controller.selectedEvents.length == 1 &&
+            widget.controller.selectedEvents.single.messageType ==
+                MessageTypes.Text;
+      case MessageActions.download:
+        return widget.controller.canSaveSelectedEvent;
+      case MessageActions.pin:
+        return widget.controller.canPinSelectedEvents;
+      case MessageActions.forward:
+      case MessageActions.report:
+      case MessageActions.info:
+        return widget.controller.selectedEvents.length == 1;
+    }
+  }
+
+  void _onActionPressed(MessageActions action) {
+    switch (action) {
+      case MessageActions.reply:
+        widget.controller.replyAction();
+        break;
+      case MessageActions.forward:
+        widget.controller.forwardEventsAction();
+        break;
+      case MessageActions.edit:
+        widget.controller.editSelectedEventAction();
+        break;
+      case MessageActions.delete:
+        widget.controller.redactEventsAction();
+        break;
+      case MessageActions.copy:
+        widget.controller.copyEventsAction();
+        break;
+      case MessageActions.download:
+        widget.controller.saveSelectedEvent(context);
+        break;
+      case MessageActions.pin:
+        widget.controller.pinEvent();
+        break;
+      case MessageActions.report:
+        final event = widget.controller.selectedEvents.first;
+        widget.controller.clearSelectedEvents();
+        reportEvent(
+          event,
+          widget.controller,
+          widget.controller.context,
+        );
+        break;
+      case MessageActions.info:
+        widget.controller.showEventInfo();
+        widget.controller.clearSelectedEvents();
+        break;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     final modes = messageEvent?.isAudioMessage == true ? audioModes : textModes;
+    final actions = MessageActions.values.where(_messageActionEnabled);
 
-    return Container(
-      height: AppConfig.toolbarButtonsHeight,
-      alignment: Alignment.bottomCenter,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisSize: MainAxisSize.min,
-        spacing: 4.0,
-        children: [
-          for (final mode in modes)
-            TooltipVisibility(
-              visible: (!_isError || mode != _selectedMode),
-              child: Tooltip(
-                message: mode.tooltip(context),
-                child: PressableButton(
-                  depressed: mode == _selectedMode,
-                  borderRadius: BorderRadius.circular(20),
-                  color: Theme.of(context).colorScheme.primaryContainer,
-                  onPressed: () => _updateMode(mode),
-                  playSound: mode != SelectMode.audio,
-                  colorFactor: Theme.of(context).brightness == Brightness.light
-                      ? 0.55
-                      : 0.3,
-                  child: Container(
-                    height: buttonSize,
-                    width: buttonSize,
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.primaryContainer,
-                      shape: BoxShape.circle,
-                    ),
-                    child: icon(mode),
-                  ),
+    return Material(
+      type: MaterialType.transparency,
+      child: Container(
+        width: 250,
+        constraints: const BoxConstraints(
+          maxHeight: AppConfig.toolbarMenuHeight,
+        ),
+        decoration: BoxDecoration(
+          color: theme.colorScheme.surface,
+          borderRadius: BorderRadius.circular(
+            AppConfig.borderRadius,
+          ),
+        ),
+        child: ListView.builder(
+          shrinkWrap: true,
+          itemCount: modes.length + actions.length + 1,
+          itemBuilder: (context, index) {
+            if (index < modes.length) {
+              final mode = modes[index];
+              return SizedBox(
+                height: 50.0,
+                child: ListTile(
+                  leading: Icon(mode.icon),
+                  title: Text(mode.tooltip(context)),
+                  onTap: () => _updateMode(mode),
                 ),
-              ),
-            ),
-        ],
+              );
+            } else if (index == modes.length) {
+              return const Divider(height: 1.0);
+            } else {
+              final action = actions.elementAt(index - modes.length - 1);
+              return SizedBox(
+                height: 50.0,
+                child: ListTile(
+                  leading: Icon(action.icon),
+                  title: Text(action.tooltip(context)),
+                  onTap: () => _onActionPressed(action),
+                ),
+              );
+            }
+          },
+        ),
       ),
     );
+
+    // return SizedBox(
+    //   width: 150,
+    //   child: ListView.builder(
+    //     itemCount: modes.length,
+    //     itemBuilder: (context, index) {
+    //       final mode = modes[index];
+    //       return ListTile(
+    //         leading: Icon(mode.icon),
+    //         title: Text(mode.name),
+    //         onTap: () {
+    //           _updateMode(mode);
+    //         },
+    //       );
+    //     },
+    //   ),
+    // );
+
+    // return Row(
+    //   crossAxisAlignment: CrossAxisAlignment.center,
+    //   mainAxisSize: MainAxisSize.min,
+    //   spacing: 4.0,
+    //   children: [
+    //     for (final mode in modes)
+    //       TooltipVisibility(
+    //         visible: (!_isError || mode != _selectedMode),
+    //         child: Tooltip(
+    //           message: mode.tooltip(context),
+    //           child: PressableButton(
+    //             depressed: mode == _selectedMode,
+    //             borderRadius: BorderRadius.circular(20),
+    //             color: Theme.of(context).colorScheme.primaryContainer,
+    //             onPressed: () => _updateMode(mode),
+    //             playSound: mode != SelectMode.audio,
+    //             colorFactor: Theme.of(context).brightness == Brightness.light
+    //                 ? 0.55
+    //                 : 0.3,
+    //             child: Container(
+    //               height: buttonSize,
+    //               width: buttonSize,
+    //               decoration: BoxDecoration(
+    //                 color: Theme.of(context).colorScheme.primaryContainer,
+    //                 shape: BoxShape.circle,
+    //               ),
+    //               child: icon(mode),
+    //             ),
+    //           ),
+    //         ),
+    //       ),
+    //   ],
+    // );
   }
 }

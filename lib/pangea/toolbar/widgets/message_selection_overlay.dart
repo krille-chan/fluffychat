@@ -2,7 +2,13 @@ import 'dart:async';
 import 'dart:developer';
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+
 import 'package:collection/collection.dart';
+import 'package:matrix/matrix.dart';
+
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
@@ -32,10 +38,6 @@ import 'package:fluffychat/pangea/toolbar/reading_assistance_input_row/morph_sel
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_positioner.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/reading_assistance_content.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:matrix/matrix.dart';
 
 /// Controls data at the top level of the toolbar (mainly token / toolbar mode selection)
 class MessageSelectionOverlay extends StatefulWidget {
@@ -228,16 +230,16 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
     updateSelectedSpan(widget._initialSelectedToken!.text);
 
-    int retries = 0;
-    while (retries < 5 &&
-        selectedToken != null &&
-        !MatrixState.pAnyState.isOverlayOpen(
-          selectedToken!.text.uniqueKey,
-        )) {
-      await Future.delayed(const Duration(milliseconds: 100));
-      _showReadingAssistanceContent();
-      retries++;
-    }
+    // int retries = 0;
+    // while (retries < 5 &&
+    //     selectedToken != null &&
+    //     !MatrixState.pAnyState.isOverlayOpen(
+    //       selectedToken!.text.uniqueKey,
+    //     )) {
+    //   await Future.delayed(const Duration(milliseconds: 100));
+    //   _showReadingAssistanceContent();
+    //   retries++;
+    // }
   }
 
   /////////////////////////////////////
@@ -307,9 +309,9 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     }
 
     if (mounted) setState(() {});
-    Future.delayed(const Duration(milliseconds: 10), () {
-      _showReadingAssistanceContent();
-    });
+    // Future.delayed(const Duration(milliseconds: 10), () {
+    //   _showReadingAssistanceContent();
+    // });
   }
 
   void _showReadingAssistanceContent() {
