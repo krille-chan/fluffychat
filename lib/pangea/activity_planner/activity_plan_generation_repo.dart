@@ -18,9 +18,12 @@ class ActivityPlanGenerationRepo {
     _activityPlanStorage.write(request.storageKey, response.toJson());
   }
 
-  static Future<ActivityPlanResponse> get(ActivityPlanRequest request) async {
+  static Future<ActivityPlanResponse> get(
+    ActivityPlanRequest request, {
+    bool force = false,
+  }) async {
     final cachedJson = _activityPlanStorage.read(request.storageKey);
-    if (cachedJson != null) {
+    if (cachedJson != null && !force) {
       final cached = ActivityPlanResponse.fromJson(cachedJson);
 
       return cached;

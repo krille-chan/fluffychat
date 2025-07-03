@@ -4732,7 +4732,7 @@
   "activityPlannerTitle": "Activity Planner",
   "topicLabel": "Topic",
   "topicPlaceholder": "Choose a topic...",
-  "modeLabel": "Mode",
+  "modeLabel": "Activity type",
   "modePlaceholder": "Choose a mode...",
   "learningObjectiveLabel": "Learning Objective",
   "learningObjectivePlaceholder": "Choose a learning objective...",
@@ -4873,7 +4873,7 @@
   "exploreMore": "Explore more",
   "randomize": "Randomize",
   "clear": "Clear",
-  "makeYourOwnActivity": "Make your own activity",
+  "makeYourOwnActivity": "Create your own activity",
   "featuredActivities": "Featured",
   "yourBookmarks": "Bookmarked",
   "goToChat": "Go to chat",
@@ -5032,5 +5032,6 @@
   },
   "failedToFetchTranscription": "Failed to fetch transcription",
   "deleteEmptySpaceDesc": "The space will be deleted for all participants. This action cannot be undone.",
-  "customReaction": "Custom reaction"
+  "customReaction": "Custom reaction",
+  "regenerate": "Regenerate"
 }
