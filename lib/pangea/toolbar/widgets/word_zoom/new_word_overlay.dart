@@ -156,5 +156,3 @@ class _NewWordOverlayState extends State<NewWordOverlay>
     );
   }
 }
-
-const kAlwaysCompleteAnimation = AlwaysStoppedAnimation<double>(1.0);

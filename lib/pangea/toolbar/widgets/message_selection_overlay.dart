@@ -571,8 +571,8 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
     updateSelectedSpan(token.text);
 
-    Future.delayed(const Duration(milliseconds: 1700), () {
-      if (isNewToken(token)) {
+    if (isNewToken(token)) {
+      Future.delayed(const Duration(milliseconds: 1700), () {
         MatrixState.pangeaController.putAnalytics.setState(
           AnalyticsStream(
             eventId: event.eventId,
@@ -595,19 +595,19 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
             targetID: token.text.uniqueKey,
           ),
         );
-        // Remove the token (and all tokens of same lemma but different form) from newTokens
-        setState(() {
-          newTokens.removeWhere(
-            (t) =>
-                t.text.offset == token.text.offset &&
-                t.text.length == token.text.length,
-          );
-          newTokens.removeWhere(
-            (t) => t.lemma.text.equals(token.lemma.text),
-          );
-        });
-      }
-    });
+
+        if (mounted) {
+          setState(() {
+            newTokens.removeWhere(
+              (t) =>
+                  t.text.offset == token.text.offset &&
+                  t.text.length == token.text.length &&
+                  t.lemma.text.equals(token.lemma.text),
+            );
+          });
+        }
+      });
+    }
   }
 
   PracticeTarget? practiceTargetForToken(PangeaToken token) {
