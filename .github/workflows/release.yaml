@@ -83,8 +83,7 @@ jobs:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           cache: true
       - name: Apply Google Services Patch
-        run: git apply ./scripts/enable-android-google-services.patch
-      - uses: moonrepo/setup-rust@v1
+        run: ./scripts/enable-google-services.sh
       - run: flutter pub get
       - name: Prepare Android Release Build
         env:
@@ -154,7 +153,7 @@ jobs:
         working-directory: android
         run: gem install fastlane -NV
       - name: Apply Google Services Patch
-        run: git apply ./scripts/enable-android-google-services.patch
+        run: ./scripts/enable-google-services.sh
       - run: flutter pub get
       - name: Prepare Android Release Build
         env:
