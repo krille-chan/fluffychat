@@ -2132,5 +2132,68 @@
   "addChatDescription": "Legg til chat beskrivelse...",
   "@addChatDescription": {},
   "commandHint_roomupgrade": "Oppgrader dette rommet til den gitte romversjonen",
-  "@commandHint_roomupgrade": {}
+  "@commandHint_roomupgrade": {},
+  "hideMemberChangesInPublicChatsBody": "Ikke vis i chattens tidslinje hvis noen blir med i eller forlater en offentlig chat for økt lesbarhet.",
+  "@hideMemberChangesInPublicChatsBody": {},
+  "overview": "Oversikt",
+  "@overview": {},
+  "notifyMeFor": "Varsle meg om",
+  "@notifyMeFor": {},
+  "passwordRecoverySettings": "Innstillinger for gjenoppretting av passord",
+  "@passwordRecoverySettings": {},
+  "people": "Folk",
+  "@people": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "pleaseChoose": "Vennligst velg",
+  "@pleaseChoose": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "pleaseChooseAPasscode": "Vennligst velg en passordkode",
+  "@pleaseChooseAPasscode": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "pleaseEnter4Digits": "Skriv inn fire sifre eller la feltet stå tomt for å deaktivere applåsen.",
+  "@pleaseEnter4Digits": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "pleaseEnterRecoveryKey": "Vennligst skriv inn gjenopprettingsnøkkelen din:",
+  "@pleaseEnterRecoveryKey": {},
+  "pleaseEnterYourPin": "Vennligst skriv inn PIN-koden din",
+  "@pleaseEnterYourPin": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "globalChatId": "Global chat-ID",
+  "@globalChatId": {},
+  "allRooms": "Alle gruppechatter",
+  "@allRooms": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "chatPermissions": "Chat tillatelser",
+  "@chatPermissions": {},
+  "setPermissionsLevelDescription": "Vennligst velg en forhåndsdefinert rolle nedenfor eller skriv inn et tilpasset tillatelsesnivå mellom 0 og 100.",
+  "@setPermissionsLevelDescription": {},
+  "commandHint_invite": "Inviter den gitte brukeren til dette rommet",
+  "@commandHint_invite": {
+    "type": "String",
+    "description": "Usage hint for the command /invite"
+  },
+  "commandHint_join": "Bli med i det gitte rommet",
+  "@commandHint_join": {
+    "type": "String",
+    "description": "Usage hint for the command /join"
+  },
+  "chats": "Chatter",
+  "@chats": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "yourChatBackupHasBeenSetUp": "Sikkerhetskopien av chatten din er konfigurert.",
+  "@yourChatBackupHasBeenSetUp": {}
 }
