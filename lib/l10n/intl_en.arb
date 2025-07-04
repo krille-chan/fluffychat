@@ -3254,5 +3254,9 @@
     "dialogVerifyEmailContent": "Click the verification link that was sent",
     "buttonOkClicked": "Ok, I’ve clicked it",
     "errorUsernameInUse": "This username is already taken",
-    "errorInvalidUsername": "Invalid username format"
+    "errorInvalidUsername": "Invalid username format",
+    "menuStore": "Store",
+    "menuCourse": "Cultivation course",
+    "menuNews": "News",
+    "menuPodcasts": "Podcasts"
   }

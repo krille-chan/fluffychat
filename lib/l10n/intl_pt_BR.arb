@@ -3254,5 +3254,9 @@
 "dialogVerifyEmailContent": "Clique no link de verificação que foi enviado",
 "buttonOkClicked": "Ok, já cliquei",
 "errorUsernameInUse": "Esse nome de usuário já está sendo usado",
-"errorInvalidUsername": "Formato de nome de usuário inválido"
+"errorInvalidUsername": "Formato de nome de usuário inválido",
+"menuStore": "Loja",
+"menuCourse": "Curso de cultivo",
+"menuNews": "Notícias",
+"menuPodcasts": "Podcasts"
 }

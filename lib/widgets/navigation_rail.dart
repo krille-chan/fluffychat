@@ -11,6 +11,7 @@ import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SpacesNavigationRail extends StatelessWidget {
   final String? activeSpaceId;
@@ -127,6 +128,76 @@ class SpacesNavigationRail extends StatelessWidget {
                         ),
                       ),
                       NaviRailItem(
+                        toolTip: 'Links',
+                        isSelected: false,
+                        onTap: () {},
+                        icon: PopupMenuButton<_LinksMenuAction>(
+                          useRootNavigator: true,
+                          icon: Padding(
+                            padding: const EdgeInsets.all(3.0),
+                            child: Icon(
+                              Icons.link_outlined,
+                              color: Theme.of(context).colorScheme.onTertiary,
+                            ),
+                          ),
+                          onSelected: (action) async {
+                            switch (action) {
+                              case _LinksMenuAction.store:
+                                final uri = Uri.parse(
+                                  'https://www.radiohemp.com/loja/',
+                                );
+                                await launchUrl(
+                                  uri,
+                                  mode: LaunchMode.externalApplication,
+                                );
+                                break;
+                              case _LinksMenuAction.course:
+                                final uri = Uri.parse(
+                                  'https://www.radiohemp.com/produto/como-plantar-maconha-medicinal/',
+                                );
+                                await launchUrl(
+                                  uri,
+                                  mode: LaunchMode.externalApplication,
+                                );
+                              case _LinksMenuAction.news:
+                                final uri = Uri.parse(
+                                  'https://www.radiohemp.com/blog/',
+                                );
+                                await launchUrl(
+                                  uri,
+                                  mode: LaunchMode.externalApplication,
+                                );
+                              case _LinksMenuAction.podcasts:
+                                final uri = Uri.parse(
+                                  'https://www.radiohemp.com/podcast/',
+                                );
+                                await launchUrl(
+                                  uri,
+                                  mode: LaunchMode.externalApplication,
+                                );
+                            }
+                          },
+                          itemBuilder: (context) => [
+                            PopupMenuItem(
+                              value: _LinksMenuAction.store,
+                              child: Text(L10n.of(context).menuStore),
+                            ),
+                            PopupMenuItem(
+                              value: _LinksMenuAction.course,
+                              child: Text(L10n.of(context).menuCourse),
+                            ),
+                            PopupMenuItem(
+                              value: _LinksMenuAction.news,
+                              child: Text(L10n.of(context).menuNews),
+                            ),
+                            PopupMenuItem(
+                              value: _LinksMenuAction.podcasts,
+                              child: Text(L10n.of(context).menuPodcasts),
+                            ),
+                          ],
+                        ),
+                      ),
+                      NaviRailItem(
                         isSelected: isSettings,
                         onTap: () => context.go('/rooms/settings'),
                         icon: const Padding(
@@ -148,3 +219,5 @@ class SpacesNavigationRail extends StatelessWidget {
     );
   }
 }
+
+enum _LinksMenuAction { store, course, news, podcasts }
