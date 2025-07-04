@@ -51,6 +51,7 @@ class RegisterController extends State<Register> {
     final username = usernameController.text.trim();
     final password = passwordController.text;
     final device = PlatformInfos.clientName;
+    genericError = null;
 
     final token = dotenv.env['REGISTER_TOKEN'] ?? '';
 
@@ -65,10 +66,15 @@ class RegisterController extends State<Register> {
     );
 
     if (emailSid == null) {
+      setState(() => loading = false);
       return;
     }
 
-    _waitForUser(context);
+    final confirmed = await _waitForUser(context) ?? false;
+    if (!confirmed) {
+      if (mounted) setState(() => loading = false);
+      return;
+    }
 
     await _runRegister(
       context,
@@ -88,12 +94,12 @@ class RegisterController extends State<Register> {
   bool emailIsValid() {
     final email = emailController.text;
     if (email.isEmpty) {
-      setState(() => emailError = 'Por favor, adicione um e-mail');
+      setState(() => emailError = L10n.of(context).errorMissingEmail);
       return false;
     }
 
     if (!RegExp(r'^[\w\.-]+@([\w-]+\.)+[A-Za-z]{2,}$').hasMatch(email)) {
-      setState(() => emailError = 'E-mail em formato inválido');
+      setState(() => emailError = L10n.of(context).errorInvalidEmail);
       return false;
     }
 
@@ -139,39 +145,44 @@ class RegisterController extends State<Register> {
 
       final sid = response['sid'];
       if (sid is String && sid.isNotEmpty) {
+        setState(() => emailError = null);
         return sid;
       }
 
-      _showGenericError();
+      setState(() => _showGenericError());
       return null;
     } on MatrixException catch (e) {
       if (e.error == MatrixError.M_THREEPID_IN_USE) {
-        emailError = "Esse e-mail já está sendo usado";
+        setState(() => emailError = L10n.of(context).errorEmailInUse);
       } else {
-        _showGenericError();
+        setState(() => _showGenericError());
       }
       return null;
     } catch (_) {
-      _showGenericError();
+      setState(() => _showGenericError());
       return null;
     }
   }
 
   _showGenericError() {
-    genericError = "Ops... algo deu errado!";
+    genericError = L10n.of(context).errorGeneric;
   }
 
-  Future<void> _waitForUser(BuildContext context) async {
-    await showDialog(
+  Future<bool?> _waitForUser(BuildContext context) {
+    return showDialog<bool>(
       context: context,
       barrierDismissible: false,
       builder: (_) => AlertDialog(
-        title: const Text('Verifique seu e-mail'),
-        content: const Text('Clique no link de verificação que foi enviado.'),
+        title: Text(L10n.of(context).dialogVerifyEmailTitle),
+        content: Text(L10n.of(context).dialogVerifyEmailContent),
         actions: [
           TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('Ok, já cliquei'),
+            onPressed: () => Navigator.pop(context, false),
+            child: Text(L10n.of(context).cancel),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(context, true),
+            child: Text(L10n.of(context).buttonOkClicked),
           ),
         ],
       ),
@@ -188,104 +199,85 @@ class RegisterController extends State<Register> {
     required String email,
     required String clientSecret,
     required String emailSid,
-    AuthenticationData? auth,
   }) async {
+    String? session;
+
     try {
       await client.register(
         username: username,
         password: password,
         initialDeviceDisplayName: device,
-        auth: auth,
       );
-
-      try {
-        await client.add3PID(clientSecret, emailSid);
-      } on MatrixException catch (e) {
-        final session = e.session;
-        if (session == null) {
-          rethrow;
-        }
-
-        await client.request(
-          RequestType.POST,
-          '/client/v3/account/3pid',
-          data: {
-            'three_pid_creds': {
-              'sid': emailSid,
-              'client_secret': clientSecret,
-            },
-            'auth': {
-              'type': 'm.login.password',
-              'session': session,
-              'user': username,
-              'password': password,
-            },
-          },
-        );
-      }
-
-      await client.joinRoom('#geral:radiohemp.com');
-
       return;
     } on MatrixException catch (e) {
-      final session = e.session;
+      session = e.session;
+      if (e.error == MatrixError.M_USER_IN_USE) {
+        usernameError = L10n.of(context).errorUsernameInUse;
+        return;
+      }
+
+      if (e.error == MatrixError.M_INVALID_USERNAME) {
+        usernameError = L10n.of(context).errorInvalidUsername;
+        return;
+      }
+
       if (session == null) {
-        rethrow;
+        _showGenericError();
+        return;
       }
+    }
 
-      final flows = e.authenticationFlows ?? [];
-      final completed = e.completedAuthenticationFlows;
-      final missing = flows
-          .expand((f) => f.stages)
-          .toSet()
-          .difference(completed.toSet())
-          .toList();
-
-      if (missing.isEmpty) rethrow;
-
-      final next = missing.first;
-      late AuthenticationData nextAuth;
-
-      switch (next) {
-        case 'm.login.registration_token':
-          nextAuth = RegistrationTokenAuth(
-            session: session,
-            token: token,
-          );
-          break;
-
-        case 'm.login.dummy':
-          nextAuth = AuthenticationData(
-            type: 'm.login.dummy',
-            session: session,
-          );
-          break;
-
-        case 'm.login.email.identity':
-          nextAuth = SidAuth(
-            session: session,
-            sid: emailSid!,
-            clientSecret: clientSecret!,
-          );
-          break;
-
-        default:
-          rethrow;
-      }
-
-      await _runRegister(
-        context,
-        client,
+    try {
+      await client.register(
         username: username,
         password: password,
-        device: device,
-        token: token,
-        email: email,
-        clientSecret: clientSecret,
-        emailSid: emailSid,
-        auth: nextAuth,
+        initialDeviceDisplayName: device,
+        auth: RegistrationTokenAuth(session: session!, token: token),
       );
+    } on MatrixException catch (e) {
+      if (e.session != null &&
+          e.completedAuthenticationFlows
+              .contains('m.login.registration_token')) {
+        session = e.session;
+      } else {
+        _showGenericError();
+        return;
+      }
     }
+
+    bool emailConfirmed = false;
+
+    while (!emailConfirmed) {
+      try {
+        await client.register(
+          username: username,
+          password: password,
+          initialDeviceDisplayName: device,
+          auth: SidAuth(
+            session: session!,
+            sid: emailSid,
+            clientSecret: clientSecret,
+          ),
+        );
+        emailConfirmed = true;
+      } on MatrixException catch (e) {
+        if (e.error == MatrixError.M_THREEPID_IN_USE) {
+          emailError = L10n.of(context).errorEmailInUse;
+        }
+
+        if (e.error == MatrixError.M_UNAUTHORIZED ||
+            e.error == MatrixError.M_THREEPID_AUTH_FAILED) {
+          final confirmed = await _waitForUser(context) ?? false;
+
+          if (!confirmed) return;
+        } else {
+          _showGenericError();
+          return;
+        }
+      }
+    }
+
+    await client.joinRoom('#geral:radiohemp.com');
   }
 
   @override
@@ -334,9 +326,10 @@ class SidAuth extends AuthenticationData {
   @override
   Map<String, Object?> toJson() {
     final json = super.toJson();
-    json['sid'] = sid;
-    json['clientSecret'] = clientSecret;
-
+    json['threepid_creds'] = {
+      'sid': sid,
+      'client_secret': clientSecret,
+    };
     return json;
   }
 }
