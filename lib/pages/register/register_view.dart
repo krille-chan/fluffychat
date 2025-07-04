@@ -99,63 +99,109 @@ class RegisterView extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 40),
+                const SizedBox(height: 20),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                  child: TextField(
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.normal,
-                      fontFamily: 'Roboto',
-                    ),
-                    readOnly: controller.loading,
-                    autocorrect: false,
-                    autofocus: true,
-                    onChanged: controller.checkWellKnownWithCoolDown,
-                    controller: controller.usernameController,
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.emailAddress,
-                    autofillHints:
-                        controller.loading ? null : [AutofillHints.username],
-                    decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.account_box_outlined),
-                      errorText: controller.usernameError,
-                      errorStyle: TextStyle(color: theme.colorScheme.secondary),
-                      labelText: "Nome de usuário",
+                  child: Focus(
+                    onFocusChange: (hasFocus) {
+                      if (!hasFocus) {
+                        controller.emailIsValid();
+                      }
+                    },
+                    child: TextField(
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.normal,
+                        fontFamily: 'Roboto',
+                      ),
+                      readOnly: controller.loading,
+                      autocorrect: false,
+                      controller: controller.emailController,
+                      textInputAction: TextInputAction.next,
+                      keyboardType: TextInputType.emailAddress,
+                      autofillHints:
+                          controller.loading ? null : [AutofillHints.email],
+                      decoration: InputDecoration(
+                        prefixIcon: const Icon(Icons.account_box_outlined),
+                        errorText: controller.emailError,
+                        errorStyle:
+                            TextStyle(color: theme.colorScheme.secondary),
+                        labelText: "E-mail",
+                      ),
                     ),
                   ),
                 ),
                 const SizedBox(height: 10),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                  child: TextField(
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.normal,
-                      fontFamily: 'Roboto',
-                    ),
-                    readOnly: controller.loading,
-                    autocorrect: false,
-                    autofillHints:
-                        controller.loading ? null : [AutofillHints.password],
-                    controller: controller.passwordController,
-                    textInputAction: TextInputAction.go,
-                    obscureText: !controller.showPassword,
-                    onSubmitted: (_) => controller.register(),
-                    decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.lock_outlined),
-                      errorText: controller.passwordError,
-                      errorStyle: TextStyle(color: theme.colorScheme.secondary),
-                      suffixIcon: IconButton(
-                        onPressed: controller.toggleShowPassword,
-                        icon: Icon(
-                          controller.showPassword
-                              ? Icons.visibility_off_outlined
-                              : Icons.visibility_outlined,
-                          color: theme.colorScheme.onSurface,
-                        ),
+                  child: Focus(
+                    onFocusChange: (hasFocus) {
+                      if (!hasFocus) {
+                        controller.usernameIsValid();
+                      }
+                    },
+                    child: TextField(
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.normal,
+                        fontFamily: 'Roboto',
                       ),
-                      labelText: "Senha",
+                      readOnly: controller.loading,
+                      autocorrect: false,
+                      controller: controller.usernameController,
+                      textInputAction: TextInputAction.next,
+                      keyboardType: TextInputType.emailAddress,
+                      autofillHints:
+                          controller.loading ? null : [AutofillHints.username],
+                      decoration: InputDecoration(
+                        prefixIcon: const Icon(Icons.account_box_outlined),
+                        errorText: controller.usernameError,
+                        errorStyle:
+                            TextStyle(color: theme.colorScheme.secondary),
+                        labelText: "Nome de usuário",
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                  child: Focus(
+                    onFocusChange: (hasFocus) {
+                      if (!hasFocus) {
+                        controller.passwordIsValid();
+                      }
+                    },
+                    child: TextField(
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.normal,
+                        fontFamily: 'Roboto',
+                      ),
+                      readOnly: controller.loading,
+                      autocorrect: false,
+                      autofillHints:
+                          controller.loading ? null : [AutofillHints.password],
+                      controller: controller.passwordController,
+                      textInputAction: TextInputAction.go,
+                      obscureText: !controller.showPassword,
+                      onSubmitted: (_) => controller.register(),
+                      decoration: InputDecoration(
+                        prefixIcon: const Icon(Icons.lock_outlined),
+                        errorText: controller.passwordError,
+                        errorStyle:
+                            TextStyle(color: theme.colorScheme.secondary),
+                        suffixIcon: IconButton(
+                          onPressed: controller.toggleShowPassword,
+                          icon: Icon(
+                            controller.showPassword
+                                ? Icons.visibility_off_outlined
+                                : Icons.visibility_outlined,
+                            color: theme.colorScheme.onSurface,
+                          ),
+                        ),
+                        labelText: "Senha",
+                      ),
                     ),
                   ),
                 ),
@@ -167,6 +213,13 @@ class RegisterView extends StatelessWidget {
                     child: controller.loading
                         ? const LinearProgressIndicator()
                         : const Text("Criar conta"),
+                  ),
+                ),
+                if (controller.genericError != null) const SizedBox(height: 15),
+                Center(
+                  child: Text(
+                    controller.genericError ?? '',
+                    style: TextStyle(color: theme.colorScheme.secondary),
                   ),
                 ),
                 const SizedBox(height: 10),
@@ -181,7 +234,7 @@ class RegisterView extends StatelessWidget {
                       text: TextSpan(
                         children: [
                           TextSpan(
-                            text: "Já tem uma conta?",
+                            text: "Já tem uma conta? ",
                             style: TextStyle(
                               color: theme.colorScheme.onSurface,
                               fontSize: 15,
@@ -198,7 +251,7 @@ class RegisterView extends StatelessWidget {
                             ),
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
-                                context.go('/register', extra: client);
+                                context.go('/login', extra: client);
                               },
                           ),
                         ],

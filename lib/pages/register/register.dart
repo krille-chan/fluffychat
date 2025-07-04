@@ -1,16 +1,13 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/utils/localized_exception_extension.dart';
-import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
-import 'package:fluffychat/widgets/adaptive_dialogs/show_text_input_dialog.dart';
-import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/platform_infos.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:uuid/uuid.dart';
 import 'register_view.dart';
 
 class Register extends StatefulWidget {
@@ -24,213 +21,272 @@ class Register extends StatefulWidget {
 class RegisterController extends State<Register> {
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final FocusNode usernameFocusNode = FocusNode();
+
+  String? emailError;
   String? usernameError;
   String? passwordError;
+  String? genericError;
+
   bool loading = false;
   bool showPassword = false;
 
   void toggleShowPassword() =>
       setState(() => showPassword = !loading && !showPassword);
 
-  void register() async {
-    final matrix = Matrix.of(context);
-    if (usernameController.text.isEmpty) {
-      setState(() => usernameError = L10n.of(context).pleaseEnterYourUsername);
-    } else {
-      setState(() => usernameError = null);
-    }
-    if (passwordController.text.isEmpty) {
-      setState(() => passwordError = L10n.of(context).pleaseEnterYourPassword);
-    } else {
-      setState(() => passwordError = null);
-    }
+  Future<void> register() async {
+    final isEmailValid = emailIsValid();
+    final isUsernameValid = usernameIsValid();
+    final isPasswordValid = passwordIsValid();
 
-    if (usernameController.text.isEmpty || passwordController.text.isEmpty) {
-      return;
-    }
+    if (!isEmailValid || !isUsernameValid || !isPasswordValid) return;
 
     setState(() => loading = true);
 
-    _coolDown?.cancel();
+    final matrix = Matrix.of(context);
+    final client = await matrix.getLoginClient();
 
-    try {
-      final username = usernameController.text;
-      AuthenticationIdentifier identifier;
-      if (username.isEmail) {
-        identifier = AuthenticationThirdPartyIdentifier(
-          medium: 'email',
-          address: username,
-        );
-      } else if (username.isPhoneNumber) {
-        identifier = AuthenticationThirdPartyIdentifier(
-          medium: 'msisdn',
-          address: username,
-        );
-      } else {
-        identifier = AuthenticationUserIdentifier(user: username);
-      }
+    final email = emailController.text.trim();
+    final username = usernameController.text.trim();
+    final password = passwordController.text;
+    final device = PlatformInfos.clientName;
 
-      final client = await matrix.getLoginClient();
+    final token = dotenv.env['REGISTER_TOKEN'] ?? '';
 
-      await client.register(
-        username: username,
-        password: passwordController.text,
-        initialDeviceDisplayName: PlatformInfos.clientName,
-        auth: AuthenticationData.fromJson({
-          'type': 'm.login.registration_token',
-          'registration_token': 'proerd',
-        }),
-      );
-    } on MatrixException catch (exception) {
-      setState(() => passwordError = exception.errorMessage);
-      return setState(() => loading = false);
-    } catch (exception) {
-      setState(() => passwordError = exception.toString());
-      return setState(() => loading = false);
+    String? clientSecret;
+    String? emailSid;
+
+    clientSecret = const Uuid().v4();
+    emailSid = await _sendEmailVerification(
+      client: client,
+      email: email,
+      clientSecret: clientSecret,
+    );
+
+    if (emailSid == null) {
+      return;
     }
+
+    _waitForUser(context);
+
+    await _runRegister(
+      context,
+      client,
+      username: username,
+      password: password,
+      device: device,
+      token: token,
+      email: email,
+      clientSecret: clientSecret,
+      emailSid: emailSid,
+    );
 
     if (mounted) setState(() => loading = false);
   }
 
-  Timer? _coolDown;
+  bool emailIsValid() {
+    final email = emailController.text;
+    if (email.isEmpty) {
+      setState(() => emailError = 'Por favor, adicione um e-mail');
+      return false;
+    }
 
-  void checkWellKnownWithCoolDown(String userId) async {
-    _coolDown?.cancel();
-    _coolDown = Timer(
-      const Duration(seconds: 1),
-      () => _checkWellKnown(userId),
-    );
+    if (!RegExp(r'^[\w\.-]+@([\w-]+\.)+[A-Za-z]{2,}$').hasMatch(email)) {
+      setState(() => emailError = 'E-mail em formato inválido');
+      return false;
+    }
+
+    setState(() => emailError = null);
+    return true;
   }
 
-  void _checkWellKnown(String userId) async {
-    if (mounted) setState(() => usernameError = null);
-    if (!userId.isValidMatrixId) return;
-    final oldHomeserver = widget.client.homeserver;
+  bool usernameIsValid() {
+    final username = usernameController.text;
+    if (username.isEmpty) {
+      setState(() => usernameError = L10n.of(context).pleaseEnterYourUsername);
+      return false;
+    }
+    setState(() => usernameError = null);
+    return true;
+  }
+
+  bool passwordIsValid() {
+    final password = passwordController.text;
+    if (password.isEmpty) {
+      setState(() => passwordError = L10n.of(context).pleaseEnterYourPassword);
+      return false;
+    }
+    setState(() => passwordError = null);
+    return true;
+  }
+
+  Future<String?> _sendEmailVerification({
+    required Client client,
+    required String email,
+    required String clientSecret,
+  }) async {
     try {
-      var newDomain = Uri.https(userId.domain!, '');
-      widget.client.homeserver = newDomain;
-      DiscoveryInformation? wellKnownInformation;
-      try {
-        wellKnownInformation = await widget.client.getWellknown();
-        if (wellKnownInformation.mHomeserver.baseUrl.toString().isNotEmpty) {
-          newDomain = wellKnownInformation.mHomeserver.baseUrl;
-        }
-      } catch (_) {
-        // do nothing, newDomain is already set to a reasonable fallback
-      }
-      if (newDomain != oldHomeserver) {
-        await widget.client.checkHomeserver(newDomain);
-
-        if (widget.client.homeserver == null) {
-          widget.client.homeserver = oldHomeserver;
-          // okay, the server we checked does not appear to be a matrix server
-          Logs().v(
-            '$newDomain is not running a homeserver, asking to use $oldHomeserver',
-          );
-          final dialogResult = await showOkCancelAlertDialog(
-            context: context,
-            useRootNavigator: false,
-            title: L10n.of(context)
-                .noMatrixServer(newDomain.toString(), oldHomeserver.toString()),
-            okLabel: L10n.of(context).ok,
-            cancelLabel: L10n.of(context).cancel,
-          );
-          if (dialogResult == OkCancelResult.ok) {
-            if (mounted) setState(() => usernameError = null);
-          } else {
-            Navigator.of(context, rootNavigator: false).pop();
-            return;
-          }
-        }
-        usernameError = null;
-        if (mounted) setState(() {});
-      } else {
-        widget.client.homeserver = oldHomeserver;
-        if (mounted) {
-          setState(() {});
-        }
-      }
-    } catch (e) {
-      widget.client.homeserver = oldHomeserver;
-      usernameError = e.toLocalizedString(context);
-      if (mounted) setState(() {});
-    }
-  }
-
-  void passwordForgotten() async {
-    final input = await showTextInputDialog(
-      useRootNavigator: false,
-      context: context,
-      title: L10n.of(context).passwordForgotten,
-      message: L10n.of(context).enterAnEmailAddress,
-      okLabel: L10n.of(context).ok,
-      cancelLabel: L10n.of(context).cancel,
-      initialText:
-          usernameController.text.isEmail ? usernameController.text : '',
-      keyboardType: TextInputType.emailAddress,
-    );
-    if (input == null) return;
-    final clientSecret = DateTime.now().millisecondsSinceEpoch.toString();
-    final response = await showFutureLoadingDialog(
-      context: context,
-      future: () => widget.client.requestTokenToResetPasswordEmail(
-        clientSecret,
-        input,
-        sendAttempt++,
-      ),
-    );
-    if (response.error != null) return;
-    final password = await showTextInputDialog(
-      useRootNavigator: false,
-      context: context,
-      title: L10n.of(context).passwordForgotten,
-      message: L10n.of(context).chooseAStrongPassword,
-      okLabel: L10n.of(context).ok,
-      cancelLabel: L10n.of(context).cancel,
-      hintText: '******',
-      obscureText: true,
-      minLines: 1,
-      maxLines: 1,
-    );
-    if (password == null) return;
-    final ok = await showOkAlertDialog(
-      useRootNavigator: false,
-      context: context,
-      title: L10n.of(context).weSentYouAnEmail,
-      message: L10n.of(context).pleaseClickOnLink,
-      okLabel: L10n.of(context).iHaveClickedOnLink,
-    );
-    if (ok != OkCancelResult.ok) return;
-    final data = <String, dynamic>{
-      'new_password': password,
-      'logout_devices': false,
-      "auth": AuthenticationThreePidCreds(
-        type: AuthenticationTypes.emailIdentity,
-        threepidCreds: ThreepidCreds(
-          sid: response.result!.sid,
-          clientSecret: clientSecret,
-        ),
-      ).toJson(),
-    };
-    final success = await showFutureLoadingDialog(
-      context: context,
-      future: () => widget.client.request(
+      final response = await client.request(
         RequestType.POST,
-        '/client/v3/account/password',
-        data: data,
-      ),
-    );
-    if (success.error == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(L10n.of(context).passwordHasBeenChanged)),
+        '/client/v3/account/3pid/email/requestToken',
+        data: {
+          'client_secret': clientSecret,
+          'email': email,
+          'send_attempt': 1,
+        },
       );
-      usernameController.text = input;
-      passwordController.text = password;
-      register();
+
+      final sid = response['sid'];
+      if (sid is String && sid.isNotEmpty) {
+        return sid;
+      }
+
+      _showGenericError();
+      return null;
+    } on MatrixException catch (e) {
+      if (e.error == MatrixError.M_THREEPID_IN_USE) {
+        emailError = "Esse e-mail já está sendo usado";
+      } else {
+        _showGenericError();
+      }
+      return null;
+    } catch (_) {
+      _showGenericError();
+      return null;
     }
   }
 
-  static int sendAttempt = 0;
+  _showGenericError() {
+    genericError = "Ops... algo deu errado!";
+  }
+
+  Future<void> _waitForUser(BuildContext context) async {
+    await showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (_) => AlertDialog(
+        title: const Text('Verifique seu e-mail'),
+        content: const Text('Clique no link de verificação que foi enviado.'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Ok, já cliquei'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<void> _runRegister(
+    BuildContext context,
+    Client client, {
+    required String username,
+    required String password,
+    required String device,
+    required String token,
+    required String email,
+    required String clientSecret,
+    required String emailSid,
+    AuthenticationData? auth,
+  }) async {
+    try {
+      await client.register(
+        username: username,
+        password: password,
+        initialDeviceDisplayName: device,
+        auth: auth,
+      );
+
+      try {
+        await client.add3PID(clientSecret, emailSid);
+      } on MatrixException catch (e) {
+        final session = e.session;
+        if (session == null) {
+          rethrow;
+        }
+
+        await client.request(
+          RequestType.POST,
+          '/client/v3/account/3pid',
+          data: {
+            'three_pid_creds': {
+              'sid': emailSid,
+              'client_secret': clientSecret,
+            },
+            'auth': {
+              'type': 'm.login.password',
+              'session': session,
+              'user': username,
+              'password': password,
+            },
+          },
+        );
+      }
+
+      await client.joinRoom('#geral:radiohemp.com');
+
+      return;
+    } on MatrixException catch (e) {
+      final session = e.session;
+      if (session == null) {
+        rethrow;
+      }
+
+      final flows = e.authenticationFlows ?? [];
+      final completed = e.completedAuthenticationFlows;
+      final missing = flows
+          .expand((f) => f.stages)
+          .toSet()
+          .difference(completed.toSet())
+          .toList();
+
+      if (missing.isEmpty) rethrow;
+
+      final next = missing.first;
+      late AuthenticationData nextAuth;
+
+      switch (next) {
+        case 'm.login.registration_token':
+          nextAuth = RegistrationTokenAuth(
+            session: session,
+            token: token,
+          );
+          break;
+
+        case 'm.login.dummy':
+          nextAuth = AuthenticationData(
+            type: 'm.login.dummy',
+            session: session,
+          );
+          break;
+
+        case 'm.login.email.identity':
+          nextAuth = SidAuth(
+            session: session,
+            sid: emailSid!,
+            clientSecret: clientSecret!,
+          );
+          break;
+
+        default:
+          rethrow;
+      }
+
+      await _runRegister(
+        context,
+        client,
+        username: username,
+        password: password,
+        device: device,
+        token: token,
+        email: email,
+        clientSecret: clientSecret,
+        emailSid: emailSid,
+        auth: nextAuth,
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) => RegisterView(
@@ -243,14 +299,44 @@ class RegisterController extends State<Register> {
   }
 }
 
-extension on String {
-  static final RegExp _phoneRegex =
-      RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$');
-  static final RegExp _emailRegex = RegExp(r'(.+)@(.+)\.(.+)');
+enum MoreLoginActions { importBackup, privacy, about }
 
-  bool get isEmail => _emailRegex.hasMatch(this);
+class RegistrationTokenAuth extends AuthenticationData {
+  final String token;
 
-  bool get isPhoneNumber => _phoneRegex.hasMatch(this);
+  RegistrationTokenAuth({
+    required String session,
+    required this.token,
+  }) : super(
+          type: 'm.login.registration_token',
+          session: session,
+        );
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = super.toJson();
+    json['token'] = token;
+    return json;
+  }
 }
 
-enum MoreLoginActions { importBackup, privacy, about }
+class SidAuth extends AuthenticationData {
+  final String sid;
+  final String clientSecret;
+
+  SidAuth(
+      {required String session, required this.sid, required this.clientSecret})
+      : super(
+          type: 'm.login.email.identity',
+          session: session,
+        );
+
+  @override
+  Map<String, Object?> toJson() {
+    final json = super.toJson();
+    json['sid'] = sid;
+    json['clientSecret'] = clientSecret;
+
+    return json;
+  }
+}

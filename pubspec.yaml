@@ -90,6 +90,7 @@ dependencies:
   unifiedpush: ^5.0.1
   unifiedpush_ui: ^0.1.0
   universal_html: ^2.2.4
+  uuid: ^4.0.0
   url_launcher: ^6.2.5
   video_compress: ^3.1.4
   video_player: ^2.9.5

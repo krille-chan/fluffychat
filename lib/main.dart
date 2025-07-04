@@ -12,9 +12,11 @@ import 'package:fluffychat/utils/platform_infos.dart';
 import 'config/setting_keys.dart';
 import 'utils/background_push.dart';
 import 'widgets/fluffy_chat_app.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 void main() async {
   Logs().i('Welcome to ${AppConfig.applicationName} <3');
+  await dotenv.load(fileName: ".env");
 
   // Our background push shared isolate accesses flutter-internal things very early in the startup proccess
   // To make sure that the parts of flutter needed are started up already, we need to ensure that the
