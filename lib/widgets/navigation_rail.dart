@@ -132,6 +132,7 @@ class SpacesNavigationRail extends StatelessWidget {
                         isSelected: false,
                         onTap: () {},
                         icon: PopupMenuButton<_LinksMenuAction>(
+                          color: Theme.of(context).colorScheme.tertiary,
                           useRootNavigator: true,
                           icon: Padding(
                             padding: const EdgeInsets.all(3.0),
@@ -180,19 +181,43 @@ class SpacesNavigationRail extends StatelessWidget {
                           itemBuilder: (context) => [
                             PopupMenuItem(
                               value: _LinksMenuAction.store,
-                              child: Text(L10n.of(context).menuStore),
+                              child: Row(
+                                children: [
+                                  const Icon(Icons.store_outlined),
+                                  const SizedBox(width: 8),
+                                  Text(L10n.of(context).menuStore),
+                                ],
+                              ),
                             ),
                             PopupMenuItem(
                               value: _LinksMenuAction.course,
-                              child: Text(L10n.of(context).menuCourse),
+                              child: Row(
+                                children: [
+                                  const Icon(Icons.grass_outlined),
+                                  const SizedBox(width: 8),
+                                  Text(L10n.of(context).menuCourse),
+                                ],
+                              ),
                             ),
                             PopupMenuItem(
                               value: _LinksMenuAction.news,
-                              child: Text(L10n.of(context).menuNews),
+                              child: Row(
+                                children: [
+                                  const Icon(Icons.article_outlined),
+                                  const SizedBox(width: 8),
+                                  Text(L10n.of(context).menuNews),
+                                ],
+                              ),
                             ),
                             PopupMenuItem(
                               value: _LinksMenuAction.podcasts,
-                              child: Text(L10n.of(context).menuPodcasts),
+                              child: Row(
+                                children: [
+                                  const Icon(Icons.podcasts_outlined),
+                                  const SizedBox(width: 8),
+                                  Text(L10n.of(context).menuPodcasts),
+                                ],
+                              ),
                             ),
                           ],
                         ),
