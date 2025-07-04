@@ -1,5 +1,6 @@
 import java.util.Properties
 import java.io.FileInputStream
+import com.android.build.api.variant.FilterConfiguration.FilterType.*
 
 plugins {
     id("com.android.application")
@@ -86,4 +87,19 @@ android {
 
 flutter {
     source = "../.."
+}
+
+val abiCodes = mapOf("x86_64" to 1, "armeabi-v7a" to 2, "arm64-v8a" to 3)
+
+androidComponents {
+    onVariants { variant ->
+        variant.outputs.forEach { output ->
+            val name = output.filters.find { it.filterType == ABI }?.identifier
+
+            val baseAbiCode = abiCodes[name]
+            if (baseAbiCode != null) {
+                output.versionCode.set(baseAbiCode + (output.versionCode.get() ?: 0) * 10)
+            }
+        }
+    }
 }
