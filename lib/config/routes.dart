@@ -182,33 +182,33 @@ abstract class AppRoutes {
               ],
               redirect: loggedOutRedirect,
             ),
-            GoRoute(
-              path: 'newprivatechat',
-              pageBuilder: (context, state) => defaultPageBuilder(
-                context,
-                state,
-                const NewPrivateChat(),
-              ),
-              redirect: loggedOutRedirect,
-            ),
-            GoRoute(
-              path: 'newgroup',
-              pageBuilder: (context, state) => defaultPageBuilder(
-                context,
-                state,
-                const NewGroup(),
-              ),
-              redirect: loggedOutRedirect,
-            ),
-            GoRoute(
-              path: 'newspace',
-              pageBuilder: (context, state) => defaultPageBuilder(
-                context,
-                state,
-                const NewGroup(createGroupType: CreateGroupType.space),
-              ),
-              redirect: loggedOutRedirect,
-            ),
+            // GoRoute(
+            //   path: 'newprivatechat',
+            //   pageBuilder: (context, state) => defaultPageBuilder(
+            //     context,
+            //     state,
+            //     const NewPrivateChat(),
+            //   ),
+            //   redirect: loggedOutRedirect,
+            // ),
+            // GoRoute(
+            //   path: 'newgroup',
+            //   pageBuilder: (context, state) => defaultPageBuilder(
+            //     context,
+            //     state,
+            //     const NewGroup(),
+            //   ),
+            //   redirect: loggedOutRedirect,
+            // ),
+            // GoRoute(
+            //   path: 'newspace',
+            //   pageBuilder: (context, state) => defaultPageBuilder(
+            //     context,
+            //     state,
+            //     const NewGroup(createGroupType: CreateGroupType.space),
+            //   ),
+            //   redirect: loggedOutRedirect,
+            // ),
             ShellRoute(
               pageBuilder: (context, state, child) => defaultPageBuilder(
                 context,

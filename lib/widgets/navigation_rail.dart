@@ -86,43 +86,43 @@ class SpacesNavigationRail extends StatelessWidget {
                               );
                             }
                             i--;
-                            if (i == rootSpaces.length) {
-                              return NaviRailItem(
-                                isSelected: false,
-                                onTap: () => context.go('/rooms/newspace'),
-                                icon: const Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Icon(Icons.add),
-                                ),
-                                toolTip: L10n.of(context).createNewSpace,
-                              );
-                            }
-                            final space = rootSpaces[i];
-                            final displayname =
-                                rootSpaces[i].getLocalizedDisplayname(
-                              MatrixLocals(L10n.of(context)),
-                            );
-                            final spaceChildrenIds = space.spaceChildren
-                                .map((c) => c.roomId)
-                                .toSet();
-                            return NaviRailItem(
-                              toolTip: displayname,
-                              isSelected: activeSpaceId == space.id,
-                              onTap: () => onGoToSpaceId(rootSpaces[i].id),
-                              unreadBadgeFilter: (room) =>
-                                  spaceChildrenIds.contains(room.id),
-                              icon: Avatar(
-                                mxContent: rootSpaces[i].avatar,
-                                name: displayname,
-                                border: BorderSide(
-                                  width: 1,
-                                  color: Theme.of(context).dividerColor,
-                                ),
-                                borderRadius: BorderRadius.circular(
-                                  AppConfig.borderRadius / 2,
-                                ),
-                              ),
-                            );
+                            // if (i == rootSpaces.length) {
+                            //   return NaviRailItem(
+                            //     isSelected: false,
+                            //     onTap: () => context.go('/rooms/newspace'),
+                            //     icon: const Padding(
+                            //       padding: EdgeInsets.all(8.0),
+                            //       child: Icon(Icons.add),
+                            //     ),
+                            //     toolTip: L10n.of(context).createNewSpace,
+                            //   );
+                            // }
+                            // final space = rootSpaces[i];
+                            // final displayname =
+                            //     rootSpaces[i].getLocalizedDisplayname(
+                            //   MatrixLocals(L10n.of(context)),
+                            // );
+                            // final spaceChildrenIds = space.spaceChildren
+                            //     .map((c) => c.roomId)
+                            //     .toSet();
+                            // return NaviRailItem(
+                            //   toolTip: displayname,
+                            //   isSelected: activeSpaceId == space.id,
+                            //   onTap: () => onGoToSpaceId(rootSpaces[i].id),
+                            //   unreadBadgeFilter: (room) =>
+                            //       spaceChildrenIds.contains(room.id),
+                            //   icon: Avatar(
+                            //     mxContent: rootSpaces[i].avatar,
+                            //     name: displayname,
+                            //     border: BorderSide(
+                            //       width: 1,
+                            //       color: Theme.of(context).dividerColor,
+                            //     ),
+                            //     borderRadius: BorderRadius.circular(
+                            //       AppConfig.borderRadius / 2,
+                            //     ),
+                            //   ),
+                            // );
                           },
                         ),
                       ),

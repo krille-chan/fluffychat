@@ -3245,5 +3245,14 @@
     "errorInvalidCredentials": "Invalid username or password.",
     "errorMissingParam": "Missing information required to proceed.",
     "errorSessionExpired": "Session expired or invalid. Please log in again.",
-    "errorUnknown": "Unexpected error. Please try again."
+    "errorUnknown": "Unexpected error. Please try again.",
+    "errorMissingEmail": "Please enter an email address",
+    "errorInvalidEmail": "Invalid email format",
+    "errorEmailInUse": "This email is already in use",
+    "errorGeneric": "Oops... something went wrong! Please try again later",
+    "dialogVerifyEmailTitle": "Verify your email",
+    "dialogVerifyEmailContent": "Click the verification link that was sent",
+    "buttonOkClicked": "Ok, I’ve clicked it",
+    "errorUsernameInUse": "This username is already taken",
+    "errorInvalidUsername": "Invalid username format"
   }

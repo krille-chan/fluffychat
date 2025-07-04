@@ -53,7 +53,7 @@ class RegisterController extends State<Register> {
     final device = PlatformInfos.clientName;
     genericError = null;
 
-    final token = dotenv.env['REGISTER_TOKEN'] ?? '';
+    final token = dotenv.env['REGISTRATION_TOKEN'] ?? '';
 
     String? clientSecret;
     String? emailSid;
@@ -261,19 +261,20 @@ class RegisterController extends State<Register> {
         );
         emailConfirmed = true;
       } on MatrixException catch (e) {
-        if (e.error == MatrixError.M_THREEPID_IN_USE) {
-          emailError = L10n.of(context).errorEmailInUse;
-        }
-
         if (e.error == MatrixError.M_UNAUTHORIZED ||
             e.error == MatrixError.M_THREEPID_AUTH_FAILED) {
           final confirmed = await _waitForUser(context) ?? false;
-
           if (!confirmed) return;
-        } else {
-          _showGenericError();
+          continue;
+        }
+
+        if (e.error == MatrixError.M_THREEPID_IN_USE) {
+          emailError = L10n.of(context).errorEmailInUse;
           return;
         }
+
+        _showGenericError();
+        return;
       }
     }
 

@@ -3245,5 +3245,14 @@
 "errorInvalidCredentials": "Nome de usuário ou senha inválida.",
 "errorMissingParam": "Faltam informações para continuar.",
 "errorSessionExpired": "Sessão expirada ou inválida. Faça login novamente.",
-"errorUnknown": "Erro inesperado. Tente novamente."
+"errorUnknown": "Erro inesperado. Tente novamente.",
+"errorMissingEmail": "Por favor, adicione um e-mail",
+"errorInvalidEmail": "E-mail em formato inválido",
+"errorEmailInUse": "Esse e-mail já está sendo usado",
+"errorGeneric": "Ops... algo deu errado! Tente novamente mais tarde!",
+"dialogVerifyEmailTitle": "Verifique seu e-mail",
+"dialogVerifyEmailContent": "Clique no link de verificação que foi enviado",
+"buttonOkClicked": "Ok, já cliquei",
+"errorUsernameInUse": "Esse nome de usuário já está sendo usado",
+"errorInvalidUsername": "Formato de nome de usuário inválido"
 }

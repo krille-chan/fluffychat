@@ -50,27 +50,27 @@ class ChatListView extends StatelessWidget {
               behavior: HitTestBehavior.translucent,
               child: Scaffold(
                 body: ChatListViewBody(controller),
-                floatingActionButton: !controller.isSearchMode &&
-                        controller.activeSpaceId == null
-                    ? FloatingActionButton.extended(
-                        backgroundColor: Theme.of(context).colorScheme.primary,
-                        foregroundColor: Colors.white,
-                        elevation: 0,
-                        onPressed: () => context.go('/rooms/newprivatechat'),
-                        icon: Icon(
-                          Icons.add_outlined,
-                          color: Theme.of(context).colorScheme.onPrimary,
-                        ),
-                        label: Text(
-                          L10n.of(context).chat,
-                          overflow: TextOverflow.fade,
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.onPrimary,
-                            fontSize: 15,
-                          ),
-                        ),
-                      )
-                    : const SizedBox.shrink(),
+                // floatingActionButton: !controller.isSearchMode &&
+                //         controller.activeSpaceId == null
+                //     ? FloatingActionButton.extended(
+                //         backgroundColor: Theme.of(context).colorScheme.primary,
+                //         foregroundColor: Colors.white,
+                //         elevation: 0,
+                //         onPressed: () => context.go('/rooms/newprivatechat'),
+                //         icon: Icon(
+                //           Icons.add_outlined,
+                //           color: Theme.of(context).colorScheme.onPrimary,
+                //         ),
+                //         label: Text(
+                //           L10n.of(context).chat,
+                //           overflow: TextOverflow.fade,
+                //           style: TextStyle(
+                //             color: Theme.of(context).colorScheme.onPrimary,
+                //             fontSize: 15,
+                //           ),
+                //         ),
+                //       )
+                // : const SizedBox.shrink(),
               ),
             ),
           ),
