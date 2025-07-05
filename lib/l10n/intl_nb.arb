@@ -2195,5 +2195,18 @@
     "placeholders": {}
   },
   "yourChatBackupHasBeenSetUp": "Sikkerhetskopien av chatten din er konfigurert.",
-  "@yourChatBackupHasBeenSetUp": {}
+  "@yourChatBackupHasBeenSetUp": {},
+  "discover": "Oppdag",
+  "@discover": {},
+  "thereAreCountUsersBlocked": "Akkurat nå er det {count} blokkerte brukere.",
+  "@thereAreCountUsersBlocked": {
+    "type": "String",
+    "count": {}
+  },
+  "sendCanceled": "Sending avbrutt",
+  "@sendCanceled": {},
+  "loginWithMatrixId": "Logg på med Matrix ID",
+  "@loginWithMatrixId": {},
+  "discoverHomeservers": "Oppdag hjemmeservere",
+  "@discoverHomeservers": {}
 }
