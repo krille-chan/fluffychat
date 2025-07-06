@@ -78,7 +78,6 @@ class ChatEmojiPicker extends StatelessWidget {
                               },
                               type: EventTypes.Sticker,
                             );
-                            controller.hideEmojiPicker();
                           },
                         ),
                       ],
