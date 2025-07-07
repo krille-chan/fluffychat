@@ -3022,7 +3022,7 @@
   },
   "markAsUnread": "Позначити непрочитаним",
   "@markAsUnread": {},
-  "alwaysUse24HourFormat": "ні",
+  "alwaysUse24HourFormat": "false",
   "@alwaysUse24HourFormat": {
     "description": "Set to true to always display time of day in 24 hour format."
   },

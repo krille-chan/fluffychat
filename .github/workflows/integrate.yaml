@@ -82,7 +82,7 @@ jobs:
       - run: ./flutter/bin/flutter build linux --target-platform linux-${{ matrix.arch }}
 
   build_debug_ios:
-    runs-on: macos-15
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV

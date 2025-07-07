@@ -286,6 +286,7 @@ class ChatInputRow extends StatelessWidget {
                         bottom: 6.0,
                         top: 3.0,
                       ),
+                      counter: const SizedBox.shrink(),
                       hintText: L10n.of(context).writeAMessage,
                       hintMaxLines: 1,
                       border: InputBorder.none,

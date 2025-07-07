@@ -37,6 +37,7 @@ abstract class SettingKeys {
 }
 
 enum AppSettings<T> {
+  textMessageMaxLength<int>('textMessageMaxLength', 16384),
   audioRecordingNumChannels<int>('audioRecordingNumChannels', 1),
   audioRecordingAutoGain<bool>('audioRecordingAutoGain', true),
   audioRecordingEchoCancel<bool>('audioRecordingEchoCancel', false),

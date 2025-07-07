@@ -3379,5 +3379,9 @@
   "commandHint_logoutall": "注销所有活动设备",
   "@commandHint_logoutall": {},
   "displayNavigationRail": "在移动设备上显示导航栏",
-  "@displayNavigationRail": {}
+  "@displayNavigationRail": {},
+  "customReaction": "自定义回应",
+  "@customReaction": {},
+  "moreEvents": "更多事件",
+  "@moreEvents": {}
 }
