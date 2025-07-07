@@ -126,7 +126,7 @@ class RegisterView extends StatelessWidget {
                         errorText: controller.emailError,
                         errorStyle:
                             TextStyle(color: theme.colorScheme.secondary),
-                        labelText: "E-mail",
+                        labelText: L10n.of(context).username,
                       ),
                     ),
                   ),
@@ -158,7 +158,7 @@ class RegisterView extends StatelessWidget {
                         errorText: controller.usernameError,
                         errorStyle:
                             TextStyle(color: theme.colorScheme.secondary),
-                        labelText: "Nome de usuário",
+                        labelText: L10n.of(context).username,
                       ),
                     ),
                   ),
@@ -200,7 +200,7 @@ class RegisterView extends StatelessWidget {
                             color: theme.colorScheme.onSurface,
                           ),
                         ),
-                        labelText: "Senha",
+                        labelText: L10n.of(context).password,
                       ),
                     ),
                   ),
@@ -212,7 +212,7 @@ class RegisterView extends StatelessWidget {
                     onPressed: controller.loading ? null : controller.register,
                     child: controller.loading
                         ? const LinearProgressIndicator()
-                        : const Text("Criar conta"),
+                        : Text(L10n.of(context).createAccount),
                   ),
                 ),
                 if (controller.genericError != null) const SizedBox(height: 15),
@@ -234,7 +234,7 @@ class RegisterView extends StatelessWidget {
                       text: TextSpan(
                         children: [
                           TextSpan(
-                            text: "Já tem uma conta? ",
+                            text: L10n.of(context).alreadyHaveAccount,
                             style: TextStyle(
                               color: theme.colorScheme.onSurface,
                               fontSize: 15,
@@ -242,7 +242,7 @@ class RegisterView extends StatelessWidget {
                             ),
                           ),
                           TextSpan(
-                            text: "Entrar",
+                            text: L10n.of(context).login,
                             style: TextStyle(
                               color: theme.colorScheme.primary,
                               fontSize: 15,

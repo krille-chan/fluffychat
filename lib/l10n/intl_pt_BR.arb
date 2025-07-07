@@ -3258,5 +3258,10 @@
 "menuStore": "Loja",
 "menuCourse": "Curso de cultivo",
 "menuNews": "Notícias",
-"menuPodcasts": "Podcasts"
+"menuPodcasts": "Podcasts",
+"email": "E-mail",
+"createAccount": "Criar conta",
+"alreadyHaveAccount": "Já tem uma conta?",
+"newHere": "Novo aqui?",
+"createAnAccountPrompt": "Crie uma conta"
 }

@@ -195,7 +195,7 @@ class LoginView extends StatelessWidget {
                       text: TextSpan(
                         children: [
                           TextSpan(
-                            text: "Novo aqui? ",
+                            text: L10n.of(context).newHere,
                             style: TextStyle(
                               color: theme.colorScheme.onSurface,
                               fontSize: 15,
@@ -203,7 +203,7 @@ class LoginView extends StatelessWidget {
                             ),
                           ),
                           TextSpan(
-                            text: "Crie uma conta",
+                            text: L10n.of(context).createAnAccountPrompt,
                             style: TextStyle(
                               color: theme.colorScheme.primary,
                               fontSize: 15,
