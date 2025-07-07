@@ -73,6 +73,16 @@ class ActivityGeneratorView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(L10n.of(context).makeYourOwnActivity),
+        leading: BackButton(
+          onPressed: () {
+            if (controller.activities != null &&
+                controller.activities!.isNotEmpty) {
+              controller.clearActivities();
+            } else {
+              Navigator.of(context).pop();
+            }
+          },
+        ),
       ),
       body: body ??
           Center(

@@ -7,10 +7,13 @@ import 'package:material_symbols_icons/symbols.dart';
 
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/pangea/activity_planner/activity_plan_generation_repo.dart';
+import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_planner_builder.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_room_selection.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_suggestion_card_row.dart';
 import 'package:fluffychat/pangea/chat_settings/widgets/language_level_dropdown.dart';
+import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/common/widgets/full_width_dialog.dart';
 import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_enum.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
@@ -26,11 +29,13 @@ class ActivitySuggestionDialog extends StatefulWidget {
   final String buttonText;
 
   final VoidCallback? onLaunch;
+  final Function(ActivityPlanModel)? replaceActivity;
 
   const ActivitySuggestionDialog({
     required this.controller,
     required this.buttonText,
     this.onLaunch,
+    this.replaceActivity,
     super.key,
   });
 
@@ -41,6 +46,9 @@ class ActivitySuggestionDialog extends StatefulWidget {
 
 class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
   _PageMode _pageMode = _PageMode.activity;
+
+  bool _loading = false;
+  Object? _error;
 
   double get _width => FluffyThemes.isColumnMode(context)
       ? 400.0
@@ -72,6 +80,43 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
     });
   }
 
+  Future<void> _onRegenerate() async {
+    setState(() {
+      _loading = true;
+      _error = null;
+    });
+
+    try {
+      final resp = await ActivityPlanGenerationRepo.get(
+        widget.controller.updatedRequest,
+        force: true,
+      );
+      final plan = resp.activityPlans.firstOrNull;
+      if (plan == null) {
+        throw Exception("No activity plan generated");
+      }
+
+      widget.replaceActivity?.call(plan);
+      await widget.controller.overrideActivity(plan);
+    } catch (e, s) {
+      _error = e;
+      ErrorHandler.logError(
+        e: e,
+        s: s,
+        data: {
+          "request": widget.controller.updatedRequest.toJson(),
+        },
+      );
+      return;
+    } finally {
+      if (mounted) {
+        setState(() {
+          _loading = false;
+        });
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -82,8 +127,29 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
           decoration: BoxDecoration(
             color: theme.colorScheme.surface,
           ),
-          child: _pageMode == _PageMode.activity
-              ? Form(
+          child: Builder(
+            builder: (context) {
+              if (_pageMode == _PageMode.activity) {
+                if (_error != null) {
+                  return Center(
+                    child: Row(
+                      spacing: 8.0,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(Icons.error, color: theme.colorScheme.error),
+                        Text(L10n.of(context).oopsSomethingWentWrong),
+                      ],
+                    ),
+                  );
+                }
+
+                if (_loading) {
+                  return const Center(
+                    child: CircularProgressIndicator.adaptive(),
+                  );
+                }
+
+                return Form(
                   key: widget.controller.formKey,
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
@@ -96,69 +162,78 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Stack(
-                                alignment: Alignment.center,
+                                alignment: Alignment.bottomCenter,
                                 children: [
-                                  SizedBox(
-                                    width: _width,
-                                    child: widget.controller.avatar != null
-                                        ? Image.memory(
-                                            widget.controller.avatar!,
-                                            fit: BoxFit.cover,
-                                          )
-                                        : widget.controller.updatedActivity
-                                                    .imageURL !=
-                                                null
-                                            ? widget.controller.updatedActivity
-                                                    .imageURL!
-                                                    .startsWith("mxc")
-                                                ? MxcImage(
-                                                    uri: Uri.parse(
-                                                      widget
+                                  Container(
+                                    padding: const EdgeInsets.all(24.0),
+                                    width: (_width / 2) + 42.0,
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(20.0),
+                                      child: widget.controller.avatar != null
+                                          ? Image.memory(
+                                              widget.controller.avatar!,
+                                              fit: BoxFit.cover,
+                                            )
+                                          : widget.controller.updatedActivity
+                                                      .imageURL !=
+                                                  null
+                                              ? widget.controller
+                                                      .updatedActivity.imageURL!
+                                                      .startsWith("mxc")
+                                                  ? MxcImage(
+                                                      uri: Uri.parse(
+                                                        widget
+                                                            .controller
+                                                            .updatedActivity
+                                                            .imageURL!,
+                                                      ),
+                                                      width: _width / 2,
+                                                      height: 200,
+                                                      cacheKey: widget
+                                                          .controller
+                                                          .updatedActivity
+                                                          .bookmarkId,
+                                                      fit: BoxFit.cover,
+                                                    )
+                                                  : CachedNetworkImage(
+                                                      imageUrl: widget
                                                           .controller
                                                           .updatedActivity
                                                           .imageURL!,
-                                                    ),
-                                                    width: _width,
-                                                    height: 200,
-                                                    cacheKey: widget
-                                                        .controller
-                                                        .updatedActivity
-                                                        .bookmarkId,
-                                                    fit: BoxFit.cover,
-                                                  )
-                                                : CachedNetworkImage(
-                                                    imageUrl: widget
-                                                        .controller
-                                                        .updatedActivity
-                                                        .imageURL!,
-                                                    fit: BoxFit.cover,
-                                                    placeholder:
-                                                        (context, url) =>
-                                                            const Center(
-                                                      child:
-                                                          CircularProgressIndicator(),
-                                                    ),
-                                                    errorWidget: (
-                                                      context,
-                                                      url,
-                                                      error,
-                                                    ) =>
-                                                        const SizedBox(),
-                                                  )
-                                            : null,
+                                                      fit: BoxFit.cover,
+                                                      placeholder: (
+                                                        context,
+                                                        url,
+                                                      ) =>
+                                                          const Center(
+                                                        child:
+                                                            CircularProgressIndicator(),
+                                                      ),
+                                                      errorWidget: (
+                                                        context,
+                                                        url,
+                                                        error,
+                                                      ) =>
+                                                          const SizedBox(),
+                                                    )
+                                              : null,
+                                    ),
                                   ),
                                   if (widget.controller.isEditing)
-                                    Positioned(
-                                      bottom: 8.0,
-                                      child: InkWell(
-                                        borderRadius: BorderRadius.circular(90),
-                                        onTap: widget.controller.selectAvatar,
-                                        child: const CircleAvatar(
-                                          radius: 24.0,
-                                          child: Icon(
-                                            Icons.add_a_photo_outlined,
-                                            size: 24.0,
-                                          ),
+                                    InkWell(
+                                      borderRadius: BorderRadius.circular(90),
+                                      onTap: widget.controller.selectAvatar,
+                                      child: CircleAvatar(
+                                        backgroundColor: Theme.of(context)
+                                            .colorScheme
+                                            .secondary,
+                                        radius: 20.0,
+                                        child: Icon(
+                                          Icons.add_a_photo_outlined,
+                                          size: 20.0,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .onSecondary,
                                         ),
                                       ),
                                     ),
@@ -338,7 +413,9 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
                                                       decoration: BoxDecoration(
                                                         color: theme
                                                             .colorScheme.primary
-                                                            .withAlpha(20),
+                                                            .withAlpha(
+                                                          20,
+                                                        ),
                                                         borderRadius:
                                                             BorderRadius
                                                                 .circular(
@@ -352,14 +429,18 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
                                                         child: GestureDetector(
                                                           onTap: () => widget
                                                               .controller
-                                                              .removeVocab(i),
+                                                              .removeVocab(
+                                                            i,
+                                                          ),
                                                           child: Row(
                                                             spacing: 4.0,
                                                             mainAxisSize:
                                                                 MainAxisSize
                                                                     .min,
                                                             children: [
-                                                              Text(vocab.lemma),
+                                                              Text(
+                                                                vocab.lemma,
+                                                              ),
                                                               const Icon(
                                                                 Icons.close,
                                                                 size: 12.0,
@@ -397,7 +478,9 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
                                                       decoration: BoxDecoration(
                                                         color: theme
                                                             .colorScheme.primary
-                                                            .withAlpha(20),
+                                                            .withAlpha(
+                                                          20,
+                                                        ),
                                                         borderRadius:
                                                             BorderRadius
                                                                 .circular(
@@ -429,8 +512,9 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
                                                 controller: widget
                                                     .controller.vocabController,
                                                 decoration: InputDecoration(
-                                                  hintText: L10n.of(context)
-                                                      .addVocabulary,
+                                                  hintText: L10n.of(
+                                                    context,
+                                                  ).addVocabulary,
                                                 ),
                                                 maxLines: 1,
                                                 onFieldSubmitted: (_) => widget
@@ -439,8 +523,9 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
                                               ),
                                             ),
                                             IconButton(
-                                              padding:
-                                                  const EdgeInsets.all(0.0),
+                                              padding: const EdgeInsets.all(
+                                                0.0,
+                                              ),
                                               constraints:
                                                   const BoxConstraints(), // override default min size of 48px
                                               iconSize: 16.0,
@@ -462,101 +547,173 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
                       ),
                       Padding(
                         padding: const EdgeInsets.all(16.0),
-                        child: Row(
-                          spacing: 6.0,
-                          children: [
-                            if (widget.controller.isEditing)
-                              Expanded(
-                                child: ElevatedButton(
-                                  onPressed: widget.controller.saveEdits,
-                                  style: ElevatedButton.styleFrom(
-                                    minimumSize: Size.zero,
-                                    padding: const EdgeInsets.all(6.0),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(12.0),
+                        child: widget.controller.isEditing
+                            ? Row(
+                                spacing: 12.0,
+                                children: [
+                                  Expanded(
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor:
+                                            theme.colorScheme.primaryContainer,
+                                        foregroundColor: theme
+                                            .colorScheme.onPrimaryContainer,
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 12.0,
+                                        ),
+                                      ),
+                                      onPressed: widget.controller.saveEdits,
+                                      child: Row(
+                                        children: [
+                                          const Icon(Icons.save),
+                                          Expanded(
+                                            child: Text(
+                                              L10n.of(context).save,
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                    backgroundColor: theme.colorScheme.primary,
-                                    foregroundColor:
-                                        theme.colorScheme.onPrimary,
                                   ),
-                                  child: Text(
-                                    L10n.of(context).save,
-                                    style: theme.textTheme.bodyLarge?.copyWith(
-                                      color: theme.colorScheme.onPrimary,
+                                  Expanded(
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor:
+                                            theme.colorScheme.primaryContainer,
+                                        foregroundColor: theme
+                                            .colorScheme.onPrimaryContainer,
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 12.0,
+                                        ),
+                                      ),
+                                      onPressed: widget.controller.clearEdits,
+                                      child: Row(
+                                        children: [
+                                          const Icon(Icons.cancel),
+                                          Expanded(
+                                            child: Text(
+                                              L10n.of(context).cancel,
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                ),
+                                ],
                               )
-                            else
-                              Expanded(
-                                child: ElevatedButton(
-                                  onPressed: () async {
-                                    if (!widget.controller.formKey.currentState!
-                                        .validate()) {
-                                      return;
-                                    }
-                                    _launchActivity();
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                    minimumSize: Size.zero,
-                                    padding: const EdgeInsets.all(6.0),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(12.0),
-                                    ),
-                                    backgroundColor: theme.colorScheme.primary,
-                                    foregroundColor:
-                                        theme.colorScheme.onPrimary,
+                            : Column(
+                                spacing: 12.0,
+                                children: [
+                                  Row(
+                                    spacing: 12.0,
+                                    children: [
+                                      Expanded(
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor: theme
+                                                .colorScheme.primaryContainer,
+                                            foregroundColor: theme
+                                                .colorScheme.onPrimaryContainer,
+                                            padding: const EdgeInsets.symmetric(
+                                              horizontal: 12.0,
+                                            ),
+                                          ),
+                                          child: Row(
+                                            children: [
+                                              const Icon(Icons.edit),
+                                              Expanded(
+                                                child: Text(
+                                                  L10n.of(context).edit,
+                                                  textAlign: TextAlign.center,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          onPressed: () => widget.controller
+                                              .setEditing(true),
+                                        ),
+                                      ),
+                                      if (widget.replaceActivity != null)
+                                        Expanded(
+                                          child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                              backgroundColor: theme
+                                                  .colorScheme.primaryContainer,
+                                              foregroundColor: theme.colorScheme
+                                                  .onPrimaryContainer,
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                horizontal: 12.0,
+                                              ),
+                                            ),
+                                            onPressed: _onRegenerate,
+                                            child: Row(
+                                              children: [
+                                                const Icon(
+                                                  Icons.lightbulb_outline,
+                                                ),
+                                                Expanded(
+                                                  child: Text(
+                                                    L10n.of(context).regenerate,
+                                                    textAlign: TextAlign.center,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                    ],
                                   ),
-                                  child: Text(
-                                    widget.buttonText,
-                                    style: theme.textTheme.bodyLarge?.copyWith(
-                                      color: theme.colorScheme.onPrimary,
-                                    ),
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor: theme
+                                                .colorScheme.primaryContainer,
+                                            foregroundColor: theme
+                                                .colorScheme.onPrimaryContainer,
+                                            padding: const EdgeInsets.symmetric(
+                                              horizontal: 12.0,
+                                            ),
+                                          ),
+                                          onPressed: _launchActivity,
+                                          child: Row(
+                                            children: [
+                                              const Icon(Icons.send),
+                                              Expanded(
+                                                child: Text(
+                                                  L10n.of(context)
+                                                      .launchActivityButton,
+                                                  textAlign: TextAlign.center,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ),
+                                ],
                               ),
-                            if (widget.controller.isEditing)
-                              IconButton.filled(
-                                style: IconButton.styleFrom(
-                                  backgroundColor: theme.colorScheme.primary,
-                                ),
-                                padding: const EdgeInsets.all(6.0),
-                                constraints:
-                                    const BoxConstraints(), // override default min size of 48px
-                                iconSize: 24.0,
-                                icon: const Icon(Icons.close_outlined),
-                                onPressed: () async {
-                                  await widget.controller.clearEdits();
-                                  widget.controller.setEditing(false);
-                                },
-                              )
-                            else
-                              IconButton.filled(
-                                style: IconButton.styleFrom(
-                                  backgroundColor: theme.colorScheme.primary,
-                                ),
-                                padding: const EdgeInsets.all(6.0),
-                                constraints:
-                                    const BoxConstraints(), // override default min size of 48px
-                                iconSize: 24.0,
-                                icon: const Icon(Icons.edit_outlined),
-                                onPressed: () =>
-                                    widget.controller.setEditing(true),
-                              ),
-                          ],
-                        ),
                       ),
                     ],
                   ),
-                )
-              : ActivityRoomSelection(
-                  controller: widget.controller,
-                  backButton: BackButton(
-                    onPressed: () => _setPageMode(
-                      _PageMode.activity,
-                    ),
+                );
+              }
+
+              return ActivityRoomSelection(
+                controller: widget.controller,
+                backButton: BackButton(
+                  onPressed: () => _setPageMode(
+                    _PageMode.activity,
                   ),
                 ),
+              );
+            },
+          ),
         ),
         if (_pageMode == _PageMode.activity)
           Positioned(

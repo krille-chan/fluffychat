@@ -197,6 +197,13 @@ class ActivityGeneratorState extends State<ActivityGenerator> {
     });
   }
 
+  void clearActivities() {
+    setState(() {
+      activities = null;
+      filename = null;
+    });
+  }
+
   Future<void> generate({bool force = false}) async {
     setState(() {
       loading = true;

@@ -80,7 +80,7 @@ class ActivityPlannerPageState extends State<ActivityPlannerPage> {
                           ),
                           ButtonSegment(
                             value: PageMode.savedActivities,
-                            label: Text(L10n.of(context).yourBookmarks),
+                            label: Text(L10n.of(context).yourSavedActivities),
                           ),
                         ],
                       ),

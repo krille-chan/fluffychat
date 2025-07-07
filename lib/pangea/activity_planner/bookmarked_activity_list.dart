@@ -44,7 +44,7 @@ class BookmarkedActivitiesListState extends State<BookmarkedActivitiesList> {
         child: Container(
           constraints: const BoxConstraints(maxWidth: 200),
           child: Text(
-            l10n.noBookmarkedActivities,
+            l10n.noSavedActivities,
             textAlign: TextAlign.center,
           ),
         ),

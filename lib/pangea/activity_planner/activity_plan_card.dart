@@ -110,6 +110,7 @@ class ActivityPlanCardState extends State<ActivityPlanCard> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     final l10n = L10n.of(context);
     return Center(
       child: ConstrainedBox(
@@ -168,10 +169,10 @@ class ActivityPlanCardState extends State<ActivityPlanCard> {
                           child: CircleAvatar(
                             backgroundColor:
                                 Theme.of(context).colorScheme.secondary,
-                            radius: 16.0,
+                            radius: 20.0,
                             child: Icon(
                               Icons.add_a_photo_outlined,
-                              size: 16.0,
+                              size: 20.0,
                               color: Theme.of(context).colorScheme.onSecondary,
                             ),
                           ),
@@ -214,8 +215,8 @@ class ActivityPlanCardState extends State<ActivityPlanCard> {
                                       ),
                               icon: Icon(
                                 _isBookmarked
-                                    ? Icons.bookmark
-                                    : Icons.bookmark_border,
+                                    ? Icons.save
+                                    : Icons.save_outlined,
                               ),
                             ),
                         ],
@@ -383,6 +384,15 @@ class ActivityPlanCardState extends State<ActivityPlanCard> {
                               children: [
                                 Expanded(
                                   child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor:
+                                          theme.colorScheme.primaryContainer,
+                                      foregroundColor:
+                                          theme.colorScheme.onPrimaryContainer,
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 12.0,
+                                      ),
+                                    ),
                                     onPressed: widget.controller.saveEdits,
                                     child: Row(
                                       children: [
@@ -399,6 +409,15 @@ class ActivityPlanCardState extends State<ActivityPlanCard> {
                                 ),
                                 Expanded(
                                   child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor:
+                                          theme.colorScheme.primaryContainer,
+                                      foregroundColor:
+                                          theme.colorScheme.onPrimaryContainer,
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 12.0,
+                                      ),
+                                    ),
                                     onPressed: widget.controller.clearEdits,
                                     child: Row(
                                       children: [
@@ -423,6 +442,15 @@ class ActivityPlanCardState extends State<ActivityPlanCard> {
                                   children: [
                                     Expanded(
                                       child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: theme
+                                              .colorScheme.primaryContainer,
+                                          foregroundColor: theme
+                                              .colorScheme.onPrimaryContainer,
+                                          padding: const EdgeInsets.symmetric(
+                                            horizontal: 12.0,
+                                          ),
+                                        ),
                                         child: Row(
                                           children: [
                                             const Icon(Icons.edit),
@@ -440,6 +468,15 @@ class ActivityPlanCardState extends State<ActivityPlanCard> {
                                     ),
                                     Expanded(
                                       child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: theme
+                                              .colorScheme.primaryContainer,
+                                          foregroundColor: theme
+                                              .colorScheme.onPrimaryContainer,
+                                          padding: const EdgeInsets.symmetric(
+                                            horizontal: 12.0,
+                                          ),
+                                        ),
                                         onPressed: widget.regenerate,
                                         child: Row(
                                           children: [
@@ -460,6 +497,15 @@ class ActivityPlanCardState extends State<ActivityPlanCard> {
                                   children: [
                                     Expanded(
                                       child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: theme
+                                              .colorScheme.primaryContainer,
+                                          foregroundColor: theme
+                                              .colorScheme.onPrimaryContainer,
+                                          padding: const EdgeInsets.symmetric(
+                                            horizontal: 12.0,
+                                          ),
+                                        ),
                                         onPressed: _onLaunch,
                                         child: Row(
                                           children: [

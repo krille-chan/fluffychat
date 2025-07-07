@@ -4748,12 +4748,9 @@
   "video": "Video",
   "nan": "Not applicable",
   "activityPlannerOverviewInstructionsBody": "Choose a topic, mode, learning objective and generate an activity for the chat!",
-  "myBookmarkedActivities": "My Bookmarked Activities",
-  "noBookmarkedActivities": "No bookmarked activities",
   "activityTitle": "Activity Title",
   "addVocabulary": "Add vocabulary",
   "instructions": "Instructions",
-  "bookmark": "Bookmark this activity",
   "numberOfLearners": "Number of learners",
   "mustBeInteger": "Must be an integer e.g. 1, 2, 3, ...",
   "noLemmasFound": "There's no vocabulary with more than {xp} XP. Keep practicing!",
@@ -4877,7 +4874,6 @@
   "clear": "Clear",
   "makeYourOwnActivity": "Create your own activity",
   "featuredActivities": "Featured",
-  "yourBookmarks": "Bookmarked",
   "goToChat": "Go to chat",
   "save": "Save",
   "selectActivity": "Select activity",
@@ -5035,5 +5031,9 @@
   "failedToFetchTranscription": "Failed to fetch transcription",
   "deleteEmptySpaceDesc": "The space will be deleted for all participants. This action cannot be undone.",
   "customReaction": "Custom reaction",
-  "regenerate": "Regenerate"
+  "regenerate": "Regenerate",
+  "mySavedActivities": "My Saved Activities",
+  "noSavedActivities": "No saved activities",
+  "saveActivity": "Save this activity",
+  "yourSavedActivities": "Saved Activities"
 }

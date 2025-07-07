@@ -73,7 +73,9 @@ class _AnimatedFloatingNumberState extends State<_AnimatedFloatingNumber>
   void initState() {
     super.initState();
     _controller = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 900));
+      vsync: this,
+      duration: const Duration(milliseconds: 900),
+    );
     _fadeAnim = CurvedAnimation(parent: _controller, curve: Curves.easeOut);
     _offsetAnim = Tween<Offset>(
       begin: const Offset(0, 0),

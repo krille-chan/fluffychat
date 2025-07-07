@@ -44,10 +44,10 @@ class ActivityPlannerPageAppBar extends StatelessWidget
           ? Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Icon(Icons.bookmarks),
+                const Icon(Icons.save),
                 const SizedBox(width: 8),
                 Flexible(
-                  child: Text(l10n.myBookmarkedActivities),
+                  child: Text(l10n.mySavedActivities),
                 ),
               ],
             )

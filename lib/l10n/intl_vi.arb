@@ -3564,12 +3564,9 @@
   "video": "Video",
   "nan": "Không áp dụng",
   "activityPlannerOverviewInstructionsBody": "Chọn chủ đề, chế độ, mục tiêu học tập và tạo hoạt động cho cuộc trò chuyện!",
-  "myBookmarkedActivities": "Hoạt động đã đánh dấu",
-  "noBookmarkedActivities": "Chưa có hoạt động nào được đánh dấu",
   "activityTitle": "Tiêu đề hoạt động",
   "addVocabulary": "Thêm từ vựng",
   "instructions": "Hướng dẫn",
-  "bookmark": "Đánh dấu hoạt động",
   "numberOfLearners": "Số lượng người học",
   "mustBeInteger": "Phải là số nguyên, ví dụ: 1, 2, 3...",
   "noLemmasFound": "Chưa có từ vựng với hơn {xp} XP. Hãy luyện tập thêm!",
@@ -3834,7 +3831,6 @@
   "randomize": "Ngẫu nhiên hóa",
   "clear": "Xóa",
   "featuredActivities": "Nổi bật",
-  "yourBookmarks": "Đã đánh dấu",
   "goToChat": "Đi đến trò chuyện",
   "save": "Lưu",
   "selectActivity": "Chọn hoạt động",
@@ -4027,10 +4023,6 @@
     "placeholders": {}
   },
   "@featuredActivities": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "@yourBookmarks": {
     "type": "String",
     "placeholders": {}
   },

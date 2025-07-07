@@ -5,6 +5,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+import 'package:collection/collection.dart';
 import 'package:matrix/matrix.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -78,6 +79,20 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
       MatrixState.pangeaController.languageController.userL2?.langCode ??
       LanguageKeys.defaultLanguage;
 
+  ActivityPlanRequest get _request {
+    return ActivityPlanRequest(
+      topic: "",
+      mode: "",
+      objective: "",
+      media: MediaEnum.nan,
+      cefrLevel: LanguageLevelTypeEnum.a1,
+      languageOfInstructions: instructionLanguage,
+      targetLanguage: targetLanguage,
+      numberOfParticipants: 3,
+      count: 5,
+    );
+  }
+
   Future<void> _setActivityItems({int retries = 0}) async {
     if (retries > 3) {
       if (mounted) {
@@ -95,18 +110,7 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
         _loading = true;
       });
 
-      final ActivityPlanRequest request = ActivityPlanRequest(
-        topic: "",
-        mode: "",
-        objective: "",
-        media: MediaEnum.nan,
-        cefrLevel: LanguageLevelTypeEnum.a1,
-        languageOfInstructions: instructionLanguage,
-        targetLanguage: targetLanguage,
-        numberOfParticipants: 3,
-        count: 5,
-      );
-      final resp = await ActivitySearchRepo.get(request).timeout(
+      final resp = await ActivitySearchRepo.get(_request).timeout(
         const Duration(seconds: 5),
         onTimeout: () {
           if (mounted) {
@@ -134,6 +138,10 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
     }
   }
 
+  void _onReplaceActivity(int index, ActivityPlanModel a) {
+    setState(() => _activityItems[index] = a);
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -154,7 +162,7 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
             );
           })
         : _activityItems
-            .map((activity) {
+            .mapIndexed((index, activity) {
               return ActivitySuggestionCard(
                 activity: activity,
                 onPressed: () {
@@ -168,6 +176,8 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
                           return ActivitySuggestionDialog(
                             controller: controller,
                             buttonText: L10n.of(context).launch,
+                            replaceActivity: (a) =>
+                                _onReplaceActivity(index, a),
                           );
                         },
                       );
