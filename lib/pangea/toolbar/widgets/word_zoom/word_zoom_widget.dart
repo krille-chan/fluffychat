@@ -44,7 +44,9 @@ class WordZoomWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final GlobalKey cardKey = GlobalKey();
+    final GlobalKey cardKey = MatrixState.pAnyState
+        .layerLinkAndKey("word-zoom-card-${token.text.uniqueKey}")
+        .key;
     final overlayColor = Theme.of(context).scaffoldBackgroundColor;
     return Stack(
       children: [
