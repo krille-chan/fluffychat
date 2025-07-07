@@ -429,7 +429,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 4NXF6Z997G;
+				DEVELOPMENT_TEAM = CZHLXCK4HK;
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Hermes;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
@@ -561,7 +561,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 4NXF6Z997G;
+				DEVELOPMENT_TEAM = CZHLXCK4HK;
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Hermes;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
@@ -587,7 +587,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 4NXF6Z997G;
+				DEVELOPMENT_TEAM = CZHLXCK4HK;
 				INFOPLIST_FILE = Runner/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Hermes;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
