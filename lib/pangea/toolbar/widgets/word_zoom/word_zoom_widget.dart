@@ -214,7 +214,8 @@ class WordZoomWidget extends StatelessWidget {
                           GestureDetector(
                             onLongPress: () => controller.toggleEditMode(true),
                             onDoubleTap: () => controller.toggleEditMode(true),
-                            child: token.lemma.text == token.text.content
+                            child: token.lemma.text.toLowerCase() ==
+                                    token.text.content.toLowerCase()
                                 ? Text(
                                     controller.lemmaInfo!.meaning,
                                     style: const TextStyle(fontSize: 14.0),
