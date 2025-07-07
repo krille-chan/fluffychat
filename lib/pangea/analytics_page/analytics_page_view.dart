@@ -38,42 +38,44 @@ class AnalyticsPageView extends StatelessWidget {
         ],
         Expanded(
           child: Scaffold(
-            body: Padding(
-              padding: const EdgeInsetsGeometry.all(16.0),
-              child: Column(
-                spacing: 16.0,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  LearningProgressIndicators(
-                    selected: controller.selectedIndicator,
-                  ),
-                  Expanded(
-                    child: Builder(
-                      builder: (context) {
-                        if (controller.selectedIndicator ==
-                            ProgressIndicatorEnum.level) {
-                          return const LevelDialogContent();
-                        } else if (controller.selectedIndicator ==
-                            ProgressIndicatorEnum.morphsUsed) {
-                          return AnalyticsPopupWrapper(
-                            constructZoom: controller.widget.constructZoom,
-                            view: ConstructTypeEnum.morph,
-                            showAppBar: false,
-                          );
-                        } else if (controller.selectedIndicator ==
-                            ProgressIndicatorEnum.wordsUsed) {
-                          return AnalyticsPopupWrapper(
-                            constructZoom: controller.widget.constructZoom,
-                            view: ConstructTypeEnum.vocab,
-                            showAppBar: false,
-                          );
-                        }
-
-                        return const SizedBox();
-                      },
+            body: SafeArea(
+              child: Padding(
+                padding: const EdgeInsetsGeometry.all(16.0),
+                child: Column(
+                  spacing: 16.0,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    LearningProgressIndicators(
+                      selected: controller.selectedIndicator,
                     ),
-                  ),
-                ],
+                    Expanded(
+                      child: Builder(
+                        builder: (context) {
+                          if (controller.selectedIndicator ==
+                              ProgressIndicatorEnum.level) {
+                            return const LevelDialogContent();
+                          } else if (controller.selectedIndicator ==
+                              ProgressIndicatorEnum.morphsUsed) {
+                            return AnalyticsPopupWrapper(
+                              constructZoom: controller.widget.constructZoom,
+                              view: ConstructTypeEnum.morph,
+                              showAppBar: false,
+                            );
+                          } else if (controller.selectedIndicator ==
+                              ProgressIndicatorEnum.wordsUsed) {
+                            return AnalyticsPopupWrapper(
+                              constructZoom: controller.widget.constructZoom,
+                              view: ConstructTypeEnum.vocab,
+                              showAppBar: false,
+                            );
+                          }
+
+                          return const SizedBox();
+                        },
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
