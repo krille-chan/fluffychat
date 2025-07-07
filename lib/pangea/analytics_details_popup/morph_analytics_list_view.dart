@@ -199,8 +199,8 @@ class MorphTagChip extends StatelessWidget {
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
                     colors: <Color>[
-                      Colors.transparent,
                       constructAnalytics.lemmaCategory.color(context),
+                      Colors.transparent,
                     ],
                   )
                 : null,
@@ -218,9 +218,17 @@ class MorphTagChip extends StatelessWidget {
                 width: 28.0,
                 height: 28.0,
                 child: unlocked
-                    ? MorphIcon(
-                        morphFeature: feature,
-                        morphTag: morphTag,
+                    ? IconButton.filled(
+                        style: IconButton.styleFrom(
+                          backgroundColor:
+                              theme.colorScheme.surface.withAlpha(180),
+                        ),
+                        padding: const EdgeInsets.all(4),
+                        onPressed: () => {},
+                        icon: MorphIcon(
+                          morphFeature: feature,
+                          morphTag: morphTag,
+                        ),
                       )
                     : const Icon(
                         Icons.lock,
