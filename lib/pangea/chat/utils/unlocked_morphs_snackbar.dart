@@ -9,12 +9,12 @@ import 'package:go_router/go_router.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/pangea/analytics_misc/gain_points_animation.dart';
 import 'package:fluffychat/pangea/common/utils/overlay.dart';
 import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
 import 'package:fluffychat/pangea/morphs/get_grammar_copy.dart';
 import 'package:fluffychat/pangea/morphs/morph_features_enum.dart';
 import 'package:fluffychat/pangea/morphs/morph_icon.dart';
+import 'package:fluffychat/pangea/toolbar/widgets/icon_rain.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class ConstructNotificationUtil {
@@ -124,10 +124,15 @@ class ConstructNotificationOverlayState
         followerAnchor: Alignment.topCenter,
         targetAnchor: Alignment.topCenter,
         context: context,
-        child: PointsGainedAnimation(
-          points: 50,
-          targetID: "${widget.construct.string}_notification",
-          invert: true,
+        child: IconRain(
+          addStars: true,
+          icon: MorphIcon(
+            size: const Size(8, 8),
+            morphFeature: MorphFeaturesEnumExtension.fromString(
+              widget.construct.category,
+            ),
+            morphTag: widget.construct.lemma,
+          ),
         ),
         transformTargetId: "${widget.construct.string}_notification",
         closePrevOverlay: false,
