@@ -17,12 +17,10 @@ import 'package:fluffychat/pangea/analytics_misc/constructs_model.dart';
 import 'package:fluffychat/pangea/analytics_misc/put_analytics_controller.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/common/utils/overlay.dart';
-import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_representation_event.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_text_model.dart';
-import 'package:fluffychat/pangea/lemmas/lemma_info_response.dart';
 import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_activity_model.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_choice.dart';
@@ -73,8 +71,6 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   /// Variables
   /////////////////////////////////////
   MessageMode toolbarMode = MessageMode.noneSelected;
-
-  Map<ConstructIdentifier, LemmaInfoResponse>? messageLemmaInfos;
 
   /// set and cleared by the PracticeActivityCard
   /// has to be at this level so drag targets can access it
@@ -155,17 +151,6 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
         );
       }
 
-      // Get all the lemma infos
-      final messageVocabConstructIds = pangeaMessageEvent!
-          .messageDisplayRepresentation!.tokensToSave
-          .map((e) => e.vocabConstructID)
-          .toList();
-
-      final List<Future<LemmaInfoResponse>> lemmaInfoFutures =
-          messageVocabConstructIds
-              .map((token) => token.getLemmaInfo())
-              .toList();
-
       newTokens = pangeaMessageEvent?.messageDisplayRepresentation?.tokens
               ?.where((token) {
             return token.lemma.saveVocab == true &&
@@ -173,17 +158,6 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
                 messageInUserL2;
           }).toList() ??
           [];
-
-      Future.wait(lemmaInfoFutures).then((resp) {
-        if (mounted) {
-          setState(
-            () => messageLemmaInfos = Map.fromIterables(
-              messageVocabConstructIds,
-              resp,
-            ),
-          );
-        }
-      });
     } catch (e, s) {
       debugger(when: kDebugMode);
       ErrorHandler.logError(
@@ -196,7 +170,6 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     } finally {
       _initializeSelectedToken();
       _setInitialToolbarMode();
-      messageLemmaInfos ??= {};
       initialized = true;
       if (mounted) setState(() {});
     }
@@ -442,7 +415,6 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   bool get isTranslationUnlocked =>
       pangeaMessageEvent?.ownMessage == true ||
       !messageInUserL2 ||
-      (messageLemmaInfos?.isEmpty ?? false) ||
       isEmojiDone ||
       isMeaningDone ||
       isListeningDone ||
