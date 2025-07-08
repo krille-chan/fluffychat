@@ -3,7 +3,6 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 
 import 'package:badges/badges.dart';
-import 'package:desktop_drop/desktop_drop.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
