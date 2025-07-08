@@ -498,12 +498,8 @@ class Message extends StatelessWidget {
                                           ),
                                         Container(
                                           alignment: alignment,
-                                          padding: const EdgeInsets.only(
-                                            left: 8,
-                                            // #Pangea
-                                            // bottom: showReactionPicker ? 40 : 0,
-                                            // Pangea#
-                                          ),
+                                          padding:
+                                              const EdgeInsets.only(left: 8),
                                           child: GestureDetector(
                                             // #Pangea
                                             onTap: () =>
@@ -770,193 +766,215 @@ class Message extends StatelessWidget {
                                             ),
                                           ),
                                         ),
+                                        // #Pangea
+                                        // Align(
+                                        //   alignment: ownMessage
+                                        //       ? Alignment.bottomRight
+                                        //       : Alignment.bottomLeft,
+                                        //   child: AnimatedSize(
+                                        //     duration:
+                                        //         FluffyThemes.animationDuration,
+                                        //     curve: FluffyThemes.animationCurve,
+                                        //     child: showReactionPicker
+                                        //         ? Padding(
+                                        //             padding:
+                                        //                 const EdgeInsets.all(
+                                        //               4.0,
+                                        //             ),
+                                        //             child: Material(
+                                        //               elevation: 4,
+                                        //               borderRadius:
+                                        //                   BorderRadius.circular(
+                                        //                 AppConfig.borderRadius,
+                                        //               ),
+                                        //               shadowColor: theme
+                                        //                   .colorScheme.surface
+                                        //                   .withAlpha(128),
+                                        //               child:
+                                        //                   SingleChildScrollView(
+                                        //                 scrollDirection:
+                                        //                     Axis.horizontal,
+                                        //                 child: Row(
+                                        //                   mainAxisSize:
+                                        //                       MainAxisSize.min,
+                                        //                   children: [
+                                        //                     ...AppConfig
+                                        //                         .defaultReactions
+                                        //                         .map(
+                                        //                       (emoji) =>
+                                        //                           IconButton(
+                                        //                         padding:
+                                        //                             EdgeInsets
+                                        //                                 .zero,
+                                        //                         icon: Center(
+                                        //                           child:
+                                        //                               Opacity(
+                                        //                             opacity: sentReactions
+                                        //                                     .contains(
+                                        //                               emoji,
+                                        //                             )
+                                        //                                 ? 0.33
+                                        //                                 : 1,
+                                        //                             child: Text(
+                                        //                               emoji,
+                                        //                               style:
+                                        //                                   const TextStyle(
+                                        //                                 fontSize:
+                                        //                                     20,
+                                        //                               ),
+                                        //                               textAlign:
+                                        //                                   TextAlign
+                                        //                                       .center,
+                                        //                             ),
+                                        //                           ),
+                                        //                         ),
+                                        //                         onPressed:
+                                        //                             sentReactions
+                                        //                                     .contains(
+                                        //                           emoji,
+                                        //                         )
+                                        //                                 ? null
+                                        //                                 : () {
+                                        //                                     onSelect(
+                                        //                                       event,
+                                        //                                     );
+                                        //                                     event.room.sendReaction(
+                                        //                                       event.eventId,
+                                        //                                       emoji,
+                                        //                                     );
+                                        //                                   },
+                                        //                       ),
+                                        //                     ),
+                                        //                     IconButton(
+                                        //                       icon: const Icon(
+                                        //                         Icons
+                                        //                             .add_reaction_outlined,
+                                        //                       ),
+                                        //                       tooltip: L10n.of(
+                                        //                         context,
+                                        //                       ).customReaction,
+                                        //                       onPressed:
+                                        //                           () async {
+                                        //                         final emoji =
+                                        //                             await showAdaptiveBottomSheet<
+                                        //                                 String>(
+                                        //                           context:
+                                        //                               context,
+                                        //                           builder:
+                                        //                               (context) =>
+                                        //                                   Scaffold(
+                                        //                             appBar:
+                                        //                                 AppBar(
+                                        //                               title:
+                                        //                                   Text(
+                                        //                                 L10n.of(context)
+                                        //                                     .customReaction,
+                                        //                               ),
+                                        //                               leading:
+                                        //                                   CloseButton(
+                                        //                                 onPressed:
+                                        //                                     () =>
+                                        //                                         Navigator.of(
+                                        //                                   context,
+                                        //                                 ).pop(
+                                        //                                   null,
+                                        //                                 ),
+                                        //                               ),
+                                        //                             ),
+                                        //                             body:
+                                        //                                 SizedBox(
+                                        //                               height: double
+                                        //                                   .infinity,
+                                        //                               child:
+                                        //                                   EmojiPicker(
+                                        //                                 onEmojiSelected: (
+                                        //                                   _,
+                                        //                                   emoji,
+                                        //                                 ) =>
+                                        //                                     Navigator.of(
+                                        //                                   context,
+                                        //                                 ).pop(
+                                        //                                   emoji
+                                        //                                       .emoji,
+                                        //                                 ),
+                                        //                                 config:
+                                        //                                     Config(
+                                        //                                   emojiViewConfig:
+                                        //                                       const EmojiViewConfig(
+                                        //                                     backgroundColor:
+                                        //                                         Colors.transparent,
+                                        //                                   ),
+                                        //                                   bottomActionBarConfig:
+                                        //                                       const BottomActionBarConfig(
+                                        //                                     enabled:
+                                        //                                         false,
+                                        //                                   ),
+                                        //                                   categoryViewConfig:
+                                        //                                       CategoryViewConfig(
+                                        //                                     initCategory:
+                                        //                                         Category.SMILEYS,
+                                        //                                     backspaceColor:
+                                        //                                         theme.colorScheme.primary,
+                                        //                                     iconColor:
+                                        //                                         theme.colorScheme.primary.withAlpha(
+                                        //                                       128,
+                                        //                                     ),
+                                        //                                     iconColorSelected:
+                                        //                                         theme.colorScheme.primary,
+                                        //                                     indicatorColor:
+                                        //                                         theme.colorScheme.primary,
+                                        //                                     backgroundColor:
+                                        //                                         theme.colorScheme.surface,
+                                        //                                   ),
+                                        //                                   skinToneConfig:
+                                        //                                       SkinToneConfig(
+                                        //                                     dialogBackgroundColor:
+                                        //                                         Color.lerp(
+                                        //                                       theme.colorScheme.surface,
+                                        //                                       theme.colorScheme.primaryContainer,
+                                        //                                       0.75,
+                                        //                                     )!,
+                                        //                                     indicatorColor:
+                                        //                                         theme.colorScheme.onSurface,
+                                        //                                   ),
+                                        //                                 ),
+                                        //                               ),
+                                        //                             ),
+                                        //                           ),
+                                        //                         );
+                                        //                         if (emoji ==
+                                        //                             null) {
+                                        //                           return;
+                                        //                         }
+                                        //                         if (sentReactions
+                                        //                             .contains(
+                                        //                           emoji,
+                                        //                         )) {
+                                        //                           return;
+                                        //                         }
+                                        //                         onSelect(event);
+
+                                        //                         await event.room
+                                        //                             .sendReaction(
+                                        //                           event.eventId,
+                                        //                           emoji,
+                                        //                         );
+                                        //                       },
+                                        //                     ),
+                                        //                   ],
+                                        //                 ),
+                                        //               ),
+                                        //             ),
+                                        //           )
+                                        //         : const SizedBox.shrink(),
+                                        //   ),
+                                        // ),
+                                        // Pangea#
                                       ],
                                     ),
                                   ),
                                 ],
                               ),
-                              // #Pangea
-                              // Positioned(
-                              //   left:
-                              //       ownMessage ? null : Avatar.defaultSize + 8,
-                              //   right: ownMessage ? 0 : null,
-                              //   bottom: 0,
-                              //   child: AnimatedSize(
-                              //     duration: FluffyThemes.animationDuration,
-                              //     curve: FluffyThemes.animationCurve,
-                              //     alignment: Alignment.bottomCenter,
-                              //     child: showReactionPicker
-                              //         ? Padding(
-                              //             padding: const EdgeInsets.only(
-                              //               top: 8.0,
-                              //               bottom: 4.0,
-                              //             ),
-                              //             child: Material(
-                              //               elevation: 4,
-                              //               borderRadius: BorderRadius.circular(
-                              //                 AppConfig.borderRadius,
-                              //               ),
-                              //               shadowColor: theme
-                              //                   .colorScheme.surface
-                              //                   .withAlpha(128),
-                              //               child: Row(
-                              //                 mainAxisSize: MainAxisSize.min,
-                              //                 children: [
-                              //                   ...AppConfig.defaultReactions
-                              //                       .map(
-                              //                     (emoji) => IconButton(
-                              //                       padding: EdgeInsets.zero,
-                              //                       icon: Center(
-                              //                         child: Opacity(
-                              //                           opacity: sentReactions
-                              //                                   .contains(emoji)
-                              //                               ? 0.33
-                              //                               : 1,
-                              //                           child: Text(
-                              //                             emoji,
-                              //                             style:
-                              //                                 const TextStyle(
-                              //                               fontSize: 20,
-                              //                             ),
-                              //                             textAlign:
-                              //                                 TextAlign.center,
-                              //                           ),
-                              //                         ),
-                              //                       ),
-                              //                       onPressed: sentReactions
-                              //                               .contains(emoji)
-                              //                           ? null
-                              //                           : () {
-                              //                               onSelect(event);
-                              //                               event.room
-                              //                                   .sendReaction(
-                              //                                 event.eventId,
-                              //                                 emoji,
-                              //                               );
-                              //                             },
-                              //                     ),
-                              //                   ),
-                              //                   IconButton(
-                              //                     icon: const Icon(
-                              //                       Icons.add_reaction_outlined,
-                              //                     ),
-                              //                     tooltip: L10n.of(context)
-                              //                         .customReaction,
-                              //                     onPressed: () async {
-                              //                       final emoji =
-                              //                           await showAdaptiveBottomSheet<
-                              //                               String>(
-                              //                         context: context,
-                              //                         builder: (context) =>
-                              //                             Scaffold(
-                              //                           appBar: AppBar(
-                              //                             title: Text(
-                              //                               L10n.of(context)
-                              //                                   .customReaction,
-                              //                             ),
-                              //                             leading: CloseButton(
-                              //                               onPressed: () =>
-                              //                                   Navigator.of(
-                              //                                 context,
-                              //                               ).pop(
-                              //                                 null,
-                              //                               ),
-                              //                             ),
-                              //                           ),
-                              //                           body: SizedBox(
-                              //                             height:
-                              //                                 double.infinity,
-                              //                             child: EmojiPicker(
-                              //                               onEmojiSelected: (
-                              //                                 _,
-                              //                                 emoji,
-                              //                               ) =>
-                              //                                   Navigator.of(
-                              //                                 context,
-                              //                               ).pop(
-                              //                                 emoji.emoji,
-                              //                               ),
-                              //                               config: Config(
-                              //                                 emojiViewConfig:
-                              //                                     const EmojiViewConfig(
-                              //                                   backgroundColor:
-                              //                                       Colors
-                              //                                           .transparent,
-                              //                                 ),
-                              //                                 bottomActionBarConfig:
-                              //                                     const BottomActionBarConfig(
-                              //                                   enabled: false,
-                              //                                 ),
-                              //                                 categoryViewConfig:
-                              //                                     CategoryViewConfig(
-                              //                                   initCategory:
-                              //                                       Category
-                              //                                           .SMILEYS,
-                              //                                   backspaceColor: theme
-                              //                                       .colorScheme
-                              //                                       .primary,
-                              //                                   iconColor: theme
-                              //                                       .colorScheme
-                              //                                       .primary
-                              //                                       .withAlpha(
-                              //                                     128,
-                              //                                   ),
-                              //                                   iconColorSelected:
-                              //                                       theme
-                              //                                           .colorScheme
-                              //                                           .primary,
-                              //                                   indicatorColor: theme
-                              //                                       .colorScheme
-                              //                                       .primary,
-                              //                                   backgroundColor:
-                              //                                       theme
-                              //                                           .colorScheme
-                              //                                           .surface,
-                              //                                 ),
-                              //                                 skinToneConfig:
-                              //                                     SkinToneConfig(
-                              //                                   dialogBackgroundColor:
-                              //                                       Color.lerp(
-                              //                                     theme
-                              //                                         .colorScheme
-                              //                                         .surface,
-                              //                                     theme
-                              //                                         .colorScheme
-                              //                                         .primaryContainer,
-                              //                                     0.75,
-                              //                                   )!,
-                              //                                   indicatorColor: theme
-                              //                                       .colorScheme
-                              //                                       .onSurface,
-                              //                                 ),
-                              //                               ),
-                              //                             ),
-                              //                           ),
-                              //                         ),
-                              //                       );
-                              //                       if (emoji == null) return;
-                              //                       if (sentReactions.contains(
-                              //                         emoji,
-                              //                       )) {
-                              //                         return;
-                              //                       }
-                              //                       onSelect(event);
-
-                              //                       await event.room
-                              //                           .sendReaction(
-                              //                         event.eventId,
-                              //                         emoji,
-                              //                       );
-                              //                     },
-                              //                   ),
-                              //                 ],
-                              //               ),
-                              //             ),
-                              //           )
-                              //         : const SizedBox.shrink(),
-                              //   ),
-                              // ),
-                              // Pangea#
                             ],
                           ),
                   );
