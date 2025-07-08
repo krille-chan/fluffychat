@@ -20,9 +20,12 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
-      - run: flutter pub get
+      - uses: moonrepo/setup-rust@v1
+      - run: rustup component add rust-src --toolchain nightly-x86_64-unknown-linux-gnu
       - name: Prepare web
         run: ./scripts/prepare-web.sh
+      - run: rm ./assets/vodozemac/.gitignore
+      - run: flutter pub get
       - name: Build Release Web
         run: ./scripts/build-web.sh
         

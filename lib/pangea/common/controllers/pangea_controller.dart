@@ -7,6 +7,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:matrix/matrix.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/analytics_misc/get_analytics_controller.dart';
 import 'package:fluffychat/pangea/analytics_misc/put_analytics_controller.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/contextual_definition_controller.dart';
@@ -24,7 +25,6 @@ import 'package:fluffychat/pangea/toolbar/controllers/text_to_speech_controller.
 import 'package:fluffychat/pangea/user/controllers/permissions_controller.dart';
 import 'package:fluffychat/pangea/user/controllers/user_controller.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import '../../../config/app_config.dart';
 import '../../choreographer/controllers/it_feedback_controller.dart';
 import '../utils/firebase_analytics.dart';
 
@@ -132,7 +132,8 @@ class PangeaController {
   }
 
   Future<void> checkHomeServerAction() async {
-    if (matrixState.getLoginClient().homeserver != null) {
+    final client = await matrixState.getLoginClient();
+    if (client.homeserver != null) {
       await Future.delayed(Duration.zero);
       return;
     }
@@ -145,7 +146,7 @@ class PangeaController {
     }
 
     try {
-      await matrixState.getLoginClient().register();
+      await client.register();
       matrixState.loginRegistrationSupported = true;
     } on MatrixException catch (e) {
       matrixState.loginRegistrationSupported =
@@ -156,7 +157,7 @@ class PangeaController {
   }
 
   /// check user information if not found then redirect to Date of birth page
-  _handleLoginStateChange(LoginState state) {
+  _handleLoginStateChange(LoginState state, String? userID) {
     switch (state) {
       case LoginState.loggedOut:
       case LoginState.softLoggedOut:
@@ -180,12 +181,12 @@ class PangeaController {
     Sentry.configureScope(
       (scope) => scope.setUser(
         SentryUser(
-          id: matrixState.client.userID,
-          name: matrixState.client.userID,
+          id: userID,
+          name: userID,
         ),
       ),
     );
-    GoogleAnalytics.analyticsUserUpdate(matrixState.client.userID);
+    GoogleAnalytics.analyticsUserUpdate(userID);
   }
 
   Future<void> resetAnalytics() async {
@@ -196,8 +197,9 @@ class PangeaController {
   }
 
   void _subscribeToStreams() {
+    final userID = matrixState.client.userID;
     matrixState.client.onLoginStateChanged.stream
-        .listen(_handleLoginStateChange);
+        .listen((state) => _handleLoginStateChange(state, userID));
     _setLanguageStream();
   }
 

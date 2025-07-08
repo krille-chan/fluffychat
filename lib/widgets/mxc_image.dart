@@ -107,7 +107,7 @@ class _MxcImageState extends State<MxcImage> {
     }
   }
 
-  void _tryLoad(_) async {
+  void _tryLoad() async {
     if (_imageData != null) {
       return;
     }
@@ -116,14 +116,14 @@ class _MxcImageState extends State<MxcImage> {
     } on IOException catch (_) {
       if (!mounted) return;
       await Future.delayed(widget.retryDuration);
-      _tryLoad(_);
+      _tryLoad();
     }
   }
 
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback(_tryLoad);
+    WidgetsBinding.instance.addPostFrameCallback((_) => _tryLoad());
   }
 
   // #Pangea
@@ -132,7 +132,7 @@ class _MxcImageState extends State<MxcImage> {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.uri != widget.uri || oldWidget.cacheKey != widget.cacheKey) {
       _imageData = null;
-      WidgetsBinding.instance.addPostFrameCallback(_tryLoad);
+      WidgetsBinding.instance.addPostFrameCallback((_) => _tryLoad());
     }
   }
   // Pangea#

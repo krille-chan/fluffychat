@@ -1177,7 +1177,13 @@ class ChatListController extends State<ChatList>
     // if (client.prevBatch == null) {
     if (client.onSync.value?.nextBatch == null) {
       // Pangea#
-      await client.onSync.stream.first;
+      await client.onSyncStatus.stream
+          .firstWhere((status) => status.status == SyncStatus.finished);
+
+      if (!mounted) return;
+      setState(() {
+        waitForFirstSync = true;
+      });
 
       // Display first login bootstrap if enabled
       // #Pangea

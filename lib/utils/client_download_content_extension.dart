@@ -25,7 +25,7 @@ extension ClientDownloadContentExtension on Client {
           )
         : mxc;
 
-    final cachedData = await database?.getFile(cacheKey);
+    final cachedData = await database.getFile(cacheKey);
     if (cachedData != null) return cachedData;
 
     final httpUri = isThumbnail
@@ -55,7 +55,7 @@ extension ClientDownloadContentExtension on Client {
       }
     }
 
-    await database?.storeFile(cacheKey, imageData, 0);
+    await database.storeFile(cacheKey, imageData, 0);
 
     return imageData;
   }

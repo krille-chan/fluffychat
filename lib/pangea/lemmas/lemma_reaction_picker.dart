@@ -39,7 +39,8 @@ class LemmaReactionPickerState extends State<LemmaReactionPicker> {
     }
   }
 
-  void setEmoji(String emoji) => widget.controller.sendEmojiAction(emoji);
+  void setEmoji(String emoji) {}
+  // widget.controller.sendEmojiAction(emoji);
 
   Future<void> _refresh() async {
     setState(() {

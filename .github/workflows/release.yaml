@@ -48,6 +48,8 @@ jobs:
           cache: true
       - name: Install dependencies
         run: sudo apt-get update && sudo apt-get install nodejs -y
+      - uses: moonrepo/setup-rust@v1
+      - run: rustup component add rust-src --toolchain nightly-x86_64-unknown-linux-gnu
       - run: flutter pub get
       - name: Prepare web
         run: ./scripts/prepare-web.sh

@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:collection/collection.dart';
 import 'package:desktop_notifications/desktop_notifications.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_vodozemac/flutter_vodozemac.dart' as vod;
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:matrix/encryption/utils/key_verification.dart';
 import 'package:matrix/matrix.dart';
@@ -47,7 +48,7 @@ abstract class ClientManager {
       await store.setStringList(clientNamespace, clientNames.toList());
     }
     final clients =
-        clientNames.map((name) => createClient(name, store)).toList();
+        await Future.wait(clientNames.map((name) => createClient(name, store)));
     if (initialize) {
       await Future.wait(
         clients.map(
@@ -101,9 +102,15 @@ abstract class ClientManager {
 
   static NativeImplementations get nativeImplementations => kIsWeb
       ? const NativeImplementationsDummy()
-      : NativeImplementationsIsolate(compute);
+      : NativeImplementationsIsolate(
+          compute,
+          vodozemacInit: () => vod.init(wasmPath: './assets/assets/vodozemac/'),
+        );
 
-  static Client createClient(String clientName, SharedPreferences store) {
+  static Future<Client> createClient(
+    String clientName,
+    SharedPreferences store,
+  ) async {
     final shareKeysWith = AppSettings.shareKeysWith.getItem(store);
     final enableSoftLogout = AppSettings.enableSoftLogout.getItem(store);
 
@@ -133,7 +140,7 @@ abstract class ClientManager {
         // Pangea#
       },
       logLevel: kReleaseMode ? Level.warning : Level.verbose,
-      databaseBuilder: flutterMatrixSdkDatabaseBuilder,
+      database: await flutterMatrixSdkDatabaseBuilder(clientName),
       supportedLoginTypes: {
         AuthenticationTypes.password,
         AuthenticationTypes.sso,

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
+import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/archive/archive.dart';
@@ -60,7 +61,9 @@ abstract class AppRoutes {
     GoRouterState state,
   ) {
     // #Pangea
-    // Matrix.of(context).client.isLogged() ? '/rooms' : null;
+    // Matrix.of(context).widget.clients.any((client) => client.isLogged())
+    //       ? '/rooms'
+    //       : null;
     return PAuthGaurd.loggedInRedirect(context, state);
     // Pangea#
   }
@@ -70,7 +73,9 @@ abstract class AppRoutes {
     GoRouterState state,
   ) {
     // #Pangea
-    // Matrix.of(context).client.isLogged() ? null : '/home';
+    // Matrix.of(context).widget.clients.any((client) => client.isLogged())
+    //     ? null
+    //     : '/home';
     return PAuthGaurd.loggedOutRedirect(context, state);
     // Pangea#
   }
@@ -81,7 +86,9 @@ abstract class AppRoutes {
     GoRoute(
       path: '/',
       redirect: (context, state) =>
-          Matrix.of(context).client.isLogged() ? '/rooms' : '/home',
+          Matrix.of(context).widget.clients.any((client) => client.isLogged())
+              ? '/rooms'
+              : '/home',
     ),
     GoRoute(
       path: '/home',
@@ -100,7 +107,7 @@ abstract class AppRoutes {
           pageBuilder: (context, state) => defaultPageBuilder(
             context,
             state,
-            const Login(),
+            Login(client: state.extra as Client),
           ),
           redirect: loggedInRedirect,
         ),
@@ -430,24 +437,13 @@ abstract class AppRoutes {
                     //       pageBuilder: (context, state) => defaultPageBuilder(
                     //         context,
                     //         state,
-                    //         const Login(),
+                    //         Login(client: state.extra as Client),
                     //       ),
                     //       redirect: loggedOutRedirect,
                     //     ),
                     //   ],
                     // ),
                     // Pangea#
-                    GoRoute(
-                      path: 'homeserver',
-                      pageBuilder: (context, state) {
-                        return defaultPageBuilder(
-                          context,
-                          state,
-                          const SettingsHomeserver(),
-                        );
-                      },
-                      redirect: loggedOutRedirect,
-                    ),
                     GoRoute(
                       path: 'homeserver',
                       pageBuilder: (context, state) {

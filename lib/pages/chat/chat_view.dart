@@ -45,15 +45,6 @@ class ChatView extends StatelessWidget {
           tooltip: L10n.of(context).copy,
           onPressed: controller.copyEventsAction,
         ),
-        if (controller.canSaveSelectedEvent)
-          // Use builder context to correctly position the share dialog on iPad
-          Builder(
-            builder: (context) => IconButton(
-              icon: Icon(Icons.adaptive.share),
-              tooltip: L10n.of(context).share,
-              onPressed: () => controller.saveSelectedEvent(context),
-            ),
-          ),
         if (controller.canPinSelectedEvents)
           IconButton(
             icon: const Icon(Icons.push_pin_outlined),
@@ -81,6 +72,19 @@ class ChatView extends StatelessWidget {
               }
             },
             itemBuilder: (context) => [
+              if (controller.canSaveSelectedEvent)
+                PopupMenuItem(
+                  onTap: () => controller.saveSelectedEvent(context),
+                  value: null,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(Icons.download_outlined),
+                      const SizedBox(width: 12),
+                      Text(L10n.of(context).downloadFile),
+                    ],
+                  ),
+                ),
               PopupMenuItem(
                 value: _EventContextAction.info,
                 child: Row(
@@ -193,15 +197,18 @@ class ChatView extends StatelessWidget {
                 actionsIconTheme: IconThemeData(
                   color: controller.selectedEvents.isEmpty
                       ? null
-                      : theme.colorScheme.tertiary,
+                      : theme.colorScheme.onTertiaryContainer,
                 ),
+                backgroundColor: controller.selectedEvents.isEmpty
+                    ? null
+                    : theme.colorScheme.tertiaryContainer,
                 automaticallyImplyLeading: false,
                 leading: controller.selectMode
                     ? IconButton(
                         icon: const Icon(Icons.close),
                         onPressed: controller.clearSelectedEvents,
                         tooltip: L10n.of(context).close,
-                        color: theme.colorScheme.tertiary,
+                        color: theme.colorScheme.onTertiaryContainer,
                       )
                     : FluffyThemes.isColumnMode(context)
                         ? null
@@ -297,12 +304,12 @@ class ChatView extends StatelessWidget {
                       ),
                     ),
                   SafeArea(
-                    child:
-                        // #Pangea
-                        Stack(
+                    // #Pangea
+                    // child: Column(
+                    child: Stack(
                       children: [
-                        // Pangea#
                         Column(
+                          // Pangea#
                           children: <Widget>[
                             Expanded(
                               child: GestureDetector(
@@ -310,13 +317,14 @@ class ChatView extends StatelessWidget {
                                 child: ChatEventList(controller: controller),
                               ),
                             ),
+                            if (controller.showScrollDownButton)
+                              Divider(
+                                height: 1,
+                                color: theme.dividerColor,
+                              ),
                             if (controller.room.isExtinct)
                               Container(
-                                margin: EdgeInsets.only(
-                                  bottom: bottomSheetPadding,
-                                  left: bottomSheetPadding,
-                                  right: bottomSheetPadding,
-                                ),
+                                margin: EdgeInsets.all(bottomSheetPadding),
                                 width: double.infinity,
                                 child: ElevatedButton.icon(
                                   icon: const Icon(Icons.chevron_right),
@@ -327,18 +335,16 @@ class ChatView extends StatelessWidget {
                             else if (controller.room.canSendDefaultMessages &&
                                 controller.room.membership == Membership.join)
                               Container(
-                                margin: EdgeInsets.only(
-                                  bottom: bottomSheetPadding,
-                                  left: bottomSheetPadding,
-                                  right: bottomSheetPadding,
-                                ),
+                                margin: EdgeInsets.all(bottomSheetPadding),
                                 constraints: const BoxConstraints(
-                                  maxWidth: FluffyThemes.columnWidth * 2.5,
+                                  maxWidth: FluffyThemes.maxTimelineWidth,
                                 ),
                                 alignment: Alignment.center,
                                 child: Material(
                                   clipBehavior: Clip.hardEdge,
-                                  color: theme.colorScheme.surfaceContainerHigh,
+                                  color: controller.selectedEvents.isNotEmpty
+                                      ? theme.colorScheme.tertiaryContainer
+                                      : theme.colorScheme.surfaceContainerHigh,
                                   borderRadius: const BorderRadius.all(
                                     Radius.circular(24),
                                   ),
@@ -386,7 +392,6 @@ class ChatView extends StatelessWidget {
                                   // : Column(
                                   //     mainAxisSize: MainAxisSize.min,
                                   //     children: [
-                                  //       ReactionsPicker(controller),
                                   //       ReplyDisplay(controller),
                                   //       ChatInputRow(controller),
                                   //       ChatEmojiPicker(controller),

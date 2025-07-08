@@ -16,12 +16,10 @@ import 'package:fluffychat/widgets/matrix.dart';
 
 Future<void> pangeaSSOLoginAction(
   IdentityProvider provider,
-  Client client,
   BuildContext context,
 ) async {
   final bool isDefaultPlatform =
       (PlatformInfos.isMobile || PlatformInfos.isWeb || PlatformInfos.isMacOS);
-
   final redirectUrl = kIsWeb
       ? Uri.parse(html.window.location.href)
           .resolveUri(
@@ -31,16 +29,15 @@ Future<void> pangeaSSOLoginAction(
       : isDefaultPlatform
           ? '${AppConfig.appOpenUrlScheme.toLowerCase()}://login'
           : 'http://localhost:3001//login';
-
-  final url = Matrix.of(context).getLoginClient().homeserver!.replace(
-    path: '/_matrix/client/v3/login/sso/redirect/${provider.id ?? ''}',
+  final client = await Matrix.of(context).getLoginClient();
+  final url = client.homeserver!.replace(
+    path: '/_matrix/client/v3/login/sso/redirect',
     queryParameters: {'redirectUrl': redirectUrl},
   );
 
   final urlScheme = isDefaultPlatform
       ? Uri.parse(redirectUrl).scheme
       : "http://localhost:3001";
-
   String result;
   try {
     result = await FlutterWebAuth2.authenticate(
@@ -54,7 +51,6 @@ Future<void> pangeaSSOLoginAction(
     }
     rethrow;
   }
-
   final token = Uri.parse(result).queryParameters['loginToken'];
   if (token?.isEmpty ?? false) return;
 

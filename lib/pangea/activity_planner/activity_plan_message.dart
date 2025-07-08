@@ -266,7 +266,7 @@ class ActivityPlanMessage extends StatelessWidget {
         onSwipe: (_) {},
         child: Container(
           constraints: const BoxConstraints(
-            maxWidth: FluffyThemes.columnWidth * 2.5,
+            maxWidth: FluffyThemes.maxTimelineWidth,
           ),
           padding: const EdgeInsets.only(
             left: 8.0,

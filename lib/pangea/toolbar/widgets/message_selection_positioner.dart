@@ -533,7 +533,7 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
     const double messageMargin = 16.0;
     // widget.event.isActivityMessage ? 0 : Avatar.defaultSize + 16 + 8;
     final bool showingDetails = widget.chatController.displayChatDetailsColumn;
-    final double totalMaxWidth = (FluffyThemes.columnWidth * 2.5) -
+    final double totalMaxWidth = FluffyThemes.maxTimelineWidth -
         (showingDetails ? FluffyThemes.columnWidth : 0) -
         messageMargin;
     double? maxWidth;

@@ -7,6 +7,8 @@ import 'app_config.dart';
 abstract class FluffyThemes {
   static const double columnWidth = 380.0;
 
+  static const double maxTimelineWidth = columnWidth * 2;
+
   // #Pangea
   // static const double navRailWidth = 80.0;
   static const double navRailWidth = 72.0;
@@ -63,8 +65,11 @@ abstract class FluffyThemes {
           ? colorScheme.surfaceContainerHighest
           : colorScheme.surfaceContainer,
       popupMenuTheme: PopupMenuThemeData(
+        color: colorScheme.surfaceContainerLow,
+        iconColor: colorScheme.onSurface,
+        textStyle: TextStyle(color: colorScheme.onSurface),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+          borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
         ),
       ),
       segmentedButtonTheme: SegmentedButtonThemeData(

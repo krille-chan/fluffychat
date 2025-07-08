@@ -14,16 +14,15 @@ class LoginView extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    final homeserver = Matrix.of(context)
-        .getLoginClient()
-        .homeserver
+    final homeserver = controller.widget.client.homeserver
         .toString()
         .replaceFirst('https://', '');
     final title = L10n.of(context).logInTo(homeserver);
     final titleParts = title.split(homeserver);
 
     return LoginScaffold(
-      enforceMobileMode: Matrix.of(context).client.isLogged(),
+      enforceMobileMode:
+          Matrix.of(context).widget.clients.any((client) => client.isLogged()),
       appBar: AppBar(
         leading:
             controller.loadingSignIn ? null : const Center(child: BackButton()),
