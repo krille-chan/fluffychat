@@ -1,6 +1,7 @@
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class AutoLoginScreen extends StatefulWidget {
   const AutoLoginScreen({super.key});
@@ -18,7 +19,10 @@ class _AutoLoginScreenState extends State<AutoLoginScreen> {
 
   Future<void> _setupClient() async {
     final client = await Matrix.of(context).getLoginClient();
-    final homeserver = Uri.https('matrix.radiohemp.com', '');
+
+    final homeserverUrl = dotenv.env['MATRIX_HOMESERVER_URL'] ?? '';
+    final homeserver = Uri.parse(homeserverUrl);
+
     await client.checkHomeserver(homeserver);
 
     if (!mounted) return;
