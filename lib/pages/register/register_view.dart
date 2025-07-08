@@ -126,7 +126,7 @@ class RegisterView extends StatelessWidget {
                         errorText: controller.emailError,
                         errorStyle:
                             TextStyle(color: theme.colorScheme.secondary),
-                        labelText: L10n.of(context).username,
+                        labelText: L10n.of(context).email,
                       ),
                     ),
                   ),
@@ -234,7 +234,7 @@ class RegisterView extends StatelessWidget {
                       text: TextSpan(
                         children: [
                           TextSpan(
-                            text: L10n.of(context).alreadyHaveAccount,
+                            text: '${L10n.of(context).alreadyHaveAccount} ',
                             style: TextStyle(
                               color: theme.colorScheme.onSurface,
                               fontSize: 15,

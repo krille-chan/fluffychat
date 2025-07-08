@@ -8,6 +8,7 @@ import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/widgets/navigation_rail.dart';
 import 'chat_list_body.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ChatListView extends StatelessWidget {
   final ChatListController controller;
@@ -49,7 +50,43 @@ class ChatListView extends StatelessWidget {
               excludeFromSemantics: true,
               behavior: HitTestBehavior.translucent,
               child: Scaffold(
-                body: ChatListViewBody(controller),
+                body: Stack(
+                  children: [
+                    ChatListViewBody(controller),
+                    Positioned(
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      child: Container(
+                        height: MediaQuery.of(context).size.height * 0.2,
+                        color: Theme.of(context).colorScheme.surface,
+                        child: Padding(
+                          padding: EdgeInsets.all(
+                            MediaQuery.of(context).size.width * 0.01,
+                          ),
+                          child: MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: GestureDetector(
+                              onTap: () async {
+                                final uri = Uri.parse(
+                                    'https://www.radiohemp.com/chama/');
+                                if (await canLaunchUrl(uri)) {
+                                  await launchUrl(uri,
+                                      mode: LaunchMode.externalApplication);
+                                }
+                              },
+                              child: Image.asset(
+                                'assets/banner-de-apoio-CHAMA.png',
+                                fit: BoxFit.contain,
+                                filterQuality: FilterQuality.high,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
                 // floatingActionButton: !controller.isSearchMode &&
                 //         controller.activeSpaceId == null
                 //     ? FloatingActionButton.extended(
@@ -70,7 +107,7 @@ class ChatListView extends StatelessWidget {
                 //           ),
                 //         ),
                 //       )
-                // : const SizedBox.shrink(),
+                //     : const SizedBox.shrink(),
               ),
             ),
           ),

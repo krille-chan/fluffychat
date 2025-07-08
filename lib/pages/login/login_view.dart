@@ -195,7 +195,7 @@ class LoginView extends StatelessWidget {
                       text: TextSpan(
                         children: [
                           TextSpan(
-                            text: L10n.of(context).newHere,
+                            text: '${L10n.of(context).newHere} ',
                             style: TextStyle(
                               color: theme.colorScheme.onSurface,
                               fontSize: 15,
