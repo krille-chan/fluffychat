@@ -1432,6 +1432,16 @@ class ChatController extends State<ChatPageWithRoom>
     return true;
   }
 
+  bool get canEditSelectedEvents {
+    if (isArchived ||
+        selectedEvents.length != 1 ||
+        !selectedEvents.first.status.isSent) {
+      return false;
+    }
+    return currentRoomBundle
+        .any((cl) => selectedEvents.first.senderId == cl!.userID);
+  }
+
   void forwardEventsAction() async {
     if (selectedEvents.isEmpty) return;
     await showScaffoldDialog(

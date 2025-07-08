@@ -2,6 +2,7 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 
+import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:matrix/matrix.dart';
 import 'package:swipe_to_action/swipe_to_action.dart';
 
@@ -246,6 +247,12 @@ class Message extends StatelessWidget {
     final showReceiptsRow =
         event.hasAggregatedEvents(timeline, RelationshipTypes.reaction);
 
+    // #Pangea
+    // final showReactionPicker =
+    //     singleSelected && event.room.canSendDefaultMessages;
+    const showReactionPicker = false;
+    // Pangea#
+
     return Center(
       child: Swipeable(
         key: ValueKey(event.eventId),
@@ -328,6 +335,7 @@ class Message extends StatelessWidget {
                     child: animateIn
                         ? const SizedBox(height: 0, width: double.infinity)
                         : Stack(
+                            clipBehavior: Clip.none,
                             children: [
                               Positioned(
                                 top: 0,
@@ -361,7 +369,7 @@ class Message extends StatelessWidget {
                                 mainAxisAlignment: rowMainAxisAlignment,
                                 children: [
                                   // #Pangea
-                                  // if (longPressSelect)
+                                  // if (longPressSelect && !event.redacted)
                                   //   SizedBox(
                                   //     height: 32,
                                   //     width: Avatar.defaultSize,
@@ -486,8 +494,10 @@ class Message extends StatelessWidget {
                                           ),
                                         Container(
                                           alignment: alignment,
-                                          padding:
-                                              const EdgeInsets.only(left: 8),
+                                          padding: const EdgeInsets.only(
+                                            left: 8,
+                                            bottom: showReactionPicker ? 40 : 0,
+                                          ),
                                           child: GestureDetector(
                                             // #Pangea
                                             onTap: () =>
@@ -759,163 +769,209 @@ class Message extends StatelessWidget {
                                   ),
                                 ],
                               ),
+                              Positioned(
+                                left:
+                                    ownMessage ? null : Avatar.defaultSize + 8,
+                                right: ownMessage ? 0 : null,
+                                bottom: 0,
+                                child: AnimatedSize(
+                                  duration: FluffyThemes.animationDuration,
+                                  curve: FluffyThemes.animationCurve,
+                                  alignment: Alignment.bottomCenter,
+                                  child: showReactionPicker
+                                      ? Padding(
+                                          padding: const EdgeInsets.only(
+                                            top: 8.0,
+                                            bottom: 4.0,
+                                          ),
+                                          child: Material(
+                                            elevation: 4,
+                                            borderRadius: BorderRadius.circular(
+                                              AppConfig.borderRadius,
+                                            ),
+                                            shadowColor: theme
+                                                .colorScheme.surface
+                                                .withAlpha(128),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                ...AppConfig.defaultReactions
+                                                    .map(
+                                                  (emoji) => IconButton(
+                                                    padding: EdgeInsets.zero,
+                                                    icon: Center(
+                                                      child: Opacity(
+                                                        opacity: sentReactions
+                                                                .contains(emoji)
+                                                            ? 0.33
+                                                            : 1,
+                                                        child: Text(
+                                                          emoji,
+                                                          style:
+                                                              const TextStyle(
+                                                            fontSize: 20,
+                                                          ),
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    onPressed: sentReactions
+                                                            .contains(emoji)
+                                                        ? null
+                                                        : () {
+                                                            onSelect(event);
+                                                            event.room
+                                                                .sendReaction(
+                                                              event.eventId,
+                                                              emoji,
+                                                            );
+                                                          },
+                                                  ),
+                                                ),
+                                                IconButton(
+                                                  icon: const Icon(
+                                                    Icons.add_reaction_outlined,
+                                                  ),
+                                                  tooltip: L10n.of(context)
+                                                      .customReaction,
+                                                  onPressed: () async {
+                                                    final emoji =
+                                                        await showDialog<
+                                                            String>(
+                                                      context: context,
+                                                      builder: (context) =>
+                                                          AlertDialog(
+                                                        title: Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.min,
+                                                          spacing: 4,
+                                                          children: [
+                                                            CloseButton(
+                                                              onPressed: () =>
+                                                                  Navigator.of(
+                                                                context,
+                                                              ).pop(
+                                                                null,
+                                                              ),
+                                                            ),
+                                                            Text(
+                                                              L10n.of(context)
+                                                                  .customReaction,
+                                                            ),
+                                                          ],
+                                                        ),
+                                                        titlePadding:
+                                                            const EdgeInsets
+                                                                .all(8),
+                                                        contentPadding:
+                                                            const EdgeInsets
+                                                                .all(0),
+                                                        clipBehavior:
+                                                            Clip.hardEdge,
+                                                        content: SizedBox(
+                                                          width: 350,
+                                                          height: 350,
+                                                          child: EmojiPicker(
+                                                            onEmojiSelected: (
+                                                              _,
+                                                              emoji,
+                                                            ) =>
+                                                                Navigator.of(
+                                                              context,
+                                                            ).pop(
+                                                              emoji.emoji,
+                                                            ),
+                                                            config: Config(
+                                                              emojiViewConfig:
+                                                                  const EmojiViewConfig(
+                                                                backgroundColor:
+                                                                    Colors
+                                                                        .transparent,
+                                                              ),
+                                                              bottomActionBarConfig:
+                                                                  const BottomActionBarConfig(
+                                                                enabled: false,
+                                                              ),
+                                                              categoryViewConfig:
+                                                                  CategoryViewConfig(
+                                                                initCategory:
+                                                                    Category
+                                                                        .SMILEYS,
+                                                                backspaceColor: theme
+                                                                    .colorScheme
+                                                                    .primary,
+                                                                iconColor: theme
+                                                                    .colorScheme
+                                                                    .primary
+                                                                    .withAlpha(
+                                                                  128,
+                                                                ),
+                                                                iconColorSelected:
+                                                                    theme
+                                                                        .colorScheme
+                                                                        .primary,
+                                                                indicatorColor: theme
+                                                                    .colorScheme
+                                                                    .primary,
+                                                                backgroundColor:
+                                                                    theme
+                                                                        .colorScheme
+                                                                        .surface,
+                                                              ),
+                                                              skinToneConfig:
+                                                                  SkinToneConfig(
+                                                                dialogBackgroundColor:
+                                                                    Color.lerp(
+                                                                  theme
+                                                                      .colorScheme
+                                                                      .surface,
+                                                                  theme
+                                                                      .colorScheme
+                                                                      .primaryContainer,
+                                                                  0.75,
+                                                                )!,
+                                                                indicatorColor: theme
+                                                                    .colorScheme
+                                                                    .onSurface,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    );
+                                                    if (emoji == null) return;
+                                                    if (sentReactions.contains(
+                                                      emoji,
+                                                    )) {
+                                                      return;
+                                                    }
+                                                    onSelect(event);
+
+                                                    await event.room
+                                                        .sendReaction(
+                                                      event.eventId,
+                                                      emoji,
+                                                    );
+                                                  },
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        )
+                                      : const SizedBox.shrink(),
+                                ),
+                              ),
                             ],
                           ),
                   );
                 },
               ),
-              // #Pangea
-              // Padding(
-              //   padding: const EdgeInsets.only(left: Avatar.defaultSize + 8.0),
-              //   child: AnimatedSize(
-              //     duration: FluffyThemes.animationDuration,
-              //     curve: FluffyThemes.animationCurve,
-              //     alignment: Alignment.bottomCenter,
-              //     child: singleSelected && event.room.canSendDefaultMessages
-              //         ? Padding(
-              //             padding: const EdgeInsets.only(bottom: 4.0),
-              //             child: Material(
-              //               elevation: 4,
-              //               borderRadius:
-              //                   BorderRadius.circular(AppConfig.borderRadius),
-              //               shadowColor: theme.appBarTheme.shadowColor,
-              //               child: Row(
-              //                 mainAxisSize: MainAxisSize.min,
-              //                 children: [
-              //                   IconButton(
-              //                     icon: const Icon(Icons.reply_outlined),
-              //                     tooltip: L10n.of(context).reply,
-              //                     onPressed: onSwipe,
-              //                   ),
-              //                   if (ownMessage)
-              //                     IconButton(
-              //                       icon: const Icon(Icons.edit_outlined),
-              //                       tooltip: L10n.of(context).edit,
-              //                       onPressed: onEdit,
-              //                     ),
-              //                   IconButton(
-              //                     icon: const Icon(Icons.add_reaction_outlined),
-              //                     tooltip: L10n.of(context).customReaction,
-              //                     onPressed: () async {
-              //                       final emoji = await showDialog<String>(
-              //                         context: context,
-              //                         builder: (context) => AlertDialog(
-              //                           title: Row(
-              //                             mainAxisSize: MainAxisSize.min,
-              //                             spacing: 4,
-              //                             children: [
-              //                               CloseButton(
-              //                                 onPressed: () =>
-              //                                     Navigator.of(context)
-              //                                         .pop(null),
-              //                               ),
-              //                               Text(
-              //                                 L10n.of(context).customReaction,
-              //                               ),
-              //                             ],
-              //                           ),
-              //                           titlePadding: const EdgeInsets.all(8),
-              //                           contentPadding: const EdgeInsets.all(0),
-              //                           clipBehavior: Clip.hardEdge,
-              //                           content: SizedBox(
-              //                             width: 350,
-              //                             height: 350,
-              //                             child: EmojiPicker(
-              //                               onEmojiSelected: (_, emoji) =>
-              //                                   Navigator.of(context)
-              //                                       .pop(emoji.emoji),
-              //                               config: Config(
-              //                                 emojiViewConfig:
-              //                                     const EmojiViewConfig(
-              //                                   backgroundColor:
-              //                                       Colors.transparent,
-              //                                 ),
-              //                                 bottomActionBarConfig:
-              //                                     const BottomActionBarConfig(
-              //                                   enabled: false,
-              //                                 ),
-              //                                 categoryViewConfig:
-              //                                     CategoryViewConfig(
-              //                                   initCategory: Category.SMILEYS,
-              //                                   backspaceColor:
-              //                                       theme.colorScheme.primary,
-              //                                   iconColor: theme
-              //                                       .colorScheme.primary
-              //                                       .withAlpha(128),
-              //                                   iconColorSelected:
-              //                                       theme.colorScheme.primary,
-              //                                   indicatorColor:
-              //                                       theme.colorScheme.primary,
-              //                                   backgroundColor:
-              //                                       theme.colorScheme.surface,
-              //                                 ),
-              //                                 skinToneConfig: SkinToneConfig(
-              //                                   dialogBackgroundColor:
-              //                                       Color.lerp(
-              //                                     theme.colorScheme.surface,
-              //                                     theme.colorScheme
-              //                                         .primaryContainer,
-              //                                     0.75,
-              //                                   )!,
-              //                                   indicatorColor:
-              //                                       theme.colorScheme.onSurface,
-              //                                 ),
-              //                               ),
-              //                             ),
-              //                           ),
-              //                         ),
-              //                       );
-              //                       if (emoji == null) return;
-              //                       if (sentReactions.contains(emoji)) return;
-
-              //                       await event.room.sendReaction(
-              //                         event.eventId,
-              //                         emoji,
-              //                       );
-              //                     },
-              //                   ),
-              //                   ...AppConfig.defaultReactions.map(
-              //                     (emoji) => IconButton(
-              //                       padding: EdgeInsets.zero,
-              //                       icon: Center(
-              //                         child: Opacity(
-              //                           opacity: sentReactions.contains(emoji)
-              //                               ? 0.33
-              //                               : 1,
-              //                           child: Text(
-              //                             emoji,
-              //                             style: const TextStyle(fontSize: 20),
-              //                             textAlign: TextAlign.center,
-              //                           ),
-              //                         ),
-              //                       ),
-              //                       onPressed: sentReactions.contains(emoji)
-              //                           ? null
-              //                           : () {
-              //                               onSelect(event);
-              //                               event.room.sendReaction(
-              //                                 event.eventId,
-              //                                 emoji,
-              //                               );
-              //                             },
-              //                     ),
-              //                   ),
-              //                 ],
-              //               ),
-              //             ),
-              //           )
-              //         : const SizedBox.shrink(),
-              //   ),
-              // ),
-              // Pangea#
               AnimatedSize(
                 duration: FluffyThemes.animationDuration,
                 curve: FluffyThemes.animationCurve,
-                // #Pangea
-                child: !showReceiptsRow &&
-                        !(pangeaMessageEvent?.showMessageButtons ?? false)
-                    // child: !showReceiptsRow
-                    // Pangea#
+                alignment: Alignment.bottomCenter,
+                child: !showReceiptsRow
                     ? const SizedBox.shrink()
                     : Padding(
                         padding: EdgeInsets.only(

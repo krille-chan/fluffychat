@@ -132,7 +132,7 @@ class _MxcImageState extends State<MxcImage> {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.uri != widget.uri || oldWidget.cacheKey != widget.cacheKey) {
       _imageData = null;
-      WidgetsBinding.instance.addPostFrameCallback(_tryLoad);
+      WidgetsBinding.instance.addPostFrameCallback((_) => _tryLoad());
     }
   }
   // Pangea#
