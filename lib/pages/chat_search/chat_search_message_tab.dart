@@ -140,14 +140,16 @@ class _MessageSearchResultListTile extends StatelessWidget {
             size: 16,
           ),
           const SizedBox(width: 8),
-          Text(
-            displayname,
-          ),
-          Expanded(
+          Flexible(
             child: Text(
-              ' | ${event.originServerTs.localizedTimeShort(context)}',
-              style: const TextStyle(fontSize: 12),
+              displayname,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
             ),
+          ),
+          Text(
+            ' | ${event.originServerTs.localizedTimeShort(context)}',
+            style: const TextStyle(fontSize: 12),
           ),
         ],
       ),
