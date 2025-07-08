@@ -128,6 +128,34 @@ class UserSettings {
       cefrLevel: cefrLevel,
     );
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is UserSettings &&
+        other.dateOfBirth == dateOfBirth &&
+        other.createdAt == createdAt &&
+        other.autoPlayMessages == autoPlayMessages &&
+        other.publicProfile == publicProfile &&
+        other.targetLanguage == targetLanguage &&
+        other.sourceLanguage == sourceLanguage &&
+        other.country == country &&
+        other.hasJoinedHelpSpace == hasJoinedHelpSpace &&
+        other.cefrLevel == cefrLevel;
+  }
+
+  @override
+  int get hashCode =>
+      dateOfBirth.hashCode ^
+      createdAt.hashCode ^
+      autoPlayMessages.hashCode ^
+      publicProfile.hashCode ^
+      targetLanguage.hashCode ^
+      sourceLanguage.hashCode ^
+      country.hashCode ^
+      hasJoinedHelpSpace.hashCode ^
+      cefrLevel.hashCode;
 }
 
 /// The user's language tool settings.
@@ -210,6 +238,30 @@ class UserToolSettings {
       enableAutocorrect: enableAutocorrect,
     );
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is UserToolSettings &&
+        other.interactiveTranslator == interactiveTranslator &&
+        other.interactiveGrammar == interactiveGrammar &&
+        other.immersionMode == immersionMode &&
+        other.definitions == definitions &&
+        other.autoIGC == autoIGC &&
+        other.enableTTS == enableTTS &&
+        other.enableAutocorrect == enableAutocorrect;
+  }
+
+  @override
+  int get hashCode =>
+      interactiveTranslator.hashCode ^
+      interactiveGrammar.hashCode ^
+      immersionMode.hashCode ^
+      definitions.hashCode ^
+      autoIGC.hashCode ^
+      enableTTS.hashCode ^
+      enableAutocorrect.hashCode;
 }
 
 /// A wrapper around the matrix account data for the user profile.
@@ -329,6 +381,22 @@ class Profile {
       instructionSettings: instructionSettings.copy(),
     );
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is Profile &&
+        other.userSettings == userSettings &&
+        other.toolSettings == toolSettings &&
+        other.instructionSettings == instructionSettings;
+  }
+
+  @override
+  int get hashCode =>
+      userSettings.hashCode ^
+      toolSettings.hashCode ^
+      instructionSettings.hashCode;
 }
 
 /// Model of data from pangea chat server. Not used anymore, in favor of matrix account data.

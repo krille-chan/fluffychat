@@ -15,7 +15,6 @@ class MobileSubscriptionInfo extends CurrentSubscriptionInfo {
   MobileSubscriptionInfo({
     required super.userID,
     required super.availableSubscriptionInfo,
-    required super.history,
   });
 
   @override

@@ -10,7 +10,6 @@ import 'package:fluffychat/widgets/matrix.dart';
 class CurrentSubscriptionInfo {
   final String userID;
   final AvailableSubscriptionsInfo availableSubscriptionInfo;
-  final Map<String, RCSubscription>? history;
 
   DateTime? expirationDate;
   String? currentSubscriptionId;
@@ -18,7 +17,6 @@ class CurrentSubscriptionInfo {
   CurrentSubscriptionInfo({
     required this.userID,
     required this.availableSubscriptionInfo,
-    required this.history,
   });
 
   SubscriptionDetails? get currentSubscription {

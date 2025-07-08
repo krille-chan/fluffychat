@@ -84,8 +84,14 @@ class UserController extends BaseController {
   }) async {
     final prevTargetLang = _pangeaController.languageController.userL2;
     final prevBaseLang = _pangeaController.languageController.userL1;
+    final prevHash = profile.hashCode;
 
     final Profile updatedProfile = update(profile);
+    if (updatedProfile.hashCode == prevHash) {
+      // no changes were made, so don't save
+      return;
+    }
+
     await updatedProfile.saveProfileData(waitForDataInSync: waitForDataInSync);
 
     Map<String, dynamic>? profileUpdate;

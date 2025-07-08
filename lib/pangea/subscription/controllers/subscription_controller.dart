@@ -96,19 +96,14 @@ class SubscriptionController extends BaseController {
       availableSubscriptionInfo = AvailableSubscriptionsInfo();
       await availableSubscriptionInfo!.setAvailableSubscriptions();
 
-      final subs =
-          await SubscriptionRepo.getCurrentSubscriptionInfo(null, null);
-
       currentSubscriptionInfo = kIsWeb
           ? WebSubscriptionInfo(
               userID: _userID!,
               availableSubscriptionInfo: availableSubscriptionInfo!,
-              history: subs.allSubscriptions,
             )
           : MobileSubscriptionInfo(
               userID: _userID!,
               availableSubscriptionInfo: availableSubscriptionInfo!,
-              history: subs.allSubscriptions,
             );
 
       await currentSubscriptionInfo!.configure();
@@ -162,13 +157,11 @@ class SubscriptionController extends BaseController {
                 userID: _userID!,
                 availableSubscriptionInfo:
                     availableSubscriptionInfo ?? AvailableSubscriptionsInfo(),
-                history: {},
               )
             : MobileSubscriptionInfo(
                 userID: _userID!,
                 availableSubscriptionInfo:
                     availableSubscriptionInfo ?? AvailableSubscriptionsInfo(),
-                history: {},
               );
 
         currentSubscriptionInfo!.currentSubscriptionId =
