@@ -844,41 +844,28 @@ class Message extends StatelessWidget {
                               //                         .customReaction,
                               //                     onPressed: () async {
                               //                       final emoji =
-                              //                           await showDialog<
+                              //                           await showAdaptiveBottomSheet<
                               //                               String>(
                               //                         context: context,
                               //                         builder: (context) =>
-                              //                             AlertDialog(
-                              //                           title: Row(
-                              //                             mainAxisSize:
-                              //                                 MainAxisSize.min,
-                              //                             spacing: 4,
-                              //                             children: [
-                              //                               CloseButton(
-                              //                                 onPressed: () =>
-                              //                                     Navigator.of(
-                              //                                   context,
-                              //                                 ).pop(
-                              //                                   null,
-                              //                                 ),
+                              //                             Scaffold(
+                              //                           appBar: AppBar(
+                              //                             title: Text(
+                              //                               L10n.of(context)
+                              //                                   .customReaction,
+                              //                             ),
+                              //                             leading: CloseButton(
+                              //                               onPressed: () =>
+                              //                                   Navigator.of(
+                              //                                 context,
+                              //                               ).pop(
+                              //                                 null,
                               //                               ),
-                              //                               Text(
-                              //                                 L10n.of(context)
-                              //                                     .customReaction,
-                              //                               ),
-                              //                             ],
+                              //                             ),
                               //                           ),
-                              //                           titlePadding:
-                              //                               const EdgeInsets
-                              //                                   .all(8),
-                              //                           contentPadding:
-                              //                               const EdgeInsets
-                              //                                   .all(0),
-                              //                           clipBehavior:
-                              //                               Clip.hardEdge,
-                              //                           content: SizedBox(
-                              //                             width: 350,
-                              //                             height: 350,
+                              //                           body: SizedBox(
+                              //                             height:
+                              //                                 double.infinity,
                               //                             child: EmojiPicker(
                               //                               onEmojiSelected: (
                               //                                 _,
