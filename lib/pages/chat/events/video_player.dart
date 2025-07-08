@@ -30,9 +30,21 @@ class EventVideoPlayer extends StatelessWidget {
 
   static const String fallbackBlurHash = 'L5H2EC=PM+yV0g-mq.wG9c010J}I';
 
+  // #Pangea
+  bool get _supportedFormat {
+    final infoMap = event.content.tryGetMap<String, Object?>('info');
+    final mimetype = infoMap?.tryGet<String>('mimetype');
+    return PlatformInfos.isAndroid ? mimetype != "video/quicktime" : true;
+  }
+  // Pangea#
+
   @override
   Widget build(BuildContext context) {
-    final supportsVideoPlayer = PlatformInfos.supportsVideoPlayer;
+    // #Pangea
+    // final supportsVideoPlayer = PlatformInfos.supportsVideoPlayer;
+    final supportsVideoPlayer =
+        PlatformInfos.supportsVideoPlayer && _supportedFormat;
+    // Pangea#
 
     final blurHash = (event.infoMap as Map<String, dynamic>)
             .tryGet<String>('xyz.amorgan.blurhash') ??
