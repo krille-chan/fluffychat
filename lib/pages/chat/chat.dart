@@ -691,6 +691,7 @@ class ChatController extends State<ChatPageWithRoom>
       return;
     }
     // Pangea#
+    if (eventId?.isValidMatrixId == false) return;
     if (_setReadMarkerFuture != null) return;
     if (_scrolledUp) return;
     if (scrollUpBannerEventId != null) return;
