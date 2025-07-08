@@ -64,7 +64,7 @@ abstract class FluffyThemes {
           : colorScheme.surfaceContainer,
       popupMenuTheme: PopupMenuThemeData(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+          borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
         ),
       ),
       segmentedButtonTheme: SegmentedButtonThemeData(
