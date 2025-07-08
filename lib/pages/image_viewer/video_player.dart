@@ -9,6 +9,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:universal_html/html.dart' as html;
 import 'package:video_player/video_player.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/event_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -32,9 +33,22 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
   ChewieController? _chewieController;
   VideoPlayerController? _videoPlayerController;
 
+  // #Pangea
+  Object? _error;
+
+  bool get _supportedFormat {
+    final infoMap = widget.event.content.tryGetMap<String, Object?>('info');
+    final mimetype = infoMap?.tryGet<String>('mimetype');
+    return PlatformInfos.isAndroid ? mimetype != "video/quicktime" : true;
+  }
+  // Pangea#
+
   // The video_player package only doesn't support Windows and Linux.
-  final _supportsVideoPlayer =
-      !PlatformInfos.isWindows && !PlatformInfos.isLinux;
+  // #Pangea
+  // final _supportsVideoPlayer =
+  //     !PlatformInfos.isWindows && !PlatformInfos.isLinux;
+  bool get _supportsVideoPlayer => !PlatformInfos.isLinux && _supportedFormat;
+  // Pangea#
 
   void _downloadAction() async {
     if (!_supportsVideoPlayer) {
@@ -43,6 +57,9 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
     }
 
     try {
+      // #Pangea
+      setState(() => _error = null);
+      // Pangea#
       final videoFile = await widget.event.downloadAndDecryptAttachment();
 
       // Dispose the controllers if we already have them.
@@ -90,8 +107,14 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
           content: Text(e.toLocalizedString(context)),
         ),
       );
+      // #Pangea
+      setState(() => _error = e);
+      // Pangea#
     } catch (e, s) {
       ErrorReporter(context, 'Unable to play video').onErrorCallback(e, s);
+      // #Pangea
+      setState(() => _error = e);
+      // Pangea#
     }
   }
 
@@ -165,7 +188,40 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
                         ),
                 ),
               ),
-              const Center(child: CircularProgressIndicator.adaptive()),
+              // #Pangea
+              // const Center(child: CircularProgressIndicator.adaptive()),
+              _error != null
+                  ? Center(
+                      child: Column(
+                        spacing: 8.0,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Row(
+                            spacing: 8.0,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(
+                                Icons.error,
+                                color: Theme.of(context).colorScheme.error,
+                              ),
+                              Text(L10n.of(context).failedToPlayVideo),
+                            ],
+                          ),
+                          IconButton(
+                            style: IconButton.styleFrom(
+                              backgroundColor: Colors.black.withAlpha(200),
+                              foregroundColor: Colors.white,
+                            ),
+                            icon: const Icon(Icons.download_outlined),
+                            onPressed: () => widget.event.saveFile(context),
+                            color: Colors.white,
+                            tooltip: L10n.of(context).downloadFile,
+                          ),
+                        ],
+                      ),
+                    )
+                  : const Center(child: CircularProgressIndicator.adaptive()),
+              // Pangea#
             ],
           );
   }

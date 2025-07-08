@@ -5036,5 +5036,6 @@
   "mySavedActivities": "My Saved Activities",
   "noSavedActivities": "No saved activities",
   "saveActivity": "Save this activity",
-  "yourSavedActivities": "Saved Activities"
+  "yourSavedActivities": "Saved Activities",
+  "failedToPlayVideo": "Failed to play video"
 }
