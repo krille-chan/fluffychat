@@ -55,7 +55,8 @@ class ChatSearchMessageTab extends StatelessWidget {
         events.removeWhere(
           (event) =>
               event.type != EventTypes.Message ||
-              event.messageType != MessageTypes.Text,
+              event.messageType != MessageTypes.Text ||
+              event.redacted,
         );
         // Pangea#
 
