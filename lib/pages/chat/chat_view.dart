@@ -333,7 +333,7 @@ class ChatView extends StatelessWidget {
                               Container(
                                 margin: EdgeInsets.all(bottomSheetPadding),
                                 constraints: const BoxConstraints(
-                                  maxWidth: FluffyThemes.columnWidth * 2.5,
+                                  maxWidth: FluffyThemes.maxTimelineWidth,
                                 ),
                                 alignment: Alignment.center,
                                 child: Material(
