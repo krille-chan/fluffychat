@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-
-import 'package:matrix/matrix.dart';
+import 'dart:convert';
 
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -9,6 +8,8 @@ import '../../utils/platform_infos.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:uuid/uuid.dart';
 import 'register_view.dart';
+import 'package:http/http.dart' as http;
+import 'package:matrix/matrix.dart';
 
 class Register extends StatefulWidget {
   final Client client;
@@ -53,52 +54,31 @@ class RegisterController extends State<Register> {
     final device = PlatformInfos.clientName;
     genericError = null;
 
-    final token = dotenv.env['REGISTRATION_TOKEN'] ?? '';
-
-    String? clientSecret;
-    String? emailSid;
-
-    clientSecret = const Uuid().v4();
-    emailSid = await _sendEmailVerification(
-      client: client,
-      email: email,
-      clientSecret: clientSecret,
-    );
-
-    if (emailSid == null) {
-      setState(() => loading = false);
-      return;
-    }
-
-    final confirmed = await _waitForUser(context) ?? false;
-    if (!confirmed) {
-      if (mounted) setState(() => loading = false);
-      return;
-    }
-
     await _runRegister(
       context,
       client,
       username: username,
       password: password,
       device: device,
-      token: token,
       email: email,
-      clientSecret: clientSecret,
-      emailSid: emailSid,
     );
 
     if (mounted) setState(() => loading = false);
   }
 
   bool emailIsValid() {
-    final email = emailController.text;
+    final emailRegex = RegExp(
+      r'^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$',
+    );
+
+    final email = emailController.text.trim(); // remove espaços acidentais
+
     if (email.isEmpty) {
       setState(() => emailError = L10n.of(context).errorMissingEmail);
       return false;
     }
 
-    if (!RegExp(r'^[\w\.-]+@([\w-]+\.)+[A-Za-z]{2,}$').hasMatch(email)) {
+    if (!emailRegex.hasMatch(email)) {
       setState(() => emailError = L10n.of(context).errorInvalidEmail);
       return false;
     }
@@ -195,10 +175,7 @@ class RegisterController extends State<Register> {
     required String username,
     required String password,
     required String device,
-    required String token,
     required String email,
-    required String clientSecret,
-    required String emailSid,
   }) async {
     String? session;
 
@@ -227,12 +204,45 @@ class RegisterController extends State<Register> {
       }
     }
 
+    String? clientSecret;
+    String? emailSid;
+
+    clientSecret = const Uuid().v4();
+    emailSid = await _sendEmailVerification(
+      client: client,
+      email: email,
+      clientSecret: clientSecret,
+    );
+
+    if (emailSid == null) {
+      setState(() => loading = false);
+      return;
+    }
+
+    bool emailConfirmed = await _confirmEmail(
+      context,
+      client,
+      username,
+      password,
+      device,
+      session,
+      emailSid,
+      clientSecret,
+    );
+
+    if (!emailConfirmed) {
+      setState(() => loading = false);
+      return;
+    }
+
+    final token = await _generateRegistrationToken(session);
+
     try {
       await client.register(
         username: username,
         password: password,
         initialDeviceDisplayName: device,
-        auth: RegistrationTokenAuth(session: session!, token: token),
+        auth: RegistrationTokenAuth(session: session, token: token),
       );
     } on MatrixException catch (e) {
       if (e.session != null &&
@@ -245,40 +255,84 @@ class RegisterController extends State<Register> {
       }
     }
 
-    bool emailConfirmed = false;
+    await client.joinRoom('#geral:radiohemp.com');
+  }
 
-    while (!emailConfirmed) {
+  Future<bool> _confirmEmail(
+    BuildContext context,
+    Client client,
+    String username,
+    String password,
+    String device,
+    String session,
+    String emailSid,
+    String clientSecret,
+  ) async {
+    var emailConfirmed = false;
+    const timeoutSeconds = 300;
+    final timeout = DateTime.now().add(const Duration(seconds: timeoutSeconds));
+
+    while (!emailConfirmed && DateTime.now().isBefore(timeout)) {
+      final confirmed = await _waitForUser(context) ?? false;
+      if (!confirmed) {
+        if (mounted) setState(() => loading = false);
+        return false;
+      }
+
       try {
         await client.register(
           username: username,
           password: password,
           initialDeviceDisplayName: device,
           auth: SidAuth(
-            session: session!,
+            session: session,
             sid: emailSid,
             clientSecret: clientSecret,
           ),
         );
         emailConfirmed = true;
+        break;
       } on MatrixException catch (e) {
-        if (e.error == MatrixError.M_UNAUTHORIZED ||
-            e.error == MatrixError.M_THREEPID_AUTH_FAILED) {
-          final confirmed = await _waitForUser(context) ?? false;
-          if (!confirmed) return;
-          continue;
+        final completed = (e.completedAuthenticationFlows as List?) ?? [];
+        if (completed.contains('m.login.email.identity')) {
+          emailConfirmed = true;
+          break;
         }
 
         if (e.error == MatrixError.M_THREEPID_IN_USE) {
           emailError = L10n.of(context).errorEmailInUse;
-          return;
+          return false;
         }
-
-        _showGenericError();
-        return;
       }
     }
 
-    await client.joinRoom('#geral:radiohemp.com');
+    if (!emailConfirmed) {
+      _showGenericError();
+    }
+
+    return emailConfirmed;
+  }
+
+  Future<String> _generateRegistrationToken(String session) async {
+    final apiUrl = dotenv.env['API_URL'] ?? 'http://localhost:3000';
+    final url = Uri.parse('$apiUrl/matrix/registration-token');
+
+    final response = await http.post(
+      url,
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({'session': session}),
+    );
+
+    if (response.statusCode == 200) {
+      final body = jsonDecode(response.body) as Map<String, dynamic>;
+      final token = body['token'];
+      if (token is String && token.isNotEmpty) {
+        return token;
+      }
+      throw Exception('Resposta não contém token válido.');
+    }
+
+    throw Exception('Erro ${response.statusCode}: ${response.reasonPhrase}');
   }
 
   @override
