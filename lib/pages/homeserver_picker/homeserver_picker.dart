@@ -166,8 +166,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
       isLoading = true;
     });
     try {
-      final client = await Matrix.of(context).getLoginClient();
-      client.login(
+      await client.login(
         LoginType.mLoginToken,
         token: token,
         initialDeviceDisplayName: PlatformInfos.clientName,
