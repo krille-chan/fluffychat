@@ -491,6 +491,8 @@ String? getGrammarCopy({
       return L10n.of(context).grammarCopyVOICErcpVoice;
     case "grammarCopyCASEaccdat":
       return L10n.of(context).grammarCopyCASEaccdat;
+    case 'grammarCopyVERBFORMshrt':
+      return L10n.of(context).grammarCopyVERBFORMshrt;
     // Handle empty tag
     case '':
       ErrorHandler.logError(
