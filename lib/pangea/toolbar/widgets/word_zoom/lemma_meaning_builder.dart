@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
 import 'package:fluffychat/pangea/learning_settings/constants/language_constants.dart';
+import 'package:fluffychat/pangea/lemmas/lemma_edit_request.dart';
 import 'package:fluffychat/pangea/lemmas/lemma_info_repo.dart';
 import 'package:fluffychat/pangea/lemmas/lemma_info_request.dart';
 import 'package:fluffychat/pangea/lemmas/lemma_info_response.dart';
@@ -84,14 +86,34 @@ class LemmaMeaningBuilderState extends State<LemmaMeaningBuilder> {
   void toggleEditMode(bool value) => setState(() => editMode = value);
 
   Future<void> editLemmaMeaning(String userEdit) async {
-    final originalMeaning = lemmaInfo;
-
-    if (originalMeaning != null) {
-      LemmaInfoRepo.set(
-        _request,
-        LemmaInfoResponse(emoji: originalMeaning.emoji, meaning: userEdit),
+    try {
+      await LemmaInfoRepo.edit(
+        LemmaEditRequest(
+          lemma: widget.constructId.lemma,
+          partOfSpeech: widget.constructId.category,
+          lemmaLang: widget.langCode,
+          userL1: MatrixState
+                  .pangeaController.languageController.userL1?.langCode ??
+              LanguageKeys.defaultLanguage,
+          newMeaning: userEdit,
+          newEmojis: lemmaInfo?.emoji,
+        ),
       );
-
+    } catch (e, s) {
+      ErrorHandler.logError(
+        e: e,
+        s: s,
+        data: {
+          'lemma': widget.constructId.lemma,
+          'partOfSpeech': widget.constructId.category,
+          'lemmaLang': widget.langCode,
+          'userL1': MatrixState
+                  .pangeaController.languageController.userL1?.langCode ??
+              LanguageKeys.defaultLanguage,
+          'newMeaning': userEdit,
+        },
+      );
+    } finally {
       toggleEditMode(false);
       _fetchLemmaMeaning();
     }

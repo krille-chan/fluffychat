@@ -180,7 +180,7 @@ class ActivitySuggestionCard extends StatelessWidget {
               right: 4.0,
               child: IconButton(
                 icon: Icon(
-                  isBookmarked ? Icons.bookmark : Icons.bookmark_border,
+                  isBookmarked ? Icons.save : Icons.save_outlined,
                   color: Theme.of(context).colorScheme.onPrimaryContainer,
                 ),
                 onPressed: onPressed != null

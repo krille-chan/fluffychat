@@ -14,7 +14,6 @@ class PLanguageDropdown extends StatefulWidget {
   final List<LanguageModel> languages;
   final LanguageModel? initialLanguage;
   final Function(LanguageModel) onChange;
-  final bool showMultilingual;
   final bool isL2List;
   final String? decorationText;
   final String? error;
@@ -28,7 +27,6 @@ class PLanguageDropdown extends StatefulWidget {
     required this.languages,
     required this.onChange,
     required this.initialLanguage,
-    this.showMultilingual = false,
     this.decorationText,
     this.isL2List = false,
     this.error,
@@ -132,15 +130,6 @@ class PLanguageDropdownState extends State<PLanguageDropdown> {
             ),
           ),
           items: [
-            if (widget.showMultilingual)
-              DropdownMenuItem(
-                value: LanguageModel.multiLingual(context),
-                enabled: widget.enabled,
-                child: LanguageDropDownEntry(
-                  languageModel: LanguageModel.multiLingual(context),
-                  isL2List: widget.isL2List,
-                ),
-              ),
             ...sortedLanguages.map(
               (languageModel) => DropdownMenuItem(
                 value: languageModel,

@@ -14,8 +14,8 @@ enum PageMode {
 }
 
 class ActivityPlannerPage extends StatefulWidget {
-  final String? roomID;
-  const ActivityPlannerPage({super.key, this.roomID});
+  final String roomID;
+  const ActivityPlannerPage({super.key, required this.roomID});
 
   @override
   ActivityPlannerPageState createState() => ActivityPlannerPageState();
@@ -23,9 +23,7 @@ class ActivityPlannerPage extends StatefulWidget {
 
 class ActivityPlannerPageState extends State<ActivityPlannerPage> {
   PageMode pageMode = PageMode.featuredActivities;
-  Room? get room => widget.roomID != null
-      ? Matrix.of(context).client.getRoomById(widget.roomID!)
-      : null;
+  Room? get room => Matrix.of(context).client.getRoomById(widget.roomID);
 
   void _setPageMode(PageMode? mode) {
     if (mode == null) return;
@@ -82,7 +80,7 @@ class ActivityPlannerPageState extends State<ActivityPlannerPage> {
                           ),
                           ButtonSegment(
                             value: PageMode.savedActivities,
-                            label: Text(L10n.of(context).yourBookmarks),
+                            label: Text(L10n.of(context).yourSavedActivities),
                           ),
                         ],
                       ),

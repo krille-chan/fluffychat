@@ -22,6 +22,7 @@ import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_selection_repo.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 
 /// A minimized version of AnalyticsController that get the logged in user's analytics
 class GetAnalyticsController extends BaseController {
@@ -73,6 +74,7 @@ class GetAnalyticsController extends BaseController {
     _initializing = true;
 
     try {
+      await GetStorage.init("analytics_storage");
       _client.updateAnalyticsRoomVisibility();
       _client.addAnalyticsRoomsToSpaces();
 
@@ -455,10 +457,13 @@ class GetAnalyticsController extends BaseController {
 //       int diffXP = maxXP - minXP;
 //       if (diffXP < 0) diffXP = 0;
 
-  Future<ConstructSummary?> getConstructSummaryFromStateEvent() async {
+  ConstructSummary? getConstructSummaryFromStateEvent() {
     try {
       final Room? analyticsRoom = _client.analyticsRoomLocal(_l2!);
-      if (analyticsRoom == null) return null;
+      if (analyticsRoom == null) {
+        debugPrint("Analytics room is null");
+        return null;
+      }
       final state =
           analyticsRoom.getState(PangeaEventTypes.constructSummary, '');
       if (state == null) return null;
@@ -470,95 +475,86 @@ class GetAnalyticsController extends BaseController {
     }
   }
 
-  Future<ConstructSummary?> generateLevelUpAnalytics(
+  Future<ConstructSummary> generateLevelUpAnalytics(
     final int lowerLevel,
     final int upperLevel,
   ) async {
-    // generate level up analytics as a construct summary
-    ConstructSummary summary;
-    try {
-      final int minXP = constructListModel.calculateXpWithLevel(upperLevel);
-      final int maxXP = constructListModel.calculateXpWithLevel(lowerLevel);
-      int diffXP = maxXP - minXP;
-      if (diffXP < 0) diffXP = 0;
+    final int maxXP = constructListModel.calculateXpWithLevel(upperLevel);
+    final int minXP = constructListModel.calculateXpWithLevel(lowerLevel);
+    int diffXP = maxXP - minXP;
+    if (diffXP < 0) diffXP = 0;
 
-      // compute construct use of current level
-      final List<OneConstructUse> constructUseOfCurrentLevel = [];
-      int score = 0;
-      for (final use in constructListModel.uses) {
-        constructUseOfCurrentLevel.add(use);
-        score += use.xp;
-        if (score >= diffXP) break;
-      }
+    // compute construct use of current level
+    final List<OneConstructUse> constructUseOfCurrentLevel = [];
+    int score = 0;
+    for (final use in constructListModel.uses) {
+      constructUseOfCurrentLevel.add(use);
+      score += use.xp;
+      if (score >= diffXP) break;
+    }
 
-      // extract construct use message bodies for analytics
-      final Map<String, Set<String>> useEventIds = {};
-      for (final use in constructUseOfCurrentLevel) {
-        if (use.metadata.roomId == null) continue;
-        if (use.metadata.eventId == null) continue;
-        useEventIds[use.metadata.roomId!] ??= {};
-        useEventIds[use.metadata.roomId!]!.add(use.metadata.eventId!);
-      }
+    // extract construct use message bodies for analytics
+    final Map<String, Set<String>> useEventIds = {};
+    for (final use in constructUseOfCurrentLevel) {
+      if (use.metadata.roomId == null) continue;
+      if (use.metadata.eventId == null) continue;
+      useEventIds[use.metadata.roomId!] ??= {};
+      useEventIds[use.metadata.roomId!]!.add(use.metadata.eventId!);
+    }
 
-      final List<String?> constructUseMessageContentBodies = [];
-      for (final entry in useEventIds.entries) {
-        final String roomId = entry.key;
-        final room = _client.getRoomById(roomId);
-        if (room == null) continue;
-        final List<String?> messageBodies = [];
-        for (final eventId in entry.value) {
-          try {
-            final Event? event = await room.getEventById(eventId);
-            if (event?.content["body"] is! String) continue;
-            final String body = event?.content["body"] as String;
-            if (body.isEmpty) continue;
-            messageBodies.add(body);
-          } catch (e, s) {
-            debugPrint("Error getting event by ID: $e");
-            ErrorHandler.logError(
-              e: e,
-              s: s,
-              data: {
-                'roomId': roomId,
-                'eventId': eventId,
-              },
-            );
-            continue;
-          }
+    final List<String?> constructUseMessageContentBodies = [];
+    for (final entry in useEventIds.entries) {
+      final String roomId = entry.key;
+      final room = _client.getRoomById(roomId);
+      if (room == null) continue;
+      final List<String?> messageBodies = [];
+      for (final eventId in entry.value) {
+        try {
+          final Event? event = await room.getEventById(eventId);
+          if (event?.content["body"] is! String) continue;
+          final String body = event?.content["body"] as String;
+          if (body.isEmpty) continue;
+          messageBodies.add(body);
+        } catch (e, s) {
+          debugPrint("Error getting event by ID: $e");
+          ErrorHandler.logError(
+            e: e,
+            s: s,
+            data: {
+              'roomId': roomId,
+              'eventId': eventId,
+            },
+          );
+          continue;
         }
-        constructUseMessageContentBodies.addAll(messageBodies);
       }
-
-      final request = ConstructSummaryRequest(
-        constructs: constructUseOfCurrentLevel,
-        constructUseMessageContentBodies: constructUseMessageContentBodies,
-        language: _l1!.langCodeShort,
-        upperLevel: upperLevel,
-        lowerLevel: lowerLevel,
-      );
-
-      final response = await ConstructRepo.generateConstructSummary(request);
-      summary = response.summary;
-    } catch (e) {
-      debugPrint("Error generating level up analytics: $e");
-      ErrorHandler.logError(e: e, data: {'e': e});
-      return null;
+      constructUseMessageContentBodies.addAll(messageBodies);
     }
 
-    try {
-      final Room? analyticsRoom = await _client.getMyAnalyticsRoom(_l2!);
-      if (analyticsRoom == null) {
-        throw "Analytics room not found for user";
-      }
+    final request = ConstructSummaryRequest(
+      constructs: constructUseOfCurrentLevel,
+      constructUseMessageContentBodies: constructUseMessageContentBodies,
+      language: _l1!.langCodeShort,
+      upperLevel: upperLevel,
+      lowerLevel: lowerLevel,
+    );
 
-      // don't await this, just return the original response
-      _saveConstructSummaryResponseToStateEvent(
-        summary,
-      );
-    } catch (e, s) {
-      debugPrint("Error saving construct summary room: $e");
-      ErrorHandler.logError(e: e, s: s, data: {'e': e});
+    final response = await ConstructRepo.generateConstructSummary(request);
+    final ConstructSummary summary = response.summary;
+    summary.levelVocabConstructs = MatrixState
+        .pangeaController.getAnalytics.constructListModel.vocabLemmas;
+    summary.levelGrammarConstructs = MatrixState
+        .pangeaController.getAnalytics.constructListModel.grammarLemmas;
+
+    final Room? analyticsRoom = await _client.getMyAnalyticsRoom(_l2!);
+    if (analyticsRoom == null) {
+      throw "Analytics room not found for user";
     }
+
+    // don't await this, just return the original response
+    _saveConstructSummaryResponseToStateEvent(
+      summary,
+    );
 
     return summary;
   }

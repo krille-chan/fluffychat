@@ -31,7 +31,6 @@ class MessageTokenButton extends StatefulWidget {
   final TextStyle textStyle;
   final double width;
   final bool animateIn;
-  final PracticeTarget? practiceTargetForToken;
 
   const MessageTokenButton({
     super.key,
@@ -39,7 +38,6 @@ class MessageTokenButton extends StatefulWidget {
     required this.token,
     required this.textStyle,
     required this.width,
-    required this.practiceTargetForToken,
     this.animateIn = false,
   });
 
@@ -124,9 +122,10 @@ class MessageTokenButtonState extends State<MessageTokenButton>
     super.dispose();
   }
 
-  bool get _animate => widget.animateIn || _finishedInitialAnimation;
+  PracticeTarget? get _activity =>
+      widget.overlayController?.practiceTargetForToken(widget.token);
 
-  PracticeTarget? get _activity => widget.practiceTargetForToken;
+  bool get _animate => widget.animateIn || _finishedInitialAnimation;
 
   bool get _isActivityCompleteOrNullForToken =>
       _activity?.isCompleteByToken(

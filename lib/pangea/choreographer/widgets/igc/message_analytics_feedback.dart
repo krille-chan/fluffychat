@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'package:go_router/go_router.dart';
+
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/pangea/analytics_details_popup/analytics_details_popup.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_summary/progress_indicators_enum.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -99,12 +100,15 @@ class MessageAnalyticsFeedbackState extends State<MessageAnalyticsFeedback>
   }
 
   void _showAnalyticsDialog(ConstructTypeEnum? type) {
-    showDialog<AnalyticsPopupWrapper>(
-      context: context,
-      builder: (context) => AnalyticsPopupWrapper(
-        view: type ?? ConstructTypeEnum.vocab,
-      ),
-    );
+    switch (type) {
+      case ConstructTypeEnum.morph:
+        context.go("/rooms/analytics?mode=morph");
+        break;
+      case ConstructTypeEnum.vocab:
+      default:
+        context.go("/rooms/analytics?mode=vocab");
+        break;
+    }
   }
 
   @override

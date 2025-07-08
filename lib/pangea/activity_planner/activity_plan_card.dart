@@ -20,10 +20,12 @@ import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_en
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 
 class ActivityPlanCard extends StatefulWidget {
+  final VoidCallback regenerate;
   final ActivityPlannerBuilderState controller;
 
   const ActivityPlanCard({
     super.key,
+    required this.regenerate,
     required this.controller,
   });
 
@@ -108,6 +110,7 @@ class ActivityPlanCardState extends State<ActivityPlanCard> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     final l10n = L10n.of(context);
     return Center(
       child: ConstrainedBox(
@@ -121,8 +124,11 @@ class ActivityPlanCardState extends State<ActivityPlanCard> {
                 AnimatedSize(
                   duration: FluffyThemes.animationDuration,
                   child: Stack(
+                    alignment: Alignment.bottomCenter,
                     children: [
                       Container(
+                        width: 200.0,
+                        padding: const EdgeInsets.all(16.0),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12.0),
                         ),
@@ -131,6 +137,7 @@ class ActivityPlanCardState extends State<ActivityPlanCard> {
                         child: widget.controller.imageURL != null ||
                                 widget.controller.avatar != null
                             ? ClipRRect(
+                                borderRadius: BorderRadius.circular(20.0),
                                 child: widget.controller.avatar == null
                                     ? CachedNetworkImage(
                                         fit: BoxFit.cover,
@@ -156,14 +163,17 @@ class ActivityPlanCardState extends State<ActivityPlanCard> {
                               ),
                       ),
                       if (widget.controller.isEditing)
-                        Positioned(
-                          top: 10.0,
-                          right: 10.0,
-                          child: IconButton(
-                            icon: const Icon(Icons.upload_outlined),
-                            onPressed: widget.controller.selectAvatar,
-                            style: IconButton.styleFrom(
-                              backgroundColor: Colors.black,
+                        InkWell(
+                          borderRadius: BorderRadius.circular(90),
+                          onTap: widget.controller.selectAvatar,
+                          child: CircleAvatar(
+                            backgroundColor:
+                                Theme.of(context).colorScheme.secondary,
+                            radius: 20.0,
+                            child: Icon(
+                              Icons.add_a_photo_outlined,
+                              size: 20.0,
+                              color: Theme.of(context).colorScheme.onSecondary,
                             ),
                           ),
                         ),
@@ -205,8 +215,8 @@ class ActivityPlanCardState extends State<ActivityPlanCard> {
                                       ),
                               icon: Icon(
                                 _isBookmarked
-                                    ? Icons.bookmark
-                                    : Icons.bookmark_border,
+                                    ? Icons.save
+                                    : Icons.save_outlined,
                               ),
                             ),
                         ],
@@ -368,47 +378,153 @@ class ActivityPlanCardState extends State<ActivityPlanCard> {
                         ),
                       ],
                       const SizedBox(height: itemPadding),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              Tooltip(
-                                message: !widget.controller.isEditing
-                                    ? l10n.edit
-                                    : l10n.saveChanges,
-                                child: IconButton(
-                                  icon: Icon(
-                                    !widget.controller.isEditing
-                                        ? Icons.edit
-                                        : Icons.save,
+                      widget.controller.isEditing
+                          ? Row(
+                              spacing: 12.0,
+                              children: [
+                                Expanded(
+                                  child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor:
+                                          theme.colorScheme.primaryContainer,
+                                      foregroundColor:
+                                          theme.colorScheme.onPrimaryContainer,
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 12.0,
+                                      ),
+                                    ),
+                                    onPressed: widget.controller.saveEdits,
+                                    child: Row(
+                                      children: [
+                                        const Icon(Icons.save),
+                                        Expanded(
+                                          child: Text(
+                                            L10n.of(context).save,
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                  onPressed: () => !widget.controller.isEditing
-                                      ? setState(() {
-                                          widget.controller.isEditing = true;
-                                        })
-                                      : widget.controller.saveEdits(),
-                                  isSelected: widget.controller.isEditing,
                                 ),
-                              ),
-                              if (widget.controller.isEditing)
-                                Tooltip(
-                                  message: l10n.cancel,
-                                  child: IconButton(
-                                    icon: const Icon(Icons.cancel),
+                                Expanded(
+                                  child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor:
+                                          theme.colorScheme.primaryContainer,
+                                      foregroundColor:
+                                          theme.colorScheme.onPrimaryContainer,
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 12.0,
+                                      ),
+                                    ),
                                     onPressed: widget.controller.clearEdits,
+                                    child: Row(
+                                      children: [
+                                        const Icon(Icons.cancel),
+                                        Expanded(
+                                          child: Text(
+                                            L10n.of(context).cancel,
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
-                            ],
-                          ),
-                          ElevatedButton.icon(
-                            onPressed:
-                                !widget.controller.isEditing ? _onLaunch : null,
-                            icon: const Icon(Icons.send),
-                            label: Text(l10n.launchActivityButton),
-                          ),
-                        ],
-                      ),
+                              ],
+                            )
+                          : Column(
+                              spacing: 12.0,
+                              children: [
+                                Row(
+                                  spacing: 12.0,
+                                  children: [
+                                    Expanded(
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: theme
+                                              .colorScheme.primaryContainer,
+                                          foregroundColor: theme
+                                              .colorScheme.onPrimaryContainer,
+                                          padding: const EdgeInsets.symmetric(
+                                            horizontal: 12.0,
+                                          ),
+                                        ),
+                                        child: Row(
+                                          children: [
+                                            const Icon(Icons.edit),
+                                            Expanded(
+                                              child: Text(
+                                                L10n.of(context).edit,
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        onPressed: () =>
+                                            widget.controller.setEditing(true),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: theme
+                                              .colorScheme.primaryContainer,
+                                          foregroundColor: theme
+                                              .colorScheme.onPrimaryContainer,
+                                          padding: const EdgeInsets.symmetric(
+                                            horizontal: 12.0,
+                                          ),
+                                        ),
+                                        onPressed: widget.regenerate,
+                                        child: Row(
+                                          children: [
+                                            const Icon(Icons.lightbulb_outline),
+                                            Expanded(
+                                              child: Text(
+                                                L10n.of(context).regenerate,
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: theme
+                                              .colorScheme.primaryContainer,
+                                          foregroundColor: theme
+                                              .colorScheme.onPrimaryContainer,
+                                          padding: const EdgeInsets.symmetric(
+                                            horizontal: 12.0,
+                                          ),
+                                        ),
+                                        onPressed: _onLaunch,
+                                        child: Row(
+                                          children: [
+                                            const Icon(Icons.send),
+                                            Expanded(
+                                              child: Text(
+                                                L10n.of(context)
+                                                    .launchActivityButton,
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                     ],
                   ),
                 ),

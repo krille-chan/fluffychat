@@ -4,7 +4,6 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/events/message_reactions.dart';
-import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/toolbar/enums/reading_assistance_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/measure_render_box.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
@@ -15,7 +14,6 @@ class OverlayCenterContent extends StatelessWidget {
   final Event event;
   final Event? nextEvent;
   final Event? prevEvent;
-  final PangeaMessageEvent? pangeaMessageEvent;
 
   final MessageOverlayController overlayController;
   final ChatController chatController;
@@ -25,8 +23,6 @@ class OverlayCenterContent extends StatelessWidget {
 
   final double? messageHeight;
   final double? messageWidth;
-  final double maxWidth;
-  final double maxHeight;
 
   final bool hasReactions;
 
@@ -37,11 +33,8 @@ class OverlayCenterContent extends StatelessWidget {
     required this.event,
     required this.messageHeight,
     required this.messageWidth,
-    required this.maxWidth,
-    required this.maxHeight,
     required this.overlayController,
     required this.chatController,
-    required this.pangeaMessageEvent,
     required this.nextEvent,
     required this.prevEvent,
     required this.hasReactions,
@@ -58,7 +51,7 @@ class OverlayCenterContent extends StatelessWidget {
       ignoring: !isTransitionAnimation &&
           readingAssistanceMode != ReadingAssistanceMode.practiceMode,
       child: Container(
-        constraints: BoxConstraints(maxWidth: maxWidth),
+        constraints: BoxConstraints(maxWidth: overlayController.maxWidth),
         child: Material(
           type: MaterialType.transparency,
           child: Column(
@@ -76,7 +69,6 @@ class OverlayCenterContent extends StatelessWidget {
                           .key
                       : null,
                   event,
-                  pangeaMessageEvent: pangeaMessageEvent,
                   immersionMode: chatController.choreographer.immersionMode,
                   controller: chatController,
                   overlayController: overlayController,
@@ -93,7 +85,6 @@ class OverlayCenterContent extends StatelessWidget {
                       (sizeAnimation == null && isTransitionAnimation)
                           ? messageHeight
                           : null,
-                  maxHeight: maxHeight,
                   isTransitionAnimation: isTransitionAnimation,
                   readingAssistanceMode: readingAssistanceMode,
                 ),

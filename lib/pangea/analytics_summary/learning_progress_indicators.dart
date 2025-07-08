@@ -2,13 +2,13 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-import 'package:fluffychat/pangea/analytics_details_popup/analytics_details_popup.dart';
+import 'package:go_router/go_router.dart';
+
 import 'package:fluffychat/pangea/analytics_misc/construct_list_model.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/get_analytics_controller.dart';
 import 'package:fluffychat/pangea/analytics_summary/learning_progress_bar.dart';
 import 'package:fluffychat/pangea/analytics_summary/learning_progress_indicator_button.dart';
-import 'package:fluffychat/pangea/analytics_summary/level_bar_popup.dart';
 import 'package:fluffychat/pangea/analytics_summary/progress_indicator.dart';
 import 'package:fluffychat/pangea/analytics_summary/progress_indicators_enum.dart';
 import 'package:fluffychat/pangea/learning_settings/pages/settings_learning.dart';
@@ -19,7 +19,11 @@ import 'package:fluffychat/widgets/matrix.dart';
 /// messages sent,  words used, and error types, which can
 /// be clicked to access more fine-grained analytics data.
 class LearningProgressIndicators extends StatefulWidget {
-  const LearningProgressIndicators({super.key});
+  final ProgressIndicatorEnum? selected;
+  const LearningProgressIndicators({
+    super.key,
+    this.selected,
+  });
 
   @override
   State<LearningProgressIndicators> createState() =>
@@ -106,12 +110,10 @@ class LearningProgressIndicatorsState
                       children: ConstructTypeEnum.values
                           .map(
                             (c) => HoverButton(
+                              selected: widget.selected == c.indicator,
                               onPressed: () {
-                                showDialog<AnalyticsPopupWrapper>(
-                                  context: context,
-                                  builder: (context) => AnalyticsPopupWrapper(
-                                    view: c,
-                                  ),
+                                context.go(
+                                  "/rooms/analytics?mode=${c.indicator.toShortString()}",
                                 );
                               },
                               child: ProgressIndicatorBadge(
@@ -168,10 +170,7 @@ class LearningProgressIndicatorsState
                   cursor: SystemMouseCursors.click,
                   child: GestureDetector(
                     onTap: () {
-                      showDialog<LevelBarPopup>(
-                        context: context,
-                        builder: (c) => const LevelBarPopup(),
-                      );
+                      context.go("/rooms/analytics?mode=level");
                     },
                     child: Row(
                       spacing: 8.0,

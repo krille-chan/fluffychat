@@ -32,9 +32,11 @@ import 'package:fluffychat/pages/settings_security/settings_security.dart';
 import 'package:fluffychat/pages/settings_style/settings_style.dart';
 import 'package:fluffychat/pangea/activity_generator/activity_generator.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_planner_page.dart';
-import 'package:fluffychat/pangea/activity_suggestions/suggestions_page.dart';
+import 'package:fluffychat/pangea/analytics_page/analytics_page.dart';
+import 'package:fluffychat/pangea/analytics_summary/progress_indicators_enum.dart';
+import 'package:fluffychat/pangea/common/widgets/pangea_side_view.dart';
+import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
 import 'package:fluffychat/pangea/find_your_people/find_your_people.dart';
-import 'package:fluffychat/pangea/find_your_people/find_your_people_side_view.dart';
 import 'package:fluffychat/pangea/guard/p_vguard.dart';
 import 'package:fluffychat/pangea/learning_settings/pages/settings_learning.dart';
 import 'package:fluffychat/pangea/login/pages/login_or_signup_view.dart';
@@ -203,7 +205,8 @@ abstract class AppRoutes {
         //         state.fullPath?.startsWith('/rooms/settings') == false
         FluffyThemes.isColumnMode(context) &&
                 state.fullPath?.startsWith('/rooms/settings') == false &&
-                state.fullPath?.startsWith('/rooms/communities') == false
+                state.fullPath?.startsWith('/rooms/communities') == false &&
+                state.fullPath?.startsWith('/rooms/analytics') == false
             // Pangea#
             ? TwoColumnLayout(
                 mainView: ChatList(
@@ -316,7 +319,7 @@ abstract class AppRoutes {
                 state,
                 FluffyThemes.isColumnMode(context)
                     ? TwoColumnLayout(
-                        mainView: const FindYourPeopleSideView(),
+                        mainView: PangeaSideView(path: state.fullPath),
                         sideView: child,
                         dividerColor: Colors.transparent,
                       )
@@ -332,37 +335,21 @@ abstract class AppRoutes {
                     const FindYourPeople(),
                   ),
                 ),
-              ],
-            ),
-            GoRoute(
-              path: 'homepage',
-              redirect: loggedOutRedirect,
-              pageBuilder: (context, state) => defaultPageBuilder(
-                context,
-                state,
-                const SuggestionsPage(),
-              ),
-              routes: [
-                ...newRoomRoutes,
                 GoRoute(
-                  path: '/planner',
+                  path: 'analytics',
+                  redirect: loggedOutRedirect,
                   pageBuilder: (context, state) => defaultPageBuilder(
                     context,
                     state,
-                    const ActivityPlannerPage(),
-                  ),
-                  redirect: loggedOutRedirect,
-                  routes: [
-                    GoRoute(
-                      path: '/generator',
-                      redirect: loggedOutRedirect,
-                      pageBuilder: (context, state) => defaultPageBuilder(
-                        context,
-                        state,
-                        const ActivityGenerator(),
+                    AnalyticsPage(
+                      selectedIndicator: ProgressIndicatorEnum.fromString(
+                        state.uri.queryParameters['mode'] ?? 'vocab',
                       ),
+                      constructZoom: state.extra is ConstructIdentifier
+                          ? state.extra as ConstructIdentifier
+                          : null,
                     ),
-                  ],
+                  ),
                 ),
               ],
             ),

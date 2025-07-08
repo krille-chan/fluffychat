@@ -3,11 +3,11 @@ import 'dart:developer';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import 'package:go_router/go_router.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/pangea/analytics_details_popup/analytics_details_popup.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/common/utils/overlay.dart';
@@ -278,17 +278,9 @@ class MorphMeaningPopupState extends State<MorphMeaningPopup> {
                                 null)
                               ConstructXpWidget(
                                 id: widget.cId,
-                                onTap: () => showDialog<AnalyticsPopupWrapper>(
-                                  context: context,
-                                  builder: (context) => AnalyticsPopupWrapper(
-                                    constructZoom: widget.cId,
-                                    view: ConstructTypeEnum.morph,
-                                    backButtonOverride: IconButton(
-                                      icon: const Icon(Icons.close),
-                                      onPressed: () =>
-                                          Navigator.of(context).pop(),
-                                    ),
-                                  ),
+                                onTap: () => context.go(
+                                  "/rooms/analytics?mode=morph",
+                                  extra: widget.cId,
                                 ),
                               ),
                           ],

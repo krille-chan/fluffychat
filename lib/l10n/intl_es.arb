@@ -5407,7 +5407,6 @@
   "activityPlannerTitle": "Planificador de Actividades",
   "topicLabel": "Tema",
   "topicPlaceholder": "Elige un tema...",
-  "modeLabel": "Modo",
   "modePlaceholder": "Elige un modo...",
   "learningObjectiveLabel": "Objetivo de Aprendizaje",
   "learningObjectivePlaceholder": "Elige un objetivo de aprendizaje...",
@@ -5421,12 +5420,9 @@
   "video": "Video",
   "nan": "No aplicable",
   "activityPlannerOverviewInstructionsBody": "¡Elige un tema, modo, objetivo de aprendizaje y genera una actividad para el chat!",
-  "myBookmarkedActivities": "Mis Actividades Marcadas",
-  "noBookmarkedActivities": "No hay actividades marcadas",
   "activityTitle": "Título de la Actividad",
   "addVocabulary": "Agregar vocabulario",
   "instructions": "Instrucciones",
-  "bookmark": "Marcar esta actividad",
   "numberOfLearners": "Número de aprendices",
   "mustBeInteger": "Debe ser un número entero, por ejemplo, 1, 2, 3, ...",
   "noLemmasFound": "No hay vocabulario con más de {xp} XP. ¡Sigue practicando!",
@@ -5534,9 +5530,7 @@
   "exploreMore": "Explorar más",
   "randomize": "Aleatorizar",
   "clear": "Limpiar",
-  "makeYourOwnActivity": "Crea tu propia actividad",
   "featuredActivities": "Destacadas",
-  "yourBookmarks": "Marcados",
   "goToChat": "Ir al chat",
   "save": "Guardar",
   "selectActivity": "Seleccionar actividad",
@@ -5763,10 +5757,6 @@
     "placeholders": {}
   },
   "@featuredActivities": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "@yourBookmarks": {
     "type": "String",
     "placeholders": {}
   },

@@ -13,6 +13,7 @@ import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:matrix/matrix.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -30,7 +31,7 @@ import 'package:fluffychat/pages/chat_details/chat_details.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/constructs_model.dart';
 import 'package:fluffychat/pangea/analytics_misc/gain_points_animation.dart';
-import 'package:fluffychat/pangea/analytics_misc/level_up.dart';
+import 'package:fluffychat/pangea/analytics_misc/level_up/level_up_banner.dart';
 import 'package:fluffychat/pangea/analytics_misc/put_analytics_controller.dart';
 import 'package:fluffychat/pangea/bot/utils/bot_name.dart';
 import 'package:fluffychat/pangea/chat/utils/unlocked_morphs_snackbar.dart';
@@ -501,12 +502,21 @@ class ChatController extends State<ChatPageWithRoom>
       );
       if (audioFile == null) return;
 
-      matrix.audioPlayer!.setAudioSource(
-        BytesAudioSource(
-          audioFile.bytes,
-          audioFile.mimeType,
-        ),
-      );
+      if (!kIsWeb) {
+        final tempDir = await getTemporaryDirectory();
+
+        File? file;
+        file = File('${tempDir.path}/${audioFile.name}');
+        await file.writeAsBytes(audioFile.bytes);
+        matrix.audioPlayer!.setFilePath(file.path);
+      } else {
+        matrix.audioPlayer!.setAudioSource(
+          BytesAudioSource(
+            audioFile.bytes,
+            audioFile.mimeType,
+          ),
+        );
+      }
 
       matrix.audioPlayer!.play();
     });
@@ -1998,10 +2008,10 @@ class ChatController extends State<ChatPageWithRoom>
       OverlayUtil.showOverlay(
         context: context,
         child: overlayEntry!,
-        transformTargetId: "",
         position: OverlayPositionEnum.centered,
         onDismiss: clearSelectedEvents,
         blurBackground: true,
+        backgroundColor: Colors.black,
       );
 
       // select the message

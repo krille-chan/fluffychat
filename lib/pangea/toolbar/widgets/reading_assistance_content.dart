@@ -120,6 +120,8 @@ class ReadingAssistanceContentState extends State<ReadingAssistanceContent> {
           token: widget.overlayController.selectedToken!,
           messageEvent: widget.overlayController.pangeaMessageEvent!,
           overlayController: widget.overlayController,
+          wordIsNew: widget.overlayController
+              .isNewToken(widget.overlayController.selectedToken!),
         );
     }
   }
@@ -147,14 +149,13 @@ class ReadingAssistanceContentState extends State<ReadingAssistanceContent> {
             ),
           ),
           constraints: BoxConstraints(
-            maxHeight: AppConfig.toolbarMaxHeight,
             minWidth: min(
               AppConfig.toolbarMinWidth,
               widget.overlayController.maxWidth,
             ),
-            minHeight: AppConfig.toolbarMinHeight,
             maxWidth: widget.overlayController.maxWidth,
           ),
+          height: AppConfig.toolbarMaxHeight,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,

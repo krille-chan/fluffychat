@@ -8,7 +8,6 @@ import 'package:matrix/matrix.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat/events/audio_player.dart';
 import 'package:fluffychat/pangea/analytics_misc/text_loading_shimmer.dart';
-import 'package:fluffychat/pangea/choreographer/widgets/igc/card_error_widget.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/events/extensions/pangea_event_extension.dart';
@@ -96,9 +95,7 @@ class MessageAudioCardState extends State<MessageAudioCard> {
                     ? Theme.of(context).colorScheme.primary
                     : Theme.of(context).colorScheme.onPrimary,
               )
-            : const CardErrorWidget(
-                error: "Null audio file in message_audio_card",
-              );
+            : const SizedBox();
   }
 }
 

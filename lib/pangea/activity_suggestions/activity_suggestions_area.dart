@@ -5,7 +5,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-import 'package:go_router/go_router.dart';
+import 'package:collection/collection.dart';
 import 'package:matrix/matrix.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -25,14 +25,11 @@ import 'package:fluffychat/widgets/matrix.dart';
 
 class ActivitySuggestionsArea extends StatefulWidget {
   final Axis? scrollDirection;
-  final bool showTitle;
-
   final Room? room;
 
   const ActivitySuggestionsArea({
     super.key,
     this.scrollDirection,
-    this.showTitle = false,
     this.room,
   });
   @override
@@ -82,6 +79,20 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
       MatrixState.pangeaController.languageController.userL2?.langCode ??
       LanguageKeys.defaultLanguage;
 
+  ActivityPlanRequest get _request {
+    return ActivityPlanRequest(
+      topic: "",
+      mode: "",
+      objective: "",
+      media: MediaEnum.nan,
+      cefrLevel: LanguageLevelTypeEnum.a1,
+      languageOfInstructions: instructionLanguage,
+      targetLanguage: targetLanguage,
+      numberOfParticipants: 3,
+      count: 5,
+    );
+  }
+
   Future<void> _setActivityItems({int retries = 0}) async {
     if (retries > 3) {
       if (mounted) {
@@ -99,18 +110,7 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
         _loading = true;
       });
 
-      final ActivityPlanRequest request = ActivityPlanRequest(
-        topic: "",
-        mode: "",
-        objective: "",
-        media: MediaEnum.nan,
-        cefrLevel: LanguageLevelTypeEnum.a1,
-        languageOfInstructions: instructionLanguage,
-        targetLanguage: targetLanguage,
-        numberOfParticipants: 3,
-        count: 5,
-      );
-      final resp = await ActivitySearchRepo.get(request).timeout(
+      final resp = await ActivitySearchRepo.get(_request).timeout(
         const Duration(seconds: 5),
         onTimeout: () {
           if (mounted) {
@@ -138,10 +138,13 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
     }
   }
 
+  void _onReplaceActivity(int index, ActivityPlanModel a) {
+    setState(() => _activityItems[index] = a);
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final isColumnMode = FluffyThemes.isColumnMode(context);
 
     final List<Widget> cards = _loading
         ? List.generate(5, (i) {
@@ -159,7 +162,7 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
             );
           })
         : _activityItems
-            .map((activity) {
+            .mapIndexed((index, activity) {
               return ActivitySuggestionCard(
                 activity: activity,
                 onPressed: () {
@@ -173,6 +176,8 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
                           return ActivitySuggestionDialog(
                             controller: controller,
                             buttonText: L10n.of(context).launch,
+                            replaceActivity: (a) =>
+                                _onReplaceActivity(index, a),
                           );
                         },
                       );
@@ -196,29 +201,6 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
       spacing: 8.0,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (widget.showTitle)
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Flexible(
-                child: Text(
-                  L10n.of(context).chatWithActivities,
-                  style: isColumnMode
-                      ? theme.textTheme.titleLarge
-                          ?.copyWith(fontWeight: FontWeight.bold)
-                      : theme.textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
-              IconButton(
-                icon: const Icon(Icons.event_note_outlined),
-                onPressed: () => context.go('/rooms/homepage/planner'),
-                tooltip: L10n.of(context).activityPlannerTitle,
-              ),
-            ],
-          ),
         AnimatedSize(
           duration: FluffyThemes.animationDuration,
           child: (_timeout || !_loading && cards.isEmpty)

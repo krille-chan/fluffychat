@@ -144,6 +144,15 @@ class ActivitySuggestionCarouselState
     });
   }
 
+  void _onReplaceActivity(ActivityPlanModel a) {
+    final index = _currentIndex;
+    if (index == null || index < 0 || index >= _activityItems.length) {
+      return;
+    }
+    _activityItems[index] = a;
+    setState(() => _currentActivity = a);
+  }
+
   void _onClickCard() {
     if (widget.selectedActivity == _currentActivity) {
       widget.onActivitySelected(
@@ -163,6 +172,7 @@ class ActivitySuggestionCarouselState
             return ActivitySuggestionDialog(
               controller: controller,
               buttonText: L10n.of(context).selectActivity,
+              replaceActivity: _onReplaceActivity,
               onLaunch: () => widget.onActivitySelected(
                 controller.updatedActivity,
                 controller.avatar,

@@ -51,6 +51,13 @@ class ChatSearchMessageTab extends StatelessWidget {
           );
         }
         final events = snapshot.data?.$1 ?? [];
+        // #Pangea
+        events.removeWhere(
+          (event) =>
+              event.type != EventTypes.Message ||
+              event.messageType != MessageTypes.Text,
+        );
+        // Pangea#
 
         return SelectionArea(
           child: ListView.separated(
@@ -143,15 +150,28 @@ class _MessageSearchResultListTile extends StatelessWidget {
             size: 16,
           ),
           const SizedBox(width: 8),
-          Text(
-            displayname,
-          ),
-          Expanded(
+          // #Pangea
+          // Text(
+          //   displayname,
+          // ),
+          // Expanded(
+          //   child: Text(
+          //     ' | ${event.originServerTs.localizedTimeShort(context)}',
+          //     style: const TextStyle(fontSize: 12),
+          //   ),
+          // ),
+          Flexible(
             child: Text(
-              ' | ${event.originServerTs.localizedTimeShort(context)}',
-              style: const TextStyle(fontSize: 12),
+              displayname,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
             ),
           ),
+          Text(
+            ' | ${event.originServerTs.localizedTimeShort(context)}',
+            style: const TextStyle(fontSize: 12),
+          ),
+          // Pangea#
         ],
       ),
       subtitle: Linkify(

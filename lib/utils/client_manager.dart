@@ -136,6 +136,7 @@ abstract class ClientManager {
         PangeaEventTypes.userSetLemmaInfo,
         EventTypes.RoomJoinRules,
         PangeaEventTypes.activityPlan,
+        PangeaEventTypes.constructSummary,
         // Pangea#
       },
       logLevel: kReleaseMode ? Level.warning : Level.verbose,

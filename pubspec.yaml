@@ -6,7 +6,7 @@ description: Learn a language while texting your friends.
 # Pangea#
 publish_to: none
 # On version bump also increase the build number for F-Droid
-version: 4.1.10+2
+version: 4.1.12+1
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
@@ -21,6 +21,7 @@ dependencies:
   chewie: ^1.11.3
   collection: ^1.18.0
   cross_file: ^0.3.4+2
+  confetti: ^0.8.0
   cupertino_icons: any
   # #Pangea
   # desktop_drop: ^0.4.4
@@ -135,6 +136,7 @@ dependencies:
   text_to_speech:
     git: https://github.com/pangeachat/text_to_speech.git
   flutter_tts: ^4.2.0
+  animated_flip_counter: ^0.3.4
   # Pangea#
 
 dev_dependencies:

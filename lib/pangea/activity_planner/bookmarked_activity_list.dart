@@ -36,15 +36,6 @@ class BookmarkedActivitiesListState extends State<BookmarkedActivitiesList> {
   double get cardHeight => _isColumnMode ? 325.0 : 250.0;
   double get cardWidth => _isColumnMode ? 225.0 : 150.0;
 
-  Future<void> _onEdit(
-    String activityId,
-    ActivityPlanModel activity,
-  ) async {
-    await BookmarkedActivitiesRepo.remove(activityId);
-    await BookmarkedActivitiesRepo.save(activity);
-    if (mounted) setState(() {});
-  }
-
   @override
   Widget build(BuildContext context) {
     final l10n = L10n.of(context);
@@ -53,7 +44,7 @@ class BookmarkedActivitiesListState extends State<BookmarkedActivitiesList> {
         child: Container(
           constraints: const BoxConstraints(maxWidth: 200),
           child: Text(
-            l10n.noBookmarkedActivities,
+            l10n.noSavedActivities,
             textAlign: TextAlign.center,
           ),
         ),
@@ -77,7 +68,6 @@ class BookmarkedActivitiesListState extends State<BookmarkedActivitiesList> {
                     builder: (context) {
                       return ActivityPlannerBuilder(
                         initialActivity: activity,
-                        onEdit: _onEdit,
                         room: widget.room,
                         builder: (controller) {
                           return ActivitySuggestionDialog(

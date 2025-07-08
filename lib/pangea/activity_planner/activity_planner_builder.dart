@@ -7,6 +7,8 @@ import 'package:http/http.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
+import 'package:fluffychat/pangea/activity_planner/activity_plan_request.dart';
+import 'package:fluffychat/pangea/activity_planner/bookmarked_activities_repo.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_enum.dart';
@@ -21,18 +23,12 @@ class ActivityPlannerBuilder extends StatefulWidget {
 
   final Widget Function(ActivityPlannerBuilderState) builder;
 
-  final Future<void> Function(
-    String,
-    ActivityPlanModel,
-  )? onEdit;
-
   const ActivityPlannerBuilder({
     super.key,
     required this.initialActivity,
     this.initialFilename,
     this.room,
     required this.builder,
-    this.onEdit,
   });
 
   @override
@@ -75,16 +71,18 @@ class ActivityPlannerBuilderState extends State<ActivityPlannerBuilder> {
 
   Room? get room => widget.room;
 
-  ActivityPlanModel get updatedActivity {
+  ActivityPlanRequest get updatedRequest {
     final int participants = int.tryParse(participantsController.text.trim()) ??
         widget.initialActivity.req.numberOfParticipants;
-
     final updatedReq = widget.initialActivity.req;
     updatedReq.numberOfParticipants = participants;
     updatedReq.cefrLevel = languageLevel;
+    return updatedReq;
+  }
 
+  ActivityPlanModel get updatedActivity {
     return ActivityPlanModel(
-      req: updatedReq,
+      req: updatedRequest,
       title: titleController.text,
       learningObjective: learningObjectivesController.text,
       instructions: instructionsController.text,
@@ -112,7 +110,28 @@ class ActivityPlannerBuilderState extends State<ActivityPlannerBuilder> {
 
     imageURL = widget.initialActivity.imageURL;
     filename = widget.initialFilename;
-    await _setAvatarByURL();
+    if (widget.initialActivity.imageURL != null) {
+      await _setAvatarByURL(widget.initialActivity.imageURL!);
+    }
+    if (mounted) setState(() {});
+  }
+
+  Future<void> overrideActivity(ActivityPlanModel override) async {
+    avatar = null;
+    filename = null;
+    imageURL = null;
+
+    titleController.text = override.title;
+    learningObjectivesController.text = override.learningObjective;
+    instructionsController.text = override.instructions;
+    participantsController.text = override.req.numberOfParticipants.toString();
+    vocab.clear();
+    vocab.addAll(override.vocab);
+    languageLevel = override.req.cefrLevel;
+
+    if (override.imageURL != null) {
+      await _setAvatarByURL(override.imageURL!);
+    }
     if (mounted) setState(() {});
   }
 
@@ -158,24 +177,22 @@ class ActivityPlannerBuilderState extends State<ActivityPlannerBuilder> {
     }
   }
 
-  Future<void> _setAvatarByURL() async {
-    if (widget.initialActivity.imageURL == null) return;
+  Future<void> _setAvatarByURL(String url) async {
     try {
       if (avatar == null) {
-        if (widget.initialActivity.imageURL!.startsWith("mxc")) {
+        if (url.startsWith("mxc")) {
           final client = Matrix.of(context).client;
-          final mxcUri = Uri.parse(widget.initialActivity.imageURL!);
+          final mxcUri = Uri.parse(url);
           final data = await client.downloadMxcCached(mxcUri);
           avatar = data;
           filename = Uri.encodeComponent(
             mxcUri.pathSegments.last,
           );
         } else {
-          final Response response =
-              await http.get(Uri.parse(widget.initialActivity.imageURL!));
+          final Response response = await http.get(Uri.parse(url));
           avatar = response.bodyBytes;
           filename = Uri.encodeComponent(
-            Uri.parse(widget.initialActivity.imageURL!).pathSegments.last,
+            Uri.parse(url).pathSegments.last,
           );
         }
       }
@@ -206,12 +223,10 @@ class ActivityPlannerBuilderState extends State<ActivityPlannerBuilder> {
     if (!formKey.currentState!.validate()) return;
     await updateImageURL();
     setEditing(false);
-    if (widget.onEdit != null) {
-      await widget.onEdit!(
-        widget.initialActivity.bookmarkId,
-        updatedActivity,
-      );
-    }
+
+    await BookmarkedActivitiesRepo.remove(widget.initialActivity.bookmarkId);
+    await BookmarkedActivitiesRepo.save(updatedActivity);
+    if (mounted) setState(() {});
   }
 
   Future<void> clearEdits() async {
