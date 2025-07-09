@@ -51,7 +51,6 @@ class OverlayFooter extends StatelessWidget {
             ),
             child: PangeaChatInputRow(
               controller: controller,
-              overlayController: overlayController,
             ),
           ),
         ],

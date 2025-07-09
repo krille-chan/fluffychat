@@ -55,7 +55,9 @@ enum MessageActions {
   download,
   pin,
   report,
-  info;
+  info,
+  deleteOnError,
+  sendAgain;
 
   IconData get icon {
     switch (this) {
@@ -77,6 +79,10 @@ enum MessageActions {
         return Icons.shield_outlined;
       case MessageActions.info:
         return Icons.info_outlined;
+      case MessageActions.deleteOnError:
+        return Icons.delete;
+      case MessageActions.sendAgain:
+        return Icons.send_outlined;
     }
   }
 
@@ -101,6 +107,10 @@ enum MessageActions {
         return l10n.reportMessage;
       case MessageActions.info:
         return l10n.messageInfo;
+      case MessageActions.deleteOnError:
+        return l10n.delete;
+      case MessageActions.sendAgain:
+        return l10n.tryToSendAgain;
     }
   }
 }
@@ -539,20 +549,34 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
 
   bool _messageActionEnabled(MessageActions action) {
     if (messageEvent == null) return false;
+    if (widget.controller.selectedEvents.isEmpty) return false;
+    final events = widget.controller.selectedEvents;
+
+    if (events.any((e) => !e.status.isSent)) {
+      if (action == MessageActions.sendAgain) {
+        return true;
+      }
+
+      if (events.every((e) => e.status.isError) &&
+          action == MessageActions.deleteOnError) {
+        return true;
+      }
+
+      return false;
+    }
 
     switch (action) {
       case MessageActions.reply:
-        return widget.controller.selectedEvents.length == 1 &&
+        return events.length == 1 &&
             widget.controller.room.canSendDefaultMessages;
       case MessageActions.edit:
         return widget.controller.canEditSelectedEvents &&
-            !widget.controller.selectedEvents.first.isActivityMessage;
+            !events.first.isActivityMessage;
       case MessageActions.delete:
         return widget.controller.canRedactSelectedEvents;
       case MessageActions.copy:
-        return widget.controller.selectedEvents.length == 1 &&
-            widget.controller.selectedEvents.single.messageType ==
-                MessageTypes.Text;
+        return events.length == 1 &&
+            events.single.messageType == MessageTypes.Text;
       case MessageActions.download:
         return widget.controller.canSaveSelectedEvent;
       case MessageActions.pin:
@@ -560,7 +584,10 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
       case MessageActions.forward:
       case MessageActions.report:
       case MessageActions.info:
-        return widget.controller.selectedEvents.length == 1;
+        return events.length == 1;
+      case MessageActions.deleteOnError:
+      case MessageActions.sendAgain:
+        return false;
     }
   }
 
@@ -600,13 +627,23 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
         widget.controller.showEventInfo();
         widget.controller.clearSelectedEvents();
         break;
+      case MessageActions.deleteOnError:
+        widget.controller.deleteErrorEventsAction();
+        break;
+      case MessageActions.sendAgain:
+        widget.controller.sendAgainAction();
+        break;
     }
   }
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final modes = messageEvent?.isAudioMessage == true ? audioModes : textModes;
+    final modes = widget.overlayController.showLanguageAssistance
+        ? messageEvent?.isAudioMessage == true
+            ? audioModes
+            : textModes
+        : [];
     final actions = MessageActions.values.where(_messageActionEnabled);
 
     return Material(
@@ -637,7 +674,9 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
                 ),
               );
             } else if (index == modes.length) {
-              return const Divider(height: 1.0);
+              return modes.isNotEmpty
+                  ? const Divider(height: 1.0)
+                  : const SizedBox();
             } else {
               final action = actions.elementAt(index - modes.length - 1);
               return SizedBox(

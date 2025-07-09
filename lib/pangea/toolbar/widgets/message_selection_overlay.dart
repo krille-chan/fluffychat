@@ -459,6 +459,11 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
       transcription != null ||
       transcriptionError != null;
 
+  bool get showLanguageAssistance =>
+      event.status.isSent &&
+      event.type == EventTypes.Message &&
+      event.messageType == MessageTypes.Text;
+
   ///////////////////////////////////
   /// Functions
   /////////////////////////////////////
