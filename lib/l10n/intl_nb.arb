@@ -10,7 +10,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "acceptedTheInvitation": "{username} godtok invitasjonen",
+  "acceptedTheInvitation": "👍{username} godtok invitasjonen",
   "@acceptedTheInvitation": {
     "type": "String",
     "placeholders": {
@@ -2246,5 +2246,72 @@
   "user": "Bruker",
   "@user": {},
   "users": "Brukere",
-  "@users": {}
+  "@users": {},
+  "countInvited": "{count} inviterte",
+  "@countInvited": {
+    "type": "String",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "createGroup": "Opprett gruppe",
+  "@createGroup": {},
+  "editRoomAliases": "Rediger rom aliaser",
+  "@editRoomAliases": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "accessAndVisibility": "Tilgang og synlighet",
+  "@accessAndVisibility": {},
+  "hideInvalidOrUnknownMessageFormats": "Skjul ugyldige eller ukjente meldingsformater",
+  "@hideInvalidOrUnknownMessageFormats": {},
+  "block": "Blokkér",
+  "@block": {},
+  "blockedUsers": "Blokkerte brukere",
+  "@blockedUsers": {},
+  "tryAgain": "Prøv igjen",
+  "@tryAgain": {},
+  "invalidServerName": "Ugyldig servernavn",
+  "@invalidServerName": {},
+  "messageInfo": "Meldingsinformasjon",
+  "@messageInfo": {},
+  "time": "Tid",
+  "@time": {},
+  "messageType": "Meldingstype",
+  "@messageType": {},
+  "sender": "Avsender",
+  "@sender": {},
+  "publish": "Publiser",
+  "@publish": {},
+  "videoWithSize": "Video ({size})",
+  "@videoWithSize": {
+    "type": "String",
+    "placeholders": {
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "reportUser": "Rapporter bruker",
+  "@reportUser": {},
+  "youHaveWithdrawnTheInvitationFor": "Du har trukket tilbake invitasjonen for {user}",
+  "@youHaveWithdrawnTheInvitationFor": {
+    "placeholders": {
+      "user": {
+        "type": "String"
+      }
+    }
+  },
+  "youAcceptedTheInvitation": "👍 Du har akseptert invitasjonen",
+  "@youAcceptedTheInvitation": {},
+  "youBannedUser": "Du stengte ute {bruker}",
+  "@youBannedUser": {
+    "placeholders": {
+      "user": {
+        "type": "String"
+      }
+    }
+  }
 }
