@@ -2306,12 +2306,19 @@
   },
   "youAcceptedTheInvitation": "👍 Du har akseptert invitasjonen",
   "@youAcceptedTheInvitation": {},
-  "youBannedUser": "Du stengte ute {bruker}",
+  "youBannedUser": "Du stengte ute {user}",
   "@youBannedUser": {
     "placeholders": {
       "user": {
         "type": "String"
       }
     }
+  },
+  "chatDescriptionHasBeenChanged": "Chatbeskrivelsen er endret",
+  "@chatDescriptionHasBeenChanged": {},
+  "goToTheNewRoom": "Gå til det nye rommet",
+  "@goToTheNewRoom": {
+    "type": "String",
+    "placeholders": {}
   }
 }
