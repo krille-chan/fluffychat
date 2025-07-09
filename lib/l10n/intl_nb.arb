@@ -2320,5 +2320,58 @@
   "@goToTheNewRoom": {
     "type": "String",
     "placeholders": {}
-  }
+  },
+  "screenSharingTitle": "skjermdeling",
+  "@screenSharingTitle": {},
+  "screenSharingDetail": "Du deler skjermen din i FuffyChat",
+  "@screenSharingDetail": {},
+  "callingPermissions": "Anropstillatelser",
+  "@callingPermissions": {},
+  "callingAccountDetails": "Lar FluffyChat bruke den innebygde Android-oppringingsappen.",
+  "@callingAccountDetails": {},
+  "appearOnTop": "Vis øverst",
+  "@appearOnTop": {},
+  "otherCallingPermissions": "Mikrofon, kamera og andre FluffyChat-tillatelser",
+  "@otherCallingPermissions": {},
+  "whyIsThisMessageEncrypted": "Hvorfor er denne meldingen uleselig?",
+  "@whyIsThisMessageEncrypted": {},
+  "yourGlobalUserIdIs": "Din globale bruker-ID er: ",
+  "@yourGlobalUserIdIs": {},
+  "searchChatsRooms": "Søk etter #chatter, @brukere...",
+  "@searchChatsRooms": {},
+  "groupName": "Gruppenavn",
+  "@groupName": {},
+  "createGroupAndInviteUsers": "Opprett en gruppe og inviter brukere",
+  "@createGroupAndInviteUsers": {},
+  "invite": "Inviter",
+  "@invite": {},
+  "wrongPinEntered": "Feil PIN-kode tastet inn! Prøv igjen om {seconds} sekunder...",
+  "@wrongPinEntered": {
+    "type": "String",
+    "placeholders": {
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "sendAsText": "Send som tekst",
+  "@sendAsText": {
+    "type": "String"
+  },
+  "sendImages": "Send {count} bilde",
+  "@sendImages": {
+    "type": "String",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "presencesToggle": "Vis statusmeldinger fra andre brukere",
+  "@presencesToggle": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "voiceCall": "Taleanrop",
+  "@voiceCall": {}
 }
