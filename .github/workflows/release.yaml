@@ -1,12 +1,12 @@
-name: Release Workflow
+name: Build on Push
 
 on:
-  release:
-    types:
-      - created
+  push:
+    branches:
+      - main  
 
 concurrency:
-  group: release_workflow
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 env:
@@ -14,8 +14,28 @@ env:
   IMAGE_NAME: ${{ github.repository }}
 
 jobs:
-  build_web:
+  create_release:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write 
+    outputs:
+      upload_url: ${{ steps.release.outputs.upload_url }}
+    steps:
+      - name: Create Draft Pre-release
+        id: release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: build-${{ github.sha }}
+          name: "Build ${{ github.sha }}"
+          body: "Automated build for commit ${{ github.sha }}"
+          draft: true
+          prerelease: true
+
+  build_web:
+    needs: create_release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write 
     steps:
       - uses: actions/checkout@v5
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
@@ -35,17 +55,12 @@ jobs:
         run: flutter build web --dart-define=FLUTTER_WEB_CANVASKIT_URL=canvaskit/ --release --source-maps --base-href "/web/"
       - name: Create archive
         run: tar -czf hermes-web.tar.gz build/web/
-      - name: Upload Web Build
-        uses: actions/upload-artifact@v4
-        with:
-          name: Web Build
-          path: hermes-web.tar.gz
       - name: Upload to release
         uses: actions/upload-release-asset@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.PAGES_DEPLOY_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ github.event.release.upload_url }}
+          upload_url: ${{ needs.create_release.outputs.upload_url }}
           asset_path: hermes-web.tar.gz
           asset_name: hermes-web.tar.gz
           asset_content_type: application/gzip
@@ -64,13 +79,16 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/v')
         uses: peaceiris/actions-gh-pages@v4
         with:
-          personal_token: ${{ secrets.PAGES_DEPLOY_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
           publish_branch: gh-pages
           cname: hermes.im
 
   build_apk:
+    needs: create_release
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v5
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
@@ -98,18 +116,21 @@ jobs:
       - name: Upload to release
         uses: actions/upload-release-asset@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.PAGES_DEPLOY_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ github.event.release.upload_url }}
+          upload_url: ${{ needs.create_release.outputs.upload_url }}
           asset_path: build/app/outputs/apk/release/app-release.apk
           asset_name: hermes.apk
           asset_content_type: application/vnd.android.package-archive
 
   build_linux:
+    needs: create_release
     strategy:
       matrix:
         arch: [ x64, arm64 ]
     runs-on: ${{ matrix.arch == 'arm64' && 'ubuntu-24.04-arm' || 'ubuntu-latest'}}
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v5
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
@@ -127,9 +148,9 @@ jobs:
       - name: Upload to release
         uses: actions/upload-release-asset@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.PAGES_DEPLOY_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ github.event.release.upload_url }}
+          upload_url: ${{ needs.create_release.outputs.upload_url }}
           asset_path: hermes-linux-${{ matrix.arch }}.tar.gz
           asset_name: hermes-linux-${{ matrix.arch }}.tar.gz
           asset_content_type: application/gzip
