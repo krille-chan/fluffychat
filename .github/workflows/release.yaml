@@ -1,9 +1,11 @@
-name: Build on Push
+name: Create Release on Version Change
 
 on:
   push:
     branches:
-      - main  
+      - main
+    paths:
+      - 'pubspec.yaml'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -21,15 +23,21 @@ jobs:
     outputs:
       upload_url: ${{ steps.release.outputs.upload_url }}
     steps:
-      - name: Create Draft Pre-release
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Get version from pubspec.yaml
+        id: get_version
+        run: echo "version=$(grep 'version:' pubspec.yaml | cut -d ' ' -f 2 | cut -d '+' -f 1)" >> $GITHUB_OUTPUT
+
+      - name: Create Full GitHub Release
         id: release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: build-${{ github.sha }}
-          name: "Build ${{ github.sha }}"
-          body: "Automated build for commit ${{ github.sha }}"
-          draft: true
-          prerelease: true
+          tag_name: v${{ steps.get_version.outputs.version }}
+          name: Release v${{ steps.get_version.outputs.version }}
+          draft: false
+          prerelease: false
 
   build_web:
     needs: create_release
@@ -43,8 +51,6 @@ jobs:
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           cache: true
-      - name: Install dependencies
-        run: sudo apt-get update && sudo apt-get install nodejs -y
       - uses: moonrepo/setup-rust@v1
       - run: rustup component add rust-src --toolchain nightly-x86_64-unknown-linux-gnu
       - run: flutter pub get
@@ -55,7 +61,7 @@ jobs:
         run: flutter build web --dart-define=FLUTTER_WEB_CANVASKIT_URL=canvaskit/ --release --source-maps --base-href "/web/"
       - name: Create archive
         run: tar -czf hermes-web.tar.gz build/web/
-      - name: Upload to release
+      - name: Upload Web Build to Release
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -64,25 +70,6 @@ jobs:
           asset_path: hermes-web.tar.gz
           asset_name: hermes-web.tar.gz
           asset_content_type: application/gzip
-      - name: Install and build tailwindcss
-        working-directory: docs
-        run: |
-          npm install tailwindcss @tailwindcss/cli
-          npx tailwindcss -o ./tailwind.css
-      - name: Build Website
-        run: |
-          mv docs public
-          mv repo public || true
-          mv build/web/ public/web
-          cp public/web -r public/nightly
-      - name: Deploy to GitHub Pages
-        if: startsWith(github.ref, 'refs/tags/v')
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
-          publish_branch: gh-pages
-          cname: hermes.im
 
   build_apk:
     needs: create_release
@@ -113,7 +100,7 @@ jobs:
           PLAYSTORE_DEPLOY_KEY: ${{ secrets.PLAYSTORE_DEPLOY_KEY }}
         run: ./scripts/prepare-android-release.sh
       - run: flutter build apk --release
-      - name: Upload to release
+      - name: Upload APK to Release
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -145,7 +132,7 @@ jobs:
       - run: ./flutter/bin/flutter build linux --target-platform linux-${{ matrix.arch }}
       - name: Create archive
         run: tar -czf hermes-linux-${{ matrix.arch }}.tar.gz -C build/linux/${{ matrix.arch }}/release/bundle/ .
-      - name: Upload to release
+      - name: Upload Linux Build to Release
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
