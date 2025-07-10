@@ -1375,6 +1375,15 @@ class ChatController extends State<ChatPageWithRoom>
         future: () async {
           if (event.status.isSent) {
             if (event.canRedact) {
+              // #Pangea
+              // https://github.com/pangeachat/client/issues/3353
+              if (room.canChangeStateEvent(EventTypes.RoomPinnedEvents)) {
+                final pinnedEvents = room.pinnedEventIds
+                    .where((e) => e != event.eventId)
+                    .toList();
+                await room.setPinnedEvents(pinnedEvents);
+              }
+              // Pangea#
               await event.redactEvent(reason: reason);
             } else {
               final client = currentRoomBundle.firstWhere(
