@@ -181,24 +181,29 @@ class AnalyticsPopupWrapperState extends State<AnalyticsPopupWrapper> {
                 if (kIsWeb) const SizedBox(width: 4.0),
               ],
             )
-          : localConstructZoom != null
-              ? AppBar(
-                  leading: widget.backButtonOverride ??
-                      (localConstructZoom != null
-                          ? IconButton(
-                              icon: const Icon(Icons.arrow_back),
-                              onPressed: () => setConstructZoom(null),
-                            )
-                          : const SizedBox()),
-                )
-              : null,
-      body: localView == ConstructTypeEnum.morph
-          ? localConstructZoom == null
-              ? MorphAnalyticsListView(controller: this)
-              : MorphDetailsView(constructId: localConstructZoom!)
-          : localConstructZoom == null
-              ? VocabAnalyticsListView(controller: this)
-              : VocabDetailsView(constructId: localConstructZoom!),
+          : null,
+      body: Stack(
+        children: [
+          localView == ConstructTypeEnum.morph
+              ? localConstructZoom == null
+                  ? MorphAnalyticsListView(controller: this)
+                  : MorphDetailsView(constructId: localConstructZoom!)
+              : localConstructZoom == null
+                  ? VocabAnalyticsListView(controller: this)
+                  : VocabDetailsView(constructId: localConstructZoom!),
+          if (localConstructZoom != null)
+            Positioned(
+              top: 0,
+              left: 0,
+              child: IconButton(
+                icon: const Icon(Icons.arrow_back),
+                onPressed: () {
+                  setConstructZoom(null);
+                },
+              ),
+            ),
+        ],
+      ),
     );
   }
 }

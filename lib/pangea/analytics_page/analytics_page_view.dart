@@ -42,7 +42,6 @@ class AnalyticsPageView extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsetsGeometry.all(16.0),
                 child: Column(
-                  spacing: 16.0,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     LearningProgressIndicators(

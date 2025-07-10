@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/analytics_details_popup/analytics_details_popup.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_use_model.dart';
@@ -27,15 +28,18 @@ class MorphAnalyticsListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: FluffyThemes.isColumnMode(context)
+          ? const EdgeInsets.all(16.0)
+          : const EdgeInsets.all(0.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        spacing: 16.0,
         children: [
           // Add your text widget here
           const InstructionsInlineTooltip(
             instructionsEnum: InstructionsEnum.morphAnalyticsList,
           ),
+          if (!InstructionsEnum.morphAnalyticsList.isToggledOff)
+            const SizedBox(height: 16.0),
           Expanded(
             child: ListView.builder(
               key: const PageStorageKey<String>('morph-analytics'),

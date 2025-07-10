@@ -87,9 +87,6 @@ class VocabAnalyticsListView extends StatelessWidget {
         AnimatedContainer(
           duration: const Duration(milliseconds: 300),
           curve: Curves.easeInOut,
-          padding: EdgeInsets.symmetric(
-            horizontal: controller.isSearching ? 8.0 : 24.0,
-          ),
           child: Container(
             height: 60,
             alignment: Alignment.center,
@@ -134,24 +131,21 @@ class VocabAnalyticsListView extends StatelessWidget {
           ),
         ),
         Expanded(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: GridView.builder(
-              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: 100.0,
-                mainAxisExtent: 100.0,
-                crossAxisSpacing: 8.0,
-                mainAxisSpacing: 8.0,
-              ),
-              itemCount: _filteredVocab.length,
-              itemBuilder: (context, index) {
-                final vocabItem = _filteredVocab[index];
-                return VocabAnalyticsListTile(
-                  onTap: () => controller.setConstructZoom(vocabItem.id),
-                  constructUse: vocabItem,
-                );
-              },
+          child: GridView.builder(
+            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+              maxCrossAxisExtent: 100.0,
+              mainAxisExtent: 100.0,
+              crossAxisSpacing: 8.0,
+              mainAxisSpacing: 8.0,
             ),
+            itemCount: _filteredVocab.length,
+            itemBuilder: (context, index) {
+              final vocabItem = _filteredVocab[index];
+              return VocabAnalyticsListTile(
+                onTap: () => controller.setConstructZoom(vocabItem.id),
+                constructUse: vocabItem,
+              );
+            },
           ),
         ),
       ],
