@@ -265,7 +265,8 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   }
 
   /// Update [selectedSpan]
-  void updateSelectedSpan(PangeaTokenText? selectedSpan, [bool force = false]) {
+  void updateSelectedSpan(PangeaTokenText? selectedSpan) {
+    if (selectedSpan == _selectedSpan) return;
     if (selectedMorph != null) {
       selectedMorph = null;
     }
@@ -276,12 +277,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
       );
     }
 
-    if (selectedSpan == _selectedSpan && !force) {
-      _selectedSpan = null;
-    } else {
-      _selectedSpan = selectedSpan;
-    }
-
+    _selectedSpan = selectedSpan;
     if (mounted) setState(() {});
     if (selectedToken != null && isNewToken(selectedToken!)) {
       _onSelectNewToken(selectedToken!);

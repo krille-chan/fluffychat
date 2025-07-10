@@ -88,7 +88,7 @@ class WordZoomWidget extends StatelessWidget {
                         token.text.content,
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          fontSize: 32.0,
+                          fontSize: 28.0,
                           fontWeight: FontWeight.w600,
                           height: 1.2,
                           color:
