@@ -10,7 +10,6 @@ import 'package:flutter_tts/flutter_tts.dart' as flutter_tts;
 import 'package:just_audio/just_audio.dart';
 import 'package:matrix/matrix.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:text_to_speech/text_to_speech.dart';
 
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/events/audio_player.dart';
@@ -20,7 +19,6 @@ import 'package:fluffychat/pangea/instructions/instructions_enum.dart';
 import 'package:fluffychat/pangea/instructions/instructions_show_popup.dart';
 import 'package:fluffychat/pangea/learning_settings/constants/language_constants.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/text_to_speech_controller.dart';
-import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class TtsController {
@@ -31,15 +29,10 @@ class TtsController {
   static List<String> _availableLangCodes = [];
 
   static final flutter_tts.FlutterTts _tts = flutter_tts.FlutterTts();
-  static final TextToSpeech _alternativeTTS = TextToSpeech();
   static final StreamController<bool> loadingChoreoStream =
       StreamController<bool>.broadcast();
 
   static AudioPlayer? audioPlayer;
-
-  static bool get _useAlternativeTTS {
-    return PlatformInfos.isWindows;
-  }
 
   static Future<void> _onError(dynamic message) async {
     if (message != 'canceled' && message != 'interrupted') {
@@ -54,12 +47,8 @@ class TtsController {
 
   static Future<void> setAvailableLanguages() async {
     try {
-      if (_useAlternativeTTS) {
-        await _setAvailableAltLanguages();
-      } else {
-        await _tts.awaitSpeakCompletion(true);
-        await _setAvailableBaseLanguages();
-      }
+      await _tts.awaitSpeakCompletion(true);
+      await _setAvailableBaseLanguages();
     } catch (e, s) {
       debugger(when: kDebugMode);
       ErrorHandler.logError(
@@ -84,11 +73,6 @@ class TtsController {
         .toList();
   }
 
-  static Future<void> _setAvailableAltLanguages() async {
-    final languages = await _alternativeTTS.getLanguages();
-    _availableLangCodes = languages.toSet().toList();
-  }
-
   static Future<void> _setSpeakingLanguage(String langCode) async {
     String? selectedLangCode;
     final langCodeShort = langCode.split("-").first;
@@ -101,9 +85,7 @@ class TtsController {
     }
 
     if (selectedLangCode != null) {
-      await (_useAlternativeTTS
-          ? _alternativeTTS.setLanguage(selectedLangCode)
-          : _tts.setLanguage(selectedLangCode));
+      await (_tts.setLanguage(selectedLangCode));
     } else {
       final jsonData = {
         'langCode': langCode,
@@ -120,11 +102,10 @@ class TtsController {
     try {
       // return type is dynamic but apparent its supposed to be 1
       // https://pub.dev/packages/flutter_tts
-      final result =
-          await (_useAlternativeTTS ? _alternativeTTS.stop() : _tts.stop());
+      final result = await (_tts.stop());
       audioPlayer?.stop();
 
-      if (!_useAlternativeTTS && result != 1) {
+      if (result != 1) {
         ErrorHandler.logError(
           m: 'Unexpected result from tts.stop',
           data: {
@@ -232,9 +213,7 @@ class TtsController {
 
       Logs().i('Speaking: $text, langCode: $langCode');
       final result = await Future(
-        () => (_useAlternativeTTS
-            ? _alternativeTTS.speak(text)
-            : _tts.speak(text)),
+        () => (_tts.speak(text)),
         //     .timeout(
         //   const Duration(seconds: 5),
         //   // onTimeout: () {

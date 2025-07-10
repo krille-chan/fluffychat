@@ -133,8 +133,6 @@ dependencies:
   sentry_flutter: ^8.13.2
   shimmer: ^3.0.0
   rive: 0.11.11
-  text_to_speech:
-    git: https://github.com/pangeachat/text_to_speech.git
   flutter_tts: ^4.2.0
   animated_flip_counter: ^0.3.4
   # Pangea#
