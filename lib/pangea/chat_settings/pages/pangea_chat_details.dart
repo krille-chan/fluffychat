@@ -136,17 +136,18 @@ class PangeaChatDetailsView extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   TextButton.icon(
-                                    onPressed: () => room.isDirectChat
+                                    onPressed: room.isDirectChat
                                         ? null
-                                        : room.canChangeStateEvent(
-                                            EventTypes.RoomName,
-                                          )
-                                            ? controller.setDisplaynameAction()
-                                            : FluffyShare.share(
-                                                displayname,
-                                                context,
-                                                copyOnly: true,
-                                              ),
+                                        : () => room.canChangeStateEvent(
+                                              EventTypes.RoomName,
+                                            )
+                                                ? controller
+                                                    .setDisplaynameAction()
+                                                : FluffyShare.share(
+                                                    displayname,
+                                                    context,
+                                                    copyOnly: true,
+                                                  ),
                                     icon: Icon(
                                       room.isDirectChat
                                           ? Icons.chat_bubble_outline
@@ -171,11 +172,11 @@ class PangeaChatDetailsView extends StatelessWidget {
                                     ),
                                   ),
                                   TextButton.icon(
-                                    onPressed: () => room.isDirectChat
+                                    onPressed: room.isDirectChat
                                         ? null
-                                        : context.push(
-                                            '/rooms/${controller.roomId}/details/members',
-                                          ),
+                                        : () => context.push(
+                                              '/rooms/${controller.roomId}/details/members',
+                                            ),
                                     icon: const Icon(
                                       Icons.group_outlined,
                                       size: 14,
