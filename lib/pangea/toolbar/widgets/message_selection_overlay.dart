@@ -455,13 +455,20 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
       transcription != null ||
       transcriptionError != null;
 
-  bool get showLanguageAssistance =>
-      event.status.isSent &&
-      event.type == EventTypes.Message &&
-      event.messageType == MessageTypes.Text &&
-      pangeaMessageEvent != null &&
-      pangeaMessageEvent!.messageDisplayLangCode.split("-").first ==
-          MatrixState.pangeaController.languageController.userL2!.langCodeShort;
+  bool get showLanguageAssistance {
+    if (!event.status.isSent || event.type != EventTypes.Message) {
+      return false;
+    }
+
+    if (event.messageType == MessageTypes.Text) {
+      return pangeaMessageEvent != null &&
+          pangeaMessageEvent!.messageDisplayLangCode.split("-").first ==
+              MatrixState
+                  .pangeaController.languageController.userL2!.langCodeShort;
+    }
+
+    return event.messageType == MessageTypes.Audio;
+  }
 
   ///////////////////////////////////
   /// Functions
