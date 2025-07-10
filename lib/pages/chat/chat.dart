@@ -855,7 +855,13 @@ class ChatController extends State<ChatPageWithRoom>
         future: () async {
           if (event.status.isSent) {
             if (event.canRedact) {
-              await redactAndUnpinEvent(event, reason: reason);
+              if (room.canChangeStateEvent(EventTypes.RoomPinnedEvents)) {
+                final pinnedEvents = room.pinnedEventIds
+                    .where((e) => e != event.eventId)
+                    .toList();
+                await room.setPinnedEvents(pinnedEvents);
+              }
+              await event.redactEvent(reason: reason);
             } else {
               final client = currentRoomBundle.firstWhere(
                 (cl) => selectedEvents.first.senderId == cl!.userID,
@@ -865,8 +871,7 @@ class ChatController extends State<ChatPageWithRoom>
                 return;
               }
               final room = client.getRoomById(roomId)!;
-              await redactAndUnpinEvent(
-                Event.fromJson(event.toJson(), room),
+              await Event.fromJson(event.toJson(), room).redactEvent(
                 reason: reason,
               );
             }
@@ -1203,18 +1208,6 @@ class ChatController extends State<ChatPageWithRoom>
       context: context,
       future: () => room.setPinnedEvents(pinnedEventIds),
     );
-  }
-
-  Future<String?> redactAndUnpinEvent(
-    Event event, {
-    String? reason,
-    String? txid,
-  }) async {
-    final events = room.pinnedEventIds
-      ..removeWhere((oldEvent) => oldEvent == event.eventId);
-    room.setPinnedEvents(events);
-
-    return await room.redactEvent(event.eventId, reason: reason, txid: txid);
   }
 
   Timer? _storeInputTimeoutTimer;
