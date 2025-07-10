@@ -46,6 +46,7 @@ class HtmlMessage extends StatelessWidget {
   final bool isTransitionAnimation;
   final ReadingAssistanceMode? readingAssistanceMode;
 
+  final bool Function(PangeaToken)? isHighlighted;
   final bool Function(PangeaToken)? isSelected;
   final void Function(PangeaToken)? onClick;
   // Pangea#
@@ -68,6 +69,7 @@ class HtmlMessage extends StatelessWidget {
     required this.controller,
     this.nextEvent,
     this.prevEvent,
+    this.isHighlighted,
     this.isSelected,
     this.onClick,
     this.isTransitionAnimation = false,
@@ -388,6 +390,10 @@ class HtmlMessage extends StatelessWidget {
             ? isSelected!.call(token)
             : false;
 
+        final highlighted = token != null && isHighlighted != null
+            ? isHighlighted!.call(token)
+            : false;
+
         final isNew = token != null &&
             overlayController != null &&
             overlayController!.isNewToken(token);
@@ -423,6 +429,7 @@ class HtmlMessage extends StatelessWidget {
                       color: renderer.backgroundColor(
                         context,
                         selected,
+                        highlighted,
                         isNew,
                       ),
                     ),
@@ -447,6 +454,7 @@ class HtmlMessage extends StatelessWidget {
                               color: renderer.backgroundColor(
                                 context,
                                 selected,
+                                highlighted,
                                 isNew,
                               ),
                             ),
@@ -585,6 +593,7 @@ class HtmlMessage extends StatelessWidget {
                           context,
                           false,
                           false,
+                          false,
                         ),
                       ),
                     ),
@@ -599,6 +608,7 @@ class HtmlMessage extends StatelessWidget {
                         context,
                         color: renderer.backgroundColor(
                           context,
+                          false,
                           false,
                           false,
                         ),

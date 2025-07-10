@@ -86,10 +86,14 @@ class TokenRenderingUtil {
     }
   }
 
-  Color backgroundColor(BuildContext context, bool selected, bool isNew) {
-    if (isNew) {
-      return AppConfig.success;
-    }
+  Color backgroundColor(
+    BuildContext context,
+    bool selected,
+    bool highlighted,
+    bool isNew,
+  ) {
+    if (highlighted) return Theme.of(context).colorScheme.primary;
+    if (isNew) return AppConfig.success;
     return selected
         ? Theme.of(context).colorScheme.primary
         : Colors.white.withAlpha(0);

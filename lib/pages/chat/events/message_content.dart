@@ -155,11 +155,6 @@ class MessageContent extends StatelessWidget {
       selectedToken: token,
     );
   }
-
-  bool isSelected(PangeaToken token) {
-    return overlayController!.isTokenSelected(token) ||
-        overlayController!.isTokenHighlighted(token);
-  }
   // Pangea#
 
   @override
@@ -367,7 +362,8 @@ class MessageContent extends StatelessWidget {
                 pangeaMessageEvent: pangeaMessageEvent,
                 nextEvent: nextEvent,
                 prevEvent: prevEvent,
-                isSelected: overlayController != null ? isSelected : null,
+                isHighlighted: overlayController?.isTokenHighlighted,
+                isSelected: overlayController?.isTokenSelected,
                 onClick: event.isActivityMessage ? null : onClick,
                 isTransitionAnimation: isTransitionAnimation,
                 readingAssistanceMode: readingAssistanceMode,
