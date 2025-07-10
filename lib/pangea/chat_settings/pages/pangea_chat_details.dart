@@ -175,7 +175,7 @@ class PangeaChatDetailsView extends StatelessWidget {
                                     onPressed: room.isDirectChat
                                         ? null
                                         : () => context.push(
-                                              '/rooms/${controller.roomId}/details/members',
+                                              '/rooms/${controller.roomId}/details/invite?filter=participants',
                                             ),
                                     icon: const Icon(
                                       Icons.group_outlined,
@@ -359,7 +359,13 @@ class RoomDetailsButtonRowState extends State<RoomDetailsButtonRow> {
       ButtonDetails(
         title: l10n.invite,
         icon: const Icon(Icons.person_add_outlined, size: 30.0),
-        onPressed: () => context.go('/rooms/${room.id}/details/invite'),
+        onPressed: () {
+          String filter = 'knocking';
+          if (room.getParticipants([Membership.knock]).isEmpty) {
+            filter = room.pangeaSpaceParents.isNotEmpty ? 'space' : 'contacts';
+          }
+          context.go('/rooms/${room.id}/details/invite?filter=$filter');
+        },
         visible: (room.canInvite && !room.isDirectChat) || room.isSpace,
         enabled: room.canInvite && !room.isDirectChat,
       ),

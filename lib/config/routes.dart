@@ -15,7 +15,6 @@ import 'package:fluffychat/pages/chat_members/chat_members.dart';
 import 'package:fluffychat/pages/chat_permissions_settings/chat_permissions_settings.dart';
 import 'package:fluffychat/pages/chat_search/chat_search_page.dart';
 import 'package:fluffychat/pages/device_settings/device_settings.dart';
-import 'package:fluffychat/pages/invitation_selection/invitation_selection.dart';
 import 'package:fluffychat/pages/login/login.dart';
 import 'package:fluffychat/pages/new_group/new_group.dart';
 import 'package:fluffychat/pages/new_private_chat/new_private_chat.dart';
@@ -34,6 +33,7 @@ import 'package:fluffychat/pangea/activity_generator/activity_generator.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_planner_page.dart';
 import 'package:fluffychat/pangea/analytics_page/analytics_page.dart';
 import 'package:fluffychat/pangea/analytics_summary/progress_indicators_enum.dart';
+import 'package:fluffychat/pangea/chat_settings/pages/pangea_invitation_selection.dart';
 import 'package:fluffychat/pangea/common/widgets/pangea_side_view.dart';
 import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
 import 'package:fluffychat/pangea/find_your_people/find_your_people.dart';
@@ -576,8 +576,13 @@ abstract class AppRoutes {
                   pageBuilder: (context, state) => defaultPageBuilder(
                     context,
                     state,
-                    InvitationSelection(
+                    PangeaInvitationSelection(
                       roomId: state.pathParameters['roomid']!,
+                      initialFilter: state.uri.queryParameters['filter'] != null
+                          ? InvitationFilter.fromString(
+                              state.uri.queryParameters['filter']!,
+                            )
+                          : null,
                     ),
                   ),
                   redirect: loggedOutRedirect,
@@ -657,8 +662,14 @@ abstract class AppRoutes {
                       pageBuilder: (context, state) => defaultPageBuilder(
                         context,
                         state,
-                        InvitationSelection(
+                        PangeaInvitationSelection(
                           roomId: state.pathParameters['roomid']!,
+                          initialFilter:
+                              state.uri.queryParameters['filter'] != null
+                                  ? InvitationFilter.fromString(
+                                      state.uri.queryParameters['filter']!,
+                                    )
+                                  : null,
                         ),
                       ),
                       redirect: loggedOutRedirect,

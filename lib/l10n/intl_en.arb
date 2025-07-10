@@ -5038,5 +5038,28 @@
   "saveActivity": "Save this activity",
   "yourSavedActivities": "Saved Activities",
   "failedToPlayVideo": "Failed to play video",
+  "done": "Done",
+  "inThisSpace": "In this space",
+  "myContacts": "My contacts",
+  "inviteAllInSpace": "Invite all in this space",
+  "spaceParticipantsHaveBeenInvitedToTheChat": "All space participants has been invited to the chat",
+  "numKnocking": "{count} knocking",
+  "@numKnocking": {
+    "type": "String",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "numInvited": "{count} invited",
+  "@numInvited": {
+    "type": "String",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "saved": "Saved"
 }
