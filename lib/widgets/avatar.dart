@@ -24,6 +24,9 @@ class Avatar extends StatelessWidget {
   final bool useRive;
   final bool showPresence;
   final String? userId;
+
+  final double? presenceSize;
+  final Offset? presenceOffset;
   // Pangea#
 
   const Avatar({
@@ -41,6 +44,8 @@ class Avatar extends StatelessWidget {
     this.useRive = false,
     this.showPresence = true,
     this.userId,
+    this.presenceSize,
+    this.presenceOffset,
     // Pangea#
     super.key,
   });
@@ -134,19 +139,31 @@ class Avatar extends StatelessWidget {
                       ? Colors.orange
                       : Colors.grey;
               return Positioned(
-                bottom: -3,
-                right: -3,
+                // #Pangea
+                // bottom: -3,
+                // right: -3,
+                bottom: presenceOffset?.dy ?? -3,
+                right: presenceOffset?.dx ?? -3,
+                // Pangea#
                 child: Container(
-                  width: 16,
-                  height: 16,
+                  // #Pangea
+                  // width: 16,
+                  // height: 16,
+                  width: (presenceSize ?? 10) + 6,
+                  height: (presenceSize ?? 10) + 6,
+                  // Pangea#
                   decoration: BoxDecoration(
                     color: presenceBackgroundColor ?? theme.colorScheme.surface,
                     borderRadius: BorderRadius.circular(32),
                   ),
                   alignment: Alignment.center,
                   child: Container(
-                    width: 10,
-                    height: 10,
+                    // #Pangea
+                    // width: 10,
+                    // height: 10,
+                    width: (presenceSize ?? 10),
+                    height: (presenceSize ?? 10),
+                    // Pangea#
                     decoration: BoxDecoration(
                       color: dotColor,
                       borderRadius: BorderRadius.circular(16),

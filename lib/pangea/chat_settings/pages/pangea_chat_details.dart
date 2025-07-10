@@ -7,6 +7,7 @@ import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_details/chat_details.dart';
@@ -22,7 +23,6 @@ import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/spaces/utils/load_participants_util.dart';
 import 'package:fluffychat/pangea/spaces/widgets/download_space_analytics_dialog.dart';
-import 'package:fluffychat/pangea/spaces/widgets/leaderboard_participant_list.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
@@ -666,12 +666,11 @@ class RoomParticipantsSection extends StatelessWidget {
   });
 
   final double _width = 100.0;
-  final double _padding = 12.0;
-
-  double get _fullWidth => _width + (_padding * 2);
+  final double _spacing = 15.0;
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     final List<User> members = room.getParticipants().toList()
       ..sort((b, a) => a.powerLevel.compareTo(b.powerLevel));
 
@@ -681,14 +680,57 @@ class RoomParticipantsSection extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         final availableWidth = constraints.maxWidth;
-        final capacity = (availableWidth / _fullWidth).floor();
+        final capacity = (availableWidth / (_width + _spacing)).floor();
         return LoadParticipantsUtil(
           space: room,
           builder: (participantsLoader) {
+            final filteredParticipants =
+                participantsLoader.filteredParticipants("");
+
+            filteredParticipants.sort((a, b) {
+              // always sort bot to the end
+              final aIsBot = a.id == BotName.byEnvironment;
+              final bIsBot = b.id == BotName.byEnvironment;
+              if (aIsBot && !bIsBot) {
+                return 1;
+              } else if (bIsBot && !aIsBot) {
+                return -1;
+              }
+
+              // put knocking users at the front
+              if (a.membership == Membership.knock &&
+                  b.membership != Membership.knock) {
+                return -1;
+              } else if (b.membership == Membership.knock &&
+                  a.membership != Membership.knock) {
+                return 1;
+              }
+
+              // then invited users
+              if (a.membership == Membership.invite &&
+                  b.membership != Membership.invite) {
+                return -1;
+              } else if (b.membership == Membership.invite &&
+                  a.membership != Membership.invite) {
+                return 1;
+              }
+
+              // then admins
+              if (a.powerLevel == 100 && b.powerLevel != 100) {
+                return -1;
+              } else if (b.powerLevel == 100 && a.powerLevel != 100) {
+                return 1;
+              }
+
+              return 0;
+            });
+
             if (capacity < 4) {
               return Column(
                 children: [
-                  ...members.map((member) => ParticipantListItem(member)),
+                  ...filteredParticipants.map(
+                    (member) => ParticipantListItem(member),
+                  ),
                   if (actualMembersCount - members.length > 0)
                     ListTile(
                       title: Text(
@@ -697,8 +739,7 @@ class RoomParticipantsSection extends StatelessWidget {
                         ),
                       ),
                       leading: CircleAvatar(
-                        backgroundColor:
-                            Theme.of(context).scaffoldBackgroundColor,
+                        backgroundColor: theme.scaffoldBackgroundColor,
                         child: const Icon(
                           Icons.group_outlined,
                           color: Colors.grey,
@@ -713,93 +754,127 @@ class RoomParticipantsSection extends StatelessWidget {
               );
             }
 
-            final filteredParticipants =
-                participantsLoader.filteredParticipants("");
-
             return Wrap(
+              spacing: _spacing,
+              runSpacing: _spacing,
               alignment: WrapAlignment.center,
               runAlignment: WrapAlignment.center,
               children: [
                 ...filteredParticipants.mapIndexed((index, user) {
-                  final publicProfile = participantsLoader.getPublicProfile(
-                    user.id,
-                  );
+                  final permissionBatch = user.powerLevel >= 100
+                      ? L10n.of(context).admin
+                      : user.powerLevel >= 50
+                          ? L10n.of(context).moderator
+                          : '';
 
-                  LinearGradient? gradient = index.leaderboardGradient;
-                  if (user.id == BotName.byEnvironment ||
-                      publicProfile == null ||
-                      publicProfile.level == null) {
-                    gradient = null;
-                  }
+                  final membershipBatch = switch (user.membership) {
+                    Membership.ban => null,
+                    Membership.invite => L10n.of(context).invited,
+                    Membership.join => null,
+                    Membership.knock => L10n.of(context).knocking,
+                    Membership.leave => null,
+                  };
 
-                  return Padding(
-                    padding: EdgeInsets.all(_padding),
-                    child: SizedBox(
-                      width: _width,
-                      child: Opacity(
-                        opacity: user.membership == Membership.join ? 1.0 : 0.5,
-                        child: Column(
-                          children: [
-                            Stack(
-                              alignment: Alignment.center,
-                              children: [
-                                if (gradient != null)
-                                  CircleAvatar(
-                                    radius: _width / 2,
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        gradient: gradient,
+                  return SizedBox(
+                    width: _width,
+                    child: Opacity(
+                      opacity: user.membership == Membership.join ? 1.0 : 0.5,
+                      child: Column(
+                        spacing: 4.0,
+                        children: [
+                          Builder(
+                            builder: (context) {
+                              return MouseRegion(
+                                cursor: SystemMouseCursors.click,
+                                child: GestureDetector(
+                                  onTap: () => showMemberActionsPopupMenu(
+                                    context: context,
+                                    user: user,
+                                  ),
+                                  child: Center(
+                                    child: Avatar(
+                                      mxContent: user.avatarUrl,
+                                      name: user.calcDisplayname(),
+                                      size: _width,
+                                      presenceUserId: user.id,
+                                      presenceOffset: const Offset(0, 0),
+                                      presenceSize: 18.0,
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                          Text(
+                            user.calcDisplayname(),
+                            style: theme.textTheme.labelLarge?.copyWith(
+                              color: theme.colorScheme.primary,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          Container(
+                            height: 20.0,
+                            alignment: Alignment.center,
+                            child: LevelDisplayName(
+                              userId: user.id,
+                              textStyle: theme.textTheme.labelSmall,
+                            ),
+                          ),
+                          Container(
+                            height: 24.0,
+                            alignment: Alignment.center,
+                            child: membershipBatch != null
+                                ? Container(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 12,
+                                      vertical: 4,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color:
+                                          theme.colorScheme.secondaryContainer,
+                                      borderRadius: BorderRadius.circular(
+                                        AppConfig.borderRadius,
+                                      ),
+                                    ),
+                                    child: Text(
+                                      membershipBatch,
+                                      style:
+                                          theme.textTheme.labelSmall?.copyWith(
+                                        color: theme
+                                            .colorScheme.onSecondaryContainer,
                                       ),
                                     ),
                                   )
-                                else
-                                  SizedBox(
-                                    height: _width,
-                                    width: _width,
-                                  ),
-                                Builder(
-                                  builder: (context) {
-                                    return MouseRegion(
-                                      cursor: SystemMouseCursors.click,
-                                      child: GestureDetector(
-                                        onTap: () => showMemberActionsPopupMenu(
-                                          context: context,
-                                          user: user,
+                                : permissionBatch.isNotEmpty
+                                    ? Container(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 12,
+                                          vertical: 4,
                                         ),
-                                        child: Center(
-                                          child: Avatar(
-                                            mxContent: user.avatarUrl,
-                                            name: user.calcDisplayname(),
-                                            size: _width - 6.0,
-                                            presenceUserId: user.id,
-                                            showPresence: false,
+                                        decoration: BoxDecoration(
+                                          color: user.powerLevel >= 100
+                                              ? theme.colorScheme.tertiary
+                                              : theme.colorScheme
+                                                  .tertiaryContainer,
+                                          borderRadius: BorderRadius.circular(
+                                            AppConfig.borderRadius,
                                           ),
                                         ),
-                                      ),
-                                    );
-                                  },
-                                ),
-                              ],
-                            ),
-                            Text(
-                              user.calcDisplayname(),
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .labelLarge
-                                  ?.copyWith(
-                                    color:
-                                        Theme.of(context).colorScheme.primary,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            LevelDisplayName(
-                              userId: user.id,
-                              textStyle: Theme.of(context).textTheme.labelSmall,
-                            ),
-                          ],
-                        ),
+                                        child: Text(
+                                          permissionBatch,
+                                          style: theme.textTheme.labelSmall
+                                              ?.copyWith(
+                                            color: user.powerLevel >= 100
+                                                ? theme.colorScheme.onTertiary
+                                                : theme.colorScheme
+                                                    .onTertiaryContainer,
+                                          ),
+                                        ),
+                                      )
+                                    : null,
+                          ),
+                        ],
                       ),
                     ),
                   );
