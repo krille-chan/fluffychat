@@ -571,7 +571,8 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
             widget.controller.room.canSendDefaultMessages;
       case MessageActions.edit:
         return widget.controller.canEditSelectedEvents &&
-            !events.first.isActivityMessage;
+            !events.first.isActivityMessage &&
+            events.single.messageType == MessageTypes.Text;
       case MessageActions.delete:
         return widget.controller.canRedactSelectedEvents;
       case MessageActions.copy:
