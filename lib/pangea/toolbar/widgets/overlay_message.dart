@@ -172,6 +172,7 @@ class OverlayMessage extends StatelessWidget {
                         const SizedBox(width: 8),
                         Text(
                           L10n.of(context).transcriptionFailed,
+                          textScaler: TextScaler.noScaling,
                           style: AppConfig.messageTextStyle(
                             event,
                             textColor,
@@ -259,6 +260,7 @@ class OverlayMessage extends StatelessWidget {
                   showTranslation
                       ? overlayController.translation!
                       : overlayController.speechTranslation!,
+                  textScaler: TextScaler.noScaling,
                   style: AppConfig.messageTextStyle(
                     event,
                     textColor,
@@ -371,6 +373,7 @@ class OverlayMessage extends StatelessWidget {
                     displayEvent.originServerTs.localizedTimeShort(
                       context,
                     ),
+                    textScaler: TextScaler.noScaling,
                     style: TextStyle(
                       color: textColor.withAlpha(
                         164,
