@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/bot/utils/bot_name.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/user/models/profile_model.dart';
@@ -123,5 +124,29 @@ class LoadParticipantsUtilState extends State<LoadParticipantsUtil> {
   @override
   Widget build(BuildContext context) {
     return widget.builder(this);
+  }
+}
+
+extension LeaderboardGradient on int {
+  LinearGradient? get leaderboardGradient {
+    final Color? color = this == 0
+        ? AppConfig.gold
+        : this == 1
+            ? Colors.grey[400]!
+            : this == 2
+                ? Colors.brown[400]!
+                : null;
+
+    if (color == null) return null;
+
+    return LinearGradient(
+      colors: [
+        color,
+        Colors.white,
+        color,
+      ],
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+    );
   }
 }
