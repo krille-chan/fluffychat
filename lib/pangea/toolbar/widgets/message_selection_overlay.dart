@@ -462,7 +462,10 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
   bool get showLanguageAssistance =>
       event.status.isSent &&
       event.type == EventTypes.Message &&
-      event.messageType == MessageTypes.Text;
+      event.messageType == MessageTypes.Text &&
+      pangeaMessageEvent != null &&
+      pangeaMessageEvent!.messageDisplayLangCode.split("-").first ==
+          MatrixState.pangeaController.languageController.userL2!.langCodeShort;
 
   ///////////////////////////////////
   /// Functions
