@@ -160,6 +160,8 @@ class PangeaChatDetailsView extends StatelessWidget {
                                     style: TextButton.styleFrom(
                                       foregroundColor:
                                           theme.colorScheme.onSurface,
+                                      disabledForegroundColor:
+                                          theme.colorScheme.onSurface,
                                     ),
                                     label: Text(
                                       room.isDirectChat
@@ -183,6 +185,8 @@ class PangeaChatDetailsView extends StatelessWidget {
                                     style: TextButton.styleFrom(
                                       foregroundColor:
                                           theme.colorScheme.secondary,
+                                      disabledForegroundColor:
+                                          theme.colorScheme.onSurface,
                                     ),
                                     label: Text(
                                       L10n.of(context).countParticipants(
