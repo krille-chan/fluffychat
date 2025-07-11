@@ -8,7 +8,10 @@ Usage:
 python scripts/translate.py
 """
 
+from pathlib import Path
 from typing import Any
+
+l10n_dir = Path(__file__).parent.parent / "lib" / "l10n"
 
 
 def load_needed_translations() -> dict[str, list[str]]:
@@ -30,11 +33,8 @@ def load_needed_translations() -> dict[str, list[str]]:
 
 def load_translations(lang_code: str) -> dict[str, str]:
     import json
-    from pathlib import Path
 
-    path_to_translations = (
-        Path(__file__).parent.parent / "assets" / "l10n" / f"intl_{lang_code}.arb"
-    )
+    path_to_translations = l10n_dir / f"intl_{lang_code}.arb"
     if not path_to_translations.exists():
         raise FileNotFoundError(
             f"File not found: {path_to_translations}. Please run `flutter gen-l10n` to generate the file."
@@ -50,11 +50,8 @@ def save_translations(lang_code: str, translations: dict[str, str]) -> None:
     import json
     from collections import OrderedDict
     from datetime import datetime
-    from pathlib import Path
 
-    path_to_translations = (
-        Path(__file__).parent.parent / "assets" / "l10n" / f"intl_{lang_code}.arb"
-    )
+    path_to_translations = l10n_dir / f"intl_{lang_code}.arb"
 
     translations["@@locale"] = lang_code
     translations["@@last_modified"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")

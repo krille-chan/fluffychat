@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2025-05-23 14:49:00.786183",
+  "@@last_modified": "2025-07-10 15:55:50.516947",
   "about": "Giới thiệu",
   "@about": {
     "type": "String",
@@ -4369,6 +4369,355 @@
     "placeholders": {}
   },
   "@announcements": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "checkList": "Danh sách kiểm tra",
+  "countInvited": "{count} người được mời",
+  "sentVoiceMessage": "🎙️ {duration} - Tin nhắn thoại từ {sender}",
+  "commandHint_logout": "Đăng xuất khỏi thiết bị hiện tại của bạn",
+  "commandHint_logoutall": "Đăng xuất khỏi tất cả các thiết bị đang hoạt động",
+  "customReaction": "Phản ứng tùy chỉnh",
+  "grammarCopyVERBFORMshrt": "Ngắn",
+  "constructUseCollected": "Được thu thập trong trò chuyện",
+  "modeLabel": "Loại hoạt động",
+  "makeYourOwnActivity": "Tạo hoạt động của riêng bạn",
+  "deleteChatDesc": "Bạn có chắc chắn muốn xóa trò chuyện này không? Nó sẽ bị xóa cho tất cả người tham gia và tất cả tin nhắn trong trò chuyện sẽ không còn khả dụng cho việc thực hành hoặc phân tích học tập.",
+  "deleteSpaceDesc": "Không gian và bất kỳ trò chuyện và/hoặc không gian con nào được chọn sẽ bị xóa cho tất cả người tham gia và tất cả tin nhắn trong trò chuyện sẽ không còn khả dụng cho việc thực hành hoặc phân tích học tập. Hành động này không thể hoàn tác.",
+  "maxFifty": "Tối đa 50",
+  "activities": "Hoạt động",
+  "access": "Truy cập",
+  "addSubspace": "Thêm không gian con",
+  "botSettings": "Cài đặt bot",
+  "activitySuggestionTimeoutMessage": "Chúng tôi đang làm việc chăm chỉ để tạo ra các hoạt động cho bạn, vui lòng quay lại sau một phút",
+  "accessSettingsWarning": "Ôi! Có vẻ như bạn không có quyền thiết lập các quy tắc Truy cập của phòng này. Bạn nên kiểm tra những điều này để đảm bảo chúng là những gì bạn cần và nói chuyện với quản trị viên phòng nếu bạn cần thay đổi chúng",
+  "howSpaceCanBeFound": "Cách không gian này có thể được tìm thấy",
+  "private": "Riêng tư",
+  "cannotBeFoundInSearch": "Không thể tìm thấy trong tìm kiếm",
+  "public": "Công khai",
+  "visibleToCommunity": "Có thể nhìn thấy bởi cộng đồng Pangea Chat rộng lớn hơn qua \"Tìm người của bạn\"",
+  "howSpaceCanBeJoined": "Cách tham gia không gian này",
+  "canBeFoundVia": "Có thể tìm thấy qua:",
+  "canBeFoundViaInvitation": "• lời mời",
+  "canBeFoundViaCodeOrLink": "• mã hoặc liên kết",
+  "canBeFoundViaKnock": "• yêu cầu tham gia và sự chấp thuận của quản trị viên",
+  "createYourSpace": "Tạo không gian của bạn",
+  "youHaveLeveledUp": "Bạn đã nâng cấp!",
+  "sendActivities": "Gửi hoạt động",
+  "getStartedBotChatDesc": "Trò chuyện với AI là một nơi tuyệt vời để bắt đầu và các công cụ đọc, viết, nghe và nói của Pangea giúp điều đó dễ dàng!",
+  "getStartedCommunitiesDesc": "Học tập với một cộng đồng là nơi Pangea Chat tỏa sáng!\nBạn có thể tham gia lớp học của mình, tìm một trường học, hoặc thậm chí tạo riêng cho mình!",
+  "getStartedFriendsDesc": "Bạn có một người bạn muốn học cùng bạn không?",
+  "getStartedBotChatComplete": "Tuyệt vời! Bạn đang trò chuyện với bot!",
+  "getStartedCommunitiesComplete": "Tuyệt vời, bạn đã tham gia một không gian!",
+  "getStartedComplete": "Bạn đã hoàn thành phần này!\nTiếp tục khám phá các tính năng tuyệt vời của chúng tôi bằng cách trò chuyện với bạn bè!",
+  "getStartedFriendsComplete": "Woohoo! Bạn đã có bạn bè! 😉",
+  "getStartedBotChatButton": "Bắt đầu trò chuyện!",
+  "getStartedFriendsButton": "Trò chuyện với một người bạn",
+  "groupChat": "Nhóm trò chuyện",
+  "directMessage": "Tin nhắn trực tiếp",
+  "newDirectMessage": "Tin nhắn trực tiếp mới",
+  "speakingExercisesTooltip": "Nói",
+  "noChatsFoundHereYet": "Chưa tìm thấy trò chuyện nào ở đây",
+  "duration": "Thời gian",
+  "transcriptionFailed": "Không thể chuyển đổi âm thanh",
+  "aUserIsKnocking": "1 người dùng đang yêu cầu tham gia không gian của bạn",
+  "usersAreKnocking": "{users} người dùng đang yêu cầu tham gia không gian của bạn",
+  "failedToFetchTranscription": "Không thể lấy bản chuyển đổi",
+  "deleteEmptySpaceDesc": "Không gian sẽ bị xóa cho tất cả người tham gia. Hành động này không thể hoàn tác.",
+  "regenerate": "Tạo lại",
+  "mySavedActivities": "Các hoạt động đã lưu của tôi",
+  "noSavedActivities": "Không có hoạt động nào đã lưu",
+  "saveActivity": "Lưu hoạt động này",
+  "yourSavedActivities": "Các hoạt động đã lưu",
+  "failedToPlayVideo": "Không thể phát video",
+  "done": "Xong",
+  "inThisSpace": "Trong không gian này",
+  "myContacts": "Danh bạ của tôi",
+  "inviteAllInSpace": "Mời tất cả trong không gian này",
+  "spaceParticipantsHaveBeenInvitedToTheChat": "Tất cả người tham gia không gian đã được mời vào cuộc trò chuyện",
+  "numKnocking": "{count} gõ cửa",
+  "numInvited": "{count} đã được mời",
+  "saved": "Đã lưu",
+  "@checkList": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@countInvited": {
+    "type": "String",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@sentVoiceMessage": {
+    "type": "String",
+    "placeholders": {
+      "duration": {
+        "type": "String"
+      },
+      "sender": {
+        "type": "String"
+      }
+    }
+  },
+  "@commandHint_logout": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@commandHint_logoutall": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@customReaction": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@grammarCopyVERBFORMshrt": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@constructUseCollected": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@modeLabel": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@deleteChatDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@deleteSpaceDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@maxFifty": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@activities": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@access": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@addSubspace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@botSettings": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@activitySuggestionTimeoutMessage": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@accessSettingsWarning": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@howSpaceCanBeFound": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@private": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@cannotBeFoundInSearch": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@public": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@visibleToCommunity": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@howSpaceCanBeJoined": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@canBeFoundVia": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@canBeFoundViaInvitation": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@canBeFoundViaCodeOrLink": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@canBeFoundViaKnock": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@createYourSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@youHaveLeveledUp": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@sendActivities": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@getStartedBotChatDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@getStartedCommunitiesDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@getStartedFriendsDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@getStartedBotChatComplete": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@getStartedCommunitiesComplete": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@getStartedComplete": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@getStartedFriendsComplete": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@getStartedBotChatButton": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@getStartedFriendsButton": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@groupChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@directMessage": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@newDirectMessage": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@speakingExercisesTooltip": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@noChatsFoundHereYet": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@duration": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@transcriptionFailed": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@aUserIsKnocking": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@usersAreKnocking": {
+    "type": "int",
+    "placeholders": {
+      "users": {
+        "type": "int"
+      }
+    }
+  },
+  "@failedToFetchTranscription": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@deleteEmptySpaceDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@regenerate": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@mySavedActivities": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@noSavedActivities": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@saveActivity": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@yourSavedActivities": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@failedToPlayVideo": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@done": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@inThisSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@myContacts": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@inviteAllInSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@spaceParticipantsHaveBeenInvitedToTheChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@numKnocking": {
+    "type": "String",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@numInvited": {
+    "type": "String",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@saved": {
     "type": "String",
     "placeholders": {}
   }
