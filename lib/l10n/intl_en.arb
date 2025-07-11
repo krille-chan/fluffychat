@@ -4170,8 +4170,24 @@
   "spaceCapacityNotSet": "This space has no capacity limit.",
   "chatCapacityHasBeenChanged": "Chat capacity changed",
   "spaceCapacityHasBeenChanged": "Space capacity changed",
-  "chatCapacitySetTooLow": "Chat capacity cannot be set below the current number of members.",
-  "spaceCapacitySetTooLow": "Space capacity cannot be set below the current number of members.",
+  "chatCapacitySetTooLow": "Chat capacity must be at least {count}.",
+  "@chatCapacitySetTooLow": {
+    "type": "int",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "spaceCapacitySetTooLow": "Space capacity must be at least {count}.",
+  "@spaceCapacitySetTooLow": {
+    "type": "int",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "chatCapacityExplanation": "Chat capacity limits the number of members allowed in a chat.",
   "spaceCapacityExplanation": "Space capacity limits the number of members allowed in a space.",
   "chatExceedsCapacity": "This chat exceeds its capacity.",

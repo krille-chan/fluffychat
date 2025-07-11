@@ -2874,8 +2874,6 @@
   "spaceCapacityNotSet": "Chưa giới hạn số thành viên trong không gian.",
   "chatCapacityHasBeenChanged": "Giới hạn thành viên trò chuyện đã thay đổi",
   "spaceCapacityHasBeenChanged": "Giới hạn thành viên không gian đã thay đổi",
-  "chatCapacitySetTooLow": "Không thể đặt giới hạn thành viên thấp hơn số thành viên không phải quản trị hiện tại.",
-  "spaceCapacitySetTooLow": "Không thể đặt giới hạn thành viên thấp hơn số thành viên không phải quản trị hiện tại.",
   "chatCapacityExplanation": "Hạn chế số lượng người dùng thường (không phải quản trị viên) có thể tham gia cuộc trò chuyện.",
   "spaceCapacityExplanation": "Hạn chế số lượng người dùng thường (không phải quản trị viên) có thể tham gia không gian.",
   "chatExceedsCapacity": "Cuộc trò chuyện vượt quá giới hạn thành viên.",

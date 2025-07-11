@@ -74,7 +74,7 @@ class RoomCapacityButtonState extends State<RoomCapacityButton> {
           return L10n.of(context).enterNumber;
         }
         if (int.parse(value) < memberCount) {
-          return L10n.of(context).chatCapacitySetTooLow;
+          return L10n.of(context).chatCapacitySetTooLow(memberCount);
         }
         return null;
       },

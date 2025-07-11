@@ -285,7 +285,8 @@ class ChatDetailsController extends State<ChatDetails> {
           return L10n.of(context).enterNumber;
         }
         if (int.parse(value) < (room.summary.mJoinedMemberCount ?? 1)) {
-          return L10n.of(context).chatCapacitySetTooLow;
+          return L10n.of(context)
+              .chatCapacitySetTooLow(room.summary.mJoinedMemberCount ?? 1);
         }
         return null;
       },

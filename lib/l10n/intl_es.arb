@@ -4784,8 +4784,6 @@
   "spaceCapacity": "Capacidad espacial",
   "chatCapacityHasBeenChanged": "Capacidad de chat modificada",
   "spaceCapacityHasBeenChanged": "Capacidad espacial modificada",
-  "chatCapacitySetTooLow": "La capacidad del chat no se puede establecer por debajo del número actual de no administradores.",
-  "spaceCapacitySetTooLow": "La capacidad de espacio no puede fijarse por debajo del número actual de no administradores.",
   "chatCapacityExplanation": "La capacidad del chat limita el número de usuarios no administradores permitidos en un chat.",
   "spaceCapacityExplanation": "La capacidad del espacio limita el número de no administradores permitidos en un espacio.",
   "tooManyRequest": "Demasiadas solicitudes, por favor inténtelo más tarde.",
