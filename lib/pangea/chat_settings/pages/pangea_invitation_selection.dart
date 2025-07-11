@@ -393,8 +393,7 @@ class PangeaInvitationSelectionController
 
   Future<void> inviteAllInSpace() async {
     if (_room == null) return;
-    final spaceParticipants =
-        spaceParent?.getParticipants([Membership.join]) ?? [];
+    final spaceParticipants = spaceParent?.getParticipants() ?? [];
 
     if (spaceParticipants.isEmpty) return;
 
