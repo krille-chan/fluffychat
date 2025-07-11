@@ -18,7 +18,7 @@ class FindYourPeople extends StatefulWidget {
 class FindYourPeopleState extends State<FindYourPeople> {
   final TextEditingController searchController = TextEditingController();
 
-  String? error;
+  Object? error;
   bool loading = true;
 
   Timer? _coolDown;
@@ -85,7 +85,7 @@ class FindYourPeopleState extends State<FindYourPeople> {
           'searchText': searchController.text,
         },
       );
-      error = e.toString();
+      error = e;
     } finally {
       if (mounted) {
         setState(() {

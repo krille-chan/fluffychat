@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:http/http.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/analytics_misc/text_loading_shimmer.dart';
 import 'package:fluffychat/pangea/choreographer/repo/full_text_translation_repo.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
@@ -87,7 +88,9 @@ class ITFeedbackCardController extends State<ITFeedbackCard> {
   @override
   Widget build(BuildContext context) => error == null
       ? ITFeedbackCardView(controller: this)
-      : CardErrorWidget(error: error!);
+      : CardErrorWidget(
+          error: L10n.of(context).errorFetchingDefinition,
+        );
 }
 
 class ITFeedbackCardView extends StatelessWidget {

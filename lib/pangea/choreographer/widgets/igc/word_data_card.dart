@@ -174,7 +174,7 @@ class WordDataCardView extends StatelessWidget {
   Widget build(BuildContext context) {
     if (controller.wordNetError != null) {
       return CardErrorWidget(
-        error: controller.wordNetError!,
+        error: controller.wordNetError!.toString(),
         maxWidth: AppConfig.toolbarMinWidth,
       );
     }
@@ -187,7 +187,7 @@ class WordDataCardView extends StatelessWidget {
         },
       );
       return CardErrorWidget(
-        error: controller.noLanguages,
+        error: L10n.of(context).noLanguagesSet,
         maxWidth: AppConfig.toolbarMinWidth,
       );
     }

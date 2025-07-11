@@ -5070,5 +5070,10 @@
   "errorProcessAnalytics": "Failed to process analytics",
   "errorDownloading": "Download failed",
   "errorFetchingLevelSummary": "Failed to fetch level summary",
-  "errorLoadingSpaceChildren": "Failed to load chats within this space"
+  "errorLoadingSpaceChildren": "Failed to load chats within this space",
+  "unexpectedError": "Unexpected error.",
+  "pleaseReload": "Please reload and try again.",
+  "translationError": "Translation error",
+  "errorFetchingTranslation": "Failed to fetch translation",
+  "errorFetchingActivity": "Failed to fetch activity"
 }

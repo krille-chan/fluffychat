@@ -188,7 +188,7 @@ class PangeaTextController extends TextEditingController {
         );
       } catch (e) {
         choreographer.errorService.setError(
-          ChoreoError(type: ChoreoErrorType.unknown, raw: e),
+          ChoreoError(raw: e),
         );
         inlineSpans = [TextSpan(text: text, style: style)];
         choreographer.igc.clear();

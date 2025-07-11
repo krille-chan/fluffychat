@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/bot/utils/bot_style.dart';
 import 'package:fluffychat/pangea/bot/widgets/bot_face_svg.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 
 class CardErrorWidget extends StatelessWidget {
-  final Object error;
+  final String error;
   final Choreographer? choreographer;
   final int? offset;
   final double maxWidth;
@@ -23,7 +24,11 @@ class CardErrorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ErrorCopy errorCopy = ErrorCopy(context, error);
+    final ErrorCopy errorCopy = ErrorCopy(
+      context,
+      title: L10n.of(context).oopsSomethingWentWrong,
+      body: error,
+    );
 
     return Container(
       padding: EdgeInsets.all(padding),

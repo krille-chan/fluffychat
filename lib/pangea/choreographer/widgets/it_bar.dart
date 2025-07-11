@@ -4,12 +4,14 @@ import 'dart:developer';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/choreographer/constants/choreo_constants.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/it_controller.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/igc/word_data_card.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/it_feedback_card.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
+import 'package:fluffychat/pangea/common/widgets/error_indicator.dart';
 import 'package:fluffychat/pangea/instructions/instructions_enum.dart';
 import 'package:fluffychat/pangea/instructions/instructions_inline_tooltip.dart';
 import 'package:fluffychat/pangea/learning_settings/pages/settings_learning.dart';
@@ -222,11 +224,7 @@ class ITBarState extends State<ITBar> with SingleTickerProviderStateMixin {
                         duration: itController.animationSpeed,
                         child: Center(
                           child: itController.choreographer.errorService.isError
-                              ? ITError(
-                                  error: itController
-                                      .choreographer.errorService.error!,
-                                  controller: itController,
-                                )
+                              ? ITError(controller: itController)
                               : itController.showChoiceFeedback
                                   ? ChoiceFeedbackText(
                                       controller: itController,
@@ -439,46 +437,34 @@ class ITChoices extends StatelessWidget {
 
 class ITError extends StatelessWidget {
   final ITController controller;
-  final Object error;
-  const ITError({super.key, required this.error, required this.controller});
+  const ITError({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
-    final ErrorCopy errorCopy = ErrorCopy(context, error);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),
-      child: RichText(
-        text: TextSpan(
-          children: [
-            WidgetSpan(
-              alignment: PlaceholderAlignment.middle,
-              child: Icon(
-                Icons.error_outline,
-                size: 20,
-                color: Theme.of(context).colorScheme.error,
-              ),
+      child: Row(
+        spacing: 8.0,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          ErrorIndicator(
+            message: L10n.of(context).translationError,
+            style: TextStyle(
+              fontStyle: FontStyle.italic,
+              color: Theme.of(context).colorScheme.error,
             ),
-            TextSpan(text: "  ${errorCopy.title}  "),
-            WidgetSpan(
-              alignment: PlaceholderAlignment.middle,
-              child: IconButton(
-                onPressed: () {
-                  controller.closeIT();
-                  controller.choreographer.errorService.resetError();
-                },
-                icon: const Icon(
-                  Icons.close,
-                  size: 20,
-                ),
-              ),
-            ),
-          ],
-          style: TextStyle(
-            fontStyle: FontStyle.italic,
-            color: Theme.of(context).colorScheme.error,
           ),
-        ),
-        textAlign: TextAlign.center,
+          IconButton(
+            onPressed: () {
+              controller.closeIT();
+              controller.choreographer.errorService.resetError();
+            },
+            icon: const Icon(
+              Icons.close,
+              size: 20,
+            ),
+          ),
+        ],
       ),
     );
   }

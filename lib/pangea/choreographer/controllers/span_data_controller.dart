@@ -113,6 +113,7 @@ class SpanDataController {
           (await response).span;
     } catch (err, s) {
       ErrorHandler.logError(e: err, s: s, data: req.toJson());
+      _cache.remove(cacheKey);
     }
 
     choreographer.setState();

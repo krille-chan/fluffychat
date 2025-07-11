@@ -32,7 +32,7 @@ class LemmaMeaningBuilderState extends State<LemmaMeaningBuilder> {
   bool editMode = false;
   LemmaInfoResponse? lemmaInfo;
   bool isLoading = true;
-  String? error;
+  Object? error;
 
   TextEditingController controller = TextEditingController();
 
@@ -77,7 +77,7 @@ class LemmaMeaningBuilderState extends State<LemmaMeaningBuilder> {
       lemmaInfo = resp;
       controller.text = resp.meaning;
     } catch (e) {
-      error = e.toString();
+      error = e;
     } finally {
       if (mounted) setState(() => isLoading = false);
     }

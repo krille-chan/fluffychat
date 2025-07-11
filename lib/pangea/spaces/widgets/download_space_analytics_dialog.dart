@@ -15,6 +15,7 @@ import 'package:fluffychat/pangea/analytics_misc/constructs_model.dart';
 import 'package:fluffychat/pangea/bot/utils/bot_name.dart';
 import 'package:fluffychat/pangea/chat_settings/utils/download_file.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
+import 'package:fluffychat/pangea/common/widgets/error_indicator.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/morphs/get_grammar_copy.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -37,7 +38,7 @@ class DownloadAnalyticsDialogState extends State<DownloadAnalyticsDialog> {
 
   bool get _loading => _downloading || !_initialized;
 
-  String? _error;
+  Object? _error;
 
   Map<String, int> _downloadStatuses = {};
 
@@ -157,7 +158,7 @@ class DownloadAnalyticsDialogState extends State<DownloadAnalyticsDialog> {
       );
 
       _clean();
-      _error = e.toString();
+      _error = e;
       if (mounted) setState(() {});
     }
   }
@@ -460,7 +461,9 @@ class DownloadAnalyticsDialogState extends State<DownloadAnalyticsDialog> {
               child: _error != null
                   ? Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text(L10n.of(context).oopsSomethingWentWrong),
+                      child: ErrorIndicator(
+                        message: L10n.of(context).errorDownloading,
+                      ),
                     )
                   : const SizedBox(),
             ),

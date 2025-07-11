@@ -3,50 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
 import '../../common/utils/error_handler.dart';
 
-enum ChoreoErrorType {
-  unknown,
-  classDisabled,
-  userDisabled,
-}
-
 class ChoreoError {
-  final ChoreoErrorType type;
   final Object? raw;
 
-  ChoreoError({required this.type, this.raw});
+  ChoreoError({this.raw});
 
-  String title(BuildContext context) {
-    switch (type) {
-      case ChoreoErrorType.classDisabled:
-        return "Class Disabled";
-      case ChoreoErrorType.userDisabled:
-        return "User Disabled";
-      default:
-        return ErrorCopy(context, raw).title;
-    }
-  }
+  String title(BuildContext context) => ErrorCopy(context, error: raw).title;
 
-  String description(BuildContext context) {
-    switch (type) {
-      case ChoreoErrorType.classDisabled:
-        return "Class Disabled";
-      case ChoreoErrorType.userDisabled:
-        return "User Disabled";
-      default:
-        return ErrorCopy(context, raw).body;
-    }
-  }
+  String description(BuildContext context) =>
+      ErrorCopy(context, error: raw).body;
 
-  IconData get icon {
-    switch (type) {
-      case ChoreoErrorType.classDisabled:
-        return Icons.history_edu_outlined;
-      case ChoreoErrorType.userDisabled:
-        return Icons.history_edu_outlined;
-      default:
-        return Icons.error_outline;
-    }
-  }
+  IconData get icon => Icons.error_outline;
 }
 
 class ErrorService {

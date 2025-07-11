@@ -146,16 +146,17 @@ class UserSettings {
   }
 
   @override
-  int get hashCode =>
-      dateOfBirth.hashCode ^
-      createdAt.hashCode ^
-      autoPlayMessages.hashCode ^
-      publicProfile.hashCode ^
-      targetLanguage.hashCode ^
-      sourceLanguage.hashCode ^
-      country.hashCode ^
-      hasJoinedHelpSpace.hashCode ^
-      cefrLevel.hashCode;
+  int get hashCode => Object.hashAll([
+        dateOfBirth.hashCode,
+        createdAt.hashCode,
+        autoPlayMessages.hashCode,
+        publicProfile.hashCode,
+        targetLanguage.hashCode,
+        sourceLanguage.hashCode,
+        country.hashCode,
+        hasJoinedHelpSpace.hashCode,
+        cefrLevel.hashCode,
+      ]);
 }
 
 /// The user's language tool settings.
@@ -254,14 +255,15 @@ class UserToolSettings {
   }
 
   @override
-  int get hashCode =>
-      interactiveTranslator.hashCode ^
-      interactiveGrammar.hashCode ^
-      immersionMode.hashCode ^
-      definitions.hashCode ^
-      autoIGC.hashCode ^
-      enableTTS.hashCode ^
-      enableAutocorrect.hashCode;
+  int get hashCode => Object.hashAll([
+        interactiveTranslator.hashCode,
+        interactiveGrammar.hashCode,
+        immersionMode.hashCode,
+        definitions.hashCode,
+        autoIGC.hashCode,
+        enableTTS.hashCode,
+        enableAutocorrect.hashCode,
+      ]);
 }
 
 /// A wrapper around the matrix account data for the user profile.

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/igc/card_error_widget.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
@@ -86,8 +87,8 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
   Widget build(BuildContext context) {
     debugPrint('MessageTranslationCard build');
     if (!_fetchingTranslation && repEvent == null) {
-      return const CardErrorWidget(
-        error: "No translation found",
+      return CardErrorWidget(
+        error: L10n.of(context).errorFetchingTranslation,
         maxWidth: AppConfig.toolbarMinWidth,
       );
     }

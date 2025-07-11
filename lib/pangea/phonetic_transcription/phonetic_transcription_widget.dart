@@ -179,7 +179,7 @@ class _PhoneticTranscriptionWidgetState
                   else
                     Flexible(
                       child: Text(
-                        "/$_transcription/",
+                        _transcription!,
                         textScaler: TextScaler.noScaling,
                         style: widget.style ??
                             Theme.of(context).textTheme.bodyMedium,

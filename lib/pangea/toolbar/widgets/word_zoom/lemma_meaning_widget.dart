@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_use_model.dart';
 import 'package:fluffychat/pangea/analytics_misc/text_loading_shimmer.dart';
+import 'package:fluffychat/pangea/common/widgets/error_indicator.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/word_zoom/lemma_meaning_builder.dart';
 
 class LemmaMeaningWidget extends StatelessWidget {
@@ -34,9 +35,9 @@ class LemmaMeaningWidget extends StatelessWidget {
 
         if (controller.error != null) {
           debugger(when: kDebugMode);
-          return Text(
-            L10n.of(context).oopsSomethingWentWrong,
-            textAlign: TextAlign.center,
+          return ErrorIndicator(
+            message: L10n.of(context).errorFetchingDefinition,
+            style: style,
           );
         }
 

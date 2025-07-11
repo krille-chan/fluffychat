@@ -155,7 +155,7 @@ class IgcController {
     } catch (err, stack) {
       debugger(when: kDebugMode);
       choreographer.errorService.setError(
-        ChoreoError(type: ChoreoErrorType.unknown, raw: err),
+        ChoreoError(raw: err),
       );
       ErrorHandler.logError(
         e: err,

@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/pangea/common/widgets/error_indicator.dart';
 import 'package:fluffychat/pangea/find_your_people/find_your_people.dart';
 import 'package:fluffychat/pangea/find_your_people/public_space_tile.dart';
 import 'package:fluffychat/pangea/spaces/utils/space_code.dart';
@@ -194,12 +195,12 @@ class FindYourPeopleView extends StatelessWidget {
                     ),
                   ),
                   controller.error != null
-                      ? Row(
+                      ? Column(
                           spacing: 8.0,
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
                           children: [
-                            Text(
-                              L10n.of(context).oopsSomethingWentWrong,
+                            ErrorIndicator(
+                              message: L10n.of(context).oopsSomethingWentWrong,
                             ),
                             IconButton(
                               onPressed: controller.setSpaceItems,

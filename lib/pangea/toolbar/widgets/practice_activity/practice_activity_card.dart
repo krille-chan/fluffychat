@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/analytics_misc/constructs_model.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/igc/card_error_widget.dart';
 import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
@@ -293,19 +294,10 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
 
   @override
   Widget build(BuildContext context) {
-    if (_error != null) {
+    if (_error != null || (!fetchingActivity && currentActivity == null)) {
       debugger(when: kDebugMode);
       return CardErrorWidget(
-        error: _error!,
-        maxWidth: 500,
-      );
-    }
-
-    if (!fetchingActivity && currentActivity == null) {
-      debugPrint("don't think we should be here");
-      debugger(when: kDebugMode);
-      return CardErrorWidget(
-        error: _error!,
+        error: L10n.of(context).errorFetchingActivity,
         maxWidth: 500,
       );
     }

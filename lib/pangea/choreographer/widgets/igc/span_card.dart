@@ -8,7 +8,6 @@ import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/bot/utils/bot_style.dart';
 import 'package:fluffychat/pangea/choreographer/enums/span_data_type.dart';
 import 'package:fluffychat/pangea/choreographer/models/span_data.dart';
-import 'package:fluffychat/pangea/choreographer/widgets/igc/card_error_widget.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
 import '../../../../widgets/matrix.dart';
@@ -42,7 +41,6 @@ class SpanCard extends StatefulWidget {
 }
 
 class SpanCardState extends State<SpanCard> {
-  Object? error;
   bool fetchingData = false;
   int? selectedChoiceIndex;
 
@@ -109,37 +107,20 @@ class SpanCardState extends State<SpanCard> {
   }
 
   Future<void> getSpanDetails({bool force = false}) async {
-    try {
-      if (widget.scm.pangeaMatch?.isITStart ?? false) return;
+    if (widget.scm.pangeaMatch?.isITStart ?? false) return;
 
-      if (!mounted) return;
-      setState(() {
-        fetchingData = true;
-      });
+    if (!mounted) return;
+    setState(() {
+      fetchingData = true;
+    });
 
-      await widget.scm.choreographer.igc.spanDataController.getSpanDetails(
-        widget.scm.matchIndex,
-        force: force,
-      );
+    await widget.scm.choreographer.igc.spanDataController.getSpanDetails(
+      widget.scm.matchIndex,
+      force: force,
+    );
 
-      if (mounted) {
-        setState(() => fetchingData = false);
-      }
-    } catch (e, s) {
-      // debugger(when: kDebugMode);
-      ErrorHandler.logError(
-        e: e,
-        s: s,
-        data: {
-          "matchIndex": widget.scm.matchIndex,
-        },
-      );
-      if (mounted) {
-        setState(() {
-          error = e;
-          fetchingData = false;
-        });
-      }
+    if (mounted) {
+      setState(() => fetchingData = false);
     }
   }
 
@@ -202,13 +183,6 @@ class WordMatchContent extends StatelessWidget {
   Widget build(BuildContext context) {
     if (controller.widget.scm.pangeaMatch == null) {
       return const SizedBox();
-    }
-    if (controller.error != null) {
-      return CardErrorWidget(
-        error: controller.error!,
-        choreographer: controller.widget.scm.choreographer,
-        offset: controller.widget.scm.pangeaMatch?.match.offset,
-      );
     }
 
     final ScrollController scrollController = ScrollController();
