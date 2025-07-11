@@ -5061,5 +5061,14 @@
       }
     }
   },
-  "saved": "Saved"
+  "saved": "Saved",
+  "reset": "Reset",
+  "errorGenerateActivityMessage": "Failed to generate activity",
+  "errorRegenerateActivityMessage": "Failed to regenerate activity",
+  "errorFetchingActivitiesMessage": "Failed to fetch activities",
+  "errorFetchingDefinition": "Failed to fetch definition",
+  "errorProcessAnalytics": "Failed to process analytics",
+  "errorDownloading": "Download failed",
+  "errorFetchingLevelSummary": "Failed to fetch level summary",
+  "errorLoadingSpaceChildren": "Failed to load chats within this space"
 }

@@ -33,7 +33,7 @@ class ActivityGenerator extends StatefulWidget {
 
 class ActivityGeneratorState extends State<ActivityGenerator> {
   bool loading = false;
-  String? error;
+  Object? error;
   List<ActivityPlanModel>? activities;
 
   final formKey = GlobalKey<FormState>();
@@ -219,7 +219,7 @@ class ActivityGeneratorState extends State<ActivityGenerator> {
       activities = resp.activityPlans;
       await _setModeImageURL();
     } catch (e, s) {
-      error = e.toString();
+      error = e;
       ErrorHandler.logError(
         e: e,
         s: s,

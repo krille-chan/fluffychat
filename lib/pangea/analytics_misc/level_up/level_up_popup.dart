@@ -18,6 +18,7 @@ import 'package:fluffychat/pangea/analytics_misc/level_up/level_up_manager.dart'
 import 'package:fluffychat/pangea/analytics_misc/level_up/rain_confetti.dart';
 import 'package:fluffychat/pangea/analytics_summary/progress_bar/level_bar.dart';
 import 'package:fluffychat/pangea/analytics_summary/progress_bar/progress_bar_details.dart';
+import 'package:fluffychat/pangea/common/widgets/error_indicator.dart';
 import 'package:fluffychat/pangea/common/widgets/full_width_dialog.dart';
 import 'package:fluffychat/pangea/constructs/construct_repo.dart';
 import 'package:fluffychat/pangea/learning_settings/constants/language_constants.dart';
@@ -386,12 +387,8 @@ class _LevelUpPopupContentState extends State<LevelUpPopupContent>
               else if (_error != null)
                 Padding(
                   padding: const EdgeInsets.all(16.0),
-                  child: Text(
-                    L10n.of(context).oopsSomethingWentWrong,
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.error,
-                      fontSize: 16,
-                    ),
+                  child: ErrorIndicator(
+                    message: L10n.of(context).errorFetchingLevelSummary,
                   ),
                 )
               else if (_constructSummary != null)

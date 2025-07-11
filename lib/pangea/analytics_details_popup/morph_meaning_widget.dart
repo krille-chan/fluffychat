@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/analytics_misc/text_loading_shimmer.dart';
+import 'package:fluffychat/pangea/common/widgets/error_indicator.dart';
 import 'package:fluffychat/pangea/morphs/get_grammar_copy.dart';
 import 'package:fluffychat/pangea/morphs/morph_features_enum.dart';
 import 'package:fluffychat/pangea/morphs/morph_meaning/morph_info_repo.dart';
@@ -32,7 +33,7 @@ class MorphMeaningWidgetState extends State<MorphMeaningWidget> {
   static const int maxCharacters = 140;
   String? _cachedResponse;
   bool _isLoading = true;
-  String? _error;
+  Object? _error;
 
   @override
   void didUpdateWidget(covariant MorphMeaningWidget oldWidget) {
@@ -62,7 +63,8 @@ class MorphMeaningWidgetState extends State<MorphMeaningWidget> {
       final response = await _morphMeaning();
       _setMeaningText(response);
     } catch (e) {
-      _error = e.toString();
+      debugger(when: kDebugMode);
+      _error = e;
     } finally {
       if (mounted) setState(() => _isLoading = false);
     }
@@ -114,11 +116,10 @@ class MorphMeaningWidgetState extends State<MorphMeaningWidget> {
     }
 
     if (_error != null) {
-      debugger(when: kDebugMode);
-      return Text(
-        L10n.of(context).oopsSomethingWentWrong,
-        textAlign: TextAlign.center,
-        style: widget.style,
+      return Center(
+        child: ErrorIndicator(
+          message: L10n.of(context).errorFetchingDefinition,
+        ),
       );
     }
 

@@ -58,14 +58,12 @@ class AnalyticsPageView extends StatelessWidget {
                             return AnalyticsPopupWrapper(
                               constructZoom: controller.widget.constructZoom,
                               view: ConstructTypeEnum.morph,
-                              showAppBar: false,
                             );
                           } else if (controller.selectedIndicator ==
                               ProgressIndicatorEnum.wordsUsed) {
                             return AnalyticsPopupWrapper(
                               constructZoom: controller.widget.constructZoom,
                               view: ConstructTypeEnum.vocab,
-                              showAppBar: false,
                             );
                           }
 

@@ -19,6 +19,7 @@ import 'package:fluffychat/pangea/activity_planner/media_enum.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_plan_search_repo.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_suggestion_card.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_suggestion_dialog.dart';
+import 'package:fluffychat/pangea/common/widgets/error_indicator.dart';
 import 'package:fluffychat/pangea/learning_settings/constants/language_constants.dart';
 import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_enum.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -206,25 +207,27 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
           child: (_timeout || !_loading && cards.isEmpty)
               ? Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: RichText(
-                    text: TextSpan(
-                      style: DefaultTextStyle.of(context).style,
-                      children: [
-                        const WidgetSpan(
-                          alignment: PlaceholderAlignment.middle,
-                          child: Icon(
-                            Icons.info_outline,
+                  child: Column(
+                    spacing: 16.0,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      ErrorIndicator(
+                        message: _timeout
+                            ? L10n.of(context).activitySuggestionTimeoutMessage
+                            : L10n.of(context).errorFetchingActivitiesMessage,
+                      ),
+                      ElevatedButton(
+                        onPressed: _setActivityItems,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: theme.colorScheme.primaryContainer,
+                          foregroundColor: theme.colorScheme.onPrimaryContainer,
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 12.0,
                           ),
                         ),
-                        const TextSpan(text: "  "),
-                        TextSpan(
-                          text: _timeout
-                              ? L10n.of(context)
-                                  .activitySuggestionTimeoutMessage
-                              : L10n.of(context).oopsSomethingWentWrong,
-                        ),
-                      ],
-                    ),
+                        child: Text(L10n.of(context).tryAgain),
+                      ),
+                    ],
                   ),
                 )
               : Container(

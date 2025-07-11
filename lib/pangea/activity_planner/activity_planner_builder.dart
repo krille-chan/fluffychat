@@ -56,7 +56,7 @@ class ActivityPlannerBuilderState extends State<ActivityPlannerBuilder> {
   @override
   void initState() {
     super.initState();
-    _resetActivity();
+    resetActivity();
   }
 
   @override
@@ -91,7 +91,7 @@ class ActivityPlannerBuilderState extends State<ActivityPlannerBuilder> {
     );
   }
 
-  Future<void> _resetActivity() async {
+  Future<void> resetActivity() async {
     avatar = null;
     filename = null;
     imageURL = null;
@@ -230,7 +230,7 @@ class ActivityPlannerBuilderState extends State<ActivityPlannerBuilder> {
   }
 
   Future<void> clearEdits() async {
-    await _resetActivity();
+    await resetActivity();
     if (mounted) {
       setState(() {
         isEditing = false;

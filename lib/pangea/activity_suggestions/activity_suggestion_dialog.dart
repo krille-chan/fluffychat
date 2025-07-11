@@ -14,6 +14,7 @@ import 'package:fluffychat/pangea/activity_suggestions/activity_room_selection.d
 import 'package:fluffychat/pangea/activity_suggestions/activity_suggestion_card_row.dart';
 import 'package:fluffychat/pangea/chat_settings/widgets/language_level_dropdown.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
+import 'package:fluffychat/pangea/common/widgets/error_indicator.dart';
 import 'package:fluffychat/pangea/common/widgets/full_width_dialog.dart';
 import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_enum.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
@@ -117,9 +118,26 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
     }
   }
 
+  void _resetActivity() {
+    widget.controller.resetActivity();
+    setState(() {
+      _pageMode = _PageMode.activity;
+      _loading = false;
+      _error = null;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final buttonStyle = ElevatedButton.styleFrom(
+      backgroundColor: theme.colorScheme.primaryContainer,
+      foregroundColor: theme.colorScheme.onPrimaryContainer,
+      padding: const EdgeInsets.symmetric(
+        horizontal: 12.0,
+      ),
+    );
+
     final body = Stack(
       alignment: Alignment.topCenter,
       children: [
@@ -132,12 +150,30 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
               if (_pageMode == _PageMode.activity) {
                 if (_error != null) {
                   return Center(
-                    child: Row(
-                      spacing: 8.0,
+                    child: Column(
+                      spacing: 16.0,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Icon(Icons.error, color: theme.colorScheme.error),
-                        Text(L10n.of(context).oopsSomethingWentWrong),
+                        ErrorIndicator(
+                          message:
+                              L10n.of(context).errorRegenerateActivityMessage,
+                        ),
+                        Row(
+                          spacing: 8.0,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            ElevatedButton(
+                              onPressed: _onRegenerate,
+                              style: buttonStyle,
+                              child: Text(L10n.of(context).tryAgain),
+                            ),
+                            ElevatedButton(
+                              onPressed: _resetActivity,
+                              style: buttonStyle,
+                              child: Text(L10n.of(context).reset),
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                   );
@@ -547,15 +583,7 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
                                 children: [
                                   Expanded(
                                     child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor:
-                                            theme.colorScheme.primaryContainer,
-                                        foregroundColor: theme
-                                            .colorScheme.onPrimaryContainer,
-                                        padding: const EdgeInsets.symmetric(
-                                          horizontal: 12.0,
-                                        ),
-                                      ),
+                                      style: buttonStyle,
                                       onPressed: widget.controller.saveEdits,
                                       child: Row(
                                         children: [
@@ -572,15 +600,7 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
                                   ),
                                   Expanded(
                                     child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor:
-                                            theme.colorScheme.primaryContainer,
-                                        foregroundColor: theme
-                                            .colorScheme.onPrimaryContainer,
-                                        padding: const EdgeInsets.symmetric(
-                                          horizontal: 12.0,
-                                        ),
-                                      ),
+                                      style: buttonStyle,
                                       onPressed: widget.controller.clearEdits,
                                       child: Row(
                                         children: [
@@ -605,15 +625,7 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
                                     children: [
                                       Expanded(
                                         child: ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                            backgroundColor: theme
-                                                .colorScheme.primaryContainer,
-                                            foregroundColor: theme
-                                                .colorScheme.onPrimaryContainer,
-                                            padding: const EdgeInsets.symmetric(
-                                              horizontal: 12.0,
-                                            ),
-                                          ),
+                                          style: buttonStyle,
                                           child: Row(
                                             children: [
                                               const Icon(Icons.edit),
@@ -632,16 +644,7 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
                                       if (widget.replaceActivity != null)
                                         Expanded(
                                           child: ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                              backgroundColor: theme
-                                                  .colorScheme.primaryContainer,
-                                              foregroundColor: theme.colorScheme
-                                                  .onPrimaryContainer,
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                horizontal: 12.0,
-                                              ),
-                                            ),
+                                            style: buttonStyle,
                                             onPressed: _onRegenerate,
                                             child: Row(
                                               children: [
@@ -664,15 +667,7 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
                                     children: [
                                       Expanded(
                                         child: ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                            backgroundColor: theme
-                                                .colorScheme.primaryContainer,
-                                            foregroundColor: theme
-                                                .colorScheme.onPrimaryContainer,
-                                            padding: const EdgeInsets.symmetric(
-                                              horizontal: 12.0,
-                                            ),
-                                          ),
+                                          style: buttonStyle,
                                           onPressed: _launchActivity,
                                           child: Row(
                                             children: [

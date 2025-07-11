@@ -6,6 +6,7 @@ import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/chat_settings/utils/delete_room.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
+import 'package:fluffychat/pangea/common/widgets/error_indicator.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 
 class DeleteSpaceDialog extends StatefulWidget {
@@ -32,7 +33,9 @@ class DeleteSpaceDialogState extends State<DeleteSpaceDialog> {
   @override
   void initState() {
     super.initState();
-    _getSpaceChildrenToDelete();
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) => _getSpaceChildrenToDelete(),
+    );
   }
 
   Future<void> _getSpaceChildrenToDelete() async {
@@ -44,7 +47,7 @@ class DeleteSpaceDialogState extends State<DeleteSpaceDialog> {
     try {
       _rooms = await widget.space.getSpaceChildrenToDelete();
     } catch (e, s) {
-      _roomLoadError = L10n.of(context).oopsSomethingWentWrong;
+      _roomLoadError = L10n.of(context).errorLoadingSpaceChildren;
       ErrorHandler.logError(
         e: e,
         s: s,
@@ -162,16 +165,9 @@ class DeleteSpaceDialogState extends State<DeleteSpaceDialog> {
 
                     if (_roomLoadError != null) {
                       return Center(
-                        child: Column(
-                          spacing: 8.0,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(
-                              Icons.error_outline,
-                              color: Theme.of(context).colorScheme.error,
-                            ),
-                            Text(L10n.of(context).oopsSomethingWentWrong),
-                          ],
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 16.0),
+                          child: ErrorIndicator(message: _roomLoadError!),
                         ),
                       );
                     }
@@ -252,7 +248,7 @@ class DeleteSpaceDialogState extends State<DeleteSpaceDialog> {
               child: _deleteError != null
                   ? Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text(L10n.of(context).oopsSomethingWentWrong),
+                      child: Text(_deleteError!),
                     )
                   : const SizedBox(),
             ),
