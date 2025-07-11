@@ -16,7 +16,6 @@ import 'package:fluffychat/pangea/chat_settings/pages/pangea_invitation_selectio
 import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/spaces/constants/space_constants.dart';
-import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/user_dialog.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -47,9 +46,35 @@ class PangeaInvitationSelectionView extends StatelessWidget {
     final theme = Theme.of(context);
     final contacts = controller.filteredContacts();
 
-    final alias = room.canonicalAlias.isEmpty
-        ? controller.widget.roomId
-        : room.canonicalAlias;
+    final doneButton = ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: theme.colorScheme.primaryContainer,
+        padding: const EdgeInsets.symmetric(
+          horizontal: 24,
+          vertical: 16,
+        ),
+      ),
+      child: Row(
+        spacing: 34.0,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            Icons.check,
+            color: theme.colorScheme.onPrimaryContainer,
+          ),
+          Text(
+            L10n.of(context).done,
+            style: TextStyle(
+              color: theme.colorScheme.onPrimaryContainer,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ],
+      ),
+      onPressed: () => context.go(
+        room.isSpace ? "/rooms?spaceId=${room.id}" : "/rooms/${room.id}",
+      ),
+    );
 
     return Scaffold(
       appBar: AppBar(
@@ -316,71 +341,10 @@ class PangeaInvitationSelectionView extends StatelessWidget {
                           ),
                         ],
                       ),
-                    )
-                  else
-                    Expanded(
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: theme.colorScheme.primaryContainer,
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 24,
-                            vertical: 16,
-                          ),
-                        ),
-                        child: Row(
-                          spacing: 34.0,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.share_outlined,
-                              color: theme.colorScheme.onPrimaryContainer,
-                            ),
-                            Text(
-                              L10n.of(context).share,
-                              style: TextStyle(
-                                color: theme.colorScheme.onPrimaryContainer,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ],
-                        ),
-                        onPressed: () => FluffyShare.share(
-                          "${Environment.frontendURL}/#/join_with_alias?alias=$alias",
-                          context,
-                        ),
-                      ),
                     ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: theme.colorScheme.primaryContainer,
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 24,
-                        vertical: 16,
-                      ),
-                    ),
-                    child: Row(
-                      spacing: 34.0,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.check,
-                          color: theme.colorScheme.onPrimaryContainer,
-                        ),
-                        Text(
-                          L10n.of(context).done,
-                          style: TextStyle(
-                            color: theme.colorScheme.onPrimaryContainer,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ],
-                    ),
-                    onPressed: () => context.go(
-                      room.isSpace
-                          ? "/rooms?spaceId=${room.id}"
-                          : "/rooms/${room.id}",
-                    ),
-                  ),
+                  room.isSpace && room.classCode != null
+                      ? doneButton
+                      : Expanded(child: doneButton),
                 ],
               ),
             ],
