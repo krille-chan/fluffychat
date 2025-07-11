@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
+import 'package:fluffychat/pangea/common/widgets/error_indicator.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_text_model.dart';
 import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
 import 'package:fluffychat/pangea/phonetic_transcription/phonetic_transcription_repo.dart';
@@ -156,19 +157,8 @@ class _PhoneticTranscriptionWidgetState
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   if (_error != null)
-                    Row(
-                      spacing: 8.0,
-                      children: [
-                        Icon(
-                          Icons.error_outline,
-                          size: widget.iconSize ?? 24,
-                          color: Theme.of(context).colorScheme.error,
-                        ),
-                        Text(
-                          L10n.of(context).failedToFetchTranscription,
-                          style: widget.style,
-                        ),
-                      ],
+                    ErrorIndicator(
+                      message: L10n.of(context).failedToFetchTranscription,
                     )
                   else if (_isLoading || _transcription == null)
                     const SizedBox(
