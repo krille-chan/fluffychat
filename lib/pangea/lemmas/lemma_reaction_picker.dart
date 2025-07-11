@@ -7,12 +7,14 @@ import 'package:fluffychat/pangea/toolbar/reading_assistance_input_row/lemma_emo
 
 class LemmaReactionPicker extends StatefulWidget {
   final ConstructIdentifier cId;
+  final String eventId;
   final ChatController controller;
   final double? iconSize;
 
   const LemmaReactionPicker({
     super.key,
     required this.cId,
+    required this.eventId,
     required this.controller,
     this.iconSize,
   });
@@ -39,8 +41,10 @@ class LemmaReactionPickerState extends State<LemmaReactionPicker> {
     }
   }
 
-  void setEmoji(String emoji) {}
-  // widget.controller.sendEmojiAction(emoji);
+  void setEmoji(String emoji) => widget.controller.room.sendReaction(
+        widget.eventId,
+        emoji,
+      );
 
   Future<void> _refresh() async {
     setState(() {
