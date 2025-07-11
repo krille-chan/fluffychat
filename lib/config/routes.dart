@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
-import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/archive/archive.dart';
@@ -107,7 +106,10 @@ abstract class AppRoutes {
           pageBuilder: (context, state) => defaultPageBuilder(
             context,
             state,
-            Login(client: state.extra as Client),
+            // #Pangea
+            // Login(client: state.extra as Client),
+            const Login(),
+            // Pangea#
           ),
           redirect: loggedInRedirect,
         ),

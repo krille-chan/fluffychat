@@ -69,7 +69,7 @@ class PangeaLoginView extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(4.0),
             child: TextButton(
-              onPressed: controller.loadingSignIn
+              onPressed: controller.loadingSignIn || controller.client == null
                   ? () {}
                   : controller.passwordForgotten,
               style: TextButton.styleFrom(

@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 
 import 'package:matrix/matrix.dart';
@@ -16,8 +14,12 @@ import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class Login extends StatefulWidget {
-  final Client client;
-  const Login({required this.client, super.key});
+  // #Pangea
+  // final Client client;
+  // const Login({required this.client, super.key});
+
+  const Login({super.key});
+  // Pangea#
 
   @override
   LoginController createState() => LoginController();
@@ -41,6 +43,8 @@ class LoginController extends State<Login> {
 
   final PangeaController pangeaController = MatrixState.pangeaController;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+  Client? client;
 
   bool get enabledSignIn =>
       !loadingSignIn &&
@@ -66,6 +70,10 @@ class LoginController extends State<Login> {
 
     usernameController.addListener(() => setState(() {}));
     passwordController.addListener(() => setState(() {}));
+
+    Matrix.of(context).getLoginClient().then((client) {
+      if (mounted) setState(() => this.client = client);
+    });
   }
 
   @override
@@ -155,74 +163,77 @@ class LoginController extends State<Login> {
 
   //   if (mounted) setState(() => loading = false);
   // }
+
+  // Timer? _coolDown;
+
+  // void checkWellKnownWithCoolDown(String userId) async {
+  //   _coolDown?.cancel();
+  //   _coolDown = Timer(
+  //     const Duration(seconds: 1),
+  //     () => _checkWellKnown(userId),
+  //   );
+  // }
+
+  // void _checkWellKnown(String userId) async {
+  //   if (mounted) setState(() => usernameError = null);
+  //   if (!userId.isValidMatrixId) return;
+  //   final oldHomeserver = widget.client.homeserver;
+  //   try {
+  //     var newDomain = Uri.https(userId.domain!, '');
+  //     widget.client.homeserver = newDomain;
+  //     DiscoveryInformation? wellKnownInformation;
+  //     try {
+  //       wellKnownInformation = await widget.client.getWellknown();
+  //       if (wellKnownInformation.mHomeserver.baseUrl.toString().isNotEmpty) {
+  //         newDomain = wellKnownInformation.mHomeserver.baseUrl;
+  //       }
+  //     } catch (_) {
+  //       // do nothing, newDomain is already set to a reasonable fallback
+  //     }
+  //     if (newDomain != oldHomeserver) {
+  //       await widget.client.checkHomeserver(newDomain);
+
+  //       if (widget.client.homeserver == null) {
+  //         widget.client.homeserver = oldHomeserver;
+  //         // okay, the server we checked does not appear to be a matrix server
+  //         Logs().v(
+  //           '$newDomain is not running a homeserver, asking to use $oldHomeserver',
+  //         );
+  //         final dialogResult = await showOkCancelAlertDialog(
+  //           context: context,
+  //           useRootNavigator: false,
+  //           title: L10n.of(context)
+  //               .noMatrixServer(newDomain.toString(), oldHomeserver.toString()),
+  //           okLabel: L10n.of(context).ok,
+  //           cancelLabel: L10n.of(context).cancel,
+  //         );
+  //         if (dialogResult == OkCancelResult.ok) {
+  //           if (mounted) setState(() => usernameError = null);
+  //         } else {
+  //           Navigator.of(context, rootNavigator: false).pop();
+  //           return;
+  //         }
+  //       }
+  //       usernameError = null;
+  //       if (mounted) setState(() {});
+  //     } else {
+  //       widget.client.homeserver = oldHomeserver;
+  //       if (mounted) {
+  //         setState(() {});
+  //       }
+  //     }
+  //   } catch (e) {
+  //     widget.client.homeserver = oldHomeserver;
+  //     usernameError = e.toLocalizedString(context);
+  //     if (mounted) setState(() {});
+  //   }
+  // }
   // Pangea#
 
-  Timer? _coolDown;
-
-  void checkWellKnownWithCoolDown(String userId) async {
-    _coolDown?.cancel();
-    _coolDown = Timer(
-      const Duration(seconds: 1),
-      () => _checkWellKnown(userId),
-    );
-  }
-
-  void _checkWellKnown(String userId) async {
-    if (mounted) setState(() => usernameError = null);
-    if (!userId.isValidMatrixId) return;
-    final oldHomeserver = widget.client.homeserver;
-    try {
-      var newDomain = Uri.https(userId.domain!, '');
-      widget.client.homeserver = newDomain;
-      DiscoveryInformation? wellKnownInformation;
-      try {
-        wellKnownInformation = await widget.client.getWellknown();
-        if (wellKnownInformation.mHomeserver.baseUrl.toString().isNotEmpty) {
-          newDomain = wellKnownInformation.mHomeserver.baseUrl;
-        }
-      } catch (_) {
-        // do nothing, newDomain is already set to a reasonable fallback
-      }
-      if (newDomain != oldHomeserver) {
-        await widget.client.checkHomeserver(newDomain);
-
-        if (widget.client.homeserver == null) {
-          widget.client.homeserver = oldHomeserver;
-          // okay, the server we checked does not appear to be a matrix server
-          Logs().v(
-            '$newDomain is not running a homeserver, asking to use $oldHomeserver',
-          );
-          final dialogResult = await showOkCancelAlertDialog(
-            context: context,
-            useRootNavigator: false,
-            title: L10n.of(context)
-                .noMatrixServer(newDomain.toString(), oldHomeserver.toString()),
-            okLabel: L10n.of(context).ok,
-            cancelLabel: L10n.of(context).cancel,
-          );
-          if (dialogResult == OkCancelResult.ok) {
-            if (mounted) setState(() => usernameError = null);
-          } else {
-            Navigator.of(context, rootNavigator: false).pop();
-            return;
-          }
-        }
-        usernameError = null;
-        if (mounted) setState(() {});
-      } else {
-        widget.client.homeserver = oldHomeserver;
-        if (mounted) {
-          setState(() {});
-        }
-      }
-    } catch (e) {
-      widget.client.homeserver = oldHomeserver;
-      usernameError = e.toLocalizedString(context);
-      if (mounted) setState(() {});
-    }
-  }
-
   void passwordForgotten() async {
+    // #Pangea
+    if (client == null) return;
+    // Pangea#
     final input = await showTextInputDialog(
       useRootNavigator: false,
       context: context,
@@ -239,11 +250,18 @@ class LoginController extends State<Login> {
     final clientSecret = DateTime.now().millisecondsSinceEpoch.toString();
     final response = await showFutureLoadingDialog(
       context: context,
-      future: () => widget.client.requestTokenToResetPasswordEmail(
+      // #Pangea
+      // future: () => widget.client.requestTokenToResetPasswordEmail(
+      //   clientSecret,
+      //   input,
+      //   sendAttempt++,
+      // ),
+      future: () => client!.requestTokenToResetPasswordEmail(
         clientSecret,
         input,
         sendAttempt++,
       ),
+      // Pangea#
     );
     if (response.error != null) return;
     final password = await showTextInputDialog(
@@ -283,11 +301,18 @@ class LoginController extends State<Login> {
     };
     final success = await showFutureLoadingDialog(
       context: context,
-      future: () => widget.client.request(
+      // #Pangea
+      // future: () => widget.client.request(
+      //   RequestType.POST,
+      //   '/client/v3/account/password',
+      //   data: data,
+      // ),
+      future: () => client!.request(
         RequestType.POST,
         '/client/v3/account/password',
         data: data,
       ),
+      // Pangea#
     );
     if (success.error == null) {
       ScaffoldMessenger.of(context).showSnackBar(
