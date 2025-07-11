@@ -23,11 +23,12 @@ class ErrorIndicator extends StatelessWidget {
           size: iconSize ?? 24.0,
         ),
         const SizedBox(width: 8),
-        Text(
-          message,
-          style: style,
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
+        Flexible(
+          child: Text(
+            message,
+            style: style,
+            textAlign: TextAlign.center,
+          ),
         ),
       ],
     );
