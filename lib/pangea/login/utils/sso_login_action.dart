@@ -31,7 +31,7 @@ Future<void> pangeaSSOLoginAction(
           : 'http://localhost:3001//login';
   final client = await Matrix.of(context).getLoginClient();
   final url = client.homeserver!.replace(
-    path: '/_matrix/client/v3/login/sso/redirect',
+    path: '/_matrix/client/v3/login/sso/redirect/${provider.id ?? ''}',
     queryParameters: {'redirectUrl': redirectUrl},
   );
 
