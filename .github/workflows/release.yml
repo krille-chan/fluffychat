@@ -1,0 +1,172 @@
+name: Release Builds
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-release:
+    runs-on: macos-14
+    permissions:
+      contents: write
+    env:
+      GOOGLE_SERVICES_JSON_B64: ${{ secrets.GOOGLE_SERVICES_JSON_B64 }}
+      ANDROID_KEYSTORE_B64: ${{ secrets.ANDROID_KEYSTORE_B64 }}
+      ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+      ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+      ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Add Firebase messaging assets
+        if: ${{ env.GOOGLE_SERVICES_JSON_B64 != '' }}
+        run: |
+          mkdir -p android/app
+          echo "$GOOGLE_SERVICES_JSON_B64" | base64 -d > android/app/google-services.json
+
+      - name: Restore Android signing config
+        if: ${{ env.ANDROID_KEYSTORE_B64 != '' }}
+        run: |
+          mkdir -p android
+          echo "$ANDROID_KEYSTORE_B64" | base64 -d > android/hermes-release-keystore.jks
+          if [ -z "$ANDROID_KEYSTORE_PASSWORD" ] || [ -z "$ANDROID_KEY_PASSWORD" ] || [ -z "$ANDROID_KEY_ALIAS" ]; then
+            echo "Android signing secrets are incomplete" >&2
+            exit 1
+          fi
+          {
+            echo "storePassword=$ANDROID_KEYSTORE_PASSWORD"
+            echo "keyPassword=$ANDROID_KEY_PASSWORD"
+            echo "keyAlias=$ANDROID_KEY_ALIAS"
+            echo "storeFile=$GITHUB_WORKSPACE/android/hermes-release-keystore.jks"
+          } > android/key.properties
+
+      - name: Cache Flutter packages
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.pub-cache
+            .dart_tool
+          key: pub-${{ runner.os }}-${{ hashFiles('pubspec.lock') }}
+          restore-keys: |
+            pub-${{ runner.os }}-
+
+      - name: Cache CocoaPods
+        uses: actions/cache@v4
+        if: runner.os == 'macOS'
+        with:
+          path: |
+            ~/Library/Caches/CocoaPods
+            macos/Pods
+          key: pods-${{ hashFiles('macos/Podfile.lock') }}
+          restore-keys: |
+            pods-
+
+      - name: Cache Gradle
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+            ~/.android/build-cache
+          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            gradle-${{ runner.os }}-
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Enable desktop support
+        run: flutter config --enable-macos-desktop
+
+      - name: Fetch dependencies
+        run: flutter pub get
+
+      - name: Derive version metadata
+        id: version
+        run: |
+          VERSION_LINE=$(grep '^version:' pubspec.yaml | head -n 1 | awk '{print $2}')
+          VERSION_NAME=${VERSION_LINE%%+*}
+          BASE_BUILD=${VERSION_LINE##*+}
+          if [[ "$VERSION_LINE" == "$BASE_BUILD" ]]; then
+            BASE_BUILD=0
+          fi
+
+          git fetch --tags --force >/dev/null 2>&1 || true
+          LAST_TAG_BUILD=$(git tag -l 'v*-*' | sed -E 's/.*-([0-9]+)$/\1/' | sort -n | tail -n1 || echo "")
+          if [[ -z "$LAST_TAG_BUILD" ]]; then
+            LAST_TAG_BUILD=$BASE_BUILD
+          fi
+
+          if (( BASE_BUILD > LAST_TAG_BUILD )); then
+            LAST_TAG_BUILD=$BASE_BUILD
+          fi
+
+          BUILD_NUMBER=$((LAST_TAG_BUILD + 1))
+
+          echo "FLUTTER_VERSION_NAME=${VERSION_NAME}" >> $GITHUB_ENV
+          echo "FLUTTER_BUILD_NUMBER=${BUILD_NUMBER}" >> $GITHUB_ENV
+          echo "RELEASE_TAG=v${VERSION_NAME}-${BUILD_NUMBER}" >> $GITHUB_ENV
+          echo "RELEASE_NAME=Hermes ${VERSION_NAME} (${BUILD_NUMBER})" >> $GITHUB_ENV
+          echo "VERSION_FULL=${VERSION_LINE}" >> $GITHUB_ENV
+
+      - name: Build Android APK (Play Services)
+        run: |
+          flutter build apk --release \
+            --build-name $FLUTTER_VERSION_NAME \
+            --build-number $FLUTTER_BUILD_NUMBER
+
+      - name: Prepare Android artifact
+        run: |
+          APK_PATH="build/app/outputs/flutter-apk/app-release.apk"
+          OUTPUT_APK="build/app/outputs/flutter-apk/Hermes-android-gms-${FLUTTER_VERSION_NAME}-${FLUTTER_BUILD_NUMBER}.apk"
+          mv "$APK_PATH" "$OUTPUT_APK"
+          echo "ANDROID_APK=$OUTPUT_APK" >> $GITHUB_ENV
+
+      - name: Build macOS app
+        id: build_macos
+        continue-on-error: true
+        run: |
+          flutter build macos --release \
+            --build-name $FLUTTER_VERSION_NAME \
+            --build-number $FLUTTER_BUILD_NUMBER
+
+      - name: Archive macOS app bundle
+        if: steps.build_macos.outcome == 'success'
+        run: |
+          OUTPUT_DIR="build/macos/Build/Products/Release"
+          ARCHIVE_NAME="Hermes-macos-${FLUTTER_VERSION_NAME}-${FLUTTER_BUILD_NUMBER}.zip"
+          cd "$OUTPUT_DIR"
+          zip -r "$ARCHIVE_NAME" Hermes.app
+          echo "MACOS_ARCHIVE=$OUTPUT_DIR/$ARCHIVE_NAME" >> $GITHUB_ENV
+
+      - name: Assemble release file list
+        run: |
+          FILES="${ANDROID_APK}"
+          if [ -n "${MACOS_ARCHIVE}" ] && [ -f "${MACOS_ARCHIVE}" ]; then
+            FILES="${MACOS_ARCHIVE}"$'\n'"${FILES}"
+          fi
+          {
+            echo 'UPLOAD_FILES<<EOF'
+            printf '%s\n' "${FILES}"
+            echo 'EOF'
+          } >> "$GITHUB_ENV"
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ env.RELEASE_TAG }}
+          name: ${{ env.RELEASE_NAME }}
+          body: |
+            Automated release triggered by push to `main`.
+
+            * Flutter version: `${{ env.VERSION_FULL }}`
+            * Android build number: `${{ env.FLUTTER_BUILD_NUMBER }}`
+          files: ${{ env.UPLOAD_FILES }}

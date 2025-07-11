@@ -11,6 +11,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  if: false
   deploy_web:
     runs-on: ubuntu-latest
     steps:

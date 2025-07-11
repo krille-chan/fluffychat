@@ -68,6 +68,8 @@ rust
 libcrypto.3.dylib
 android/app/src/main/jniLibs/**
 android/app/google-services.json
+google-services.json*
+*jks.b64
 web/pkg/package.json
 web/pkg/vodozemac_bindings_dart_bg.wasm
 web/pkg/vodozemac_bindings_dart.js
