@@ -175,7 +175,10 @@ class _PhoneticTranscriptionWidgetState
                             Theme.of(context).textTheme.bodyMedium,
                       ),
                     ),
-                  const SizedBox(width: 8),
+                  if (_transcription != null &&
+                      _error == null &&
+                      widget.enabled)
+                    const SizedBox(width: 8),
                   if (_transcription != null &&
                       _error == null &&
                       widget.enabled)
