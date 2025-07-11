@@ -147,7 +147,8 @@ class ChatView extends StatelessWidget {
         exceptionContext: ExceptionContext.joinRoom,
       );
     }
-    final bottomSheetPadding = FluffyThemes.isColumnMode(context) ? 16.0 : 8.0;
+    final bottomSheetPadding =
+        PantheonThemes.isColumnMode(context) ? 16.0 : 8.0;
     final scrollUpBannerEventId = controller.scrollUpBannerEventId;
 
     final accountConfig = Matrix.of(context).client.applicationAccountConfig;
@@ -200,7 +201,7 @@ class ChatView extends StatelessWidget {
                           tooltip: L10n.of(context).close,
                           color: theme.colorScheme.onTertiaryContainer,
                         )
-                      : FluffyThemes.isColumnMode(context)
+                      : PantheonThemes.isColumnMode(context)
                           ? null
                           : StreamBuilder<Object>(
                               stream: Matrix.of(context)
@@ -217,7 +218,7 @@ class ChatView extends StatelessWidget {
                                 child: const Center(child: BackButton()),
                               ),
                             ),
-                  titleSpacing: FluffyThemes.isColumnMode(context) ? 24 : 0,
+                  titleSpacing: PantheonThemes.isColumnMode(context) ? 24 : 0,
                   title: ChatAppBarTitle(controller),
                   actions: _appBarActions(context),
                   bottom: PreferredSize(
@@ -322,7 +323,7 @@ class ChatView extends StatelessWidget {
                               Container(
                                 margin: EdgeInsets.all(bottomSheetPadding),
                                 constraints: const BoxConstraints(
-                                  maxWidth: FluffyThemes.maxTimelineWidth,
+                                  maxWidth: PantheonThemes.maxTimelineWidth,
                                 ),
                                 alignment: Alignment.center,
                                 child: Material(

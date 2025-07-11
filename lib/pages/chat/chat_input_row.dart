@@ -124,8 +124,8 @@ class ChatInputRow extends StatelessWidget {
               : <Widget>[
                   const SizedBox(width: 4),
                   AnimatedContainer(
-                    duration: FluffyThemes.animationDuration,
-                    curve: FluffyThemes.animationCurve,
+                    duration: PantheonThemes.animationDuration,
+                    curve: PantheonThemes.animationCurve,
                     width:
                         controller.sendController.text.isNotEmpty ? 0 : height - 10,
                     height: height,

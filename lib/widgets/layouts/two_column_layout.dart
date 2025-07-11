@@ -22,7 +22,7 @@ class TwoColumnLayout extends StatelessWidget {
             Container(
               clipBehavior: Clip.antiAlias,
               decoration: const BoxDecoration(),
-              width: FluffyThemes.columnWidth + FluffyThemes.navRailWidth,
+              width: PantheonThemes.columnWidth + PantheonThemes.navRailWidth,
               child: mainView,
             ),
             Container(

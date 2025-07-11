@@ -322,7 +322,7 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
                 children: [
                   ConstrainedBox(
                     constraints: const BoxConstraints(
-                      maxWidth: FluffyThemes.columnWidth,
+                      maxWidth: PantheonThemes.columnWidth,
                     ),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
@@ -467,7 +467,7 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
                           crossFadeState: audioPlayer == null
                               ? CrossFadeState.showFirst
                               : CrossFadeState.showSecond,
-                          duration: FluffyThemes.animationDuration,
+                          duration: PantheonThemes.animationDuration,
                         ),
                       ],
                     ),

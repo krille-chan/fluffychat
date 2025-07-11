@@ -7,7 +7,7 @@ import 'package:matrix/matrix.dart';
 import 'package:hermes/l10n/l10n.dart';
 import 'package:hermes/pages/chat_details/chat_details.dart';
 import 'package:hermes/pages/chat_details/participant_list_item.dart';
-import 'package:hermes/utils/fluffy_share.dart';
+import 'package:hermes/utils/pantheon_share.dart';
 import 'package:hermes/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:hermes/widgets/avatar.dart';
 import 'package:hermes/widgets/chat_settings_popup_menu.dart';
@@ -149,7 +149,7 @@ class ChatDetailsView extends StatelessWidget {
                                             EventTypes.RoomName,
                                           )
                                             ? controller.setDisplaynameAction()
-                                            : FluffyShare.share(
+                                            : PantheonShare.share(
                                                 displayname,
                                                 context,
                                                 copyOnly: true,

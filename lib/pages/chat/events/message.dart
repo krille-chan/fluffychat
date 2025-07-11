@@ -211,7 +211,7 @@ class Message extends StatelessWidget {
         onSwipe: (_) => onSwipe(),
         child: Container(
           constraints: const BoxConstraints(
-            maxWidth: FluffyThemes.maxTimelineWidth,
+            maxWidth: PantheonThemes.maxTimelineWidth,
           ),
           padding: EdgeInsets.only(
             left: 8.0,
@@ -263,8 +263,8 @@ class Message extends StatelessWidget {
                     });
                   }
                   return AnimatedSize(
-                    duration: FluffyThemes.animationDuration,
-                    curve: FluffyThemes.animationCurve,
+                    duration: PantheonThemes.animationDuration,
+                    curve: PantheonThemes.animationCurve,
                     clipBehavior: Clip.none,
                     alignment: ownMessage
                         ? Alignment.bottomRight
@@ -448,10 +448,10 @@ class Message extends StatelessWidget {
                                                           event.status.isSending
                                                       ? 0.5
                                                       : 1,
-                                              duration: FluffyThemes
+                                              duration: PantheonThemes
                                                   .animationDuration,
                                               curve:
-                                                  FluffyThemes.animationCurve,
+                                                  PantheonThemes.animationCurve,
                                               child: Container(
                                                 decoration: BoxDecoration(
                                                   color: noBubble
@@ -478,7 +478,7 @@ class Message extends StatelessWidget {
                                                     ),
                                                     constraints:
                                                         const BoxConstraints(
-                                                      maxWidth: FluffyThemes
+                                                      maxWidth: PantheonThemes
                                                               .columnWidth *
                                                           1.5,
                                                     ),
@@ -643,9 +643,10 @@ class Message extends StatelessWidget {
                                               ? Alignment.bottomRight
                                               : Alignment.bottomLeft,
                                           child: AnimatedSize(
-                                            duration:
-                                                FluffyThemes.animationDuration,
-                                            curve: FluffyThemes.animationCurve,
+                                            duration: PantheonThemes
+                                                .animationDuration,
+                                            curve:
+                                                PantheonThemes.animationCurve,
                                             child: showReactionPicker
                                                 ? Padding(
                                                     padding:
@@ -851,8 +852,8 @@ class Message extends StatelessWidget {
                 },
               ),
               AnimatedSize(
-                duration: FluffyThemes.animationDuration,
-                curve: FluffyThemes.animationCurve,
+                duration: PantheonThemes.animationDuration,
+                curve: PantheonThemes.animationCurve,
                 alignment: Alignment.bottomCenter,
                 child: !showReceiptsRow
                     ? const SizedBox.shrink()

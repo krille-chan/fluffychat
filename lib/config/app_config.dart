@@ -30,8 +30,7 @@ abstract class AppConfig {
   static const String appId = 'im.hermes.Hermes';
   static const String appOpenUrlScheme = 'im.hermes';
 
-  static const String sourceCodeUrl =
-      'https://github.com/krille-chan/hermes';
+  static const String sourceCodeUrl = 'https://github.com/krille-chan/hermes';
   static const String supportUrl =
       'https://github.com/krille-chan/hermes/issues';
   static const String changelogUrl =

@@ -99,8 +99,8 @@ class ChatListViewBody extends StatelessWidget {
                                 userSearchResult.results.isEmpty
                             ? 0
                             : 106,
-                        duration: FluffyThemes.animationDuration,
-                        curve: FluffyThemes.animationCurve,
+                        duration: PantheonThemes.animationDuration,
+                        curve: PantheonThemes.animationCurve,
                         child: userSearchResult == null
                             ? null
                             : ListView.builder(
@@ -131,8 +131,8 @@ class ChatListViewBody extends StatelessWidget {
                       ),
                     AnimatedContainer(
                       height: controller.isTorBrowser ? 64 : 0,
-                      duration: FluffyThemes.animationDuration,
-                      curve: FluffyThemes.animationCurve,
+                      duration: PantheonThemes.animationDuration,
+                      curve: PantheonThemes.animationCurve,
                       clipBehavior: Clip.hardEdge,
                       decoration: const BoxDecoration(),
                       child: Material(
@@ -165,7 +165,7 @@ class ChatListViewBody extends StatelessWidget {
                             ActiveFilter.unread,
                             // if (spaceDelegateCandidates.isNotEmpty &&
                             //     !AppConfig.displayNavigationRail &&
-                                // !FluffyThemes.isColumnMode(context))
+                            // !PantheonThemes.isColumnMode(context))
                             //   ActiveFilter.spaces,
                           ]
                               .map(
@@ -289,8 +289,8 @@ class PublicRoomsHorizontalList extends StatelessWidget {
       clipBehavior: Clip.hardEdge,
       decoration: const BoxDecoration(),
       height: publicRooms == null || publicRooms.isEmpty ? 0 : 106,
-      duration: FluffyThemes.animationDuration,
-      curve: FluffyThemes.animationCurve,
+      duration: PantheonThemes.animationDuration,
+      curve: PantheonThemes.animationCurve,
       child: publicRooms == null
           ? null
           : ListView.builder(

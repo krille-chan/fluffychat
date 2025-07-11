@@ -32,7 +32,7 @@ class ChatAppBarTitle extends StatelessWidget {
       highlightColor: Colors.transparent,
       onTap: controller.isArchived
           ? null
-          : () => FluffyThemes.isThreeColumnMode(context)
+          : () => PantheonThemes.isThreeColumnMode(context)
               ? controller.toggleDisplayChatDetailsColumn()
               : context.go('/rooms/${room.id}/details'),
       child: Row(
@@ -65,12 +65,12 @@ class ChatAppBarTitle extends StatelessWidget {
                   builder: (context, snapshot) {
                     final status = room.client.onSyncStatus.value ??
                         const SyncStatusUpdate(SyncStatus.waitingForResponse);
-                    final hide = FluffyThemes.isColumnMode(context) ||
+                    final hide = PantheonThemes.isColumnMode(context) ||
                         (room.client.onSync.value != null &&
                             status.status != SyncStatus.error &&
                             room.client.prevBatch != null);
                     return AnimatedSize(
-                      duration: FluffyThemes.animationDuration,
+                      duration: PantheonThemes.animationDuration,
                       child: hide
                           ? PresenceBuilder(
                               userId: room.directChatMatrixID,

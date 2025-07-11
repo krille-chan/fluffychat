@@ -110,7 +110,7 @@ abstract class AppRoutes {
       pageBuilder: (context, state, child) => noTransitionPageBuilder(
         context,
         state,
-        FluffyThemes.isColumnMode(context) &&
+        PantheonThemes.isColumnMode(context) &&
                 state.fullPath?.startsWith('/rooms/settings') == false
             ? TwoColumnLayout(
                 mainView: ChatList(
@@ -130,7 +130,7 @@ abstract class AppRoutes {
           pageBuilder: (context, state) => defaultPageBuilder(
             context,
             state,
-            FluffyThemes.isColumnMode(context)
+            PantheonThemes.isColumnMode(context)
                 ? const EmptyPage()
                 : ChatList(
                     activeChat: state.pathParameters['roomid'],
@@ -192,7 +192,7 @@ abstract class AppRoutes {
               pageBuilder: (context, state, child) => defaultPageBuilder(
                 context,
                 state,
-                FluffyThemes.isColumnMode(context)
+                PantheonThemes.isColumnMode(context)
                     ? TwoColumnLayout(
                         mainView: Settings(key: state.pageKey),
                         sideView: child,
@@ -205,7 +205,7 @@ abstract class AppRoutes {
                   pageBuilder: (context, state) => defaultPageBuilder(
                     context,
                     state,
-                    FluffyThemes.isColumnMode(context)
+                    PantheonThemes.isColumnMode(context)
                         ? const EmptyPage()
                         : const Settings(),
                   ),
@@ -348,7 +348,7 @@ abstract class AppRoutes {
                   shareItems.add(TextShareItem(body));
                 }
 
-                if (!FluffyThemes.isColumnMode(context)) {
+                if (!PantheonThemes.isColumnMode(context)) {
                   return InteractivePageTransition(
                     key: state.pageKey,
                     restorationId: state.pageKey.value,
@@ -520,7 +520,7 @@ abstract class AppRoutes {
     GoRouterState state,
     Widget child,
   ) =>
-      FluffyThemes.isColumnMode(context)
+      PantheonThemes.isColumnMode(context)
           ? noTransitionPageBuilder(context, state, child)
           : MaterialPage(
               key: state.pageKey,

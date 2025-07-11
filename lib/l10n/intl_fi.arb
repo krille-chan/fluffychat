@@ -943,7 +943,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "newMessageInHermes": "💬 Uusi viesti FluffyChätissä",
+    "newMessageInHermes": "💬 Uusi viesti Hermes",
     "@newMessageInHermes": {
         "type": "String",
         "placeholders": {}

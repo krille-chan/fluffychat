@@ -23,7 +23,7 @@ class MaxWidthBody extends StatelessWidget {
         builder: (context, constraints) {
           final theme = Theme.of(context);
 
-          const desiredWidth = FluffyThemes.columnWidth * 1.5;
+          const desiredWidth = PantheonThemes.columnWidth * 1.5;
           final body = constraints.maxWidth <= desiredWidth
               ? child
               : Container(
@@ -31,7 +31,7 @@ class MaxWidthBody extends StatelessWidget {
                   padding: const EdgeInsets.all(32),
                   child: ConstrainedBox(
                     constraints: const BoxConstraints(
-                      maxWidth: FluffyThemes.columnWidth * 1.5,
+                      maxWidth: PantheonThemes.columnWidth * 1.5,
                     ),
                     child: Material(
                       shape: RoundedRectangleBorder(

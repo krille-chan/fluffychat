@@ -6,7 +6,7 @@ import 'package:matrix/matrix.dart';
 import 'package:hermes/l10n/l10n.dart';
 import 'package:hermes/config/themes.dart';
 import 'package:hermes/utils/error_reporter.dart';
-import 'package:hermes/utils/fluffy_share.dart';
+import 'package:hermes/utils/pantheon_share.dart';
 import 'package:hermes/utils/localized_exception_extension.dart';
 import 'package:hermes/utils/platform_infos.dart';
 import 'package:hermes/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
@@ -108,8 +108,8 @@ class BootstrapDialogState extends State<BootstrapDialog> {
         ),
         body: Center(
           child: ConstrainedBox(
-            constraints:
-                const BoxConstraints(maxWidth: FluffyThemes.columnWidth * 1.5),
+            constraints: const BoxConstraints(
+                maxWidth: PantheonThemes.columnWidth * 1.5),
             child: ListView(
               padding: const EdgeInsets.all(16.0),
               children: [
@@ -160,7 +160,7 @@ class BootstrapDialogState extends State<BootstrapDialog> {
                   value: _recoveryKeyCopied,
                   activeColor: theme.colorScheme.primary,
                   onChanged: (b) {
-                    FluffyShare.share(key!, context);
+                    PantheonShare.share(key!, context);
                     setState(() => _recoveryKeyCopied = true);
                   },
                   title: Text(L10n.of(context).copyToClipboard),
@@ -231,7 +231,7 @@ class BootstrapDialogState extends State<BootstrapDialog> {
             body: Center(
               child: ConstrainedBox(
                 constraints: const BoxConstraints(
-                  maxWidth: FluffyThemes.columnWidth * 1.5,
+                  maxWidth: PantheonThemes.columnWidth * 1.5,
                 ),
                 child: ListView(
                   padding: const EdgeInsets.all(16.0),

@@ -26,7 +26,7 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
     return SliverAppBar(
       floating: true,
       toolbarHeight: 72,
-      pinned: FluffyThemes.isColumnMode(context),
+      pinned: PantheonThemes.isColumnMode(context),
       scrolledUnderElevation: 0,
       backgroundColor: Colors.transparent,
       automaticallyImplyLeading: false,

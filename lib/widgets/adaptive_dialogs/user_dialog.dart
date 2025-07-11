@@ -106,8 +106,9 @@ class UserDialog extends StatelessWidget {
                                   child: Padding(
                                     padding: const EdgeInsets.only(right: 4.0),
                                     child: AnimatedScale(
-                                      duration: FluffyThemes.animationDuration,
-                                      curve: FluffyThemes.animationCurve,
+                                      duration:
+                                          PantheonThemes.animationDuration,
+                                      curve: PantheonThemes.animationCurve,
                                       scale: hovered
                                           ? 1.33
                                           : copied

@@ -141,8 +141,8 @@ class PublicRoomDialog extends StatelessWidget {
                                           const EdgeInsets.only(right: 4.0),
                                       child: AnimatedScale(
                                         duration:
-                                            FluffyThemes.animationDuration,
-                                        curve: FluffyThemes.animationCurve,
+                                            PantheonThemes.animationDuration,
+                                        curve: PantheonThemes.animationCurve,
                                         scale: hovered
                                             ? 1.33
                                             : copied

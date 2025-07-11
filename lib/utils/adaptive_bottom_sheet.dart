@@ -12,7 +12,7 @@ Future<T?> showAdaptiveBottomSheet<T>({
   bool isScrollControlled = true,
   bool useRootNavigator = true,
 }) {
-  if (FluffyThemes.isColumnMode(context)) {
+  if (PantheonThemes.isColumnMode(context)) {
     return showDialog<T>(
       context: context,
       useRootNavigator: useRootNavigator,
@@ -55,7 +55,7 @@ Future<T?> showAdaptiveBottomSheet<T>({
     isScrollControlled: isScrollControlled,
     constraints: BoxConstraints(
       maxHeight: min(MediaQuery.sizeOf(context).height - 32, 600),
-      maxWidth: FluffyThemes.columnWidth * 1.25,
+      maxWidth: PantheonThemes.columnWidth * 1.25,
     ),
     backgroundColor: Colors.transparent,
     clipBehavior: Clip.hardEdge,

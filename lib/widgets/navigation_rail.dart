@@ -26,18 +26,13 @@ class SpacesNavigationRail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final client = Matrix.of(context).client;
-    final isSettings = GoRouter.of(context)
-        .routeInformationProvider
-        .value
-        .uri
-        .path
-        .startsWith('/rooms/settings');
+    final isSettings = GoRouter.of(
+      context,
+    ).routeInformationProvider.value.uri.path.startsWith('/rooms/settings');
     return Material(
       child: SafeArea(
         child: StreamBuilder(
-          key: ValueKey(
-            client.userID.toString(),
-          ),
+          key: ValueKey(client.userID.toString()),
           stream: client.onSync.stream
               .where((s) => s.hasRoomUpdate)
               .rateLimit(const Duration(seconds: 1)),
@@ -46,9 +41,7 @@ class SpacesNavigationRail extends StatelessWidget {
                 client.rooms.where((room) => room.isSpace).toList();
 
             return SizedBox(
-              width: FluffyThemes.isColumnMode(context)
-                  ? FluffyThemes.navRailWidth
-                  : FluffyThemes.navRailWidth * 0.75,
+              width: PantheonThemes.navRailWidth,
               child: Column(
                 children: [
                   Expanded(

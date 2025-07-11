@@ -28,7 +28,7 @@ class ChatListView extends StatelessWidget {
       },
       child: Row(
         children: [
-          // if (FluffyThemes.isColumnMode(context) ||
+          // if (PantheonThemes.isColumnMode(context) ||
           //     AppConfig.displayNavigationRail)
           // ...[
           SpacesNavigationRail(

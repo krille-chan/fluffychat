@@ -34,10 +34,10 @@ class TypingIndicators extends StatelessWidget {
           alignment: Alignment.center,
           child: AnimatedContainer(
             constraints:
-                const BoxConstraints(maxWidth: FluffyThemes.maxTimelineWidth),
+                const BoxConstraints(maxWidth: PantheonThemes.maxTimelineWidth),
             height: typingUsers.isEmpty ? 0 : avatarSize + 8,
-            duration: FluffyThemes.animationDuration,
-            curve: FluffyThemes.animationCurve,
+            duration: PantheonThemes.animationDuration,
+            curve: PantheonThemes.animationCurve,
             alignment: controller.timeline!.events.isNotEmpty &&
                     controller.timeline!.events.first.senderId ==
                         Matrix.of(context).client.userID
@@ -146,7 +146,7 @@ class __TypingDotsState extends State<_TypingDots> {
         for (var i = 1; i <= 3; i++)
           AnimatedContainer(
             duration: animationDuration * 1.5,
-            curve: FluffyThemes.animationCurve,
+            curve: PantheonThemes.animationCurve,
             width: size,
             height: _tick == i ? size * 2 : size,
             margin: EdgeInsets.symmetric(

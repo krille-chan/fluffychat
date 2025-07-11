@@ -89,11 +89,11 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "chat.fluffy" "\0"
+            VALUE "CompanyName", "chat.pantheon" "\0"
             VALUE "FileDescription", "hermes" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
             VALUE "InternalName", "hermes" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2022 chat.fluffy. All rights reserved." "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2022 chat.pantheon. All rights reserved." "\0"
             VALUE "OriginalFilename", "hermes.exe" "\0"
             VALUE "ProductName", "hermes" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"

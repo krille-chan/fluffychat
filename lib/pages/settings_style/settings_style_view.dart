@@ -31,8 +31,8 @@ class SettingsStyleView extends StatelessWidget {
     final client = Matrix.of(context).client;
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: !FluffyThemes.isColumnMode(context),
-        centerTitle: FluffyThemes.isColumnMode(context),
+        automaticallyImplyLeading: !PantheonThemes.isColumnMode(context),
+        centerTitle: PantheonThemes.isColumnMode(context),
         title: Text(L10n.of(context).changeTheme),
       ),
       backgroundColor: theme.colorScheme.surface,
@@ -162,8 +162,8 @@ class SettingsStyleView extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     AnimatedContainer(
-                      duration: FluffyThemes.animationDuration,
-                      curve: FluffyThemes.animationCurve,
+                      duration: PantheonThemes.animationDuration,
+                      curve: PantheonThemes.animationCurve,
                       decoration: const BoxDecoration(),
                       clipBehavior: Clip.hardEdge,
                       child: Stack(
@@ -182,7 +182,7 @@ class SettingsStyleView extends StatelessWidget {
                                   uri: accountConfig.wallpaperUrl,
                                   fit: BoxFit.cover,
                                   isThumbnail: true,
-                                  width: FluffyThemes.columnWidth * 2,
+                                  width: PantheonThemes.columnWidth * 2,
                                   height: 212,
                                 ),
                               ),

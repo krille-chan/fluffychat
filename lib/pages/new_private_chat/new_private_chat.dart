@@ -10,7 +10,7 @@ import 'package:hermes/l10n/l10n.dart';
 import 'package:hermes/pages/new_private_chat/new_private_chat_view.dart';
 import 'package:hermes/pages/new_private_chat/qr_scanner_modal.dart';
 import 'package:hermes/utils/adaptive_bottom_sheet.dart';
-import 'package:hermes/utils/fluffy_share.dart';
+import 'package:hermes/utils/pantheon_share.dart';
 import 'package:hermes/utils/platform_infos.dart';
 import 'package:hermes/utils/url_launcher.dart';
 import 'package:hermes/widgets/matrix.dart';
@@ -65,7 +65,7 @@ class NewPrivateChatController extends State<NewPrivateChat> {
     return profiles;
   }
 
-  void inviteAction() => FluffyShare.shareInviteLink(context);
+  void inviteAction() => PantheonShare.shareInviteLink(context);
 
   void openScannerAction() async {
     if (PlatformInfos.isAndroid) {

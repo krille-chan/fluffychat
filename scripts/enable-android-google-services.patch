@@ -77,13 +77,13 @@ index d0e0fbc9..0a546da0 100644
 +
 +##---------------End: proguard configuration for Gson (Needed for flutter_local_notifications)  ----------
 \ No newline at end of file
-diff --git a/android/app/src/main/kotlin/chat/fluffy/hermes/FcmPushService.kt b/android/app/src/main/kotlin/chat/fluffy/hermes/FcmPushService.kt
+diff --git a/android/app/src/main/kotlin/chat/pantheon/hermes/FcmPushService.kt b/android/app/src/main/kotlin/chat/pantheon/hermes/FcmPushService.kt
 index d9930f55..510e9845 100644
---- a/android/app/src/main/kotlin/chat/fluffy/hermes/FcmPushService.kt
-+++ b/android/app/src/main/kotlin/chat/fluffy/hermes/FcmPushService.kt
+--- a/android/app/src/main/kotlin/chat/pantheon/hermes/FcmPushService.kt
++++ b/android/app/src/main/kotlin/chat/pantheon/hermes/FcmPushService.kt
 @@ -1,4 +1,4 @@
--/*package chat.fluffy.hermes
-+package chat.fluffy.hermes
+-/*package chat.pantheon.hermes
++package chat.pantheon.hermes
  
  import com.famedly.fcm_shared_isolate.FcmSharedIsolateService
  

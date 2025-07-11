@@ -70,7 +70,7 @@ class _LockScreenState extends State<LockScreen> {
           padding: const EdgeInsets.all(16.0),
           child: ConstrainedBox(
             constraints: const BoxConstraints(
-              maxWidth: FluffyThemes.columnWidth,
+              maxWidth: PantheonThemes.columnWidth,
             ),
             child: ListView(
               shrinkWrap: true,

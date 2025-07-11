@@ -40,13 +40,13 @@ enum AppSettings<T> {
   showPresences<bool>('chat.fluffy.show_presences', true),
   displayNavigationRail<bool>('chat.fluffy.display_navigation_rail', false),
   experimentalVoip<bool>('chat.fluffy.experimental_voip', false),
-  shareKeysWith<String>('chat.fluffy.share_keys_with_2', 'all'),
+  shareKeysWith<String>('chat.pantheon.share_keys_with_2', 'all'),
   noEncryptionWarningShown<bool>(
-    'chat.fluffy.no_encryption_warning_shown',
+    'chat.pantheon.no_encryption_warning_shown',
     false,
   ),
   displayChatDetailsColumn(
-    'chat.fluffy.display_chat_details_column',
+    'chat.pantheon.display_chat_details_column',
     false,
   ),
   // AppConfig-mirrored settings
@@ -57,7 +57,7 @@ enum AppSettings<T> {
     'chat.pantheon.color_scheme_seed',
     0xFF5625BA,
   ),
-  enableSoftLogout<bool>('chat.fluffy.enable_soft_logout', false);
+  enableSoftLogout<bool>('chat.pantheon.enable_soft_logout', false);
 
   final String key;
   final T defaultValue;

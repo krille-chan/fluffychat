@@ -9,7 +9,7 @@ set(OPENSSL_USE_STATIC_LIBS OFF)
 set(BINARY_NAME "hermes")
 # The unique GTK application identifier for this application. See:
 # https://wiki.gnome.org/HowDoI/ChooseApplicationID
-set(APPLICATION_ID "chat.fluffy.hermes")
+set(APPLICATION_ID "chat.pantheon.hermes")
 
 # Explicitly opt in to modern CMake behaviors to avoid warnings with recent
 # versions of CMake.

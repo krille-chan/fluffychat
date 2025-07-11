@@ -18,9 +18,9 @@ flutter build apk --release
 
 # install and launch APK
 flutter install
-adb shell am start -n chat.fluffy.hermes/chat.fluffy.hermes.MainActivity
+adb shell am start -n chat.pantheon.hermes/chat.pantheon.hermes.MainActivity
 
 sleep 5
 
 # check whether Hermes runs
-adb shell ps | awk '{print $9}' | grep chat.fluffy.hermes
+adb shell ps | awk '{print $9}' | grep chat.pantheon.hermes

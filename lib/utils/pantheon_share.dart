@@ -7,7 +7,7 @@ import 'package:hermes/l10n/l10n.dart';
 import 'package:hermes/utils/platform_infos.dart';
 import '../widgets/matrix.dart';
 
-abstract class FluffyShare {
+abstract class PantheonShare {
   static Future<void> share(
     String text,
     BuildContext context, {
@@ -35,7 +35,7 @@ abstract class FluffyShare {
   static Future<void> shareInviteLink(BuildContext context) async {
     final client = Matrix.of(context).client;
     final ownProfile = await client.fetchOwnProfile();
-    await FluffyShare.share(
+    await PantheonShare.share(
       L10n.of(context).inviteText(
         ownProfile.displayName ?? client.userID!,
         'https://matrix.to/#/${client.userID}?client=im.hermes',

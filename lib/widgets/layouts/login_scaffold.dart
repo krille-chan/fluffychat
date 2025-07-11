@@ -24,7 +24,7 @@ class LoginScaffold extends StatelessWidget {
     final theme = Theme.of(context);
 
     final isMobileMode =
-        enforceMobileMode || !FluffyThemes.isColumnMode(context);
+        enforceMobileMode || !PantheonThemes.isColumnMode(context);
     if (isMobileMode) {
       return Scaffold(
         key: const Key('LoginScaffold'),

@@ -31,7 +31,7 @@ if (keystorePropertiesFile.exists()) {
 
 android {
     compileSdk = 35
-    namespace = "chat.fluffy.hermes"
+    namespace = "chat.pantheon.hermes"
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
@@ -42,7 +42,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "chat.fluffy.hermes"
+        applicationId "chat.pantheon.hermes"
         minSdkVersion 21
         targetSdkVersion 35
         versionCode flutterVersionCode.toInteger()

@@ -21,12 +21,12 @@ class SeenByRow extends StatelessWidget {
       alignment: Alignment.center,
       child: AnimatedContainer(
         constraints:
-            const BoxConstraints(maxWidth: FluffyThemes.maxTimelineWidth),
+            const BoxConstraints(maxWidth: PantheonThemes.maxTimelineWidth),
         height: seenByUsers.isEmpty ? 0 : 24,
         duration: seenByUsers.isEmpty
             ? Duration.zero
-            : FluffyThemes.animationDuration,
-        curve: FluffyThemes.animationCurve,
+            : PantheonThemes.animationDuration,
+        curve: PantheonThemes.animationCurve,
         alignment: controller.timeline!.events.isNotEmpty &&
                 controller.timeline!.events.first.senderId ==
                     Matrix.of(context).client.userID

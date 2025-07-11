@@ -15,8 +15,8 @@ class ChatEmojiPicker extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return AnimatedContainer(
-      duration: FluffyThemes.animationDuration,
-      curve: FluffyThemes.animationCurve,
+      duration: PantheonThemes.animationDuration,
+      curve: PantheonThemes.animationCurve,
       clipBehavior: Clip.hardEdge,
       decoration: const BoxDecoration(),
       height: controller.showEmojiPicker

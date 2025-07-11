@@ -4,7 +4,7 @@ import 'package:matrix/matrix.dart';
 
 import 'package:hermes/l10n/l10n.dart';
 import 'package:hermes/pages/chat_access_settings/chat_access_settings_controller.dart';
-import 'package:hermes/utils/fluffy_share.dart';
+import 'package:hermes/utils/pantheon_share.dart';
 import 'package:hermes/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:hermes/widgets/layouts/max_width_body.dart';
 
@@ -207,7 +207,7 @@ class ChatAccessSettingsPageView extends StatelessWidget {
                   subtitle: SelectableText(room.id),
                   trailing: IconButton(
                     icon: const Icon(Icons.copy_outlined),
-                    onPressed: () => FluffyShare.share(room.id, context),
+                    onPressed: () => PantheonShare.share(room.id, context),
                   ),
                 ),
                 ListTile(
@@ -257,7 +257,7 @@ class _AliasListTile extends StatelessWidget {
           ? const Icon(Icons.star)
           : const Icon(Icons.link_outlined),
       title: InkWell(
-        onTap: () => FluffyShare.share(
+        onTap: () => PantheonShare.share(
           'https://matrix.to/#/$alias',
           context,
         ),

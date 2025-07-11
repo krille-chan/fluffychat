@@ -397,7 +397,7 @@ class _SpaceViewState extends State<SpaceView> {
         true;
     return Scaffold(
       appBar: AppBar(
-        leading: FluffyThemes.isColumnMode(context)
+        leading: PantheonThemes.isColumnMode(context)
             ? null
             : Center(
                 child: CloseButton(
@@ -405,7 +405,7 @@ class _SpaceViewState extends State<SpaceView> {
                 ),
               ),
         automaticallyImplyLeading: false,
-        titleSpacing: FluffyThemes.isColumnMode(context) ? null : 0,
+        titleSpacing: PantheonThemes.isColumnMode(context) ? null : 0,
         title: ListTile(
           contentPadding: EdgeInsets.zero,
           leading: Avatar(

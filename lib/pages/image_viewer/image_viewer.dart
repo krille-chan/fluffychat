@@ -69,8 +69,8 @@ class ImageViewerController extends State<ImageViewer> {
 
   void prevImage() async {
     await pageController.previousPage(
-      duration: FluffyThemes.animationDuration,
-      curve: FluffyThemes.animationCurve,
+      duration: PantheonThemes.animationDuration,
+      curve: PantheonThemes.animationCurve,
     );
     if (!mounted) return;
     setState(() {});
@@ -78,8 +78,8 @@ class ImageViewerController extends State<ImageViewer> {
 
   void nextImage() async {
     await pageController.nextPage(
-      duration: FluffyThemes.animationDuration,
-      curve: FluffyThemes.animationCurve,
+      duration: PantheonThemes.animationDuration,
+      curve: PantheonThemes.animationCurve,
     );
     if (!mounted) return;
     setState(() {});

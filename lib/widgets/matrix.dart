@@ -418,7 +418,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     );
 
     final exportFileName =
-        'hermes-export-${DateFormat(DateFormat.YEAR_MONTH_DAY).format(DateTime.now())}.fluffybackup';
+        'hermes-export-${DateFormat(DateFormat.YEAR_MONTH_DAY).format(DateTime.now())}.pantheonbackup';
 
     final file = MatrixFile(bytes: exportBytes, name: exportFileName);
     file.save(context);
