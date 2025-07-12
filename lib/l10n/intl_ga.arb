@@ -3018,7 +3018,7 @@
   "@searchMore": {},
   "gallery": "Gailearaí",
   "@gallery": {},
-  "alwaysUse24HourFormat": "",
+  "alwaysUse24HourFormat": "bréagach",
   "@alwaysUse24HourFormat": {
     "description": "Set to true to always display time of day in 24 hour format."
   },
@@ -3384,5 +3384,9 @@
   "commandHint_logout": "Logáil amach as do ghléas reatha",
   "@commandHint_logout": {},
   "commandHint_logoutall": "Logáil amach gach gléas gníomhach",
-  "@commandHint_logoutall": {}
+  "@commandHint_logoutall": {},
+  "customReaction": "Imoibriú saincheaptha",
+  "@customReaction": {},
+  "moreEvents": "Tuilleadh imeachtaí",
+  "@moreEvents": {}
 }
