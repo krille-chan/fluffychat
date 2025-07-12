@@ -17,7 +17,7 @@ dependencies {
 }
 
 android {
-    namespace = "im.fluffychat.fluffychat"
+    namespace = "chat.fluffy.fluffychat"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = "27.0.12077973"
 
