@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_264",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cC2(){return new A.Fk(B.dd("hu"))},
-Fk:function Fk(d){this.a=d}}
+cCe(){return new A.Fm(B.dd("hu"))},
+Fm:function Fm(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[28],A)
-A.Fk.prototype={
+A.Fm.prototype={
 gkU(){return""},
 gjE(){return"Jelsz\xf3 ism\xe9tl\xe9se"},
 gmI(){return"Nem k\xe9p f\xe1jl."},
@@ -63,7 +63,7 @@ geY(){return"Kitilt\xe1s a cseveg\xe9sb\u0151l"},
 geZ(){return"Kitiltva"},
 hh(d,e){return d+" kitiltva "+e+" \xe1ltal"},
 ghj(){return"Eszk\xf6z blokkol\xe1sa"},
-gcl(){return"Blokkolva"},
+gcm(){return"Blokkolva"},
 gbu(d){return"M\xe9gse"},
 f0(d){return"Nem siker\xfclt a k\xf6vetkez\u0151 URI megnyit\xe1sa: "+d},
 gf2(){return"Eszk\xf6zn\xe9v m\xf3dos\xedt\xe1sa"},
@@ -95,7 +95,7 @@ gf5(){return"Cseveg\xe9s r\xe9szletei"},
 gf6(){return"Cseveg\xe9sek"},
 ghD(){return"V\xe1lasszon egy er\u0151s jelsz\xf3t"},
 gf7(){return"Arch\xedvum \xfcr\xedt\xe9se"},
-gcj(d){return"Bez\xe1r"},
+gck(d){return"Bez\xe1r"},
 glk(){return"Szoba megjel\xf6l\xe9se mint k\xf6zvetlen cseveg\u0151 szoba az adott Matrix ID-n\xe9l"},
 gll(){return"Jel\xf6l\xe9s csoportnak"},
 ghF(){return"Adott felhaszn\xe1l\xf3 kitilt\xe1sa a szob\xe1b\xf3l"},
@@ -256,7 +256,7 @@ gfo(){return"Nem tal\xe1lhat\xf3ak szob\xe1k\u2026"},
 geI(){return"\xc9rtes\xedt\xe9sek"},
 gje(){return"Tart\xf3zkod\xe1si hely lek\xe9r\xe9se\u2026"},
 gjf(){return"S\xe9rt\u0151"},
-gcr(){return"Ok"},
+gcs(){return"Ok"},
 gjh(){return"Online kulcsment\xe9s enged\xe9lyezve"},
 gdl(){return"Hopp\xe1, valami hiba l\xe9pett fel\u2026"},
 gjg(){return"Az egyik kliense kijelentkezett"},
@@ -640,8 +640,8 @@ glD(){return"Custom reaction"},
 gpa(){return"More events"},
 B(d,e){return this.gb9(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Fk,C.aF)})()
-B.dR(b.typeUniverse,JSON.parse('{"Fk":{"aF":[]}}'))};
+y(A.Fm,C.aF)})()
+B.dT(b.typeUniverse,JSON.parse('{"Fm":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_264",e:"endPart",h:b})})($__dart_deferred_initializers__,"+1pV+9b4O0/QjTGmVV7BGo0Bbmc=");
+a.eventLog.push({p:"main.dart.js_264",e:"endPart",h:b})})($__dart_deferred_initializers__,"tHhi1BSBy1O4rmK9l5jWsQ0q3R8=");
 //# sourceMappingURL=main.dart.js_264.part.js.map

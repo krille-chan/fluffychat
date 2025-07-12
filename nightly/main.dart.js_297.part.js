@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_297",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cCq(){return new A.FH(B.dd("th"))},
-FH:function FH(d){this.a=d}}
+cCC(){return new A.FJ(B.dd("th"))},
+FJ:function FJ(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[49],A)
-A.FH.prototype={
+A.FJ.prototype={
 gkU(){return"false"},
 gjE(){return"\u0e43\u0e2a\u0e48\u0e23\u0e2b\u0e31\u0e2a\u0e1c\u0e48\u0e32\u0e19\u0e2d\u0e35\u0e01\u0e23\u0e2d\u0e1a"},
 gmI(){return"\u0e44\u0e21\u0e48\u0e43\u0e0a\u0e48\u0e44\u0e1f\u0e25\u0e4c\u0e23\u0e39\u0e1b\u0e20\u0e32\u0e1e"},
@@ -63,7 +63,7 @@ geY(){return"Ban from chat"},
 geZ(){return"Banned"},
 hh(d,e){return d+" banned "+e},
 ghj(){return"Block Device"},
-gcl(){return"Blocked"},
+gcm(){return"Blocked"},
 gbu(d){return"Cancel"},
 f0(d){return"Can't open the URI "+d},
 gf2(){return"Change device name"},
@@ -95,7 +95,7 @@ gf5(){return"\u0e23\u0e32\u0e22\u0e25\u0e30\u0e40\u0e2d\u0e35\u0e22\u0e14\u0e41\
 gf6(){return"Chats"},
 ghD(){return"Choose a strong password"},
 gf7(){return"Clear archive"},
-gcj(d){return"Close"},
+gck(d){return"Close"},
 glk(){return"Mark as direct message room for the giving Matrix ID"},
 gll(){return"Mark as group"},
 ghF(){return"Ban the given user from this room"},
@@ -256,7 +256,7 @@ gfo(){return"No rooms found\u2026"},
 geI(){return"Notifications"},
 gje(){return"Obtaining location\u2026"},
 gjf(){return"Offensive"},
-gcr(){return"Ok"},
+gcs(){return"Ok"},
 gjh(){return"Online Key Backup is enabled"},
 gdl(){return"Oops, something went wrong\u2026"},
 gjg(){return"One of your clients has been logged out"},
@@ -640,8 +640,8 @@ glD(){return"Custom reaction"},
 gpa(){return"More events"},
 B(d,e){return this.gb9(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FH,C.aF)})()
-B.dR(b.typeUniverse,JSON.parse('{"FH":{"aF":[]}}'))};
+y(A.FJ,C.aF)})()
+B.dT(b.typeUniverse,JSON.parse('{"FJ":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_297",e:"endPart",h:b})})($__dart_deferred_initializers__,"J9MCPYnKWLC/gri1nvUwBB0Z4y0=");
+a.eventLog.push({p:"main.dart.js_297",e:"endPart",h:b})})($__dart_deferred_initializers__,"30bdMzIJwIeDFakGRll4RoNr85I=");
 //# sourceMappingURL=main.dart.js_297.part.js.map

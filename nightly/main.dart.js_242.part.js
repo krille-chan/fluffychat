@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_242",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cBS(){return new A.F9(B.dd("et"))},
-F9:function F9(d){this.a=d}}
+cC3(){return new A.Fb(B.dd("et"))},
+Fb:function Fb(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[17],A)
-A.F9.prototype={
+A.Fb.prototype={
 gkU(){return"false"},
 gjE(){return"Korda salas\xf5na"},
 gmI(){return"See pole pildifail."},
@@ -63,7 +63,7 @@ geY(){return"Keela ligip\xe4\xe4s vestlusele"},
 geZ(){return"Ligip\xe4\xe4s vestlusele on keelatud"},
 hh(d,e){return d+" keelas ligip\xe4\xe4su kasutajale "+e},
 ghj(){return"Blokeeri seade"},
-gcl(){return"Blokeeritud"},
+gcm(){return"Blokeeritud"},
 gbu(d){return"Katkesta"},
 f0(d){return d+" aadressi avamine ei \xf5nnestu"},
 gf2(){return"Muuda seadme nime"},
@@ -95,7 +95,7 @@ gf5(){return"Vestluse teave"},
 gf6(){return"Vestlused"},
 ghD(){return"Vali korralik salas\xf5na"},
 gf7(){return"Kustuta arhiiv"},
-gcj(d){return"Sulge"},
+gck(d){return"Sulge"},
 glk(){return"M\xe4rgi otsevestusluseks antud Matrixi ID jaoks"},
 gll(){return"M\xe4rgi vestlusr\xfchmaks"},
 ghF(){return"Sea sellele kasutajale antud jututoas suhtluskeeld"},
@@ -256,7 +256,7 @@ gfo(){return"Jututubasid ei leidunud\u2026"},
 geI(){return"Teavitused"},
 gje(){return"Tuvastan asukohta\u2026"},
 gjf(){return"Solvav"},
-gcr(){return"Sobib"},
+gcs(){return"Sobib"},
 gjh(){return"Kr\xfcptov\xf5tmete veebip\xf5hine varundus on kasutusel"},
 gdl(){return"Hopsti! Midagi l\xe4ks n\xfc\xfcd viltu\u2026"},
 gjg(){return"\xdcks sinu klientrakendustest on Matrix'i v\xf5rgust v\xe4lja loginud"},
@@ -640,8 +640,8 @@ glD(){return"Kohandatud reaktsioon"},
 gpa(){return"Veel s\xfcndmusi"},
 B(d,e){return this.gb9(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.F9,C.aF)})()
-B.dR(b.typeUniverse,JSON.parse('{"F9":{"aF":[]}}'))};
+y(A.Fb,C.aF)})()
+B.dT(b.typeUniverse,JSON.parse('{"Fb":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_242",e:"endPart",h:b})})($__dart_deferred_initializers__,"tgErHJNic0gLGaQARH1THHr+nmM=");
+a.eventLog.push({p:"main.dart.js_242",e:"endPart",h:b})})($__dart_deferred_initializers__,"8jLEwpCkx78Hhh7AtewmjFiLaNA=");
 //# sourceMappingURL=main.dart.js_242.part.js.map

@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_209",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cBK(){return new A.F1(B.dd("ca"))},
-F1:function F1(d){this.a=d}}
+cBW(){return new A.F3(B.dd("ca"))},
+F3:function F3(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[9],A)
-A.F1.prototype={
+A.F3.prototype={
 gkU(){return"true"},
 gjE(){return"Repetiu la contrasenya"},
 gmI(){return"No \xe9s un arxiu d'image."},
@@ -63,7 +63,7 @@ geY(){return"Veta del xat"},
 geZ(){return"Vetadi"},
 hh(d,e){return d+" ha vetat a "+e},
 ghj(){return"Bloca el dispositiu"},
-gcl(){return"Blocat"},
+gcm(){return"Blocat"},
 gbu(d){return"Cancel\xb7la"},
 f0(d){return"No es pot obrir l\u2019URI "+d},
 gf2(){return"Canvia el nom del dispositiu"},
@@ -95,7 +95,7 @@ gf5(){return"Detalls del xat"},
 gf6(){return"Xats"},
 ghD(){return"Trieu una contrasenya forta"},
 gf7(){return"Neteja l\u2019arxiu"},
-gcj(d){return"Tanca"},
+gck(d){return"Tanca"},
 glk(){return"Marca com a conversa directa la sala amb aquesta ID de Matrix"},
 gll(){return"Marca com un grup"},
 ghF(){return"Veta uni usu\xe0ri\xef d'aquesta sala"},
@@ -256,7 +256,7 @@ gfo(){return"No s\u2019ha trobat cap sala\u2026"},
 geI(){return"Notificacions"},
 gje(){return"S\u2019est\xe0 obtenint la ubicaci\xf3\u2026"},
 gjf(){return"Ofensiu"},
-gcr(){return"D'acord"},
+gcs(){return"D'acord"},
 gjh(){return"La c\xf2pia de seguretat de claus en l\xednia est\xe0 activada"},
 gdl(){return"Alguna cosa ha anat malament\u2026"},
 gjg(){return"Una de les teves aplicacions ha tancat la sessi\xf3"},
@@ -640,8 +640,8 @@ glD(){return"Custom reaction"},
 gpa(){return"More events"},
 B(d,e){return this.gb9(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.F1,C.aF)})()
-B.dR(b.typeUniverse,JSON.parse('{"F1":{"aF":[]}}'))};
+y(A.F3,C.aF)})()
+B.dT(b.typeUniverse,JSON.parse('{"F3":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_209",e:"endPart",h:b})})($__dart_deferred_initializers__,"9raNvEbG63yeiNb3qoQzBqam6VI=");
+a.eventLog.push({p:"main.dart.js_209",e:"endPart",h:b})})($__dart_deferred_initializers__,"f5oUVMYDlAQTBFIMfRppmOq5ONM=");
 //# sourceMappingURL=main.dart.js_209.part.js.map

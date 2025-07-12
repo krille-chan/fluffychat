@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_234",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cBO(){return new A.F5(B.dd("el"))},
-F5:function F5(d){this.a=d}}
+cC_(){return new A.F7(B.dd("el"))},
+F7:function F7(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[13],A)
-A.F5.prototype={
+A.F7.prototype={
 gkU(){return"false"},
 gjE(){return"\u0395\u03c0\u03b1\u03bd\u03ac\u03bb\u03b7\u03c8\u03b7 \u03ba\u03c9\u03b4\u03b9\u03ba\u03bf\u03cd \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03b7\u03c2"},
 gmI(){return"\u0394\u03b5\u03bd \u03b5\u03af\u03bd\u03b1\u03b9 \u03b1\u03c1\u03c7\u03b5\u03af\u03bf \u03b5\u03b9\u03ba\u03cc\u03bd\u03b1\u03c2."},
@@ -63,7 +63,7 @@ geY(){return"\u0391\u03c0\u03b1\u03b3\u03cc\u03c1\u03b5\u03c5\u03c3\u03b7 \u03b1
 geZ(){return"\u0391\u03c0\u03b1\u03b3\u03bf\u03c1\u03b5\u03c5\u03bc\u03ad\u03bd\u03bf"},
 hh(d,e){return d+" banned "+e},
 ghj(){return"\u03a3\u03c5\u03c3\u03ba\u03b5\u03c5\u03ae \u03bc\u03c0\u03bb\u03bf\u03ba"},
-gcl(){return"\u0391\u03c0\u03bf\u03ba\u03bb\u03b5\u03b9\u03c3\u03bc\u03ad\u03bd\u03bf"},
+gcm(){return"\u0391\u03c0\u03bf\u03ba\u03bb\u03b5\u03b9\u03c3\u03bc\u03ad\u03bd\u03bf"},
 gbu(d){return"\u0391\u03ba\u03cd\u03c1\u03c9\u03c3\u03b7"},
 f0(d){return"\u0394\u03b5\u03bd \u03bc\u03c0\u03bf\u03c1\u03b5\u03af \u03bd\u03b1 \u03b1\u03bd\u03bf\u03af\u03be\u03b5\u03b9 \u03c4\u03bf URI "+d},
 gf2(){return"Change device name"},
@@ -95,7 +95,7 @@ gf5(){return"Chat details"},
 gf6(){return"Chats"},
 ghD(){return"Choose a strong password"},
 gf7(){return"Clear archive"},
-gcj(d){return"Close"},
+gck(d){return"Close"},
 glk(){return"Mark as direct message room for the giving Matrix ID"},
 gll(){return"Mark as group"},
 ghF(){return"Ban the given user from this room"},
@@ -256,7 +256,7 @@ gfo(){return"No rooms found\u2026"},
 geI(){return"Notifications"},
 gje(){return"Obtaining location\u2026"},
 gjf(){return"Offensive"},
-gcr(){return"Ok"},
+gcs(){return"Ok"},
 gjh(){return"Online Key Backup is enabled"},
 gdl(){return"Oops, something went wrong\u2026"},
 gjg(){return"One of your clients has been logged out"},
@@ -640,8 +640,8 @@ glD(){return"Custom reaction"},
 gpa(){return"More events"},
 B(d,e){return this.gb9(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.F5,C.aF)})()
-B.dR(b.typeUniverse,JSON.parse('{"F5":{"aF":[]}}'))};
+y(A.F7,C.aF)})()
+B.dT(b.typeUniverse,JSON.parse('{"F7":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_234",e:"endPart",h:b})})($__dart_deferred_initializers__,"KZfj7DRVP8JBq82W9B31fEfQ4x0=");
+a.eventLog.push({p:"main.dart.js_234",e:"endPart",h:b})})($__dart_deferred_initializers__,"FXyqeJKtA2kiM61HP8dUhETtYnY=");
 //# sourceMappingURL=main.dart.js_234.part.js.map

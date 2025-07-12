@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_217",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cBL(){return new A.F2(B.dd("cs"))},
-F2:function F2(d){this.a=d}}
+cBX(){return new A.F4(B.dd("cs"))},
+F4:function F4(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[10],A)
-A.F2.prototype={
+A.F4.prototype={
 gkU(){return""},
 gjE(){return"Zopakujte heslo"},
 gmI(){return"Nen\xed obr\xe1zek."},
@@ -63,7 +63,7 @@ geY(){return"Zak\xe1zat chat"},
 geZ(){return"Zak\xe1z\xe1n"},
 hh(d,e){return d+" zak\xe1zal "+e},
 ghj(){return"Blokovat za\u0159\xedzen\xed"},
-gcl(){return"Zak\xe1z\xe1n"},
+gcm(){return"Zak\xe1z\xe1n"},
 gbu(d){return"Zru\u0161it"},
 f0(d){return"Nelze otev\u0159\xedt URI "+d},
 gf2(){return"Zm\u011bnit n\xe1zev za\u0159\xedzen\xed"},
@@ -95,7 +95,7 @@ gf5(){return"Bli\u017e\u0161\xed \xfadaje o chatu"},
 gf6(){return"Chaty"},
 ghD(){return"Vyberte siln\xe9 heslo"},
 gf7(){return"Vymazat archiv"},
-gcj(d){return"Zav\u0159\xedt"},
+gck(d){return"Zav\u0159\xedt"},
 glk(){return"Ozna\u010dit jako m\xedstnost p\u0159\xedm\xe9 konverzace s dan\xfdm Matrix ID"},
 gll(){return"Ozna\u010dit jako skupinu"},
 ghF(){return"Zak\xe1zat dan\xe9mu u\u017eivateli p\u0159\xedstup do t\xe9to m\xedstnosti"},
@@ -256,7 +256,7 @@ gfo(){return"Nebyly nalezeny \u017e\xe1dn\xe9 m\xedstnosti\u2026"},
 geI(){return"Ozn\xe1men\xed"},
 gje(){return"Z\xedsk\xe1v\xe1n\xed polohy\u2026"},
 gjf(){return"Ur\xe1\u017eliv\xe9"},
-gcr(){return"Ok"},
+gcs(){return"Ok"},
 gjh(){return"Online z\xe1loha k\xed\u010d\u016f je zapnuta"},
 gdl(){return"Jejda, n\u011bco se pokazilo\u2026"},
 gjg(){return"Jeden z va\u0161ich klient\u016f byl odhl\xe1\u0161en"},
@@ -640,8 +640,8 @@ glD(){return"Custom reaction"},
 gpa(){return"More events"},
 B(d,e){return this.gb9(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.F2,C.aF)})()
-B.dR(b.typeUniverse,JSON.parse('{"F2":{"aF":[]}}'))};
+y(A.F4,C.aF)})()
+B.dT(b.typeUniverse,JSON.parse('{"F4":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_217",e:"endPart",h:b})})($__dart_deferred_initializers__,"uGIjDLVMjqRzs5B104Ga5rryHh4=");
+a.eventLog.push({p:"main.dart.js_217",e:"endPart",h:b})})($__dart_deferred_initializers__,"RdgZ+nOqOMOi8g+6Hkw2pwf454M=");
 //# sourceMappingURL=main.dart.js_217.part.js.map

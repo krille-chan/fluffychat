@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_258",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cC1(){return new A.Fj(B.dd("hr"))},
-Fj:function Fj(d){this.a=d}}
+cCd(){return new A.Fl(B.dd("hr"))},
+Fl:function Fl(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[27],A)
-A.Fj.prototype={
+A.Fl.prototype={
 gkU(){return"true"},
 gjE(){return"Ponovi lozinku"},
 gmI(){return"Nije slikovna datoteka."},
@@ -63,7 +63,7 @@ geY(){return"Isklju\u010di iz razgovora"},
 geZ(){return"Isklju\u010den"},
 hh(d,e){return d+" je isklju\u010dio/la "+e},
 ghj(){return"Blokiraj ure\u0111aj"},
-gcl(){return"Blokirano"},
+gcm(){return"Blokirano"},
 gbu(d){return"Odustani"},
 f0(d){return"URI adresa "+d+" se ne mo\u017ee otvoriti"},
 gf2(){return"Promijeni ime ure\u0111aja"},
@@ -95,7 +95,7 @@ gf5(){return"Detalji razgovora"},
 gf6(){return"Razgovori"},
 ghD(){return"Odaberi sna\u017enu lozinku"},
 gf7(){return"Isprazni arhiv"},
-gcj(d){return"Zatvori"},
+gck(d){return"Zatvori"},
 glk(){return"Ozna\u010di kao sobu za izravnu razmjenu poruka za zadani Matrix ID"},
 gll(){return"Ozna\u010di kao grupu"},
 ghF(){return"Isklju\u010di navedenog korisnika iz ove sobe"},
@@ -256,7 +256,7 @@ gfo(){return"Nema soba \u2026"},
 geI(){return"Obavijesti"},
 gje(){return"Dohva\u0107anje lokacije \u2026"},
 gjf(){return"Uvredljiv"},
-gcr(){return"U redu"},
+gcs(){return"U redu"},
 gjh(){return"Internetski klju\u010d sigurnosnih kopija je aktiviran"},
 gdl(){return"Ups, dogodila se gre\u0161ka \u2026"},
 gjg(){return"Jedan od tvojih klijenata je odjavljen"},
@@ -640,8 +640,8 @@ glD(){return"Custom reaction"},
 gpa(){return"More events"},
 B(d,e){return this.gb9(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Fj,C.aF)})()
-B.dR(b.typeUniverse,JSON.parse('{"Fj":{"aF":[]}}'))};
+y(A.Fl,C.aF)})()
+B.dT(b.typeUniverse,JSON.parse('{"Fl":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_258",e:"endPart",h:b})})($__dart_deferred_initializers__,"HCP0ftX0rGDSnne9JuODK6rGh38=");
+a.eventLog.push({p:"main.dart.js_258",e:"endPart",h:b})})($__dart_deferred_initializers__,"7HbEOeIoN48qsEt2cwXy5OSJFtQ=");
 //# sourceMappingURL=main.dart.js_258.part.js.map

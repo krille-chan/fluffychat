@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_244",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cBT(){return new A.Fa(B.dd("eu"))},
-Fa:function Fa(d){this.a=d}}
+cC4(){return new A.Fc(B.dd("eu"))},
+Fc:function Fc(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[18],A)
-A.Fa.prototype={
+A.Fc.prototype={
 gkU(){return"false"},
 gjE(){return"Idatzi berriro pasahitza"},
 gmI(){return"Ez da irudi-fitxategia."},
@@ -63,7 +63,7 @@ geY(){return"Txatera batzeko debekua ezarri"},
 geZ(){return"Kanporatuta"},
 hh(d,e){return d+"(e)k "+e+"(r)i debekua ezarri dio"},
 ghj(){return"Blokeatu gailua"},
-gcl(){return"Blokeatuta"},
+gcm(){return"Blokeatuta"},
 gbu(d){return"Utzi"},
 f0(d){return"Ezin da "+d+" URIa ireki"},
 gf2(){return"Aldatu gailuaren izena"},
@@ -95,7 +95,7 @@ gf5(){return"Txataren xehetasunak"},
 gf6(){return"Txatak"},
 ghD(){return"Aukeratu pasahitz sendo bat"},
 gf7(){return"Ezabatu artxiboa"},
-gcj(d){return"Itxi"},
+gck(d){return"Itxi"},
 glk(){return"Markatu mezu-zuzen gela bezala Matrix ID jakin honentzat"},
 gll(){return"Markatu talde bezala"},
 ghF(){return"Debekatu erabiltzailea gela honetan"},
@@ -256,7 +256,7 @@ gfo(){return"Ez da gelarik aurkitu\u2026"},
 geI(){return"Jakinarazpenak"},
 gje(){return"Kokapena atzitzen\u2026"},
 gjf(){return"Iraingarria"},
-gcr(){return"Ados"},
+gcs(){return"Ados"},
 gjh(){return"Gakoen online babeskopia gaituta dago"},
 gdl(){return"Hara, zerbaitek huts egin du\u2026"},
 gjg(){return"Zure gailuetako batek saioa amaitu du"},
@@ -640,9 +640,9 @@ glD(){return"Custom reaction"},
 gpa(){return"More events"},
 B(d,e){return this.gb9(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.Fa,C.aF)})()
-B.dR(b.typeUniverse,JSON.parse('{"Fa":{"aF":[]}}'))
+x(A.Fc,C.aF)})()
+B.dT(b.typeUniverse,JSON.parse('{"Fc":{"aF":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_244",e:"endPart",h:b})})($__dart_deferred_initializers__,"5SuQMOyWnNAUbh4FgpvWAJt6Q2A=");
+a.eventLog.push({p:"main.dart.js_244",e:"endPart",h:b})})($__dart_deferred_initializers__,"jdczFCTkgu2VfE4Wczr8wgc6dKU=");
 //# sourceMappingURL=main.dart.js_244.part.js.map

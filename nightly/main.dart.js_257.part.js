@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_257",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cC0(){return new A.Fi(B.dd("hi"))},
-Fi:function Fi(d){this.a=d}}
+cCc(){return new A.Fk(B.dd("hi"))},
+Fk:function Fk(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[26],A)
-A.Fi.prototype={
+A.Fk.prototype={
 gkU(){return"false"},
 gjE(){return"\u092a\u093e\u0938\u0935\u0930\u094d\u0921 \u0926\u094b\u0939\u0930\u093e\u090f\u0902"},
 gmI(){return"\u0915\u094b\u0908 \u091b\u0935\u093f \u092b\u093c\u093e\u0907\u0932 \u0928\u0939\u0940\u0902\u0964"},
@@ -63,7 +63,7 @@ geY(){return"Ban from chat"},
 geZ(){return"Banned"},
 hh(d,e){return d+" banned "+e},
 ghj(){return"Block Device"},
-gcl(){return"Blocked"},
+gcm(){return"Blocked"},
 gbu(d){return"Cancel"},
 f0(d){return"Can't open the URI "+d},
 gf2(){return"Change device name"},
@@ -95,7 +95,7 @@ gf5(){return"Chat details"},
 gf6(){return"Chats"},
 ghD(){return"Choose a strong password"},
 gf7(){return"Clear archive"},
-gcj(d){return"Close"},
+gck(d){return"Close"},
 glk(){return"Mark as direct message room for the giving Matrix ID"},
 gll(){return"Mark as group"},
 ghF(){return"Ban the given user from this room"},
@@ -256,7 +256,7 @@ gfo(){return"No rooms found\u2026"},
 geI(){return"Notifications"},
 gje(){return"Obtaining location\u2026"},
 gjf(){return"Offensive"},
-gcr(){return"Ok"},
+gcs(){return"Ok"},
 gjh(){return"Online Key Backup is enabled"},
 gdl(){return"Oops, something went wrong\u2026"},
 gjg(){return"One of your clients has been logged out"},
@@ -640,8 +640,8 @@ glD(){return"Custom reaction"},
 gpa(){return"More events"},
 B(d,e){return this.gb9(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Fi,C.aF)})()
-B.dR(b.typeUniverse,JSON.parse('{"Fi":{"aF":[]}}'))};
+y(A.Fk,C.aF)})()
+B.dT(b.typeUniverse,JSON.parse('{"Fk":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_257",e:"endPart",h:b})})($__dart_deferred_initializers__,"pb/an5MA2RkXjj9KW6OxbvEAB2M=");
+a.eventLog.push({p:"main.dart.js_257",e:"endPart",h:b})})($__dart_deferred_initializers__,"FQOwYmIMU8Vdas+0hOULX1/VFnY=");
 //# sourceMappingURL=main.dart.js_257.part.js.map

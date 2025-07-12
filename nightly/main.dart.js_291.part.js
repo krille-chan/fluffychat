@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_291",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cCl(){return new A.FC(B.dd("sl"))},
-FC:function FC(d){this.a=d}}
+cCx(){return new A.FE(B.dd("sl"))},
+FE:function FE(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[44],A)
-A.FC.prototype={
+A.FE.prototype={
 gkU(){return"false"},
 gjE(){return"Ponovite geslo"},
 gmI(){return"Not an image file."},
@@ -63,7 +63,7 @@ geY(){return"Prepoved klepeta"},
 geZ(){return"Prepovedano"},
 hh(d,e){return d+" je prepovedan v "+e},
 ghj(){return"Blokirana naprava"},
-gcl(){return"Blokirano"},
+gcm(){return"Blokirano"},
 gbu(d){return"Prekli\u010di"},
 f0(d){return"URI-ja "+d+" ni mogo\u010de odpreti"},
 gf2(){return"Spremenite ime naprave"},
@@ -95,7 +95,7 @@ gf5(){return"Podrobnosti klepeta"},
 gf6(){return"Klepeti"},
 ghD(){return"Izberite mo\u010dno geslo"},
 gf7(){return"Po\u010disti arhiv"},
-gcj(d){return"Zapri"},
+gck(d){return"Zapri"},
 glk(){return"Mark as direct message room for the giving Matrix ID"},
 gll(){return"Mark as group"},
 ghF(){return"Izklju\u010di dolo\u010denega uporabnika iz te sobe"},
@@ -256,7 +256,7 @@ gfo(){return"No rooms found\u2026"},
 geI(){return"Notifications"},
 gje(){return"Obtaining location\u2026"},
 gjf(){return"Offensive"},
-gcr(){return"Ok"},
+gcs(){return"Ok"},
 gjh(){return"Online Key Backup is enabled"},
 gdl(){return"Oops, something went wrong\u2026"},
 gjg(){return"One of your clients has been logged out"},
@@ -640,8 +640,8 @@ glD(){return"Custom reaction"},
 gpa(){return"More events"},
 B(d,e){return this.gb9(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FC,C.aF)})()
-B.dR(b.typeUniverse,JSON.parse('{"FC":{"aF":[]}}'))};
+y(A.FE,C.aF)})()
+B.dT(b.typeUniverse,JSON.parse('{"FE":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_291",e:"endPart",h:b})})($__dart_deferred_initializers__,"u48b22w/Zgw/tS5u3kMYioGK4uI=");
+a.eventLog.push({p:"main.dart.js_291",e:"endPart",h:b})})($__dart_deferred_initializers__,"l3A+FUduSOCOclb90/caP3uRgb4=");
 //# sourceMappingURL=main.dart.js_291.part.js.map
