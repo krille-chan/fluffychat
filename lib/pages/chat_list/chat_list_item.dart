@@ -79,6 +79,7 @@ class ChatListItem extends StatelessWidget {
               child: ListTile(
                 visualDensity: const VisualDensity(vertical: -0.5),
                 contentPadding: const EdgeInsets.symmetric(horizontal: 8),
+                horizontalTitleGap: 8,
                 onLongPress: () => onLongPress?.call(context),
                 leading: HoverBuilder(
                   builder: (context, hovered) => AnimatedScale(
