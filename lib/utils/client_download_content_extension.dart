@@ -1,6 +1,7 @@
+import 'dart:math' show min;
 import 'dart:typed_data';
+import 'dart:ui';
 
-import 'package:image/image.dart';
 import 'package:matrix/matrix.dart';
 
 extension ClientDownloadContentExtension on Client {
@@ -49,14 +50,54 @@ extension ClientDownloadContentExtension on Client {
     var imageData = response.bodyBytes;
 
     if (rounded) {
-      final image = decodeImage(imageData);
-      if (image != null) {
-        imageData = encodePng(copyCropCircle(image));
-      }
+      imageData = await _convertToCircularImage(
+        imageData,
+        min(width ?? 64, height ?? 64).round(),
+      );
     }
 
     await database.storeFile(cacheKey, imageData, 0);
 
     return imageData;
   }
+}
+
+Future<Uint8List> _convertToCircularImage(
+  Uint8List imageBytes,
+  int size,
+) async {
+  final codec = await instantiateImageCodec(imageBytes);
+  final frame = await codec.getNextFrame();
+  final originalImage = frame.image;
+
+  final recorder = PictureRecorder();
+  final canvas = Canvas(recorder);
+
+  final paint = Paint();
+  final rect = Rect.fromLTWH(0, 0, size.toDouble(), size.toDouble());
+
+  final clipPath = Path()
+    ..addOval(
+      Rect.fromCircle(center: Offset(size / 2, size / 2), radius: size / 2),
+    );
+
+  canvas.clipPath(clipPath);
+
+  canvas.drawImageRect(
+    originalImage,
+    Rect.fromLTWH(
+      0,
+      0,
+      originalImage.width.toDouble(),
+      originalImage.height.toDouble(),
+    ),
+    rect,
+    paint,
+  );
+
+  final picture = recorder.endRecording();
+  final circularImage = await picture.toImage(size, size);
+
+  final byteData = await circularImage.toByteData(format: ImageByteFormat.png);
+  return byteData!.buffer.asUint8List();
 }
