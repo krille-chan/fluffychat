@@ -25,8 +25,8 @@ jobs:
       - name: Check license compliance
         run: dart run license_checker check-licenses -c licenses.yaml --problematic
       - run: flutter analyze
-      - name: Apply google services patch
-        run: git apply ./scripts/enable-android-google-services.patch
+      - name: Add Firebase Messaging
+        run: ./scripts/add-firebase-messaging.sh
       - run: flutter analyze
       - run: flutter test
 
@@ -96,5 +96,7 @@ jobs:
           xcode-version: latest
       - run: brew install sqlcipher
       - uses: moonrepo/setup-rust@v1
+      - name: Add Firebase Key
+        run: echo '${{secrets.GOOGLE_SERVICES_INFO_PLIST}}' | base64 -d > ios/Runner/GoogleService-Info.plist
       - run: flutter pub get
       - run: flutter build ios --no-codesign
