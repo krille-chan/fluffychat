@@ -1546,7 +1546,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "search": "Procurar",
+  "search": "Pesquisar",
   "@search": {
     "type": "String",
     "placeholders": {}
@@ -2700,11 +2700,11 @@
   "@leaveEmptyToClearStatus": {},
   "joinSpace": "Participar do espaço",
   "@joinSpace": {},
-  "searchForUsers": "Procurar por @usuários...",
+  "searchForUsers": "Pesquisar por @usuários...",
   "@searchForUsers": {},
   "databaseMigrationTitle": "O banco de dados está otimizado",
   "@databaseMigrationTitle": {},
-  "searchChatsRooms": "Procurar por #conversas, @usuários...",
+  "searchChatsRooms": "Pesquisar por #conversas, @usuários...",
   "@searchChatsRooms": {},
   "databaseMigrationBody": "Por favor, aguarde. Isto pode demorar um pouco.",
   "@databaseMigrationBody": {},
