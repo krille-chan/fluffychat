@@ -216,17 +216,19 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
                             ? L10n.of(context).activitySuggestionTimeoutMessage
                             : L10n.of(context).errorFetchingActivitiesMessage,
                       ),
-                      ElevatedButton(
-                        onPressed: _setActivityItems,
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: theme.colorScheme.primaryContainer,
-                          foregroundColor: theme.colorScheme.onPrimaryContainer,
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 12.0,
+                      if (!_timeout)
+                        ElevatedButton(
+                          onPressed: _setActivityItems,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: theme.colorScheme.primaryContainer,
+                            foregroundColor:
+                                theme.colorScheme.onPrimaryContainer,
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 12.0,
+                            ),
                           ),
+                          child: Text(L10n.of(context).tryAgain),
                         ),
-                        child: Text(L10n.of(context).tryAgain),
-                      ),
                     ],
                   ),
                 )
