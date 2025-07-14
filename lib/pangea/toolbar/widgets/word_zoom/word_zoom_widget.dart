@@ -74,9 +74,8 @@ class WordZoomWidget extends StatelessWidget {
                       child: MouseRegion(
                         cursor: SystemMouseCursors.click,
                         child: GestureDetector(
-                          onTap: () => overlayController.updateSelectedSpan(
-                            token.text,
-                          ),
+                          onTap: () =>
+                              overlayController.updateSelectedSpan(null),
                           child: const Icon(
                             Icons.close,
                             size: 16.0,
