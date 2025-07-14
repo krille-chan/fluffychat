@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_258",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cCd(){return new A.Fl(B.dd("hr"))},
+cCa(){return new A.Fl(B.dd("hr"))},
 Fl:function Fl(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -139,7 +139,7 @@ gia(){return"Tamna"},
 ib(d,e){return d+", "+e},
 gic(){return"Ovo \u0107e nepovratno deaktivirati tvoj korisni\u010dki ra\u010dun. Stvarno to \u017eeli\u0161?"},
 gie(){return"Standardna razina dozvole"},
-gdj(d){return"Izbri\u0161i"},
+gdi(d){return"Izbri\u0161i"},
 gij(){return"Izbri\u0161i ra\u010dun"},
 gik(){return"Izbri\u0161i poruku"},
 gev(){return"Ure\u0111aji"},
@@ -218,7 +218,7 @@ giU(){return"Pridru\u017ei se sobi"},
 iV(d,e){return"\ud83d\udc5e "+d+" je izbacio/la "+e},
 gfg(){return"Izbaci iz razgovora"},
 eG(d){return"Zadnja aktivnost: "+d},
-gdh(){return"Napusti"},
+gdf(){return"Napusti"},
 gfi(){return"Napustio/la je razgovor"},
 giX(){return"Svijetla"},
 iY(d){return"U\u010ditaj jo\u0161 "+d+" sudionika"},
@@ -258,7 +258,7 @@ gje(){return"Dohva\u0107anje lokacije \u2026"},
 gjf(){return"Uvredljiv"},
 gcs(){return"U redu"},
 gjh(){return"Internetski klju\u010d sigurnosnih kopija je aktiviran"},
-gdl(){return"Ups, dogodila se gre\u0161ka \u2026"},
+gdk(){return"Ups, dogodila se gre\u0161ka \u2026"},
 gjg(){return"Jedan od tvojih klijenata je odjavljen"},
 geq(){return"Dodaj ra\u010dun"},
 giq(){return"Uredi pakete za ovaj ra\u010dun"},
@@ -267,7 +267,7 @@ gjC(){return"Ukloni iz ovog paketa"},
 gf_(){return"Ime paketa"},
 giy(){return"(BETA) Omogu\u0107i kori\u0161tenje vi\u0161e ra\u010duna na ovom ure\u0111aju"},
 gjj(){return"Otvori u kartama"},
-gdr(){return"Poveznica"},
+gdq(){return"Poveznica"},
 gfR(){return"Za registraciju ovaj poslu\u017eitelj mora potvrditi tvoju e-mail adresu."},
 gjk(){return"Ili"},
 gjl(){return"Sudionik"},
@@ -421,7 +421,7 @@ goj(){return"Korisnici"},
 goa(){return"Otklju\u010daj stare poruke"},
 gka(){return"Spremi ovaj klju\u010d ru\u010dno pokretanjem dijaloga za dijeljenje sustava ili me\u0111uspremnika."},
 lw(d){return"Broj datoteka: "+d},
-gdz(){return"Korisnik"},
+gdw(){return"Korisnik"},
 gi9(){return"Prilago\u0111eno"},
 goG(){return"Za\u0161to nije mogu\u0107e \u010ditati ovu poruku?"},
 gmE(){return"To se mo\u017ee dogoditi ako je poruka poslana prije prijave na tvoj ra\u010dun na ovom ure\u0111aju.\n\nTako\u0111er je mogu\u0107e da je po\u0161iljatelj blokirao tvoj ure\u0111aj ili je do\u0161lo do gre\u0161ke s internetskom vezom.\n\nMo\u017ee\u0161 li pro\u010ditati poruku na jednoj drugoj sesiji? U tom slu\u010daju mo\u017ee\u0161 prenijeti poruku iz nje! Idi na Postavke > Ure\u0111aji i uvjeri se da su se tvoji ure\u0111aji me\u0111usobno provjerili. Kada sljede\u0107i put otvori\u0161 sobu i obje sesije su u prednjem planu, klju\u010devi \u0107e se automatski prenijeti.\n\nNe \u017eeli\u0161 izgubiti klju\u010deve kada se odjavi\u0161 ili zamijeni\u0161 ure\u0111aje? Aktiviraj spremanje sigurnosne kopije razgovora u postavkama."},
@@ -643,5 +643,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fl,C.aF)})()
 B.dT(b.typeUniverse,JSON.parse('{"Fl":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_258",e:"endPart",h:b})})($__dart_deferred_initializers__,"7HbEOeIoN48qsEt2cwXy5OSJFtQ=");
+a.eventLog.push({p:"main.dart.js_258",e:"endPart",h:b})})($__dart_deferred_initializers__,"exPqRuUx/c3AmzoUiM6sWwVZdGw=");
 //# sourceMappingURL=main.dart.js_258.part.js.map

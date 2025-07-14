@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_249",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cC8(){return new A.Fg(B.dd("fr"))},
+cC5(){return new A.Fg(B.dd("fr"))},
 Fg:function Fg(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -139,7 +139,7 @@ gia(){return"Sombre"},
 ib(d,e){return d+", "+e},
 gic(){return"Cette op\xe9ration va d\xe9sactiver votre compte. Une fois cette action effectu\xe9e, aucun retour en arri\xe8re n'est possible\xa0! \xcates-vous s\xfbr\xb7e\xa0?"},
 gie(){return"Niveau d'autorisation par d\xe9faut pour les arrivants"},
-gdj(d){return"Supprimer"},
+gdi(d){return"Supprimer"},
 gij(){return"Supprimer le compte"},
 gik(){return"Supprimer le message"},
 gev(){return"Appareils"},
@@ -218,7 +218,7 @@ giU(){return"Rejoindre le salon"},
 iV(d,e){return"\ud83d\udc5e "+d+" a expuls\xe9 "+e},
 gfg(){return"Expulser de la discussion"},
 eG(d){return"Vu\xb7e pour la derni\xe8re fois\u202f: "+d},
-gdh(){return"Partir"},
+gdf(){return"Partir"},
 gfi(){return"A quitt\xe9 la discussion"},
 giX(){return"Clair"},
 iY(d){return"Charger "+d+" participant\xb7es de plus"},
@@ -258,7 +258,7 @@ gje(){return"Obtention de la localisation\u2026"},
 gjf(){return"Offensant"},
 gcs(){return"Valider"},
 gjh(){return"La sauvegarde en ligne des cl\xe9s est activ\xe9e"},
-gdl(){return"Oups, un probl\xe8me est survenu\u2026"},
+gdk(){return"Oups, un probl\xe8me est survenu\u2026"},
 gjg(){return"Un de vos clients a \xe9t\xe9 d\xe9connect\xe9"},
 geq(){return"Ajouter un compte"},
 giq(){return"Modifier les groupes pour ce compte"},
@@ -267,7 +267,7 @@ gjC(){return"Retirer de ce groupe"},
 gf_(){return"Nom du groupe"},
 giy(){return"(BETA) Activer les comptes multiples sur cet appareil"},
 gjj(){return"Ouvrir dans maps"},
-gdr(){return"Lien"},
+gdq(){return"Lien"},
 gfR(){return"Ce serveur doit valider votre adresse \xe9lectronique pour l'inscription."},
 gjk(){return"Ou"},
 gjl(){return"Participant(e)"},
@@ -421,7 +421,7 @@ goj(){return"Utilisateurs/trices"},
 goa(){return"D\xe9verrouiller les anciens messages"},
 gka(){return"Enregistrer cette cl\xe9 manuellement en d\xe9clenchant la bo\xeete de dialogue de partage du syst\xe8me ou le presse-papiers."},
 lw(d){return""+d+" fichiers"},
-gdz(){return"Utilisateur/trice"},
+gdw(){return"Utilisateur/trice"},
 gi9(){return"Personnalis\xe9"},
 goG(){return"Pourquoi ce message est-il illisible ?"},
 gmE(){return"Cela peut se produire si le message a \xe9t\xe9 envoy\xe9 avant que vous ne vous soyez connect\xe9 \xe0 votre compte sur cet appareil.\n\nIl est \xe9galement possible que l'exp\xe9diteur ait bloqu\xe9 votre appareil ou qu'un probl\xe8me de connexion Internet se soit produit.\n\n\xcates-vous capable de lire le message sur une autre session ? Vous pouvez alors transf\xe9rer le message \xe0 partir de celle-ci ! Allez dans Param\xe8tres > Appareils et assurez-vous que vos appareils se sont v\xe9rifi\xe9s mutuellement. Lorsque vous ouvrirez le salon la fois suivante et que les deux sessions seront au premier plan, les cl\xe9s seront transmises automatiquement.\n\nVous ne voulez pas perdre les cl\xe9s en vous d\xe9connectant ou en changeant d'appareil ? Assurez-vous que vous avez activ\xe9 la sauvegarde de la discussion dans les param\xe8tres."},
@@ -643,5 +643,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fg,C.aF)})()
 B.dT(b.typeUniverse,JSON.parse('{"Fg":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_249",e:"endPart",h:b})})($__dart_deferred_initializers__,"YAOz5E5aI0DMURi0GfxcCfvSvQw=");
+a.eventLog.push({p:"main.dart.js_249",e:"endPart",h:b})})($__dart_deferred_initializers__,"B3JEpuopkbSLB/JOmLy3oVGS7XI=");
 //# sourceMappingURL=main.dart.js_249.part.js.map

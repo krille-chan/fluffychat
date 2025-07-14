@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_292",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cCy(){return new A.FF(B.dd("sr"))},
+cCv(){return new A.FF(B.dd("sr"))},
 FF:function FF(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -139,7 +139,7 @@ gia(){return"\u0442\u0430\u043c\u043d\u0438"},
 ib(d,e){return d+", "+e},
 gic(){return"\u041e\u0432\u043e \u045b\u0435 \u0434\u0435\u0430\u043a\u0442\u0438\u0432\u0438\u0440\u0430\u0442\u0438 \u0432\u0430\u0448 \u043a\u043e\u0440\u0438\u0441\u043d\u0438\u0447\u043a\u0438 \u043d\u0430\u043b\u043e\u0433. \u041d\u0435 \u043c\u043e\u0436\u0435 \u0441\u0435 \u043f\u043e\u0432\u0440\u0430\u0442\u0438\u0442\u0438! \u0421\u0438\u0433\u0443\u0440\u043d\u0438 \u0441\u0442\u0435?"},
 gie(){return"\u041f\u043e\u0434\u0440\u0430\u0437\u0443\u043c\u0435\u0432\u0430\u043d\u0438 \u043d\u0438\u0432\u043e \u043f\u0440\u0438\u0441\u0442\u0443\u043f\u0430"},
-gdj(d){return"\u041e\u0431\u0440\u0438\u0448\u0438"},
+gdi(d){return"\u041e\u0431\u0440\u0438\u0448\u0438"},
 gij(){return"\u041e\u0431\u0440\u0438\u0448\u0438 \u043d\u0430\u043b\u043e\u0433"},
 gik(){return"\u0411\u0440\u0438\u0441\u0430\u045a\u0435 \u043f\u043e\u0440\u0443\u043a\u0435"},
 gev(){return"\u0423\u0440\u0435\u0452\u0430\u0458\u0438"},
@@ -218,7 +218,7 @@ giU(){return"\u041f\u0440\u0438\u0434\u0440\u0443\u0436\u0438 \u0441\u0435 \u044
 iV(d,e){return d+" \u0438\u0437\u0431\u0430\u0446\u0438 \u043a\u043e\u0440\u0438\u0441\u043d\u0438\u043a\u0430 "+e},
 gfg(){return"\u0418\u0437\u0431\u0430\u0446\u0438 \u0438\u0437 \u045b\u0430\u0441\u043a\u0430\u045a\u0430"},
 eG(d){return"\u041f\u043e\u0441\u043b\u0435\u0434\u045a\u0430 \u0430\u043a\u0442\u0438\u0432\u043d\u043e\u0441\u0442: "+d},
-gdh(){return"\u041d\u0430\u043f\u0443\u0441\u0442\u0438"},
+gdf(){return"\u041d\u0430\u043f\u0443\u0441\u0442\u0438"},
 gfi(){return"\u041d\u0430\u043f\u0443\u0441\u0442\u0438 \u045b\u0430\u0441\u043a\u0430\u045a\u0435"},
 giX(){return"\u0441\u0432\u0435\u0442\u043b\u0438"},
 iY(d){return"\u0423\u0447\u0438\u0442\u0430\u0458 \u0458\u043e\u0448 "+d+" \u0443\u0447\u0435\u0441\u043d\u0438\u043a\u0430"},
@@ -258,7 +258,7 @@ gje(){return"Obtaining location\u2026"},
 gjf(){return"\u0423\u0432\u0440\u0435\u0434\u0459\u0438\u0432"},
 gcs(){return"\u0443 \u0440\u0435\u0434\u0443"},
 gjh(){return"\u0420\u0435\u0437\u0435\u0440\u0432\u0430 \u043a\u0459\u0443\u0447\u0435\u0432\u0430 \u043d\u0430 \u043c\u0440\u0435\u0436\u0438 \u0458\u0435 \u0443\u043a\u0459\u0443\u0447\u0435\u043d\u0430"},
-gdl(){return"\u041d\u0435\u0448\u0442\u043e \u0458\u0435 \u043f\u043e\u0448\u043b\u043e \u043d\u0430\u043e\u043f\u0430\u043a\u043e\u2026"},
+gdk(){return"\u041d\u0435\u0448\u0442\u043e \u0458\u0435 \u043f\u043e\u0448\u043b\u043e \u043d\u0430\u043e\u043f\u0430\u043a\u043e\u2026"},
 gjg(){return"One of your clients has been logged out"},
 geq(){return"Add account"},
 giq(){return"Edit bundles for this account"},
@@ -267,7 +267,7 @@ gjC(){return"Remove from this bundle"},
 gf_(){return"Bundle name"},
 giy(){return"(BETA) Enable multi accounts on this device"},
 gjj(){return"Open in maps"},
-gdr(){return"Link"},
+gdq(){return"Link"},
 gfR(){return"This server needs to validate your email address for registration."},
 gjk(){return"\u0438\u043b\u0438"},
 gjl(){return"\u0423\u0447\u0435\u0441\u043d\u0438\u043a"},
@@ -421,7 +421,7 @@ goj(){return"Users"},
 goa(){return"Unlock old messages"},
 gka(){return"Save this key manually by triggering the system share dialog or clipboard."},
 lw(d){return""+d+" files"},
-gdz(){return"User"},
+gdw(){return"User"},
 gi9(){return"Custom"},
 goG(){return"Why is this message unreadable?"},
 gmE(){return"This can happen if the message was sent before you have signed in to your account at this device.\n\nIt is also possible that the sender has blocked your device or something went wrong with the internet connection.\n\nAre you able to read the message on another session? Then you can transfer the message from it! Go to Settings > Devices and make sure that your devices have verified each other. When you open the room the next time and both sessions are in the foreground, the keys will be transmitted automatically.\n\nDo you not want to lose the keys when logging out or switching devices? Make sure that you have enabled the chat backup in the settings."},
@@ -643,5 +643,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FF,C.aF)})()
 B.dT(b.typeUniverse,JSON.parse('{"FF":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_292",e:"endPart",h:b})})($__dart_deferred_initializers__,"4r/nFlCqKk1UMxuFgX0G4JAzsfM=");
+a.eventLog.push({p:"main.dart.js_292",e:"endPart",h:b})})($__dart_deferred_initializers__,"EgXE7/j/VbjNTveeRB6GvNoH7hw=");
 //# sourceMappingURL=main.dart.js_292.part.js.map

@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_290",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cCw(){return new A.FD(B.dd("sk"))},
+cCt(){return new A.FD(B.dd("sk"))},
 FD:function FD(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -139,7 +139,7 @@ gia(){return"Tmav\xe1"},
 ib(d,e){return d+", "+e},
 gic(){return"This will deactivate your user account. This can not be undone! Are you sure?"},
 gie(){return"Default permission level for new users"},
-gdj(d){return"Odstr\xe1ni\u0165"},
+gdi(d){return"Odstr\xe1ni\u0165"},
 gij(){return"Delete account"},
 gik(){return"Odstr\xe1ni\u0165 spr\xe1vu"},
 gev(){return"Zariadenia"},
@@ -218,7 +218,7 @@ giU(){return"Pripoji\u0165 sa k miestnosti"},
 iV(d,e){return d+" vyhodili "+e},
 gfg(){return"Vyhodi\u0165 z chatu"},
 eG(d){return"Naposledy pr\xedtomn\xed: "+d},
-gdh(){return"Opusti\u0165"},
+gdf(){return"Opusti\u0165"},
 gfi(){return"Opustili chat"},
 giX(){return"Svetl\xe1"},
 iY(d){return"Na\u010d\xedta\u0165 \u010fal\u0161\xedch "+d+" \xfa\u010dastn\xedkov"},
@@ -258,7 +258,7 @@ gje(){return"Obtaining location\u2026"},
 gjf(){return"Offensive"},
 gcs(){return"ok"},
 gjh(){return"Online z\xe1loha k\u013e\xfa\u010dov je zapnut\xe1"},
-gdl(){return"Och! Nie\u010do sa pokazilo\u2026"},
+gdk(){return"Och! Nie\u010do sa pokazilo\u2026"},
 gjg(){return"One of your clients has been logged out"},
 geq(){return"Add account"},
 giq(){return"Edit bundles for this account"},
@@ -267,7 +267,7 @@ gjC(){return"Remove from this bundle"},
 gf_(){return"Bundle name"},
 giy(){return"(BETA) Enable multi accounts on this device"},
 gjj(){return"Open in maps"},
-gdr(){return"Link"},
+gdq(){return"Link"},
 gfR(){return"This server needs to validate your email address for registration."},
 gjk(){return"Or"},
 gjl(){return"Participant"},
@@ -421,7 +421,7 @@ goj(){return"Users"},
 goa(){return"Unlock old messages"},
 gka(){return"Save this key manually by triggering the system share dialog or clipboard."},
 lw(d){return""+d+" files"},
-gdz(){return"User"},
+gdw(){return"User"},
 gi9(){return"Custom"},
 goG(){return"Why is this message unreadable?"},
 gmE(){return"This can happen if the message was sent before you have signed in to your account at this device.\n\nIt is also possible that the sender has blocked your device or something went wrong with the internet connection.\n\nAre you able to read the message on another session? Then you can transfer the message from it! Go to Settings > Devices and make sure that your devices have verified each other. When you open the room the next time and both sessions are in the foreground, the keys will be transmitted automatically.\n\nDo you not want to lose the keys when logging out or switching devices? Make sure that you have enabled the chat backup in the settings."},
@@ -643,5 +643,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FD,C.aF)})()
 B.dT(b.typeUniverse,JSON.parse('{"FD":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_290",e:"endPart",h:b})})($__dart_deferred_initializers__,"bH1VFrGLiPdbP3vdQzEd0OPtgtg=");
+a.eventLog.push({p:"main.dart.js_290",e:"endPart",h:b})})($__dart_deferred_initializers__,"Qrq5JnrxaFqihP5VB+AD9xuYtLE=");
 //# sourceMappingURL=main.dart.js_290.part.js.map

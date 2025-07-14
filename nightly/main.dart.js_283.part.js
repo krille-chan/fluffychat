@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_283",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cCp(){return new A.Fx(B.dd("nl"))},
+cCm(){return new A.Fx(B.dd("nl"))},
 Fx:function Fx(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -139,7 +139,7 @@ gia(){return"Donker"},
 ib(d,e){return d+", "+e},
 gic(){return"Hierdoor wordt je account gedeactiveerd. Dit kan niet ongedaan gemaakt worden! Weet je het zeker?"},
 gie(){return"Standaard rechten-niveau voor nieuwe personen"},
-gdj(d){return"Verwijderen"},
+gdi(d){return"Verwijderen"},
 gij(){return"Account verwijderen"},
 gik(){return"Bericht verwijderen"},
 gev(){return"Apparaten"},
@@ -218,7 +218,7 @@ giU(){return"Toetreden tot de kamer"},
 iV(d,e){return"\ud83d\udc5e "+d+" heeft "+e+" verwijderd"},
 gfg(){return"Uit chat verwijderen"},
 eG(d){return"Laatst actief: "+d},
-gdh(){return"Chat verlaten"},
+gdf(){return"Chat verlaten"},
 gfi(){return"Verliet de chat"},
 giX(){return"Licht"},
 iY(d){return"Laad nog "+d+" personen"},
@@ -258,7 +258,7 @@ gje(){return"Locatie ophalen\u2026"},
 gjf(){return"Beledigend"},
 gcs(){return"OK"},
 gjh(){return"Online sleutelback-up is ingeschakeld"},
-gdl(){return"Oeps, er ging iets mis\u2026"},
+gdk(){return"Oeps, er ging iets mis\u2026"},
 gjg(){return"\xc9\xe9n van jouw apparaten is uitgelogd"},
 geq(){return"Account toevoegen"},
 giq(){return"Bundels voor dit account wijzigen"},
@@ -267,7 +267,7 @@ gjC(){return"Van bundel verwijderen"},
 gf_(){return"Bundelnaam"},
 giy(){return"(BETA) Multi-accounts inschakelen op dit apparaat"},
 gjj(){return"In kaarten openen"},
-gdr(){return"Link"},
+gdq(){return"Link"},
 gfR(){return"Deze server wil je email laten bevestigen bij de registratie."},
 gjk(){return"Of"},
 gjl(){return"Personen"},
@@ -421,7 +421,7 @@ goj(){return"Personen"},
 goa(){return"Oude berichten ontgrendelen"},
 gka(){return"Sla deze sleutel handmatig op via delen of het klembord."},
 lw(d){return""+d+" bestanden"},
-gdz(){return"Persoon"},
+gdw(){return"Persoon"},
 gi9(){return"Aangepast"},
 goG(){return"Waarom is dit bericht onleesbaar?"},
 gmE(){return"Dit kan gebeuren als het bericht is verzonden voordat je bij je account op dit apparaat hebt aangemeld.\n\nHet is ook mogelijk dat de afzender je apparaat heeft geblokkeerd of dat er iets mis is gegaan met de internetverbinding.\n\nKan je het bericht wel lezen op een andere sessie? Dan kan je het bericht daarvandaan overzetten! Ga naar Instellingen > Apparaten en zorg ervoor dat je apparaten elkaar hebben geverifieerd. Wanneer je de kamer de volgende keer opent en beide sessies op de voorgrond staan, zullen de sleutels automatisch worden verzonden.\n\nWil je de sleutels niet verliezen als je uitlogt of van apparaat wisselt? Zorg er dan voor dat je de chatback-up hebt aangezet in de instellingen."},
@@ -643,5 +643,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fx,C.aF)})()
 B.dT(b.typeUniverse,JSON.parse('{"Fx":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_283",e:"endPart",h:b})})($__dart_deferred_initializers__,"bU7qDUZGu4L80EzjKPtGsUFtiRI=");
+a.eventLog.push({p:"main.dart.js_283",e:"endPart",h:b})})($__dart_deferred_initializers__,"XwRn0AOiqURA55eSAZMI+wJ5oBQ=");
 //# sourceMappingURL=main.dart.js_283.part.js.map

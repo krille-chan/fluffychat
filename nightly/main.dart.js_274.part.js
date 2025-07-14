@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_274",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cCi(){return new A.Fq(B.dd("it"))},
+cCf(){return new A.Fq(B.dd("it"))},
 Fq:function Fq(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -139,7 +139,7 @@ gia(){return"Scuro"},
 ib(d,e){return d+", "+e},
 gic(){return"Disabiliter\xe0 il tuo account. Non puoi tornare indietro! Sei sicuro/a?"},
 gie(){return"Livello di autorizzazione predefinito per i nuovi utenti"},
-gdj(d){return"Cancella"},
+gdi(d){return"Cancella"},
 gij(){return"Elimina l'account"},
 gik(){return"Elimina il messaggio"},
 gev(){return"Dispositivi"},
@@ -218,7 +218,7 @@ giU(){return"Unisciti alla stanza"},
 iV(d,e){return"\ud83d\udc5e "+d+" ha espulso "+e},
 gfg(){return"Espelli dalla chat"},
 eG(d){return"Ultima attivit\xe0: "+d},
-gdh(){return"Abbandona"},
+gdf(){return"Abbandona"},
 gfi(){return"Ha lasciato la chat"},
 giX(){return"Chiaro"},
 iY(d){return"Carica altri "+d+" partecipanti"},
@@ -258,7 +258,7 @@ gje(){return"Ottengo la posizione\u2026"},
 gjf(){return"Offensivo"},
 gcs(){return"Ok"},
 gjh(){return"Il backup delle chiavi in linea \xe8 abilitato"},
-gdl(){return"Ops, qualcosa \xe8 andato storto\u2026"},
+gdk(){return"Ops, qualcosa \xe8 andato storto\u2026"},
 gjg(){return"Uno dei tuoi client \xe8 stato disconnesso"},
 geq(){return"Aggiungi account"},
 giq(){return"Modifica i bundle per questo account"},
@@ -267,7 +267,7 @@ gjC(){return"Rimuovi da questo bundle"},
 gf_(){return"Nome del bundle"},
 giy(){return"(BETA) Abilita account multipli su questo dispositivo"},
 gjj(){return"Apri in maps"},
-gdr(){return"Link"},
+gdq(){return"Link"},
 gfR(){return"Questo server ha bisogno di validare la tua email per la registrazione."},
 gjk(){return"O"},
 gjl(){return"Partecipante"},
@@ -421,7 +421,7 @@ goj(){return"Utenti"},
 goa(){return"Sblocca i vecchi messaggi"},
 gka(){return"Salva questa chiave manualmente attivando la finestra di condivisione o gli appunti."},
 lw(d){return""+d+" file"},
-gdz(){return"Utente"},
+gdw(){return"Utente"},
 gi9(){return"Personalizzato"},
 goG(){return"Perch\xe9 questo messaggio \xe8 illeggibile?"},
 gmE(){return"Questo pu\xf2 accadere se il messaggio \xe8 stato inviato prima che hai fatto l'accesso in questo dispositivo.\n\n\xc8 anche possibile che il mittente abbia bloccato il tuo dispositivo o che qualcosa sia andato storto con la tua connessione ad internet.\n\nSei in grado di leggere il messaggio su altre sessioni? Allora puoi trasferire il messaggio da l\xec! Vai su Impostazioni > Dispositivi e verifica che i tuoi dispositivi siano verificati l'un l'altro. Quando aprirai la stanza la prossima volta ed entrambe le sessioni sono in primo piano, le chiavi saranno trasmesse automaticamente.\n\nNon vuoi perdere le chiavi quando ti disconnetti o cambi dispositivo? Assicurati di aver attivato il backup delle chat nelle impostazioni."},
@@ -643,5 +643,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fq,C.aF)})()
 B.dT(b.typeUniverse,JSON.parse('{"Fq":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_274",e:"endPart",h:b})})($__dart_deferred_initializers__,"4YgxdrFWpvoj8ImTcFG/dpmSLpo=");
+a.eventLog.push({p:"main.dart.js_274",e:"endPart",h:b})})($__dart_deferred_initializers__,"S78XLRtsqVjLSNK36w6VzCyWFk0=");
 //# sourceMappingURL=main.dart.js_274.part.js.map

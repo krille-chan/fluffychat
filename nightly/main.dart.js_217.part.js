@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_217",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cBX(){return new A.F4(B.dd("cs"))},
+cBU(){return new A.F4(B.dd("cs"))},
 F4:function F4(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -139,7 +139,7 @@ gia(){return"Tmav\xe9"},
 ib(d,e){return d+", "+e},
 gic(){return"T\xedmto krokem se deaktivuje v\xe1\u0161 u\u017eivatelsk\xfd \xfa\u010det. Akci nelze vr\xe1tit zp\u011bt! Jste si jist\xed?"},
 gie(){return"V\xfdchoz\xed \xfarove\u0148 opr\xe1vn\u011bn\xed nov\xfdch u\u017eivatel\u016f"},
-gdj(d){return"Smazat"},
+gdi(d){return"Smazat"},
 gij(){return"Smazat \xfa\u010det"},
 gik(){return"Smazat zpr\xe1vu"},
 gev(){return"Za\u0159\xedzen\xed"},
@@ -218,7 +218,7 @@ giU(){return"P\u0159ipojte se k m\xedstnosti"},
 iV(d,e){return"\ud83d\udc5e "+d+" vyhodil/a "+e},
 gfg(){return"Vyhodit z chatu"},
 eG(d){return"Naposledy aktivn\xed: "+d},
-gdh(){return"Opustit"},
+gdf(){return"Opustit"},
 gfi(){return"Opustil chat"},
 giX(){return"Sv\u011btl\xe9"},
 iY(d){return"Na\u010d\xedst dal\u0161\xedch "+d+" \xfa\u010dastn\xedk\u016f"},
@@ -258,7 +258,7 @@ gje(){return"Z\xedsk\xe1v\xe1n\xed polohy\u2026"},
 gjf(){return"Ur\xe1\u017eliv\xe9"},
 gcs(){return"Ok"},
 gjh(){return"Online z\xe1loha k\xed\u010d\u016f je zapnuta"},
-gdl(){return"Jejda, n\u011bco se pokazilo\u2026"},
+gdk(){return"Jejda, n\u011bco se pokazilo\u2026"},
 gjg(){return"Jeden z va\u0161ich klient\u016f byl odhl\xe1\u0161en"},
 geq(){return"P\u0159idat \xfa\u010det"},
 giq(){return"Upravit bal\xed\u010dky pro tento \xfa\u010det"},
@@ -267,7 +267,7 @@ gjC(){return"Odstranit z tohoto bal\xed\u010dku"},
 gf_(){return"N\xe1zev bal\xed\u010dku"},
 giy(){return"(BETA) Na tomto za\u0159\xedzen\xed povolte v\xedce \xfa\u010dt\u016f"},
 gjj(){return"Otev\u0159\xedt v map\xe1ch"},
-gdr(){return"Odkaz"},
+gdq(){return"Odkaz"},
 gfR(){return"Tento server pot\u0159ebuje k registraci ov\u011b\u0159it va\u0161i e -mailovou adresu."},
 gjk(){return"Nebo"},
 gjl(){return"\xda\u010dastn\xedk"},
@@ -421,7 +421,7 @@ goj(){return"U\u017eivatel\xe9"},
 goa(){return"Odemknout star\xe9 zpr\xe1vy"},
 gka(){return"Ulo\u017ete tento kl\xed\u010d manu\xe1ln\u011b pomoc\xed syst\xe9mov\xe9ho dialogu sd\xedlen\xed nebo zkop\xedrov\xe1n\xedm do schr\xe1nky."},
 lw(d){return""+d+" soubor\u016f"},
-gdz(){return"U\u017eivatel"},
+gdw(){return"U\u017eivatel"},
 gi9(){return"Vlastn\xed"},
 goG(){return"Pro\u010d nelze p\u0159e\u010d\xedst tuto zpr\xe1vu?"},
 gmE(){return"This can happen if the message was sent before you have signed in to your account at this device.\n\nIt is also possible that the sender has blocked your device or something went wrong with the internet connection.\n\nAre you able to read the message on another session? Then you can transfer the message from it! Go to Settings > Devices and make sure that your devices have verified each other. When you open the room the next time and both sessions are in the foreground, the keys will be transmitted automatically.\n\nDo you not want to lose the keys when logging out or switching devices? Make sure that you have enabled the chat backup in the settings."},
@@ -643,5 +643,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.F4,C.aF)})()
 B.dT(b.typeUniverse,JSON.parse('{"F4":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_217",e:"endPart",h:b})})($__dart_deferred_initializers__,"RdgZ+nOqOMOi8g+6Hkw2pwf454M=");
+a.eventLog.push({p:"main.dart.js_217",e:"endPart",h:b})})($__dart_deferred_initializers__,"NYXXOGCohZztcXn1GKdawjvii0E=");
 //# sourceMappingURL=main.dart.js_217.part.js.map

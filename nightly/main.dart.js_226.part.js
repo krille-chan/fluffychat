@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_226",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cBZ(){return new A.F6(B.dd("de"))},
+cBW(){return new A.F6(B.dd("de"))},
 F6:function F6(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -139,7 +139,7 @@ gia(){return"Dunkel"},
 ib(d,e){return d+", "+e},
 gic(){return"Dies deaktiviert dein Konto. Es kann nicht r\xfcckg\xe4ngig gemacht werden! Bist du sicher?"},
 gie(){return"Standardberechtigungsstufe f\xfcr neue Benutzer"},
-gdj(d){return"L\xf6schen"},
+gdi(d){return"L\xf6schen"},
 gij(){return"Konto l\xf6schen"},
 gik(){return"Nachricht l\xf6schen"},
 gev(){return"Ger\xe4te"},
@@ -218,7 +218,7 @@ giU(){return"Raum beitreten"},
 iV(d,e){return"\ud83d\udc5e "+d+" hat "+e+" hinausgeworfen"},
 gfg(){return"Aus dem Chat hinauswerfen"},
 eG(d){return"Zuletzt aktiv: "+d},
-gdh(){return"Verlassen"},
+gdf(){return"Verlassen"},
 gfi(){return"Hat den Chat verlassen"},
 giX(){return"Hell"},
 iY(d){return""+d+" weitere Mitglieder laden"},
@@ -258,7 +258,7 @@ gje(){return"Standort wird ermittelt \u2026"},
 gjf(){return"Beleidigend"},
 gcs(){return"Ok"},
 gjh(){return"Online-Schl\xfcsselsicherung ist aktiviert"},
-gdl(){return"Hoppla, da ist etwas schiefgelaufen\u2026"},
+gdk(){return"Hoppla, da ist etwas schiefgelaufen\u2026"},
 gjg(){return"Einer deiner Clients wurde abgemeldet"},
 geq(){return"Konto hinzuf\xfcgen"},
 giq(){return"Bundles f\xfcr dieses Konto bearbeiten"},
@@ -267,7 +267,7 @@ gjC(){return"Von diesem Bundle entfernen"},
 gf_(){return"Name des Bundles"},
 giy(){return"(BETA) Aktiviere Multi-Accounts f\xfcr dieses Ger\xe4t"},
 gjj(){return"In Maps \xf6ffnen"},
-gdr(){return"Link"},
+gdq(){return"Link"},
 gfR(){return"Dieser Server muss deine E-Mail-Adresse f\xfcr die Registrierung \xfcberpr\xfcfen."},
 gjk(){return"Oder"},
 gjl(){return"Mitglied"},
@@ -421,7 +421,7 @@ goj(){return"Benutzer"},
 goa(){return"Entsperre alte Nachrichten"},
 gka(){return"Speicher diesen Schl\xfcssel manuell, indem du den Systemfreigabedialog oder die Zwischenablage ausl\xf6st."},
 lw(d){return""+d+" Dateien"},
-gdz(){return"Benutzer"},
+gdw(){return"Benutzer"},
 gi9(){return"Benutzerdefiniert"},
 goG(){return"Warum ist diese Nachricht nicht lesbar?"},
 gmE(){return"Dies kann passieren, wenn die Nachricht gesendet wurde, bevor du dich auf diesem Ger\xe4t bei deinem Konto angemeldet hast.\n\nEs ist auch m\xf6glich, dass der Absender dein Ger\xe4t blockiert hat oder etwas mit der Internetverbindung schief gelaufen ist.\n\nKannst du die Nachricht in einer anderen Sitzung lesen? Dann kannst du die Nachricht davon \xfcbertragen! Gehe zu den Einstellungen > Ger\xe4te und vergewissere dich, dass sich deine Ger\xe4te gegenseitig verifiziert haben. Wenn du den Raum das n\xe4chste Mal \xf6ffnest und beide Sitzungen im Vordergrund sind, werden die Schl\xfcssel automatisch \xfcbertragen.\n\nDu m\xf6chtest die Schl\xfcssel beim Abmelden oder Ger\xe4tewechsel nicht verlieren? Stelle sicher, dass du das Chat-Backup in den Einstellungen aktiviert hast."},
@@ -644,5 +644,5 @@ x(A.F6,C.aF)})()
 B.dT(b.typeUniverse,JSON.parse('{"F6":{"aF":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_226",e:"endPart",h:b})})($__dart_deferred_initializers__,"6nkucmsgjcTakWLKnM23x36D98k=");
+a.eventLog.push({p:"main.dart.js_226",e:"endPart",h:b})})($__dart_deferred_initializers__,"dLkI8WODfMs434KeHPZW+oEI3c4=");
 //# sourceMappingURL=main.dart.js_226.part.js.map

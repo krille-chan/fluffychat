@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_244",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cC4(){return new A.Fc(B.dd("eu"))},
+cC1(){return new A.Fc(B.dd("eu"))},
 Fc:function Fc(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -139,7 +139,7 @@ gia(){return"Iluna"},
 ib(d,e){return d+", "+e},
 gic(){return"Honek zure kontua desaktibatuko du. Ezin da desegin! Ziur zaude?"},
 gie(){return"Erabiltzaile berrien defektuzko botere-maila"},
-gdj(d){return"Ezabatu"},
+gdi(d){return"Ezabatu"},
 gij(){return"Ezabatu kontua"},
 gik(){return"Mezuak ezabatu"},
 gev(){return"Gailuak"},
@@ -218,7 +218,7 @@ giU(){return"Batu gelara"},
 iV(d,e){return"\ud83d\udc5e "+d+"(e)k "+e+" kanporatu du"},
 gfg(){return"Txatetik kanporatu"},
 eG(d){return"Azkenekoz aktibo: "+d},
-gdh(){return"Irten"},
+gdf(){return"Irten"},
 gfi(){return"Txatetik irten da"},
 giX(){return"Argia"},
 iY(d){return"Kargatu "+d+" partaide gehiago"},
@@ -258,7 +258,7 @@ gje(){return"Kokapena atzitzen\u2026"},
 gjf(){return"Iraingarria"},
 gcs(){return"Ados"},
 gjh(){return"Gakoen online babeskopia gaituta dago"},
-gdl(){return"Hara, zerbaitek huts egin du\u2026"},
+gdk(){return"Hara, zerbaitek huts egin du\u2026"},
 gjg(){return"Zure gailuetako batek saioa amaitu du"},
 geq(){return"Gehitu kontua"},
 giq(){return"Editatu kontu honetarako sortak"},
@@ -267,7 +267,7 @@ gjC(){return"Kendu sorta honetatik"},
 gf_(){return"Sortaren izena"},
 giy(){return"(BETA) Gaitu kontu bat baino gehiago gailu honetan"},
 gjj(){return"Ireki mapen aplikazioan"},
-gdr(){return"Esteka"},
+gdq(){return"Esteka"},
 gfR(){return"Zerbitzari honek zure posta elektronikoa egiaztatu behar du izena eman dezazun."},
 gjk(){return"Edo"},
 gjl(){return"Partaide"},
@@ -421,7 +421,7 @@ goj(){return"Erabiltzaileak"},
 goa(){return"Desblokeatu mezu zaharrak"},
 gka(){return"Gorde eskuz gako hau gailuko partekatze-menua edo arbela erabiliz."},
 lw(d){return""+d+" fitxategi"},
-gdz(){return"Erabiltzailea"},
+gdw(){return"Erabiltzailea"},
 gi9(){return"Neurrira egindakoa"},
 goG(){return"Zergatik ezin da mezu hau irakurri?"},
 gmE(){return"Mezua gailu honetan saioa hasi baino lehen bidali bazen gertatu daiteke.\n\nBeste aukera bat igorleak zure gailua blokeatu izana da, edo zerbaitek huts egin izana interneteko konexioan.\n\nMezua beste saio batean irakur dezakezu? Hala bada, mezua transferitu dezakezu! Zoaz Ezrpenetara > Gailuak eta baieztatu zure gailuek bata bestea egiaztatu dutela. Gela irekiko duzun hurrengo aldian eta bi saioak aurreko planoan irekita daudenean, gakoak automatikoki partekatuko dira.\n\nEz duzu gakorik galdu nahi saioa amaitu edo gailuak aldatzen dituzunean? Baieztatu ezarpenetan txaten babeskopiak gaituta dituzula."},
@@ -644,5 +644,5 @@ x(A.Fc,C.aF)})()
 B.dT(b.typeUniverse,JSON.parse('{"Fc":{"aF":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_244",e:"endPart",h:b})})($__dart_deferred_initializers__,"jdczFCTkgu2VfE4Wczr8wgc6dKU=");
+a.eventLog.push({p:"main.dart.js_244",e:"endPart",h:b})})($__dart_deferred_initializers__,"jY+gRNbb50ncylzzoDmEsVJL/Vw=");
 //# sourceMappingURL=main.dart.js_244.part.js.map

@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_238",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cC2(){return new A.Fa(B.dd("es"))},
+cC_(){return new A.Fa(B.dd("es"))},
 Fa:function Fa(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -139,7 +139,7 @@ gia(){return"Oscuro"},
 ib(d,e){return d+", "+e},
 gic(){return"Se desactivar\xe1 su cuenta de usuario. \xa1La operaci\xf3n no se puede cancelar! \xbfEst\xe1 seguro?"},
 gie(){return"Nivel de permiso predeterminado para nuevo usuarios"},
-gdj(d){return"Eliminar"},
+gdi(d){return"Eliminar"},
 gij(){return"Cancelar cuenta"},
 gik(){return"Eliminar mensaje"},
 gev(){return"Dispositivos"},
@@ -218,7 +218,7 @@ giU(){return"Unirse a la sala"},
 iV(d,e){return"\ud83d\udc5e"+d+" ech\xf3 a "+e},
 gfg(){return"Echar del chat"},
 eG(d){return"\xdaltima vez activo: "+d},
-gdh(){return"Abandonar"},
+gdf(){return"Abandonar"},
 gfi(){return"Abandon\xf3 el chat"},
 giX(){return"Claro"},
 iY(d){return"Mostrar "+d+" participantes m\xe1s"},
@@ -258,7 +258,7 @@ gje(){return"Obteniendo ubicaci\xf3n\u2026"},
 gjf(){return"Ofensiva"},
 gcs(){return"Ok"},
 gjh(){return"La copia de seguridad de la clave en l\xednea est\xe1 habilitada"},
-gdl(){return"Ups, algo sali\xf3 mal\u2026"},
+gdk(){return"Ups, algo sali\xf3 mal\u2026"},
 gjg(){return"Se ha cerrado en la sesi\xf3n de uno de sus clientes"},
 geq(){return"A\xf1adir cuenta"},
 giq(){return"Editar paquetes para esta cuenta"},
@@ -267,7 +267,7 @@ gjC(){return"Quitar de este paquete"},
 gf_(){return"Nombre del paquete"},
 giy(){return"(BETA) habilite varias cuenta en este dispositivo"},
 gjj(){return"Abrir en maps"},
-gdr(){return"Link"},
+gdq(){return"Link"},
 gfR(){return"Este servidor necesita validar su direcci\xf3n de correo electr\xf3nico para registrarse."},
 gjk(){return"O"},
 gjl(){return"Participante"},
@@ -421,7 +421,7 @@ goj(){return"Usuarios"},
 goa(){return"Desbloquear mensajes viejos"},
 gka(){return"Compartir esta clave manualmente usando el di\xe1logo de compartir del sistema o el portapapeles."},
 lw(d){return""+d+" archivos"},
-gdz(){return"Usuario"},
+gdw(){return"Usuario"},
 gi9(){return"Personalizado"},
 goG(){return"\xbfPor qu\xe9 no se puede leer este mensaje?"},
 gmE(){return"Esto puede ocurrir si el mensaje se envi\xf3 antes de que entraras en tu cuenta en este dispositivo.\n\nTambi\xe9n puede que el remitente haya bloqueado tu dispositivo o haya fallado algo en la conexi\xf3n a Internet.\n\n\xbfPuedes leer el mensaje en otra sesi\xf3n? Entonces, \xa1puedes transferir el mensaje desde all\xed! Ve a Ajustes > Dispositivos y aseg\xfarate de que tus dispositivos se han verificado mutuamente. Cuando abras la sala la pr\xf3xima vez y ambas sesiones est\xe9n en primer plano, las claves se transmitir\xe1n autom\xe1ticamente.\n\n\xbfNo quieres perder las claves al salir o al cambiar de dispositivo? Aseg\xfarate de que has habilitado la copia de seguridad del chat en los ajustes."},
@@ -643,5 +643,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fa,C.aF)})()
 B.dT(b.typeUniverse,JSON.parse('{"Fa":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_238",e:"endPart",h:b})})($__dart_deferred_initializers__,"vA/AW4qxUjPlRrq2LJrBWLK+0RI=");
+a.eventLog.push({p:"main.dart.js_238",e:"endPart",h:b})})($__dart_deferred_initializers__,"0VTkxX5l+pzKzq5bxKfNafzKhIk=");
 //# sourceMappingURL=main.dart.js_238.part.js.map

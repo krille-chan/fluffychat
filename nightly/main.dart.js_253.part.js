@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_253",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cCa(){return new A.Fi(B.dd("gl"))},
+cC7(){return new A.Fi(B.dd("gl"))},
 Fi:function Fi(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -139,7 +139,7 @@ gia(){return"Escuro"},
 ib(d,e){return d+", "+e},
 gic(){return"Esto desactivar\xe1 a conta. Esto non ten volta atr\xe1s. Est\xe1s segura?"},
 gie(){return"Nivel de permisos por defecto para novas usuarias"},
-gdj(d){return"Eliminar"},
+gdi(d){return"Eliminar"},
 gij(){return"Eliminar conta"},
 gik(){return"Eliminar mensaxe"},
 gev(){return"Dispositivos"},
@@ -218,7 +218,7 @@ giU(){return"Unirse \xe1 sala"},
 iV(d,e){return"\ud83d\udc5e "+d+" expulsou a "+e},
 gfg(){return"Expulsar da conversa"},
 eG(d){return"\xdaltima actividade: "+d},
-gdh(){return"Sa\xedr"},
+gdf(){return"Sa\xedr"},
 gfi(){return"Deixar a conversa"},
 giX(){return"Claro"},
 iY(d){return"Cargar "+d+" participantes m\xe1is"},
@@ -258,7 +258,7 @@ gje(){return"Obtendo a localizaci\xf3n\u2026"},
 gjf(){return"Ofensivo"},
 gcs(){return"Ok"},
 gjh(){return"Copia de Apoio en li\xf1a das Chaves activada"},
-gdl(){return"Ooooi, algo fallou\u2026"},
+gdk(){return"Ooooi, algo fallou\u2026"},
 gjg(){return"Un dos teus clientes foi desconectado"},
 geq(){return"Engadir conta"},
 giq(){return"Editar os feixes desta conta"},
@@ -267,7 +267,7 @@ gjC(){return"Eliminar deste feixe"},
 gf_(){return"Nome do feixe"},
 giy(){return"(BETA) Activar varias contas neste dispositivo"},
 gjj(){return"Abrir en mapas"},
-gdr(){return"Ligaz\xf3n"},
+gdq(){return"Ligaz\xf3n"},
 gfR(){return"O servidor precisa validar o teu enderezo de email para rexistrarte."},
 gjk(){return"Ou"},
 gjl(){return"Participante"},
@@ -421,7 +421,7 @@ goj(){return"Usuarias"},
 goa(){return"Desbloquear mensaxes antigas"},
 gka(){return"Garda esta chave manualmente usando o sistema para compartir do dispositivo ou portapapeis."},
 lw(d){return""+d+" ficheiros"},
-gdz(){return"Usuaria"},
+gdw(){return"Usuaria"},
 gi9(){return"Personal"},
 goG(){return"Por que non podo ler esta mensaxe?"},
 gmE(){return"Pode ser que a mensaxe fose enviada antes de que ti accedeses \xe1 t\xfaa conta neste dispositivo.\n\nTam\xe9n \xe9 posible que a remitente non validase o teu dispositivo ou tam\xe9n que algo fallase na conexi\xf3n a internet.\n\nPodes ler a mensaxe noutro dispositivo? Ent\xf3n podes transferila desde el! Vai a Axustes > Dispositivos e comproba que tes t\xf3dolos dispositivos verificados. Ent\xf3n cando abras a sala a pr\xf3xima vez a sincronizaci\xf3n realizarase e as chaves transmitiranse autom\xe1ticamente.\n\nNon desexas perder as chaves cando pechas sesi\xf3n ou cambias de dispositivo? Comproba nos axustes que activaches a copia de apoio das conversas."},
@@ -643,5 +643,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fi,C.aF)})()
 B.dT(b.typeUniverse,JSON.parse('{"Fi":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_253",e:"endPart",h:b})})($__dart_deferred_initializers__,"cPmz93f1kXUOg9Bso9gfT78R0As=");
+a.eventLog.push({p:"main.dart.js_253",e:"endPart",h:b})})($__dart_deferred_initializers__,"mMQ1rZs304YR98E6Cld3kjAVg08=");
 //# sourceMappingURL=main.dart.js_253.part.js.map

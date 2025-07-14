@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_281",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cCo(){return new A.Fw(B.dd("nb"))},
+cCl(){return new A.Fw(B.dd("nb"))},
 Fw:function Fw(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -139,7 +139,7 @@ gia(){return"M\xf8rk"},
 ib(d,e){return e+", "+d},
 gic(){return"Dette vil skru av din brukerkonto for godt, og kan ikke angres! Er du sikker?"},
 gie(){return"Forvalgt tilgangsniv\xe5"},
-gdj(d){return"Slett"},
+gdi(d){return"Slett"},
 gij(){return"Slett konto"},
 gik(){return"Slett melding"},
 gev(){return"Enheter"},
@@ -218,7 +218,7 @@ giU(){return"Ta del i rom"},
 iV(d,e){return d+" kastet ut "+e},
 gfg(){return"Kast ut av sludringen"},
 eG(d){return"Sist aktiv: "+d},
-gdh(){return"Forlat"},
+gdf(){return"Forlat"},
 gfi(){return"Forlat sludringen"},
 giX(){return"Lys"},
 iY(d){return"Last inn "+d+" deltagere til"},
@@ -258,7 +258,7 @@ gje(){return"Obtaining location\u2026"},
 gjf(){return"St\xf8tende"},
 gcs(){return"OK"},
 gjh(){return"Nettbasert sikkerhetskopiering av n\xf8kler p\xe5"},
-gdl(){return"Oida, noe gikk galt \u2026"},
+gdk(){return"Oida, noe gikk galt \u2026"},
 gjg(){return"One of your clients has been logged out"},
 geq(){return"Add account"},
 giq(){return"Edit bundles for this account"},
@@ -267,7 +267,7 @@ gjC(){return"Remove from this bundle"},
 gf_(){return"Bundle name"},
 giy(){return"(BETA) Enable multi accounts on this device"},
 gjj(){return"Open in maps"},
-gdr(){return"Link"},
+gdq(){return"Link"},
 gfR(){return"This server needs to validate your email address for registration."},
 gjk(){return"Or"},
 gjl(){return"Deltager"},
@@ -421,7 +421,7 @@ goj(){return"Users"},
 goa(){return"Unlock old messages"},
 gka(){return"Save this key manually by triggering the system share dialog or clipboard."},
 lw(d){return""+d+" files"},
-gdz(){return"User"},
+gdw(){return"User"},
 gi9(){return"Custom"},
 goG(){return"Why is this message unreadable?"},
 gmE(){return"This can happen if the message was sent before you have signed in to your account at this device.\n\nIt is also possible that the sender has blocked your device or something went wrong with the internet connection.\n\nAre you able to read the message on another session? Then you can transfer the message from it! Go to Settings > Devices and make sure that your devices have verified each other. When you open the room the next time and both sessions are in the foreground, the keys will be transmitted automatically.\n\nDo you not want to lose the keys when logging out or switching devices? Make sure that you have enabled the chat backup in the settings."},
@@ -643,5 +643,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fw,C.aF)})()
 B.dT(b.typeUniverse,JSON.parse('{"Fw":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_281",e:"endPart",h:b})})($__dart_deferred_initializers__,"ysGqYRGp3xJz29/yMVuhPCATlgo=");
+a.eventLog.push({p:"main.dart.js_281",e:"endPart",h:b})})($__dart_deferred_initializers__,"26p/54eO5dBwgVDPinKaXuMF0i8=");
 //# sourceMappingURL=main.dart.js_281.part.js.map

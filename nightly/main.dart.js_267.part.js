@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_267",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cCg(){return new A.Fo(B.dd("id"))},
+cCd(){return new A.Fo(B.dd("id"))},
 Fo:function Fo(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -139,7 +139,7 @@ gia(){return"Gelap"},
 ib(d,e){return e+", "+d},
 gic(){return"Ini akan menonaktifkan akun penggunamu. Ini tidak bisa dibatalkan! Apakah kamu yakin?"},
 gie(){return"Level izin bawaan untuk pengguna baru"},
-gdj(d){return"Hapus"},
+gdi(d){return"Hapus"},
 gij(){return"Hapus akun"},
 gik(){return"Hapus pesan"},
 gev(){return"Perangkat"},
@@ -218,7 +218,7 @@ giU(){return"Bergabung dengan ruangan"},
 iV(d,e){return"\ud83d\udc5e "+d+" mengeluarkan "+e},
 gfg(){return"Keluarkan dari obrolan"},
 eG(d){return"Terakhir aktif: "+d},
-gdh(){return"Tinggalkan"},
+gdf(){return"Tinggalkan"},
 gfi(){return"Keluar dari obrolan"},
 giX(){return"Terang"},
 iY(d){return"Muat "+d+" anggota"},
@@ -258,7 +258,7 @@ gje(){return"Mendapatkan lokasi\u2026"},
 gjf(){return"Menyinggung"},
 gcs(){return"Ok"},
 gjh(){return"Cadangan Kunci Online dinyalakan"},
-gdl(){return"Ups, ada yang salah\u2026"},
+gdk(){return"Ups, ada yang salah\u2026"},
 gjg(){return"Salah satu klienmu telah keluar"},
 geq(){return"Tambah akun"},
 giq(){return"Edit bundel untuk akun ini"},
@@ -267,7 +267,7 @@ gjC(){return"Hilangkan dari bundel ini"},
 gf_(){return"Nama bundel"},
 giy(){return"(BETA) Aktifkan multi-akun di perangkat ini"},
 gjj(){return"Buka di peta"},
-gdr(){return"Tautan"},
+gdq(){return"Tautan"},
 gfR(){return"Server ini harus memvalidasi alamat email kamu untuk registrasi."},
 gjk(){return"Atau"},
 gjl(){return"Peserta"},
@@ -421,7 +421,7 @@ goj(){return"Pengguna"},
 goa(){return"Akses pesan lama"},
 gka(){return"Simpan kunci ini secara manual dengan memicu dialog pembagian atau papan klip sistem."},
 lw(d){return""+d+" file"},
-gdz(){return"Pengguna"},
+gdw(){return"Pengguna"},
 gi9(){return"Kustom"},
 goG(){return"Mengapa pesan ini tidak bisa dibaca?"},
 gmE(){return"Hal ini bisa terjadi jika pesan dikirim sebelum kamu masuk ke akunmu di perangkat ini.\n\nMungkin juga pengirim telah memblokir perangkatmu atau ada yang tidak beres dengan koneksi internet.\n\nApakah kamu bisa membaca pesan pada sesi lain? Maka kamu bisa mentransfer pesan dari sesi tersebut! Buka Pengaturan > Perangkat dan pastikan bahwa perangkat Anda telah ditandatangani secara silang. Ketika kamu membuka ruangan di lain waktu dan kedua sesi berada di latar depan, kunci akan ditransmisikan secara otomatis.\n\nApakah kamu tidak mau kehilangan kunci saat keluar atau berpindah perangkat? Pastikan bahwa kamu telah mengaktifkan cadangan obrolan dalam pengaturan."},
@@ -644,5 +644,5 @@ x(A.Fo,C.aF)})()
 B.dT(b.typeUniverse,JSON.parse('{"Fo":{"aF":[]}}'))
 var y={a:"Memberi tahu pengguna tentang pesan dalam ruangan satu ke satu."}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_267",e:"endPart",h:b})})($__dart_deferred_initializers__,"+hZAvIP8qtmKiavlFmzAq+60YV0=");
+a.eventLog.push({p:"main.dart.js_267",e:"endPart",h:b})})($__dart_deferred_initializers__,"X8yoG32f13tCOKDCgh1NZLgfL9g=");
 //# sourceMappingURL=main.dart.js_267.part.js.map

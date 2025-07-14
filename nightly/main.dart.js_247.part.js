@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_247",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cC6(){return new A.Fe(B.dd("fi"))},
+cC3(){return new A.Fe(B.dd("fi"))},
 Fe:function Fe(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -139,7 +139,7 @@ gia(){return"Tumma"},
 ib(d,e){return d+", "+e},
 gic(){return"T\xe4m\xe4 poistaa tunnuksesi k\xe4yt\xf6st\xe4. T\xe4t\xe4 ei voi kumota! Oletko varma?"},
 gie(){return"Uusien k\xe4ytt\xe4jien oikeuksien oletustaso"},
-gdj(d){return"Poista"},
+gdi(d){return"Poista"},
 gij(){return"Poista tunnus"},
 gik(){return"Poista viesti"},
 gev(){return"Laitteet"},
@@ -218,7 +218,7 @@ giU(){return"Liity huoneeseen"},
 iV(d,e){return"\ud83d\udc5e "+d+" potki k\xe4ytt\xe4j\xe4n "+e},
 gfg(){return"Potki keskustelusta"},
 eG(d){return"Aktiivinen viimeksi: "+d},
-gdh(){return"Poistu"},
+gdf(){return"Poistu"},
 gfi(){return"Poistui keskustelusta"},
 giX(){return"Vaalea"},
 iY(d){return"Lataa viel\xe4 "+d+" osallistujaa"},
@@ -258,7 +258,7 @@ gje(){return"Paikannetaan sijantia\u2026"},
 gjf(){return"Loukkaava"},
 gcs(){return"ok"},
 gjh(){return"Verkkkoavainvarmuuskopio on k\xe4yt\xf6ss\xe4"},
-gdl(){return"Hups, jotakin meni pieleen\u2026"},
+gdk(){return"Hups, jotakin meni pieleen\u2026"},
 gjg(){return"Yksi tunnuksistasi on kirjattu ulos"},
 geq(){return"Lis\xe4\xe4 tili"},
 giq(){return"Muokkaa t\xe4m\xe4n tilin k\xe4\xe4r\xf6j\xe4"},
@@ -267,7 +267,7 @@ gjC(){return"Poista t\xe4st\xe4 k\xe4\xe4reest\xe4"},
 gf_(){return"K\xe4\xe4reen nimi"},
 giy(){return"(BETA) Ota k\xe4ytt\xf6\xf6n tuki usealle tilille t\xe4ll\xe4 laitteella"},
 gjj(){return"Avaa kartoissa"},
-gdr(){return"Linkki"},
+gdq(){return"Linkki"},
 gfR(){return"T\xe4m\xe4n palvelimen t\xe4ytyy tarkistaa s\xe4hk\xf6posti-osoitteesi rekister\xf6itymist\xe4 varten."},
 gjk(){return"Tai"},
 gjl(){return"Osallistuja"},
@@ -421,7 +421,7 @@ goj(){return"K\xe4ytt\xe4j\xe4t"},
 goa(){return"Pura vanhojen viestien salaus"},
 gka(){return"Tallenna t\xe4m\xe4 avain manuaalisesti k\xe4ytt\xe4en j\xe4rjestelm\xe4n jakodialogia tai leikep\xf6yt\xe4\xe4."},
 lw(d){return""+d+" tiedostoa"},
-gdz(){return"K\xe4ytt\xe4j\xe4"},
+gdw(){return"K\xe4ytt\xe4j\xe4"},
 gi9(){return"Mukautettu"},
 goG(){return"Miksei t\xe4t\xe4 viesti\xe4 voida lukea?"},
 gmE(){return"T\xe4m\xe4 voi tapahtua mik\xe4li viesti l\xe4hetettiin ennen sis\xe4\xe4nkirjautumistasi t\xe4lle laitteelle.\n\nOn my\xf6s mahdollista, ett\xe4 l\xe4hett\xe4j\xe4 on est\xe4nyt t\xe4m\xe4n laitteen tai jokin meni pieleen verkkoyhteyden kanssa.\n\nPystytk\xf6 lukemaan viestin toisella istunnolla? Siin\xe4 tapauksessa voit siirt\xe4\xe4 viestin silt\xe4! Mene Asetukset > Laitteet ja varmista, ett\xe4 laitteesi ovat varmistaneet toisensa. Seuraavankerran avatessasi huoneen ja molempien istuntojen ollessa etualalla, avaimet siirret\xe4\xe4n automaattisesti.\n\nHaluatko varmistaa ettet menet\xe4 avaimia uloskirjautuessa tai laitteita vaihtaessa? Varmista avainvarmuuskopion k\xe4yt\xf6ss\xe4olo asetuksista."},
@@ -643,5 +643,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fe,C.aF)})()
 B.dT(b.typeUniverse,JSON.parse('{"Fe":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_247",e:"endPart",h:b})})($__dart_deferred_initializers__,"Zyv4pLB8/aTCzIQxbPh2pAn3laE=");
+a.eventLog.push({p:"main.dart.js_247",e:"endPart",h:b})})($__dart_deferred_initializers__,"yxjbGABj4YjGJBmrAY4SnEfDZy0=");
 //# sourceMappingURL=main.dart.js_247.part.js.map

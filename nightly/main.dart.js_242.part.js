@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_242",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cC3(){return new A.Fb(B.dd("et"))},
+cC0(){return new A.Fb(B.dd("et"))},
 Fb:function Fb(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -139,7 +139,7 @@ gia(){return"Tume"},
 ib(d,e){return d+", "+e},
 gic(){return"J\xe4rgnevaga eemaldatakse sinu konto kasutusest. Seda tegevust ei saa tagasi p\xf6\xf6rata! Kas sa ikka oled kindel?"},
 gie(){return"Vaikimisi \xf5igused uutele kasutajatele"},
-gdj(d){return"Kustuta"},
+gdi(d){return"Kustuta"},
 gij(){return"Kustuta kasutajakonto"},
 gik(){return"Kustuta s\xf5num"},
 gev(){return"Seadmed"},
@@ -218,7 +218,7 @@ giU(){return"Liitu jututoaga"},
 iV(d,e){return"\ud83d\udc5e "+d+" m\xfcksas kasutaja "+e+" v\xe4lja"},
 gfg(){return"M\xfcksa vestlusest v\xe4lja"},
 eG(d){return"Viimati n\xe4htud: "+d},
-gdh(){return"Lahku"},
+gdf(){return"Lahku"},
 gfi(){return"Lahkus vestlusest"},
 giX(){return"Hele"},
 iY(d){return"Lisa veel "+d+" osalejat"},
@@ -258,7 +258,7 @@ gje(){return"Tuvastan asukohta\u2026"},
 gjf(){return"Solvav"},
 gcs(){return"Sobib"},
 gjh(){return"Kr\xfcptov\xf5tmete veebip\xf5hine varundus on kasutusel"},
-gdl(){return"Hopsti! Midagi l\xe4ks n\xfc\xfcd viltu\u2026"},
+gdk(){return"Hopsti! Midagi l\xe4ks n\xfc\xfcd viltu\u2026"},
 gjg(){return"\xdcks sinu klientrakendustest on Matrix'i v\xf5rgust v\xe4lja loginud"},
 geq(){return"Lisa kasutajakonto"},
 giq(){return"Muuda selle kasutajakonto k\xf6iteid"},
@@ -267,7 +267,7 @@ gjC(){return"Eemalda sellest k\xf6itest"},
 gf_(){return"K\xf6ite nimi"},
 giy(){return"(KATSELINE) Pruugi selles seadmes mitut Matrix'i kasutajakontot"},
 gjj(){return"Ava kaardirakendusega"},
-gdr(){return"Link"},
+gdq(){return"Link"},
 gfR(){return"See koduserver eeldab registreerimisel kasutatava e-postiaadressi kinnitamist."},
 gjk(){return"v\xf5i"},
 gjl(){return"Osaleja"},
@@ -421,7 +421,7 @@ goj(){return"Kasutajad"},
 goa(){return"Muuda vanad s\xf5numid loetavaks"},
 gka(){return"Salvesta see kr\xfcptov\xf5ti kasutades selle s\xfcsteemi jagamisvalikuid v\xf5i l\xf5ikelauda."},
 lw(d){return""+d+" faili"},
-gdz(){return"Kasutaja"},
+gdw(){return"Kasutaja"},
 gi9(){return"Kohandatud"},
 goG(){return"Miks see s\xf5num pole loetav?"},
 gmE(){return"See v\xf5ib juhtuda, kui s\xf5num oli saadetud enne, kui siin seadmes oma kontoga sisse logisid.\n\nSamuti v\xf5ib juhtuda siis, kui saatja on lugemises selles seadmes blokeerinud v\xf5i on tekkinud t\xf5rkeid veebi\xfchenduses.\n\nAga m\xf5nes teises seadmes saad seda s\xf5numit lugeda? Siis sa v\xf5id s\xf5numi sealt \xfcle t\xf5sta. Ava Seadistused -> Seadmed ning kontrolli, et k\xf5ik sinu seadmed on omavahel verifitseeritud. Kui avad selle vestluse v\xf5i jututoa ning m\xf5lemad sessioonid on avatud, siis vajalikud kr\xfcptov\xf5tmed saadetakse automaatset.\n\nKas sa soovid v\xe4ltida kr\xfcptov\xf5tmete kadumist v\xe4ljalogimisel ja seadmete vahetusel? Siis palun kontrolli, et seadistuses on kr\xfcptov\xf5tmete varundus sisse l\xfclitatud."},
@@ -643,5 +643,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fb,C.aF)})()
 B.dT(b.typeUniverse,JSON.parse('{"Fb":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_242",e:"endPart",h:b})})($__dart_deferred_initializers__,"8jLEwpCkx78Hhh7AtewmjFiLaNA=");
+a.eventLog.push({p:"main.dart.js_242",e:"endPart",h:b})})($__dart_deferred_initializers__,"JOXlI93UQ69i+w/yxsDANGSDwMQ=");
 //# sourceMappingURL=main.dart.js_242.part.js.map

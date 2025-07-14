@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_294",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cCz(){return new A.FG(B.dd("sv"))},
+cCw(){return new A.FG(B.dd("sv"))},
 FG:function FG(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -139,7 +139,7 @@ gia(){return"M\xf6rkt"},
 ib(d,e){return d+", "+e},
 gic(){return"Detta kommer att avaktivera ditt konto. Det h\xe4r g\xe5r inte att \xe5ngra! \xc4r du s\xe4ker?"},
 gie(){return"Standard beh\xf6righetsniv\xe5"},
-gdj(d){return"Radera"},
+gdi(d){return"Radera"},
 gij(){return"Ta bort konto"},
 gik(){return"Ta bort meddelande"},
 gev(){return"Enheter"},
@@ -218,7 +218,7 @@ giU(){return"Anslut till rum"},
 iV(d,e){return"\ud83d\udc5e "+d+" sparkade ut "+e},
 gfg(){return"Sparka fr\xe5n chatt"},
 eG(d){return"Senast aktiv: "+d},
-gdh(){return"L\xe4mna"},
+gdf(){return"L\xe4mna"},
 gfi(){return"L\xe4mnade chatten"},
 giX(){return"Ljust"},
 iY(d){return"Ladda "+d+" mer deltagare"},
@@ -258,7 +258,7 @@ gje(){return"Erh\xe5ller plats\u2026"},
 gjf(){return"St\xf6tande"},
 gcs(){return"OK"},
 gjh(){return"Online Nyckel-backup \xe4r aktiverad"},
-gdl(){return"Hoppsan, n\xe5got gick fel\u2026"},
+gdk(){return"Hoppsan, n\xe5got gick fel\u2026"},
 gjg(){return"En av dina klienter har loggats ut"},
 geq(){return"L\xe4gg till konto"},
 giq(){return"L\xe4gg till paket f\xf6r detta konto"},
@@ -267,7 +267,7 @@ gjC(){return"Ta bort fr\xe5n paket"},
 gf_(){return"Paketnamn"},
 giy(){return"(BETA) Aktivera multi-konton p\xe5 denna enhet"},
 gjj(){return"\xd6ppna i karta"},
-gdr(){return"L\xe4nk"},
+gdq(){return"L\xe4nk"},
 gfR(){return"Servern beh\xf6ver validera din e-postadress f\xf6r registrering."},
 gjk(){return"Eller"},
 gjl(){return"Deltagare"},
@@ -421,7 +421,7 @@ goj(){return"Anv\xe4ndare"},
 goa(){return"L\xe5s upp \xe4ldre meddelanden"},
 gka(){return"Spara nyckeln manuellt genom att aktivera dela-funktionen eller urklippshanteraren p\xe5 enheten."},
 lw(d){return""+d+" filer"},
-gdz(){return"Anv\xe4ndare"},
+gdw(){return"Anv\xe4ndare"},
 gi9(){return"Anpassad"},
 goG(){return"Varf\xf6r kan inte detta meddelande l\xe4sas?"},
 gmE(){return"Detta kan h\xe4nda om meddelandet skickades innan du loggade in p\xe5 ditt konto i den h\xe4r enheten.\n\nDet kan ocks\xe5 vara s\xe5 att avs\xe4ndaren har blockerat din enhet eller att n\xe5got gick fel med internetanslutningen.\n\nKan du l\xe4sa meddelandet i en annan session? I s\xe5dana fall kan du \xf6verf\xf6ra meddelandet fr\xe5n den sessionen! G\xe5 till Inst\xe4llningar > Enhet och s\xe4kerst\xe4ll att dina enheter har verifierat varandra. N\xe4r du \xf6ppnar rummet n\xe4sta g\xe5ng och b\xe5da sessionerna \xe4r i f\xf6rgrunden, s\xe5 kommer nycklarna att \xf6verf\xf6ras automatiskt.\n\nVill du inte f\xf6rlora nycklarna vid utloggning eller n\xe4r du byter enhet? S\xe4kerst\xe4ll att du har aktiverat s\xe4kerhetskopiering f\xf6r chatten i inst\xe4llningarna."},
@@ -643,5 +643,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FG,C.aF)})()
 B.dT(b.typeUniverse,JSON.parse('{"FG":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_294",e:"endPart",h:b})})($__dart_deferred_initializers__,"SAmK+MY/bikiAYSbJyxs/HI1Xas=");
+a.eventLog.push({p:"main.dart.js_294",e:"endPart",h:b})})($__dart_deferred_initializers__,"fqyivNwBk9jjoGJ/XFXAWqTpZ1Y=");
 //# sourceMappingURL=main.dart.js_294.part.js.map

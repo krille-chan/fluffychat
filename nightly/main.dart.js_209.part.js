@@ -2,7 +2,7 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_209",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cBW(){return new A.F3(B.dd("ca"))},
+cBT(){return new A.F3(B.dd("ca"))},
 F3:function F3(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -139,7 +139,7 @@ gia(){return"Fosc"},
 ib(d,e){return d+", "+e},
 gic(){return"Es desactivar\xe0 el vostre compte d\u2019usu\xe0ri\xef. \xc9s irreversible! Voleu fer-ho igualment?"},
 gie(){return"Nivell de permisos per defecte per nous membres"},
-gdj(d){return"Suprimeix"},
+gdi(d){return"Suprimeix"},
 gij(){return"Suprimeix el compte"},
 gik(){return"Suprimeix el missatge"},
 gev(){return"Dispositius"},
@@ -218,7 +218,7 @@ giU(){return"Uneix-te a la sala"},
 iV(d,e){return"\ud83d\udc5e "+d+" ha expulsat a "+e},
 gfg(){return"Expulsa del xat"},
 eG(d){return"Actiu per \xfaltima vegada: "+d},
-gdh(){return"Abandona"},
+gdf(){return"Abandona"},
 gfi(){return"Ha marxat del xat"},
 giX(){return"Clar"},
 iY(d){return"Carrega "+d+" participants m\xe9s"},
@@ -258,7 +258,7 @@ gje(){return"S\u2019est\xe0 obtenint la ubicaci\xf3\u2026"},
 gjf(){return"Ofensiu"},
 gcs(){return"D'acord"},
 gjh(){return"La c\xf2pia de seguretat de claus en l\xednia est\xe0 activada"},
-gdl(){return"Alguna cosa ha anat malament\u2026"},
+gdk(){return"Alguna cosa ha anat malament\u2026"},
 gjg(){return"Una de les teves aplicacions ha tancat la sessi\xf3"},
 geq(){return"Afegeix un compte"},
 giq(){return"Edita paquets per aquest compte"},
@@ -267,7 +267,7 @@ gjC(){return"Esborra del paquet"},
 gf_(){return"Nom del paquet"},
 giy(){return"(Beta) Activa multi-compte en aquest dispositiu"},
 gjj(){return"Obre als mapes"},
-gdr(){return"Enlla\xe7"},
+gdq(){return"Enlla\xe7"},
 gfR(){return"Aquest servidor necessita validar la teva adre\xe7a per registrar-t'hi."},
 gjk(){return"O"},
 gjl(){return"Participant"},
@@ -421,7 +421,7 @@ goj(){return"Usu\xe0r\xefis"},
 goa(){return"Desbloqueja els missatges antics"},
 gka(){return"Per desar aquesta clau manualment, pica l'eina de compartir o copia-la al porta-retalls."},
 lw(d){return""+d+" arxius"},
-gdz(){return"Usu\xe0r\xefi"},
+gdw(){return"Usu\xe0r\xefi"},
 gi9(){return"Personalitzat"},
 goG(){return"Per qu\xe8 no es pot llegir aquest missatge?"},
 gmE(){return"Aix\xf2 pot passar si el missatge es va enviar abans que haguessis iniciat sessi\xf3 al teu compte des d'aquest dispositiu.\n\nTamb\xe9 pot ser que l'emissor hagi bloquejat el teu dispositiu o que la connexi\xf3 a internet an\xe9s malament.\n\nQue pots llegir el missatge des d'una altra sessi\xf3? Si \xe9s aix\xed, llavors pots transferir-lo! Ves a Par\xe0metres \u2192 Dispositius i assegura't que els teus dispositius s'ha verificat m\xfatuament. Quan obris la sala la propera vegada i totes dues sessions estiguin executant-se, en primer pla, llavors les claus es trasnsmetran autom\xe0ticament.\n\nVols evitar perdre les claus en tancar la sessi\xf3 o en canviar de dispositiu? Llavors assegura't que has activat la c\xf2pia de seguretat del xat als par\xe0metres."},
@@ -643,5 +643,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.F3,C.aF)})()
 B.dT(b.typeUniverse,JSON.parse('{"F3":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_209",e:"endPart",h:b})})($__dart_deferred_initializers__,"f5oUVMYDlAQTBFIMfRppmOq5ONM=");
+a.eventLog.push({p:"main.dart.js_209",e:"endPart",h:b})})($__dart_deferred_initializers__,"e3kkC64lr7bNutJ93oVuxEptipY=");
 //# sourceMappingURL=main.dart.js_209.part.js.map
