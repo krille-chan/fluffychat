@@ -2373,5 +2373,11 @@
     "placeholders": {}
   },
   "voiceCall": "Taleanrop",
-  "@voiceCall": {}
+  "@voiceCall": {},
+  "accessAndVisibilityDescription": "Hvem som har lov til å bli med i denne chatten og hvordan chatten kan oppdages.",
+  "@accessAndVisibilityDescription": {},
+  "calls": "Anrop",
+  "@calls": {},
+  "customEmojisAndStickers": "Egendefinerte emojier og klistremerker",
+  "@customEmojisAndStickers": {}
 }
