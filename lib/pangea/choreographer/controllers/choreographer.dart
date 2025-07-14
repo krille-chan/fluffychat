@@ -57,6 +57,8 @@ class Choreographer {
   StreamSubscription? _languageStream;
   late AssistanceState _currentAssistanceState;
 
+  String? translatedText;
+
   Choreographer(this.pangeaController, this.chatController) {
     _initialize();
   }
@@ -144,10 +146,10 @@ class Choreographer {
     final message = chatController.sendController.text;
     final fakeEventId = chatController.sendFakeMessage();
     final PangeaRepresentation? originalWritten =
-        choreoRecord.includedIT && itController.sourceText != null
+        choreoRecord.includedIT && translatedText != null
             ? PangeaRepresentation(
                 langCode: l1LangCode ?? LanguageKeys.unknownLanguage,
-                text: itController.sourceText!,
+                text: translatedText!,
                 originalWritten: true,
                 originalSent: false,
               )
@@ -200,6 +202,7 @@ class Choreographer {
       chatController.send(
         message: message,
         originalSent: originalSent,
+        originalWritten: originalWritten,
         tokensSent: tokensSent,
         choreo: choreoRecord,
         tempEventId: fakeEventId,
@@ -226,6 +229,7 @@ class Choreographer {
     itMatch.status = PangeaMatchStatus.accepted;
 
     choreoRecord.addRecord(_textController.text, match: itMatch);
+    translatedText = _textController.text;
 
     //PTODO - if totally in L1, save tokens, that's good stuff
 
@@ -263,6 +267,13 @@ class Choreographer {
     igc.clear();
 
     _resetDebounceTimer();
+
+    // we store translated text in the choreographer to save at the original written
+    // text, but if the user edits the text after the translation, reset it, since the
+    // sent text may not be an exact translation of the original text
+    if (_textController.editType == EditType.keyboard) {
+      translatedText = null;
+    }
 
     if (editTypeIsKeyboard) {
       debounceTimer ??= Timer(
@@ -565,6 +576,7 @@ class Choreographer {
     _timesClicked = 0;
     isFetching = false;
     choreoRecord = ChoreoRecord.newRecord;
+    translatedText = null;
     itController.clear();
     igc.dispose();
     _resetDebounceTimer();

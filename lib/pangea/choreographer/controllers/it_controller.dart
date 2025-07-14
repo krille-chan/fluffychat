@@ -97,6 +97,7 @@ class ITController {
     debugPrint("_setSourceText with detectedLang ${_itStartData!.langCode}");
     // if (_itStartData!.langCode == choreographer.l1LangCode) {
     sourceText = _itStartData!.text;
+    choreographer.translatedText = sourceText;
     return;
     // }
 
