@@ -1,20 +1,25 @@
 import 'package:flutter/material.dart';
 
+import 'package:collection/collection.dart';
+import 'package:matrix/matrix.dart';
+
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
 import 'package:fluffychat/pangea/toolbar/reading_assistance_input_row/lemma_emoji_choice_item.dart';
+import 'package:fluffychat/widgets/future_loading_dialog.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 
 class LemmaReactionPicker extends StatefulWidget {
   final ConstructIdentifier cId;
-  final String eventId;
+  final Event event;
   final ChatController controller;
   final double? iconSize;
 
   const LemmaReactionPicker({
     super.key,
     required this.cId,
-    required this.eventId,
+    required this.event,
     required this.controller,
     this.iconSize,
   });
@@ -41,10 +46,31 @@ class LemmaReactionPickerState extends State<LemmaReactionPicker> {
     }
   }
 
-  void setEmoji(String emoji) => widget.controller.room.sendReaction(
-        widget.eventId,
+  void setEmoji(String emoji) {
+    final allReactionEvents = widget.event.aggregatedEvents(
+      widget.controller.timeline!,
+      RelationshipTypes.reaction,
+    );
+
+    final client = Matrix.of(context).client;
+    final reactionEvent = allReactionEvents.firstWhereOrNull(
+      (e) =>
+          e.senderId == client.userID &&
+          e.content.tryGetMap('m.relates_to')?['key'] == emoji,
+    );
+
+    if (reactionEvent != null) {
+      showFutureLoadingDialog(
+        context: context,
+        future: () => reactionEvent.redactEvent(),
+      );
+    } else {
+      widget.controller.room.sendReaction(
+        widget.event.eventId,
         emoji,
       );
+    }
+  }
 
   Future<void> _refresh() async {
     setState(() {
