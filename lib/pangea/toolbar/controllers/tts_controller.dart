@@ -13,7 +13,6 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/events/audio_player.dart';
-import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_text_model.dart';
 import 'package:fluffychat/pangea/instructions/instructions_enum.dart';
 import 'package:fluffychat/pangea/instructions/instructions_show_popup.dart';
@@ -21,14 +20,13 @@ import 'package:fluffychat/pangea/learning_settings/constants/language_constants
 import 'package:fluffychat/pangea/toolbar/controllers/text_to_speech_controller.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
-class TtsController {
-  static void initialize() {
-    setAvailableLanguages();
-  }
+import 'package:fluffychat/pangea/common/utils/error_handler.dart'
+    as error_handler;
 
+class TtsController {
   static List<String> _availableLangCodes = [];
 
-  static final flutter_tts.FlutterTts _tts = flutter_tts.FlutterTts();
+  static final _tts = flutter_tts.FlutterTts();
   static final StreamController<bool> loadingChoreoStream =
       StreamController<bool>.broadcast();
 
@@ -36,7 +34,7 @@ class TtsController {
 
   static Future<void> _onError(dynamic message) async {
     if (message != 'canceled' && message != 'interrupted') {
-      ErrorHandler.logError(
+      error_handler.ErrorHandler.logError(
         e: 'TTS error',
         data: {
           'message': message,
@@ -51,7 +49,7 @@ class TtsController {
       await _setAvailableBaseLanguages();
     } catch (e, s) {
       debugger(when: kDebugMode);
-      ErrorHandler.logError(
+      error_handler.ErrorHandler.logError(
         e: e,
         s: s,
         data: {},
@@ -106,7 +104,7 @@ class TtsController {
       audioPlayer?.stop();
 
       if (result != 1) {
-        ErrorHandler.logError(
+        error_handler.ErrorHandler.logError(
           m: 'Unexpected result from tts.stop',
           data: {
             'result': result,
@@ -115,7 +113,7 @@ class TtsController {
       }
     } catch (e, s) {
       debugger(when: kDebugMode);
-      ErrorHandler.logError(
+      error_handler.ErrorHandler.logError(
         e: e,
         s: s,
         data: {},
@@ -137,6 +135,10 @@ class TtsController {
   }) async {
     final prevOnStop = _onStop;
     _onStop = onStop;
+
+    if (_availableLangCodes.isEmpty) {
+      await setAvailableLanguages();
+    }
 
     _tts.setErrorHandler((message) {
       _onError(message);
@@ -240,7 +242,7 @@ class TtsController {
       // }
     } catch (e, s) {
       debugger(when: kDebugMode);
-      ErrorHandler.logError(
+      error_handler.ErrorHandler.logError(
         e: e,
         s: s,
         data: {
@@ -275,7 +277,7 @@ class TtsController {
         ),
       );
     } catch (e, s) {
-      ErrorHandler.logError(
+      error_handler.ErrorHandler.logError(
         e: e,
         s: s,
         data: {
@@ -301,7 +303,7 @@ class TtsController {
       );
       await audioPlayer!.play();
     } catch (e, s) {
-      ErrorHandler.logError(
+      error_handler.ErrorHandler.logError(
         e: 'Error playing audio',
         s: s,
         data: {

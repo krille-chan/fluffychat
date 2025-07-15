@@ -22,6 +22,7 @@ import 'package:fluffychat/pangea/spaces/controllers/space_controller.dart';
 import 'package:fluffychat/pangea/subscription/controllers/subscription_controller.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/speech_to_text_controller.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/text_to_speech_controller.dart';
+import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
 import 'package:fluffychat/pangea/user/controllers/permissions_controller.dart';
 import 'package:fluffychat/pangea/user/controllers/user_controller.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -76,6 +77,8 @@ class PangeaController {
     getAnalytics.initialize();
     subscriptionController.initialize();
     setPangeaPushRules();
+
+    TtsController.setAvailableLanguages();
   }
 
   /// Initialize controllers
