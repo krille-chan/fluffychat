@@ -177,4 +177,6 @@ class ModelKey {
   static const String activityRequestCount = "count";
   static const String activityRequestNumberOfParticipants =
       "number_of_participants";
+
+  static const String autoIGC = "auto_igc";
 }

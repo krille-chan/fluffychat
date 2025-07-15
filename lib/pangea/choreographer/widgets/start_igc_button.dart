@@ -3,6 +3,8 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
+import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/choreographer/enums/assistance_state_enum.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/igc/paywall_card.dart';
 import 'package:fluffychat/pangea/common/utils/overlay.dart';
@@ -68,8 +70,12 @@ class StartIGCButtonState extends State<StartIGCButton>
   }
 
   bool get _enableFeedback {
-    return assistanceState != AssistanceState.fetching &&
-        assistanceState != AssistanceState.complete;
+    return ![
+      AssistanceState.fetching,
+      AssistanceState.fetched,
+      AssistanceState.complete,
+      AssistanceState.noMessage,
+    ].contains(assistanceState);
   }
 
   Future<void> _onTap() async {
@@ -106,52 +112,79 @@ class StartIGCButtonState extends State<StartIGCButton>
     }
   }
 
+  Color get _backgroundColor {
+    switch (assistanceState) {
+      case AssistanceState.noSub:
+      case AssistanceState.noMessage:
+      case AssistanceState.fetched:
+      case AssistanceState.complete:
+        return Theme.of(context).colorScheme.surfaceContainerHighest;
+      case AssistanceState.notFetched:
+      case AssistanceState.fetching:
+        return Theme.of(context).colorScheme.primaryContainer;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      child: InkWell(
-        enableFeedback: _enableFeedback,
-        onTap: _enableFeedback ? _onTap : null,
-        customBorder: const CircleBorder(),
-        onLongPress: _enableFeedback
-            ? () => showDialog(
-                  context: context,
-                  builder: (c) => const SettingsLearning(),
-                  barrierDismissible: false,
-                )
-            : null,
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            _controller != null
-                ? RotationTransition(
-                    turns: Tween(begin: 0.0, end: math.pi * 2)
-                        .animate(_controller!),
-                    child: Icon(
-                      size: 36,
-                      Icons.autorenew_rounded,
-                      color: assistanceState.stateColor(context),
-                    ),
+    final icon = Icon(
+      size: 36,
+      Icons.autorenew_rounded,
+      color: assistanceState.stateColor(context),
+    );
+
+    return Tooltip(
+      message: _enableFeedback ? L10n.of(context).check : "",
+      child: Material(
+        elevation: _enableFeedback ? 4.0 : 0.0,
+        borderRadius: BorderRadius.circular(99.0),
+        shadowColor: Theme.of(context).colorScheme.surface.withAlpha(128),
+        child: InkWell(
+          enableFeedback: _enableFeedback,
+          onTap: _enableFeedback ? _onTap : null,
+          customBorder: const CircleBorder(),
+          onLongPress: _enableFeedback
+              ? () => showDialog(
+                    context: context,
+                    builder: (c) => const SettingsLearning(),
+                    barrierDismissible: false,
                   )
-                : Icon(
-                    size: 36,
-                    Icons.autorenew_rounded,
-                    color: assistanceState.stateColor(context),
-                  ),
-            Container(
-              width: 20,
-              height: 20,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Theme.of(context).colorScheme.surfaceContainerHighest,
+              : null,
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              AnimatedContainer(
+                height: 40.0,
+                width: 40.0,
+                duration: FluffyThemes.animationDuration,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: _backgroundColor,
+                ),
               ),
-            ),
-            Icon(
-              size: 16,
-              Icons.check,
-              color: assistanceState.stateColor(context),
-            ),
-          ],
+              _controller != null
+                  ? RotationTransition(
+                      turns: Tween(begin: 0.0, end: math.pi * 2)
+                          .animate(_controller!),
+                      child: icon,
+                    )
+                  : icon,
+              AnimatedContainer(
+                width: 20,
+                height: 20,
+                duration: FluffyThemes.animationDuration,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: _backgroundColor,
+                ),
+              ),
+              Icon(
+                size: 16,
+                Icons.check,
+                color: assistanceState.stateColor(context),
+              ),
+            ],
+          ),
         ),
       ),
     );

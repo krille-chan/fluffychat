@@ -174,7 +174,7 @@ class UserToolSettings {
     this.interactiveGrammar = true,
     this.immersionMode = false,
     this.definitions = true,
-    this.autoIGC = true,
+    this.autoIGC = false,
     this.enableTTS = true,
     this.enableAutocorrect = false,
   });
@@ -187,7 +187,7 @@ class UserToolSettings {
             json[ToolSetting.interactiveGrammar.toString()] ?? true,
         immersionMode: false,
         definitions: json[ToolSetting.definitions.toString()] ?? true,
-        autoIGC: json[ToolSetting.autoIGC.toString()] ?? true,
+        autoIGC: json[ModelKey.autoIGC] ?? false,
         enableTTS: json[ToolSetting.enableTTS.toString()] ?? true,
         enableAutocorrect: json["enableAutocorrect"] ?? false,
       );
@@ -198,7 +198,7 @@ class UserToolSettings {
     data[ToolSetting.interactiveGrammar.toString()] = interactiveGrammar;
     data[ToolSetting.immersionMode.toString()] = immersionMode;
     data[ToolSetting.definitions.toString()] = definitions;
-    data[ToolSetting.autoIGC.toString()] = autoIGC;
+    data[ModelKey.autoIGC] = autoIGC;
     data[ToolSetting.enableTTS.toString()] = enableTTS;
     data["enableAutocorrect"] = enableAutocorrect;
     return data;

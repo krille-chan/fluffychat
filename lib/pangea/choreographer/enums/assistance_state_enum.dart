@@ -20,6 +20,7 @@ extension AssistanceStateExtension on AssistanceState {
     switch (this) {
       case AssistanceState.noSub:
       case AssistanceState.noMessage:
+        return Theme.of(context).disabledColor;
       case AssistanceState.notFetched:
       case AssistanceState.fetching:
         return Theme.of(context).colorScheme.primary;
