@@ -58,7 +58,7 @@ class PangeaController {
   int? randomint;
   PangeaController({required this.matrix, required this.matrixState}) {
     _setup();
-    _subscribeToStreams();
+    _setLanguageStream();
     randomint = Random().nextInt(2000);
   }
 
@@ -157,7 +157,7 @@ class PangeaController {
   }
 
   /// check user information if not found then redirect to Date of birth page
-  _handleLoginStateChange(LoginState state, String? userID) {
+  void handleLoginStateChange(LoginState state, String? userID) {
     switch (state) {
       case LoginState.loggedOut:
       case LoginState.softLoggedOut:
@@ -173,6 +173,9 @@ class PangeaController {
         putAnalytics.initialize();
         getAnalytics.initialize();
         _setLanguageStream();
+
+        userController.reinitialize();
+        subscriptionController.reinitialize();
         break;
     }
     if (state != LoginState.loggedIn) {
@@ -194,13 +197,6 @@ class PangeaController {
     getAnalytics.dispose();
     putAnalytics.initialize();
     await getAnalytics.initialize();
-  }
-
-  void _subscribeToStreams() {
-    final userID = matrixState.client.userID;
-    matrixState.client.onLoginStateChanged.stream
-        .listen((state) => _handleLoginStateChange(state, userID));
-    _setLanguageStream();
   }
 
   void _setLanguageStream() {

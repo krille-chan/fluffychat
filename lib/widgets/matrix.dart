@@ -178,6 +178,12 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
               .where((l) => l == LoginState.loggedIn)
               .first
               .then((_) {
+            // #Pangea
+            MatrixState.pangeaController.handleLoginStateChange(
+              LoginState.loggedIn,
+              _loginClientCandidate!.userID,
+            );
+            // Pangea#
             if (!widget.clients.contains(_loginClientCandidate)) {
               widget.clients.add(_loginClientCandidate!);
             }
@@ -312,6 +318,12 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     });
     onLoginStateChanged[name] ??=
         c.onLoginStateChanged.stream.listen((state) async {
+      // #Pangea
+      MatrixState.pangeaController.handleLoginStateChange(
+        state,
+        c.userID,
+      );
+      // Pangea#
       final loggedInWithMultipleClients = widget.clients.length > 1;
       if (state == LoginState.loggedOut) {
         _cancelSubs(c.clientName);
@@ -335,27 +347,8 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
           FluffyChatApp.router.go('/rooms');
         }
       } else {
-        // #Pangea
-        if (state == LoginState.loggedIn) {
-          final futures = [
-            pangeaController.userController.reinitialize(),
-            pangeaController.subscriptionController.reinitialize(),
-          ];
-          await Future.wait(futures);
-        }
-        String routeDestination;
-        if (state == LoginState.loggedIn) {
-          routeDestination =
-              await pangeaController.userController.isUserDataAvailableAndL2Set
-                  ? '/rooms'
-                  : "/user_age";
-        } else {
-          routeDestination = '/home';
-        }
-        FluffyChatApp.router.go(routeDestination);
-        // FluffyChatApp.router
-        //     .go(state == LoginState.loggedIn ? '/rooms' : '/home');
-        // Pangea#
+        FluffyChatApp.router
+            .go(state == LoginState.loggedIn ? '/rooms' : '/home');
       }
     });
     onUiaRequest[name] ??= c.onUiaRequest.stream.listen(uiaRequestHandler);
