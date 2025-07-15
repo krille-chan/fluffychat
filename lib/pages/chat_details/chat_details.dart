@@ -15,11 +15,10 @@ import 'package:fluffychat/pangea/chat_settings/models/bot_options_model.dart';
 import 'package:fluffychat/pangea/chat_settings/pages/pangea_chat_details.dart';
 import 'package:fluffychat/pangea/chat_settings/utils/download_chat.dart';
 import 'package:fluffychat/pangea/chat_settings/utils/download_file.dart';
-import 'package:fluffychat/pangea/common/constants/model_keys.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
+import 'package:fluffychat/pangea/extensions/join_rule_extension.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
-import 'package:fluffychat/pangea/spaces/utils/space_code.dart';
 import 'package:fluffychat/utils/file_selector.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -339,7 +338,6 @@ class ChatDetailsController extends State<ChatDetails> {
       future: () async {
         final activeSpace = client.getRoomById(roomId!)!;
         await activeSpace.postLoad();
-        final accessCode = await SpaceCodeUtil.generateSpaceCode(client);
 
         final resp = await client.createRoom(
           name: names,
@@ -347,18 +345,14 @@ class ChatDetailsController extends State<ChatDetails> {
           creationContent: {'type': 'm.space'},
           initialState: [
             RoomDefaults.defaultSpacePowerLevels(client.userID!),
-            StateEvent(
-              type: EventTypes.RoomJoinRules,
-              content: {
-                'join_rule': 'knock_restricted',
-                'allow': [
-                  {
-                    "type": "m.room_membership",
-                    "room_id": roomId!,
-                  }
-                ],
-                ModelKey.accessCode: accessCode,
-              },
+            await client.pangeaJoinRules(
+              'knock_restricted',
+              allow: [
+                {
+                  "type": "m.room_membership",
+                  "room_id": roomId!,
+                }
+              ],
             ),
           ],
         );

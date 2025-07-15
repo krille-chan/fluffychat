@@ -9,6 +9,9 @@ import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/bot/utils/bot_name.dart';
 import 'package:fluffychat/pangea/chat_settings/pages/pangea_invitation_selection_view.dart';
 import 'package:fluffychat/pangea/common/config/environment.dart';
+import 'package:fluffychat/pangea/common/utils/error_handler.dart';
+import 'package:fluffychat/pangea/extensions/join_rule_extension.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -131,6 +134,8 @@ class PangeaInvitationSelectionController
     controller.addListener(() {
       setState(() {});
     });
+
+    _addJoinCode();
   }
 
   String filterLabel(InvitationFilter filter) {
@@ -319,6 +324,22 @@ class PangeaInvitationSelectionController
       const Duration(milliseconds: 500),
       () => searchUser(context, text),
     );
+  }
+
+  Future<void> _addJoinCode() async {
+    if (_room == null || _room!.classCode != null) return;
+    if (!_room!.canChangeStateEvent(EventTypes.RoomJoinRules)) return;
+
+    try {
+      await _room!.addJoinCode();
+      if (mounted) setState(() {});
+    } catch (e, s) {
+      ErrorHandler.logError(
+        e: e,
+        s: s,
+        data: {'roomId': _room!.id},
+      );
+    }
   }
 
   Future<void> searchUser(BuildContext context, String text) async {

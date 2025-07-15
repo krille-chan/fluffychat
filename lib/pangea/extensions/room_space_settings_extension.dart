@@ -2,7 +2,6 @@ part of "pangea_room_extension.dart";
 
 extension SpaceRoomExtension on Room {
   String? get classCode {
-    if (!isSpace) return null;
     final roomJoinRules = getState(EventTypes.RoomJoinRules, "");
     if (roomJoinRules != null) {
       final accessCode = roomJoinRules.content.tryGet(ModelKey.accessCode);

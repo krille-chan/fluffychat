@@ -5,7 +5,7 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/chat_settings/pages/pangea_chat_access_settings.dart';
-import 'package:fluffychat/pangea/spaces/utils/client_spaces_extension.dart';
+import 'package:fluffychat/pangea/extensions/join_rule_extension.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_modal_action_popup.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
@@ -70,8 +70,7 @@ class ChatAccessSettingsController extends State<ChatAccessSettings> {
     try {
       // #Pangea
       // await room.setJoinRules(newJoinRules);
-      await room.client.pangeaSetJoinRules(
-        room.id,
+      await room.pangeaSetJoinRules(
         newJoinRules.toString().replaceAll('JoinRules.', ''),
       );
       // Pangea#

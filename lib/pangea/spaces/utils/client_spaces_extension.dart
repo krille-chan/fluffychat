@@ -5,11 +5,10 @@ import 'package:http/http.dart' as http;
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pangea/chat/constants/default_power_level.dart';
-import 'package:fluffychat/pangea/common/constants/model_keys.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
+import 'package:fluffychat/pangea/extensions/join_rule_extension.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/spaces/constants/space_constants.dart';
-import 'package:fluffychat/pangea/spaces/utils/space_code.dart';
 
 extension SpacesClientExtension on Client {
   Future<String> createPangeaSpace({
@@ -21,17 +20,15 @@ extension SpacesClientExtension on Client {
     Uint8List? avatar,
     Uri? avatarUrl,
   }) async {
-    final joinCode = await SpaceCodeUtil.generateSpaceCode(this);
     final roomId = await createRoom(
       creationContent: {'type': RoomCreationTypes.mSpace},
       visibility: visibility,
       name: name.trim(),
       powerLevelContentOverride: {'events_default': 100},
       initialState: [
-        ..._spaceInitialState(
-          userID!,
-          joinCode,
-          joinRules: joinRules,
+        RoomDefaults.defaultSpacePowerLevels(userID!),
+        await pangeaJoinRules(
+          joinRules.toString().replaceAll('JoinRules.', ''),
         ),
         if (avatar != null)
           StateEvent(
@@ -123,17 +120,14 @@ extension SpacesClientExtension on Client {
             content: {'url': introChatUploadURL.toString()},
           ),
         RoomDefaults.defaultPowerLevels(userID!),
-        StateEvent(
-          type: EventTypes.RoomJoinRules,
-          content: {
-            'join_rule': 'knock_restricted',
-            'allow': [
-              {
-                "type": "m.room_membership",
-                "room_id": space.id,
-              }
-            ],
-          },
+        await pangeaJoinRules(
+          'knock_restricted',
+          allow: [
+            {
+              "type": "m.room_membership",
+              "room_id": space.id,
+            }
+          ],
         ),
       ],
     );
@@ -151,17 +145,14 @@ extension SpacesClientExtension on Client {
             content: {'url': announcementsChatUploadURL.toString()},
           ),
         RoomDefaults.restrictedPowerLevels(userID!),
-        StateEvent(
-          type: EventTypes.RoomJoinRules,
-          content: {
-            'join_rule': 'knock_restricted',
-            'allow': [
-              {
-                "type": "m.room_membership",
-                "room_id": space.id,
-              }
-            ],
-          },
+        await pangeaJoinRules(
+          'knock_restricted',
+          allow: [
+            {
+              "type": "m.room_membership",
+              "room_id": space.id,
+            }
+          ],
         ),
       ],
     );
@@ -194,87 +185,5 @@ extension SpacesClientExtension on Client {
       addIntroChatFuture,
       addAnnouncementsChatFuture,
     ]);
-  }
-
-  List<StateEvent> _spaceInitialState(
-    String userID,
-    String joinCode, {
-    required JoinRules joinRules,
-  }) {
-    return [
-      RoomDefaults.defaultSpacePowerLevels(userID),
-      StateEvent(
-        type: EventTypes.RoomJoinRules,
-        content: {
-          ModelKey.joinRule: joinRules.toString().replaceAll('JoinRules.', ''),
-          ModelKey.accessCode: joinCode,
-        },
-      ),
-    ];
-  }
-
-  /// Keep the room's current join rule state event content (except for what's intentionally replaced)
-  /// since space's access codes were stored there. Don't want to accidentally remove them.
-  Future<void> pangeaSetJoinRules(
-    String roomId,
-    String joinRule, {
-    List<Map<String, dynamic>>? allow,
-  }) async {
-    final room = getRoomById(roomId);
-    if (room == null) {
-      throw Exception('Room not found for user ID: $userID');
-    }
-
-    final currentJoinRule = room
-            .getState(
-              EventTypes.RoomJoinRules,
-            )
-            ?.content ??
-        {};
-
-    if (currentJoinRule[ModelKey.joinRule] == joinRule &&
-        (currentJoinRule['allow'] == allow)) {
-      return; // No change needed
-    }
-
-    currentJoinRule[ModelKey.joinRule] = joinRule;
-    currentJoinRule['allow'] = allow;
-
-    await setRoomStateWithKey(
-      roomId,
-      EventTypes.RoomJoinRules,
-      '',
-      currentJoinRule,
-    );
-  }
-
-  Future<void> setSpaceChildAccess(String roomId) async {
-    await pangeaSetJoinRules(
-      roomId,
-      'knock_restricted',
-      allow: [
-        {
-          "type": "m.room_membership",
-          "room_id": id,
-        }
-      ],
-    );
-
-    await setRoomVisibilityOnDirectory(
-      roomId,
-      visibility: Visibility.private,
-    );
-  }
-
-  Future<void> resetSpaceChildAccess(String roomId) async {
-    await pangeaSetJoinRules(
-      roomId,
-      JoinRules.knock.toString().replaceAll('JoinRules.', ''),
-    );
-
-    await setRoomVisibilityOnDirectory(
-      roomId,
-      visibility: Visibility.private,
-    );
   }
 }

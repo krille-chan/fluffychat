@@ -23,8 +23,8 @@ import 'package:fluffychat/pangea/chat_settings/utils/delete_room.dart';
 import 'package:fluffychat/pangea/chat_settings/widgets/delete_space_dialog.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/common/utils/firebase_analytics.dart';
+import 'package:fluffychat/pangea/extensions/join_rule_extension.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
-import 'package:fluffychat/pangea/spaces/utils/client_spaces_extension.dart';
 import 'package:fluffychat/pangea/subscription/widgets/subscription_snackbar.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
@@ -1057,7 +1057,7 @@ class ChatListController extends State<ChatList>
         );
         // #Pangea
         try {
-          await space.client.setSpaceChildAccess(room.id);
+          await space.setSpaceChildAccess();
         } catch (e) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
@@ -1077,7 +1077,7 @@ class ChatListController extends State<ChatList>
           },
         );
         try {
-          await room.client.resetSpaceChildAccess(room.id);
+          await room.resetSpaceChildAccess();
         } catch (e) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(

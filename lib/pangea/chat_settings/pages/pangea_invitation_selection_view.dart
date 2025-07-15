@@ -262,7 +262,7 @@ class PangeaInvitationSelectionView extends StatelessWidget {
               Row(
                 spacing: 12.0,
                 children: [
-                  if (room.isSpace && room.classCode != null)
+                  if (room.classCode != null)
                     Expanded(
                       child: PopupMenuButton<int>(
                         borderRadius: BorderRadius.circular(32.0),
@@ -342,7 +342,7 @@ class PangeaInvitationSelectionView extends StatelessWidget {
                         ],
                       ),
                     ),
-                  room.isSpace && room.classCode != null
+                  room.classCode != null
                       ? doneButton
                       : Expanded(child: doneButton),
                 ],
