@@ -157,6 +157,7 @@ class ActivityGeneratorView extends StatelessWidget {
                     SuggestionFormField(
                       suggestions: controller.topicItems,
                       validator: controller.validateNotNull,
+                      maxLength: 50,
                       label: l10n.topicLabel,
                       placeholder: l10n.topicPlaceholder,
                       controller: controller.topicController,
@@ -165,6 +166,7 @@ class ActivityGeneratorView extends StatelessWidget {
                     SuggestionFormField(
                       suggestions: controller.objectiveItems,
                       validator: controller.validateNotNull,
+                      maxLength: 140,
                       label: l10n.learningObjectiveLabel,
                       placeholder: l10n.learningObjectivePlaceholder,
                       controller: controller.objectiveController,
@@ -173,6 +175,7 @@ class ActivityGeneratorView extends StatelessWidget {
                     SuggestionFormField(
                       suggestions: controller.modeItems,
                       validator: controller.validateNotNull,
+                      maxLength: 50,
                       label: l10n.modeLabel,
                       placeholder: l10n.modePlaceholder,
                       controller: controller.modeController,

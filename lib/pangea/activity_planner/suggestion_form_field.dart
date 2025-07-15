@@ -5,6 +5,7 @@ import 'package:fluffychat/pangea/activity_planner/list_request_schema.dart';
 class SuggestionFormField extends StatelessWidget {
   final Future<List<ActivitySettingResponseSchema>> suggestions;
   final String? Function(String?)? validator;
+  final int? maxLength;
   final String label;
   final String placeholder;
   final TextEditingController controller;
@@ -14,6 +15,7 @@ class SuggestionFormField extends StatelessWidget {
     required this.suggestions,
     required this.placeholder,
     this.validator,
+    this.maxLength,
     required this.label,
     required this.controller,
   });
@@ -49,6 +51,7 @@ class SuggestionFormField extends StatelessWidget {
             hintText: placeholder,
           ),
           validator: validator,
+          maxLength: maxLength,
           onTapOutside: (_) => FocusManager.instance.primaryFocus?.unfocus(),
         );
       },
