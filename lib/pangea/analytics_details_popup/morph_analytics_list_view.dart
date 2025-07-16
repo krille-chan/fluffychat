@@ -222,14 +222,13 @@ class MorphTagChip extends StatelessWidget {
                 width: 28.0,
                 height: 28.0,
                 child: unlocked
-                    ? IconButton.filled(
-                        style: IconButton.styleFrom(
-                          backgroundColor:
-                              theme.colorScheme.surface.withAlpha(180),
+                    ? Container(
+                        decoration: BoxDecoration(
+                          color: theme.colorScheme.surface.withAlpha(180),
+                          borderRadius: BorderRadius.circular(20),
                         ),
                         padding: const EdgeInsets.all(4),
-                        onPressed: () => {},
-                        icon: MorphIcon(
+                        child: MorphIcon(
                           morphFeature: feature,
                           morphTag: morphTag,
                         ),
