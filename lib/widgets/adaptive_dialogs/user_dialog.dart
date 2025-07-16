@@ -169,25 +169,25 @@ class UserDialog extends StatelessWidget {
       ),
       actions: [
         if (client.userID != profile.userId) ...[
-          AdaptiveDialogAction(
-            bigButtons: true,
-            onPressed: () async {
-              final router = GoRouter.of(context);
-              Navigator.of(context).pop();
-              final roomIdResult = await showFutureLoadingDialog(
-                context: context,
-                future: () => client.startDirectChat(profile.userId),
-              );
-              final roomId = roomIdResult.result;
-              if (roomId == null) return;
-              router.go('/rooms/$roomId');
-            },
-            child: Text(
-              dmRoomId == null
-                  ? L10n.of(context).startConversation
-                  : L10n.of(context).sendAMessage,
-            ),
-          ),
+          // AdaptiveDialogAction(
+          //   bigButtons: true,
+          //   onPressed: () async {
+          //     final router = GoRouter.of(context);
+          //     Navigator.of(context).pop();
+          //     final roomIdResult = await showFutureLoadingDialog(
+          //       context: context,
+          //       future: () => client.startDirectChat(profile.userId),
+          //     );
+          //     final roomId = roomIdResult.result;
+          //     if (roomId == null) return;
+          //     router.go('/rooms/$roomId');
+          //   },
+          //   child: Text(
+          //     dmRoomId == null
+          //         ? L10n.of(context).startConversation
+          //         : L10n.of(context).sendAMessage,
+          //   ),
+          // ),
           AdaptiveDialogAction(
             bigButtons: true,
             onPressed: () {
