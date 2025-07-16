@@ -63,10 +63,17 @@ abstract class AppRoutes {
   static final List<RouteBase> routes = [
     GoRoute(
       path: '/',
-      redirect: (context, state) =>
-          Matrix.of(context).widget.clients.any((client) => client.isLogged())
-              ? '/rooms'
-              : '/homeserver',
+      redirect: (context, state) {
+        final isLogged = Matrix.of(context)
+            .widget
+            .clients
+            .any((client) => client.isLogged());
+        final path = state.fullPath;
+
+        if (path == '/login' || path == '/register') return null;
+
+        return isLogged ? '/rooms' : '/homeserver';
+      },
     ),
     GoRoute(
       path: '/homeserver',
@@ -80,12 +87,10 @@ abstract class AppRoutes {
       path: '/login',
       builder: (context, state) {
         final extra = state.extra;
-
         if (extra == null || extra is! Client) {
           WidgetsBinding.instance.addPostFrameCallback((_) {
-            context.go('/');
+            context.go('/homeserver?from=login');
           });
-
           return const SizedBox.shrink();
         }
 
@@ -97,12 +102,10 @@ abstract class AppRoutes {
       path: '/register',
       builder: (context, state) {
         final extra = state.extra;
-
         if (extra == null || extra is! Client) {
           WidgetsBinding.instance.addPostFrameCallback((_) {
-            context.go('/');
+            context.go('/homeserver?from=register');
           });
-
           return const SizedBox.shrink();
         }
 
