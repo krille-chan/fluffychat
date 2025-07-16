@@ -19,6 +19,7 @@ import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
 import 'package:fluffychat/pangea/constructs/construct_repo.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
+import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_selection_repo.dart';
@@ -486,11 +487,11 @@ class GetAnalyticsController extends BaseController {
 
     // compute construct use of current level
     final List<OneConstructUse> constructUseOfCurrentLevel = [];
-    int score = 0;
+    int score = constructListModel.totalXP;
     for (final use in constructListModel.uses) {
       constructUseOfCurrentLevel.add(use);
-      score += use.xp;
-      if (score >= diffXP) break;
+      score -= use.xp;
+      if (score <= minXP) break;
     }
 
     // extract construct use message bodies for analytics
@@ -502,19 +503,40 @@ class GetAnalyticsController extends BaseController {
       useEventIds[use.metadata.roomId!]!.add(use.metadata.eventId!);
     }
 
-    final List<String?> constructUseMessageContentBodies = [];
+    final List<Map<String, dynamic>> messages = [];
     for (final entry in useEventIds.entries) {
       final String roomId = entry.key;
       final room = _client.getRoomById(roomId);
       if (room == null) continue;
-      final List<String?> messageBodies = [];
+
+      final timeline = await room.getTimeline();
       for (final eventId in entry.value) {
         try {
           final Event? event = await room.getEventById(eventId);
-          if (event?.content["body"] is! String) continue;
-          final String body = event?.content["body"] as String;
-          if (body.isEmpty) continue;
-          messageBodies.add(body);
+          if (event == null) continue;
+          final pangeaMessageEvent = PangeaMessageEvent(
+            event: event,
+            timeline: timeline,
+            ownMessage: room.client.userID == event.senderId,
+          );
+
+          final String? originalSent = pangeaMessageEvent.originalSent?.text;
+          String? originalWritten = originalSent;
+          if (pangeaMessageEvent.originalWritten != null &&
+              !pangeaMessageEvent.originalWritten!.content.originalSent) {
+            originalWritten = pangeaMessageEvent.originalWritten!.text;
+          } else if (pangeaMessageEvent.originalSent?.choreo != null &&
+              pangeaMessageEvent.originalSent!.choreo!.choreoSteps.isNotEmpty) {
+            final steps = pangeaMessageEvent.originalSent!.choreo!.choreoSteps;
+            originalWritten = steps.first.text;
+          }
+
+          final Map<String, String?> entry = {
+            "sent": originalSent,
+            "written": originalWritten,
+          };
+
+          messages.add(entry);
         } catch (e, s) {
           debugPrint("Error getting event by ID: $e");
           ErrorHandler.logError(
@@ -528,13 +550,13 @@ class GetAnalyticsController extends BaseController {
           continue;
         }
       }
-      constructUseMessageContentBodies.addAll(messageBodies);
     }
 
     final request = ConstructSummaryRequest(
       constructs: constructUseOfCurrentLevel,
-      constructUseMessageContentBodies: constructUseMessageContentBodies,
-      language: _l1!.langCodeShort,
+      messages: messages,
+      userL1: _l1!.langCodeShort,
+      userL2: _l2!.langCodeShort,
       upperLevel: upperLevel,
       lowerLevel: lowerLevel,
     );

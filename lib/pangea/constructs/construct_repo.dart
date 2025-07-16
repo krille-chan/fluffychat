@@ -66,15 +66,17 @@ class ConstructSummary {
 
 class ConstructSummaryRequest {
   final List<OneConstructUse> constructs;
-  final List<String?>? constructUseMessageContentBodies;
-  final String language;
+  final List<Map<String, dynamic>> messages;
+  final String userL1;
+  final String userL2;
   final int upperLevel;
   final int lowerLevel;
 
   ConstructSummaryRequest({
     required this.constructs,
-    this.constructUseMessageContentBodies,
-    required this.language,
+    required this.messages,
+    required this.userL1,
+    required this.userL2,
     required this.upperLevel,
     required this.lowerLevel,
   });
@@ -82,24 +84,13 @@ class ConstructSummaryRequest {
   Map<String, dynamic> toJson() {
     return {
       'constructs': constructs.map((construct) => construct.toJson()).toList(),
-      'construct_use_message_content_bodies': constructUseMessageContentBodies,
-      'language': language,
+      'msgs': messages,
+      'user_l1': userL1,
+      'user_l2': userL2,
+      'language': userL1,
       'upper_level': upperLevel,
       'lower_level': lowerLevel,
     };
-  }
-
-  factory ConstructSummaryRequest.fromJson(Map<String, dynamic> json) {
-    return ConstructSummaryRequest(
-      constructs: (json['constructs'] as List)
-          .map((construct) => OneConstructUse.fromJson(construct))
-          .toList(),
-      constructUseMessageContentBodies:
-          List<String>.from(json['construct_use_message_content_bodies']),
-      language: json['language'],
-      upperLevel: json['upper_level'],
-      lowerLevel: json['lower_level'],
-    );
   }
 }
 
