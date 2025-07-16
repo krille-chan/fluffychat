@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:material_symbols_icons/symbols.dart';
@@ -12,6 +13,10 @@ class DownloadAnalyticsButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (!kIsWeb) {
+      return const SizedBox.shrink();
+    }
+
     return IconButton(
       tooltip: L10n.of(context).download,
       icon: const Icon(Symbols.download),
