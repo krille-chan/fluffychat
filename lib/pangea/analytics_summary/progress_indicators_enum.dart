@@ -14,7 +14,7 @@ enum ProgressIndicatorEnum {
     switch (value) {
       case 'vocab':
         return ProgressIndicatorEnum.wordsUsed;
-      case 'morphs':
+      case 'morph':
         return ProgressIndicatorEnum.morphsUsed;
       case 'level':
         return ProgressIndicatorEnum.level;
