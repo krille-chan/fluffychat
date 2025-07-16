@@ -6,7 +6,6 @@ import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/constructs_model.dart';
 import 'package:fluffychat/pangea/analytics_misc/get_analytics_controller.dart';
-import 'package:fluffychat/pangea/analytics_summary/learning_progress_bar.dart';
 import 'package:fluffychat/pangea/morphs/get_grammar_copy.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
@@ -42,14 +41,12 @@ class LevelDialogContent extends StatelessWidget {
                   color: AppConfig.gold,
                 ),
               ),
-              Opacity(
-                opacity: 0.25,
-                child: Text(
-                  L10n.of(context).levelShort(level + 1),
-                  style: const TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w900,
-                  ),
+              Text(
+                L10n.of(context).xpIntoLevel(totalXP, maxLevelXP),
+                style: const TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.w900,
+                  color: AppConfig.gold,
                 ),
               ),
             ],
@@ -58,34 +55,6 @@ class LevelDialogContent extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                LearningProgressBar(
-                  height: 24,
-                  level: level,
-                  totalXP: totalXP,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 10,
-                    vertical: 6,
-                  ),
-                  child: Text(
-                    L10n.of(context).xpIntoLevel(totalXP, maxLevelXP),
-                    style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w900,
-                      color: AppConfig.gold,
-                    ),
-                  ),
-                ),
-                const Divider(),
-              ],
-            ),
-          ),
           Expanded(
             child: ListView.builder(
               itemCount: uses.length,
