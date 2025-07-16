@@ -279,9 +279,11 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
     _selectedSpan = selectedSpan;
     if (mounted) setState(() {});
-    if (selectedToken != null && isNewToken(selectedToken!)) {
-      _onSelectNewToken(selectedToken!);
-    }
+
+    //Commented out so onSelectNewTokens can be manually called after animation is finished
+    // if (selectedToken != null && isNewToken(selectedToken!)) {
+    //   _onSelectNewToken(selectedToken!);
+    // }
   }
 
   void _showReadingAssistanceContent() {
@@ -556,43 +558,41 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     updateSelectedSpan(token.text);
   }
 
-  void _onSelectNewToken(PangeaToken token) {
+  void onSelectNewToken(PangeaToken token) {
     if (!isNewToken(token)) return;
-    Future.delayed(const Duration(milliseconds: 1700), () {
-      MatrixState.pangeaController.putAnalytics.setState(
-        AnalyticsStream(
-          eventId: event.eventId,
-          roomId: event.room.id,
-          constructs: [
-            OneConstructUse(
-              useType: ConstructUseTypeEnum.click,
-              lemma: token.lemma.text,
-              constructType: ConstructTypeEnum.vocab,
-              metadata: ConstructUseMetaData(
-                roomId: event.room.id,
-                timeStamp: DateTime.now(),
-                eventId: event.eventId,
-              ),
-              category: token.pos,
-              form: token.text.content,
-              xp: ConstructUseTypeEnum.click.pointValue,
+    MatrixState.pangeaController.putAnalytics.setState(
+      AnalyticsStream(
+        eventId: event.eventId,
+        roomId: event.room.id,
+        constructs: [
+          OneConstructUse(
+            useType: ConstructUseTypeEnum.click,
+            lemma: token.lemma.text,
+            constructType: ConstructTypeEnum.vocab,
+            metadata: ConstructUseMetaData(
+              roomId: event.room.id,
+              timeStamp: DateTime.now(),
+              eventId: event.eventId,
             ),
-          ],
-          targetID: token.text.uniqueKey,
-        ),
-      );
+            category: token.pos,
+            form: token.text.content,
+            xp: ConstructUseTypeEnum.click.pointValue,
+          ),
+        ],
+        targetID: token.text.uniqueKey,
+      ),
+    );
 
-      if (mounted) {
-        setState(() {
-          newTokens.removeWhere(
-            (t) =>
-                t.text.offset == token.text.offset &&
-                t.text.length == token.text.length &&
-                t.lemma.text.equals(token.lemma.text),
-          );
-        });
-      }
-    });
+    if (mounted) {
+      setState(() {
+        newTokens.removeWhere(
+          (t) =>
+              t.text.offset == token.text.offset &&
+              t.text.length == token.text.length &&
+              t.lemma.text.equals(token.lemma.text),
+        );
+      });
+    }
   }
 
   PracticeTarget? practiceTargetForToken(PangeaToken token) {

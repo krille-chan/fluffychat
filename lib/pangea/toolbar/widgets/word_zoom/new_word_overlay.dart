@@ -3,16 +3,24 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/pangea/common/utils/overlay.dart';
 import 'package:fluffychat/pangea/constructs/construct_level_enum.dart';
+import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
+import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 
 class NewWordOverlay extends StatefulWidget {
   final Color overlayColor;
-  final GlobalKey cardKey;
+  final MessageOverlayController overlayController;
+  final PangeaToken token;
+  final String transformTargetId;
 
   const NewWordOverlay({
     super.key,
     required this.overlayColor,
-    required this.cardKey,
+    required this.overlayController,
+    required this.token,
+    required this.transformTargetId,
   });
 
   @override
@@ -24,10 +32,9 @@ class _NewWordOverlayState extends State<NewWordOverlay>
   AnimationController? _controller;
   Animation<double>? _xpScaleAnim;
   Animation<double>? _fadeAnim;
-  Size cardSize = const Size(0, 0);
-  Offset cardPosition = const Offset(0, 0);
-  OverlayEntry? _overlayEntry;
+  Animation<double>? _moveAnim;
   bool columnMode = false;
+
   Widget? get svg => ConstructLevelEnum.seeds.icon();
 
   @override
@@ -35,20 +42,30 @@ class _NewWordOverlayState extends State<NewWordOverlay>
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 1700),
-    );
+      duration: const Duration(milliseconds: 1850),
+    )..addStatusListener((AnimationStatus status) {
+        if (status == AnimationStatus.completed) {
+          dispose();
+        }
+      });
+
     _xpScaleAnim = CurvedAnimation(
       parent: _controller!,
-      curve: const Interval(0.0, 0.6, curve: Curves.easeInOut),
+      curve: const Interval(0.0, 0.5, curve: Curves.easeInOut),
     );
+
     _fadeAnim = CurvedAnimation(
       parent: _controller!,
-      curve: const Interval(0.7, 1.0, curve: Curves.easeOut),
+      curve: const Interval(0.5, 1.0, curve: Curves.easeOut),
+    );
+
+    _moveAnim = CurvedAnimation(
+      parent: _controller!,
+      curve: const Interval(0.5, 1.0, curve: Curves.easeOut),
     );
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       columnMode = FluffyThemes.isColumnMode(context);
-      calculateSizeAndPosition();
       _showFlyingWidget();
       _controller?.forward();
     });
@@ -56,63 +73,55 @@ class _NewWordOverlayState extends State<NewWordOverlay>
 
   @override
   void dispose() {
-    _overlayEntry?.remove();
+    widget.overlayController.onSelectNewToken(widget.token);
     _controller?.dispose();
+    MatrixState.pAnyState.closeOverlay(widget.transformTargetId);
     super.dispose();
   }
 
-  void calculateSizeAndPosition() {
-    //find position of word card and overlaybox(chat view) to figure out where seed should start
-    final RenderBox? cardBox =
-        widget.cardKey.currentContext?.findRenderObject() as RenderBox?;
-    final RenderBox? overlayBox =
-        Overlay.of(context).context.findRenderObject() as RenderBox?;
-    if (cardBox != null && overlayBox != null) {
-      final cardGlobal = cardBox.localToGlobal(Offset.zero);
-      final overlayGlobal = overlayBox.localToGlobal(Offset.zero);
-      setState(() {
-        cardPosition = cardGlobal - overlayGlobal;
-        cardSize = cardBox.size;
-      });
-    }
-  }
-
   void _showFlyingWidget() {
-    _overlayEntry?.remove(); // Remove any existing overlay
-    if (_controller == null || _xpScaleAnim == null || _fadeAnim == null) {
+    if (_controller == null ||
+        _xpScaleAnim == null ||
+        _fadeAnim == null ||
+        _moveAnim == null) {
       return;
     }
-    _overlayEntry = OverlayEntry(
-      builder: (context) => AnimatedBuilder(
+
+    OverlayUtil.showOverlay(
+      context: context,
+      closePrevOverlay: false,
+      ignorePointer: true,
+      // onDismiss: () {
+      //   MatrixState.pAnyState.closeOverlay(widget.transformTargetId);
+      // },
+      offset: const Offset(0, 65),
+      targetAnchor: Alignment.center,
+      overlayKey: widget.transformTargetId,
+      transformTargetId: widget.transformTargetId,
+      child: AnimatedBuilder(
         animation: _controller!,
         builder: (context, child) {
           final scale = _xpScaleAnim!.value;
           final fade = 1.0 - (_fadeAnim!.value);
-          double t = 0.0;
-          if ((_controller!.value) >= 0.7) {
-            t = ((_controller!.value) - 0.7) / 0.3;
-            t = t.clamp(0.0, 1.0);
-          }
-          //move starting position as seed grows so it stays centered
-          final seedSize = 75 * scale * ((!columnMode) ? fade : 1);
-          final startX = cardPosition.dx + cardSize.width / 2 - seedSize;
-          final startY = cardPosition.dy + cardSize.height / 2 + 20 - seedSize;
-          //end is top left if column mode (going towards vocab stats) or top right of card otherwise
-          final endX = (columnMode) ? 0.0 : cardPosition.dx + cardSize.width;
-          final endY = (columnMode) ? 0.0 : cardPosition.dy + 30;
-          final currentX = startX * (1 - t) + endX * t;
-          final currentY = startY * (1 - t) + endY * t;
-          //Grows into frame, and then shrinks if going to top right so it matches card seed size
+          final move = _moveAnim!.value;
 
-          return Positioned(
-            left: currentX,
-            top: currentY,
+          final seedSize = 75 * scale * fade;
+
+          // Calculate movement to top left if fullscreen, or top right of word card if mobile
+          final screenSize = MediaQuery.of(context).size;
+          final moveX =
+              columnMode ? -move * (screenSize.width / 2 - 50) : move * 130;
+
+          final moveY =
+              columnMode ? -move * (screenSize.height / 2 - 50) : move * -120;
+
+          return Transform.translate(
+            offset: Offset(moveX, moveY),
             child: Opacity(
               opacity: fade,
               child: Transform.rotate(
                 angle: scale * 2 * pi,
                 child: SizedBox(
-                  //if going to card top right, shrinks as it moves to match word card seed size
                   width: seedSize,
                   height: seedSize,
                   child: svg ?? const SizedBox(),
@@ -123,36 +132,28 @@ class _NewWordOverlayState extends State<NewWordOverlay>
         },
       ),
     );
-    Overlay.of(context).insert(_overlayEntry!);
-    _controller?.addStatusListener((status) {
-      if (status == AnimationStatus.completed) {
-        _overlayEntry?.remove();
-        _overlayEntry = null;
-      }
-    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          height: cardSize.height,
-          width: cardSize.width,
-          color: Colors.transparent,
-        ),
-        Positioned(
+    return AnimatedBuilder(
+      animation: _controller!,
+      builder: (context, child) {
+        return Positioned(
           left: 5,
           right: 5,
           top: 50,
           bottom: 5,
-          child: Container(
-            height: cardSize.height,
-            width: cardSize.width,
-            color: widget.overlayColor,
+          child: Opacity(
+            opacity: 1 - _fadeAnim!.value,
+            child: Container(
+              height: double.infinity,
+              width: double.infinity,
+              color: widget.overlayColor,
+            ),
           ),
-        ),
-      ],
+        );
+      },
     );
   }
 }

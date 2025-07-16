@@ -117,6 +117,11 @@ class ReadingAssistanceContentState extends State<ReadingAssistanceContent> {
           );
         }
         return WordZoomWidget(
+          key: MatrixState.pAnyState
+              .layerLinkAndKey(
+                "word-zoom-card-${widget.overlayController.selectedToken!.text.uniqueKey}",
+              )
+              .key,
           token: widget.overlayController.selectedToken!,
           messageEvent: widget.overlayController.pangeaMessageEvent!,
           overlayController: widget.overlayController,
