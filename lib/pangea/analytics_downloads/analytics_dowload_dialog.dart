@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'package:csv/csv.dart';
 import 'package:excel/excel.dart';
+import 'package:intl/intl.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
@@ -81,19 +83,52 @@ class AnalyticsDownloadDialogState extends State<AnalyticsDownloadDialog> {
     }
 
     try {
-      final content = _getExcelFileContent({
-        ConstructTypeEnum.vocab: vocabSummary,
-        ConstructTypeEnum.morph: morphSummary,
-      });
+      if (_downloadType == DownloadType.csv) {
+        final vocabContent = _getCSVFileContent(
+          ConstructTypeEnum.vocab,
+          vocabSummary,
+        );
 
-      final fileName =
-          "analytics_${MatrixState.pangeaController.matrixState.client.userID?.localpart}_${DateTime.now().toIso8601String()}.${_downloadType == DownloadType.xlsx ? 'xlsx' : 'csv'}";
+        final morphContent = _getCSVFileContent(
+          ConstructTypeEnum.morph,
+          morphSummary,
+        );
 
-      await downloadFile(
-        content,
-        fileName,
-        _downloadType,
-      );
+        final vocabFileName =
+            "analytics_vocab_${MatrixState.pangeaController.matrixState.client.userID?.localpart}_${DateFormat('yyyy-MM-dd-hh:mm:ss').format(DateTime.now())}.csv";
+
+        final morphFileName =
+            "analytics_morph_${MatrixState.pangeaController.matrixState.client.userID?.localpart}_${DateFormat('yyyy-MM-dd-hh:mm:ss').format(DateTime.now())}.csv";
+
+        final futures = [
+          downloadFile(
+            vocabContent,
+            vocabFileName,
+            _downloadType,
+          ),
+          downloadFile(
+            morphContent,
+            morphFileName,
+            _downloadType,
+          ),
+        ];
+
+        await Future.wait(futures);
+      } else {
+        final content = _getExcelFileContent({
+          ConstructTypeEnum.vocab: vocabSummary,
+          ConstructTypeEnum.morph: morphSummary,
+        });
+
+        final fileName =
+            "analytics_${MatrixState.pangeaController.matrixState.client.userID?.localpart}_${DateFormat('yyyy-MM-dd-hh:mm:ss').format(DateTime.now())}.xlsx'}";
+
+        await downloadFile(
+          content,
+          fileName,
+          _downloadType,
+        );
+      }
       _downloaded = true;
     } catch (e, s) {
       ErrorHandler.logError(
@@ -310,6 +345,37 @@ class AnalyticsDownloadDialogState extends State<AnalyticsDownloadDialog> {
     excel.setDefaultSheet(ConstructTypeEnum.vocab.sheetname(context));
     excel.delete('Sheet1');
     return excel.encode() ?? [];
+  }
+
+  String _getCSVFileContent(
+    ConstructTypeEnum type,
+    List<AnalyticsSummaryModel> summaries,
+  ) {
+    final values = type == ConstructTypeEnum.vocab
+        ? AnalyticsSummaryEnum.vocabValues
+        : AnalyticsSummaryEnum.morphValues;
+
+    final List<List<dynamic>> rows = [];
+    final headerRow = [];
+    for (final key in values) {
+      headerRow.add(key.header(context));
+    }
+
+    rows.add(headerRow);
+    for (final summary in summaries) {
+      final List<dynamic> row = [];
+      for (int i = 0; i < values.length; i++) {
+        final key = values[i];
+        final value = summary.getValue(key);
+        row.add(
+          value is List<String> ? value.map((v) => "\"$v\"").join(", ") : value,
+        );
+      }
+      rows.add(row);
+    }
+
+    final String fileString = const ListToCsvConverter().convert(rows);
+    return fileString;
   }
 
   List<CellValue> _formatExcelRow(
