@@ -1567,7 +1567,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "passwordForgotten": "Senha esquecida",
+  "passwordForgotten": "Esqueci a minha senha",
   "@passwordForgotten": {
     "type": "String",
     "placeholders": {}

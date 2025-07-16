@@ -272,4 +272,12 @@ extension on String {
   bool get isPhoneNumber => _phoneRegex.hasMatch(this);
 }
 
-enum MoreLoginActions { importBackup, privacy, about }
+enum MoreLoginActions {
+  importBackup,
+  privacy,
+  about,
+  store,
+  course,
+  news,
+  podcasts
+}

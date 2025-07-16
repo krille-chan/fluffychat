@@ -60,6 +60,9 @@ abstract class FluffyThemes {
       onTertiaryContainer: Color(0xFFADB5BD),
       surface: Color(0xFF212529),
       onSurface: Color(0xFFADB5BD),
+      surfaceContainerLow: Color.fromARGB(255, 27, 29, 29),
+      surfaceContainer: Color(0xFF212529),
+      surfaceContainerHighest: Color.fromARGB(255, 48, 51, 54),
       error: Color(0xFFB00020),
       onError: Color(0xFFFFFFFF),
       errorContainer: Color(0xFFCF6679),
@@ -168,8 +171,7 @@ abstract class FluffyThemes {
       ),
       appBarTheme: AppBarTheme(
         toolbarHeight: isColumnMode ? 72 : 56,
-        shadowColor:
-            isColumnMode ? colorScheme.surfaceContainer.withAlpha(128) : null,
+        shadowColor: null,
         surfaceTintColor: isColumnMode ? colorScheme.surface : null,
         backgroundColor: isColumnMode ? colorScheme.surface : null,
         systemOverlayStyle: SystemUiOverlayStyle(
