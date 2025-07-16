@@ -43,7 +43,7 @@ Future<String?> showTextInputDialog({
           title: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 256),
             child: Text(
-              title,
+              title.toUpperCase(),
             ),
           ),
           content: ConstrainedBox(

@@ -153,7 +153,7 @@ class RegisterController extends State<Register> {
       context: context,
       barrierDismissible: false,
       builder: (_) => AlertDialog(
-        title: Text(L10n.of(context).dialogVerifyEmailTitle),
+        title: Text(L10n.of(context).dialogVerifyEmailTitle.toUpperCase()),
         content: Text(L10n.of(context).dialogVerifyEmailContent),
         actions: [
           TextButton(

@@ -3263,5 +3263,6 @@
 "createAccount": "Criar conta",
 "alreadyHaveAccount": "Já tem uma conta?",
 "newHere": "Novo aqui?",
-"createAnAccountPrompt": "Crie uma conta"
+"createAnAccountPrompt": "Crie uma conta",
+"signUp": "Cadastrar"
 }

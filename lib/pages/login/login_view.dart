@@ -47,8 +47,10 @@ class LoginView extends StatelessWidget {
           ),
           child: Text(
             L10n.of(context).login,
-            style: GoogleFonts.righteous(
-              fontSize: 20,
+            style: TextStyle(
+              fontFamily: 'Roboto',
+              fontWeight: FontWeight.bold,
+              fontSize: 25,
               color: theme.colorScheme.onSurface,
             ),
           ),

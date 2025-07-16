@@ -46,7 +46,7 @@ class RegisterView extends StatelessWidget {
             top: MediaQuery.of(context).size.height * 0.05,
           ),
           child: Text(
-            'Cadastrar',
+            L10n.of(context).signUp.toUpperCase(),
             style: GoogleFonts.righteous(
               fontSize: 20,
               color: theme.colorScheme.onSurface,

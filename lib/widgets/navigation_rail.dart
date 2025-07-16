@@ -28,6 +28,7 @@ class SpacesNavigationRail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final client = Matrix.of(context).client;
+    final theme = Theme.of(context);
     final isSettings = GoRouter.of(context)
         .routeInformationProvider
         .value
@@ -71,9 +72,12 @@ class SpacesNavigationRail extends StatelessWidget {
                           NaviRailItem(
                             isSelected: activeSpaceId == null && !isSettings,
                             onTap: onGoToChats,
-                            icon: const Padding(
-                              padding: EdgeInsets.all(10.0),
-                              child: Icon(Icons.forum_outlined),
+                            icon: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Icon(
+                                Icons.forum_outlined,
+                                color: theme.colorScheme.onSurface,
+                              ),
                             ),
                             selectedIcon: const Padding(
                               padding: EdgeInsets.all(10.0),
@@ -128,9 +132,12 @@ class SpacesNavigationRail extends StatelessWidget {
                                 mode: LaunchMode.externalApplication,
                               );
                             },
-                            icon: const Padding(
-                              padding: EdgeInsets.all(10.0),
-                              child: Icon(Icons.store_outlined),
+                            icon: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Icon(
+                                Icons.store_outlined,
+                                color: theme.colorScheme.onSurface,
+                              ),
                             ),
                             toolTip: L10n.of(context).menuStore,
                           ),
@@ -144,9 +151,12 @@ class SpacesNavigationRail extends StatelessWidget {
                                 mode: LaunchMode.externalApplication,
                               );
                             },
-                            icon: const Padding(
-                              padding: EdgeInsets.all(10.0),
-                              child: Icon(Icons.grass_outlined),
+                            icon: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Icon(
+                                Icons.grass_outlined,
+                                color: theme.colorScheme.onSurface,
+                              ),
                             ),
                             toolTip: L10n.of(context).menuCourse,
                           ),
@@ -159,9 +169,12 @@ class SpacesNavigationRail extends StatelessWidget {
                                 mode: LaunchMode.externalApplication,
                               );
                             },
-                            icon: const Padding(
-                              padding: EdgeInsets.all(10.0),
-                              child: Icon(Icons.article_outlined),
+                            icon: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Icon(
+                                Icons.article_outlined,
+                                color: theme.colorScheme.onSurface,
+                              ),
                             ),
                             toolTip: L10n.of(context).menuNews,
                           ),
@@ -174,9 +187,12 @@ class SpacesNavigationRail extends StatelessWidget {
                                 mode: LaunchMode.externalApplication,
                               );
                             },
-                            icon: const Padding(
-                              padding: EdgeInsets.all(10.0),
-                              child: Icon(Icons.podcasts_outlined),
+                            icon: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Icon(
+                                Icons.podcasts_outlined,
+                                color: theme.colorScheme.onSurface,
+                              ),
                             ),
                             toolTip: L10n.of(context).menuPodcasts,
                           ),
@@ -186,9 +202,12 @@ class SpacesNavigationRail extends StatelessWidget {
                     NaviRailItem(
                       isSelected: isSettings,
                       onTap: () => context.go('/rooms/settings'),
-                      icon: const Padding(
-                        padding: EdgeInsets.all(10.0),
-                        child: Icon(Icons.settings_outlined),
+                      icon: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Icon(
+                          Icons.settings_outlined,
+                          color: theme.colorScheme.onSurface,
+                        ),
                       ),
                       selectedIcon: const Padding(
                         padding: EdgeInsets.all(10.0),

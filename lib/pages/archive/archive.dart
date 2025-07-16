@@ -42,7 +42,7 @@ class ArchiveController extends State<Archive> {
     if (await showOkCancelAlertDialog(
           useRootNavigator: false,
           context: context,
-          title: L10n.of(context).areYouSure,
+          title: L10n.of(context).areYouSure.toUpperCase(),
           okLabel: L10n.of(context).yes,
           cancelLabel: L10n.of(context).cancel,
           message: L10n.of(context).clearArchive,

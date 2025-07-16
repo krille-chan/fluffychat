@@ -27,16 +27,16 @@ class ClientChooserButton extends StatelessWidget {
                 : 1,
       );
     return <PopupMenuEntry<Object>>[
-      PopupMenuItem(
-        value: SettingsAction.newGroup,
-        child: Row(
-          children: [
-            const Icon(Icons.group_add_outlined),
-            const SizedBox(width: 18),
-            Text(L10n.of(context).createGroup),
-          ],
-        ),
-      ),
+      // PopupMenuItem(
+      //   value: SettingsAction.newGroup,
+      //   child: Row(
+      //     children: [
+      //       const Icon(Icons.group_add_outlined),
+      //       const SizedBox(width: 18),
+      //       Text(L10n.of(context).createGroup),
+      //     ],
+      //   ),
+      // ),
       PopupMenuItem(
         value: SettingsAction.setStatus,
         child: Row(
@@ -58,16 +58,6 @@ class ClientChooserButton extends StatelessWidget {
         ),
       ),
       PopupMenuItem(
-        value: SettingsAction.archive,
-        child: Row(
-          children: [
-            const Icon(Icons.archive_outlined),
-            const SizedBox(width: 18),
-            Text(L10n.of(context).archive),
-          ],
-        ),
-      ),
-      PopupMenuItem(
         value: SettingsAction.settings,
         child: Row(
           children: [
@@ -77,75 +67,126 @@ class ClientChooserButton extends StatelessWidget {
           ],
         ),
       ),
+      // PopupMenuItem(
+      //   value: SettingsAction.archive,
+      //   child: Row(
+      //     children: [
+      //       const Icon(Icons.archive_outlined),
+      //       const SizedBox(width: 18),
+      //       Text(L10n.of(context).archive),
+      //     ],
+      //   ),
+      // ),
       const PopupMenuDivider(),
-      for (final bundle in bundles) ...[
-        if (matrix.accountBundles[bundle]!.length != 1 ||
-            matrix.accountBundles[bundle]!.single!.userID != bundle)
-          PopupMenuItem(
-            value: null,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  bundle!,
-                  style: TextStyle(
-                    color: Theme.of(context).textTheme.titleMedium!.color,
-                    fontSize: 14,
-                  ),
-                ),
-                const Divider(height: 1),
-              ],
-            ),
-          ),
-        ...matrix.accountBundles[bundle]!
-            .whereType<Client>()
-            .where((client) => client.isLogged())
-            .map(
-              (client) => PopupMenuItem(
-                value: client,
-                child: FutureBuilder<Profile?>(
-                  future: client.fetchOwnProfile(),
-                  builder: (context, snapshot) => Row(
-                    children: [
-                      Avatar(
-                        mxContent: snapshot.data?.avatarUrl,
-                        name: snapshot.data?.displayName ??
-                            client.userID!.localpart,
-                        size: 32,
-                      ),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: Text(
-                          snapshot.data?.displayName ??
-                              client.userID!.localpart!,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      const SizedBox(width: 12),
-                      IconButton(
-                        icon: const Icon(Icons.edit_outlined),
-                        onPressed: () => controller.editBundlesForAccount(
-                          client.userID,
-                          bundle,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-      ],
       PopupMenuItem(
-        value: SettingsAction.addAccount,
+        value: 'store',
         child: Row(
           children: [
-            const Icon(Icons.person_add_outlined),
+            const Icon(Icons.store_outlined),
             const SizedBox(width: 18),
-            Text(L10n.of(context).addAccount),
+            Text(L10n.of(context).menuStore),
           ],
         ),
       ),
+      PopupMenuItem(
+        value: 'course',
+        child: Row(
+          children: [
+            const Icon(Icons.grass_outlined),
+            const SizedBox(width: 18),
+            Text(L10n.of(context).menuCourse),
+          ],
+        ),
+      ),
+      PopupMenuItem(
+        value: 'blog',
+        child: Row(
+          children: [
+            const Icon(Icons.article_outlined),
+            const SizedBox(width: 18),
+            Text(L10n.of(context).menuNews),
+          ],
+        ),
+      ),
+      PopupMenuItem(
+        value: 'podcast',
+        child: Row(
+          children: [
+            const Icon(Icons.podcasts_outlined),
+            const SizedBox(width: 18),
+            Text(L10n.of(context).menuPodcasts),
+          ],
+        ),
+      ),
+
+      //   for (final bundle in bundles) ...[
+      //     if (matrix.accountBundles[bundle]!.length != 1 ||
+      //         matrix.accountBundles[bundle]!.single!.userID != bundle)
+      //       PopupMenuItem(
+      //         value: null,
+      //         child: Column(
+      //           crossAxisAlignment: CrossAxisAlignment.start,
+      //           mainAxisSize: MainAxisSize.min,
+      //           children: [
+      //             Text(
+      //               bundle!,
+      //               style: TextStyle(
+      //                 color: Theme.of(context).textTheme.titleMedium!.color,
+      //                 fontSize: 14,
+      //               ),
+      //             ),
+      //             const Divider(height: 1),
+      //           ],
+      //         ),
+      //       ),
+      //     ...matrix.accountBundles[bundle]!
+      //         .whereType<Client>()
+      //         .where((client) => client.isLogged())
+      //         .map(
+      //           (client) => PopupMenuItem(
+      //             value: client,
+      //             child: FutureBuilder<Profile?>(
+      //               future: client.fetchOwnProfile(),
+      //               builder: (context, snapshot) => Row(
+      //                 children: [
+      //                   Avatar(
+      //                     mxContent: snapshot.data?.avatarUrl,
+      //                     name: snapshot.data?.displayName ??
+      //                         client.userID!.localpart,
+      //                     size: 32,
+      //                   ),
+      //                   const SizedBox(width: 12),
+      //                   Expanded(
+      //                     child: Text(
+      //                       snapshot.data?.displayName ??
+      //                           client.userID!.localpart!,
+      //                       overflow: TextOverflow.ellipsis,
+      //                     ),
+      //                   ),
+      //                   const SizedBox(width: 12),
+      //                   IconButton(
+      //                     icon: const Icon(Icons.edit_outlined),
+      //                     onPressed: () => controller.editBundlesForAccount(
+      //                       client.userID,
+      //                       bundle,
+      //                     ),
+      //                   ),
+      //                 ],
+      //               ),
+      //             ),
+      //           ),
+      //         ),
+      //   ],
+      //   // PopupMenuItem(
+      //   //   value: SettingsAction.addAccount,
+      //   //   child: Row(
+      //   //     children: [
+      //   //       const Icon(Icons.person_add_outlined),
+      //   //       const SizedBox(width: 18),
+      //   //       Text(L10n.of(context).addAccount),
+      //   //     ],
+      //   //   ),
+      //   // ),
     ];
   }
 
@@ -190,29 +231,29 @@ class ClientChooserButton extends StatelessWidget {
       controller.setActiveBundle(object);
     } else if (object is SettingsAction) {
       switch (object) {
-        case SettingsAction.addAccount:
-          final consent = await showOkCancelAlertDialog(
-            context: context,
-            title: L10n.of(context).addAccount,
-            message: L10n.of(context).enableMultiAccounts,
-            okLabel: L10n.of(context).next,
-            cancelLabel: L10n.of(context).cancel,
-          );
-          if (consent != OkCancelResult.ok) return;
-          context.go('/rooms/settings/addaccount');
-          break;
-        case SettingsAction.newGroup:
-          context.go('/rooms/newgroup');
-          break;
+        // case SettingsAction.addAccount:
+        //   final consent = await showOkCancelAlertDialog(
+        //     context: context,
+        //     title: L10n.of(context).addAccount,
+        //     message: L10n.of(context).enableMultiAccounts,
+        //     okLabel: L10n.of(context).next,
+        //     cancelLabel: L10n.of(context).cancel,
+        //   );
+        //   if (consent != OkCancelResult.ok) return;
+        //   context.go('/rooms/settings/addaccount');
+        //   break;
+        // case SettingsAction.newGroup:
+        //   context.go('/rooms/newgroup');
+        //   break;
         case SettingsAction.invite:
           FluffyShare.shareInviteLink(context);
           break;
         case SettingsAction.settings:
           context.go('/rooms/settings');
           break;
-        case SettingsAction.archive:
-          context.go('/rooms/archive');
-          break;
+        // case SettingsAction.archive:
+        //   context.go('/rooms/archive');
+        //   break;
         case SettingsAction.setStatus:
           controller.setStatus();
           break;
@@ -222,10 +263,10 @@ class ClientChooserButton extends StatelessWidget {
 }
 
 enum SettingsAction {
-  addAccount,
-  newGroup,
+  // addAccount,
+  // newGroup,
   setStatus,
   invite,
   settings,
-  archive,
+  // archive,
 }
