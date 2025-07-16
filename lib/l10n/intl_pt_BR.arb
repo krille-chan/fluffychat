@@ -1567,7 +1567,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "passwordForgotten": "Esqueci a minha senha",
+  "passwordForgotten": "Esqueci minha senha",
   "@passwordForgotten": {
     "type": "String",
     "placeholders": {}
@@ -2024,7 +2024,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "sourceCode": "Código-fonte",
+  "sourceCode": "Open Source",
   "@sourceCode": {
     "type": "String",
     "placeholders": {}

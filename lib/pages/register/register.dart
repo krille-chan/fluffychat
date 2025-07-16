@@ -342,7 +342,7 @@ class RegisterController extends State<Register> {
       );
 
   void onMoreAction(MoreLoginActions action) {
-    PlatformInfos.showDialog(context);
+    PlatformInfos.showAboutInfo(context);
   }
 }
 

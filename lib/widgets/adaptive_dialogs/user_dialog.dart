@@ -111,10 +111,12 @@ class UserDialog extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                                TextSpan(text: profile.userId),
+                                TextSpan(
+                                  text: profile.userId,
+                                ),
                               ],
                               style: theme.textTheme.bodyMedium
-                                  ?.copyWith(fontSize: 10),
+                                  ?.copyWith(fontSize: 12),
                             ),
                             textAlign: TextAlign.center,
                           ),
@@ -135,10 +137,13 @@ class UserDialog extends StatelessWidget {
                           : null,
                     ),
                   ),
+                  const SizedBox(
+                    height: 15,
+                  ),
                   if (presenceText != null)
                     Text(
                       presenceText,
-                      style: const TextStyle(fontSize: 10),
+                      style: const TextStyle(fontSize: 12),
                       textAlign: TextAlign.center,
                     ),
                   if (statusMsg != null)
@@ -188,7 +193,7 @@ class UserDialog extends StatelessWidget {
             onPressed: () {
               final router = GoRouter.of(context);
               Navigator.of(context).pop();
-              router.go(
+              router.push(
                 '/rooms/settings/security/ignorelist',
                 extra: profile.userId,
               );

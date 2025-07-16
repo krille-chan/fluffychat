@@ -171,12 +171,12 @@ class SettingsView extends StatelessWidget {
                   Divider(
                     color: theme.dividerColor,
                   ),
-                  ListTile(
-                    leading: const Icon(Icons.info_outline_rounded),
-                    title: Text(L10n.of(context).about),
-                    onTap: () => PlatformInfos.showDialog(context),
-                  ),
-                  Divider(color: theme.dividerColor),
+                  // ListTile(
+                  //   leading: const Icon(Icons.info_outline_rounded),
+                  //   title: Text(L10n.of(context).about),
+                  //   onTap: () => PlatformInfos.showAboutInfo(context),
+                  // ),
+                  // Divider(color: theme.dividerColor),
                   ListTile(
                     leading: const Icon(Icons.logout_outlined),
                     title: Text(L10n.of(context).logout),

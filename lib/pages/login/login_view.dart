@@ -36,11 +36,11 @@ class LoginView extends StatelessWidget {
         backgroundColor: isMobileMode
             ? theme.colorScheme.surface
             : theme.colorScheme.tertiary,
-        toolbarHeight: 90.0,
+        toolbarHeight: 80.0,
         title: Padding(
           padding: const EdgeInsets.only(
             left: 16.0,
-            top: 70.0,
+            top: 60.0,
           ),
           child: Text(
             L10n.of(context).login,
@@ -54,21 +54,10 @@ class LoginView extends StatelessWidget {
         ),
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 16.0, top: 60.0),
+            padding: const EdgeInsets.only(right: 16.0, top: 50.0),
             child: PopupMenuButton<MoreLoginActions>(
-              onSelected: controller.onMoreAction,
+              onSelected: (value) => controller.onMoreAction(context, value),
               itemBuilder: (_) => [
-                PopupMenuItem(
-                  value: MoreLoginActions.about,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const Icon(Icons.info_outlined),
-                      const SizedBox(width: 12),
-                      Text(L10n.of(context).about),
-                    ],
-                  ),
-                ),
                 PopupMenuItem(
                   value: MoreLoginActions.store,
                   child: Row(
@@ -110,6 +99,17 @@ class LoginView extends StatelessWidget {
                       const Icon(Icons.podcasts_outlined),
                       const SizedBox(width: 18),
                       Text(L10n.of(context).menuPodcasts),
+                    ],
+                  ),
+                ),
+                PopupMenuItem(
+                  value: MoreLoginActions.about,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(Icons.info_outlined),
+                      const SizedBox(width: 12),
+                      Text(L10n.of(context).about),
                     ],
                   ),
                 ),
@@ -206,7 +206,7 @@ class LoginView extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 20),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 24.0),
                       child: ElevatedButton(
@@ -216,7 +216,7 @@ class LoginView extends StatelessWidget {
                             : Text(L10n.of(context).login),
                       ),
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 5),
                     Padding(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 24.0,

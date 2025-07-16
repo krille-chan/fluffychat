@@ -230,128 +230,128 @@ abstract class AppRoutes {
                         ? const EmptyPage()
                         : const Settings(),
                   ),
-                  routes: [
-                    GoRoute(
-                      path: 'notifications',
-                      pageBuilder: (context, state) => defaultPageBuilder(
-                        context,
-                        state,
-                        const SettingsNotifications(),
-                      ),
-                      redirect: loggedOutRedirect,
-                    ),
-                    GoRoute(
-                      path: 'style',
-                      pageBuilder: (context, state) => defaultPageBuilder(
-                        context,
-                        state,
-                        const SettingsStyle(),
-                      ),
-                      redirect: loggedOutRedirect,
-                    ),
-                    GoRoute(
-                      path: 'devices',
-                      pageBuilder: (context, state) => defaultPageBuilder(
-                        context,
-                        state,
-                        const DevicesSettings(),
-                      ),
-                      redirect: loggedOutRedirect,
-                    ),
-                    GoRoute(
-                      path: 'chat',
-                      pageBuilder: (context, state) => defaultPageBuilder(
-                        context,
-                        state,
-                        const SettingsChat(),
-                      ),
-                      routes: [
-                        GoRoute(
-                          path: 'emotes',
-                          pageBuilder: (context, state) => defaultPageBuilder(
-                            context,
-                            state,
-                            const EmotesSettings(),
-                          ),
-                        ),
-                      ],
-                      redirect: loggedOutRedirect,
-                    ),
-                    GoRoute(
-                      path: 'addaccount',
-                      redirect: loggedOutRedirect,
-                      pageBuilder: (context, state) => defaultPageBuilder(
-                        context,
-                        state,
-                        const HomeserverPicker(addMultiAccount: true),
-                      ),
-                      routes: [
-                        GoRoute(
-                          path: 'login',
-                          pageBuilder: (context, state) => defaultPageBuilder(
-                            context,
-                            state,
-                            Login(client: state.extra as Client),
-                          ),
-                          redirect: loggedOutRedirect,
-                        ),
-                      ],
-                    ),
-                    GoRoute(
-                      path: 'homeserver',
-                      pageBuilder: (context, state) {
-                        return defaultPageBuilder(
-                          context,
-                          state,
-                          const SettingsHomeserver(),
-                        );
-                      },
-                      redirect: loggedOutRedirect,
-                    ),
-                    GoRoute(
-                      path: 'security',
-                      redirect: loggedOutRedirect,
-                      pageBuilder: (context, state) => defaultPageBuilder(
-                        context,
-                        state,
-                        const SettingsSecurity(),
-                      ),
-                      routes: [
-                        GoRoute(
-                          path: 'password',
-                          pageBuilder: (context, state) {
-                            return defaultPageBuilder(
-                              context,
-                              state,
-                              const SettingsPassword(),
-                            );
-                          },
-                          redirect: loggedOutRedirect,
-                        ),
-                        GoRoute(
-                          path: 'ignorelist',
-                          pageBuilder: (context, state) {
-                            return defaultPageBuilder(
-                              context,
-                              state,
-                              SettingsIgnoreList(
-                                initialUserId: state.extra?.toString(),
-                              ),
-                            );
-                          },
-                          redirect: loggedOutRedirect,
-                        ),
-                        GoRoute(
-                          path: '3pid',
-                          pageBuilder: (context, state) => defaultPageBuilder(
-                            context,
-                            state,
-                            const Settings3Pid(),
-                          ),
-                          redirect: loggedOutRedirect,
-                        ),
-                      ],
-                    ),
+                  routes: const [
+                    // GoRoute(
+                    //   path: 'notifications',
+                    //   pageBuilder: (context, state) => defaultPageBuilder(
+                    //     context,
+                    //     state,
+                    //     const SettingsNotifications(),
+                    //   ),
+                    //   redirect: loggedOutRedirect,
+                    // ),
+                    // GoRoute(
+                    //   path: 'style',
+                    //   pageBuilder: (context, state) => defaultPageBuilder(
+                    //     context,
+                    //     state,
+                    //     const SettingsStyle(),
+                    //   ),
+                    //   redirect: loggedOutRedirect,
+                    // ),
+                    // GoRoute(
+                    //   path: 'devices',
+                    //   pageBuilder: (context, state) => defaultPageBuilder(
+                    //     context,
+                    //     state,
+                    //     const DevicesSettings(),
+                    //   ),
+                    //   redirect: loggedOutRedirect,
+                    // ),
+                    // GoRoute(
+                    //   path: 'chat',
+                    //   pageBuilder: (context, state) => defaultPageBuilder(
+                    //     context,
+                    //     state,
+                    //     const SettingsChat(),
+                    //   ),
+                    //   routes: [
+                    //     GoRoute(
+                    //       path: 'emotes',
+                    //       pageBuilder: (context, state) => defaultPageBuilder(
+                    //         context,
+                    //         state,
+                    //         const EmotesSettings(),
+                    //       ),
+                    //     ),
+                    //   ],
+                    //   redirect: loggedOutRedirect,
+                    // ),
+                    // GoRoute(
+                    //   path: 'addaccount',
+                    //   redirect: loggedOutRedirect,
+                    //   pageBuilder: (context, state) => defaultPageBuilder(
+                    //     context,
+                    //     state,
+                    //     const HomeserverPicker(addMultiAccount: true),
+                    //   ),
+                    //   routes: [
+                    //     GoRoute(
+                    //       path: 'login',
+                    //       pageBuilder: (context, state) => defaultPageBuilder(
+                    //         context,
+                    //         state,
+                    //         Login(client: state.extra as Client),
+                    //       ),
+                    //       redirect: loggedOutRedirect,
+                    //     ),
+                    //   ],
+                    // ),
+                    // GoRoute(
+                    //   path: 'homeserver',
+                    //   pageBuilder: (context, state) {
+                    //     return defaultPageBuilder(
+                    //       context,
+                    //       state,
+                    //       const SettingsHomeserver(),
+                    //     );
+                    //   },
+                    //   redirect: loggedOutRedirect,
+                    // ),
+                    // GoRoute(
+                    //   path: 'security',
+                    //   redirect: loggedOutRedirect,
+                    //   pageBuilder: (context, state) => defaultPageBuilder(
+                    //     context,
+                    //     state,
+                    //     const SettingsSecurity(),
+                    //   ),
+                    //   routes: [
+                    //     GoRoute(
+                    //       path: 'password',
+                    //       pageBuilder: (context, state) {
+                    //         return defaultPageBuilder(
+                    //           context,
+                    //           state,
+                    //           const SettingsPassword(),
+                    //         );
+                    //       },
+                    //       redirect: loggedOutRedirect,
+                    //     ),
+                    //     GoRoute(
+                    //       path: 'ignorelist',
+                    //       pageBuilder: (context, state) {
+                    //         return defaultPageBuilder(
+                    //           context,
+                    //           state,
+                    //           SettingsIgnoreList(
+                    //             initialUserId: state.extra?.toString(),
+                    //           ),
+                    //         );
+                    //       },
+                    //       redirect: loggedOutRedirect,
+                    //     ),
+                    //     GoRoute(
+                    //       path: '3pid',
+                    //       pageBuilder: (context, state) => defaultPageBuilder(
+                    //         context,
+                    //         state,
+                    //         const Settings3Pid(),
+                    //       ),
+                    //       redirect: loggedOutRedirect,
+                    //     ),
+                    //   ],
+                    // ),
                   ],
                   redirect: loggedOutRedirect,
                 ),

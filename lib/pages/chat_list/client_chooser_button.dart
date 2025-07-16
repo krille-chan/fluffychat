@@ -10,6 +10,8 @@ import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/fluffy_share.dart';
 import 'chat_list.dart';
+import 'package:url_launcher/url_launcher.dart';
+import '../../utils/platform_infos.dart';
 
 class ClientChooserButton extends StatelessWidget {
   final ChatListController controller;
@@ -37,6 +39,58 @@ class ClientChooserButton extends StatelessWidget {
       //     ],
       //   ),
       // ),
+
+      // PopupMenuItem(
+      //   value: SettingsAction.archive,
+      //   child: Row(
+      //     children: [
+      //       const Icon(Icons.archive_outlined),
+      //       const SizedBox(width: 18),
+      //       Text(L10n.of(context).archive),
+      //     ],
+      //   ),
+      // ),
+      PopupMenuItem(
+        value: SettingsAction.store,
+        child: Row(
+          children: [
+            const Icon(Icons.store_outlined),
+            const SizedBox(width: 18),
+            Text(L10n.of(context).menuStore),
+          ],
+        ),
+      ),
+      PopupMenuItem(
+        value: SettingsAction.course,
+        child: Row(
+          children: [
+            const Icon(Icons.grass_outlined),
+            const SizedBox(width: 18),
+            Text(L10n.of(context).menuCourse),
+          ],
+        ),
+      ),
+      PopupMenuItem(
+        value: SettingsAction.news,
+        child: Row(
+          children: [
+            const Icon(Icons.article_outlined),
+            const SizedBox(width: 18),
+            Text(L10n.of(context).menuNews),
+          ],
+        ),
+      ),
+      PopupMenuItem(
+        value: SettingsAction.podcasts,
+        child: Row(
+          children: [
+            const Icon(Icons.podcasts_outlined),
+            const SizedBox(width: 18),
+            Text(L10n.of(context).menuPodcasts),
+          ],
+        ),
+      ),
+      const PopupMenuDivider(),
       PopupMenuItem(
         value: SettingsAction.setStatus,
         child: Row(
@@ -67,54 +121,14 @@ class ClientChooserButton extends StatelessWidget {
           ],
         ),
       ),
-      // PopupMenuItem(
-      //   value: SettingsAction.archive,
-      //   child: Row(
-      //     children: [
-      //       const Icon(Icons.archive_outlined),
-      //       const SizedBox(width: 18),
-      //       Text(L10n.of(context).archive),
-      //     ],
-      //   ),
-      // ),
-      const PopupMenuDivider(),
       PopupMenuItem(
-        value: 'store',
+        value: SettingsAction.about,
         child: Row(
+          mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(Icons.store_outlined),
-            const SizedBox(width: 18),
-            Text(L10n.of(context).menuStore),
-          ],
-        ),
-      ),
-      PopupMenuItem(
-        value: 'course',
-        child: Row(
-          children: [
-            const Icon(Icons.grass_outlined),
-            const SizedBox(width: 18),
-            Text(L10n.of(context).menuCourse),
-          ],
-        ),
-      ),
-      PopupMenuItem(
-        value: 'blog',
-        child: Row(
-          children: [
-            const Icon(Icons.article_outlined),
-            const SizedBox(width: 18),
-            Text(L10n.of(context).menuNews),
-          ],
-        ),
-      ),
-      PopupMenuItem(
-        value: 'podcast',
-        child: Row(
-          children: [
-            const Icon(Icons.podcasts_outlined),
-            const SizedBox(width: 18),
-            Text(L10n.of(context).menuPodcasts),
+            const Icon(Icons.info_outlined),
+            const SizedBox(width: 12),
+            Text(L10n.of(context).about),
           ],
         ),
       ),
@@ -245,17 +259,49 @@ class ClientChooserButton extends StatelessWidget {
         // case SettingsAction.newGroup:
         //   context.go('/rooms/newgroup');
         //   break;
+
         case SettingsAction.invite:
           FluffyShare.shareInviteLink(context);
           break;
+
         case SettingsAction.settings:
           context.go('/rooms/settings');
           break;
-        // case SettingsAction.archive:
-        //   context.go('/rooms/archive');
-        //   break;
+
         case SettingsAction.setStatus:
           controller.setStatus();
+          break;
+
+        case SettingsAction.store:
+          await launchUrl(
+            Uri.parse('https://www.fluffychat.im/store/'),
+            mode: LaunchMode.externalApplication,
+          );
+          break;
+
+        case SettingsAction.course:
+          await launchUrl(
+            Uri.parse('https://www.fluffychat.im/course/'),
+            mode: LaunchMode.externalApplication,
+          );
+          break;
+
+        case SettingsAction.news:
+          await launchUrl(
+            Uri.parse('https://www.fluffychat.im/news/'),
+            mode: LaunchMode.externalApplication,
+          );
+          break;
+
+        case SettingsAction.podcasts:
+          await launchUrl(
+            Uri.parse('https://www.radiohemp.com/podcast/'),
+            mode: LaunchMode.externalApplication,
+          );
+          break;
+
+        case SettingsAction.about:
+          PlatformInfos.showAboutInfo(context);
           break;
       }
     }
@@ -268,5 +314,10 @@ enum SettingsAction {
   setStatus,
   invite,
   settings,
+  about,
+  store,
+  course,
+  news,
+  podcasts
   // archive,
 }

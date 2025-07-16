@@ -215,6 +215,7 @@ class SpacesNavigationRail extends StatelessWidget {
                       ),
                       toolTip: L10n.of(context).settings,
                     ),
+                    const SizedBox(height: 6),
                   ],
                 ),
               ),

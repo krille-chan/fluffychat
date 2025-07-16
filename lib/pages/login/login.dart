@@ -12,6 +12,7 @@ import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/platform_infos.dart';
 import 'login_view.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Login extends StatefulWidget {
   final Client client;
@@ -257,8 +258,43 @@ class LoginController extends State<Login> {
         client: widget.client,
       );
 
-  void onMoreAction(MoreLoginActions action) {
-    PlatformInfos.showDialog(context);
+  Future<void> onMoreAction(
+    BuildContext context,
+    MoreLoginActions action,
+  ) async {
+    switch (action) {
+      case MoreLoginActions.about:
+        PlatformInfos.showAboutInfo(context);
+        break;
+
+      case MoreLoginActions.store:
+        await launchUrl(
+          Uri.parse('https://www.fluffychat.im/store/'),
+          mode: LaunchMode.externalApplication,
+        );
+        break;
+
+      case MoreLoginActions.course:
+        await launchUrl(
+          Uri.parse('https://www.fluffychat.im/course/'),
+          mode: LaunchMode.externalApplication,
+        );
+        break;
+
+      case MoreLoginActions.news:
+        await launchUrl(
+          Uri.parse('https://www.fluffychat.im/news/'),
+          mode: LaunchMode.externalApplication,
+        );
+        break;
+
+      case MoreLoginActions.podcasts:
+        await launchUrl(
+          Uri.parse('https://www.radiohemp.com/podcast/'),
+          mode: LaunchMode.externalApplication,
+        );
+        break;
+    }
   }
 }
 
@@ -273,11 +309,11 @@ extension on String {
 }
 
 enum MoreLoginActions {
-  importBackup,
-  privacy,
+  // importBackup,
+  // privacy,
   about,
   store,
   course,
   news,
-  podcasts
+  podcasts,
 }

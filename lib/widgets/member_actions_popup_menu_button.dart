@@ -58,7 +58,10 @@ void showMemberActionsPopupMenu({
                   child: Text(
                     displayname,
                     textAlign: TextAlign.center,
-                    style: theme.textTheme.labelLarge,
+                    style: TextStyle(
+                      color: theme.colorScheme.primary,
+                      fontSize: 15,
+                    ),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -68,7 +71,7 @@ void showMemberActionsPopupMenu({
                   child: Text(
                     user.id,
                     textAlign: TextAlign.center,
-                    style: const TextStyle(fontSize: 10),
+                    style: const TextStyle(fontSize: 12),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -84,7 +87,10 @@ void showMemberActionsPopupMenu({
           value: _MemberActions.mention,
           child: Row(
             children: [
-              const Icon(Icons.alternate_email_outlined),
+              Icon(
+                Icons.alternate_email_outlined,
+                color: theme.colorScheme.onTertiary,
+              ),
               const SizedBox(width: 18),
               Text(L10n.of(context).mention),
             ],
@@ -95,7 +101,10 @@ void showMemberActionsPopupMenu({
           value: _MemberActions.approve,
           child: Row(
             children: [
-              const Icon(Icons.how_to_reg_outlined),
+              Icon(
+                Icons.how_to_reg_outlined,
+                color: theme.colorScheme.error,
+              ),
               const SizedBox(width: 18),
               Text(L10n.of(context).approve),
             ],
@@ -106,20 +115,29 @@ void showMemberActionsPopupMenu({
         value: _MemberActions.setRole,
         child: Row(
           children: [
-            const Icon(Icons.admin_panel_settings_outlined),
+            Icon(
+              Icons.admin_panel_settings_outlined,
+              color: theme.colorScheme.onTertiary,
+            ),
             const SizedBox(width: 18),
             Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(L10n.of(context).chatPermissions),
+                Text(
+                  L10n.of(context).chatPermissions,
+                  style: TextStyle(color: theme.colorScheme.onSurface),
+                ),
                 Text(
                   user.powerLevel < 50
                       ? L10n.of(context).userLevel(user.powerLevel)
                       : user.powerLevel < 100
                           ? L10n.of(context).moderatorLevel(user.powerLevel)
                           : L10n.of(context).adminLevel(user.powerLevel),
-                  style: const TextStyle(fontSize: 10),
+                  style: TextStyle(
+                    fontSize: 10,
+                    color: theme.colorScheme.onSurface,
+                  ),
                 ),
               ],
             ),
@@ -133,12 +151,12 @@ void showMemberActionsPopupMenu({
             children: [
               Icon(
                 Icons.person_remove_outlined,
-                color: theme.colorScheme.onErrorContainer,
+                color: theme.colorScheme.error,
               ),
               const SizedBox(width: 18),
               Text(
                 L10n.of(context).kickFromChat,
-                style: TextStyle(color: theme.colorScheme.onErrorContainer),
+                style: TextStyle(color: theme.colorScheme.onError),
               ),
             ],
           ),
@@ -150,12 +168,12 @@ void showMemberActionsPopupMenu({
             children: [
               Icon(
                 Icons.block_outlined,
-                color: theme.colorScheme.onErrorContainer,
+                color: theme.colorScheme.error,
               ),
               const SizedBox(width: 18),
               Text(
                 L10n.of(context).banFromChat,
-                style: TextStyle(color: theme.colorScheme.onErrorContainer),
+                style: TextStyle(color: theme.colorScheme.onError),
               ),
             ],
           ),
@@ -165,9 +183,15 @@ void showMemberActionsPopupMenu({
           value: _MemberActions.unban,
           child: Row(
             children: [
-              const Icon(Icons.warning),
+              Icon(
+                Icons.warning,
+                color: theme.colorScheme.error,
+              ),
               const SizedBox(width: 18),
-              Text(L10n.of(context).unbanFromChat),
+              Text(
+                L10n.of(context).unbanFromChat,
+                style: TextStyle(color: theme.colorScheme.onError),
+              ),
             ],
           ),
         ),
@@ -178,12 +202,12 @@ void showMemberActionsPopupMenu({
             children: [
               Icon(
                 Icons.gavel_outlined,
-                color: theme.colorScheme.onErrorContainer,
+                color: theme.colorScheme.error,
               ),
               const SizedBox(width: 18),
               Text(
                 L10n.of(context).reportUser,
-                style: TextStyle(color: theme.colorScheme.onErrorContainer),
+                style: TextStyle(color: theme.colorScheme.error),
               ),
             ],
           ),

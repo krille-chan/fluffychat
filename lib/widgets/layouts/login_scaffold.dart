@@ -118,7 +118,7 @@ class LoginScaffold extends StatelessWidget {
 //               ),
 //             ),
 //             TextButton(
-//               onPressed: () => PlatformInfos.showDialog(context),
+//               onPressed: () => PlatformInfos.showAboutInfo(context),
 //               child: Text(
 //                 L10n.of(context).about,
 //                 style: shadowTextStyle,
