@@ -10,6 +10,8 @@ import 'package:uuid/uuid.dart';
 import 'register_view.dart';
 import 'package:http/http.dart' as http;
 import 'package:matrix/matrix.dart';
+import '../../utils/platform_infos.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Register extends StatefulWidget {
   final Client client;
@@ -99,10 +101,22 @@ class RegisterController extends State<Register> {
 
   bool passwordIsValid() {
     final password = passwordController.text;
+    final l10n = L10n.of(context);
+
     if (password.isEmpty) {
-      setState(() => passwordError = L10n.of(context).pleaseEnterYourPassword);
+      setState(() => passwordError = l10n.pleaseEnterYourPassword);
       return false;
     }
+
+    final validPasswordRegex = RegExp(
+      r'^(?=.*[0-9])(?=.*[!@#\$%^&*()_+{}\[\]:;<>,.?~\\/-])[A-Za-z\d!@#\$%^&*()_+{}\[\]:;<>,.?~\\/-]{6,}$',
+    );
+
+    if (!validPasswordRegex.hasMatch(password)) {
+      setState(() => passwordError = l10n.pleaseUseAStrongPassword);
+      return false;
+    }
+
     setState(() => passwordError = null);
     return true;
   }
@@ -341,12 +355,55 @@ class RegisterController extends State<Register> {
         client: widget.client,
       );
 
-  void onMoreAction(MoreLoginActions action) {
-    PlatformInfos.showAboutInfo(context);
+  Future<void> onMoreAction(
+    BuildContext context,
+    MoreLoginActions action,
+  ) async {
+    switch (action) {
+      case MoreLoginActions.about:
+        PlatformInfos.showAboutInfo(context);
+        break;
+
+      case MoreLoginActions.store:
+        await launchUrl(
+          Uri.parse('https://www.fluffychat.im/store/'),
+          mode: LaunchMode.externalApplication,
+        );
+        break;
+
+      case MoreLoginActions.course:
+        await launchUrl(
+          Uri.parse('https://www.fluffychat.im/course/'),
+          mode: LaunchMode.externalApplication,
+        );
+        break;
+
+      case MoreLoginActions.news:
+        await launchUrl(
+          Uri.parse('https://www.fluffychat.im/news/'),
+          mode: LaunchMode.externalApplication,
+        );
+        break;
+
+      case MoreLoginActions.podcasts:
+        await launchUrl(
+          Uri.parse('https://www.radiohemp.com/podcast/'),
+          mode: LaunchMode.externalApplication,
+        );
+        break;
+    }
   }
 }
 
-enum MoreLoginActions { importBackup, privacy, about }
+enum MoreLoginActions {
+  // importBackup,
+  // privacy,
+  about,
+  store,
+  course,
+  news,
+  podcasts,
+}
 
 class RegistrationTokenAuth extends AuthenticationData {
   final String token;

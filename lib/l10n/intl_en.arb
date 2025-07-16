@@ -3264,5 +3264,6 @@
   "alreadyHaveAccount": "Already have an account?",
   "newHere": "New here?",
   "createAnAccountPrompt": "Create an account",
-  "signUp": "Sign up"
+  "signUp": "Sign up",
+  "pleaseUseAStrongPassword": "Use at least 6 characters, including a number and a special character."
   }

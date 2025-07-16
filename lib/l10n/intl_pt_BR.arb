@@ -28,7 +28,7 @@
     "@exportEmotePack": {},
     "replace": "Substituir",
     "@replace": {},
-    "about": "Sobre",
+    "about": "Open Source",
     "aboutHomeserver": "Sobre {homeserver}",
     "@aboutHomeserver": {
         "type": "String",
@@ -2024,7 +2024,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "sourceCode": "Open Source",
+  "sourceCode": "Código-fonte",
   "@sourceCode": {
     "type": "String",
     "placeholders": {}
@@ -3264,5 +3264,6 @@
 "alreadyHaveAccount": "Já tem uma conta?",
 "newHere": "Novo aqui?",
 "createAnAccountPrompt": "Crie uma conta",
-"signUp": "Cadastrar"
+"signUp": "Cadastrar",
+"pleaseUseAStrongPassword": "Mínimo de 6 letras, 1 número e 1 símbolo."
 }
