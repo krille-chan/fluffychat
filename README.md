@@ -1,6 +1,8 @@
-This software is a modified version of [FluffyChat](https://github.com/fluffychat/fluffychat) and is licensed under the [AGPLv3](https://www.gnu.org/licenses/agpl-3.0.html).
+This is a customized fork of [FluffyChat](https://github.com/fluffychat/fluffychat), a Matrix client built with Flutter.
 
-![Screenshot](https://github.com/krille-chan/fluffychat/blob/main/assets/banner_transparent.png?raw=true)
+It includes visual and functional modifications tailored to specific needs.
+
+This project is licensed under the [GNU Affero General Public License v3.0 (AGPL-3.0)](https://www.gnu.org/licenses/agpl-3.0.html).
 
 [FluffyChat](https://fluffychat.im) is an open source, nonprofit and cute [[matrix](https://matrix.org)] client written in [Flutter](https://flutter.dev). The goal of the app is to create an easy to use instant messenger which is open source and accessible for everyone.
 
