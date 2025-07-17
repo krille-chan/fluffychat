@@ -34,11 +34,11 @@ class RegisterView extends StatelessWidget {
         backgroundColor: isMobileMode
             ? theme.colorScheme.surface
             : theme.colorScheme.tertiary,
-        toolbarHeight: 80.0,
+        toolbarHeight: 75.0,
         title: Padding(
           padding: const EdgeInsets.only(
             left: 16.0,
-            top: 60.0,
+            top: 55.0,
           ),
           child: Text(
             L10n.of(context).signUp,
@@ -52,7 +52,7 @@ class RegisterView extends StatelessWidget {
         ),
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 16.0, top: 50.0),
+            padding: const EdgeInsets.only(right: 16.0, top: 45.0),
             child: PopupMenuButton<MoreLoginActions>(
               onSelected: (value) => controller.onMoreAction(context, value),
               itemBuilder: (_) => [
@@ -128,7 +128,7 @@ class RegisterView extends StatelessWidget {
                     Padding(
                       padding: isMobileMode
                           ? const EdgeInsets.only(bottom: 80.0)
-                          : const EdgeInsets.only(bottom: 50.0),
+                          : const EdgeInsets.only(bottom: 30.0),
                       child: Center(
                         child: FractionallySizedBox(
                           widthFactor: isMobileMode ? 0.8 : 0.5,

@@ -1186,10 +1186,10 @@
     "type": "String",
     "placeholders": {}
   },
-  "inviteText": "{username} invited you to FluffyChat.\n1. Visit fluffychat.im and install the app \n2. Sign up or sign in \n3. Open the invite link: \n {link}",
+  "inviteText": "🔥 *{username}* invited you to join Rádio Hemp, the frequency of legal cannabis in Brazil.r\n\n🌐 Access: {link}\n\n⏱️ Create your account (real quick, no stress).\n\n💬 Join the conversation with patients, associations, doctors, lawyers, growers, artists, and other defenders of the plant. 🌿",
   "@inviteText": {
     "type": "String",
-    "placeholders": {
+      "placeholders": {
       "username": {
         "type": "String"
       },

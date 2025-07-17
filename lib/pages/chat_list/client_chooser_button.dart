@@ -51,6 +51,16 @@ class ClientChooserButton extends StatelessWidget {
       //   ),
       // ),
       PopupMenuItem(
+        value: SettingsAction.setStatus,
+        child: Row(
+          children: [
+            const Icon(Icons.edit_outlined),
+            const SizedBox(width: 18),
+            Text(L10n.of(context).setStatus),
+          ],
+        ),
+      ),
+      PopupMenuItem(
         value: SettingsAction.store,
         child: Row(
           children: [
@@ -90,27 +100,6 @@ class ClientChooserButton extends StatelessWidget {
           ],
         ),
       ),
-      const PopupMenuDivider(),
-      PopupMenuItem(
-        value: SettingsAction.setStatus,
-        child: Row(
-          children: [
-            const Icon(Icons.edit_outlined),
-            const SizedBox(width: 18),
-            Text(L10n.of(context).setStatus),
-          ],
-        ),
-      ),
-      PopupMenuItem(
-        value: SettingsAction.invite,
-        child: Row(
-          children: [
-            Icon(Icons.adaptive.share_outlined),
-            const SizedBox(width: 18),
-            Text(L10n.of(context).inviteContact),
-          ],
-        ),
-      ),
       PopupMenuItem(
         value: SettingsAction.settings,
         child: Row(
@@ -132,7 +121,17 @@ class ClientChooserButton extends StatelessWidget {
           ],
         ),
       ),
-
+      const PopupMenuDivider(),
+      PopupMenuItem(
+        value: SettingsAction.invite,
+        child: Row(
+          children: [
+            Icon(Icons.adaptive.share_outlined),
+            const SizedBox(width: 18),
+            Text(L10n.of(context).inviteContact + ' 🔥'),
+          ],
+        ),
+      ),
       //   for (final bundle in bundles) ...[
       //     if (matrix.accountBundles[bundle]!.length != 1 ||
       //         matrix.accountBundles[bundle]!.single!.userID != bundle)

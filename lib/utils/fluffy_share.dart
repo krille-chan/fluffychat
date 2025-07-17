@@ -33,10 +33,11 @@ abstract class FluffyShare {
   static Future<void> shareInviteLink(BuildContext context) async {
     final client = Matrix.of(context).client;
     final ownProfile = await client.fetchOwnProfile();
+    final invitedBy = ownProfile.displayName ?? client.userID!;
     await FluffyShare.share(
       L10n.of(context).inviteText(
-        ownProfile.displayName ?? client.userID!,
-        'https://matrix.to/#/${client.userID}?client=im.fluffychat',
+        invitedBy,
+        'https://fb19bb161db7.ngrok-free.app/#/register',
       ),
       context,
     );

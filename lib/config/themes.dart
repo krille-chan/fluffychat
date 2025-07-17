@@ -62,7 +62,7 @@ abstract class FluffyThemes {
       onSurface: Color(0xFFADB5BD),
       surfaceContainerLow: Color.fromARGB(255, 27, 29, 29),
       surfaceContainer: Color(0xFF212529),
-      surfaceContainerHighest: Color.fromARGB(255, 48, 51, 54),
+      surfaceContainerHighest: Color.fromARGB(255, 59, 63, 66),
       error: Color.fromARGB(255, 243, 117, 117),
       onError: Color.fromARGB(255, 243, 117, 117),
       errorContainer: Color.fromARGB(255, 243, 117, 117),

@@ -216,11 +216,10 @@ class LoginView extends StatelessWidget {
                             : Text(L10n.of(context).login),
                       ),
                     ),
-                    const SizedBox(height: 5),
+                    const SizedBox(height: 30),
                     Padding(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 24.0,
-                        vertical: 16.0,
                       ),
                       child: Align(
                         alignment: Alignment.center,
@@ -251,6 +250,7 @@ class LoginView extends StatelessWidget {
                         ),
                       ),
                     ),
+                    const SizedBox(height: 15),
                     Padding(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 24.0,

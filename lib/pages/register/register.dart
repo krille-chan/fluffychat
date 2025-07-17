@@ -15,6 +15,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 class Register extends StatefulWidget {
   final Client client;
+
   const Register({required this.client, super.key});
 
   @override

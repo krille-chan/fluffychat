@@ -1133,7 +1133,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "inviteContact": "Convidar contato",
+    "inviteContact": "Convide alguém!",
     "@inviteContact": {
         "type": "String",
         "placeholders": {}
@@ -1186,18 +1186,18 @@
         "type": "String",
         "placeholders": {}
     },
-    "inviteText": "{username} te convidou para o FluffyChat.\n1. Visite fluffychat.im e instale o app \n2. Cadastre-se ou entre \n3. Abra o link do convite: \n {link}",
-    "@inviteText": {
-        "type": "String",
-        "placeholders": {
-            "username": {
-                "type": "String"
-            },
-            "link": {
-                "type": "String"
-            }
-        }
-    },
+   "inviteText": "🔥 *{username}* te convidou pra entrar na Rádio Hemp, a frequência da cannabis legal no Brasil.\n\n🌐 Acesse: {link}\n\n⏱️ Crie sua conta (rapidinho, sem nóia).\n\n💬 Junte-se à conversa com pacientes, associações, médicos, advogados, cultivadores, artistas e outros defensores da plantinha. 🌿",
+   "@inviteText": {
+     "type": "String",
+     "placeholders": {
+     "username": {
+       "type": "String"
+      },
+     "link": {
+       "type": "String"
+     }
+   }
+  },
     "isTyping": "está digitando…",
     "@isTyping": {
         "type": "String",
