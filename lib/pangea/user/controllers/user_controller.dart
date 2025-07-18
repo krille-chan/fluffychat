@@ -186,6 +186,8 @@ class UserController extends BaseController {
     _initializing = false;
     initCompleter = Completer<void>();
     _cachedProfile = null;
+    _profileListener?.cancel();
+    _profileListener = null;
   }
 
   /// Reinitializes the user's profile
