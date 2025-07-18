@@ -191,7 +191,7 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
                 .then((_) => Navigator.of(context, rootNavigator: false).pop()),
             child: Text(
               L10n.of(context).reject,
-              style: TextStyle(color: theme.colorScheme.error),
+              style: TextStyle(color: theme.colorScheme.onError),
             ),
           ),
         );
@@ -245,7 +245,7 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
 
         if (widget.request.sasTypes.contains('emoji')) {
           title = Text(
-            L10n.of(context).compareEmojiMatch,
+            L10n.of(context).compareEmojiMatch.toUpperCase(),
             maxLines: 1,
             style: const TextStyle(fontSize: 16),
           );
@@ -304,7 +304,7 @@ class KeyVerificationPageState extends State<KeyVerificationDialog> {
         );
         break;
       case KeyVerificationState.done:
-        title = Text(L10n.of(context).verifySuccess);
+        title = Text(L10n.of(context).verifySuccess.toUpperCase());
         body = const Padding(
           padding: EdgeInsets.all(16.0),
           child: Icon(

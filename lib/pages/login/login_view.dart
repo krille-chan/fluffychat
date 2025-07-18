@@ -138,7 +138,8 @@ class LoginView extends StatelessWidget {
                           prefixIcon: const Icon(Icons.lock_outlined),
                           errorText: controller.passwordError,
                           errorStyle: TextStyle(
-                              color: Theme.of(context).colorScheme.secondary),
+                            color: Theme.of(context).colorScheme.secondary,
+                          ),
                           suffixIcon: IconButton(
                             onPressed: controller.toggleShowPassword,
                             icon: Icon(
@@ -164,14 +165,13 @@ class LoginView extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(vertical: 15.0),
                           ),
                           child: controller.loading
-                              ? const SizedBox(
-                                  height: 18,
-                                  width: 18,
-                                  child:
-                                      CircularProgressIndicator(strokeWidth: 2),
+                              ? const Padding(
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 16.0),
+                                  child: LinearProgressIndicator(),
                                 )
                               : Text(
-                                  L10n.of(context).login,
+                                  L10n.of(context).createAccount,
                                   style: const TextStyle(fontSize: 16),
                                 ),
                         ),

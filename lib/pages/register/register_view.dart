@@ -30,7 +30,7 @@ class RegisterView extends StatelessWidget {
 
     final screenHeight = MediaQuery.of(context).size.height;
     final toolBarHeight = isMobileMode ? screenHeight * 0.17 : 95.0;
-    final toolBarPadding = isMobileMode ? screenHeight * 0.13 : 65.0;
+    final toolBarPadding = isMobileMode ? screenHeight * 0.13 : 60.0;
     final imagePadding = isMobileMode ? screenHeight * 0.10 : 45.0;
 
     return LoginScaffold(
@@ -180,12 +180,10 @@ class RegisterView extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(vertical: 15.0),
                           ),
                           child: controller.loading
-                              ? const SizedBox(
-                                  height: 18,
-                                  width: 18,
-                                  child: CircularProgressIndicator(
-                                    strokeWidth: 2,
-                                  ),
+                              ? const Padding(
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 16.0),
+                                  child: LinearProgressIndicator(),
                                 )
                               : Text(
                                   L10n.of(context).createAccount,

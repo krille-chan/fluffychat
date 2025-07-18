@@ -233,7 +233,7 @@ abstract class AppRoutes {
                         ? const EmptyPage()
                         : const Settings(),
                   ),
-                  routes: const [
+                  routes: [
                     // GoRoute(
                     //   path: 'notifications',
                     //   pageBuilder: (context, state) => defaultPageBuilder(
@@ -252,15 +252,15 @@ abstract class AppRoutes {
                     //   ),
                     //   redirect: loggedOutRedirect,
                     // ),
-                    // GoRoute(
-                    //   path: 'devices',
-                    //   pageBuilder: (context, state) => defaultPageBuilder(
-                    //     context,
-                    //     state,
-                    //     const DevicesSettings(),
-                    //   ),
-                    //   redirect: loggedOutRedirect,
-                    // ),
+                    GoRoute(
+                      path: 'devices',
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        state,
+                        const DevicesSettings(),
+                      ),
+                      redirect: loggedOutRedirect,
+                    ),
                     // GoRoute(
                     //   path: 'chat',
                     //   pageBuilder: (context, state) => defaultPageBuilder(
