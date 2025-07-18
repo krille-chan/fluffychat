@@ -179,16 +179,16 @@ class LoginController extends State<Login> {
 
   void passwordForgotten() async {
     final input = await showTextInputDialog(
-      useRootNavigator: false,
-      context: context,
-      title: L10n.of(context).passwordForgotten,
-      message: L10n.of(context).enterAnEmailAddress,
-      okLabel: L10n.of(context).ok,
-      cancelLabel: L10n.of(context).cancel,
-      initialText:
-          usernameController.text.isEmail ? usernameController.text : '',
-      keyboardType: TextInputType.emailAddress,
-    );
+        useRootNavigator: false,
+        context: context,
+        title: L10n.of(context).passwordForgotten,
+        message: L10n.of(context).enterAnEmailAddress,
+        okLabel: L10n.of(context).ok,
+        cancelLabel: L10n.of(context).cancel,
+        initialText:
+            usernameController.text.isEmail ? usernameController.text : '',
+        keyboardType: TextInputType.emailAddress,
+        maxLines: 1);
     if (input == null) return;
     final clientSecret = DateTime.now().millisecondsSinceEpoch.toString();
     final response = await showFutureLoadingDialog(

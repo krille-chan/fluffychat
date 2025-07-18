@@ -213,25 +213,28 @@ class LoginView extends StatelessWidget {
                     const SizedBox(height: 10),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                      child: TextButton(
-                        onPressed: controller.loading
-                            ? () {}
-                            : controller.passwordForgotten,
-                        style: TextButton.styleFrom(
-                          foregroundColor:
-                              Theme.of(context).colorScheme.primary,
-                        ),
-                        child: Text(
-                          L10n.of(context).passwordForgotten,
-                          style: const TextStyle(
-                            fontFamily: 'Roboto',
-                            fontSize: 16,
-                            fontWeight: FontWeight.normal,
+                      child: SizedBox(
+                        width: double.infinity,
+                        child: TextButton(
+                          onPressed: controller.loading
+                              ? null
+                              : controller.passwordForgotten,
+                          style: TextButton.styleFrom(
+                            foregroundColor:
+                                Theme.of(context).colorScheme.primary,
+                            padding: const EdgeInsets.symmetric(vertical: 15.0),
+                          ),
+                          child: Text(
+                            L10n.of(context).passwordForgotten,
+                            style: const TextStyle(
+                              fontFamily: 'Roboto',
+                              fontSize: 16,
+                              fontWeight: FontWeight.normal,
+                            ),
                           ),
                         ),
                       ),
                     ),
-                    const SizedBox(height: 24),
                   ],
                 ),
               ),
