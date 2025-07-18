@@ -22,17 +22,6 @@ enum ProgressIndicatorEnum {
         return null;
     }
   }
-
-  String toShortString() {
-    switch (this) {
-      case ProgressIndicatorEnum.wordsUsed:
-        return 'vocab';
-      case ProgressIndicatorEnum.morphsUsed:
-        return 'morphs';
-      case ProgressIndicatorEnum.level:
-        return 'level';
-    }
-  }
 }
 
 extension ProgressIndicatorsExtension on ProgressIndicatorEnum {

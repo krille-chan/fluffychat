@@ -113,7 +113,7 @@ class LearningProgressIndicatorsState
                               selected: widget.selected == c.indicator,
                               onPressed: () {
                                 context.go(
-                                  "/rooms/analytics?mode=${c.indicator.toShortString()}",
+                                  "/rooms/analytics?mode=${c.string}",
                                 );
                               },
                               child: ProgressIndicatorBadge(
