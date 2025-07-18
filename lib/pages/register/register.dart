@@ -250,7 +250,14 @@ class RegisterController extends State<Register> {
       return;
     }
 
-    final token = await _generateRegistrationToken(session);
+    String? token;
+    try {
+      token = await _generateRegistrationToken(session);
+    } catch (e) {
+      await _showGenericError();
+      setState(() => loading = false);
+      return;
+    }
 
     try {
       await client.register(
