@@ -171,7 +171,7 @@ class LoginView extends StatelessWidget {
                                   child: LinearProgressIndicator(),
                                 )
                               : Text(
-                                  L10n.of(context).createAccount,
+                                  L10n.of(context).login,
                                   style: const TextStyle(fontSize: 16),
                                 ),
                         ),
