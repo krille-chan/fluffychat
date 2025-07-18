@@ -252,7 +252,7 @@ class ChatListController extends State<ChatList>
   Future<QueryPublicRoomsResponse>? publicRoomsResponse;
   String? searchServer;
   Timer? _coolDown;
-  SearchUserDirectoryResponse? userSearchResult;
+  List? userSearchResult;
   QueryPublicRoomsResponse? roomSearchResult;
 
   bool isSearching = false;
@@ -293,7 +293,7 @@ class ChatListController extends State<ChatList>
         isSearching = true;
       });
     }
-    SearchUserDirectoryResponse? userSearchResult;
+    List? userSearchResult;
     QueryPublicRoomsResponse? roomSearchResult;
     final searchQuery = searchController.text.trim();
     try {
@@ -323,10 +323,14 @@ class ChatListController extends State<ChatList>
           );
         }
       }
-      userSearchResult = await client.searchUserDirectory(
+      final allUserSearchResults = await client.searchUserDirectory(
         searchController.text,
         limit: 20,
       );
+
+      userSearchResult = allUserSearchResults.results
+          .where((u) => u.userId.endsWith(':radiohemp.com'))
+          .toList();
     } catch (e, s) {
       Logs().w('Searching has crashed', e, s);
       ScaffoldMessenger.of(context).showSnackBar(

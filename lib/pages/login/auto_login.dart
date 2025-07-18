@@ -26,7 +26,15 @@ class _AutoLoginScreenState extends State<AutoLoginScreen> {
     await client.checkHomeserver(homeserver);
 
     if (!mounted) return;
-    context.go('/login', extra: client);
+
+    final state = GoRouterState.of(context);
+    final from = state.uri.queryParameters['from'];
+
+    if (from == 'register') {
+      context.go('/register', extra: client);
+    } else {
+      context.go('/login', extra: client);
+    }
   }
 
   @override

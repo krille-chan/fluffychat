@@ -60,9 +60,12 @@ abstract class FluffyThemes {
       onTertiaryContainer: Color(0xFFADB5BD),
       surface: Color(0xFF212529),
       onSurface: Color(0xFFADB5BD),
-      error: Color(0xFFB00020),
-      onError: Color(0xFFFFFFFF),
-      errorContainer: Color(0xFFCF6679),
+      surfaceContainerLow: Color.fromARGB(255, 27, 29, 29),
+      surfaceContainer: Color(0xFF212529),
+      surfaceContainerHighest: Color.fromARGB(255, 59, 63, 66),
+      error: Color.fromARGB(255, 243, 117, 117),
+      onError: Color.fromARGB(255, 243, 117, 117),
+      errorContainer: Color.fromARGB(255, 243, 117, 117),
       onErrorContainer: Color(0xFF000000),
       surfaceTint: Color(0xFFE3ED55),
       outline: Color(0xFFE3ED55),
@@ -163,14 +166,13 @@ abstract class FluffyThemes {
           borderRadius: BorderRadius.circular(AppConfig.borderRadius),
         ),
         labelStyle: TextStyle(
-          color: colorScheme.onTertiary, // ou qualquer cor que deseje
+          color: colorScheme.onTertiary,
         ),
       ),
       appBarTheme: AppBarTheme(
         toolbarHeight: isColumnMode ? 72 : 56,
-        shadowColor:
-            isColumnMode ? colorScheme.surfaceContainer.withAlpha(128) : null,
-        surfaceTintColor: isColumnMode ? colorScheme.surface : null,
+        shadowColor: null,
+        surfaceTintColor: Colors.transparent,
         backgroundColor: isColumnMode ? colorScheme.surface : null,
         systemOverlayStyle: SystemUiOverlayStyle(
           statusBarColor: Colors.transparent,

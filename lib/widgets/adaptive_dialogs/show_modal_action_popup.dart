@@ -34,7 +34,7 @@ Future<T?> showModalActionPopup<T>({
                 title: title == null
                     ? null
                     : Text(
-                        title,
+                        title.toUpperCase(),
                         style: GoogleFonts.righteous(
                           fontSize: 20,
                           color: theme.colorScheme.primary,

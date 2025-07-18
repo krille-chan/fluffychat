@@ -28,6 +28,7 @@ class SpacesNavigationRail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final client = Matrix.of(context).client;
+    final theme = Theme.of(context);
     final isSettings = GoRouter.of(context)
         .routeInformationProvider
         .value
@@ -55,194 +56,173 @@ class SpacesNavigationRail extends StatelessWidget {
                 .toList();
 
             return Container(
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.surface,
-                ),
-                child: SizedBox(
-                  width: FluffyThemes.isColumnMode(context)
-                      ? FluffyThemes.navRailWidth
-                      : FluffyThemes.navRailWidth * 0.75,
-                  child: Column(
-                    children: [
-                      Expanded(
-                        child: ListView.builder(
-                          scrollDirection: Axis.vertical,
-                          itemCount: rootSpaces.length + 2,
-                          itemBuilder: (context, i) {
-                            if (i == 0) {
-                              return NaviRailItem(
-                                isSelected:
-                                    activeSpaceId == null && !isSettings,
-                                onTap: onGoToChats,
-                                icon: const Padding(
-                                  padding: EdgeInsets.all(10.0),
-                                  child: Icon(Icons.forum_outlined),
-                                ),
-                                selectedIcon: const Padding(
-                                  padding: EdgeInsets.all(10.0),
-                                  child: Icon(Icons.forum),
-                                ),
-                                toolTip: L10n.of(context).chats,
-                                unreadBadgeFilter: (room) => true,
-                              );
-                            }
-                            i--;
-                            // if (i == rootSpaces.length) {
-                            //   return NaviRailItem(
-                            //     isSelected: false,
-                            //     onTap: () => context.go('/rooms/newspace'),
-                            //     icon: const Padding(
-                            //       padding: EdgeInsets.all(8.0),
-                            //       child: Icon(Icons.add),
-                            //     ),
-                            //     toolTip: L10n.of(context).createNewSpace,
-                            //   );
-                            // }
-                            // final space = rootSpaces[i];
-                            // final displayname =
-                            //     rootSpaces[i].getLocalizedDisplayname(
-                            //   MatrixLocals(L10n.of(context)),
-                            // );
-                            // final spaceChildrenIds = space.spaceChildren
-                            //     .map((c) => c.roomId)
-                            //     .toSet();
-                            // return NaviRailItem(
-                            //   toolTip: displayname,
-                            //   isSelected: activeSpaceId == space.id,
-                            //   onTap: () => onGoToSpaceId(rootSpaces[i].id),
-                            //   unreadBadgeFilter: (room) =>
-                            //       spaceChildrenIds.contains(room.id),
-                            //   icon: Avatar(
-                            //     mxContent: rootSpaces[i].avatar,
-                            //     name: displayname,
-                            //     border: BorderSide(
-                            //       width: 1,
-                            //       color: Theme.of(context).dividerColor,
-                            //     ),
-                            //     borderRadius: BorderRadius.circular(
-                            //       AppConfig.borderRadius / 2,
-                            //     ),
-                            //   ),
-                            // );
-                          },
-                        ),
-                      ),
-                      NaviRailItem(
-                        toolTip: 'Links',
-                        isSelected: false,
-                        onTap: () {},
-                        icon: PopupMenuButton<_LinksMenuAction>(
-                          color: Theme.of(context).colorScheme.tertiary,
-                          useRootNavigator: true,
-                          icon: Padding(
-                            padding: const EdgeInsets.all(3.0),
-                            child: Icon(
-                              Icons.link_outlined,
-                              color: Theme.of(context).colorScheme.onTertiary,
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.surface,
+              ),
+              child: SizedBox(
+                width: FluffyThemes.isColumnMode(context)
+                    ? FluffyThemes.navRailWidth
+                    : FluffyThemes.navRailWidth * 0.75,
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: ListView(
+                        children: [
+                          const SizedBox(height: 6),
+                          NaviRailItem(
+                            isSelected: activeSpaceId == null && !isSettings,
+                            onTap: onGoToChats,
+                            icon: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Icon(
+                                Icons.forum_outlined,
+                                color: theme.colorScheme.onSurface,
+                              ),
                             ),
+                            selectedIcon: const Padding(
+                              padding: EdgeInsets.all(10.0),
+                              child: Icon(Icons.forum),
+                            ),
+                            toolTip: L10n.of(context).chats,
+                            unreadBadgeFilter: (room) => true,
                           ),
-                          onSelected: (action) async {
-                            switch (action) {
-                              case _LinksMenuAction.store:
-                                final uri = Uri.parse(
-                                  'https://www.radiohemp.com/loja/',
-                                );
-                                await launchUrl(
-                                  uri,
-                                  mode: LaunchMode.externalApplication,
-                                );
-                                break;
-                              case _LinksMenuAction.course:
-                                final uri = Uri.parse(
-                                  'https://www.radiohemp.com/produto/como-plantar-maconha-medicinal/',
-                                );
-                                await launchUrl(
-                                  uri,
-                                  mode: LaunchMode.externalApplication,
-                                );
-                              case _LinksMenuAction.news:
-                                final uri = Uri.parse(
-                                  'https://www.radiohemp.com/blog/',
-                                );
-                                await launchUrl(
-                                  uri,
-                                  mode: LaunchMode.externalApplication,
-                                );
-                              case _LinksMenuAction.podcasts:
-                                final uri = Uri.parse(
-                                  'https://www.radiohemp.com/podcast/',
-                                );
-                                await launchUrl(
-                                  uri,
-                                  mode: LaunchMode.externalApplication,
-                                );
-                            }
-                          },
-                          itemBuilder: (context) => [
-                            PopupMenuItem(
-                              value: _LinksMenuAction.store,
-                              child: Row(
-                                children: [
-                                  const Icon(Icons.store_outlined),
-                                  const SizedBox(width: 8),
-                                  Text(L10n.of(context).menuStore),
-                                ],
+
+                          /// if (i == rootSpaces.length) {
+                          //   return NaviRailItem(
+                          //     isSelected: false,
+                          //     onTap: () => context.go('/rooms/newspace'),
+                          //     icon: const Padding(
+                          //       padding: EdgeInsets.all(8.0),
+                          //       child: Icon(Icons.add),
+                          //     ),
+                          //     toolTip: L10n.of(context).createNewSpace,
+                          //   );
+                          // }
+                          // final space = rootSpaces[i];
+                          // final displayname =
+                          //     rootSpaces[i].getLocalizedDisplayname(
+                          //   MatrixLocals(L10n.of(context)),
+                          // );
+                          // final spaceChildrenIds = space.spaceChildren
+                          //     .map((c) => c.roomId)
+                          //     .toSet();
+                          // return NaviRailItem(
+                          //   toolTip: displayname,
+                          //   isSelected: activeSpaceId == space.id,
+                          //   onTap: () => onGoToSpaceId(rootSpaces[i].id),
+                          //   unreadBadgeFilter: (room) =>
+                          //       spaceChildrenIds.contains(room.id),
+                          //   icon: Avatar(
+                          //     mxContent: rootSpaces[i].avatar,
+                          //     name: displayname,
+                          //     border: BorderSide(
+                          //       width: 1,
+                          //       color: Theme.of(context).dividerColor,
+                          //     ),
+                          //     borderRadius: BorderRadius.circular(
+                          //       AppConfig.borderRadius / 2,
+                          //     ),
+                          //   ),
+                          // );
+                          NaviRailItem(
+                            isSelected: false,
+                            onTap: () async {
+                              await launchUrl(
+                                Uri.parse('https://www.radiohemp.com/loja/'),
+                                mode: LaunchMode.externalApplication,
+                              );
+                            },
+                            icon: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Icon(
+                                Icons.store_outlined,
+                                color: theme.colorScheme.onSurface,
                               ),
                             ),
-                            PopupMenuItem(
-                              value: _LinksMenuAction.course,
-                              child: Row(
-                                children: [
-                                  const Icon(Icons.grass_outlined),
-                                  const SizedBox(width: 8),
-                                  Text(L10n.of(context).menuCourse),
-                                ],
+                            toolTip: L10n.of(context).menuStore,
+                          ),
+
+                          NaviRailItem(
+                            isSelected: false,
+                            onTap: () async {
+                              await launchUrl(
+                                Uri.parse(
+                                    'https://www.radiohemp.com/produto/como-plantar-maconha-medicinal/'),
+                                mode: LaunchMode.externalApplication,
+                              );
+                            },
+                            icon: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Icon(
+                                Icons.grass_outlined,
+                                color: theme.colorScheme.onSurface,
                               ),
                             ),
-                            PopupMenuItem(
-                              value: _LinksMenuAction.news,
-                              child: Row(
-                                children: [
-                                  const Icon(Icons.article_outlined),
-                                  const SizedBox(width: 8),
-                                  Text(L10n.of(context).menuNews),
-                                ],
+                            toolTip: L10n.of(context).menuCourse,
+                          ),
+
+                          NaviRailItem(
+                            isSelected: false,
+                            onTap: () async {
+                              await launchUrl(
+                                Uri.parse('https://www.radiohemp.com/blog/'),
+                                mode: LaunchMode.externalApplication,
+                              );
+                            },
+                            icon: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Icon(
+                                Icons.article_outlined,
+                                color: theme.colorScheme.onSurface,
                               ),
                             ),
-                            PopupMenuItem(
-                              value: _LinksMenuAction.podcasts,
-                              child: Row(
-                                children: [
-                                  const Icon(Icons.podcasts_outlined),
-                                  const SizedBox(width: 8),
-                                  Text(L10n.of(context).menuPodcasts),
-                                ],
+                            toolTip: L10n.of(context).menuNews,
+                          ),
+
+                          NaviRailItem(
+                            isSelected: false,
+                            onTap: () async {
+                              await launchUrl(
+                                Uri.parse('https://www.radiohemp.com/podcast/'),
+                                mode: LaunchMode.externalApplication,
+                              );
+                            },
+                            icon: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Icon(
+                                Icons.podcasts_outlined,
+                                color: theme.colorScheme.onSurface,
                               ),
                             ),
-                          ],
+                            toolTip: L10n.of(context).menuPodcasts,
+                          ),
+                        ],
+                      ),
+                    ),
+                    NaviRailItem(
+                      isSelected: isSettings,
+                      onTap: () => context.go('/rooms/settings'),
+                      icon: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Icon(
+                          Icons.settings_outlined,
+                          color: theme.colorScheme.onSurface,
                         ),
                       ),
-                      NaviRailItem(
-                        isSelected: isSettings,
-                        onTap: () => context.go('/rooms/settings'),
-                        icon: const Padding(
-                          padding: EdgeInsets.all(10.0),
-                          child: Icon(Icons.settings_outlined),
-                        ),
-                        selectedIcon: const Padding(
-                          padding: EdgeInsets.all(10.0),
-                          child: Icon(Icons.settings),
-                        ),
-                        toolTip: L10n.of(context).settings,
+                      selectedIcon: const Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: Icon(Icons.settings),
                       ),
-                    ],
-                  ),
-                ));
+                      toolTip: L10n.of(context).settings,
+                    ),
+                    const SizedBox(height: 6),
+                  ],
+                ),
+              ),
+            );
           },
         ),
       ),
     );
   }
 }
-
-enum _LinksMenuAction { store, course, news, podcasts }

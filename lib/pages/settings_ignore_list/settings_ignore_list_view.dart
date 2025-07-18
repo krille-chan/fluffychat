@@ -21,8 +21,12 @@ class SettingsIgnoreListView extends StatelessWidget {
     final client = Matrix.of(context).client;
     return Scaffold(
       appBar: AppBar(
-        leading: const Center(child: BackButton()),
-        title: Text(L10n.of(context).blockedUsers),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
       ),
       body: MaxWidthBody(
         withScrolling: false,
@@ -50,11 +54,14 @@ class SettingsIgnoreListView extends StatelessWidget {
                         onPressed: () => controller.ignoreUser(context),
                       ),
                     ),
+                    style: TextStyle(
+                      color: theme.colorScheme.onTertiary,
+                    ),
                   ),
                   const SizedBox(height: 16),
                   Text(
                     L10n.of(context).blockListDescription,
-                    style: const TextStyle(color: Colors.orange),
+                    style: TextStyle(color: theme.colorScheme.secondary),
                   ),
                 ],
               ),

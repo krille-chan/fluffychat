@@ -554,7 +554,7 @@ class ChatController extends State<ChatPageWithRoom>
       final l10n = L10n.of(context);
       final dialogResult = await showOkCancelAlertDialog(
         context: context,
-        title: l10n.commandInvalid,
+        title: l10n.commandInvalid.toUpperCase(),
         message: l10n.commandMissing(commandMatch[0]!),
         okLabel: l10n.sendAsText,
         cancelLabel: l10n.cancel,
@@ -657,7 +657,7 @@ class ChatController extends State<ChatPageWithRoom>
       if (info.version.sdkInt < 19) {
         showOkAlertDialog(
           context: context,
-          title: L10n.of(context).unsupportedAndroidVersion,
+          title: L10n.of(context).unsupportedAndroidVersion.toUpperCase(),
           message: L10n.of(context).unsupportedAndroidVersionLong,
           okLabel: L10n.of(context).close,
         );
