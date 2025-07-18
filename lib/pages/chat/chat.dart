@@ -855,7 +855,8 @@ class ChatController extends State<ChatPageWithRoom>
         future: () async {
           if (event.status.isSent) {
             if (event.canRedact) {
-              if (room.canChangeStateEvent(EventTypes.RoomPinnedEvents)) {
+              if (room.pinnedEventIds.contains(event.eventId) &&
+                  room.canChangeStateEvent(EventTypes.RoomPinnedEvents)) {
                 final pinnedEvents = room.pinnedEventIds
                     .where((e) => e != event.eventId)
                     .toList();
