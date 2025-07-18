@@ -273,21 +273,23 @@ class ClientChooserButton extends StatelessWidget {
 
         case SettingsAction.store:
           await launchUrl(
-            Uri.parse('https://www.fluffychat.im/store/'),
+            Uri.parse('https://www.radiohemp.com/store/'),
             mode: LaunchMode.externalApplication,
           );
           break;
 
         case SettingsAction.course:
           await launchUrl(
-            Uri.parse('https://www.fluffychat.im/course/'),
+            Uri.parse(
+              'https://www.radiohemp.com/produto/como-plantar-maconha-medicinal/',
+            ),
             mode: LaunchMode.externalApplication,
           );
           break;
 
         case SettingsAction.news:
           await launchUrl(
-            Uri.parse('https://www.fluffychat.im/news/'),
+            Uri.parse('https://www.radiohemp.com/blog/'),
             mode: LaunchMode.externalApplication,
           );
           break;
