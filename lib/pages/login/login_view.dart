@@ -32,7 +32,7 @@ class LoginView extends StatelessWidget {
 
     final screenHeight = MediaQuery.of(context).size.height;
     final toolBarHeight = isMobileMode ? screenHeight * 0.17 : 110.0;
-    final toolBarPadding = isMobileMode ? screenHeight * 0.13 : 65.0;
+    final toolBarPadding = isMobileMode ? screenHeight * 0.13 : 55.0;
     final imagePadding = isMobileMode ? screenHeight * 0.10 : 45.0;
 
     return LoginScaffold(
@@ -177,7 +177,7 @@ class LoginView extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 30),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 24.0),
                       child: Align(
