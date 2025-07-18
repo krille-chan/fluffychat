@@ -355,55 +355,6 @@ class RegisterController extends State<Register> {
         this,
         client: widget.client,
       );
-
-  Future<void> onMoreAction(
-    BuildContext context,
-    MoreLoginActions action,
-  ) async {
-    switch (action) {
-      case MoreLoginActions.about:
-        PlatformInfos.showAboutInfo(context);
-        break;
-
-      case MoreLoginActions.store:
-        await launchUrl(
-          Uri.parse('https://www.fluffychat.im/store/'),
-          mode: LaunchMode.externalApplication,
-        );
-        break;
-
-      case MoreLoginActions.course:
-        await launchUrl(
-          Uri.parse('https://www.fluffychat.im/course/'),
-          mode: LaunchMode.externalApplication,
-        );
-        break;
-
-      case MoreLoginActions.news:
-        await launchUrl(
-          Uri.parse('https://www.fluffychat.im/news/'),
-          mode: LaunchMode.externalApplication,
-        );
-        break;
-
-      case MoreLoginActions.podcasts:
-        await launchUrl(
-          Uri.parse('https://www.radiohemp.com/podcast/'),
-          mode: LaunchMode.externalApplication,
-        );
-        break;
-    }
-  }
-}
-
-enum MoreLoginActions {
-  // importBackup,
-  // privacy,
-  about,
-  store,
-  course,
-  news,
-  podcasts,
 }
 
 class RegistrationTokenAuth extends AuthenticationData {

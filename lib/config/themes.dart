@@ -166,13 +166,13 @@ abstract class FluffyThemes {
           borderRadius: BorderRadius.circular(AppConfig.borderRadius),
         ),
         labelStyle: TextStyle(
-          color: colorScheme.onTertiary, // ou qualquer cor que deseje
+          color: colorScheme.onTertiary,
         ),
       ),
       appBarTheme: AppBarTheme(
         toolbarHeight: isColumnMode ? 72 : 56,
         shadowColor: null,
-        surfaceTintColor: isColumnMode ? colorScheme.surface : null,
+        surfaceTintColor: Colors.transparent,
         backgroundColor: isColumnMode ? colorScheme.surface : null,
         systemOverlayStyle: SystemUiOverlayStyle(
           statusBarColor: Colors.transparent,

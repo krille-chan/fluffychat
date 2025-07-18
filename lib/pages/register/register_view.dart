@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:matrix/matrix.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/widgets/layouts/login_scaffold.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'register.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:flutter/gestures.dart';
 import 'package:go_router/go_router.dart';
+import 'package:fluffychat/widgets/menu_login_options.dart';
 
 class RegisterView extends StatelessWidget {
   final RegisterController controller;
@@ -27,6 +28,11 @@ class RegisterView extends StatelessWidget {
     final isMobileMode =
         enforceMobileMode || !FluffyThemes.isColumnMode(context);
 
+    final screenHeight = MediaQuery.of(context).size.height;
+    final toolBarHeight = isMobileMode ? screenHeight * 0.17 : 95.0;
+    final toolBarPadding = isMobileMode ? screenHeight * 0.13 : 65.0;
+    final imagePadding = isMobileMode ? screenHeight * 0.10 : 45.0;
+
     return LoginScaffold(
       enforceMobileMode:
           Matrix.of(context).widget.clients.any((client) => client.isLogged()),
@@ -34,244 +40,173 @@ class RegisterView extends StatelessWidget {
         backgroundColor: isMobileMode
             ? theme.colorScheme.surface
             : theme.colorScheme.tertiary,
-        toolbarHeight: 75.0,
+        toolbarHeight: toolBarHeight,
         title: Padding(
-          padding: const EdgeInsets.only(
-            left: 16.0,
-            top: 55.0,
-          ),
-          child: Text(
-            L10n.of(context).signUp,
-            style: TextStyle(
-              fontFamily: 'Roboto',
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
-              color: theme.colorScheme.onSurface,
+          padding: EdgeInsets.only(left: 16.0, top: toolBarPadding),
+          child: Align(
+            alignment: isMobileMode ? Alignment.topLeft : Alignment.centerLeft,
+            child: Text(
+              L10n.of(context).signUp,
+              style: const TextStyle(
+                fontFamily: 'Roboto',
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+              ),
             ),
           ),
         ),
         actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 16.0, top: 45.0),
-            child: PopupMenuButton<MoreLoginActions>(
-              onSelected: (value) => controller.onMoreAction(context, value),
-              itemBuilder: (_) => [
-                PopupMenuItem(
-                  value: MoreLoginActions.store,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const Icon(Icons.store_outlined),
-                      const SizedBox(width: 18),
-                      Text(L10n.of(context).menuStore),
-                    ],
-                  ),
-                ),
-                PopupMenuItem(
-                  value: MoreLoginActions.course,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const Icon(Icons.grass_outlined),
-                      const SizedBox(width: 18),
-                      Text(L10n.of(context).menuCourse),
-                    ],
-                  ),
-                ),
-                PopupMenuItem(
-                  value: MoreLoginActions.news,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const Icon(Icons.article_outlined),
-                      const SizedBox(width: 18),
-                      Text(L10n.of(context).menuNews),
-                    ],
-                  ),
-                ),
-                PopupMenuItem(
-                  value: MoreLoginActions.podcasts,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const Icon(Icons.podcasts_outlined),
-                      const SizedBox(width: 18),
-                      Text(L10n.of(context).menuPodcasts),
-                    ],
-                  ),
-                ),
-                PopupMenuItem(
-                  value: MoreLoginActions.about,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const Icon(Icons.info_outlined),
-                      const SizedBox(width: 12),
-                      Text(L10n.of(context).about),
-                    ],
-                  ),
-                ),
-              ],
-            ),
+          MoreLoginMenuButton(
+            padding: EdgeInsets.only(right: 16.0, top: toolBarPadding),
           ),
         ],
       ),
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Flexible(
-              child: AutofillGroup(
-                child: ListView(
-                  shrinkWrap: true,
-                  children: <Widget>[
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          return SingleChildScrollView(
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 32.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
                     Padding(
-                      padding: isMobileMode
-                          ? const EdgeInsets.only(bottom: 80.0)
-                          : const EdgeInsets.only(bottom: 30.0),
-                      child: Center(
-                        child: FractionallySizedBox(
-                          widthFactor: isMobileMode ? 0.8 : 0.5,
-                          child: Image.asset(
-                            'assets/logo_horizontal_semfundo.png',
-                            fit: BoxFit.contain,
-                            filterQuality: FilterQuality.high,
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                      child: Focus(
-                        onFocusChange: (hasFocus) {
-                          if (!hasFocus) controller.emailIsValid();
-                        },
-                        child: TextField(
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.normal,
-                            fontFamily: 'Roboto',
-                          ),
-                          readOnly: controller.loading,
-                          autocorrect: false,
-                          controller: controller.emailController,
-                          textInputAction: TextInputAction.next,
-                          keyboardType: TextInputType.emailAddress,
-                          autofillHints:
-                              controller.loading ? null : [AutofillHints.email],
-                          decoration: InputDecoration(
-                            prefixIcon: const Icon(Icons.account_box_outlined),
-                            errorText: controller.emailError,
-                            errorStyle: TextStyle(
-                              color: theme.colorScheme.secondary,
-                            ),
-                            labelText: L10n.of(context).email,
-                          ),
+                      padding: EdgeInsets.only(bottom: imagePadding),
+                      child: FractionallySizedBox(
+                        widthFactor: isMobileMode ? 0.7 : 0.5,
+                        child: Image.asset(
+                          'assets/logo_horizontal_semfundo.png',
+                          fit: BoxFit.contain,
+                          filterQuality: FilterQuality.high,
                         ),
                       ),
                     ),
                     const SizedBox(height: 10),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                      child: Focus(
-                        onFocusChange: (hasFocus) {
-                          if (!hasFocus) controller.usernameIsValid();
-                        },
-                        child: TextField(
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.normal,
-                            fontFamily: 'Roboto',
+                      child: TextField(
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontFamily: 'Roboto',
+                        ),
+                        readOnly: controller.loading,
+                        autocorrect: false,
+                        controller: controller.emailController,
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.emailAddress,
+                        autofillHints:
+                            controller.loading ? null : [AutofillHints.email],
+                        decoration: InputDecoration(
+                          prefixIcon: const Icon(Icons.email_outlined),
+                          errorText: controller.emailError,
+                          errorStyle: TextStyle(
+                            color: theme.colorScheme.secondary,
                           ),
-                          readOnly: controller.loading,
-                          autocorrect: false,
-                          controller: controller.usernameController,
-                          textInputAction: TextInputAction.next,
-                          keyboardType: TextInputType.emailAddress,
-                          autofillHints: controller.loading
-                              ? null
-                              : [AutofillHints.username],
-                          decoration: InputDecoration(
-                            prefixIcon: const Icon(Icons.account_box_outlined),
-                            errorText: controller.usernameError,
-                            errorStyle: TextStyle(
-                              color: theme.colorScheme.secondary,
-                            ),
-                            labelText: L10n.of(context).username,
-                          ),
+                          labelText: L10n.of(context).email,
                         ),
                       ),
                     ),
                     const SizedBox(height: 10),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                      child: Focus(
-                        onFocusChange: (hasFocus) {
-                          if (!hasFocus) controller.passwordIsValid();
-                        },
-                        child: TextField(
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.normal,
-                            fontFamily: 'Roboto',
+                      child: TextField(
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontFamily: 'Roboto',
+                        ),
+                        readOnly: controller.loading,
+                        autocorrect: false,
+                        controller: controller.usernameController,
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.text,
+                        autofillHints: controller.loading
+                            ? null
+                            : [AutofillHints.username],
+                        decoration: InputDecoration(
+                          prefixIcon: const Icon(Icons.account_box_outlined),
+                          errorText: controller.usernameError,
+                          errorStyle: TextStyle(
+                            color: theme.colorScheme.secondary,
                           ),
-                          readOnly: controller.loading,
-                          autocorrect: false,
-                          controller: controller.passwordController,
-                          textInputAction: TextInputAction.go,
-                          obscureText: !controller.showPassword,
-                          onSubmitted: (_) => controller.register(),
-                          autofillHints: controller.loading
-                              ? null
-                              : [AutofillHints.password],
-                          decoration: InputDecoration(
-                            prefixIcon: const Icon(Icons.lock_outlined),
-                            errorText: controller.passwordError,
-                            errorStyle: TextStyle(
-                              color: theme.colorScheme.secondary,
-                            ),
-                            suffixIcon: IconButton(
-                              onPressed: controller.toggleShowPassword,
-                              icon: Icon(
-                                controller.showPassword
-                                    ? Icons.visibility_off_outlined
-                                    : Icons.visibility_outlined,
-                                color: theme.colorScheme.onSurface,
-                              ),
-                            ),
-                            labelText: L10n.of(context).password,
+                          labelText: L10n.of(context).username,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                      child: TextField(
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontFamily: 'Roboto',
+                        ),
+                        readOnly: controller.loading,
+                        autocorrect: false,
+                        controller: controller.passwordController,
+                        textInputAction: TextInputAction.go,
+                        obscureText: !controller.showPassword,
+                        onSubmitted: (_) => controller.register(),
+                        autofillHints: controller.loading
+                            ? null
+                            : [AutofillHints.password],
+                        decoration: InputDecoration(
+                          prefixIcon: const Icon(Icons.lock_outlined),
+                          errorText: controller.passwordError,
+                          errorStyle: TextStyle(
+                            color: theme.colorScheme.secondary,
                           ),
+                          suffixIcon: IconButton(
+                            onPressed: controller.toggleShowPassword,
+                            icon: Icon(
+                              controller.showPassword
+                                  ? Icons.visibility_off_outlined
+                                  : Icons.visibility_outlined,
+                              color: theme.colorScheme.onSurface,
+                            ),
+                          ),
+                          labelText: L10n.of(context).password,
                         ),
                       ),
                     ),
                     const SizedBox(height: 20),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                      child: ElevatedButton(
-                        onPressed:
-                            controller.loading ? null : controller.register,
-                        child: controller.loading
-                            ? const LinearProgressIndicator()
-                            : Text(L10n.of(context).createAccount),
+                      child: SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          onPressed:
+                              controller.loading ? null : controller.register,
+                          style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.symmetric(vertical: 15.0),
+                          ),
+                          child: controller.loading
+                              ? const SizedBox(
+                                  height: 18,
+                                  width: 18,
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 2,
+                                  ),
+                                )
+                              : Text(
+                                  L10n.of(context).createAccount,
+                                  style: const TextStyle(fontSize: 16),
+                                ),
+                        ),
                       ),
                     ),
                     if (controller.genericError != null)
-                      const SizedBox(height: 15),
-                    Center(
-                      child: Text(
-                        controller.genericError ?? '',
-                        style: TextStyle(
-                          color: theme.colorScheme.secondary,
+                      Padding(
+                        padding: const EdgeInsets.only(top: 12),
+                        child: Text(
+                          controller.genericError!,
+                          style: TextStyle(
+                            color: theme.colorScheme.secondary,
+                          ),
                         ),
                       ),
-                    ),
-                    const SizedBox(height: 5),
+                    const SizedBox(height: 20),
                     Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 24.0,
-                        vertical: 16.0,
-                      ),
+                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
                       child: Align(
                         alignment: Alignment.center,
                         child: RichText(
@@ -305,8 +240,8 @@ class RegisterView extends StatelessWidget {
                 ),
               ),
             ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }

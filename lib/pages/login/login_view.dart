@@ -10,6 +10,7 @@ import 'login.dart';
 import 'package:flutter/gestures.dart';
 import 'package:go_router/go_router.dart';
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/widgets/menu_login_options.dart';
 
 class LoginView extends StatelessWidget {
   final LoginController controller;
@@ -29,6 +30,11 @@ class LoginView extends StatelessWidget {
     final isMobileMode =
         enforceMobileMode || !FluffyThemes.isColumnMode(context);
 
+    final screenHeight = MediaQuery.of(context).size.height;
+    final toolBarHeight = isMobileMode ? screenHeight * 0.17 : 110.0;
+    final toolBarPadding = isMobileMode ? screenHeight * 0.13 : 65.0;
+    final imagePadding = isMobileMode ? screenHeight * 0.10 : 45.0;
+
     return LoginScaffold(
       enforceMobileMode:
           Matrix.of(context).widget.clients.any((client) => client.isLogged()),
@@ -36,113 +42,52 @@ class LoginView extends StatelessWidget {
         backgroundColor: isMobileMode
             ? theme.colorScheme.surface
             : theme.colorScheme.tertiary,
-        toolbarHeight: 80.0,
+        toolbarHeight: toolBarHeight,
         title: Padding(
-          padding: const EdgeInsets.only(
+          padding: EdgeInsets.only(
             left: 16.0,
-            top: 60.0,
+            top: toolBarPadding,
           ),
-          child: Text(
-            L10n.of(context).login,
-            style: TextStyle(
-              fontFamily: 'Roboto',
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
-              color: theme.colorScheme.onSurface,
+          child: Align(
+            alignment: isMobileMode ? Alignment.topLeft : Alignment.centerLeft,
+            child: Text(
+              L10n.of(context).login,
+              style: TextStyle(
+                fontFamily: 'Roboto',
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+                color: theme.colorScheme.onSurface,
+              ),
             ),
           ),
         ),
         actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 16.0, top: 50.0),
-            child: PopupMenuButton<MoreLoginActions>(
-              onSelected: (value) => controller.onMoreAction(context, value),
-              itemBuilder: (_) => [
-                PopupMenuItem(
-                  value: MoreLoginActions.store,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const Icon(Icons.store_outlined),
-                      const SizedBox(width: 18),
-                      Text(L10n.of(context).menuStore),
-                    ],
-                  ),
-                ),
-                PopupMenuItem(
-                  value: MoreLoginActions.course,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const Icon(Icons.grass_outlined),
-                      const SizedBox(width: 18),
-                      Text(L10n.of(context).menuCourse),
-                    ],
-                  ),
-                ),
-                PopupMenuItem(
-                  value: MoreLoginActions.news,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const Icon(Icons.article_outlined),
-                      const SizedBox(width: 18),
-                      Text(L10n.of(context).menuNews),
-                    ],
-                  ),
-                ),
-                PopupMenuItem(
-                  value: MoreLoginActions.podcasts,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const Icon(Icons.podcasts_outlined),
-                      const SizedBox(width: 18),
-                      Text(L10n.of(context).menuPodcasts),
-                    ],
-                  ),
-                ),
-                PopupMenuItem(
-                  value: MoreLoginActions.about,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const Icon(Icons.info_outlined),
-                      const SizedBox(width: 12),
-                      Text(L10n.of(context).about),
-                    ],
-                  ),
-                ),
-              ],
-            ),
+          MoreLoginMenuButton(
+            padding: EdgeInsets.only(right: 16.0, top: toolBarPadding),
           ),
         ],
       ),
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Flexible(
-              child: AutofillGroup(
-                child: ListView(
-                  shrinkWrap: true,
-                  children: <Widget>[
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          return SingleChildScrollView(
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 32.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
                     Padding(
-                      padding: isMobileMode
-                          ? const EdgeInsets.only(bottom: 80.0)
-                          : const EdgeInsets.only(bottom: 50.0),
-                      child: Center(
-                        child: FractionallySizedBox(
-                          widthFactor: isMobileMode ? 0.8 : 0.5,
-                          child: Image.asset(
-                            'assets/logo_horizontal_semfundo.png',
-                            fit: BoxFit.contain,
-                            filterQuality: FilterQuality.high,
-                          ),
+                      padding: EdgeInsets.only(bottom: imagePadding),
+                      child: FractionallySizedBox(
+                        widthFactor: isMobileMode ? 0.7 : 0.5,
+                        child: Image.asset(
+                          'assets/logo_horizontal_semfundo.png',
+                          fit: BoxFit.contain,
+                          filterQuality: FilterQuality.high,
                         ),
                       ),
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 10),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 24.0),
                       child: TextField(
@@ -164,8 +109,9 @@ class LoginView extends StatelessWidget {
                         decoration: InputDecoration(
                           prefixIcon: const Icon(Icons.account_box_outlined),
                           errorText: controller.usernameError,
-                          errorStyle:
-                              TextStyle(color: theme.colorScheme.secondary),
+                          errorStyle: TextStyle(
+                            color: Theme.of(context).colorScheme.secondary,
+                          ),
                           labelText: L10n.of(context).emailOrUsername,
                         ),
                       ),
@@ -191,15 +137,15 @@ class LoginView extends StatelessWidget {
                         decoration: InputDecoration(
                           prefixIcon: const Icon(Icons.lock_outlined),
                           errorText: controller.passwordError,
-                          errorStyle:
-                              TextStyle(color: theme.colorScheme.secondary),
+                          errorStyle: TextStyle(
+                              color: Theme.of(context).colorScheme.secondary),
                           suffixIcon: IconButton(
                             onPressed: controller.toggleShowPassword,
                             icon: Icon(
                               controller.showPassword
                                   ? Icons.visibility_off_outlined
                                   : Icons.visibility_outlined,
-                              color: theme.colorScheme.onSurface,
+                              color: Theme.of(context).colorScheme.onSurface,
                             ),
                           ),
                           labelText: L10n.of(context).password,
@@ -209,18 +155,31 @@ class LoginView extends StatelessWidget {
                     const SizedBox(height: 20),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                      child: ElevatedButton(
-                        onPressed: controller.loading ? null : controller.login,
-                        child: controller.loading
-                            ? const LinearProgressIndicator()
-                            : Text(L10n.of(context).login),
+                      child: SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          onPressed:
+                              controller.loading ? null : controller.login,
+                          style: ElevatedButton.styleFrom(
+                            padding: const EdgeInsets.symmetric(vertical: 15.0),
+                          ),
+                          child: controller.loading
+                              ? const SizedBox(
+                                  height: 18,
+                                  width: 18,
+                                  child:
+                                      CircularProgressIndicator(strokeWidth: 2),
+                                )
+                              : Text(
+                                  L10n.of(context).login,
+                                  style: const TextStyle(fontSize: 16),
+                                ),
+                        ),
                       ),
                     ),
-                    const SizedBox(height: 30),
+                    const SizedBox(height: 20),
                     Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 24.0,
-                      ),
+                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
                       child: Align(
                         alignment: Alignment.center,
                         child: RichText(
@@ -229,14 +188,15 @@ class LoginView extends StatelessWidget {
                               TextSpan(
                                 text: '${L10n.of(context).newHere} ',
                                 style: GoogleFonts.fredoka(
-                                  color: theme.colorScheme.onSurface,
+                                  color:
+                                      Theme.of(context).colorScheme.onSurface,
                                   fontSize: 18,
                                 ),
                               ),
                               TextSpan(
                                 text: L10n.of(context).createAnAccountPrompt,
                                 style: GoogleFonts.fredoka(
-                                  color: theme.colorScheme.primary,
+                                  color: Theme.of(context).colorScheme.primary,
                                   fontSize: 18,
                                   decoration: TextDecoration.underline,
                                 ),
@@ -250,17 +210,16 @@ class LoginView extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 15),
+                    const SizedBox(height: 10),
                     Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 24.0,
-                      ),
+                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
                       child: TextButton(
                         onPressed: controller.loading
                             ? () {}
                             : controller.passwordForgotten,
                         style: TextButton.styleFrom(
-                          foregroundColor: theme.colorScheme.primary,
+                          foregroundColor:
+                              Theme.of(context).colorScheme.primary,
                         ),
                         child: Text(
                           L10n.of(context).passwordForgotten,
@@ -272,12 +231,13 @@ class LoginView extends StatelessWidget {
                         ),
                       ),
                     ),
+                    const SizedBox(height: 24),
                   ],
                 ),
               ),
             ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }
