@@ -96,7 +96,9 @@ jobs:
           xcode-version: latest
       - run: brew install sqlcipher
       - uses: moonrepo/setup-rust@v1
-      - name: Add Firebase Key
-        run: echo '${{secrets.GOOGLE_SERVICES_INFO_PLIST}}' | base64 -d > ios/Runner/GoogleService-Info.plist
+      - name: Add Firebase Messaging
+        run: |
+          flutter pub add fcm_shared_isolate:0.1.0
+          sed -i '' 's,//<GOOGLE_SERVICES>,,g' lib/utils/background_push.dart
       - run: flutter pub get
       - run: flutter build ios --no-codesign
