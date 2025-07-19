@@ -167,7 +167,8 @@ class ChatSearchFilesTab extends StatelessWidget {
                           filename,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                          style: TextStyle(color: theme.colorScheme.onTertiary),
+                          style:
+                              TextStyle(color: theme.colorScheme.onSecondary),
                         ),
                         subtitle: Text('$sizeString | $filetype'),
                         onTap: () => event.saveFile(context),
