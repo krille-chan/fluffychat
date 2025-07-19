@@ -11,7 +11,6 @@ list(APPEND FLUTTER_PLUGIN_LIST
   flutter_webrtc
   gtk
   handy_window
-  pasteboard
   record_linux
   sqlcipher_flutter_libs
   url_launcher_linux
