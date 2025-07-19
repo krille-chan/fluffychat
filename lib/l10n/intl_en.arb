@@ -3241,5 +3241,6 @@
   "commandHint_logoutall": "Logout all active devices",
   "displayNavigationRail": "Show navigation rail on mobile",
   "customReaction": "Custom reaction",
-  "moreEvents": "More events"
+  "moreEvents": "More events",
+  "declineInvitation": "Decline invitation"
 }

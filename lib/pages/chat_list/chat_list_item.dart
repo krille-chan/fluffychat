@@ -35,32 +35,6 @@ class ChatListItem extends StatelessWidget {
     super.key,
   });
 
-  Future<bool> archiveAction(BuildContext context) async {
-    {
-      if ([Membership.leave, Membership.ban].contains(room.membership)) {
-        final forgetResult = await showFutureLoadingDialog(
-          context: context,
-          future: () => room.forget(),
-        );
-        return forgetResult.isValue;
-      }
-      final confirmed = await showOkCancelAlertDialog(
-        context: context,
-        title: L10n.of(context).areYouSure,
-        okLabel: L10n.of(context).leave,
-        cancelLabel: L10n.of(context).cancel,
-        message: L10n.of(context).archiveRoomDescription,
-        isDestructive: true,
-      );
-      if (confirmed != OkCancelResult.ok) return false;
-      final leaveResult = await showFutureLoadingDialog(
-        context: context,
-        future: () => room.leave(),
-      );
-      return leaveResult.isValue;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -69,7 +43,7 @@ class ChatListItem extends StatelessWidget {
     final typingText = room.getLocalizedTypingText(context);
     final lastEvent = room.lastEvent;
     final ownMessage = lastEvent?.senderId == room.client.userID;
-    final unread = room.isUnread || room.membership == Membership.invite;
+    final unread = room.isUnread;
     final directChatMatrixId = room.directChatMatrixID;
     final isDirectChat = directChatMatrixId != null;
     final unreadBubbleSize = unread || room.hasNewMessages
@@ -357,8 +331,7 @@ class ChatListItem extends StatelessWidget {
                                 room.notificationCount.toString().length +
                             9,
                     decoration: BoxDecoration(
-                      color: room.highlightCount > 0 ||
-                              room.membership == Membership.invite
+                      color: room.highlightCount > 0
                           ? theme.colorScheme.error
                           : hasNotifications || room.markedUnread
                               ? theme.colorScheme.primary
@@ -369,8 +342,7 @@ class ChatListItem extends StatelessWidget {
                         ? Text(
                             room.notificationCount.toString(),
                             style: TextStyle(
-                              color: room.highlightCount > 0 ||
-                                      room.membership == Membership.invite
+                              color: room.highlightCount > 0
                                   ? theme.colorScheme.onError
                                   : hasNotifications
                                       ? theme.colorScheme.onPrimary
@@ -386,7 +358,28 @@ class ChatListItem extends StatelessWidget {
               ),
               onTap: onTap,
               trailing: onForget == null
-                  ? null
+                  ? room.membership == Membership.invite
+                      ? IconButton(
+                          tooltip: L10n.of(context).declineInvitation,
+                          icon: const Icon(Icons.delete_forever_outlined),
+                          color: theme.colorScheme.error,
+                          onPressed: () async {
+                            final consent = await showOkCancelAlertDialog(
+                              context: context,
+                              title: L10n.of(context).declineInvitation,
+                              message: L10n.of(context).areYouSure,
+                              okLabel: L10n.of(context).yes,
+                              isDestructive: true,
+                            );
+                            if (consent != OkCancelResult.ok) return;
+                            if (!context.mounted) return;
+                            await showFutureLoadingDialog(
+                              context: context,
+                              future: room.leave,
+                            );
+                          },
+                        )
+                      : null
                   : IconButton(
                       icon: const Icon(Icons.delete_outlined),
                       onPressed: onForget,
