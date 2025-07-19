@@ -12,10 +12,10 @@ B=c[0]
 A=a.updateHolder(c[4],A)
 C=c[54]
 A.A4.prototype={
-gkS(){return"false"},
-gjD(){return"Repeat password"},
-gmD(){return"Not an image file."},
-gkt(){return"Set custom permission level"},
+gkS(){return"true"},
+gjD(){return"Repita a senha"},
+gmD(){return"N\xe3o \xe9 um arquivo de imagem."},
+gkt(){return"Definir n\xedvel de permiss\xe3o personalizado"},
 gku(){return"Please choose a predefined role below or enter a custom permission level between 0 and 100."},
 gm5(){return"Ignore user"},
 gmC(){return"Normal user"},
@@ -693,7 +693,7 @@ go6(){return"N\xe3o lido"},
 gfV(){return"Espa\xe7o"},
 gkB(){return"Espa\xe7os"},
 geW(){return"Banir da conversa"},
-geX(){return"Banido"},
+geX(){return"Banidos"},
 hh(d,e){return d+" baniu "+e},
 ghj(){return"Bloquear dispositivo"},
 gcm(){return"Bloqueado"},
@@ -1075,7 +1075,7 @@ gnM(){return"\ud83d\ude2d Ah, n\xe3o. Algo deu errado. Se quiser, pode relatar i
 gjF(){return"relatar"},
 gkr(){return"Aplicar paleta de cor:"},
 giN(){return"Convidar"},
-gmb(){return"\ud83d\udce8 Convidar conversa em grupo"},
+gmb(){return"\ud83d\udce8 Convidar grupo"},
 giM(){return"Entrada inv\xe1lida!"},
 oF(d){return"PIN incorreto! Tente novamente em "+d+" segundos..."},
 gnx(){return"Por favor, digite um n\xfamero maior que 0"},
@@ -1115,7 +1115,7 @@ gnE(){return"Espa\xe7os p\xfablicos"},
 gkP(){return"Adicionar conversa ou subespa\xe7o"},
 gnW(){return"Este dispositivo:"},
 geD(){return"Ocorreu um erro enquanto o app era iniciado"},
-el(d){return"Pesquisar em "+d+"..."},
+el(d){return"Procurar na conversa "+d+"..."},
 geK(){return"Pesquisar mais..."},
 gjZ(){return"Galeria"},
 glT(d){return"Arquivos"},
@@ -1194,7 +1194,7 @@ gma(){return"URL inv\xe1lida"},
 gkQ(){return"Adicionar link"},
 gjJ(){return"N\xe3o foi poss\xedvel participar da conversa. Talvez a outra pessoa j\xe1 fechou a conversa."},
 geI(){return"Anterior"},
-gfp(){return"A outra pessoa n\xe3o h\xe1 nenhum dispositivo conectado no momento e portanto n\xe3o consegue receber mensagens!"},
+gfp(){return"A outra pessoa n\xe3o tem nenhum dispositivo conectado no momento e portanto n\xe3o consegue receber mensagens!"},
 kU(d){return"Usar '"+d+"' para conectar"},
 gkV(){return"Aqui, voc\xea permite que o app e o site compartilhem informa\xe7\xf5es sobre voc\xea."},
 gnk(d){return"Abrir"},
@@ -1521,5 +1521,5 @@ w(A.A4,[A.Fn,A.Fo])})()
 B.dN(b.typeUniverse,JSON.parse('{"A4":{"aF":[]},"Fn":{"aF":[]},"Fo":{"aF":[]}}'))
 var y={h:" alterou a visibilidade do hist\xf3rico para: ",a:"(BETA) Ativar m\xfaltiplas contas neste dispositivo"}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_16",e:"endPart",h:b})})($__dart_deferred_initializers__,"TbXnlWYWjdf9ECZlCff7ZK7EOPE=");
+a.eventLog.push({p:"main.dart.js_16",e:"endPart",h:b})})($__dart_deferred_initializers__,"NIgJU9EBxSTjwibsQODOdiLx3s0=");
 //# sourceMappingURL=main.dart.js_16.part.js.map
