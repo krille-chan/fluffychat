@@ -1,7 +1,7 @@
 name: fluffychat
 title: FluffyChat
 base: core24
-version: 1.27.0
+adopt-info: fluffychat
 license: AGPL-3.0
 summary: The cutest messenger in the Matrix network
 description: |
@@ -82,6 +82,8 @@ parts:
       # Workaround for Flutter build error:
       rm -rf build
 
+      craftctl set version="$(yq e '.version' pubspec.yaml | sed 's/\(.*\)+.*/\1/')"
+
       flutter build linux --release -v
       mkdir -p $CRAFT_PART_INSTALL/bin/
       cp -r build/linux/*/release/bundle/* $CRAFT_PART_INSTALL/bin/
@@ -93,6 +95,7 @@ parts:
       - libpciaccess-dev
     build-snaps:
       - rustup
+      - yq
     stage-packages:
       - libsecret-1-0
       - libjsoncpp25
