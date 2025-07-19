@@ -6,7 +6,6 @@ import 'package:fluffychat/pages/invitation_selection/invitation_selection_view.
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:integration_test/integration_test.dart';
 
 import 'package:fluffychat/main.dart' as app;
@@ -28,10 +27,6 @@ void main() {
           SharedPreferences.setMockInitialValues({
             SettingKeys.showNoGoogle: false,
           });
-          try {
-            Hive.deleteFromDisk();
-            Hive.initFlutter();
-          } catch (_) {}
         },
       );
 
