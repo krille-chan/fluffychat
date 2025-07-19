@@ -1980,7 +1980,7 @@
   },
   "restricted": "Begrenset",
   "@restricted": {},
-  "updateInstalled": "🎉 Oppdatering {versjon} installert!",
+  "updateInstalled": "🎉 Oppdatering {version} installert!",
   "@updateInstalled": {
     "type": "String",
     "placeholders": {
