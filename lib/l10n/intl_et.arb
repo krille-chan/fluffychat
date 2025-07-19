@@ -3383,5 +3383,7 @@
   "customReaction": "Kohandatud reaktsioon",
   "@customReaction": {},
   "moreEvents": "Veel sündmusi",
-  "@moreEvents": {}
+  "@moreEvents": {},
+  "declineInvitation": "Keeldu kutsest",
+  "@declineInvitation": {}
 }
