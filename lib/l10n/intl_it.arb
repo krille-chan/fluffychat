@@ -2805,7 +2805,7 @@
   "@noOneCanJoin": {},
   "usersMustKnock": "Gli utenti devono bussare",
   "@usersMustKnock": {},
-  "alwaysUse24HourFormat": "",
+  "alwaysUse24HourFormat": "disattivato",
   "@alwaysUse24HourFormat": {
     "description": "Set to true to always display time of day in 24 hour format."
   },
@@ -3349,5 +3349,38 @@
   "youHaveKnocked": "Hai bussato",
   "@youHaveKnocked": {},
   "pleaseWaitUntilInvited": "Ora attendi, finché qualcuno dalla stanza non ti invita.",
-  "@pleaseWaitUntilInvited": {}
+  "@pleaseWaitUntilInvited": {},
+  "checkList": "Checklist",
+  "@checkList": {},
+  "countInvited": "{count} invitati",
+  "@countInvited": {
+    "type": "String",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "sentVoiceMessage": "🎙️ {duration} - Messaggio vocale da {sender}",
+  "@sentVoiceMessage": {
+    "type": "String",
+    "placeholders": {
+      "sender": {
+        "type": "String"
+      },
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "commandHint_logout": "Disconnetti questo dispositivo",
+  "@commandHint_logout": {},
+  "commandHint_logoutall": "Disconnetti tutti i dispositivi attivi",
+  "@commandHint_logoutall": {},
+  "displayNavigationRail": "Mostra barra di navigazione su mobile",
+  "@displayNavigationRail": {},
+  "customReaction": "Reazione personalizzata",
+  "@customReaction": {},
+  "moreEvents": "Altri eventi",
+  "@moreEvents": {}
 }

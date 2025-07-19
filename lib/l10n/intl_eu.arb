@@ -3362,7 +3362,7 @@
       }
     }
   },
-  "sentVoiceMessage": "🎙️ {duration} - {sender}",
+  "sentVoiceMessage": "🎙️ {duration} - {sender}(r)en ahots-mezua",
   "@sentVoiceMessage": {
     "type": "String",
     "placeholders": {
@@ -3373,5 +3373,11 @@
         "type": "String"
       }
     }
-  }
+  },
+  "commandHint_logout": "Amaitu saioa gailu honetan",
+  "@commandHint_logout": {},
+  "commandHint_logoutall": "Amaitu saioa aktibo dauden gailu guztietan",
+  "@commandHint_logoutall": {},
+  "moreEvents": "Gertaera gehiago",
+  "@moreEvents": {}
 }

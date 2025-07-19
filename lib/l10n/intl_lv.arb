@@ -1250,7 +1250,7 @@
       }
     }
   },
-  "waitingPartnerEmoji": "Gaida, līdz biedrs apstiprinās emocijzīmi…",
+  "waitingPartnerEmoji": "Gaida, līdz biedrs apstiprinās emocijzīmes…",
   "@waitingPartnerEmoji": {
     "type": "String",
     "placeholders": {}
@@ -2256,7 +2256,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "Izskatās, ka Firebase mākoņziņojumapmaiņa nav pieejama šajā ierīcē. Lai joprojām saņemtu pašpiegādes paziņojumus, mēs iesakām uzstādīt ntfy. Ar ntfy vai citu Vienotās pašpiegādes nodrošinātāju ir iespējams saņemt pašpiegādes paziņojumus drošā veidā. ntfy var lejupielādēt no PlayStore vai F-Droid.",
+  "noGoogleServicesWarning": "Izskatās, ka Firebase mākoņziņojumapmaiņa nav pieejama šajā ierīcē. Lai joprojām saņemtu pašpiegādes paziņojumus, mēs iesakām uzstādīt ntfy. Ar ntfy vai citu UnifiedPush nodrošinātāju ir iespējams saņemt pašpiegādes paziņojumus drošā veidā. ntfy var lejupielādēt no Play Store vai F-Droid.",
   "@noGoogleServicesWarning": {
     "type": "String",
     "placeholders": {}
@@ -2993,7 +2993,7 @@
   "@sendRoomNotifications": {},
   "changeTheDescriptionOfTheGroup": "Mainīt tērzēšanas aprakstu",
   "@changeTheDescriptionOfTheGroup": {},
-  "alwaysUse24HourFormat": "",
+  "alwaysUse24HourFormat": "nē",
   "@alwaysUse24HourFormat": {
     "description": "Set to true to always display time of day in 24 hour format."
   },
@@ -3362,5 +3362,9 @@
   "commandHint_logoutall": "Atteikties visās izmantotajās ierīcēs",
   "@commandHint_logoutall": {},
   "displayNavigationRail": "Rādīt pārvietošanās sliedi viedierīcēs",
-  "@displayNavigationRail": {}
+  "@displayNavigationRail": {},
+  "customReaction": "Pielāgota reakcija",
+  "@customReaction": {},
+  "moreEvents": "Vairāk notikumu",
+  "@moreEvents": {}
 }
