@@ -80,11 +80,11 @@ Future<MatrixSdkDatabase> _constructDatabase(String clientName) async {
   final factory =
       createDatabaseFactoryFfi(ffiInit: SQfLiteEncryptionHelper.ffiInit);
 
-  // migrate from potential previous SQLite database path to current one
-  await _migrateLegacyLocation(path, clientName);
-
   // required for [getDatabasesPath]
   databaseFactory = factory;
+
+  // migrate from potential previous SQLite database path to current one
+  await _migrateLegacyLocation(path, clientName);
 
   // in case we got a cipher, we use the encryption helper
   // to manage SQLite encryption
