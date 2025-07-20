@@ -3382,5 +3382,7 @@
   "customReaction": "Reação personalizada",
   "@customReaction": {},
   "moreEvents": "Mais eventos",
-  "@moreEvents": {}
+  "@moreEvents": {},
+  "declineInvitation": "Rejeitar convite",
+  "@declineInvitation": {}
 }
