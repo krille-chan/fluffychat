@@ -22,7 +22,7 @@ class ProgressBarBackground extends StatelessWidget {
           borderRadius: const BorderRadius.all(
             Radius.circular(AppConfig.borderRadius),
           ),
-          color: details.borderColor.withAlpha(50),
+          color: details.borderColor,
         ),
       ),
     );

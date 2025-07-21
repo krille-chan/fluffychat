@@ -31,7 +31,7 @@ class ProgressBarState extends State<ProgressBar> {
 
   get progressBarDetails => ProgressBarDetails(
         totalWidth: width,
-        borderColor: Theme.of(context).colorScheme.primary.withAlpha(128),
+        borderColor: Theme.of(context).colorScheme.secondaryContainer,
         height: widget.height ?? 14,
       );
 

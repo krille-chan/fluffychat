@@ -12,6 +12,7 @@ import 'package:fluffychat/pangea/analytics_summary/learning_progress_indicator_
 import 'package:fluffychat/pangea/analytics_summary/progress_indicator.dart';
 import 'package:fluffychat/pangea/analytics_summary/progress_indicators_enum.dart';
 import 'package:fluffychat/pangea/learning_settings/pages/settings_learning.dart';
+import 'package:fluffychat/widgets/hover_builder.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 /// A summary of "My Analytics" shown at the top of the chat list
@@ -166,37 +167,58 @@ class LearningProgressIndicatorsState
               const SizedBox(height: 6),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                child: MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  child: GestureDetector(
-                    onTap: () {
-                      context.go("/rooms/analytics?mode=level");
-                    },
-                    child: Row(
-                      spacing: 8.0,
-                      children: [
-                        Expanded(
-                          child: LearningProgressBar(
-                            level: _constructsModel.level,
-                            totalXP: _constructsModel.totalXP,
-                            height: 24.0,
-                            loading: _loading,
+                child: HoverBuilder(
+                  builder: (context, hovered) {
+                    return Container(
+                      decoration: BoxDecoration(
+                        color: hovered
+                            ? Theme.of(context)
+                                .colorScheme
+                                .primary
+                                .withAlpha((0.2 * 255).round())
+                            : Colors.transparent,
+                        borderRadius: BorderRadius.circular(36.0),
+                      ),
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 2.0,
+                        horizontal: 4.0,
+                      ),
+                      child: MouseRegion(
+                        cursor: SystemMouseCursors.click,
+                        child: GestureDetector(
+                          onTap: () {
+                            context.go("/rooms/analytics?mode=level");
+                          },
+                          child: Row(
+                            spacing: 8.0,
+                            children: [
+                              Expanded(
+                                child: LearningProgressBar(
+                                  level: _constructsModel.level,
+                                  totalXP: _constructsModel.totalXP,
+                                  height: 24.0,
+                                  loading: _loading,
+                                ),
+                              ),
+                              if (!_loading)
+                                Text(
+                                  "⭐ ${_constructsModel.level}",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleLarge
+                                      ?.copyWith(
+                                        fontWeight: FontWeight.bold,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .primary,
+                                      ),
+                                ),
+                            ],
                           ),
                         ),
-                        if (!_loading)
-                          Text(
-                            "⭐ ${_constructsModel.level}",
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleLarge
-                                ?.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                  color: Theme.of(context).colorScheme.primary,
-                                ),
-                          ),
-                      ],
-                    ),
-                  ),
+                      ),
+                    );
+                  },
                 ),
               ),
               const SizedBox(height: 16.0),
