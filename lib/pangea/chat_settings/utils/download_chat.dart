@@ -14,7 +14,6 @@ import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/chat_settings/utils/download_file.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
-import '../../choreographer/models/choreo_record.dart';
 
 Future<void> downloadChat(
   Room room,
@@ -134,19 +133,6 @@ List<PangeaMessageEvent> getPangeaMessageEvents(
   return allPangeaMessages;
 }
 
-String getOriginalText(PangeaMessageEvent message) {
-  try {
-    final List<ChoreoRecordStep>? steps =
-        message.originalSent?.choreo?.choreoSteps;
-    if (steps != null && steps.isNotEmpty) return steps.first.text;
-    if (message.originalWritten != null) return message.originalWritten!.text;
-    if (message.originalSent != null) return message.originalSent!.text;
-    return message.body;
-  } catch (err) {
-    return message.body;
-  }
-}
-
 String getSentText(PangeaMessageEvent message) =>
     message.originalSent?.text ?? message.body;
 
@@ -196,7 +182,7 @@ String getTxtContent(
     final String timestamp =
         DateFormat('yyyy-MM-dd hh:mm:ss').format(message.originServerTs);
     final String sender = message.senderId;
-    final String originalMsg = getOriginalText(message);
+    final String originalMsg = message.originalWrittenContent;
     final String sentMsg = getSentText(message);
     final bool usageAvailable = usageIsAvailable(message);
 
@@ -245,7 +231,7 @@ String getCSVContent(
     final String timestamp =
         DateFormat('yyyy-MM-dd hh:mm:ss').format(message.originServerTs);
     final String sender = message.senderId;
-    final String originalMsg = getOriginalText(message);
+    final String originalMsg = message.originalWrittenContent;
     final String sentMsg = getSentText(message);
     final bool usageAvailable = usageIsAvailable(message);
 
@@ -306,7 +292,7 @@ List<int> getExcelContent(
   for (int i = 0; i < messages.length; i++) {
     final PangeaMessageEvent message = messages[i];
     final String sender = message.senderId;
-    final String originalMsg = getOriginalText(message);
+    final String originalMsg = message.originalWrittenContent;
     final String sentMsg = getSentText(message);
     final bool usageAvailable = usageIsAvailable(message);
 

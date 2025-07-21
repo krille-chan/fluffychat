@@ -520,20 +520,10 @@ class GetAnalyticsController extends BaseController {
             ownMessage: room.client.userID == event.senderId,
           );
 
-          final String? originalSent = pangeaMessageEvent.originalSent?.text;
-          String? originalWritten = originalSent;
-          if (pangeaMessageEvent.originalWritten != null &&
-              !pangeaMessageEvent.originalWritten!.content.originalSent) {
-            originalWritten = pangeaMessageEvent.originalWritten!.text;
-          } else if (pangeaMessageEvent.originalSent?.choreo != null &&
-              pangeaMessageEvent.originalSent!.choreo!.choreoSteps.isNotEmpty) {
-            final steps = pangeaMessageEvent.originalSent!.choreo!.choreoSteps;
-            originalWritten = steps.first.text;
-          }
-
           final Map<String, String?> entry = {
-            "sent": originalSent,
-            "written": originalWritten,
+            "sent": pangeaMessageEvent.originalSent?.text ??
+                pangeaMessageEvent.body,
+            "written": pangeaMessageEvent.originalWrittenContent,
           };
 
           messages.add(entry);

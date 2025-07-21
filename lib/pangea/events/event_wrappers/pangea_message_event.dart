@@ -9,7 +9,6 @@ import 'package:matrix/matrix.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 import 'package:fluffychat/pangea/choreographer/models/choreo_record.dart';
-import 'package:fluffychat/pangea/choreographer/models/pangea_match_model.dart';
 import 'package:fluffychat/pangea/choreographer/repo/full_text_translation_repo.dart';
 import 'package:fluffychat/pangea/choreographer/repo/language_detection_repo.dart';
 import 'package:fluffychat/pangea/common/constants/model_keys.dart';
@@ -586,6 +585,19 @@ class PangeaMessageEvent {
   RepresentationEvent? get originalWritten => representations
       .firstWhereOrNull((element) => element.content.originalWritten);
 
+  String get originalWrittenContent {
+    String? written = originalSent?.content.text;
+    if (originalWritten != null && !originalWritten!.content.originalSent) {
+      written = originalWritten!.text;
+    } else if (originalSent?.choreo != null &&
+        originalSent!.choreo!.choreoSteps.isNotEmpty) {
+      final steps = originalSent!.choreo!.choreoSteps;
+      written = steps.first.text;
+    }
+
+    return written ?? body;
+  }
+
   PangeaRepresentation get defaultRepresentation => PangeaRepresentation(
         langCode: LanguageKeys.unknownLanguage,
         text: body,
@@ -697,22 +709,6 @@ class PangeaMessageEvent {
   /// If the message display text is not available for the current language code,
   /// it returns the message body.
   String get messageDisplayText => messageDisplayRepresentation?.text ?? body;
-
-  List<PangeaMatch>? errorSteps(String lemma) {
-    final RepresentationEvent? repEvent = originalSent ?? originalWritten;
-    if (repEvent?.choreo == null) return null;
-
-    final List<PangeaMatch> steps = repEvent!.choreo!.choreoSteps
-        .where(
-          (choreoStep) =>
-              choreoStep.acceptedOrIgnoredMatch != null &&
-              choreoStep.acceptedOrIgnoredMatch?.match.shortMessage == lemma,
-        )
-        .map((element) => element.acceptedOrIgnoredMatch)
-        .cast<PangeaMatch>()
-        .toList();
-    return steps;
-  }
 
   /// Returns a list of all [PracticeActivityEvent] objects
   /// associated with this message event.
