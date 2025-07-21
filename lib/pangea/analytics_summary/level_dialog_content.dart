@@ -14,113 +14,127 @@ class LevelDialogContent extends StatelessWidget {
     super.key,
   });
 
-  GetAnalyticsController get getAnalyticsController =>
+  GetAnalyticsController get analytics =>
       MatrixState.pangeaController.getAnalytics;
-  int get level => getAnalyticsController.constructListModel.level;
-  int get totalXP => getAnalyticsController.constructListModel.totalXP;
-  int get maxLevelXP => getAnalyticsController.minXPForNextLevel;
-  List<OneConstructUse> get uses =>
-      getAnalyticsController.constructListModel.truncatedUses;
+
+  int get level => analytics.constructListModel.level;
+  int get totalXP => analytics.constructListModel.totalXP;
+  int get maxLevelXP => analytics.minXPForNextLevel;
+  List<OneConstructUse> get uses => analytics.constructListModel.truncatedUses;
+
+  bool get _loading =>
+      !MatrixState.pangeaController.getAnalytics.initCompleter.isCompleted;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        titleSpacing: 0,
-        automaticallyImplyLeading: false,
-        title: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "⭐ ${L10n.of(context).levelShort(level)}",
-                style: const TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w900,
-                  color: AppConfig.gold,
-                ),
+    return StreamBuilder(
+      stream: analytics.analyticsStream.stream,
+      builder: (context, _) {
+        if (_loading) {
+          return const Center(
+            child: CircularProgressIndicator.adaptive(),
+          );
+        }
+
+        return Scaffold(
+          appBar: AppBar(
+            titleSpacing: 0,
+            automaticallyImplyLeading: false,
+            title: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "⭐ ${L10n.of(context).levelShort(level)}",
+                    style: const TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.w900,
+                      color: AppConfig.gold,
+                    ),
+                  ),
+                  Text(
+                    L10n.of(context).xpIntoLevel(totalXP, maxLevelXP),
+                    style: const TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.w900,
+                      color: AppConfig.gold,
+                    ),
+                  ),
+                ],
               ),
-              Text(
-                L10n.of(context).xpIntoLevel(totalXP, maxLevelXP),
-                style: const TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w900,
-                  color: AppConfig.gold,
+            ),
+          ),
+          body: Column(
+            children: [
+              Expanded(
+                child: ListView.builder(
+                  itemCount: uses.length,
+                  itemBuilder: (context, index) {
+                    final use = uses[index];
+                    String lemmaCopy = use.lemma;
+                    if (use.constructType == ConstructTypeEnum.morph) {
+                      lemmaCopy = getGrammarCopy(
+                            category: use.category,
+                            lemma: use.lemma,
+                            context: context,
+                          ) ??
+                          use.lemma;
+                    }
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 12,
+                        horizontal: 16,
+                      ),
+                      child: IntrinsicHeight(
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Container(
+                                width: 40,
+                                alignment: Alignment.centerLeft,
+                                child: Icon(use.useType.icon),
+                              ),
+                            ),
+                            const SizedBox(width: 10),
+                            Expanded(
+                              child: Text(
+                                "\"$lemmaCopy\" - ${use.useType.description(context)}",
+                                style: const TextStyle(fontSize: 14),
+                              ),
+                            ),
+                            Container(
+                              alignment: Alignment.topRight,
+                              width: 60,
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(
+                                    "${use.xp > 0 ? '+' : ''}${use.xp}",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w900,
+                                      fontSize: 14,
+                                      height: 1,
+                                      color: use.pointValueColor(context),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
                 ),
               ),
             ],
           ),
-        ),
-      ),
-      body: Column(
-        children: [
-          Expanded(
-            child: ListView.builder(
-              itemCount: uses.length,
-              itemBuilder: (context, index) {
-                final use = uses[index];
-                String lemmaCopy = use.lemma;
-                if (use.constructType == ConstructTypeEnum.morph) {
-                  lemmaCopy = getGrammarCopy(
-                        category: use.category,
-                        lemma: use.lemma,
-                        context: context,
-                      ) ??
-                      use.lemma;
-                }
-                return Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 12,
-                    horizontal: 16,
-                  ),
-                  child: IntrinsicHeight(
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: Container(
-                            width: 40,
-                            alignment: Alignment.centerLeft,
-                            child: Icon(use.useType.icon),
-                          ),
-                        ),
-                        const SizedBox(width: 10),
-                        Expanded(
-                          child: Text(
-                            "\"$lemmaCopy\" - ${use.useType.description(context)}",
-                            style: const TextStyle(fontSize: 14),
-                          ),
-                        ),
-                        Container(
-                          alignment: Alignment.topRight,
-                          width: 60,
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                "${use.xp > 0 ? '+' : ''}${use.xp}",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w900,
-                                  fontSize: 14,
-                                  height: 1,
-                                  color: use.pointValueColor(context),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

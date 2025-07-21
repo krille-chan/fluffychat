@@ -180,18 +180,20 @@ class LearningProgressIndicatorsState
                             level: _constructsModel.level,
                             totalXP: _constructsModel.totalXP,
                             height: 24.0,
+                            loading: _loading,
                           ),
                         ),
-                        Text(
-                          "⭐ ${_constructsModel.level}",
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleLarge
-                              ?.copyWith(
-                                fontWeight: FontWeight.bold,
-                                color: Theme.of(context).colorScheme.primary,
-                              ),
-                        ),
+                        if (!_loading)
+                          Text(
+                            "⭐ ${_constructsModel.level}",
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge
+                                ?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: Theme.of(context).colorScheme.primary,
+                                ),
+                          ),
                       ],
                     ),
                   ),
