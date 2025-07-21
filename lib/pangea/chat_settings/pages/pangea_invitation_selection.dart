@@ -162,18 +162,9 @@ class PangeaInvitationSelectionController
   Room? get _room => Matrix.of(context).client.getRoomById(widget.roomId);
 
   Room? get spaceParent {
-    final spaceParents = _room?.spaceParents;
-    if (spaceParents == null || spaceParents.isEmpty) {
-      return null;
-    }
-
-    final client = Matrix.of(context).client;
-    for (final parent in spaceParents) {
-      if (parent.roomId == null) continue;
-      final space = client.getRoomById(parent.roomId!);
-      if (space != null) return space;
-    }
-    return null;
+    final parents = _room?.pangeaSpaceParents;
+    if (parents == null || parents.isEmpty) return null;
+    return parents.first;
   }
 
   List<InvitationFilter> get availableFilters => InvitationFilter.values
