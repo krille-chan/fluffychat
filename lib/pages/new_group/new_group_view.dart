@@ -180,7 +180,8 @@ class NewGroupView extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 24.0),
                 child: ActivitySuggestionCarousel(
                   onActivitySelected: controller.setSelectedActivity,
-                  enabled: controller.nameController.text.isNotEmpty,
+                  enabled: controller.nameController.text.isNotEmpty &&
+                      !controller.loading,
                   selectedActivity: controller.selectedActivity,
                   selectedActivityImage: controller.selectedActivityImage,
                 ),
