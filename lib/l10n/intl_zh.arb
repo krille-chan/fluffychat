@@ -3383,5 +3383,7 @@
   "customReaction": "自定义回应",
   "@customReaction": {},
   "moreEvents": "更多事件",
-  "@moreEvents": {}
+  "@moreEvents": {},
+  "declineInvitation": "拒绝邀请",
+  "@declineInvitation": {}
 }
