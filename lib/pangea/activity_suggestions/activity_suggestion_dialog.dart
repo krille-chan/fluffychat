@@ -56,22 +56,43 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
       : MediaQuery.of(context).size.width;
 
   Future<void> _launchActivity() async {
-    if (widget.onLaunch != null) {
-      await widget.controller.updateImageURL();
-      widget.onLaunch!.call();
-      Navigator.of(context).pop();
-    } else if (widget.controller.room != null &&
-        !widget.controller.room!.isSpace) {
-      final resp = await showFutureLoadingDialog(
-        context: context,
-        future: widget.controller.launchToRoom,
-      );
-      if (!resp.isError) {
-        context.go("/rooms/${widget.controller.room!.id}");
+    try {
+      setState(() {
+        _loading = true;
+        _error = null;
+      });
+
+      if (widget.onLaunch != null) {
+        widget.onLaunch!.call();
         Navigator.of(context).pop();
+      } else if (widget.controller.room != null &&
+          !widget.controller.room!.isSpace) {
+        final resp = await showFutureLoadingDialog(
+          context: context,
+          future: widget.controller.launchToRoom,
+        );
+        if (!resp.isError) {
+          context.go("/rooms/${widget.controller.room!.id}");
+          Navigator.of(context).pop();
+        }
+      } else {
+        _setPageMode(_PageMode.roomSelection);
       }
-    } else {
-      _setPageMode(_PageMode.roomSelection);
+    } catch (e, s) {
+      _error = e;
+      ErrorHandler.logError(
+        e: e,
+        s: s,
+        data: {
+          "request": widget.controller.updatedRequest.toJson(),
+        },
+      );
+    } finally {
+      if (mounted) {
+        setState(() {
+          _loading = false;
+        });
+      }
     }
   }
 

@@ -172,6 +172,7 @@ class ActivityPlannerBuilderState extends State<ActivityPlannerBuilder> {
     if (mounted) {
       setState(() {
         avatar = bytes;
+        imageURL = null;
         filename = photo.singleOrNull?.name;
       });
     }
