@@ -72,7 +72,7 @@ class BookmarkedActivitiesListState extends State<BookmarkedActivitiesList> {
                         builder: (controller) {
                           return ActivitySuggestionDialog(
                             controller: controller,
-                            buttonText: l10n.launch,
+                            buttonText: l10n.launchActivityButton,
                           );
                         },
                       );

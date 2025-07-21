@@ -176,7 +176,7 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
                         builder: (controller) {
                           return ActivitySuggestionDialog(
                             controller: controller,
-                            buttonText: L10n.of(context).launch,
+                            buttonText: L10n.of(context).launchActivityButton,
                             replaceActivity: (a) =>
                                 _onReplaceActivity(index, a),
                           );
