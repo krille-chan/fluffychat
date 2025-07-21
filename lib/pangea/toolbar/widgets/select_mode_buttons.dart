@@ -393,7 +393,11 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
         langCode: l1Code!,
       );
 
-      widget.overlayController.setTranslation(rep!.text);
+      if (rep == null) {
+        throw Exception('Representation is null');
+      }
+
+      widget.overlayController.setTranslation(rep.text);
     } catch (e, s) {
       _translationError = e.toString();
       ErrorHandler.logError(

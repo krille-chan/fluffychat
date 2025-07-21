@@ -44,7 +44,7 @@ extension EventsRoomExtension on Room {
   }) async {
     try {
       Sentry.addBreadcrumb(Breadcrumb(data: content));
-      if (parentEventId.contains("web")) {
+      if (parentEventId.contains("Pangea Chat")) {
         debugger(when: kDebugMode);
         Sentry.addBreadcrumb(
           Breadcrumb(

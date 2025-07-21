@@ -513,12 +513,11 @@ class PangeaMessageEvent {
       return repLocal?.content;
     }
 
-    if (eventId.contains("web")) return null;
+    if (eventId.contains("Pangea Chat")) return null;
 
     // should this just be the original event body?
     // worth a conversation with the team
-    final PangeaRepresentation? basis =
-        (originalWritten ?? originalSent)?.content;
+    final PangeaRepresentation? basis = originalSent?.content;
 
     // clear representations cache so the new representation event can be added
     // when next requested
