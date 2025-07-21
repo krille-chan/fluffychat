@@ -675,6 +675,12 @@ class PangeaMessageEvent {
       messageDisplayLangCode.split("-")[0] == l2Code?.split("-")[0];
 
   String get messageDisplayLangCode {
+    if (isAudioMessage) {
+      final stt = getSpeechToTextLocal();
+      if (stt == null) return LanguageKeys.unknownLanguage;
+      return stt.langCode;
+    }
+
     final bool immersionMode = MatrixState
         .pangeaController.permissionsController
         .isToolEnabled(ToolSetting.immersionMode, room);

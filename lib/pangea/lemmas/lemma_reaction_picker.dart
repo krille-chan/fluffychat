@@ -4,51 +4,28 @@ import 'package:collection/collection.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pages/chat/chat.dart';
-import 'package:fluffychat/pangea/common/utils/error_handler.dart';
-import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
 import 'package:fluffychat/pangea/toolbar/reading_assistance_input_row/lemma_emoji_choice_item.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
-class LemmaReactionPicker extends StatefulWidget {
-  final ConstructIdentifier cId;
+class LemmaReactionPicker extends StatelessWidget {
+  final List<String> emojis;
+  final bool loading;
+
   final Event event;
   final ChatController controller;
-  final double? iconSize;
 
   const LemmaReactionPicker({
     super.key,
-    required this.cId,
+    required this.emojis,
+    required this.loading,
     required this.event,
     required this.controller,
-    this.iconSize,
   });
 
-  @override
-  LemmaReactionPickerState createState() => LemmaReactionPickerState();
-}
-
-class LemmaReactionPickerState extends State<LemmaReactionPicker> {
-  List<String> displayEmoji = [];
-  bool loading = true;
-
-  @override
-  void initState() {
-    super.initState();
-    _refresh();
-  }
-
-  @override
-  void didUpdateWidget(LemmaReactionPicker oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (oldWidget.cId != widget.cId) {
-      _refresh();
-    }
-  }
-
-  void setEmoji(String emoji) {
-    final allReactionEvents = widget.event.aggregatedEvents(
-      widget.controller.timeline!,
+  void setEmoji(String emoji, BuildContext context) {
+    final allReactionEvents = event.aggregatedEvents(
+      controller.timeline!,
       RelationshipTypes.reaction,
     );
 
@@ -65,26 +42,10 @@ class LemmaReactionPickerState extends State<LemmaReactionPicker> {
         future: () => reactionEvent.redactEvent(),
       );
     } else {
-      widget.controller.room.sendReaction(
-        widget.event.eventId,
+      controller.room.sendReaction(
+        event.eventId,
         emoji,
       );
-    }
-  }
-
-  Future<void> _refresh() async {
-    setState(() {
-      loading = true;
-      displayEmoji = [];
-    });
-
-    try {
-      final info = await widget.cId.getLemmaInfo();
-      displayEmoji = info.emoji;
-    } catch (e, s) {
-      ErrorHandler.logError(data: widget.cId.toJson(), e: e, s: s);
-    } finally {
-      if (mounted) setState(() => loading = false);
     }
   }
 
@@ -96,18 +57,18 @@ class LemmaReactionPickerState extends State<LemmaReactionPicker> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         spacing: 4.0,
-        children: loading == false
-            ? displayEmoji
+        children: loading
+            ? [1, 2, 3, 4, 5]
+                .map(
+                  (e) => const LemmaEmojiChoicePlaceholder(),
+                )
+                .toList()
+            : emojis
                 .map(
                   (emoji) => LemmaEmojiChoiceItem(
                     content: emoji,
-                    onTap: () => setEmoji(emoji),
+                    onTap: () => setEmoji(emoji, context),
                   ),
-                )
-                .toList()
-            : [1, 2, 3, 4, 5]
-                .map(
-                  (e) => const LemmaEmojiChoicePlaceholder(),
                 )
                 .toList(),
       ),
