@@ -2592,9 +2592,9 @@
       }
     }
   },
-  "inviteGroupChat": "📨 邀请至群聊",
+  "inviteGroupChat": "📨 群聊邀请",
   "@inviteGroupChat": {},
-  "invitePrivateChat": "📨 邀请至私聊",
+  "invitePrivateChat": "📨 私聊邀请",
   "@invitePrivateChat": {},
   "emoteKeyboardNoRecents": "最近使用过的表情会出现在这里...",
   "@emoteKeyboardNoRecents": {
