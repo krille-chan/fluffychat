@@ -1377,7 +1377,8 @@ class ChatController extends State<ChatPageWithRoom>
             if (event.canRedact) {
               // #Pangea
               // https://github.com/pangeachat/client/issues/3353
-              if (room.canChangeStateEvent(EventTypes.RoomPinnedEvents)) {
+              if (room.pinnedEventIds.contains(event.eventId) &&
+                  room.canChangeStateEvent(EventTypes.RoomPinnedEvents)) {
                 final pinnedEvents = room.pinnedEventIds
                     .where((e) => e != event.eventId)
                     .toList();
