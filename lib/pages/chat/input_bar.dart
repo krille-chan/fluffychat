@@ -1,15 +1,19 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:emojis/emoji.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:matrix/matrix.dart';
+import 'package:pasteboard/pasteboard.dart';
 import 'package:slugify/slugify.dart';
 
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/markdown_context_builder.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
+import '../../utils/paste_intends.dart';
 import '../../widgets/avatar.dart';
 import '../../widgets/matrix.dart';
 import 'command_hints.dart';
@@ -404,50 +408,57 @@ class InputBar extends StatelessWidget {
       hideOnSelect: false,
       debounceDuration: const Duration(milliseconds: 50),
       // show suggestions after 50ms idle time (default is 300)
-      builder: (context, controller, focusNode) => TextField(
-        controller: controller,
-        focusNode: focusNode,
-        readOnly: readOnly,
-        contextMenuBuilder: (c, e) => markdownContextBuilder(c, e, controller),
-        contentInsertionConfiguration: ContentInsertionConfiguration(
-          onContentInserted: (KeyboardInsertedContent content) {
-            final data = content.data;
-            if (data == null) return;
-
-            final file = MatrixFile(
-              mimeType: content.mimeType,
-              bytes: data,
-              name: content.uri.split('/').last,
-            );
+      builder: (context, controller, focusNode) {
+        // Action when an image is detected
+        void handleImage(Uint8List bytes) {
+          if (onSubmitImage != null) {
+            onSubmitImage!(bytes);
+          } else {
             room.sendFileEvent(
-              file,
+              MatrixFile(bytes: bytes, mimeType: 'image/png', name: 'pasted.png'),
               shrinkImageMaxDimension: 1600,
             );
+          }
+        }
+
+        return Shortcuts(
+          shortcuts: <LogicalKeySet, Intent>{
+            // Ctrl-V (Win/Linux), ⌘-V (macOS)
+            LogicalKeySet(
+              Platform.isMacOS ? LogicalKeyboardKey.meta : LogicalKeyboardKey.control,
+              LogicalKeyboardKey.keyV,
+            ): const PasteImageIntent(),
           },
-        ),
-        minLines: minLines,
-        maxLines: maxLines,
-        keyboardType: keyboardType!,
-        textInputAction: textInputAction,
-        autofocus: autofocus!,
-        inputFormatters: [
-          LengthLimitingTextInputFormatter((maxPDUSize / 3).floor()),
-        ],
-        onSubmitted: (text) {
-          // fix for library for now
-          // it sets the types for the callback incorrectly
-          onSubmitted!(text);
-        },
-        maxLength:
-            AppSettings.textMessageMaxLength.getItem(Matrix.of(context).store),
-        decoration: decoration,
-        onChanged: (text) {
-          // fix for the library for now
-          // it sets the types for the callback incorrectly
-          onChanged!(text);
-        },
-        textCapitalization: TextCapitalization.sentences,
-      ),
+
+          child: Actions(
+            actions: <Type, Action<Intent>>{
+              PasteImageIntent: PasteImageAction(handleImage),
+            },
+            child: TextField(
+              controller: controller,
+              focusNode: focusNode,
+              readOnly: readOnly,
+              contextMenuBuilder: (c, e) =>
+                  markdownContextBuilder(c, e, controller),
+              minLines: minLines,
+              maxLines: maxLines,
+              keyboardType: keyboardType!,
+              textInputAction: textInputAction,
+              autofocus: autofocus!,
+              inputFormatters: [
+                LengthLimitingTextInputFormatter((maxPDUSize / 3).floor()),
+              ],
+              onSubmitted: onSubmitted,
+              maxLength: AppSettings.textMessageMaxLength
+                  .getItem(Matrix.of(context).store),
+              decoration: decoration,
+              onChanged: onChanged,
+              textCapitalization: TextCapitalization.sentences,
+            ),
+          ),
+        );
+
+      },
 
       suggestionsCallback: getSuggestions,
       itemBuilder: (c, s) => buildSuggestion(c, s, Matrix.of(context).client),
