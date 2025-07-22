@@ -1,8 +1,8 @@
+import 'package:code_highlight_view/code_highlight_view.dart';
+import 'package:code_highlight_view/themes/shades-of-purple.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:flutter_highlighter/flutter_highlighter.dart';
-import 'package:flutter_highlighter/themes/shades-of-purple.dart';
 import 'package:matrix/matrix.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -27,10 +27,14 @@ class ErrorReporter {
           height: 256,
           width: 256,
           child: SingleChildScrollView(
-            child: HighlightView(
+            child: CodeHighlightView(
               text,
               language: 'sh',
               theme: shadesOfPurpleTheme,
+              textStyle: const TextStyle(
+                fontFamily: 'RobotoMono',
+                fontSize: 12,
+              ),
             ),
           ),
         ),
