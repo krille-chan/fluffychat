@@ -1,5 +1,7 @@
 import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
+
 import 'package:pasteboard/pasteboard.dart';
 
 class PasteImageIntent extends Intent {

@@ -1,9 +1,9 @@
-import 'package:code_highlight_view/themes/github.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:collection/collection.dart';
 import 'package:code_highlight_view/code_highlight_view.dart';
+import 'package:code_highlight_view/themes/github.dart';
+import 'package:collection/collection.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:html/dom.dart' as dom;
 import 'package:html/parser.dart' as parser;
@@ -116,10 +116,10 @@ class HtmlMessage extends StatelessWidget {
 
   /// Adding line breaks before block elements.
   List<InlineSpan> _renderWithLineBreaks(
-      dom.NodeList nodes,
-      BuildContext context, {
-        int depth = 1,
-      }) {
+    dom.NodeList nodes,
+    BuildContext context, {
+    int depth = 1,
+  }) {
     final onlyElements = nodes.whereType<dom.Element>().toList();
     return [
       for (var i = 0; i < nodes.length; i++) ...[
@@ -140,10 +140,10 @@ class HtmlMessage extends StatelessWidget {
 
   /// Transforms a Node to an InlineSpan.
   InlineSpan _renderHtml(
-      dom.Node node,
-      BuildContext context, {
-        int depth = 1,
-      }) {
+    dom.Node node,
+    BuildContext context, {
+    int depth = 1,
+  }) {
     // We must not render elements nested more than 100 elements deep:
     if (depth >= 100) return const TextSpan();
 
@@ -233,15 +233,15 @@ class HtmlMessage extends StatelessWidget {
         final isCheckbox = node.className == 'task-list-item';
         final checkboxIndex = isCheckbox
             ? node.rootElement
-            .getElementsByClassName('task-list-item')
-            .indexOf(node) +
-            1
+                    .getElementsByClassName('task-list-item')
+                    .indexOf(node) +
+                1
             : null;
         final checkedByReaction = !isCheckbox
             ? null
             : checkboxCheckedEvents?.firstWhereOrNull(
-              (event) => event.checkedCheckboxId == checkboxIndex,
-        );
+                (event) => event.checkedCheckboxId == checkboxIndex,
+              );
         final staticallyChecked = !isCheckbox
             ? false
             : node.children.first.attributes['checked'] == 'true';
@@ -257,7 +257,7 @@ class HtmlMessage extends StatelessWidget {
                   if (node.parent?.localName == 'ol')
                     TextSpan(
                       text:
-                      '${(node.parent?.nodes.whereType<dom.Element>().toList().indexOf(node) ?? 0) + (int.tryParse(node.parent?.attributes['start'] ?? '1') ?? 1)}. ',
+                          '${(node.parent?.nodes.whereType<dom.Element>().toList().indexOf(node) ?? 0) + (int.tryParse(node.parent?.attributes['start'] ?? '1') ?? 1)}. ',
                     ),
                   if (node.className == 'task-list-item')
                     WidgetSpan(
@@ -270,26 +270,26 @@ class HtmlMessage extends StatelessWidget {
                             side: BorderSide(color: textColor),
                             activeColor: textColor.withAlpha(64),
                             value:
-                            staticallyChecked || checkedByReaction != null,
+                                staticallyChecked || checkedByReaction != null,
                             onChanged: eventId == null ||
-                                checkboxIndex == null ||
-                                staticallyChecked ||
-                                !room.canSendDefaultMessages ||
-                                (checkedByReaction != null &&
-                                    checkedByReaction.senderId !=
-                                        room.client.userID)
+                                    checkboxIndex == null ||
+                                    staticallyChecked ||
+                                    !room.canSendDefaultMessages ||
+                                    (checkedByReaction != null &&
+                                        checkedByReaction.senderId !=
+                                            room.client.userID)
                                 ? null
                                 : (_) => showFutureLoadingDialog(
-                              context: context,
-                              future: () => checkedByReaction != null
-                                  ? room.redactEvent(
-                                checkedByReaction.eventId,
-                              )
-                                  : room.checkCheckbox(
-                                eventId,
-                                checkboxIndex,
-                              ),
-                            ),
+                                      context: context,
+                                      future: () => checkedByReaction != null
+                                          ? room.redactEvent(
+                                              checkedByReaction.eventId,
+                                            )
+                                          : room.checkCheckbox(
+                                              eventId,
+                                              checkboxIndex,
+                                            ),
+                                    ),
                           ),
                         ),
                       ),
@@ -345,12 +345,12 @@ class HtmlMessage extends StatelessWidget {
               child: CodeHighlightView(
                 node.text,
                 language: node.className
-                    .split(' ')
-                    .singleWhereOrNull(
-                      (className) => className.startsWith('language-'),
-                )
-                    ?.split('language-')
-                    .last ??
+                        .split(' ')
+                        .singleWhereOrNull(
+                          (className) => className.startsWith('language-'),
+                        )
+                        ?.split('language-')
+                        .last ??
                     'md',
                 theme: githubTheme,
                 padding: EdgeInsets.symmetric(
@@ -414,12 +414,12 @@ class HtmlMessage extends StatelessWidget {
                       ...node.nodes
                           .where(
                             (node) =>
-                        node is dom.Element &&
-                            node.localName == 'summary',
-                      )
+                                node is dom.Element &&
+                                node.localName == 'summary',
+                          )
                           .map(
                             (node) => _renderHtml(node, context, depth: depth),
-                      )
+                          )
                     else
                       ..._renderWithLineBreaks(
                         node.nodes,
@@ -470,16 +470,16 @@ class HtmlMessage extends StatelessWidget {
         return TextSpan(
           style: switch (node.localName) {
             'body' => TextStyle(
-              fontSize: fontSize,
-              color: textColor,
-            ),
+                fontSize: fontSize,
+                color: textColor,
+              ),
             'a' => linkStyle,
             'strong' => const TextStyle(fontWeight: FontWeight.bold),
             'em' || 'i' => const TextStyle(fontStyle: FontStyle.italic),
             'del' ||
             's' ||
             'strikethrough' =>
-            const TextStyle(decoration: TextDecoration.lineThrough),
+              const TextStyle(decoration: TextDecoration.lineThrough),
             'u' => const TextStyle(decoration: TextDecoration.underline),
             'h1' => TextStyle(fontSize: fontSize * 1.6, height: 2),
             'h2' => TextStyle(fontSize: fontSize * 1.5, height: 2),
@@ -488,14 +488,14 @@ class HtmlMessage extends StatelessWidget {
             'h5' => TextStyle(fontSize: fontSize * 1.2, height: 1.75),
             'h6' => TextStyle(fontSize: fontSize * 1.1, height: 1.5),
             'span' => TextStyle(
-              color: node.attributes['color']?.hexToColor ??
-                  node.attributes['data-mx-color']?.hexToColor ??
-                  textColor,
-              backgroundColor:
-              node.attributes['data-mx-bg-color']?.hexToColor,
-            ),
+                color: node.attributes['color']?.hexToColor ??
+                    node.attributes['data-mx-color']?.hexToColor ??
+                    textColor,
+                backgroundColor:
+                    node.attributes['data-mx-bg-color']?.hexToColor,
+              ),
             'sup' =>
-            const TextStyle(fontFeatures: [FontFeature.superscripts()]),
+              const TextStyle(fontFeatures: [FontFeature.superscripts()]),
             'sub' => const TextStyle(fontFeatures: [FontFeature.subscripts()]),
             _ => null,
           },

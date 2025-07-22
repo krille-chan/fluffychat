@@ -415,7 +415,8 @@ class InputBar extends StatelessWidget {
             onSubmitImage!(bytes);
           } else {
             room.sendFileEvent(
-              MatrixFile(bytes: bytes, mimeType: 'image/png', name: 'pasted.png'),
+              MatrixFile(
+                  bytes: bytes, mimeType: 'image/png', name: 'pasted.png'),
               shrinkImageMaxDimension: 1600,
             );
           }
@@ -425,11 +426,12 @@ class InputBar extends StatelessWidget {
           shortcuts: <LogicalKeySet, Intent>{
             // Ctrl-V (Win/Linux), ⌘-V (macOS)
             LogicalKeySet(
-              Platform.isMacOS ? LogicalKeyboardKey.meta : LogicalKeyboardKey.control,
+              Platform.isMacOS
+                  ? LogicalKeyboardKey.meta
+                  : LogicalKeyboardKey.control,
               LogicalKeyboardKey.keyV,
             ): const PasteImageIntent(),
           },
-
           child: Actions(
             actions: <Type, Action<Intent>>{
               PasteImageIntent: PasteImageAction(handleImage),
@@ -457,7 +459,6 @@ class InputBar extends StatelessWidget {
             ),
           ),
         );
-
       },
 
       suggestionsCallback: getSuggestions,

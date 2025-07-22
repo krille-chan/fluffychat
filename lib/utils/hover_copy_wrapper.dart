@@ -1,5 +1,5 @@
-import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class HoverCopyWrapper extends StatefulWidget {
   const HoverCopyWrapper({
@@ -21,7 +21,7 @@ class HoverCopyWrapper extends StatefulWidget {
 
 class _HoverCopyWrapperState extends State<HoverCopyWrapper> {
   bool _hovering = false;
-  bool _copied   = false;
+  bool _copied = false;
 
   Future<void> _copy() async {
     await Clipboard.setData(ClipboardData(text: widget.rawText));
@@ -33,9 +33,9 @@ class _HoverCopyWrapperState extends State<HoverCopyWrapper> {
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
-      cursor: SystemMouseCursors.click,        // ★ shows pointer on hover
+      cursor: SystemMouseCursors.click, // ★ shows pointer on hover
       onEnter: (_) => setState(() => _hovering = true),
-      onExit : (_) => setState(() => _hovering = false),
+      onExit: (_) => setState(() => _hovering = false),
       child: Stack(
         alignment: Alignment.topRight,
         children: [
