@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/message_token_text/token_position_model.dart';
 import 'package:fluffychat/pangea/toolbar/models/speech_to_text_models.dart';
-import 'package:fluffychat/widgets/matrix.dart';
 
 class SttTranscriptTokens extends StatelessWidget {
   final SpeechToTextModel model;
@@ -55,29 +54,21 @@ class SttTranscriptTokens extends StatelessWidget {
           final selected = isSelected?.call(token) ?? false;
 
           return WidgetSpan(
-            child: CompositedTransformTarget(
-              link: MatrixState.pAnyState
-                  .layerLinkAndKey(token.text.uniqueKey)
-                  .link,
-              child: MouseRegion(
-                key: MatrixState.pAnyState
-                    .layerLinkAndKey(token.text.uniqueKey)
-                    .key,
-                cursor: SystemMouseCursors.click,
-                child: GestureDetector(
-                  behavior: HitTestBehavior.translucent,
-                  onTap: onClick != null ? () => onClick?.call(token) : null,
-                  child: RichText(
-                    text: TextSpan(
-                      text: text,
-                      style: (style ?? DefaultTextStyle.of(context).style)
-                          .copyWith(
-                        decoration: TextDecoration.underline,
-                        decorationThickness: 4,
-                        decorationColor: selected
-                            ? Theme.of(context).colorScheme.primary
-                            : Colors.white.withAlpha(0),
-                      ),
+            child: MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: GestureDetector(
+                behavior: HitTestBehavior.translucent,
+                onTap: onClick != null ? () => onClick?.call(token) : null,
+                child: RichText(
+                  text: TextSpan(
+                    text: text,
+                    style:
+                        (style ?? DefaultTextStyle.of(context).style).copyWith(
+                      decoration: TextDecoration.underline,
+                      decorationThickness: 4,
+                      decorationColor: selected
+                          ? Theme.of(context).colorScheme.primary
+                          : Colors.white.withAlpha(0),
                     ),
                   ),
                 ),

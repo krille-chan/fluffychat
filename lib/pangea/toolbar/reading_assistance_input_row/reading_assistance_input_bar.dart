@@ -4,11 +4,11 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
-import 'package:fluffychat/pangea/toolbar/enums/reading_assistance_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_mode_locked_card.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_translation_card.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/practice_activity/practice_activity_card.dart';
+import 'package:fluffychat/pangea/toolbar/widgets/practice_mode_buttons.dart';
 
 const double minContentHeight = 120;
 
@@ -23,12 +23,6 @@ class ReadingAssistanceInputBar extends StatelessWidget {
   });
 
   Widget barContent(BuildContext context) {
-    if (overlayController.readingAssistanceMode !=
-        ReadingAssistanceMode.practiceMode) {
-      return const SizedBox();
-      // return ReactionsPicker(controller);
-    }
-
     Widget? content;
     final target =
         overlayController.toolbarMode.associatedActivityType != null &&
@@ -57,6 +51,7 @@ class ReadingAssistanceInputBar extends StatelessWidget {
                 .textTheme
                 .bodyLarge
                 ?.copyWith(fontStyle: FontStyle.italic),
+            textAlign: TextAlign.center,
           );
 
         case MessageMode.messageTranslation:
@@ -78,7 +73,10 @@ class ReadingAssistanceInputBar extends StatelessWidget {
               overlayController: overlayController,
             );
           } else {
-            content = Text(L10n.of(context).allDone);
+            content = Text(
+              L10n.of(context).allDone,
+              textAlign: TextAlign.center,
+            );
           }
         case MessageMode.wordMorph:
           if (target != null) {
@@ -92,37 +90,43 @@ class ReadingAssistanceInputBar extends StatelessWidget {
               child: Text(
                 L10n.of(context).selectForGrammar,
                 style: Theme.of(context).textTheme.bodyLarge,
+                textAlign: TextAlign.center,
               ),
             );
           }
       }
     }
 
-    return Container(
-      constraints: const BoxConstraints(
-        minHeight: minContentHeight,
-      ),
-      child: Center(child: content),
-    );
+    return content;
   }
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: ConstrainedBox(
-        constraints: BoxConstraints(
-          maxHeight: AppConfig.readingAssistanceInputBarHeight,
-          maxWidth: overlayController.maxWidth,
+    return Column(
+      children: [
+        PracticeModeButtons(
+          overlayController: overlayController,
         ),
-        child: AnimatedSize(
-          duration: const Duration(
-            milliseconds: AppConfig.overlayAnimationDuration,
-          ),
-          child: SingleChildScrollView(
-            child: barContent(context),
+        Material(
+          child: Container(
+            padding: const EdgeInsets.all(8.0),
+            alignment: Alignment.center,
+            constraints: BoxConstraints(
+              minHeight: minContentHeight,
+              maxHeight: AppConfig.readingAssistanceInputBarHeight,
+              maxWidth: overlayController.maxWidth,
+            ),
+            child: AnimatedSize(
+              duration: const Duration(
+                milliseconds: AppConfig.overlayAnimationDuration,
+              ),
+              child: SingleChildScrollView(
+                child: barContent(context),
+              ),
+            ),
           ),
         ),
-      ),
+      ],
     );
   }
 }

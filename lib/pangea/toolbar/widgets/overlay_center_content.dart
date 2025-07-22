@@ -8,7 +8,6 @@ import 'package:fluffychat/pangea/toolbar/enums/reading_assistance_mode_enum.dar
 import 'package:fluffychat/pangea/toolbar/widgets/measure_render_box.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/overlay_message.dart';
-import 'package:fluffychat/widgets/matrix.dart';
 
 class OverlayCenterContent extends StatelessWidget {
   final Event event;
@@ -29,10 +28,12 @@ class OverlayCenterContent extends StatelessWidget {
   final bool isTransitionAnimation;
   final ReadingAssistanceMode? readingAssistanceMode;
 
+  final LabeledGlobalKey? overlayKey;
+
   const OverlayCenterContent({
     required this.event,
-    required this.messageHeight,
-    required this.messageWidth,
+    this.messageHeight,
+    this.messageWidth,
     required this.overlayController,
     required this.chatController,
     required this.nextEvent,
@@ -42,6 +43,7 @@ class OverlayCenterContent extends StatelessWidget {
     this.sizeAnimation,
     this.isTransitionAnimation = false,
     this.readingAssistanceMode,
+    this.overlayKey,
     super.key,
   });
 
@@ -63,11 +65,7 @@ class OverlayCenterContent extends StatelessWidget {
               MeasureRenderBox(
                 onChange: onChangeMessageSize,
                 child: OverlayMessage(
-                  key: isTransitionAnimation
-                      ? MatrixState.pAnyState
-                          .layerLinkAndKey('overlay_message_${event.eventId}')
-                          .key
-                      : null,
+                  key: overlayKey,
                   event,
                   immersionMode: chatController.choreographer.immersionMode,
                   controller: chatController,
@@ -78,13 +76,8 @@ class OverlayCenterContent extends StatelessWidget {
                   sizeAnimation: sizeAnimation,
                   // there's a split seconds between when the transition animation starts and
                   // when the sizeAnimation is set when the original dimensions need to be enforced
-                  messageWidth: (sizeAnimation == null && isTransitionAnimation)
-                      ? messageWidth
-                      : null,
-                  messageHeight:
-                      (sizeAnimation == null && isTransitionAnimation)
-                          ? messageHeight
-                          : null,
+                  messageWidth: messageWidth,
+                  messageHeight: messageHeight,
                   isTransitionAnimation: isTransitionAnimation,
                   readingAssistanceMode: readingAssistanceMode,
                 ),

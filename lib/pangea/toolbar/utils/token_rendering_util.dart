@@ -25,7 +25,7 @@ class TokenRenderingUtil {
   bool get showCenterStyling {
     if (overlayController == null) return false;
     if (!isTransitionAnimation) return true;
-    return readingAssistanceMode == ReadingAssistanceMode.transitionMode;
+    return readingAssistanceMode == ReadingAssistanceMode.practiceMode;
   }
 
   double? fontSize(BuildContext context) => showCenterStyling

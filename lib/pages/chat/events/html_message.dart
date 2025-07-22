@@ -11,7 +11,6 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
-import 'package:fluffychat/pangea/common/utils/any_state_holder.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/message_token_text/message_token_button.dart';
@@ -21,7 +20,6 @@ import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart
 import 'package:fluffychat/utils/event_checkbox_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
-import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
 import '../../../utils/url_launcher.dart';
 
@@ -412,68 +410,57 @@ class HtmlMessage extends StatelessWidget {
           alignment: readingAssistanceMode == ReadingAssistanceMode.practiceMode
               ? PlaceholderAlignment.bottom
               : PlaceholderAlignment.middle,
-          child: CompositedTransformTarget(
-            link: token != null && renderer.assignTokenKey
-                ? MatrixState.pAnyState
-                    .layerLinkAndKey(token.text.uniqueKey)
-                    .link
-                : LayerLinkAndKey(token.hashCode.toString()).link,
-            child: Column(
-              key: token != null && renderer.assignTokenKey
-                  ? MatrixState.pAnyState
-                      .layerLinkAndKey(token.text.uniqueKey)
-                      .key
-                  : null,
-              children: [
-                if (renderer.showCenterStyling && token != null)
-                  MessageTokenButton(
-                    token: token,
-                    overlayController: overlayController,
-                    textStyle: renderer.style(
+          child: Column(
+            children: [
+              if (renderer.showCenterStyling && token != null)
+                MessageTokenButton(
+                  token: token,
+                  overlayController: overlayController,
+                  textStyle: renderer.style(
+                    context,
+                    color: renderer.backgroundColor(
                       context,
-                      color: renderer.backgroundColor(
-                        context,
-                        selected,
-                        highlighted,
-                        isNew,
-                      ),
+                      selected,
+                      highlighted,
+                      isNew,
                     ),
-                    width: tokenWidth,
-                    animateIn: isTransitionAnimation,
                   ),
-                MouseRegion(
-                  cursor: SystemMouseCursors.click,
-                  child: GestureDetector(
-                    behavior: HitTestBehavior.translucent,
-                    onTap: onClick != null && token != null
-                        ? () => onClick?.call(token)
-                        : null,
-                    child: RichText(
-                      textDirection: pangeaMessageEvent?.textDirection,
-                      text: TextSpan(
-                        children: [
-                          LinkifySpan(
-                            text: node.text,
-                            style: renderer.style(
+                  width: tokenWidth,
+                  animateIn: isTransitionAnimation,
+                ),
+              MouseRegion(
+                cursor: SystemMouseCursors.click,
+                child: GestureDetector(
+                  behavior: HitTestBehavior.translucent,
+                  onTap: onClick != null && token != null
+                      ? () => onClick?.call(token)
+                      : null,
+                  child: RichText(
+                    textDirection: pangeaMessageEvent?.textDirection,
+                    text: TextSpan(
+                      children: [
+                        LinkifySpan(
+                          text: node.text,
+                          style: renderer.style(
+                            context,
+                            color: renderer.backgroundColor(
                               context,
-                              color: renderer.backgroundColor(
-                                context,
-                                selected,
-                                highlighted,
-                                isNew,
-                              ),
+                              selected,
+                              highlighted,
+                              isNew,
                             ),
-                            linkStyle: linkStyle,
-                            onOpen: (url) =>
-                                UrlLauncher(context, url.url).launchUrl(),
                           ),
-                        ],
-                      ),
+                          linkStyle: linkStyle,
+                          onOpen: (url) =>
+                              UrlLauncher(context, url.url).launchUrl(),
+                        ),
+                      ],
                     ),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
+            // ),
           ),
         );
       // Pangea#

@@ -14,10 +14,12 @@ import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
+import 'package:fluffychat/pangea/toolbar/enums/reading_assistance_mode_enum.dart';
+import 'package:fluffychat/pangea/toolbar/reading_assistance_input_row/reading_assistance_input_bar.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
-import 'package:fluffychat/pangea/toolbar/widgets/overlay_center_content.dart';
-import 'package:fluffychat/pangea/toolbar/widgets/reading_assistance_content.dart';
-import 'package:fluffychat/pangea/toolbar/widgets/select_mode_buttons.dart';
+import 'package:fluffychat/pangea/toolbar/widgets/over_message_overlay.dart';
+import 'package:fluffychat/pangea/toolbar/widgets/practice_mode_transition_animation.dart';
+import 'package:fluffychat/pangea/toolbar/widgets/word_card_switcher.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -51,56 +53,31 @@ class MessageSelectionPositioner extends StatefulWidget {
 
 class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
     with TickerProviderStateMixin {
-  // late AnimationController _animationController;
-
-  // Offset? _centeredMessageOffset;
-  // Size? _centeredMessageSize;
-
-  // Size? _tooltipSize;
-
-  // final Completer _centeredMessageCompleter = Completer();
-  // final Completer _tooltipCompleter = Completer();
-
-  // MessageMode _currentMode = MessageMode.noneSelected;
-
-  // Animation<Offset>? _overlayOffsetAnimation;
-  // Animation<Size>? _messageSizeAnimation;
-  // Offset? _currentOffset;
-
   StreamSubscription? _reactionSubscription;
   StreamSubscription? _contentChangedSubscription;
 
-  ScrollController? _scrollController;
+  ScrollController? scrollController;
 
-  // final _animationDuration = const Duration(
-  //   milliseconds: AppConfig.overlayAnimationDuration,
-  //   // seconds: 5,
-  // );
+  bool finishedTransition = false;
+  bool startedTransition = false;
+
+  ReadingAssistanceMode readingAssistanceMode =
+      ReadingAssistanceMode.selectMode;
 
   @override
   void initState() {
     super.initState();
-    _scrollController = ScrollController();
-    Future.delayed(
-      const Duration(milliseconds: 100),
-      () {
-        if (_scrollController == null || !_scrollController!.hasClients) {
-          return;
-        }
-
-        // _scrollController!.animateTo(
-        //   _scrollController!.position.maxScrollExtent,
-        //   duration: FluffyThemes.animationDuration,
-        //   curve: FluffyThemes.animationCurve,
-        // );
+    scrollController = ScrollController(
+      onAttach: (position) {
+        Future.delayed(const Duration(milliseconds: 200), () {
+          if (mounted) {
+            scrollController?.jumpTo(
+              scrollController!.position.maxScrollExtent,
+            );
+          }
+        });
       },
     );
-
-    // // _currentMode = widget.overlayController.toolbarMode;
-    // _animationController = AnimationController(
-    //   vsync: this,
-    //   duration: _animationDuration,
-    // );
 
     _reactionSubscription =
         widget.chatController.room.client.onSync.stream.where(
@@ -125,359 +102,18 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
     _contentChangedSubscription = widget
         .overlayController.contentChangedStream.stream
         .listen(_onContentSizeChanged);
-
-    // WidgetsBinding.instance.addPostFrameCallback((_) async {
-    //   await _centeredMessageCompleter.future;
-    //   if (!mounted) return;
-
-    //   setState(() {
-    //     _currentOffset = Offset(
-    //       _ownMessage ? _messageRightOffset : _messageLeftOffset,
-    //       _originalMessageBottomOffset -
-    //           _reactionsHeight -
-    //           _selectionButtonsHeight,
-    //     );
-    //   });
-
-    //   _setReadingAssistanceMode(
-    //     ReadingAssistanceMode.selectMode,
-    //   );
-    // });
   }
-
-  // @override
-  // void didUpdateWidget(MessageSelectionPositioner oldWidget) {
-  //   super.didUpdateWidget(oldWidget);
-  //   final mode = widget.overlayController.toolbarMode;
-  //   if (mode != _currentMode) {
-  //     setState(() => _currentMode = mode);
-  //   }
-  // }
 
   @override
   void dispose() {
-    // _animationController.dispose();
     _reactionSubscription?.cancel();
     _contentChangedSubscription?.cancel();
-    _scrollController?.dispose();
+    scrollController?.dispose();
     MatrixState.pangeaController.matrixState.audioPlayer
       ?..stop()
       ..dispose();
     super.dispose();
   }
-
-  // void _setCenteredMessageSize(RenderBox renderBox) {
-  //   if (_centeredMessageCompleter.isCompleted) return;
-
-  //   _centeredMessageSize = renderBox.size;
-  //   final offset = renderBox.localToGlobal(Offset.zero);
-  //   _centeredMessageOffset = Offset(
-  //     offset.dx - _columnWidth - _horizontalPadding - 2.0,
-  //     _mediaQuery!.size.height -
-  //         (offset.dy -
-  //             ((AppConfig.practiceModeInputBarHeight -
-  //                     AppConfig.selectModeInputBarHeight) *
-  //                 0.75)) -
-  //         renderBox.size.height -
-  //         _reactionsHeight,
-  //   );
-  //   setState(() {});
-
-  //   if (!_centeredMessageCompleter.isCompleted) {
-  //     _centeredMessageCompleter.complete();
-  //   }
-  // }
-
-  // void _setTooltipSize(RenderBox renderBox) {
-  //   setState(() {
-  //     _tooltipSize = renderBox.size;
-  //   });
-
-  //   if (!_tooltipCompleter.isCompleted) {
-  //     _tooltipCompleter.complete();
-  //   }
-  // }
-
-  // Future<void> _setReadingAssistanceMode(ReadingAssistanceMode mode) async {
-  //   if (mode == _readingAssistanceMode) {
-  //     return;
-  //   }
-
-  //   await _centeredMessageCompleter.future;
-
-  //   if (mode == ReadingAssistanceMode.practiceMode) {
-  //     setState(
-  //       () => widget.overlayController.readingAssistanceMode =
-  //           ReadingAssistanceMode.transitionMode,
-  //     );
-  //   } else if (mode == ReadingAssistanceMode.selectMode) {
-  //     setState(
-  //       () => widget.overlayController.readingAssistanceMode =
-  //           ReadingAssistanceMode.selectMode,
-  //     );
-  //   }
-
-  //   if (mode == ReadingAssistanceMode.selectMode) {
-  //     _resetOffsetAnimation(_adjustedOriginalMessageOffset);
-  //   } else if (mode == ReadingAssistanceMode.practiceMode) {
-  //     _resetOffsetAnimation(_centeredMessageOffset!);
-  //     _messageSizeAnimation = Tween<Size>(
-  //       begin: Size(
-  //         _originalMessageSize.width,
-  //         _originalMessageSize.height,
-  //       ),
-  //       end: _adjustedCenteredMessageSize,
-  //     ).animate(
-  //       CurvedAnimation(
-  //         parent: _animationController,
-  //         curve: FluffyThemes.animationCurve,
-  //       ),
-  //     );
-  //   }
-
-  //   await _animationController.forward(from: 0);
-  //   if (mounted) {
-  //     setState(() => widget.overlayController.readingAssistanceMode = mode);
-  //   }
-  // }
-
-  void _onContentSizeChanged(_) {
-    Future.delayed(FluffyThemes.animationDuration, () {
-      setState(() {});
-      // final offset = _overlayMessageRenderBox?.localToGlobal(Offset.zero);
-      // if (offset == null || !_overlayMessageRenderBox!.hasSize) {
-      //   return null;
-      // }
-
-      // final newOffset = _adjustedMessageOffset(
-      //   _overlayMessageRenderBox!.size,
-      //   offset,
-      // );
-
-      // if (newOffset == _currentOffset) return;
-      // _resetOffsetAnimation(newOffset);
-      // _animationController.forward(from: 0);
-    });
-  }
-
-  // void _resetOffsetAnimation(Offset offset) {
-  //   _overlayOffsetAnimation = Tween<Offset>(
-  //     begin: _currentOffset,
-  //     end: offset,
-  //   ).animate(
-  //     CurvedAnimation(
-  //       parent: _animationController,
-  //       curve: FluffyThemes.animationCurve,
-  //     ),
-  //   )..addListener(() {
-  //       if (mounted) {
-  //         setState(() => _currentOffset = _overlayOffsetAnimation?.value);
-  //       }
-  //     });
-  // }
-
-  // double get _inputBarSize =>
-  //     _readingAssistanceMode == ReadingAssistanceMode.practiceMode ||
-  //             _readingAssistanceMode == ReadingAssistanceMode.transitionMode
-  //         ? AppConfig.practiceModeInputBarHeight
-  //         : AppConfig.selectModeInputBarHeight;
-
-  // /// Available vertical space not taken up by the header and footer
-  // double? get _verticalSpace {
-  //   if (_mediaQuery == null) return null;
-  //   return _mediaQuery!.size.height - _headerHeight - _footerHeight;
-  // }
-
-  // original message size and offset
-
-  // Offset? get _overlayMessageOffset =>
-  //     _overlayMessageRenderBox?.localToGlobal(Offset.zero);
-
-  // double? get _buttonsTopOffset {
-  //   if (_overlayMessageOffset == null ||
-  //       _overlayMessageSize == null ||
-  //       _mediaQuery == null) {
-  //     return null;
-  //   }
-
-  //   const buttonsHeight = 300.0;
-  //   final availableSpace = _mediaQuery!.size.height -
-  //       _overlayMessageOffset!.dy -
-  //       _overlayMessageSize!.height -
-  //       _reactionsHeight -
-  //       4.0;
-
-  //   if (availableSpace >= buttonsHeight) {
-  //     return _overlayMessageOffset!.dy + _overlayMessageSize!.height + 4.0;
-  //   }
-
-  //   return _mediaQuery!.size.height - buttonsHeight - 4.0;
-  // }
-
-  // Centered message size and offset
-
-  // bool get _centeredMessageHasOverflow {
-  //   if (_verticalSpace == null ||
-  //       _centeredMessageSize == null ||
-  //       _centeredMessageOffset == null) {
-  //     return false;
-  //   }
-
-  //   final finalMessageHeight = _centeredMessageSize!.height + _reactionsHeight;
-  //   return finalMessageHeight > _verticalSpace!;
-  // }
-
-  // /// Size of the centered overlay message adjusted for overflow
-  // Size? get _adjustedCenteredMessageSize {
-  //   if (_centeredMessageHasOverflow) {
-  //     return Size(
-  //       _centeredMessageSize!.width,
-  //       _verticalSpace! - (AppConfig.toolbarSpacing * 2),
-  //     );
-  //   }
-  //   return _centeredMessageSize;
-  // }
-
-  // Offset? get _adjustedCenteredMessageOffset {
-  //   if (_centeredMessageHasOverflow) {
-  //     return Offset(
-  //       _centeredMessageOffset!.dx,
-  //       _footerHeight + AppConfig.toolbarSpacing,
-  //     );
-  //   }
-  //   return _centeredMessageOffset;
-  // }
-
-  // message offset
-
-  // Offset get _adjustedOriginalMessageOffset {
-  //   return _adjustedMessageOffset(
-  //     _originalMessageSize,
-  //     _originalMessageOffset,
-  //   );
-  // }
-
-  // Offset _adjustedMessageOffset(
-  //   Size messageSize,
-  //   Offset messageOffset,
-  // ) {
-  //   if (_messageRenderBox == null || !_messageRenderBox!.hasSize) {
-  //     return _defaultMessageOffset;
-  //   }
-
-  //   final topOffset = messageOffset.dy;
-  //   final bottomOffset =
-  //       (_mediaQuery!.size.height - topOffset - messageSize.height) -
-  //           _reactionsHeight -
-  //           _selectionButtonsHeight;
-
-  //   final hasHeaderOverflow =
-  //       topOffset < (_headerHeight + AppConfig.toolbarSpacing);
-  //   final hasFooterOverflow =
-  //       bottomOffset < (_footerHeight + AppConfig.toolbarSpacing);
-
-  //   if (!hasHeaderOverflow && !hasFooterOverflow) {
-  //     return Offset(
-  //       _ownMessage ? _messageRightOffset : _messageLeftOffset,
-  //       bottomOffset,
-  //     );
-  //   }
-
-  //   if (hasHeaderOverflow) {
-  //     final difference = topOffset - (_headerHeight + AppConfig.toolbarSpacing);
-
-  //     double newBottomOffset = _mediaQuery!.size.height -
-  //         topOffset +
-  //         difference -
-  //         messageSize.height -
-  //         _selectionButtonsHeight;
-
-  //     if (newBottomOffset < _footerHeight + AppConfig.toolbarSpacing) {
-  //       newBottomOffset = _footerHeight + AppConfig.toolbarSpacing;
-  //     }
-
-  //     return Offset(
-  //       _ownMessage ? _messageRightOffset : _messageLeftOffset,
-  //       newBottomOffset,
-  //     );
-  //   } else {
-  //     return Offset(
-  //       _ownMessage ? _messageRightOffset : _messageLeftOffset,
-  //       _footerHeight + (AppConfig.toolbarSpacing * 2),
-  //     );
-  //   }
-  // }
-
-  // double get _originalMessageBottomOffset =>
-  //     _mediaQuery!.size.height -
-  //     _originalMessageOffset.dy -
-  //     _originalMessageSize.height;
-
-  // double? get _centeredMessageTopOffset {
-  //   if (_mediaQuery == null ||
-  //       _adjustedCenteredMessageOffset == null ||
-  //       _adjustedCenteredMessageSize == null) {
-  //     return null;
-  //   }
-  //   return _mediaQuery!.size.height -
-  //       _adjustedCenteredMessageOffset!.dy -
-  //       _adjustedCenteredMessageSize!.height -
-  //       _reactionsHeight;
-  // }
-
-  // double get _headerHeight {
-  //   return (Theme.of(context).appBarTheme.toolbarHeight ??
-  //           AppConfig.defaultHeaderHeight) +
-  //       (_mediaQuery?.padding.top ?? 0);
-  // }
-
-  // double get _footerHeight {
-  //   return _inputBarSize + (_mediaQuery?.padding.bottom ?? 0);
-  // }
-
-  // measurement for items in the toolbar
-
-  // bool get _showButtons {
-  //   if (!(widget.pangeaMessageEvent?.shouldShowToolbar ?? false)) {
-  //     return false;
-  //   }
-
-  //   final type = widget.pangeaMessageEvent?.event.messageType;
-  //   if (![MessageTypes.Text, MessageTypes.Audio].contains(type)) {
-  //     return false;
-  //   }
-
-  //   if (type == MessageTypes.Text) {
-  //     return widget.pangeaMessageEvent?.messageDisplayLangIsL2 ?? false;
-  //   }
-
-  //   return true;
-  // }
-
-  // bool get showPracticeButtons =>
-  //     _showButtons &&
-  //     widget.overlayController.readingAssistanceMode ==
-  //         ReadingAssistanceMode.practiceMode;
-
-  // bool get showSelectionButtons =>
-  //     _showButtons &&
-  //     [ReadingAssistanceMode.selectMode, null]
-  //         .contains(widget.overlayController.readingAssistanceMode);
-
-  // double get _selectionButtonsHeight {
-  //   return showSelectionButtons ? AppConfig.toolbarButtonsHeight : 0;
-  // }
-
-  // double get _readingAssistanceModeOpacity {
-  //   switch (_readingAssistanceMode) {
-  //     case ReadingAssistanceMode.practiceMode:
-  //     case ReadingAssistanceMode.transitionMode:
-  //       return 0.8;
-  //     case ReadingAssistanceMode.selectMode:
-  //     case null:
-  //       return 0.6;
-  //   }
-  // }
 
   T _runWithLogging<T>(
     Function runner,
@@ -498,10 +134,16 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
     }
   }
 
+  final Duration transitionAnimationDuration =
+      const Duration(milliseconds: 300);
+
+  final Offset _defaultMessageOffset =
+      const Offset(Avatar.defaultSize + 16 + 8, 300);
+
   double get _horizontalPadding =>
       FluffyThemes.isColumnMode(context) ? 8.0 : 0.0;
 
-  bool get _hasReactions {
+  bool get hasReactions {
     final reactionsEvents = widget.event.aggregatedEvents(
       widget.chatController.timeline!,
       RelationshipTypes.reaction,
@@ -509,23 +151,23 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
     return reactionsEvents.where((e) => !e.redacted).isNotEmpty;
   }
 
-  double get _reactionsHeight => _hasReactions ? 32.0 : 0.0;
+  double get reactionsHeight => hasReactions ? 32.0 : 0.0;
 
-  bool get _ownMessage =>
+  bool get ownMessage =>
       widget.event.senderId == widget.event.room.client.userID;
 
-  bool get _showDetails =>
+  bool get showDetails =>
       AppSettings.displayChatDetailsColumn.getItem(Matrix.of(context).store) &&
       FluffyThemes.isThreeColumnMode(context) &&
       widget.chatController.room.membership == Membership.join;
 
-  MediaQueryData? get _mediaQuery => _runWithLogging<MediaQueryData?>(
+  MediaQueryData? get mediaQuery => _runWithLogging<MediaQueryData?>(
         () => MediaQuery.of(context),
         "Error getting media query",
         null,
       );
 
-  double get _columnWidth => FluffyThemes.isColumnMode(context)
+  double get columnWidth => FluffyThemes.isColumnMode(context)
       ? (FluffyThemes.columnWidth + FluffyThemes.navRailWidth + 1.0)
       : 0;
 
@@ -538,8 +180,8 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
         messageMargin;
     double? maxWidth;
 
-    if (_mediaQuery != null) {
-      final chatViewWidth = _mediaQuery!.size.width - _columnWidth;
+    if (mediaQuery != null) {
+      final chatViewWidth = mediaQuery!.size.width - columnWidth;
       maxWidth = chatViewWidth - (2 * _horizontalPadding) - messageMargin;
     }
 
@@ -549,9 +191,6 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
 
     return maxWidth;
   }
-
-  static const Offset _defaultMessageOffset =
-      Offset(Avatar.defaultSize + 16 + 8, 300);
 
   Size get _defaultMessageSize => const Size(FluffyThemes.columnWidth / 2, 100);
 
@@ -564,6 +203,18 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
       );
 
   Size? get _overlayMessageSize => _overlayMessageRenderBox?.size;
+
+  Offset? get overlayMessageOffset {
+    if (_overlayMessageRenderBox == null ||
+        !_overlayMessageRenderBox!.hasSize) {
+      return null;
+    }
+    return _runWithLogging(
+      () => _overlayMessageRenderBox?.localToGlobal(Offset.zero),
+      "Error getting overlay message offset",
+      null,
+    );
+  }
 
   RenderBox? get _messageRenderBox => _runWithLogging<RenderBox?>(
         () => MatrixState.pAnyState.getRenderBox(
@@ -585,7 +236,7 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
   }
 
   /// The size of the message in the chat list (as opposed to the expanded size in the center overlay)
-  Size get _originalMessageSize {
+  Size get originalMessageSize {
     if (_messageRenderBox == null || !_messageRenderBox!.hasSize) {
       return _defaultMessageSize;
     }
@@ -597,25 +248,23 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
     );
   }
 
-  double? get _messageLeftOffset {
-    if (_ownMessage) return null;
-    return max(_originalMessageOffset.dx - _columnWidth, 0);
+  double? get messageLeftOffset {
+    if (ownMessage) return null;
+    return max(_originalMessageOffset.dx - columnWidth, 0);
   }
 
-  double? get _messageRightOffset {
-    if (_mediaQuery == null || !_ownMessage) return null;
-    return _mediaQuery!.size.width -
+  double? get messageRightOffset {
+    if (mediaQuery == null || !ownMessage) return null;
+    return mediaQuery!.size.width -
         _originalMessageOffset.dx -
-        _originalMessageSize.width -
-        (_showDetails ? FluffyThemes.columnWidth : 0);
+        originalMessageSize.width -
+        (showDetails ? FluffyThemes.columnWidth : 0);
   }
 
-  double? get _contentHeight {
-    if (_overlayMessageSize == null) return null;
-    return _overlayMessageSize!.height +
-        _reactionsHeight +
-        AppConfig.toolbarMenuHeight +
-        4.0;
+  double get _contentHeight {
+    final messageHeight =
+        _overlayMessageSize?.height ?? originalMessageSize.height;
+    return messageHeight + reactionsHeight + AppConfig.toolbarMenuHeight + 4.0;
   }
 
   double get _overheadContentHeight {
@@ -625,44 +274,86 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
         : 40.0;
   }
 
-  double? get _availableSpaceAboveContent {
-    if (_contentHeight == null || _mediaQuery == null) return null;
-    return max(
-      0,
-      (_mediaQuery!.size.height -
-              _mediaQuery!.padding.top -
-              _mediaQuery!.padding.bottom -
-              _contentHeight!) /
-          2,
-    );
-  }
-
-  double? get _wordCardTopOffset {
-    if (_contentHeight == null || _availableSpaceAboveContent == null) {
-      return null;
-    }
-
-    if (_availableSpaceAboveContent! >= _overheadContentHeight) {
-      return _availableSpaceAboveContent! - _overheadContentHeight - 4.0;
-    }
-
-    return 0;
-  }
-
   double? get _wordCardLeftOffset {
-    if (_ownMessage) return null;
+    if (ownMessage) return null;
     if (widget.pangeaMessageEvent != null &&
         widget.overlayController.selectedToken != null &&
-        _mediaQuery != null &&
-        (_mediaQuery!.size.width < _toolbarMaxWidth + _messageLeftOffset!)) {
-      return _mediaQuery!.size.width - _toolbarMaxWidth - 8.0;
+        mediaQuery != null &&
+        (mediaQuery!.size.width < _toolbarMaxWidth + messageLeftOffset!)) {
+      return mediaQuery!.size.width - _toolbarMaxWidth - 8.0;
     }
-    return _messageLeftOffset;
+    return messageLeftOffset;
+  }
+
+  double get _fullContentHeight {
+    return _contentHeight + _overheadContentHeight;
+  }
+
+  bool get shouldScroll {
+    if (mediaQuery == null) return false;
+    return _fullContentHeight >
+        (mediaQuery!.size.height -
+            mediaQuery!.padding.bottom -
+            mediaQuery!.padding.top);
+  }
+
+  bool get _hasFooterOverflow {
+    if (mediaQuery == null || _overlayMessageSize == null) return false;
+    final bottomOffset = _originalMessageOffset.dy +
+        originalMessageSize.height +
+        reactionsHeight +
+        AppConfig.toolbarMenuHeight +
+        4.0;
+    return bottomOffset >
+        (mediaQuery!.size.height -
+            mediaQuery!.padding.bottom -
+            mediaQuery!.padding.top);
+  }
+
+  double get spaceAboveContent {
+    if (shouldScroll) return _overheadContentHeight;
+    if (_hasFooterOverflow) {
+      return mediaQuery!.size.height -
+          mediaQuery!.padding.top -
+          _fullContentHeight;
+    }
+
+    return _originalMessageOffset.dy -
+        mediaQuery!.padding.top -
+        _overheadContentHeight;
+  }
+
+  void _onContentSizeChanged(_) {
+    Future.delayed(FluffyThemes.animationDuration, () {
+      setState(() {});
+    });
+  }
+
+  void onStartedTransition() {
+    if (mounted) {
+      setState(() {
+        startedTransition = true;
+      });
+    }
+  }
+
+  void onFinishedTransition() {
+    if (mounted) {
+      setState(() {
+        finishedTransition = true;
+      });
+    }
+  }
+
+  void setReadingAssistanceMode(ReadingAssistanceMode mode) {
+    if (mounted) {
+      setState(() => readingAssistanceMode = mode);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    if (_messageRenderBox == null || _mediaQuery == null) {
+    if (_messageRenderBox == null || mediaQuery == null) {
       return const SizedBox.shrink();
     }
 
@@ -672,119 +363,55 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
         children: [
           Column(
             children: [
-              Expanded(
-                child: SizedBox(
-                  width: _mediaQuery!.size.width -
-                      _columnWidth -
-                      (_showDetails ? FluffyThemes.columnWidth : 0),
-                  child: Stack(
-                    alignment: _ownMessage
-                        ? Alignment.centerRight
-                        : Alignment.centerLeft,
-                    children: [
-                      GestureDetector(
-                        onTap: widget.chatController.clearSelectedEvents,
-                        child: SingleChildScrollView(
-                          controller: _scrollController,
-                          padding: EdgeInsets.only(
-                            left: _messageLeftOffset ?? 0.0,
-                            right: _messageRightOffset ?? 0.0,
-                          ),
-                          child: Column(
-                            crossAxisAlignment: _ownMessage
-                                ? CrossAxisAlignment.end
-                                : CrossAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              if (_contentHeight != null &&
-                                  _mediaQuery != null &&
-                                  _availableSpaceAboveContent != null &&
-                                  _availableSpaceAboveContent! <
-                                      _overheadContentHeight)
-                                AnimatedContainer(
-                                  duration: FluffyThemes.animationDuration,
-                                  height: _contentHeight! +
-                                              _overheadContentHeight >
-                                          _mediaQuery!.size.height
-                                      ? _overheadContentHeight
-                                      : (_overheadContentHeight -
-                                              _availableSpaceAboveContent!) *
-                                          2,
-                                ),
-                              CompositedTransformTarget(
-                                link: MatrixState.pAnyState
-                                    .layerLinkAndKey(
-                                      'overlay_message_${widget.event.eventId}',
-                                    )
-                                    .link,
-                                child: OverlayCenterContent(
-                                  event: widget.event,
-                                  messageHeight: _originalMessageSize.height,
-                                  messageWidth: widget
-                                          .overlayController.showingExtraContent
-                                      ? max(_originalMessageSize.width, 150)
-                                      : _originalMessageSize.width,
-                                  overlayController: widget.overlayController,
-                                  chatController: widget.chatController,
-                                  nextEvent: widget.nextEvent,
-                                  prevEvent: widget.prevEvent,
-                                  hasReactions: _hasReactions,
-                                  // sizeAnimation: _messageSizeAnimation,
-                                  isTransitionAnimation: true,
-                                  readingAssistanceMode: widget
-                                      .overlayController.readingAssistanceMode,
-                                ),
-                              ),
-                              const SizedBox(height: 4.0),
-                              SelectModeButtons(
-                                controller: widget.chatController,
-                                overlayController: widget.overlayController,
-                                lauchPractice: () {},
-                                // lauchPractice: () {
-                                //   _setReadingAssistanceMode(
-                                //     ReadingAssistanceMode.practiceMode,
-                                //   );
-                                //   widget.overlayController
-                                //       .updateSelectedSpan(null);
-                                // },
-                              ),
-                            ],
-                          ),
+              SizedBox(
+                width: mediaQuery!.size.width -
+                    columnWidth -
+                    (showDetails ? FluffyThemes.columnWidth : 0),
+                height: mediaQuery!.size.height -
+                    mediaQuery!.padding.top -
+                    mediaQuery!.padding.bottom,
+                child: Stack(
+                  alignment:
+                      ownMessage ? Alignment.centerRight : Alignment.centerLeft,
+                  children: [
+                    if (!startedTransition) ...[
+                      OverMessageOverlay(controller: this),
+                      if (shouldScroll)
+                        Positioned(
+                          top: 0,
+                          left: _wordCardLeftOffset,
+                          right: messageRightOffset,
+                          child: WordCardSwitcher(controller: this),
                         ),
+                    ],
+                    if (readingAssistanceMode ==
+                        ReadingAssistanceMode.practiceMode) ...[
+                      CenteredMessage(
+                        targetId:
+                            "overlay_center_message_${widget.event.eventId}",
+                        controller: this,
                       ),
-                      AnimatedPositioned(
-                        top: _wordCardTopOffset,
-                        left: _wordCardLeftOffset,
-                        right: _messageRightOffset,
-                        duration: FluffyThemes.animationDuration,
-                        child: AnimatedSize(
-                          alignment: _ownMessage
-                              ? Alignment.bottomRight
-                              : Alignment.bottomLeft,
-                          duration: FluffyThemes.animationDuration,
-                          child: _wordCardTopOffset == null
-                              ? const SizedBox()
-                              : widget.pangeaMessageEvent != null &&
-                                      widget.overlayController.selectedToken !=
-                                          null
-                                  ? ReadingAssistanceContent(
-                                      pangeaMessageEvent:
-                                          widget.pangeaMessageEvent!,
-                                      overlayController:
-                                          widget.overlayController,
-                                    )
-                                  : MessageReactionPicker(
-                                      chatController: widget.chatController,
-                                    ),
+                      PracticeModeTransitionAnimation(
+                        targetId:
+                            "overlay_center_message_${widget.event.eventId}",
+                        controller: this,
+                      ),
+                      Positioned(
+                        left: 0,
+                        right: 0,
+                        bottom: 20,
+                        child: ReadingAssistanceInputBar(
+                          widget.chatController,
+                          widget.overlayController,
                         ),
                       ),
                     ],
-                  ),
+                  ],
                 ),
               ),
             ],
           ),
-          if (_showDetails)
+          if (showDetails)
             const SizedBox(
               width: FluffyThemes.columnWidth,
             ),
