@@ -80,7 +80,7 @@ dependencies:
   sqlcipher_flutter_libs: ^0.6.1
   swipe_to_action: ^0.3.0
   tor_detector_web: ^1.1.0
-  unifiedpush: ^5.0.1
+  unifiedpush: ^6.0.2
   unifiedpush_ui: ^0.1.0
   universal_html: ^2.2.4
   url_launcher: ^6.2.5
