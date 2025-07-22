@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fluffychat/pangea/analytics_page/analytics_page_view.dart';
 import 'package:fluffychat/pangea/analytics_summary/progress_indicators_enum.dart';
 import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 
 class AnalyticsPage extends StatefulWidget {
   final ProgressIndicatorEnum? selectedIndicator;
@@ -23,6 +24,8 @@ class AnalyticsPageState extends State<AnalyticsPage> {
   @override
   void initState() {
     super.initState();
+    // init the analytics controllers
+    MatrixState.pangeaController.initControllers();
     selectedIndicator = widget.selectedIndicator ??
         ProgressIndicatorEnum.wordsUsed; // Default to wordsUsed if not set
   }
