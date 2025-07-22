@@ -21,9 +21,12 @@ import 'package:fluffychat/widgets/matrix.dart';
 /// be clicked to access more fine-grained analytics data.
 class LearningProgressIndicators extends StatefulWidget {
   final ProgressIndicatorEnum? selected;
+  final bool canSelect;
+
   const LearningProgressIndicators({
     super.key,
     this.selected,
+    this.canSelect = true,
   });
 
   @override
@@ -171,7 +174,7 @@ class LearningProgressIndicatorsState
                   builder: (context, hovered) {
                     return Container(
                       decoration: BoxDecoration(
-                        color: hovered
+                        color: hovered && widget.canSelect
                             ? Theme.of(context)
                                 .colorScheme
                                 .primary
@@ -184,11 +187,15 @@ class LearningProgressIndicatorsState
                         horizontal: 4.0,
                       ),
                       child: MouseRegion(
-                        cursor: SystemMouseCursors.click,
+                        cursor: widget.canSelect
+                            ? SystemMouseCursors.click
+                            : MouseCursor.defer,
                         child: GestureDetector(
-                          onTap: () {
-                            context.go("/rooms/analytics?mode=level");
-                          },
+                          onTap: widget.canSelect
+                              ? () {
+                                  context.go("/rooms/analytics?mode=level");
+                                }
+                              : null,
                           child: Row(
                             spacing: 8.0,
                             children: [
