@@ -150,7 +150,12 @@ class ClassController extends BaseController {
             );
 
         if (alreadyJoined.isNotEmpty || inFoundClass) {
-          context.go("/rooms?spaceId=${alreadyJoined.first}");
+          final room = client.getRoomById(alreadyJoined.first);
+          if (!(room?.isSpace ?? true)) {
+            context.go("/rooms/${alreadyJoined.first}");
+          } else {
+            context.go("/rooms?spaceId=${alreadyJoined.first}");
+          }
           return null;
         }
 
@@ -206,7 +211,11 @@ class ClassController extends BaseController {
         await room.requestParticipants();
       }
 
-      context.go("/rooms?spaceId=${room.id}");
+      if (room.isSpace) {
+        context.go("/rooms?spaceId=${room.id}");
+      } else {
+        context.go("/rooms/${room.id}");
+      }
       return spaceID;
     } catch (e, s) {
       ErrorHandler.logError(
