@@ -492,8 +492,13 @@ class _SpaceViewState extends State<SpaceView> {
   ) {
     final List<SpaceRoomsChunk> filteredChildren = [];
     for (final child in hierarchyResponse) {
-      if (child.roomId == widget.spaceId ||
-          Matrix.of(context).client.getRoomById(child.roomId) != null) {
+      if (child.roomId == widget.spaceId) {
+        continue;
+      }
+
+      final room = Matrix.of(context).client.getRoomById(child.roomId);
+      if (room != null && room.membership != Membership.leave) {
+        // If the room is already joined or invited, skip it
         continue;
       }
 
