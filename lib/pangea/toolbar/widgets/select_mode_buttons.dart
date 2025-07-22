@@ -10,10 +10,12 @@ import 'package:matrix/matrix.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/events/audio_player.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
+import 'package:fluffychat/pangea/common/widgets/pressable_button.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/events/extensions/pangea_event_extension.dart';
 import 'package:fluffychat/pangea/events/models/representation_content_model.dart';
@@ -515,7 +517,7 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
     }
   }
 
-  Widget icon(SelectMode mode) {
+  Widget _icon(SelectMode mode) {
     if (_isError && mode == _selectedMode) {
       return Icon(
         Icons.error_outline,
@@ -551,10 +553,81 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
     );
   }
 
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final modes = widget.overlayController.showLanguageAssistance
+        ? messageEvent?.isAudioMessage == true
+            ? audioModes
+            : textModes
+        : [];
+
+    return Material(
+      type: MaterialType.transparency,
+      child: SizedBox(
+        height: AppConfig.toolbarMenuHeight,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: List.generate(modes.length + 1, (index) {
+            if (index < modes.length) {
+              final mode = modes[index];
+              return Container(
+                width: 45.0,
+                alignment: Alignment.center,
+                child: Tooltip(
+                  message: mode.tooltip(context),
+                  child: PressableButton(
+                    borderRadius: BorderRadius.circular(20),
+                    depressed: mode == _selectedMode,
+                    color: theme.colorScheme.primaryContainer,
+                    onPressed: () => _updateMode(mode),
+                    playSound: true,
+                    colorFactor:
+                        theme.brightness == Brightness.light ? 0.55 : 0.3,
+                    child: AnimatedContainer(
+                      duration: FluffyThemes.animationDuration,
+                      height: buttonSize,
+                      width: buttonSize,
+                      decoration: BoxDecoration(
+                        color: theme.colorScheme.primaryContainer,
+                        shape: BoxShape.circle,
+                      ),
+                      child: _icon(mode),
+                    ),
+                  ),
+                ),
+              );
+            } else {
+              return Container(
+                width: 45.0,
+                alignment: Alignment.center,
+                child: MoreButton(
+                  controller: widget.controller,
+                  messageEvent: widget.overlayController.pangeaMessageEvent,
+                ),
+              );
+            }
+          }),
+        ),
+      ),
+    );
+  }
+}
+
+class MoreButton extends StatelessWidget {
+  final ChatController controller;
+  final PangeaMessageEvent? messageEvent;
+
+  const MoreButton({
+    super.key,
+    required this.controller,
+    this.messageEvent,
+  });
+
   bool _messageActionEnabled(MessageActions action) {
     if (messageEvent == null) return false;
-    if (widget.controller.selectedEvents.isEmpty) return false;
-    final events = widget.controller.selectedEvents;
+    if (controller.selectedEvents.isEmpty) return false;
+    final events = controller.selectedEvents;
 
     if (events.any((e) => !e.status.isSent)) {
       if (action == MessageActions.sendAgain) {
@@ -571,21 +644,20 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
 
     switch (action) {
       case MessageActions.reply:
-        return events.length == 1 &&
-            widget.controller.room.canSendDefaultMessages;
+        return events.length == 1 && controller.room.canSendDefaultMessages;
       case MessageActions.edit:
-        return widget.controller.canEditSelectedEvents &&
+        return controller.canEditSelectedEvents &&
             !events.first.isActivityMessage &&
             events.single.messageType == MessageTypes.Text;
       case MessageActions.delete:
-        return widget.controller.canRedactSelectedEvents;
+        return controller.canRedactSelectedEvents;
       case MessageActions.copy:
         return events.length == 1 &&
             events.single.messageType == MessageTypes.Text;
       case MessageActions.download:
-        return widget.controller.canSaveSelectedEvent;
+        return controller.canSaveSelectedEvent;
       case MessageActions.pin:
-        return widget.controller.canPinSelectedEvents;
+        return controller.canPinSelectedEvents;
       case MessageActions.forward:
       case MessageActions.report:
       case MessageActions.info:
@@ -596,47 +668,91 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
     }
   }
 
-  void _onActionPressed(MessageActions action) {
+  Future<void> _showMenu(BuildContext context) async {
+    final RenderBox button = context.findRenderObject() as RenderBox;
+    final RenderBox overlay = Overlay.of(context, rootOverlay: true)
+        .context
+        .findRenderObject() as RenderBox;
+
+    final Offset offset = button.localToGlobal(Offset.zero, ancestor: overlay);
+
+    final RelativeRect position = RelativeRect.fromRect(
+      Rect.fromPoints(
+        offset,
+        offset + button.size.bottomRight(Offset.zero),
+      ),
+      Offset.zero & overlay.size,
+    );
+
+    final action = await showMenu<MessageActions>(
+      useRootNavigator: true,
+      context: context,
+      position: position,
+      items: MessageActions.values
+          .where(_messageActionEnabled)
+          .map(
+            (action) => PopupMenuItem<MessageActions>(
+              value: action,
+              child: Row(
+                children: [
+                  Icon(action.icon),
+                  const SizedBox(width: 8.0),
+                  Text(action.tooltip(context)),
+                ],
+              ),
+            ),
+          )
+          .toList(),
+    );
+
+    if (action == null) return;
+    _onActionPressed(action, context);
+  }
+
+  void _onActionPressed(
+    MessageActions action,
+    BuildContext context,
+  ) {
     switch (action) {
       case MessageActions.reply:
-        widget.controller.replyAction();
+        controller.replyAction();
         break;
       case MessageActions.forward:
-        widget.controller.forwardEventsAction();
+        controller.forwardEventsAction();
         break;
       case MessageActions.edit:
-        widget.controller.editSelectedEventAction();
+        controller.editSelectedEventAction();
         break;
       case MessageActions.delete:
-        widget.controller.redactEventsAction();
+        controller.redactEventsAction();
         break;
       case MessageActions.copy:
-        widget.controller.copyEventsAction();
+        controller.copyEventsAction();
         break;
       case MessageActions.download:
-        widget.controller.saveSelectedEvent(context);
+        controller.saveSelectedEvent(context);
         break;
       case MessageActions.pin:
-        widget.controller.pinEvent();
+        controller.pinEvent();
         break;
       case MessageActions.report:
-        final event = widget.controller.selectedEvents.first;
-        widget.controller.clearSelectedEvents();
+        final event = controller.selectedEvents.first;
+        controller.clearSelectedEvents();
         reportEvent(
           event,
-          widget.controller,
-          widget.controller.context,
+          controller,
+          controller.context,
         );
         break;
       case MessageActions.info:
-        widget.controller.showEventInfo();
-        widget.controller.clearSelectedEvents();
+        controller.showEventInfo();
+        controller.clearSelectedEvents();
         break;
       case MessageActions.deleteOnError:
-        widget.controller.deleteErrorEventsAction();
+        controller.deleteErrorEventsAction();
         break;
       case MessageActions.sendAgain:
-        widget.controller.sendAgainAction();
+        controller.sendAgainAction();
         break;
     }
   }
@@ -644,109 +760,28 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final modes = widget.overlayController.showLanguageAssistance
-        ? messageEvent?.isAudioMessage == true
-            ? audioModes
-            : textModes
-        : [];
-    final actions = MessageActions.values.where(_messageActionEnabled);
-
-    return Material(
-      type: MaterialType.transparency,
-      child: Container(
-        width: 250,
-        constraints: const BoxConstraints(
-          maxHeight: AppConfig.toolbarMenuHeight,
-        ),
-        decoration: BoxDecoration(
-          color: theme.colorScheme.surface,
-          borderRadius: BorderRadius.circular(
-            AppConfig.borderRadius,
+    return Tooltip(
+      message: L10n.of(context).more,
+      child: PressableButton(
+        borderRadius: BorderRadius.circular(20),
+        color: theme.colorScheme.primaryContainer,
+        onPressed: () => _showMenu(context),
+        playSound: true,
+        colorFactor: theme.brightness == Brightness.light ? 0.55 : 0.3,
+        child: AnimatedContainer(
+          duration: FluffyThemes.animationDuration,
+          height: 40.0,
+          width: 40.0,
+          decoration: BoxDecoration(
+            color: theme.colorScheme.primaryContainer,
+            shape: BoxShape.circle,
           ),
-        ),
-        child: ListView.builder(
-          shrinkWrap: true,
-          itemCount: modes.length + actions.length + 1,
-          itemBuilder: (context, index) {
-            if (index < modes.length) {
-              final mode = modes[index];
-              return SizedBox(
-                height: 50.0,
-                child: ListTile(
-                  leading: Icon(mode.icon),
-                  title: Text(mode.tooltip(context)),
-                  onTap: () => _updateMode(mode),
-                ),
-              );
-            } else if (index == modes.length) {
-              return modes.isNotEmpty
-                  ? const Divider(height: 1.0)
-                  : const SizedBox();
-            } else {
-              final action = actions.elementAt(index - modes.length - 1);
-              return SizedBox(
-                height: 50.0,
-                child: ListTile(
-                  leading: Icon(action.icon),
-                  title: Text(action.tooltip(context)),
-                  onTap: () => _onActionPressed(action),
-                ),
-              );
-            }
-          },
+          child: const Icon(
+            Icons.more_horiz,
+            size: 20,
+          ),
         ),
       ),
     );
-
-    // return SizedBox(
-    //   width: 150,
-    //   child: ListView.builder(
-    //     itemCount: modes.length,
-    //     itemBuilder: (context, index) {
-    //       final mode = modes[index];
-    //       return ListTile(
-    //         leading: Icon(mode.icon),
-    //         title: Text(mode.name),
-    //         onTap: () {
-    //           _updateMode(mode);
-    //         },
-    //       );
-    //     },
-    //   ),
-    // );
-
-    // return Row(
-    //   crossAxisAlignment: CrossAxisAlignment.center,
-    //   mainAxisSize: MainAxisSize.min,
-    //   spacing: 4.0,
-    //   children: [
-    //     for (final mode in modes)
-    //       TooltipVisibility(
-    //         visible: (!_isError || mode != _selectedMode),
-    //         child: Tooltip(
-    //           message: mode.tooltip(context),
-    //           child: PressableButton(
-    //             depressed: mode == _selectedMode,
-    //             borderRadius: BorderRadius.circular(20),
-    //             color: Theme.of(context).colorScheme.primaryContainer,
-    //             onPressed: () => _updateMode(mode),
-    //             playSound: mode != SelectMode.audio,
-    //             colorFactor: Theme.of(context).brightness == Brightness.light
-    //                 ? 0.55
-    //                 : 0.3,
-    //             child: Container(
-    //               height: buttonSize,
-    //               width: buttonSize,
-    //               decoration: BoxDecoration(
-    //                 color: Theme.of(context).colorScheme.primaryContainer,
-    //                 shape: BoxShape.circle,
-    //               ),
-    //               child: icon(mode),
-    //             ),
-    //           ),
-    //         ),
-    //       ),
-    //   ],
-    // );
   }
 }
