@@ -164,6 +164,14 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
   }
 
   void _onButtonTap() async {
+    // #Pangea
+    // https://github.com/pangeachat/client/issues/3458
+    if (widget.event != null && !widget.event!.status.isSent) {
+      widget.chatController.showToolbar(widget.event!);
+      return;
+    }
+    // Pangea#
+
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ScaffoldMessenger.of(matrix.context).clearMaterialBanners();
     });
@@ -435,7 +443,10 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
     }
 
     // #Pangea
-    if (widget.autoplay) _onButtonTap();
+    if (widget.autoplay &&
+        (widget.event == null || widget.event!.status.isSent)) {
+      _onButtonTap();
+    }
     // Pangea#
   }
 

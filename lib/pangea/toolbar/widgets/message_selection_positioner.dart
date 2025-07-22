@@ -325,7 +325,7 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
 
   void _onContentSizeChanged(_) {
     Future.delayed(FluffyThemes.animationDuration, () {
-      setState(() {});
+      if (mounted) setState(() {});
     });
   }
 
