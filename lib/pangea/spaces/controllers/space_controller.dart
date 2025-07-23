@@ -137,7 +137,7 @@ class ClassController extends BaseController {
           return "429";
         }
         if (knockResponse.statusCode != 200) {
-          throw notFoundError ?? L10n.of(context).unableToFindClass;
+          throw notFoundError ?? L10n.of(context).unableToFindRoom;
         }
 
         final knockResult = jsonDecode(knockResponse.body);
@@ -160,7 +160,7 @@ class ClassController extends BaseController {
         }
 
         if (foundClasses.isEmpty) {
-          throw notFoundError ?? L10n.of(context).unableToFindClass;
+          throw notFoundError ?? L10n.of(context).unableToFindRoom;
         }
 
         final chosenClassId = foundClasses.first;

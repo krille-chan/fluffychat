@@ -4439,7 +4439,6 @@
   "joinWithClassCode": "Únete a una clase o a un intercambio",
   "joinWithClassCodeDesc": "Conéctese a una clase o espacio de intercambio con el código de invitación de 6 dígitos proporcionado por el administrador del espacio.",
   "joinWithClassCodeHint": "Introduzca el código de invitación",
-  "unableToFindClass": "No hay espacio con ese código. Por favor inténtalo de nuevo.",
   "welcomeToYourNewClass": "Bienvenido 🙂",
   "welcomeToClass": "Bienvenido! 🙂\n- ¡Prueba a unirte a un chat!\n- ¡Diviértete chateando!",
   "unableToFindClassCode": "No se puede encontrar el código.",

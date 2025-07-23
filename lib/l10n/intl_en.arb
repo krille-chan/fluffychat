@@ -3310,7 +3310,6 @@
   "iWantALanguagePartnerWhoIsLearning": "Is learning:",
   "joinWithClassCode": "Join space",
   "joinWithClassCodeHint": "Enter invite code",
-  "unableToFindClass": "There's no space with that code. Please try again.",
   "languageLevelPreA1": "True Beginner (Pre A1)",
   "languageLevelA1": "Beginner (A1)",
   "languageLevelA2": "Elementary (A2)",
@@ -5092,5 +5091,6 @@
   "translationError": "Translation error",
   "errorFetchingTranslation": "Failed to fetch translation",
   "errorFetchingActivity": "Failed to fetch activity",
-  "check": "Check"
+  "check": "Check",
+  "unableToFindRoom": "No chat or space found with that code. Please try again."
 }

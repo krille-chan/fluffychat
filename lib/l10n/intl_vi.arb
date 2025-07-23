@@ -1821,7 +1821,6 @@
   "joinWithClassCode": "Tham gia không gian",
   "joinWithClassCodeDesc": "Nhập mã mời 6 ký tự mà quản trị viên cung cấp.",
   "joinWithClassCodeHint": "Nhập mã mời",
-  "unableToFindClass": "Không có không gian nào với mã này. Vui lòng thử lại.",
   "languageLevelPreA1": "Hoàn toàn mới (Pre A1)",
   "languageLevelA1": "Sơ cấp (A1)",
   "languageLevelA2": "Căn bản (A2)",
