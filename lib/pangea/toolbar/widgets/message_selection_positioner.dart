@@ -151,7 +151,7 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
     return reactionsEvents.where((e) => !e.redacted).isNotEmpty;
   }
 
-  double get reactionsHeight => hasReactions ? 32.0 : 0.0;
+  double get reactionsHeight => hasReactions ? 28.0 : 0.0;
 
   bool get ownMessage =>
       widget.event.senderId == widget.event.room.client.userID;
