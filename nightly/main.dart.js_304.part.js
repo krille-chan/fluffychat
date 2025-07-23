@@ -442,7 +442,7 @@ gnM(){return"\ud83d\ude2d Oh no. Something went wrong. If you want, you can repo
 gjF(){return"report"},
 gkr(){return"Set color theme:"},
 giN(){return"Inviter"},
-gmb(){return"\ud83d\udce8 Invite group chat"},
+gmb(){return"\ud83d\udce8 Group chat invite"},
 giM(){return"Invalid input!"},
 oF(d){return"Feil PIN-kode tastet inn! Pr\xf8v igjen om "+d+" sekunder..."},
 gnx(){return"Please enter a number greater than 0"},
@@ -639,5 +639,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fk,C.aF)})()
 B.dN(b.typeUniverse,JSON.parse('{"Fk":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_304",e:"endPart",h:b})})($__dart_deferred_initializers__,"BCQNFR7zKn15cOTqsAOTeA6sqNo=");
+a.eventLog.push({p:"main.dart.js_304",e:"endPart",h:b})})($__dart_deferred_initializers__,"aZP0rDLG1IVoY4IkRj93LkKlajM=");
 //# sourceMappingURL=main.dart.js_304.part.js.map

@@ -633,11 +633,11 @@ goY(){return"Fechar a sesi\xf3n en todos os dispositivos activos"},
 gp0(){return"Show navigation rail on mobile"},
 glB(){return"Reacci\xf3n personalizada"},
 gp6(){return"M\xe1is eventos"},
-glE(){return"Decline invitation"},
+glE(){return"Rexeitar o convite"},
 B(d,e){return this.gb9(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.F6,C.aF)})()
 B.dN(b.typeUniverse,JSON.parse('{"F6":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_275",e:"endPart",h:b})})($__dart_deferred_initializers__,"OHm/XSm87eEjnUfrUPdrdAsjm1s=");
+a.eventLog.push({p:"main.dart.js_275",e:"endPart",h:b})})($__dart_deferred_initializers__,"XzVQo7f2dEeY2Jt8RrkinS9L7O8=");
 //# sourceMappingURL=main.dart.js_275.part.js.map

@@ -442,7 +442,7 @@ gnM(){return"Ceva a e\u0219uat. V\u0103 rug\u0103m s\u0103 \xeencerca\u021bi din
 gjF(){return"reporta\u021bi"},
 gkr(){return"Set color theme:"},
 giN(){return"Invite"},
-gmb(){return"\ud83d\udce8 Invite group chat"},
+gmb(){return"\ud83d\udce8 Group chat invite"},
 giM(){return"Invalid input!"},
 oF(d){return"Wrong pin entered! Try again in "+d+" seconds..."},
 gnx(){return"Please enter a number greater than 0"},
@@ -639,5 +639,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fp,C.aF)})()
 B.dN(b.typeUniverse,JSON.parse('{"Fp":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_308",e:"endPart",h:b})})($__dart_deferred_initializers__,"/N6C9BALGiwkRc/YHB9jS1gPodU=");
+a.eventLog.push({p:"main.dart.js_308",e:"endPart",h:b})})($__dart_deferred_initializers__,"dYpi4P8GLShZUTaDNzNZrIXzJYk=");
 //# sourceMappingURL=main.dart.js_308.part.js.map

@@ -442,7 +442,7 @@ gnM(){return"\ud83d\ude2d Ak n\u0113! Kaut kas nog\u0101ja greizi. Ja ir v\u0113
 gjF(){return"Zi\u0146ot"},
 gkr(){return"Iestat\u012bt kr\u0101su izskatu:"},
 giN(){return"Uzaicin\u0101t"},
-gmb(){return"\ud83d\udce8 Uzaicin\u0101t kopas t\u0113rz\u0113\u0161anu"},
+gmb(){return"\ud83d\udce8 Uzaicin\u0101jums uz kopas t\u0113rz\u0113\u0161anu"},
 giM(){return"Neder\u012bga ievade."},
 oF(d){return"Ievad\u012bts nepareizs PIN. L\u016bgums m\u0113\u0123in\u0101t v\u0113lreiz p\u0113c "+d+" sekund\u0113m..."},
 gnx(){return"L\u016bgums ievad\u012bt skaitli liel\u0101ku par 0"},
@@ -633,11 +633,11 @@ goY(){return"Atteikties vis\u0101s izmantotaj\u0101s ier\u012bc\u0113s"},
 gp0(){return"R\u0101d\u012bt p\u0101rvieto\u0161an\u0101s sliedi viedier\u012bc\u0113s"},
 glB(){return"Piel\u0101gota reakcija"},
 gp6(){return"Vair\u0101k notikumu"},
-glE(){return"Decline invitation"},
+glE(){return"Noraid\u012bt uzaicin\u0101jumu"},
 B(d,e){return this.gb9(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fj,C.aF)})()
 B.dN(b.typeUniverse,JSON.parse('{"Fj":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_303",e:"endPart",h:b})})($__dart_deferred_initializers__,"Z3o+7xMsqYJGYiT5TYlvkuNgT20=");
+a.eventLog.push({p:"main.dart.js_303",e:"endPart",h:b})})($__dart_deferred_initializers__,"dTeBuGa31cWOE11eSxRcv8b9sSc=");
 //# sourceMappingURL=main.dart.js_303.part.js.map
