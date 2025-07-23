@@ -264,7 +264,7 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
   double get _contentHeight {
     final messageHeight =
         _overlayMessageSize?.height ?? originalMessageSize.height;
-    return messageHeight + reactionsHeight + AppConfig.toolbarMenuHeight + 8.0;
+    return messageHeight + reactionsHeight + AppConfig.toolbarMenuHeight + 4.0;
   }
 
   double get _overheadContentHeight {
@@ -290,33 +290,28 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
     return _contentHeight + _overheadContentHeight;
   }
 
+  double? get _screenHeight {
+    if (mediaQuery == null) return null;
+    return mediaQuery!.size.height -
+        mediaQuery!.padding.bottom -
+        mediaQuery!.padding.top;
+  }
+
   bool get shouldScroll {
-    if (mediaQuery == null) return false;
-    return _fullContentHeight >
-        (mediaQuery!.size.height -
-            mediaQuery!.padding.bottom -
-            mediaQuery!.padding.top);
+    if (_screenHeight == null) return false;
+    return _fullContentHeight > _screenHeight!;
   }
 
   bool get _hasFooterOverflow {
-    if (mediaQuery == null || _overlayMessageSize == null) return false;
-    final bottomOffset = _originalMessageOffset.dy +
-        originalMessageSize.height +
-        reactionsHeight +
-        AppConfig.toolbarMenuHeight +
-        4.0;
-    return bottomOffset >
-        (mediaQuery!.size.height -
-            mediaQuery!.padding.bottom -
-            mediaQuery!.padding.top);
+    if (_screenHeight == null) return false;
+    final bottomOffset = _originalMessageOffset.dy + _contentHeight;
+    return bottomOffset > _screenHeight!;
   }
 
   double get spaceAboveContent {
     if (shouldScroll) return _overheadContentHeight;
     if (_hasFooterOverflow) {
-      return mediaQuery!.size.height -
-          mediaQuery!.padding.top -
-          _fullContentHeight;
+      return _screenHeight! - _fullContentHeight;
     }
 
     return _originalMessageOffset.dy -
@@ -368,9 +363,7 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
                 width: mediaQuery!.size.width -
                     columnWidth -
                     (showDetails ? FluffyThemes.columnWidth : 0),
-                height: mediaQuery!.size.height -
-                    mediaQuery!.padding.top -
-                    mediaQuery!.padding.bottom,
+                height: _screenHeight!,
                 child: Stack(
                   alignment:
                       ownMessage ? Alignment.centerRight : Alignment.centerLeft,
