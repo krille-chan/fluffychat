@@ -3382,5 +3382,7 @@
   "moreEvents": "Meer gebeurtenissen",
   "@moreEvents": {},
   "customReaction": "Aangepaste reactie",
-  "@customReaction": {}
+  "@customReaction": {},
+  "declineInvitation": "Uitnodiging afwijzen",
+  "@declineInvitation": {}
 }
