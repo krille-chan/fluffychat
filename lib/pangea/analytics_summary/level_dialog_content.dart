@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_use_type_enum.dart';
@@ -27,6 +28,8 @@ class LevelDialogContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isColumnMode = FluffyThemes.isColumnMode(context);
+
     return StreamBuilder(
       stream: analytics.analyticsStream.stream,
       builder: (context, _) {
@@ -47,16 +50,16 @@ class LevelDialogContent extends StatelessWidget {
                 children: [
                   Text(
                     "⭐ ${L10n.of(context).levelShort(level)}",
-                    style: const TextStyle(
-                      fontSize: 24,
+                    style: TextStyle(
+                      fontSize: isColumnMode ? 24 : 16,
                       fontWeight: FontWeight.w900,
                       color: AppConfig.gold,
                     ),
                   ),
                   Text(
                     L10n.of(context).xpIntoLevel(totalXP, maxLevelXP),
-                    style: const TextStyle(
-                      fontSize: 24,
+                    style: TextStyle(
+                      fontSize: isColumnMode ? 24 : 16,
                       fontWeight: FontWeight.w900,
                       color: AppConfig.gold,
                     ),
