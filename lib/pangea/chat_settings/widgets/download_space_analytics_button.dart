@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:matrix/matrix.dart';
@@ -15,6 +16,9 @@ class DownloadSpaceAnalyticsButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (!kIsWeb) {
+      return const SizedBox.shrink();
+    }
     final iconColor = Theme.of(context).textTheme.bodyLarge!.color;
     return Column(
       children: [

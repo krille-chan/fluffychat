@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
@@ -391,14 +392,14 @@ class RoomDetailsButtonRowState extends State<RoomDetailsButtonRow> {
             builder: (context) => DownloadAnalyticsDialog(space: room),
           );
         },
-        visible: room.isSpace && room.isRoomAdmin,
+        visible: room.isSpace && room.isRoomAdmin && kIsWeb,
         showInMainView: false,
       ),
       ButtonDetails(
         title: l10n.download,
         icon: const Icon(Icons.download_outlined, size: 30.0),
         onPressed: widget.controller.downloadChatAction,
-        visible: room.ownPowerLevel >= 50 && !room.isSpace,
+        visible: room.ownPowerLevel >= 50 && !room.isSpace && kIsWeb,
         showInMainView: false,
       ),
       ButtonDetails(
