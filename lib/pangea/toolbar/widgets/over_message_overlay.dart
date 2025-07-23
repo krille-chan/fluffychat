@@ -83,11 +83,6 @@ class OverMessageOverlay extends StatelessWidget {
                   width: controller.mediaQuery!.size.width -
                       controller.columnWidth -
                       (controller.showDetails ? FluffyThemes.columnWidth : 0),
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.green,
-                    ),
-                  ),
                 ),
               ],
             ),

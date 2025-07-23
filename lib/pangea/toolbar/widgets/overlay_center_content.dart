@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/events/message_reactions.dart';
 import 'package:fluffychat/pangea/toolbar/enums/reading_assistance_mode_enum.dart';
@@ -49,6 +50,7 @@ class OverlayCenterContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ownMessage = event.senderId == event.room.client.userID;
     return IgnorePointer(
       ignoring: !isTransitionAnimation &&
           readingAssistanceMode != ReadingAssistanceMode.practiceMode,
@@ -83,10 +85,16 @@ class OverlayCenterContent extends StatelessWidget {
                 ),
               ),
               if (hasReactions)
-                Padding(
-                  padding: const EdgeInsets.all(4),
-                  child: SizedBox(
-                    height: 20,
+                AnimatedSize(
+                  duration: FluffyThemes.animationDuration,
+                  curve: FluffyThemes.animationCurve,
+                  alignment: Alignment.bottomCenter,
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      top: 4.0,
+                      left: 4.0,
+                      right: ownMessage ? 0 : 12.0,
+                    ),
                     child: MessageReactions(
                       event,
                       chatController.timeline!,
