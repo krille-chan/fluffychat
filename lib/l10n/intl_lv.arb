@@ -1941,11 +1941,11 @@
     "type": "String",
     "placeholders": {}
   },
-  "inviteGroupChat": "📨 Uzaicināt kopas tērzēšanu",
+  "inviteGroupChat": "📨 Uzaicinājums uz kopas tērzēšanu",
   "@inviteGroupChat": {},
   "appearOnTop": "Parādīt virspusē",
   "@appearOnTop": {},
-  "invitePrivateChat": "📨 Uzaicināt privātu tērzēšanu",
+  "invitePrivateChat": "📨 Uzaicinājums uz privātu tērzēšanu",
   "@invitePrivateChat": {},
   "verifyTitle": "Apliecina citu kontu",
   "@verifyTitle": {
@@ -3366,5 +3366,7 @@
   "customReaction": "Pielāgota reakcija",
   "@customReaction": {},
   "moreEvents": "Vairāk notikumu",
-  "@moreEvents": {}
+  "@moreEvents": {},
+  "declineInvitation": "Noraidīt uzaicinājumu",
+  "@declineInvitation": {}
 }

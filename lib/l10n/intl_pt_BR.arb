@@ -67,7 +67,7 @@
       }
     }
   },
-  "anyoneCanJoin": "Qualquer pessoa pode participar",
+  "anyoneCanJoin": "Qualquer pessoa pode entrar",
   "@anyoneCanJoin": {
     "type": "String",
     "placeholders": {}
@@ -82,7 +82,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "areGuestsAllowedToJoin": "Visitantes podem participar?",
+  "areGuestsAllowedToJoin": "Visitantes podem entrar?",
   "@areGuestsAllowedToJoin": {
     "type": "String",
     "placeholders": {}
@@ -97,7 +97,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "askSSSSSign": "Para poder validar a outra pessoa, por favor, insira sua frase secreta ou chave de recuperação.",
+  "askSSSSSign": "Para poder validar a outra pessoa, por favor, digite sua frase secreta ou chave de recuperação.",
   "@askSSSSSign": {
     "type": "String",
     "placeholders": {}
@@ -292,7 +292,7 @@
       }
     }
   },
-  "changedTheJoinRules": "{username} alterou as regras para participação",
+  "changedTheJoinRules": "{username} alterou as regras de entrada",
   "@changedTheJoinRules": {
     "type": "String",
     "placeholders": {
@@ -301,7 +301,7 @@
       }
     }
   },
-  "changedTheJoinRulesTo": "{username} alterou as regras para participação para: {joinRules}",
+  "changedTheJoinRulesTo": "{username} alterou as regras de entrada para: {joinRules}",
   "@changedTheJoinRulesTo": {
     "type": "String",
     "placeholders": {
@@ -422,7 +422,7 @@
     "type": "String",
     "description": "Usage hint for the command /invite"
   },
-  "commandHint_join": "Participar da sala específica",
+  "commandHint_join": "Entrar na sala especificada",
   "@commandHint_join": {
     "type": "String",
     "description": "Usage hint for the command /join"
@@ -840,7 +840,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "fromJoining": "De que participou",
+  "fromJoining": "De que entrou",
   "@fromJoining": {
     "type": "String",
     "placeholders": {}
@@ -884,7 +884,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "guestsCanJoin": "Visitantes podem participar",
+  "guestsCanJoin": "Visitantes podem entrar",
   "@guestsCanJoin": {
     "type": "String",
     "placeholders": {}
@@ -1014,7 +1014,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "joinedTheChat": "👋 {username} participou da conversa",
+  "joinedTheChat": "👋 {username} entrou na conversa",
   "@joinedTheChat": {
     "type": "String",
     "placeholders": {
@@ -1023,7 +1023,7 @@
       }
     }
   },
-  "joinRoom": "Participar da sala",
+  "joinRoom": "Entrar na sala",
   "@joinRoom": {
     "type": "String",
     "placeholders": {}
@@ -1472,7 +1472,7 @@
       }
     }
   },
-  "rejoin": "Participar novamente",
+  "rejoin": "Entrar novamente",
   "@rejoin": {
     "type": "String",
     "placeholders": {}
@@ -2031,7 +2031,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "whoIsAllowedToJoinThisGroup": "Quem pode participar do grupo",
+  "whoIsAllowedToJoinThisGroup": "Quem pode entrar no grupo",
   "@whoIsAllowedToJoinThisGroup": {
     "type": "String",
     "placeholders": {}
@@ -2279,7 +2279,7 @@
   },
   "youAcceptedTheInvitation": "👍 Você aceitou o convite",
   "@youAcceptedTheInvitation": {},
-  "youJoinedTheChat": "Você participou da conversa",
+  "youJoinedTheChat": "Você entrou na conversa",
   "@youJoinedTheChat": {},
   "youKicked": "👞 Você expulsou {user}",
   "@youKicked": {
@@ -2407,9 +2407,9 @@
   "@newGroup": {},
   "newSpace": "Novo espaço",
   "@newSpace": {},
-  "enterSpace": "Entrar no espaço",
+  "enterSpace": "Abrir espaço",
   "@enterSpace": {},
-  "enterRoom": "Entrar na sala",
+  "enterRoom": "Abrir sala",
   "@enterRoom": {},
   "allSpaces": "Todos os espaços",
   "@allSpaces": {},
@@ -2529,7 +2529,7 @@
   },
   "fileIsTooBigForServer": "Não foi possível enviar! O servidor suporta anexos somente até {max}.",
   "@fileIsTooBigForServer": {},
-  "readUpToHere": "Marcar como lido até aqui",
+  "readUpToHere": "Lido até aqui",
   "@readUpToHere": {},
   "optionalRedactReason": "(Opcional) Motivo para apagar esta mensagem.",
   "@optionalRedactReason": {},
@@ -2589,9 +2589,9 @@
       }
     }
   },
-  "inviteGroupChat": "📨 Convidar grupo",
+  "inviteGroupChat": "📨 Convite para conversa em grupo",
   "@inviteGroupChat": {},
-  "invitePrivateChat": "📨 Convidar conversa privada",
+  "invitePrivateChat": "📨 Convite para conversa privada",
   "@invitePrivateChat": {},
   "wasDirectChatDisplayName": "Conversa vazia (era {oldDisplayName})",
   "@wasDirectChatDisplayName": {
@@ -2635,7 +2635,7 @@
   "@createGroup": {},
   "noBackupWarning": "Atenção! Se não ativar o backup de conversas, você perderá acesso a suas mensagens criptografadas. É altamente recomendável ativar o backup antes de sair.",
   "@noBackupWarning": {},
-  "kickUserDescription": "O usuário foi expulso da conversa, mas não banido. Em conversas públicas, o usuário pode participar a qualquer momento.",
+  "kickUserDescription": "O usuário foi expulso da conversa, mas não banido. Em conversas públicas, o usuário pode entrar novamente a qualquer momento.",
   "@kickUserDescription": {},
   "invite": "Convidar",
   "@invite": {},
@@ -2698,7 +2698,7 @@
   "@groupName": {},
   "leaveEmptyToClearStatus": "Deixe em branco para limpar seu estado.",
   "@leaveEmptyToClearStatus": {},
-  "joinSpace": "Participar do espaço",
+  "joinSpace": "Entrar no espaço",
   "@joinSpace": {},
   "searchForUsers": "Pesquisar por @usuários...",
   "@searchForUsers": {},
@@ -2873,7 +2873,7 @@
   },
   "appLockDescription": "Bloquear o app com um código PIN quando não estiver usando",
   "@appLockDescription": {},
-  "accessAndVisibilityDescription": "Quem é permitido participar desta conversa e como a conversa pode ser descoberta.",
+  "accessAndVisibilityDescription": "Quem pode entrar nesta conversa e como a conversa pode ser descoberta.",
   "@accessAndVisibilityDescription": {},
   "calls": "Chamadas",
   "@calls": {},
@@ -2897,7 +2897,7 @@
   "@notifyMeFor": {},
   "usersMustKnock": "Usuários devem bater na porta",
   "@usersMustKnock": {},
-  "noOneCanJoin": "Ninguém pode participar",
+  "noOneCanJoin": "Ninguém pode entrar",
   "@noOneCanJoin": {},
   "knocking": "Batendo na porta",
   "@knocking": {},
@@ -2923,7 +2923,7 @@
   "@accessAndVisibility": {},
   "passwordRecoverySettings": "Configurações de recuperação de senha",
   "@passwordRecoverySettings": {},
-  "userWouldLikeToChangeTheChat": "{user} gostaria de participar da conversa.",
+  "userWouldLikeToChangeTheChat": "{user} gostaria de entrar na conversa.",
   "@userWouldLikeToChangeTheChat": {
     "placeholders": {
       "user": {
@@ -3089,7 +3089,7 @@
   "@changelog": {},
   "sendCanceled": "Envio cancelado",
   "@sendCanceled": {},
-  "unableToJoinChat": "Não foi possível participar da conversa. Talvez a outra pessoa já fechou a conversa.",
+  "unableToJoinChat": "Não foi possível entrar na conversa. Talvez a outra pessoa já fechou a conversa.",
   "@unableToJoinChat": {},
   "whatIsAHomeserver": "O que é um servidor?",
   "@whatIsAHomeserver": {},
@@ -3233,7 +3233,7 @@
       }
     }
   },
-  "enterNewChat": "Entrar na conversa nova",
+  "enterNewChat": "Abrir a conversa nova",
   "@enterNewChat": {},
   "notificationRuleSuppressNoticesDescription": "Omite notificações de clientes automatizados, como bots.",
   "@notificationRuleSuppressNoticesDescription": {},
@@ -3298,7 +3298,7 @@
   "@recordAVideo": {},
   "optionalMessage": "Mensagem... (opcional)",
   "@optionalMessage": {},
-  "joinedChats": "Conversas participantes",
+  "joinedChats": "Conversas que entrou",
   "@joinedChats": {},
   "notSupportedOnThisDevice": "Não há suporte neste dispositivo",
   "@notSupportedOnThisDevice": {},
