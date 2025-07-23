@@ -23,7 +23,7 @@ Future<OkCancelResult?> showOkCancelAlertDialog({
       builder: (context) => AlertDialog.adaptive(
         title: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 256),
-          child: Text(title),
+          child: Text(title.toUpperCase()),
         ),
         content: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 256),

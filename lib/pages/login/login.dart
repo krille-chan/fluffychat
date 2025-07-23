@@ -12,6 +12,7 @@ import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../utils/platform_infos.dart';
 import 'login_view.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Login extends StatefulWidget {
   final Client client;
@@ -178,16 +179,16 @@ class LoginController extends State<Login> {
 
   void passwordForgotten() async {
     final input = await showTextInputDialog(
-      useRootNavigator: false,
-      context: context,
-      title: L10n.of(context).passwordForgotten,
-      message: L10n.of(context).enterAnEmailAddress,
-      okLabel: L10n.of(context).ok,
-      cancelLabel: L10n.of(context).cancel,
-      initialText:
-          usernameController.text.isEmail ? usernameController.text : '',
-      keyboardType: TextInputType.emailAddress,
-    );
+        useRootNavigator: false,
+        context: context,
+        title: L10n.of(context).passwordForgotten,
+        message: L10n.of(context).enterAnEmailAddress,
+        okLabel: L10n.of(context).ok,
+        cancelLabel: L10n.of(context).cancel,
+        initialText:
+            usernameController.text.isEmail ? usernameController.text : '',
+        keyboardType: TextInputType.emailAddress,
+        maxLines: 1);
     if (input == null) return;
     final clientSecret = DateTime.now().millisecondsSinceEpoch.toString();
     final response = await showFutureLoadingDialog(
@@ -256,10 +257,6 @@ class LoginController extends State<Login> {
         this,
         client: widget.client,
       );
-
-  void onMoreAction(MoreLoginActions action) {
-    PlatformInfos.showDialog(context);
-  }
 }
 
 extension on String {
@@ -271,5 +268,3 @@ extension on String {
 
   bool get isPhoneNumber => _phoneRegex.hasMatch(this);
 }
-
-enum MoreLoginActions { importBackup, privacy, about }

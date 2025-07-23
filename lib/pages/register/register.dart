@@ -10,9 +10,12 @@ import 'package:uuid/uuid.dart';
 import 'register_view.dart';
 import 'package:http/http.dart' as http;
 import 'package:matrix/matrix.dart';
+import '../../utils/platform_infos.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Register extends StatefulWidget {
   final Client client;
+
   const Register({required this.client, super.key});
 
   @override
@@ -99,10 +102,22 @@ class RegisterController extends State<Register> {
 
   bool passwordIsValid() {
     final password = passwordController.text;
+    final l10n = L10n.of(context);
+
     if (password.isEmpty) {
-      setState(() => passwordError = L10n.of(context).pleaseEnterYourPassword);
+      setState(() => passwordError = l10n.pleaseEnterYourPassword);
       return false;
     }
+
+    final validPasswordRegex = RegExp(
+      r'^(?=.*[0-9])(?=.*[!@#\$%^&*()_+{}\[\]:;<>,.?~\\/-])[A-Za-z\d!@#\$%^&*()_+{}\[\]:;<>,.?~\\/-]{6,}$',
+    );
+
+    if (!validPasswordRegex.hasMatch(password)) {
+      setState(() => passwordError = l10n.pleaseUseAStrongPassword);
+      return false;
+    }
+
     setState(() => passwordError = null);
     return true;
   }
@@ -153,7 +168,7 @@ class RegisterController extends State<Register> {
       context: context,
       barrierDismissible: false,
       builder: (_) => AlertDialog(
-        title: Text(L10n.of(context).dialogVerifyEmailTitle),
+        title: Text(L10n.of(context).dialogVerifyEmailTitle.toUpperCase()),
         content: Text(L10n.of(context).dialogVerifyEmailContent),
         actions: [
           TextButton(
@@ -235,7 +250,14 @@ class RegisterController extends State<Register> {
       return;
     }
 
-    final token = await _generateRegistrationToken(session);
+    String? token;
+    try {
+      token = await _generateRegistrationToken(session);
+    } catch (e) {
+      await _showGenericError();
+      setState(() => loading = false);
+      return;
+    }
 
     try {
       await client.register(
@@ -340,13 +362,7 @@ class RegisterController extends State<Register> {
         this,
         client: widget.client,
       );
-
-  void onMoreAction(MoreLoginActions action) {
-    PlatformInfos.showDialog(context);
-  }
 }
-
-enum MoreLoginActions { importBackup, privacy, about }
 
 class RegistrationTokenAuth extends AuthenticationData {
   final String token;

@@ -97,27 +97,35 @@ class ChatListViewBody extends StatelessWidget {
                       AnimatedContainer(
                         clipBehavior: Clip.hardEdge,
                         decoration: const BoxDecoration(),
-                        height: userSearchResult == null ||
-                                userSearchResult.results.isEmpty
-                            ? 0
-                            : 106,
+                        height:
+                            userSearchResult == null || userSearchResult.isEmpty
+                                ? 0
+                                : 106,
                         duration: FluffyThemes.animationDuration,
                         curve: FluffyThemes.animationCurve,
                         child: userSearchResult == null
                             ? null
                             : ListView.builder(
                                 scrollDirection: Axis.horizontal,
-                                itemCount: userSearchResult.results.length,
+                                itemCount: userSearchResult.length,
                                 itemBuilder: (context, i) => _SearchItem(
-                                  title:
-                                      userSearchResult.results[i].displayName ??
-                                          userSearchResult
-                                              .results[i].userId.localpart ??
-                                          L10n.of(context).unknownDevice,
-                                  avatar: userSearchResult.results[i].avatarUrl,
+                                  title: (userSearchResult[i]
+                                              .displayName
+                                              ?.trim()
+                                              .isNotEmpty ==
+                                          true)
+                                      ? userSearchResult[i].displayName!
+                                      : (userSearchResult[i].userId.isNotEmpty
+                                          ? userSearchResult[i]
+                                              .userId
+                                              .split(':')
+                                              .first
+                                              .replaceFirst('@', '')
+                                          : L10n.of(context).unknownDevice),
+                                  avatar: userSearchResult[i].avatarUrl,
                                   onPressed: () => UserDialog.show(
                                     context: context,
-                                    profile: userSearchResult.results[i],
+                                    profile: userSearchResult[i],
                                   ),
                                 ),
                               ),

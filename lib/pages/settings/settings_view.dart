@@ -171,12 +171,20 @@ class SettingsView extends StatelessWidget {
                   Divider(
                     color: theme.dividerColor,
                   ),
+                  // ListTile(
+                  //   leading: const Icon(Icons.info_outline_rounded),
+                  //   title: Text(L10n.of(context).about),
+                  //   onTap: () => PlatformInfos.showAboutInfo(context),
+                  // ),
+                  // Divider(color: theme.dividerColor),
                   ListTile(
-                    leading: const Icon(Icons.info_outline_rounded),
-                    title: Text(L10n.of(context).about),
-                    onTap: () => PlatformInfos.showDialog(context),
+                    leading: const Icon(Icons.devices_outlined),
+                    title: Text(L10n.of(context).devices),
+                    onTap: () => context.go('/rooms/settings/devices'),
+                    tileColor: activeRoute.startsWith('/rooms/settings/devices')
+                        ? theme.colorScheme.surfaceContainerHigh
+                        : null,
                   ),
-                  Divider(color: theme.dividerColor),
                   ListTile(
                     leading: const Icon(Icons.logout_outlined),
                     title: Text(L10n.of(context).logout),

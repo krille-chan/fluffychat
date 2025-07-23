@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -46,23 +47,43 @@ abstract class PlatformInfos {
     return version;
   }
 
-  static void showDialog(BuildContext context) async {
-    showAboutDialog(
+  static void showAboutInfo(BuildContext context) {
+    showDialog(
       context: context,
-      children: [
-        TextButton.icon(
-          onPressed: () => launchUrlString(AppConfig.sourceCodeUrl),
-          icon: const Icon(Icons.source_outlined),
-          label: Text(L10n.of(context).sourceCode),
+      builder: (context) => AboutDialog(
+        applicationIcon: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Image.asset(
+              'assets/logo_single_semfundo.png',
+              height: 70,
+              filterQuality: FilterQuality.medium,
+            ),
+            const SizedBox(width: 8),
+            Text(
+              AppConfig.applicationName.toUpperCase(),
+              style: GoogleFonts.righteous(
+                fontSize: 20,
+                color: Theme.of(context).colorScheme.primary,
+              ),
+            ),
+          ],
         ),
-      ],
-      applicationIcon: Image.asset(
-        'assets/logo.png',
-        width: 64,
-        height: 64,
-        filterQuality: FilterQuality.medium,
+        applicationName: '',
+        applicationVersion: '',
+        children: [
+          TextButton.icon(
+            onPressed: () => launchUrlString(AppConfig.sourceCodeUrl),
+            icon: const Icon(Icons.source_outlined),
+            label: Text(L10n.of(context).sourceCode),
+            style: ButtonStyle(
+              foregroundColor: WidgetStateProperty.all(
+                Theme.of(context).colorScheme.onSurface,
+              ),
+            ),
+          ),
+        ],
       ),
-      applicationName: AppConfig.applicationName,
     );
   }
 }

@@ -41,6 +41,7 @@ class UserDeviceListItem extends StatelessWidget {
     final keys = client.userDeviceKeys[Matrix.of(context).client.userID]
         ?.deviceKeys[userDevice.deviceId];
     final isOwnDevice = userDevice.deviceId == client.deviceID;
+    final theme = Theme.of(context);
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -111,12 +112,12 @@ class UserDeviceListItem extends StatelessWidget {
           leading: CircleAvatar(
             foregroundColor: Colors.white,
             backgroundColor: keys == null
-                ? Colors.grey[700]
+                ? theme.colorScheme.onSurface
                 : keys.blocked
-                    ? Colors.red
+                    ? theme.colorScheme.error
                     : keys.verified
                         ? Colors.green
-                        : Colors.orange,
+                        : theme.colorScheme.secondary,
             child: Icon(userDevice.icon),
           ),
           title: Text(
@@ -141,10 +142,10 @@ class UserDeviceListItem extends StatelessWidget {
                           : L10n.of(context).unverified,
                   style: TextStyle(
                     color: keys.blocked
-                        ? Colors.red
+                        ? theme.colorScheme.error
                         : keys.verified
                             ? Colors.green
-                            : Colors.orange,
+                            : Theme.of(context).colorScheme.secondary,
                   ),
                 ),
         ),
