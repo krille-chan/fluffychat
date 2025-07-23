@@ -267,7 +267,7 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
     return messageHeight + reactionsHeight + AppConfig.toolbarMenuHeight + 4.0;
   }
 
-  double get _overheadContentHeight {
+  double get overheadContentHeight {
     return (widget.pangeaMessageEvent != null &&
                 widget.overlayController.selectedToken != null
             ? AppConfig.toolbarMaxHeight
@@ -287,7 +287,7 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
   }
 
   double get _fullContentHeight {
-    return _contentHeight + _overheadContentHeight;
+    return _contentHeight + overheadContentHeight;
   }
 
   double? get _screenHeight {
@@ -308,15 +308,24 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
     return bottomOffset > _screenHeight!;
   }
 
-  double get spaceAboveContent {
-    if (shouldScroll) return _overheadContentHeight;
-    if (_hasFooterOverflow) {
-      return _screenHeight! - _fullContentHeight;
+  double get spaceBelowContent {
+    if (shouldScroll) return 0;
+    if (_hasFooterOverflow) return 0;
+
+    final messageHeight = originalMessageSize.height;
+    final originalContentHeight =
+        messageHeight + reactionsHeight + AppConfig.toolbarMenuHeight + 4.0;
+
+    final screenHeight = mediaQuery!.size.height - mediaQuery!.padding.bottom;
+
+    final boxHeight =
+        screenHeight - _originalMessageOffset.dy - originalContentHeight;
+
+    if (boxHeight + _fullContentHeight > screenHeight) {
+      return screenHeight - _fullContentHeight;
     }
 
-    return _originalMessageOffset.dy -
-        mediaQuery!.padding.top -
-        _overheadContentHeight;
+    return screenHeight - _originalMessageOffset.dy - originalContentHeight;
   }
 
   void _onContentSizeChanged(_) {

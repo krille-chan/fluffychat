@@ -17,7 +17,8 @@ class OverMessageOverlay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: controller.ownMessage ? Alignment.topRight : Alignment.topLeft,
+      alignment:
+          controller.ownMessage ? Alignment.bottomRight : Alignment.bottomLeft,
       child: Padding(
         padding: EdgeInsets.only(
           left: controller.messageLeftOffset ?? 0.0,
@@ -33,17 +34,14 @@ class OverMessageOverlay extends StatelessWidget {
                   : CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                AnimatedContainer(
-                  duration: FluffyThemes.animationDuration,
-                  height: max(0, controller.spaceAboveContent),
-                  width: controller.mediaQuery!.size.width -
-                      controller.columnWidth -
-                      (controller.showDetails ? FluffyThemes.columnWidth : 0),
-                ),
                 if (!controller.shouldScroll) ...[
                   WordCardSwitcher(controller: controller),
                   const SizedBox(height: 4.0),
-                ],
+                ] else
+                  AnimatedContainer(
+                    duration: FluffyThemes.animationDuration,
+                    height: controller.overheadContentHeight,
+                  ),
                 CompositedTransformTarget(
                   link: MatrixState.pAnyState
                       .layerLinkAndKey(
@@ -77,6 +75,18 @@ class OverMessageOverlay extends StatelessWidget {
                   overlayController: controller.widget.overlayController,
                   lauchPractice: () => controller.setReadingAssistanceMode(
                     ReadingAssistanceMode.practiceMode,
+                  ),
+                ),
+                AnimatedContainer(
+                  duration: FluffyThemes.animationDuration,
+                  height: max(0, controller.spaceBelowContent),
+                  width: controller.mediaQuery!.size.width -
+                      controller.columnWidth -
+                      (controller.showDetails ? FluffyThemes.columnWidth : 0),
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.green,
+                    ),
                   ),
                 ),
               ],
