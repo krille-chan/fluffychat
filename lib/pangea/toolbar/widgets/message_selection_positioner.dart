@@ -264,14 +264,15 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
   double get _contentHeight {
     final messageHeight =
         _overlayMessageSize?.height ?? originalMessageSize.height;
-    return messageHeight + reactionsHeight + AppConfig.toolbarMenuHeight + 4.0;
+    return messageHeight + reactionsHeight + AppConfig.toolbarMenuHeight + 8.0;
   }
 
   double get _overheadContentHeight {
-    return widget.pangeaMessageEvent != null &&
-            widget.overlayController.selectedToken != null
-        ? AppConfig.toolbarMaxHeight
-        : 40.0;
+    return (widget.pangeaMessageEvent != null &&
+                widget.overlayController.selectedToken != null
+            ? AppConfig.toolbarMaxHeight
+            : 40.0) +
+        4.0;
   }
 
   double? get _wordCardLeftOffset {

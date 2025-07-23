@@ -40,8 +40,10 @@ class OverMessageOverlay extends StatelessWidget {
                       controller.columnWidth -
                       (controller.showDetails ? FluffyThemes.columnWidth : 0),
                 ),
-                if (!controller.shouldScroll)
+                if (!controller.shouldScroll) ...[
                   WordCardSwitcher(controller: controller),
+                  const SizedBox(height: 4.0),
+                ],
                 CompositedTransformTarget(
                   link: MatrixState.pAnyState
                       .layerLinkAndKey(
