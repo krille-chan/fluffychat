@@ -164,14 +164,6 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
   }
 
   void _onButtonTap() async {
-    // #Pangea
-    // https://github.com/pangeachat/client/issues/3458
-    if (widget.event != null && !widget.event!.status.isSent) {
-      widget.chatController.showToolbar(widget.event!);
-      return;
-    }
-    // Pangea#
-
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ScaffoldMessenger.of(matrix.context).clearMaterialBanners();
     });
@@ -441,13 +433,6 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
       final duration = Duration(milliseconds: durationInt);
       _durationString = duration.minuteSecondString;
     }
-
-    // #Pangea
-    if (widget.autoplay &&
-        (widget.event == null || widget.event!.status.isSent)) {
-      _onButtonTap();
-    }
-    // Pangea#
   }
 
   @override
@@ -470,258 +455,265 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
         final fileDescription = widget.event?.fileDescription;
         // Pangea#
 
-        return StreamBuilder<Object>(
-          stream: audioPlayer == null
-              ? null
-              : StreamGroup.merge([
-                  audioPlayer.positionStream.asBroadcastStream(),
-                  audioPlayer.playerStateStream.asBroadcastStream(),
-                ]),
-          builder: (context, _) {
-            final maxPosition =
-                audioPlayer?.duration?.inMilliseconds.toDouble() ?? 1.0;
-            var currentPosition =
-                audioPlayer?.position.inMilliseconds.toDouble() ?? 0.0;
-            if (currentPosition > maxPosition) currentPosition = maxPosition;
+        // #Pangea
+        // return StreamBuilder<Object>(
+        return AbsorbPointer(
+          absorbing: widget.event != null && !widget.event!.status.isSent,
+          child: StreamBuilder<Object>(
+            // Pangea#
+            stream: audioPlayer == null
+                ? null
+                : StreamGroup.merge([
+                    audioPlayer.positionStream.asBroadcastStream(),
+                    audioPlayer.playerStateStream.asBroadcastStream(),
+                  ]),
+            builder: (context, _) {
+              final maxPosition =
+                  audioPlayer?.duration?.inMilliseconds.toDouble() ?? 1.0;
+              var currentPosition =
+                  audioPlayer?.position.inMilliseconds.toDouble() ?? 0.0;
+              if (currentPosition > maxPosition) currentPosition = maxPosition;
 
-            final wavePosition =
-                (currentPosition / maxPosition) * AudioPlayerWidget.wavesCount;
+              final wavePosition = (currentPosition / maxPosition) *
+                  AudioPlayerWidget.wavesCount;
 
-            final statusText = audioPlayer == null
-                ? _durationString ?? '00:00'
-                : audioPlayer.position.minuteSecondString;
-            return Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ConstrainedBox(
-                    constraints: const BoxConstraints(
-                      maxWidth: FluffyThemes.columnWidth,
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        SizedBox(
-                          width: buttonSize,
-                          height: buttonSize,
-                          child: status == AudioPlayerStatus.downloading
-                              ? CircularProgressIndicator(
-                                  strokeWidth: 2,
-                                  color: widget.color,
-                                )
-                              : InkWell(
-                                  borderRadius: BorderRadius.circular(64),
-                                  // #Pangea
-                                  // onLongPress: () =>
-                                  //     widget.event.saveFile(context),
-                                  onLongPress: () =>
-                                      widget.event?.saveFile(context),
-                                  // Pangea#
-                                  onTap: _onButtonTap,
-                                  child: Material(
-                                    color: widget.color.withAlpha(64),
+              final statusText = audioPlayer == null
+                  ? _durationString ?? '00:00'
+                  : audioPlayer.position.minuteSecondString;
+              return Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ConstrainedBox(
+                      constraints: const BoxConstraints(
+                        maxWidth: FluffyThemes.columnWidth,
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          SizedBox(
+                            width: buttonSize,
+                            height: buttonSize,
+                            child: status == AudioPlayerStatus.downloading
+                                ? CircularProgressIndicator(
+                                    strokeWidth: 2,
+                                    color: widget.color,
+                                  )
+                                : InkWell(
                                     borderRadius: BorderRadius.circular(64),
-                                    child: Icon(
-                                      audioPlayer?.playing == true &&
-                                              audioPlayer?.isAtEndPosition ==
-                                                  false
-                                          ? Icons.pause_outlined
-                                          : Icons.play_arrow_outlined,
-                                      color: widget.color,
+                                    // #Pangea
+                                    // onLongPress: () =>
+                                    //     widget.event.saveFile(context),
+                                    onLongPress: () =>
+                                        widget.event?.saveFile(context),
+                                    // Pangea#
+                                    onTap: _onButtonTap,
+                                    child: Material(
+                                      color: widget.color.withAlpha(64),
+                                      borderRadius: BorderRadius.circular(64),
+                                      child: Icon(
+                                        audioPlayer?.playing == true &&
+                                                audioPlayer?.isAtEndPosition ==
+                                                    false
+                                            ? Icons.pause_outlined
+                                            : Icons.play_arrow_outlined,
+                                        color: widget.color,
+                                      ),
                                     ),
                                   ),
-                                ),
-                        ),
-                        const SizedBox(width: 8),
-                        Expanded(
-                          child: Stack(
-                            children: [
-                              if (waveform != null)
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 16.0,
-                                  ),
-                                  child: Row(
-                                    children: [
-                                      for (var i = 0;
-                                          i < AudioPlayerWidget.wavesCount;
-                                          i++)
-                                        Expanded(
-                                          child: Container(
-                                            height: 32,
-                                            alignment: Alignment.center,
+                          ),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: Stack(
+                              children: [
+                                if (waveform != null)
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 16.0,
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        for (var i = 0;
+                                            i < AudioPlayerWidget.wavesCount;
+                                            i++)
+                                          Expanded(
                                             child: Container(
-                                              margin:
-                                                  const EdgeInsets.symmetric(
-                                                horizontal: 1,
+                                              height: 32,
+                                              alignment: Alignment.center,
+                                              child: Container(
+                                                margin:
+                                                    const EdgeInsets.symmetric(
+                                                  horizontal: 1,
+                                                ),
+                                                decoration: BoxDecoration(
+                                                  color: i < wavePosition
+                                                      ? widget.color
+                                                      : widget.color
+                                                          .withAlpha(128),
+                                                  borderRadius:
+                                                      BorderRadius.circular(64),
+                                                ),
+                                                height:
+                                                    32 * (waveform[i] / 1024),
                                               ),
-                                              decoration: BoxDecoration(
-                                                color: i < wavePosition
-                                                    ? widget.color
-                                                    : widget.color
-                                                        .withAlpha(128),
-                                                borderRadius:
-                                                    BorderRadius.circular(64),
-                                              ),
-                                              height: 32 * (waveform[i] / 1024),
                                             ),
                                           ),
-                                        ),
-                                    ],
+                                      ],
+                                    ),
+                                  ),
+                                SizedBox(
+                                  height: 32,
+                                  child: Slider(
+                                    // #Pangea
+                                    // thumbColor: widget.event.senderId ==
+                                    //         widget.event.room.client.userID
+                                    //       ? theme.colorScheme.onPrimary
+                                    //       : theme.colorScheme.primary,
+                                    thumbColor: widget.senderId ==
+                                            Matrix.of(context).client.userID
+                                        ? widget.color
+                                        : theme.colorScheme.onSurface,
+                                    // Pangea#
+                                    activeColor: waveform == null
+                                        ? widget.color
+                                        : Colors.transparent,
+                                    inactiveColor: waveform == null
+                                        ? widget.color.withAlpha(128)
+                                        : Colors.transparent,
+                                    max: maxPosition,
+                                    value: currentPosition,
+                                    onChanged: (position) => audioPlayer == null
+                                        ? _onButtonTap()
+                                        : audioPlayer.seek(
+                                            Duration(
+                                              milliseconds: position.round(),
+                                            ),
+                                          ),
                                   ),
                                 ),
-                              SizedBox(
-                                height: 32,
-                                child: Slider(
-                                  // #Pangea
-                                  // thumbColor: widget.event.senderId ==
-                                  //         widget.event.room.client.userID
-                                  //       ? theme.colorScheme.onPrimary
-                                  //       : theme.colorScheme.primary,
-                                  thumbColor: widget.senderId ==
-                                          Matrix.of(context).client.userID
-                                      ? widget.color
-                                      : theme.colorScheme.onSurface,
-                                  // Pangea#
-                                  activeColor: waveform == null
-                                      ? widget.color
-                                      : Colors.transparent,
-                                  inactiveColor: waveform == null
-                                      ? widget.color.withAlpha(128)
-                                      : Colors.transparent,
-                                  max: maxPosition,
-                                  value: currentPosition,
-                                  onChanged: (position) => audioPlayer == null
-                                      ? _onButtonTap()
-                                      : audioPlayer.seek(
-                                          Duration(
-                                            milliseconds: position.round(),
-                                          ),
-                                        ),
-                                ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-                        ),
-                        const SizedBox(width: 8),
-                        // #Pangea
-                        // SizedBox(
-                        //   width: 36,
-                        //   child: Text(
-                        //     statusText,
-                        //     style: TextStyle(
-                        //       color: widget.color,
-                        //       fontSize: 12,
-                        //     ),
-                        //   ),
-                        // ),
-                        Text(
-                          statusText,
-                          style: TextStyle(
-                            color: widget.color,
-                            fontSize: 12,
+                          const SizedBox(width: 8),
+                          // #Pangea
+                          // SizedBox(
+                          //   width: 36,
+                          //   child: Text(
+                          //     statusText,
+                          //     style: TextStyle(
+                          //       color: widget.color,
+                          //       fontSize: 12,
+                          //     ),
+                          //   ),
+                          // ),
+                          Text(
+                            statusText,
+                            style: TextStyle(
+                              color: widget.color,
+                              fontSize: 12,
+                            ),
                           ),
-                        ),
-                        // Pangea#
-                        const SizedBox(width: 8),
-                        // #Pangea
-                        Material(
-                          color: widget.color.withAlpha(64),
-                          borderRadius:
-                              BorderRadius.circular(AppConfig.borderRadius),
-                          child: InkWell(
+                          // Pangea#
+                          const SizedBox(width: 8),
+                          // #Pangea
+                          Material(
+                            color: widget.color.withAlpha(64),
                             borderRadius:
                                 BorderRadius.circular(AppConfig.borderRadius),
-                            onTap: _toggleSpeed,
-                            child: SizedBox(
-                              width: 32,
-                              height: 20,
-                              child: Center(
-                                child: Text(
-                                  '${audioPlayer?.speed.toString() ?? playbackSpeed}x',
-                                  style: TextStyle(
-                                    color: widget.color,
-                                    fontSize: 9,
+                            child: InkWell(
+                              borderRadius:
+                                  BorderRadius.circular(AppConfig.borderRadius),
+                              onTap: _toggleSpeed,
+                              child: SizedBox(
+                                width: 32,
+                                height: 20,
+                                child: Center(
+                                  child: Text(
+                                    '${audioPlayer?.speed.toString() ?? playbackSpeed}x',
+                                    style: TextStyle(
+                                      color: widget.color,
+                                      fontSize: 9,
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                        // AnimatedCrossFade(
-                        //   firstChild: Padding(
-                        //     padding: const EdgeInsets.only(right: 8.0),
-                        //     child: Icon(
-                        //       Icons.mic_none_outlined,
-                        //       color: widget.color,
-                        //     ),
-                        //   ),
-                        //   secondChild: Material(
-                        //     color: widget.color.withAlpha(64),
-                        //     borderRadius:
-                        //         BorderRadius.circular(AppConfig.borderRadius),
-                        //     child: InkWell(
-                        //       borderRadius:
-                        //           BorderRadius.circular(AppConfig.borderRadius),
-                        //       onTap: _toggleSpeed,
-                        //       child: SizedBox(
-                        //         width: 32,
-                        //         height: 20,
-                        //         child: Center(
-                        //           child: Text(
-                        //             '${audioPlayer?.speed.toString()}x',
-                        //             style: TextStyle(
-                        //               color: widget.color,
-                        //               fontSize: 9,
-                        //             ),
-                        //           ),
-                        //         ),
-                        //       ),
-                        //     ),
-                        //   ),
-                        //   alignment: Alignment.center,
-                        //   crossFadeState: audioPlayer == null
-                        //       ? CrossFadeState.showFirst
-                        //       : CrossFadeState.showSecond,
-                        //   duration: FluffyThemes.animationDuration,
-                        // ),
-                        // Pangea#
-                      ],
-                    ),
-                  ),
-                  if (fileDescription != null) ...[
-                    const SizedBox(height: 8),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 8,
-                      ),
-                      child: Linkify(
-                        text: fileDescription,
-                        textScaleFactor:
-                            MediaQuery.textScalerOf(context).scale(1),
-                        style: TextStyle(
-                          color: widget.color,
-                          fontSize: widget.fontSize,
-                        ),
-                        options: const LinkifyOptions(humanize: false),
-                        linkStyle: TextStyle(
-                          color: widget.linkColor,
-                          fontSize: widget.fontSize,
-                          decoration: TextDecoration.underline,
-                          decorationColor: widget.linkColor,
-                        ),
-                        onOpen: (url) =>
-                            UrlLauncher(context, url.url).launchUrl(),
+                          // AnimatedCrossFade(
+                          //   firstChild: Padding(
+                          //     padding: const EdgeInsets.only(right: 8.0),
+                          //     child: Icon(
+                          //       Icons.mic_none_outlined,
+                          //       color: widget.color,
+                          //     ),
+                          //   ),
+                          //   secondChild: Material(
+                          //     color: widget.color.withAlpha(64),
+                          //     borderRadius:
+                          //         BorderRadius.circular(AppConfig.borderRadius),
+                          //     child: InkWell(
+                          //       borderRadius:
+                          //           BorderRadius.circular(AppConfig.borderRadius),
+                          //       onTap: _toggleSpeed,
+                          //       child: SizedBox(
+                          //         width: 32,
+                          //         height: 20,
+                          //         child: Center(
+                          //           child: Text(
+                          //             '${audioPlayer?.speed.toString()}x',
+                          //             style: TextStyle(
+                          //               color: widget.color,
+                          //               fontSize: 9,
+                          //             ),
+                          //           ),
+                          //         ),
+                          //       ),
+                          //     ),
+                          //   ),
+                          //   alignment: Alignment.center,
+                          //   crossFadeState: audioPlayer == null
+                          //       ? CrossFadeState.showFirst
+                          //       : CrossFadeState.showSecond,
+                          //   duration: FluffyThemes.animationDuration,
+                          // ),
+                          // Pangea#
+                        ],
                       ),
                     ),
+                    if (fileDescription != null) ...[
+                      const SizedBox(height: 8),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 8,
+                        ),
+                        child: Linkify(
+                          text: fileDescription,
+                          textScaleFactor:
+                              MediaQuery.textScalerOf(context).scale(1),
+                          style: TextStyle(
+                            color: widget.color,
+                            fontSize: widget.fontSize,
+                          ),
+                          options: const LinkifyOptions(humanize: false),
+                          linkStyle: TextStyle(
+                            color: widget.linkColor,
+                            fontSize: widget.fontSize,
+                            decoration: TextDecoration.underline,
+                            decorationColor: widget.linkColor,
+                          ),
+                          onOpen: (url) =>
+                              UrlLauncher(context, url.url).launchUrl(),
+                        ),
+                      ),
+                    ],
                   ],
-                ],
-              ),
-            );
-          },
+                ),
+              );
+            },
+          ),
         );
       },
     );
