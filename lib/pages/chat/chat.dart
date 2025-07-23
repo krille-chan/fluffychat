@@ -1466,8 +1466,15 @@ class ChatController extends State<ChatPageWithRoom>
       context: context,
       builder: (context) => ShareScaffoldDialog(
         items: forwardEvents
-            .map((event) => ContentShareItem(event.content))
-            .toList(),
+            // #Pangea
+            // .map((event) => ContentShareItem(event.content))
+            // .toList(),
+            .map((event) {
+          final content = Map<String, dynamic>.from(event.content);
+          content.remove("m.relates_to");
+          return ContentShareItem(content);
+        }).toList(),
+        // Pangea#
       ),
     );
     if (!mounted) return;
