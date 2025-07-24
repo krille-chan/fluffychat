@@ -40,36 +40,42 @@ void showMemberActionsPopupMenu({
     items: <PopupMenuEntry<_MemberActions>>[
       PopupMenuItem(
         value: _MemberActions.info,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0),
-          child: Center(
-            child: Column(
+        child: Row(
+          spacing: 12.0,
+          children: [
+            Avatar(
+              name: displayname,
+              mxContent: user.avatarUrl,
+              presenceUserId: user.id,
+              presenceBackgroundColor: theme.colorScheme.surfaceContainer,
+            ),
+            Column(
               mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Avatar(
-                  name: displayname,
-                  mxContent: user.avatarUrl,
-                  presenceUserId: user.id,
-                  presenceBackgroundColor: theme.colorScheme.surfaceContainer,
+                ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 128),
+                  child: Text(
+                    displayname,
+                    textAlign: TextAlign.center,
+                    style: theme.textTheme.labelLarge,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
-                const SizedBox(height: 8),
-                Text(
-                  displayname,
-                  textAlign: TextAlign.center,
-                  style: theme.textTheme.labelLarge,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                Text(
-                  user.id,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(fontSize: 10),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
+                ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 128),
+                  child: Text(
+                    user.id,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(fontSize: 10),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
               ],
             ),
-          ),
+          ],
         ),
       ),
       const PopupMenuDivider(),
@@ -137,7 +143,7 @@ void showMemberActionsPopupMenu({
             ],
           ),
         ),
-      if (user.canBan)
+      if (user.canBan && user.membership != Membership.ban)
         PopupMenuItem(
           value: _MemberActions.ban,
           child: Row(

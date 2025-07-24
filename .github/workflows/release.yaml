@@ -25,9 +25,12 @@ jobs:
           cache: true
       - name: Install dependencies
         run: sudo apt-get update && sudo apt-get install nodejs -y
+      - uses: moonrepo/setup-rust@v1
+      - run: rustup component add rust-src --toolchain nightly-x86_64-unknown-linux-gnu
       - run: flutter pub get
       - name: Prepare web
         run: ./scripts/prepare-web.sh
+      - run: rm ./assets/vodozemac/.gitignore
       - name: Build Release Web
         run: flutter build web --dart-define=FLUTTER_WEB_CANVASKIT_URL=canvaskit/ --release --source-maps --base-href "/web/"
       - name: Create archive
@@ -79,8 +82,11 @@ jobs:
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           cache: true
-      - name: Apply Google Services Patch
-        run: git apply ./scripts/enable-android-google-services.patch
+      - name: Add Firebase Messaging
+        run: |
+          echo '${{secrets.GOOGLE_SERVICES_JSON}}' | base64 -d > android/app/google-services.json
+          ./scripts/add-firebase-messaging.sh
+      - uses: moonrepo/setup-rust@v1
       - run: flutter pub get
       - name: Prepare Android Release Build
         env:
@@ -113,6 +119,7 @@ jobs:
         run: |
           git clone --branch ${{ env.FLUTTER_VERSION }} https://github.com/flutter/flutter.git
           ./flutter/bin/flutter doctor
+      - uses: moonrepo/setup-rust@v1
       - run: ./flutter/bin/flutter pub get
       - run: ./flutter/bin/flutter build linux --target-platform linux-${{ matrix.arch }}
       - name: Create archive
@@ -144,10 +151,14 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.3'
+      - uses: moonrepo/setup-rust@v1
       - name: Install Fastlane
+        working-directory: android
         run: gem install fastlane -NV
-      - name: Apply Google Services Patch
-        run: git apply ./scripts/enable-android-google-services.patch
+      - name: Add Firebase Messaging
+        run: |
+          echo '${{secrets.GOOGLE_SERVICES_JSON}}' | base64 -d > android/app/google-services.json
+          ./scripts/add-firebase-messaging.sh
       - run: flutter pub get
       - name: Prepare Android Release Build
         env:
@@ -174,28 +185,6 @@ jobs:
               bundle exec fastlane deploy_release
           fi
           cd ..
-
-  promote_snapcraft:
-    runs-on: ubuntu-latest
-    env:
-      SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPCRAFT_TOKEN }}
-    steps:
-      - name: Check out Git repository
-        uses: actions/checkout@v4
-      - name: Install Snapcraft
-        uses: samuelmeuli/action-snapcraft@v3
-      - name: Get Tag Name
-        id: tag_name
-        run: echo "::set-output name=tag::$(echo ${GITHUB_REF#refs/tags/})"
-      - name: Promote Snap
-        env: # Workaround for https://github.com/snapcore/snapcraft/issues/4439
-          SNAPCRAFT_HAS_TTY: "true"
-        run: |
-          if [[ $GITHUB_REF_NAME == rc* ]]; then
-              yes | snapcraft promote fluffychat --from-channel edge --to-channel candidate
-          else
-              yes | snapcraft promote fluffychat --from-channel edge --to-channel stable
-          fi
 
   deploy_docker:
     runs-on: ubuntu-latest

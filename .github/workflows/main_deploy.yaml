@@ -19,9 +19,12 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
-      - run: flutter pub get
+      - uses: moonrepo/setup-rust@v1
+      - run: rustup component add rust-src --toolchain nightly-x86_64-unknown-linux-gnu
       - name: Prepare web
         run: ./scripts/prepare-web.sh
+      - run: rm ./assets/vodozemac/.gitignore
+      - run: flutter pub get
       - name: Build Release Web
         run: flutter build web --dart-define=FLUTTER_WEB_CANVASKIT_URL=canvaskit/ --release --source-maps --base-href "/nightly/"
       - run: mv build/web/ public
@@ -50,10 +53,13 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.3'
+      - uses: moonrepo/setup-rust@v1
       - name: Install Fastlane
         run: gem install fastlane -NV
-      - name: Apply Google Services Patch
-        run: git apply ./scripts/enable-android-google-services.patch
+      - name: Add Firebase Messaging
+        run: |
+          echo '${{secrets.GOOGLE_SERVICES_JSON}}' | base64 -d > android/app/google-services.json
+          ./scripts/add-firebase-messaging.sh
       - run: flutter pub get
       - name: Prepare Android Release Build
         env:
@@ -63,6 +69,9 @@ jobs:
         run: ./scripts/prepare-android-release.sh
       - name: Build Android Release
         run: flutter build appbundle --target-platform android-arm,android-arm64,android-x64
+      - name: Set changelog
+        working-directory: android/fastlane/metadata/android/en-US/changelogs
+        run: git log --no-merges -1 --pretty=%B > default.txt
       - name: Deploy Android Release
         run: |
           mkdir -p build/android

@@ -3022,7 +3022,7 @@
   },
   "markAsUnread": "Позначити непрочитаним",
   "@markAsUnread": {},
-  "alwaysUse24HourFormat": "ні",
+  "alwaysUse24HourFormat": "false",
   "@alwaysUse24HourFormat": {
     "description": "Set to true to always display time of day in 24 hour format."
   },
@@ -3351,7 +3351,7 @@
   "@approve": {},
   "youHaveKnocked": "Ви постукали",
   "@youHaveKnocked": {},
-  "sentVoiceMessage": "🎙️ {duration} - {sender}",
+  "sentVoiceMessage": "🎙️ {duration} - {sender} - Голосове повідомлення від {sender}",
   "@sentVoiceMessage": {
     "type": "String",
     "placeholders": {
@@ -3373,5 +3373,9 @@
     }
   },
   "checkList": "Контрольний список",
-  "@checkList": {}
+  "@checkList": {},
+  "commandHint_logout": "Вийти на цьому пристрої",
+  "@commandHint_logout": {},
+  "commandHint_logoutall": "Вийти на всіх активних пристроях",
+  "@commandHint_logoutall": {}
 }

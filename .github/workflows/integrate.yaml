@@ -25,8 +25,8 @@ jobs:
       - name: Check license compliance
         run: dart run license_checker check-licenses -c licenses.yaml --problematic
       - run: flutter analyze
-      - name: Apply google services patch
-        run: git apply ./scripts/enable-android-google-services.patch
+      - name: Add Firebase Messaging
+        run: ./scripts/add-firebase-messaging.sh
       - run: flutter analyze
       - run: flutter test
 
@@ -43,6 +43,7 @@ jobs:
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           cache: true
+      - uses: moonrepo/setup-rust@v1
       - run: flutter pub get
       - run: flutter build apk --debug
 
@@ -55,6 +56,8 @@ jobs:
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           cache: true
+      - uses: moonrepo/setup-rust@v1
+      - run: rustup component add rust-src --toolchain nightly-x86_64-unknown-linux-gnu
       - run: flutter pub get
       - name: Prepare web
         run: ./scripts/prepare-web.sh
@@ -74,11 +77,12 @@ jobs:
         run: |
           git clone --branch ${{ env.FLUTTER_VERSION }} https://github.com/flutter/flutter.git
           ./flutter/bin/flutter doctor
+      - uses: moonrepo/setup-rust@v1
       - run: ./flutter/bin/flutter pub get
       - run: ./flutter/bin/flutter build linux --target-platform linux-${{ matrix.arch }}
 
   build_debug_ios:
-    runs-on: macos-15
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
@@ -91,5 +95,10 @@ jobs:
         with:
           xcode-version: latest
       - run: brew install sqlcipher
+      - uses: moonrepo/setup-rust@v1
+      - name: Add Firebase Messaging
+        run: |
+          flutter pub add fcm_shared_isolate:0.1.0
+          sed -i '' 's,//<GOOGLE_SERVICES>,,g' lib/utils/background_push.dart
       - run: flutter pub get
       - run: flutter build ios --no-codesign

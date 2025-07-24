@@ -74,9 +74,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   BackgroundPush? backgroundPush;
 
   Client get client {
-    if (widget.clients.isEmpty) {
-      widget.clients.add(getLoginClient());
-    }
     if (_activeClient < 0 || _activeClient >= widget.clients.length) {
       return currentBundle!.first!;
     }
@@ -152,29 +149,32 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   AudioPlayer? audioPlayer;
   final ValueNotifier<String?> voiceMessageEventId = ValueNotifier(null);
 
-  Client getLoginClient() {
+  Future<Client> getLoginClient() async {
     if (widget.clients.isNotEmpty && !client.isLogged()) {
       return client;
     }
-    final candidate = _loginClientCandidate ??= ClientManager.createClient(
+    final candidate =
+        _loginClientCandidate ??= await ClientManager.createClient(
       '${AppConfig.applicationName}-${DateTime.now().millisecondsSinceEpoch}',
       store,
-    )..onLoginStateChanged
-          .stream
-          .where((l) => l == LoginState.loggedIn)
-          .first
-          .then((_) {
-        if (!widget.clients.contains(_loginClientCandidate)) {
-          widget.clients.add(_loginClientCandidate!);
-        }
-        ClientManager.addClientNameToStore(
-          _loginClientCandidate!.clientName,
-          store,
-        );
-        _registerSubs(_loginClientCandidate!.clientName);
-        _loginClientCandidate = null;
-        FluffyChatApp.router.go('/rooms');
-      });
+    )
+          ..onLoginStateChanged
+              .stream
+              .where((l) => l == LoginState.loggedIn)
+              .first
+              .then((_) {
+            if (!widget.clients.contains(_loginClientCandidate)) {
+              widget.clients.add(_loginClientCandidate!);
+            }
+            ClientManager.addClientNameToStore(
+              _loginClientCandidate!.clientName,
+              store,
+            );
+            _registerSubs(_loginClientCandidate!.clientName);
+            _loginClientCandidate = null;
+            FluffyChatApp.router.go('/rooms');
+          });
+    if (widget.clients.isEmpty) widget.clients.add(candidate);
     return candidate;
   }
 
@@ -283,12 +283,12 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     onLoginStateChanged[name] ??= c.onLoginStateChanged.stream.listen((state) {
       final loggedInWithMultipleClients = widget.clients.length > 1;
       if (state == LoginState.loggedOut) {
-        InitWithRestoreExtension.deleteSessionBackup(name);
-      }
-      if (loggedInWithMultipleClients && state != LoginState.loggedIn) {
         _cancelSubs(c.clientName);
         widget.clients.remove(c);
         ClientManager.removeClientNameFromStore(c.clientName, store);
+        InitWithRestoreExtension.deleteSessionBackup(name);
+      }
+      if (loggedInWithMultipleClients && state != LoginState.loggedIn) {
         ScaffoldMessenger.of(
           FluffyChatApp.router.routerDelegate.navigatorKey.currentContext ??
               context,
@@ -377,15 +377,16 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    Logs().v('AppLifecycleState = $state');
     final foreground = state != AppLifecycleState.inactive &&
         state != AppLifecycleState.paused;
-    client.syncPresence =
-        state == AppLifecycleState.resumed ? null : PresenceType.unavailable;
-    if (PlatformInfos.isMobile) {
-      client.backgroundSync = foreground;
-      client.requestHistoryOnLimitedTimeline = !foreground;
-      Logs().v('Set background sync to', foreground);
+    for (final client in widget.clients) {
+      client.syncPresence =
+          state == AppLifecycleState.resumed ? null : PresenceType.unavailable;
+      if (PlatformInfos.isMobile) {
+        client.backgroundSync = foreground;
+        client.requestHistoryOnLimitedTimeline = !foreground;
+        Logs().v('Set background sync to', foreground);
+      }
     }
   }
 
@@ -408,10 +409,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     AppConfig.hideUnknownEvents =
         store.getBool(SettingKeys.hideUnknownEvents) ??
             AppConfig.hideUnknownEvents;
-
-    AppConfig.hideUnimportantStateEvents =
-        store.getBool(SettingKeys.hideUnimportantStateEvents) ??
-            AppConfig.hideUnimportantStateEvents;
 
     AppConfig.separateChatTypes =
         store.getBool(SettingKeys.separateChatTypes) ??
@@ -436,6 +433,10 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
 
     AppConfig.showPresences =
         store.getBool(SettingKeys.showPresences) ?? AppConfig.showPresences;
+
+    AppConfig.displayNavigationRail =
+        store.getBool(SettingKeys.displayNavigationRail) ??
+            AppConfig.displayNavigationRail;
   }
 
   @override

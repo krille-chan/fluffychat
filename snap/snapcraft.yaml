@@ -1,7 +1,7 @@
 name: fluffychat
 title: FluffyChat
 base: core24
-version: git
+adopt-info: fluffychat
 license: AGPL-3.0
 summary: The cutest messenger in the Matrix network
 description: |
@@ -51,29 +51,51 @@ platforms:
     build-on: arm64
 
 parts:
-  olm:
-    plugin: cmake
-    cmake-parameters:
-      - -DCMAKE_INSTALL_PREFIX=/usr
-    source: https://gitlab.matrix.org/matrix-org/olm.git
-    source-type: git
-    source-tag: '3.2.14'
+  flutter-git:
+    source: https://github.com/flutter/flutter.git
+    source-tag: 3.32.4
+    source-depth: 1
+    plugin: nil
+    override-build: |
+      mkdir -p $CRAFT_PART_INSTALL/usr/bin
+      mkdir -p $CRAFT_PART_INSTALL/usr/libexec
+      cp -r $CRAFT_PART_SRC $CRAFT_PART_INSTALL/usr/libexec/flutter
+      ln -s $CRAFT_PART_INSTALL/usr/libexec/flutter/bin/flutter $CRAFT_PART_INSTALL/usr/bin/flutter
+      ln -s $SNAPCRAFT_PART_INSTALL/usr/libexec/flutter/bin/dart $SNAPCRAFT_PART_INSTALL/usr/bin/dart
+      $CRAFT_PART_INSTALL/usr/bin/flutter doctor
     build-packages:
-      - g++
+      - clang
+      - cmake
+      - curl
+      - libgtk-3-dev
+      - ninja-build
+      - unzip
+      - xz-utils
+      - zip
+    override-prime: ''
 
   fluffychat:
-    plugin: flutter
+    after: [flutter-git]
+    plugin: nil
     source: .
     override-build: |
       # Workaround for Flutter build error:
       rm -rf build
-      craftctl default
+
+      craftctl set version="$(yq e '.version' pubspec.yaml | sed 's/\(.*\)+.*/\1/')"
+
+      flutter build linux --release -v
+      mkdir -p $CRAFT_PART_INSTALL/bin/
+      cp -r build/linux/*/release/bundle/* $CRAFT_PART_INSTALL/bin/
     build-packages:
       - libsecret-1-dev
       - libjsoncpp-dev
       - libssl-dev
       - curl
       - libpciaccess-dev
+    build-snaps:
+      - rustup
+      - yq
     stage-packages:
       - libsecret-1-0
       - libjsoncpp25
@@ -87,7 +109,7 @@ slots:
 
 apps:
   fluffychat:
-    command: fluffychat
+    command: bin/fluffychat
     extensions: [ gnome ]
     plugs:
       - audio-playback

@@ -21,10 +21,7 @@ class ChatInputRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    if (controller.showEmojiPicker &&
-        controller.emojiPickerType == EmojiPickerType.reaction) {
-      return const SizedBox.shrink();
-    }
+
     const height = 48.0;
 
     if (!controller.room.otherPartyCanReceiveMessages) {
@@ -40,6 +37,10 @@ class ChatInputRow extends StatelessWidget {
       );
     }
 
+    final selectedTextButtonStyle = TextButton.styleFrom(
+      foregroundColor: theme.colorScheme.onTertiaryContainer,
+    );
+
     return Row(
       crossAxisAlignment: CrossAxisAlignment.end,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -51,7 +52,7 @@ class ChatInputRow extends StatelessWidget {
                   height: height,
                   child: TextButton(
                     style: TextButton.styleFrom(
-                      foregroundColor: theme.colorScheme.error,
+                      foregroundColor: Colors.orange,
                     ),
                     onPressed: controller.deleteErrorEventsAction,
                     child: Row(
@@ -66,6 +67,7 @@ class ChatInputRow extends StatelessWidget {
                 SizedBox(
                   height: height,
                   child: TextButton(
+                    style: selectedTextButtonStyle,
                     onPressed: controller.forwardEventsAction,
                     child: Row(
                       children: <Widget>[
@@ -83,6 +85,7 @@ class ChatInputRow extends StatelessWidget {
                       ? SizedBox(
                           height: height,
                           child: TextButton(
+                            style: selectedTextButtonStyle,
                             onPressed: controller.replyAction,
                             child: Row(
                               children: <Widget>[
@@ -95,6 +98,7 @@ class ChatInputRow extends StatelessWidget {
                       : SizedBox(
                           height: height,
                           child: TextButton(
+                            style: selectedTextButtonStyle,
                             onPressed: controller.sendAgainAction,
                             child: Row(
                               children: <Widget>[
@@ -285,6 +289,7 @@ class ChatInputRow extends StatelessWidget {
                         bottom: 6.0,
                         top: 3.0,
                       ),
+                      counter: const SizedBox.shrink(),
                       hintText: L10n.of(context).writeAMessage,
                       hintMaxLines: 1,
                       border: InputBorder.none,

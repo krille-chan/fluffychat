@@ -119,6 +119,17 @@ class ChatEventList extends StatelessWidget {
                 timeline.events.length > animateInEventIndex &&
                 event == timeline.events[animateInEventIndex];
 
+            final nextEvent = i + 1 < events.length ? events[i + 1] : null;
+            final previousEvent = i > 0 ? events[i - 1] : null;
+
+            // Collapsed state event
+            final canExpand = event.isCollapsedState &&
+                nextEvent?.isCollapsedState == true &&
+                previousEvent?.isCollapsedState != true;
+            final isCollapsed = event.isCollapsedState &&
+                previousEvent?.isCollapsedState == true &&
+                !controller.expandedEventIds.contains(event.eventId);
+
             return AutoScrollTag(
               key: ValueKey(event.eventId),
               index: i,
@@ -141,14 +152,25 @@ class ChatEventList extends StatelessWidget {
                 longPressSelect: controller.selectedEvents.isNotEmpty,
                 selected: controller.selectedEvents
                     .any((e) => e.eventId == event.eventId),
+                singleSelected:
+                    controller.selectedEvents.singleOrNull?.eventId ==
+                        event.eventId,
+                onEdit: () => controller.editSelectedEventAction(),
                 timeline: timeline,
                 displayReadMarker:
                     i > 0 && controller.readMarkerEventId == event.eventId,
-                nextEvent: i + 1 < events.length ? events[i + 1] : null,
-                previousEvent: i > 0 ? events[i - 1] : null,
+                nextEvent: nextEvent,
+                previousEvent: previousEvent,
                 wallpaperMode: hasWallpaper,
                 scrollController: controller.scrollController,
                 colors: colors,
+                isCollapsed: isCollapsed,
+                onExpand: canExpand
+                    ? () => controller.expandEventsFrom(
+                          event,
+                          !controller.expandedEventIds.contains(event.eventId),
+                        )
+                    : null,
               ),
             );
           },
