@@ -992,7 +992,18 @@ class Message extends StatelessWidget {
                           left: (ownMessage ? 0 : Avatar.defaultSize) + 12.0,
                           right: ownMessage ? 0 : 12.0,
                         ),
-                        child: MessageReactions(event, timeline),
+                        // #Pangea
+                        // child: MessageReactions(event, timeline),
+                        child: MessageReactions(
+                          event,
+                          timeline,
+                          key: MatrixState.pAnyState
+                              .layerLinkAndKey(
+                                'message_reactions_${event.eventId}',
+                              )
+                              .key,
+                        ),
+                        // Pangea#
                       ),
               ),
               if (displayReadMarker)

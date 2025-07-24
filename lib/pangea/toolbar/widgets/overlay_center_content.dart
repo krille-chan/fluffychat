@@ -55,7 +55,9 @@ class OverlayCenterContent extends StatelessWidget {
       ignoring: !isTransitionAnimation &&
           readingAssistanceMode != ReadingAssistanceMode.practiceMode,
       child: Container(
-        constraints: BoxConstraints(maxWidth: overlayController.maxWidth),
+        constraints: const BoxConstraints(
+          maxWidth: FluffyThemes.maxTimelineWidth,
+        ),
         child: Material(
           type: MaterialType.transparency,
           child: Column(

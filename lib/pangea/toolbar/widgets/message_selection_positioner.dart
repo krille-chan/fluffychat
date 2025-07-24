@@ -151,7 +151,12 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
     return reactionsEvents.where((e) => !e.redacted).isNotEmpty;
   }
 
-  double get reactionsHeight => hasReactions ? 28.0 : 0.0;
+  double get reactionsHeight {
+    if (_reactionsRenderBox != null) {
+      return _reactionsRenderBox!.size.height + 4.0;
+    }
+    return hasReactions ? 28.0 : 0.0;
+  }
 
   bool get ownMessage =>
       widget.event.senderId == widget.event.room.client.userID;
@@ -199,6 +204,14 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
           'overlay_message_${widget.event.eventId}',
         ),
         "Error getting overlay message render box",
+        null,
+      );
+
+  RenderBox? get _reactionsRenderBox => _runWithLogging<RenderBox?>(
+        () => MatrixState.pAnyState.getRenderBox(
+          'message_reactions_${widget.event.eventId}',
+        ),
+        "Error getting reactions render box",
         null,
       );
 
