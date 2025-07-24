@@ -6,7 +6,7 @@ import 'package:swipe_to_action/swipe_to_action.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/events/message_content.dart';
-import 'package:fluffychat/pages/chat/events/message_reactions.dart';
+import 'package:fluffychat/pages/chat/events/pangea_message_reactions.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../../config/app_config.dart';
@@ -199,7 +199,11 @@ class ActivityPlanMessage extends StatelessWidget {
                                 top: 4.0,
                                 right: 4.0,
                               ),
-                              child: MessageReactions(event, timeline),
+                              child: PangeaMessageReactions(
+                                event,
+                                timeline,
+                                controller,
+                              ),
                             ),
                           ],
                         ),

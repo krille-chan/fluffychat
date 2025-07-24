@@ -8,6 +8,7 @@ import 'package:swipe_to_action/swipe_to_action.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
+import 'package:fluffychat/pages/chat/events/pangea_message_reactions.dart';
 import 'package:fluffychat/pages/chat/events/room_creation_state_event.dart';
 import 'package:fluffychat/pangea/common/widgets/pressable_button.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
@@ -19,7 +20,6 @@ import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/member_actions_popup_menu_button.dart';
 import '../../../config/app_config.dart';
 import 'message_content.dart';
-import 'message_reactions.dart';
 import 'reply_content.dart';
 import 'state_message.dart';
 
@@ -980,32 +980,43 @@ class Message extends StatelessWidget {
                   );
                 },
               ),
-              AnimatedSize(
-                duration: FluffyThemes.animationDuration,
-                curve: FluffyThemes.animationCurve,
-                alignment: Alignment.bottomCenter,
-                child: !showReceiptsRow
-                    ? const SizedBox.shrink()
-                    : Padding(
-                        padding: EdgeInsets.only(
-                          top: 4.0,
-                          left: (ownMessage ? 0 : Avatar.defaultSize) + 12.0,
-                          right: ownMessage ? 0 : 12.0,
-                        ),
-                        // #Pangea
-                        // child: MessageReactions(event, timeline),
-                        child: MessageReactions(
-                          event,
-                          timeline,
-                          key: MatrixState.pAnyState
-                              .layerLinkAndKey(
-                                'message_reactions_${event.eventId}',
-                              )
-                              .key,
-                        ),
-                        // Pangea#
+              // #Pangea
+              // AnimatedSize(
+              //   duration: FluffyThemes.animationDuration,
+              //   curve: FluffyThemes.animationCurve,
+              //   alignment: Alignment.bottomCenter,
+              //   clipBehavior: Clip.none,
+              //   child: !showReceiptsRow
+              //       ? const SizedBox.shrink()
+              //       : Padding(
+              //           padding: EdgeInsets.only(
+              //             top: 4.0,
+              //             left: (ownMessage ? 0 : Avatar.defaultSize) + 12.0,
+              //             right: ownMessage ? 0 : 12.0,
+              //           ),
+              //           child: MessageReactions(event, timeline),
+              //         ),
+              // ),
+              !showReceiptsRow
+                  ? const SizedBox.shrink()
+                  : Padding(
+                      padding: EdgeInsets.only(
+                        top: 4.0,
+                        left: (ownMessage ? 0 : Avatar.defaultSize) + 12.0,
+                        right: ownMessage ? 0 : 12.0,
                       ),
-              ),
+                      child: PangeaMessageReactions(
+                        event,
+                        timeline,
+                        controller,
+                        key: MatrixState.pAnyState
+                            .layerLinkAndKey(
+                              'message_reactions_${event.eventId}',
+                            )
+                            .key,
+                      ),
+                      // Pangea#
+                    ),
               if (displayReadMarker)
                 Row(
                   children: [
