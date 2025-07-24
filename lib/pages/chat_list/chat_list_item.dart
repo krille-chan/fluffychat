@@ -169,7 +169,7 @@ class ChatListItem extends StatelessWidget {
                                 child: Icon(
                                   Icons.arrow_drop_down_circle_outlined,
                                   size: 18,
-                                  color: theme.colorScheme.onTertiary,
+                                  color: theme.colorScheme.onSecondary,
                                 ),
                               ),
                             ),
@@ -323,7 +323,7 @@ class ChatListItem extends StatelessWidget {
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
                                     color: unread || room.hasNewMessages
-                                        ? theme.colorScheme.onTertiary
+                                        ? theme.colorScheme.onSecondary
                                         : theme.colorScheme.onSurface,
                                     decoration: room.lastEvent?.redacted == true
                                         ? TextDecoration.lineThrough

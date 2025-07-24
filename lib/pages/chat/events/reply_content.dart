@@ -85,7 +85,7 @@ class ReplyContent extends StatelessWidget {
                     color: theme.brightness == Brightness.dark
                         ? theme.colorScheme.onSurface
                         : ownMessage
-                            ? theme.colorScheme.onTertiary
+                            ? theme.colorScheme.onSecondary
                             : theme.colorScheme.onSurface,
                     fontSize: fontSize,
                   ),

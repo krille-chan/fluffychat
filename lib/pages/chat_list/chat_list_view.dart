@@ -9,6 +9,7 @@ import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/widgets/navigation_rail.dart';
 import 'chat_list_body.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:fluffychat/widgets/audio_player_stream.dart';
 
 class ChatListView extends StatelessWidget {
   final ChatListController controller;
@@ -53,6 +54,27 @@ class ChatListView extends StatelessWidget {
                 body: Stack(
                   children: [
                     ChatListViewBody(controller),
+                    Positioned(
+                      bottom: MediaQuery.of(context).size.height *
+                          0.2, // mesma altura do banner
+                      left: 16,
+                      right: 16,
+                      child: Container(
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.surface,
+                          borderRadius: BorderRadius.circular(12),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black12,
+                              blurRadius: 6,
+                              offset: Offset(0, -2),
+                            ),
+                          ],
+                        ),
+                        child: const AudioPlayerStream(),
+                      ),
+                    ),
                     Positioned(
                       bottom: 0,
                       left: 0,

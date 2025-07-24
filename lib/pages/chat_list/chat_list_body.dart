@@ -1,3 +1,5 @@
+import 'dart:ui_web';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -361,7 +363,7 @@ class _SearchItem extends StatelessWidget {
                   textAlign: TextAlign.center,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
-                    color: Theme.of(context).colorScheme.onTertiary,
+                    color: Theme.of(context).colorScheme.onSecondary,
                     fontSize: 12,
                   ),
                 ),

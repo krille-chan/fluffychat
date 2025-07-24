@@ -55,7 +55,7 @@ class SettingsIgnoreListView extends StatelessWidget {
                       ),
                     ),
                     style: TextStyle(
-                      color: theme.colorScheme.onTertiary,
+                      color: theme.colorScheme.onSecondary,
                     ),
                   ),
                   const SizedBox(height: 16),

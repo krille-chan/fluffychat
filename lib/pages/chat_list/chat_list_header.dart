@@ -48,7 +48,7 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
               globalSearch: globalSearch,
             ),
             style: TextStyle(
-              color: theme.colorScheme.onTertiary,
+              color: theme.colorScheme.onSecondary,
             ),
             decoration: InputDecoration(
               filled: true,
@@ -58,7 +58,7 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                   ? L10n.of(context).searchChatsRooms
                   : status.calcLocalizedString(context),
               hintStyle: TextStyle(
-                color: theme.colorScheme.onTertiary,
+                color: theme.colorScheme.onSecondary,
                 fontWeight: FontWeight.normal,
               ),
               border: OutlineInputBorder(
@@ -79,13 +79,13 @@ class ChatListHeader extends StatelessWidget implements PreferredSizeWidget {
                           tooltip: L10n.of(context).cancel,
                           icon: const Icon(Icons.close_outlined),
                           onPressed: controller.cancelSearch,
-                          color: theme.colorScheme.onTertiary,
+                          color: theme.colorScheme.onSecondary,
                         )
                       : IconButton(
                           onPressed: controller.startSearch,
                           icon: Icon(
                             Icons.search_outlined,
-                            color: theme.colorScheme.onTertiary,
+                            color: theme.colorScheme.onSecondary,
                           ),
                         )
                   : Container(

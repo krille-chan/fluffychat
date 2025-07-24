@@ -55,7 +55,7 @@ abstract class FluffyThemes {
       secondaryContainer: Color(0xFFEE7F4B),
       onSecondaryContainer: Color(0xFFADB5BD),
       tertiary: Color(0xFF3D3D3D),
-      onTertiary: Color(0xFFFFFFFF),
+      onTertiary: Color.fromARGB(255, 82, 82, 82),
       tertiaryContainer: Color(0xFF3D3D3D),
       onTertiaryContainer: Color(0xFFADB5BD),
       surface: Color(0xFF212529),
@@ -166,7 +166,7 @@ abstract class FluffyThemes {
           borderRadius: BorderRadius.circular(AppConfig.borderRadius),
         ),
         labelStyle: TextStyle(
-          color: colorScheme.onTertiary,
+          color: colorScheme.onSecondary,
         ),
       ),
       appBarTheme: AppBarTheme(
@@ -236,7 +236,7 @@ extension BubbleColorTheme on ThemeData {
       ? colorScheme.primary
       : colorScheme.primary.withValues(alpha: 0.1);
 
-  Color get onBubbleColor => colorScheme.onTertiary;
+  Color get onBubbleColor => colorScheme.onSecondary;
 
   Color get secondaryBubbleColor => brightness == Brightness.light
       ? colorScheme.tertiary

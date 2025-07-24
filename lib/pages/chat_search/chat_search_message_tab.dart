@@ -143,13 +143,14 @@ class _MessageSearchResultListTile extends StatelessWidget {
           const SizedBox(width: 8),
           Text(
             displayname,
-            style: TextStyle(fontSize: 15, color: theme.colorScheme.onTertiary),
+            style:
+                TextStyle(fontSize: 15, color: theme.colorScheme.onSecondary),
           ),
           Expanded(
             child: Text(
               ' | ${event.originServerTs.localizedTimeShort(context)}',
               style:
-                  TextStyle(fontSize: 12, color: theme.colorScheme.onTertiary),
+                  TextStyle(fontSize: 12, color: theme.colorScheme.onSecondary),
             ),
           ),
         ],
@@ -174,7 +175,7 @@ class _MessageSearchResultListTile extends StatelessWidget {
             .trim(),
         maxLines: 7,
         style: TextStyle(
-          color: theme.colorScheme.onTertiary,
+          color: theme.colorScheme.onSecondary,
         ),
         overflow: TextOverflow.ellipsis,
       ),

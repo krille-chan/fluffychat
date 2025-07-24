@@ -89,7 +89,7 @@ void showMemberActionsPopupMenu({
             children: [
               Icon(
                 Icons.alternate_email_outlined,
-                color: theme.colorScheme.onTertiary,
+                color: theme.colorScheme.onSecondary,
               ),
               const SizedBox(width: 18),
               Text(L10n.of(context).mention),
@@ -117,7 +117,7 @@ void showMemberActionsPopupMenu({
           children: [
             Icon(
               Icons.admin_panel_settings_outlined,
-              color: theme.colorScheme.onTertiary,
+              color: theme.colorScheme.onSecondary,
             ),
             const SizedBox(width: 18),
             Column(

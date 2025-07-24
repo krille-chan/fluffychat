@@ -58,7 +58,7 @@ class ParticipantListItem extends StatelessWidget {
                 permissionBatch,
                 style: theme.textTheme.labelSmall?.copyWith(
                   color: user.powerLevel >= 100
-                      ? theme.colorScheme.onTertiary
+                      ? theme.colorScheme.onSecondary
                       : theme.colorScheme.onTertiaryContainer,
                 ),
               ),

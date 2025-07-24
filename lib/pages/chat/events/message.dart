@@ -124,7 +124,7 @@ class Message extends StatelessWidget {
         previousEvent!.originServerTs.sameEnvironment(event.originServerTs);
 
     final textColor =
-        ownMessage ? theme.onBubbleColor : theme.colorScheme.onTertiary;
+        ownMessage ? theme.onBubbleColor : theme.colorScheme.onSecondary;
 
     final linkColor = ownMessage
         ? theme.brightness == Brightness.light
@@ -804,7 +804,7 @@ class Message extends StatelessWidget {
                                                                               0.75,
                                                                             )!,
                                                                             indicatorColor:
-                                                                                theme.colorScheme.onTertiary,
+                                                                                theme.colorScheme.onSecondary,
                                                                           ),
                                                                         ),
                                                                       ),

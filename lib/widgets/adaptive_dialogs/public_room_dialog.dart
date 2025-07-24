@@ -186,7 +186,7 @@ class PublicRoomDialog extends StatelessWidget {
                       ),
                       style: TextStyle(
                         fontSize: 10,
-                        color: theme.colorScheme.onTertiary,
+                        color: theme.colorScheme.onSecondary,
                       ),
                       textAlign: TextAlign.center,
                     ),
