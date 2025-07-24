@@ -55,6 +55,7 @@ class Choreographer {
 
   final StreamController stateStream = StreamController.broadcast();
   StreamSubscription? _languageStream;
+  StreamSubscription? _settingsUpdateStream;
   late AssistanceState _currentAssistanceState;
 
   String? translatedText;
@@ -70,14 +71,13 @@ class Choreographer {
     errorService = ErrorService(this);
     _textController.addListener(_onChangeListener);
     _languageStream =
-        pangeaController.userController.stateStream.listen((update) {
-      if (update is Map<String, dynamic> &&
-          update['prev_target_lang'] is LanguageModel) {
-        clear();
-      }
+        pangeaController.userController.languageStream.stream.listen((update) {
+      clear();
+      setState();
+    });
 
-      // refresh on any profile update, to account
-      // for changes like enabling autocorrect
+    _settingsUpdateStream =
+        pangeaController.userController.settingsUpdateStream.stream.listen((_) {
       setState();
     });
     _currentAssistanceState = assistanceState;
@@ -589,6 +589,7 @@ class Choreographer {
   dispose() {
     _textController.dispose();
     _languageStream?.cancel();
+    _settingsUpdateStream?.cancel();
     stateStream.close();
     TtsController.stop();
   }

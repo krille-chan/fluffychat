@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:developer';
-import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +15,6 @@ import 'package:fluffychat/pangea/analytics_misc/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/constructs_model.dart';
 import 'package:fluffychat/pangea/analytics_misc/put_analytics_controller.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
-import 'package:fluffychat/pangea/common/utils/overlay.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_representation_event.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
@@ -284,34 +282,6 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     // if (selectedToken != null && isNewToken(selectedToken!)) {
     //   _onSelectNewToken(selectedToken!);
     // }
-  }
-
-  void _showReadingAssistanceContent() {
-    if (selectedToken == null) return;
-    if (MatrixState.pAnyState.isOverlayOpen(
-      selectedToken!.text.uniqueKey,
-    )) {
-      return;
-    }
-
-    final entry = ReadingAssistanceContent(
-      key: wordZoomKey,
-      pangeaMessageEvent: pangeaMessageEvent!,
-      overlayController: this,
-    );
-    if (mounted) {
-      OverlayUtil.showPositionedCard(
-        context: context,
-        cardToShow: entry,
-        transformTargetId: selectedToken!.text.uniqueKey,
-        closePrevOverlay: false,
-        backDropToDismiss: false,
-        addBorder: false,
-        overlayKey: "${selectedToken!.text.uniqueKey}_toolbar",
-        maxHeight: AppConfig.toolbarMaxHeight,
-        maxWidth: min(AppConfig.toolbarMinWidth, maxWidth),
-      );
-    }
   }
 
   void updateToolbarMode(MessageMode mode) => setState(() {

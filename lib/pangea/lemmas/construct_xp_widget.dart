@@ -34,8 +34,6 @@ class ConstructXpWidgetState extends State<ConstructXpWidget>
   bool didChange = false;
 
   late AnimationController _controller;
-  late Animation<Offset> _offsetAnimation;
-  late Animation<double> _fadeAnimation;
 
   StreamSubscription<AnalyticsStreamUpdate>? _sub;
 
@@ -46,26 +44,6 @@ class ConstructXpWidgetState extends State<ConstructXpWidget>
     _controller = AnimationController(
       duration: const Duration(milliseconds: 2000),
       vsync: this,
-    );
-
-    _offsetAnimation = Tween<Offset>(
-      begin: Offset.zero,
-      end: const Offset(0.0, -1.0),
-    ).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: Curves.easeOut,
-      ),
-    );
-
-    _fadeAnimation = Tween<double>(
-      begin: 1.0,
-      end: 0.0,
-    ).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: Curves.easeOut,
-      ),
     );
 
     setState(() => constructLemmaCategory = constructUse?.lemmaCategory);

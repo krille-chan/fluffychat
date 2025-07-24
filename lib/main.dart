@@ -6,12 +6,14 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:matrix/matrix.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/common/utils/firebase_analytics.dart';
+import 'package:fluffychat/pangea/learning_settings/utils/locale_provider.dart';
 import 'package:fluffychat/pangea/learning_settings/utils/p_language_store.dart';
 import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -120,7 +122,16 @@ Future<void> startGui(List<Client> clients, SharedPreferences store) async {
     DeviceOrientation.portraitUp, // Lock to portrait mode
   ]);
   // Pangea#
-  runApp(FluffyChatApp(clients: clients, pincode: pin, store: store));
+
+  // #Pangea
+  // runApp(FluffyChatApp(clients: clients, pincode: pin, store: store));
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => LocaleProvider(),
+      child: FluffyChatApp(clients: clients, pincode: pin, store: store),
+    ),
+  );
+  // Pangea#
 }
 
 /// Watches the lifecycle changes to start the application when it

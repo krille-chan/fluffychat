@@ -1,10 +1,11 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
 import 'package:get_storage/get_storage.dart';
 import 'package:matrix/matrix.dart';
+import 'package:provider/provider.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 import 'package:fluffychat/config/app_config.dart';
@@ -17,6 +18,7 @@ import 'package:fluffychat/pangea/events/controllers/message_data_controller.dar
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/guard/p_vguard.dart';
 import 'package:fluffychat/pangea/learning_settings/controllers/language_controller.dart';
+import 'package:fluffychat/pangea/learning_settings/utils/locale_provider.dart';
 import 'package:fluffychat/pangea/learning_settings/utils/p_language_store.dart';
 import 'package:fluffychat/pangea/spaces/controllers/space_controller.dart';
 import 'package:fluffychat/pangea/subscription/controllers/subscription_controller.dart';
@@ -99,10 +101,11 @@ class PangeaController {
     PAuthGaurd.pController = this;
   }
 
-  _logOutfromPangea() {
+  _logOutfromPangea(BuildContext context) {
     debugPrint("Pangea logout");
     GoogleAnalytics.logout();
     clearCache();
+    Provider.of<LocaleProvider>(context, listen: false).setLocale(null);
   }
 
   static final List<String> _storageKeys = [
@@ -126,9 +129,10 @@ class PangeaController {
     'onboarding_storage',
   ];
 
-  Future<void> clearCache() async {
+  Future<void> clearCache({List<String> exclude = const []}) async {
     final List<Future<void>> futures = [];
     for (final key in _storageKeys) {
+      if (exclude.contains(key)) continue;
       futures.add(GetStorage(key).erase());
     }
     await Future.wait(futures);
@@ -160,7 +164,11 @@ class PangeaController {
   }
 
   /// check user information if not found then redirect to Date of birth page
-  void handleLoginStateChange(LoginState state, String? userID) {
+  void handleLoginStateChange(
+    LoginState state,
+    String? userID,
+    BuildContext context,
+  ) {
     switch (state) {
       case LoginState.loggedOut:
       case LoginState.softLoggedOut:
@@ -170,6 +178,7 @@ class PangeaController {
         userController.clear();
         _languageStream?.cancel();
         _languageStream = null;
+        _logOutfromPangea(context);
         break;
       case LoginState.loggedIn:
         // Initialize analytics data
@@ -177,13 +186,14 @@ class PangeaController {
         getAnalytics.initialize();
         _setLanguageStream();
 
-        userController.reinitialize();
+        userController.reinitialize().then((_) {
+          final l1 = userController.profile.userSettings.sourceLanguage;
+          Provider.of<LocaleProvider>(context, listen: false).setLocale(l1);
+        });
         subscriptionController.reinitialize();
         break;
     }
-    if (state != LoginState.loggedIn) {
-      _logOutfromPangea();
-    }
+
     Sentry.configureScope(
       (scope) => scope.setUser(
         SentryUser(
@@ -204,12 +214,9 @@ class PangeaController {
 
   void _setLanguageStream() {
     _languageStream?.cancel();
-    _languageStream = userController.stateStream.listen((update) {
-      if (update is Map<String, dynamic> &&
-          update['prev_target_lang'] != null) {
-        clearCache();
-      }
-    });
+    _languageStream = userController.languageStream.stream.listen(
+      (_) => clearCache(exclude: ["analytics_storage"]),
+    );
   }
 
   Future<void> setPangeaPushRules() async {

@@ -4,12 +4,14 @@ import 'package:country_picker/country_picker.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:fluffychat/config/routes.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/common/utils/firebase_analytics.dart';
+import 'package:fluffychat/pangea/learning_settings/utils/locale_provider.dart';
 import 'package:fluffychat/widgets/app_lock.dart';
 import 'package:fluffychat/widgets/theme_builder.dart';
 import '../config/app_config.dart';
@@ -58,6 +60,7 @@ class FluffyChatApp extends StatelessWidget {
             FluffyThemes.buildTheme(context, Brightness.dark, primaryColor),
         scrollBehavior: CustomScrollBehavior(),
         // #Pangea
+        locale: Provider.of<LocaleProvider>(context).locale,
         // localizationsDelegates: L10n.localizationsDelegates,
         localizationsDelegates: const [
           L10n.delegate,

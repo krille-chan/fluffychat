@@ -59,12 +59,8 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
 
     // Listen for changes to the user's language settings
     _languageStream ??=
-        _pangeaController.userController.stateStream.listen((update) {
-      if (update is Map<String, dynamic> &&
-          update['prev_target_lang'] is LanguageModel) {
-        final LanguageModel previousL2 = update['prev_target_lang'];
-        _onUpdateLanguages(previousL2);
-      }
+        _pangeaController.userController.languageStream.stream.listen((update) {
+      _onUpdateLanguages(update.prevTargetLang);
     });
 
     _refreshAnalyticsIfOutdated();

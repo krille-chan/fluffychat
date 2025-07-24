@@ -21,6 +21,8 @@ import 'package:url_launcher/url_launcher_string.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/common/utils/any_state_holder.dart';
+import 'package:fluffychat/pangea/common/utils/error_handler.dart';
+import 'package:fluffychat/pangea/learning_settings/utils/locale_provider.dart';
 import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_file_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -181,6 +183,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
             MatrixState.pangeaController.handleLoginStateChange(
               LoginState.loggedIn,
               _loginClientCandidate!.userID,
+              context,
             );
             // Pangea#
             if (!widget.clients.contains(_loginClientCandidate)) {
@@ -259,8 +262,37 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       ),
     );
     pangeaController = PangeaController(matrix: widget, matrixState: this);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _setAppLanguage();
+      _setLanguageListener();
+    });
     // Pangea#
   }
+
+  // #Pangea
+  StreamSubscription? _languageListener;
+  Future<void> _setLanguageListener() async {
+    await pangeaController.userController.initialize();
+    _languageListener?.cancel();
+    _languageListener = pangeaController.userController.languageStream.stream
+        .listen((_) => _setAppLanguage());
+  }
+
+  void _setAppLanguage() {
+    try {
+      Provider.of<LocaleProvider>(context, listen: false).setLocale(
+        pangeaController.userController.profile.userSettings.sourceLanguage,
+      );
+    } catch (e, s) {
+      Logs().e('Error setting app language', e);
+      ErrorHandler.logError(
+        e: e,
+        s: s,
+        data: {},
+      );
+    }
+  }
+  // Pangea#
 
   Future<void> initConfig() async {
     try {
@@ -320,6 +352,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       MatrixState.pangeaController.handleLoginStateChange(
         state,
         c.userID,
+        context,
       );
       // Pangea#
       final loggedInWithMultipleClients = widget.clients.length > 1;
@@ -500,6 +533,9 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     onBlurSub?.cancel();
 
     linuxNotifications?.close();
+    // #Pangea
+    _languageListener?.cancel();
+    // Pangea#
 
     super.dispose();
   }

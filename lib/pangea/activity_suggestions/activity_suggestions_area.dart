@@ -45,15 +45,12 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
     super.initState();
     _setActivityItems();
 
-    _languageStream ??= MatrixState.pangeaController.userController.stateStream
+    _languageStream ??= MatrixState
+        .pangeaController.userController.languageStream.stream
         .listen((update) {
-      if (update is Map<String, dynamic> &&
-          (update.containsKey('prev_base_lang') ||
-              update.containsKey('prev_target_lang'))) {
-        WidgetsBinding.instance.addPostFrameCallback(
-          (_) => _setActivityItems(),
-        );
-      }
+      WidgetsBinding.instance.addPostFrameCallback(
+        (_) => _setActivityItems(),
+      );
     });
   }
 

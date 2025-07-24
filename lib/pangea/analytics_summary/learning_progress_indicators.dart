@@ -57,8 +57,9 @@ class LearningProgressIndicatorsState
         .listen(updateData);
 
     // rebuild when target language changes
-    _languageSubscription =
-        MatrixState.pangeaController.userController.stateStream.listen((_) {
+    _languageSubscription = MatrixState
+        .pangeaController.userController.languageStream.stream
+        .listen((_) {
       if (mounted) setState(() {});
     });
   }

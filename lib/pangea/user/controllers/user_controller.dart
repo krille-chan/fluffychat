@@ -6,7 +6,6 @@ import 'package:matrix/matrix.dart' as matrix;
 
 import 'package:fluffychat/pangea/bot/utils/bot_name.dart';
 import 'package:fluffychat/pangea/common/constants/model_keys.dart';
-import 'package:fluffychat/pangea/common/controllers/base_controller.dart';
 import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
@@ -16,9 +15,29 @@ import 'package:fluffychat/pangea/learning_settings/utils/p_language_store.dart'
 import 'package:fluffychat/pangea/user/models/profile_model.dart';
 import '../models/user_model.dart';
 
+class LanguageUpdate {
+  final LanguageModel? prevBaseLang;
+  final LanguageModel? prevTargetLang;
+  final LanguageModel baseLang;
+  final LanguageModel targetLang;
+
+  LanguageUpdate({
+    required this.baseLang,
+    required this.targetLang,
+    this.prevBaseLang,
+    this.prevTargetLang,
+  });
+}
+
 /// Controller that manages saving and reading of user/profile information
-class UserController extends BaseController {
+class UserController {
   late PangeaController _pangeaController;
+
+  final StreamController<LanguageUpdate> languageStream =
+      StreamController.broadcast();
+  final StreamController settingsUpdateStream =
+      StreamController<Profile>.broadcast();
+
   UserController(PangeaController pangeaController) : super() {
     _pangeaController = pangeaController;
   }
@@ -94,19 +113,19 @@ class UserController extends BaseController {
 
     await updatedProfile.saveProfileData(waitForDataInSync: waitForDataInSync);
 
-    Map<String, dynamic>? profileUpdate;
-
-    if (prevTargetLang != _pangeaController.languageController.userL2) {
-      profileUpdate ??= {};
-      profileUpdate['prev_target_lang'] = prevTargetLang;
+    if ((prevTargetLang != _pangeaController.languageController.userL2) ||
+        (prevBaseLang != _pangeaController.languageController.userL1)) {
+      languageStream.add(
+        LanguageUpdate(
+          baseLang: _pangeaController.languageController.userL1!,
+          targetLang: _pangeaController.languageController.userL2!,
+          prevBaseLang: prevBaseLang,
+          prevTargetLang: prevTargetLang,
+        ),
+      );
+    } else {
+      settingsUpdateStream.add(null);
     }
-
-    if (prevBaseLang != _pangeaController.languageController.userL1) {
-      profileUpdate ??= {};
-      profileUpdate['prev_base_lang'] = prevBaseLang;
-    }
-
-    setState(profileUpdate);
   }
 
   /// A completer for the profile model of a user.
@@ -131,7 +150,6 @@ class UserController extends BaseController {
           _pangeaController.languageController.userL2 == null) {
         // update the language list and send an update to refresh analytics summary
         await PLanguageStore.initialize(forceRefresh: true);
-        setState(null);
       }
     } catch (err, s) {
       ErrorHandler.logError(
