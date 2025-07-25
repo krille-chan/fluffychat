@@ -214,6 +214,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.2"
+  code_highlight_view:
+    dependency: "direct main"
+    description:
+      name: code_highlight_view
+      sha256: e9c8c2f6169704c3bdd2c663cf95e62b35ad94ee688bb06c45b7f7843dfedbf0
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.1"
   collection:
     dependency: "direct main"
     description:
@@ -496,14 +504,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.5.0"
-  flutter_highlighter:
-    dependency: "direct main"
-    description:
-      name: flutter_highlighter
-      sha256: "93173afd47a9ada53f3176371755e7ea4a1065362763976d06d6adfb4d946e10"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.1.1"
   flutter_keyboard_visibility:
     dependency: transitive
     description:
@@ -863,14 +863,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.4.0"
-  highlighter:
+  highlight:
     dependency: transitive
     description:
-      name: highlighter
-      sha256: "92180c72b9da8758e1acf39a45aa305a97dcfe2fdc8f3d1d2947c23f2772bfbc"
+      name: highlight
+      sha256: "5353a83ffe3e3eca7df0abfb72dcf3fa66cc56b953728e7113ad4ad88497cf21"
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.1"
+    version: "0.7.0"
   html:
     dependency: "direct main"
     description:
@@ -1268,6 +1268,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.21.45"
+  pasteboard:
+    dependency: "direct main"
+    description:
+      name: pasteboard
+      sha256: "9ff73ada33f79a59ff91f6c01881fd4ed0a0031cfc4ae2d86c0384471525fca1"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.4.0"
   path:
     dependency: "direct main"
     description:

@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'package:code_highlight_view/code_highlight_view.dart';
+import 'package:code_highlight_view/themes/github.dart';
 import 'package:collection/collection.dart';
-import 'package:flutter_highlighter/flutter_highlighter.dart';
-import 'package:flutter_highlighter/themes/shades-of-purple.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:html/dom.dart' as dom;
 import 'package:html/parser.dart' as parser;
@@ -13,6 +13,7 @@ import 'package:fluffychat/utils/event_checkbox_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
+import '../../../utils/hover_copy_wrapper.dart';
 import '../../../utils/url_launcher.dart';
 
 class HtmlMessage extends StatelessWidget {
@@ -334,13 +335,14 @@ class HtmlMessage extends StatelessWidget {
         );
       case 'code':
         final isInline = node.parent?.localName != 'pre';
+
         return WidgetSpan(
           child: Material(
             clipBehavior: Clip.hardEdge,
             borderRadius: BorderRadius.circular(4),
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: HighlightView(
+            child: HoverCopyWrapper(
+              rawText: node.text,
+              child: CodeHighlightView(
                 node.text,
                 language: node.className
                         .split(' ')
@@ -350,7 +352,7 @@ class HtmlMessage extends StatelessWidget {
                         ?.split('language-')
                         .last ??
                     'md',
-                theme: shadesOfPurpleTheme,
+                theme: githubTheme,
                 padding: EdgeInsets.symmetric(
                   horizontal: 8,
                   vertical: isInline ? 0 : 8,
