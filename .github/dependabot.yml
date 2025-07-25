@@ -1,13 +1,22 @@
 version: 2
 updates:
-  - package-ecosystem: "flutter"
+  - package-ecosystem: "pub"
     directory: "/"
     schedule:
       interval: "daily"
+    allow:
+      - dependency-name: "*"
+    commit-message:
+      prefix: "build: "
+      include: "scope"
+    open-pull-requests-limit: 3
   - package-ecosystem: "gradle"
-    directory: "/"
+    directory: "/android"
     schedule:
       interval: "daily"
+    commit-message:
+      prefix: "build: "
+      include: "scope"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
