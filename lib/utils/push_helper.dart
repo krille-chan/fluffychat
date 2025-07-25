@@ -14,6 +14,7 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/client_download_content_extension.dart';
 import 'package:fluffychat/utils/client_manager.dart';
+import 'package:fluffychat/utils/error_reporter.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 
@@ -35,7 +36,10 @@ Future<void> pushHelper(
       flutterLocalNotificationsPlugin: flutterLocalNotificationsPlugin,
     );
   } catch (e, s) {
-    Logs().v('Push Helper has crashed!', e, s);
+    Logs().e('Push Helper has crashed! Writing into temporary file', e, s);
+
+    const ErrorReporter(null, 'Push Helper has crashed!')
+        .writeToTemporaryErrorLogFile(e, s);
 
     l10n ??= await lookupL10n(const Locale('en'));
     flutterLocalNotificationsPlugin.show(
