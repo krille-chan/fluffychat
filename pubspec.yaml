@@ -58,7 +58,7 @@ dependencies:
   latlong2: ^0.9.1
   linkify: ^5.0.0
   matrix: ^1.0.1
-  mime: ^1.0.6
+  mime: ^2.0.0
   native_imaging: ^0.2.0
   opus_caf_converter_dart: ^1.0.1
   package_info_plus: ^8.0.2
