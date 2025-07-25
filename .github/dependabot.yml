@@ -10,13 +10,6 @@ updates:
       prefix: "build: "
       include: "scope"
     open-pull-requests-limit: 3
-  - package-ecosystem: "gradle"
-    directory: "/android"
-    schedule:
-      interval: "daily"
-    commit-message:
-      prefix: "build: "
-      include: "scope"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
