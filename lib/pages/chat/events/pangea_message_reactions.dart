@@ -516,28 +516,31 @@ class _AdaptableReactorsDialog extends StatelessWidget {
         context: context,
         builder: (context) => this,
         barrierDismissible: true,
-        useRootNavigator: false,
+        useRootNavigator: true,
       );
 
   @override
   Widget build(BuildContext context) {
-    final body = SingleChildScrollView(
-      child: Wrap(
-        spacing: 8.0,
-        runSpacing: 4.0,
-        alignment: WrapAlignment.center,
-        children: <Widget>[
-          for (final reactor in reactionEntry!.reactors!)
-            Chip(
-              avatar: Avatar(
-                mxContent: reactor.avatarUrl,
-                name: reactor.displayName,
-                client: client,
-                presenceUserId: reactor.stateKey,
+    final body = Material(
+      type: MaterialType.transparency,
+      child: SingleChildScrollView(
+        child: Wrap(
+          spacing: 8.0,
+          runSpacing: 4.0,
+          alignment: WrapAlignment.center,
+          children: <Widget>[
+            for (final reactor in reactionEntry!.reactors!)
+              Chip(
+                avatar: Avatar(
+                  mxContent: reactor.avatarUrl,
+                  name: reactor.displayName,
+                  client: client,
+                  presenceUserId: reactor.stateKey,
+                ),
+                label: Text(reactor.displayName!),
               ),
-              label: Text(reactor.displayName!),
-            ),
-        ],
+          ],
+        ),
       ),
     );
 
