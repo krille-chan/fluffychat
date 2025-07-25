@@ -633,12 +633,12 @@ goY(){return"Alle aktiven Ger\xe4te abmelden"},
 gp0(){return"Navigationsleiste auf dem Smartphone anzeigen"},
 glB(){return"Benutzerdefinierte Reaktion"},
 gp6(){return"Weitere Ereignisse"},
-glE(){return"Decline invitation"},
+glE(){return"Einladung ablehnen"},
 B(d,e){return this.gb9(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.EW,C.aF)})()
 B.dN(b.typeUniverse,JSON.parse('{"EW":{"aF":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_246",e:"endPart",h:b})})($__dart_deferred_initializers__,"BnT/yxqXuIVybUdLz3zZIcnQtg4=");
+a.eventLog.push({p:"main.dart.js_246",e:"endPart",h:b})})($__dart_deferred_initializers__,"k8hx5K5TnofISjq2JmMqGYZFeZE=");
 //# sourceMappingURL=main.dart.js_246.part.js.map
