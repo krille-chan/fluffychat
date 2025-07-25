@@ -442,7 +442,7 @@ gnM(){return"\ud83d\ude2d \xd3, a mhac go deo. Chuaigh rud \xe9igin m\xedcheart.
 gjF(){return"tuairisc"},
 gkr(){return"Socraigh t\xe9ama datha:"},
 giN(){return"Tabhair cuireadh"},
-gmb(){return"\ud83d\udce8 Tabhair cuireadh comhr\xe1 gr\xfapa"},
+gmb(){return"\ud83d\udce8 Cuireadh chuig comhr\xe1 gr\xfapa"},
 giM(){return"Ionchur neamhbhail\xed!"},
 oF(d){return"Th\xe1inig bior\xe1n m\xedcheart isteach! Bain triail eile as i "+d+" soicind..."},
 gnx(){return"Iontr\xe1il uimhir n\xedos m\xf3 n\xe1 0"},
@@ -633,12 +633,12 @@ goY(){return"Log\xe1il amach gach gl\xe9as gn\xedomhach"},
 gp0(){return"Taispe\xe1in r\xe1ille nasclean\xfana ar fh\xf3in ph\xf3ca"},
 glB(){return"Imoibri\xfa saincheaptha"},
 gp6(){return"Tuilleadh imeachta\xed"},
-glE(){return"Decline invitation"},
+glE(){return"Di\xfaltaigh don chuireadh"},
 B(d,e){return this.gb9(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.F5,C.aF)})()
 B.dN(b.typeUniverse,JSON.parse('{"F5":{"aF":[]}}'))
 var y={a:"Cuir cosc ar an \xfas\xe1ideoir \xe1irithe \xf3n seomra seo"}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_274",e:"endPart",h:b})})($__dart_deferred_initializers__,"4U9m2hVt122wgGeZh2GK9SqI+gM=");
+a.eventLog.push({p:"main.dart.js_274",e:"endPart",h:b})})($__dart_deferred_initializers__,"UHK0dYZJ1aQwnh4uTHHY73Rhfhg=");
 //# sourceMappingURL=main.dart.js_274.part.js.map

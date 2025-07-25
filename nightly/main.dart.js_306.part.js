@@ -633,11 +633,11 @@ goY(){return"Alle actieve apparaten uitloggen"},
 gp0(){return"Navigatiebalk op mobiel tonen"},
 glB(){return"Aangepaste reactie"},
 gp6(){return"Meer gebeurtenissen"},
-glE(){return"Decline invitation"},
+glE(){return"Uitnodiging afwijzen"},
 B(d,e){return this.gb9(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fl,C.aF)})()
 B.dN(b.typeUniverse,JSON.parse('{"Fl":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_306",e:"endPart",h:b})})($__dart_deferred_initializers__,"qrbRgiJFsvlTiuGmRF+YPKa9sV0=");
+a.eventLog.push({p:"main.dart.js_306",e:"endPart",h:b})})($__dart_deferred_initializers__,"doOdHCGidcHxwXfzfERAlRALio0=");
 //# sourceMappingURL=main.dart.js_306.part.js.map
