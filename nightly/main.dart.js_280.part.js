@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_280",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cAD(){return new A.F9(B.dd("hr"))},
-F9:function F9(d){this.a=d}}
+cAF(){return new A.Fa(B.dd("hr"))},
+Fa:function Fa(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[27],A)
-A.F9.prototype={
+A.Fa.prototype={
 gkS(){return"true"},
 gjD(){return"Ponovi lozinku"},
 gmD(){return"Nije slikovna datoteka."},
@@ -636,8 +636,8 @@ gp6(){return"More events"},
 glE(){return"Decline invitation"},
 B(d,e){return this.gb9(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.F9,C.aF)})()
-B.dN(b.typeUniverse,JSON.parse('{"F9":{"aF":[]}}'))};
+y(A.Fa,C.aF)})()
+B.dN(b.typeUniverse,JSON.parse('{"Fa":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_280",e:"endPart",h:b})})($__dart_deferred_initializers__,"ofbKRu+wKpLGaQsSpX17S6HWGvg=");
+a.eventLog.push({p:"main.dart.js_280",e:"endPart",h:b})})($__dart_deferred_initializers__,"nILWJOlDMxOWBJmVoBAmxuyo+4g=");
 //# sourceMappingURL=main.dart.js_280.part.js.map
