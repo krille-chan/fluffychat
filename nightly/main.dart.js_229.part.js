@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_229",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cAH(){return new A.ER(B.dd("ca"))},
-ER:function ER(d){this.a=d}}
+cBu(){return new A.ES(B.dd("ca"))},
+ES:function ES(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[9],A)
-A.ER.prototype={
+A.ES.prototype={
 gkV(){return"true"},
 gjG(){return"Repetiu la contrasenya"},
 gmG(){return"No \xe9s un arxiu d'image."},
@@ -64,7 +64,7 @@ gf_(){return"Vetadi"},
 hk(d,e){return d+" ha vetat a "+e},
 ghm(){return"Bloca el dispositiu"},
 gcn(){return"Blocat"},
-gbu(d){return"Cancel\xb7la"},
+gbv(d){return"Cancel\xb7la"},
 f1(d){return"No es pot obrir l\u2019URI "+d},
 gf3(){return"Canvia el nom del dispositiu"},
 hq(d){return d+" ha canviat la imatge del xat"},
@@ -95,7 +95,7 @@ gf6(){return"Detalls del xat"},
 gf7(){return"Xats"},
 ghG(){return"Trieu una contrasenya forta"},
 gf8(){return"Neteja l\u2019arxiu"},
-gcl(d){return"Tanca"},
+gc6(d){return"Tanca"},
 gll(){return"Marca com a conversa directa la sala amb aquesta ID de Matrix"},
 glm(){return"Marca com un grup"},
 ghI(){return"Veta uni usu\xe0ri\xef d'aquesta sala"},
@@ -139,7 +139,7 @@ gie(){return"Fosc"},
 ig(d,e){return d+", "+e},
 gih(){return"Es desactivar\xe0 el vostre compte d\u2019usu\xe0ri\xef. \xc9s irreversible! Voleu fer-ho igualment?"},
 gii(){return"Nivell de permisos per defecte per nous membres"},
-gdj(d){return"Suprimeix"},
+gdk(d){return"Suprimeix"},
 gim(){return"Suprimeix el compte"},
 gio(){return"Suprimeix el missatge"},
 gey(){return"Dispositius"},
@@ -217,7 +217,7 @@ giW(){return"Uneix-te a la sala"},
 iX(d,e){return"\ud83d\udc5e "+d+" ha expulsat a "+e},
 gfi(){return"Expulsa del xat"},
 eI(d){return"Actiu per \xfaltima vegada: "+d},
-gdc(){return"Abandona"},
+gdd(){return"Abandona"},
 gfk(){return"Ha marxat del xat"},
 giZ(){return"Clar"},
 j_(d){return"Carrega "+d+" participants m\xe9s"},
@@ -636,8 +636,8 @@ gpa(){return"More events"},
 glH(){return"Decline invitation"},
 B(d,e){return this.gb9(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.ER,C.aF)})()
-B.dN(b.typeUniverse,JSON.parse('{"ER":{"aF":[]}}'))};
+y(A.ES,C.aF)})()
+B.dO(b.typeUniverse,JSON.parse('{"ES":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_229",e:"endPart",h:b})})($__dart_deferred_initializers__,"O6pdSlhTsQpE1ujhUPEgJL/vL2A=");
+a.eventLog.push({p:"main.dart.js_229",e:"endPart",h:b})})($__dart_deferred_initializers__,"dha4GW1eYX96qezWyxiV9GNuxwU=");
 //# sourceMappingURL=main.dart.js_229.part.js.map

@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_280",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cAZ(){return new A.F8(B.dd("hr"))},
-F8:function F8(d){this.a=d}}
+cBM(){return new A.F9(B.dd("hr"))},
+F9:function F9(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[27],A)
-A.F8.prototype={
+A.F9.prototype={
 gkV(){return"true"},
 gjG(){return"Ponovi lozinku"},
 gmG(){return"Nije slikovna datoteka."},
@@ -64,7 +64,7 @@ gf_(){return"Isklju\u010den"},
 hk(d,e){return d+" je isklju\u010dio/la "+e},
 ghm(){return"Blokiraj ure\u0111aj"},
 gcn(){return"Blokirano"},
-gbu(d){return"Odustani"},
+gbv(d){return"Odustani"},
 f1(d){return"URI adresa "+d+" se ne mo\u017ee otvoriti"},
 gf3(){return"Promijeni ime ure\u0111aja"},
 hq(d){return d+" je promijenio/la avatar razgovora"},
@@ -95,7 +95,7 @@ gf6(){return"Detalji razgovora"},
 gf7(){return"Razgovori"},
 ghG(){return"Odaberi sna\u017enu lozinku"},
 gf8(){return"Isprazni arhiv"},
-gcl(d){return"Zatvori"},
+gc6(d){return"Zatvori"},
 gll(){return"Ozna\u010di kao sobu za izravnu razmjenu poruka za zadani Matrix ID"},
 glm(){return"Ozna\u010di kao grupu"},
 ghI(){return"Isklju\u010di navedenog korisnika iz ove sobe"},
@@ -139,7 +139,7 @@ gie(){return"Tamna"},
 ig(d,e){return d+", "+e},
 gih(){return"Ovo \u0107e nepovratno deaktivirati tvoj korisni\u010dki ra\u010dun. Stvarno to \u017eeli\u0161?"},
 gii(){return"Standardna razina dozvole"},
-gdj(d){return"Izbri\u0161i"},
+gdk(d){return"Izbri\u0161i"},
 gim(){return"Izbri\u0161i ra\u010dun"},
 gio(){return"Izbri\u0161i poruku"},
 gey(){return"Ure\u0111aji"},
@@ -217,7 +217,7 @@ giW(){return"Pridru\u017ei se sobi"},
 iX(d,e){return"\ud83d\udc5e "+d+" je izbacio/la "+e},
 gfi(){return"Izbaci iz razgovora"},
 eI(d){return"Zadnja aktivnost: "+d},
-gdc(){return"Napusti"},
+gdd(){return"Napusti"},
 gfk(){return"Napustio/la je razgovor"},
 giZ(){return"Svijetla"},
 j_(d){return"U\u010ditaj jo\u0161 "+d+" sudionika"},
@@ -636,8 +636,8 @@ gpa(){return"More events"},
 glH(){return"Decline invitation"},
 B(d,e){return this.gb9(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.F8,C.aF)})()
-B.dN(b.typeUniverse,JSON.parse('{"F8":{"aF":[]}}'))};
+y(A.F9,C.aF)})()
+B.dO(b.typeUniverse,JSON.parse('{"F9":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_280",e:"endPart",h:b})})($__dart_deferred_initializers__,"v8saidldWnUBF3rLBNH4q66AW6g=");
+a.eventLog.push({p:"main.dart.js_280",e:"endPart",h:b})})($__dart_deferred_initializers__,"610M03iw6KmXOfu9NAop6fJcDsg=");
 //# sourceMappingURL=main.dart.js_280.part.js.map

@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_296",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cB3(){return new A.Fd(B.dd("it"))},
-Fd:function Fd(d){this.a=d}}
+cBR(){return new A.Fe(B.dd("it"))},
+Fe:function Fe(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[32],A)
-A.Fd.prototype={
+A.Fe.prototype={
 gkV(){return"disattivato"},
 gjG(){return"Ripeti password"},
 gmG(){return"Non \xe8 un file immagine."},
@@ -64,7 +64,7 @@ gf_(){return"Bandito"},
 hk(d,e){return d+" ha bandito "+e},
 ghm(){return"Blocca dispositivo"},
 gcn(){return"Bloccato"},
-gbu(d){return"Annulla"},
+gbv(d){return"Annulla"},
 f1(d){return"Impossibile aprire l'URI "+d},
 gf3(){return"Cambia nome dispositivo"},
 hq(d){return d+" ha cambiato l'avatar della discussione"},
@@ -95,7 +95,7 @@ gf6(){return"Dettagli chat"},
 gf7(){return"Discussioni"},
 ghG(){return"Scegli una password complessa"},
 gf8(){return"Cancella archivio"},
-gcl(d){return"Chiudi"},
+gc6(d){return"Chiudi"},
 gll(){return"Contrassegna questo Matrix ID come stanza di messaggi diretti"},
 glm(){return"Segna come gruppo"},
 ghI(){return"Banna l'utente specificato da questa stanza"},
@@ -139,7 +139,7 @@ gie(){return"Scuro"},
 ig(d,e){return d+", "+e},
 gih(){return"Disabiliter\xe0 il tuo account. Non puoi tornare indietro! Sei sicuro/a?"},
 gii(){return"Livello di autorizzazione predefinito per i nuovi utenti"},
-gdj(d){return"Cancella"},
+gdk(d){return"Cancella"},
 gim(){return"Elimina l'account"},
 gio(){return"Elimina il messaggio"},
 gey(){return"Dispositivi"},
@@ -217,7 +217,7 @@ giW(){return"Unisciti alla stanza"},
 iX(d,e){return"\ud83d\udc5e "+d+" ha espulso "+e},
 gfi(){return"Espelli dalla chat"},
 eI(d){return"Ultima attivit\xe0: "+d},
-gdc(){return"Abbandona"},
+gdd(){return"Abbandona"},
 gfk(){return"Ha lasciato la chat"},
 giZ(){return"Chiaro"},
 j_(d){return"Carica altri "+d+" partecipanti"},
@@ -636,8 +636,8 @@ gpa(){return"Altri eventi"},
 glH(){return"Decline invitation"},
 B(d,e){return this.gb9(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Fd,C.aF)})()
-B.dN(b.typeUniverse,JSON.parse('{"Fd":{"aF":[]}}'))};
+y(A.Fe,C.aF)})()
+B.dO(b.typeUniverse,JSON.parse('{"Fe":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_296",e:"endPart",h:b})})($__dart_deferred_initializers__,"dDOQZJelSKq1neu3D4FwvVjaEvA=");
+a.eventLog.push({p:"main.dart.js_296",e:"endPart",h:b})})($__dart_deferred_initializers__,"STJkzwkvPo9s/GD1u34/7j8GkyY=");
 //# sourceMappingURL=main.dart.js_296.part.js.map

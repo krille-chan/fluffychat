@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_314",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cBi(){return new A.Fr(B.dd("sl"))},
-Fr:function Fr(d){this.a=d}}
+cC5(){return new A.Fs(B.dd("sl"))},
+Fs:function Fs(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[44],A)
-A.Fr.prototype={
+A.Fs.prototype={
 gkV(){return"false"},
 gjG(){return"Ponovite geslo"},
 gmG(){return"Not an image file."},
@@ -64,7 +64,7 @@ gf_(){return"Prepovedano"},
 hk(d,e){return d+" je prepovedan v "+e},
 ghm(){return"Blokirana naprava"},
 gcn(){return"Blokirano"},
-gbu(d){return"Prekli\u010di"},
+gbv(d){return"Prekli\u010di"},
 f1(d){return"URI-ja "+d+" ni mogo\u010de odpreti"},
 gf3(){return"Spremenite ime naprave"},
 hq(d){return d+" je spremenil avatar za klepet"},
@@ -95,7 +95,7 @@ gf6(){return"Podrobnosti klepeta"},
 gf7(){return"Klepeti"},
 ghG(){return"Izberite mo\u010dno geslo"},
 gf8(){return"Po\u010disti arhiv"},
-gcl(d){return"Zapri"},
+gc6(d){return"Zapri"},
 gll(){return"Mark as direct message room for the giving Matrix ID"},
 glm(){return"Mark as group"},
 ghI(){return"Izklju\u010di dolo\u010denega uporabnika iz te sobe"},
@@ -139,7 +139,7 @@ gie(){return"Temno"},
 ig(d,e){return d+", "+e},
 gih(){return"S tem boste deaktivirali va\u0161 uporabni\u0161ki ra\u010dun. Tega ni mogo\u010de razveljaviti! Ali si prepri\u010dan?"},
 gii(){return"Privzeta raven dovoljenja"},
-gdj(d){return"Delete"},
+gdk(d){return"Delete"},
 gim(){return"Delete account"},
 gio(){return"Delete message"},
 gey(){return"Devices"},
@@ -217,7 +217,7 @@ giW(){return"Join room"},
 iX(d,e){return"\ud83d\udc5e "+d+" kicked "+e},
 gfi(){return"Kick from chat"},
 eI(d){return"Last active: "+d},
-gdc(){return"Leave"},
+gdd(){return"Leave"},
 gfk(){return"Left the chat"},
 giZ(){return"Light"},
 j_(d){return"Load "+d+" more participants"},
@@ -636,8 +636,8 @@ gpa(){return"More events"},
 glH(){return"Decline invitation"},
 B(d,e){return this.gb9(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Fr,C.aF)})()
-B.dN(b.typeUniverse,JSON.parse('{"Fr":{"aF":[]}}'))};
+y(A.Fs,C.aF)})()
+B.dO(b.typeUniverse,JSON.parse('{"Fs":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_314",e:"endPart",h:b})})($__dart_deferred_initializers__,"y05h7itwg9CdyNkLUsv4+diSjHY=");
+a.eventLog.push({p:"main.dart.js_314",e:"endPart",h:b})})($__dart_deferred_initializers__,"buxkKfrQpR4GhLRvTT+5IAHrpYg=");
 //# sourceMappingURL=main.dart.js_314.part.js.map

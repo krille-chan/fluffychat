@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_320",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cBn(){return new A.Fw(B.dd("th"))},
-Fw:function Fw(d){this.a=d}}
+cCa(){return new A.Fx(B.dd("th"))},
+Fx:function Fx(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[49],A)
-A.Fw.prototype={
+A.Fx.prototype={
 gkV(){return"false"},
 gjG(){return"\u0e43\u0e2a\u0e48\u0e23\u0e2b\u0e31\u0e2a\u0e1c\u0e48\u0e32\u0e19\u0e2d\u0e35\u0e01\u0e23\u0e2d\u0e1a"},
 gmG(){return"\u0e44\u0e21\u0e48\u0e43\u0e0a\u0e48\u0e44\u0e1f\u0e25\u0e4c\u0e23\u0e39\u0e1b\u0e20\u0e32\u0e1e"},
@@ -64,7 +64,7 @@ gf_(){return"Banned"},
 hk(d,e){return d+" banned "+e},
 ghm(){return"Block Device"},
 gcn(){return"Blocked"},
-gbu(d){return"Cancel"},
+gbv(d){return"Cancel"},
 f1(d){return"Can't open the URI "+d},
 gf3(){return"Change device name"},
 hq(d){return d+" changed the chat avatar"},
@@ -95,7 +95,7 @@ gf6(){return"\u0e23\u0e32\u0e22\u0e25\u0e30\u0e40\u0e2d\u0e35\u0e22\u0e14\u0e41\
 gf7(){return"Chats"},
 ghG(){return"Choose a strong password"},
 gf8(){return"Clear archive"},
-gcl(d){return"Close"},
+gc6(d){return"Close"},
 gll(){return"Mark as direct message room for the giving Matrix ID"},
 glm(){return"Mark as group"},
 ghI(){return"Ban the given user from this room"},
@@ -139,7 +139,7 @@ gie(){return"Dark"},
 ig(d,e){return d+", "+e},
 gih(){return"This will deactivate your user account. This can not be undone! Are you sure?"},
 gii(){return"Default permission level for new users"},
-gdj(d){return"\u0e25\u0e1a\u0e2d\u0e2d\u0e01"},
+gdk(d){return"\u0e25\u0e1a\u0e2d\u0e2d\u0e01"},
 gim(){return"Delete account"},
 gio(){return"Delete message"},
 gey(){return"Devices"},
@@ -217,7 +217,7 @@ giW(){return"Join room"},
 iX(d,e){return"\ud83d\udc5e "+d+" kicked "+e},
 gfi(){return"Kick from chat"},
 eI(d){return"Last active: "+d},
-gdc(){return"Leave"},
+gdd(){return"Leave"},
 gfk(){return"Left the chat"},
 giZ(){return"Light"},
 j_(d){return"Load "+d+" more participants"},
@@ -636,8 +636,8 @@ gpa(){return"More events"},
 glH(){return"Decline invitation"},
 B(d,e){return this.gb9(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Fw,C.aF)})()
-B.dN(b.typeUniverse,JSON.parse('{"Fw":{"aF":[]}}'))};
+y(A.Fx,C.aF)})()
+B.dO(b.typeUniverse,JSON.parse('{"Fx":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_320",e:"endPart",h:b})})($__dart_deferred_initializers__,"r38q5gxxwXOlEUtnBzycQV46a98=");
+a.eventLog.push({p:"main.dart.js_320",e:"endPart",h:b})})($__dart_deferred_initializers__,"97pjEaVM2y0fDwlEwq2K1/sp7Hw=");
 //# sourceMappingURL=main.dart.js_320.part.js.map

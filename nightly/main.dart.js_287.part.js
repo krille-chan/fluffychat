@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_287",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cB0(){return new A.Fa(B.dd("ia"))},
-Fa:function Fa(d){this.a=d}}
+cBO(){return new A.Fb(B.dd("ia"))},
+Fb:function Fb(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[29],A)
-A.Fa.prototype={
+A.Fb.prototype={
 gkV(){return"false"},
 gjG(){return"Repeter le contrasigno"},
 gmG(){return"Non es un file de imagine."},
@@ -64,7 +64,7 @@ gf_(){return"Banned"},
 hk(d,e){return d+" banned "+e},
 ghm(){return"Block Device"},
 gcn(){return"Blocked"},
-gbu(d){return"Cancel"},
+gbv(d){return"Cancel"},
 f1(d){return"Can't open the URI "+d},
 gf3(){return"Change device name"},
 hq(d){return d+" changed the chat avatar"},
@@ -95,7 +95,7 @@ gf6(){return"Chat details"},
 gf7(){return"Chats"},
 ghG(){return"Choose a strong password"},
 gf8(){return"Clear archive"},
-gcl(d){return"Close"},
+gc6(d){return"Close"},
 gll(){return"Mark as direct message room for the giving Matrix ID"},
 glm(){return"Mark as group"},
 ghI(){return"Ban the given user from this room"},
@@ -139,7 +139,7 @@ gie(){return"Dark"},
 ig(d,e){return d+", "+e},
 gih(){return"This will deactivate your user account. This can not be undone! Are you sure?"},
 gii(){return"Default permission level for new users"},
-gdj(d){return"Delete"},
+gdk(d){return"Delete"},
 gim(){return"Delete account"},
 gio(){return"Delete message"},
 gey(){return"Devices"},
@@ -217,7 +217,7 @@ giW(){return"Join room"},
 iX(d,e){return"\ud83d\udc5e "+d+" kicked "+e},
 gfi(){return"Kick from chat"},
 eI(d){return"Last active: "+d},
-gdc(){return"Leave"},
+gdd(){return"Leave"},
 gfk(){return"Left the chat"},
 giZ(){return"Light"},
 j_(d){return"Load "+d+" more participants"},
@@ -636,8 +636,8 @@ gpa(){return"More events"},
 glH(){return"Decline invitation"},
 B(d,e){return this.gb9(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Fa,C.aF)})()
-B.dN(b.typeUniverse,JSON.parse('{"Fa":{"aF":[]}}'))};
+y(A.Fb,C.aF)})()
+B.dO(b.typeUniverse,JSON.parse('{"Fb":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_287",e:"endPart",h:b})})($__dart_deferred_initializers__,"RAlH1PWgDOdE2FFOZkdHzOm2Lt4=");
+a.eventLog.push({p:"main.dart.js_287",e:"endPart",h:b})})($__dart_deferred_initializers__,"lJ0mbV6R6SBpw917ACFURy01O3A=");
 //# sourceMappingURL=main.dart.js_287.part.js.map

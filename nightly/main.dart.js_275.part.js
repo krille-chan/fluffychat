@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_275",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cAW(){return new A.F5(B.dd("gl"))},
-F5:function F5(d){this.a=d}}
+cBJ(){return new A.F6(B.dd("gl"))},
+F6:function F6(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[24],A)
-A.F5.prototype={
+A.F6.prototype={
 gkV(){return"falso"},
 gjG(){return"Repite o contrasinal"},
 gmG(){return"Non \xe9 un ficheiro de imaxe."},
@@ -64,7 +64,7 @@ gf_(){return"Vetada"},
 hk(d,e){return d+" vetou a "+e},
 ghm(){return"Bloquear dispositivo"},
 gcn(){return"Bloqueado"},
-gbu(d){return"Cancelar"},
+gbv(d){return"Cancelar"},
 f1(d){return"Non se pode abrir o URI "+d},
 gf3(){return"Cambiar nome do dispositivo"},
 hq(d){return d+" cambiou o avatar da conversa"},
@@ -95,7 +95,7 @@ gf6(){return"Detalles da conversa"},
 gf7(){return"Conversas"},
 ghG(){return"Escolle un contrasinal forte"},
 gf8(){return"Baleirar arquivo"},
-gcl(d){return"Pechar"},
+gc6(d){return"Pechar"},
 gll(){return"Marcar como sala de mensaxe directa para o ID Matrix indicado"},
 glm(){return"Marcar como grupo"},
 ghI(){return"Vetar a usuaria indicada desta sala"},
@@ -139,7 +139,7 @@ gie(){return"Escuro"},
 ig(d,e){return d+", "+e},
 gih(){return"Esto desactivar\xe1 a conta. Esto non ten volta atr\xe1s. Est\xe1s segura?"},
 gii(){return"Nivel de permisos por defecto para novas usuarias"},
-gdj(d){return"Eliminar"},
+gdk(d){return"Eliminar"},
 gim(){return"Eliminar conta"},
 gio(){return"Eliminar mensaxe"},
 gey(){return"Dispositivos"},
@@ -217,7 +217,7 @@ giW(){return"Unirse \xe1 sala"},
 iX(d,e){return"\ud83d\udc5e "+d+" expulsou a "+e},
 gfi(){return"Expulsar da conversa"},
 eI(d){return"\xdaltima actividade: "+d},
-gdc(){return"Sa\xedr"},
+gdd(){return"Sa\xedr"},
 gfk(){return"Deixar a conversa"},
 giZ(){return"Claro"},
 j_(d){return"Cargar "+d+" participantes m\xe1is"},
@@ -636,8 +636,8 @@ gpa(){return"M\xe1is eventos"},
 glH(){return"Rexeitar o convite"},
 B(d,e){return this.gb9(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.F5,C.aF)})()
-B.dN(b.typeUniverse,JSON.parse('{"F5":{"aF":[]}}'))};
+y(A.F6,C.aF)})()
+B.dO(b.typeUniverse,JSON.parse('{"F6":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_275",e:"endPart",h:b})})($__dart_deferred_initializers__,"q1kMrBf/XEKVeIduqtZui5rOy88=");
+a.eventLog.push({p:"main.dart.js_275",e:"endPart",h:b})})($__dart_deferred_initializers__,"fq6m6Rr6gkw8rCcAsWLkkRcQMc4=");
 //# sourceMappingURL=main.dart.js_275.part.js.map

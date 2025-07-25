@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_279",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cAY(){return new A.F7(B.dd("hi"))},
-F7:function F7(d){this.a=d}}
+cBL(){return new A.F8(B.dd("hi"))},
+F8:function F8(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[26],A)
-A.F7.prototype={
+A.F8.prototype={
 gkV(){return"false"},
 gjG(){return"\u092a\u093e\u0938\u0935\u0930\u094d\u0921 \u0926\u094b\u0939\u0930\u093e\u090f\u0902"},
 gmG(){return"\u0915\u094b\u0908 \u091b\u0935\u093f \u092b\u093c\u093e\u0907\u0932 \u0928\u0939\u0940\u0902\u0964"},
@@ -64,7 +64,7 @@ gf_(){return"Banned"},
 hk(d,e){return d+" banned "+e},
 ghm(){return"Block Device"},
 gcn(){return"Blocked"},
-gbu(d){return"Cancel"},
+gbv(d){return"Cancel"},
 f1(d){return"Can't open the URI "+d},
 gf3(){return"Change device name"},
 hq(d){return d+" changed the chat avatar"},
@@ -95,7 +95,7 @@ gf6(){return"Chat details"},
 gf7(){return"Chats"},
 ghG(){return"Choose a strong password"},
 gf8(){return"Clear archive"},
-gcl(d){return"Close"},
+gc6(d){return"Close"},
 gll(){return"Mark as direct message room for the giving Matrix ID"},
 glm(){return"Mark as group"},
 ghI(){return"Ban the given user from this room"},
@@ -139,7 +139,7 @@ gie(){return"Dark"},
 ig(d,e){return d+", "+e},
 gih(){return"This will deactivate your user account. This can not be undone! Are you sure?"},
 gii(){return"Default permission level for new users"},
-gdj(d){return"Delete"},
+gdk(d){return"Delete"},
 gim(){return"Delete account"},
 gio(){return"Delete message"},
 gey(){return"Devices"},
@@ -217,7 +217,7 @@ giW(){return"Join room"},
 iX(d,e){return"\ud83d\udc5e "+d+" kicked "+e},
 gfi(){return"Kick from chat"},
 eI(d){return"Last active: "+d},
-gdc(){return"Leave"},
+gdd(){return"Leave"},
 gfk(){return"Left the chat"},
 giZ(){return"Light"},
 j_(d){return"Load "+d+" more participants"},
@@ -636,8 +636,8 @@ gpa(){return"More events"},
 glH(){return"Decline invitation"},
 B(d,e){return this.gb9(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.F7,C.aF)})()
-B.dN(b.typeUniverse,JSON.parse('{"F7":{"aF":[]}}'))};
+y(A.F8,C.aF)})()
+B.dO(b.typeUniverse,JSON.parse('{"F8":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_279",e:"endPart",h:b})})($__dart_deferred_initializers__,"lUaLB0KNJZnA9A/CsANW8Z4CrbY=");
+a.eventLog.push({p:"main.dart.js_279",e:"endPart",h:b})})($__dart_deferred_initializers__,"t0uyS0RiCBo9B/wG/ygDyL7sJDI=");
 //# sourceMappingURL=main.dart.js_279.part.js.map

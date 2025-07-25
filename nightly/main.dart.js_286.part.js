@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_286",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cB_(){return new A.F9(B.dd("hu"))},
-F9:function F9(d){this.a=d}}
+cBN(){return new A.Fa(B.dd("hu"))},
+Fa:function Fa(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[28],A)
-A.F9.prototype={
+A.Fa.prototype={
 gkV(){return""},
 gjG(){return"Jelsz\xf3 ism\xe9tl\xe9se"},
 gmG(){return"Nem k\xe9p f\xe1jl."},
@@ -64,7 +64,7 @@ gf_(){return"Kitiltva"},
 hk(d,e){return d+" kitiltva "+e+" \xe1ltal"},
 ghm(){return"Eszk\xf6z blokkol\xe1sa"},
 gcn(){return"Blokkolva"},
-gbu(d){return"M\xe9gse"},
+gbv(d){return"M\xe9gse"},
 f1(d){return"Nem siker\xfclt a k\xf6vetkez\u0151 URI megnyit\xe1sa: "+d},
 gf3(){return"Eszk\xf6zn\xe9v m\xf3dos\xedt\xe1sa"},
 hq(d){return d+" m\xf3dos\xedtotta a cseveg\xe9si profilk\xe9p\xe9t"},
@@ -95,7 +95,7 @@ gf6(){return"Cseveg\xe9s r\xe9szletei"},
 gf7(){return"Cseveg\xe9sek"},
 ghG(){return"V\xe1lasszon egy er\u0151s jelsz\xf3t"},
 gf8(){return"Arch\xedvum \xfcr\xedt\xe9se"},
-gcl(d){return"Bez\xe1r"},
+gc6(d){return"Bez\xe1r"},
 gll(){return"Szoba megjel\xf6l\xe9se mint k\xf6zvetlen cseveg\u0151 szoba az adott Matrix ID-n\xe9l"},
 glm(){return"Jel\xf6l\xe9s csoportnak"},
 ghI(){return"Adott felhaszn\xe1l\xf3 kitilt\xe1sa a szob\xe1b\xf3l"},
@@ -139,7 +139,7 @@ gie(){return"S\xf6t\xe9t"},
 ig(d,e){return d+", "+e},
 gih(){return"Ez deaktiv\xe1lja a felhaszn\xe1l\xf3i fi\xf3kj\xe1t. Ez nem vonhat\xf3 vissza! Biztos benne?"},
 gii(){return"Alap\xe9rtelmezett hozz\xe1f\xe9r\xe9si szint \xfaj felhaszn\xe1l\xf3kn\xe1l"},
-gdj(d){return"T\xf6rl\xe9s"},
+gdk(d){return"T\xf6rl\xe9s"},
 gim(){return"Fi\xf3k t\xf6rl\xe9se"},
 gio(){return"\xdczenet t\xf6rl\xe9se"},
 gey(){return"Eszk\xf6z\xf6k"},
@@ -217,7 +217,7 @@ giW(){return"Csatlakoz\xe1s a szob\xe1hoz"},
 iX(d,e){return"\ud83d\udc5e "+d+" kir\xfagta "+e+"-t"},
 gfi(){return"Kir\xfag\xe1s a cseveg\xe9sb\u0151l"},
 eI(d){return"Utolj\xe1ra akt\xedv: "+d},
-gdc(){return"Elhagy"},
+gdd(){return"Elhagy"},
 gfk(){return"Elhagyta a cseveg\xe9st"},
 giZ(){return"Vil\xe1gos"},
 j_(d){return"Tov\xe1bbi "+d+" r\xe9sztvev\u0151 bet\xf6lt\xe9se"},
@@ -636,8 +636,8 @@ gpa(){return"More events"},
 glH(){return"Decline invitation"},
 B(d,e){return this.gb9(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.F9,C.aF)})()
-B.dN(b.typeUniverse,JSON.parse('{"F9":{"aF":[]}}'))};
+y(A.Fa,C.aF)})()
+B.dO(b.typeUniverse,JSON.parse('{"Fa":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_286",e:"endPart",h:b})})($__dart_deferred_initializers__,"lOcPBgMR0g1Whmi7Ca4KEDZVrGQ=");
+a.eventLog.push({p:"main.dart.js_286",e:"endPart",h:b})})($__dart_deferred_initializers__,"6M/5J3t0FyKssiOP7ZK9iwRjqeY=");
 //# sourceMappingURL=main.dart.js_286.part.js.map

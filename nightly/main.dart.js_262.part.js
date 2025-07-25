@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_262",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cAP(){return new A.EZ(B.dd("et"))},
-EZ:function EZ(d){this.a=d}}
+cBC(){return new A.F_(B.dd("et"))},
+F_:function F_(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[17],A)
-A.EZ.prototype={
+A.F_.prototype={
 gkV(){return"false"},
 gjG(){return"Korda salas\xf5na"},
 gmG(){return"See pole pildifail."},
@@ -64,7 +64,7 @@ gf_(){return"Ligip\xe4\xe4s vestlusele on keelatud"},
 hk(d,e){return d+" keelas ligip\xe4\xe4su kasutajale "+e},
 ghm(){return"Blokeeri seade"},
 gcn(){return"Blokeeritud"},
-gbu(d){return"Katkesta"},
+gbv(d){return"Katkesta"},
 f1(d){return d+" aadressi avamine ei \xf5nnestu"},
 gf3(){return"Muuda seadme nime"},
 hq(d){return d+" muutis vestluse tunnuspilti"},
@@ -95,7 +95,7 @@ gf6(){return"Vestluse teave"},
 gf7(){return"Vestlused"},
 ghG(){return"Vali korralik salas\xf5na"},
 gf8(){return"Kustuta arhiiv"},
-gcl(d){return"Sulge"},
+gc6(d){return"Sulge"},
 gll(){return"M\xe4rgi otsevestusluseks antud Matrixi ID jaoks"},
 glm(){return"M\xe4rgi vestlusr\xfchmaks"},
 ghI(){return"Sea sellele kasutajale antud jututoas suhtluskeeld"},
@@ -139,7 +139,7 @@ gie(){return"Tume"},
 ig(d,e){return d+", "+e},
 gih(){return"J\xe4rgnevaga eemaldatakse sinu konto kasutusest. Seda tegevust ei saa tagasi p\xf6\xf6rata! Kas sa ikka oled kindel?"},
 gii(){return"Vaikimisi \xf5igused uutele kasutajatele"},
-gdj(d){return"Kustuta"},
+gdk(d){return"Kustuta"},
 gim(){return"Kustuta kasutajakonto"},
 gio(){return"Kustuta s\xf5num"},
 gey(){return"Seadmed"},
@@ -217,7 +217,7 @@ giW(){return"Liitu jututoaga"},
 iX(d,e){return"\ud83d\udc5e "+d+" m\xfcksas kasutaja "+e+" v\xe4lja"},
 gfi(){return"M\xfcksa vestlusest v\xe4lja"},
 eI(d){return"Viimati n\xe4htud: "+d},
-gdc(){return"Lahku"},
+gdd(){return"Lahku"},
 gfk(){return"Lahkus vestlusest"},
 giZ(){return"Hele"},
 j_(d){return"Lisa veel "+d+" osalejat"},
@@ -636,8 +636,8 @@ gpa(){return"Veel s\xfcndmusi"},
 glH(){return"Keeldu kutsest"},
 B(d,e){return this.gb9(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.EZ,C.aF)})()
-B.dN(b.typeUniverse,JSON.parse('{"EZ":{"aF":[]}}'))};
+y(A.F_,C.aF)})()
+B.dO(b.typeUniverse,JSON.parse('{"F_":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_262",e:"endPart",h:b})})($__dart_deferred_initializers__,"Wf8LAV5BHczWi7XMpajwntfILnc=");
+a.eventLog.push({p:"main.dart.js_262",e:"endPart",h:b})})($__dart_deferred_initializers__,"W8qyvyG8f5uMZcc57dwRXmMU1kE=");
 //# sourceMappingURL=main.dart.js_262.part.js.map

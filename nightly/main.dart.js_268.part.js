@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_268",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cAS(){return new A.F1(B.dd("fi"))},
-F1:function F1(d){this.a=d}}
+cBF(){return new A.F2(B.dd("fi"))},
+F2:function F2(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[20],A)
-A.F1.prototype={
+A.F2.prototype={
 gkV(){return"false"},
 gjG(){return"Salasana uudelleen"},
 gmG(){return"T\xe4m\xe4 ei ole kuvatiedosto."},
@@ -64,7 +64,7 @@ gf_(){return"Porttikiellossa"},
 hk(d,e){return d+" antoi porttikiellon k\xe4ytt\xe4j\xe4lle "+e},
 ghm(){return"Est\xe4 laite"},
 gcn(){return"Estetty"},
-gbu(d){return"Peruuta"},
+gbv(d){return"Peruuta"},
 f1(d){return"URI-osoitetta "+d+" ei voida avata"},
 gf3(){return"Vaihda laitteen nime\xe4"},
 hq(d){return d+" muutti keskustelun kuvaa"},
@@ -95,7 +95,7 @@ gf6(){return"Keskustelun tiedot"},
 gf7(){return"Keskustelut"},
 ghG(){return"Valitse vahva salasana"},
 gf8(){return"Tyhjenn\xe4 arkisto"},
-gcl(d){return"Sulje"},
+gc6(d){return"Sulje"},
 gll(){return"Merkitse yksityiskeskusteluksi sy\xf6tetyn Matrix IDn kanssa"},
 glm(){return"Merkitse ryhm\xe4ksi"},
 ghI(){return"Anna sy\xf6tetylle k\xe4ytt\xe4j\xe4lle porttikielto t\xe4h\xe4n huoneeseen"},
@@ -139,7 +139,7 @@ gie(){return"Tumma"},
 ig(d,e){return d+", "+e},
 gih(){return"T\xe4m\xe4 poistaa tunnuksesi k\xe4yt\xf6st\xe4. T\xe4t\xe4 ei voi kumota! Oletko varma?"},
 gii(){return"Uusien k\xe4ytt\xe4jien oikeuksien oletustaso"},
-gdj(d){return"Poista"},
+gdk(d){return"Poista"},
 gim(){return"Poista tunnus"},
 gio(){return"Poista viesti"},
 gey(){return"Laitteet"},
@@ -217,7 +217,7 @@ giW(){return"Liity huoneeseen"},
 iX(d,e){return"\ud83d\udc5e "+d+" potki k\xe4ytt\xe4j\xe4n "+e},
 gfi(){return"Potki keskustelusta"},
 eI(d){return"Aktiivinen viimeksi: "+d},
-gdc(){return"Poistu"},
+gdd(){return"Poistu"},
 gfk(){return"Poistui keskustelusta"},
 giZ(){return"Vaalea"},
 j_(d){return"Lataa viel\xe4 "+d+" osallistujaa"},
@@ -636,8 +636,8 @@ gpa(){return"More events"},
 glH(){return"Decline invitation"},
 B(d,e){return this.gb9(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.F1,C.aF)})()
-B.dN(b.typeUniverse,JSON.parse('{"F1":{"aF":[]}}'))};
+y(A.F2,C.aF)})()
+B.dO(b.typeUniverse,JSON.parse('{"F2":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_268",e:"endPart",h:b})})($__dart_deferred_initializers__,"1juwY5HjJiHAlZmUIs3qLOjyVmw=");
+a.eventLog.push({p:"main.dart.js_268",e:"endPart",h:b})})($__dart_deferred_initializers__,"y9VAbMlJpkqHdDbqkWBWn2Ug+FA=");
 //# sourceMappingURL=main.dart.js_268.part.js.map
