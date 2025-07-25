@@ -13,7 +13,7 @@ if (file("google-services.json").exists()) {
 }
 
 dependencies {
-    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4") // For flutter_local_notifications // Workaround for: https://github.com/MaikuB/flutter_local_notifications/issues/2286
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.5") // For flutter_local_notifications // Workaround for: https://github.com/MaikuB/flutter_local_notifications/issues/2286
 }
 
 android {
