@@ -34,7 +34,7 @@ dependencies:
   flutter_local_notifications: ^19.2.1
   flutter_localizations:
     sdk: flutter
-  flutter_map: ^6.1.0
+  flutter_map: ^8.1.1
   flutter_new_badger: ^1.1.1
   flutter_openssl_crypto: ^0.5.0
   flutter_secure_storage: ^9.2.4
