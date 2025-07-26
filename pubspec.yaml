@@ -76,7 +76,7 @@ dependencies:
   share_plus: ^10.0.2
   shared_preferences: ^2.2.0 # Pinned because https://github.com/flutter/flutter/issues/118401
   slugify: ^2.0.0
-  sqflite_common_ffi: ^2.3.3
+  sqflite_common_ffi: ^2.3.6
   sqlcipher_flutter_libs: ^0.6.1
   swipe_to_action: ^0.3.0
   tor_detector_web: ^1.1.0
