@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_306",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cCr(){return new A.Fp(B.de("pl"))},
-Fp:function Fp(d){this.a=d}}
+cCv(){return new A.Fr(B.de("pl"))},
+Fr:function Fr(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[40],A)
-A.Fp.prototype={
+A.Fr.prototype={
 gkV(){return"false"},
 gjG(){return"Powt\xf3rz has\u0142o"},
 gmG(){return"To nie jest plik obrazu."},
@@ -637,8 +637,8 @@ gpa(){return"Wi\u0119cej zdarze\u0144"},
 glH(){return"Decline invitation"},
 B(d,e){return this.gb9(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Fp,C.aF)})()
-B.dQ(b.typeUniverse,JSON.parse('{"Fp":{"aF":[]}}'))};
+y(A.Fr,C.aF)})()
+B.dQ(b.typeUniverse,JSON.parse('{"Fr":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_306",e:"endPart",h:b})})($__dart_deferred_initializers__,"LRJdqP/HaO6vRnZdP9i+xdWk25M=");
+a.eventLog.push({p:"main.dart.js_306",e:"endPart",h:b})})($__dart_deferred_initializers__,"jmXLjYf6xcLHu+eDtM1ZQhMpzx0=");
 //# sourceMappingURL=main.dart.js_306.part.js.map

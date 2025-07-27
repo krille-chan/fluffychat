@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_318",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cCC(){return new A.Fz(B.de("te"))},
-Fz:function Fz(d){this.a=d}}
+cCG(){return new A.FB(B.de("te"))},
+FB:function FB(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[48],A)
-A.Fz.prototype={
+A.FB.prototype={
 gkV(){return""},
 gjG(){return"\u0c2a\u0c3e\u0c38\u0c4d\u200c\u0c35\u0c30\u0c4d\u0c21\u0c4d\u200c\u0c28\u0c41 \u0c2a\u0c41\u0c28\u0c30\u0c3e\u0c35\u0c43\u0c24\u0c02 \u0c1a\u0c47\u0c2f\u0c02\u0c21\u0c3f"},
 gmG(){return"\u0c07\u0c2e\u0c47\u0c1c\u0c4d \u0c2b\u0c48\u0c32\u0c4d \u0c15\u0c3e\u0c26\u0c41."},
@@ -636,8 +636,8 @@ gpa(){return"More events"},
 glH(){return"Decline invitation"},
 B(d,e){return this.gb9(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Fz,C.aF)})()
-B.dQ(b.typeUniverse,JSON.parse('{"Fz":{"aF":[]}}'))};
+y(A.FB,C.aF)})()
+B.dQ(b.typeUniverse,JSON.parse('{"FB":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_318",e:"endPart",h:b})})($__dart_deferred_initializers__,"Voj7u3/1TQiSZUpUqZKvhUeeo6A=");
+a.eventLog.push({p:"main.dart.js_318",e:"endPart",h:b})})($__dart_deferred_initializers__,"dnCj3tkNInwAJQoFPIpb8jt/i/4=");
 //# sourceMappingURL=main.dart.js_318.part.js.map

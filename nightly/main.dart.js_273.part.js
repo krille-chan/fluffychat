@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_273",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cCa(){return new A.F8(B.de("ga"))},
-F8:function F8(d){this.a=d}}
+cCe(){return new A.Fa(B.de("ga"))},
+Fa:function Fa(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[23],A)
-A.F8.prototype={
+A.Fa.prototype={
 gkV(){return"br\xe9agach"},
 gjG(){return"Scr\xedobh an pasfhocal ar\xeds"},
 gmG(){return"N\xed comhad \xedomh\xe1 \xe9."},
@@ -636,9 +636,9 @@ gpa(){return"Tuilleadh imeachta\xed"},
 glH(){return"Di\xfaltaigh don chuireadh"},
 B(d,e){return this.gb9(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.F8,C.aF)})()
-B.dQ(b.typeUniverse,JSON.parse('{"F8":{"aF":[]}}'))
+x(A.Fa,C.aF)})()
+B.dQ(b.typeUniverse,JSON.parse('{"Fa":{"aF":[]}}'))
 var y={a:"Cuir cosc ar an \xfas\xe1ideoir \xe1irithe \xf3n seomra seo"}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_273",e:"endPart",h:b})})($__dart_deferred_initializers__,"ayNTFF7LIEp8GnaeKuDj3YqN2Hg=");
+a.eventLog.push({p:"main.dart.js_273",e:"endPart",h:b})})($__dart_deferred_initializers__,"zfs4CTMVeEnQoA3c2eiGHpNYrNs=");
 //# sourceMappingURL=main.dart.js_273.part.js.map

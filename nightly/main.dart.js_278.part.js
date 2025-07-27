@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_278",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cCd(){return new A.Fb(B.de("hi"))},
-Fb:function Fb(d){this.a=d}}
+cCh(){return new A.Fd(B.de("hi"))},
+Fd:function Fd(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[26],A)
-A.Fb.prototype={
+A.Fd.prototype={
 gkV(){return"false"},
 gjG(){return"\u092a\u093e\u0938\u0935\u0930\u094d\u0921 \u0926\u094b\u0939\u0930\u093e\u090f\u0902"},
 gmG(){return"\u0915\u094b\u0908 \u091b\u0935\u093f \u092b\u093c\u093e\u0907\u0932 \u0928\u0939\u0940\u0902\u0964"},
@@ -636,8 +636,8 @@ gpa(){return"More events"},
 glH(){return"Decline invitation"},
 B(d,e){return this.gb9(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Fb,C.aF)})()
-B.dQ(b.typeUniverse,JSON.parse('{"Fb":{"aF":[]}}'))};
+y(A.Fd,C.aF)})()
+B.dQ(b.typeUniverse,JSON.parse('{"Fd":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_278",e:"endPart",h:b})})($__dart_deferred_initializers__,"WhiMjbPRKLg7vjgsfsa+QmbFqJE=");
+a.eventLog.push({p:"main.dart.js_278",e:"endPart",h:b})})($__dart_deferred_initializers__,"R6JSOX/D5bzQJq6omoKJb3/3bFA=");
 //# sourceMappingURL=main.dart.js_278.part.js.map

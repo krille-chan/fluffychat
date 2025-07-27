@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_277",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cCc(){return new A.Fa(B.de("he"))},
-Fa:function Fa(d){this.a=d}}
+cCg(){return new A.Fc(B.de("he"))},
+Fc:function Fc(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[25],A)
-A.Fa.prototype={
+A.Fc.prototype={
 gkV(){return""},
 gjG(){return"\u05db\u05ea\u05d5\u05d1 \u05e9\u05d5\u05d1 \u05d0\u05ea \u05d4\u05e1\u05d9\u05e1\u05de\u05d4"},
 gmG(){return"\u05d4\u05e7\u05d5\u05d1\u05e5 \u05d0\u05d9\u05e0\u05d5 \u05ea\u05de\u05d5\u05e0\u05d4."},
@@ -636,8 +636,8 @@ gpa(){return"More events"},
 glH(){return"Decline invitation"},
 B(d,e){return this.gb9(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Fa,C.aF)})()
-B.dQ(b.typeUniverse,JSON.parse('{"Fa":{"aF":[]}}'))};
+y(A.Fc,C.aF)})()
+B.dQ(b.typeUniverse,JSON.parse('{"Fc":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_277",e:"endPart",h:b})})($__dart_deferred_initializers__,"Cv1XXRDB5XaibUTd+DhgVkxAaMo=");
+a.eventLog.push({p:"main.dart.js_277",e:"endPart",h:b})})($__dart_deferred_initializers__,"zCbNmj0BKKGe8/F1XW1Vex3L1LY=");
 //# sourceMappingURL=main.dart.js_277.part.js.map
