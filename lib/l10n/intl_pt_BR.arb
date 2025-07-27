@@ -840,12 +840,12 @@
     "type": "String",
     "placeholders": {}
   },
-  "fromJoining": "De que entrou",
+  "fromJoining": "Desde que entrou",
   "@fromJoining": {
     "type": "String",
     "placeholders": {}
   },
-  "fromTheInvitation": "Do convite",
+  "fromTheInvitation": "Desde o convite",
   "@fromTheInvitation": {
     "type": "String",
     "placeholders": {}
@@ -3245,7 +3245,7 @@
   "@homeserverDescription": {},
   "notificationRuleEncryptedRoomOneToOne": "Sala criptografada de 2 pessoas",
   "@notificationRuleEncryptedRoomOneToOne": {},
-  "pleaseWaitUntilInvited": "Aguarde, até que alguém da sala te convide.",
+  "pleaseWaitUntilInvited": "Aguarde até que alguém da sala te convide.",
   "@pleaseWaitUntilInvited": {},
   "waitingForServer": "Aguardando o servidor...",
   "@waitingForServer": {},
