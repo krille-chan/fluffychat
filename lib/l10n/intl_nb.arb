@@ -2379,5 +2379,20 @@
   "calls": "Anrop",
   "@calls": {},
   "customEmojisAndStickers": "Egendefinerte emojier og klistremerker",
-  "@customEmojisAndStickers": {}
+  "@customEmojisAndStickers": {},
+  "oopsPushError": "Oops! Dessverre oppsto det en feil under oppsettet av push-varsler.",
+  "@oopsPushError": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "openVideoCamera": "Åpne kameraet for en video",
+  "@openVideoCamera": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "obtainingLocation": "Henter sted …",
+  "@obtainingLocation": {
+    "type": "String",
+    "placeholders": {}
+  }
 }
