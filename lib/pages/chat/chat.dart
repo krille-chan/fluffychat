@@ -1437,14 +1437,6 @@ class ChatController extends State<ChatPageWithRoom>
       roomName: room.name,
       title: activeLive?.title,
     );
-    if (mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(L10n.of(context).liveEditedSuccess),
-          duration: const Duration(seconds: 3),
-        ),
-      );
-    }
   }
 
   @override
