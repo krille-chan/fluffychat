@@ -3287,5 +3287,7 @@
   "liveClosedSuccess": "Live closed successfully!",
   "liveCloseError": "Error closing live: {error}",
   "liveEditedSuccess": "Live edited successfully!",
-  "liveOnAir": "Live"
+  "liveOnAir": "Live",
+  "closeLive": "Close live",
+  "closeLiveConfirm": "Do you want to end the live for everyone?"
   }
