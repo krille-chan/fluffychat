@@ -3272,5 +3272,11 @@
 "unknownArtist": "Artista Desconhecido",
 "noSongPlaying": "Nenhuma música tocando",
 "apiError": "Erro na API",
-"errorLoadingInfo": "Erro ao carregar informações"
+"errorLoadingInfo": "Erro ao carregar informações",
+"extensions": "Extensões",
+"availableExtensions": "Extensões disponíveis",
+"live": "Live",
+"liveBroadcastRadioHemp": "Transmissão ao vivo da Radio Hemp",
+"thisRoom": "Esta sala",
+"externalResourcesForRooms": "Recursos externos para as salas"
 }

@@ -19,6 +19,7 @@ import 'package:fluffychat/pages/chat_search/chat_search_page.dart';
 import 'package:fluffychat/pages/device_settings/device_settings.dart';
 import 'package:fluffychat/pages/homeserver_picker/homeserver_picker.dart';
 import 'package:fluffychat/pages/invitation_selection/invitation_selection.dart';
+import 'package:fluffychat/pages/extensions/extensions.dart';
 import 'package:fluffychat/pages/login/login.dart';
 import 'package:fluffychat/pages/register/register.dart';
 import 'package:fluffychat/pages/new_group/new_group.dart';
@@ -492,6 +493,16 @@ abstract class AppRoutes {
                         const EmotesSettings(),
                       ),
                       redirect: loggedOutRedirect,
+                    ),
+                    GoRoute(
+                      path: 'extensions',
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        state,
+                        Extensions(
+                          roomId: state.pathParameters['roomid']!,
+                        ),
+                      ),
                     ),
                   ],
                   redirect: loggedOutRedirect,

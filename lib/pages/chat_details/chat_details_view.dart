@@ -271,6 +271,26 @@ class ChatDetailsView extends StatelessWidget {
                         ),
                         const SizedBox(height: 16),
                         Divider(color: theme.dividerColor),
+                        if (room.ownPowerLevel == 100)
+                          ListTile(
+                            leading: CircleAvatar(
+                              backgroundColor: theme.scaffoldBackgroundColor,
+                              foregroundColor: iconColor,
+                              child: Icon(
+                                Icons.extension_outlined,
+                                color: theme.colorScheme.primary,
+                              ),
+                            ),
+                            title: Text(
+                              L10n.of(context).extensions,
+                            ),
+                            subtitle: Text(
+                              L10n.of(context).externalResourcesForRooms,
+                            ),
+                            onTap: () => context
+                                .push('/rooms/${room.id}/details/extensions'),
+                            trailing: const Icon(Icons.chevron_right_outlined),
+                          ),
                         ListTile(
                           leading: CircleAvatar(
                             backgroundColor: theme.scaffoldBackgroundColor,

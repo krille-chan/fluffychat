@@ -3272,5 +3272,11 @@
   "unknownArtist": "Unknown Artist",
   "noSongPlaying": "No song playing",
   "apiError": "API Error",
-  "errorLoadingInfo": "Error loading info"
+  "errorLoadingInfo": "Error loading info",
+  "extensions": "Extensions",
+  "availableExtensions": "Available extensions",
+  "live": "Live",
+  "liveBroadcastRadioHemp": "Live broadcast of Radio Hemp",
+  "thisRoom": "This room",
+  "externalResourcesForRooms": "External resources for rooms"
   }

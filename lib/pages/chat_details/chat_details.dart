@@ -34,6 +34,7 @@ class ChatDetails extends StatefulWidget {
 
 class ChatDetailsController extends State<ChatDetails> {
   bool displaySettings = false;
+  bool showVideoStreamingPrewiew = false;
 
   void toggleDisplaySettings() =>
       setState(() => displaySettings = !displaySettings);
