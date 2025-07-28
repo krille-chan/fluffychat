@@ -162,19 +162,6 @@ class SpacesNavigationRail extends StatelessWidget {
                       ),
                     ),
                     NaviRailItem(
-                      isSelected: isSettings,
-                      onTap: () => context.go('/rooms/settings'),
-                      icon: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: SvgPicture.asset('assets/icons/configs.svg'),
-                      ),
-                      selectedIcon: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: SvgPicture.asset('assets/icons/configs.svg'),
-                      ),
-                      toolTip: L10n.of(context).settings,
-                    ),
-                    NaviRailItem(
                       isSelected: false,
                       onTap: () async {
                         await launchUrl(
@@ -187,6 +174,19 @@ class SpacesNavigationRail extends StatelessWidget {
                         child: SvgPicture.asset('assets/icons/chama.svg'),
                       ),
                       toolTip: L10n.of(context).joinTheTransformation,
+                    ),
+                    NaviRailItem(
+                      isSelected: isSettings,
+                      onTap: () => context.go('/rooms/settings'),
+                      icon: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: SvgPicture.asset('assets/icons/configs.svg'),
+                      ),
+                      selectedIcon: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: SvgPicture.asset('assets/icons/configs.svg'),
+                      ),
+                      toolTip: L10n.of(context).settings,
                     ),
                     const SizedBox(height: 6),
                   ],
