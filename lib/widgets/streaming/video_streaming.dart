@@ -1,121 +1,106 @@
-import 'dart:js_interop';
-import 'dart:js_interop_unsafe';
+import 'dart:async';
 import 'dart:ui_web' as ui;
+
+import 'package:fluffychat/widgets/streaming/video_streaming_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:web/web.dart' as web;
-import 'dart:async';
+import 'dart:js_interop';
+import 'dart:js_interop_unsafe';
 
-extension type IVSPlayerJS(JSObject _) implements JSAny {
-  external void attachHTMLVideoElement(
-    web.HTMLVideoElement? element,
-  );
-  external void load(String url);
-  external set autoplay(bool value);
-  external set muted(bool value);
-  external void play();
-  external void pause();
-  external String get quality;
-  external JSArray<JSString> get qualities;
-  external void setQuality(String quality);
-  external String get playbackState;
-  external JSString get error;
-  external void addEventListener(
-    String eventName,
-    JSAny callback,
-  );
-  external void removeEventListener(
-    String eventName,
-    JSAny callback,
-  );
-  external double getLiveLatency();
-  external double getBufferDuration();
-}
-
-extension type PlayerStateChangeEventJS(JSObject _) implements JSAny {
-  external String get state;
-}
-
-extension type PlayerErrorEventJS(JSObject _) implements JSAny {
-  external String get code;
-  external String get message;
-}
-
-IVSPlayerJS createIVSPlayer() {
-  final ivsPlayerModule = web.window.getProperty<JSObject>('IVSPlayer'.toJS);
-  final createFn = ivsPlayerModule.getProperty<JSFunction>('create'.toJS);
-  final instance = createFn.callMethod<JSObject>('call'.toJS, [null].toJS);
-  return instance as IVSPlayerJS;
-}
+import 'ivs_player.dart';
 
 class VideoStreaming extends StatefulWidget {
   final String playbackUrl;
-  final double? width;
-  final double? height;
+  final String title;
+  final bool isAdmin;
+  final bool? isPreview;
+  final void Function(String debugInfo)? onDebugInfoChanged;
+  final VoidCallback? onClose;
+  final VoidCallback? onEdit;
 
   const VideoStreaming({
     super.key,
     required this.playbackUrl,
-    this.width,
-    this.height,
+    required this.title,
+    required this.isAdmin,
+    this.onClose,
+    this.onEdit,
+    this.isPreview = false,
+    this.onDebugInfoChanged,
   });
 
   @override
-  State<VideoStreaming> createState() => _VideoStreamingState();
+  State<VideoStreaming> createState() => VideoStreamingController();
 }
 
-class _VideoStreamingState extends State<VideoStreaming> {
+class VideoStreamingController extends State<VideoStreaming> {
+  Offset _position = const Offset(16, 16);
+  double _width = 320;
+  double _height = 320 / (16 / 9);
+
+  Offset get position => _position;
+  double? get width => _width;
+  double? get height => _height;
+
+  void setPosition(Offset newPosition) {
+    setState(() {
+      _position = newPosition;
+    });
+  }
+
+  void setWidth(double newWidth) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    setState(() {
+      _width = newWidth.clamp(500.0, screenWidth - 32);
+      _height = _width / (16 / 9);
+    });
+  }
+
   late String viewId;
   web.HTMLVideoElement? videoElement;
-  web.HTMLDivElement? container;
   IVSPlayerJS? ivsPlayer;
 
   bool htmlElementsCreated = false;
   String debugInfo = 'Iniciando componente...';
-  String ivsPlayerStatus = 'INICIANDO';
-  int retryCount = 0;
-  static const int maxRetries = 30;
-  Duration retryDelay = const Duration(seconds: 1);
 
-  Timer? initTimer;
-  Timer? retryTimer;
-  Timer? pollTimer;
+  Timer? _playbackPollTimer;
 
-  bool widgetMounted = false;
+  bool _widgetMounted = false;
+  bool _isLive = false;
 
   @override
   void initState() {
     super.initState();
-    widgetMounted = true;
+    _widgetMounted = true;
+
     viewId = 'ivs-player-${DateTime.now().millisecondsSinceEpoch}';
+
     _createHtmlElements();
     _registerView();
-    _startPlayerInitializationFlow();
-  }
 
-  void _startPlayerInitializationFlow() {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (widgetMounted) _initializePlayerWithDelay();
+    Future.delayed(const Duration(milliseconds: 100), () {
+      if (_widgetMounted) _initIvsPlayerAndStream();
     });
   }
 
   void _createHtmlElements() {
     if (htmlElementsCreated) return;
-
     videoElement = web.document.createElement('video') as web.HTMLVideoElement
       ..id = '$viewId-video'
       ..autoplay = true
       ..muted = true
       ..controls = true;
-
     videoElement!.style
       ..width = '100%'
       ..height = '100%'
       ..border = 'none'
       ..borderRadius = '8px'
-      ..backgroundColor = 'black';
-
+      ..backgroundColor = 'black'
+      ..objectFit = 'cover';
     htmlElementsCreated = true;
+    _updateDebugInfo('Elemento de vídeo HTML criado.',
+        playerStatus: _getCurrentPlayerStatus());
   }
 
   void _registerView() {
@@ -124,101 +109,241 @@ class _VideoStreamingState extends State<VideoStreaming> {
         viewId,
         (int id) => videoElement!,
       );
+      _updateDebugInfo('View factory registrada.',
+          playerStatus: _getCurrentPlayerStatus());
     } on PlatformException catch (e) {
-      debugInfo = 'Erro ao registrar view factory: $e';
+      _updateDebugInfo('Erro ao registrar view factory: $e',
+          playerStatus: _getCurrentPlayerStatus());
     }
   }
 
-  void _initializePlayerWithDelay() {
-    if (!widgetMounted || retryCount >= maxRetries) {
-      ivsPlayerStatus = 'FALHA_MAX_RETRIES';
-      return;
+  IvsPlayerState _getCurrentPlayerStatus() {
+    try {
+      final raw = ivsPlayer?.getState();
+      if (raw == null) return IvsPlayerState.unknown;
+      return IvsPlayerState.fromString(raw.toUpperCase());
+    } catch (e) {
+      debugPrint('Erro ao obter estado do player: $e');
+      return IvsPlayerState.unknown;
     }
+  }
 
-    initTimer = Timer(retryDelay, () {
-      if (!widgetMounted) return;
+  void _updateDebugInfo(String message, {IvsPlayerState? playerStatus}) {
+    final statusToShow = playerStatus ?? _getCurrentPlayerStatus();
+    final newDebug = 'Status: ${statusToShow.value} | $message';
 
+    setState(() {
+      debugInfo = newDebug;
+    });
+
+    widget.onDebugInfoChanged?.call(newDebug);
+  }
+
+  void _initIvsPlayerAndStream() {
+    if (!_widgetMounted) return;
+
+    if (ivsPlayer == null) {
+      _updateDebugInfo(
+        'Player IVS não inicializado. Tentando criar e anexar.',
+        playerStatus: _getCurrentPlayerStatus(),
+      );
       try {
-        ivsPlayer = createIVSPlayer();
-        ivsPlayer!.attachHTMLVideoElement(videoElement!);
+        ivsPlayer = createIVSPlayerIfAvailable();
         ivsPlayer!.autoplay = true;
         ivsPlayer!.muted = true;
-        ivsPlayer!.load(widget.playbackUrl);
-        ivsPlayer!.play();
 
-        _setupEventListeners();
-
-        ivsPlayerStatus = 'CARREGANDO';
-        setState(() {});
-      } catch (e) {
-        retryCount++;
-        retryDelay *= 1.5;
-        if (retryDelay.inSeconds > 30) {
-          retryDelay = const Duration(seconds: 30);
+        if (ivsPlayer == null) {
+          _updateDebugInfo(
+              'IVS Player SDK não carregado/pronto. Tentando novamente em 3s.',
+              playerStatus: IvsPlayerState.error);
+          Future.delayed(const Duration(seconds: 3), () {
+            if (_widgetMounted) _initIvsPlayerAndStream();
+          });
+          return;
         }
 
-        retryTimer = Timer(retryDelay, _initializePlayerWithDelay);
-        ivsPlayerStatus = 'REINIT_TENTATIVA';
-        debugInfo = 'Erro: $e';
-        setState(() {});
+        if (videoElement == null) {
+          throw Exception("Elemento de vídeo HTML é nulo ao tentar anexar.");
+        }
+
+        ivsPlayer!.attachHTMLVideoElement(videoElement!);
+        _setupEventListeners();
+        _updateDebugInfo('IVS Player criado e anexado com sucesso.',
+            playerStatus: _getCurrentPlayerStatus());
+      } catch (e) {
+        _updateDebugInfo(
+            'Erro ao criar/anexar IVS Player: $e. Tentando novamente em 3s.',
+            playerStatus: IvsPlayerState.error);
+        Future.delayed(const Duration(seconds: 3), () {
+          if (_widgetMounted) _initIvsPlayerAndStream();
+        });
+        return;
       }
-    });
+    }
+
+    if (ivsPlayer != null) {
+      ivsPlayer!.load(widget.playbackUrl);
+      _updateDebugInfo(
+        'Chamada inicial de load para playback URL: ${widget.playbackUrl}.',
+        playerStatus: _getCurrentPlayerStatus(),
+      );
+    } else {
+      _updateDebugInfo(
+        'Erro: IVS Player é nulo após tentativa de criação. Não é possível carregar a URL.',
+        playerStatus: IvsPlayerState.error,
+      );
+    }
+
+    _handleIsLiveChange();
   }
 
   void _setupEventListeners() {
     if (ivsPlayer == null) return;
+    _updateDebugInfo('Configurando event listeners do IVS Player.',
+        playerStatus: _getCurrentPlayerStatus());
 
     final onStateChange = (JSAny event) {
-      final stateEvent = event as PlayerStateChangeEventJS;
-      setState(() {
-        ivsPlayerStatus = stateEvent.state.toUpperCase();
-        debugInfo = 'Estado: ${stateEvent.state}';
-      });
+      try {
+        final rawState =
+            (event as JSObject).getProperty<JSString?>('state'.toJS)?.toDart;
+
+        final newState =
+            IvsPlayerState.fromString(rawState?.toUpperCase() ?? '');
+        _updateDebugInfo(
+          '🟢 Evento PlayerStateChange: $rawState',
+          playerStatus: newState,
+        );
+
+        final oldIsLive = _isLive;
+        _isLive = (newState == IvsPlayerState.playing);
+
+        if (_isLive != oldIsLive || (_isLive && _playbackPollTimer != null)) {
+          _handleIsLiveChange();
+        }
+
+        if ((newState == IvsPlayerState.idle ||
+                newState == IvsPlayerState.ready) &&
+            !_isLive) {
+          if (newState != IvsPlayerState.playing) {
+            _updateDebugInfo('Estado ${newState.value}. Tentando play...',
+                playerStatus: newState);
+          }
+
+          ivsPlayer?.play();
+        }
+      } catch (e) {
+        _updateDebugInfo(
+          '❌ Erro no evento PlayerStateChange: $e',
+          playerStatus: IvsPlayerState.error,
+        );
+      }
     }.toJS;
 
     final onError = (JSAny event) {
       final errorEvent = event as PlayerErrorEventJS;
-      setState(() {
-        ivsPlayerStatus = 'ERRO: ${errorEvent.code} - ${errorEvent.message}';
-        debugInfo = 'Erro: ${errorEvent.code} - ${errorEvent.message}';
-      });
+      final codeStr = errorEvent.code.toString();
+      final messageStr = errorEvent.message.toString();
 
-      if (errorEvent.code == '404' && pollTimer == null) {
-        _startPollingStream();
+      _updateDebugInfo(
+        'Erro IVS: $codeStr - $messageStr.',
+        playerStatus: IvsPlayerState.error,
+      );
+
+      final oldIsLive = _isLive;
+      _isLive = false;
+
+      if (_isLive != oldIsLive) {
+        _handleIsLiveChange();
+      } else if (_playbackPollTimer == null) {
+        _handleIsLiveChange();
       }
     }.toJS;
 
-    ivsPlayer!.addEventListener('playerStateChange', onStateChange);
-    ivsPlayer!.addEventListener('playerError', onError);
+    ivsPlayer!.addEventListener(IVSPlayerEvent.stateChanged, onStateChange);
+    ivsPlayer!.addEventListener(IVSPlayerEvent.error, onError);
+    _updateDebugInfo('Event listeners configurados.',
+        playerStatus: _getCurrentPlayerStatus());
   }
 
-  void _startPollingStream() {
-    pollTimer = Timer.periodic(const Duration(seconds: 5), (_) {
+  void _handleIsLiveChange() {
+    if (_isLive) {
+      _updateDebugInfo('Player está tocando.',
+          playerStatus: IvsPlayerState.playing);
+      _stopPlaybackPolling();
+    } else {
+      _updateDebugInfo('Player não está tocando.',
+          playerStatus: _getCurrentPlayerStatus());
+      _startPlaybackPolling();
+    }
+  }
+
+  void _startPlaybackPolling() {
+    if (_playbackPollTimer != null && _playbackPollTimer!.isActive) {
+      _updateDebugInfo('Polling ativo.',
+          playerStatus: _getCurrentPlayerStatus());
+      return;
+    }
+
+    _playbackPollTimer?.cancel();
+
+    _updateDebugInfo('Iniciando polling...',
+        playerStatus: _getCurrentPlayerStatus());
+    _playbackPollTimer = Timer.periodic(const Duration(seconds: 5), (timer) {
+      if (!_widgetMounted) {
+        _stopPlaybackPolling();
+        return;
+      }
+      final currentStatus = _getCurrentPlayerStatus();
+
+      if (currentStatus == IvsPlayerState.playing) {
+        _updateDebugInfo('Polling: player tocando, nada a fazer.',
+            playerStatus: currentStatus);
+        return;
+      }
+
+      _updateDebugInfo('Polling: tentando recarregar stream.',
+          playerStatus: currentStatus);
+
       try {
-        ivsPlayer!.load(widget.playbackUrl);
-      } catch (_) {}
+        ivsPlayer?.load(widget.playbackUrl);
+      } catch (e) {
+        _updateDebugInfo('Erro no polling: $e', playerStatus: currentStatus);
+      }
     });
+  }
+
+  void _stopPlaybackPolling() {
+    if (_playbackPollTimer != null) {
+      _playbackPollTimer!.cancel();
+      _playbackPollTimer = null;
+      _updateDebugInfo('Polling parado.',
+          playerStatus: _getCurrentPlayerStatus());
+    }
   }
 
   @override
   void dispose() {
-    widgetMounted = false;
-    initTimer?.cancel();
-    retryTimer?.cancel();
-    pollTimer?.cancel();
+    _widgetMounted = false;
+    _playbackPollTimer?.cancel();
     ivsPlayer?.pause();
-
-    container?.remove();
-
     ivsPlayer = null;
     videoElement = null;
-    container = null;
-
+    _updateDebugInfo('Widget VideoStreaming descartado.',
+        playerStatus: IvsPlayerState.unknown);
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return HtmlElementView(viewType: viewId);
+    return VideoStreamingView(
+      this,
+      title: widget.title,
+      playbackUrl: widget.playbackUrl,
+      isAdmin: widget.isAdmin,
+      isPreview: widget.isPreview ?? false,
+      viewId: viewId,
+      onClose: widget.onClose ?? () {},
+      onEdit: widget.onEdit ?? () {},
+    );
   }
 }

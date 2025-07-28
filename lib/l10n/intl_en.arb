@@ -3289,5 +3289,7 @@
   "liveEditedSuccess": "Live edited successfully!",
   "liveOnAir": "Live",
   "closeLive": "Close live",
-  "closeLiveConfirm": "Do you want to end the live for everyone?"
+  "closeLiveConfirm": "Do you want to end the live for everyone?",
+  "liveOptions": "Live options",
+  "liveStartedSuccess": "Live started successfully!"
   }
