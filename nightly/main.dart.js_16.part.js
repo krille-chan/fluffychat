@@ -809,8 +809,8 @@ giF(){return"Tudo pronto!"},
 giG(){return"Extremamente ofensivo"},
 giH(d){return"Tamanho da fonte"},
 ged(d){return"Encaminhar"},
-gm_(){return"De que entrou"},
-gm0(){return"Do convite"},
+gm_(){return"Desde que entrou"},
+gm0(){return"Desde o convite"},
 ge0(){return"Grupo"},
 gle(){return"Descri\xe7\xe3o da conversa"},
 glf(){return"Descri\xe7\xe3o da conversa alterada"},
@@ -1259,7 +1259,7 @@ gmH(){return"N\xe3o h\xe1 suporte neste dispositivo"},
 glR(){return"Abrir a conversa nova"},
 gkZ(){return"Aprovar"},
 goO(){return"Bateram na sua porta"},
-gnD(){return"Aguarde, at\xe9 que algu\xe9m da sala te convide."},
+gnD(){return"Aguarde at\xe9 que algu\xe9m da sala te convide."},
 gp0(){return"Desconecte-se do seu dispositivo atual"},
 gp5(){return"Desconecte-se de todos os dispositivos ativos"},
 gp8(){return"Mostrar trilha de navega\xe7\xe3o em dispositivo m\xf3vel"},
@@ -1520,5 +1520,5 @@ w(A.Af,[A.Fs,A.Ft])})()
 B.dQ(b.typeUniverse,JSON.parse('{"Af":{"aF":[]},"Fs":{"aF":[]},"Ft":{"aF":[]}}'))
 var y={h:" alterou a visibilidade do hist\xf3rico para: ",a:"(BETA) Ativar m\xfaltiplas contas neste dispositivo"}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_16",e:"endPart",h:b})})($__dart_deferred_initializers__,"vrKZjBhdZyiXot7XMHmgqBX5+7A=");
+a.eventLog.push({p:"main.dart.js_16",e:"endPart",h:b})})($__dart_deferred_initializers__,"kni3AygPpghWVKKgRWTAxMyTQuk=");
 //# sourceMappingURL=main.dart.js_16.part.js.map

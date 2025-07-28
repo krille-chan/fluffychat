@@ -253,7 +253,7 @@ gjf(){return"Du har ikke lagt til en m\xe5te \xe5 gjenopprette passordet ditt p\
 gei(){return"Ingen tilgang"},
 gfq(){return"Fant ingen rom \u2026"},
 geL(){return"Merknader"},
-gjg(){return"Obtaining location\u2026"},
+gjg(){return"Henter sted \u2026"},
 gjh(){return"St\xf8tende"},
 gct(){return"OK"},
 gjj(){return"Nettbasert sikkerhetskopiering av n\xf8kler p\xe5"},
@@ -639,5 +639,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fp,C.aF)})()
 B.dQ(b.typeUniverse,JSON.parse('{"Fp":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_303",e:"endPart",h:b})})($__dart_deferred_initializers__,"touRe4AQI1AojpdIXYHvCVJa2io=");
+a.eventLog.push({p:"main.dart.js_303",e:"endPart",h:b})})($__dart_deferred_initializers__,"CRSYnFxEDNt2wfZlXlSoLcY3buU=");
 //# sourceMappingURL=main.dart.js_303.part.js.map
