@@ -43,6 +43,9 @@ import '../../utils/account_bundles.dart';
 import '../../utils/localized_exception_extension.dart';
 import 'send_file_dialog.dart';
 import 'send_location_dialog.dart';
+import '../../widgets/streaming/video_streaming_model.dart';
+import '../../widgets/adaptive_dialogs/live_preview_dialog.dart';
+import '../../widgets/streaming/audio_player_streaming.dart';
 
 class ChatPage extends StatelessWidget {
   final String roomId;
@@ -99,6 +102,8 @@ class ChatPageWithRoom extends StatefulWidget {
 class ChatController extends State<ChatPageWithRoom>
     with WidgetsBindingObserver {
   Room get room => sendingClient.getRoomById(roomId) ?? widget.room;
+
+  VideoStreamingModel? activeLive;
 
   late Client sendingClient;
 
@@ -337,6 +342,12 @@ class ChatController extends State<ChatPageWithRoom>
     if (kIsWeb) {
       onFocusSub = html.window.onFocus.listen((_) => setReadMarker());
     }
+
+    _listenToLiveWidgets();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      _loadWidgets();
+    });
   }
 
   final Set<String> expandedEventIds = {};
@@ -1324,6 +1335,116 @@ class ChatController extends State<ChatPageWithRoom>
       !_displayChatDetailsColumn.value,
     );
     _displayChatDetailsColumn.value = !_displayChatDetailsColumn.value;
+  }
+
+  void _updateLiveStatus(bool isActive) {
+    final currentStatus = VideoStreamingModel.liveStatus.value[room.id];
+    if (currentStatus != isActive) {
+      VideoStreamingModel.liveStatus.value = {
+        ...VideoStreamingModel.liveStatus.value,
+        room.id: isActive,
+      };
+    }
+    AudioState.mutedNotifier.value = isActive;
+  }
+
+  void _updateActiveLive(VideoStreamingModel? live) {
+    if (activeLive != live && mounted) {
+      setState(() {
+        activeLive = live;
+      });
+    }
+  }
+
+  void _listenToLiveWidgets() {
+    final client = Matrix.of(context).client;
+
+    client.onRoomState.stream.listen((event) {
+      if (event.roomId != room.id) return;
+
+      final state = event.state;
+      if (state.type != VideoStreamingModel.eventType ||
+          state.stateKey != VideoStreamingModel.stateKey) {
+        return;
+      }
+
+      final content = state.content as Map<String, dynamic>? ?? {};
+      final data = content['data'] as Map<String, dynamic>?;
+
+      if (data == null) {
+        _updateActiveLive(null);
+        _updateLiveStatus(false);
+      } else {
+        final live = VideoStreamingModel.fromWidgetStateEvent(state);
+        _updateActiveLive(live);
+        _updateLiveStatus(true);
+      }
+    });
+  }
+
+  void _loadWidgets() {
+    final stateEvents =
+        room.states[VideoStreamingModel.eventType] ?? <String, MatrixEvent>{};
+
+    final event = stateEvents[VideoStreamingModel.stateKey];
+    if (event == null) {
+      _updateActiveLive(null);
+      _updateLiveStatus(false);
+      return;
+    }
+
+    final content = event.content as Map<String, dynamic>? ?? {};
+    final data = content['data'] as Map<String, dynamic>?;
+
+    if (data == null) {
+      _updateActiveLive(null);
+      _updateLiveStatus(false);
+    } else {
+      final live = VideoStreamingModel.fromWidgetStateEvent(event);
+      _updateActiveLive(live);
+      _updateLiveStatus(true);
+    }
+  }
+
+  Future<void> closeLiveWidget() async {
+    try {
+      await VideoStreamingModel.removeLiveWidget(room);
+
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(L10n.of(context).liveClosedSuccess),
+            duration: const Duration(seconds: 3),
+          ),
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(L10n.of(context).liveCloseError(e.toString)),
+            duration: const Duration(seconds: 3),
+          ),
+        );
+      }
+    }
+  }
+
+  void editLiveWidget() {
+    LivePreviewDialog.show(
+      context,
+      roomId: roomId,
+      roomName: room.name,
+      title: activeLive?.title,
+    );
+    if (mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(L10n.of(context).liveEditedSuccess),
+          duration: const Duration(seconds: 3),
+        ),
+      );
+    }
   }
 
   @override

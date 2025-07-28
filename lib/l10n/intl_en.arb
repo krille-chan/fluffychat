@@ -3283,5 +3283,8 @@
   "liveTitle": "Live Title",
   "enterLiveTitleHint": "Enter a title for the live",
   "preview": "Preview",
-  "showLiveForRoom": "Show live to everyone in room \"{roomName}\""
+  "showLiveForRoom": "Show live to everyone in room \"{roomName}\"",
+  "liveClosedSuccess": "Live closed successfully!",
+  "liveCloseError": "Error closing live: {error}",
+  "liveEditedSuccess": "Live edited successfully!"
   }

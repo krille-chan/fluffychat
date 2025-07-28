@@ -77,10 +77,12 @@ class _LivePreviewDialogState extends State<LivePreviewDialog> {
       playbackUrl: playbackUrl,
     );
 
-    await VideoStreamingModel.sendLiveWidget(
-      room: room,
-      model: model,
-    );
+    if (room != null) {
+      await VideoStreamingModel.sendLiveWidget(
+        room: room,
+        model: model,
+      );
+    }
 
     Navigator.of(context, rootNavigator: true).pop();
     context.go('/rooms/${widget.roomId}');

@@ -27,7 +27,7 @@ import '../../utils/stream_extension.dart';
 import 'chat_emoji_picker.dart';
 import 'chat_input_row.dart';
 import 'package:fluffychat/config/app_config.dart';
-import 'package:fluffychat/widgets/streaming/video_streaming_view.dart';
+import 'package:fluffychat/widgets/streaming/video_streaming.dart';
 
 enum _EventContextAction { info, report }
 
@@ -376,10 +376,14 @@ class ChatView extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const VideoStreamingView(
-                      playbackUrl:
-                          'https://3d26876b73d7.us-west-2.playback.live-video.net/api/video/v1/us-west-2.913157848533.channel.rkCBS9iD1eyd.m3u8',
-                    ),
+                    if (controller.activeLive != null)
+                      VideoStreaming(
+                        title: controller.activeLive!.title,
+                        playbackUrl: controller.activeLive!.playbackUrl,
+                        isAdmin: controller.room.ownPowerLevel == 100,
+                        onClose: controller.closeLiveWidget,
+                        onEdit: controller.editLiveWidget,
+                      ),
                     if (controller.dragging)
                       Container(
                         color: theme.scaffoldBackgroundColor.withAlpha(230),

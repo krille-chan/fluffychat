@@ -3283,5 +3283,8 @@
 "liveTitle": "Título da live",
 "enterLiveTitleHint": "Digite um título para a live",
 "preview": "Preview",
-"showLiveForRoom": "Exibir live para todos na sala \"{roomName}\""
+"showLiveForRoom": "Exibir live para todos na sala \"{roomName}\"",
+"liveClosedSuccess": "Live encerrada com sucesso!",
+"liveCloseError": "Erro ao encerrar live: {error}",
+"liveEditedSuccess": "Live editada com sucesso!"
 }
