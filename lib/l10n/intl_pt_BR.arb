@@ -3278,5 +3278,10 @@
 "live": "Live",
 "liveBroadcastRadioHemp": "Transmissão ao vivo da Radio Hemp",
 "thisRoom": "Esta sala",
-"externalResourcesForRooms": "Recursos externos para as salas"
+"externalResourcesForRooms": "Recursos externos para as salas",
+"live": "Live",
+"liveTitle": "Título da live",
+"enterLiveTitleHint": "Digite um título para a live",
+"preview": "Preview",
+"showLiveForRoom": "Exibir live para todos na sala \"{roomName}\""
 }
