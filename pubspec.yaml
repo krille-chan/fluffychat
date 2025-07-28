@@ -78,7 +78,10 @@ dependencies:
   slugify: ^2.0.0
   sqflite_common_ffi: ^2.3.6
   sqlcipher_flutter_libs: ^0.6.1
-  swipe_to_action: ^0.3.0
+  swipe_to_action:
+    git:
+      url: https://github.com/xegim/swipe_to_action.git
+      ref: onThresholdCallback
   tor_detector_web: ^1.1.0
   unifiedpush: ^5.0.1
   unifiedpush_ui: ^0.1.0
