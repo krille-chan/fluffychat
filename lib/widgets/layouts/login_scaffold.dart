@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 
@@ -50,7 +49,7 @@ class LoginScaffold extends StatelessWidget {
       ),
       child: Center(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 32.0),
+          padding: const EdgeInsets.all(16.0),
           child: Material(
             color: theme.colorScheme.tertiary,
             shape: RoundedRectangleBorder(
@@ -63,9 +62,13 @@ class LoginScaffold extends StatelessWidget {
             clipBehavior: Clip.hardEdge,
             elevation: theme.appBarTheme.scrolledUnderElevation ?? 4,
             shadowColor: theme.appBarTheme.shadowColor,
-            child: SizedBox(
-              width: 480,
-              height: 680,
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(
+                maxWidth: 480,
+                maxHeight: 600,
+                minWidth: 300,
+                minHeight: 400,
+              ),
               child: Scaffold(
                 backgroundColor: Colors.transparent,
                 key: const Key('LoginScaffold'),

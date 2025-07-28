@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import 'package:matrix/matrix.dart';
-
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/widgets/layouts/login_scaffold.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -31,9 +29,22 @@ class LoginView extends StatelessWidget {
         enforceMobileMode || !FluffyThemes.isColumnMode(context);
 
     final screenHeight = MediaQuery.of(context).size.height;
-    final toolBarHeight = isMobileMode ? screenHeight * 0.17 : 110.0;
-    final toolBarPadding = isMobileMode ? screenHeight * 0.13 : 55.0;
-    final imagePadding = isMobileMode ? screenHeight * 0.10 : 45.0;
+
+    final mobileAppBarHeight = screenHeight * 0.15;
+    final mobileAppBarTitlePaddingTop = mobileAppBarHeight - 18;
+    final mobileImagePadding = screenHeight * 0.13;
+
+    const desktopAppBarHeight = 80.0;
+    const desktopAppBarTitlePaddingTop = 30.0;
+    const desktopImagePadding = 45.0;
+
+    final toolBarHeight =
+        isMobileMode ? mobileAppBarHeight : desktopAppBarHeight;
+    final toolBarPadding = isMobileMode
+        ? mobileAppBarTitlePaddingTop
+        : desktopAppBarTitlePaddingTop;
+    final imagePadding =
+        isMobileMode ? mobileImagePadding : desktopImagePadding;
 
     return LoginScaffold(
       enforceMobileMode:
@@ -63,7 +74,7 @@ class LoginView extends StatelessWidget {
         ),
         actions: [
           MoreLoginMenuButton(
-            padding: EdgeInsets.only(right: 16.0, top: toolBarPadding),
+            padding: EdgeInsets.only(right: 16.0, top: toolBarPadding - 15),
           ),
         ],
       ),
@@ -72,14 +83,14 @@ class LoginView extends StatelessWidget {
           return SingleChildScrollView(
             child: Center(
               child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 32.0),
+                padding: const EdgeInsets.symmetric(vertical: 20.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Padding(
                       padding: EdgeInsets.only(bottom: imagePadding),
                       child: FractionallySizedBox(
-                        widthFactor: isMobileMode ? 0.7 : 0.5,
+                        widthFactor: isMobileMode ? 0.6 : 0.5,
                         child: Image.asset(
                           'assets/logo_horizontal_semfundo.png',
                           fit: BoxFit.contain,
@@ -91,8 +102,8 @@ class LoginView extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 24.0),
                       child: TextField(
-                        style: const TextStyle(
-                          color: Colors.white,
+                        style: TextStyle(
+                          color: theme.colorScheme.onSecondary,
                           fontWeight: FontWeight.normal,
                           fontFamily: 'Roboto',
                         ),
@@ -120,8 +131,8 @@ class LoginView extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 24.0),
                       child: TextField(
-                        style: const TextStyle(
-                          color: Colors.white,
+                        style: TextStyle(
+                          color: theme.colorScheme.onSecondary,
                           fontWeight: FontWeight.normal,
                           fontFamily: 'Roboto',
                         ),
@@ -177,7 +188,7 @@ class LoginView extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 30),
+                    const SizedBox(height: 20),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 24.0),
                       child: Align(

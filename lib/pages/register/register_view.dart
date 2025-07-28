@@ -29,9 +29,22 @@ class RegisterView extends StatelessWidget {
         enforceMobileMode || !FluffyThemes.isColumnMode(context);
 
     final screenHeight = MediaQuery.of(context).size.height;
-    final toolBarHeight = isMobileMode ? screenHeight * 0.17 : 95.0;
-    final toolBarPadding = isMobileMode ? screenHeight * 0.13 : 60.0;
-    final imagePadding = isMobileMode ? screenHeight * 0.10 : 45.0;
+
+    final mobileAppBarHeight = screenHeight * 0.15;
+    final mobileAppBarTitlePaddingTop = mobileAppBarHeight - 18;
+    final mobileImagePadding = screenHeight * 0.13;
+
+    const desktopAppBarHeight = 75.0;
+    const desktopAppBarTitlePaddingTop = 25.0;
+    const desktopImagePadding = 40.0;
+
+    final toolBarHeight =
+        isMobileMode ? mobileAppBarHeight : desktopAppBarHeight;
+    final toolBarPadding = isMobileMode
+        ? mobileAppBarTitlePaddingTop
+        : desktopAppBarTitlePaddingTop;
+    final imagePadding =
+        isMobileMode ? mobileImagePadding : desktopImagePadding;
 
     return LoginScaffold(
       enforceMobileMode:
@@ -47,17 +60,21 @@ class RegisterView extends StatelessWidget {
             alignment: isMobileMode ? Alignment.topLeft : Alignment.centerLeft,
             child: Text(
               L10n.of(context).signUp,
-              style: const TextStyle(
+              style: TextStyle(
                 fontFamily: 'Roboto',
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
+                color: theme.colorScheme.onSurface,
               ),
             ),
           ),
         ),
         actions: [
           MoreLoginMenuButton(
-            padding: EdgeInsets.only(right: 16.0, top: toolBarPadding),
+            padding: EdgeInsets.only(
+              right: 16.0,
+              top: toolBarPadding - 10,
+            ),
           ),
         ],
       ),
@@ -66,14 +83,16 @@ class RegisterView extends StatelessWidget {
           return SingleChildScrollView(
             child: Center(
               child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 32.0),
+                padding: const EdgeInsets.symmetric(
+                  vertical: 32.0,
+                ),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Padding(
                       padding: EdgeInsets.only(bottom: imagePadding),
                       child: FractionallySizedBox(
-                        widthFactor: isMobileMode ? 0.7 : 0.5,
+                        widthFactor: isMobileMode ? 0.6 : 0.5,
                         child: Image.asset(
                           'assets/logo_horizontal_semfundo.png',
                           fit: BoxFit.contain,
@@ -85,8 +104,8 @@ class RegisterView extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 24.0),
                       child: TextField(
-                        style: const TextStyle(
-                          color: Colors.white,
+                        style: TextStyle(
+                          color: theme.colorScheme.onSecondary,
                           fontFamily: 'Roboto',
                         ),
                         readOnly: controller.loading,
@@ -110,8 +129,8 @@ class RegisterView extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 24.0),
                       child: TextField(
-                        style: const TextStyle(
-                          color: Colors.white,
+                        style: TextStyle(
+                          color: theme.colorScheme.onSecondary,
                           fontFamily: 'Roboto',
                         ),
                         readOnly: controller.loading,
@@ -136,8 +155,8 @@ class RegisterView extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 24.0),
                       child: TextField(
-                        style: const TextStyle(
-                          color: Colors.white,
+                        style: TextStyle(
+                          color: theme.colorScheme.onSecondary,
                           fontFamily: 'Roboto',
                         ),
                         readOnly: controller.loading,
@@ -197,9 +216,7 @@ class RegisterView extends StatelessWidget {
                         padding: const EdgeInsets.only(top: 12),
                         child: Text(
                           controller.genericError!,
-                          style: TextStyle(
-                            color: theme.colorScheme.secondary,
-                          ),
+                          style: TextStyle(color: theme.colorScheme.secondary),
                         ),
                       ),
                     const SizedBox(height: 20),
