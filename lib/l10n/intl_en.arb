@@ -3266,5 +3266,11 @@
   "createAnAccountPrompt": "Create an account",
   "signUp": "Sign up",
   "pleaseUseAStrongPassword": "Use at least 6 characters, including a number and a special character.",
-  "joinTheTransformation": "Join the transformation!"
+  "joinTheTransformation": "Join the transformation!",
+  "loading": "Loading...",
+  "untitled": "Untitled",
+  "unknownArtist": "Unknown Artist",
+  "noSongPlaying": "No song playing",
+  "apiError": "API Error",
+  "errorLoadingInfo": "Error loading info"
   }

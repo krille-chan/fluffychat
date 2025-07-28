@@ -3266,5 +3266,11 @@
 "createAnAccountPrompt": "Crie uma conta",
 "signUp": "Cadastrar",
 "pleaseUseAStrongPassword": "Mínimo de 6 letras, 1 número e 1 símbolo.",
-"joinTheTransformation": "Faça parte da transformação!"
+"joinTheTransformation": "Faça parte da transformação!",
+"loading": "Carregando...",
+"untitled": "Sem título",
+"unknownArtist": "Artista Desconhecido",
+"noSongPlaying": "Nenhuma música tocando",
+"apiError": "Erro na API",
+"errorLoadingInfo": "Erro ao carregar informações"
 }
