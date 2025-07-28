@@ -305,61 +305,68 @@ class ChatListItem extends StatelessWidget {
                                 maxLines: 1,
                                 softWrap: false,
                               )
-                            : FutureBuilder(
-                                key: ValueKey(
-                                  '${lastEvent?.eventId}_${lastEvent?.type}_${lastEvent?.redacted}',
-                                ),
-                                future: needLastEventSender
-                                    ? lastEvent.calcLocalizedBody(
-                                        MatrixLocals(L10n.of(context)),
-                                        hideReply: true,
-                                        hideEdit: true,
-                                        plaintextBody: true,
-                                        removeMarkdown: true,
-                                        withSenderNamePrefix: (!isDirectChat ||
-                                            directChatMatrixId !=
-                                                room.lastEvent?.senderId),
-                                      )
-                                    : null,
-                                initialData:
-                                    lastEvent?.calcLocalizedBodyFallback(
-                                  MatrixLocals(L10n.of(context)),
-                                  hideReply: true,
-                                  hideEdit: true,
-                                  plaintextBody: true,
-                                  removeMarkdown: true,
-                                  withSenderNamePrefix: (!isDirectChat ||
-                                      directChatMatrixId !=
-                                          room.lastEvent?.senderId),
-                                ),
-                                builder: (context, snapshot) => Text(
-                                  room.membership == Membership.invite
-                                      ? room
-                                              .getState(
-                                                EventTypes.RoomMember,
-                                                room.client.userID!,
-                                              )
-                                              ?.content
-                                              .tryGet<String>('reason') ??
-                                          (isDirectChat
-                                              ? L10n.of(context).newChatRequest
-                                              : L10n.of(context)
-                                                  .inviteGroupChat)
-                                      : snapshot.data ??
-                                          L10n.of(context).emptyChat,
-                                  softWrap: false,
-                                  maxLines: room.notificationCount >= 1 ? 2 : 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
-                                    color: unread || room.hasNewMessages
-                                        ? theme.colorScheme.onSecondary
-                                        : theme.colorScheme.onSurface,
-                                    decoration: room.lastEvent?.redacted == true
-                                        ? TextDecoration.lineThrough
+                            : lastEvent?.type == 'im.vector.modular.widgets'
+                                ? const SizedBox.shrink()
+                                : FutureBuilder(
+                                    key: ValueKey(
+                                      '${lastEvent?.eventId}_${lastEvent?.type}_${lastEvent?.redacted}',
+                                    ),
+                                    future: needLastEventSender
+                                        ? lastEvent.calcLocalizedBody(
+                                            MatrixLocals(L10n.of(context)),
+                                            hideReply: true,
+                                            hideEdit: true,
+                                            plaintextBody: true,
+                                            removeMarkdown: true,
+                                            withSenderNamePrefix:
+                                                (!isDirectChat ||
+                                                    directChatMatrixId !=
+                                                        room.lastEvent
+                                                            ?.senderId),
+                                          )
                                         : null,
+                                    initialData:
+                                        lastEvent?.calcLocalizedBodyFallback(
+                                      MatrixLocals(L10n.of(context)),
+                                      hideReply: true,
+                                      hideEdit: true,
+                                      plaintextBody: true,
+                                      removeMarkdown: true,
+                                      withSenderNamePrefix: (!isDirectChat ||
+                                          directChatMatrixId !=
+                                              room.lastEvent?.senderId),
+                                    ),
+                                    builder: (context, snapshot) => Text(
+                                      room.membership == Membership.invite
+                                          ? room
+                                                  .getState(
+                                                    EventTypes.RoomMember,
+                                                    room.client.userID!,
+                                                  )
+                                                  ?.content
+                                                  .tryGet<String>('reason') ??
+                                              (isDirectChat
+                                                  ? L10n.of(context)
+                                                      .newChatRequest
+                                                  : L10n.of(context)
+                                                      .inviteGroupChat)
+                                          : snapshot.data ??
+                                              L10n.of(context).emptyChat,
+                                      softWrap: false,
+                                      maxLines:
+                                          room.notificationCount >= 1 ? 2 : 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: TextStyle(
+                                        color: unread || room.hasNewMessages
+                                            ? theme.colorScheme.onSecondary
+                                            : theme.colorScheme.onSurface,
+                                        decoration:
+                                            room.lastEvent?.redacted == true
+                                                ? TextDecoration.lineThrough
+                                                : null,
+                                      ),
+                                    ),
                                   ),
-                                ),
-                              ),
                   ),
                   const SizedBox(width: 8),
                   AnimatedContainer(
