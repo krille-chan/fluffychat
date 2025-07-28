@@ -37,7 +37,7 @@ abstract class FluffyShare {
     await FluffyShare.share(
       L10n.of(context).inviteText(
         invitedBy,
-        'https://grupos.radiohemp/#/register',
+        'https://grupos.radiohemp.com/#/register',
       ),
       context,
     );
