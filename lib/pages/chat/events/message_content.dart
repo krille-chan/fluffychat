@@ -312,6 +312,8 @@ class MessageContent extends StatelessWidget {
             );
           },
         );
+      case 'im.vector.modular.widgets':
+        return const SizedBox.shrink();
       default:
         return FutureBuilder<User?>(
           future: event.fetchSenderUser(),
