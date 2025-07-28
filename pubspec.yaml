@@ -46,7 +46,7 @@ dependencies:
   flutter_vodozemac: ^0.2.2
   flutter_web_auth_2: ^3.1.1 # Version 4 blocked by https://github.com/MixinNetwork/flutter-plugins/issues/379
   flutter_webrtc: ^0.12.9
-  geolocator: ^13.0.1
+  geolocator: ^14.0.2
   go_router: ^16.0.0
   handy_window: ^0.4.0
   html: ^0.15.4
