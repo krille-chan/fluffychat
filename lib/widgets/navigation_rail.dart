@@ -12,6 +12,7 @@ import 'package:fluffychat/utils/stream_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class SpacesNavigationRail extends StatelessWidget {
   final String? activeSpaceId;
@@ -28,7 +29,6 @@ class SpacesNavigationRail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final client = Matrix.of(context).client;
-    final theme = Theme.of(context);
     final isSettings = GoRouter.of(context)
         .routeInformationProvider
         .value
@@ -45,16 +45,6 @@ class SpacesNavigationRail extends StatelessWidget {
               .where((s) => s.hasRoomUpdate)
               .rateLimit(const Duration(seconds: 1)),
           builder: (context, _) {
-            final allSpaces = client.rooms.where((room) => room.isSpace);
-            final rootSpaces = allSpaces
-                .where(
-                  (space) => !allSpaces.any(
-                    (parentSpace) => parentSpace.spaceChildren
-                        .any((child) => child.roomId == space.id),
-                  ),
-                )
-                .toList();
-
             return Container(
               decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.surface,
@@ -73,15 +63,12 @@ class SpacesNavigationRail extends StatelessWidget {
                             isSelected: activeSpaceId == null && !isSettings,
                             onTap: onGoToChats,
                             icon: Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: Icon(
-                                Icons.forum_outlined,
-                                color: theme.colorScheme.onSurface,
-                              ),
+                              padding: const EdgeInsets.all(10),
+                              child: SvgPicture.asset('assets/icons/chat.svg'),
                             ),
-                            selectedIcon: const Padding(
-                              padding: EdgeInsets.all(10.0),
-                              child: Icon(Icons.forum),
+                            selectedIcon: Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: SvgPicture.asset('assets/icons/chat.svg'),
                             ),
                             toolTip: L10n.of(context).chats,
                             unreadBadgeFilter: (room) => true,
@@ -133,11 +120,8 @@ class SpacesNavigationRail extends StatelessWidget {
                               );
                             },
                             icon: Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: Icon(
-                                Icons.store_outlined,
-                                color: theme.colorScheme.onSurface,
-                              ),
+                              padding: const EdgeInsets.all(10),
+                              child: SvgPicture.asset('assets/icons/store.svg'),
                             ),
                             toolTip: L10n.of(context).menuStore,
                           ),
@@ -152,31 +136,11 @@ class SpacesNavigationRail extends StatelessWidget {
                               );
                             },
                             icon: Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: Icon(
-                                Icons.grass_outlined,
-                                color: theme.colorScheme.onSurface,
-                              ),
+                              padding: const EdgeInsets.all(10),
+                              child:
+                                  SvgPicture.asset('assets/icons/course.svg'),
                             ),
                             toolTip: L10n.of(context).menuCourse,
-                          ),
-
-                          NaviRailItem(
-                            isSelected: false,
-                            onTap: () async {
-                              await launchUrl(
-                                Uri.parse('https://www.radiohemp.com/blog/'),
-                                mode: LaunchMode.externalApplication,
-                              );
-                            },
-                            icon: Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: Icon(
-                                Icons.article_outlined,
-                                color: theme.colorScheme.onSurface,
-                              ),
-                            ),
-                            toolTip: L10n.of(context).menuNews,
                           ),
 
                           NaviRailItem(
@@ -188,11 +152,9 @@ class SpacesNavigationRail extends StatelessWidget {
                               );
                             },
                             icon: Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: Icon(
-                                Icons.podcasts_outlined,
-                                color: theme.colorScheme.onSurface,
-                              ),
+                              padding: const EdgeInsets.all(10),
+                              child:
+                                  SvgPicture.asset('assets/icons/podcast.svg'),
                             ),
                             toolTip: L10n.of(context).menuPodcasts,
                           ),
@@ -203,17 +165,28 @@ class SpacesNavigationRail extends StatelessWidget {
                       isSelected: isSettings,
                       onTap: () => context.go('/rooms/settings'),
                       icon: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Icon(
-                          Icons.settings_outlined,
-                          color: theme.colorScheme.onSurface,
-                        ),
+                        padding: const EdgeInsets.all(10),
+                        child: SvgPicture.asset('assets/icons/configs.svg'),
                       ),
-                      selectedIcon: const Padding(
-                        padding: EdgeInsets.all(10.0),
-                        child: Icon(Icons.settings),
+                      selectedIcon: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: SvgPicture.asset('assets/icons/configs.svg'),
                       ),
                       toolTip: L10n.of(context).settings,
+                    ),
+                    NaviRailItem(
+                      isSelected: false,
+                      onTap: () async {
+                        await launchUrl(
+                          Uri.parse('https://www.radiohemp.com/chama/'),
+                          mode: LaunchMode.externalApplication,
+                        );
+                      },
+                      icon: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: SvgPicture.asset('assets/icons/chama.svg'),
+                      ),
+                      toolTip: L10n.of(context).joinTheTransformation,
                     ),
                     const SizedBox(height: 6),
                   ],

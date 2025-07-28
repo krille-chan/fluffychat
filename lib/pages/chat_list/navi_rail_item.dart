@@ -40,8 +40,8 @@ class NaviRailItem extends StatelessWidget {
           child: Stack(
             children: [
               Positioned(
-                top: 8,
-                bottom: 8,
+                top: 0,
+                bottom: 0,
                 left: 0,
                 child: AnimatedContainer(
                   width: isSelected
@@ -60,16 +60,15 @@ class NaviRailItem extends StatelessWidget {
                   ),
                 ),
               ),
-              Center(
+              Align(
+                alignment: Alignment.center,
                 child: AnimatedScale(
                   scale: hovered ? 1.1 : 1.0,
                   duration: FluffyThemes.animationDuration,
                   curve: FluffyThemes.animationCurve,
                   child: Material(
                     borderRadius: borderRadius,
-                    color: isSelected
-                        ? theme.colorScheme.primaryContainer
-                        : theme.colorScheme.tertiary,
+                    color: Colors.transparent,
                     child: Tooltip(
                       message: toolTip,
                       child: InkWell(
@@ -80,8 +79,8 @@ class NaviRailItem extends StatelessWidget {
                             : UnreadRoomsBadge(
                                 filter: unreadBadgeFilter,
                                 badgePosition: BadgePosition.topEnd(
-                                  top: -12,
-                                  end: -8,
+                                  top: 3,
+                                  end: 12,
                                 ),
                                 child: icon,
                               ),
