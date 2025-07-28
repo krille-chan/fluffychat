@@ -3265,5 +3265,6 @@
   "newHere": "New here?",
   "createAnAccountPrompt": "Create an account",
   "signUp": "Sign up",
-  "pleaseUseAStrongPassword": "Use at least 6 characters, including a number and a special character."
+  "pleaseUseAStrongPassword": "Use at least 6 characters, including a number and a special character.",
+  "joinTheTransformation": "Join the transformation!"
   }

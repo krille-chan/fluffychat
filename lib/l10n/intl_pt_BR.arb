@@ -3256,7 +3256,7 @@
 "errorUsernameInUse": "Esse nome de usuário já está sendo usado",
 "errorInvalidUsername": "Formato de nome de usuário inválido",
 "menuStore": "Loja",
-"menuCourse": "Curso de cultivo",
+"menuCourse": "Cursos",
 "menuNews": "Notícias",
 "menuPodcasts": "Podcasts",
 "email": "E-mail",
@@ -3265,5 +3265,6 @@
 "newHere": "Novo aqui?",
 "createAnAccountPrompt": "Crie uma conta",
 "signUp": "Cadastrar",
-"pleaseUseAStrongPassword": "Mínimo de 6 letras, 1 número e 1 símbolo."
+"pleaseUseAStrongPassword": "Mínimo de 6 letras, 1 número e 1 símbolo.",
+"joinTheTransformation": "Faça parte da transformação!"
 }
