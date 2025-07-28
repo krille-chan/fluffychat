@@ -12,6 +12,7 @@ import 'package:fluffychat/widgets/hover_builder.dart';
 import '../../config/themes.dart';
 import '../../utils/date_time_extension.dart';
 import '../../widgets/avatar.dart';
+import '../../widgets/streaming/video_streaming_model.dart';
 
 enum ArchivedRoomAction { delete, rejoin }
 
@@ -180,55 +181,83 @@ class ChatListItem extends StatelessWidget {
                   ),
                 ),
               ),
-              title: Row(
-                children: <Widget>[
-                  Expanded(
-                    child: Text(
-                      displayname,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      softWrap: false,
-                      style: TextStyle(
-                        color: theme.colorScheme.primary,
-                        fontWeight: unread || room.hasNewMessages
-                            ? FontWeight.w500
-                            : null,
-                      ),
-                    ),
-                  ),
-                  if (isMuted)
-                    const Padding(
-                      padding: EdgeInsets.only(left: 4.0),
-                      child: Icon(
-                        Icons.notifications_off_outlined,
-                        size: 16,
-                      ),
-                    ),
-                  if (room.isFavourite)
-                    Padding(
-                      padding: EdgeInsets.only(
-                        right: hasNotifications ? 4.0 : 0.0,
-                      ),
-                      child: Icon(
-                        Icons.push_pin,
-                        size: 16,
-                        color: theme.colorScheme.primary,
-                      ),
-                    ),
-                  if (!room.isSpace &&
-                      lastEvent != null &&
-                      room.membership != Membership.invite)
-                    Padding(
-                      padding: const EdgeInsets.only(left: 4.0),
-                      child: Text(
-                        lastEvent.originServerTs.localizedTimeShort(context),
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: theme.colorScheme.onSurface,
+              title: ValueListenableBuilder<Map<String, bool>>(
+                valueListenable: VideoStreamingModel.liveStatus,
+                builder: (context, liveMap, _) {
+                  final isLive = liveMap[room.id] == true;
+
+                  return Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: Text(
+                          displayname,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          softWrap: false,
+                          style: TextStyle(
+                            color: theme.colorScheme.primary,
+                            fontWeight: unread || room.hasNewMessages
+                                ? FontWeight.w500
+                                : null,
+                          ),
                         ),
                       ),
-                    ),
-                ],
+                      if (isMuted)
+                        const Padding(
+                          padding: EdgeInsets.only(left: 4.0),
+                          child: Icon(
+                            Icons.notifications_off_outlined,
+                            size: 16,
+                          ),
+                        ),
+                      if (room.isFavourite)
+                        Padding(
+                          padding: EdgeInsets.only(
+                            right: hasNotifications ? 4.0 : 0.0,
+                          ),
+                          child: Icon(
+                            Icons.push_pin,
+                            size: 16,
+                            color: theme.colorScheme.primary,
+                          ),
+                        ),
+                      if (isLive)
+                        Container(
+                          margin: const EdgeInsets.only(left: 6),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 6,
+                            vertical: 2,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.red,
+                            borderRadius: BorderRadius.circular(6),
+                          ),
+                          child: Text(
+                            L10n.of(context).liveOnAir.toUpperCase(),
+                            style: const TextStyle(
+                              fontSize: 10,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      if (!room.isSpace &&
+                          lastEvent != null &&
+                          room.membership != Membership.invite)
+                        Padding(
+                          padding: const EdgeInsets.only(left: 4.0),
+                          child: Text(
+                            lastEvent.originServerTs
+                                .localizedTimeShort(context),
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: theme.colorScheme.onSurface,
+                            ),
+                          ),
+                        ),
+                    ],
+                  );
+                },
               ),
               subtitle: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,

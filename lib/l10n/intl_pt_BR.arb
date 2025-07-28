@@ -3286,5 +3286,6 @@
 "showLiveForRoom": "Exibir live para todos na sala \"{roomName}\"",
 "liveClosedSuccess": "Live encerrada com sucesso!",
 "liveCloseError": "Erro ao encerrar live: {error}",
-"liveEditedSuccess": "Live editada com sucesso!"
+"liveEditedSuccess": "Live editada com sucesso!",
+"liveOnAir": "Ao vivo"
 }
