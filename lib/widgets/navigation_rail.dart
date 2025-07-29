@@ -158,22 +158,22 @@ class SpacesNavigationRail extends StatelessWidget {
                             ),
                             toolTip: L10n.of(context).menuPodcasts,
                           ),
+                          NaviRailItem(
+                            isSelected: false,
+                            onTap: () async {
+                              await launchUrl(
+                                Uri.parse('https://www.radiohemp.com/chama/'),
+                                mode: LaunchMode.externalApplication,
+                              );
+                            },
+                            icon: Padding(
+                              padding: const EdgeInsets.all(10),
+                              child: SvgPicture.asset('assets/icons/chama.svg'),
+                            ),
+                            toolTip: L10n.of(context).joinTheTransformation,
+                          ),
                         ],
                       ),
-                    ),
-                    NaviRailItem(
-                      isSelected: false,
-                      onTap: () async {
-                        await launchUrl(
-                          Uri.parse('https://www.radiohemp.com/chama/'),
-                          mode: LaunchMode.externalApplication,
-                        );
-                      },
-                      icon: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: SvgPicture.asset('assets/icons/chama.svg'),
-                      ),
-                      toolTip: L10n.of(context).joinTheTransformation,
                     ),
                     NaviRailItem(
                       isSelected: isSettings,
