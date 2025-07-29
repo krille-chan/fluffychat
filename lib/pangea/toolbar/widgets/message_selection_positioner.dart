@@ -317,7 +317,12 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
 
   bool get _hasFooterOverflow {
     if (_screenHeight == null) return false;
-    final bottomOffset = _originalMessageOffset.dy + _contentHeight;
+    final bottomOffset = _originalMessageOffset.dy +
+        originalMessageSize.height +
+        reactionsHeight +
+        AppConfig.toolbarMenuHeight +
+        4.0;
+
     return bottomOffset > _screenHeight!;
   }
 
