@@ -20,7 +20,7 @@ dependencies:
   cupertino_icons: any
   desktop_drop: ^0.4.4
   desktop_notifications: ^0.6.3
-  device_info_plus: ^10.0.1
+  device_info_plus: ^11.5.0
   dynamic_color: ^1.7.0
   emoji_picker_flutter: ^4.3.0
   emojis: ^0.9.9
@@ -145,4 +145,3 @@ dependency_overrides:
       url: https://github.com/ThexXTURBOXx/flutter_web_auth_2.git
       ref: 3.x-without-v1
       path: flutter_web_auth_2
-  win32: 5.5.3
