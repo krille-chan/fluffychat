@@ -35,26 +35,35 @@ class VideoStreaming extends StatefulWidget {
 }
 
 class VideoStreamingController extends State<VideoStreaming> {
-  Offset _position = const Offset(16, 16);
-  double _width = 320;
-  double _height = 320 / (16 / 9);
+  final positionNotifier = ValueNotifier<Offset>(const Offset(16, 16));
+  final widthNotifier = ValueNotifier<double>(0);
 
-  Offset get position => _position;
-  double? get width => _width;
-  double? get height => _height;
+  double get width => widthNotifier.value;
+  double get height => width / (16 / 9);
+  Offset get position => positionNotifier.value;
 
-  void setPosition(Offset newPosition) {
-    setState(() {
-      _position = newPosition;
-    });
+  bool get isPreview => widget.isPreview ?? false;
+
+  void initializeIfNeeded(double defaultWidth) {
+    if (widthNotifier.value == 0) {
+      widthNotifier.value = defaultWidth;
+    }
   }
 
-  void setWidth(double newWidth) {
-    final screenWidth = MediaQuery.of(context).size.width;
-    setState(() {
-      _width = newWidth.clamp(500.0, screenWidth - 32);
-      _height = _width / (16 / 9);
-    });
+  void setPosition(Offset newPosition, double maxWidth, double maxHeight,
+      bool isMobileMode) {
+    if (!mounted) return;
+
+    final dx = isMobileMode ? position.dx : newPosition.dx.clamp(16, maxWidth);
+    final dy = newPosition.dy.clamp(16, maxHeight);
+    positionNotifier.value = Offset(dx.toDouble(), dy.toDouble());
+  }
+
+  void resize(double deltaX, double screenWidth) {
+    if (!mounted) return;
+    final newWidth =
+        (width + deltaX).clamp(screenWidth * 0.3, screenWidth - 32);
+    widthNotifier.value = newWidth;
   }
 
   late String viewId;
@@ -241,8 +250,9 @@ class VideoStreamingController extends State<VideoStreaming> {
 
     final onError = (JSAny event) {
       final errorEvent = event as PlayerErrorEventJS;
-      final codeStr = errorEvent.code.toString();
-      final messageStr = errorEvent.message.toString();
+
+      final codeStr = '${errorEvent.code}';
+      final messageStr = '${errorEvent.message}';
 
       _updateDebugInfo(
         'Erro IVS: $codeStr - $messageStr.',

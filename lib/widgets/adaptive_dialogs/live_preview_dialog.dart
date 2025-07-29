@@ -177,20 +177,23 @@ class _LivePreviewDialogState extends State<LivePreviewDialog> {
                         ),
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      child: VideoStreaming(
-                        title: previewTitle,
-                        playbackUrl: playbackUrl,
-                        isAdmin: true,
-                        isPreview: true,
-                        onDebugInfoChanged: (info) {
-                          WidgetsBinding.instance.addPostFrameCallback((_) {
-                            if (mounted) {
-                              setState(() {
-                                latestDebugInfo = info;
-                              });
-                            }
-                          });
-                        },
+                      child: AspectRatio(
+                        aspectRatio: 16 / 9,
+                        child: VideoStreaming(
+                          title: previewTitle,
+                          playbackUrl: playbackUrl,
+                          isAdmin: true,
+                          isPreview: true,
+                          onDebugInfoChanged: (info) {
+                            WidgetsBinding.instance.addPostFrameCallback((_) {
+                              if (mounted) {
+                                setState(() {
+                                  latestDebugInfo = info;
+                                });
+                              }
+                            });
+                          },
+                        ),
                       ),
                     ),
                     const SizedBox(

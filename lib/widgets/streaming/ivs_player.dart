@@ -62,8 +62,8 @@ extension type PlayerStateChangeEventJS(JSObject _) implements JSAny {
 }
 
 extension type PlayerErrorEventJS(JSObject _) implements JSAny {
-  external String get code;
-  external String get message;
+  external JSAny get code;
+  external JSAny get message;
 }
 
 IVSPlayerJS? createIVSPlayerIfAvailable() {
