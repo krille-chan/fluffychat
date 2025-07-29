@@ -141,11 +141,13 @@ class VideoStreamingController extends State<VideoStreaming> {
     final statusToShow = playerStatus ?? _getCurrentPlayerStatus();
     final newDebug = 'Status: ${statusToShow.value} | $message';
 
-    setState(() {
-      debugInfo = newDebug;
-    });
+    if (mounted) {
+      setState(() {
+        debugInfo = newDebug;
+      });
 
-    widget.onDebugInfoChanged?.call(newDebug);
+      widget.onDebugInfoChanged?.call(newDebug);
+    }
   }
 
   void _initIvsPlayerAndStream() {
@@ -177,8 +179,10 @@ class VideoStreamingController extends State<VideoStreaming> {
 
         ivsPlayer!.attachHTMLVideoElement(videoElement!);
         _setupEventListeners();
-        _updateDebugInfo('IVS Player criado e anexado com sucesso.',
-            playerStatus: _getCurrentPlayerStatus());
+        _updateDebugInfo(
+          'IVS Player criado e anexado com sucesso.',
+          playerStatus: _getCurrentPlayerStatus(),
+        );
       } catch (e) {
         _updateDebugInfo(
             'Erro ao criar/anexar IVS Player: $e. Tentando novamente em 3s.',
