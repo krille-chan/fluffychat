@@ -16,6 +16,16 @@ dependencies {
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4") // For flutter_local_notifications // Workaround for: https://github.com/MaikuB/flutter_local_notifications/issues/2286
 }
 
+
+// unifiedpush and flutter_secure_storage are importing different versions
+// of tink. To workaround this we enforce one and exclude the other one.
+configurations.all {
+    resolutionStrategy {
+        force("com.google.crypto.tink:tink-android:1.9.0")
+        exclude(group = "com.google.crypto.tink", module = "tink")
+    }
+}
+
 android {
     namespace = "chat.fluffy.fluffychat"
     compileSdk = flutter.compileSdkVersion
