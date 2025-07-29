@@ -94,23 +94,7 @@ class VideoStreamingView extends StatelessWidget {
                               ),
                             ),
                             const Spacer(),
-                            if (isAdmin && !isPreview)
-                              PopupMenuButton<String>(
-                                onSelected: (value) {
-                                  if (value == 'edit') onEdit();
-                                  if (value == 'remove') onClose();
-                                },
-                                itemBuilder: (context) => [
-                                  PopupMenuItem(
-                                    value: 'edit',
-                                    child: Text(L10n.of(context).edit),
-                                  ),
-                                  PopupMenuItem(
-                                    value: 'remove',
-                                    child: Text(L10n.of(context).closeLive),
-                                  ),
-                                ],
-                              ),
+                            if (isAdmin && !isPreview) _buildAdminMenu(context),
                           ],
                         ),
                       ),
@@ -158,6 +142,25 @@ class VideoStreamingView extends StatelessWidget {
           },
         );
       },
+    );
+  }
+
+  Widget _buildAdminMenu(BuildContext context) {
+    return PopupMenuButton<String>(
+      onSelected: (value) {
+        if (value == 'edit') onEdit();
+        if (value == 'remove') onClose();
+      },
+      itemBuilder: (context) => [
+        PopupMenuItem(
+          value: 'edit',
+          child: Text(L10n.of(context).edit),
+        ),
+        PopupMenuItem(
+          value: 'remove',
+          child: Text(L10n.of(context).closeLive),
+        ),
+      ],
     );
   }
 }
