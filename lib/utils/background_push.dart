@@ -94,7 +94,7 @@ class BackgroundPush {
       if (Platform.isAndroid) {
         await UnifiedPush.initialize(
           onNewEndpoint: _newUpEndpoint,
-          onRegistrationFailed: _upUnregistered,
+          onRegistrationFailed: (_, i) => _upUnregistered(i),
           onUnregistered: _upUnregistered,
           onMessage: _onUpMessage,
         );
@@ -352,7 +352,8 @@ class BackgroundPush {
         .registerAppWithDialog();
   }
 
-  Future<void> _newUpEndpoint(String newEndpoint, String i) async {
+  Future<void> _newUpEndpoint(PushEndpoint newPushEndpoint, String i) async {
+    final newEndpoint = newPushEndpoint.url;
     upAction = true;
     if (newEndpoint.isEmpty) {
       await _upUnregistered(i);
@@ -412,7 +413,8 @@ class BackgroundPush {
     }
   }
 
-  Future<void> _onUpMessage(Uint8List message, String i) async {
+  Future<void> _onUpMessage(PushMessage pushMessage, String i) async {
+    final message = pushMessage.content;
     upAction = true;
     final data = Map<String, dynamic>.from(
       json.decode(utf8.decode(message))['notification'],
@@ -446,7 +448,7 @@ class UPFunctions extends UnifiedPushFunctions {
 
   @override
   Future<void> registerApp(String instance) async {
-    await UnifiedPush.registerApp(instance, features);
+    await UnifiedPush.register(instance: instance, features: features);
   }
 
   @override
