@@ -83,7 +83,7 @@ dependencies:
   unifiedpush: ^5.0.1
   unifiedpush_ui: ^0.1.0
   universal_html: ^2.2.4
-  url_launcher: ^6.2.5
+  url_launcher: ^6.3.2
   video_compress: ^3.1.4
   video_player: ^2.9.5
   wakelock_plus: ^1.2.2
