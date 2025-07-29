@@ -60,7 +60,7 @@ class _LivePreviewDialogState extends State<LivePreviewDialog> {
 
     if (title.isEmpty) {
       setState(() {
-        titleError = L10n.of(context).liveTitle;
+        titleError = L10n.of(context).enterLiveTitleHint;
       });
       return;
     }
