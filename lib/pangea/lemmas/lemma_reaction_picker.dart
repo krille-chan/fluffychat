@@ -51,6 +51,29 @@ class LemmaReactionPicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final sentReactions = <String>{};
+    if (controller.selectedEvents.isNotEmpty) {
+      final selectedEvent = controller.selectedEvents.first;
+      sentReactions.addAll(
+        selectedEvent
+            .aggregatedEvents(
+              controller.timeline!,
+              RelationshipTypes.reaction,
+            )
+            .where(
+              (event) =>
+                  event.senderId == event.room.client.userID &&
+                  event.type == 'm.reaction',
+            )
+            .map(
+              (event) => event.content
+                  .tryGetMap<String, Object?>('m.relates_to')
+                  ?.tryGet<String>('key'),
+            )
+            .whereType<String>(),
+      );
+    }
+
     return Container(
       height: 50,
       alignment: Alignment.center,
@@ -65,9 +88,18 @@ class LemmaReactionPicker extends StatelessWidget {
                 .toList()
             : emojis
                 .map(
-                  (emoji) => LemmaEmojiChoiceItem(
-                    content: emoji,
-                    onTap: () => setEmoji(emoji, context),
+                  (emoji) => Opacity(
+                    opacity: sentReactions.contains(
+                      emoji,
+                    )
+                        ? 0.33
+                        : 1,
+                    child: LemmaEmojiChoiceItem(
+                      content: emoji,
+                      onTap: () => sentReactions.contains(emoji)
+                          ? null
+                          : setEmoji(emoji, context),
+                    ),
                   ),
                 )
                 .toList(),
