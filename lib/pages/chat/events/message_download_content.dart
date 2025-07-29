@@ -53,26 +53,28 @@ class MessageDownloadContent extends StatelessWidget {
                     backgroundColor: textColor.withAlpha(32),
                     child: Icon(Icons.file_download_outlined, color: textColor),
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        filename,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          color: textColor,
-                          fontWeight: FontWeight.w500,
+                  Flexible(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          filename,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            color: textColor,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
-                      ),
-                      Text(
-                        '$sizeString | $filetype',
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(color: textColor, fontSize: 10),
-                      ),
-                    ],
+                        Text(
+                          '$sizeString | $filetype',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(color: textColor, fontSize: 10),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
