@@ -5104,6 +5104,8 @@ SOFTWARE.
 
 --------------------------------------------------------------------------------
 dbus
+geoclue
+gsettings
 gtk
 handy_window
 
@@ -12049,6 +12051,7 @@ Software.
 geolocator
 geolocator_android
 geolocator_apple
+geolocator_linux
 geolocator_platform_interface
 geolocator_web
 geolocator_windows
