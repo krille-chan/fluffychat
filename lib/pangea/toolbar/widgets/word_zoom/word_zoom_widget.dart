@@ -43,7 +43,7 @@ class WordZoomWidget extends StatelessWidget {
           true &&
       overlayController.hideWordCardContent;
 
-  String get transformTargetId => "newer-word-overlay-${token.text.uniqueKey}";
+  String get transformTargetId => "word-zoom-card-${token.text.uniqueKey}";
 
   LayerLink get layerLink =>
       MatrixState.pAnyState.layerLinkAndKey(transformTargetId).link;
