@@ -2394,5 +2394,11 @@
   "@obtainingLocation": {
     "type": "String",
     "placeholders": {}
-  }
+  },
+  "noDatabaseEncryption": "Databasekryptering støttes ikke på denne plattformen",
+  "@noDatabaseEncryption": {},
+  "changeGeneralChatSettings": "Endre generelle chatinnstillinger",
+  "@changeGeneralChatSettings": {},
+  "changeTheChatPermissions": "Endre chattillatelsene",
+  "@changeTheChatPermissions": {}
 }
