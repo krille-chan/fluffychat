@@ -415,7 +415,9 @@ class RoomDetailsButtonRowState extends State<RoomDetailsButtonRow> {
             onSubmit: widget.controller.setBotOptions,
           ),
         ),
-        visible: !room.isSpace && !room.isDirectChat && room.canInvite,
+        visible: !room.isSpace &&
+            (!room.isDirectChat || room.botOptions != null) &&
+            room.canInvite,
       ),
       ButtonDetails(
         title: l10n.chatCapacity,
