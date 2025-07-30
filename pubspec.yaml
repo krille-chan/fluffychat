@@ -16,7 +16,9 @@ dependencies:
   blurhash_dart: ^1.2.1
   chewie: ^1.12.1
   collection: ^1.18.0
+  cronet_http: ^1.4.0
   cross_file: ^0.3.4+2
+  cupertino_http: ^2.2.0
   cupertino_icons: any
   desktop_drop: ^0.4.4
   desktop_notifications: ^0.6.3
