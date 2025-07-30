@@ -10,7 +10,7 @@ environment:
 dependencies:
   animations: ^2.0.11
   app_links: ^6.3.3
-  archive: ^3.4.10
+  archive: ^4.0.7
   async: ^2.11.0
   badges: ^3.1.2
   blurhash_dart: ^1.2.1
