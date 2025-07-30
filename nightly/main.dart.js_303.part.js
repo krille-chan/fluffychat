@@ -515,9 +515,9 @@ gmt(){return"Marker som ulest"},
 jR(d){return""+d+" - Bruker"},
 j5(d){return""+d+" - Moderator"},
 ha(d){return""+d+" - Admin"},
-gl7(){return"Change general chat settings"},
+gl7(){return"Endre generelle chatinnstillinger"},
 gmf(){return"Inviter andre brukere til denne chatten"},
-gl9(){return"Change the chat permissions"},
+gl9(){return"Endre chattillatelsene"},
 glb(){return"Change the visibility of the chat history"},
 gl8(){return"Change the main public chat address"},
 gkj(){return"Send a @room notifications"},
@@ -639,5 +639,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Ft,C.aF)})()
 B.dQ(b.typeUniverse,JSON.parse('{"Ft":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_303",e:"endPart",h:b})})($__dart_deferred_initializers__,"AyOWvZd69XQ2KwFsTXEvAb2DwQQ=");
+a.eventLog.push({p:"main.dart.js_303",e:"endPart",h:b})})($__dart_deferred_initializers__,"S67ELnYOa1nkgpB+n0Pf2iXkxig=");
 //# sourceMappingURL=main.dart.js_303.part.js.map
