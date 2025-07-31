@@ -204,14 +204,18 @@ extension EventsRoomExtension on Room {
     String? messageTag,
     String? tempEventId,
   }) {
-    // if (parseCommands) {
-    //   return client.parseAndRunCommand(this, message,
-    //       inReplyTo: inReplyTo,
-    //       editEventId: editEventId,
-    //       txid: txid,
-    //       threadRootEventId: threadRootEventId,
-    //       threadLastEventId: threadLastEventId);
-    // }
+    if (parseCommands) {
+      return client.parseAndRunCommand(
+        this,
+        message,
+        inReplyTo: inReplyTo,
+        editEventId: editEventId,
+        txid: txid,
+        threadRootEventId: threadRootEventId,
+        threadLastEventId: threadLastEventId,
+      );
+    }
+
     final event = <String, dynamic>{
       'msgtype': msgtype,
       'body': message,
