@@ -549,7 +549,7 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
             xp: ConstructUseTypeEnum.click.pointValue,
           ),
         ],
-        targetID: "word-zoom-card-${selectedToken!.text.uniqueKey}",
+        targetID: "word-zoom-card-${token.text.uniqueKey}",
       ),
     );
 
