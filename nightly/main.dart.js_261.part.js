@@ -2,12 +2,12 @@
 a[b][c]=a[b][c]||[]
 a[b][c].push({p:"main.dart.js_261",e:"beginPart"})})(self,"$__dart_deferred_initializers__","eventLog")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cCG(){return new A.F8(B.de("et"))},
-F8:function F8(d){this.a=d}}
+cCV(){return new A.Fa(B.de("et"))},
+Fa:function Fa(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[17],A)
-A.F8.prototype={
+A.Fa.prototype={
 gkV(){return"false"},
 gjG(){return"Korda salas\xf5na"},
 gmG(){return"See pole pildifail."},
@@ -636,8 +636,8 @@ gpb(){return"Veel s\xfcndmusi"},
 glH(){return"Keeldu kutsest"},
 B(d,e){return this.gb9(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.F8,C.aF)})()
-B.dQ(b.typeUniverse,JSON.parse('{"F8":{"aF":[]}}'))};
+y(A.Fa,C.aF)})()
+B.dP(b.typeUniverse,JSON.parse('{"Fa":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_261",e:"endPart",h:b})})($__dart_deferred_initializers__,"vXoJsH2keL/nxBDySKo7KUaRTKM=");
+a.eventLog.push({p:"main.dart.js_261",e:"endPart",h:b})})($__dart_deferred_initializers__,"+/xfca0OuT1z+5Dg0oKYpAKrCis=");
 //# sourceMappingURL=main.dart.js_261.part.js.map
