@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:fluffychat/widgets/streaming/video_streaming_model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -99,6 +100,11 @@ class ChatListController extends State<ChatList>
 
   String? _activeSpaceId;
   String? get activeSpaceId => _activeSpaceId;
+
+  StreamSubscription<({String roomId, StrippedStateEvent state})>?
+      _liveWidgetsSubscription;
+
+  final Map<String, VideoStreamingModel?> activeLives = {};
 
   void setActiveSpace(String spaceId) async {
     await Matrix.of(context).client.getRoomById(spaceId)!.postLoad();
@@ -402,6 +408,74 @@ class ChatListController extends State<ChatList>
     }
   }
 
+  void _updateLiveStatusForRoom(String roomId, bool isActive) {
+    final currentStatus = VideoStreamingModel.liveStatus.value[roomId];
+    if (currentStatus != isActive) {
+      VideoStreamingModel.liveStatus.value = {
+        ...VideoStreamingModel.liveStatus.value,
+        roomId: isActive,
+      };
+    }
+  }
+
+  void _listenToAllLiveWidgets() {
+    final client = Matrix.of(context).client;
+
+    _liveWidgetsSubscription = client.onRoomState.stream.listen((event) {
+      final roomId = event.roomId;
+      final state = event.state;
+
+      if (state.type != VideoStreamingModel.eventType ||
+          state.stateKey != VideoStreamingModel.stateKey) {
+        return;
+      }
+
+      final content = state.content as Map<String, dynamic>? ?? {};
+      final data = content['data'] as Map<String, dynamic>?;
+
+      if (data == null) {
+        _updateLiveStatusForRoom(roomId, false);
+      } else {
+        final live = VideoStreamingModel.fromWidgetStateEvent(state);
+        _updateLiveStatusForRoom(roomId, true);
+      }
+    });
+  }
+
+  Future<void> fetchLiveWidgetForRoom(Room room) async {
+    await room.postLoad();
+
+    final states = room.states[VideoStreamingModel.eventType];
+    if (states == null) {
+      _updateLiveStatusForRoom(room.id, false);
+      return;
+    }
+
+    final event = states[VideoStreamingModel.stateKey];
+    if (event == null) {
+      _updateLiveStatusForRoom(room.id, false);
+      return;
+    }
+
+    final content = event.content as Map<String, dynamic>? ?? {};
+    final data = content['data'] as Map<String, dynamic>?;
+
+    if (data != null) {
+      _updateLiveStatusForRoom(room.id, true);
+    } else {
+      _updateLiveStatusForRoom(room.id, false);
+    }
+  }
+
+  Future<void> _loadLiveWidgetsForAllRooms() async {
+    final client = Matrix.of(context).client;
+    final rooms = client.rooms;
+
+    for (final room in rooms) {
+      await fetchLiveWidgetForRoom(room);
+    }
+  }
+
   @override
   void initState() {
     _initReceiveSharingIntent();
@@ -428,6 +502,11 @@ class ChatListController extends State<ChatList>
     ErrorReporter(context).consumeTemporaryErrorLogFile();
 
     super.initState();
+
+    _waitForFirstSync().then((_) async {
+      await _loadLiveWidgetsForAllRooms();
+      _listenToAllLiveWidgets();
+    });
   }
 
   @override
@@ -435,6 +514,7 @@ class ChatListController extends State<ChatList>
     _intentDataStreamSubscription?.cancel();
     _intentFileStreamSubscription?.cancel();
     _intentUriStreamSubscription?.cancel();
+    _liveWidgetsSubscription?.cancel();
     scrollController.removeListener(_onScroll);
     super.dispose();
   }
@@ -596,7 +676,7 @@ class ChatListController extends State<ChatList>
             children: [
               Icon(
                 Icons.delete_outlined,
-                color: Theme.of(context).colorScheme.onErrorContainer,
+                color: Theme.of(context).colorScheme.error,
               ),
               const SizedBox(width: 12),
               Text(
@@ -604,7 +684,7 @@ class ChatListController extends State<ChatList>
                     ? L10n.of(context).delete
                     : L10n.of(context).leave,
                 style: TextStyle(
-                  color: Theme.of(context).colorScheme.onErrorContainer,
+                  color: Theme.of(context).colorScheme.error,
                 ),
               ),
             ],

@@ -78,24 +78,39 @@ class VideoStreamingView extends StatelessWidget {
                             isMobileMode,
                           );
                         },
-                        child: Row(
-                          children: [
-                            const Icon(Icons.fiber_manual_record,
-                                color: Colors.red),
-                            const SizedBox(width: 5),
-                            Text(
-                              title.isNotEmpty
-                                  ? '${(L10n.of(context).live).toUpperCase()} - $title'
-                                  : (L10n.of(context).live).toUpperCase(),
-                              style: TextStyle(
-                                color: theme.colorScheme.onSecondary,
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
+                        child: SizedBox(
+                          width: width,
+                          child: Row(
+                            children: [
+                              const Icon(
+                                Icons.fiber_manual_record,
+                                color: Colors.red,
                               ),
-                            ),
-                            const Spacer(),
-                            if (isAdmin && !isPreview) _buildAdminMenu(context),
-                          ],
+                              const SizedBox(width: 5),
+                              Expanded(
+                                child: Tooltip(
+                                  message: title.isNotEmpty
+                                      ? '${(L10n.of(context).live).toUpperCase()} - $title'
+                                      : (L10n.of(context).live).toUpperCase(),
+                                  child: Text(
+                                    title.isNotEmpty
+                                        ? '${(L10n.of(context).live).toUpperCase()} - $title'
+                                        : (L10n.of(context).live).toUpperCase(),
+                                    style: TextStyle(
+                                      color: theme.colorScheme.onSecondary,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(width: 8),
+                              if (isAdmin && !isPreview)
+                                _buildAdminMenu(context),
+                            ],
+                          ),
                         ),
                       ),
                     ),

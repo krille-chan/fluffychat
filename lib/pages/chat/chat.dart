@@ -118,6 +118,8 @@ class ChatController extends State<ChatPageWithRoom>
   late final FocusNode inputFocus;
   StreamSubscription<html.Event>? onFocusSub;
 
+  StreamSubscription? _liveWidgetsSubscription;
+
   Timer? typingCoolDown;
   Timer? typingTimeout;
   bool currentlyTyping = false;
@@ -518,6 +520,7 @@ class ChatController extends State<ChatPageWithRoom>
   @override
   void dispose() {
     timeline?.cancelSubscriptions();
+    _liveWidgetsSubscription?.cancel();
     timeline = null;
     inputFocus.removeListener(_inputFocusListener);
     onFocusSub?.cancel();
@@ -1337,17 +1340,6 @@ class ChatController extends State<ChatPageWithRoom>
     _displayChatDetailsColumn.value = !_displayChatDetailsColumn.value;
   }
 
-  void _updateLiveStatus(bool isActive) {
-    final currentStatus = VideoStreamingModel.liveStatus.value[room.id];
-    if (currentStatus != isActive) {
-      VideoStreamingModel.liveStatus.value = {
-        ...VideoStreamingModel.liveStatus.value,
-        room.id: isActive,
-      };
-    }
-    AudioState.mutedNotifier.value = isActive;
-  }
-
   void _updateActiveLive(VideoStreamingModel? live) {
     if (activeLive != live && mounted) {
       setState(() {
@@ -1359,7 +1351,7 @@ class ChatController extends State<ChatPageWithRoom>
   void _listenToLiveWidgets() {
     final client = Matrix.of(context).client;
 
-    client.onRoomState.stream.listen((event) {
+    _liveWidgetsSubscription = client.onRoomState.stream.listen((event) {
       if (event.roomId != room.id) return;
 
       final state = event.state;
@@ -1373,11 +1365,9 @@ class ChatController extends State<ChatPageWithRoom>
 
       if (data == null) {
         _updateActiveLive(null);
-        _updateLiveStatus(false);
       } else {
         final live = VideoStreamingModel.fromWidgetStateEvent(state);
         _updateActiveLive(live);
-        _updateLiveStatus(true);
       }
     });
   }
@@ -1389,7 +1379,6 @@ class ChatController extends State<ChatPageWithRoom>
     final event = stateEvents[VideoStreamingModel.stateKey];
     if (event == null) {
       _updateActiveLive(null);
-      _updateLiveStatus(false);
       return;
     }
 
@@ -1398,11 +1387,9 @@ class ChatController extends State<ChatPageWithRoom>
 
     if (data == null) {
       _updateActiveLive(null);
-      _updateLiveStatus(false);
     } else {
       final live = VideoStreamingModel.fromWidgetStateEvent(event);
       _updateActiveLive(live);
-      _updateLiveStatus(true);
     }
   }
 
