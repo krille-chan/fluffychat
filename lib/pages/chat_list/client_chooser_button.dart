@@ -12,6 +12,7 @@ import '../../utils/fluffy_share.dart';
 import 'chat_list.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../utils/platform_infos.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class ClientChooserButton extends StatelessWidget {
   final ChatListController controller;
@@ -28,6 +29,9 @@ class ClientChooserButton extends StatelessWidget {
                 ? -1
                 : 1,
       );
+
+    final theme = Theme.of(context);
+
     return <PopupMenuEntry<Object>>[
       // PopupMenuItem(
       //   value: SettingsAction.newGroup,
@@ -54,7 +58,14 @@ class ClientChooserButton extends StatelessWidget {
         value: SettingsAction.setStatus,
         child: Row(
           children: [
-            const Icon(Icons.edit_outlined),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 5),
+              child: Icon(
+                Icons.edit_outlined,
+                color: theme.colorScheme.primaryFixed,
+                size: 20,
+              ),
+            ),
             const SizedBox(width: 18),
             Text(L10n.of(context).setStatus),
           ],
@@ -64,7 +75,13 @@ class ClientChooserButton extends StatelessWidget {
         value: SettingsAction.store,
         child: Row(
           children: [
-            const Icon(Icons.store_outlined),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: SvgPicture.asset(
+                'assets/icons/store.svg',
+                width: 30,
+              ),
+            ),
             const SizedBox(width: 18),
             Text(L10n.of(context).menuStore),
           ],
@@ -74,27 +91,30 @@ class ClientChooserButton extends StatelessWidget {
         value: SettingsAction.course,
         child: Row(
           children: [
-            const Icon(Icons.grass_outlined),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              child: SvgPicture.asset(
+                'assets/icons/course.svg',
+                width: 30,
+              ),
+            ),
             const SizedBox(width: 18),
             Text(L10n.of(context).menuCourse),
           ],
         ),
       ),
-      PopupMenuItem(
-        value: SettingsAction.news,
-        child: Row(
-          children: [
-            const Icon(Icons.article_outlined),
-            const SizedBox(width: 18),
-            Text(L10n.of(context).menuNews),
-          ],
-        ),
-      ),
+
       PopupMenuItem(
         value: SettingsAction.podcasts,
         child: Row(
           children: [
-            const Icon(Icons.podcasts_outlined),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              child: SvgPicture.asset(
+                'assets/icons/podcast.svg',
+                width: 30,
+              ),
+            ),
             const SizedBox(width: 18),
             Text(L10n.of(context).menuPodcasts),
           ],
@@ -104,7 +124,13 @@ class ClientChooserButton extends StatelessWidget {
         value: SettingsAction.settings,
         child: Row(
           children: [
-            const Icon(Icons.settings_outlined),
+            Padding(
+              padding: const EdgeInsets.only(left: 3, top: 8, bottom: 8),
+              child: SvgPicture.asset(
+                'assets/icons/configs.svg',
+                width: 27,
+              ),
+            ),
             const SizedBox(width: 18),
             Text(L10n.of(context).settings),
           ],
@@ -115,7 +141,14 @@ class ClientChooserButton extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(Icons.info_outlined),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 8),
+              child: Icon(
+                Icons.info_outlined,
+                color: theme.colorScheme.primaryFixed,
+                size: 22,
+              ),
+            ),
             const SizedBox(width: 12),
             Text(L10n.of(context).about),
           ],
@@ -126,9 +159,16 @@ class ClientChooserButton extends StatelessWidget {
         value: SettingsAction.invite,
         child: Row(
           children: [
-            Icon(Icons.adaptive.share_outlined),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 5),
+              child: Icon(
+                Icons.adaptive.share_outlined,
+                color: theme.colorScheme.primaryFixed,
+                size: 20,
+              ),
+            ),
             const SizedBox(width: 18),
-            Text(L10n.of(context).inviteContact + ' 🔥'),
+            Text('${L10n.of(context).inviteContact} 🔥'),
           ],
         ),
       ),
@@ -287,13 +327,6 @@ class ClientChooserButton extends StatelessWidget {
           );
           break;
 
-        case SettingsAction.news:
-          await launchUrl(
-            Uri.parse('https://www.radiohemp.com/blog/'),
-            mode: LaunchMode.externalApplication,
-          );
-          break;
-
         case SettingsAction.podcasts:
           await launchUrl(
             Uri.parse('https://www.radiohemp.com/podcast/'),
@@ -318,7 +351,6 @@ enum SettingsAction {
   about,
   store,
   course,
-  news,
   podcasts
   // archive,
 }

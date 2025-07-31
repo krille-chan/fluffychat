@@ -3,14 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:url_launcher/url_launcher.dart';
-
-enum MoreLoginActions {
-  store,
-  course,
-  news,
-  podcasts,
-  about,
-}
+import 'package:flutter_svg/flutter_svg.dart';
 
 class MoreLoginMenuButton extends StatelessWidget {
   final EdgeInsetsGeometry padding;
@@ -43,13 +36,6 @@ class MoreLoginMenuButton extends StatelessWidget {
         );
         break;
 
-      case MoreLoginActions.news:
-        await launchUrl(
-          Uri.parse('https://www.radiohemp.com/blog/'),
-          mode: LaunchMode.externalApplication,
-        );
-        break;
-
       case MoreLoginActions.podcasts:
         await launchUrl(
           Uri.parse('https://www.radiohemp.com/podcast/'),
@@ -70,7 +56,10 @@ class MoreLoginMenuButton extends StatelessWidget {
             value: MoreLoginActions.store,
             child: Row(
               children: [
-                const Icon(Icons.store_outlined),
+                SvgPicture.asset(
+                  'assets/icons/store.svg',
+                  width: 30,
+                ),
                 const SizedBox(width: 18),
                 Text(L10n.of(context).menuStore),
               ],
@@ -80,19 +69,12 @@ class MoreLoginMenuButton extends StatelessWidget {
             value: MoreLoginActions.course,
             child: Row(
               children: [
-                const Icon(Icons.grass_outlined),
+                SvgPicture.asset(
+                  'assets/icons/course.svg',
+                  width: 30,
+                ),
                 const SizedBox(width: 18),
                 Text(L10n.of(context).menuCourse),
-              ],
-            ),
-          ),
-          PopupMenuItem(
-            value: MoreLoginActions.news,
-            child: Row(
-              children: [
-                const Icon(Icons.article_outlined),
-                const SizedBox(width: 18),
-                Text(L10n.of(context).menuNews),
               ],
             ),
           ),
@@ -100,7 +82,10 @@ class MoreLoginMenuButton extends StatelessWidget {
             value: MoreLoginActions.podcasts,
             child: Row(
               children: [
-                const Icon(Icons.podcasts_outlined),
+                SvgPicture.asset(
+                  'assets/icons/podcast.svg',
+                  width: 30,
+                ),
                 const SizedBox(width: 18),
                 Text(L10n.of(context).menuPodcasts),
               ],
@@ -110,7 +95,13 @@ class MoreLoginMenuButton extends StatelessWidget {
             value: MoreLoginActions.about,
             child: Row(
               children: [
-                const Icon(Icons.info_outlined),
+                Padding(
+                  padding: const EdgeInsets.all(3),
+                  child: Icon(
+                    Icons.info_outlined,
+                    color: Theme.of(context).colorScheme.primaryFixed,
+                  ),
+                ),
                 const SizedBox(width: 12),
                 Text(L10n.of(context).about),
               ],
@@ -120,4 +111,11 @@ class MoreLoginMenuButton extends StatelessWidget {
       ),
     );
   }
+}
+
+enum MoreLoginActions {
+  store,
+  course,
+  podcasts,
+  about,
 }
