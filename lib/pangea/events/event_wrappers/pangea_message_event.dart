@@ -381,6 +381,7 @@ class PangeaMessageEvent {
       if (_latestEdit.content[ModelKey.choreoRecord] == null) return null;
       return ChoreoRecord.fromJson(
         _latestEdit.content[ModelKey.choreoRecord] as Map<String, dynamic>,
+        originalWrittenContent,
       );
     } catch (e, s) {
       ErrorHandler.logError(
@@ -599,10 +600,8 @@ class PangeaMessageEvent {
     String? written = originalSent?.content.text;
     if (originalWritten != null && !originalWritten!.content.originalSent) {
       written = originalWritten!.text;
-    } else if (originalSent?.choreo != null &&
-        originalSent!.choreo!.choreoSteps.isNotEmpty) {
-      final steps = originalSent!.choreo!.choreoSteps;
-      written = steps.first.text;
+    } else if (originalSent?.choreo != null) {
+      written = originalSent!.choreo!.originalText;
     }
 
     return written ?? body;

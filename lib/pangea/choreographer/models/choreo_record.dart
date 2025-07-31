@@ -1,6 +1,8 @@
 import 'dart:convert';
 
+import 'package:fluffychat/pangea/choreographer/models/choreo_edit.dart';
 import 'package:fluffychat/pangea/choreographer/models/pangea_match_model.dart';
+import 'package:fluffychat/pangea/choreographer/models/span_data.dart';
 import 'it_step.dart';
 
 /// this class lives within a [PangeaIGCEvent]
@@ -20,33 +22,120 @@ class ChoreoRecord {
 
   final Set<String> pastedStrings = {};
 
+  final String originalText;
+
   ChoreoRecord({
     required this.choreoSteps,
     required this.openMatches,
-    // required this.current,
+    required this.originalText,
   });
 
-  factory ChoreoRecord.fromJson(Map<String, dynamic> json) {
+  factory ChoreoRecord.fromJson(
+    Map<String, dynamic> json, [
+    String? defaultOriginalText,
+  ]) {
     final stepsRaw = json[_stepsKey];
-    return ChoreoRecord(
-      choreoSteps: (jsonDecode(stepsRaw ?? "[]") as Iterable)
-          .map((e) {
-            return ChoreoRecordStep.fromJson(e);
-          })
+    String? originalText = json[_originalTextKey];
+
+    List<ChoreoRecordStep> steps = [];
+    final stepContent = (jsonDecode(stepsRaw ?? "[]") as Iterable);
+
+    if (stepContent.isNotEmpty &&
+        originalText == null &&
+        stepContent.first["txt"] is String) {
+      originalText = stepContent.first["txt"];
+    }
+
+    if (stepContent.every((step) => step["txt"] is! String)) {
+      steps = stepContent
+          .map((e) => ChoreoRecordStep.fromJson(e))
           .toList()
-          .cast<ChoreoRecordStep>(),
+          .cast<ChoreoRecordStep>();
+    } else {
+      String? currentEdit = originalText;
+      for (final content in stepContent) {
+        final String textBefore = content["txt"] ?? "";
+        String textAfter = textBefore;
+
+        currentEdit ??= textBefore;
+
+        // typically, taking the original text and applying the edits from the choreo steps
+        // will yield a correct result, but it's possible the user manually changed the text
+        // between steps, so we need handle that by adding an extra step
+        if (textBefore != currentEdit) {
+          final edits = ChoreoEdit.fromText(
+            originalText: currentEdit,
+            editedText: textBefore,
+          );
+
+          steps.add(ChoreoRecordStep(edits: edits));
+          currentEdit = textBefore;
+        }
+
+        int offset = 0;
+        int length = 0;
+        String insert = "";
+
+        final step = ChoreoRecordStep.fromJson(content);
+        if (step.acceptedOrIgnoredMatch != null) {
+          final SpanData? match = step.acceptedOrIgnoredMatch?.match;
+          final correction = match?.bestChoice;
+          if (correction != null) {
+            offset = match!.offset;
+            length = match.length;
+            insert = correction.value;
+          }
+        } else if (step.itStep != null) {
+          final chosen = step.itStep!.chosenContinuance;
+          if (chosen != null) {
+            offset = (content["txt"] ?? "").length;
+            insert = chosen.text;
+          }
+        }
+
+        if (textBefore.length - offset - length < 0) {
+          length = textBefore.length - offset;
+        }
+
+        textAfter = textBefore.replaceRange(
+          offset,
+          offset + length,
+          insert,
+        );
+
+        final edits = ChoreoEdit.fromText(
+          originalText: currentEdit,
+          editedText: textAfter,
+        );
+
+        currentEdit = textAfter;
+        step.edits = edits;
+        steps.add(step);
+      }
+    }
+
+    if (originalText == null &&
+        (steps.isNotEmpty || defaultOriginalText == null)) {
+      throw Exception(
+        "originalText cannot be null, please provide a valid original text",
+      );
+    }
+
+    return ChoreoRecord(
+      choreoSteps: steps,
+      originalText: originalText ?? defaultOriginalText!,
       openMatches: (jsonDecode(json[_openMatchesKey] ?? "[]") as Iterable)
           .map((e) {
             return PangeaMatch.fromJson(e);
           })
           .toList()
           .cast<PangeaMatch>(),
-      // current: json[_currentKey],
     );
   }
 
   static const _stepsKey = "stps";
   static const _openMatchesKey = "mtchs";
+  static const _originalTextKey = "ogtxt_v2";
   // static const _currentKey = "crnt";
 
   Map<String, dynamic> toJson() {
@@ -54,21 +143,53 @@ class ChoreoRecord {
     data[_stepsKey] = jsonEncode(choreoSteps.map((e) => e.toJson()).toList());
     data[_openMatchesKey] =
         jsonEncode(openMatches.map((e) => e.toJson()).toList());
+    data[_originalTextKey] = originalText;
     // data[_currentKey] = current;
     return data;
   }
 
-  addRecord(String text, {PangeaMatch? match, ITStep? step}) {
+  void addRecord(String text, {PangeaMatch? match, ITStep? step}) {
     if (match != null && step != null) {
       throw Exception("match and step should not both be defined");
     }
+
+    final edit = ChoreoEdit.fromText(
+      originalText: stepText(),
+      editedText: text,
+    );
+
     choreoSteps.add(
       ChoreoRecordStep(
-        text: text,
+        edits: edit,
         acceptedOrIgnoredMatch: match,
         itStep: step,
       ),
     );
+  }
+
+  /// Get the text at [stepIndex]
+  String stepText({int? stepIndex}) {
+    stepIndex ??= choreoSteps.length - 1;
+    if (stepIndex >= choreoSteps.length) {
+      throw RangeError.index(stepIndex, choreoSteps, "index out of range");
+    }
+
+    if (stepIndex < 0) return originalText;
+
+    String text = originalText;
+    for (int i = 0; i <= stepIndex; i++) {
+      final step = choreoSteps[i];
+      if (step.edits == null) continue;
+      final edits = step.edits!;
+
+      text = text.replaceRange(
+        edits.offset,
+        edits.offset + edits.length,
+        edits.insert,
+      );
+    }
+
+    return text;
   }
 
   bool get hasAcceptedMatches => choreoSteps.any(
@@ -100,16 +221,8 @@ class ChoreoRecord {
             (step.acceptedOrIgnoredMatch?.isGrammarMatch ?? false);
       });
 
-  static ChoreoRecord get newRecord => ChoreoRecord(
-        choreoSteps: [],
-        openMatches: [],
-      );
-
   List<ITStep> get itSteps =>
       choreoSteps.where((e) => e.itStep != null).map((e) => e.itStep!).toList();
-
-  String get finalMessage =>
-      choreoSteps.isNotEmpty ? choreoSteps.last.text : "";
 }
 
 /// A new ChoreoRecordStep is saved in the following cases:
@@ -134,8 +247,11 @@ class ChoreoRecord {
 /// the user chooses "hola" and a step is saved
 /// adds "amigo" and a step saved
 class ChoreoRecordStep {
-  /// text after changes have been made
-  String text;
+  /// Edits that, when applied to the previous step's text,
+  /// will provide the current step's text
+  /// Should always exist, except when using fromJSON
+  /// on old version of ChoreoRecordStep
+  ChoreoEdit? edits;
 
   /// all matches throughout edit process,
   /// including those open, accepted and ignored
@@ -145,7 +261,7 @@ class ChoreoRecordStep {
   ITStep? itStep;
 
   ChoreoRecordStep({
-    required this.text,
+    this.edits,
     this.acceptedOrIgnoredMatch,
     this.itStep,
   }) {
@@ -158,7 +274,8 @@ class ChoreoRecordStep {
 
   factory ChoreoRecordStep.fromJson(Map<String, dynamic> json) {
     return ChoreoRecordStep(
-      text: json[_textKey],
+      edits:
+          json[_editKey] != null ? ChoreoEdit.fromJson(json[_editKey]) : null,
       acceptedOrIgnoredMatch: json[_acceptedOrIgnoredMatchKey] != null
           ? PangeaMatch.fromJson(json[_acceptedOrIgnoredMatchKey])
           : null,
@@ -166,13 +283,13 @@ class ChoreoRecordStep {
     );
   }
 
-  static const _textKey = "txt";
+  static const _editKey = "edits_v2";
   static const _acceptedOrIgnoredMatchKey = "mtch";
   static const _stepKey = "stp";
 
   Map<String, dynamic> toJson() {
     final data = <String, dynamic>{};
-    data[_textKey] = text;
+    data[_editKey] = edits?.toJson();
     data[_acceptedOrIgnoredMatchKey] = acceptedOrIgnoredMatch?.toJson();
     data[_stepKey] = itStep?.toJson();
     return data;

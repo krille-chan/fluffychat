@@ -173,13 +173,13 @@ class PangeaTextController extends TextEditingController {
         return TextSpan(text: text, style: style);
       }
 
-      final choreoSteps = choreographer.choreoRecord.choreoSteps;
+      final choreoSteps = choreographer.choreoRecord?.choreoSteps;
 
       List<InlineSpan> inlineSpans = [];
       try {
         inlineSpans = choreographer.igc.igcTextData!.constructTokenSpan(
-          choreoSteps: choreoSteps.isNotEmpty &&
-                  choreoSteps.last.acceptedOrIgnoredMatch?.status ==
+          choreoSteps: (choreoSteps?.isNotEmpty ?? false) &&
+                  choreoSteps!.last.acceptedOrIgnoredMatch?.status ==
                       PangeaMatchStatus.automatic
               ? choreoSteps
               : [],
