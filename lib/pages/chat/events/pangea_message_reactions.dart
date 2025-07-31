@@ -120,49 +120,43 @@ class _PangeaMessageReactionsState extends State<PangeaMessageReactions> {
         .aggregatedEvents(widget.timeline, RelationshipTypes.reaction)
         .toList();
 
-    return AnimatedSize(
-      duration: FluffyThemes.animationDuration,
-      curve: FluffyThemes.animationCurve,
-      alignment: ownMessage ? Alignment.bottomRight : Alignment.bottomLeft,
-      clipBehavior: Clip.none,
-      child: Wrap(
-        crossAxisAlignment: WrapCrossAlignment.center,
-        runSpacing: 4.0,
-        alignment: ownMessage ? WrapAlignment.end : WrapAlignment.start,
-        children: [
-          if (allReactionEvents.any((e) => e.status.isSending) && ownMessage)
-            const SizedBox(
-              width: 24,
-              height: 24,
-              child: Padding(
-                padding: EdgeInsets.all(4.0),
-                child: CircularProgressIndicator.adaptive(strokeWidth: 1),
+    return Directionality(
+      textDirection: ownMessage ? TextDirection.rtl : TextDirection.ltr,
+      child: AnimatedSize(
+        duration: FluffyThemes.animationDuration,
+        curve: FluffyThemes.animationCurve,
+        alignment: ownMessage ? Alignment.bottomRight : Alignment.bottomLeft,
+        clipBehavior: Clip.none,
+        child: Wrap(
+          crossAxisAlignment: WrapCrossAlignment.center,
+          runSpacing: 4.0,
+          alignment: WrapAlignment.start,
+          children: [
+            ...reactionList.map(
+              (r) => _Reaction(
+                key: ValueKey(r.key),
+                firstReact: _newlyAddedReactions.contains(r.key),
+                reactionKey: r.key,
+                count: r.count,
+                reacted: r.reacted,
+                onTap: () => _handleReactionTap(r, allReactionEvents),
+                onLongPress: () async => await _AdaptableReactorsDialog(
+                  client: client,
+                  reactionEntry: r,
+                ).show(context),
               ),
             ),
-          ...reactionList.map(
-            (r) => _Reaction(
-              key: ValueKey(r.key),
-              firstReact: _newlyAddedReactions.contains(r.key),
-              reactionKey: r.key,
-              count: r.count,
-              reacted: r.reacted,
-              onTap: () => _handleReactionTap(r, allReactionEvents),
-              onLongPress: () async => await _AdaptableReactorsDialog(
-                client: client,
-                reactionEntry: r,
-              ).show(context),
-            ),
-          ),
-          if (allReactionEvents.any((e) => e.status.isSending) && !ownMessage)
-            const SizedBox(
-              width: 24,
-              height: 24,
-              child: Padding(
-                padding: EdgeInsets.all(4.0),
-                child: CircularProgressIndicator.adaptive(strokeWidth: 1),
+            if (allReactionEvents.any((e) => e.status.isSending))
+              const SizedBox(
+                width: 24,
+                height: 24,
+                child: Padding(
+                  padding: EdgeInsets.all(4.0),
+                  child: CircularProgressIndicator.adaptive(strokeWidth: 1),
+                ),
               ),
-            ),
-        ],
+          ],
+        ),
       ),
     );
   }
