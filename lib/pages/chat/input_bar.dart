@@ -66,20 +66,22 @@ class InputBar extends StatelessWidget {
     final ret = <Map<String, String?>>[];
     const maxResults = 30;
 
-    final commandMatch = RegExp(r'^/(\w*)$').firstMatch(searchText);
-    if (commandMatch != null) {
-      final commandSearch = commandMatch[1]!.toLowerCase();
-      for (final command in room.client.commands.keys) {
-        if (command.contains(commandSearch)) {
-          ret.add({
-            'type': 'command',
-            'name': command,
-          });
-        }
+    // #Pangea
+    // final commandMatch = RegExp(r'^/(\w*)$').firstMatch(searchText);
+    // if (commandMatch != null) {
+    //   final commandSearch = commandMatch[1]!.toLowerCase();
+    //   for (final command in room.client.commands.keys) {
+    //     if (command.contains(commandSearch)) {
+    //       ret.add({
+    //         'type': 'command',
+    //         'name': command,
+    //       });
+    //     }
 
-        if (ret.length > maxResults) return ret;
-      }
-    }
+    //     if (ret.length > maxResults) return ret;
+    //   }
+    // }
+    // Pangea#
     final emojiMatch =
         RegExp(r'(?:\s|^):(?:([-\w]+)~)?([-\w]+)$').firstMatch(searchText);
     if (emojiMatch != null) {
