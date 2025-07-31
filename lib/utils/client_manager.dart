@@ -6,10 +6,8 @@ import 'package:collection/collection.dart';
 import 'package:desktop_notifications/desktop_notifications.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_vodozemac/flutter_vodozemac.dart' as vod;
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:matrix/encryption/utils/key_verification.dart';
 import 'package:matrix/matrix.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:universal_html/html.dart' as html;
 
@@ -29,11 +27,6 @@ abstract class ClientManager {
     bool initialize = true,
     required SharedPreferences store,
   }) async {
-    if (PlatformInfos.isLinux) {
-      Hive.init((await getApplicationSupportDirectory()).path);
-    } else {
-      await Hive.initFlutter();
-    }
     final clientNames = <String>{};
     try {
       final clientNamesList = store.getStringList(clientNamespace) ?? [];
@@ -113,8 +106,7 @@ abstract class ClientManager {
 
     return Client(
       clientName,
-      httpClient:
-          PlatformInfos.isAndroid ? CustomHttpClient.createHTTPClient() : null,
+      httpClient: CustomHttpClient.createHTTPClient(),
       verificationMethods: {
         KeyVerificationMethod.numbers,
         if (kIsWeb || PlatformInfos.isMobile || PlatformInfos.isLinux)

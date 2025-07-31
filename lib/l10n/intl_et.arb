@@ -2592,7 +2592,7 @@
       }
     }
   },
-  "inviteGroupChat": "📨 Kutsu vestlusrühma",
+  "inviteGroupChat": "📨 Kutse vestlusrühma",
   "@inviteGroupChat": {},
   "invitePrivateChat": "📨 Kutsu omavahelisele vestlusele",
   "@invitePrivateChat": {},
@@ -3383,5 +3383,7 @@
   "customReaction": "Kohandatud reaktsioon",
   "@customReaction": {},
   "moreEvents": "Veel sündmusi",
-  "@moreEvents": {}
+  "@moreEvents": {},
+  "declineInvitation": "Keeldu kutsest",
+  "@declineInvitation": {}
 }

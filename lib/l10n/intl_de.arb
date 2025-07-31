@@ -3390,5 +3390,7 @@
   "customReaction": "Benutzerdefinierte Reaktion",
   "@customReaction": {},
   "moreEvents": "Weitere Ereignisse",
-  "@moreEvents": {}
+  "@moreEvents": {},
+  "declineInvitation": "Einladung ablehnen",
+  "@declineInvitation": {}
 }

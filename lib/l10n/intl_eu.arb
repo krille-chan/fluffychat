@@ -1911,7 +1911,7 @@
     "type": "String",
     "description": "Usage hint for the command /invite"
   },
-  "commandHint_join": "Batu gelara",
+  "commandHint_join": "Batu adierazitako gelara",
   "@commandHint_join": {
     "type": "String",
     "description": "Usage hint for the command /join"
@@ -2608,9 +2608,9 @@
   "@invite": {},
   "invalidInput": "Sartu duzunak ez du balio!",
   "@invalidInput": {},
-  "inviteGroupChat": "📨 Gonbidatu taldeko txatera",
+  "inviteGroupChat": "📨 Taldeko txatera gonbidapena",
   "@inviteGroupChat": {},
-  "invitePrivateChat": "📨 Gonbidatu txat pribatura",
+  "invitePrivateChat": "📨 Txat pribatura gonbidapena",
   "@invitePrivateChat": {},
   "banUserDescription": "Erabiltzailea txatetik kanporatu eta berriro sartzeko debekua ezarriko zaio; ezingo da berriro sartu debekua kendu arte.",
   "@banUserDescription": {},
@@ -3362,7 +3362,7 @@
       }
     }
   },
-  "sentVoiceMessage": "🎙️ {duration} - {sender}",
+  "sentVoiceMessage": "🎙️ {duration} - {sender}(r)en ahots-mezua",
   "@sentVoiceMessage": {
     "type": "String",
     "placeholders": {
@@ -3373,5 +3373,17 @@
         "type": "String"
       }
     }
-  }
+  },
+  "commandHint_logout": "Amaitu saioa gailu honetan",
+  "@commandHint_logout": {},
+  "commandHint_logoutall": "Amaitu saioa aktibo dauden gailu guztietan",
+  "@commandHint_logoutall": {},
+  "moreEvents": "Gertaera gehiago",
+  "@moreEvents": {},
+  "displayNavigationRail": "Erakutsi nabigazio-barra mugikorrean",
+  "@displayNavigationRail": {},
+  "customReaction": "Erreakzio pertsonalizatua",
+  "@customReaction": {},
+  "declineInvitation": "Uko egin gonbidapenari",
+  "@declineInvitation": {}
 }

@@ -1739,7 +1739,7 @@
       }
     }
   },
-  "rejoin": "Reentrar",
+  "rejoin": "Entrar novamente",
   "@rejoin": {
     "type": "String",
     "placeholders": {}
@@ -2335,9 +2335,9 @@
 "@whoCanPerformWhichAction": {
     "type": "String",
     "placeholders": {}
-},
-"whoIsAllowedToJoinThisGroup": "Quem tem permissão para entrar neste grupo",
-"@whoIsAllowedToJoinThisGroup": {
+  },
+  "whoIsAllowedToJoinThisGroup": "Quem pode entrar no grupo",
+  "@whoIsAllowedToJoinThisGroup": {
     "type": "String",
     "placeholders": {}
 },
@@ -2543,9 +2543,13 @@
             "type": "String"
         }
     }
-},
-"youKicked": "👞 Você expulsou {user}",
-"@youKicked": {
+  },
+  "youAcceptedTheInvitation": "👍 Você aceitou o convite",
+  "@youAcceptedTheInvitation": {},
+  "youJoinedTheChat": "Você entrou na conversa",
+  "@youJoinedTheChat": {},
+  "youKicked": "👞 Você expulsou {user}",
+  "@youKicked": {
     "placeholders": {
         "user": {
             "type": "String"
@@ -2698,9 +2702,40 @@
             "type": "String"
         }
     }
-},
-"fileHasBeenSavedAt": "O arquivo foi salvo em {path}",
-"@fileHasBeenSavedAt": {
+  },
+  "signInWith": "Conectar com {provider}",
+  "@signInWith": {
+    "type": "String",
+    "placeholders": {
+      "provider": {
+        "type": "String"
+      }
+    }
+  },
+  "fileIsTooBigForServer": "Não foi possível enviar! O servidor suporta anexos somente até {max}.",
+  "@fileIsTooBigForServer": {},
+  "readUpToHere": "Lido até aqui",
+  "@readUpToHere": {},
+  "optionalRedactReason": "(Opcional) Motivo para apagar esta mensagem.",
+  "@optionalRedactReason": {},
+  "archiveRoomDescription": "A conversa será movida para o arquivo. Outros usuários verão que você deixou a conversa.",
+  "@archiveRoomDescription": {},
+  "inviteContactToGroupQuestion": "Deseja convidar {contact} para a conversa \"{groupName}\"?",
+  "@inviteContactToGroupQuestion": {},
+  "redactedByBecause": "Apagado por {username}, pois: \"{reason}\"",
+  "@redactedByBecause": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      },
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "fileHasBeenSavedAt": "Arquivo salvo em {path}",
+  "@fileHasBeenSavedAt": {
     "type": "String",
     "placeholders": {
         "path": {

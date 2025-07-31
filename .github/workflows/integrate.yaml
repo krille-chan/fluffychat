@@ -25,8 +25,8 @@ jobs:
       - name: Check license compliance
         run: dart run license_checker check-licenses -c licenses.yaml --problematic
       - run: flutter analyze
-      - name: Apply google services patch
-        run: git apply ./scripts/enable-android-google-services.patch
+      - name: Add Firebase Messaging
+        run: ./scripts/add-firebase-messaging.sh
       - run: flutter analyze
       - run: flutter test
 
@@ -67,7 +67,7 @@ jobs:
     strategy:
       matrix:
         arch: [ x64, arm64 ]
-    runs-on: ${{ matrix.arch == 'arm64' && 'self-hosted' || 'ubuntu-latest'}}
+    runs-on: ${{ matrix.arch == 'arm64' && 'ubuntu-24.04-arm' || 'ubuntu-latest'}}
     steps:
       - uses: actions/checkout@v4
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
@@ -96,5 +96,9 @@ jobs:
           xcode-version: latest
       - run: brew install sqlcipher
       - uses: moonrepo/setup-rust@v1
+      - name: Add Firebase Messaging
+        run: |
+          flutter pub add fcm_shared_isolate:0.1.0
+          sed -i '' 's,//<GOOGLE_SERVICES>,,g' lib/utils/background_push.dart
       - run: flutter pub get
       - run: flutter build ios --no-codesign

@@ -76,10 +76,12 @@ extension MatrixFileExtension on MatrixFile {
     // https://github.com/fluttercommunity/plus_plugins/tree/main/packages/share_plus/share_plus#ipad
     final box = context.findRenderObject() as RenderBox?;
 
-    await Share.shareXFiles(
-      [XFile.fromData(bytes, name: name, mimeType: mimeType)],
-      sharePositionOrigin:
-          box == null ? null : box.localToGlobal(Offset.zero) & box.size,
+    await SharePlus.instance.share(
+      ShareParams(
+        files: [XFile.fromData(bytes, name: name, mimeType: mimeType)],
+        sharePositionOrigin:
+            box == null ? null : box.localToGlobal(Offset.zero) & box.size,
+      ),
     );
     return;
   }

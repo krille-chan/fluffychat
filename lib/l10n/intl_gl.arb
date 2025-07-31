@@ -3379,5 +3379,7 @@
   "moreEvents": "Máis eventos",
   "@moreEvents": {},
   "customReaction": "Reacción personalizada",
-  "@customReaction": {}
+  "@customReaction": {},
+  "declineInvitation": "Rexeitar o convite",
+  "@declineInvitation": {}
 }
