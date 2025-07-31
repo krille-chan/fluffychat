@@ -2592,9 +2592,9 @@
   "@redactMessageDescription": {},
   "setChatDescription": "Налаштувати опис бесіди",
   "@setChatDescription": {},
-  "inviteGroupChat": "📨 Запросити до групової бесіди",
+  "inviteGroupChat": "📨 Запрошення до групової бесіди",
   "@inviteGroupChat": {},
-  "invitePrivateChat": "📨 Запросити до приватної бесіди",
+  "invitePrivateChat": "📨 Запрошення до приватної бесіди",
   "@invitePrivateChat": {},
   "emoteKeyboardNoRecents": "Тут з'являться нещодавно використані смайлики...",
   "@emoteKeyboardNoRecents": {
@@ -3377,5 +3377,13 @@
   "commandHint_logout": "Вийти на цьому пристрої",
   "@commandHint_logout": {},
   "commandHint_logoutall": "Вийти на всіх активних пристроях",
-  "@commandHint_logoutall": {}
+  "@commandHint_logoutall": {},
+  "displayNavigationRail": "Показати навігаційну карту на мобільному",
+  "@displayNavigationRail": {},
+  "customReaction": "Власні реакції",
+  "@customReaction": {},
+  "moreEvents": "Інші події",
+  "@moreEvents": {},
+  "declineInvitation": "Відхилити запрошення",
+  "@declineInvitation": {}
 }
