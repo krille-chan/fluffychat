@@ -223,9 +223,16 @@ class _LivePreviewDialogState extends State<LivePreviewDialog> {
                                       EdgeInsets.symmetric(horizontal: 16.0),
                                   child: LinearProgressIndicator(),
                                 )
-                              : Text(
-                                  l10n.showLiveForRoom(widget.roomName),
-                                  style: const TextStyle(fontSize: 16),
+                              : Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 16.0),
+                                  child: Text(
+                                    l10n.showLiveForRoom(widget.roomName),
+                                    style: const TextStyle(fontSize: 16),
+                                    softWrap: true,
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
                                 ),
                         ),
                       ),
