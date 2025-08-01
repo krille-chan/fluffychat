@@ -32,89 +32,92 @@ class ChatView extends StatelessWidget {
   const ChatView(this.controller, {super.key});
 
   List<Widget> _appBarActions(BuildContext context) {
-    if (controller.selectMode) {
-      return [
-        if (controller.canEditSelectedEvents)
-          IconButton(
-            icon: const Icon(Icons.edit_outlined),
-            tooltip: L10n.of(context).edit,
-            onPressed: controller.editSelectedEventAction,
-          ),
-        IconButton(
-          icon: const Icon(Icons.copy_outlined),
-          tooltip: L10n.of(context).copy,
-          onPressed: controller.copyEventsAction,
-        ),
-        if (controller.canPinSelectedEvents)
-          IconButton(
-            icon: const Icon(Icons.push_pin_outlined),
-            onPressed: controller.pinEvent,
-            tooltip: L10n.of(context).pinMessage,
-          ),
-        if (controller.canRedactSelectedEvents)
-          IconButton(
-            icon: const Icon(Icons.delete_outlined),
-            tooltip: L10n.of(context).redactMessage,
-            onPressed: controller.redactEventsAction,
-          ),
-        if (controller.selectedEvents.length == 1)
-          PopupMenuButton<_EventContextAction>(
-            useRootNavigator: true,
-            onSelected: (action) {
-              switch (action) {
-                case _EventContextAction.info:
-                  controller.showEventInfo();
-                  controller.clearSelectedEvents();
-                  break;
-                case _EventContextAction.report:
-                  controller.reportEventAction();
-                  break;
-              }
-            },
-            itemBuilder: (context) => [
-              if (controller.canSaveSelectedEvent)
-                PopupMenuItem(
-                  onTap: () => controller.saveSelectedEvent(context),
-                  value: null,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const Icon(Icons.download_outlined),
-                      const SizedBox(width: 12),
-                      Text(L10n.of(context).downloadFile),
-                    ],
-                  ),
-                ),
-              PopupMenuItem(
-                value: _EventContextAction.info,
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Icon(Icons.info_outlined),
-                    const SizedBox(width: 12),
-                    Text(L10n.of(context).messageInfo),
-                  ],
-                ),
-              ),
-              if (controller.selectedEvents.single.status.isSent)
-                PopupMenuItem(
-                  value: _EventContextAction.report,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const Icon(
-                        Icons.shield_outlined,
-                        color: Colors.red,
-                      ),
-                      const SizedBox(width: 12),
-                      Text(L10n.of(context).reportMessage),
-                    ],
-                  ),
-                ),
-            ],
-          ),
-      ];
-    } else if (!controller.room.isArchived) {
+    // #Pangea
+    // if (controller.selectMode) {
+    //   return [
+    //     if (controller.canEditSelectedEvents)
+    //       IconButton(
+    //         icon: const Icon(Icons.edit_outlined),
+    //         tooltip: L10n.of(context).edit,
+    //         onPressed: controller.editSelectedEventAction,
+    //       ),
+    //     IconButton(
+    //       icon: const Icon(Icons.copy_outlined),
+    //       tooltip: L10n.of(context).copy,
+    //       onPressed: controller.copyEventsAction,
+    //     ),
+    //     if (controller.canPinSelectedEvents)
+    //       IconButton(
+    //         icon: const Icon(Icons.push_pin_outlined),
+    //         onPressed: controller.pinEvent,
+    //         tooltip: L10n.of(context).pinMessage,
+    //       ),
+    //     if (controller.canRedactSelectedEvents)
+    //       IconButton(
+    //         icon: const Icon(Icons.delete_outlined),
+    //         tooltip: L10n.of(context).redactMessage,
+    //         onPressed: controller.redactEventsAction,
+    //       ),
+    //     if (controller.selectedEvents.length == 1)
+    //       PopupMenuButton<_EventContextAction>(
+    //         useRootNavigator: true,
+    //         onSelected: (action) {
+    //           switch (action) {
+    //             case _EventContextAction.info:
+    //               controller.showEventInfo();
+    //               controller.clearSelectedEvents();
+    //               break;
+    //             case _EventContextAction.report:
+    //               controller.reportEventAction();
+    //               break;
+    //           }
+    //         },
+    //         itemBuilder: (context) => [
+    //           if (controller.canSaveSelectedEvent)
+    //             PopupMenuItem(
+    //               onTap: () => controller.saveSelectedEvent(context),
+    //               value: null,
+    //               child: Row(
+    //                 mainAxisSize: MainAxisSize.min,
+    //                 children: [
+    //                   const Icon(Icons.download_outlined),
+    //                   const SizedBox(width: 12),
+    //                   Text(L10n.of(context).downloadFile),
+    //                 ],
+    //               ),
+    //             ),
+    //           PopupMenuItem(
+    //             value: _EventContextAction.info,
+    //             child: Row(
+    //               mainAxisSize: MainAxisSize.min,
+    //               children: [
+    //                 const Icon(Icons.info_outlined),
+    //                 const SizedBox(width: 12),
+    //                 Text(L10n.of(context).messageInfo),
+    //               ],
+    //             ),
+    //           ),
+    //           if (controller.selectedEvents.single.status.isSent)
+    //             PopupMenuItem(
+    //               value: _EventContextAction.report,
+    //               child: Row(
+    //                 mainAxisSize: MainAxisSize.min,
+    //                 children: [
+    //                   const Icon(
+    //                     Icons.shield_outlined,
+    //                     color: Colors.red,
+    //                   ),
+    //                   const SizedBox(width: 12),
+    //                   Text(L10n.of(context).reportMessage),
+    //                 ],
+    //               ),
+    //             ),
+    //         ],
+    //       ),
+    //   ];
+    // } else
+    // Pangea#
+    if (!controller.room.isArchived) {
       // #Pangea
       return [
         IconButton(
@@ -194,23 +197,31 @@ class ChatView extends StatelessWidget {
             }
             return Scaffold(
               appBar: AppBar(
-                actionsIconTheme: IconThemeData(
-                  color: controller.selectedEvents.isEmpty
-                      ? null
-                      : theme.colorScheme.onTertiaryContainer,
-                ),
-                backgroundColor: controller.selectedEvents.isEmpty
-                    ? null
-                    : theme.colorScheme.tertiaryContainer,
+                // #Pangea
+                // actionsIconTheme:
+                // IconThemeData(
+                // #Pangea
+                //   color: controller.selectedEvents.isEmpty
+                //       ? null
+                //       : theme.colorScheme.onTertiaryContainer,
+                // ),
+                // backgroundColor: controller.selectedEvents.isEmpty
+                //     ? null
+                //     : theme.colorScheme.tertiaryContainer,
+                // Pangea#
                 automaticallyImplyLeading: false,
-                leading: controller.selectMode
-                    ? IconButton(
-                        icon: const Icon(Icons.close),
-                        onPressed: controller.clearSelectedEvents,
-                        tooltip: L10n.of(context).close,
-                        color: theme.colorScheme.onTertiaryContainer,
-                      )
-                    : FluffyThemes.isColumnMode(context)
+                leading:
+                    // #Pangea
+                    // controller.selectMode
+                    //     ? IconButton(
+                    //         icon: const Icon(Icons.close),
+                    //         onPressed: controller.clearSelectedEvents,
+                    //         tooltip: L10n.of(context).close,
+                    //         color: theme.colorScheme.onTertiaryContainer,
+                    //       )
+                    // :
+                    // Pangea#
+                    FluffyThemes.isColumnMode(context)
                         ? null
                         : StreamBuilder<Object>(
                             stream:

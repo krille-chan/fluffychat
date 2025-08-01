@@ -19,14 +19,16 @@ class ChatAppBarTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final room = controller.room;
-    if (controller.selectedEvents.isNotEmpty) {
-      return Text(
-        controller.selectedEvents.length.toString(),
-        style: TextStyle(
-          color: Theme.of(context).colorScheme.onTertiaryContainer,
-        ),
-      );
-    }
+    // #Pangea
+    // if (controller.selectedEvents.isNotEmpty) {
+    //   return Text(
+    //     controller.selectedEvents.length.toString(),
+    //     style: TextStyle(
+    //       color: Theme.of(context).colorScheme.onTertiaryContainer,
+    //     ),
+    //   );
+    // }
+    // Pangea#
     return InkWell(
       hoverColor: Colors.transparent,
       splashColor: Colors.transparent,
