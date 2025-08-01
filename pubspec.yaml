@@ -65,7 +65,7 @@ dependencies:
   path: ^1.9.0
   path_provider: ^2.1.2
   permission_handler: ^12.0.1
-  pretty_qr_code: ^3.2.1
+  pretty_qr_code: ^3.5.0
   provider: ^6.0.2
   punycode: ^1.0.0
   qr_code_scanner_plus: ^2.0.10+1
@@ -98,7 +98,7 @@ dev_dependencies:
   integration_test:
     sdk: flutter
   license_checker: ^1.6.0
-  msix: ^3.6.2
+  msix: ^3.16.10
   translations_cleaner: ^0.0.5
 
 import_sorter:
