@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 
 const int choiceArrayAnimationDuration = 500;
 
+/// Show different animation depending on whether
+/// the choice is correct, wrong, or neither
 class ChoiceAnimationWidget extends StatefulWidget {
   final bool isSelected;
   final bool? isCorrect;
@@ -12,7 +14,7 @@ class ChoiceAnimationWidget extends StatefulWidget {
   const ChoiceAnimationWidget({
     super.key,
     required this.isSelected,
-    required this.isCorrect,
+    this.isCorrect,
     required this.child,
   });
 
@@ -77,26 +79,28 @@ class ChoiceAnimationWidgetState extends State<ChoiceAnimationWidget>
 
   @override
   Widget build(BuildContext context) {
-    return widget.isCorrect == true
-        ? AnimatedBuilder(
-            animation: _animation,
-            builder: (context, child) {
-              return Transform.scale(
-                scale: _animation.value,
-                child: child,
+    return widget.isCorrect == null
+        ? widget.child
+        : widget.isCorrect == true
+            ? AnimatedBuilder(
+                animation: _animation,
+                builder: (context, child) {
+                  return Transform.scale(
+                    scale: _animation.value,
+                    child: child,
+                  );
+                },
+                child: widget.child,
+              )
+            : AnimatedBuilder(
+                animation: _animation,
+                builder: (context, child) {
+                  return Transform.rotate(
+                    angle: _animation.value,
+                    child: child,
+                  );
+                },
+                child: widget.child,
               );
-            },
-            child: widget.child,
-          )
-        : AnimatedBuilder(
-            animation: _animation,
-            builder: (context, child) {
-              return Transform.rotate(
-                angle: _animation.value,
-                child: child,
-              );
-            },
-            child: widget.child,
-          );
   }
 }
