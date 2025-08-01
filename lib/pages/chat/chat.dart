@@ -1795,6 +1795,13 @@ class ChatController extends State<ChatPageWithRoom>
     if (response == OkCancelResult.ok) {
       final events = room.pinnedEventIds
         ..removeWhere((oldEvent) => oldEvent == eventId);
+      // #Pangea
+      if (scrollToEventIdMarker == eventId) {
+        setState(() {
+          scrollToEventIdMarker = null;
+        });
+      }
+      // Pangea#
       showFutureLoadingDialog(
         context: context,
         future: () => room.setPinnedEvents(events),
