@@ -293,7 +293,10 @@ class Message extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(
                                       AppConfig.borderRadius / 2,
                                     ),
-                                    color: selected || highlightMarker
+                                    color: selected ||
+                                            (highlightMarker &&
+                                                event.room.pinnedEventIds
+                                                    .contains(event.eventId))
                                         ? theme.colorScheme.secondaryContainer
                                             .withAlpha(128)
                                         : Colors.transparent,
