@@ -1395,8 +1395,24 @@ class ChatController extends State<ChatPageWithRoom>
   }
 
   Future<void> closeLiveWidget() async {
+    final confirmed = await showOkCancelAlertDialog(
+      context: context,
+      title: L10n.of(context).confirm.toUpperCase(),
+      message: L10n.of(context).closeLiveConfirm,
+      okLabel: L10n.of(context).confirm,
+      cancelLabel: L10n.of(context).cancel,
+      isDestructive: true,
+    );
+
+    if (confirmed != OkCancelResult.ok) return;
+
+    final client = Matrix.of(context).client;
+    final room = client.getRoomById(roomId);
+
     try {
-      await VideoStreamingModel.removeLiveWidget(room);
+      if (room != null) {
+        await VideoStreamingModel.removeLiveWidget(room);
+      }
 
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -1410,7 +1426,7 @@ class ChatController extends State<ChatPageWithRoom>
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(L10n.of(context).liveCloseError(e.toString)),
+            content: Text(L10n.of(context).liveCloseError(e.toString())),
             duration: const Duration(seconds: 3),
           ),
         );
