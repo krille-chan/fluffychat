@@ -1818,7 +1818,10 @@ class ChatController extends State<ChatPageWithRoom>
     final unpin = selectedEventIds.length == 1 &&
         pinnedEventIds.contains(selectedEventIds.single);
     if (unpin) {
-      pinnedEventIds.removeWhere(selectedEventIds.contains);
+      // #Pangea
+      //pinnedEventIds.removeWhere(selectedEventIds.contains);
+      unpinEvent(selectedEventIds.single);
+      // Pangea#
     } else {
       pinnedEventIds.addAll(selectedEventIds);
     }
