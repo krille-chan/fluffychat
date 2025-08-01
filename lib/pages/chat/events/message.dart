@@ -464,7 +464,8 @@ class Message extends StatelessWidget {
                                                   ignore: noBubble ||
                                                       !ownMessage ||
                                                       MediaQuery.highContrastOf(
-                                                          context),
+                                                        context,
+                                                      ),
                                                   scrollController:
                                                       scrollController,
                                                   child: Container(
