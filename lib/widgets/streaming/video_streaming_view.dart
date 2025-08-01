@@ -32,7 +32,7 @@ class VideoStreamingView extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
 
-    final defaultWidth = isMobileMode ? screenWidth * 0.9 : screenWidth * 0.4;
+    final defaultWidth = isMobileMode ? screenWidth * 0.9 : screenWidth * 0.3;
     controller.initializeIfNeeded(defaultWidth);
 
     return ValueListenableBuilder<Offset>(
@@ -41,7 +41,7 @@ class VideoStreamingView extends StatelessWidget {
         return ValueListenableBuilder<double>(
           valueListenable: controller.widthNotifier,
           builder: (context, width, __) {
-            final height = width / (16 / 9);
+            final height = width / controller.aspectRatioValue;
             final boxHeight = height + 50;
             final fixedLeft = (screenWidth - width) / 2;
 

@@ -376,10 +376,12 @@ class ChatView extends StatelessWidget {
                         ),
                       ),
                     ),
-                    if (controller.activeLive != null)
+                    if (controller.activeLive != null &&
+                        !controller.isLivePreviewOpen)
                       VideoStreaming(
                         title: controller.activeLive!.title,
                         playbackUrl: controller.activeLive!.playbackUrl,
+                        aspectRatio: controller.activeLive!.aspectRatio,
                         isAdmin: controller.room.ownPowerLevel == 100,
                         onClose: controller.closeLiveWidget,
                         onEdit: controller.editLiveWidget,

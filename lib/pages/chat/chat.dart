@@ -45,7 +45,6 @@ import 'send_file_dialog.dart';
 import 'send_location_dialog.dart';
 import '../../widgets/streaming/video_streaming_model.dart';
 import '../../widgets/adaptive_dialogs/live_preview_dialog.dart';
-import '../../widgets/streaming/audio_player_streaming.dart';
 
 class ChatPage extends StatelessWidget {
   final String roomId;
@@ -175,6 +174,8 @@ class ChatController extends State<ChatPageWithRoom>
   String pendingText = '';
 
   bool showEmojiPicker = false;
+
+  bool isLivePreviewOpen = false;
 
   void recreateChat() async {
     final room = this.room;
@@ -1417,13 +1418,20 @@ class ChatController extends State<ChatPageWithRoom>
     }
   }
 
-  void editLiveWidget() {
-    LivePreviewDialog.show(
+  void editLiveWidget() async {
+    isLivePreviewOpen = true;
+    setState(() {});
+
+    await LivePreviewDialog.show(
       context,
       roomId: roomId,
       roomName: room.name,
       title: activeLive?.title,
+      aspectRatio: activeLive?.aspectRatio,
     );
+
+    isLivePreviewOpen = false;
+    setState(() {});
   }
 
   @override

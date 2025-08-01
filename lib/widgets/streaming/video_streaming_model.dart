@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 class VideoStreamingModel {
   final String title;
   final String playbackUrl;
+  final String aspectRatio;
 
   const VideoStreamingModel({
     required this.title,
     required this.playbackUrl,
+    this.aspectRatio = '16:9',
   });
 
   static final ValueNotifier<Map<String, bool>> liveStatus = ValueNotifier({});
@@ -22,6 +24,7 @@ class VideoStreamingModel {
     return VideoStreamingModel(
       title: data['title'] ?? '',
       playbackUrl: data['playbackUrl'] ?? '',
+      aspectRatio: data['aspectRatio'] ?? '16:9',
     );
   }
 
@@ -29,6 +32,7 @@ class VideoStreamingModel {
     return {
       'title': title,
       'playbackUrl': playbackUrl,
+      'aspectRatio': aspectRatio,
     };
   }
 
@@ -69,5 +73,17 @@ class VideoStreamingModel {
       debugPrint('Erro ao remover o widget de live do Matrix: $e');
       rethrow;
     }
+  }
+
+  static double parseAspectRatio(String aspectRatioString) {
+    final parts = aspectRatioString.split(':');
+    if (parts.length != 2) return 16 / 9;
+
+    final width = double.tryParse(parts[0]);
+    final height = double.tryParse(parts[1]);
+
+    if (width == null || height == null || height == 0) return 16 / 9;
+
+    return width / height;
   }
 }
