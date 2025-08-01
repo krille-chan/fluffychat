@@ -1472,10 +1472,10 @@ packages:
     dependency: "direct main"
     description:
       name: pretty_qr_code
-      sha256: b078bd5d51956dea4342378af1b092ad962b81bdbb55b10fffce03461da8db74
+      sha256: "2291db3f68d70a3dcd46c6bd599f30991ae4c02f27f36215fbb3f4865a609259"
       url: "https://pub.dev"
     source: hosted
-    version: "3.4.0"
+    version: "3.5.0"
   process:
     dependency: transitive
     description:
