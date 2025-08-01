@@ -14,10 +14,10 @@ abstract class FluffyThemes {
       width > columnWidth * 2 + navRailWidth;
 
   static bool isColumnMode(BuildContext context) =>
-      isColumnModeByWidth(MediaQuery.of(context).size.width);
+      isColumnModeByWidth(MediaQuery.sizeOf(context).width);
 
   static bool isThreeColumnMode(BuildContext context) =>
-      MediaQuery.of(context).size.width > FluffyThemes.columnWidth * 3.5;
+      MediaQuery.sizeOf(context).width > FluffyThemes.columnWidth * 3.5;
 
   static LinearGradient backgroundGradient(
     BuildContext context,

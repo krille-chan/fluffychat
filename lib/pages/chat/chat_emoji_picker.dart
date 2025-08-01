@@ -21,7 +21,7 @@ class ChatEmojiPicker extends StatelessWidget {
       clipBehavior: Clip.hardEdge,
       decoration: const BoxDecoration(),
       height: controller.showEmojiPicker
-          ? MediaQuery.of(context).size.height / 2
+          ? MediaQuery.sizeOf(context).height / 2
           : 0,
       child: controller.showEmojiPicker
           ? DefaultTabController(

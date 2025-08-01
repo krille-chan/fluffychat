@@ -463,8 +463,9 @@ class Message extends StatelessWidget {
                                                   colors: colors,
                                                   ignore: noBubble ||
                                                       !ownMessage ||
-                                                      MediaQuery.of(context)
-                                                          .highContrast,
+                                                      MediaQuery.highContrastOf(
+                                                        context,
+                                                      ),
                                                   scrollController:
                                                       scrollController,
                                                   child: Container(

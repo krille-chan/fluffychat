@@ -111,7 +111,7 @@ class ImageViewerController extends State<ImageViewer> {
   void onInteractionEnds(ScaleEndDetails endDetails) {
     if (PlatformInfos.usesTouchscreen == false) {
       if (endDetails.velocity.pixelsPerSecond.dy >
-          MediaQuery.of(context).size.height * maxScaleFactor) {
+          MediaQuery.sizeOf(context).height * maxScaleFactor) {
         Navigator.of(context, rootNavigator: false).pop();
       }
     }
