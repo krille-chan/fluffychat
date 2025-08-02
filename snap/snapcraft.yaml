@@ -78,12 +78,12 @@ parts:
     after: [flutter-git]
     plugin: nil
     source: .
+    override-pull: |
+      craftctl default
+      craftctl set version="$(yq e '.version' pubspec.yaml | sed 's/\(.*\)+.*/\1/')"
     override-build: |
       # Workaround for Flutter build error:
       rm -rf build
-
-      craftctl set version="$(yq e '.version' pubspec.yaml | sed 's/\(.*\)+.*/\1/')"
-
       flutter build linux --release -v
       mkdir -p $CRAFT_PART_INSTALL/bin/
       cp -r build/linux/*/release/bundle/* $CRAFT_PART_INSTALL/bin/
