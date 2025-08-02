@@ -21,7 +21,7 @@ dependencies:
   desktop_drop: ^0.6.1
   desktop_notifications: ^0.6.3
   device_info_plus: ^11.5.0
-  dynamic_color: ^1.7.0
+  dynamic_color: ^1.8.1
   emoji_picker_flutter: ^4.3.0
   emojis: ^0.9.9
   file_picker: ^10.2.1
