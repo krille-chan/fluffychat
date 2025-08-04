@@ -3374,5 +3374,7 @@
   "moreEvents": "More events",
   "@moreEvents": {},
   "declineInvitation": "Decline invitation",
-  "@declineInvitation": {}
+  "@declineInvitation": {},
+  "confirmMessageUnpin": "Are you sure you want to unpin this message?",
+  "@confirmMessageUnpin": {}
 }
