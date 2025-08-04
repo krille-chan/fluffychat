@@ -13,6 +13,9 @@ import 'package:fluffychat/pages/chat/chat_app_bar_list_tile.dart';
 import 'package:fluffychat/pages/chat/chat_app_bar_title.dart';
 import 'package:fluffychat/pages/chat/chat_event_list.dart';
 import 'package:fluffychat/pages/chat/pinned_events.dart';
+import 'package:fluffychat/pangea/activity_planner/activity_pinned_message.dart';
+import 'package:fluffychat/pangea/activity_planner/activity_room_extension.dart';
+import 'package:fluffychat/pangea/activity_planner/activity_status_message.dart';
 import 'package:fluffychat/pangea/chat/widgets/chat_input_bar.dart';
 import 'package:fluffychat/pangea/chat/widgets/chat_input_bar_header.dart';
 import 'package:fluffychat/pangea/chat/widgets/chat_view_background.dart';
@@ -24,7 +27,9 @@ import 'package:fluffychat/widgets/mxc_image.dart';
 import 'package:fluffychat/widgets/unread_rooms_badge.dart';
 import '../../utils/stream_extension.dart';
 
-enum _EventContextAction { info, report }
+// #Pangea
+// enum _EventContextAction { info, report }
+// Pangea#
 
 class ChatView extends StatelessWidget {
   final ChatController controller;
@@ -210,31 +215,34 @@ class ChatView extends StatelessWidget {
                 //     : theme.colorScheme.tertiaryContainer,
                 // Pangea#
                 automaticallyImplyLeading: false,
-                leading:
+                leading: controller.selectMode
+                    ? IconButton(
+                        icon: const Icon(Icons.close),
+                        onPressed: controller.clearSelectedEvents,
+                        tooltip: L10n.of(context).close,
+                        color: theme.colorScheme.onTertiaryContainer,
+                      )
                     // #Pangea
-                    // controller.selectMode
-                    //     ? IconButton(
-                    //         icon: const Icon(Icons.close),
-                    //         onPressed: controller.clearSelectedEvents,
-                    //         tooltip: L10n.of(context).close,
-                    //         color: theme.colorScheme.onTertiaryContainer,
-                    //       )
-                    // :
-                    // Pangea#
-                    FluffyThemes.isColumnMode(context)
-                        ? null
-                        : StreamBuilder<Object>(
-                            stream:
-                                Matrix.of(context).client.onSync.stream.where(
+                    : controller.widget.backButton != null
+                        ? controller.widget.backButton!
+                        // Pangea#
+                        : FluffyThemes.isColumnMode(context)
+                            ? null
+                            : StreamBuilder<Object>(
+                                stream: Matrix.of(context)
+                                    .client
+                                    .onSync
+                                    .stream
+                                    .where(
                                       (syncUpdate) => syncUpdate.hasRoomUpdate,
                                     ),
-                            builder: (context, _) => UnreadRoomsBadge(
-                              filter: (r) => r.id != controller.roomId,
-                              badgePosition:
-                                  BadgePosition.topEnd(end: 8, top: 4),
-                              child: const Center(child: BackButton()),
-                            ),
-                          ),
+                                builder: (context, _) => UnreadRoomsBadge(
+                                  filter: (r) => r.id != controller.roomId,
+                                  badgePosition:
+                                      BadgePosition.topEnd(end: 8, top: 4),
+                                  child: const Center(child: BackButton()),
+                                ),
+                              ),
                 titleSpacing: FluffyThemes.isColumnMode(context) ? 24 : 0,
                 title: ChatAppBarTitle(controller),
                 actions: _appBarActions(context),
@@ -413,13 +421,18 @@ class ChatView extends StatelessWidget {
                               ),
                             // #Pangea
                             // Keep messages above minimum input bar height
-                            if (!controller.room.isAbandonedDMRoom)
+                            if (!controller.room.isAbandonedDMRoom &&
+                                controller.room.canSendDefaultMessages &&
+                                controller.room.membership == Membership.join &&
+                                controller.room.hasJoinedActivity &&
+                                !controller.room.hasFinishedActivity)
                               AnimatedSize(
                                 duration: const Duration(milliseconds: 200),
                                 child: SizedBox(
                                   height: controller.inputBarHeight,
                                 ),
                               ),
+                            ActivityStatusMessage(room: controller.room),
                             // Pangea#
                           ],
                         ),
@@ -427,7 +440,9 @@ class ChatView extends StatelessWidget {
                         ChatViewBackground(controller.choreographer),
                         if (!controller.room.isAbandonedDMRoom &&
                             controller.room.canSendDefaultMessages &&
-                            controller.room.membership == Membership.join)
+                            controller.room.membership == Membership.join &&
+                            controller.room.hasJoinedActivity &&
+                            !controller.room.hasFinishedActivity)
                           Positioned(
                             left: 0,
                             right: 0,
@@ -447,6 +462,7 @@ class ChatView extends StatelessWidget {
                               ],
                             ),
                           ),
+                        ActivityPinnedMessage(controller),
                         // Pangea#
                       ],
                     ),

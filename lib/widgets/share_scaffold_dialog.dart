@@ -73,7 +73,7 @@ class _ShareScaffoldDialogState extends State<ShareScaffoldDialog> {
               room.canSendDefaultMessages &&
               !room.isSpace &&
               // #Pangea
-              !room.isAnalyticsRoom &&
+              !room.isHiddenRoom &&
               // Pangea#
               room.membership == Membership.join,
         )

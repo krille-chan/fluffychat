@@ -352,6 +352,25 @@ abstract class AppRoutes {
                           : null,
                     ),
                   ),
+                  routes: [
+                    GoRoute(
+                      path: ':roomid',
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        state,
+                        ChatPage(
+                          roomId: state.pathParameters['roomid']!,
+                          eventId: state.uri.queryParameters['event'],
+                          backButton: BackButton(
+                            onPressed: () => context.go(
+                              "/rooms/analytics?mode=activities",
+                            ),
+                          ),
+                        ),
+                      ),
+                      redirect: loggedOutRedirect,
+                    ),
+                  ],
                 ),
               ],
             ),

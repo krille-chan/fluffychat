@@ -94,8 +94,53 @@ extension ChildrenAndParentsRoomExtension on Room {
   int get spaceChildCount => client.rooms
       .where(
         (r) => spaceChildren.any(
-          (child) => r.id == child.roomId && !r.isAnalyticsRoom,
+          (child) => r.id == child.roomId && !r.isHiddenRoom,
         ),
       )
       .length;
+
+  Future<void> addSubspace(BuildContext context) async {
+    if (!isSpace) return;
+    final names = await showTextInputDialog(
+      context: context,
+      title: L10n.of(context).createNewSpace,
+      hintText: L10n.of(context).spaceName,
+      minLines: 1,
+      maxLines: 1,
+      maxLength: 64,
+      validator: (text) {
+        if (text.isEmpty) {
+          return L10n.of(context).pleaseChoose;
+        }
+        return null;
+      },
+      okLabel: L10n.of(context).create,
+      cancelLabel: L10n.of(context).cancel,
+    );
+    if (names == null) return;
+    await showFutureLoadingDialog(
+      context: context,
+      future: () async {
+        await postLoad();
+        final resp = await client.createRoom(
+          name: names,
+          visibility: RoomDefaults.spaceChildVisibility,
+          creationContent: {'type': 'm.space'},
+          initialState: [
+            RoomDefaults.defaultSpacePowerLevels(client.userID!),
+            await client.pangeaJoinRules(
+              'knock_restricted',
+              allow: [
+                {
+                  "type": "m.room_membership",
+                  "room_id": id,
+                }
+              ],
+            ),
+          ],
+        );
+        await addToSpace(resp);
+      },
+    );
+  }
 }

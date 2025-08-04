@@ -11,6 +11,7 @@ import 'package:fluffychat/pangea/activity_planner/bookmarked_activity_list.dart
 import 'package:fluffychat/pangea/activity_suggestions/activity_suggestions_area.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_suggestions_constants.dart';
 import 'package:fluffychat/pangea/common/widgets/customized_svg.dart';
+import 'package:fluffychat/pangea/common/widgets/error_indicator.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 enum PageMode {
@@ -38,23 +39,27 @@ class ActivityPlannerPageState extends State<ActivityPlannerPage> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    Widget body = const SizedBox();
+    Widget? body;
     switch (pageMode) {
       case PageMode.savedActivities:
-        body = BookmarkedActivitiesList(
-          room: room,
-          controller: this,
-        );
+        if (room != null) {
+          body = BookmarkedActivitiesList(
+            room: room!,
+            controller: this,
+          );
+        }
         break;
       case PageMode.featuredActivities:
-        body = Expanded(
-          child: SingleChildScrollView(
-            child: ActivitySuggestionsArea(
-              scrollDirection: Axis.vertical,
-              room: room,
+        if (room != null) {
+          body = Expanded(
+            child: SingleChildScrollView(
+              child: ActivitySuggestionsArea(
+                scrollDirection: Axis.vertical,
+                room: room!,
+              ),
             ),
-          ),
-        );
+          );
+        }
         break;
     }
 
@@ -130,7 +135,7 @@ class ActivityPlannerPageState extends State<ActivityPlannerPage> {
                               height: 24.0,
                               width: 24.0,
                             ),
-                            Text(L10n.of(context).createActivity),
+                            Text(L10n.of(context).createActivityPlan),
                           ],
                         ),
                         selected: false,
@@ -141,7 +146,10 @@ class ActivityPlannerPageState extends State<ActivityPlannerPage> {
                     ],
                   ),
                 ),
-              body,
+              body ??
+                  ErrorIndicator(
+                    message: L10n.of(context).oopsSomethingWentWrong,
+                  ),
             ],
           ),
         ),

@@ -12,7 +12,7 @@ import 'package:fluffychat/pangea/activity_suggestions/activity_suggestion_card.
 import 'package:fluffychat/pangea/activity_suggestions/activity_suggestion_dialog.dart';
 
 class BookmarkedActivitiesList extends StatefulWidget {
-  final Room? room;
+  final Room room;
 
   final ActivityPlannerPageState controller;
 

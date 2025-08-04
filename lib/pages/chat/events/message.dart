@@ -10,7 +10,10 @@ import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/events/pangea_message_reactions.dart';
 import 'package:fluffychat/pages/chat/events/room_creation_state_event.dart';
+import 'package:fluffychat/pangea/chat/widgets/activity_role_state_message.dart';
+import 'package:fluffychat/pangea/chat/widgets/activity_state_event.dart';
 import 'package:fluffychat/pangea/common/widgets/pressable_button.dart';
+import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
 import 'package:fluffychat/utils/file_description.dart';
@@ -125,6 +128,17 @@ class Message extends StatelessWidget {
       if (event.type == EventTypes.RoomCreate) {
         return RoomCreationStateEvent(event: event);
       }
+
+      // #Pangea
+      if (event.type == PangeaEventTypes.activityPlan) {
+        return ActivityStateEvent(event: event);
+      }
+
+      if (event.type == PangeaEventTypes.activityRole) {
+        return ActivityRoleStateMessage(event);
+      }
+      // Pangea#
+
       return StateMessage(event);
     }
 

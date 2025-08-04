@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
 class ActivitySuggestionCardRow extends StatelessWidget {
-  final IconData icon;
+  final IconData? icon;
+  final Widget? leading;
   final Widget child;
 
   const ActivitySuggestionCardRow({
-    required this.icon,
     required this.child,
+    this.icon,
+    this.leading,
     super.key,
   });
 
@@ -15,12 +17,14 @@ class ActivitySuggestionCardRow extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4.0),
       child: Row(
-        spacing: 8.0,
+        spacing: 12.0,
         children: [
-          Icon(
-            icon,
-            size: 16.0,
-          ),
+          if (leading != null) leading!,
+          if (icon != null)
+            Icon(
+              icon,
+              size: 24.0,
+            ),
           Expanded(child: child),
         ],
       ),

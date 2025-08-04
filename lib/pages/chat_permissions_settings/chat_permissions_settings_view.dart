@@ -5,6 +5,7 @@ import 'package:matrix/matrix.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_permissions_settings/chat_permissions_settings.dart';
 import 'package:fluffychat/pages/chat_permissions_settings/permission_list_tile.dart';
+import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
@@ -49,6 +50,8 @@ class ChatPermissionsSettingsView extends StatelessWidget {
               controller.defaultPowerLevels,
             );
 
+            final excludedEvents = [PangeaEventTypes.activityRole];
+
             Map<String, dynamic> missingPowerLevels = Map<String, dynamic>.from(
               defaults,
             )..removeWhere((k, v) => v is! int || powerLevels.containsKey(k));
@@ -72,6 +75,9 @@ class ChatPermissionsSettingsView extends StatelessWidget {
 
             powerLevels.addAll(missingPowerLevels);
             eventsPowerLevels.addAll(missingEventsPowerLevels);
+            eventsPowerLevels.removeWhere(
+              (key, value) => excludedEvents.contains(key),
+            );
             // Pangea#
             return Column(
               children: [

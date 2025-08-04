@@ -1,0 +1,187 @@
+import 'package:flutter/material.dart';
+
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:collection/collection.dart';
+import 'package:matrix/matrix.dart';
+
+import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/pages/chat/chat.dart';
+import 'package:fluffychat/pages/chat/chat_app_bar_list_tile.dart';
+import 'package:fluffychat/pangea/activity_planner/activity_room_extension.dart';
+import 'package:fluffychat/pangea/activity_suggestions/activity_suggestions_constants.dart';
+import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
+import 'package:fluffychat/widgets/future_loading_dialog.dart';
+
+class ActivityPinnedMessage extends StatefulWidget {
+  final ChatController controller;
+  const ActivityPinnedMessage(this.controller, {super.key});
+
+  @override
+  State<ActivityPinnedMessage> createState() => ActivityPinnedMessageState();
+}
+
+class ActivityPinnedMessageState extends State<ActivityPinnedMessage> {
+  bool _showDropdown = false;
+
+  Room get room => widget.controller.room;
+
+  void _scrollToActivity() {
+    final eventId = widget.controller.timeline?.events
+        .firstWhereOrNull(
+          (e) => e.type == PangeaEventTypes.activityPlan,
+        )
+        ?.eventId;
+    if (eventId == null) return;
+    widget.controller.scrollToEventId(eventId);
+  }
+
+  void _setShowDropdown(bool value) {
+    if (value != _showDropdown) {
+      setState(() {
+        _showDropdown = value;
+      });
+    }
+  }
+
+  Future<void> _finishActivity() async {
+    final resp = await showFutureLoadingDialog(
+      context: context,
+      future: () async {
+        await room.finishActivity();
+        if (mounted) {
+          _setShowDropdown(false);
+        }
+      },
+    );
+
+    if (resp.isError) return;
+    if (room.activityIsFinished) {
+      await room.fetchSummaries();
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (!room.hasJoinedActivity || room.activityPlan == null) {
+      return const SizedBox.shrink();
+    }
+
+    final theme = Theme.of(context);
+    final isColumnMode = FluffyThemes.isColumnMode(context);
+
+    return Positioned(
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: _showDropdown ? 0 : null,
+      child: Column(
+        children: [
+          AnimatedContainer(
+            duration: FluffyThemes.animationDuration,
+            decoration: BoxDecoration(
+              color: _showDropdown
+                  ? theme.colorScheme.surfaceContainerHighest
+                  : theme.colorScheme.surface,
+            ),
+            child: ChatAppBarListTile(
+              title: room.activityPlan?.markdown ??
+                  L10n.of(context).loadingPleaseWait,
+              leading: const SizedBox(width: 18.0),
+              trailing: Padding(
+                padding: const EdgeInsets.only(right: 12.0),
+                child: room.hasFinishedActivity
+                    ? null
+                    : ElevatedButton(
+                        onPressed:
+                            _showDropdown ? null : () => _setShowDropdown(true),
+                        style: ElevatedButton.styleFrom(
+                          minimumSize: Size.zero,
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 12.0,
+                            vertical: 4.0,
+                          ),
+                          backgroundColor: theme.colorScheme.onSurface,
+                          foregroundColor: theme.colorScheme.surface,
+                        ),
+                        child: Text(
+                          L10n.of(context).done,
+                          style: const TextStyle(
+                            fontSize: 12.0,
+                          ),
+                        ),
+                      ),
+              ),
+              onTap: _scrollToActivity,
+            ),
+          ),
+          AnimatedSize(
+            duration: FluffyThemes.animationDuration,
+            curve: Curves.easeInOut,
+            child: ClipRect(
+              child: _showDropdown
+                  ? Container(
+                      decoration: BoxDecoration(
+                        color: theme.colorScheme.surfaceContainerHighest,
+                      ),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 12.0,
+                        vertical: 16.0,
+                      ),
+                      child: Column(
+                        spacing: 12.0,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            L10n.of(context).endActivityDesc,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: isColumnMode ? 16.0 : 12.0,
+                            ),
+                          ),
+                          CachedNetworkImage(
+                            imageUrl:
+                                "${AppConfig.assetsBaseURL}/${ActivitySuggestionsConstants.endActivityAssetPath}",
+                            width: isColumnMode ? 240.0 : 120.0,
+                          ),
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 12.0,
+                                vertical: 8.0,
+                              ),
+                              foregroundColor: theme.colorScheme.onSecondary,
+                              backgroundColor: theme.colorScheme.secondary,
+                            ),
+                            onPressed: _finishActivity,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  L10n.of(context).endActivityTitle,
+                                  style: TextStyle(
+                                    fontSize: isColumnMode ? 16.0 : 12.0,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  : const SizedBox.shrink(),
+            ),
+          ),
+          if (_showDropdown)
+            Expanded(
+              child: GestureDetector(
+                onTap: () => _setShowDropdown(false),
+                child: Container(color: Colors.black.withAlpha(100)),
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+}

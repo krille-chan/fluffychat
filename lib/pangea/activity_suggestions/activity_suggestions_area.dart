@@ -26,12 +26,12 @@ import 'package:fluffychat/widgets/matrix.dart';
 
 class ActivitySuggestionsArea extends StatefulWidget {
   final Axis? scrollDirection;
-  final Room? room;
+  final Room room;
 
   const ActivitySuggestionsArea({
     super.key,
     this.scrollDirection,
-    this.room,
+    required this.room,
   });
   @override
   ActivitySuggestionsAreaState createState() => ActivitySuggestionsAreaState();
@@ -173,7 +173,7 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
                         builder: (controller) {
                           return ActivitySuggestionDialog(
                             controller: controller,
-                            buttonText: L10n.of(context).launchActivityButton,
+                            buttonText: L10n.of(context).saveAndLaunch,
                             replaceActivity: (a) =>
                                 _onReplaceActivity(index, a),
                           );

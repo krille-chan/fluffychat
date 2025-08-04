@@ -6,6 +6,7 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/analytics_details_popup/analytics_details_popup.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
+import 'package:fluffychat/pangea/analytics_page/activity_archive.dart';
 import 'package:fluffychat/pangea/analytics_page/analytics_page.dart';
 import 'package:fluffychat/pangea/analytics_summary/learning_progress_indicators.dart';
 import 'package:fluffychat/pangea/analytics_summary/level_dialog_content.dart';
@@ -67,6 +68,9 @@ class AnalyticsPageView extends StatelessWidget {
                               constructZoom: controller.widget.constructZoom,
                               view: ConstructTypeEnum.vocab,
                             );
+                          } else if (controller.selectedIndicator ==
+                              ProgressIndicatorEnum.activities) {
+                            return const ActivityArchive();
                           }
 
                           return const SizedBox();

@@ -4896,7 +4896,6 @@
   "newChatActivityDesc": "Make every group chat an adventure with Activity Planner! Set captivating topics and objectives for the group, and bring conversations to life with stunning images. Spark imaginative discussions and keep the fun flowing effortlessly!",
   "exploreMore": "Explore more",
   "wordFocusListeningMultipleChoice": "Which audio matches the word?",
-  "createActivity": "Create activity",
   "startChat": "Start a chat",
   "translationProblem": "Translation problem",
   "perfectTranslation": "Perfect translation!",
@@ -5080,6 +5079,7 @@
   "reset": "Reset",
   "errorGenerateActivityMessage": "Failed to generate activity",
   "errorRegenerateActivityMessage": "Failed to regenerate activity",
+  "errorLaunchActivityMessage": "Failed to launch activity",
   "errorFetchingActivitiesMessage": "Failed to fetch activities",
   "errorFetchingDefinition": "Failed to fetch definition",
   "errorProcessAnalytics": "Failed to process analytics",
@@ -5092,5 +5092,46 @@
   "errorFetchingTranslation": "Failed to fetch translation",
   "errorFetchingActivity": "Failed to fetch activity",
   "check": "Check",
-  "unableToFindRoom": "No chat or space found with that code. Please try again."
+  "unableToFindRoom": "No chat or space found with that code. Please try again.",
+  "createActivityPlan": "Create a new activity plan",
+  "saveAndLaunch": "Save and Launch",
+  "launchToSpace": "Launch to Space",
+  "numberOfActivities": "Number of Activity Sessions",
+  "minimumActivityParticipants": "Each Activity needs a minimum {count} of participant(s).",
+  "@minimumActivityParticipants": {
+    "type": "String",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "unjoinedActivityMessage": "Do you want to participate? Choose an open role!\nOr hang out and watch the show!",
+  "fullActivityMessage": "Feel free to watch the show! While there aren't any open roles to participate, you can view the chat!",
+  "confirmRole": "Confirm role",
+  "openRoleLabel": "OPEN",
+  "joinedTheActivity": "👋 {username} joined as {role}",
+  "@joinedTheActivity": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      },
+      "role": {
+        "type": "String"
+      }
+    }
+  },
+  "finishedTheActivity": "🎯 {username} wrapped up this activity",
+  "@finishedTheActivity": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "endActivityTitle": "Wrapped up my part",
+  "endActivityDesc": "Did you complete the objectives?\nThis is your confirmation that you're stepping back from texting. But don’t worry, the fun continues in the chat! Feel free to hang out and enjoy the show until everyone clicks 'Done'.",
+  "archiveToAnalytics": "Archive to Analytics"
 }

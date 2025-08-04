@@ -26,7 +26,7 @@ class UnreadRoomsBadge extends StatelessWidget {
         .client
         .rooms
         // #Pangea
-        .where((r) => !r.isAnalyticsRoom)
+        .where((r) => !r.isHiddenRoom)
         // Pangea#
         .where(filter)
         .where((r) => (r.isUnread || r.membership == Membership.invite))

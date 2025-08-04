@@ -30,9 +30,8 @@ class ProgressIndicatorBadge extends StatelessWidget {
           ),
           const SizedBox(width: 6.0),
           !loading
-              ? _AnimatedFloatingNumber(
+              ? AnimatedFloatingNumber(
                   number: points,
-                  indicator: indicator,
                 )
               : const SizedBox(
                   height: 8,
@@ -47,21 +46,19 @@ class ProgressIndicatorBadge extends StatelessWidget {
   }
 }
 
-class _AnimatedFloatingNumber extends StatefulWidget {
+class AnimatedFloatingNumber extends StatefulWidget {
   final int number;
-  final ProgressIndicatorEnum indicator;
 
-  const _AnimatedFloatingNumber({
+  const AnimatedFloatingNumber({
+    super.key,
     required this.number,
-    required this.indicator,
   });
 
   @override
-  State<_AnimatedFloatingNumber> createState() =>
-      _AnimatedFloatingNumberState();
+  State<AnimatedFloatingNumber> createState() => AnimatedFloatingNumberState();
 }
 
-class _AnimatedFloatingNumberState extends State<_AnimatedFloatingNumber>
+class AnimatedFloatingNumberState extends State<AnimatedFloatingNumber>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _fadeAnim;
@@ -85,7 +82,7 @@ class _AnimatedFloatingNumberState extends State<_AnimatedFloatingNumber>
   }
 
   @override
-  void didUpdateWidget(covariant _AnimatedFloatingNumber oldWidget) {
+  void didUpdateWidget(covariant AnimatedFloatingNumber oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.number > _lastNumber!) {
       _floatingNumber = widget.number;
@@ -109,7 +106,7 @@ class _AnimatedFloatingNumberState extends State<_AnimatedFloatingNumber>
     final TextStyle indicatorStyle = TextStyle(
       fontSize: 14,
       fontWeight: FontWeight.bold,
-      color: widget.indicator.color(context),
+      color: Theme.of(context).colorScheme.primary,
     );
     return Stack(
       alignment: Alignment.center,

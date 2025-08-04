@@ -12,12 +12,14 @@ import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_planner_builder.dart';
 import 'package:fluffychat/pangea/activity_planner/bookmarked_activities_repo.dart';
-import 'package:fluffychat/pangea/activity_suggestions/activity_room_selection.dart';
+import 'package:fluffychat/pangea/activity_suggestions/activity_suggestion_dialog.dart';
 import 'package:fluffychat/pangea/chat_settings/widgets/language_level_dropdown.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
-import 'package:fluffychat/pangea/common/widgets/full_width_dialog.dart';
 import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_enum.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
+import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
+import 'package:fluffychat/widgets/mxc_image.dart';
 
 class ActivityPlanCard extends StatefulWidget {
   final VoidCallback regenerate;
@@ -70,38 +72,24 @@ class ActivityPlanCardState extends State<ActivityPlanCard> {
   }
 
   Future<void> _onLaunch() async {
-    if (widget.controller.room != null && !widget.controller.room!.isSpace) {
-      final resp = await showFutureLoadingDialog(
-        context: context,
-        future: widget.controller.launchToRoom,
-      );
-      if (!resp.isError) {
-        context.go("/rooms/${widget.controller.room!.id}");
-      }
-      return;
-    }
-
-    return showDialog(
+    final resp = await showFutureLoadingDialog(
       context: context,
-      builder: (context) {
-        return FullWidthDialog(
-          dialogContent: DecoratedBox(
-            decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.surface,
-            ),
-            child: ActivityRoomSelection(
-              controller: widget.controller,
-              backButton: IconButton(
-                onPressed: Navigator.of(context).pop,
-                icon: const Icon(Icons.close),
-              ),
-            ),
-          ),
-          maxWidth: 400.0,
-          maxHeight: 650.0,
-        );
+      future: () async {
+        if (!widget.controller.room.isSpace) {
+          throw Exception(
+            "Cannot launch activity in a non-space room",
+          );
+        }
+
+        await widget.controller.launchToSpace();
+        context.go("/rooms?spaceId=${widget.controller.room.id}");
+        Navigator.of(context).pop();
       },
     );
+
+    if (!resp.isError) {
+      context.go("/rooms?spaceId=${widget.controller.room.id}");
+    }
   }
 
   bool get _isBookmarked => BookmarkedActivitiesRepo.isBookmarked(
@@ -134,33 +122,47 @@ class ActivityPlanCardState extends State<ActivityPlanCard> {
                         ),
                         clipBehavior: Clip.hardEdge,
                         alignment: Alignment.center,
-                        child: widget.controller.imageURL != null ||
-                                widget.controller.avatar != null
-                            ? ClipRRect(
-                                borderRadius: BorderRadius.circular(20.0),
-                                child: widget.controller.avatar == null
-                                    ? CachedNetworkImage(
-                                        fit: BoxFit.cover,
-                                        imageUrl: widget.controller.imageURL!,
-                                        placeholder: (context, url) {
-                                          return const Center(
-                                            child: CircularProgressIndicator(),
-                                          );
-                                        },
-                                        errorWidget: (context, url, error) {
-                                          return const Padding(
-                                            padding: EdgeInsets.all(28.0),
-                                          );
-                                        },
-                                      )
-                                    : Image.memory(
-                                        widget.controller.avatar!,
-                                        fit: BoxFit.cover,
-                                      ),
+                        child: widget.controller.isLaunching
+                            ? Avatar(
+                                mxContent: widget.controller.room.avatar,
+                                name: widget.controller.room
+                                    .getLocalizedDisplayname(
+                                  MatrixLocals(
+                                    L10n.of(context),
+                                  ),
+                                ),
+                                borderRadius: BorderRadius.circular(12.0),
+                                size: 200.0,
                               )
-                            : const Padding(
-                                padding: EdgeInsets.all(28.0),
-                              ),
+                            : widget.controller.imageURL != null ||
+                                    widget.controller.avatar != null
+                                ? ClipRRect(
+                                    borderRadius: BorderRadius.circular(20.0),
+                                    child: widget.controller.avatar == null
+                                        ? CachedNetworkImage(
+                                            fit: BoxFit.cover,
+                                            imageUrl:
+                                                widget.controller.imageURL!,
+                                            placeholder: (context, url) {
+                                              return const Center(
+                                                child:
+                                                    CircularProgressIndicator(),
+                                              );
+                                            },
+                                            errorWidget: (context, url, error) {
+                                              return const Padding(
+                                                padding: EdgeInsets.all(28.0),
+                                              );
+                                            },
+                                          )
+                                        : Image.memory(
+                                            widget.controller.avatar!,
+                                            fit: BoxFit.cover,
+                                          ),
+                                  )
+                                : const Padding(
+                                    padding: EdgeInsets.all(28.0),
+                                  ),
                       ),
                       if (widget.controller.isEditing)
                         InkWell(
@@ -184,348 +186,534 @@ class ActivityPlanCardState extends State<ActivityPlanCard> {
                   padding: const EdgeInsets.all(16),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          const Icon(Icons.event_note_outlined),
-                          const SizedBox(width: itemPadding),
-                          Expanded(
-                            child: widget.controller.isEditing
-                                ? TextField(
-                                    controller:
-                                        widget.controller.titleController,
-                                    decoration: InputDecoration(
-                                      labelText: L10n.of(context).activityTitle,
+                    children: widget.controller.isLaunching
+                        ? [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Avatar(
+                                  mxContent: widget.controller.room.avatar,
+                                  name: widget.controller.room
+                                      .getLocalizedDisplayname(
+                                    MatrixLocals(L10n.of(context)),
+                                  ),
+                                  size: 24.0,
+                                  borderRadius: BorderRadius.circular(4.0),
+                                ),
+                                const SizedBox(width: itemPadding),
+                                Expanded(
+                                  child: Text(
+                                    widget.controller.room
+                                        .getLocalizedDisplayname(
+                                      MatrixLocals(L10n.of(context)),
                                     ),
-                                    maxLines: null,
-                                  )
-                                : Text(
+                                    style:
+                                        Theme.of(context).textTheme.bodyLarge,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: itemPadding),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                widget.controller.updatedActivity.imageURL !=
+                                        null
+                                    ? ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(4.0),
+                                        child: widget.controller.updatedActivity
+                                                .imageURL!
+                                                .startsWith("mxc")
+                                            ? MxcImage(
+                                                uri: Uri.parse(
+                                                  widget
+                                                      .controller
+                                                      .updatedActivity
+                                                      .imageURL!,
+                                                ),
+                                                width: 24.0,
+                                                height: 24.0,
+                                                cacheKey: widget.controller
+                                                    .updatedActivity.bookmarkId,
+                                                fit: BoxFit.cover,
+                                              )
+                                            : CachedNetworkImage(
+                                                imageUrl: widget.controller
+                                                    .updatedActivity.imageURL!,
+                                                fit: BoxFit.cover,
+                                                width: 24.0,
+                                                height: 24.0,
+                                                placeholder: (
+                                                  context,
+                                                  url,
+                                                ) =>
+                                                    const Center(
+                                                  child:
+                                                      CircularProgressIndicator(),
+                                                ),
+                                                errorWidget: (
+                                                  context,
+                                                  url,
+                                                  error,
+                                                ) =>
+                                                    const SizedBox(),
+                                              ),
+                                      )
+                                    : const Icon(
+                                        Icons.event_note_outlined,
+                                        size: 24.0,
+                                      ),
+                                const SizedBox(width: itemPadding),
+                                Expanded(
+                                  child: Text(
                                     widget.controller.updatedActivity.title,
                                     style:
                                         Theme.of(context).textTheme.bodyLarge,
                                   ),
-                          ),
-                          if (!widget.controller.isEditing)
-                            IconButton(
-                              onPressed: _isBookmarked
-                                  ? () => _removeBookmark()
-                                  : () => _addBookmark(
-                                        widget.controller.updatedActivity,
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: itemPadding),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                const Icon(Icons.groups, size: 24.0),
+                                const SizedBox(width: itemPadding),
+                                Expanded(
+                                  child: Text(
+                                    L10n.of(context)
+                                        .minimumActivityParticipants(
+                                      widget.controller.updatedActivity.req
+                                          .numberOfParticipants,
+                                    ),
+                                    style:
+                                        Theme.of(context).textTheme.bodyLarge,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: itemPadding),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                const Icon(Icons.radar, size: 24.0),
+                                const SizedBox(width: itemPadding),
+                                Expanded(
+                                  child: Column(
+                                    spacing: 4.0,
+                                    mainAxisSize: MainAxisSize.min,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        L10n.of(context).numberOfActivities,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyLarge,
                                       ),
-                              icon: Icon(
-                                _isBookmarked
-                                    ? Icons.save
-                                    : Icons.save_outlined,
-                              ),
+                                      NumberCounter(
+                                        count: widget.controller.numActivities,
+                                        update:
+                                            widget.controller.setNumActivities,
+                                        min: 1,
+                                        max: 5,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
                             ),
-                        ],
-                      ),
-                      const SizedBox(height: itemPadding),
-                      Row(
-                        children: [
-                          Icon(
-                            Symbols.target,
-                            color: Theme.of(context).colorScheme.secondary,
-                          ),
-                          const SizedBox(width: itemPadding),
-                          Expanded(
-                            child: widget.controller.isEditing
-                                ? TextField(
-                                    controller: widget.controller
-                                        .learningObjectivesController,
-                                    decoration: InputDecoration(
-                                      labelText: l10n.learningObjectiveLabel,
-                                    ),
-                                    maxLines: null,
-                                  )
-                                : Text(
-                                    widget.controller.updatedActivity
-                                        .learningObjective,
-                                    style:
-                                        Theme.of(context).textTheme.bodyMedium,
-                                  ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: itemPadding),
-                      Row(
-                        children: [
-                          Icon(
-                            Symbols.steps_rounded,
-                            color: Theme.of(context).colorScheme.secondary,
-                          ),
-                          const SizedBox(width: itemPadding),
-                          Expanded(
-                            child: widget.controller.isEditing
-                                ? TextField(
-                                    controller: widget
-                                        .controller.instructionsController,
-                                    decoration: InputDecoration(
-                                      labelText: l10n.instructions,
-                                    ),
-                                    maxLines: null,
-                                  )
-                                : Text(
-                                    widget.controller.updatedActivity
-                                        .instructions,
-                                    style:
-                                        Theme.of(context).textTheme.bodyMedium,
-                                  ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: itemPadding),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.school_outlined,
-                            color: Theme.of(context).colorScheme.secondary,
-                          ),
-                          const SizedBox(width: itemPadding),
-                          Expanded(
-                            child: widget.controller.isEditing
-                                ? LanguageLevelDropdown(
-                                    initialLevel:
-                                        widget.controller.languageLevel,
-                                    onChanged:
-                                        widget.controller.setLanguageLevel,
-                                  )
-                                : Text(
-                                    widget.controller.updatedActivity.req
-                                        .cefrLevel
-                                        .title(context),
-                                    style:
-                                        Theme.of(context).textTheme.bodyMedium,
-                                  ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: itemPadding),
-                      if (widget.controller.vocab.isNotEmpty) ...[
-                        Row(
-                          children: [
-                            Icon(
-                              Symbols.dictionary,
-                              color: Theme.of(context).colorScheme.secondary,
-                            ),
-                            const SizedBox(width: itemPadding),
-                            Expanded(
-                              child: Wrap(
-                                spacing: 4.0,
-                                runSpacing: 4.0,
-                                children: List<Widget>.generate(
-                                    widget.controller.vocab.length,
-                                    (int index) {
-                                  return widget.controller.isEditing
-                                      ? Chip(
-                                          label: Text(
-                                            widget
-                                                .controller.vocab[index].lemma,
-                                          ),
-                                          onDeleted: () => widget.controller
-                                              .removeVocab(index),
-                                          backgroundColor: Colors.transparent,
-                                          visualDensity: VisualDensity.compact,
-                                          shape: const StadiumBorder(
-                                            side: BorderSide(
-                                              color: Colors.transparent,
-                                            ),
-                                          ),
-                                        )
-                                      : Chip(
-                                          label: Text(
-                                            widget
-                                                .controller.vocab[index].lemma,
-                                          ),
-                                          backgroundColor: Colors.transparent,
-                                          visualDensity: VisualDensity.compact,
-                                          shape: const StadiumBorder(
-                                            side: BorderSide(
-                                              color: Colors.transparent,
-                                            ),
-                                          ),
-                                        );
-                                }).toList(),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                      if (widget.controller.isEditing) ...[
-                        const SizedBox(height: itemPadding),
-                        Padding(
-                          padding: const EdgeInsets.only(top: itemPadding),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: TextField(
-                                  controller: widget.controller.vocabController,
-                                  decoration: InputDecoration(
-                                    labelText: l10n.addVocabulary,
-                                  ),
-                                  onSubmitted: (value) {
-                                    widget.controller.addVocab();
-                                  },
+                            const SizedBox(height: itemPadding),
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor:
+                                    theme.colorScheme.primaryContainer,
+                                foregroundColor:
+                                    theme.colorScheme.onPrimaryContainer,
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 12.0,
                                 ),
                               ),
-                              IconButton(
-                                icon: const Icon(Icons.add),
-                                onPressed: widget.controller.addVocab,
+                              onPressed: _onLaunch,
+                              child: Row(
+                                children: [
+                                  const Icon(Icons.send_outlined),
+                                  Expanded(
+                                    child: Text(
+                                      L10n.of(context).launchToSpace,
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ]
+                        : [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                const Icon(Icons.event_note_outlined),
+                                const SizedBox(width: itemPadding),
+                                Expanded(
+                                  child: widget.controller.isEditing
+                                      ? TextField(
+                                          controller:
+                                              widget.controller.titleController,
+                                          decoration: InputDecoration(
+                                            labelText:
+                                                L10n.of(context).activityTitle,
+                                          ),
+                                          maxLines: null,
+                                        )
+                                      : Text(
+                                          widget
+                                              .controller.updatedActivity.title,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyLarge,
+                                        ),
+                                ),
+                                if (!widget.controller.isEditing)
+                                  IconButton(
+                                    onPressed: _isBookmarked
+                                        ? () => _removeBookmark()
+                                        : () => _addBookmark(
+                                              widget.controller.updatedActivity,
+                                            ),
+                                    icon: Icon(
+                                      _isBookmarked
+                                          ? Icons.save
+                                          : Icons.save_outlined,
+                                    ),
+                                  ),
+                              ],
+                            ),
+                            const SizedBox(height: itemPadding),
+                            Row(
+                              children: [
+                                Icon(
+                                  Symbols.target,
+                                  color:
+                                      Theme.of(context).colorScheme.secondary,
+                                ),
+                                const SizedBox(width: itemPadding),
+                                Expanded(
+                                  child: widget.controller.isEditing
+                                      ? TextField(
+                                          controller: widget.controller
+                                              .learningObjectivesController,
+                                          decoration: InputDecoration(
+                                            labelText:
+                                                l10n.learningObjectiveLabel,
+                                          ),
+                                          maxLines: null,
+                                        )
+                                      : Text(
+                                          widget.controller.updatedActivity
+                                              .learningObjective,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium,
+                                        ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: itemPadding),
+                            Row(
+                              children: [
+                                Icon(
+                                  Symbols.steps_rounded,
+                                  color:
+                                      Theme.of(context).colorScheme.secondary,
+                                ),
+                                const SizedBox(width: itemPadding),
+                                Expanded(
+                                  child: widget.controller.isEditing
+                                      ? TextField(
+                                          controller: widget.controller
+                                              .instructionsController,
+                                          decoration: InputDecoration(
+                                            labelText: l10n.instructions,
+                                          ),
+                                          maxLines: null,
+                                        )
+                                      : Text(
+                                          widget.controller.updatedActivity
+                                              .instructions,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium,
+                                        ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: itemPadding),
+                            Row(
+                              children: [
+                                Icon(
+                                  Icons.school_outlined,
+                                  color:
+                                      Theme.of(context).colorScheme.secondary,
+                                ),
+                                const SizedBox(width: itemPadding),
+                                Expanded(
+                                  child: widget.controller.isEditing
+                                      ? LanguageLevelDropdown(
+                                          initialLevel:
+                                              widget.controller.languageLevel,
+                                          onChanged: widget
+                                              .controller.setLanguageLevel,
+                                        )
+                                      : Text(
+                                          widget.controller.updatedActivity.req
+                                              .cefrLevel
+                                              .title(context),
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium,
+                                        ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: itemPadding),
+                            if (widget.controller.vocab.isNotEmpty) ...[
+                              Row(
+                                children: [
+                                  Icon(
+                                    Symbols.dictionary,
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
+                                  ),
+                                  const SizedBox(width: itemPadding),
+                                  Expanded(
+                                    child: Wrap(
+                                      spacing: 4.0,
+                                      runSpacing: 4.0,
+                                      children: List<Widget>.generate(
+                                          widget.controller.vocab.length,
+                                          (int index) {
+                                        return widget.controller.isEditing
+                                            ? Chip(
+                                                label: Text(
+                                                  widget.controller.vocab[index]
+                                                      .lemma,
+                                                ),
+                                                onDeleted: () => widget
+                                                    .controller
+                                                    .removeVocab(index),
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                visualDensity:
+                                                    VisualDensity.compact,
+                                                shape: const StadiumBorder(
+                                                  side: BorderSide(
+                                                    color: Colors.transparent,
+                                                  ),
+                                                ),
+                                              )
+                                            : Chip(
+                                                label: Text(
+                                                  widget.controller.vocab[index]
+                                                      .lemma,
+                                                ),
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                visualDensity:
+                                                    VisualDensity.compact,
+                                                shape: const StadiumBorder(
+                                                  side: BorderSide(
+                                                    color: Colors.transparent,
+                                                  ),
+                                                ),
+                                              );
+                                      }).toList(),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ],
-                          ),
-                        ),
-                      ],
-                      const SizedBox(height: itemPadding),
-                      widget.controller.isEditing
-                          ? Row(
-                              spacing: 12.0,
-                              children: [
-                                Expanded(
-                                  child: ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor:
-                                          theme.colorScheme.primaryContainer,
-                                      foregroundColor:
-                                          theme.colorScheme.onPrimaryContainer,
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0,
-                                      ),
-                                    ),
-                                    onPressed: widget.controller.saveEdits,
-                                    child: Row(
-                                      children: [
-                                        const Icon(Icons.save),
-                                        Expanded(
-                                          child: Text(
-                                            L10n.of(context).save,
-                                            textAlign: TextAlign.center,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor:
-                                          theme.colorScheme.primaryContainer,
-                                      foregroundColor:
-                                          theme.colorScheme.onPrimaryContainer,
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 12.0,
-                                      ),
-                                    ),
-                                    onPressed: widget.controller.clearEdits,
-                                    child: Row(
-                                      children: [
-                                        const Icon(Icons.cancel),
-                                        Expanded(
-                                          child: Text(
-                                            L10n.of(context).cancel,
-                                            textAlign: TextAlign.center,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            )
-                          : Column(
-                              spacing: 12.0,
-                              children: [
-                                Row(
-                                  spacing: 12.0,
+                            if (widget.controller.isEditing) ...[
+                              const SizedBox(height: itemPadding),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(top: itemPadding),
+                                child: Row(
                                   children: [
                                     Expanded(
-                                      child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          backgroundColor: theme
-                                              .colorScheme.primaryContainer,
-                                          foregroundColor: theme
-                                              .colorScheme.onPrimaryContainer,
-                                          padding: const EdgeInsets.symmetric(
-                                            horizontal: 12.0,
-                                          ),
+                                      child: TextField(
+                                        controller:
+                                            widget.controller.vocabController,
+                                        decoration: InputDecoration(
+                                          labelText: l10n.addVocabulary,
                                         ),
-                                        child: Row(
-                                          children: [
-                                            const Icon(Icons.edit),
-                                            Expanded(
-                                              child: Text(
-                                                L10n.of(context).edit,
-                                                textAlign: TextAlign.center,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        onPressed: () =>
-                                            widget.controller.setEditing(true),
+                                        onSubmitted: (value) {
+                                          widget.controller.addVocab();
+                                        },
                                       ),
                                     ),
-                                    Expanded(
-                                      child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          backgroundColor: theme
-                                              .colorScheme.primaryContainer,
-                                          foregroundColor: theme
-                                              .colorScheme.onPrimaryContainer,
-                                          padding: const EdgeInsets.symmetric(
-                                            horizontal: 12.0,
-                                          ),
-                                        ),
-                                        onPressed: widget.regenerate,
-                                        child: Row(
-                                          children: [
-                                            const Icon(Icons.lightbulb_outline),
-                                            Expanded(
-                                              child: Text(
-                                                L10n.of(context).regenerate,
-                                                textAlign: TextAlign.center,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
+                                    IconButton(
+                                      icon: const Icon(Icons.add),
+                                      onPressed: widget.controller.addVocab,
                                     ),
                                   ],
                                 ),
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          backgroundColor: theme
-                                              .colorScheme.primaryContainer,
-                                          foregroundColor: theme
-                                              .colorScheme.onPrimaryContainer,
-                                          padding: const EdgeInsets.symmetric(
-                                            horizontal: 12.0,
-                                          ),
-                                        ),
-                                        onPressed: _onLaunch,
-                                        child: Row(
-                                          children: [
-                                            const Icon(Icons.send),
-                                            Expanded(
-                                              child: Text(
-                                                L10n.of(context)
-                                                    .launchActivityButton,
-                                                textAlign: TextAlign.center,
-                                              ),
-                                            ),
-                                          ],
+                              ),
+                              const SizedBox(height: itemPadding),
+                              Row(
+                                spacing: 12.0,
+                                children: [
+                                  Expanded(
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor:
+                                            theme.colorScheme.primaryContainer,
+                                        foregroundColor: theme
+                                            .colorScheme.onPrimaryContainer,
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 12.0,
                                         ),
                                       ),
+                                      onPressed: widget.controller.saveEdits,
+                                      child: Row(
+                                        children: [
+                                          const Icon(Icons.save),
+                                          Expanded(
+                                            child: Text(
+                                              L10n.of(context).save,
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                    ],
+                                  ),
+                                  Expanded(
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor:
+                                            theme.colorScheme.primaryContainer,
+                                        foregroundColor: theme
+                                            .colorScheme.onPrimaryContainer,
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 12.0,
+                                        ),
+                                      ),
+                                      onPressed: widget.controller.clearEdits,
+                                      child: Row(
+                                        children: [
+                                          const Icon(Icons.cancel),
+                                          Expanded(
+                                            child: Text(
+                                              L10n.of(context).cancel,
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ] else
+                              Column(
+                                spacing: 12.0,
+                                children: [
+                                  Row(
+                                    spacing: 12.0,
+                                    children: [
+                                      Expanded(
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor: theme
+                                                .colorScheme.primaryContainer,
+                                            foregroundColor: theme
+                                                .colorScheme.onPrimaryContainer,
+                                            padding: const EdgeInsets.symmetric(
+                                              horizontal: 12.0,
+                                            ),
+                                          ),
+                                          onPressed:
+                                              widget.controller.startEditing,
+                                          child: Row(
+                                            children: [
+                                              const Icon(Icons.edit),
+                                              Expanded(
+                                                child: Text(
+                                                  L10n.of(context).edit,
+                                                  textAlign: TextAlign.center,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor: theme
+                                                .colorScheme.primaryContainer,
+                                            foregroundColor: theme
+                                                .colorScheme.onPrimaryContainer,
+                                            padding: const EdgeInsets.symmetric(
+                                              horizontal: 12.0,
+                                            ),
+                                          ),
+                                          onPressed: widget.regenerate,
+                                          child: Row(
+                                            children: [
+                                              const Icon(
+                                                Icons.lightbulb_outline,
+                                              ),
+                                              Expanded(
+                                                child: Text(
+                                                  L10n.of(context).regenerate,
+                                                  textAlign: TextAlign.center,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor: theme
+                                                .colorScheme.primaryContainer,
+                                            foregroundColor: theme
+                                                .colorScheme.onPrimaryContainer,
+                                            padding: const EdgeInsets.symmetric(
+                                              horizontal: 12.0,
+                                            ),
+                                          ),
+                                          onPressed: () {
+                                            widget.controller.setLaunchState(
+                                              ActivityLaunchState.launching,
+                                            );
+                                          },
+                                          child: Row(
+                                            children: [
+                                              const Icon(Icons.save_outlined),
+                                              Expanded(
+                                                child: Text(
+                                                  L10n.of(context)
+                                                      .saveAndLaunch,
+                                                  textAlign: TextAlign.center,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                          ],
                   ),
                 ),
               ],

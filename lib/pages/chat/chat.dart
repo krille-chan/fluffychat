@@ -81,11 +81,18 @@ class ChatPage extends StatelessWidget {
   final List<ShareItem>? shareItems;
   final String? eventId;
 
+  // #Pangea
+  final Widget? backButton;
+  // Pangea#
+
   const ChatPage({
     super.key,
     required this.roomId,
     this.eventId,
     this.shareItems,
+    // #Pangea
+    this.backButton,
+    // Pangea#
   });
 
   @override
@@ -122,6 +129,9 @@ class ChatPage extends StatelessWidget {
       room: room,
       shareItems: shareItems,
       eventId: eventId,
+      // #Pangea
+      backButton: backButton,
+      // Pangea#
     );
   }
 }
@@ -131,11 +141,18 @@ class ChatPageWithRoom extends StatefulWidget {
   final List<ShareItem>? shareItems;
   final String? eventId;
 
+  // #Pangea
+  final Widget? backButton;
+  // Pangea#
+
   const ChatPageWithRoom({
     super.key,
     required this.room,
     this.shareItems,
     this.eventId,
+    // #Pangea
+    this.backButton,
+    // Pangea#
   });
 
   @override

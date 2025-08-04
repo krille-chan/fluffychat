@@ -179,4 +179,5 @@ class ModelKey {
       "number_of_participants";
 
   static const String autoIGC = "auto_igc";
+  static const String roomIds = "room_ids";
 }

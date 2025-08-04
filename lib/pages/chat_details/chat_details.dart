@@ -10,14 +10,12 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/settings/settings.dart';
-import 'package:fluffychat/pangea/chat/constants/default_power_level.dart';
 import 'package:fluffychat/pangea/chat_settings/models/bot_options_model.dart';
 import 'package:fluffychat/pangea/chat_settings/pages/pangea_chat_details.dart';
 import 'package:fluffychat/pangea/chat_settings/utils/download_chat.dart';
 import 'package:fluffychat/pangea/chat_settings/utils/download_file.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
-import 'package:fluffychat/pangea/extensions/join_rule_extension.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/utils/file_selector.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
@@ -315,50 +313,9 @@ class ChatDetailsController extends State<ChatDetails> {
   }
 
   Future<void> addSubspace() async {
-    final names = await showTextInputDialog(
-      context: context,
-      title: L10n.of(context).createNewSpace,
-      hintText: L10n.of(context).spaceName,
-      minLines: 1,
-      maxLines: 1,
-      maxLength: 64,
-      validator: (text) {
-        if (text.isEmpty) {
-          return L10n.of(context).pleaseChoose;
-        }
-        return null;
-      },
-      okLabel: L10n.of(context).create,
-      cancelLabel: L10n.of(context).cancel,
-    );
-    if (names == null) return;
-    final client = Matrix.of(context).client;
-    await showFutureLoadingDialog(
-      context: context,
-      future: () async {
-        final activeSpace = client.getRoomById(roomId!)!;
-        await activeSpace.postLoad();
-
-        final resp = await client.createRoom(
-          name: names,
-          visibility: RoomDefaults.spaceChildVisibility,
-          creationContent: {'type': 'm.space'},
-          initialState: [
-            RoomDefaults.defaultSpacePowerLevels(client.userID!),
-            await client.pangeaJoinRules(
-              'knock_restricted',
-              allow: [
-                {
-                  "type": "m.room_membership",
-                  "room_id": roomId!,
-                }
-              ],
-            ),
-          ],
-        );
-        await activeSpace.addToSpace(resp);
-      },
-    );
+    final activeSpace = Matrix.of(context).client.getRoomById(roomId!);
+    if (activeSpace == null || !activeSpace.isSpace) return;
+    await activeSpace.addSubspace(context);
   }
   // Pangea#
 }

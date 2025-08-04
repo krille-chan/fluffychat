@@ -36,7 +36,7 @@ class ActivityGeneratorView extends StatelessWidget {
         padding: EdgeInsets.all(32.0),
         child: Center(child: CircularProgressIndicator()),
       );
-    } else if (controller.error != null) {
+    } else if (controller.error != null || controller.room == null) {
       body = Center(
         child: Column(
           spacing: 16.0,
@@ -61,7 +61,7 @@ class ActivityGeneratorView extends StatelessWidget {
           return ActivityPlannerBuilder(
             initialActivity: controller.activities![index],
             initialFilename: controller.filename,
-            room: controller.room,
+            room: controller.room!,
             builder: (c) {
               return ActivityPlanCard(
                 regenerate: () => controller.generate(force: true),

@@ -321,9 +321,9 @@ class RoomDetailsButtonRowState extends State<RoomDetailsButtonRow> {
         title: l10n.activities,
         icon: const Icon(Icons.event_note_outlined, size: 30.0),
         onPressed: () => context.go("/rooms/${room.id}/details/planner"),
-        visible: room.canChangeStateEvent(PangeaEventTypes.activityPlan) ||
+        visible: room.isSpace,
+        enabled: room.canChangeStateEvent(PangeaEventTypes.activityPlan) &&
             room.isSpace,
-        enabled: room.canChangeStateEvent(PangeaEventTypes.activityPlan),
       ),
       ButtonDetails(
         title: l10n.permissions,

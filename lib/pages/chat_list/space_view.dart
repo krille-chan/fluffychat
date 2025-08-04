@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
@@ -22,6 +21,7 @@ import 'package:fluffychat/pangea/public_spaces/public_room_bottom_sheet.dart';
 import 'package:fluffychat/pangea/spaces/constants/space_constants.dart';
 import 'package:fluffychat/pangea/spaces/widgets/knocking_users_indicator.dart';
 import 'package:fluffychat/pangea/spaces/widgets/leaderboard_participant_list.dart';
+import 'package:fluffychat/pangea/spaces/widgets/space_view_appbar.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
@@ -391,6 +391,13 @@ class _SpaceViewState extends State<SpaceView> {
         if (resp == true) {
           context.go("/rooms?spaceId=clear");
         }
+        break;
+      case SpaceActions.groupChat:
+        context.go("/rooms/newgroup?space=${widget.spaceId}");
+        break;
+      case SpaceActions.subspace:
+        space?.addSubspace(context);
+        break;
       // Pangea#
     }
   }
@@ -552,8 +559,10 @@ class _SpaceViewState extends State<SpaceView> {
     final theme = Theme.of(context);
 
     final room = Matrix.of(context).client.getRoomById(widget.spaceId);
-    final displayname =
-        room?.getLocalizedDisplayname() ?? L10n.of(context).nothingFound;
+    // #Pangea
+    // final displayname =
+    //     room?.getLocalizedDisplayname() ?? L10n.of(context).nothingFound;
+    // Pangea#
 
     // #Pangea
     final joinedParents = room?.spaceParents
@@ -567,167 +576,92 @@ class _SpaceViewState extends State<SpaceView> {
     // Pangea#
 
     return Scaffold(
-      // #Pangea
-      // appBar: AppBar(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(
-          kIsWeb ? 72.0 : (kToolbarHeight + MediaQuery.of(context).padding.top),
-        ),
-        child: GestureDetector(
-          onTap: () {
-            _onSpaceAction(SpaceActions.settings);
-          },
-          child: AppBar(
-            // leading: FluffyThemes.isColumnMode(context)
-            //     ? null
-            //     : Center(
-            //         child: CloseButton(
-            //           onPressed: widget.onBack,
-            //         ),
-            //       ),
-            leading: joinedParents?.isEmpty ?? true
-                ? FluffyThemes.isColumnMode(context)
-                    ? null
-                    : Center(
-                        child: CloseButton(
-                          onPressed: widget.onBack,
-                        ),
-                      )
-                : Center(
-                    child: joinedParents!.length == 1
-                        ? IconButton(
-                            icon: const Icon(Icons.arrow_back_outlined),
-                            onPressed: () =>
-                                widget.toParentSpace(joinedParents.first.id),
-                          )
-                        : PopupMenuButton(
-                            tooltip: null,
-                            useRootNavigator: true,
-                            icon: const Icon(Icons.arrow_back_outlined),
-                            itemBuilder: (context) {
-                              return [
-                                ...joinedParents.mapIndexed((i, room) {
-                                  return PopupMenuItem(
-                                    value: i,
-                                    child: Text(room.getLocalizedDisplayname()),
-                                  );
-                                }),
-                              ];
-                            },
-                            onSelected: (i) {
-                              widget.toParentSpace(joinedParents[i].id);
-                            },
-                          ),
-                  ),
-            // Pangea#
-            automaticallyImplyLeading: false,
-            titleSpacing: FluffyThemes.isColumnMode(context) ? null : 0,
-            title: ListTile(
-              contentPadding: EdgeInsets.zero,
-              leading: Avatar(
-                mxContent: room?.avatar,
-                name: displayname,
-                // #Pangea
-                userId: room?.directChatMatrixID,
-                // Pangea#
-                border: BorderSide(width: 1, color: theme.dividerColor),
-                borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
-              ),
-              title: Text(
-                displayname,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-              subtitle: room == null
-                  ? null
-                  : Text(
-                      L10n.of(context).countChatsAndCountParticipants(
-                        // #Pangea
-                        // room.spaceChildren.length,
-                        room.spaceChildCount,
-                        // Pangea#
-                        room.summary.mJoinedMemberCount ?? 1,
-                      ),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-            ),
-            actions: [
-              PopupMenuButton<SpaceActions>(
-                useRootNavigator: true,
-                onSelected: _onSpaceAction,
-                itemBuilder: (context) => [
-                  PopupMenuItem(
-                    value: SpaceActions.settings,
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const Icon(Icons.settings_outlined),
-                        const SizedBox(width: 12),
-                        Text(L10n.of(context).settings),
-                      ],
-                    ),
-                  ),
-                  PopupMenuItem(
-                    value: SpaceActions.invite,
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const Icon(Icons.person_add_outlined),
-                        const SizedBox(width: 12),
-                        Text(L10n.of(context).invite),
-                      ],
-                    ),
-                  ),
-                  PopupMenuItem(
-                    value: SpaceActions.leave,
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        // #Pangea
-                        // const Icon(Icons.delete_outlined),
-                        const Icon(Icons.logout_outlined),
-                        // Pangea#
-                        const SizedBox(width: 12),
-                        Text(L10n.of(context).leave),
-                      ],
-                    ),
-                  ),
-                  // #Pangea
-                  if (Matrix.of(context)
-                          .client
-                          .getRoomById(widget.spaceId)
-                          ?.isRoomAdmin ??
-                      false)
-                    PopupMenuItem(
-                      value: SpaceActions.delete,
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Icon(
-                            Icons.delete_outlined,
-                            color:
-                                Theme.of(context).colorScheme.onErrorContainer,
-                          ),
-                          const SizedBox(width: 12),
-                          Text(
-                            L10n.of(context).delete,
-                            style: TextStyle(
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .onErrorContainer,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  // Pangea#
-                ],
-              ),
-            ],
-          ),
+        preferredSize: const Size.fromHeight(60.0),
+        child: SpaceViewAppbar(
+          onSpaceAction: _onSpaceAction,
+          onBack: widget.onBack,
+          room: room,
+          toParentSpace: widget.toParentSpace,
+          joinedParents: joinedParents,
         ),
       ),
+      // appBar: AppBar(
+      //   leading: FluffyThemes.isColumnMode(context)
+      //       ? null
+      //       : Center(
+      //           child: CloseButton(
+      //             onPressed: widget.onBack,
+      //           ),
+      //         ),
+      //   automaticallyImplyLeading: false,
+      //   titleSpacing: FluffyThemes.isColumnMode(context) ? null : 0,
+      //   title: ListTile(
+      //     contentPadding: EdgeInsets.zero,
+      //     leading: Avatar(
+      //       mxContent: room?.avatar,
+      //       name: displayname,
+      //       border: BorderSide(width: 1, color: theme.dividerColor),
+      //       borderRadius: BorderRadius.circular(AppConfig.borderRadius / 2),
+      //     ),
+      //     title: Text(
+      //       displayname,
+      //       maxLines: 1,
+      //       overflow: TextOverflow.ellipsis,
+      //     ),
+      //     subtitle: room == null
+      //         ? null
+      //         : Text(
+      //             L10n.of(context).countChatsAndCountParticipants(
+      //               room.spaceChildren.length,
+      //               room.summary.mJoinedMemberCount ?? 1,
+      //             ),
+      //             maxLines: 1,
+      //             overflow: TextOverflow.ellipsis,
+      //           ),
+      //   ),
+      //   actions: [
+      //     PopupMenuButton<SpaceActions>(
+      //       useRootNavigator: true,
+      //       onSelected: _onSpaceAction,
+      //       itemBuilder: (context) => [
+      //         PopupMenuItem(
+      //           value: SpaceActions.settings,
+      //           child: Row(
+      //             mainAxisSize: MainAxisSize.min,
+      //             children: [
+      //               const Icon(Icons.settings_outlined),
+      //               const SizedBox(width: 12),
+      //               Text(L10n.of(context).settings),
+      //             ],
+      //           ),
+      //         ),
+      //         PopupMenuItem(
+      //           value: SpaceActions.invite,
+      //           child: Row(
+      //             mainAxisSize: MainAxisSize.min,
+      //             children: [
+      //               const Icon(Icons.person_add_outlined),
+      //               const SizedBox(width: 12),
+      //               Text(L10n.of(context).invite),
+      //             ],
+      //           ),
+      //         ),
+      //         PopupMenuItem(
+      //           value: SpaceActions.leave,
+      //           child: Row(
+      //             mainAxisSize: MainAxisSize.min,
+      //             children: [
+      //               const Icon(Icons.delete_outlined),
+      //               const SizedBox(width: 12),
+      //               Text(L10n.of(context).leave),
+      //             ],
+      //           ),
+      //         ),
+      //       ],
+      //     ),
+      //   ],
+      // ),
       floatingActionButton: room?.canChangeStateEvent(
                 EventTypes.SpaceChild,
               ) ==
@@ -736,11 +670,12 @@ class _SpaceViewState extends State<SpaceView> {
               // #Pangea
               // onPressed: _addChatOrSubspace,
               // label: Text(L10n.of(context).group),
+              // icon: const Icon(Icons.group_add_outlined),
               onPressed: () =>
-                  context.go("/rooms/newgroup?space=${widget.spaceId}"),
-              label: Text(L10n.of(context).groupChat),
+                  context.go("/rooms/${widget.spaceId}/details/planner"),
+              label: Text(L10n.of(context).activities),
+              icon: const Icon(Icons.event_note_outlined),
               // Pangea#
-              icon: const Icon(Icons.group_add_outlined),
             )
           : null,
       body: room == null
@@ -763,7 +698,7 @@ class _SpaceViewState extends State<SpaceView> {
                 final joinedRooms = room.client.rooms
                     .where((room) => childrenIds.remove(room.id))
                     // #Pangea
-                    .where((room) => !room.isAnalyticsRoom)
+                    .where((room) => !room.isHiddenRoom)
                     // Pangea#
                     .toList();
 
@@ -1025,5 +960,7 @@ enum SpaceActions {
   leave,
   // #Pangea
   delete,
+  groupChat,
+  subspace,
   // Pangea#
 }
