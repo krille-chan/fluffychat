@@ -33,34 +33,28 @@ class ActivityStatusMessageState extends State<ActivityStatusMessage> {
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      left: 0,
-      right: 0,
-      bottom: 0,
-      child: Material(
-        child: AnimatedSize(
-          duration: FluffyThemes.animationDuration,
-          child: !widget.room.hasJoinedActivity ||
-                  widget.room.activityIsFinished
-              ? Padding(
-                  padding: EdgeInsets.only(
-                    bottom: FluffyThemes.isColumnMode(context) ? 32.0 : 16.0,
-                    left: 16.0,
-                    right: 16.0,
+    return Material(
+      child: AnimatedSize(
+        duration: FluffyThemes.animationDuration,
+        child: !widget.room.hasJoinedActivity || widget.room.activityIsFinished
+            ? Padding(
+                padding: EdgeInsets.only(
+                  bottom: FluffyThemes.isColumnMode(context) ? 32.0 : 16.0,
+                  left: 16.0,
+                  right: 16.0,
+                ),
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(
+                    maxHeight: MediaQuery.of(context).size.height * 0.8,
                   ),
-                  child: ConstrainedBox(
-                    constraints: BoxConstraints(
-                      maxHeight: MediaQuery.of(context).size.height * 0.8,
-                    ),
-                    child: SingleChildScrollView(
-                      child: widget.room.activityIsFinished
-                          ? ActivityFinishedStatusMessage(room: widget.room)
-                          : ActivityUnfinishedStatusMessage(room: widget.room),
-                    ),
+                  child: SingleChildScrollView(
+                    child: widget.room.activityIsFinished
+                        ? ActivityFinishedStatusMessage(room: widget.room)
+                        : ActivityUnfinishedStatusMessage(room: widget.room),
                   ),
-                )
-              : const SizedBox.shrink(),
-        ),
+                ),
+              )
+            : const SizedBox.shrink(),
       ),
     );
   }
