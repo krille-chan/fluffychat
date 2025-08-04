@@ -5093,6 +5093,7 @@
   "errorFetchingActivity": "Failed to fetch activity",
   "check": "Check",
   "unableToFindRoom": "No chat or space found with that code. Please try again.",
+  "confirmMessageUnpin": "Are you sure you want to unpin this message?",
   "createActivityPlan": "Create a new activity plan",
   "saveAndLaunch": "Save and Launch",
   "launchToSpace": "Launch to Space",
