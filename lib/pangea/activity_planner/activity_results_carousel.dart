@@ -10,19 +10,20 @@ import 'package:fluffychat/widgets/avatar.dart';
 
 class ActivityResultsCarousel extends StatelessWidget {
   final ActivityRoleModel selectedRole;
-  final User user;
   final ParticipantSummaryModel summary;
 
   final VoidCallback? moveLeft;
   final VoidCallback? moveRight;
+
+  final User? user;
 
   const ActivityResultsCarousel({
     super.key,
     required this.selectedRole,
     required this.moveLeft,
     required this.moveRight,
-    required this.user,
     required this.summary,
+    this.user,
   });
 
   @override
@@ -64,8 +65,9 @@ class ActivityResultsCarousel extends StatelessWidget {
                       alignment: Alignment.center,
                       child: Avatar(
                         size: isColumnMode ? 60.0 : 40.0,
-                        mxContent: user.avatarUrl,
-                        name: user.calcDisplayname(),
+                        mxContent: user?.avatarUrl,
+                        name: user?.calcDisplayname() ??
+                            summary.participantId.localpart,
                         userId: selectedRole.userId,
                       ),
                     ),

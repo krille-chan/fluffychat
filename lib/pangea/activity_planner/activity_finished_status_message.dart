@@ -54,13 +54,13 @@ class ActivityFinishedStatusMessageState
     if (_highlightedRole == null) {
       return -1; // No highlighted role
     }
-    return widget.room.activityRoles.indexOf(_highlightedRole!);
+    return rolesWithSummaries.indexOf(_highlightedRole!);
   }
 
   void _setDefaultHighlightedRole() {
     if (_hightlightedRoleIndex >= 0) return;
 
-    final roles = widget.room.activityRoles;
+    final roles = rolesWithSummaries;
     _highlightedRole = roles.firstWhereOrNull(
       (r) => r.userId == widget.room.client.userID,
     );
@@ -80,18 +80,18 @@ class ActivityFinishedStatusMessageState
       _hightlightedRoleIndex > 0 && _highlightedRole != null;
 
   bool get _canMoveRight =>
-      _hightlightedRoleIndex < widget.room.activityRoles.length - 1 &&
+      _hightlightedRoleIndex < rolesWithSummaries.length - 1 &&
       _highlightedRole != null;
 
   void _moveLeft() {
     if (_hightlightedRoleIndex > 0) {
-      _highlightRole(widget.room.activityRoles[_hightlightedRoleIndex - 1]);
+      _highlightRole(rolesWithSummaries[_hightlightedRoleIndex - 1]);
     }
   }
 
   void _moveRight() {
-    if (_hightlightedRoleIndex < widget.room.activityRoles.length - 1) {
-      _highlightRole(widget.room.activityRoles[_hightlightedRoleIndex + 1]);
+    if (_hightlightedRoleIndex < rolesWithSummaries.length - 1) {
+      _highlightRole(rolesWithSummaries[_hightlightedRoleIndex + 1]);
     }
   }
 
@@ -109,6 +109,16 @@ class ActivityFinishedStatusMessageState
         .sendActivityAnalytics(widget.room.id);
   }
 
+  List<ActivityRoleModel> get rolesWithSummaries {
+    if (widget.room.activitySummary == null) return <ActivityRoleModel>[];
+    final roles = widget.room.activityRoles;
+    return roles.where((role) {
+      return widget.room.activitySummary!.participants.any(
+        (p) => p.participantId == role.userId,
+      );
+    }).toList();
+  }
+
   @override
   Widget build(BuildContext context) {
     final summary = widget.room.activitySummary;
@@ -120,6 +130,7 @@ class ActivityFinishedStatusMessageState
     final user = widget.room.getParticipants().firstWhereOrNull(
           (u) => u.id == _highlightedRole?.userId,
         );
+
     final userSummary =
         widget.room.activitySummary?.participants.firstWhereOrNull(
       (p) => p.participantId == _highlightedRole!.userId,
@@ -182,9 +193,7 @@ class ActivityFinishedStatusMessageState
                       ),
                     ),
                   ),
-                  if (_highlightedRole != null &&
-                      user != null &&
-                      userSummary != null)
+                  if (_highlightedRole != null && userSummary != null)
                     ActivityResultsCarousel(
                       selectedRole: _highlightedRole!,
                       moveLeft: _canMoveLeft ? _moveLeft : null,
@@ -196,7 +205,7 @@ class ActivityFinishedStatusMessageState
                   Wrap(
                     spacing: 12.0,
                     runSpacing: 12.0,
-                    children: widget.room.activityRoles
+                    children: rolesWithSummaries
                         .map(
                           (role) => ActivityParticipantIndicator(
                             onTap: _highlightedRole == role
