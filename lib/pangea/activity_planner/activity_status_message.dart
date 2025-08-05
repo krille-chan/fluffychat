@@ -33,10 +33,14 @@ class ActivityStatusMessageState extends State<ActivityStatusMessage> {
 
   @override
   Widget build(BuildContext context) {
+    if (!widget.room.showActivityChatUI) {
+      return const SizedBox.shrink();
+    }
+
     return Material(
       child: AnimatedSize(
         duration: FluffyThemes.animationDuration,
-        child: !widget.room.hasJoinedActivity || widget.room.activityIsFinished
+        child: widget.room.isInactiveInActivity
             ? Padding(
                 padding: EdgeInsets.only(
                   bottom: FluffyThemes.isColumnMode(context) ? 32.0 : 16.0,

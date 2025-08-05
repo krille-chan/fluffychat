@@ -64,7 +64,9 @@ class ActivityPinnedMessageState extends State<ActivityPinnedMessage> {
 
   @override
   Widget build(BuildContext context) {
-    if (!room.hasJoinedActivity || room.activityPlan == null) {
+    // if the room has no activity, or if it doesn't have the permission
+    // levels for sending the required events, don't show the pinned message
+    if (!room.showActivityChatUI) {
       return const SizedBox.shrink();
     }
 
@@ -91,27 +93,25 @@ class ActivityPinnedMessageState extends State<ActivityPinnedMessage> {
               leading: const SizedBox(width: 18.0),
               trailing: Padding(
                 padding: const EdgeInsets.only(right: 12.0),
-                child: room.hasFinishedActivity
-                    ? null
-                    : ElevatedButton(
-                        onPressed:
-                            _showDropdown ? null : () => _setShowDropdown(true),
-                        style: ElevatedButton.styleFrom(
-                          minimumSize: Size.zero,
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 12.0,
-                            vertical: 4.0,
-                          ),
-                          backgroundColor: theme.colorScheme.onSurface,
-                          foregroundColor: theme.colorScheme.surface,
-                        ),
-                        child: Text(
-                          L10n.of(context).done,
-                          style: const TextStyle(
-                            fontSize: 12.0,
-                          ),
-                        ),
-                      ),
+                child: ElevatedButton(
+                  onPressed:
+                      _showDropdown ? null : () => _setShowDropdown(true),
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: Size.zero,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12.0,
+                      vertical: 4.0,
+                    ),
+                    backgroundColor: theme.colorScheme.onSurface,
+                    foregroundColor: theme.colorScheme.surface,
+                  ),
+                  child: Text(
+                    L10n.of(context).done,
+                    style: const TextStyle(
+                      fontSize: 12.0,
+                    ),
+                  ),
+                ),
               ),
               onTap: _scrollToActivity,
             ),

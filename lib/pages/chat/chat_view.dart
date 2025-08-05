@@ -424,8 +424,9 @@ class ChatView extends StatelessWidget {
                             if (!controller.room.isAbandonedDMRoom &&
                                 controller.room.canSendDefaultMessages &&
                                 controller.room.membership == Membership.join &&
-                                controller.room.hasJoinedActivity &&
-                                !controller.room.hasFinishedActivity)
+                                (controller.room.activityPlan == null ||
+                                    !controller.room.showActivityChatUI ||
+                                    controller.room.isActiveInActivity))
                               AnimatedSize(
                                 duration: const Duration(milliseconds: 200),
                                 child: SizedBox(
@@ -441,8 +442,9 @@ class ChatView extends StatelessWidget {
                         if (!controller.room.isAbandonedDMRoom &&
                             controller.room.canSendDefaultMessages &&
                             controller.room.membership == Membership.join &&
-                            controller.room.hasJoinedActivity &&
-                            !controller.room.hasFinishedActivity)
+                            (controller.room.activityPlan == null ||
+                                !controller.room.showActivityChatUI ||
+                                controller.room.isActiveInActivity))
                           Positioned(
                             left: 0,
                             right: 0,

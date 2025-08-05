@@ -196,13 +196,22 @@ extension ActivityRoomExtension on Room {
         .toList();
   }
 
-  bool get hasJoinedActivity {
-    return activityPlan == null || activityRole(client.userID!) != null;
+  bool get showActivityChatUI {
+    return activityPlan != null &&
+        powerForChangingStateEvent(PangeaEventTypes.activityRole) == 0 &&
+        powerForChangingStateEvent(PangeaEventTypes.activitySummary) == 0;
   }
 
-  bool get hasFinishedActivity {
+  bool get isActiveInActivity {
+    if (!showActivityChatUI) return false;
     final role = activityRole(client.userID!);
-    return role != null && role.isFinished;
+    return role != null && !role.isFinished;
+  }
+
+  bool get isInactiveInActivity {
+    if (!showActivityChatUI) return false;
+    final role = activityRole(client.userID!);
+    return role == null || role.isFinished;
   }
 
   bool get activityIsFinished {
