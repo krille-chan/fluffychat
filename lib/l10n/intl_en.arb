@@ -5132,7 +5132,7 @@
       }
     }
   },
-  "endActivityTitle": "Wrapped up my part",
+  "endActivityTitle": "I'm Done",
   "endActivityDesc": "Did you complete the objectives?\nThis is your confirmation that you're stepping back from texting. But don’t worry, the fun continues in the chat! Feel free to hang out and enjoy the show until everyone clicks 'Done'.",
-  "archiveToAnalytics": "Archive to Analytics"
+  "archiveToAnalytics": "Add to my Completed Activities"
 }

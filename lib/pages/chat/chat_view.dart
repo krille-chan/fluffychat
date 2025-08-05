@@ -125,13 +125,15 @@ class ChatView extends StatelessWidget {
     if (!controller.room.isArchived) {
       // #Pangea
       return [
-        IconButton(
-          icon: const Icon(Icons.search_outlined),
-          tooltip: L10n.of(context).search,
-          onPressed: () {
-            context.go('/rooms/${controller.room.id}/search');
-          },
-        ),
+        if (controller.room.activityPlan == null ||
+            !controller.room.showActivityChatUI)
+          IconButton(
+            icon: const Icon(Icons.search_outlined),
+            tooltip: L10n.of(context).search,
+            onPressed: () {
+              context.go('/rooms/${controller.room.id}/search');
+            },
+          ),
         IconButton(
           icon: const Icon(Icons.settings_outlined),
           tooltip: L10n.of(context).chatDetails,

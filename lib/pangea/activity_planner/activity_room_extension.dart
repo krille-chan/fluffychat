@@ -32,7 +32,7 @@ extension ActivityRoomExtension on Room {
     }
   }
 
-  Future<void> setActivityRole({
+  Future<void> startActivity({
     String? role,
   }) async {
     await client.setRoomStateWithKey(
@@ -44,6 +44,21 @@ extension ActivityRoomExtension on Room {
         role: role,
       ).toJson(),
     );
+  }
+
+  Future<void> continueActivity() async {
+    final role = activityRole(client.userID!);
+    if (role == null || !role.isFinished || role.isArchived) return;
+
+    role.finishedAt = null;
+    final syncFuture = client.waitForRoomInSync(id);
+    await client.setRoomStateWithKey(
+      id,
+      PangeaEventTypes.activityRole,
+      client.userID!,
+      role.toJson(),
+    );
+    await syncFuture;
   }
 
   Future<void> finishActivity() async {
@@ -213,6 +228,9 @@ extension ActivityRoomExtension on Room {
     final role = activityRole(client.userID!);
     return role == null || role.isFinished;
   }
+
+  bool get hasCompletedActivity =>
+      activityRole(client.userID!)?.isFinished ?? false;
 
   bool get activityIsFinished {
     return activityRoles.isNotEmpty && activityRoles.every((r) => r.isFinished);

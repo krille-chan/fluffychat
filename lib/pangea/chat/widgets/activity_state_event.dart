@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/events/state_message.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_participant_indicator.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
@@ -17,15 +18,21 @@ class ActivityStateEvent extends StatelessWidget {
       final activity = ActivityPlanModel.fromJson(event.content);
       final roles = event.room.activityRoles;
 
-      return Padding(
+      return Container(
         padding: const EdgeInsets.symmetric(
           horizontal: 24.0,
           vertical: 16.0,
         ),
+        constraints: const BoxConstraints(
+          maxWidth: FluffyThemes.maxTimelineWidth,
+        ),
         child: Column(
           spacing: 12.0,
           children: [
-            Text(activity.markdown),
+            Text(
+              activity.markdown,
+              style: const TextStyle(fontSize: 14.0),
+            ),
             if (roles.isNotEmpty)
               Wrap(
                 spacing: 12.0,

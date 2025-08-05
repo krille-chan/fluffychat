@@ -198,15 +198,13 @@ class ActivityFinishedStatusMessageState
                     runSpacing: 12.0,
                     children: widget.room.activityRoles
                         .map(
-                          (role) => Opacity(
-                            opacity: _highlightedRole == role ? 1.0 : 0.5,
-                            child: ActivityParticipantIndicator(
-                              onTap: _highlightedRole == role
-                                  ? null
-                                  : () => _highlightRole(role),
-                              role: role,
-                              displayname: role.userId.localpart,
-                            ),
+                          (role) => ActivityParticipantIndicator(
+                            onTap: _highlightedRole == role
+                                ? null
+                                : () => _highlightRole(role),
+                            role: role,
+                            displayname: role.userId.localpart,
+                            selected: _highlightedRole == role,
                           ),
                         )
                         .toList(),

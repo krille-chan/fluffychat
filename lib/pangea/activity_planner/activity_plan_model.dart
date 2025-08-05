@@ -92,8 +92,7 @@ class ActivityPlanModel {
   /// use target emoji for learning objective
   /// use step emoji for instructions
   String get markdown {
-    String markdown =
-        ''' **$title** \n🎯 $learningObjective \n🪜 $instructions \n\n📖 ''';
+    String markdown = '''🎯 $learningObjective \n🪜 $instructions \n\n📖''';
     // cycle through vocab with index
     for (var i = 0; i < vocab.length; i++) {
       // if the lemma appears more than once in the vocab list, show the pos

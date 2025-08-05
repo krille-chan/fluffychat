@@ -66,7 +66,7 @@ class ActivityPinnedMessageState extends State<ActivityPinnedMessage> {
   Widget build(BuildContext context) {
     // if the room has no activity, or if it doesn't have the permission
     // levels for sending the required events, don't show the pinned message
-    if (!room.showActivityChatUI) {
+    if (!room.isActiveInActivity) {
       return const SizedBox.shrink();
     }
 
@@ -88,8 +88,7 @@ class ActivityPinnedMessageState extends State<ActivityPinnedMessage> {
                   : theme.colorScheme.surface,
             ),
             child: ChatAppBarListTile(
-              title: room.activityPlan?.markdown ??
-                  L10n.of(context).loadingPleaseWait,
+              title: "🎯 ${room.activityPlan!.learningObjective}",
               leading: const SizedBox(width: 18.0),
               trailing: Padding(
                 padding: const EdgeInsets.only(right: 12.0),
@@ -102,13 +101,18 @@ class ActivityPinnedMessageState extends State<ActivityPinnedMessage> {
                       horizontal: 12.0,
                       vertical: 4.0,
                     ),
-                    backgroundColor: theme.colorScheme.onSurface,
+                    backgroundColor: AppConfig.yellowDark,
                     foregroundColor: theme.colorScheme.surface,
+                    disabledBackgroundColor:
+                        AppConfig.yellowDark.withAlpha(100),
+                    disabledForegroundColor:
+                        theme.colorScheme.surface.withAlpha(100),
                   ),
                   child: Text(
-                    L10n.of(context).done,
+                    L10n.of(context).endActivityTitle,
                     style: const TextStyle(
-                      fontSize: 12.0,
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.w900,
                     ),
                   ),
                 ),

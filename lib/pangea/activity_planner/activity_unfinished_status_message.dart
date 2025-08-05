@@ -38,28 +38,30 @@ class ActivityUnfinishedStatusMessageState
 
     return Column(
       children: [
-        if (unassignedRoles > 0)
-          Wrap(
-            spacing: 12.0,
-            runSpacing: 12.0,
-            children: List.generate(unassignedRoles, (index) {
-              return ActivityParticipantIndicator(
-                selected: _selectedRole == index,
-                onTap: () => _selectRole(index),
-              );
-            }),
+        if (!widget.room.hasCompletedActivity) ...[
+          if (unassignedRoles > 0)
+            Wrap(
+              spacing: 12.0,
+              runSpacing: 12.0,
+              children: List.generate(unassignedRoles, (index) {
+                return ActivityParticipantIndicator(
+                  selected: _selectedRole == index,
+                  onTap: () => _selectRole(index),
+                );
+              }),
+            ),
+          const SizedBox(height: 16.0),
+          Text(
+            unassignedRoles > 0
+                ? L10n.of(context).unjoinedActivityMessage
+                : L10n.of(context).fullActivityMessage,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: isColumnMode ? 16.0 : 12.0,
+            ),
           ),
-        const SizedBox(height: 16.0),
-        Text(
-          unassignedRoles > 0
-              ? L10n.of(context).unjoinedActivityMessage
-              : L10n.of(context).fullActivityMessage,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: isColumnMode ? 16.0 : 12.0,
-          ),
-        ),
-        const SizedBox(height: 16.0),
+          const SizedBox(height: 16.0),
+        ],
         if (unassignedRoles > 0)
           ElevatedButton(
             style: ElevatedButton.styleFrom(
@@ -70,19 +72,28 @@ class ActivityUnfinishedStatusMessageState
               foregroundColor: theme.colorScheme.onPrimaryContainer,
               backgroundColor: theme.colorScheme.primaryContainer,
             ),
-            onPressed: _selectedRole != null
+            onPressed: widget.room.hasCompletedActivity
                 ? () {
                     showFutureLoadingDialog(
                       context: context,
-                      future: () => widget.room.setActivityRole(),
+                      future: widget.room.continueActivity,
                     );
                   }
-                : null,
+                : _selectedRole != null
+                    ? () {
+                        showFutureLoadingDialog(
+                          context: context,
+                          future: widget.room.startActivity,
+                        );
+                      }
+                    : null,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  L10n.of(context).confirmRole,
+                  widget.room.hasCompletedActivity
+                      ? L10n.of(context).continueText
+                      : L10n.of(context).confirmRole,
                   style: TextStyle(
                     fontSize: isColumnMode ? 16.0 : 12.0,
                   ),
