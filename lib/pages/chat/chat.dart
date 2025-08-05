@@ -921,20 +921,16 @@ class ChatController extends State<ChatPageWithRoom>
     // Pangea#
     if (commandMatch != null &&
         !sendingClient.commands.keys.contains(commandMatch[1]!.toLowerCase())) {
-      final l10n = L10n.of(context);
-      final dialogResult = await showOkCancelAlertDialog(
-        context: context,
-        title: l10n.commandInvalid,
-        message: l10n.commandMissing(commandMatch[0]!),
-        okLabel: l10n.sendAsText,
-        cancelLabel: l10n.cancel,
-      );
       // #Pangea
+      // final l10n = L10n.of(context);
+      // final dialogResult = await showOkCancelAlertDialog(
+      //   context: context,
+      //   title: l10n.commandInvalid,
+      //   message: l10n.commandMissing(commandMatch[0]!),
+      //   okLabel: l10n.sendAsText,
+      //   cancelLabel: l10n.cancel,
+      // );
       // if (dialogResult == OkCancelResult.cancel) return;
-      if (dialogResult == OkCancelResult.cancel) {
-        clearFakeEvent(tempEventId);
-        return;
-      }
       // Pangea#
       parseCommands = false;
     }
