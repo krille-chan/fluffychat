@@ -6,9 +6,9 @@ import 'package:matrix/matrix.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_role_model.dart';
 import 'package:fluffychat/pangea/activity_planner/bookmarked_activities_repo.dart';
+import 'package:fluffychat/pangea/activity_summary/activity_summary_model.dart';
 import 'package:fluffychat/pangea/activity_summary/activity_summary_repo.dart';
 import 'package:fluffychat/pangea/activity_summary/activity_summary_request_model.dart';
-import 'package:fluffychat/pangea/activity_summary/activity_summary_response_model.dart';
 import 'package:fluffychat/pangea/chat_settings/utils/download_chat.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
@@ -77,7 +77,7 @@ extension ActivityRoomExtension on Room {
   }
 
   Future<void> setActivitySummary(
-    ActivitySummaryResponseModel summary,
+    ActivitySummaryModel summary,
   ) async {
     await client.setRoomStateWithKey(
       id,
@@ -88,7 +88,14 @@ extension ActivityRoomExtension on Room {
   }
 
   Future<void> fetchSummaries() async {
-    if (activitySummary != null) return;
+    if (activitySummary?.summary != null) return;
+
+    await setActivitySummary(
+      ActivitySummaryModel(
+        requestedAt: DateTime.now(),
+        summary: activitySummary?.summary,
+      ),
+    );
 
     final events = await getAllEvents(this);
     final List<ActivitySummaryResultsMessage> messages = [];
@@ -119,15 +126,37 @@ extension ActivityRoomExtension on Room {
       messages.add(activityMessage);
     }
 
-    final resp = await ActivitySummaryRepo.get(
-      ActivitySummaryRequestModel(
-        activity: activityPlan!,
-        activityResults: messages,
-        contentFeedback: [],
-      ),
-    );
+    try {
+      final resp = await ActivitySummaryRepo.get(
+        ActivitySummaryRequestModel(
+          activity: activityPlan!,
+          activityResults: messages,
+          contentFeedback: [],
+        ),
+      );
 
-    await setActivitySummary(resp);
+      await setActivitySummary(
+        ActivitySummaryModel(summary: resp),
+      );
+    } catch (e, s) {
+      ErrorHandler.logError(
+        e: e,
+        s: s,
+        data: {
+          "roomID": id,
+          "activityPlan": activityPlan?.toJson(),
+          "activityResults": messages.map((m) => m.toJson()).toList(),
+        },
+      );
+
+      if (activitySummary?.summary == null) {
+        await setActivitySummary(
+          ActivitySummaryModel(
+            errorAt: DateTime.now(),
+          ),
+        );
+      }
+    }
   }
 
   Future<void> archiveActivity() async {
@@ -182,12 +211,12 @@ extension ActivityRoomExtension on Room {
     }
   }
 
-  ActivitySummaryResponseModel? get activitySummary {
+  ActivitySummaryModel? get activitySummary {
     final stateEvent = getState(PangeaEventTypes.activitySummary);
     if (stateEvent == null) return null;
 
     try {
-      return ActivitySummaryResponseModel.fromJson(stateEvent.content);
+      return ActivitySummaryModel.fromJson(stateEvent.content);
     } catch (e, s) {
       ErrorHandler.logError(
         e: e,

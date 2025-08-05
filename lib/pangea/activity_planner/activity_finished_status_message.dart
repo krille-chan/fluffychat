@@ -110,10 +110,13 @@ class ActivityFinishedStatusMessageState
   }
 
   List<ActivityRoleModel> get rolesWithSummaries {
-    if (widget.room.activitySummary == null) return <ActivityRoleModel>[];
+    if (widget.room.activitySummary?.summary == null) {
+      return <ActivityRoleModel>[];
+    }
+
     final roles = widget.room.activityRoles;
     return roles.where((role) {
-      return widget.room.activitySummary!.participants.any(
+      return widget.room.activitySummary!.summary!.participants.any(
         (p) => p.participantId == role.userId,
       );
     }).toList();
@@ -132,7 +135,7 @@ class ActivityFinishedStatusMessageState
         );
 
     final userSummary =
-        widget.room.activitySummary?.participants.firstWhereOrNull(
+        widget.room.activitySummary?.summary?.participants.firstWhereOrNull(
       (p) => p.participantId == _highlightedRole!.userId,
     );
 
@@ -143,7 +146,7 @@ class ActivityFinishedStatusMessageState
         crossAxisAlignment: CrossAxisAlignment.center,
         children: _expanded
             ? [
-                if (summary != null) ...[
+                if (summary?.summary != null) ...[
                   IconButton(
                     icon: Icon(
                       Icons.expand_more,
@@ -186,7 +189,7 @@ class ActivityFinishedStatusMessageState
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 4.0),
                     child: Text(
-                      summary.summary,
+                      summary!.summary!.summary,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: isColumnMode ? 16.0 : 12.0,
@@ -219,7 +222,46 @@ class ActivityFinishedStatusMessageState
                         .toList(),
                   ),
                   const SizedBox(height: 20.0),
-                ],
+                ] else if (summary?.isLoading ?? false)
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      spacing: 8.0,
+                      children: [
+                        const CircularProgressIndicator.adaptive(),
+                        Text(L10n.of(context).loadingActivitySummary),
+                      ],
+                    ),
+                  )
+                else if (summary?.hasError ?? false)
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      spacing: 8.0,
+                      children: [
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const Icon(
+                              Icons.school_outlined,
+                              size: 24.0,
+                            ),
+                            const SizedBox(width: 8),
+                            Flexible(
+                              child: Text(
+                                L10n.of(context).activitySummaryError,
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ],
+                        ),
+                        TextButton(
+                          onPressed: () => widget.room.fetchSummaries(),
+                          child: Text(L10n.of(context).requestSummaries),
+                        ),
+                      ],
+                    ),
+                  ),
                 if (!widget.room.isHiddenActivityRoom)
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
