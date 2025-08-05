@@ -1470,19 +1470,6 @@ let wasm_bindgen;
         return ret;
     };
 
-    /**
-     * # Safety
-     *
-     * This should never be called manually.
-     * @param {any} handle
-     * @param {any} dart_handler_port
-     * @returns {number}
-     */
-    __exports.frb_dart_opaque_dart2rust_encode = function(handle, dart_handler_port) {
-        const ret = wasm.frb_dart_opaque_dart2rust_encode(handle, dart_handler_port);
-        return ret >>> 0;
-    };
-
     function passArrayJsValueToWasm0(array, malloc) {
         const ptr = malloc(array.length * 4, 4) >>> 0;
         for (let i = 0; i < array.length; i++) {
@@ -1521,8 +1508,21 @@ let wasm_bindgen;
         wasm.wasm_start_callback();
     };
 
+    /**
+     * # Safety
+     *
+     * This should never be called manually.
+     * @param {any} handle
+     * @param {any} dart_handler_port
+     * @returns {number}
+     */
+    __exports.frb_dart_opaque_dart2rust_encode = function(handle, dart_handler_port) {
+        const ret = wasm.frb_dart_opaque_dart2rust_encode(handle, dart_handler_port);
+        return ret >>> 0;
+    };
+
     function __wbg_adapter_40(arg0, arg1, arg2) {
-        wasm.closure589_externref_shim(arg0, arg1, arg2);
+        wasm.closure590_externref_shim(arg0, arg1, arg2);
     }
 
     const WorkerPoolFinalization = (typeof FinalizationRegistry === 'undefined')
@@ -1882,8 +1882,8 @@ let wasm_bindgen;
             const ret = false;
             return ret;
         };
-        imports.wbg.__wbindgen_closure_wrapper1717 = function(arg0, arg1, arg2) {
-            const ret = makeMutClosure(arg0, arg1, 590, __wbg_adapter_40);
+        imports.wbg.__wbindgen_closure_wrapper1738 = function(arg0, arg1, arg2) {
+            const ret = makeMutClosure(arg0, arg1, 591, __wbg_adapter_40);
             return ret;
         };
         imports.wbg.__wbindgen_debug_string = function(arg0, arg1) {
