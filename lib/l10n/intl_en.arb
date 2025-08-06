@@ -5114,8 +5114,8 @@
   "saveAndLaunch": "Save and Launch",
   "launchToSpace": "Launch to Space",
   "numberOfActivities": "Number of Activity Sessions",
-  "minimumActivityParticipants": "Each Activity needs a minimum {count} of participant(s).",
-  "@minimumActivityParticipants": {
+  "maximumActivityParticipants": "Each Activity can have a maximum of {count} participant(s).",
+  "@maximumActivityParticipants": {
     "type": "String",
     "placeholders": {
       "count": {

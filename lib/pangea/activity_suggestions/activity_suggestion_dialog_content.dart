@@ -659,7 +659,7 @@ class _ActivitySuggestionLaunchContent extends StatelessWidget {
       ActivitySuggestionCardRow(
         icon: Icons.groups,
         child: Text(
-          L10n.of(context).minimumActivityParticipants(
+          L10n.of(context).maximumActivityParticipants(
             activityController.updatedActivity.req.numberOfParticipants,
           ),
           style: const TextStyle(fontSize: 16),

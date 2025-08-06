@@ -283,7 +283,7 @@ class ActivityPlanCardState extends State<ActivityPlanCard> {
                                 Expanded(
                                   child: Text(
                                     L10n.of(context)
-                                        .minimumActivityParticipants(
+                                        .maximumActivityParticipants(
                                       widget.controller.updatedActivity.req
                                           .numberOfParticipants,
                                     ),
