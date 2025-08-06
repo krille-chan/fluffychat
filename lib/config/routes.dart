@@ -43,6 +43,7 @@ import 'package:fluffychat/pangea/login/pages/signup.dart';
 import 'package:fluffychat/pangea/login/pages/space_code_onboarding.dart';
 import 'package:fluffychat/pangea/login/pages/user_settings.dart';
 import 'package:fluffychat/pangea/onboarding/onboarding.dart';
+import 'package:fluffychat/pangea/space_analytics/space_analytics.dart';
 import 'package:fluffychat/pangea/spaces/constants/space_constants.dart';
 import 'package:fluffychat/pangea/spaces/utils/join_with_alias.dart';
 import 'package:fluffychat/pangea/spaces/utils/join_with_link.dart';
@@ -619,6 +620,17 @@ abstract class AppRoutes {
                   ),
                   routes: [
                     // #Pangea
+                    GoRoute(
+                      path: '/analytics',
+                      redirect: loggedOutRedirect,
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        state,
+                        SpaceAnalytics(
+                          roomId: state.pathParameters['roomid']!,
+                        ),
+                      ),
+                    ),
                     GoRoute(
                       path: 'planner',
                       pageBuilder: (context, state) => defaultPageBuilder(

@@ -22,7 +22,6 @@ import 'package:fluffychat/pangea/chat_settings/widgets/delete_space_dialog.dart
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/spaces/utils/load_participants_util.dart';
-import 'package:fluffychat/pangea/spaces/widgets/download_space_analytics_dialog.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
@@ -384,16 +383,12 @@ class RoomDetailsButtonRowState extends State<RoomDetailsButtonRow> {
         showInMainView: false,
       ),
       ButtonDetails(
-        title: l10n.downloadSpaceAnalytics,
-        icon: const Icon(Icons.download_outlined, size: 30.0),
-        onPressed: () {
-          showDialog(
-            context: context,
-            builder: (context) => DownloadAnalyticsDialog(space: room),
-          );
-        },
-        visible: room.isSpace && room.isRoomAdmin && kIsWeb,
-        showInMainView: false,
+        title: l10n.spaceAnalytics,
+        icon: const Icon(Icons.bar_chart, size: 30.0),
+        onPressed: () => context.go('/rooms/${room.id}/details/analytics'),
+        visible: room.isSpace,
+        enabled: room.isSpace && room.isRoomAdmin,
+        showInMainView: true,
       ),
       ButtonDetails(
         title: l10n.download,

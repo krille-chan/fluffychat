@@ -37,8 +37,13 @@ class PublicProfileModel {
         if (lang == null) continue;
         final level = entry.value[ModelKey.level];
         final xpOffset = entry.value[ModelKey.xpOffset] ?? 0;
-        languageAnalytics[lang] =
-            LanguageAnalyticsProfileEntry(level, xpOffset);
+        final analyticsRoomId =
+            entry.value[ModelKey.analyticsRoomId] as String?;
+        languageAnalytics[lang] = LanguageAnalyticsProfileEntry(
+          level,
+          xpOffset,
+          analyticsRoomId: analyticsRoomId,
+        );
       }
     }
 
@@ -67,6 +72,8 @@ class PublicProfileModel {
         analytics[entry.key.langCode] = {
           ModelKey.level: entry.value.level,
           ModelKey.xpOffset: entry.value.xpOffset,
+          if (entry.value.analyticsRoomId != null)
+            ModelKey.analyticsRoomId: entry.value.analyticsRoomId,
         };
       }
     }
@@ -80,15 +87,49 @@ class PublicProfileModel {
       targetLanguage == null ||
       (languageAnalytics == null || languageAnalytics!.isEmpty);
 
-  void setLevel(LanguageModel language, int level) {
+  String? analyticsRoomIdByLanguage(LanguageModel language) =>
+      languageAnalytics![language]?.analyticsRoomId;
+
+  /// Set the level and analytics room ID for the a given language.
+  void setLanguageInfo(
+    LanguageModel language,
+    int level,
+    String? analyticsRoomId,
+  ) {
     languageAnalytics ??= {};
-    languageAnalytics![language] ??= LanguageAnalyticsProfileEntry(0, 0);
+    languageAnalytics![language] ??= LanguageAnalyticsProfileEntry(
+      0,
+      0,
+      analyticsRoomId: analyticsRoomId,
+    );
+
+    if (languageAnalytics![language]!.level < level) {
+      languageAnalytics![language]!.level = level;
+    }
+
+    final currentRoomId = analyticsRoomIdByLanguage(language);
+    if (currentRoomId == null) {
+      languageAnalytics![language]!.analyticsRoomId = analyticsRoomId;
+    }
     languageAnalytics![language]!.level = level;
   }
 
-  void addXPOffset(LanguageModel language, int xpOffset) {
+  void addXPOffset(
+    LanguageModel language,
+    int xpOffset,
+    String? analyticsRoomId,
+  ) {
     languageAnalytics ??= {};
-    languageAnalytics![language] ??= LanguageAnalyticsProfileEntry(0, 0);
+    languageAnalytics![language] ??= LanguageAnalyticsProfileEntry(
+      0,
+      0,
+      analyticsRoomId: analyticsRoomId,
+    );
+
+    final currentRoomId = analyticsRoomIdByLanguage(language);
+    if (currentRoomId == null) {
+      languageAnalytics![language]!.analyticsRoomId = analyticsRoomId;
+    }
     languageAnalytics![language]!.xpOffset += xpOffset;
   }
 
@@ -100,6 +141,11 @@ class PublicProfileModel {
 class LanguageAnalyticsProfileEntry {
   int level;
   int xpOffset = 0;
+  String? analyticsRoomId;
 
-  LanguageAnalyticsProfileEntry(this.level, this.xpOffset);
+  LanguageAnalyticsProfileEntry(
+    this.level,
+    this.xpOffset, {
+    this.analyticsRoomId,
+  });
 }

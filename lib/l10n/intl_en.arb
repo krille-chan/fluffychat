@@ -4199,7 +4199,7 @@
   "roomAddedToSpace": "Room(s) have been added to the selected space.",
   "addChatToSpaceDesc": "Adding a chat to a space will make the chat appear within the space for students and give them access.",
   "addSpaceToSpaceDesc": "Adding a sub space to space will make the sub space appear in the main space's chat list.",
-  "spaceAnalytics": "Space Analytics",
+  "spaceAnalytics": "Space analytics",
   "changeAnalyticsLanguage": "Change Analytics Language",
   "suggestToSpace": "Suggest this space",
   "suggestToSpaceDesc": "Suggested sub spaces will appear in their main space's chat list",
@@ -5093,6 +5093,22 @@
   "errorFetchingActivity": "Failed to fetch activity",
   "check": "Check",
   "unableToFindRoom": "No chat or space found with that code. Please try again.",
+  "spaceAnalyticsPage": "Space analytics page",
+  "numCompletedActivities": "Number of completed activities",
+  "viewingAnalytics": "Viewing {visible}/{users} Analytics",
+  "@viewingAnalytics": {
+    "type": "String",
+    "placeholders": {
+      "visible": {
+        "type": "int"
+      },
+      "users": {
+        "type": "int"
+      }
+    }
+  },
+  "request": "Request",
+  "requestAll": "Request All",
   "confirmMessageUnpin": "Are you sure you want to unpin this message?",
   "createActivityPlan": "Create a new activity plan",
   "saveAndLaunch": "Save and Launch",
@@ -5107,6 +5123,8 @@
       }
     }
   },
+  "pending": "Pending",
+  "inactive": "Inactive",
   "unjoinedActivityMessage": "Do you want to participate? Choose an open role!\nOr hang out and watch the show!",
   "fullActivityMessage": "Feel free to watch the show! While there aren't any open roles to participate, you can view the chat!",
   "confirmRole": "Confirm role",
@@ -5137,5 +5155,41 @@
   "archiveToAnalytics": "Add to my Completed Activities",
   "activitySummaryError": "Activity summaries unavailable",
   "requestSummaries": "Request summaries",
-  "loadingActivitySummary": "Loading activity summary..."
+  "loadingActivitySummary": "Loading activity summary...",
+  "requestAccessTitle": "Request to analytics view access?",
+  "requestAccessDesc": "Would you like to request access to view participant analytics?\n\nIf participants agree, admin of this space will be able to view their:\n    • total vocabulary\n    • total grammar concepts\n    • total activity sessions completed\n    • the specific grammar concepts used, correctly and incorrectly\n\n    • They will not be able to view their:\n    • messages in chats outside the space\n    • vocabulary list",
+  "requestAccess": "Request access ({count})",
+  "@requestAccess": {
+    "type": "String",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "analyticsInactiveTitle": "Requests to inactive users couldn’t be sent",
+  "analyticsInactiveDesc": "Inactive users who haven't logged in since this feature was introduced won't see your request.\n\nThe Request button will appear once they return. You can resend the request later by clicking the Request button under their name when it's available.",
+  "accessRequestedTitle": "Analytics Access Request",
+  "accessRequestedDesc": "The administrators of “{space}” are requesting to view your learning analytics.\n\nIf you agree, admin of this space will be able to view your:\n    • total vocabulary\n    • total grammar concepts\n    • total activity sessions completed\n    • the specific grammar concepts used, correctly and incorrectly\n\n    • They will not be able to view your:\n    • messages in chats outside the space\n    • vocabulary list",
+  "@accessRequestedDesc": {
+    "type": "String",
+    "placeholders": {
+      "space": {
+        "type": "String"
+      }
+    }
+  },
+  "allowAccess": "Allow Access",
+  "denyAccess": "Deny Access",
+  "adminRequestedAccess": "Admins asked to view your analytics.",
+  "lastUpdated": "Updated\n{time}",
+  "@lastUpdated": {
+    "type": "String",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "noDataFound": "No data found"
 }

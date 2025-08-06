@@ -18,6 +18,7 @@ import 'package:fluffychat/pangea/chat_settings/widgets/delete_space_dialog.dart
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/public_spaces/public_room_bottom_sheet.dart';
+import 'package:fluffychat/pangea/space_analytics/analytics_request_indicator.dart';
 import 'package:fluffychat/pangea/spaces/constants/space_constants.dart';
 import 'package:fluffychat/pangea/spaces/widgets/knocking_users_indicator.dart';
 import 'package:fluffychat/pangea/spaces/widgets/leaderboard_participant_list.dart';
@@ -804,6 +805,7 @@ class _SpaceViewState extends State<SpaceView> {
                           );
                         },
                       ),
+                    AnalyticsRequestIndicator(room: room),
                     // Pangea#
                     SliverList.builder(
                       itemCount: joinedRooms.length,

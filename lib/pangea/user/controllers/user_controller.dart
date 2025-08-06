@@ -4,11 +4,13 @@ import 'package:collection/collection.dart';
 import 'package:jwt_decode/jwt_decode.dart';
 import 'package:matrix/matrix.dart' as matrix;
 
+import 'package:fluffychat/pangea/analytics_misc/client_analytics_extension.dart';
 import 'package:fluffychat/pangea/bot/utils/bot_name.dart';
 import 'package:fluffychat/pangea/common/constants/model_keys.dart';
 import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/learning_settings/constants/language_constants.dart';
 import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
 import 'package:fluffychat/pangea/learning_settings/utils/p_language_store.dart';
@@ -57,7 +59,7 @@ class UserController {
   StreamSubscription? _profileListener;
 
   /// Listen for updates to account data in syncs and update the cached profile
-  void addProfileListener() {
+  void _addProfileListener() {
     _profileListener ??= client.onSync.stream
         .where((sync) => sync.accountData != null)
         .listen((sync) {
@@ -144,7 +146,9 @@ class UserController {
 
     try {
       await _initialize();
-      addProfileListener();
+      _addProfileListener();
+      _addAnalyticsRoomIdsToPublicProfile();
+
       if (profile.userSettings.targetLanguage != null &&
           profile.userSettings.targetLanguage!.isNotEmpty &&
           _pangeaController.languageController.userL2 == null) {
@@ -224,15 +228,53 @@ class UserController {
     baseLanguage ??= _pangeaController.languageController.userL1;
     if (targetLanguage == null || publicProfile == null) return;
 
+    final analyticsRoom =
+        _pangeaController.matrixState.client.analyticsRoomLocal(targetLanguage);
+
     if (publicProfile!.targetLanguage == targetLanguage &&
         publicProfile!.baseLanguage == baseLanguage &&
-        publicProfile!.languageAnalytics?[targetLanguage]?.level == level) {
+        publicProfile!.languageAnalytics?[targetLanguage]?.level == level &&
+        publicProfile!.analyticsRoomIdByLanguage(targetLanguage) ==
+            analyticsRoom?.id) {
       return;
     }
 
     publicProfile!.baseLanguage = baseLanguage;
     publicProfile!.targetLanguage = targetLanguage;
-    publicProfile!.setLevel(targetLanguage, level);
+    publicProfile!.setLanguageInfo(
+      targetLanguage,
+      level,
+      analyticsRoom?.id,
+    );
+    await _savePublicProfile();
+  }
+
+  Future<void> _addAnalyticsRoomIdsToPublicProfile() async {
+    if (publicProfile?.languageAnalytics == null) return;
+    final analyticsRooms =
+        _pangeaController.matrixState.client.allMyAnalyticsRooms;
+
+    if (analyticsRooms.isEmpty) return;
+    for (final analyticsRoom in analyticsRooms) {
+      final lang = analyticsRoom.madeForLang?.split("-").first;
+      if (lang == null || publicProfile?.languageAnalytics == null) continue;
+      final langKey = publicProfile!.languageAnalytics!.keys.firstWhereOrNull(
+        (l) => l.langCodeShort == lang,
+      );
+
+      if (langKey == null) continue;
+      if (publicProfile!.languageAnalytics![langKey]!.analyticsRoomId ==
+          analyticsRoom.id) {
+        continue;
+      }
+
+      publicProfile!.setLanguageInfo(
+        langKey,
+        publicProfile!.languageAnalytics![langKey]!.level,
+        analyticsRoom.id,
+      );
+    }
+
     await _savePublicProfile();
   }
 
@@ -240,7 +282,13 @@ class UserController {
     final targetLanguage = _pangeaController.languageController.userL2;
     if (targetLanguage == null || publicProfile == null) return;
 
-    publicProfile!.addXPOffset(targetLanguage, offset);
+    publicProfile!.addXPOffset(
+      targetLanguage,
+      offset,
+      _pangeaController.matrixState.client
+          .analyticsRoomLocal(targetLanguage)
+          ?.id,
+    );
     await _savePublicProfile();
   }
 

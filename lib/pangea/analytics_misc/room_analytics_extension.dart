@@ -16,7 +16,7 @@ extension AnalyticsRoomExtension on Room {
   ///
   /// Yield this list of rooms.
   /// Once analytics have been retrieved, leave analytics rooms not created by self.
-  Stream<List<Room>> getNextAnalyticsRoomBatch(String userL2) async* {
+  Stream<List<Room>> getNextAnalyticsRoomBatch(String langCode) async* {
     final List<SpaceRoomsChunk> rooms = [];
     String? nextBatch;
     int spaceHierarchyCalls = 0;
@@ -50,8 +50,8 @@ extension AnalyticsRoomExtension on Room {
         );
 
         final (analyticsRoom, calls) = matchingRoom != null
-            ? await _handleJoinedAnalyticsRoom(matchingRoom, userL2)
-            : await _handleUnjoinedAnalyticsRoom(nextRoomChunk, userL2);
+            ? await _handleJoinedAnalyticsRoom(matchingRoom, langCode)
+            : await _handleUnjoinedAnalyticsRoom(nextRoomChunk, langCode);
 
         callsToServer += calls;
         if (analyticsRoom == null) continue;
