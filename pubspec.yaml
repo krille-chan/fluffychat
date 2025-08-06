@@ -47,7 +47,7 @@ dependencies:
   flutter_web_auth_2: ^3.1.1 # Version 4 blocked by https://github.com/MixinNetwork/flutter-plugins/issues/379
   flutter_webrtc: ^1.0.0
   geolocator: ^14.0.2
-  go_router: ^16.0.0
+  go_router: ^16.1.0
   handy_window: ^0.4.0
   html: ^0.15.4
   http: ^1.2.0
@@ -91,7 +91,7 @@ dependencies:
 
 dev_dependencies:
   flutter_lints: ^3.0.0
-  flutter_native_splash: ^2.0.3+1
+  flutter_native_splash: ^2.4.6
   flutter_test:
     sdk: flutter
   import_sorter: ^4.6.0

@@ -3386,5 +3386,11 @@
   "approve": "Aprobar",
   "@approve": {},
   "youHaveKnocked": "Has sido golpeado",
-  "@youHaveKnocked": {}
+  "@youHaveKnocked": {},
+  "customReaction": "Reacción personalizada",
+  "@customReaction": {},
+  "moreEvents": "Más eventos",
+  "@moreEvents": {},
+  "declineInvitation": "Rechazar invitación",
+  "@declineInvitation": {}
 }
