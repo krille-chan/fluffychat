@@ -1177,7 +1177,7 @@ class ChatController extends State<ChatPageWithRoom>
     final response = await showOkCancelAlertDialog(
       context: context,
       title: L10n.of(context).unpin,
-      message: L10n.of(context).confirmMessageUnpin,
+      message: L10n.of(context).confirmEventUnpin,
       okLabel: L10n.of(context).unpin,
       cancelLabel: L10n.of(context).cancel,
     );

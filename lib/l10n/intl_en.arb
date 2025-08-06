@@ -2450,7 +2450,7 @@
   },
   "pinMessage": "Pin to room",
   "@pinMessage": {},
-  "confirmEventUnpin": "Are you sure to permanently unpin the event?",
+  "confirmEventUnpin": "Are you sure you want to unpin this message?",
   "@confirmEventUnpin": {},
   "emojis": "Emojis",
   "@emojis": {},
@@ -3374,7 +3374,5 @@
   "moreEvents": "More events",
   "@moreEvents": {},
   "declineInvitation": "Decline invitation",
-  "@declineInvitation": {},
-  "confirmMessageUnpin": "Are you sure you want to unpin this message?",
-  "@confirmMessageUnpin": {}
+  "@declineInvitation": {}
 }
