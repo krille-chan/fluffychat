@@ -152,6 +152,10 @@ class ActivityPlannerBuilderState extends State<ActivityPlannerBuilder> {
   void startEditing() => setLaunchState(ActivityLaunchState.editing);
 
   void setLaunchState(ActivityLaunchState state) {
+    if (state == ActivityLaunchState.launching) {
+      BookmarkedActivitiesRepo.save(updatedActivity);
+    }
+
     launchState = state;
     if (mounted) setState(() {});
   }
