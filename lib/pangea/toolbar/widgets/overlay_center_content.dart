@@ -9,6 +9,7 @@ import 'package:fluffychat/pangea/toolbar/enums/reading_assistance_mode_enum.dar
 import 'package:fluffychat/pangea/toolbar/widgets/measure_render_box.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/overlay_message.dart';
+import 'package:fluffychat/widgets/avatar.dart';
 
 class OverlayCenterContent extends StatelessWidget {
   final Event event;
@@ -89,7 +90,7 @@ class OverlayCenterContent extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(
                   top: 4.0,
-                  left: 4.0,
+                  left: (ownMessage ? 0 : Avatar.defaultSize) + 12.0,
                   right: ownMessage ? 0 : 12.0,
                 ),
                 child: PangeaMessageReactions(
@@ -98,7 +99,6 @@ class OverlayCenterContent extends StatelessWidget {
                   chatController,
                 ),
               ),
-              // ),
             ],
           ),
         ),
