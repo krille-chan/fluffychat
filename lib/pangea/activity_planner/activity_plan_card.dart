@@ -619,6 +619,7 @@ class ActivityPlanCardState extends State<ActivityPlanCard> {
                               Column(
                                 spacing: 12.0,
                                 children: [
+                                  const SizedBox(),
                                   Row(
                                     spacing: 12.0,
                                     children: [
