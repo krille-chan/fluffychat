@@ -60,6 +60,7 @@
 - fix: Open external account management when trying to delete devices (Christian Kußowski)
 - fix: Use retry http client (Christian Kußowski)
 - fix: Workaround for reversed width and height of compressed videos sent from Android (Christian Kußowski)
+- refactor: Add support for Room version 12 via matrix dart sdk update
 - refactor: Better UX for accepting declining invite (krille-chan)
 - refactor: ignore bubble gradient when using system high contrast mode (Christian Kußowski)
 - refactor: Make notification avatars rounded (krille-chan)
