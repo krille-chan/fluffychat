@@ -20,7 +20,8 @@ class ActivitySearchRepo {
 
   static Future<ActivityPlanResponse> get(ActivityPlanRequest request) async {
     final cachedJson = _activityPlanStorage.read(request.storageKey);
-    if (cachedJson != null) {
+    if (cachedJson != null &&
+        (cachedJson['activity_plans'] as List).isNotEmpty) {
       final cached = ActivityPlanResponse.fromJson(cachedJson);
 
       return cached;

@@ -63,7 +63,10 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
     super.dispose();
   }
 
+  // _loading is true when _setActivityItems is currently requesting activities
   bool _loading = true;
+  // _timeout is true if 1+ round of _setActivityItems
+  // has occurred and no activities retrieved
   bool _timeout = false;
   bool get _isColumnMode => FluffyThemes.isColumnMode(context);
 
@@ -105,10 +108,13 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
     }
 
     try {
-      setState(() {
-        _activityItems.clear();
-        _loading = true;
-      });
+      if (retries == 0) {
+        setState(() {
+          _activityItems.clear();
+          _loading = true;
+          _timeout = false;
+        });
+      }
 
       final resp = await ActivitySearchRepo.get(_request).timeout(
         const Duration(seconds: 5),
@@ -116,7 +122,6 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
           if (mounted) {
             setState(() {
               _timeout = true;
-              _loading = false;
             });
           }
 
@@ -132,7 +137,23 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
         },
       );
       _activityItems.addAll(resp.activityPlans);
-      _timeout = false;
+
+      // If activities are not successfully retrieved, try again
+      if (_activityItems.isEmpty) {
+        if (mounted) {
+          setState(() {
+            _timeout = true;
+          });
+        }
+
+        Future.delayed(const Duration(seconds: 5), () {
+          if (mounted) _setActivityItems(retries: retries + 1);
+        });
+
+        throw TimeoutException(
+          L10n.of(context).activitySuggestionTimeoutMessage,
+        );
+      }
     } catch (e, s) {
       if (e is! TimeoutException) rethrow;
       ErrorHandler.logError(
@@ -145,7 +166,15 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
         level: SentryLevel.warning,
       );
     } finally {
-      if (mounted) setState(() => _loading = false);
+      // If activities are successfully retrieved, set timeout and loading to false
+      if (mounted && _activityItems.isNotEmpty) {
+        setState(
+          () {
+            _loading = false;
+            _timeout = false;
+          },
+        );
+      }
     }
   }
 
@@ -214,59 +243,95 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
       children: [
         AnimatedSize(
           duration: FluffyThemes.animationDuration,
-          child: (_timeout || !_loading && cards.isEmpty)
+          child: _timeout
               ? Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     spacing: 16.0,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      ErrorIndicator(
-                        message: _timeout
-                            ? L10n.of(context).activitySuggestionTimeoutMessage
-                            : L10n.of(context).errorFetchingActivitiesMessage,
-                      ),
-                      ElevatedButton(
-                        onPressed: _setActivityItems,
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: theme.colorScheme.primaryContainer,
-                          foregroundColor: theme.colorScheme.onPrimaryContainer,
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 12.0,
-                          ),
+                      ConstrainedBox(
+                        constraints: const BoxConstraints(maxWidth: 300),
+                        child: Text(
+                          L10n.of(context).generatingNewActivities,
+                          textAlign: TextAlign.center,
                         ),
-                        child: Text(L10n.of(context).tryAgain),
                       ),
+                      if (_loading) const CircularProgressIndicator(),
+                      if (!_loading)
+                        ElevatedButton(
+                          onPressed: _setActivityItems,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: theme.colorScheme.primaryContainer,
+                            foregroundColor:
+                                theme.colorScheme.onPrimaryContainer,
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 12.0,
+                            ),
+                          ),
+                          child: Text(L10n.of(context).tryAgain),
+                        ),
                     ],
                   ),
                 )
               : Container(
                   decoration: const BoxDecoration(),
-                  child: scrollDirection == Axis.horizontal
-                      ? Scrollbar(
-                          thumbVisibility: true,
-                          controller: _scrollController,
-                          child: Padding(
-                            padding: const EdgeInsets.only(bottom: 16.0),
-                            child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      scrollDirection == Axis.horizontal
+                          ? Scrollbar(
+                              thumbVisibility: true,
                               controller: _scrollController,
-                              scrollDirection: Axis.horizontal,
-                              child: Row(
-                                spacing: 8.0,
+                              child: Padding(
+                                padding: const EdgeInsets.only(bottom: 16.0),
+                                child: SingleChildScrollView(
+                                  controller: _scrollController,
+                                  scrollDirection: Axis.horizontal,
+                                  child: Row(
+                                    spacing: 8.0,
+                                    children: cards,
+                                  ),
+                                ),
+                              ),
+                            )
+                          : SizedBox(
+                              width: MediaQuery.of(context).size.width,
+                              child: Wrap(
+                                alignment: WrapAlignment.spaceEvenly,
+                                runSpacing: 16.0,
+                                spacing: 4.0,
                                 children: cards,
                               ),
                             ),
-                          ),
-                        )
-                      : SizedBox(
-                          width: MediaQuery.of(context).size.width,
-                          child: Wrap(
-                            alignment: WrapAlignment.spaceEvenly,
-                            runSpacing: 16.0,
-                            spacing: 4.0,
-                            children: cards,
+                      if (cards.length < 5)
+                        Padding(
+                          padding: const EdgeInsetsGeometry.all(16.0),
+                          child: ErrorIndicator(
+                            message: L10n.of(context)
+                                .activitySuggestionTimeoutMessage,
                           ),
                         ),
+                      if (cards.length < 5 && _loading)
+                        const CircularProgressIndicator(),
+                      if (cards.length < 5 && !_loading)
+                        Padding(
+                          padding: const EdgeInsetsGeometry.only(bottom: 16),
+                          child: ElevatedButton(
+                            onPressed: _setActivityItems,
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                                  theme.colorScheme.primaryContainer,
+                              foregroundColor:
+                                  theme.colorScheme.onPrimaryContainer,
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 12.0,
+                              ),
+                            ),
+                            child: Text(L10n.of(context).tryAgain),
+                          ),
+                        ),
+                    ],
+                  ),
                 ),
         ),
       ],
