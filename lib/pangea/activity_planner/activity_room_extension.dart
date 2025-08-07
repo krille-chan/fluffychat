@@ -10,6 +10,7 @@ import 'package:fluffychat/pangea/activity_planner/bookmarked_activities_repo.da
 import 'package:fluffychat/pangea/activity_summary/activity_summary_model.dart';
 import 'package:fluffychat/pangea/activity_summary/activity_summary_repo.dart';
 import 'package:fluffychat/pangea/activity_summary/activity_summary_request_model.dart';
+import 'package:fluffychat/pangea/bot/utils/bot_name.dart';
 import 'package:fluffychat/pangea/chat_settings/utils/download_chat.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
@@ -263,8 +264,9 @@ extension ActivityRoomExtension on Room {
       activityRole(client.userID!)?.isFinished ?? false;
 
   bool get activityIsFinished {
-    return activityRoles.isNotEmpty &&
-        activityRoles.every((r) {
+    final roles = activityRoles.where((r) => r.userId != BotName.byEnvironment);
+    return roles.isNotEmpty &&
+        roles.every((r) {
           if (r.isFinished) return true;
 
           // if the user is in the chat (not null && membership is join),
