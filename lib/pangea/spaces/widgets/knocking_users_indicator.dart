@@ -48,11 +48,12 @@ class KnockingUsersIndicatorState extends State<KnockingUsersIndicator> {
     super.dispose();
   }
 
-  Future<void> _setKnockingUsers({bool loadParticipants = false}) async {
-    _knockingUsers = loadParticipants
-        ? await widget.room.requestParticipants([Membership.knock])
-        : widget.room.getParticipants([Membership.knock]);
-    if (mounted) setState(() {});
+  void _setKnockingUsers() {
+    if (mounted) {
+      setState(() {
+        _knockingUsers = widget.room.getParticipants([Membership.knock]);
+      });
+    }
   }
 
   @override

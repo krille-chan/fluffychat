@@ -6,6 +6,7 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/pangea/activity_planner/activity_room_extension.dart';
 import 'package:fluffychat/pangea/instructions/instructions_enum.dart';
 import 'package:fluffychat/pangea/instructions/instructions_inline_tooltip.dart';
 import 'package:fluffychat/utils/date_time_extension.dart';
@@ -66,6 +67,9 @@ class RoomCreationStateEventState extends State<RoomCreationStateEvent> {
       //  child: ConstrainedBox(
       child: Column(
         children: [
+          // https://github.com/pangeachat/client/issues/3639
+          if (widget.event.room.isActiveInActivity)
+            const SizedBox(height: 60.0),
           ConstrainedBox(
             // Pangea#
             constraints: const BoxConstraints(maxWidth: 256),

@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'dart:typed_data';
 
+import 'package:collection/collection.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
@@ -262,7 +263,17 @@ extension ActivityRoomExtension on Room {
       activityRole(client.userID!)?.isFinished ?? false;
 
   bool get activityIsFinished {
-    return activityRoles.isNotEmpty && activityRoles.every((r) => r.isFinished);
+    return activityRoles.isNotEmpty &&
+        activityRoles.every((r) {
+          if (r.isFinished) return true;
+
+          // if the user is in the chat (not null && membership is join),
+          // then the activity is not finished for them
+          final user = getParticipants().firstWhereOrNull(
+            (u) => u.id == r.userId,
+          );
+          return user == null || user.membership != Membership.join;
+        });
   }
 
   int? get numberOfParticipants {

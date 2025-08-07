@@ -79,7 +79,7 @@ class PangeaInvitationSelectionController
     extends State<PangeaInvitationSelection> {
   TextEditingController controller = TextEditingController();
 
-  bool loading = true;
+  bool loading = false;
 
   List<Profile> foundProfiles = [];
   Timer? coolDown;
@@ -102,34 +102,6 @@ class PangeaInvitationSelectionController
     if (filter == InvitationFilter.public) {
       searchUser(context, '');
     }
-
-    _room?.requestParticipants(
-      [
-        Membership.join,
-        Membership.invite,
-        Membership.knock,
-      ],
-      false,
-      true,
-    ).then((_) {
-      if (mounted) {
-        setState(() {
-          loading = false;
-        });
-      }
-    });
-
-    spaceParent?.requestParticipants(
-      [
-        Membership.join,
-        Membership.invite,
-        Membership.knock,
-      ],
-      false,
-      true,
-    ).then((_) {
-      if (mounted) setState(() {});
-    });
 
     controller.addListener(() {
       setState(() {});

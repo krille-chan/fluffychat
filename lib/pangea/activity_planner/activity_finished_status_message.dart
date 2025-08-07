@@ -38,6 +38,10 @@ class ActivityFinishedStatusMessageState
   void initState() {
     super.initState();
     _setDefaultHighlightedRole();
+
+    if (widget.room.activityIsFinished && widget.room.activitySummary == null) {
+      widget.room.fetchSummaries();
+    }
   }
 
   @override

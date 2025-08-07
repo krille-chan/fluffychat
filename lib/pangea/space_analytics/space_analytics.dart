@@ -230,12 +230,6 @@ class SpaceAnalyticsState extends State<SpaceAnalytics> {
   }
 
   Future<void> _loadProfiles() async {
-    await room?.requestParticipants(
-      [Membership.join],
-      false,
-      true,
-    );
-
     final futures = _availableUsers.map((u) async {
       final resp = await MatrixState.pangeaController.userController
           .getPublicProfile(u.id);

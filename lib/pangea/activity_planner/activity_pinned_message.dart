@@ -73,111 +73,119 @@ class ActivityPinnedMessageState extends State<ActivityPinnedMessage> {
     final theme = Theme.of(context);
     final isColumnMode = FluffyThemes.isColumnMode(context);
 
-    return Column(
-      children: [
-        AnimatedContainer(
-          duration: FluffyThemes.animationDuration,
-          decoration: BoxDecoration(
-            color: _showDropdown
-                ? theme.colorScheme.surfaceContainerHighest
-                : theme.colorScheme.surface,
-          ),
-          child: ChatAppBarListTile(
-            title: "🎯 ${room.activityPlan!.learningObjective}",
-            leading: const SizedBox(width: 18.0),
-            trailing: Padding(
-              padding: const EdgeInsets.only(right: 12.0),
-              child: ElevatedButton(
-                onPressed: _showDropdown ? null : () => _setShowDropdown(true),
-                style: ElevatedButton.styleFrom(
-                  minimumSize: Size.zero,
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 12.0,
-                    vertical: 4.0,
+    return Positioned(
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: _showDropdown ? 0 : null,
+      child: Column(
+        children: [
+          AnimatedContainer(
+            duration: FluffyThemes.animationDuration,
+            decoration: BoxDecoration(
+              color: _showDropdown
+                  ? theme.colorScheme.surfaceContainerHighest
+                  : theme.colorScheme.surface,
+            ),
+            child: ChatAppBarListTile(
+              title: "🎯 ${room.activityPlan!.learningObjective}",
+              leading: const SizedBox(width: 18.0),
+              trailing: Padding(
+                padding: const EdgeInsets.only(right: 12.0),
+                child: ElevatedButton(
+                  onPressed:
+                      _showDropdown ? null : () => _setShowDropdown(true),
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: Size.zero,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12.0,
+                      vertical: 4.0,
+                    ),
+                    backgroundColor: AppConfig.yellowDark,
+                    foregroundColor: theme.colorScheme.surface,
+                    disabledBackgroundColor:
+                        AppConfig.yellowDark.withAlpha(100),
+                    disabledForegroundColor:
+                        theme.colorScheme.surface.withAlpha(100),
                   ),
-                  backgroundColor: AppConfig.yellowDark,
-                  foregroundColor: theme.colorScheme.surface,
-                  disabledBackgroundColor: AppConfig.yellowDark.withAlpha(100),
-                  disabledForegroundColor:
-                      theme.colorScheme.surface.withAlpha(100),
-                ),
-                child: Text(
-                  L10n.of(context).endActivityTitle,
-                  style: const TextStyle(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.w900,
+                  child: Text(
+                    L10n.of(context).endActivityTitle,
+                    style: const TextStyle(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.w900,
+                    ),
                   ),
                 ),
               ),
+              onTap: _scrollToActivity,
             ),
-            onTap: _scrollToActivity,
           ),
-        ),
-        AnimatedSize(
-          duration: FluffyThemes.animationDuration,
-          curve: Curves.easeInOut,
-          child: ClipRect(
-            child: _showDropdown
-                ? Container(
-                    decoration: BoxDecoration(
-                      color: theme.colorScheme.surfaceContainerHighest,
-                    ),
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 12.0,
-                      vertical: 16.0,
-                    ),
-                    child: Column(
-                      spacing: 12.0,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          L10n.of(context).endActivityDesc,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: isColumnMode ? 16.0 : 12.0,
-                          ),
-                        ),
-                        CachedNetworkImage(
-                          imageUrl:
-                              "${AppConfig.assetsBaseURL}/${ActivitySuggestionsConstants.endActivityAssetPath}",
-                          width: isColumnMode ? 240.0 : 120.0,
-                        ),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 12.0,
-                              vertical: 8.0,
+          AnimatedSize(
+            duration: FluffyThemes.animationDuration,
+            curve: Curves.easeInOut,
+            child: ClipRect(
+              child: _showDropdown
+                  ? Container(
+                      decoration: BoxDecoration(
+                        color: theme.colorScheme.surfaceContainerHighest,
+                      ),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 12.0,
+                        vertical: 16.0,
+                      ),
+                      child: Column(
+                        spacing: 12.0,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            L10n.of(context).endActivityDesc,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: isColumnMode ? 16.0 : 12.0,
                             ),
-                            foregroundColor: theme.colorScheme.onSecondary,
-                            backgroundColor: theme.colorScheme.secondary,
                           ),
-                          onPressed: _finishActivity,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                L10n.of(context).endActivityTitle,
-                                style: TextStyle(
-                                  fontSize: isColumnMode ? 16.0 : 12.0,
-                                ),
+                          CachedNetworkImage(
+                            imageUrl:
+                                "${AppConfig.assetsBaseURL}/${ActivitySuggestionsConstants.endActivityAssetPath}",
+                            width: isColumnMode ? 240.0 : 120.0,
+                          ),
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 12.0,
+                                vertical: 8.0,
                               ),
-                            ],
+                              foregroundColor: theme.colorScheme.onSecondary,
+                              backgroundColor: theme.colorScheme.secondary,
+                            ),
+                            onPressed: _finishActivity,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  L10n.of(context).endActivityTitle,
+                                  style: TextStyle(
+                                    fontSize: isColumnMode ? 16.0 : 12.0,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                  )
-                : const SizedBox.shrink(),
-          ),
-        ),
-        if (_showDropdown)
-          Expanded(
-            child: GestureDetector(
-              onTap: () => _setShowDropdown(false),
-              child: Container(color: Colors.black.withAlpha(100)),
+                        ],
+                      ),
+                    )
+                  : const SizedBox.shrink(),
             ),
           ),
-      ],
+          if (_showDropdown)
+            Expanded(
+              child: GestureDetector(
+                onTap: () => _setShowDropdown(false),
+                child: Container(color: Colors.black.withAlpha(100)),
+              ),
+            ),
+        ],
+      ),
     );
   }
 }

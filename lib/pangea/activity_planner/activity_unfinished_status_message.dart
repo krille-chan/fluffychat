@@ -31,19 +31,22 @@ class ActivityUnfinishedStatusMessageState
 
   @override
   Widget build(BuildContext context) {
-    final unassignedRoles = widget.room.remainingRoles;
+    debugPrint("HELLO. remainingRoles: ${widget.room.remainingRoles}");
 
     final theme = Theme.of(context);
     final isColumnMode = FluffyThemes.isColumnMode(context);
 
+    final remainingRoles = widget.room.remainingRoles;
+    final completed = widget.room.hasCompletedActivity;
+
     return Column(
       children: [
-        if (!widget.room.hasCompletedActivity) ...[
-          if (unassignedRoles > 0)
+        if (!completed) ...[
+          if (remainingRoles > 0)
             Wrap(
               spacing: 12.0,
               runSpacing: 12.0,
-              children: List.generate(unassignedRoles, (index) {
+              children: List.generate(remainingRoles, (index) {
                 return ActivityParticipantIndicator(
                   selected: _selectedRole == index,
                   onTap: () => _selectRole(index),
@@ -52,7 +55,7 @@ class ActivityUnfinishedStatusMessageState
             ),
           const SizedBox(height: 16.0),
           Text(
-            unassignedRoles > 0
+            remainingRoles > 0
                 ? L10n.of(context).unjoinedActivityMessage
                 : L10n.of(context).fullActivityMessage,
             textAlign: TextAlign.center,
@@ -62,45 +65,44 @@ class ActivityUnfinishedStatusMessageState
           ),
           const SizedBox(height: 16.0),
         ],
-        if (unassignedRoles > 0)
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 12.0,
-                vertical: 8.0,
-              ),
-              foregroundColor: theme.colorScheme.onPrimaryContainer,
-              backgroundColor: theme.colorScheme.primaryContainer,
+        ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 12.0,
+              vertical: 8.0,
             ),
-            onPressed: widget.room.hasCompletedActivity
-                ? () {
-                    showFutureLoadingDialog(
-                      context: context,
-                      future: widget.room.continueActivity,
-                    );
-                  }
-                : _selectedRole != null
-                    ? () {
-                        showFutureLoadingDialog(
-                          context: context,
-                          future: widget.room.startActivity,
-                        );
-                      }
-                    : null,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  widget.room.hasCompletedActivity
-                      ? L10n.of(context).continueText
-                      : L10n.of(context).confirmRole,
-                  style: TextStyle(
-                    fontSize: isColumnMode ? 16.0 : 12.0,
-                  ),
-                ),
-              ],
-            ),
+            foregroundColor: theme.colorScheme.onPrimaryContainer,
+            backgroundColor: theme.colorScheme.primaryContainer,
           ),
+          onPressed: completed
+              ? () {
+                  showFutureLoadingDialog(
+                    context: context,
+                    future: widget.room.continueActivity,
+                  );
+                }
+              : _selectedRole != null
+                  ? () {
+                      showFutureLoadingDialog(
+                        context: context,
+                        future: widget.room.startActivity,
+                      );
+                    }
+                  : null,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                completed
+                    ? L10n.of(context).continueText
+                    : L10n.of(context).confirmRole,
+                style: TextStyle(
+                  fontSize: isColumnMode ? 16.0 : 12.0,
+                ),
+              ),
+            ],
+          ),
+        ),
       ],
     );
   }

@@ -51,12 +51,6 @@ class LoadParticipantsUtilState extends State<LoadParticipantsUtil> {
         error = null;
       });
 
-      await widget.space.requestParticipants(
-        [Membership.join, Membership.invite, Membership.knock],
-        false,
-        true,
-      );
-
       await _cacheLevels();
     } catch (err, s) {
       error = err.toString();

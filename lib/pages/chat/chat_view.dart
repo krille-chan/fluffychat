@@ -202,11 +202,6 @@ class ChatView extends StatelessWidget {
             if (scrollUpBannerEventId != null) {
               appbarBottomHeight += ChatAppBarListTile.fixedHeight;
             }
-            // #Pangea
-            if (controller.room.isActiveInActivity) {
-              appbarBottomHeight += ChatAppBarListTile.fixedHeight;
-            }
-            // Pangea#
             return Scaffold(
               appBar: AppBar(
                 // #Pangea
@@ -281,9 +276,6 @@ class ChatView extends StatelessWidget {
                             child: Text(L10n.of(context).jump),
                           ),
                         ),
-                      // #Pangea
-                      ActivityPinnedMessage(controller),
-                      // Pangea#
                     ],
                   ),
                 ),
@@ -474,6 +466,7 @@ class ChatView extends StatelessWidget {
                               ],
                             ),
                           ),
+                        ActivityPinnedMessage(controller),
                         // Pangea#
                       ],
                     ),
