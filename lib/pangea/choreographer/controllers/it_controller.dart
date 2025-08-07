@@ -180,6 +180,8 @@ class ITController {
             "sourceText": sourceText,
             "currentITStepPayloadID": currentITStep?.payloadId,
           },
+          level:
+              e is TimeoutException ? SentryLevel.warning : SentryLevel.error,
         );
       }
       choreographer.errorService.setErrorAndLock(

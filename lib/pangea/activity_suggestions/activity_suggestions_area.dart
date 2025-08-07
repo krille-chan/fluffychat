@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
 import 'package:matrix/matrix.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:shimmer/shimmer.dart';
 
 import 'package:fluffychat/config/themes.dart';
@@ -19,6 +20,7 @@ import 'package:fluffychat/pangea/activity_planner/media_enum.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_plan_search_repo.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_suggestion_card.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_suggestion_dialog.dart';
+import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/common/widgets/error_indicator.dart';
 import 'package:fluffychat/pangea/learning_settings/constants/language_constants.dart';
 import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_enum.dart';
@@ -131,6 +133,17 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
       );
       _activityItems.addAll(resp.activityPlans);
       _timeout = false;
+    } catch (e, s) {
+      if (e is! TimeoutException) rethrow;
+      ErrorHandler.logError(
+        e: e,
+        s: s,
+        data: {
+          'retries': retries,
+          'request': _request.toJson(),
+        },
+        level: SentryLevel.warning,
+      );
     } finally {
       if (mounted) setState(() => _loading = false);
     }

@@ -197,6 +197,7 @@ class Choreographer {
           "l2LangCode": l2LangCode,
           "choreoRecord": choreoRecord?.toJson(),
         },
+        level: e is TimeoutException ? SentryLevel.warning : SentryLevel.error,
       );
     } finally {
       chatController.send(

@@ -239,6 +239,10 @@ class HtmlMessage extends StatelessWidget {
       position = substringIndex;
     }
 
+    for (int i = 0; i < result.length; i++) {
+      if (result[i] == '\n') result[i] = '<br>';
+    }
+
     if (pangeaMessageEvent?.textDirection == TextDirection.rtl) {
       for (int i = 0; i < result.length; i++) {
         final tag = result[i];

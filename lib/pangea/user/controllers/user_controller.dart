@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 import 'package:jwt_decode/jwt_decode.dart';
 import 'package:matrix/matrix.dart' as matrix;
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 import 'package:fluffychat/pangea/analytics_misc/client_analytics_extension.dart';
 import 'package:fluffychat/pangea/bot/utils/bot_name.dart';
@@ -199,6 +200,17 @@ class UserController {
           .then((_) {
         updatePublicProfile(
           level: _pangeaController.getAnalytics.constructListModel.level,
+        );
+      }).catchError((e, s) {
+        ErrorHandler.logError(
+          e: e,
+          s: s,
+          data: {
+            "publicProfile": publicProfile?.toJson(),
+            "userId": client.userID,
+          },
+          level:
+              e is TimeoutException ? SentryLevel.warning : SentryLevel.error,
         );
       });
     }

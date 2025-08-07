@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:sentry_flutter/sentry_flutter.dart';
+
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 
@@ -511,6 +513,7 @@ String? getGrammarCopy({
           'tag': key,
           'context': context,
         },
+        level: SentryLevel.warning,
       );
       return lemma; // Fallback to the lemma itself if no match is found
   }

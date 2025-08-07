@@ -74,47 +74,6 @@ class PangeaToken {
     return morphWithPos;
   }
 
-  /// reconstructs the text from the tokens
-  /// [tokens] - the tokens to reconstruct
-  /// [debugWalkThrough] - if true, will start the debugger
-  static String reconstructText(
-    List<PangeaToken> tokens, {
-    bool debugWalkThrough = false,
-    int startTokenIndex = 0,
-    int endTokenIndex = -1,
-  }) {
-    debugger(when: kDebugMode && debugWalkThrough);
-
-    if (endTokenIndex == -1) {
-      endTokenIndex = tokens.length;
-    }
-
-    final List<PangeaToken> subset =
-        tokens.sublist(startTokenIndex, endTokenIndex);
-
-    if (subset.isEmpty) {
-      debugger(when: kDebugMode);
-      return '';
-    }
-
-    if (subset.length == 1) {
-      return subset.first.text.content;
-    }
-
-    String reconstruction = "";
-    for (int i = 0; i < subset.length; i++) {
-      int whitespace = subset[i].text.offset -
-          (i > 0 ? (subset[i - 1].text.offset + subset[i - 1].text.length) : 0);
-
-      if (whitespace < 0) {
-        whitespace = 0;
-      }
-      reconstruction += ' ' * whitespace + subset[i].text.content;
-    }
-
-    return reconstruction;
-  }
-
   static Lemma _getLemmas(String text, dynamic json) {
     if (json != null) {
       // July 24, 2024 - we're changing from a list to a single lemma and this is for backwards compatibility

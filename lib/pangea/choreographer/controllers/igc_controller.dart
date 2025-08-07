@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:matrix/matrix.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/error_service.dart';
@@ -168,6 +169,8 @@ class IgcController {
           "itEnabled": choreographer.itEnabled,
           "matches": igcTextData?.matches.map((e) => e.toJson()),
         },
+        level:
+            err is TimeoutException ? SentryLevel.warning : SentryLevel.error,
       );
       clear();
     }
