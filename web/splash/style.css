@@ -1,52 +1,80 @@
-body,
-html {
+body, html {
   margin: 0;
+  padding: 0;
   height: 100%;
   background: #ffffff;
   background-size: 100% 100%;
 }
 
-.center {
-  margin: 0;
+#splash {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
 }
 
-.contain {
-  display: block;
-  max-width: 300px;
-  width: 100%;
+
+.logo {
+  width: 50vw;
+  max-width: 250px;
   height: auto;
   object-fit: contain;
 }
 
-.stretch {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-.cover {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-@keyframes fadeIn {
-  from {
+@keyframes fadeInScale {
+  0% {
     opacity: 0;
+    transform: scale(0.8);
   }
-  to {
+  100% {
     opacity: 1;
+    transform: scale(1);
   }
 }
 
 .fade-in {
-  animation: fadeIn 1s ease-in forwards;
+  animation: fadeInScale 1.2s ease-out forwards;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.07);
+  }
+}
+
+.pulse {
+  animation: pulse 1.2s ease-in-out infinite;
+}
+
+#messages {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.3rem;
+  color: #888;
+  height: 30px;
+  width: 100%;
+  text-align: center;
+  overflow: hidden;
+}
+
+.message-slide {
+  animation: slideDownFade 0.5s ease;
+}
+
+@keyframes slideDownFade {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0%);
+    opacity: 1;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
