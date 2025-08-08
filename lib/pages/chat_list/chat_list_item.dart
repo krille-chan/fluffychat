@@ -277,45 +277,63 @@ class ChatListItem extends StatelessWidget {
                                             directChatMatrixId !=
                                                 room.lastEvent?.senderId),
                                       )
-                                    : null,
-                                initialData:
-                                    lastEvent?.calcLocalizedBodyFallback(
-                                  MatrixLocals(L10n.of(context)),
-                                  hideReply: true,
-                                  hideEdit: true,
-                                  plaintextBody: true,
-                                  removeMarkdown: true,
-                                  withSenderNamePrefix: (!isDirectChat ||
-                                      directChatMatrixId !=
-                                          room.lastEvent?.senderId),
-                                ),
-                                builder: (context, snapshot) => Text(
-                                  room.membership == Membership.invite
-                                      ? room
-                                              .getState(
-                                                EventTypes.RoomMember,
-                                                room.client.userID!,
-                                              )
-                                              ?.content
-                                              .tryGet<String>('reason') ??
-                                          (isDirectChat
-                                              ? L10n.of(context).newChatRequest
-                                              : L10n.of(context)
-                                                  .inviteGroupChat)
-                                      : snapshot.data ??
-                                          L10n.of(context).emptyChat,
-                                  softWrap: false,
-                                  maxLines: room.notificationCount >= 1 ? 2 : 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
-                                    color: unread || room.hasNewMessages
-                                        ? theme.colorScheme.onSurface
-                                        : theme.colorScheme.outline,
-                                    decoration: room.lastEvent?.redacted == true
-                                        ? TextDecoration.lineThrough
-                                        : null,
-                                  ),
-                                ),
+                                    : Future(
+                                        () => lastEvent
+                                            ?.calcLocalizedBodyFallback(
+                                          MatrixLocals(L10n.of(context)),
+                                          hideReply: true,
+                                          hideEdit: true,
+                                          plaintextBody: true,
+                                          removeMarkdown: true,
+                                          withSenderNamePrefix:
+                                              (!isDirectChat ||
+                                                  directChatMatrixId !=
+                                                      room.lastEvent?.senderId),
+                                        ),
+                                      ),
+                                builder: (context, snapshot) => snapshot.hasData
+                                    ? Text(
+                                        room.membership == Membership.invite
+                                            ? room
+                                                    .getState(
+                                                      EventTypes.RoomMember,
+                                                      room.client.userID!,
+                                                    )
+                                                    ?.content
+                                                    .tryGet<String>('reason') ??
+                                                (isDirectChat
+                                                    ? L10n.of(context)
+                                                        .newChatRequest
+                                                    : L10n.of(context)
+                                                        .inviteGroupChat)
+                                            : snapshot.data ??
+                                                L10n.of(context).emptyChat,
+                                        softWrap: false,
+                                        maxLines:
+                                            room.notificationCount >= 1 ? 2 : 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                          color: unread || room.hasNewMessages
+                                              ? theme.colorScheme.onSurface
+                                              : theme.colorScheme.outline,
+                                          decoration:
+                                              room.lastEvent?.redacted == true
+                                                  ? TextDecoration.lineThrough
+                                                  : null,
+                                        ),
+                                      )
+                                    : Container(
+                                        decoration: BoxDecoration(
+                                          color: theme
+                                              .textTheme.bodyLarge!.color!
+                                              .withAlpha(50),
+                                          borderRadius:
+                                              BorderRadius.circular(3),
+                                        ),
+                                        height: 12,
+                                        margin:
+                                            const EdgeInsets.only(right: 22),
+                                      ),
                               ),
                   ),
                   const SizedBox(width: 8),
