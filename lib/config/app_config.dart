@@ -40,7 +40,7 @@ abstract class AppConfig {
 
   static String get webBaseUrl => _webBaseUrl;
   static const String sourceCodeUrl =
-      'https://github.com/Buzzlabs/fluffychat-radio';
+      'https://github.com/Buzzlabs/grupos-radio-hemp';
   static const String supportUrl =
       'https://github.com/krille-chan/fluffychat/issues';
   static const String changelogUrl =

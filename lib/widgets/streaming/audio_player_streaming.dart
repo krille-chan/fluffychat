@@ -18,7 +18,6 @@ class _AudioPlayerStreamingState extends State<AudioPlayerStreaming> {
 
   double volume = 0.0;
   double _lastNonZeroVolume = 0.8;
-  bool isMuted = true;
   bool _everPlayed = false;
 
   String title = 'Carregando...';
@@ -31,6 +30,8 @@ class _AudioPlayerStreamingState extends State<AudioPlayerStreaming> {
   Timer? _progressTimer;
   bool _isLoadingMetadata = false;
   String? _lastSongTitle;
+
+  VoidCallback? _muteListener;
 
   static const double _artSize = 70.0;
   static const double _buttonSize = 40.0;
@@ -46,6 +47,23 @@ class _AudioPlayerStreamingState extends State<AudioPlayerStreaming> {
     _fetchMetadataTimer =
         Timer.periodic(const Duration(seconds: 10), (_) => _fetchNowPlaying());
     _startProgressTimer();
+
+    _muteListener = () async {
+      final muted = AudioState.mutedNotifier.value;
+      if (muted) {
+        await player.setVolume(0.0);
+      } else {
+        await player
+            .setVolume(_lastNonZeroVolume > 0 ? _lastNonZeroVolume : 0.8);
+      }
+      if (!_everPlayed) {
+        await player.play();
+        _everPlayed = true;
+      }
+      if (mounted) setState(() {});
+    };
+
+    AudioState.mutedNotifier.addListener(_muteListener!);
   }
 
   void _initAudio() async {
@@ -111,6 +129,9 @@ class _AudioPlayerStreamingState extends State<AudioPlayerStreaming> {
   void dispose() {
     _fetchMetadataTimer?.cancel();
     _progressTimer?.cancel();
+    if (_muteListener != null) {
+      AudioState.mutedNotifier.removeListener(_muteListener!);
+    }
     player.dispose();
     super.dispose();
   }
@@ -124,12 +145,6 @@ class _AudioPlayerStreamingState extends State<AudioPlayerStreaming> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-
-    final volumeIcon = (isMuted || volume == 0)
-        ? Icons.volume_off
-        : volume > 0.5
-            ? Icons.volume_up
-            : Icons.volume_down;
 
     return DecoratedBox(
       decoration: BoxDecoration(
@@ -148,85 +163,101 @@ class _AudioPlayerStreamingState extends State<AudioPlayerStreaming> {
             const SizedBox(height: 4),
             _buildTimeLabels(),
             const SizedBox(height: 5),
-            Row(
-              children: [
-                SizedBox(
-                  width: _buttonSize,
-                  height: _buttonSize,
-                  child: OutlinedButton(
-                    style: OutlinedButton.styleFrom(
-                      shape: const CircleBorder(),
-                      side: BorderSide(
-                        color: theme.colorScheme.primary,
-                        width: 2,
-                      ),
-                      padding: EdgeInsets.zero,
-                    ),
-                    onPressed: () async {
-                      if (isMuted || volume == 0) {
-                        setState(() {
-                          volume = _lastNonZeroVolume;
-                          isMuted = false;
-                        });
-                        await player.setVolume(volume);
-                        if (!_everPlayed) {
-                          await player.play();
-                          _everPlayed = true;
-                        }
-                      } else {
-                        setState(() {
-                          _lastNonZeroVolume = volume > 0 ? volume : 0.8;
-                          volume = 0.0;
-                          isMuted = true;
-                        });
-                        await player.setVolume(0.0);
-                      }
-                    },
-                    child: Icon(
-                      volumeIcon,
-                      color: theme.colorScheme.primary,
-                      size: _volumeIconSize,
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: SliderTheme(
-                    data: SliderTheme.of(context).copyWith(
-                      activeTrackColor: theme.colorScheme.onTertiary,
-                      inactiveTrackColor: theme.colorScheme.onTertiary,
-                      thumbColor: theme.colorScheme.primary,
-                      overlayColor:
-                          theme.colorScheme.primary.withValues(alpha: 0.2),
-                      overlayShape:
-                          const RoundSliderOverlayShape(overlayRadius: 12),
-                      thumbShape:
-                          const RoundSliderThumbShape(enabledThumbRadius: 8),
-                    ),
-                    child: Slider(
-                      value: volume,
-                      min: 0,
-                      max: 1,
-                      onChanged: (v) async {
-                        setState(() {
-                          volume = v;
-                          if (v == 0) {
-                            isMuted = true;
+            ValueListenableBuilder<bool>(
+              valueListenable: AudioState.mutedNotifier,
+              builder: (context, isMuted, _) {
+                final volumeIcon = (isMuted || volume == 0)
+                    ? Icons.volume_off
+                    : volume > 0.5
+                        ? Icons.volume_up
+                        : Icons.volume_down;
+
+                return Row(
+                  children: [
+                    SizedBox(
+                      width: _buttonSize,
+                      height: _buttonSize,
+                      child: OutlinedButton(
+                        style: OutlinedButton.styleFrom(
+                          shape: const CircleBorder(),
+                          side: BorderSide(
+                            color: theme.colorScheme.primary,
+                            width: 2,
+                          ),
+                          padding: EdgeInsets.zero,
+                        ),
+                        onPressed: () async {
+                          final isMuted = AudioState.mutedNotifier.value;
+
+                          if (isMuted || volume == 0) {
+                            if (!isMuted && volume == 0) {
+                              final v = _lastNonZeroVolume > 0
+                                  ? _lastNonZeroVolume
+                                  : 0.8;
+                              volume = v;
+                              await player.setVolume(v);
+                              await player.play();
+                              _everPlayed = true;
+                              setState(() {});
+                            } else {
+                              AudioState.mutedNotifier.value = false;
+                            }
                           } else {
-                            isMuted = false;
-                            _lastNonZeroVolume = v;
+                            _lastNonZeroVolume =
+                                volume > 0 ? volume : _lastNonZeroVolume;
+                            AudioState.mutedNotifier.value = true;
                           }
-                        });
-                        await player.setVolume(v);
-                        if (v > 0 && !_everPlayed) {
-                          await player.play();
-                          _everPlayed = true;
-                        }
-                      },
+                        },
+                        child: Icon(
+                          volumeIcon,
+                          color: theme.colorScheme.primary,
+                          size: _volumeIconSize,
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-              ],
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: SliderTheme(
+                        data: SliderTheme.of(context).copyWith(
+                          activeTrackColor: theme.colorScheme.onTertiary,
+                          inactiveTrackColor: theme.colorScheme.onTertiary,
+                          thumbColor: theme.colorScheme.primary,
+                          overlayColor:
+                              theme.colorScheme.primary.withValues(alpha: 0.2),
+                          overlayShape:
+                              const RoundSliderOverlayShape(overlayRadius: 12),
+                          thumbShape: const RoundSliderThumbShape(
+                            enabledThumbRadius: 8,
+                          ),
+                        ),
+                        child: Slider(
+                          value: volume,
+                          min: 0,
+                          max: 1,
+                          onChanged: (v) async {
+                            volume = v;
+                            await player.setVolume(v);
+
+                            if (v == 0) {
+                              AudioState.mutedNotifier.value = true;
+                            } else {
+                              _lastNonZeroVolume = v;
+                              if (AudioState.mutedNotifier.value) {
+                                AudioState.mutedNotifier.value = false;
+                              }
+                              if (!_everPlayed) {
+                                await player.play();
+                                _everPlayed = true;
+                              }
+                            }
+                            if (mounted) setState(() {});
+                          },
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+              },
             ),
           ],
         ),
@@ -311,4 +342,8 @@ class _AudioPlayerStreamingState extends State<AudioPlayerStreaming> {
       ],
     );
   }
+}
+
+class AudioState {
+  static final mutedNotifier = ValueNotifier<bool>(false);
 }

@@ -45,6 +45,7 @@ import 'send_file_dialog.dart';
 import 'send_location_dialog.dart';
 import '../../widgets/streaming/video_streaming_model.dart';
 import '../../widgets/adaptive_dialogs/live_preview_dialog.dart';
+import '../../widgets/streaming/audio_player_streaming.dart';
 
 class ChatPage extends StatelessWidget {
   final String roomId;
@@ -1366,9 +1367,11 @@ class ChatController extends State<ChatPageWithRoom>
 
       if (data == null) {
         _updateActiveLive(null);
+        AudioState.mutedNotifier.value = false;
       } else {
         final live = VideoStreamingModel.fromWidgetStateEvent(state);
         _updateActiveLive(live);
+        AudioState.mutedNotifier.value = true;
       }
     });
   }
@@ -1391,6 +1394,7 @@ class ChatController extends State<ChatPageWithRoom>
     } else {
       final live = VideoStreamingModel.fromWidgetStateEvent(event);
       _updateActiveLive(live);
+      AudioState.mutedNotifier.value = true;
     }
   }
 
