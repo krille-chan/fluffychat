@@ -1,7 +1,6 @@
-import 'package:flutter/foundation.dart';
-
 import 'package:fluffychat/pangea/activity_planner/activity_plan_request.dart';
 import 'package:fluffychat/pangea/common/constants/model_keys.dart';
+import 'package:flutter/foundation.dart';
 
 class ActivityPlanModel {
   final String bookmarkId;
@@ -13,6 +12,7 @@ class ActivityPlanModel {
   final String? imageURL;
   final DateTime? endAt;
   final Duration? duration;
+  final List<Role> roles;
 
   ActivityPlanModel({
     required this.req,
@@ -20,6 +20,7 @@ class ActivityPlanModel {
     required this.learningObjective,
     required this.instructions,
     required this.vocab,
+    required this.roles,
     this.imageURL,
     this.endAt,
     this.duration,
@@ -34,6 +35,7 @@ class ActivityPlanModel {
     String? imageURL,
     DateTime? endAt,
     Duration? duration,
+    List<Role>? roles,
   }) {
     return ActivityPlanModel(
       req: req,
@@ -44,14 +46,18 @@ class ActivityPlanModel {
       imageURL: imageURL ?? this.imageURL,
       endAt: endAt ?? this.endAt,
       duration: duration ?? this.duration,
+      roles: roles ?? this.roles,
     );
   }
 
   factory ActivityPlanModel.fromJson(Map<String, dynamic> json) {
+    final req =
+        ActivityPlanRequest.fromJson(json[ModelKey.activityPlanRequest]);
+
     return ActivityPlanModel(
       imageURL: json[ModelKey.activityPlanImageURL],
       instructions: json[ModelKey.activityPlanInstructions],
-      req: ActivityPlanRequest.fromJson(json[ModelKey.activityPlanRequest]),
+      req: req,
       title: json[ModelKey.activityPlanTitle],
       learningObjective: json[ModelKey.activityPlanLearningObjective],
       vocab: List<Vocab>.from(
@@ -67,6 +73,15 @@ class ActivityPlanModel {
               minutes: json[ModelKey.activityPlanDuration]['minutes'] ?? 0,
             )
           : null,
+      roles: List<Role>.from(
+        json['roles']?.map((role) => Role.fromJson(role)) ??
+                req.numberOfParticipants > 1
+            ? List.generate(
+                req.numberOfParticipants,
+                (index) => Role(name: 'Participant'),
+              )
+            : [Role(name: 'Participant')],
+      ),
     );
   }
 
@@ -85,6 +100,7 @@ class ActivityPlanModel {
         'hours': duration?.inHours.remainder(24) ?? 0,
         'minutes': duration?.inMinutes.remainder(60) ?? 0,
       },
+      'roles': roles.map((role) => role.toJson()).toList(),
     };
   }
 
@@ -161,4 +177,24 @@ class Vocab {
 
   @override
   int get hashCode => lemma.hashCode ^ pos.hashCode;
+}
+
+class Role {
+  final String name;
+
+  Role({
+    required this.name,
+  });
+
+  factory Role.fromJson(Map<String, dynamic> json) {
+    return Role(
+      name: json['name'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+    };
+  }
 }
