@@ -36,7 +36,15 @@ class BookmarkedActivitiesRepo {
     for (final key in keys) {
       final json = _bookStorage.read(key);
       if (json == null) continue;
-      final activity = ActivityPlanModel.fromJson(json);
+
+      ActivityPlanModel? activity;
+      try {
+        activity = ActivityPlanModel.fromJson(json);
+      } catch (e) {
+        _bookStorage.remove(key);
+        continue;
+      }
+
       if (key != activity.bookmarkId) {
         _bookStorage.remove(key);
         _bookStorage.write(activity.bookmarkId, activity.toJson());

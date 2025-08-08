@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'dart:typed_data';
 
 import 'package:collection/collection.dart';
@@ -36,13 +35,12 @@ extension ActivityRoomExtension on Room {
     }
   }
 
-  Future<void> joinActivity({
-    String? role,
-  }) async {
+  Future<void> joinActivity(ActivityRole role) async {
     final currentRoles = activityRoles ?? ActivityRolesModel.empty;
     final activityRole = ActivityRoleModel(
+      id: role.id,
       userId: client.userID!,
-      role: role,
+      role: role.name,
     );
 
     currentRoles.updateRole(activityRole);
@@ -277,7 +275,7 @@ extension ActivityRoomExtension on Room {
       activityRoles?.role(client.userID!)?.isFinished ?? false;
 
   bool get activityIsFinished {
-    final roles = activityRoles?.roles.where(
+    final roles = activityRoles?.roles.values.where(
       (r) => r.userId != BotName.byEnvironment,
     );
 
@@ -292,14 +290,6 @@ extension ActivityRoomExtension on Room {
       );
       return user == null || user.membership != Membership.join;
     });
-  }
-
-  int get remainingRoles {
-    if (activityPlan == null) return 0;
-    return max(
-      0,
-      activityPlan!.roles.length - (activityRoles?.roles.length ?? 0),
-    );
   }
 
   bool get isHiddenActivityRoom =>

@@ -1,24 +1,33 @@
 import 'package:flutter/material.dart';
 
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:matrix/matrix.dart';
+
 import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_role_model.dart';
 import 'package:fluffychat/utils/string_color.dart';
+import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/hover_builder.dart';
 
 class ActivityParticipantIndicator extends StatelessWidget {
-  final bool selected;
+  final ActivityRole availableRole;
+  final ActivityRoleModel? assignedRole;
 
-  final ActivityRoleModel? role;
-  final String? displayname;
+  final String? avatarUrl;
 
   final VoidCallback? onTap;
+  final bool selected;
+  final double opacity;
 
   const ActivityParticipantIndicator({
     super.key,
+    required this.availableRole,
+    this.avatarUrl,
+    this.assignedRole,
     this.selected = false,
-    this.role,
-    this.displayname,
     this.onTap,
+    this.opacity = 1.0,
   });
 
   @override
@@ -33,7 +42,7 @@ class ActivityParticipantIndicator extends StatelessWidget {
           child: HoverBuilder(
             builder: (context, hovered) {
               return Opacity(
-                opacity: onTap == null ? 0.7 : 1.0,
+                opacity: opacity,
                 child: Container(
                   padding: const EdgeInsets.symmetric(
                     vertical: 4.0,
@@ -50,22 +59,43 @@ class ActivityParticipantIndicator extends StatelessWidget {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      CircleAvatar(
-                        radius: 30.0,
-                        backgroundColor: theme.colorScheme.primaryContainer,
-                      ),
+                      assignedRole != null
+                          ? avatarUrl == null || avatarUrl!.startsWith("mxc")
+                              ? Avatar(
+                                  mxContent: avatarUrl != null
+                                      ? Uri.parse(avatarUrl!)
+                                      : null,
+                                  name: assignedRole?.userId.localpart,
+                                  size: 60.0,
+                                )
+                              : ClipRRect(
+                                  borderRadius: BorderRadius.circular(30),
+                                  child: CachedNetworkImage(
+                                    imageUrl: avatarUrl!,
+                                    width: 60.0,
+                                    height: 60.0,
+                                    fit: BoxFit.cover,
+                                  ),
+                                )
+                          : CircleAvatar(
+                              radius: 30.0,
+                              backgroundColor:
+                                  theme.colorScheme.primaryContainer,
+                            ),
                       Text(
-                        role?.role ?? L10n.of(context).participant,
+                        availableRole.name,
                         style: const TextStyle(
                           fontSize: 12.0,
                         ),
                       ),
                       Text(
-                        displayname ?? L10n.of(context).openRoleLabel,
+                        assignedRole?.userId.localpart ??
+                            L10n.of(context).openRoleLabel,
                         style: TextStyle(
                           fontSize: 12.0,
-                          color: displayname?.lightColorAvatar ??
-                              role?.role?.lightColorAvatar,
+                          color: assignedRole
+                                  ?.userId.localpart?.lightColorAvatar ??
+                              assignedRole?.role?.lightColorAvatar,
                         ),
                       ),
                     ],

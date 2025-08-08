@@ -22,34 +22,43 @@ class ActivityUnfinishedStatusMessage extends StatefulWidget {
 
 class ActivityUnfinishedStatusMessageState
     extends State<ActivityUnfinishedStatusMessage> {
-  int? _selectedRole;
+  String? _selectedRoleId;
 
-  void _selectRole(int role) {
-    if (_selectedRole == role) return;
-    if (mounted) setState(() => _selectedRole = role);
+  void _selectRole(String id) {
+    if (_selectedRoleId == id) return;
+    if (mounted) setState(() => _selectedRoleId = id);
   }
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isColumnMode = FluffyThemes.isColumnMode(context);
-
-    final remainingRoles = widget.room.remainingRoles;
     final completed = widget.room.hasCompletedActivity;
+
+    final availableRoles = widget.room.activityPlan!.roles;
+    final assignedRoles = widget.room.activityRoles?.roles ?? {};
+    final remainingRoles = availableRoles.length - assignedRoles.length;
+
+    final unassignedIds = availableRoles.keys
+        .where((id) => !assignedRoles.containsKey(id))
+        .toList();
 
     return Column(
       children: [
         if (!completed) ...[
-          if (remainingRoles > 0)
+          if (unassignedIds.isNotEmpty)
             Wrap(
+              alignment: WrapAlignment.center,
               spacing: 12.0,
               runSpacing: 12.0,
-              children: List.generate(remainingRoles, (index) {
+              children: unassignedIds.map((id) {
                 return ActivityParticipantIndicator(
-                  selected: _selectedRole == index,
-                  onTap: () => _selectRole(index),
+                  availableRole: availableRoles[id]!,
+                  selected: _selectedRoleId == id,
+                  onTap: () => _selectRole(id),
+                  avatarUrl: availableRoles[id]?.avatarUrl,
                 );
-              }),
+              }).toList(),
             ),
           const SizedBox(height: 16.0),
           Text(
@@ -79,11 +88,13 @@ class ActivityUnfinishedStatusMessageState
                     future: widget.room.continueActivity,
                   );
                 }
-              : _selectedRole != null
+              : _selectedRoleId != null
                   ? () {
                       showFutureLoadingDialog(
                         context: context,
-                        future: widget.room.joinActivity,
+                        future: () => widget.room.joinActivity(
+                          availableRoles[_selectedRoleId!]!,
+                        ),
                       );
                     }
                   : null,

@@ -1,10 +1,12 @@
 class ActivityRoleModel {
+  final String id;
   final String userId;
   final String? role;
   DateTime? finishedAt;
   DateTime? archivedAt;
 
   ActivityRoleModel({
+    required this.id,
     required this.userId,
     this.role,
     this.finishedAt,
@@ -17,6 +19,7 @@ class ActivityRoleModel {
 
   factory ActivityRoleModel.fromJson(Map<String, dynamic> json) {
     return ActivityRoleModel(
+      id: json['id'],
       userId: json['userId'],
       role: json['role'],
       finishedAt: json['finishedAt'] != null
@@ -30,6 +33,7 @@ class ActivityRoleModel {
 
   Map<String, dynamic> toJson() {
     return {
+      'id': id,
       'userId': userId,
       'role': role,
       'finishedAt': finishedAt?.toIso8601String(),
@@ -45,7 +49,8 @@ class ActivityRoleModel {
         other.userId == userId &&
         other.role == role &&
         other.finishedAt == finishedAt &&
-        other.archivedAt == archivedAt;
+        other.archivedAt == archivedAt &&
+        other.id == id;
   }
 
   @override
@@ -53,5 +58,6 @@ class ActivityRoleModel {
       userId.hashCode ^
       role.hashCode ^
       (finishedAt?.hashCode ?? 0) ^
-      (archivedAt?.hashCode ?? 0);
+      (archivedAt?.hashCode ?? 0) ^
+      id.hashCode;
 }

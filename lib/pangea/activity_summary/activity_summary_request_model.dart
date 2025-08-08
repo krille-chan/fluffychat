@@ -81,16 +81,4 @@ class ActivitySummaryRequestModel {
       'content_feedback': contentFeedback.map((e) => e.toJson()).toList(),
     };
   }
-
-  factory ActivitySummaryRequestModel.fromJson(Map<String, dynamic> json) {
-    return ActivitySummaryRequestModel(
-      activity: ActivityPlanModel.fromJson(json['activity']),
-      activityResults: (json['activity_results'] as List)
-          .map((e) => ActivitySummaryResultsMessage.fromJson(e))
-          .toList(),
-      contentFeedback: (json['content_feedback'] as List)
-          .map((e) => ContentFeedbackModel.fromJson(e))
-          .toList(),
-    );
-  }
 }

@@ -1,67 +1,41 @@
 import 'package:collection/collection.dart';
-import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pangea/activity_sessions/activity_role_model.dart';
 
 class ActivityRolesModel {
-  final Event? event;
-  late List<ActivityRoleModel> _roles;
+  final Map<String, ActivityRoleModel> roles;
 
-  ActivityRolesModel({this.event, List<ActivityRoleModel>? roles}) {
-    assert(
-      event != null || roles != null,
-      "Either event or roles must be provided",
-    );
-
-    if (roles != null) {
-      _roles = roles;
-    } else {
-      final rolesList = event!.content["roles"] as List<dynamic>? ?? [];
-      try {
-        _roles = rolesList
-            .map<ActivityRoleModel>((e) => ActivityRoleModel.fromJson(e))
-            .toList();
-      } catch (e) {
-        _roles = [];
-      }
-    }
-  }
-
-  List<ActivityRoleModel> get roles => _roles;
+  const ActivityRolesModel(this.roles);
 
   ActivityRoleModel? role(String userId) {
-    return _roles.firstWhereOrNull((r) => r.userId == userId);
+    return roles.values.firstWhereOrNull((r) => r.userId == userId);
   }
 
-  /// If this user already has a role, replace it with the new one.
-  /// Otherwise, add the new role.
   void updateRole(ActivityRoleModel role) {
-    final index = _roles.indexWhere((r) => r.userId == role.userId);
-    index != -1 ? _roles[index] = role : _roles.add(role);
+    roles[role.id] = role;
   }
 
   void finishAll() {
-    for (final role in _roles) {
-      if (role.isFinished) continue;
-      role.finishedAt = DateTime.now();
+    for (final id in roles.keys) {
+      if (roles[id]!.isFinished) continue;
+      roles[id]!.finishedAt = DateTime.now();
     }
   }
 
-  static ActivityRolesModel get empty => ActivityRolesModel(
-        roles: [],
-      );
+  static ActivityRolesModel get empty {
+    final roles = <String, ActivityRoleModel>{};
+    return ActivityRolesModel(roles);
+  }
 
   Map<String, dynamic> toJson() {
     return {
-      "roles": _roles.map((role) => role.toJson()).toList(),
+      "roles": roles.map((id, role) => MapEntry(id, role.toJson())),
     };
   }
 
   static ActivityRolesModel fromJson(Map<String, dynamic> json) {
-    final roles = (json["roles"] as List<dynamic>?)
-        ?.map<ActivityRoleModel>((e) => ActivityRoleModel.fromJson(e))
-        .toList();
-
-    return ActivityRolesModel(roles: roles);
+    final roles = (json['roles'] as Map<String, dynamic>)
+        .map((id, value) => MapEntry(id, ActivityRoleModel.fromJson(value)));
+    return ActivityRolesModel(roles);
   }
 }

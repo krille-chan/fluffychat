@@ -22,9 +22,16 @@ class ActivitySearchRepo {
     final cachedJson = _activityPlanStorage.read(request.storageKey);
     if (cachedJson != null &&
         (cachedJson['activity_plans'] as List).isNotEmpty) {
-      final cached = ActivityPlanResponse.fromJson(cachedJson);
+      ActivityPlanResponse? cached;
+      try {
+        cached = ActivityPlanResponse.fromJson(cachedJson);
+      } catch (e) {
+        _activityPlanStorage.remove(request.storageKey);
+      }
 
-      return cached;
+      if (cached != null) {
+        return cached;
+      }
     }
 
     final Requests req = Requests(

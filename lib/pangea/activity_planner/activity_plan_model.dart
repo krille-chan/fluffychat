@@ -13,7 +13,7 @@ class ActivityPlanModel {
   final String? imageURL;
   final DateTime? endAt;
   final Duration? duration;
-  final List<Role> roles;
+  final Map<String, ActivityRole> roles;
 
   ActivityPlanModel({
     required this.req,
@@ -36,7 +36,7 @@ class ActivityPlanModel {
     String? imageURL,
     DateTime? endAt,
     Duration? duration,
-    List<Role>? roles,
+    Map<String, ActivityRole>? roles,
   }) {
     return ActivityPlanModel(
       req: req,
@@ -54,6 +54,28 @@ class ActivityPlanModel {
   factory ActivityPlanModel.fromJson(Map<String, dynamic> json) {
     final req =
         ActivityPlanRequest.fromJson(json[ModelKey.activityPlanRequest]);
+
+    Map<String, ActivityRole> roles;
+    final roleContent = json['roles'];
+    if (roleContent is Map<String, dynamic>) {
+      roles = Map<String, ActivityRole>.from(
+        json['roles'].map(
+          (key, value) => MapEntry(
+            key,
+            ActivityRole.fromJson(value),
+          ),
+        ),
+      );
+    } else {
+      roles = {};
+      for (int i = 0; i < req.numberOfParticipants; i++) {
+        roles['role_$i'] = ActivityRole(
+          id: 'role_$i',
+          name: 'Participant',
+          avatarUrl: null,
+        );
+      }
+    }
 
     return ActivityPlanModel(
       imageURL: json[ModelKey.activityPlanImageURL],
@@ -74,15 +96,7 @@ class ActivityPlanModel {
               minutes: json[ModelKey.activityPlanDuration]['minutes'] ?? 0,
             )
           : null,
-      roles: List<Role>.from(
-        json['roles']?.map((role) => Role.fromJson(role)) ??
-                req.numberOfParticipants > 1
-            ? List.generate(
-                req.numberOfParticipants,
-                (index) => Role(name: 'Participant'),
-              )
-            : [Role(name: 'Participant')],
-      ),
+      roles: roles,
     );
   }
 
@@ -101,7 +115,9 @@ class ActivityPlanModel {
         'hours': duration?.inHours.remainder(24) ?? 0,
         'minutes': duration?.inMinutes.remainder(60) ?? 0,
       },
-      'roles': roles.map((role) => role.toJson()).toList(),
+      'roles': roles.map(
+        (key, value) => MapEntry(key, value.toJson()),
+      ),
     };
   }
 
@@ -180,17 +196,20 @@ class Vocab {
   int get hashCode => lemma.hashCode ^ pos.hashCode;
 }
 
-class Role {
+class ActivityRole {
+  final String id;
   final String name;
   final String? avatarUrl;
 
-  Role({
+  ActivityRole({
+    required this.id,
     required this.name,
     this.avatarUrl,
   });
 
-  factory Role.fromJson(Map<String, dynamic> json) {
-    return Role(
+  factory ActivityRole.fromJson(Map<String, dynamic> json) {
+    return ActivityRole(
+      id: json['id'],
       name: json['name'],
       avatarUrl: json['avatar_url'],
     );
@@ -198,6 +217,7 @@ class Role {
 
   Map<String, dynamic> toJson() {
     return {
+      'id': id,
       'name': name,
       'avatar_url': avatarUrl,
     };
