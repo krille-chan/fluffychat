@@ -18,6 +18,8 @@ class ChatListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return PopScope(
       canPop: !controller.isSearchMode && controller.activeSpaceId == null,
       onPopInvokedWithResult: (pop, _) {
@@ -58,29 +60,23 @@ class ChatListView extends StatelessWidget {
                       bottom: 0,
                       left: 0,
                       right: 0,
-                      child: LayoutBuilder(
-                        builder: (context, constraints) {
-                          return Center(
-                            child: ConstrainedBox(
-                              constraints: const BoxConstraints(maxWidth: 500),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Container(
-                                    width: double.infinity,
-                                    padding: const EdgeInsets.only(
-                                      left: 20,
-                                      right: 20,
-                                      bottom: 16,
-                                      top: 20,
-                                    ),
-                                    child: const AudioPlayerStreaming(),
-                                  ),
-                                ],
-                              ),
+                      child: Center(
+                        child: ConstrainedBox(
+                          constraints: const BoxConstraints(maxWidth: 500),
+                          child: Container(
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              color: theme.colorScheme.surface,
                             ),
-                          );
-                        },
+                            padding: const EdgeInsets.only(
+                              left: 20,
+                              right: 20,
+                              bottom: 16,
+                              top: 20,
+                            ),
+                            child: const AudioPlayerStreaming(),
+                          ),
+                        ),
                       ),
                     ),
                   ],
