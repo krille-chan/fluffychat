@@ -1,6 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:cronet_http/cronet_http.dart' as cronet;
+import 'package:cupertino_http/cupertino_http.dart' as cupertino_http;
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/io_client.dart';
 import 'package:http/retry.dart' as retry;
@@ -32,9 +35,20 @@ class CustomHttpClient {
     return HttpClient(context: context);
   }
 
-  static http.Client createHTTPClient() => retry.RetryClient(
-        PlatformInfos.isAndroid
-            ? IOClient(customHttpClient(ISRG_X1))
-            : http.Client(),
+  static Future<http.Client> createHTTPClient() async {
+    if (PlatformInfos.isAndroid) {
+      final info = await DeviceInfoPlugin().androidInfo;
+      if (info.version.sdkInt <= 24) {
+        return retry.RetryClient(IOClient(customHttpClient(ISRG_X1)));
+      }
+      return retry.RetryClient(cronet.CronetClient.defaultCronetEngine());
+    }
+    if (PlatformInfos.isIOS || PlatformInfos.isMacOS) {
+      return retry.RetryClient(
+        cupertino_http.CupertinoClient.defaultSessionConfiguration(),
       );
+    }
+
+    return retry.RetryClient(http.Client());
+  }
 }
