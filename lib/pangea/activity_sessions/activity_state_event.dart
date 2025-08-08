@@ -4,9 +4,9 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/events/state_message.dart';
-import 'package:fluffychat/pangea/activity_planner/activity_participant_indicator.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
-import 'package:fluffychat/pangea/activity_planner/activity_room_extension.dart';
+import 'package:fluffychat/pangea/activity_sessions/activity_participant_indicator.dart';
+import 'package:fluffychat/pangea/activity_sessions/activity_room_extension.dart';
 
 class ActivityStateEvent extends StatelessWidget {
   final Event event;

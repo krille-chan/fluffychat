@@ -4,8 +4,8 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/pangea/activity_planner/activity_participant_indicator.dart';
-import 'package:fluffychat/pangea/activity_planner/activity_room_extension.dart';
+import 'package:fluffychat/pangea/activity_sessions/activity_participant_indicator.dart';
+import 'package:fluffychat/pangea/activity_sessions/activity_room_extension.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 
 class ActivityUnfinishedStatusMessage extends StatefulWidget {
@@ -31,8 +31,6 @@ class ActivityUnfinishedStatusMessageState
 
   @override
   Widget build(BuildContext context) {
-    debugPrint("HELLO. remainingRoles: ${widget.room.remainingRoles}");
-
     final theme = Theme.of(context);
     final isColumnMode = FluffyThemes.isColumnMode(context);
 

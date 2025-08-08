@@ -1,6 +1,7 @@
+import 'package:flutter/foundation.dart';
+
 import 'package:fluffychat/pangea/activity_planner/activity_plan_request.dart';
 import 'package:fluffychat/pangea/common/constants/model_keys.dart';
-import 'package:flutter/foundation.dart';
 
 class ActivityPlanModel {
   final String bookmarkId;
@@ -181,20 +182,24 @@ class Vocab {
 
 class Role {
   final String name;
+  final String? avatarUrl;
 
   Role({
     required this.name,
+    this.avatarUrl,
   });
 
   factory Role.fromJson(Map<String, dynamic> json) {
     return Role(
       name: json['name'],
+      avatarUrl: json['avatar_url'],
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
       'name': name,
+      'avatar_url': avatarUrl,
     };
   }
 }

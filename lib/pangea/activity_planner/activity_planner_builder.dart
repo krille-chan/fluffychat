@@ -8,8 +8,8 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_request.dart';
-import 'package:fluffychat/pangea/activity_planner/activity_room_extension.dart';
 import 'package:fluffychat/pangea/activity_planner/bookmarked_activities_repo.dart';
+import 'package:fluffychat/pangea/activity_sessions/activity_room_extension.dart';
 import 'package:fluffychat/pangea/chat/constants/default_power_level.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/extensions/join_rule_extension.dart';
@@ -102,6 +102,7 @@ class ActivityPlannerBuilderState extends State<ActivityPlannerBuilder> {
       instructions: instructionsController.text,
       vocab: vocab,
       imageURL: imageURL,
+      roles: widget.initialActivity.roles,
     );
   }
 

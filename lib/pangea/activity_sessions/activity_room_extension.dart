@@ -5,9 +5,9 @@ import 'package:collection/collection.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
-import 'package:fluffychat/pangea/activity_planner/activity_role_model.dart';
-import 'package:fluffychat/pangea/activity_planner/activity_roles_model.dart';
 import 'package:fluffychat/pangea/activity_planner/bookmarked_activities_repo.dart';
+import 'package:fluffychat/pangea/activity_sessions/activity_role_model.dart';
+import 'package:fluffychat/pangea/activity_sessions/activity_roles_model.dart';
 import 'package:fluffychat/pangea/activity_summary/activity_summary_model.dart';
 import 'package:fluffychat/pangea/activity_summary/activity_summary_repo.dart';
 import 'package:fluffychat/pangea/activity_summary/activity_summary_request_model.dart';
@@ -294,13 +294,12 @@ extension ActivityRoomExtension on Room {
     });
   }
 
-  int? get numberOfParticipants {
-    return activityPlan?.req.numberOfParticipants;
-  }
-
   int get remainingRoles {
-    if (numberOfParticipants == null) return 0;
-    return max(0, numberOfParticipants! - (activityRoles?.roles.length ?? 0));
+    if (activityPlan == null) return 0;
+    return max(
+      0,
+      activityPlan!.roles.length - (activityRoles?.roles.length ?? 0),
+    );
   }
 
   bool get isHiddenActivityRoom =>

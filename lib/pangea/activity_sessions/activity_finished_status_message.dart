@@ -7,10 +7,10 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/pangea/activity_planner/activity_participant_indicator.dart';
-import 'package:fluffychat/pangea/activity_planner/activity_results_carousel.dart';
-import 'package:fluffychat/pangea/activity_planner/activity_role_model.dart';
-import 'package:fluffychat/pangea/activity_planner/activity_room_extension.dart';
+import 'package:fluffychat/pangea/activity_sessions/activity_participant_indicator.dart';
+import 'package:fluffychat/pangea/activity_sessions/activity_results_carousel.dart';
+import 'package:fluffychat/pangea/activity_sessions/activity_role_model.dart';
+import 'package:fluffychat/pangea/activity_sessions/activity_room_extension.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';

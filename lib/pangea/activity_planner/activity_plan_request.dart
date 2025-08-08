@@ -1,4 +1,4 @@
-import 'package:fluffychat/pangea/activity_planner/media_enum.dart';
+import 'package:fluffychat/pangea/activity_generator/media_enum.dart';
 import 'package:fluffychat/pangea/common/constants/model_keys.dart';
 import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_enum.dart';
 

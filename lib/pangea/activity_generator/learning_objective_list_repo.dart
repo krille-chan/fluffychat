@@ -3,20 +3,21 @@ import 'dart:convert';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart';
 
-import 'package:fluffychat/pangea/activity_planner/list_request_schema.dart';
+import 'package:fluffychat/pangea/activity_generator/list_request_schema.dart';
 import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/pangea/common/network/urls.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../common/network/requests.dart';
 
-class TopicListRepo {
-  static final GetStorage _topicListStorage = GetStorage('topic_list_storage');
+class LearningObjectiveListRepo {
+  static final GetStorage _objectiveListStorage =
+      GetStorage('objective_list_storage');
 
   static void set(
     ActivitySettingRequestSchema request,
     List<ActivitySettingResponseSchema> response,
   ) {
-    _topicListStorage.write(
+    _objectiveListStorage.write(
       request.storageKey,
       response.map((e) => e.toJson()).toList(),
     );
@@ -31,9 +32,9 @@ class TopicListRepo {
   static Future<List<ActivitySettingResponseSchema>> get(
     ActivitySettingRequestSchema request,
   ) async {
-    final cachedJson = _topicListStorage.read(request.storageKey);
+    final cachedJson = _objectiveListStorage.read(request.storageKey);
     if (cachedJson != null) {
-      return TopicListRepo.fromJson(cachedJson);
+      return LearningObjectiveListRepo.fromJson(cachedJson);
     }
 
     final Requests req = Requests(
@@ -42,12 +43,12 @@ class TopicListRepo {
     );
 
     final Response res = await req.post(
-      url: PApiUrls.topicList,
+      url: PApiUrls.objectiveList,
       body: request.toJson(),
     );
 
     final decodedBody = jsonDecode(utf8.decode(res.bodyBytes));
-    final response = TopicListRepo.fromJson(decodedBody);
+    final response = LearningObjectiveListRepo.fromJson(decodedBody);
 
     set(request, response);
 

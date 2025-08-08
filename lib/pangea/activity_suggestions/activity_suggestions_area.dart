@@ -12,11 +12,11 @@ import 'package:shimmer/shimmer.dart';
 
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/pangea/activity_generator/media_enum.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_request.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_response.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_planner_builder.dart';
-import 'package:fluffychat/pangea/activity_planner/media_enum.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_plan_search_repo.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_suggestion_card.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_suggestion_dialog.dart';

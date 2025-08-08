@@ -6,7 +6,7 @@ import 'package:material_symbols_icons/symbols.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/activity_generator/activity_generator.dart';
-import 'package:fluffychat/pangea/activity_planner/activity_plan_card.dart';
+import 'package:fluffychat/pangea/activity_generator/activity_plan_card.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_planner_builder.dart';
 import 'package:fluffychat/pangea/activity_planner/suggestion_form_field.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_suggestions_constants.dart';

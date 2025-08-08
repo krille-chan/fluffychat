@@ -1,7 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/pangea/activity_planner/activity_role_model.dart';
+import 'package:fluffychat/pangea/activity_sessions/activity_role_model.dart';
 
 class ActivityRolesModel {
   final Event? event;

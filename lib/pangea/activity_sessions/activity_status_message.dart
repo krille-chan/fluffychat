@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/themes.dart';
-import 'package:fluffychat/pangea/activity_planner/activity_finished_status_message.dart';
-import 'package:fluffychat/pangea/activity_planner/activity_room_extension.dart';
-import 'package:fluffychat/pangea/activity_planner/activity_unfinished_status_message.dart';
+import 'package:fluffychat/pangea/activity_sessions/activity_finished_status_message.dart';
+import 'package:fluffychat/pangea/activity_sessions/activity_room_extension.dart';
+import 'package:fluffychat/pangea/activity_sessions/activity_unfinished_status_message.dart';
 
 class ActivityStatusMessage extends StatelessWidget {
   final Room room;

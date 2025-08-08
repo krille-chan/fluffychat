@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/pangea/activity_planner/activity_role_model.dart';
+import 'package:fluffychat/pangea/activity_sessions/activity_role_model.dart';
 import 'package:fluffychat/utils/string_color.dart';
 import 'package:fluffychat/widgets/hover_builder.dart';
 
