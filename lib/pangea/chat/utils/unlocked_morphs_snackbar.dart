@@ -233,7 +233,7 @@ class ConstructNotificationOverlayState
                                   widget.copy ?? widget.construct.lemma,
                                   style: TextStyle(
                                     fontSize: FluffyThemes.isColumnMode(context)
-                                        ? 32.0
+                                        ? 22.0
                                         : 16.0,
                                     color: AppConfig.gold,
                                     fontWeight: FontWeight.bold,
@@ -243,7 +243,7 @@ class ConstructNotificationOverlayState
                                 MorphIcon(
                                   size: isColumnMode
                                       ? null
-                                      : const Size(24.0, 24.0),
+                                      : const Size(22.0, 22.0),
                                   morphFeature:
                                       MorphFeaturesEnumExtension.fromString(
                                     widget.construct.category,
