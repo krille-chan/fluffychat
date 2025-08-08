@@ -47,8 +47,6 @@ class RegisterView extends StatelessWidget {
         isMobileMode ? mobileImagePadding : desktopImagePadding;
 
     return LoginScaffold(
-      enforceMobileMode:
-          Matrix.of(context).widget.clients.any((client) => client.isLogged()),
       appBar: AppBar(
         backgroundColor: isMobileMode
             ? theme.colorScheme.surface
