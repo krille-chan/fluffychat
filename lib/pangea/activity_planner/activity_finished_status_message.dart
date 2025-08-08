@@ -11,7 +11,6 @@ import 'package:fluffychat/pangea/activity_planner/activity_participant_indicato
 import 'package:fluffychat/pangea/activity_planner/activity_results_carousel.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_role_model.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_room_extension.dart';
-import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
@@ -100,14 +99,6 @@ class ActivityFinishedStatusMessageState
   }
 
   Future<void> _archiveToAnalytics() async {
-    final role = widget.room.activityRole(widget.room.client.userID!);
-    if (role == null) {
-      throw Exception(
-        "Cannot archive activity without a role for user ${widget.room.client.userID!}",
-      );
-    }
-
-    role.archivedAt = DateTime.now();
     await widget.room.archiveActivity();
     await MatrixState.pangeaController.putAnalytics
         .sendActivityAnalytics(widget.room.id);
@@ -119,11 +110,12 @@ class ActivityFinishedStatusMessageState
     }
 
     final roles = widget.room.activityRoles;
-    return roles.where((role) {
-      return widget.room.activitySummary!.summary!.participants.any(
-        (p) => p.participantId == role.userId,
-      );
-    }).toList();
+    return roles?.roles.where((role) {
+          return widget.room.activitySummary!.summary!.participants.any(
+            (p) => p.participantId == role.userId,
+          );
+        }).toList() ??
+        [];
   }
 
   @override

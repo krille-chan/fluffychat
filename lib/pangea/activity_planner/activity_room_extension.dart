@@ -6,6 +6,7 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_role_model.dart';
+import 'package:fluffychat/pangea/activity_planner/activity_roles_model.dart';
 import 'package:fluffychat/pangea/activity_planner/bookmarked_activities_repo.dart';
 import 'package:fluffychat/pangea/activity_summary/activity_summary_model.dart';
 import 'package:fluffychat/pangea/activity_summary/activity_summary_repo.dart';
@@ -15,6 +16,7 @@ import 'package:fluffychat/pangea/chat_settings/utils/download_chat.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 
 extension ActivityRoomExtension on Room {
   Future<void> sendActivityPlan(
@@ -34,48 +36,83 @@ extension ActivityRoomExtension on Room {
     }
   }
 
-  Future<void> startActivity({
+  Future<void> joinActivity({
     String? role,
   }) async {
+    final currentRoles = activityRoles ?? ActivityRolesModel.empty;
+    final activityRole = ActivityRoleModel(
+      userId: client.userID!,
+      role: role,
+    );
+
+    currentRoles.updateRole(activityRole);
     await client.setRoomStateWithKey(
       id,
       PangeaEventTypes.activityRole,
-      client.userID!,
-      ActivityRoleModel(
-        userId: client.userID!,
-        role: role,
-      ).toJson(),
+      "",
+      currentRoles.toJson(),
     );
   }
 
   Future<void> continueActivity() async {
-    final role = activityRole(client.userID!);
-    if (role == null || !role.isFinished || role.isArchived) return;
+    final currentRoles = activityRoles ?? ActivityRolesModel.empty;
+    final role = currentRoles.role(client.userID!);
+    if (role == null || !role.isFinished) return;
 
-    role.finishedAt = null;
-    final syncFuture = client.waitForRoomInSync(id);
+    role.finishedAt = null; // Reset finished state
+    currentRoles.updateRole(role);
     await client.setRoomStateWithKey(
       id,
       PangeaEventTypes.activityRole,
-      client.userID!,
-      role.toJson(),
+      "",
+      currentRoles.toJson(),
     );
-    await syncFuture;
   }
 
   Future<void> finishActivity() async {
-    final role = activityRole(client.userID!);
-    if (role == null) return;
+    if (isRoomAdmin) {
+      await _finishActivityForAll();
+      return;
+    }
 
+    final currentRoles = activityRoles ?? ActivityRolesModel.empty;
+    final role = currentRoles.role(client.userID!);
+    if (role == null || role.isFinished) return;
     role.finishedAt = DateTime.now();
-    final syncFuture = client.waitForRoomInSync(id);
+    currentRoles.updateRole(role);
+
     await client.setRoomStateWithKey(
       id,
       PangeaEventTypes.activityRole,
-      client.userID!,
-      role.toJson(),
+      "",
+      currentRoles.toJson(),
     );
-    await syncFuture;
+  }
+
+  Future<void> _finishActivityForAll() async {
+    final currentRoles = activityRoles ?? ActivityRolesModel.empty;
+    currentRoles.finishAll();
+    await client.setRoomStateWithKey(
+      id,
+      PangeaEventTypes.activityRole,
+      "",
+      currentRoles.toJson(),
+    );
+  }
+
+  Future<void> archiveActivity() async {
+    final currentRoles = activityRoles ?? ActivityRolesModel.empty;
+    final role = currentRoles.role(client.userID!);
+    if (role == null || !role.isFinished) return;
+
+    role.archivedAt = DateTime.now();
+    currentRoles.updateRole(role);
+    await client.setRoomStateWithKey(
+      id,
+      PangeaEventTypes.activityRole,
+      "",
+      currentRoles.toJson(),
+    );
   }
 
   Future<void> setActivitySummary(
@@ -161,19 +198,6 @@ extension ActivityRoomExtension on Room {
     }
   }
 
-  Future<void> archiveActivity() async {
-    final role = activityRole(client.userID!);
-    if (role == null) return;
-
-    role.archivedAt = DateTime.now();
-    await client.setRoomStateWithKey(
-      id,
-      PangeaEventTypes.activityRole,
-      client.userID!,
-      role.toJson(),
-    );
-  }
-
   ActivityPlanModel? get activityPlan {
     final stateEvent = getState(PangeaEventTypes.activityPlan);
     if (stateEvent == null) return null;
@@ -186,26 +210,6 @@ extension ActivityRoomExtension on Room {
         s: s,
         data: {
           "roomID": id,
-          "stateEvent": stateEvent.content,
-        },
-      );
-      return null;
-    }
-  }
-
-  ActivityRoleModel? activityRole(String userId) {
-    final stateEvent = getState(PangeaEventTypes.activityRole, userId);
-    if (stateEvent == null) return null;
-
-    try {
-      return ActivityRoleModel.fromJson(stateEvent.content);
-    } catch (e, s) {
-      ErrorHandler.logError(
-        e: e,
-        s: s,
-        data: {
-          "roomID": id,
-          "userId": userId,
           "stateEvent": stateEvent.content,
         },
       );
@@ -232,14 +236,23 @@ extension ActivityRoomExtension on Room {
     }
   }
 
-  List<StrippedStateEvent> get _activityRoleEvents {
-    return states[PangeaEventTypes.activityRole]?.values.toList() ?? [];
-  }
+  ActivityRolesModel? get activityRoles {
+    final content = getState(PangeaEventTypes.activityRole)?.content;
+    if (content == null) return null;
 
-  List<ActivityRoleModel> get activityRoles {
-    return _activityRoleEvents
-        .map((r) => ActivityRoleModel.fromJson(r.content))
-        .toList();
+    try {
+      return ActivityRolesModel.fromJson(content);
+    } catch (e, s) {
+      ErrorHandler.logError(
+        e: e,
+        s: s,
+        data: {
+          "roomID": id,
+          "stateEvent": content,
+        },
+      );
+      return null;
+    }
   }
 
   bool get showActivityChatUI {
@@ -250,32 +263,35 @@ extension ActivityRoomExtension on Room {
 
   bool get isActiveInActivity {
     if (!showActivityChatUI) return false;
-    final role = activityRole(client.userID!);
+    final role = activityRoles?.role(client.userID!);
     return role != null && !role.isFinished;
   }
 
   bool get isInactiveInActivity {
     if (!showActivityChatUI) return false;
-    final role = activityRole(client.userID!);
+    final role = activityRoles?.role(client.userID!);
     return role == null || role.isFinished;
   }
 
   bool get hasCompletedActivity =>
-      activityRole(client.userID!)?.isFinished ?? false;
+      activityRoles?.role(client.userID!)?.isFinished ?? false;
 
   bool get activityIsFinished {
-    final roles = activityRoles.where((r) => r.userId != BotName.byEnvironment);
-    return roles.isNotEmpty &&
-        roles.every((r) {
-          if (r.isFinished) return true;
+    final roles = activityRoles?.roles.where(
+      (r) => r.userId != BotName.byEnvironment,
+    );
 
-          // if the user is in the chat (not null && membership is join),
-          // then the activity is not finished for them
-          final user = getParticipants().firstWhereOrNull(
-            (u) => u.id == r.userId,
-          );
-          return user == null || user.membership != Membership.join;
-        });
+    if (roles == null || roles.isEmpty) return false;
+    return roles.every((r) {
+      if (r.isFinished) return true;
+
+      // if the user is in the chat (not null && membership is join),
+      // then the activity is not finished for them
+      final user = getParticipants().firstWhereOrNull(
+        (u) => u.id == r.userId,
+      );
+      return user == null || user.membership != Membership.join;
+    });
   }
 
   int? get numberOfParticipants {
@@ -284,6 +300,9 @@ extension ActivityRoomExtension on Room {
 
   int get remainingRoles {
     if (numberOfParticipants == null) return 0;
-    return max(0, numberOfParticipants! - activityRoles.length);
+    return max(0, numberOfParticipants! - (activityRoles?.roles.length ?? 0));
   }
+
+  bool get isHiddenActivityRoom =>
+      activityRoles?.role(client.userID!)?.isArchived ?? false;
 }

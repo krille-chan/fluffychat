@@ -35,8 +35,5 @@ extension RoomInformationRoomExtension on Room {
       getState(EventTypes.RoomCreate)?.content.tryGet<String>('type') ==
       PangeaRoomTypes.analytics;
 
-  bool get isHiddenActivityRoom =>
-      activityRole(client.userID!)?.isArchived ?? false;
-
   bool get isHiddenRoom => isAnalyticsRoom || isHiddenActivityRoom;
 }

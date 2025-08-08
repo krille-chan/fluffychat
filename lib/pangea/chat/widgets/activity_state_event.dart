@@ -16,7 +16,7 @@ class ActivityStateEvent extends StatelessWidget {
   Widget build(BuildContext context) {
     try {
       final activity = ActivityPlanModel.fromJson(event.content);
-      final roles = event.room.activityRoles;
+      final roles = event.room.activityRoles?.roles ?? [];
 
       return Container(
         padding: const EdgeInsets.symmetric(
@@ -37,7 +37,7 @@ class ActivityStateEvent extends StatelessWidget {
               Wrap(
                 spacing: 12.0,
                 runSpacing: 12.0,
-                children: event.room.activityRoles.map((role) {
+                children: roles.map((role) {
                   return ActivityParticipantIndicator(
                     role: role,
                     displayname: role.userId.localpart,

@@ -85,7 +85,7 @@ class ActivityUnfinishedStatusMessageState
                   ? () {
                       showFutureLoadingDialog(
                         context: context,
-                        future: widget.room.startActivity,
+                        future: widget.room.joinActivity,
                       );
                     }
                   : null,

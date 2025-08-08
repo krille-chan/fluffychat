@@ -44,10 +44,14 @@ class ActivityRoleModel {
     return other is ActivityRoleModel &&
         other.userId == userId &&
         other.role == role &&
-        other.finishedAt == finishedAt;
+        other.finishedAt == finishedAt &&
+        other.archivedAt == archivedAt;
   }
 
   @override
   int get hashCode =>
-      userId.hashCode ^ role.hashCode ^ (finishedAt?.hashCode ?? 0);
+      userId.hashCode ^
+      role.hashCode ^
+      (finishedAt?.hashCode ?? 0) ^
+      (archivedAt?.hashCode ?? 0);
 }
