@@ -410,10 +410,10 @@ packages:
     dependency: "direct main"
     description:
       name: file_picker
-      sha256: "97a943524074a1e8e858aa154d09e38a4168a9ad765d6cac66606fd906b86875"
+      sha256: "8f9f429998f9232d65bc4757af74475ce44fc80f10704ff5dfa8b1d14fc429b9"
       url: "https://pub.dev"
     source: hosted
-    version: "10.2.2"
+    version: "10.2.3"
   file_selector:
     dependency: "direct main"
     description:
