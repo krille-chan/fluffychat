@@ -923,10 +923,10 @@ packages:
     dependency: "direct main"
     description:
       name: http
-      sha256: "85ab0074f9bf2b24625906d8382bbec84d3d6919d285ba9c106b07b65791fb99"
+      sha256: bb2ce4590bc2667c96f318d68cac1b5a7987ec819351d32b1c987239a815e007
       url: "https://pub.dev"
     source: hosted
-    version: "1.5.0-beta.2"
+    version: "1.5.0"
   http_multi_server:
     dependency: transitive
     description:
