@@ -50,7 +50,7 @@ dependencies:
   go_router: ^16.1.0
   handy_window: ^0.4.0
   html: ^0.15.4
-  http: ^1.2.0
+  http: ^1.5.0
   image: ^4.1.7
   image_picker: ^1.1.0
   intl: any
