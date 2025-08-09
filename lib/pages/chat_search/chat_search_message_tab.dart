@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:go_router/go_router.dart';
@@ -73,7 +74,19 @@ class ChatSearchMessageTab extends StatelessWidget {
                 }
                 final nextBatch = snapshot.data?.$2;
                 if (nextBatch == null) {
-                  return const SizedBox.shrink();
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Icon(
+                        CupertinoIcons.chat_bubble_text_fill,
+                        size: 128,
+                      ),
+                      Text(L10n.of(context).none),
+                    ],
+                  );
                 }
                 return Center(
                   child: Padding(
