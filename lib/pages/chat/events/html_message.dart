@@ -506,17 +506,25 @@ class HtmlMessage extends StatelessWidget {
     }
   }
 
+  // `dom.Element.html('')` won't work
+  static final _emptyHtmlBody = dom.Element.html('<body></body>');
+
   @override
   Widget build(BuildContext context) {
-    final element = parser.parse(html).body ?? dom.Element.html('');
-    return Text.rich(
-      _renderHtml(element, context),
-      style: TextStyle(
-        fontSize: fontSize,
-        color: textColor,
+    return FutureBuilder(
+      future: Future(
+        () => _renderHtml(parser.parse(html).body ?? _emptyHtmlBody, context),
       ),
-      maxLines: limitHeight ? 64 : null,
-      overflow: TextOverflow.fade,
+      initialData: _renderHtml(_emptyHtmlBody, context),
+      builder: (context, snapshot) => Text.rich(
+        snapshot.data!,
+        style: TextStyle(
+          fontSize: fontSize,
+          color: textColor,
+        ),
+        maxLines: limitHeight ? 64 : null,
+        overflow: TextOverflow.fade,
+      ),
     );
   }
 }
