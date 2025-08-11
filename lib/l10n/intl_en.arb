@@ -5158,7 +5158,7 @@
   "loadingActivitySummary": "Loading activity summary...",
   "generatingNewActivities": "You're the first user of this language pair! Please give us a minute, we're preparing activities just for you.",
   "requestAccessTitle": "Request to analytics view access?",
-  "requestAccessDesc": "Would you like to request access to view participant analytics?\n\nIf participants agree, admin of this space will be able to view their:\n    • total vocabulary\n    • total grammar concepts\n    • total activity sessions completed\n    • the specific grammar concepts used, correctly and incorrectly\n\n    • They will not be able to view their:\n    • messages in chats outside the space\n    • vocabulary list",
+  "requestAccessDesc": "Would you like to request access to view participant analytics?\n\nIf participants agree, admin of this space will be able to view their:\n    • total vocabulary\n    • total grammar concepts\n    • total activity sessions completed\n    • the specific grammar concepts used, correctly and incorrectly\n\nThey will not be able to view their:\n    • messages in chats outside the space\n    • vocabulary list",
   "requestAccess": "Request access ({count})",
   "@requestAccess": {
     "type": "String",
