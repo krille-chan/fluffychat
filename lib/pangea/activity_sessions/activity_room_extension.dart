@@ -1,4 +1,4 @@
-import 'dart:typed_data';
+import 'package:flutter/foundation.dart';
 
 import 'package:collection/collection.dart';
 import 'package:matrix/matrix.dart';
@@ -12,6 +12,7 @@ import 'package:fluffychat/pangea/activity_summary/activity_summary_repo.dart';
 import 'package:fluffychat/pangea/activity_summary/activity_summary_request_model.dart';
 import 'package:fluffychat/pangea/bot/utils/bot_name.dart';
 import 'package:fluffychat/pangea/chat_settings/utils/download_chat.dart';
+import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
@@ -241,14 +242,16 @@ extension ActivityRoomExtension on Room {
     try {
       return ActivityRolesModel.fromJson(content);
     } catch (e, s) {
-      ErrorHandler.logError(
-        e: e,
-        s: s,
-        data: {
-          "roomID": id,
-          "stateEvent": content,
-        },
-      );
+      if (!kDebugMode && !Environment.isStagingEnvironment) {
+        ErrorHandler.logError(
+          e: e,
+          s: s,
+          data: {
+            "roomID": id,
+            "stateEvent": content,
+          },
+        );
+      }
       return null;
     }
   }

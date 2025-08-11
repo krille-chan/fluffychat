@@ -260,9 +260,10 @@ class Choreographer {
       return;
     }
 
+    _lastChecked = _textController.text;
+
     if (_textController.editType == EditType.igc ||
         _textController.editType == EditType.itDismissed) {
-      _lastChecked = _textController.text;
       _textController.editType = EditType.keyboard;
       return;
     }
