@@ -166,11 +166,11 @@ class FindYourPeopleView extends StatelessWidget {
                               ),
                             ),
                             if (isColumnMode)
-                              Row(
-                                mainAxisSize: MainAxisSize.min,
+                              Wrap(
                                 children: [
                                   TextButton(
                                     child: Row(
+                                      mainAxisSize: MainAxisSize.min,
                                       children: [
                                         Icon(
                                           Icons.join_full,
@@ -196,6 +196,7 @@ class FindYourPeopleView extends StatelessWidget {
                                   ),
                                   TextButton(
                                     child: Row(
+                                      mainAxisSize: MainAxisSize.min,
                                       children: [
                                         Icon(
                                           Icons.add_box_outlined,
