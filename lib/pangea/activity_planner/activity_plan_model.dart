@@ -13,7 +13,7 @@ class ActivityPlanModel {
   final String? imageURL;
   final DateTime? endAt;
   final Duration? duration;
-  final Map<String, ActivityRole> roles;
+  final Map<String, ActivityRole>? _roles;
 
   ActivityPlanModel({
     required this.req,
@@ -21,12 +21,26 @@ class ActivityPlanModel {
     required this.learningObjective,
     required this.instructions,
     required this.vocab,
-    required this.roles,
+    Map<String, ActivityRole>? roles,
     this.imageURL,
     this.endAt,
     this.duration,
-  }) : bookmarkId =
-            "${title.hashCode ^ learningObjective.hashCode ^ instructions.hashCode ^ imageURL.hashCode ^ vocab.map((v) => v.hashCode).reduce((a, b) => a ^ b)}";
+  })  : bookmarkId =
+            "${title.hashCode ^ learningObjective.hashCode ^ instructions.hashCode ^ imageURL.hashCode ^ vocab.map((v) => v.hashCode).reduce((a, b) => a ^ b)}",
+        _roles = roles;
+
+  Map<String, ActivityRole> get roles {
+    if (_roles != null) return _roles!;
+    final defaultRoles = <String, ActivityRole>{};
+    for (int i = 0; i < req.numberOfParticipants; i++) {
+      defaultRoles['role_$i'] = ActivityRole(
+        id: 'role_$i',
+        name: 'Participant',
+        avatarUrl: null,
+      );
+    }
+    return defaultRoles;
+  }
 
   ActivityPlanModel copyWith({
     String? title,
@@ -47,7 +61,7 @@ class ActivityPlanModel {
       imageURL: imageURL ?? this.imageURL,
       endAt: endAt ?? this.endAt,
       duration: duration ?? this.duration,
-      roles: roles ?? this.roles,
+      roles: roles ?? _roles,
     );
   }
 
@@ -55,7 +69,7 @@ class ActivityPlanModel {
     final req =
         ActivityPlanRequest.fromJson(json[ModelKey.activityPlanRequest]);
 
-    Map<String, ActivityRole> roles;
+    Map<String, ActivityRole>? roles;
     final roleContent = json['roles'];
     if (roleContent is Map<String, dynamic>) {
       roles = Map<String, ActivityRole>.from(
@@ -66,15 +80,6 @@ class ActivityPlanModel {
           ),
         ),
       );
-    } else {
-      roles = {};
-      for (int i = 0; i < req.numberOfParticipants; i++) {
-        roles['role_$i'] = ActivityRole(
-          id: 'role_$i',
-          name: 'Participant',
-          avatarUrl: null,
-        );
-      }
     }
 
     return ActivityPlanModel(
@@ -115,7 +120,7 @@ class ActivityPlanModel {
         'hours': duration?.inHours.remainder(24) ?? 0,
         'minutes': duration?.inMinutes.remainder(60) ?? 0,
       },
-      'roles': roles.map(
+      'roles': _roles?.map(
         (key, value) => MapEntry(key, value.toJson()),
       ),
     };
