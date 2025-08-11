@@ -93,9 +93,13 @@ class ActivityParticipantIndicator extends StatelessWidget {
                             L10n.of(context).openRoleLabel,
                         style: TextStyle(
                           fontSize: 12.0,
-                          color: assignedRole
-                                  ?.userId.localpart?.lightColorAvatar ??
-                              assignedRole?.role?.lightColorAvatar,
+                          color:
+                              (Theme.of(context).brightness == Brightness.light
+                                      ? assignedRole
+                                          ?.userId.localpart?.lightColorAvatar
+                                      : assignedRole
+                                          ?.userId.localpart?.lightColorText) ??
+                                  assignedRole?.role?.lightColorAvatar,
                         ),
                       ),
                     ],
