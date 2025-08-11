@@ -154,7 +154,7 @@ class GetAnalyticsController extends BaseController {
     final prevUnlockedMorphs = constructListModel
         .unlockedLemmas(
           ConstructTypeEnum.morph,
-          threshold: 25,
+          threshold: 30,
         )
         .toSet();
 
@@ -166,7 +166,7 @@ class GetAnalyticsController extends BaseController {
     final newUnlockedMorphs = constructListModel
         .unlockedLemmas(
           ConstructTypeEnum.morph,
-          threshold: 25,
+          threshold: 30,
         )
         .toSet()
         .difference(prevUnlockedMorphs);
