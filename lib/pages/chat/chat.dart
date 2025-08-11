@@ -1203,6 +1203,7 @@ class ChatController extends State<ChatPageWithRoom>
         pinnedEventIds.contains(selectedEventIds.single);
     if (unpin) {
       unpinEvent(selectedEventIds.single);
+      return;
     } else {
       pinnedEventIds.addAll(selectedEventIds);
     }
