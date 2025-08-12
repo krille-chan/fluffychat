@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fluffychat/pangea/activity_generator/list_request_schema.dart';
 
 class SuggestionFormField extends StatelessWidget {
-  final Future<List<ActivitySettingResponseSchema>> suggestions;
+  final List<ActivitySettingResponseSchema>? suggestions;
   final String? Function(String?)? validator;
   final int? maxLength;
   final String label;
@@ -12,7 +12,7 @@ class SuggestionFormField extends StatelessWidget {
 
   const SuggestionFormField({
     super.key,
-    required this.suggestions,
+    this.suggestions,
     required this.placeholder,
     this.validator,
     this.maxLength,
@@ -24,8 +24,8 @@ class SuggestionFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Autocomplete<String>(
       initialValue: TextEditingValue(text: controller.text),
-      optionsBuilder: (TextEditingValue textEditingValue) async {
-        return (await suggestions)
+      optionsBuilder: (TextEditingValue textEditingValue) {
+        return (suggestions ?? [])
             .where((ActivitySettingResponseSchema option) {
           return option.name
               .toLowerCase()

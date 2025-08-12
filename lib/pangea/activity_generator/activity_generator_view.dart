@@ -254,7 +254,9 @@ class ActivityGeneratorView extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.only(left: 8.0),
                         child: ElevatedButton(
-                          onPressed: controller.randomizeSelections,
+                          onPressed: controller.randomizeEnabled
+                              ? controller.randomizeSelections
+                              : null,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
