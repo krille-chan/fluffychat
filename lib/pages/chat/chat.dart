@@ -28,6 +28,7 @@ import 'package:fluffychat/pages/chat/event_info_dialog.dart';
 import 'package:fluffychat/pages/chat/events/audio_player.dart';
 import 'package:fluffychat/pages/chat/recording_dialog.dart';
 import 'package:fluffychat/pages/chat_details/chat_details.dart';
+import 'package:fluffychat/pangea/activity_sessions/activity_role_model.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/constructs_model.dart';
 import 'package:fluffychat/pangea/analytics_misc/gain_points_animation.dart';
@@ -2179,6 +2180,12 @@ class ChatController extends State<ChatPageWithRoom>
       ignorePointer: true,
       closePrevOverlay: false,
     );
+  }
+
+  ActivityRoleModel? highlightedRole;
+
+  void highlightRole(ActivityRoleModel role) {
+    if (mounted) setState(() => highlightedRole = role);
   }
   // Pangea#
 

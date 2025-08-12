@@ -20,6 +20,9 @@ class ActivityParticipantIndicator extends StatelessWidget {
   final bool selected;
   final double opacity;
 
+  final EdgeInsetsGeometry? padding;
+  final BorderRadius? borderRadius;
+
   const ActivityParticipantIndicator({
     super.key,
     required this.availableRole,
@@ -28,6 +31,8 @@ class ActivityParticipantIndicator extends StatelessWidget {
     this.selected = false,
     this.onTap,
     this.opacity = 1.0,
+    this.padding,
+    this.borderRadius,
   });
 
   @override
@@ -44,16 +49,15 @@ class ActivityParticipantIndicator extends StatelessWidget {
               return Opacity(
                 opacity: opacity,
                 child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 4.0,
-                    horizontal: 8.0,
-                  ),
+                  padding: padding ??
+                      const EdgeInsets.symmetric(
+                        vertical: 4.0,
+                        horizontal: 8.0,
+                      ),
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8.0),
+                    borderRadius: borderRadius ?? BorderRadius.circular(8.0),
                     color: hovered || selected
-                        ? theme.colorScheme.primaryContainer.withAlpha(
-                            selected ? 100 : 50,
-                          )
+                        ? theme.colorScheme.surfaceContainerHighest
                         : Colors.transparent,
                   ),
                   child: Column(

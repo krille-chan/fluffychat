@@ -63,7 +63,7 @@ class ActivityStateEvent extends StatelessWidget {
                       ? 0.5
                       : 1.0,
                   avatarUrl:
-                      availableRole.avatarUrl ?? user?.avatarUrl.toString(),
+                      availableRole.avatarUrl ?? user?.avatarUrl?.toString(),
                 );
               }).toList(),
             ),

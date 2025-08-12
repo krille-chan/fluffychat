@@ -5192,5 +5192,6 @@
       }
     }
   },
-  "noDataFound": "No data found"
+  "noDataFound": "No data found",
+  "activityFinishedMessage": "All Finished!"
 }
