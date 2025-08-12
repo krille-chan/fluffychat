@@ -103,6 +103,7 @@ class ActivityPlannerBuilderState extends State<ActivityPlannerBuilder> {
       vocab: vocab,
       imageURL: imageURL,
       roles: widget.initialActivity.roles,
+      bookmarkId: widget.initialActivity.bookmarkId,
     );
   }
 

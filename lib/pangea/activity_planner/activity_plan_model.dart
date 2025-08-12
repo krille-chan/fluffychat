@@ -21,13 +21,12 @@ class ActivityPlanModel {
     required this.learningObjective,
     required this.instructions,
     required this.vocab,
+    required this.bookmarkId,
     Map<String, ActivityRole>? roles,
     this.imageURL,
     this.endAt,
     this.duration,
-  })  : bookmarkId =
-            "${title.hashCode ^ learningObjective.hashCode ^ instructions.hashCode ^ imageURL.hashCode ^ vocab.map((v) => v.hashCode).reduce((a, b) => a ^ b)}",
-        _roles = roles;
+  }) : _roles = roles;
 
   Map<String, ActivityRole> get roles {
     if (_roles != null) return _roles!;
@@ -62,6 +61,7 @@ class ActivityPlanModel {
       endAt: endAt ?? this.endAt,
       duration: duration ?? this.duration,
       roles: roles ?? _roles,
+      bookmarkId: bookmarkId,
     );
   }
 
@@ -102,6 +102,7 @@ class ActivityPlanModel {
             )
           : null,
       roles: roles,
+      bookmarkId: json[ModelKey.activityPlanBookmarkId],
     );
   }
 
