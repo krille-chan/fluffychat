@@ -14,7 +14,7 @@ jobs:
   deploy_web:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
       - uses: subosito/flutter-action@v2
         with:
@@ -39,7 +39,7 @@ jobs:
   deploy_playstore_internal:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
       - uses: actions/setup-java@v4
         with:
