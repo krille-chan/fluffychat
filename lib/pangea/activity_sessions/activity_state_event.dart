@@ -46,70 +46,73 @@ class ActivityStateEvent extends StatelessWidget {
               activity.markdown,
               style: const TextStyle(fontSize: 14.0),
             ),
-            Wrap(
-              alignment: WrapAlignment.center,
-              spacing: 12.0,
-              runSpacing: 12.0,
-              children: availableRoles.values.map((availableRole) {
-                final assignedRole = assignedRoles[availableRole.id];
-                final user = event.room.getParticipants().firstWhereOrNull(
-                      (u) => u.id == assignedRole?.userId,
-                    );
+            if (event.room.ownRole != null ||
+                event.room.remainingRoles == 0) ...[
+              Wrap(
+                alignment: WrapAlignment.center,
+                spacing: 12.0,
+                runSpacing: 12.0,
+                children: availableRoles.values.map((availableRole) {
+                  final assignedRole = assignedRoles[availableRole.id];
+                  final user = event.room.getParticipants().firstWhereOrNull(
+                        (u) => u.id == assignedRole?.userId,
+                      );
 
-                return ActivityParticipantIndicator(
-                  availableRole: availableRole,
-                  assignedRole: assignedRole,
-                  opacity: assignedRole == null || assignedRole.isFinished
-                      ? 0.5
-                      : 1.0,
-                  avatarUrl:
-                      availableRole.avatarUrl ?? user?.avatarUrl?.toString(),
-                );
-              }).toList(),
-            ),
-            Wrap(
-              alignment: WrapAlignment.center,
-              spacing: 12.0,
-              runSpacing: 12.0,
-              children: remainingMembers.map((member) {
-                return Container(
-                  decoration: BoxDecoration(
-                    color: theme.colorScheme.primaryContainer,
-                    borderRadius: BorderRadius.circular(18.0),
-                  ),
-                  padding: const EdgeInsets.all(4.0),
-                  child: Opacity(
-                    opacity: 0.5,
-                    child: Row(
-                      spacing: 4.0,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Avatar(
-                          size: 18.0,
-                          mxContent: member.avatarUrl,
-                          name: member.calcDisplayname(),
-                          userId: member.id,
-                        ),
-                        ConstrainedBox(
-                          constraints: const BoxConstraints(
-                            maxWidth: 80.0,
-                          ),
-                          child: Text(
-                            member.calcDisplayname(),
-                            style: TextStyle(
-                              fontSize: 12.0,
-                              color: theme.colorScheme.onPrimaryContainer,
-                            ),
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
-                          ),
-                        ),
-                      ],
+                  return ActivityParticipantIndicator(
+                    availableRole: availableRole,
+                    assignedRole: assignedRole,
+                    opacity: assignedRole == null || assignedRole.isFinished
+                        ? 0.5
+                        : 1.0,
+                    avatarUrl:
+                        availableRole.avatarUrl ?? user?.avatarUrl?.toString(),
+                  );
+                }).toList(),
+              ),
+              Wrap(
+                alignment: WrapAlignment.center,
+                spacing: 12.0,
+                runSpacing: 12.0,
+                children: remainingMembers.map((member) {
+                  return Container(
+                    decoration: BoxDecoration(
+                      color: theme.colorScheme.primaryContainer,
+                      borderRadius: BorderRadius.circular(18.0),
                     ),
-                  ),
-                );
-              }).toList(),
-            ),
+                    padding: const EdgeInsets.all(4.0),
+                    child: Opacity(
+                      opacity: 0.5,
+                      child: Row(
+                        spacing: 4.0,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Avatar(
+                            size: 18.0,
+                            mxContent: member.avatarUrl,
+                            name: member.calcDisplayname(),
+                            userId: member.id,
+                          ),
+                          ConstrainedBox(
+                            constraints: const BoxConstraints(
+                              maxWidth: 80.0,
+                            ),
+                            child: Text(
+                              member.calcDisplayname(),
+                              style: TextStyle(
+                                fontSize: 12.0,
+                                color: theme.colorScheme.onPrimaryContainer,
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                }).toList(),
+              ),
+            ],
           ],
         ),
       );

@@ -72,46 +72,47 @@ class ActivityUnfinishedStatusMessageState
           ),
           const SizedBox(height: 16.0),
         ],
-        ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 12.0,
-              vertical: 8.0,
-            ),
-            foregroundColor: theme.colorScheme.onPrimaryContainer,
-            backgroundColor: theme.colorScheme.primaryContainer,
-          ),
-          onPressed: completed
-              ? () {
-                  showFutureLoadingDialog(
-                    context: context,
-                    future: widget.room.continueActivity,
-                  );
-                }
-              : _selectedRoleId != null
-                  ? () {
-                      showFutureLoadingDialog(
-                        context: context,
-                        future: () => widget.room.joinActivity(
-                          availableRoles[_selectedRoleId!]!,
-                        ),
-                      );
-                    }
-                  : null,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                completed
-                    ? L10n.of(context).continueText
-                    : L10n.of(context).confirmRole,
-                style: TextStyle(
-                  fontSize: isColumnMode ? 16.0 : 12.0,
-                ),
+        if (completed || remainingRoles > 0)
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 12.0,
+                vertical: 8.0,
               ),
-            ],
+              foregroundColor: theme.colorScheme.onPrimaryContainer,
+              backgroundColor: theme.colorScheme.primaryContainer,
+            ),
+            onPressed: completed
+                ? () {
+                    showFutureLoadingDialog(
+                      context: context,
+                      future: widget.room.continueActivity,
+                    );
+                  }
+                : _selectedRoleId != null
+                    ? () {
+                        showFutureLoadingDialog(
+                          context: context,
+                          future: () => widget.room.joinActivity(
+                            availableRoles[_selectedRoleId!]!,
+                          ),
+                        );
+                      }
+                    : null,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  completed
+                      ? L10n.of(context).continueText
+                      : L10n.of(context).confirmRole,
+                  style: TextStyle(
+                    fontSize: isColumnMode ? 16.0 : 12.0,
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
       ],
     );
   }

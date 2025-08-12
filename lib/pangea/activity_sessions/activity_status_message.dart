@@ -20,7 +20,7 @@ class ActivityStatusMessage extends StatelessWidget {
       return const SizedBox.shrink();
     }
 
-    final role = room.activityRoles?.role(room.client.userID!);
+    final role = room.ownRole;
     if (role != null && !role.isFinished) {
       return const SizedBox.shrink();
     }
