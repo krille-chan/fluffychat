@@ -219,8 +219,13 @@ class HtmlMessage extends StatelessWidget {
       );
 
       if (substringIndex == -1) continue;
-      final int tokenIndex = result[substringIndex].indexOf(tokenText);
+      int tokenIndex = result[substringIndex].indexOf(tokenText);
       if (tokenIndex == -1) continue;
+
+      final beforeSubstring = result[substringIndex].substring(0, tokenIndex);
+      if (beforeSubstring.length != beforeSubstring.characters.length) {
+        tokenIndex = beforeSubstring.characters.length;
+      }
 
       final int tokenLength = tokenText.characters.length;
       final before =
