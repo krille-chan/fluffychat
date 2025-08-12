@@ -24,7 +24,7 @@ dependencies:
   dynamic_color: ^1.8.1
   emoji_picker_flutter: ^4.3.0
   emojis: ^0.9.9
-  file_picker: ^10.2.2
+  file_picker: ^10.2.3
   file_selector: ^1.0.3
   flutter:
     sdk: flutter
@@ -50,7 +50,7 @@ dependencies:
   go_router: ^16.1.0
   handy_window: ^0.4.0
   html: ^0.15.4
-  http: ^1.2.0
+  http: ^1.5.0
   image: ^4.1.7
   image_picker: ^1.1.0
   intl: any
