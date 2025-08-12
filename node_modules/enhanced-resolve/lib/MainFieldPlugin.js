@@ -43,15 +43,16 @@ module.exports = class MainFieldPlugin {
 					/** @type {ResolveRequest & { [alreadyTriedMainField]?: string }} */
 					(request)[alreadyTriedMainField] === request.descriptionFilePath ||
 					!request.descriptionFilePath
-				)
+				) {
 					return callback();
+				}
 				const filename = path.basename(request.descriptionFilePath);
 				let mainModule =
 					/** @type {string|null|undefined} */
 					(
 						DescriptionFileUtils.getField(
 							/** @type {JsonObject} */ (request.descriptionFileData),
-							this.options.name
+							this.options.name,
 						)
 					);
 
@@ -63,27 +64,23 @@ module.exports = class MainFieldPlugin {
 				) {
 					return callback();
 				}
-				if (this.options.forceRelative && !/^\.\.?\//.test(mainModule))
-					mainModule = "./" + mainModule;
+				if (this.options.forceRelative && !/^\.\.?\//.test(mainModule)) {
+					mainModule = `./${mainModule}`;
+				}
 				/** @type {ResolveRequest & { [alreadyTriedMainField]?: string }} */
 				const obj = {
 					...request,
 					request: mainModule,
 					module: false,
 					directory: mainModule.endsWith("/"),
-					[alreadyTriedMainField]: request.descriptionFilePath
+					[alreadyTriedMainField]: request.descriptionFilePath,
 				};
 				return resolver.doResolve(
 					target,
 					obj,
-					"use " +
-						mainModule +
-						" from " +
-						this.options.name +
-						" in " +
-						filename,
+					`use ${mainModule} from ${this.options.name} in ${filename}`,
 					resolveContext,
-					callback
+					callback,
 				);
 			});
 	}

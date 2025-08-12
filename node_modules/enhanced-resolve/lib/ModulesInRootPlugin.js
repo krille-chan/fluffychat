@@ -34,15 +34,15 @@ module.exports = class ModulesInRootPlugin {
 				const obj = {
 					...request,
 					path: this.path,
-					request: "./" + request.request,
-					module: false
+					request: `./${request.request}`,
+					module: false,
 				};
 				resolver.doResolve(
 					target,
 					obj,
-					"looking for modules in " + this.path,
+					`looking for modules in ${this.path}`,
 					resolveContext,
-					callback
+					callback,
 				);
 			});
 	}

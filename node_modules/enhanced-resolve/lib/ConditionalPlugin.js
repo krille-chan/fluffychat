@@ -52,7 +52,7 @@ module.exports = class ConditionalPlugin {
 								// Don't allow other alternatives
 								if (result === undefined) return callback(null, null);
 								callback(null, result);
-						  }
+							},
 				);
 			});
 	}

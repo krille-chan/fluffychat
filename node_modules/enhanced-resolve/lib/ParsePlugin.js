@@ -41,8 +41,9 @@ module.exports = class ParsePlugin {
 				}
 				if (parsed && resolveContext.log) {
 					if (parsed.module) resolveContext.log("Parsed request is a module");
-					if (parsed.directory)
+					if (parsed.directory) {
 						resolveContext.log("Parsed request is a directory");
+					}
 				}
 				// There is an edge-case where a request with # can be a path or a fragment -> try both
 				if (obj.request && !obj.query && obj.fragment) {
@@ -55,7 +56,7 @@ module.exports = class ParsePlugin {
 							obj.request +
 							(obj.directory ? "/" : "") +
 							(directory ? obj.fragment.slice(0, -1) : obj.fragment),
-						fragment: ""
+						fragment: "",
 					};
 					resolver.doResolve(
 						target,
@@ -66,7 +67,7 @@ module.exports = class ParsePlugin {
 							if (err) return callback(err);
 							if (result) return callback(null, result);
 							resolver.doResolve(target, obj, null, resolveContext, callback);
-						}
+						},
 					);
 					return;
 				}

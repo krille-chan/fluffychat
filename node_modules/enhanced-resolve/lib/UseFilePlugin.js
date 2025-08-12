@@ -32,7 +32,7 @@ module.exports = class UseFilePlugin {
 			.tapAsync("UseFilePlugin", (request, resolveContext, callback) => {
 				const filePath = resolver.join(
 					/** @type {string} */ (request.path),
-					this.filename
+					this.filename,
 				);
 
 				/** @type {ResolveRequest} */
@@ -41,14 +41,14 @@ module.exports = class UseFilePlugin {
 					path: filePath,
 					relativePath:
 						request.relativePath &&
-						resolver.join(request.relativePath, this.filename)
+						resolver.join(request.relativePath, this.filename),
 				};
 				resolver.doResolve(
 					target,
 					obj,
-					"using path: " + filePath,
+					`using path: ${filePath}`,
 					resolveContext,
-					callback
+					callback,
 				);
 			});
 	}

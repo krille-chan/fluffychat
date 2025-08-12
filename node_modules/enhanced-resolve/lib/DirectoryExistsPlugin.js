@@ -34,30 +34,35 @@ module.exports = class DirectoryExistsPlugin {
 					if (!directory) return callback();
 					fs.stat(directory, (err, stat) => {
 						if (err || !stat) {
-							if (resolveContext.missingDependencies)
+							if (resolveContext.missingDependencies) {
 								resolveContext.missingDependencies.add(directory);
-							if (resolveContext.log)
-								resolveContext.log(directory + " doesn't exist");
+							}
+							if (resolveContext.log) {
+								resolveContext.log(`${directory} doesn't exist`);
+							}
 							return callback();
 						}
 						if (!stat.isDirectory()) {
-							if (resolveContext.missingDependencies)
+							if (resolveContext.missingDependencies) {
 								resolveContext.missingDependencies.add(directory);
-							if (resolveContext.log)
-								resolveContext.log(directory + " is not a directory");
+							}
+							if (resolveContext.log) {
+								resolveContext.log(`${directory} is not a directory`);
+							}
 							return callback();
 						}
-						if (resolveContext.fileDependencies)
+						if (resolveContext.fileDependencies) {
 							resolveContext.fileDependencies.add(directory);
+						}
 						resolver.doResolve(
 							target,
 							request,
 							`existing directory ${directory}`,
 							resolveContext,
-							callback
+							callback,
 						);
 					});
-				}
+				},
 			);
 	}
 };

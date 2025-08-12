@@ -21,33 +21,37 @@ module.exports = class LogInfoPlugin {
 	 * @returns {void}
 	 */
 	apply(resolver) {
-		const source = this.source;
+		const { source } = this;
 		resolver
 			.getHook(this.source)
 			.tapAsync("LogInfoPlugin", (request, resolveContext, callback) => {
 				if (!resolveContext.log) return callback();
-				const log = resolveContext.log;
-				const prefix = "[" + source + "] ";
-				if (request.path)
-					log(prefix + "Resolving in directory: " + request.path);
-				if (request.request)
-					log(prefix + "Resolving request: " + request.request);
-				if (request.module) log(prefix + "Request is an module request.");
-				if (request.directory) log(prefix + "Request is a directory request.");
-				if (request.query)
-					log(prefix + "Resolving request query: " + request.query);
-				if (request.fragment)
-					log(prefix + "Resolving request fragment: " + request.fragment);
-				if (request.descriptionFilePath)
+				const { log } = resolveContext;
+				const prefix = `[${source}] `;
+				if (request.path) {
+					log(`${prefix}Resolving in directory: ${request.path}`);
+				}
+				if (request.request) {
+					log(`${prefix}Resolving request: ${request.request}`);
+				}
+				if (request.module) log(`${prefix}Request is an module request.`);
+				if (request.directory) log(`${prefix}Request is a directory request.`);
+				if (request.query) {
+					log(`${prefix}Resolving request query: ${request.query}`);
+				}
+				if (request.fragment) {
+					log(`${prefix}Resolving request fragment: ${request.fragment}`);
+				}
+				if (request.descriptionFilePath) {
 					log(
-						prefix + "Has description data from " + request.descriptionFilePath
+						`${prefix}Has description data from ${request.descriptionFilePath}`,
 					);
-				if (request.relativePath)
+				}
+				if (request.relativePath) {
 					log(
-						prefix +
-							"Relative path from description file is: " +
-							request.relativePath
+						`${prefix}Relative path from description file is: ${request.relativePath}`,
 					);
+				}
 				callback();
 			});
 	}

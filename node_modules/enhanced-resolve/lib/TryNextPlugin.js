@@ -34,7 +34,7 @@ module.exports = class TryNextPlugin {
 					request,
 					this.message,
 					resolveContext,
-					callback
+					callback,
 				);
 			});
 	}

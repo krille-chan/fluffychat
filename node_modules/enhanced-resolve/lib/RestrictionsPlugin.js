@@ -42,13 +42,13 @@ module.exports = class RestrictionsPlugin {
 			.getHook(this.source)
 			.tapAsync("RestrictionsPlugin", (request, resolveContext, callback) => {
 				if (typeof request.path === "string") {
-					const path = request.path;
+					const { path } = request;
 					for (const rule of this.restrictions) {
 						if (typeof rule === "string") {
 							if (!isInside(path, rule)) {
 								if (resolveContext.log) {
 									resolveContext.log(
-										`${path} is not inside of the restriction ${rule}`
+										`${path} is not inside of the restriction ${rule}`,
 									);
 								}
 								return callback(null, null);
@@ -56,7 +56,7 @@ module.exports = class RestrictionsPlugin {
 						} else if (!rule.test(path)) {
 							if (resolveContext.log) {
 								resolveContext.log(
-									`${path} doesn't match the restriction ${rule}`
+									`${path} doesn't match the restriction ${rule}`,
 								);
 							}
 							return callback(null, null);

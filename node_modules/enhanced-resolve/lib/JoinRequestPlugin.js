@@ -37,7 +37,7 @@ module.exports = class JoinRequestPlugin {
 					relativePath:
 						request.relativePath &&
 						resolver.join(request.relativePath, requestRequest),
-					request: undefined
+					request: undefined,
 				};
 				resolver.doResolve(target, obj, null, resolveContext, callback);
 			});

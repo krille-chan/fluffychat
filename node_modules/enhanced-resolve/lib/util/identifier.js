@@ -34,7 +34,7 @@ function parseIdentifier(identifier) {
 			return [
 				identifier.slice(0, queryStart),
 				identifier.slice(queryStart),
-				""
+				"",
 			];
 		}
 
@@ -43,7 +43,7 @@ function parseIdentifier(identifier) {
 			return [
 				identifier.slice(0, fragmentStart),
 				"",
-				identifier.slice(fragmentStart)
+				identifier.slice(fragmentStart),
 			];
 		}
 
@@ -51,7 +51,7 @@ function parseIdentifier(identifier) {
 		return [
 			identifier.slice(0, queryStart),
 			identifier.slice(queryStart, fragmentStart),
-			identifier.slice(fragmentStart)
+			identifier.slice(fragmentStart),
 		];
 	}
 
@@ -62,7 +62,7 @@ function parseIdentifier(identifier) {
 	return [
 		match[1].replace(ZERO_ESCAPE_REGEXP, "$1"),
 		match[2] ? match[2].replace(ZERO_ESCAPE_REGEXP, "$1") : "",
-		match[3] || ""
+		match[3] || "",
 	];
 }
 

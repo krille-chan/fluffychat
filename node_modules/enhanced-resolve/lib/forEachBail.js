@@ -31,7 +31,7 @@ module.exports = function forEachBail(array, iterator, callback) {
 	let i = 0;
 	const next = () => {
 		/** @type {boolean|undefined} */
-		let loop = undefined;
+		let loop;
 		iterator(
 			array[i++],
 			(err, result) => {
@@ -41,7 +41,7 @@ module.exports = function forEachBail(array, iterator, callback) {
 				if (loop === false) while (next());
 				loop = true;
 			},
-			i
+			i,
 		);
 		if (!loop) loop = false;
 		return loop;

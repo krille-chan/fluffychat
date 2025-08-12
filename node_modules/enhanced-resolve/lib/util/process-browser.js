@@ -10,13 +10,16 @@ module.exports = {
 	 * @type {Record<string, string>}
 	 */
 	versions: {},
+	// eslint-disable-next-line jsdoc/no-restricted-syntax
 	/**
-	 * @param {function} fn function
+	 * @param {Function} fn function
 	 */
 	nextTick(fn) {
+		// eslint-disable-next-line prefer-rest-params
 		const args = Array.prototype.slice.call(arguments, 1);
-		Promise.resolve().then(function () {
+		Promise.resolve().then(() => {
+			// eslint-disable-next-line prefer-spread
 			fn.apply(null, args);
 		});
-	}
+	},
 };

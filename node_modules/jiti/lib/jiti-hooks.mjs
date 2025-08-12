@@ -45,11 +45,18 @@ export async function load(url, context, nextLoad) {
   const rawSource = await readFile(filename, "utf8");
 
   if (url.endsWith(".json")) {
-    return {
-      source: `export default ${rawSource}`,
-      format: "module",
-      shortCircuit: true,
-    };
+    const pkg = await _findClosestPackageJson(dirname(filename));
+    return pkg && pkg.type === "module"
+      ? {
+          source: `export default ${rawSource}`,
+          format: "module",
+          shortCircuit: true,
+        }
+      : {
+          source: `module.exports = ${rawSource}`,
+          format: "commonjs",
+          shortCircuit: true,
+        };
   }
 
   const transpiledSource = jiti.transform({

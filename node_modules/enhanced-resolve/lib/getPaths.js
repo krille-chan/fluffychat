@@ -15,19 +15,19 @@ module.exports = function getPaths(path) {
 	const paths = [path];
 	const segments = [parts[parts.length - 1]];
 	let part = parts[parts.length - 1];
-	path = path.substring(0, path.length - part.length - 1);
+	path = path.slice(0, Math.max(0, path.length - part.length - 1));
 	for (let i = parts.length - 2; i > 2; i -= 2) {
 		paths.push(path);
 		part = parts[i];
-		path = path.substring(0, path.length - part.length) || "/";
+		path = path.slice(0, Math.max(0, path.length - part.length)) || "/";
 		segments.push(part.slice(0, -1));
 	}
-	part = parts[1];
+	[, part] = parts;
 	segments.push(part);
 	paths.push(part);
 	return {
-		paths: paths,
-		segments: segments
+		paths,
+		segments,
 	};
 };
 
@@ -36,10 +36,10 @@ module.exports = function getPaths(path) {
  * @returns {string|null} basename or null
  */
 module.exports.basename = function basename(path) {
-	const i = path.lastIndexOf("/"),
-		j = path.lastIndexOf("\\");
-	const p = i < 0 ? j : j < 0 ? i : i < j ? j : i;
-	if (p < 0) return null;
-	const s = path.slice(p + 1);
-	return s;
+	const i = path.lastIndexOf("/");
+	const j = path.lastIndexOf("\\");
+	const resolvedPath = i < 0 ? j : j < 0 ? i : i < j ? j : i;
+	if (resolvedPath < 0) return null;
+	const basename = path.slice(resolvedPath + 1);
+	return basename;
 };

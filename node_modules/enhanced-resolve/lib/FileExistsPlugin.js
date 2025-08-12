@@ -32,25 +32,28 @@ module.exports = class FileExistsPlugin {
 				if (!file) return callback();
 				fs.stat(file, (err, stat) => {
 					if (err || !stat) {
-						if (resolveContext.missingDependencies)
+						if (resolveContext.missingDependencies) {
 							resolveContext.missingDependencies.add(file);
-						if (resolveContext.log) resolveContext.log(file + " doesn't exist");
+						}
+						if (resolveContext.log) resolveContext.log(`${file} doesn't exist`);
 						return callback();
 					}
 					if (!stat.isFile()) {
-						if (resolveContext.missingDependencies)
+						if (resolveContext.missingDependencies) {
 							resolveContext.missingDependencies.add(file);
-						if (resolveContext.log) resolveContext.log(file + " is not a file");
+						}
+						if (resolveContext.log) resolveContext.log(`${file} is not a file`);
 						return callback();
 					}
-					if (resolveContext.fileDependencies)
+					if (resolveContext.fileDependencies) {
 						resolveContext.fileDependencies.add(file);
+					}
 					resolver.doResolve(
 						target,
 						request,
-						"existing file: " + file,
+						`existing file: ${file}`,
 						resolveContext,
-						callback
+						callback,
 					);
 				});
 			});

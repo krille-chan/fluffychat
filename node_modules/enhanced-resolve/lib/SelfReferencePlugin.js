@@ -43,13 +43,13 @@ module.exports = class SelfReferencePlugin {
 				// Feature is only enabled when an exports field is present
 				const exportsField = DescriptionFileUtils.getField(
 					/** @type {JsonObject} */ (request.descriptionFileData),
-					this.fieldName
+					this.fieldName,
 				);
 				if (!exportsField) return callback();
 
 				const name = DescriptionFileUtils.getField(
 					/** @type {JsonObject} */ (request.descriptionFileData),
-					"name"
+					"name",
 				);
 				if (typeof name !== "string") return callback();
 
@@ -64,7 +64,7 @@ module.exports = class SelfReferencePlugin {
 						...request,
 						request: remainingRequest,
 						path: /** @type {string} */ (request.descriptionFileRoot),
-						relativePath: "."
+						relativePath: ".",
 					};
 
 					resolver.doResolve(
@@ -72,7 +72,7 @@ module.exports = class SelfReferencePlugin {
 						obj,
 						"self reference",
 						resolveContext,
-						callback
+						callback,
 					);
 				} else {
 					return callback();

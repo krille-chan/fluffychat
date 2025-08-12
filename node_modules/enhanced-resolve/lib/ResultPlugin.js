@@ -25,9 +25,10 @@ module.exports = class ResultPlugin {
 			"ResultPlugin",
 			(request, resolverContext, callback) => {
 				const obj = { ...request };
-				if (resolverContext.log)
-					resolverContext.log("reporting result " + obj.path);
-				resolver.hooks.result.callAsync(obj, resolverContext, err => {
+				if (resolverContext.log) {
+					resolverContext.log(`reporting result ${obj.path}`);
+				}
+				resolver.hooks.result.callAsync(obj, resolverContext, (err) => {
 					if (err) return callback(err);
 					if (typeof resolverContext.yield === "function") {
 						resolverContext.yield(obj);
@@ -36,7 +37,7 @@ module.exports = class ResultPlugin {
 						callback(null, obj);
 					}
 				});
-			}
+			},
 		);
 	}
 };

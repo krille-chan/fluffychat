@@ -5,7 +5,7 @@
 
 "use strict";
 
-const basename = require("./getPaths").basename;
+const { basename } = require("./getPaths");
 
 /** @typedef {import("./Resolver")} Resolver */
 /** @typedef {import("./Resolver").ResolveRequest} ResolveRequest */
@@ -39,14 +39,14 @@ module.exports = class CloneBasenamePlugin {
 					path: filePath,
 					relativePath:
 						request.relativePath &&
-						resolver.join(request.relativePath, filename)
+						resolver.join(request.relativePath, filename),
 				};
 				resolver.doResolve(
 					target,
 					obj,
-					"using path: " + filePath,
+					`using path: ${filePath}`,
 					resolveContext,
-					callback
+					callback,
 				);
 			});
 	}

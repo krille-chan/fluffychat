@@ -35,14 +35,14 @@ module.exports = class AppendPlugin {
 					...request,
 					path: request.path + this.appending,
 					relativePath:
-						request.relativePath && request.relativePath + this.appending
+						request.relativePath && request.relativePath + this.appending,
 				};
 				resolver.doResolve(
 					target,
 					obj,
 					this.appending,
 					resolveContext,
-					callback
+					callback,
 				);
 			});
 	}

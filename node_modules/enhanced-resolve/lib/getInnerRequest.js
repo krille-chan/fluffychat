@@ -18,8 +18,9 @@ module.exports = function getInnerRequest(resolver, request) {
 		typeof request.__innerRequest === "string" &&
 		request.__innerRequest_request === request.request &&
 		request.__innerRequest_relativePath === request.relativePath
-	)
+	) {
 		return request.__innerRequest;
+	}
 	/** @type {string|undefined} */
 	let innerRequest;
 	if (request.request) {
@@ -30,7 +31,9 @@ module.exports = function getInnerRequest(resolver, request) {
 	} else {
 		innerRequest = request.relativePath;
 	}
+	// eslint-disable-next-line camelcase
 	request.__innerRequest_request = request.request;
+	// eslint-disable-next-line camelcase
 	request.__innerRequest_relativePath = request.relativePath;
 	return (request.__innerRequest = /** @type {string} */ (innerRequest));
 };

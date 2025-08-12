@@ -9,8 +9,8 @@
 /** @typedef {import("./Resolver").ResolveStepHook} ResolveStepHook */
 /** @typedef {import("./Resolver").ResolveRequest} ResolveRequest */
 /**
- * @typedef {Object} PnpApiImpl
- * @property {function(string, string, object): string | null} resolveToUnqualified
+ * @typedef {object} PnpApiImpl
+ * @property {(packageName: string, issuer: string, options: { considerBuiltins: boolean }) => string | null} resolveToUnqualified resolve to unqualified
  */
 
 module.exports = class PnpPlugin {
@@ -47,7 +47,7 @@ module.exports = class PnpPlugin {
 				const packageMatch = /^(@[^/]+\/)?[^/]+/.exec(req);
 				if (!packageMatch) return callback();
 
-				const packageName = packageMatch[0];
+				const [packageName] = packageMatch;
 				const innerRequest = `.${req.slice(packageName.length)}`;
 
 				/** @type {string|undefined|null} */
@@ -56,7 +56,7 @@ module.exports = class PnpPlugin {
 				let apiResolution;
 				try {
 					resolution = this.pnpApi.resolveToUnqualified(packageName, issuer, {
-						considerBuiltins: false
+						considerBuiltins: false,
 					});
 
 					if (resolution === null) {
@@ -72,14 +72,14 @@ module.exports = class PnpPlugin {
 								if (result) return callback(null, result);
 								// Skip alternatives
 								return callback(null, null);
-							}
+							},
 						);
 						return;
 					}
 
 					if (resolveContext.fileDependencies) {
 						apiResolution = this.pnpApi.resolveToUnqualified("pnpapi", issuer, {
-							considerBuiltins: false
+							considerBuiltins: false,
 						});
 					}
 				} catch (/** @type {unknown} */ error) {
@@ -92,11 +92,12 @@ module.exports = class PnpPlugin {
 						// This is not a PnP managed dependency.
 						// Try to continue resolving with our alternatives
 						if (resolveContext.log) {
-							resolveContext.log(`request is not managed by the pnpapi`);
+							resolveContext.log("request is not managed by the pnpapi");
 							for (const line of /** @type {Error} */ (error).message
 								.split("\n")
-								.filter(Boolean))
+								.filter(Boolean)) {
 								resolveContext.log(`  ${line}`);
+							}
 						}
 						return callback();
 					}
@@ -114,7 +115,7 @@ module.exports = class PnpPlugin {
 					path: resolution,
 					request: innerRequest,
 					ignoreSymlinks: true,
-					fullySpecified: request.fullySpecified && innerRequest !== "."
+					fullySpecified: request.fullySpecified && innerRequest !== ".",
 				};
 				resolver.doResolve(
 					target,
@@ -126,7 +127,7 @@ module.exports = class PnpPlugin {
 						if (result) return callback(null, result);
 						// Skip alternatives
 						return callback(null, null);
-					}
+					},
 				);
 			});
 	}

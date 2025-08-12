@@ -39,14 +39,14 @@ module.exports = class ExtensionAliasPlugin {
 				const isAliasString = typeof alias === "string";
 				/**
 				 * @param {string} alias extension alias
-				 * @param {(err?: null|Error, result?: null|ResolveRequest) => void} callback callback
-				 * @param {number} [index] index
+				 * @param {(err?: null | Error, result?: null|ResolveRequest) => void} callback callback
+				 * @param {number=} index index
 				 * @returns {void}
 				 */
 				const resolve = (alias, callback, index) => {
 					const newRequest = `${requestPath.slice(
 						0,
-						-extension.length
+						-extension.length,
 					)}${alias}`;
 
 					return resolver.doResolve(
@@ -54,7 +54,7 @@ module.exports = class ExtensionAliasPlugin {
 						{
 							...request,
 							request: newRequest,
-							fullySpecified: true
+							fullySpecified: true,
 						},
 						`aliased from extension alias with mapping '${extension}' to '${alias}'`,
 						resolveContext,
@@ -64,7 +64,7 @@ module.exports = class ExtensionAliasPlugin {
 								if (index !== this.options.alias.length) {
 									if (resolveContext.log) {
 										resolveContext.log(
-											`Failed to alias from extension alias with mapping '${extension}' to '${alias}' for '${newRequest}': ${err}`
+											`Failed to alias from extension alias with mapping '${extension}' to '${alias}' for '${newRequest}': ${err}`,
 										);
 									}
 
@@ -72,15 +72,14 @@ module.exports = class ExtensionAliasPlugin {
 								}
 
 								return callback(err, result);
-							} else {
-								callback(err, result);
 							}
-						}
+							callback(err, result);
+						},
 					);
 				};
 				/**
-				 * @param {null|Error} [err] error
-				 * @param {null|ResolveRequest} [result] result
+				 * @param {(null | Error)=} err error
+				 * @param {(null | ResolveRequest)=} result result
 				 * @returns {void}
 				 */
 				const stoppingCallback = (err, result) => {

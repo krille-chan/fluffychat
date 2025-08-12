@@ -51,7 +51,7 @@ module.exports = class JoinRequestPartPlugin {
 						fullySpecified = false;
 					} else {
 						moduleName = req.slice(0, i);
-						remainingRequest = "." + req.slice(i);
+						remainingRequest = `.${req.slice(i)}`;
 						fullySpecified = /** @type {boolean} */ (request.fullySpecified);
 					}
 					/** @type {ResolveRequest} */
@@ -60,16 +60,16 @@ module.exports = class JoinRequestPartPlugin {
 						path: resolver.join(
 							/** @type {string} */
 							(request.path),
-							moduleName
+							moduleName,
 						),
 						relativePath:
 							request.relativePath &&
 							resolver.join(request.relativePath, moduleName),
 						request: remainingRequest,
-						fullySpecified
+						fullySpecified,
 					};
 					resolver.doResolve(target, obj, null, resolveContext, callback);
-				}
+				},
 			);
 	}
 };
