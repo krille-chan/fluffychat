@@ -102,7 +102,7 @@ class ActivityPlanModel {
             )
           : null,
       roles: roles,
-      bookmarkId: json[ModelKey.activityPlanBookmarkId],
+      bookmarkId: json[ModelKey.activityPlanBookmarkId] ?? json["bookmark_id"],
     );
   }
 
@@ -214,10 +214,16 @@ class ActivityRole {
   });
 
   factory ActivityRole.fromJson(Map<String, dynamic> json) {
+    final urlContent = json['avatar_url'] as String?;
+    String? avatarUrl;
+    if (urlContent != null && urlContent.isNotEmpty) {
+      avatarUrl = urlContent;
+    }
+
     return ActivityRole(
       id: json['id'],
       name: json['name'],
-      avatarUrl: json['avatar_url'],
+      avatarUrl: avatarUrl,
     );
   }
 
