@@ -5,6 +5,7 @@ import 'package:matrix/matrix.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_room_extension.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_unfinished_status_message.dart';
+import 'package:fluffychat/pangea/activity_sessions/load_activity_summary_widget.dart';
 
 class ActivityStatusMessage extends StatelessWidget {
   final Room room;
@@ -16,8 +17,12 @@ class ActivityStatusMessage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (!room.showActivityChatUI || room.activityIsFinished) {
+    if (!room.showActivityChatUI) {
       return const SizedBox.shrink();
+    }
+
+    if (room.activityIsFinished) {
+      return LoadActivitySummaryWidget(room: room);
     }
 
     final role = room.ownRole;

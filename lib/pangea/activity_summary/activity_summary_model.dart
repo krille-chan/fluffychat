@@ -36,7 +36,7 @@ class ActivitySummaryModel {
       summary == null &&
       requestedAt != null &&
       requestedAt!.isBefore(
-        DateTime.now().subtract(const Duration(seconds: 30)),
+        DateTime.now().subtract(const Duration(seconds: 10)),
       );
 
   bool get hasError => errorAt != null || _hasTimeout;
