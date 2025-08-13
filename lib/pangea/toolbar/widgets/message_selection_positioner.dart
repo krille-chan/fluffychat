@@ -340,7 +340,7 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
         screenHeight - _originalMessageOffset.dy - originalContentHeight;
 
     final neededSpace =
-        boxHeight + _fullContentHeight + mediaQuery!.padding.top;
+        boxHeight + _fullContentHeight + mediaQuery!.padding.top + 4.0;
 
     if (neededSpace > screenHeight) {
       boxHeight =
