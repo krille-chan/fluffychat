@@ -52,9 +52,9 @@ class LoadActivitySummaryWidgetState extends State<LoadActivitySummaryWidget> {
       return;
     }
 
-    // The summary state event has an error (or > 10 seconds since request)
-    // Re-run immediately
-    await widget.room.fetchSummaries();
+    if (_summaryEvent!.errorAt == null) {
+      await widget.room.fetchSummaries();
+    }
   }
 
   @override
