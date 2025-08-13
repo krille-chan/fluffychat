@@ -373,11 +373,20 @@ class _InviteContactListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = L10n.of(context);
+    final theme = Theme.of(context);
 
     final participant = controller.participants?.firstWhereOrNull(
       (p) => p.id == profile.userId,
     );
     final membership = participant?.membership;
+
+    final String? permissionBatch = participant == null
+        ? null
+        : participant.powerLevel >= 100
+            ? L10n.of(context).admin
+            : participant.powerLevel >= 50
+                ? L10n.of(context).moderator
+                : null;
 
     return ListTile(
       onTap: participant != null
@@ -421,21 +430,45 @@ class _InviteContactListTile extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
               margin: const EdgeInsets.symmetric(horizontal: 8),
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.secondaryContainer,
+                color: theme.colorScheme.secondaryContainer,
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Text(
                 controller.membershipCopy(membership)!,
-                style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                      color: Theme.of(context).colorScheme.onSecondaryContainer,
-                    ),
+                style: theme.textTheme.labelSmall?.copyWith(
+                  color: theme.colorScheme.onSecondaryContainer,
+                ),
               ),
             )
-          : TextButton.icon(
-              onPressed: isMember ? null : onTap,
-              label: Text(isMember ? l10n.participant : l10n.invite),
-              icon: Icon(isMember ? Icons.check : Icons.add),
-            ),
+          : permissionBatch != null
+              ? Container(
+                  margin: const EdgeInsets.only(right: 12.0),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 6,
+                  ),
+                  decoration: BoxDecoration(
+                    color: participant!.powerLevel >= 100
+                        ? theme.colorScheme.tertiary
+                        : theme.colorScheme.tertiaryContainer,
+                    borderRadius: BorderRadius.circular(
+                      AppConfig.borderRadius,
+                    ),
+                  ),
+                  child: Text(
+                    permissionBatch,
+                    style: theme.textTheme.labelSmall?.copyWith(
+                      color: participant.powerLevel >= 100
+                          ? theme.colorScheme.onTertiary
+                          : theme.colorScheme.onTertiaryContainer,
+                    ),
+                  ),
+                )
+              : TextButton.icon(
+                  onPressed: isMember ? null : onTap,
+                  label: Text(isMember ? l10n.participant : l10n.invite),
+                  icon: Icon(isMember ? Icons.check : Icons.add),
+                ),
     );
   }
 }
