@@ -14,6 +14,7 @@ import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/message_token_text/message_token_button.dart';
+import 'package:fluffychat/pangea/message_token_text/token_position_model.dart';
 import 'package:fluffychat/pangea/toolbar/enums/reading_assistance_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/utils/token_rendering_util.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
@@ -157,7 +158,7 @@ class HtmlMessage extends StatelessWidget {
       pangeaMessageEvent?.messageDisplayRepresentation?.tokens
           ?.where(
             (t) =>
-                !["PUNCT", "SYM"].contains(t.pos) &&
+                !["SYM"].contains(t.pos) &&
                 !t.lemma.text.contains(RegExp(r'[0-9]')) &&
                 t.lemma.text.length <= 50,
           )
@@ -209,17 +210,25 @@ class HtmlMessage extends StatelessWidget {
     }
 
     int position = 0;
-    for (final PangeaToken token in tokens ?? []) {
-      final String tokenText = token.text.content;
+    final tokenPositions = tokens != null
+        ? TokensUtil.getAdjacentTokenPositions(event.eventId, tokens!)
+        : [];
+
+    for (final TokenPosition tokenPosition in tokenPositions) {
+      final String tokenSpanText = tokens!
+          .sublist(tokenPosition.startIndex, tokenPosition.endIndex + 1)
+          .map((t) => t.text.content)
+          .join();
+
       final substringIndex = result.indexWhere(
         (string) =>
-            string.contains(tokenText) &&
+            string.contains(tokenSpanText) &&
             !(string.startsWith('<') && string.endsWith('>')),
         position,
       );
 
       if (substringIndex == -1) continue;
-      int tokenIndex = result[substringIndex].indexOf(tokenText);
+      int tokenIndex = result[substringIndex].indexOf(tokenSpanText);
       if (tokenIndex == -1) continue;
 
       final beforeSubstring = result[substringIndex].substring(0, tokenIndex);
@@ -227,7 +236,7 @@ class HtmlMessage extends StatelessWidget {
         tokenIndex = beforeSubstring.characters.length;
       }
 
-      final int tokenLength = tokenText.characters.length;
+      final int tokenLength = tokenSpanText.characters.length;
       final before =
           result[substringIndex].characters.take(tokenIndex).toString();
       final after = result[substringIndex]
@@ -237,7 +246,7 @@ class HtmlMessage extends StatelessWidget {
 
       result.replaceRange(substringIndex, substringIndex + 1, [
         if (before.isNotEmpty) before,
-        '<token offset="${token.text.offset}" length="${token.text.length}">$tokenText</token>',
+        '<token offset="${tokenPosition.token!.text.offset}" length="${tokenPosition.token!.text.length}">$tokenSpanText</token>',
         if (after.isNotEmpty) after,
       ]);
 

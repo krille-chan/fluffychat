@@ -13,7 +13,82 @@ class TokenPosition {
 }
 
 class TokensUtil {
-  static List<TokenPosition> getTokenPositions(
+  /// A cache of calculated adjacent token positions
+  static final Map<String, _TokenPositionCacheItem> _tokenPositionCache = {};
+
+  static const Duration _cacheDuration = Duration(minutes: 1);
+
+  static List<TokenPosition>? _getCachedTokenPositions(String eventID) {
+    final cacheItem = _tokenPositionCache[eventID];
+    if (cacheItem == null) return null;
+    if (cacheItem.timestamp.isBefore(DateTime.now().subtract(_cacheDuration))) {
+      _tokenPositionCache.remove(eventID);
+      return null;
+    }
+
+    return cacheItem.positions;
+  }
+
+  static void _setCachedTokenPositions(
+    String eventID,
+    List<TokenPosition> positions,
+  ) {
+    _tokenPositionCache[eventID] = _TokenPositionCacheItem(
+      positions,
+      DateTime.now(),
+    );
+  }
+
+  /// Given a list of tokens, returns a list of positions for tokens and adjacent punctuation
+  /// This list may include gaps in the actual message for non-token elements,
+  /// so should not be used to fully reconstruct the original message.
+  static List<TokenPosition> getAdjacentTokenPositions(
+    String eventID,
+    List<PangeaToken> tokens,
+  ) {
+    final cached = _getCachedTokenPositions(eventID);
+    if (cached != null) {
+      return cached;
+    }
+
+    final List<TokenPosition> positions = [];
+    for (int i = 0; i < tokens.length; i++) {
+      final PangeaToken token = tokens[i];
+
+      PangeaToken? currentToken = token;
+      PangeaToken? nextToken = i < tokens.length - 1 ? tokens[i + 1] : null;
+
+      final isPunct = token.pos == 'PUNCT';
+      final nextIsPunct = nextToken?.pos == 'PUNCT';
+
+      final int startIndex = i;
+      if (isPunct || nextIsPunct) {
+        while (nextToken != null && currentToken?.end == nextToken.start) {
+          i++;
+          currentToken = nextToken;
+          nextToken = i < tokens.length - 1 ? tokens[i + 1] : null;
+        }
+      }
+
+      final adjacentTokens = tokens.sublist(startIndex, i + 1);
+      if (adjacentTokens.every((t) => t.pos == 'PUNCT')) {
+        continue;
+      }
+
+      final position = TokenPosition(
+        token: adjacentTokens.firstWhere((t) => t.pos != 'PUNCT'),
+        startIndex: startIndex,
+        endIndex: i,
+      );
+      positions.add(position);
+    }
+
+    _setCachedTokenPositions(eventID, positions);
+    return positions;
+  }
+
+  /// Given a list of tokens, reconstructs an original message, including gaps for non-token elements.
+  static List<TokenPosition> getGlobalTokenPositions(
     List<PangeaToken> tokens,
   ) {
     final List<TokenPosition> tokenPositions = [];
@@ -82,4 +157,14 @@ class TokensUtil {
 
     return tokenPositions;
   }
+}
+
+class _TokenPositionCacheItem {
+  final List<TokenPosition> positions;
+  final DateTime timestamp;
+
+  _TokenPositionCacheItem(
+    this.positions,
+    this.timestamp,
+  );
 }

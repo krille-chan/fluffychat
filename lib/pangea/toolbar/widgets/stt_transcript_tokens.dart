@@ -37,7 +37,8 @@ class SttTranscriptTokens extends StatelessWidget {
       textScaler: TextScaler.noScaling,
       text: TextSpan(
         style: style ?? DefaultTextStyle.of(context).style,
-        children: TokensUtil.getTokenPositions(tokens).map((tokenPosition) {
+        children:
+            TokensUtil.getGlobalTokenPositions(tokens).map((tokenPosition) {
           final text = messageCharacters
               .skip(tokenPosition.startIndex)
               .take(tokenPosition.endIndex - tokenPosition.startIndex)
