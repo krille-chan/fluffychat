@@ -11,6 +11,7 @@ import 'package:fluffychat/pangea/analytics_page/analytics_page.dart';
 import 'package:fluffychat/pangea/analytics_summary/learning_progress_indicators.dart';
 import 'package:fluffychat/pangea/analytics_summary/level_dialog_content.dart';
 import 'package:fluffychat/pangea/analytics_summary/progress_indicators_enum.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/navigation_rail.dart';
 
 class AnalyticsPageView extends StatelessWidget {
@@ -51,8 +52,10 @@ class AnalyticsPageView extends StatelessWidget {
                           ProgressIndicatorEnum.level,
                     ),
                     Expanded(
-                      child: Builder(
-                        builder: (context) {
+                      child: StreamBuilder(
+                        stream: MatrixState.pangeaController.getAnalytics
+                            .analyticsStream.stream,
+                        builder: (context, _) {
                           if (controller.selectedIndicator ==
                               ProgressIndicatorEnum.level) {
                             return const LevelDialogContent();
