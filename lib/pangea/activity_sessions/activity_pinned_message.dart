@@ -12,6 +12,7 @@ import 'package:fluffychat/pages/chat/chat_app_bar_list_tile.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_room_extension.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_suggestions_constants.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 
 class ActivityPinnedMessage extends StatefulWidget {
@@ -45,21 +46,18 @@ class ActivityPinnedMessageState extends State<ActivityPinnedMessage> {
     }
   }
 
-  Future<void> _finishActivity() async {
-    final resp = await showFutureLoadingDialog(
+  Future<void> _finishActivity({bool forAll = false}) async {
+    await showFutureLoadingDialog(
       context: context,
       future: () async {
-        await room.finishActivity();
+        forAll
+            ? await room.finishActivityForAll()
+            : await room.finishActivity();
         if (mounted) {
           _setShowDropdown(false);
         }
       },
     );
-
-    if (resp.isError) return;
-    if (room.activityIsFinished) {
-      await room.fetchSummaries();
-    }
   }
 
   @override
@@ -149,27 +147,54 @@ class ActivityPinnedMessageState extends State<ActivityPinnedMessage> {
                                 "${AppConfig.assetsBaseURL}/${ActivitySuggestionsConstants.endActivityAssetPath}",
                             width: isColumnMode ? 240.0 : 120.0,
                           ),
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 12.0,
-                                vertical: 8.0,
-                              ),
-                              foregroundColor: theme.colorScheme.onSecondary,
-                              backgroundColor: theme.colorScheme.secondary,
-                            ),
-                            onPressed: _finishActivity,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  L10n.of(context).endActivityTitle,
-                                  style: TextStyle(
-                                    fontSize: isColumnMode ? 16.0 : 12.0,
+                          Row(
+                            spacing: 12.0,
+                            children: [
+                              Expanded(
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 12.0,
+                                      vertical: 8.0,
+                                    ),
+                                    foregroundColor:
+                                        theme.colorScheme.onSecondary,
+                                    backgroundColor:
+                                        theme.colorScheme.secondary,
+                                  ),
+                                  onPressed: _finishActivity,
+                                  child: Text(
+                                    L10n.of(context).endActivityTitle,
+                                    style: TextStyle(
+                                      fontSize: isColumnMode ? 16.0 : 12.0,
+                                    ),
                                   ),
                                 ),
-                              ],
-                            ),
+                              ),
+                              if (room.isRoomAdmin)
+                                Expanded(
+                                  child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 12.0,
+                                        vertical: 8.0,
+                                      ),
+                                      foregroundColor:
+                                          theme.colorScheme.onErrorContainer,
+                                      backgroundColor:
+                                          theme.colorScheme.errorContainer,
+                                    ),
+                                    onPressed: () =>
+                                        _finishActivity(forAll: true),
+                                    child: Text(
+                                      L10n.of(context).endForAll,
+                                      style: TextStyle(
+                                        fontSize: isColumnMode ? 16.0 : 12.0,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                            ],
                           ),
                         ],
                       ),

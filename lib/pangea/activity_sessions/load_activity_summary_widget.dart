@@ -33,11 +33,7 @@ class LoadActivitySummaryWidgetState extends State<LoadActivitySummaryWidget> {
     // The summary state event is null
     // Wait for 5 seconds. If still null (or not loading), run request.
     if (_summaryEvent == null) {
-      await Future.delayed(const Duration(seconds: 5));
-
-      if (_summaryEvent == null || !_summaryEvent!.isLoading) {
-        await widget.room.fetchSummaries();
-      }
+      await widget.room.fetchSummaries();
       return;
     }
 

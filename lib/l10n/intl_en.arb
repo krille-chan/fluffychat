@@ -5150,7 +5150,7 @@
       }
     }
   },
-  "endActivityTitle": "I'm Done",
+  "endActivityTitle": "I'm done",
   "endActivityDesc": "Did you complete the objectives?\nThis is your confirmation that you're stepping back from texting. But don’t worry, the fun continues in the chat! Feel free to hang out and enjoy the show until everyone clicks 'Done'.",
   "archiveToAnalytics": "Add to my Completed Activities",
   "activitySummaryError": "Activity summaries unavailable",
@@ -5193,5 +5193,6 @@
     }
   },
   "noDataFound": "No data found",
-  "activityFinishedMessage": "All Finished!"
+  "activityFinishedMessage": "All Finished!",
+  "endForAll": "End for all"
 }

@@ -18,7 +18,6 @@ import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
-import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 
 extension ActivityRoomExtension on Room {
   Future<void> sendActivityPlan(
@@ -71,11 +70,6 @@ extension ActivityRoomExtension on Room {
   }
 
   Future<void> finishActivity() async {
-    if (isRoomAdmin) {
-      await _finishActivityForAll();
-      return;
-    }
-
     final currentRoles = activityRoles ?? ActivityRolesModel.empty;
     final role = ownRole;
     if (role == null || role.isFinished) return;
@@ -90,7 +84,7 @@ extension ActivityRoomExtension on Room {
     );
   }
 
-  Future<void> _finishActivityForAll() async {
+  Future<void> finishActivityForAll() async {
     final currentRoles = activityRoles ?? ActivityRolesModel.empty;
     currentRoles.finishAll();
     await client.setRoomStateWithKey(
