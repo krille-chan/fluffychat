@@ -58,7 +58,8 @@ class ActivityFinishedStatusMessage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (!controller.room.showActivityChatUI ||
-        !controller.room.activityIsFinished) {
+        !controller.room.activityIsFinished ||
+        controller.room.ownRole == null) {
       return const SizedBox.shrink();
     }
 
