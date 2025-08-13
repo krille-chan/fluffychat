@@ -1,3 +1,5 @@
+import 'package:fluffychat/l10n/l10n.dart';
+
 class ActivityRoleModel {
   final String id;
   final String userId;
@@ -16,6 +18,21 @@ class ActivityRoleModel {
   bool get isFinished => finishedAt != null;
 
   bool get isArchived => archivedAt != null;
+
+  String? stateEventMessage(String displayName, L10n l10n) {
+    if (isArchived) {
+      return null;
+    }
+
+    if (isFinished) {
+      return l10n.finishedTheActivity(displayName);
+    }
+
+    return l10n.joinedTheActivity(
+      displayName,
+      role ?? l10n.participant,
+    );
+  }
 
   factory ActivityRoleModel.fromJson(Map<String, dynamic> json) {
     return ActivityRoleModel(

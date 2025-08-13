@@ -73,6 +73,7 @@ extension IsStateExtension on Event {
       isEventTypeKnown ||
       [
         PangeaEventTypes.activityPlan,
+        PangeaEventTypes.activityRole,
       ].contains(type);
 
   // we're filtering out some state events that we don't want to render
@@ -83,6 +84,7 @@ extension IsStateExtension on Event {
     EventTypes.RoomTombstone,
     EventTypes.CallInvite,
     PangeaEventTypes.activityPlan,
+    PangeaEventTypes.activityRole,
   };
   // Pangea#
 }

@@ -11,6 +11,7 @@ import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/events/pangea_message_reactions.dart';
 import 'package:fluffychat/pages/chat/events/room_creation_state_event.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_creation_state_event.dart';
+import 'package:fluffychat/pangea/activity_sessions/activity_roles_event.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_room_extension.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_state_event.dart';
 import 'package:fluffychat/pangea/chat/extensions/custom_room_display_extension.dart';
@@ -139,6 +140,10 @@ class Message extends StatelessWidget {
       // #Pangea
       if (event.type == PangeaEventTypes.activityPlan) {
         return ActivityStateEvent(event: event);
+      }
+
+      if (event.type == PangeaEventTypes.activityRole) {
+        return ActivityRolesEvent(event: event);
       }
       // Pangea#
 
