@@ -13,6 +13,7 @@ import 'package:fluffychat/pages/chat/events/room_creation_state_event.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_creation_state_event.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_room_extension.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_state_event.dart';
+import 'package:fluffychat/pangea/chat/extensions/custom_room_display_extension.dart';
 import 'package:fluffychat/pangea/common/widgets/pressable_button.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
@@ -476,7 +477,15 @@ class Message extends StatelessWidget {
                                                               .senderFromMemoryOrFallback
                                                               .calcDisplayname();
                                                       return Text(
-                                                        displayname,
+                                                        // #Pangea
+                                                        // displayname,
+                                                        controller.room
+                                                            .senderDisplayName(
+                                                          snapshot.data ??
+                                                              event
+                                                                  .senderFromMemoryOrFallback,
+                                                        ),
+                                                        // Pangea#
                                                         style: TextStyle(
                                                           fontSize: 11,
                                                           fontWeight:
