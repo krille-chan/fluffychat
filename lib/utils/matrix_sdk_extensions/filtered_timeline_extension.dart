@@ -1,12 +1,18 @@
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/pangea/activity_sessions/activity_room_extension.dart';
 import 'package:fluffychat/pangea/common/constants/model_keys.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import '../../config/app_config.dart';
 
 extension VisibleInGuiExtension on List<Event> {
   List<Event> filterByVisibleInGui({String? exceptionEventId}) => where(
-        (event) => event.isVisibleInGui || event.eventId == exceptionEventId,
+        // #Pangea
+        // (event) => event.isVisibleInGui || event.eventId == exceptionEventId,
+        (event) =>
+            (event.isVisibleInGui || event.eventId == exceptionEventId) &&
+            event.isVisibleInPangeaGui,
+        // Pangea#
       ).toList();
 }
 
@@ -55,6 +61,14 @@ extension IsStateExtension on Event {
       }.contains(type);
 
   // #Pangea
+  bool get isVisibleInPangeaGui {
+    if (!room.showActivityChatUI) {
+      return true;
+    }
+
+    return type != EventTypes.RoomMember;
+  }
+
   bool get pangeaIsEventTypeKnown =>
       isEventTypeKnown ||
       [
