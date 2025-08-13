@@ -252,12 +252,25 @@ extension ActivityRoomExtension on Room {
     }
   }
 
+  Map<String, ActivityRoleModel>? get assignedRoles {
+    final roles = activityRoles?.roles;
+    if (roles == null) return null;
+
+    final participants = getParticipants();
+    return Map.fromEntries(
+      roles.entries.where(
+        (r) => participants.any(
+          (p) => p.id == r.value.userId && p.membership == Membership.join,
+        ),
+      ),
+    );
+  }
+
   ActivityRoleModel? get ownRole => activityRoles?.role(client.userID!);
 
   int get remainingRoles {
     final availableRoles = activityPlan!.roles;
-    final assignedRoles = activityRoles?.roles ?? {};
-    return max(0, availableRoles.length - assignedRoles.length);
+    return max(0, availableRoles.length - (assignedRoles?.length ?? 0));
   }
 
   bool get showActivityChatUI {
@@ -286,6 +299,8 @@ extension ActivityRoomExtension on Room {
     );
 
     if (roles == null || roles.isEmpty) return false;
+    if (!roles.any((r) => r.isFinished)) return false;
+
     return roles.every((r) {
       if (r.isFinished) return true;
 

@@ -23,7 +23,7 @@ class ActivityStateEvent extends StatelessWidget {
     try {
       final activity = ActivityPlanModel.fromJson(event.content);
       final availableRoles = event.room.activityPlan!.roles;
-      final assignedRoles = event.room.activityRoles?.roles ?? {};
+      final assignedRoles = event.room.assignedRoles ?? {};
 
       final remainingMembers = event.room.getParticipants().where(
             (p) => !assignedRoles.values.any((r) => r.userId == p.id),

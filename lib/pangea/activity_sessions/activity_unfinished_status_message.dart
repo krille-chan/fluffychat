@@ -36,7 +36,7 @@ class ActivityUnfinishedStatusMessageState
     final completed = widget.room.hasCompletedActivity;
 
     final availableRoles = widget.room.activityPlan!.roles;
-    final assignedRoles = widget.room.activityRoles?.roles ?? {};
+    final assignedRoles = widget.room.assignedRoles ?? {};
     final remainingRoles = availableRoles.length - assignedRoles.length;
 
     final unassignedIds = availableRoles.keys
