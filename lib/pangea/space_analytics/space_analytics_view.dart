@@ -39,120 +39,128 @@ class SpaceAnalyticsView extends StatelessWidget {
           child: Column(
             spacing: isColumnMode ? 24.0 : 12.0,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    spacing: isColumnMode ? 12.0 : 4.0,
+              LayoutBuilder(
+                builder: (context, constraints) {
+                  final mini = constraints.maxWidth <= 550;
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      _MenuButton(
-                        text: L10n.of(context).requestAll,
-                        icon: Symbols.approval_delegation,
-                        onPressed: controller.requestAllAnalytics,
+                      Row(
+                        spacing: !mini ? 12.0 : 4.0,
+                        children: [
+                          _MenuButton(
+                            text: L10n.of(context).requestAll,
+                            icon: Symbols.approval_delegation,
+                            onPressed: controller.requestAllAnalytics,
+                            mini: mini,
+                          ),
+                          if (controller.room != null &&
+                              controller.availableAnalyticsRooms.isNotEmpty)
+                            _MenuButton(
+                              text: L10n.of(context).download,
+                              icon: Icons.download,
+                              onPressed: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) => DownloadAnalyticsDialog(
+                                    space: controller.room!,
+                                    analyticsRooms:
+                                        controller.availableAnalyticsRooms,
+                                  ),
+                                );
+                              },
+                              mini: mini,
+                            ),
+                        ],
                       ),
-                      if (controller.room != null &&
-                          controller.availableAnalyticsRooms.isNotEmpty)
-                        _MenuButton(
-                          text: L10n.of(context).download,
-                          icon: Icons.download,
-                          onPressed: () {
-                            showDialog(
-                              context: context,
-                              builder: (context) => DownloadAnalyticsDialog(
-                                space: controller.room!,
-                                analyticsRooms:
-                                    controller.availableAnalyticsRooms,
+                      Row(
+                        spacing: !mini ? 12.0 : 4.0,
+                        children: [
+                          if (controller.lastUpdatedString != null)
+                            Text(
+                              L10n.of(context).lastUpdated(
+                                controller.lastUpdatedString!,
                               ),
-                            );
-                          },
-                          mini: !isColumnMode,
-                        ),
-                    ],
-                  ),
-                  Row(
-                    spacing: isColumnMode ? 12.0 : 4.0,
-                    children: [
-                      if (controller.lastUpdatedString != null)
-                        Text(
-                          L10n.of(context).lastUpdated(
-                            controller.lastUpdatedString!,
-                          ),
-                          textAlign: TextAlign.end,
-                          style: TextStyle(
-                            fontSize: isColumnMode ? 12.0 : 8.0,
-                            color: theme.disabledColor,
-                          ),
-                        ),
-                      _MenuButton(
-                        text: L10n.of(context).refresh,
-                        icon: Symbols.refresh,
-                        onPressed: controller.refresh,
-                        mini: !isColumnMode,
-                      ),
-                      DropdownButtonHideUnderline(
-                        child: DropdownButton2<LanguageModel>(
-                          customButton: Container(
-                            height: isColumnMode ? 36.0 : 26.0,
-                            decoration: BoxDecoration(
-                              color: theme.colorScheme.primaryContainer,
-                              borderRadius: BorderRadius.circular(40),
+                              textAlign: TextAlign.end,
+                              style: TextStyle(
+                                fontSize: !mini ? 12.0 : 8.0,
+                                color: theme.disabledColor,
+                              ),
                             ),
-                            padding: EdgeInsets.symmetric(
-                              horizontal: isColumnMode ? 8.0 : 4.0,
-                              vertical: 4.0,
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                if (controller.selectedLanguage != null)
-                                  Text(
-                                    controller.selectedLanguage!
-                                            .getDisplayName(context) ??
-                                        controller
-                                            .selectedLanguage!.displayName,
-                                    style: TextStyle(
+                          _MenuButton(
+                            text: L10n.of(context).refresh,
+                            icon: Symbols.refresh,
+                            onPressed: controller.refresh,
+                            mini: mini,
+                          ),
+                          DropdownButtonHideUnderline(
+                            child: DropdownButton2<LanguageModel>(
+                              customButton: Container(
+                                height: !mini ? 36.0 : 26.0,
+                                decoration: BoxDecoration(
+                                  color: theme.colorScheme.primaryContainer,
+                                  borderRadius: BorderRadius.circular(40),
+                                ),
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: !mini ? 8.0 : 4.0,
+                                  vertical: 4.0,
+                                ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    if (controller.selectedLanguage != null)
+                                      Text(
+                                        controller.selectedLanguage!
+                                                .getDisplayName(context) ??
+                                            controller
+                                                .selectedLanguage!.displayName,
+                                        style: TextStyle(
+                                          color: theme
+                                              .colorScheme.onPrimaryContainer,
+                                          fontSize: !mini ? 16.0 : 12.0,
+                                        ),
+                                      ),
+                                    Icon(
+                                      Icons.arrow_drop_down,
                                       color:
                                           theme.colorScheme.onPrimaryContainer,
-                                      fontSize: isColumnMode ? 16.0 : 12.0,
+                                      size: !mini ? 24.0 : 14.0,
                                     ),
-                                  ),
-                                Icon(
-                                  Icons.arrow_drop_down,
-                                  color: theme.colorScheme.onPrimaryContainer,
-                                  size: isColumnMode ? 24.0 : 14.0,
+                                  ],
                                 ),
-                              ],
+                              ),
+                              value: controller.selectedLanguage,
+                              items: controller.availableLanguages
+                                  .map(
+                                    (item) => DropdownMenuItem(
+                                      value: item,
+                                      child: DropdownTextButton(
+                                        text: item.getDisplayName(context) ??
+                                            item.displayName,
+                                        isSelected: false,
+                                      ),
+                                    ),
+                                  )
+                                  .toList(),
+                              onChanged: controller.setSelectedLanguage,
+                              buttonStyleData: ButtonStyleData(
+                                // This is necessary for the ink response to match our customButton radius.
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(40),
+                                ),
+                              ),
+                              dropdownStyleData: const DropdownStyleData(
+                                offset: Offset(-50, 0),
+                                width: 150,
+                              ),
                             ),
                           ),
-                          value: controller.selectedLanguage,
-                          items: controller.availableLanguages
-                              .map(
-                                (item) => DropdownMenuItem(
-                                  value: item,
-                                  child: DropdownTextButton(
-                                    text: item.getDisplayName(context) ??
-                                        item.displayName,
-                                    isSelected: false,
-                                  ),
-                                ),
-                              )
-                              .toList(),
-                          onChanged: controller.setSelectedLanguage,
-                          buttonStyleData: ButtonStyleData(
-                            // This is necessary for the ink response to match our customButton radius.
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(40),
-                            ),
-                          ),
-                          dropdownStyleData: const DropdownStyleData(
-                            offset: Offset(-50, 0),
-                            width: 150,
-                          ),
-                        ),
+                        ],
                       ),
                     ],
-                  ),
-                ],
+                  );
+                },
               ),
               controller.initialized
                   ? Table(
@@ -306,9 +314,8 @@ class _MenuButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final isColumnMode = FluffyThemes.isColumnMode(context);
 
-    final height = isColumnMode ? 36.0 : 26.0;
+    final height = !mini ? 36.0 : 26.0;
 
     return InkWell(
       borderRadius: BorderRadius.circular(40),
@@ -321,14 +328,14 @@ class _MenuButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(40),
         ),
         padding: EdgeInsets.symmetric(
-          horizontal: isColumnMode ? 8.0 : 4.0,
+          horizontal: !mini ? 8.0 : 4.0,
           vertical: 4.0,
         ),
         child: mini
             ? Icon(
                 icon,
                 color: theme.colorScheme.onPrimaryContainer,
-                size: isColumnMode ? 24.0 : 14.0,
+                size: !mini ? 24.0 : 14.0,
               )
             : Row(
                 spacing: 4.0,
@@ -336,13 +343,13 @@ class _MenuButton extends StatelessWidget {
                   Icon(
                     icon,
                     color: theme.colorScheme.onPrimaryContainer,
-                    size: isColumnMode ? 24.0 : 14.0,
+                    size: !mini ? 24.0 : 14.0,
                   ),
                   Text(
                     text,
                     style: TextStyle(
                       color: theme.colorScheme.onPrimaryContainer,
-                      fontSize: isColumnMode ? 16.0 : 12.0,
+                      fontSize: !mini ? 16.0 : 12.0,
                     ),
                   ),
                 ],
