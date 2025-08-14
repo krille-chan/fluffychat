@@ -9,7 +9,7 @@ environment:
 
 dependencies:
   animations: ^2.0.11
-  app_links: ^6.3.3
+  app_links: ^6.4.1
   archive: ^4.0.7
   async: ^2.11.0
   badges: ^3.1.2
