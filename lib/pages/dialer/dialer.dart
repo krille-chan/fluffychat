@@ -238,18 +238,18 @@ class MyCallingPage extends State<Calling> {
 
   void _resizeLocalVideo(Orientation orientation) {
     final shortSide = min(
-      MediaQuery.of(widget.context).size.width,
-      MediaQuery.of(widget.context).size.height,
+      MediaQuery.sizeOf(widget.context).width,
+      MediaQuery.sizeOf(widget.context).height,
     );
     _localVideoMargin = remoteStream != null
         ? const EdgeInsets.only(top: 20.0, right: 20.0)
         : EdgeInsets.zero;
     _localVideoWidth = remoteStream != null
         ? shortSide / 3
-        : MediaQuery.of(widget.context).size.width;
+        : MediaQuery.sizeOf(widget.context).width;
     _localVideoHeight = remoteStream != null
         ? shortSide / 4
-        : MediaQuery.of(widget.context).size.height;
+        : MediaQuery.sizeOf(widget.context).height;
   }
 
   void _handleCallState(CallState state) {
@@ -299,7 +299,9 @@ class MyCallingPage extends State<Calling> {
                 L10n.of(widget.context).foregroundServiceRunning,
           ),
           iosNotificationOptions: const IOSNotificationOptions(),
-          foregroundTaskOptions: const ForegroundTaskOptions(),
+          foregroundTaskOptions: ForegroundTaskOptions(
+            eventAction: ForegroundTaskEventAction.nothing(),
+          ),
         );
         FlutterForegroundTask.startService(
           notificationTitle: L10n.of(widget.context).screenSharingTitle,

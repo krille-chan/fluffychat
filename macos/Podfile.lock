@@ -178,7 +178,7 @@ SPEC CHECKSUMS:
   desktop_drop: e0b672a7d84c0a6cbc378595e82cdb15f2970a43
   device_info_plus: a56e6e74dbbd2bb92f2da12c64ddd4f67a749041
   dynamic_color: b820c000cc68df65e7ba7ff177cb98404ce56651
-  emoji_picker_flutter: b9d4f4d08bdf3168fa3827f1290d435083745a14
+  emoji_picker_flutter: 51ca408e289d84d1e460016b2a28721ec754fcf7
   file_picker: 7584aae6fa07a041af2b36a2655122d42f578c1a
   file_selector_macos: 6280b52b459ae6c590af5d78fc35c7267a3c4b31
   flutter_local_notifications: 7e5a17a1dbc00d83dc10d43c2c4c05f2ceed233c

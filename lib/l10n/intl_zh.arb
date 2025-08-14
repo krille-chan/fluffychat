@@ -2592,9 +2592,9 @@
       }
     }
   },
-  "inviteGroupChat": "📨 邀请至群聊",
+  "inviteGroupChat": "📨 群聊邀请",
   "@inviteGroupChat": {},
-  "invitePrivateChat": "📨 邀请至私聊",
+  "invitePrivateChat": "📨 私聊邀请",
   "@invitePrivateChat": {},
   "emoteKeyboardNoRecents": "最近使用过的表情会出现在这里...",
   "@emoteKeyboardNoRecents": {
@@ -3379,5 +3379,11 @@
   "commandHint_logoutall": "注销所有活动设备",
   "@commandHint_logoutall": {},
   "displayNavigationRail": "在移动设备上显示导航栏",
-  "@displayNavigationRail": {}
+  "@displayNavigationRail": {},
+  "customReaction": "自定义回应",
+  "@customReaction": {},
+  "moreEvents": "更多事件",
+  "@moreEvents": {},
+  "declineInvitation": "拒绝邀请",
+  "@declineInvitation": {}
 }

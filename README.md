@@ -14,7 +14,8 @@
 
 ### Screenshots:
 
-![Screenshot](https://github.com/krille-chan/fluffychat/blob/main/docs/screenshots/product.jpeg?raw=true)
+<img src="https://github.com/krille-chan/fluffychat/blob/main/docs/screenshots/mobile.png?raw=true" height="300">
+<img src="https://github.com/krille-chan/fluffychat/blob/main/docs/screenshots/desktop.png?raw=true" height="300">
 
 # Features
 

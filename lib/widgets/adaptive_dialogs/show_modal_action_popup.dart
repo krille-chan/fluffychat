@@ -23,7 +23,7 @@ Future<T?> showModalActionPopup<T>({
         clipBehavior: Clip.hardEdge,
         constraints: BoxConstraints(
           maxWidth: 512,
-          maxHeight: MediaQuery.of(context).size.height - 32,
+          maxHeight: MediaQuery.sizeOf(context).height - 32,
         ),
         builder: (context) => ListView(
           shrinkWrap: true,

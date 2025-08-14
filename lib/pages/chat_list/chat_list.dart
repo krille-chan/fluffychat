@@ -15,12 +15,12 @@ import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_view.dart';
+import 'package:fluffychat/utils/error_reporter.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/utils/show_scaffold_dialog.dart';
 import 'package:fluffychat/utils/show_update_snackbar.dart';
-import 'package:fluffychat/widgets/adaptive_dialogs/adaptive_dialog_action.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_modal_action_popup.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_text_input_dialog.dart';
@@ -114,82 +114,6 @@ class ChatListController extends State<ChatList>
 
   void onChatTap(Room room) async {
     if (room.membership == Membership.invite) {
-      final theme = Theme.of(context);
-      final inviteEvent = room.getState(
-        EventTypes.RoomMember,
-        room.client.userID!,
-      );
-      final matrixLocals = MatrixLocals(L10n.of(context));
-      final action = await showAdaptiveDialog<InviteAction>(
-        context: context,
-        builder: (context) => AlertDialog.adaptive(
-          title: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 256),
-            child: Center(
-              child: Text(
-                room.getLocalizedDisplayname(matrixLocals),
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ),
-          content: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 256, maxHeight: 256),
-            child: Text(
-              inviteEvent == null
-                  ? L10n.of(context).inviteForMe
-                  : inviteEvent.content.tryGet<String>('reason') ??
-                      L10n.of(context).youInvitedBy(
-                        room
-                            .unsafeGetUserFromMemoryOrFallback(
-                              inviteEvent.senderId,
-                            )
-                            .calcDisplayname(i18n: matrixLocals),
-                      ),
-              textAlign: TextAlign.center,
-            ),
-          ),
-          actions: [
-            AdaptiveDialogAction(
-              onPressed: () => Navigator.of(context).pop(InviteAction.accept),
-              bigButtons: true,
-              child: Text(L10n.of(context).accept),
-            ),
-            AdaptiveDialogAction(
-              onPressed: () => Navigator.of(context).pop(InviteAction.decline),
-              bigButtons: true,
-              child: Text(
-                L10n.of(context).decline,
-                style: TextStyle(color: theme.colorScheme.error),
-              ),
-            ),
-            AdaptiveDialogAction(
-              onPressed: () => Navigator.of(context).pop(InviteAction.block),
-              bigButtons: true,
-              child: Text(
-                L10n.of(context).block,
-                style: TextStyle(color: theme.colorScheme.error),
-              ),
-            ),
-          ],
-        ),
-      );
-      switch (action) {
-        case null:
-          return;
-        case InviteAction.accept:
-          break;
-        case InviteAction.decline:
-          await showFutureLoadingDialog(
-            context: context,
-            future: () => room.leave(),
-          );
-          return;
-        case InviteAction.block:
-          final userId = inviteEvent?.senderId;
-          context.go('/rooms/settings/security/ignorelist', extra: userId);
-          return;
-      }
-      if (!mounted) return;
       final joinResult = await showFutureLoadingDialog(
         context: context,
         future: () async {
@@ -497,6 +421,8 @@ class ChatListController extends State<ChatList>
 
     _checkTorBrowser();
 
+    ErrorReporter(context).consumeTemporaryErrorLogFile();
+
     super.initState();
   }
 
@@ -680,6 +606,26 @@ class ChatListController extends State<ChatList>
             ],
           ),
         ),
+        if (room.membership == Membership.invite)
+          PopupMenuItem(
+            value: ChatContextAction.block,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  Icons.block_outlined,
+                  color: Theme.of(context).colorScheme.onErrorContainer,
+                ),
+                const SizedBox(width: 12),
+                Text(
+                  L10n.of(context).block,
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onErrorContainer,
+                  ),
+                ),
+              ],
+            ),
+          ),
       ],
     );
 
@@ -715,6 +661,15 @@ class ChatListController extends State<ChatList>
           ),
         );
         return;
+      case ChatContextAction.block:
+        final inviteEvent = room.getState(
+          EventTypes.RoomMember,
+          room.client.userID!,
+        );
+        context.go(
+          '/rooms/settings/security/ignorelist',
+          extra: inviteEvent?.senderId,
+        );
       case ChatContextAction.leave:
         final confirmed = await showOkCancelAlertDialog(
           context: context,
@@ -981,6 +936,5 @@ enum ChatContextAction {
   mute,
   leave,
   addToSpace,
+  block,
 }
-
-enum InviteAction { accept, decline, block }

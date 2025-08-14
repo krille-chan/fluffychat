@@ -54,7 +54,7 @@ Future<T?> showAdaptiveBottomSheet<T>({
     isDismissible: isDismissible,
     isScrollControlled: isScrollControlled,
     constraints: BoxConstraints(
-      maxHeight: min(MediaQuery.of(context).size.height - 32, 600),
+      maxHeight: min(MediaQuery.sizeOf(context).height - 32, 600),
       maxWidth: FluffyThemes.columnWidth * 1.25,
     ),
     backgroundColor: Colors.transparent,

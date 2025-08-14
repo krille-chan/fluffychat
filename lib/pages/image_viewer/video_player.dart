@@ -127,7 +127,7 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
     final infoMap = widget.event.content.tryGetMap<String, Object?>('info');
     final videoWidth = infoMap?.tryGet<int>('w') ?? 400;
     final videoHeight = infoMap?.tryGet<int>('h') ?? 300;
-    final height = MediaQuery.of(context).size.height - 52;
+    final height = MediaQuery.sizeOf(context).height - 52;
     final width = videoWidth * (height / videoHeight);
 
     final chewieController = _chewieController;

@@ -461,8 +461,11 @@ class Message extends StatelessWidget {
                                                 clipBehavior: Clip.antiAlias,
                                                 child: BubbleBackground(
                                                   colors: colors,
-                                                  ignore:
-                                                      noBubble || !ownMessage,
+                                                  ignore: noBubble ||
+                                                      !ownMessage ||
+                                                      MediaQuery.highContrastOf(
+                                                        context,
+                                                      ),
                                                   scrollController:
                                                       scrollController,
                                                   child: Container(

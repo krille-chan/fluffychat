@@ -138,10 +138,9 @@ class PIPViewState extends State<PIPView> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    final mediaQuery = MediaQuery.of(context);
-    var windowPadding = mediaQuery.padding;
+    var windowPadding = MediaQuery.paddingOf(context);
     if (widget.avoidKeyboard) {
-      windowPadding += mediaQuery.viewInsets;
+      windowPadding += MediaQuery.viewInsetsOf(context);
     }
     final isFloating = _floating;
 

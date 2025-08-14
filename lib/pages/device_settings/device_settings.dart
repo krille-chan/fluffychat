@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:collection/collection.dart' show IterableExtension;
 import 'package:matrix/encryption/utils/key_verification.dart';
 import 'package:matrix/matrix.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/device_settings/device_settings_view.dart';
@@ -52,6 +53,18 @@ class DevicesSettingsController extends State<DevicesSettings> {
   }
 
   void removeDevicesAction(List<Device> devices) async {
+    final client = Matrix.of(context).client;
+
+    final accountManageUrl = client.wellKnown?.additionalProperties
+        .tryGetMap<String, Object?>('org.matrix.msc2965.authentication')
+        ?.tryGet<String>('account');
+    if (accountManageUrl != null) {
+      launchUrlString(
+        accountManageUrl,
+        mode: LaunchMode.inAppBrowserView,
+      );
+      return;
+    }
     if (await showOkCancelAlertDialog(
           context: context,
           title: L10n.of(context).areYouSure,
