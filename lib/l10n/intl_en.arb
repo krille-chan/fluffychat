@@ -5192,7 +5192,7 @@
       }
     }
   },
-  "noDataFound": "No data found",
+  "noDataFound": "Not found",
   "activityFinishedMessage": "All Finished!",
   "endForAll": "End for all"
 }
