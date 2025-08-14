@@ -4,7 +4,7 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/pangea/activity_sessions/activity_participant_indicator.dart';
+import 'package:fluffychat/pangea/activity_sessions/activity_participant_list.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_room_extension.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 
@@ -47,18 +47,11 @@ class ActivityUnfinishedStatusMessageState
       children: [
         if (!completed) ...[
           if (unassignedIds.isNotEmpty)
-            Wrap(
-              alignment: WrapAlignment.center,
-              spacing: 12.0,
-              runSpacing: 12.0,
-              children: unassignedIds.map((id) {
-                return ActivityParticipantIndicator(
-                  availableRole: availableRoles[id]!,
-                  selected: _selectedRoleId == id,
-                  onTap: () => _selectRole(id),
-                  avatarUrl: availableRoles[id]?.avatarUrl,
-                );
-              }).toList(),
+            ActivityParticipantList(
+              room: widget.room,
+              onTap: _selectRole,
+              isSelected: (id) => _selectedRoleId == id,
+              canSelect: (id) => unassignedIds.contains(id),
             ),
           const SizedBox(height: 16.0),
           Text(

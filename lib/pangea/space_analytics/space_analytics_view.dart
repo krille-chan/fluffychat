@@ -173,22 +173,27 @@ class SpaceAnalyticsView extends StatelessWidget {
                                     controller.downloads.length,
                                   ),
                                   icon: Icons.group_outlined,
+                                  mini: mini,
                                 ),
                                 _TableHeaderCell(
                                   text: L10n.of(context).level,
                                   icon: Icons.star,
+                                  mini: mini,
                                 ),
                                 _TableHeaderCell(
                                   text: L10n.of(context).vocab,
                                   icon: Symbols.dictionary,
+                                  mini: mini,
                                 ),
                                 _TableHeaderCell(
                                   text: L10n.of(context).grammar,
                                   icon: Symbols.toys_and_games,
+                                  mini: mini,
                                 ),
                                 _TableHeaderCell(
                                   text: L10n.of(context).activities,
                                   icon: Icons.radar,
+                                  mini: mini,
                                 ),
                               ],
                             ),
@@ -263,18 +268,21 @@ class SpaceAnalyticsView extends StatelessWidget {
                                       text: download.summary?.level?.toString(),
                                       downloadStatus: download.downloadStatus,
                                       requestStatus: download.requestStatus,
+                                      mini: mini,
                                     ),
                                     _TableContentCell(
                                       text: download.summary?.numLemmas
                                           .toString(),
                                       downloadStatus: download.downloadStatus,
                                       requestStatus: download.requestStatus,
+                                      mini: mini,
                                     ),
                                     _TableContentCell(
                                       text: download.summary?.numMorphConstructs
                                           .toString(),
                                       downloadStatus: download.downloadStatus,
                                       requestStatus: download.requestStatus,
+                                      mini: mini,
                                     ),
                                     _TableContentCell(
                                       text: download
@@ -282,6 +290,7 @@ class SpaceAnalyticsView extends StatelessWidget {
                                           .toString(),
                                       downloadStatus: download.downloadStatus,
                                       requestStatus: download.requestStatus,
+                                      mini: mini,
                                     ),
                                   ],
                                 );
