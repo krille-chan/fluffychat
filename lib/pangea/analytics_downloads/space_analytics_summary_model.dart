@@ -172,7 +172,7 @@ class SpaceAnalyticsSummaryModel {
       dataAvailable: model != null,
       level: model?.level,
       totalXP: model?.totalXP,
-      numLemmas: model?.vocabLemmas,
+      numLemmas: model?.numConstructs(ConstructTypeEnum.vocab),
       numLemmasUsedCorrectly: vocabLemmasCorrect?.over.length,
       numLemmasUsedIncorrectly: vocabLemmasCorrect?.under.length,
       numLemmasSmallXP:
@@ -180,7 +180,7 @@ class SpaceAnalyticsSummaryModel {
       numLemmasMediumXP:
           vocabLemmas?.thresholdedLemmas(start: 31, end: 200).length,
       numLemmasLargeXP: vocabLemmas?.thresholdedLemmas(start: 201).length,
-      numMorphConstructs: model?.grammarLemmas,
+      numMorphConstructs: model?.numConstructs(ConstructTypeEnum.morph),
       listMorphConstructs: morphLemmas?.lemmasToUses.entries
           .map((entry) => getCopy(entry.value.first))
           .toList(),

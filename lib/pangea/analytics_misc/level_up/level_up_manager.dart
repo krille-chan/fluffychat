@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pangea/analytics_misc/client_analytics_extension.dart';
+import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/constructs/construct_repo.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
@@ -36,10 +37,10 @@ class LevelUpManager {
     //For on route change behavior, if added in the future
     shouldAutoPopup = true;
 
-    nextGrammar = MatrixState
-        .pangeaController.getAnalytics.constructListModel.grammarLemmas;
-    nextVocab = MatrixState
-        .pangeaController.getAnalytics.constructListModel.vocabLemmas;
+    nextGrammar = MatrixState.pangeaController.getAnalytics.constructListModel
+        .numConstructs(ConstructTypeEnum.morph);
+    nextVocab = MatrixState.pangeaController.getAnalytics.constructListModel
+        .numConstructs(ConstructTypeEnum.vocab);
 
     final LanguageModel? l2 =
         MatrixState.pangeaController.languageController.userL2;

@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
 
-import 'package:fluffychat/pangea/analytics_misc/analytics_constants.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_use_model.dart';
 import 'package:fluffychat/pangea/analytics_misc/constructs_model.dart';
@@ -28,38 +27,10 @@ class ConstructListModel {
   /// be accessed. It contains the same information as _constructMap, but sorted.
   List<ConstructUses> _constructList = [];
 
-  /// A list of unique vocab lemmas
-  List<String> _vocabLemmasList = [];
-
-  /// A list of unique grammar lemmas
-  List<String> _grammarLemmasList = [];
-
   /// [D] is the "compression factor". It determines how quickly
   /// or slowly the level grows relative to XP
 
   final double D = Environment.isStagingEnvironment ? 500 : 1500;
-
-  List<ConstructIdentifier> unlockedLemmas(
-    ConstructTypeEnum type, {
-    int threshold = 0,
-  }) {
-    final constructs = constructList(type: type);
-    final List<ConstructIdentifier> unlocked = [];
-    final constructsList =
-        type == ConstructTypeEnum.vocab ? _vocabLemmasList : _grammarLemmasList;
-
-    for (final lemma in constructsList) {
-      final matches = constructs.where((m) => m.lemma == lemma);
-      final totalPoints = matches.fold<int>(
-        0,
-        (total, match) => total + match.points,
-      );
-      if (totalPoints > threshold) {
-        unlocked.add(matches.first.id);
-      }
-    }
-    return unlocked;
-  }
 
   /// Analytics data consumed by widgets. Updated each time new analytics come in.
   int prevXP = 0;
@@ -72,11 +43,6 @@ class ConstructListModel {
   }) {
     updateConstructs(uses, offset);
   }
-
-  int get totalLemmas => _vocabLemmasList.length + _grammarLemmasList.length;
-  int get vocabLemmas => _vocabLemmasList.length;
-  int get grammarLemmas => _grammarLemmasList.length;
-  List<String> get lemmasList => _vocabLemmasList + _grammarLemmasList;
 
   /// Given a list of new construct uses, update the map of construct
   /// IDs to ConstructUses and re-sort the list of ConstructUses
@@ -156,16 +122,6 @@ class ConstructListModel {
   }
 
   void _updateMetrics(int offset) {
-    _vocabLemmasList = constructList(type: ConstructTypeEnum.vocab)
-        .map((e) => e.lemma)
-        .toSet()
-        .toList();
-
-    _grammarLemmasList = constructList(type: ConstructTypeEnum.morph)
-        .map((e) => e.lemma)
-        .toSet()
-        .toList();
-
     prevXP = totalXP;
     totalXP = (_constructList.fold<int>(
           0,
@@ -178,6 +134,45 @@ class ConstructListModel {
     }
     level = calculateLevelWithXp(totalXP);
   }
+
+  List<ConstructUses> constructList({ConstructTypeEnum? type}) => _constructList
+      .where(
+        (constructUse) => type == null || constructUse.constructType == type,
+      )
+      .toList();
+
+  // TODO; make this non-nullable, returning empty if not found
+  ConstructUses? getConstructUses(ConstructIdentifier identifier) {
+    final partialKey = "${identifier.lemma}-${identifier.type.string}";
+
+    if (_constructMap.containsKey(identifier.string)) {
+      // try to get construct use entry with full ID key
+      return _constructMap[identifier.string];
+    } else if (identifier.category == "other") {
+      // if the category passed to this function is "other", return the first
+      // construct use entry that starts with the partial key
+      return _constructMap.entries
+          .firstWhereOrNull((entry) => entry.key.startsWith(partialKey))
+          ?.value;
+    } else {
+      // if the category passed to this function is not "other", return the first
+      // construct use entry that starts with the partial key and ends with "other"
+      return _constructMap.entries
+          .firstWhereOrNull(
+            (entry) =>
+                entry.key.startsWith(partialKey) && entry.key.endsWith("other"),
+          )
+          ?.value;
+    }
+  }
+
+  List<ConstructUses> getConstructUsesByLemma(String lemma) => _constructList
+      .where(
+        (constructUse) => constructUse.lemma == lemma,
+      )
+      .toList();
+
+  int numConstructs(ConstructTypeEnum type) => constructList(type: type).length;
 
   int calculateLevelWithXp(int totalXP) {
     final doubleScore = (1 + sqrt((1 + (8.0 * totalXP / D)) / 2.0));
@@ -214,63 +209,30 @@ class ConstructListModel {
     return (xp < 0) ? 0 : xp;
   }
 
-  // TODO; make this non-nullable, returning empty if not found
-  ConstructUses? getConstructUses(ConstructIdentifier identifier) {
-    final partialKey = "${identifier.lemma}-${identifier.type.string}";
+  /// Unique construct identifiers with XP >= [threshold]
+  /// Used on analytics update to determine newly 'unlocked' constructs
+  List<ConstructIdentifier> unlockedLemmas(
+    ConstructTypeEnum type, {
+    int threshold = 0,
+  }) {
+    final constructs = constructList(type: type);
+    final List<ConstructIdentifier> unlocked = [];
+    final constructsList = [];
+    // type == ConstructTypeEnum.vocab ? _vocabLemmasList : _grammarLemmasList;
 
-    if (_constructMap.containsKey(identifier.string)) {
-      // try to get construct use entry with full ID key
-      return _constructMap[identifier.string];
-    } else if (identifier.category == "other") {
-      // if the category passed to this function is "other", return the first
-      // construct use entry that starts with the partial key
-      return _constructMap.entries
-          .firstWhereOrNull((entry) => entry.key.startsWith(partialKey))
-          ?.value;
-    } else {
-      // if the category passed to this function is not "other", return the first
-      // construct use entry that starts with the partial key and ends with "other"
-      return _constructMap.entries
-          .firstWhereOrNull(
-            (entry) =>
-                entry.key.startsWith(partialKey) && entry.key.endsWith("other"),
-          )
-          ?.value;
+    for (final lemma in constructsList) {
+      final matches = constructs.where((m) => m.lemma == lemma);
+      final totalPoints = matches.fold<int>(
+        0,
+        (total, match) => total + match.points,
+      );
+      if (totalPoints > threshold) {
+        unlocked.add(matches.first.id);
+      }
     }
+    return unlocked;
   }
 
-  List<ConstructUses> getConstructUsesByLemma(String lemma) {
-    return _constructList.where((constructUse) {
-      return constructUse.lemma == lemma;
-    }).toList();
-  }
-
-  List<ConstructUses> constructList({ConstructTypeEnum? type}) => _constructList
-      .where(
-        (constructUse) => type == null || constructUse.constructType == type,
-      )
-      .toList();
-
-  // uses where points < AnalyticConstants.xpForGreens
-  List<ConstructUses> get seeds => _constructList
-      .where(
-        (use) => use.points < AnalyticsConstants.xpForGreens,
-      )
-      .toList();
-
-  List<ConstructUses> get greens => _constructList
-      .where(
-        (use) =>
-            use.points >= AnalyticsConstants.xpForGreens &&
-            use.points < AnalyticsConstants.xpForFlower,
-      )
-      .toList();
-
-  List<ConstructUses> get flowers => _constructList
-      .where(
-        (use) => use.points >= AnalyticsConstants.xpForFlower,
-      )
-      .toList();
   // Not storing this for now to reduce memory load
   // It's only used by downloads, so doesn't need to be accessible on the fly
   Map<String, List<ConstructUses>> lemmasToUses({
