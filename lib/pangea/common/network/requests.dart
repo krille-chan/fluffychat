@@ -78,6 +78,26 @@ class Requests {
   Uri _uriBuilder(url) =>
       baseUrl != null ? Uri.parse(baseUrl! + url) : Uri.parse(url);
 
+  void addBreadcrumb(
+    http.Response response, {
+    Map<dynamic, dynamic>? body,
+    String? objectId,
+  }) {
+    debugPrint("Error - code: ${response.statusCode}");
+    debugPrint("api: ${response.request?.url}");
+    debugPrint("request body: ${body ?? objectId}");
+    Sentry.addBreadcrumb(
+      Breadcrumb.http(
+        url: response.request?.url ?? Uri(path: "not available"),
+        method: response.request?.method ?? "not available",
+        statusCode: response.statusCode,
+      ),
+    );
+    Sentry.addBreadcrumb(
+      Breadcrumb(data: {"body": body, "objectId": objectId}),
+    );
+  }
+
   void handleError(
     http.Response response, {
     Map<dynamic, dynamic>? body,
@@ -86,33 +106,9 @@ class Requests {
     //PTODO - handle 401 error - unauthorized call
     //kick them back to login?
 
-    addBreadcrumb() {
-      debugPrint("Error - code: ${response.statusCode}");
-      debugPrint("api: ${response.request?.url}");
-      debugPrint("request body: ${body ?? objectId}");
-      Sentry.addBreadcrumb(
-        Breadcrumb.http(
-          url: response.request?.url ?? Uri(path: "not available"),
-          method: response.request?.method ?? "not available",
-          statusCode: response.statusCode,
-        ),
-      );
-      Sentry.addBreadcrumb(
-        Breadcrumb(data: {"body": body, "objectId": objectId}),
-      );
-    }
-
-    switch (response.statusCode) {
-      case 200:
-      case 201:
-        break;
-      case 502:
-      case 504:
-        addBreadcrumb();
-        throw response;
-      default:
-        addBreadcrumb();
-        throw response;
+    if (response.statusCode >= 400) {
+      addBreadcrumb(response, body: body, objectId: objectId);
+      throw response;
     }
   }
 
