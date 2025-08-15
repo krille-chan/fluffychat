@@ -33,7 +33,7 @@ enum RequestStatus {
     }
   }
 
-  IconData get icon {
+  IconData? get icon {
     switch (this) {
       case RequestStatus.available:
         return Icons.check_circle;
@@ -42,7 +42,7 @@ enum RequestStatus {
       case RequestStatus.requested:
         return Icons.mark_email_read_outlined;
       case RequestStatus.unavailable:
-        return Symbols.approval_delegation;
+        return null;
     }
   }
 
@@ -76,7 +76,7 @@ enum RequestStatus {
 
   bool get enabled => this == RequestStatus.unrequested;
 
-  double get opacity => this == RequestStatus.unavailable ? 0.5 : 1.0;
+  double get opacity => this == RequestStatus.unavailable ? 0.7 : 1.0;
 }
 
 /// The status of the download process for space analytics data.

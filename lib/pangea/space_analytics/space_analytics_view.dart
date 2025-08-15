@@ -505,22 +505,33 @@ class _RequestButton extends StatelessWidget {
         child: Opacity(
           opacity: status.enabled ? 0.9 : 0.3,
           child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(40),
-              color: status.backgroundColor(context),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 8.0,
+              vertical: 4.0,
             ),
+            decoration: status != RequestStatus.unavailable
+                ? BoxDecoration(
+                    borderRadius: BorderRadius.circular(40),
+                    color: status.backgroundColor(context),
+                  )
+                : null,
             child: Row(
               spacing: 8.0,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Icon(
-                  status.icon,
-                  size: !mini ? 12.0 : 8.0,
-                ),
+                if (status.icon != null)
+                  Icon(
+                    status.icon,
+                    size: !mini ? 12.0 : 8.0,
+                  ),
                 Text(
                   status.label(context),
-                  style: TextStyle(fontSize: !mini ? 12.0 : 8.0),
+                  style: TextStyle(
+                    fontSize: !mini ? 12.0 : 8.0,
+                    fontStyle: status == RequestStatus.unavailable
+                        ? FontStyle.italic
+                        : FontStyle.normal,
+                  ),
                 ),
               ],
             ),
