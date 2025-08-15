@@ -213,6 +213,7 @@ class SpaceAnalyticsState extends State<SpaceAnalytics> {
   }
 
   Future<void> _initialize() async {
+    await room?.requestParticipants();
     final List<Future> futures = [
       GetStorage.init('analytics_request_storage'),
       _loadProfiles(),
