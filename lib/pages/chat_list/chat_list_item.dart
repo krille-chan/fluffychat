@@ -314,7 +314,7 @@ class ChatListItem extends StatelessWidget {
                             // #Pangea
                             : room.lastEvent != null
                                 ? ChatListItemSubtitle(
-                                    event: room.lastEvent,
+                                    room: room,
                                     style: TextStyle(
                                       fontWeight: unread || room.hasNewMessages
                                           ? FontWeight.bold

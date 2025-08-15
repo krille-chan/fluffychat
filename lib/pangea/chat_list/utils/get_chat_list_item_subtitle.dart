@@ -4,18 +4,19 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/pangea/activity_sessions/activity_room_extension.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../../utils/matrix_sdk_extensions/matrix_locals.dart';
 
 class ChatListItemSubtitle extends StatelessWidget {
-  final Event? event;
+  final Room room;
   final TextStyle style;
 
   const ChatListItemSubtitle({
     super.key,
-    required this.event,
+    required this.room,
     required this.style,
   });
 
@@ -54,17 +55,27 @@ class ChatListItemSubtitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (room.showActivityChatUI) {
+      return Text(
+        room.activityPlan!.learningObjective,
+        style: style,
+        maxLines: 2,
+        overflow: TextOverflow.ellipsis,
+      );
+    }
+
+    final event = room.lastEvent;
     if (event == null) return Text(L10n.of(context).emptyChat, style: style);
-    if (!_showPangeaContent(event!)) {
+    if (!_showPangeaContent(event)) {
       return FutureBuilder(
-        future: event!.calcLocalizedBody(
+        future: event.calcLocalizedBody(
           MatrixLocals(L10n.of(context)),
           hideReply: true,
           hideEdit: true,
           plaintextBody: true,
           removeMarkdown: true,
-          withSenderNamePrefix: !event!.room.isDirectChat ||
-              event!.room.directChatMatrixID != event!.room.lastEvent?.senderId,
+          withSenderNamePrefix: !event.room.isDirectChat ||
+              event.room.directChatMatrixID != event.room.lastEvent?.senderId,
         ),
         builder: (context, snapshot) {
           return Text(
@@ -81,7 +92,7 @@ class ChatListItemSubtitle extends StatelessWidget {
     }
 
     return FutureBuilder(
-      future: _getPangeaMessageEvent(event!),
+      future: _getPangeaMessageEvent(event),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           final messageEventAndTokens = snapshot.data as MessageEventAndTokens;
