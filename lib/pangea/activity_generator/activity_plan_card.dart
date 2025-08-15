@@ -81,8 +81,10 @@ class ActivityPlanCardState extends State<ActivityPlanCard> {
           );
         }
 
-        await widget.controller.launchToSpace();
-        context.go("/rooms?spaceId=${widget.controller.room.id}");
+        final ids = await widget.controller.launchToSpace();
+        ids.length == 1
+            ? context.go("/rooms/${ids.first}")
+            : context.go("/rooms?spaceId=${widget.controller.room.id}");
         Navigator.of(context).pop();
       },
     );

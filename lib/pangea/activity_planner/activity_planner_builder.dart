@@ -261,13 +261,14 @@ class ActivityPlannerBuilderState extends State<ActivityPlannerBuilder> {
     setLaunchState(ActivityLaunchState.base);
   }
 
-  Future<void> launchToSpace() async {
+  Future<List<String>> launchToSpace() async {
     final List<String> activityRoomIDs = [];
     try {
-      await Future.wait(
+      return Future.wait(
         List.generate(numActivities, (i) async {
           final id = await _launchActivityRoom(i);
           activityRoomIDs.add(id);
+          return id;
         }),
       );
     } catch (e) {
