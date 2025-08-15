@@ -5093,7 +5093,6 @@
   "errorFetchingActivity": "Failed to fetch activity",
   "check": "Check",
   "unableToFindRoom": "No chat or space found with that code. Please try again.",
-  "spaceAnalyticsPage": "Space analytics page",
   "numCompletedActivities": "Number of completed activities",
   "viewingAnalytics": "Viewing {visible}/{users} Analytics",
   "@viewingAnalytics": {

@@ -25,7 +25,7 @@ class SpaceAnalyticsView extends StatelessWidget {
     final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text(L10n.of(context).spaceAnalyticsPage),
+        title: Text(L10n.of(context).spaceAnalytics),
       ),
       body: LayoutBuilder(
         builder: (context, constraints) {
