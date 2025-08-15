@@ -49,6 +49,7 @@ class SpaceAnalyticsView extends StatelessWidget {
                             icon: Symbols.approval_delegation,
                             onPressed: controller.requestAllAnalytics,
                             mini: mini,
+                            hideLabel: false,
                           ),
                           if (controller.room != null &&
                               controller.availableAnalyticsRooms.isNotEmpty)
@@ -315,12 +316,14 @@ class _MenuButton extends StatelessWidget {
   final VoidCallback onPressed;
 
   final bool mini;
+  final bool? hideLabel;
 
   const _MenuButton({
     required this.text,
     required this.icon,
     required this.onPressed,
     this.mini = false,
+    this.hideLabel,
   });
 
   @override
@@ -334,7 +337,7 @@ class _MenuButton extends StatelessWidget {
       onTap: onPressed,
       child: Container(
         height: height,
-        width: mini ? height : null,
+        width: hideLabel ?? mini ? height : null,
         decoration: BoxDecoration(
           color: theme.colorScheme.primaryContainer,
           borderRadius: BorderRadius.circular(40),
@@ -343,7 +346,7 @@ class _MenuButton extends StatelessWidget {
           horizontal: !mini ? 8.0 : 4.0,
           vertical: 4.0,
         ),
-        child: mini
+        child: hideLabel ?? mini
             ? Icon(
                 icon,
                 color: theme.colorScheme.onPrimaryContainer,
