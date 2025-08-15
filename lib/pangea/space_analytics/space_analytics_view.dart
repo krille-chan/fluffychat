@@ -147,8 +147,8 @@ class SpaceAnalyticsView extends StatelessWidget {
                                 ),
                               ),
                               dropdownStyleData: const DropdownStyleData(
-                                offset: Offset(-50, 0),
-                                width: 150,
+                                offset: Offset(-160, 0),
+                                width: 250,
                               ),
                             ),
                           ),
