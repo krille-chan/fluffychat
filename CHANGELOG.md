@@ -1,4 +1,6 @@
 ## v2.1.0
+FluffyChat 2.1.0 brings support for room version 12 and a lot of bugfixes, updated translations and performance improvements. Also chat state events are now collapsed by default.
+
 - feat: Collapse all state events by default (Christian Kußowski)
 - feat(linux/notify): support avatar icon (ShootingStarDragons)
 - build: (deps): bump archive from 3.6.1 to 4.0.7 (dependabot[bot])
