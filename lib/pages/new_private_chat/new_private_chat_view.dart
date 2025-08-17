@@ -99,181 +99,189 @@ class NewPrivateChatView extends StatelessWidget {
               ),
             ),
             Expanded(
-              child: AnimatedCrossFade(
+              child: AnimatedSwitcher(
                 duration: FluffyThemes.animationDuration,
-                crossFadeState: searchResponse == null
-                    ? CrossFadeState.showFirst
-                    : CrossFadeState.showSecond,
-                firstChild: ListView(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 18.0),
-                      child: SelectableText.rich(
-                        TextSpan(
-                          children: [
-                            TextSpan(
-                              text: L10n.of(context).yourGlobalUserIdIs,
-                            ),
-                            TextSpan(
-                              text: Matrix.of(context).client.userID,
-                              style: const TextStyle(
-                                fontWeight: FontWeight.w600,
+                child: searchResponse == null
+                    ? ListView(
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 18.0),
+                            child: SelectableText.rich(
+                              TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text: L10n.of(context).yourGlobalUserIdIs,
+                                  ),
+                                  TextSpan(
+                                    text: Matrix.of(context).client.userID,
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              style: TextStyle(
+                                color: theme.colorScheme.onSurface,
+                                fontSize: 12,
                               ),
                             ),
-                          ],
-                        ),
-                        style: TextStyle(
-                          color: theme.colorScheme.onSurface,
-                          fontSize: 12,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    ListTile(
-                      leading: CircleAvatar(
-                        backgroundColor: theme.colorScheme.secondaryContainer,
-                        foregroundColor: theme.colorScheme.onSecondaryContainer,
-                        child: Icon(Icons.adaptive.share_outlined),
-                      ),
-                      title: Text(L10n.of(context).shareInviteLink),
-                      onTap: controller.inviteAction,
-                    ),
-                    ListTile(
-                      leading: CircleAvatar(
-                        backgroundColor: theme.colorScheme.tertiaryContainer,
-                        foregroundColor: theme.colorScheme.onTertiaryContainer,
-                        child: const Icon(Icons.group_add_outlined),
-                      ),
-                      title: Text(L10n.of(context).createGroup),
-                      onTap: () => context.go('/rooms/newgroup'),
-                    ),
-                    if (PlatformInfos.isMobile)
-                      ListTile(
-                        leading: CircleAvatar(
-                          backgroundColor: theme.colorScheme.primaryContainer,
-                          foregroundColor: theme.colorScheme.onPrimaryContainer,
-                          child: const Icon(Icons.qr_code_scanner_outlined),
-                        ),
-                        title: Text(L10n.of(context).scanQrCode),
-                        onTap: controller.openScannerAction,
-                      ),
-                    Center(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 64.0,
-                          vertical: 24.0,
-                        ),
-                        child: Material(
-                          shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.circular(AppConfig.borderRadius),
-                            side: BorderSide(
-                              width: 3,
-                              color: theme.colorScheme.primary,
-                            ),
                           ),
-                          color: Colors.transparent,
-                          clipBehavior: Clip.hardEdge,
-                          child: InkWell(
-                            borderRadius:
-                                BorderRadius.circular(AppConfig.borderRadius),
-                            onTap: () => showQrCodeViewer(
-                              context,
-                              userId,
+                          const SizedBox(height: 8),
+                          ListTile(
+                            leading: CircleAvatar(
+                              backgroundColor:
+                                  theme.colorScheme.secondaryContainer,
+                              foregroundColor:
+                                  theme.colorScheme.onSecondaryContainer,
+                              child: Icon(Icons.adaptive.share_outlined),
                             ),
+                            title: Text(L10n.of(context).shareInviteLink),
+                            onTap: controller.inviteAction,
+                          ),
+                          ListTile(
+                            leading: CircleAvatar(
+                              backgroundColor:
+                                  theme.colorScheme.tertiaryContainer,
+                              foregroundColor:
+                                  theme.colorScheme.onTertiaryContainer,
+                              child: const Icon(Icons.group_add_outlined),
+                            ),
+                            title: Text(L10n.of(context).createGroup),
+                            onTap: () => context.go('/rooms/newgroup'),
+                          ),
+                          if (PlatformInfos.isMobile)
+                            ListTile(
+                              leading: CircleAvatar(
+                                backgroundColor:
+                                    theme.colorScheme.primaryContainer,
+                                foregroundColor:
+                                    theme.colorScheme.onPrimaryContainer,
+                                child:
+                                    const Icon(Icons.qr_code_scanner_outlined),
+                              ),
+                              title: Text(L10n.of(context).scanQrCode),
+                              onTap: controller.openScannerAction,
+                            ),
+                          Center(
                             child: Padding(
-                              padding: const EdgeInsets.all(16.0),
-                              child: ConstrainedBox(
-                                constraints:
-                                    const BoxConstraints(maxWidth: 200),
-                                child: PrettyQrView.data(
-                                  data: 'https://matrix.to/#/$userId',
-                                  decoration: PrettyQrDecoration(
-                                    shape: PrettyQrSmoothSymbol(
-                                      roundFactor: 1,
-                                      color: theme.colorScheme.primary,
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 64.0,
+                                vertical: 24.0,
+                              ),
+                              child: Material(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(
+                                    AppConfig.borderRadius,
+                                  ),
+                                  side: BorderSide(
+                                    width: 3,
+                                    color: theme.colorScheme.primary,
+                                  ),
+                                ),
+                                color: Colors.transparent,
+                                clipBehavior: Clip.hardEdge,
+                                child: InkWell(
+                                  borderRadius: BorderRadius.circular(
+                                    AppConfig.borderRadius,
+                                  ),
+                                  onTap: () => showQrCodeViewer(
+                                    context,
+                                    userId,
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(16.0),
+                                    child: ConstrainedBox(
+                                      constraints:
+                                          const BoxConstraints(maxWidth: 200),
+                                      child: PrettyQrView.data(
+                                        data: 'https://matrix.to/#/$userId',
+                                        decoration: PrettyQrDecoration(
+                                          shape: PrettyQrSmoothSymbol(
+                                            roundFactor: 1,
+                                            color: theme.colorScheme.primary,
+                                          ),
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
+                        ],
+                      )
+                    : FutureBuilder(
+                        future: searchResponse,
+                        builder: (context, snapshot) {
+                          final result = snapshot.data;
+                          final error = snapshot.error;
+                          if (error != null) {
+                            return Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  error.toLocalizedString(context),
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: theme.colorScheme.error,
+                                  ),
+                                ),
+                                const SizedBox(height: 12),
+                                OutlinedButton.icon(
+                                  onPressed: controller.searchUsers,
+                                  icon: const Icon(Icons.refresh_outlined),
+                                  label: Text(L10n.of(context).tryAgain),
+                                ),
+                              ],
+                            );
+                          }
+                          if (result == null) {
+                            return const Center(
+                              child: CircularProgressIndicator.adaptive(),
+                            );
+                          }
+                          if (result.isEmpty) {
+                            return Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Icon(Icons.search_outlined, size: 86),
+                                Padding(
+                                  padding: const EdgeInsets.all(16.0),
+                                  child: Text(
+                                    L10n.of(context).noUsersFoundWithQuery(
+                                      controller.controller.text,
+                                    ),
+                                    style: TextStyle(
+                                      color: theme.colorScheme.primary,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              ],
+                            );
+                          }
+                          return ListView.builder(
+                            itemCount: result.length,
+                            itemBuilder: (context, i) {
+                              final contact = result[i];
+                              final displayname = contact.displayName ??
+                                  contact.userId.localpart ??
+                                  contact.userId;
+                              return ListTile(
+                                leading: Avatar(
+                                  name: displayname,
+                                  mxContent: contact.avatarUrl,
+                                  presenceUserId: contact.userId,
+                                ),
+                                title: Text(displayname),
+                                subtitle: Text(contact.userId),
+                                onTap: () => controller.openUserModal(contact),
+                              );
+                            },
+                          );
+                        },
                       ),
-                    ),
-                  ],
-                ),
-                secondChild: FutureBuilder(
-                  future: searchResponse,
-                  builder: (context, snapshot) {
-                    final result = snapshot.data;
-                    final error = snapshot.error;
-                    if (error != null) {
-                      return Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            error.toLocalizedString(context),
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: theme.colorScheme.error,
-                            ),
-                          ),
-                          const SizedBox(height: 12),
-                          OutlinedButton.icon(
-                            onPressed: controller.searchUsers,
-                            icon: const Icon(Icons.refresh_outlined),
-                            label: Text(L10n.of(context).tryAgain),
-                          ),
-                        ],
-                      );
-                    }
-                    if (result == null) {
-                      return const Center(
-                        child: CircularProgressIndicator.adaptive(),
-                      );
-                    }
-                    if (result.isEmpty) {
-                      return Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Icon(Icons.search_outlined, size: 86),
-                          Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Text(
-                              L10n.of(context).noUsersFoundWithQuery(
-                                controller.controller.text,
-                              ),
-                              style: TextStyle(
-                                color: theme.colorScheme.primary,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ],
-                      );
-                    }
-                    return ListView.builder(
-                      itemCount: result.length,
-                      itemBuilder: (context, i) {
-                        final contact = result[i];
-                        final displayname = contact.displayName ??
-                            contact.userId.localpart ??
-                            contact.userId;
-                        return ListTile(
-                          leading: Avatar(
-                            name: displayname,
-                            mxContent: contact.avatarUrl,
-                            presenceUserId: contact.userId,
-                          ),
-                          title: Text(displayname),
-                          subtitle: Text(contact.userId),
-                          onTap: () => controller.openUserModal(contact),
-                        );
-                      },
-                    );
-                  },
-                ),
               ),
             ),
           ],
