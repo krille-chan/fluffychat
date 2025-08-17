@@ -168,13 +168,13 @@ class UserDialog extends StatelessWidget {
             bigButtons: true,
             onPressed: () async {
               final router = GoRouter.of(context);
-              Navigator.of(context).pop();
               final roomIdResult = await showFutureLoadingDialog(
                 context: context,
                 future: () => client.startDirectChat(profile.userId),
               );
               final roomId = roomIdResult.result;
               if (roomId == null) return;
+              if (context.mounted) Navigator.of(context).pop();
               router.go('/rooms/$roomId');
             },
             child: Text(
