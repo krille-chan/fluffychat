@@ -1,9 +1,12 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
+
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/io_client.dart';
-import 'package:http/retry.dart' as retry;
+import 'package:rhttp/rhttp.dart';
 
 import 'package:fluffychat/config/isrg_x1.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -32,9 +35,19 @@ class CustomHttpClient {
     return HttpClient(context: context);
   }
 
-  static http.Client createHTTPClient() => retry.RetryClient(
-        PlatformInfos.isAndroid
-            ? IOClient(customHttpClient(ISRG_X1))
-            : http.Client(),
-      );
+  static Future<http.Client> createHTTPClient() async {
+    if (kIsWeb) return http.Client();
+
+    final needsLetsEncryptCert = PlatformInfos.isAndroid
+        ? (await DeviceInfoPlugin().androidInfo).version.sdkInt < 25
+        : false;
+
+    if (needsLetsEncryptCert) {
+      return IOClient(customHttpClient(ISRG_X1));
+    }
+
+    return await RhttpCompatibleClient.create(
+      interceptors: [RetryInterceptor()],
+    );
+  }
 }

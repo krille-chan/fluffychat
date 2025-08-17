@@ -1,9 +1,11 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_vodozemac/flutter_vodozemac.dart' as vod;
 import 'package:matrix/matrix.dart';
+import 'package:rhttp/rhttp.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:fluffychat/config/app_config.dart';
@@ -22,6 +24,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await vod.init(wasmPath: './assets/assets/vodozemac/');
+  if (!kIsWeb) await Rhttp.init();
 
   Logs().nativeColors = !PlatformInfos.isIOS;
   final store = await SharedPreferences.getInstance();
