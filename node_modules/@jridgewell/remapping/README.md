@@ -1,4 +1,4 @@
-# @ampproject/remapping
+# @jridgewell/remapping
 
 > Remap sequential sourcemaps through transformations to point at the original source code
 
@@ -13,7 +13,7 @@ transformations (think a find-and-replace).
 ## Installation
 
 ```sh
-npm install @ampproject/remapping
+npm install @jridgewell/remapping
 ```
 
 ## Usage
