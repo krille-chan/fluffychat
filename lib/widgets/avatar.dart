@@ -60,37 +60,38 @@ class Avatar extends StatelessWidget {
               side: border ?? BorderSide.none,
             ),
             clipBehavior: Clip.antiAlias,
-            child: noPic
-                ? Container(
-                    decoration: BoxDecoration(color: name?.lightColorAvatar),
-                    alignment: Alignment.center,
-                    child: Text(
-                      fallbackLetters,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontFamily: 'RobotoMono',
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: (size / 2.5).roundToDouble(),
+            child: MxcImage(
+              client: client,
+              borderRadius: borderRadius,
+              key: ValueKey(mxContent.toString()),
+              cacheKey: '${mxContent}_$size',
+              uri: mxContent,
+              fit: BoxFit.cover,
+              width: size,
+              height: size,
+              placeholder: (_) => noPic
+                  ? Container(
+                      decoration: BoxDecoration(color: name?.lightColorAvatar),
+                      alignment: Alignment.center,
+                      child: Text(
+                        fallbackLetters,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontFamily: 'RobotoMono',
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: (size / 2.5).roundToDouble(),
+                        ),
                       ),
-                    ),
-                  )
-                : MxcImage(
-                    client: client,
-                    key: ValueKey(mxContent.toString()),
-                    cacheKey: '${mxContent}_$size',
-                    uri: mxContent,
-                    fit: BoxFit.cover,
-                    width: size,
-                    height: size,
-                    placeholder: (_) => Center(
+                    )
+                  : Center(
                       child: Icon(
                         Icons.person_2,
                         color: theme.colorScheme.tertiary,
                         size: size / 1.5,
                       ),
                     ),
-                  ),
+            ),
           ),
         ),
         if (presenceUserId != null)
