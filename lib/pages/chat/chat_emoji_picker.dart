@@ -6,6 +6,7 @@ import 'package:matrix/matrix.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/sticker_picker_dialog.dart';
+import 'package:fluffychat/pages/chat/gif_picker_dialog.dart';
 import 'chat.dart';
 
 class ChatEmojiPicker extends StatelessWidget {
@@ -25,13 +26,14 @@ class ChatEmojiPicker extends StatelessWidget {
           : 0,
       child: controller.showEmojiPicker
           ? DefaultTabController(
-              length: 2,
+              length: 3,
               child: Column(
                 children: [
                   TabBar(
                     tabs: [
                       Tab(text: L10n.of(context).emojis),
                       Tab(text: L10n.of(context).stickers),
+                      Tab(text: L10n.of(context).gifs),
                     ],
                   ),
                   Expanded(
@@ -75,6 +77,25 @@ class ChatEmojiPicker extends StatelessWidget {
                                 'body': sticker.body,
                                 'info': sticker.info ?? {},
                                 'url': sticker.url.toString(),
+                              },
+                              type: EventTypes.Sticker,
+                            );
+                            controller.hideEmojiPicker();
+                          },
+                        ),
+                        GifPickerDialog(
+                          onSelected: (gif) {
+                            controller.room.sendEvent(
+                              {
+                                'body':
+                                    gif.title.isNotEmpty ? gif.title : 'GIF',
+                                'info': {
+                                  'mimetype': 'image/gif',
+                                  'w': gif.width,
+                                  'h': gif.height,
+                                  'size': null,
+                                },
+                                'url': gif.url,
                               },
                               type: EventTypes.Sticker,
                             );
