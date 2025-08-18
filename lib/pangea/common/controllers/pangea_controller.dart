@@ -111,6 +111,7 @@ class PangeaController {
   static final List<String> _storageKeys = [
     'mode_list_storage',
     'activity_plan_storage',
+    'activity_plan_by_id_storage',
     'bookmarked_activities',
     'objective_list_storage',
     'topic_list_storage',

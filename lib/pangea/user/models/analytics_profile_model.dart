@@ -3,20 +3,20 @@ import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
 import 'package:fluffychat/pangea/learning_settings/utils/p_language_store.dart';
 
-class PublicProfileModel {
+class AnalyticsProfileModel {
   LanguageModel? baseLanguage;
   LanguageModel? targetLanguage;
   Map<LanguageModel, LanguageAnalyticsProfileEntry>? languageAnalytics;
 
-  PublicProfileModel({
+  AnalyticsProfileModel({
     this.baseLanguage,
     this.targetLanguage,
     this.languageAnalytics,
   });
 
-  factory PublicProfileModel.fromJson(Map<String, dynamic> json) {
+  factory AnalyticsProfileModel.fromJson(Map<String, dynamic> json) {
     if (!json.containsKey(PangeaEventTypes.profileAnalytics)) {
-      return PublicProfileModel();
+      return AnalyticsProfileModel();
     }
 
     final profileJson = json[PangeaEventTypes.profileAnalytics];
@@ -47,7 +47,7 @@ class PublicProfileModel {
       }
     }
 
-    final profile = PublicProfileModel(
+    final profile = AnalyticsProfileModel(
       baseLanguage: baseLanguage,
       targetLanguage: targetLanguage,
       languageAnalytics: languageAnalytics,

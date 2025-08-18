@@ -93,7 +93,7 @@ class GetAnalyticsController extends BaseController {
       await _getConstructs();
 
       final offset =
-          _pangeaController.userController.publicProfile?.xpOffset ?? 0;
+          _pangeaController.userController.analyticsProfile?.xpOffset ?? 0;
       constructListModel.updateConstructs(
         [
           ...(_getConstructsLocal() ?? []),
@@ -149,7 +149,7 @@ class GetAnalyticsController extends BaseController {
     final oldLevel = constructListModel.level;
 
     final offset =
-        _pangeaController.userController.publicProfile?.xpOffset ?? 0;
+        _pangeaController.userController.analyticsProfile?.xpOffset ?? 0;
 
     final prevUnlockedMorphs = constructListModel
         .unlockedLemmas(
@@ -203,7 +203,7 @@ class GetAnalyticsController extends BaseController {
     // If the level hasn't changed, this will not send an update to the server.
     // Do this on all updates (not just on level updates) to account for cases
     // of target language updates being missed (https://github.com/pangeachat/client/issues/2006)
-    _pangeaController.userController.updatePublicProfile(
+    _pangeaController.userController.updateAnalyticsProfile(
       level: constructListModel.level,
     );
   }
@@ -237,7 +237,7 @@ class GetAnalyticsController extends BaseController {
     await _pangeaController.userController.addXPOffset(offset);
     constructListModel.updateConstructs(
       [],
-      _pangeaController.userController.publicProfile!.xpOffset!,
+      _pangeaController.userController.analyticsProfile!.xpOffset!,
     );
   }
 

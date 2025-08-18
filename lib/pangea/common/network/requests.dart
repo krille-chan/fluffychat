@@ -66,6 +66,29 @@ class Requests {
     return response;
   }
 
+  Future<http.Response> patch({
+    required String url,
+    required Map<dynamic, dynamic> body,
+  }) async {
+    body[ModelKey.cefrLevel] = MatrixState
+        .pangeaController.userController.profile.userSettings.cefrLevel.string;
+
+    dynamic encoded;
+    encoded = jsonEncode(body);
+
+    debugPrint(baseUrl! + url);
+
+    final http.Response response = await http.patch(
+      _uriBuilder(url),
+      body: encoded,
+      headers: _headers,
+    );
+
+    handleError(response, body: body);
+
+    return response;
+  }
+
   Future<http.Response> get({required String url, String objectId = ""}) async {
     final http.Response response =
         await http.get(_uriBuilder(url + objectId), headers: _headers);

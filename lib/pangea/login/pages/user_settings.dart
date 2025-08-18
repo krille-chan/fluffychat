@@ -225,7 +225,7 @@ class UserSettingsState extends State<UserSettingsPage> {
           },
           waitForDataInSync: true,
         ),
-        _pangeaController.userController.updatePublicProfile(
+        _pangeaController.userController.updateAnalyticsProfile(
           targetLanguage: selectedTargetLanguage,
           baseLanguage: _systemLanguage,
           level: 1,

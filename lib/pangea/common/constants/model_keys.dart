@@ -181,4 +181,6 @@ class ModelKey {
 
   static const String autoIGC = "auto_igc";
   static const String roomIds = "room_ids";
+
+  static const String bookmarkedActivities = "bookmarked_activities";
 }

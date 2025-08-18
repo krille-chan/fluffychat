@@ -23,7 +23,7 @@ class LevelDisplayName extends StatelessWidget {
       ),
       child: FutureBuilder(
         future: MatrixState.pangeaController.userController
-            .getPublicProfile(userId),
+            .getPublicAnalyticsProfile(userId),
         builder: (context, snapshot) {
           return Row(
             mainAxisSize: MainAxisSize.min,

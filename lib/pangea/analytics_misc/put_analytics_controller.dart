@@ -151,7 +151,7 @@ class PutAnalyticsController extends BaseController<AnalyticsStream> {
     );
     _pangeaController.resetAnalytics().then((_) {
       final level = _pangeaController.getAnalytics.constructListModel.level;
-      _pangeaController.userController.updatePublicProfile(level: level);
+      _pangeaController.userController.updateAnalyticsProfile(level: level);
     });
   }
 

@@ -5,7 +5,7 @@ import 'package:matrix/matrix.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/bot/utils/bot_name.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
-import 'package:fluffychat/pangea/user/models/profile_model.dart';
+import 'package:fluffychat/pangea/user/models/analytics_profile_model.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class LoadParticipantsUtil extends StatefulWidget {
@@ -26,7 +26,7 @@ class LoadParticipantsUtilState extends State<LoadParticipantsUtil> {
   bool loading = true;
   String? error;
 
-  final Map<String, PublicProfileModel> _levelsCache = {};
+  final Map<String, AnalyticsProfileModel> _levelsCache = {};
 
   List<User> get participants => widget.space.getParticipants();
 
@@ -92,8 +92,8 @@ class LoadParticipantsUtilState extends State<LoadParticipantsUtil> {
         return -1;
       }
 
-      final PublicProfileModel? aProfile = _levelsCache[a.id];
-      final PublicProfileModel? bProfile = _levelsCache[b.id];
+      final AnalyticsProfileModel? aProfile = _levelsCache[a.id];
+      final AnalyticsProfileModel? bProfile = _levelsCache[b.id];
 
       return (bProfile?.level ?? 0).compareTo(aProfile?.level ?? 0);
     });
@@ -106,12 +106,12 @@ class LoadParticipantsUtilState extends State<LoadParticipantsUtil> {
       if (_levelsCache[user.id] == null && user.membership == Membership.join) {
         _levelsCache[user.id] = await MatrixState
             .pangeaController.userController
-            .getPublicProfile(user.id);
+            .getPublicAnalyticsProfile(user.id);
       }
     }
   }
 
-  PublicProfileModel? getPublicProfile(String userId) {
+  AnalyticsProfileModel? getAnalyticsProfile(String userId) {
     return _levelsCache[userId];
   }
 

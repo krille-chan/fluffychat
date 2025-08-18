@@ -71,7 +71,8 @@ class LeaderboardParticipantListState
                     itemCount: participants.length,
                     itemBuilder: (context, i) {
                       final user = participants[i];
-                      final publicProfile = participantsLoader.getPublicProfile(
+                      final publicProfile =
+                          participantsLoader.getAnalyticsProfile(
                         user.id,
                       );
 

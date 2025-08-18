@@ -58,13 +58,16 @@ class PApiUrls {
       "${PApiUrls.choreoEndpoint}/lemma_definition/edit";
   static String morphDictionary = "${PApiUrls.choreoEndpoint}/morph_meaning";
 
+  static String activityPlan = "${PApiUrls.choreoEndpoint}/activity_plan";
   static String activityPlanGeneration =
-      "${PApiUrls.choreoEndpoint}/activity_plan";
+      "${PApiUrls.choreoEndpoint}/activity_plan/generate";
+  static String activityPlanSearch =
+      "${PApiUrls.choreoEndpoint}/activity_plan/search";
+
   static String activityModeList = "${PApiUrls.choreoEndpoint}/modes";
   static String objectiveList = "${PApiUrls.choreoEndpoint}/objectives";
   static String topicList = "${PApiUrls.choreoEndpoint}/topics";
-  static String activityPlanSearch =
-      "${PApiUrls.choreoEndpoint}/activity_plan/search";
+
   static String activitySummary = "${PApiUrls.choreoEndpoint}/activity_summary";
 
   static String morphFeaturesAndTags = "${PApiUrls.choreoEndpoint}/morphs";

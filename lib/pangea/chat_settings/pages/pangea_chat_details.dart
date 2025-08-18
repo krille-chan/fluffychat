@@ -738,7 +738,7 @@ class RoomParticipantsSection extends StatelessWidget {
                 Membership.leave => null,
               };
 
-              final publicProfile = participantsLoader.getPublicProfile(
+              final publicProfile = participantsLoader.getAnalyticsProfile(
                 user.id,
               );
 

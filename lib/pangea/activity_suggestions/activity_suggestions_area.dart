@@ -185,16 +185,16 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
           })
         : _activityItems
             .mapIndexed((index, activity) {
-              return ActivitySuggestionCard(
-                activity: activity,
-                onPressed: () {
-                  showDialog(
-                    context: context,
-                    builder: (context) {
-                      return ActivityPlannerBuilder(
-                        initialActivity: activity,
-                        room: widget.room,
-                        builder: (controller) {
+              return ActivityPlannerBuilder(
+                initialActivity: activity,
+                room: widget.room,
+                builder: (controller) {
+                  return ActivitySuggestionCard(
+                    controller: controller,
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
                           return ActivitySuggestionDialog(
                             controller: controller,
                             buttonText: L10n.of(context).saveAndLaunch,
@@ -204,12 +204,9 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
                         },
                       );
                     },
+                    width: cardWidth,
+                    height: cardHeight,
                   );
-                },
-                width: cardWidth,
-                height: cardHeight,
-                onChange: () {
-                  if (mounted) setState(() {});
                 },
               );
             })

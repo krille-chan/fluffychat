@@ -43,10 +43,7 @@ class ActivityPlannerPageState extends State<ActivityPlannerPage> {
     switch (pageMode) {
       case PageMode.savedActivities:
         if (room != null) {
-          body = BookmarkedActivitiesList(
-            room: room!,
-            controller: this,
-          );
+          body = BookmarkedActivitiesList(room: room!);
         }
         break;
       case PageMode.featuredActivities:

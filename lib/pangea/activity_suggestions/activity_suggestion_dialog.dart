@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
@@ -39,6 +41,22 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
   double get _width => FluffyThemes.isColumnMode(context)
       ? 400.0
       : MediaQuery.of(context).size.width;
+
+  StreamSubscription? _stateSubscription;
+
+  @override
+  void initState() {
+    super.initState();
+    _stateSubscription = widget.controller.stateStream.stream.listen((state) {
+      if (mounted) setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    _stateSubscription?.cancel();
+    super.dispose();
+  }
 
   Future<void> launchActivity() async {
     try {

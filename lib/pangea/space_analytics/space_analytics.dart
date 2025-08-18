@@ -19,7 +19,7 @@ import 'package:fluffychat/pangea/space_analytics/space_analytics_download_enum.
 import 'package:fluffychat/pangea/space_analytics/space_analytics_inactive_dialog.dart';
 import 'package:fluffychat/pangea/space_analytics/space_analytics_request_dialog.dart';
 import 'package:fluffychat/pangea/space_analytics/space_analytics_view.dart';
-import 'package:fluffychat/pangea/user/models/profile_model.dart';
+import 'package:fluffychat/pangea/user/models/analytics_profile_model.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
@@ -119,7 +119,7 @@ class SpaceAnalyticsState extends State<SpaceAnalytics> {
   Map<User, AnalyticsDownload> downloads = {};
 
   DateTime? _lastUpdated;
-  final Map<User, PublicProfileModel> _profiles = {};
+  final Map<User, AnalyticsProfileModel> _profiles = {};
   final Map<LanguageModel, List<User>> _langsToUsers = {};
 
   Room? get room => Matrix.of(context).client.getRoomById(widget.roomId);
@@ -233,7 +233,7 @@ class SpaceAnalyticsState extends State<SpaceAnalytics> {
   Future<void> _loadProfiles() async {
     final futures = _availableUsers.map((u) async {
       final resp = await MatrixState.pangeaController.userController
-          .getPublicProfile(u.id);
+          .getPublicAnalyticsProfile(u.id);
 
       _profiles[u] = resp;
       if (resp.languageAnalytics == null) return;
