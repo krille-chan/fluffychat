@@ -198,9 +198,9 @@ extension ActivityTypeExtension on ActivityTypeEnum {
       case ActivityTypeEnum.wordMeaning:
       case ActivityTypeEnum.lemmaId:
       case ActivityTypeEnum.wordFocusListening:
+      case ActivityTypeEnum.emoji:
         return 2;
       case ActivityTypeEnum.hiddenWordListening:
-      case ActivityTypeEnum.emoji:
       case ActivityTypeEnum.morphId:
       case ActivityTypeEnum.messageMeaning:
         return 1;

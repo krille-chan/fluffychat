@@ -4843,7 +4843,7 @@
   "autocorrectNotAvailable": "Unfortunately your platform is not currently supported for this feature. Stay tuned for further development!",
   "pleaseUpdateApp": "Please update the app to continue.",
   "chooseEmojiInstructionsBody": "Match emojis with the words they best represent. Don't worry! No points off for disagreeing. 😅",
-  "pickAnEmojiFor": "Pick an emoji for ${lemma}",
+  "pickAnEmojiFor": "Pick an emoji for {lemma}",
   "@pickAnEmojiFor": {
     "type": "String",
     "placeholders": {

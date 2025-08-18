@@ -48,7 +48,7 @@ class PracticeRepo {
   final _morph = MorphActivityGenerator();
   final _emoji = EmojiActivityGenerator();
   final _lemma = LemmaActivityGenerator();
-  final _wordFoocusListening = WordFocusListeningGenerator();
+  final _wordFocusListening = WordFocusListeningGenerator();
   final _wordMeaning = LemmaMeaningActivityGenerator();
 
   PracticeRepo() {
@@ -129,7 +129,7 @@ class PracticeRepo {
     // some activities we'll get from the server and others we'll generate locally
     switch (req.targetType) {
       case ActivityTypeEnum.emoji:
-        return _emoji.get(req, context);
+        return _emoji.get(req);
       case ActivityTypeEnum.lemmaId:
         return _lemma.get(req, context);
       case ActivityTypeEnum.morphId:
@@ -139,7 +139,7 @@ class PracticeRepo {
         return _wordMeaning.get(req);
       case ActivityTypeEnum.messageMeaning:
       case ActivityTypeEnum.wordFocusListening:
-        return _wordFoocusListening.get(req, context);
+        return _wordFocusListening.get(req);
       case ActivityTypeEnum.hiddenWordListening:
         return _fetchFromServer(
           accessToken: accessToken,

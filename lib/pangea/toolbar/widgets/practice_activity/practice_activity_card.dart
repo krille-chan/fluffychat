@@ -45,7 +45,7 @@ class PracticeActivityCard extends StatefulWidget {
 }
 
 class PracticeActivityCardState extends State<PracticeActivityCard> {
-  bool fetchingActivity = false;
+  bool fetchingActivity = true;
   bool savoringTheJoy = false;
 
   Completer<PracticeActivityEvent?>? currentActivityCompleter;
@@ -62,8 +62,10 @@ class PracticeActivityCardState extends State<PracticeActivityCard> {
 
   @override
   void initState() {
-    _fetchActivity();
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) => _fetchActivity(),
+    );
   }
 
   @override

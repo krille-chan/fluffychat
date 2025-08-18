@@ -139,7 +139,7 @@ class PracticeSelection {
       }
     }
 
-    tokens.sorted(
+    tokens.sort(
       (a, b) {
         final bScore = b.activityPriorityScore(activityType, null) *
             (tokenIsIncludedInActivityOfAnyType(b) ? 1.1 : 1);

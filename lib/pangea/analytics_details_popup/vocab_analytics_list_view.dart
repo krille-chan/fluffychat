@@ -132,6 +132,7 @@ class VocabAnalyticsListView extends StatelessWidget {
         ),
         Expanded(
           child: GridView.builder(
+            key: const PageStorageKey("vocab-analytics-list-view-page-key"),
             gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
               maxCrossAxisExtent: 100.0,
               mainAxisExtent: 100.0,
