@@ -25,7 +25,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:fcm_shared_isolate/fcm_shared_isolate.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_new_badger/flutter_new_badger.dart';
@@ -92,6 +91,19 @@ class BackgroundPush {
         ),
         onDidReceiveNotificationResponse: goToRoom,
       );
+
+      // #Pangea
+      FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+        pushHelper(
+          PushNotification.fromJson(message.data),
+          client: client,
+          l10n: l10n,
+          activeRoomId: matrix?.activeRoomId,
+          flutterLocalNotificationsPlugin: _flutterLocalNotificationsPlugin,
+        );
+      });
+      // Pangea#
+
       Logs().v('Flutter Local Notifications initialized');
       firebase?.setListeners(
         onMessage: (message) => pushHelper(
@@ -107,6 +119,7 @@ class BackgroundPush {
         onNewToken: _newFcmToken,
         // Pangea#
       );
+
       if (Platform.isAndroid) {
         await UnifiedPush.initialize(
           onNewEndpoint: _newUpEndpoint,
@@ -547,9 +560,6 @@ class BackgroundPush {
   // #Pangea
   Future<String?> _getToken() async {
     if (Platform.isAndroid) {
-      await Firebase.initializeApp(
-          // options: DefaultFirebaseOptions.currentPlatform,
-          );
       return (await FirebaseMessaging.instance.getToken());
     }
     return await firebase?.getToken();

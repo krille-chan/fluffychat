@@ -1,8 +1,9 @@
 {
   "project_info": {
     "project_number": "545984292675",
+    "firebase_url": "https://pangea-chat-936ee-default-rtdb.firebaseio.com",
     "project_id": "pangea-chat-936ee",
-    "storage_bucket": "pangea-chat-936ee.appspot.com"
+    "storage_bucket": "pangea-chat-936ee.firebasestorage.app"
   },
   "client": [
     {

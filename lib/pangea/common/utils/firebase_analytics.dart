@@ -24,10 +24,20 @@ class GoogleAnalytics {
         options: DefaultFirebaseOptions.currentPlatform,
       );
     } on Exception {
+      // Android initialises using gradle plugin
+      // So we just get the one they added
       app = Firebase.app();
     }
 
     analytics = FirebaseAnalytics.instanceFor(app: app);
+
+    debugPrint("Firebase App Name: ${app.name}");
+    debugPrint("Firebase App Options:");
+    debugPrint("  App ID: ${app.options.appId}");
+    debugPrint("  Project ID: ${app.options.projectId}");
+    debugPrint("  Database URL: ${app.options.databaseURL}");
+    debugPrint("  Messaging Sender ID: ${app.options.messagingSenderId}");
+    debugPrint("  Storage Bucket: ${app.options.storageBucket}");
   }
 
   static analyticsUserUpdate(String? userID) {
