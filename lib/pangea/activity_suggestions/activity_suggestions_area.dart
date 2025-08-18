@@ -135,7 +135,9 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
       _status = _status.fromCode(resp.statusCode);
       if (_status != ActivitySearchEnum.error) {
         if (_activityItems.isEmpty) {
-          if (mounted) setState(() => _status = ActivitySearchEnum.timeout);
+          if (mounted && retries != 0) {
+            setState(() => _status = ActivitySearchEnum.timeout);
+          }
 
           Future.delayed(const Duration(seconds: 5), () {
             if (mounted) _setActivityItems(retries: retries + 1);
@@ -229,12 +231,8 @@ class ActivitySuggestionsAreaState extends State<ActivitySuggestionsArea> {
                     spacing: 16.0,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      ConstrainedBox(
-                        constraints: const BoxConstraints(maxWidth: 300),
-                        child: Text(
-                          _status.message(L10n.of(context)),
-                          textAlign: TextAlign.center,
-                        ),
+                      ErrorIndicator(
+                        message: _status.message(L10n.of(context)),
                       ),
                       if (_loading && _status == ActivitySearchEnum.timeout)
                         const CircularProgressIndicator(),

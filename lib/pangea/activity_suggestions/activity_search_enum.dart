@@ -39,7 +39,7 @@ extension ActivitySearchExtension on ActivitySearchEnum {
   String message(L10n l10n) {
     switch (this) {
       case ActivitySearchEnum.waiting:
-        l10n.activitySuggestionTimeoutMessage;
+        return l10n.activitySuggestionTimeoutMessage;
       case ActivitySearchEnum.timeout:
         return l10n.generatingNewActivities;
       case ActivitySearchEnum.error:
@@ -47,6 +47,5 @@ extension ActivitySearchExtension on ActivitySearchEnum {
       default:
         return '';
     }
-    return '';
   }
 }
