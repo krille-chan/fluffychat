@@ -3,7 +3,6 @@ import 'package:flutter/widgets.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:file_selector/file_selector.dart';
 
-import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/app_lock.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 
@@ -13,31 +12,18 @@ Future<List<XFile>> selectFiles(
   FileSelectorType type = FileSelectorType.any,
   bool allowMultiple = false,
 }) async {
-  if (!PlatformInfos.isLinux) {
-    final result = await AppLock.of(context).pauseWhile(
-      showFutureLoadingDialog(
-        context: context,
-        future: () => FilePicker.platform.pickFiles(
-          compressionQuality: 0,
-          allowMultiple: allowMultiple,
-          type: type.filePickerType,
-          allowedExtensions: type.extensions,
-        ),
+  final result = await AppLock.of(context).pauseWhile(
+    showFutureLoadingDialog(
+      context: context,
+      future: () => FilePicker.platform.pickFiles(
+        compressionQuality: 0,
+        allowMultiple: allowMultiple,
+        type: type.filePickerType,
+        allowedExtensions: type.extensions,
       ),
-    );
-    return result.result?.xFiles ?? [];
-  }
-
-  if (allowMultiple) {
-    return await AppLock.of(context).pauseWhile(
-      openFiles(confirmButtonText: title, acceptedTypeGroups: type.groups),
-    );
-  }
-  final file = await AppLock.of(context).pauseWhile(
-    openFile(confirmButtonText: title, acceptedTypeGroups: type.groups),
+    ),
   );
-  if (file == null) return [];
-  return [file];
+  return result.result?.xFiles ?? [];
 }
 
 enum FileSelectorType {
