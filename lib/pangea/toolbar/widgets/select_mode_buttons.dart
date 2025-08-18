@@ -18,7 +18,6 @@ import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/common/widgets/pressable_button.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/events/extensions/pangea_event_extension.dart';
-import 'package:fluffychat/pangea/events/models/representation_content_model.dart';
 import 'package:fluffychat/pangea/events/utils/report_message.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_audio_card.dart';
@@ -392,18 +391,7 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
 
     try {
       if (mounted) setState(() => _isLoadingTranslation = true);
-
-      PangeaRepresentation? rep =
-          messageEvent!.representationByLanguage(l1Code!)?.content;
-
-      rep ??= await messageEvent?.representationByLanguageGlobal(
-        langCode: l1Code!,
-      );
-
-      if (rep == null) {
-        throw Exception('Representation is null');
-      }
-
+      final rep = await messageEvent!.l1Respresentation();
       widget.overlayController.setTranslation(rep.text);
     } catch (e, s) {
       _translationError = e.toString();

@@ -33,38 +33,20 @@ class MessageTranslationCardState extends State<MessageTranslationCard> {
     loadTranslation();
   }
 
-  Future<void> fetchRepresentationText() async {
-    if (l1Code == null) return;
-
-    repEvent = widget.messageEvent
-        .representationByLanguage(
-          l1Code!,
-        )
-        ?.content;
-
-    if (repEvent == null && mounted) {
-      repEvent = await widget.messageEvent.representationByLanguageGlobal(
-        langCode: l1Code!,
-      );
-    }
-  }
-
   Future<void> loadTranslation() async {
     if (!mounted) return;
-
-    setState(() => _fetchingTranslation = true);
-
     try {
-      await fetchRepresentationText();
+      setState(() => _fetchingTranslation = true);
+      repEvent = await widget.messageEvent.l1Respresentation();
     } catch (err) {
       ErrorHandler.logError(
         e: err,
         data: {},
       );
-    }
-
-    if (mounted) {
-      setState(() => _fetchingTranslation = false);
+    } finally {
+      if (mounted) {
+        setState(() => _fetchingTranslation = false);
+      }
     }
   }
 

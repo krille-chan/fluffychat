@@ -13,7 +13,6 @@ import 'package:fluffychat/pangea/choreographer/repo/full_text_translation_repo.
 import 'package:fluffychat/pangea/choreographer/repo/language_detection_repo.dart';
 import 'package:fluffychat/pangea/common/constants/model_keys.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_representation_event.dart';
-import 'package:fluffychat/pangea/events/extensions/pangea_event_extension.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/events/models/representation_content_model.dart';
 import 'package:fluffychat/pangea/events/models/stt_translation_model.dart';
@@ -28,7 +27,6 @@ import 'package:fluffychat/pangea/toolbar/event_wrappers/practice_activity_event
 import 'package:fluffychat/pangea/toolbar/models/speech_to_text_models.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_audio_card.dart';
 import '../../../widgets/matrix.dart';
-import '../../choreographer/enums/use_type.dart';
 import '../../common/utils/error_handler.dart';
 import '../../learning_settings/constants/language_constants.dart';
 import '../constants/pangea_event_types.dart';
@@ -498,18 +496,15 @@ class PangeaMessageEvent {
     return _representations!;
   }
 
-  RepresentationEvent? representationByLanguage(String langCode) =>
+  RepresentationEvent? representationByLanguage(
+    String langCode, {
+    bool Function(RepresentationEvent)? filter,
+  }) =>
       representations.firstWhereOrNull(
-        (element) => element.langCode.split("-")[0] == langCode.split("-")[0],
+        (element) =>
+            element.langCode.split("-")[0] == langCode.split("-")[0] &&
+            (filter?.call(element) ?? true),
       );
-
-  int translationIndex(String langCode) => representations.indexWhere(
-        (element) => element.langCode.split("-")[0] == langCode.split("-")[0],
-      );
-
-  String translationTextSafe(String langCode) {
-    return representationByLanguage(langCode)?.text ?? body;
-  }
 
   Future<PangeaRepresentation?> representationByLanguageGlobal({
     required String langCode,
@@ -590,6 +585,48 @@ class PangeaMessageEvent {
     );
   }
 
+  Future<PangeaRepresentation> l1Respresentation() async {
+    if (l1Code == null || l2Code == null) {
+      throw Exception("Missing language codes");
+    }
+
+    final includedIT = (originalSent?.choreo?.includedIT ?? false) &&
+        !(originalSent?.choreo?.includedIGC ?? true);
+
+    RepresentationEvent? rep;
+    if (!includedIT) {
+      // if the message didn't go through translation, get any l1 rep
+      rep = representationByLanguage(l1Code!);
+    } else {
+      // if the message went through translation, get the non-original
+      // l1 rep since originalWritten could contain some l2 words
+      // (https://github.com/pangeachat/client/issues/3591)
+      rep = representationByLanguage(
+        l1Code!,
+        filter: (rep) => !rep.content.originalWritten,
+      );
+    }
+
+    if (rep != null) return rep.content;
+
+    final String srcLang = includedIT
+        ? (originalWritten?.langCode ?? l1Code!)
+        : (originalSent?.langCode ?? l2Code!);
+
+    // clear representations cache so the new representation event can be added when next requested
+    _representations = null;
+    return MatrixState.pangeaController.messageData.getPangeaRepresentation(
+      req: FullTextTranslationRequestModel(
+        text: includedIT ? originalWrittenContent : messageDisplayText,
+        srcLang: srcLang,
+        tgtLang: l1Code!,
+        userL2: l2Code!,
+        userL1: l1Code!,
+      ),
+      messageEvent: _event,
+    );
+  }
+
   RepresentationEvent? get originalSent => representations
       .firstWhereOrNull((element) => element.content.originalSent);
 
@@ -605,82 +642,6 @@ class PangeaMessageEvent {
     }
 
     return written ?? body;
-  }
-
-  PangeaRepresentation get defaultRepresentation => PangeaRepresentation(
-        langCode: LanguageKeys.unknownLanguage,
-        text: body,
-        originalSent: false,
-        originalWritten: false,
-      );
-
-  UseType get msgUseType {
-    final ChoreoRecord? choreoRecord = originalSent?.choreo;
-    if (choreoRecord == null) {
-      return UseType.un;
-    } else if (choreoRecord.includedIT) {
-      return UseType.ta;
-    } else if (choreoRecord.hasAcceptedMatches) {
-      return UseType.ga;
-    } else {
-      return UseType.wa;
-    }
-  }
-
-  bool get showUseType => false;
-  // *note* turning this feature off but leave code here to bring back (if need)
-  // !ownMessage &&
-  // _event.room.isSpaceAdmin &&
-  // _event.senderId != BotName.byEnvironment &&
-  // !room.isUserSpaceAdmin(_event.senderId) &&
-  // _event.messageType != PangeaEventTypes.report &&
-  // _event.messageType == MessageTypes.Text;
-
-  // this is just showActivityIcon now but will include
-  // logic for showing
-  // NOTE: turning this off for now
-  bool get showMessageButtons => false;
-  // bool get showMessageButtons => hasUncompletedActivity;
-
-  /// Returns a boolean value indicating whether to show an activity icon for this message event.
-  ///
-  /// The [hasUncompletedActivity] getter checks if the [l2Code] is null, and if so, returns false.
-  /// Otherwise, it retrieves a list of [PracticeActivityEvent] objects using the [practiceActivities] function
-  /// with the [l2Code] as an argument.
-  /// If the list is empty, it returns false.
-  /// Otherwise, it checks if every activity in the list is complete using the [isComplete] property.
-  /// If any activity is not complete, it returns true, indicating that the activity icon should be shown.
-  /// Otherwise, it returns false.
-  // bool get hasUncompletedActivity {
-  //   if (practiceActivities.isEmpty) return false;
-  //   return practiceActivities.any((activity) => !(activity.isComplete));
-  // }
-
-  /// value from 0 to 1 indicating the proportion of activities completed
-  double get proportionOfActivitiesCompleted {
-    if (messageDisplayRepresentation == null ||
-        messageDisplayRepresentation?.tokens == null) {
-      return 1;
-    }
-
-    final eligibleTokens = messageDisplayRepresentation!.tokens!.where(
-      (token) => token.isActivityBasicallyEligible(
-        ActivityTypeEnum.wordMeaning,
-      ),
-    );
-
-    if (eligibleTokens.isEmpty) return 1;
-
-    final alreadyDid = eligibleTokens.where(
-      (token) => !shouldDoActivity(
-        token: token,
-        a: ActivityTypeEnum.wordMeaning,
-        feature: null,
-        tag: null,
-      ),
-    );
-
-    return alreadyDid.length / eligibleTokens.length;
   }
 
   String? get l2Code =>
@@ -746,23 +707,6 @@ class PangeaMessageEvent {
     return practiceEvents;
   }
 
-  /// Returns a boolean value indicating whether there are any
-  /// activities associated with this message event for the user's active l2
-  bool get hasActivities {
-    try {
-      return practiceActivities.isNotEmpty;
-    } catch (e, s) {
-      ErrorHandler.logError(
-        e: e,
-        s: s,
-        data: {
-          "event": _event.toJson(),
-        },
-      );
-      return false;
-    }
-  }
-
   /// Returns a list of [PracticeActivityEvent] objects for the given [langCode].
   List<PracticeActivityEvent> practiceActivitiesByLangCode(
     String langCode, {
@@ -779,12 +723,6 @@ class PangeaMessageEvent {
   /// Returns a list of [PracticeActivityEvent] for the user's active l2.
   List<PracticeActivityEvent> get practiceActivities =>
       l2Code == null ? [] : practiceActivitiesByLangCode(l2Code!);
-
-  bool get shouldShowToolbar =>
-      !event.isActivityMessage &&
-      !event.redacted &&
-      event.status != EventStatus.sending &&
-      event.status != EventStatus.error;
 
   bool shouldDoActivity({
     required PangeaToken? token,
