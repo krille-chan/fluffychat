@@ -65,7 +65,7 @@ class TenorApiResponse {
 class TenorApi {
   static const String _baseUrl = 'https://tenor.googleapis.com/v2';
   static const String _apiKey =
-      'AIzaSyC5xwpkbdAnIH4NSyjUwg_t9Huoy19YVH4'; // Test API key from documentation
+      '<tenor-api-key>'; // Test API key from documentation
   static const String _clientKey =
       'fluffychat_app'; // Client key for integration tracking
   static const int _limit = 20;
