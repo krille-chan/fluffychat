@@ -3,8 +3,8 @@ import 'dart:math';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 
+import 'package:http/http.dart' as http;
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/themes.dart';

@@ -5,8 +5,8 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/pages/chat/sticker_picker_dialog.dart';
 import 'package:fluffychat/pages/chat/gif_picker_dialog.dart';
+import 'package:fluffychat/pages/chat/sticker_picker_dialog.dart';
 import 'chat.dart';
 
 class ChatEmojiPicker extends StatelessWidget {
