@@ -3,6 +3,7 @@ import 'dart:math';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 import 'package:matrix/matrix.dart';
 
@@ -75,36 +76,79 @@ class _MxcImageState extends State<MxcImage> {
     final event = widget.event;
 
     if (uri != null) {
-      final devicePixelRatio = MediaQuery.devicePixelRatioOf(context);
-      final width = widget.width;
-      final realWidth = width == null ? null : width * devicePixelRatio;
-      final height = widget.height;
-      final realHeight = height == null ? null : height * devicePixelRatio;
+      // Handle direct HTTP/HTTPS URLs
+      if (uri.scheme == 'http' || uri.scheme == 'https') {
+        try {
+          final response = await http.get(uri);
+          if (response.statusCode == 200) {
+            if (!mounted) return;
+            setState(() {
+              _imageData = response.bodyBytes;
+            });
+            return;
+          }
+        } catch (e) {
+          Logs().w('Failed to load HTTP image: $uri', e);
+        }
+      } else if (uri.scheme == 'mxc') {
+        // Handle MXC URLs
+        final devicePixelRatio = MediaQuery.devicePixelRatioOf(context);
+        final width = widget.width;
+        final realWidth = width == null ? null : width * devicePixelRatio;
+        final height = widget.height;
+        final realHeight = height == null ? null : height * devicePixelRatio;
 
-      final remoteData = await client.downloadMxcCached(
-        uri,
-        width: realWidth,
-        height: realHeight,
-        thumbnailMethod: widget.thumbnailMethod,
-        isThumbnail: widget.isThumbnail,
-        animated: widget.animated,
-      );
-      if (!mounted) return;
-      setState(() {
-        _imageData = remoteData;
-      });
+        final remoteData = await client.downloadMxcCached(
+          uri,
+          width: realWidth,
+          height: realHeight,
+          thumbnailMethod: widget.thumbnailMethod,
+          isThumbnail: widget.isThumbnail,
+          animated: widget.animated,
+        );
+        if (!mounted) return;
+        setState(() {
+          _imageData = remoteData;
+        });
+      }
     }
 
     if (event != null) {
-      final data = await event.downloadAndDecryptAttachment(
-        getThumbnail: widget.isThumbnail,
-      );
-      if (data.detectFileType is MatrixImageFile || widget.isThumbnail) {
-        if (!mounted) return;
-        setState(() {
-          _imageData = data.bytes;
-        });
-        return;
+      // Check if the event has a direct HTTP URL
+      final eventUrl = event.content.tryGet<String>('url');
+      if (eventUrl != null) {
+        final eventUri = Uri.tryParse(eventUrl);
+        if (eventUri != null &&
+            (eventUri.scheme == 'http' || eventUri.scheme == 'https')) {
+          try {
+            final response = await http.get(eventUri);
+            if (response.statusCode == 200) {
+              if (!mounted) return;
+              setState(() {
+                _imageData = response.bodyBytes;
+              });
+              return;
+            }
+          } catch (e) {
+            Logs().w('Failed to load HTTP image from event: $eventUrl', e);
+          }
+        }
+      }
+
+      // Fallback to Matrix attachment handling for MXC URLs
+      try {
+        final data = await event.downloadAndDecryptAttachment(
+          getThumbnail: widget.isThumbnail,
+        );
+        if (data.detectFileType is MatrixImageFile || widget.isThumbnail) {
+          if (!mounted) return;
+          setState(() {
+            _imageData = data.bytes;
+          });
+          return;
+        }
+      } catch (e) {
+        Logs().w('Failed to download Matrix attachment', e);
       }
     }
   }

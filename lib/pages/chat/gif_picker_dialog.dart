@@ -104,8 +104,9 @@ class GifPickerDialogState extends State<GifPickerDialog> {
   }
 
   Future<void> _loadMoreGifs() async {
-    if (_isLoadingMore || !_hasMoreResults || isLoading || _nextPos == '0')
+    if (_isLoadingMore || !_hasMoreResults || isLoading || _nextPos == '0') {
       return;
+    }
 
     setState(() {
       _isLoadingMore = true;
