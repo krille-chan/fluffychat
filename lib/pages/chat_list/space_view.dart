@@ -228,14 +228,49 @@ class _SpaceViewState extends State<SpaceView> {
     final room = Matrix.of(context).client.getRoomById(widget.spaceId);
     final displayname =
         room?.getLocalizedDisplayname() ?? L10n.of(context).nothingFound;
+
+    final joinedParents = room?.spaceParents
+        .map((parent) {
+          final roomId = parent.roomId;
+          if (roomId == null) return null;
+          return room.client.getRoomById(roomId);
+        })
+        .whereType<Room>()
+        .toList();
+
     return Scaffold(
       appBar: AppBar(
-        leading: FluffyThemes.isColumnMode(context)
-            ? null
+        leading: joinedParents?.isEmpty ?? true
+            ? FluffyThemes.isColumnMode(context)
+                ? null
+                : Center(
+                    child: CloseButton(
+                      onPressed: widget.onBack,
+                    ),
+                  )
             : Center(
-                child: CloseButton(
-                  onPressed: widget.onBack,
-                ),
+                child: joinedParents!.length == 1
+                    ? IconButton(
+                        icon: const Icon(Icons.arrow_back_outlined),
+                        onPressed: () =>
+                            widget.toParentSpace(joinedParents.first.id),
+                      )
+                    : PopupMenuButton(
+                        icon: const Icon(Icons.arrow_back_outlined),
+                        itemBuilder: (context) {
+                          return [
+                            ...joinedParents.mapIndexed((i, room) {
+                              return PopupMenuItem(
+                                value: i,
+                                child: Text(room.getLocalizedDisplayname()),
+                              );
+                            }),
+                          ];
+                        },
+                        onSelected: (i) {
+                          widget.toParentSpace(joinedParents[i].id);
+                        },
+                      ),
               ),
         automaticallyImplyLeading: false,
         titleSpacing: FluffyThemes.isColumnMode(context) ? null : 0,
@@ -336,14 +371,6 @@ class _SpaceViewState extends State<SpaceView> {
                     .where((room) => childrenIds.remove(room.id))
                     .toList();
 
-                final joinedParents = room.spaceParents
-                    .map((parent) {
-                      final roomId = parent.roomId;
-                      if (roomId == null) return null;
-                      return room.client.getRoomById(roomId);
-                    })
-                    .whereType<Room>()
-                    .toList();
                 final filter = _filterController.text.trim().toLowerCase();
                 return CustomScrollView(
                   slivers: [
@@ -380,47 +407,6 @@ class _SpaceViewState extends State<SpaceView> {
                           ),
                         ),
                       ),
-                    ),
-                    SliverList.builder(
-                      itemCount: joinedParents.length,
-                      itemBuilder: (context, i) {
-                        final displayname =
-                            joinedParents[i].getLocalizedDisplayname();
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 8,
-                            vertical: 1,
-                          ),
-                          child: Material(
-                            borderRadius:
-                                BorderRadius.circular(AppConfig.borderRadius),
-                            clipBehavior: Clip.hardEdge,
-                            child: ListTile(
-                              minVerticalPadding: 0,
-                              leading: Icon(
-                                Icons.adaptive.arrow_back_outlined,
-                                size: 16,
-                              ),
-                              title: Row(
-                                children: [
-                                  Avatar(
-                                    mxContent: joinedParents[i].avatar,
-                                    name: displayname,
-                                    size: Avatar.defaultSize / 2,
-                                    borderRadius: BorderRadius.circular(
-                                      AppConfig.borderRadius / 4,
-                                    ),
-                                  ),
-                                  const SizedBox(width: 8),
-                                  Expanded(child: Text(displayname)),
-                                ],
-                              ),
-                              onTap: () =>
-                                  widget.toParentSpace(joinedParents[i].id),
-                            ),
-                          ),
-                        );
-                      },
                     ),
                     SliverList.builder(
                       itemCount: joinedRooms.length,
