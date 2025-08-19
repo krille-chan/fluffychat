@@ -23,7 +23,7 @@ extension LocalNotificationsExtension on MatrixState {
     ..src = 'assets/assets/sounds/notification.ogg'
     ..load();
 
-  void showLocalNotification(Event event) async {
+  void showLocalNotification(Event event, String? userId) async {
     final roomId = event.room.id;
     if (activeRoomId == roomId) {
       if (kIsWeb && webHasFocus) return;
@@ -147,7 +147,11 @@ extension LocalNotificationsExtension on MatrixState {
             );
             break;
           case DesktopNotificationActions.openChat:
-            FluffyChatApp.router.go('/rooms/${event.room.id}');
+            if (userId != null) {
+              FluffyChatApp.router.go('/rooms/${event.room.id}?userId=$userId');
+            } else {
+              FluffyChatApp.router.go('/rooms/${event.room.id}');
+            }
             break;
         }
       });
