@@ -12,9 +12,9 @@ import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/settings/settings.dart';
 import 'package:fluffychat/pangea/chat_settings/models/bot_options_model.dart';
 import 'package:fluffychat/pangea/chat_settings/pages/pangea_chat_details.dart';
-import 'package:fluffychat/pangea/chat_settings/utils/download_chat.dart';
-import 'package:fluffychat/pangea/chat_settings/utils/download_file.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
+import 'package:fluffychat/pangea/download/download_room_extension.dart';
+import 'package:fluffychat/pangea/download/download_type_enum.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/utils/file_selector.dart';
@@ -238,7 +238,26 @@ class ChatDetailsController extends State<ChatDetails> {
       ],
     );
     if (type == null) return;
-    downloadChat(room, type, context);
+
+    try {
+      await room.download(type, context);
+    } on EmptyChatException {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            L10n.of(context).emptyChatDownloadWarning,
+          ),
+        ),
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            "${L10n.of(context).oopsSomethingWentWrong} ${L10n.of(context).errorPleaseRefresh}",
+          ),
+        ),
+      );
+    }
   }
 
   Future<void> setBotOptions(BotOptionsModel botOptions) async {

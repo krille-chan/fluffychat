@@ -112,7 +112,7 @@ class ConstructIdentifier {
 
   @override
   int get hashCode {
-    return lemma.hashCode ^ type.hashCode;
+    return lemma.hashCode ^ type.hashCode ^ category.hashCode;
   }
 
   String get string {

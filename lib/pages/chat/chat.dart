@@ -973,32 +973,12 @@ class ChatController extends State<ChatPageWithRoom>
         // There's a listen in my_analytics_controller that decides when to auto-update
         // analytics based on when / how many messages the logged in user send. This
         // stream sends the data for newly sent messages.
-        final metadata = ConstructUseMetaData(
-          roomId: roomId,
-          timeStamp: DateTime.now(),
-          eventId: msgEventId,
+        _sendMessageAnalytics(
+          msgEventId,
+          originalSent: originalSent,
+          tokensSent: tokensSent,
+          choreo: choreo,
         );
-
-        if (msgEventId != null && originalSent != null && tokensSent != null) {
-          final List<OneConstructUse> constructs = [
-            ...originalSent.vocabAndMorphUses(
-              choreo: choreo,
-              tokens: tokensSent.tokens,
-              metadata: metadata,
-            ),
-          ];
-
-          _showAnalyticsFeedback(constructs, msgEventId);
-
-          pangeaController.putAnalytics.setState(
-            AnalyticsStream(
-              eventId: msgEventId,
-              targetID: msgEventId,
-              roomId: room.id,
-              constructs: constructs,
-            ),
-          );
-        }
 
         if (previousEdit != null) {
           pangeaEditingEvent = previousEdit;
@@ -2088,6 +2068,48 @@ class ChatController extends State<ChatPageWithRoom>
     } catch (e) {
       // if not set, default to false
       return false;
+    }
+  }
+
+  Future<void> _sendMessageAnalytics(
+    String? eventId, {
+    PangeaRepresentation? originalSent,
+    PangeaMessageTokens? tokensSent,
+    ChoreoRecord? choreo,
+  }) async {
+    // There's a listen in my_analytics_controller that decides when to auto-update
+    // analytics based on when / how many messages the logged in user send. This
+    // stream sends the data for newly sent messages.
+    if (originalSent?.langCode.split("-").first !=
+        choreographer.l2Lang?.langCodeShort) {
+      return;
+    }
+
+    final metadata = ConstructUseMetaData(
+      roomId: roomId,
+      timeStamp: DateTime.now(),
+      eventId: eventId,
+    );
+
+    if (eventId != null && originalSent != null && tokensSent != null) {
+      final List<OneConstructUse> constructs = [
+        ...originalSent.vocabAndMorphUses(
+          choreo: choreo,
+          tokens: tokensSent.tokens,
+          metadata: metadata,
+        ),
+      ];
+
+      _showAnalyticsFeedback(constructs, eventId);
+
+      pangeaController.putAnalytics.setState(
+        AnalyticsStream(
+          eventId: eventId,
+          targetID: eventId,
+          roomId: room.id,
+          constructs: constructs,
+        ),
+      );
     }
   }
 

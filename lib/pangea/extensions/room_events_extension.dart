@@ -321,4 +321,55 @@ extension EventsRoomExtension on Room {
 
     return resp.chunk.map((e) => Event.fromMatrixEvent(e, this)).toList();
   }
+
+  Future<List<Event>> getAllEvents() async {
+    final GetRoomEventsResponse initalResp =
+        await client.getRoomEvents(id, Direction.b);
+
+    if (initalResp.end == null) return [];
+    String? nextStartToken = initalResp.end;
+    List<MatrixEvent> allMatrixEvents = initalResp.chunk;
+    while (nextStartToken != null) {
+      final GetRoomEventsResponse resp = await client.getRoomEvents(
+        id,
+        Direction.b,
+        from: nextStartToken,
+      );
+      final chunkMessages = resp.chunk;
+      allMatrixEvents.addAll(chunkMessages);
+      resp.end != nextStartToken
+          ? nextStartToken = resp.end
+          : nextStartToken = null;
+    }
+
+    allMatrixEvents = allMatrixEvents.reversed.toList();
+    final List<Event> allEvents = allMatrixEvents
+        .map((MatrixEvent message) => Event.fromMatrixEvent(message, this))
+        .toList();
+
+    return allEvents;
+  }
+
+  List<PangeaMessageEvent> getPangeaMessageEvents(
+    List<Event> events,
+    Timeline timeline,
+  ) {
+    final List<PangeaMessageEvent> allPangeaMessages = events
+        .where(
+          (Event event) =>
+              event.type == EventTypes.Message &&
+              event.content['msgtype'] == MessageTypes.Text,
+        )
+        .map(
+          (Event message) => PangeaMessageEvent(
+            event: message,
+            timeline: timeline,
+            ownMessage: client.userID == message.senderId,
+          ),
+        )
+        .cast<PangeaMessageEvent>()
+        .toList();
+
+    return allPangeaMessages;
+  }
 }

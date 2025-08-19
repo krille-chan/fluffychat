@@ -9,6 +9,7 @@ import 'package:matrix/matrix.dart';
 import 'package:matrix/src/utils/markdown.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
+import 'package:fluffychat/pangea/analytics_misc/constructs_model.dart';
 import 'package:fluffychat/pangea/choreographer/event_wrappers/pangea_choreo_event.dart';
 import 'package:fluffychat/pangea/choreographer/models/choreo_record.dart';
 import 'package:fluffychat/pangea/choreographer/models/language_detection_model.dart';
@@ -335,5 +336,23 @@ class RepresentationEvent {
             .cast<String>()
             .toList() ??
         [];
+  }
+
+  List<OneConstructUse> vocabAndMorphUses() {
+    if (tokens == null || tokens!.isEmpty) {
+      return [];
+    }
+
+    final metadata = ConstructUseMetaData(
+      roomId: parentMessageEvent.room.id,
+      timeStamp: parentMessageEvent.originServerTs,
+      eventId: parentMessageEvent.eventId,
+    );
+
+    return content.vocabAndMorphUses(
+      tokens: tokens!,
+      metadata: metadata,
+      choreo: choreo,
+    );
   }
 }

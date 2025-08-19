@@ -12,9 +12,10 @@ import 'package:fluffychat/pangea/analytics_downloads/space_analytics_summary_mo
 import 'package:fluffychat/pangea/analytics_misc/construct_list_model.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_use_model.dart';
 import 'package:fluffychat/pangea/analytics_misc/constructs_model.dart';
-import 'package:fluffychat/pangea/chat_settings/utils/download_file.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/common/widgets/error_indicator.dart';
+import 'package:fluffychat/pangea/download/download_file_util.dart';
+import 'package:fluffychat/pangea/download/download_type_enum.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/morphs/get_grammar_copy.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -143,7 +144,7 @@ class DownloadAnalyticsDialogState extends State<DownloadAnalyticsDialog> {
     final fileName =
         "analytics_${widget.space.name}_${DateTime.now().toIso8601String()}.${_downloadType == DownloadType.xlsx ? 'xlsx' : 'csv'}";
 
-    await downloadFile(
+    await DownloadUtil.downloadFile(
       content,
       fileName,
       DownloadType.csv,

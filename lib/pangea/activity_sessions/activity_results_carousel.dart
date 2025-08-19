@@ -3,19 +3,27 @@ import 'package:flutter/material.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/pangea/activity_sessions/activity_analytics_chip.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_role_model.dart';
+import 'package:fluffychat/pangea/activity_summary/activity_summary_analytics_model.dart';
 import 'package:fluffychat/pangea/activity_summary/activity_summary_response_model.dart';
+import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
+import 'package:fluffychat/pangea/analytics_summary/progress_indicators_enum.dart';
 
 class ActivityResultsCarousel extends StatelessWidget {
+  final String userId;
   final ActivityRoleModel selectedRole;
   final ParticipantSummaryModel summary;
+  final ActivitySummaryAnalyticsModel? analytics;
 
   final User? user;
 
   const ActivityResultsCarousel({
     super.key,
+    required this.userId,
     required this.selectedRole,
     required this.summary,
+    required this.analytics,
     this.user,
   });
 
@@ -48,25 +56,19 @@ class ActivityResultsCarousel extends StatelessWidget {
             spacing: 8.0,
             runSpacing: 8.0,
             children: [
-              Container(
-                padding: const EdgeInsets.all(4.0),
-                decoration: BoxDecoration(
-                  color: theme.colorScheme.primaryContainer,
-                  borderRadius: BorderRadius.circular(20),
+              if (analytics != null)
+                ActivityAnalyticsChip(
+                  ConstructTypeEnum.vocab.indicator.icon,
+                  "${analytics!.uniqueConstructCountForUser(userId, ConstructTypeEnum.vocab)}",
                 ),
-                child: Row(
-                  spacing: 4.0,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Icon(Icons.school, size: 12.0),
-                    Text(
-                      summary.cefrLevel,
-                      style: const TextStyle(
-                        fontSize: 12.0,
-                      ),
-                    ),
-                  ],
+              if (analytics != null)
+                ActivityAnalyticsChip(
+                  ConstructTypeEnum.morph.indicator.icon,
+                  "${analytics!.uniqueConstructCountForUser(userId, ConstructTypeEnum.morph)}",
                 ),
+              ActivityAnalyticsChip(
+                Icons.school,
+                summary.cefrLevel,
               ),
               ...summary.superlatives.map(
                 (sup) => Container(

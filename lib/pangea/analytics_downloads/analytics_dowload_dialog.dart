@@ -15,10 +15,11 @@ import 'package:fluffychat/pangea/analytics_misc/construct_use_model.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/constructs_model.dart';
 import 'package:fluffychat/pangea/analytics_misc/learning_skills_enum.dart';
-import 'package:fluffychat/pangea/chat_settings/utils/download_file.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/common/widgets/error_indicator.dart';
 import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
+import 'package:fluffychat/pangea/download/download_file_util.dart';
+import 'package:fluffychat/pangea/download/download_type_enum.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/morphs/get_grammar_copy.dart';
 import 'package:fluffychat/pangea/morphs/morph_features_enum.dart';
@@ -101,12 +102,12 @@ class AnalyticsDownloadDialogState extends State<AnalyticsDownloadDialog> {
             "analytics_morph_${MatrixState.pangeaController.matrixState.client.userID?.localpart}_${DateFormat('yyyy-MM-dd-hh:mm:ss').format(DateTime.now())}.csv";
 
         final futures = [
-          downloadFile(
+          DownloadUtil.downloadFile(
             vocabContent,
             vocabFileName,
             _downloadType,
           ),
-          downloadFile(
+          DownloadUtil.downloadFile(
             morphContent,
             morphFileName,
             _downloadType,
@@ -123,7 +124,7 @@ class AnalyticsDownloadDialogState extends State<AnalyticsDownloadDialog> {
         final fileName =
             "analytics_${MatrixState.pangeaController.matrixState.client.userID?.localpart}_${DateFormat('yyyy-MM-dd-hh:mm:ss').format(DateTime.now())}.xlsx'}";
 
-        await downloadFile(
+        await DownloadUtil.downloadFile(
           content,
           fileName,
           _downloadType,

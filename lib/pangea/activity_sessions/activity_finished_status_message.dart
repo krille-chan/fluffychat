@@ -7,10 +7,13 @@ import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
+import 'package:fluffychat/pangea/activity_sessions/activity_analytics_chip.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_participant_indicator.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_results_carousel.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_role_model.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_room_extension.dart';
+import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
+import 'package:fluffychat/pangea/analytics_summary/progress_indicators_enum.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
@@ -103,6 +106,21 @@ class ActivityFinishedStatusMessage extends StatelessWidget {
                     ),
                   ),
                 ),
+                if (summary.analytics != null)
+                  Row(
+                    spacing: 8.0,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      ActivityAnalyticsChip(
+                        ConstructTypeEnum.vocab.indicator.icon,
+                        "${summary.analytics!.uniqueConstructCount(ConstructTypeEnum.vocab)}",
+                      ),
+                      ActivityAnalyticsChip(
+                        ConstructTypeEnum.morph.indicator.icon,
+                        "${summary.analytics!.uniqueConstructCount(ConstructTypeEnum.morph)}",
+                      ),
+                    ],
+                  ),
                 const SizedBox(height: 16.0),
                 if (_highlightedRole != null && userSummary != null)
                   ClipRRect(
@@ -114,9 +132,11 @@ class ActivityFinishedStatusMessage extends StatelessWidget {
                       child: Column(
                         children: [
                           ActivityResultsCarousel(
+                            userId: _highlightedRole!.userId,
                             selectedRole: _highlightedRole!,
                             user: user,
                             summary: userSummary,
+                            analytics: summary.analytics,
                           ),
                           Wrap(
                             alignment: WrapAlignment.center,
