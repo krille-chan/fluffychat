@@ -128,7 +128,7 @@ gex(d){return"Copia\u021bi"},
 gi8(){return"Copia\u021bi \xeen clipboard"},
 i9(d){return"Dezcriptarea mesajului a e\u0219uat: "+d},
 gp0(){return"Check list"},
-dJ(d){return""+d+" participan\u021bi"},
+dw(d){return""+d+" participan\u021bi"},
 p9(d){return""+d+" invited"},
 gib(d){return"Crea\u021bi"},
 ic(d){return"\ud83d\udcac"+d+" a creat chatul"},
@@ -380,7 +380,7 @@ gjZ(){return"De ce dori\u021bi s\u0103 reporta\u021bi acest con\u021binut?"},
 goI(){return"\u0218terge\u021bi backup-ul vostru de chat s\u0103 crea\u021bi o nou\u0103 cheie de recuperare?"},
 goJ(){return"Cu acestea adrese pute\u021bi s\u0103 v\u0103 recupera\u021bi parola."},
 goK(){return"Scrie\u021bi un mesaj\u2026"},
-gdE(){return"Da"},
+gdF(){return"Da"},
 goM(){return"Voi"},
 gen(){return"Nu mai participa\u021bi \xeen acest chat"},
 goP(){return"A\u021bi fost interzis din acest chat"},
@@ -418,7 +418,7 @@ gol(){return"Utilizatori"},
 gob(){return"Debloca\u021bi mesajele vechi"},
 gkc(){return"Activa\u021bi dialogul de partajare sistemului sau folosi\u021bi clipboard-ul s\u0103 salva\u021bi manual aceast\u0103 cheie."},
 ly(d){return""+d+" fi\u0219iere"},
-gdC(){return"Utilizator"},
+gdD(){return"Utilizator"},
 gie(){return"Personalizat"},
 goH(){return"De ce este acest mesaj ilizibil?"},
 gmD(){return"Aceast\u0103 chestie poate s\u0103 se \xeent\xe2mple c\xe2nd mesajul a fost trimis \xeenainte s\u0103 v\u0103 conecta\u021bi contul cu acest dispozitiv.\n\nO alt\u0103 explica\u021bie ar fi dac\u0103 trimi\u021b\u0103torul a blocat dispozitivul vostru sau ceva s-a \xeent\xe2mplat cu conexiunea la internet\n\nPute\u021bi s\u0103 citi\u021bi mesajul \xeen o alt\u0103 se\u0219iune? Atunci pute\u021bi s\u0103 transfera\u021bi mesajul de acolo! Merge\u021bi la Configur\u0103ri > Dispozitive \u0219i verifica\u021bi c\u0103 dispozitivele s-au verificat. C\xe2nd deschide\u021bi camera \xeen viitor \u0219i ambele se\u0219iune sunt \xeen foreground, cheile va fi transmise automat. \n\nDori\u021bi s\u0103 \xee\u021bi p\u0103stra\u021bi cheile c\xe2nd deconecta\u021bi sau schimba\u021bi dispozitive? Fi\u021bi aten\u021bi s\u0103 activa\u021bi backup de chat \xeen configur\u0103ri."},
@@ -639,5 +639,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FB,C.aF)})()
 B.dQ(b.typeUniverse,JSON.parse('{"FB":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_308",e:"endPart",h:b})})($__dart_deferred_initializers__,"y1bTaYEszaoo3VPYDhfRt+/ZfBI=");
+a.eventLog.push({p:"main.dart.js_308",e:"endPart",h:b})})($__dart_deferred_initializers__,"2lpInEYXdxzBQw2+aQnIFc1jX/U=");
 //# sourceMappingURL=main.dart.js_308.part.js.map

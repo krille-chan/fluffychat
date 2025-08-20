@@ -128,7 +128,7 @@ gex(d){return"Copia"},
 gi8(){return"Copia al porta-retalls"},
 i9(d){return"No s'ha pogut desxifrar el missatge: "+d},
 gp0(){return"Check list"},
-dJ(d){return""+d+" participants"},
+dw(d){return""+d+" participants"},
 p9(d){return""+d+" invited"},
 gib(d){return"Crea"},
 ic(d){return"\ud83d\udcac "+d+" ha creat el xat"},
@@ -380,7 +380,7 @@ gjZ(){return"Per qu\xe8 voleu denunciar aix\xf2?"},
 goI(){return"Voleu suprimir la c\xf2pia de seguretat dels xats per a crear una clau de recuperaci\xf3 nova?"},
 goJ(){return"Amb aquestes adreces, si ho necessiteu, podeu recuperar la vostra contrasenya."},
 goK(){return"Escriviu un missatge\u2026"},
-gdE(){return"S\xed"},
+gdF(){return"S\xed"},
 goM(){return"V\xf3s"},
 gen(){return"Ja no participeu en aquest xat"},
 goP(){return"T'han vetat en aquest xat"},
@@ -418,7 +418,7 @@ gol(){return"Usu\xe0r\xefis"},
 gob(){return"Desbloqueja els missatges antics"},
 gkc(){return"Per desar aquesta clau manualment, pica l'eina de compartir o copia-la al porta-retalls."},
 ly(d){return""+d+" arxius"},
-gdC(){return"Usu\xe0r\xefi"},
+gdD(){return"Usu\xe0r\xefi"},
 gie(){return"Personalitzat"},
 goH(){return"Per qu\xe8 no es pot llegir aquest missatge?"},
 gmD(){return"Aix\xf2 pot passar si el missatge es va enviar abans que haguessis iniciat sessi\xf3 al teu compte des d'aquest dispositiu.\n\nTamb\xe9 pot ser que l'emissor hagi bloquejat el teu dispositiu o que la connexi\xf3 a internet an\xe9s malament.\n\nQue pots llegir el missatge des d'una altra sessi\xf3? Si \xe9s aix\xed, llavors pots transferir-lo! Ves a Par\xe0metres \u2192 Dispositius i assegura't que els teus dispositius s'ha verificat m\xfatuament. Quan obris la sala la propera vegada i totes dues sessions estiguin executant-se, en primer pla, llavors les claus es trasnsmetran autom\xe0ticament.\n\nVols evitar perdre les claus en tancar la sessi\xf3 o en canviar de dispositiu? Llavors assegura't que has activat la c\xf2pia de seguretat del xat als par\xe0metres."},
@@ -639,5 +639,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.F3,C.aF)})()
 B.dQ(b.typeUniverse,JSON.parse('{"F3":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_229",e:"endPart",h:b})})($__dart_deferred_initializers__,"5+NudRi8uSbAciabBiiFsr7hOC4=");
+a.eventLog.push({p:"main.dart.js_229",e:"endPart",h:b})})($__dart_deferred_initializers__,"dreUejU2LQZ3r1cTxo6xMoYSLAU=");
 //# sourceMappingURL=main.dart.js_229.part.js.map

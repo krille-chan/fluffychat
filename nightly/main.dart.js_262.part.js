@@ -128,7 +128,7 @@ gex(d){return"Kopeeri"},
 gi8(){return"Kopeeri l\xf5ikelauale"},
 i9(d){return"S\xf5numi dekr\xfcptimine ei \xf5nnestunud: "+d},
 gp0(){return"Kontrollnimekiri"},
-dJ(d){return""+d+" osalejat"},
+dw(d){return""+d+" osalejat"},
 p9(d){return""+d+" kutsutut"},
 gib(d){return"Loo"},
 ic(d){return"\ud83d\udcac "+d+" algatas vestluse"},
@@ -380,7 +380,7 @@ gjZ(){return"Miks sa soovid sellest teatada?"},
 goI(){return"Kas kustutame sinu vestluste varukoopia ja loome uue taastamiseks m\xf5eldud kr\xfcptov\xf5tme?"},
 goJ(){return"Nende e-posti aadresside abil saad taastada oma salas\xf5na."},
 goK(){return"Kirjuta \xfcks s\xf5num\u2026"},
-gdE(){return"Jah"},
+gdF(){return"Jah"},
 goM(){return"Sina"},
 gen(){return"Sa enam ei osale selles vestluses"},
 goP(){return"Sinule on selles vestluses seatud suhtluskeeld"},
@@ -418,7 +418,7 @@ gol(){return"Kasutajad"},
 gob(){return"Muuda vanad s\xf5numid loetavaks"},
 gkc(){return"Salvesta see kr\xfcptov\xf5ti kasutades selle s\xfcsteemi jagamisvalikuid v\xf5i l\xf5ikelauda."},
 ly(d){return""+d+" faili"},
-gdC(){return"Kasutaja"},
+gdD(){return"Kasutaja"},
 gie(){return"Kohandatud"},
 goH(){return"Miks see s\xf5num pole loetav?"},
 gmD(){return"See v\xf5ib juhtuda, kui s\xf5num oli saadetud enne, kui siin seadmes oma kontoga sisse logisid.\n\nSamuti v\xf5ib juhtuda siis, kui saatja on lugemises selles seadmes blokeerinud v\xf5i on tekkinud t\xf5rkeid veebi\xfchenduses.\n\nAga m\xf5nes teises seadmes saad seda s\xf5numit lugeda? Siis sa v\xf5id s\xf5numi sealt \xfcle t\xf5sta. Ava Seadistused -> Seadmed ning kontrolli, et k\xf5ik sinu seadmed on omavahel verifitseeritud. Kui avad selle vestluse v\xf5i jututoa ning m\xf5lemad sessioonid on avatud, siis vajalikud kr\xfcptov\xf5tmed saadetakse automaatset.\n\nKas sa soovid v\xe4ltida kr\xfcptov\xf5tmete kadumist v\xe4ljalogimisel ja seadmete vahetusel? Siis palun kontrolli, et seadistuses on kr\xfcptov\xf5tmete varundus sisse l\xfclitatud."},
@@ -639,5 +639,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fb,C.aF)})()
 B.dQ(b.typeUniverse,JSON.parse('{"Fb":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_262",e:"endPart",h:b})})($__dart_deferred_initializers__,"B18jxRXAPYyAjJkts7iAGbqtF8U=");
+a.eventLog.push({p:"main.dart.js_262",e:"endPart",h:b})})($__dart_deferred_initializers__,"TUIqzwRVPJKBbGvcHWq3OnLOHMQ=");
 //# sourceMappingURL=main.dart.js_262.part.js.map

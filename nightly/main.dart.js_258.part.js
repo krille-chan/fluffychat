@@ -128,7 +128,7 @@ gex(d){return"Copiar"},
 gi8(){return"Copiar al portapapeles"},
 i9(d){return"No se pudo descifrar el mensaje: "+d},
 gp0(){return"Lista de tareas"},
-dJ(d){return""+d+" participantes"},
+dw(d){return""+d+" participantes"},
 p9(d){return""+d+" invitado"},
 gib(d){return"Crear"},
 ic(d){return"\ud83d\udcac"+d+" cre\xf3 el chat"},
@@ -380,7 +380,7 @@ gjZ(){return"\xbfPor qu\xe9 quieres denunciar esto?"},
 goI(){return"\xbfLimpiar la copia de seguridad de tu chat para crear una nueva clave de recuperaci\xf3n?"},
 goJ(){return"Con esta direcci\xf3n puede recuperar su contrase\xf1a."},
 goK(){return"Escribe un mensaje\u2026"},
-gdE(){return"S\xed"},
+gdF(){return"S\xed"},
 goM(){return"T\xfa"},
 gen(){return"Ya no est\xe1s participando en este chat"},
 goP(){return"Has sido vetado de este chat"},
@@ -418,7 +418,7 @@ gol(){return"Usuarios"},
 gob(){return"Desbloquear mensajes viejos"},
 gkc(){return"Compartir esta clave manualmente usando el di\xe1logo de compartir del sistema o el portapapeles."},
 ly(d){return""+d+" archivos"},
-gdC(){return"Usuario"},
+gdD(){return"Usuario"},
 gie(){return"Personalizado"},
 goH(){return"\xbfPor qu\xe9 no se puede leer este mensaje?"},
 gmD(){return"Esto puede ocurrir si el mensaje se envi\xf3 antes de que entraras en tu cuenta en este dispositivo.\n\nTambi\xe9n puede que el remitente haya bloqueado tu dispositivo o haya fallado algo en la conexi\xf3n a Internet.\n\n\xbfPuedes leer el mensaje en otra sesi\xf3n? Entonces, \xa1puedes transferir el mensaje desde all\xed! Ve a Ajustes > Dispositivos y aseg\xfarate de que tus dispositivos se han verificado mutuamente. Cuando abras la sala la pr\xf3xima vez y ambas sesiones est\xe9n en primer plano, las claves se transmitir\xe1n autom\xe1ticamente.\n\n\xbfNo quieres perder las claves al salir o al cambiar de dispositivo? Aseg\xfarate de que has habilitado la copia de seguridad del chat en los ajustes."},
@@ -639,5 +639,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fa,C.aF)})()
 B.dQ(b.typeUniverse,JSON.parse('{"Fa":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_258",e:"endPart",h:b})})($__dart_deferred_initializers__,"ufQabrBckJC+5TCgDKP05FzW4bQ=");
+a.eventLog.push({p:"main.dart.js_258",e:"endPart",h:b})})($__dart_deferred_initializers__,"eHk2XyyRDkP+oRXe8kPfr0bQzj0=");
 //# sourceMappingURL=main.dart.js_258.part.js.map

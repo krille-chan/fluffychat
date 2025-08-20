@@ -128,7 +128,7 @@ gex(d){return"\u30b3\u30d4\u30fc"},
 gi8(){return"\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u306b\u30b3\u30d4\u30fc"},
 i9(d){return"\u30e1\u30c3\u30bb\u30fc\u30b8\u3092\u89e3\u8aad\u3067\u304d\u307e\u305b\u3093\u3067\u3057\u305f: "+d},
 gp0(){return"Check list"},
-dJ(d){return""+d+"\u540d\u306e\u53c2\u52a0\u8005"},
+dw(d){return""+d+"\u540d\u306e\u53c2\u52a0\u8005"},
 p9(d){return""+d+" invited"},
 gib(d){return"\u4f5c\u6210"},
 ic(d){return"\ud83d\udcac "+d+"\u304c\u30c1\u30e3\u30c3\u30c8\u3092\u4f5c\u6210\u3057\u307e\u3057\u305f"},
@@ -380,7 +380,7 @@ gjZ(){return"\u3053\u308c\u3092\u901a\u5831\u3059\u308b\u7406\u7531"},
 goI(){return"\u30c1\u30e3\u30c3\u30c8\u306e\u30d0\u30c3\u30af\u30a2\u30c3\u30d7\u3092\u6d88\u53bb\u3057\u3066\u3001\u65b0\u3057\u3044\u30ea\u30ab\u30d0\u30ea\u30fc\u30ad\u30fc\u3092\u4f5c\u308a\u307e\u3059\u304b\uff1f"},
 goJ(){return"\u3053\u308c\u3089\u306e\u30a2\u30c9\u30ec\u30b9\u3092\u4f7f\u7528\u3059\u308b\u3068\u3001\u30d1\u30b9\u30ef\u30fc\u30c9\u3092\u56de\u5fa9\u3059\u308b\u3053\u3068\u304c\u3067\u304d\u307e\u3059\u3002"},
 goK(){return"\u30e1\u30c3\u30bb\u30fc\u30b8\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044\u2026"},
-gdE(){return"\u306f\u3044"},
+gdF(){return"\u306f\u3044"},
 goM(){return"\u3042\u306a\u305f"},
 gen(){return"\u3042\u306a\u305f\u306f\u3082\u3046\u3053\u306e\u30c1\u30e3\u30c3\u30c8\u306e\u53c2\u52a0\u8005\u3067\u306f\u3042\u308a\u307e\u305b\u3093"},
 goP(){return"\u30c1\u30e3\u30c3\u30c8\u304b\u3089BAN\u3055\u308c\u3066\u3057\u307e\u3044\u307e\u3057\u305f"},
@@ -418,7 +418,7 @@ gol(){return"\u30e6\u30fc\u30b6\u30fc"},
 gob(){return"\u53e4\u3044\u30e1\u30c3\u30bb\u30fc\u30b8\u306e\u30ed\u30c3\u30af\u3092\u89e3\u9664\u3059\u308b"},
 gkc(){return"Save this key manually by triggering the system share dialog or clipboard."},
 ly(d){return""+d+"\u500b\u306e\u30d5\u30a1\u30a4\u30eb"},
-gdC(){return"\u30e6\u30fc\u30b6\u30fc"},
+gdD(){return"\u30e6\u30fc\u30b6\u30fc"},
 gie(){return"\u30ab\u30b9\u30bf\u30e0"},
 goH(){return"\u3053\u306e\u30e1\u30c3\u30bb\u30fc\u30b8\u304c\u8aad\u3081\u306a\u3044\u7406\u7531"},
 gmD(){return"This can happen if the message was sent before you have signed in to your account at this device.\n\nIt is also possible that the sender has blocked your device or something went wrong with the internet connection.\n\nAre you able to read the message on another session? Then you can transfer the message from it! Go to Settings > Devices and make sure that your devices have verified each other. When you open the room the next time and both sessions are in the foreground, the keys will be transmitted automatically.\n\nDo you not want to lose the keys when logging out or switching devices? Make sure that you have enabled the chat backup in the settings."},
@@ -639,5 +639,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fr,C.aF)})()
 B.dQ(b.typeUniverse,JSON.parse('{"Fr":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_299",e:"endPart",h:b})})($__dart_deferred_initializers__,"cvzVI/TJCj273At4P+RXIUQlTDo=");
+a.eventLog.push({p:"main.dart.js_299",e:"endPart",h:b})})($__dart_deferred_initializers__,"sg06v1UmcGfh9ZjPChjaqDkrtiU=");
 //# sourceMappingURL=main.dart.js_299.part.js.map

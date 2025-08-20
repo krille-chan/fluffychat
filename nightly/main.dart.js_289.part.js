@@ -128,7 +128,7 @@ gex(d){return"Salin"},
 gi8(){return"Salin ke papan klip"},
 i9(d){return"Tidak dapat mendekripsikan pesan: "+d},
 gp0(){return"Ceklis"},
-dJ(d){return""+d+" anggota"},
+dw(d){return""+d+" anggota"},
 p9(d){return""+d+" diundang"},
 gib(d){return"Buat"},
 ic(d){return"\ud83d\udcac "+d+" membuat obrolan ini"},
@@ -380,7 +380,7 @@ gjZ(){return"Kenapa kamu ingin melaporkannya?"},
 goI(){return"Hapus cadangan obrolan untuk membuat kunci pemulihan baru?"},
 goJ(){return"Dengan alamat ini kamu bisa memulihkan kata sandimu."},
 goK(){return"Tulis pesan\u2026"},
-gdE(){return"Ya"},
+gdF(){return"Ya"},
 goM(){return"Kamu"},
 gen(){return"Kamu tidak berpartisipasi lagi di obrolan ini"},
 goP(){return"Kamu telah dicekal dari obrolan ini"},
@@ -418,7 +418,7 @@ gol(){return"Pengguna"},
 gob(){return"Akses pesan lama"},
 gkc(){return"Simpan kunci ini secara manual dengan memicu dialog pembagian atau papan klip sistem."},
 ly(d){return""+d+" file"},
-gdC(){return"Pengguna"},
+gdD(){return"Pengguna"},
 gie(){return"Kustom"},
 goH(){return"Mengapa pesan ini tidak bisa dibaca?"},
 gmD(){return"Hal ini bisa terjadi jika pesan dikirim sebelum kamu masuk ke akunmu di perangkat ini.\n\nMungkin juga pengirim telah memblokir perangkatmu atau ada yang tidak beres dengan koneksi internet.\n\nApakah kamu bisa membaca pesan pada sesi lain? Maka kamu bisa mentransfer pesan dari sesi tersebut! Buka Pengaturan > Perangkat dan pastikan bahwa perangkat Anda telah ditandatangani secara silang. Ketika kamu membuka ruangan di lain waktu dan kedua sesi berada di latar depan, kunci akan ditransmisikan secara otomatis.\n\nApakah kamu tidak mau kehilangan kunci saat keluar atau berpindah perangkat? Pastikan bahwa kamu telah mengaktifkan cadangan obrolan dalam pengaturan."},
@@ -640,5 +640,5 @@ x(A.Fo,C.aF)})()
 B.dQ(b.typeUniverse,JSON.parse('{"Fo":{"aF":[]}}'))
 var y={a:"Memberi tahu pengguna tentang pesan dalam ruangan satu ke satu."}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_289",e:"endPart",h:b})})($__dart_deferred_initializers__,"tpS9QlZdfTnAGyDan9i68cHPRFg=");
+a.eventLog.push({p:"main.dart.js_289",e:"endPart",h:b})})($__dart_deferred_initializers__,"IFVxMNMZ+ugRY6I5KGHtfeGqmnk=");
 //# sourceMappingURL=main.dart.js_289.part.js.map

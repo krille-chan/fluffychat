@@ -128,7 +128,7 @@ gex(d){return"Kopioi"},
 gi8(){return"Kopioi leikep\xf6yd\xe4lle"},
 i9(d){return"Viestin salausta ei voitu purkaa: "+d},
 gp0(){return"Check list"},
-dJ(d){return""+d+" osallistujaa"},
+dw(d){return""+d+" osallistujaa"},
 p9(d){return""+d+" invited"},
 gib(d){return"Luo"},
 ic(d){return d+" loi keskustelun"},
@@ -380,7 +380,7 @@ gjZ(){return"Miksi haluat ilmoittaa t\xe4m\xe4n?"},
 goI(){return"Pyyhi keskusteluvarmuuskopio luodaksesi uuden palautusavaimen?"},
 goJ(){return"N\xe4ill\xe4 osoitteilla voit palauttaa salasanasi."},
 goK(){return"Kirjoita viesti\u2026"},
-gdE(){return"Kyll\xe4"},
+gdF(){return"Kyll\xe4"},
 goM(){return"Sin\xe4"},
 gen(){return"Et en\xe4\xe4 osallistu t\xe4h\xe4n keskusteluun"},
 goP(){return"Sinulle on annettu porttikielto t\xe4h\xe4n keskusteluun"},
@@ -418,7 +418,7 @@ gol(){return"K\xe4ytt\xe4j\xe4t"},
 gob(){return"Pura vanhojen viestien salaus"},
 gkc(){return"Tallenna t\xe4m\xe4 avain manuaalisesti k\xe4ytt\xe4en j\xe4rjestelm\xe4n jakodialogia tai leikep\xf6yt\xe4\xe4."},
 ly(d){return""+d+" tiedostoa"},
-gdC(){return"K\xe4ytt\xe4j\xe4"},
+gdD(){return"K\xe4ytt\xe4j\xe4"},
 gie(){return"Mukautettu"},
 goH(){return"Miksei t\xe4t\xe4 viesti\xe4 voida lukea?"},
 gmD(){return"T\xe4m\xe4 voi tapahtua mik\xe4li viesti l\xe4hetettiin ennen sis\xe4\xe4nkirjautumistasi t\xe4lle laitteelle.\n\nOn my\xf6s mahdollista, ett\xe4 l\xe4hett\xe4j\xe4 on est\xe4nyt t\xe4m\xe4n laitteen tai jokin meni pieleen verkkoyhteyden kanssa.\n\nPystytk\xf6 lukemaan viestin toisella istunnolla? Siin\xe4 tapauksessa voit siirt\xe4\xe4 viestin silt\xe4! Mene Asetukset > Laitteet ja varmista, ett\xe4 laitteesi ovat varmistaneet toisensa. Seuraavankerran avatessasi huoneen ja molempien istuntojen ollessa etualalla, avaimet siirret\xe4\xe4n automaattisesti.\n\nHaluatko varmistaa ettet menet\xe4 avaimia uloskirjautuessa tai laitteita vaihtaessa? Varmista avainvarmuuskopion k\xe4yt\xf6ss\xe4olo asetuksista."},
@@ -639,5 +639,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fe,C.aF)})()
 B.dQ(b.typeUniverse,JSON.parse('{"Fe":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_268",e:"endPart",h:b})})($__dart_deferred_initializers__,"nUXygGmMyYQctvV3IqyRdhHrBJY=");
+a.eventLog.push({p:"main.dart.js_268",e:"endPart",h:b})})($__dart_deferred_initializers__,"rtRIE6wnJIiCwvJLbOEryDOs24A=");
 //# sourceMappingURL=main.dart.js_268.part.js.map

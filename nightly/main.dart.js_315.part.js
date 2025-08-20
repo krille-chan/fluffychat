@@ -128,7 +128,7 @@ gex(d){return"\u041a\u043e\u043f\u0438\u0440\u0430\u0458"},
 gi8(){return"\u041a\u043e\u043f\u0438\u0440\u0430\u0458 \u0443 \u043a\u043b\u0438\u043f\u0431\u043e\u0440\u0434"},
 i9(d){return"\u041d\u0435 \u043c\u043e\u0433\u0443 \u0434\u0430 \u0434\u0435\u0448\u0438\u0444\u0440\u0443\u0458\u0435\u043c \u043f\u043e\u0440\u0443\u043a\u0443: "+d},
 gp0(){return"Check list"},
-dJ(d){return"\u0443\u0447\u0435\u0441\u043d\u0438\u043a\u0430: "+d},
+dw(d){return"\u0443\u0447\u0435\u0441\u043d\u0438\u043a\u0430: "+d},
 p9(d){return""+d+" invited"},
 gib(d){return"\u041d\u0430\u043f\u0440\u0430\u0432\u0438"},
 ic(d){return d+" \u043d\u0430\u043f\u0440\u0430\u0432\u0438 \u045b\u0430\u0441\u043a\u0430\u045a\u0435"},
@@ -380,7 +380,7 @@ gjZ(){return"\u0417\u0430\u0448\u0442\u043e \u0436\u0435\u043b\u0438\u0442\u0435
 goI(){return"\u0414\u0430 \u043e\u0431\u0440\u0438\u0448\u0435\u043c \u0440\u0435\u0437\u0435\u0440\u0432\u043d\u0443 \u043a\u043e\u043f\u0438\u0458\u0443 \u043a\u0430\u043a\u043e \u0431\u0438 \u043d\u0430\u043f\u0440\u0430\u0432\u0438\u043e \u043d\u043e\u0432\u0438 \u0441\u0438\u0433\u0443\u0440\u043d\u043e\u0441\u043d\u0438 \u043a\u0459\u0443\u0447?"},
 goJ(){return"\u0421\u0430 \u043e\u0432\u0438\u043c \u0430\u0434\u0440\u0435\u0441\u0430\u043c\u0430 \u043c\u043e\u0436\u0435\u0442\u0435 \u043e\u043f\u043e\u0440\u0430\u0432\u0438\u0442\u0438 \u0441\u0432\u043e\u0458\u0443 \u043b\u043e\u0437\u0438\u043d\u043a\u0443."},
 goK(){return"\u043d\u0430\u043f\u0438\u0448\u0438\u0442\u0435 \u043f\u043e\u0440\u0443\u043a\u0443\u2026"},
-gdE(){return"\u0414\u0430"},
+gdF(){return"\u0414\u0430"},
 goM(){return"\u0412\u0438"},
 gen(){return"\u0412\u0438\u0448\u0435 \u043d\u0435 \u0443\u0447\u0435\u0441\u0442\u0432\u0443\u0458\u0435\u0442\u0435 \u0443 \u043e\u0432\u043e\u043c \u045b\u0430\u0441\u043a\u0430\u045a\u0443"},
 goP(){return"\u0417\u0430\u0431\u0440\u0430\u045a\u0435\u043d\u043e \u0432\u0430\u043c \u0458\u0435 \u043e\u0432\u043e \u045b\u0430\u0441\u043a\u0430\u045a\u0435"},
@@ -418,7 +418,7 @@ gol(){return"Users"},
 gob(){return"Unlock old messages"},
 gkc(){return"Save this key manually by triggering the system share dialog or clipboard."},
 ly(d){return""+d+" files"},
-gdC(){return"User"},
+gdD(){return"User"},
 gie(){return"Custom"},
 goH(){return"Why is this message unreadable?"},
 gmD(){return"This can happen if the message was sent before you have signed in to your account at this device.\n\nIt is also possible that the sender has blocked your device or something went wrong with the internet connection.\n\nAre you able to read the message on another session? Then you can transfer the message from it! Go to Settings > Devices and make sure that your devices have verified each other. When you open the room the next time and both sessions are in the foreground, the keys will be transmitted automatically.\n\nDo you not want to lose the keys when logging out or switching devices? Make sure that you have enabled the chat backup in the settings."},
@@ -639,5 +639,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FF,C.aF)})()
 B.dQ(b.typeUniverse,JSON.parse('{"FF":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_315",e:"endPart",h:b})})($__dart_deferred_initializers__,"D/cUZm4TjOnvvefXGviYudiCHOY=");
+a.eventLog.push({p:"main.dart.js_315",e:"endPart",h:b})})($__dart_deferred_initializers__,"nXunezjK5RbDdtKWI+VwsGbvMBo=");
 //# sourceMappingURL=main.dart.js_315.part.js.map

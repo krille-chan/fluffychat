@@ -128,7 +128,7 @@ gex(d){return"Bericht kopi\xebren"},
 gi8(){return"Kopieer naar klembord"},
 i9(d){return"Kan het bericht niet ontsleutelen: "+d},
 gp0(){return"Checklist"},
-dJ(d){return""+d+" personen"},
+dw(d){return""+d+" personen"},
 p9(d){return""+d+" uitgenodigd"},
 gib(d){return"Aanmaken"},
 ic(d){return"\ud83d\udcac "+d+" heeft de chat gemaakt"},
@@ -380,7 +380,7 @@ gjZ(){return"Waarom wil je dit rapporteren?"},
 goI(){return"Wil je de chatback-up wissen om een nieuwe herstelsleutel te kunnen maken?"},
 goJ(){return"Met deze adressen kun je je wachtwoord herstellen."},
 goK(){return"Schrijf een bericht\u2026"},
-gdE(){return"Ja"},
+gdF(){return"Ja"},
 goM(){return"Jij"},
 gen(){return"Je neemt niet langer deel aan deze chat"},
 goP(){return"Je bent verbannen uit deze chat"},
@@ -418,7 +418,7 @@ gol(){return"Personen"},
 gob(){return"Oude berichten ontgrendelen"},
 gkc(){return"Sla deze sleutel handmatig op via delen of het klembord."},
 ly(d){return""+d+" bestanden"},
-gdC(){return"Persoon"},
+gdD(){return"Persoon"},
 gie(){return"Aangepast"},
 goH(){return"Waarom is dit bericht onleesbaar?"},
 gmD(){return"Dit kan gebeuren als het bericht is verzonden voordat je bij je account op dit apparaat hebt aangemeld.\n\nHet is ook mogelijk dat de afzender je apparaat heeft geblokkeerd of dat er iets mis is gegaan met de internetverbinding.\n\nKan je het bericht wel lezen op een andere sessie? Dan kan je het bericht daarvandaan overzetten! Ga naar Instellingen > Apparaten en zorg ervoor dat je apparaten elkaar hebben geverifieerd. Wanneer je de kamer de volgende keer opent en beide sessies op de voorgrond staan, zullen de sleutels automatisch worden verzonden.\n\nWil je de sleutels niet verliezen als je uitlogt of van apparaat wisselt? Zorg er dan voor dat je de chatback-up hebt aangezet in de instellingen."},
@@ -639,5 +639,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fx,C.aF)})()
 B.dQ(b.typeUniverse,JSON.parse('{"Fx":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_306",e:"endPart",h:b})})($__dart_deferred_initializers__,"G/4npCA2xY8t8uoUxnNBjEHPH94=");
+a.eventLog.push({p:"main.dart.js_306",e:"endPart",h:b})})($__dart_deferred_initializers__,"U/smpMqxN4b62jgzxz8ykww0FrQ=");
 //# sourceMappingURL=main.dart.js_306.part.js.map

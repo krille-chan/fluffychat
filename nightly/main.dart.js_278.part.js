@@ -128,7 +128,7 @@ gex(d){return"\u05d4\u05e2\u05ea\u05e7"},
 gi8(){return"\u05d4\u05e2\u05ea\u05e7 \u05dc\u05dc\u05d5\u05d7"},
 i9(d){return"\u05dc\u05d0 \u05e0\u05d9\u05ea\u05df \u05dc\u05e4\u05e2\u05e0\u05d7 \u05d4\u05d5\u05d3\u05e2\u05d4: "+d},
 gp0(){return"Check list"},
-dJ(d){return""+d+" \u05de\u05e9\u05ea\u05ea\u05e4\u05d9\u05dd"},
+dw(d){return""+d+" \u05de\u05e9\u05ea\u05ea\u05e4\u05d9\u05dd"},
 p9(d){return""+d+" invited"},
 gib(d){return"\u05e6\u05d5\u05e8"},
 ic(d){return d+" \u05d9\u05e6\u05e8 \u05d0\u05ea \u05d4\u05e6'\u05d0\u05d8"},
@@ -380,7 +380,7 @@ gjZ(){return"Why do you want to report this?"},
 goI(){return"Wipe your chat backup to create a new recovery key?"},
 goJ(){return"With these addresses you can recover your password."},
 goK(){return"Write a message\u2026"},
-gdE(){return"Yes"},
+gdF(){return"Yes"},
 goM(){return"You"},
 gen(){return"You are no longer participating in this chat"},
 goP(){return"You have been banned from this chat"},
@@ -418,7 +418,7 @@ gol(){return"Users"},
 gob(){return"Unlock old messages"},
 gkc(){return"Save this key manually by triggering the system share dialog or clipboard."},
 ly(d){return""+d+" files"},
-gdC(){return"User"},
+gdD(){return"User"},
 gie(){return"Custom"},
 goH(){return"Why is this message unreadable?"},
 gmD(){return"This can happen if the message was sent before you have signed in to your account at this device.\n\nIt is also possible that the sender has blocked your device or something went wrong with the internet connection.\n\nAre you able to read the message on another session? Then you can transfer the message from it! Go to Settings > Devices and make sure that your devices have verified each other. When you open the room the next time and both sessions are in the foreground, the keys will be transmitted automatically.\n\nDo you not want to lose the keys when logging out or switching devices? Make sure that you have enabled the chat backup in the settings."},
@@ -639,5 +639,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fj,C.aF)})()
 B.dQ(b.typeUniverse,JSON.parse('{"Fj":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_278",e:"endPart",h:b})})($__dart_deferred_initializers__,"q6H8PmsX2GALTB8YlOg+zkrk3KY=");
+a.eventLog.push({p:"main.dart.js_278",e:"endPart",h:b})})($__dart_deferred_initializers__,"mbLrgoNno9zMj/9JqhcAvYSFo0I=");
 //# sourceMappingURL=main.dart.js_278.part.js.map

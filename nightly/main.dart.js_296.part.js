@@ -128,7 +128,7 @@ gex(d){return"Copia"},
 gi8(){return"Copia negli appunti"},
 i9(d){return"Impossibile decriptare messaggio: "+d},
 gp0(){return"Checklist"},
-dJ(d){return""+d+" partecipanti"},
+dw(d){return""+d+" partecipanti"},
 p9(d){return""+d+" invitati"},
 gib(d){return"Crea"},
 ic(d){return"\ud83d\udcac "+d+" ha creato la chat"},
@@ -380,7 +380,7 @@ gjZ(){return"Perch\xe9 vuoi segnalarlo?"},
 goI(){return"Cancellare il backup della discussione per creare una nuova chiave di ripristino?"},
 goJ(){return"Con questi indirizzi puoi recuperare la tua password se necessario."},
 goK(){return"Scrivi un messaggio\u2026"},
-gdE(){return"S\xec"},
+gdF(){return"S\xec"},
 goM(){return"Tu"},
 gen(){return"Non stai pi\xf9 partecipando a questa chat"},
 goP(){return"Sei stato/a bandito/a da questa chat"},
@@ -418,7 +418,7 @@ gol(){return"Utenti"},
 gob(){return"Sblocca i vecchi messaggi"},
 gkc(){return"Salva questa chiave manualmente attivando la finestra di condivisione o gli appunti."},
 ly(d){return""+d+" file"},
-gdC(){return"Utente"},
+gdD(){return"Utente"},
 gie(){return"Personalizzato"},
 goH(){return"Perch\xe9 questo messaggio \xe8 illeggibile?"},
 gmD(){return"Questo pu\xf2 accadere se il messaggio \xe8 stato inviato prima che hai fatto l'accesso in questo dispositivo.\n\n\xc8 anche possibile che il mittente abbia bloccato il tuo dispositivo o che qualcosa sia andato storto con la tua connessione ad internet.\n\nSei in grado di leggere il messaggio su altre sessioni? Allora puoi trasferire il messaggio da l\xec! Vai su Impostazioni > Dispositivi e verifica che i tuoi dispositivi siano verificati l'un l'altro. Quando aprirai la stanza la prossima volta ed entrambe le sessioni sono in primo piano, le chiavi saranno trasmesse automaticamente.\n\nNon vuoi perdere le chiavi quando ti disconnetti o cambi dispositivo? Assicurati di aver attivato il backup delle chat nelle impostazioni."},
@@ -639,5 +639,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fq,C.aF)})()
 B.dQ(b.typeUniverse,JSON.parse('{"Fq":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_296",e:"endPart",h:b})})($__dart_deferred_initializers__,"sTjUDFBpt3EPnwTHtUyeQicOFSA=");
+a.eventLog.push({p:"main.dart.js_296",e:"endPart",h:b})})($__dart_deferred_initializers__,"7NAhwNTG6Y2IRGI0H+ASXknlsOc=");
 //# sourceMappingURL=main.dart.js_296.part.js.map

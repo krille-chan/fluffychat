@@ -128,7 +128,7 @@ gex(d){return"Kopiraj"},
 gi8(){return"Kopiraj u me\u0111uspremnik"},
 i9(d){return"Neuspjelo de\u0161ifriranje poruke: "+d},
 gp0(){return"Check list"},
-dJ(d){return""+d+" sudionika"},
+dw(d){return""+d+" sudionika"},
 p9(d){return""+d+" invited"},
 gib(d){return"Stvori"},
 ic(d){return"\ud83d\udcac "+d+" je zapo\u010deo/la razgovor"},
@@ -380,7 +380,7 @@ gjZ(){return"Za\u0161to \u017eeli\u0161 ovo prijaviti?"},
 goI(){return"Izbrisati sigurnosnu kopiju razgovora za stvaranje novog sigurnosnog klju\u010da za obnavljanje?"},
 goJ(){return"Lozinku mo\u017ee\u0161 obnoviti pomo\u0107u ovih adresa."},
 goK(){return"Napi\u0161i poruku \u2026"},
-gdE(){return"Da"},
+gdF(){return"Da"},
 goM(){return"Ti"},
 gen(){return"Vi\u0161e ne sudjeluje\u0161 u ovom razgovoru"},
 goP(){return"Isklju\u010den/a si iz ovog razgovora"},
@@ -418,7 +418,7 @@ gol(){return"Korisnici"},
 gob(){return"Otklju\u010daj stare poruke"},
 gkc(){return"Spremi ovaj klju\u010d ru\u010dno pokretanjem dijaloga za dijeljenje sustava ili me\u0111uspremnika."},
 ly(d){return"Broj datoteka: "+d},
-gdC(){return"Korisnik"},
+gdD(){return"Korisnik"},
 gie(){return"Prilago\u0111eno"},
 goH(){return"Za\u0161to nije mogu\u0107e \u010ditati ovu poruku?"},
 gmD(){return"To se mo\u017ee dogoditi ako je poruka poslana prije prijave na tvoj ra\u010dun na ovom ure\u0111aju.\n\nTako\u0111er je mogu\u0107e da je po\u0161iljatelj blokirao tvoj ure\u0111aj ili je do\u0161lo do gre\u0161ke s internetskom vezom.\n\nMo\u017ee\u0161 li pro\u010ditati poruku na jednoj drugoj sesiji? U tom slu\u010daju mo\u017ee\u0161 prenijeti poruku iz nje! Idi na Postavke > Ure\u0111aji i uvjeri se da su se tvoji ure\u0111aji me\u0111usobno provjerili. Kada sljede\u0107i put otvori\u0161 sobu i obje sesije su u prednjem planu, klju\u010devi \u0107e se automatski prenijeti.\n\nNe \u017eeli\u0161 izgubiti klju\u010deve kada se odjavi\u0161 ili zamijeni\u0161 ure\u0111aje? Aktiviraj spremanje sigurnosne kopije razgovora u postavkama."},
@@ -639,5 +639,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fl,C.aF)})()
 B.dQ(b.typeUniverse,JSON.parse('{"Fl":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_280",e:"endPart",h:b})})($__dart_deferred_initializers__,"uy3DqlvueuWbM2f2vmelOimMFUU=");
+a.eventLog.push({p:"main.dart.js_280",e:"endPart",h:b})})($__dart_deferred_initializers__,"4856pZ4oqh+pHQtLs2VP66IqS/M=");
 //# sourceMappingURL=main.dart.js_280.part.js.map

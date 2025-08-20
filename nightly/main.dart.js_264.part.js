@@ -128,7 +128,7 @@ gex(d){return"Kopiatu"},
 gi8(){return"Kopiatu arbelera"},
 i9(d){return"Ezin izan da mezua deszifratu: "+d},
 gp0(){return"Kontrol-zerrenda"},
-dJ(d){return""+d+" partaide"},
+dw(d){return""+d+" partaide"},
 p9(d){return""+d+" gonbidatu"},
 gib(d){return"Sortu"},
 ic(d){return"\ud83d\udcac "+d+"(e)k txata sortu du"},
@@ -380,7 +380,7 @@ gjZ(){return"Zergatik salatu nahi duzu?"},
 goI(){return"Ezabatu txataren babeskopia berreskuratze-gako berria sortzeko?"},
 goJ(){return"Helbide hauekin pasahitza berreskuratu dezakezu."},
 goK(){return"Idatzi mezua\u2026"},
-gdE(){return"Bai"},
+gdF(){return"Bai"},
 goM(){return"Zeu"},
 gen(){return"Ez duzu txat honetan parte hartzen honezkero"},
 goP(){return"Txat honetan debekua ezarri dizute"},
@@ -418,7 +418,7 @@ gol(){return"Erabiltzaileak"},
 gob(){return"Desblokeatu mezu zaharrak"},
 gkc(){return"Gorde eskuz gako hau gailuko partekatze-menua edo arbela erabiliz."},
 ly(d){return""+d+" fitxategi"},
-gdC(){return"Erabiltzailea"},
+gdD(){return"Erabiltzailea"},
 gie(){return"Neurrira egindakoa"},
 goH(){return"Zergatik ezin da mezu hau irakurri?"},
 gmD(){return"Mezua gailu honetan saioa hasi baino lehen bidali bazen gertatu daiteke.\n\nBeste aukera bat igorleak zure gailua blokeatu izana da, edo zerbaitek huts egin izana interneteko konexioan.\n\nMezua beste saio batean irakur dezakezu? Hala bada, mezua transferitu dezakezu! Zoaz Ezrpenetara > Gailuak eta baieztatu zure gailuek bata bestea egiaztatu dutela. Gela irekiko duzun hurrengo aldian eta bi saioak aurreko planoan irekita daudenean, gakoak automatikoki partekatuko dira.\n\nEz duzu gakorik galdu nahi saioa amaitu edo gailuak aldatzen dituzunean? Baieztatu ezarpenetan txaten babeskopiak gaituta dituzula."},
@@ -640,5 +640,5 @@ x(A.Fc,C.aF)})()
 B.dQ(b.typeUniverse,JSON.parse('{"Fc":{"aF":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_264",e:"endPart",h:b})})($__dart_deferred_initializers__,"mNqaPNfNGcSyCFBh3QSSVmzTWbU=");
+a.eventLog.push({p:"main.dart.js_264",e:"endPart",h:b})})($__dart_deferred_initializers__,"ZbO1mZxjrhRZbrCxhn2CS9sBxDw=");
 //# sourceMappingURL=main.dart.js_264.part.js.map

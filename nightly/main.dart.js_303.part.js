@@ -128,7 +128,7 @@ gex(d){return"Ievietot starpliktuv\u0113"},
 gi8(){return"Ievietot starpliktuv\u0113"},
 i9(d){return"Nevar\u0113ja at\u0161ifr\u0113t zi\u0146u: "+d},
 gp0(){return"P\u0101rbau\u017eu saraksts"},
-dJ(d){return""+d+" dal\u012bbnieki"},
+dw(d){return""+d+" dal\u012bbnieki"},
 p9(d){return""+d+" uzaicin\u0101ti"},
 gib(d){return"Izveidot"},
 ic(d){return"\ud83d\udcac "+d+" izveidoja t\u0113rz\u0113\u0161anu"},
@@ -380,7 +380,7 @@ gjZ(){return"K\u0101d\u0113\u013c v\u0113lies zi\u0146ot par \u0161o?"},
 goI(){return"Not\u012br\u012bt t\u0113rz\u0113\u0161anu rezerves kopiju, lai izveidotu jaunu atkopes atsl\u0113gu?"},
 goJ(){return"Ar \u0161\u012bm adres\u0113m var atjaunot savu paroli."},
 goK(){return"Rakst\u012bt zi\u0146u\u2026"},
-gdE(){return"J\u0101"},
+gdF(){return"J\u0101"},
 goM(){return"Tu"},
 gen(){return"Tu vairs nepiedalies \u0161aj\u0101 t\u0113rz\u0113\u0161an\u0101"},
 goP(){return"Tev tika liegta piek\u013cuve \u0161ai t\u0113rz\u0113\u0161anai"},
@@ -418,7 +418,7 @@ gol(){return"Lietot\u0101ji"},
 gob(){return"Atsl\u0113gt vec\u0101s zi\u0146as"},
 gkc(){return"\u0160o atsl\u0113gu var pa\u0161roc\u012bgi saglab\u0101t ar sist\u0113mas kop\u012bgo\u0161anas dialogloga vai starpliktuves izsauk\u0161anu."},
 ly(d){return""+d+" datnes"},
-gdC(){return"Lietot\u0101js"},
+gdD(){return"Lietot\u0101js"},
 gie(){return"Piel\u0101gots"},
 goH(){return"K\u0101d\u0113\u013c \u0161\u012b zi\u0146a ir nelas\u0101ma?"},
 gmD(){return"T\u0101 var notikt, ja zi\u0146a tika nos\u016bt\u012bta, pirms pieteicies sav\u0101 kont\u0101 \u0161aj\u0101 ier\u012bc\u0113.\n\nIr ar\u012b iesp\u0113jams, ka s\u016bt\u012bt\u0101js noliedza Tavu ier\u012bci vai kaut kas nog\u0101ja greizi ar interneta savienojumu.\n\nVai zi\u0146as ir las\u0101mas cit\u0101 sesij\u0101? Tad Tu vari p\u0101rs\u016bt\u012bt zi\u0146u no t\u0101s. J\u0101dodas uz Iestat\u012bjumi > Ier\u012bces un j\u0101p\u0101rliecin\u0101s, ka ier\u012bces viena otru ir apliecin\u0101ju\u0161as. Kad n\u0101kamreiz atv\u0113rsi istabu un abas sesijas b\u016bs priek\u0161pl\u0101n\u0101, atsl\u0113gas tiks autom\u0101tiski p\u0101rs\u016bt\u012btas.\n\nVai nev\u0113lies zaud\u0113t atsl\u0113gas, kad atsakies vai maini ier\u012bces? J\u0101p\u0101rliecin\u0101s, ka iestat\u012bjumos ir iesp\u0113jota t\u0113rz\u0113\u0161anu rezerves kopija."},
@@ -639,5 +639,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fv,C.aF)})()
 B.dQ(b.typeUniverse,JSON.parse('{"Fv":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_303",e:"endPart",h:b})})($__dart_deferred_initializers__,"ZQ+0wzjjJY0ofI4ClJJcbhIASwI=");
+a.eventLog.push({p:"main.dart.js_303",e:"endPart",h:b})})($__dart_deferred_initializers__,"o4eIEHGqyQbOIbrOSn6SSaOIqyc=");
 //# sourceMappingURL=main.dart.js_303.part.js.map

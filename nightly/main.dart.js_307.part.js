@@ -129,7 +129,7 @@ gex(d){return"Kopiuj"},
 gi8(){return"Skopiuj do schowka"},
 i9(d){return"Nie mo\u017cna odszyfrowa\u0107 wiadomo\u015bci: "+d},
 gp0(){return"Lista kontrolna"},
-dJ(d){return""+d+" uczestnik\xf3w"},
+dw(d){return""+d+" uczestnik\xf3w"},
 p9(d){return""+d+" zaproszonych"},
 gib(d){return"Stw\xf3rz"},
 ic(d){return"\ud83d\udcac "+d+" utworzy\u0142/-a czat"},
@@ -381,7 +381,7 @@ gjZ(){return"Dlaczego chcesz to zg\u0142osi\u0107?"},
 goI(){return"Wymaza\u0107 kopi\u0119 zapasow\u0105 czatu, aby utworzy\u0107 nowy klucz odzyskiwania?"},
 goJ(){return"Dzi\u0119ki tym adresom mo\u017cesz odzyska\u0107 swoje has\u0142o."},
 goK(){return"Napisz wiadomo\u015b\u0107\u2026"},
-gdE(){return"Tak"},
+gdF(){return"Tak"},
 goM(){return"Ty"},
 gen(){return"Nie uczestniczysz ju\u017c w tym czacie"},
 goP(){return"Zosta\u0142e\u015b/-a\u015b zbanowany/-a w tym czacie"},
@@ -419,7 +419,7 @@ gol(){return"U\u017cytkownicy"},
 gob(){return"Odblokuj stare wiadomo\u015bci"},
 gkc(){return"Zapisz ten klucz r\u0119cznie, uruchamiaj\u0105c systemowe okno dialogowe udost\u0119pniania lub schowek."},
 ly(d){return""+d+" plik\xf3w"},
-gdC(){return"U\u017cytkownik"},
+gdD(){return"U\u017cytkownik"},
 gie(){return"W\u0142asne"},
 goH(){return"Dlaczego nie mo\u017cna odczyta\u0107 tej wiadomo\u015bci?"},
 gmD(){return"Mo\u017ce si\u0119 to zdarzy\u0107, je\u015bli wiadomo\u015b\u0107 zosta\u0142a wys\u0142ana przed zalogowaniem si\u0119 na to konto na tym urz\u0105dzeniu.\n\nMo\u017cliwe jest r\xf3wnie\u017c, \u017ce nadawca zablokowa\u0142 Twoje urz\u0105dzenie lub co\u015b posz\u0142o nie tak z po\u0142\u0105czeniem internetowym.\n\nJeste\u015b w stanie odczyta\u0107 wiadomo\u015b\u0107 na innej sesji? W takim razie mo\u017cesz przenie\u015b\u0107 z niej wiadomo\u015b\u0107! Wejd\u017a w Ustawienia > Urz\u0105dzenia i upewnij si\u0119, \u017ce Twoje urz\u0105dzenia zweryfikowa\u0142y si\u0119 wzajemnie. Gdy nast\u0119pnym razem otworzysz pok\xf3j i obie sesje b\u0119d\u0105 w\u0142\u0105czone, klucze zostan\u0105 przekazane automatycznie.\n\nNie chcesz straci\u0107 kluczy podczas wylogowania lub prze\u0142\u0105czania urz\u0105dze\u0144? Upewnij si\u0119, \u017ce w ustawieniach masz w\u0142\u0105czon\u0105 kopi\u0119 zapasow\u0105 czatu."},
@@ -640,5 +640,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fy,C.aF)})()
 B.dQ(b.typeUniverse,JSON.parse('{"Fy":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_307",e:"endPart",h:b})})($__dart_deferred_initializers__,"wCtdzZRqTwFj7uoxKssS+Jbq61s=");
+a.eventLog.push({p:"main.dart.js_307",e:"endPart",h:b})})($__dart_deferred_initializers__,"CTiL8lLTRWOuVVYRrlqE0HeXBzM=");
 //# sourceMappingURL=main.dart.js_307.part.js.map

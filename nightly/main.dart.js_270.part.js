@@ -128,7 +128,7 @@ gex(d){return"Copier"},
 gi8(){return"Copier dans le presse-papiers"},
 i9(d){return"Impossible de d\xe9chiffrer le message : "+d},
 gp0(){return"Check list"},
-dJ(d){return""+d+" participant(s)"},
+dw(d){return""+d+" participant(s)"},
 p9(d){return""+d+" invited"},
 gib(d){return"Cr\xe9er"},
 ic(d){return"\ud83d\udcac "+d+" a cr\xe9\xe9 la discussion"},
@@ -380,7 +380,7 @@ gjZ(){return"Pourquoi voulez-vous le signaler ?"},
 goI(){return"Effacer la sauvegarde de votre discussion pour cr\xe9er une nouvelle cl\xe9 de r\xe9cup\xe9ration ?"},
 goJ(){return"Gr\xe2ce \xe0 ces adresses, vous pouvez r\xe9cup\xe9rer votre mot de passe si vous en avez besoin."},
 goK(){return"\xc9crivez un message\u2026"},
-gdE(){return"Oui"},
+gdF(){return"Oui"},
 goM(){return"Vous"},
 gen(){return"Vous ne participez plus \xe0 cette discussion"},
 goP(){return"Vous avez \xe9t\xe9 banni\xb7e de cette discussion"},
@@ -418,7 +418,7 @@ gol(){return"Utilisateurs/trices"},
 gob(){return"D\xe9verrouiller les anciens messages"},
 gkc(){return"Enregistrer cette cl\xe9 manuellement en d\xe9clenchant la bo\xeete de dialogue de partage du syst\xe8me ou le presse-papiers."},
 ly(d){return""+d+" fichiers"},
-gdC(){return"Utilisateur/trice"},
+gdD(){return"Utilisateur/trice"},
 gie(){return"Personnalis\xe9"},
 goH(){return"Pourquoi ce message est-il illisible ?"},
 gmD(){return"Cela peut se produire si le message a \xe9t\xe9 envoy\xe9 avant que vous ne vous soyez connect\xe9 \xe0 votre compte sur cet appareil.\n\nIl est \xe9galement possible que l'exp\xe9diteur ait bloqu\xe9 votre appareil ou qu'un probl\xe8me de connexion Internet se soit produit.\n\n\xcates-vous capable de lire le message sur une autre session ? Vous pouvez alors transf\xe9rer le message \xe0 partir de celle-ci ! Allez dans Param\xe8tres > Appareils et assurez-vous que vos appareils se sont v\xe9rifi\xe9s mutuellement. Lorsque vous ouvrirez le salon la fois suivante et que les deux sessions seront au premier plan, les cl\xe9s seront transmises automatiquement.\n\nVous ne voulez pas perdre les cl\xe9s en vous d\xe9connectant ou en changeant d'appareil ? Assurez-vous que vous avez activ\xe9 la sauvegarde de la discussion dans les param\xe8tres."},
@@ -639,5 +639,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fg,C.aF)})()
 B.dQ(b.typeUniverse,JSON.parse('{"Fg":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_270",e:"endPart",h:b})})($__dart_deferred_initializers__,"r1AdKoV9Irudvx2Xszo0zalWfhw=");
+a.eventLog.push({p:"main.dart.js_270",e:"endPart",h:b})})($__dart_deferred_initializers__,"H1KvqtljVFc/SZc1LkEGlCHfGAE=");
 //# sourceMappingURL=main.dart.js_270.part.js.map

@@ -128,7 +128,7 @@ gex(d){return"Kopier"},
 gi8(){return"Kopier til utklippstavle"},
 i9(d){return"Kunne ikke dekryptere melding: "+d},
 gp0(){return"Check list"},
-dJ(d){return""+d+" deltagere"},
+dw(d){return""+d+" deltagere"},
 p9(d){return""+d+" inviterte"},
 gib(d){return"Opprett"},
 ic(d){return d+" opprettet sludringen"},
@@ -380,7 +380,7 @@ gjZ(){return"Hvorfor \xf8nsker du \xe5 rapportere dette?"},
 goI(){return"Wipe your chat backup to create a new recovery key?"},
 goJ(){return"Med disse adressene kan du gjenopprette passordet ditt hvis du trenger det."},
 goK(){return"Skriv en melding \u2026"},
-gdE(){return"Ja"},
+gdF(){return"Ja"},
 goM(){return"Deg"},
 gen(){return"Du deltar ikke lenger i denne sludringen"},
 goP(){return"Du har blitt bannlyst fra denne sludringen"},
@@ -418,7 +418,7 @@ gol(){return"Brukere"},
 gob(){return"Unlock old messages"},
 gkc(){return"Save this key manually by triggering the system share dialog or clipboard."},
 ly(d){return""+d+" files"},
-gdC(){return"Bruker"},
+gdD(){return"Bruker"},
 gie(){return"Egendefinert"},
 goH(){return"Hvorfor er denne meldingen uleselig?"},
 gmD(){return"This can happen if the message was sent before you have signed in to your account at this device.\n\nIt is also possible that the sender has blocked your device or something went wrong with the internet connection.\n\nAre you able to read the message on another session? Then you can transfer the message from it! Go to Settings > Devices and make sure that your devices have verified each other. When you open the room the next time and both sessions are in the foreground, the keys will be transmitted automatically.\n\nDo you not want to lose the keys when logging out or switching devices? Make sure that you have enabled the chat backup in the settings."},
@@ -639,5 +639,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fw,C.aF)})()
 B.dQ(b.typeUniverse,JSON.parse('{"Fw":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_304",e:"endPart",h:b})})($__dart_deferred_initializers__,"MxKop16CYZSm+PGHksIcwRFOPpk=");
+a.eventLog.push({p:"main.dart.js_304",e:"endPart",h:b})})($__dart_deferred_initializers__,"Ntq72+04WUlwPRIu1VpgkcjBiuM=");
 //# sourceMappingURL=main.dart.js_304.part.js.map

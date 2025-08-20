@@ -128,7 +128,7 @@ gex(d){return"Kopieren"},
 gi8(){return"In Zwischenablage kopieren"},
 i9(d){return"Nachricht konnte nicht entschl\xfcsselt werden: "+d},
 gp0(){return"Checkliste"},
-dJ(d){return""+d+" Mitglieder"},
+dw(d){return""+d+" Mitglieder"},
 p9(d){return""+d+" invited"},
 gib(d){return"Erstellen"},
 ic(d){return"\ud83d\udcac "+d+" hat den Chat erstellt"},
@@ -380,7 +380,7 @@ gjZ(){return"Warum willst du dies melden?"},
 goI(){return"Den Chat-Backup l\xf6schen, um einen neuen Wiederherstellungsschl\xfcssel zu erstellen?"},
 goJ(){return"Mit diesen Adressen kannst du dein Passwort wiederherstellen, wenn du es vergessen hast."},
 goK(){return"Schreibe eine Nachricht \u2026"},
-gdE(){return"Ja"},
+gdF(){return"Ja"},
 goM(){return"Du"},
 gen(){return"Du bist kein Mitglied mehr in diesem Chat"},
 goP(){return"Du wurdest aus dem Chat verbannt"},
@@ -418,7 +418,7 @@ gol(){return"Benutzer"},
 gob(){return"Entsperre alte Nachrichten"},
 gkc(){return"Speicher diesen Schl\xfcssel manuell, indem du den Systemfreigabedialog oder die Zwischenablage ausl\xf6st."},
 ly(d){return""+d+" Dateien"},
-gdC(){return"Benutzer"},
+gdD(){return"Benutzer"},
 gie(){return"Benutzerdefiniert"},
 goH(){return"Warum ist diese Nachricht nicht lesbar?"},
 gmD(){return"Dies kann passieren, wenn die Nachricht gesendet wurde, bevor du dich auf diesem Ger\xe4t bei deinem Konto angemeldet hast.\n\nEs ist auch m\xf6glich, dass der Absender dein Ger\xe4t blockiert hat oder etwas mit der Internetverbindung schief gelaufen ist.\n\nKannst du die Nachricht in einer anderen Sitzung lesen? Dann kannst du die Nachricht davon \xfcbertragen! Gehe zu den Einstellungen > Ger\xe4te und vergewissere dich, dass sich deine Ger\xe4te gegenseitig verifiziert haben. Wenn du den Raum das n\xe4chste Mal \xf6ffnest und beide Sitzungen im Vordergrund sind, werden die Schl\xfcssel automatisch \xfcbertragen.\n\nDu m\xf6chtest die Schl\xfcssel beim Abmelden oder Ger\xe4tewechsel nicht verlieren? Stelle sicher, dass du das Chat-Backup in den Einstellungen aktiviert hast."},
@@ -640,5 +640,5 @@ x(A.F6,C.aF)})()
 B.dQ(b.typeUniverse,JSON.parse('{"F6":{"aF":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_246",e:"endPart",h:b})})($__dart_deferred_initializers__,"ugw8KvI5Cnjom5CUPgvf0APmElM=");
+a.eventLog.push({p:"main.dart.js_246",e:"endPart",h:b})})($__dart_deferred_initializers__,"P2f8uhkeVKnywZm/dYPbEZPaqFk=");
 //# sourceMappingURL=main.dart.js_246.part.js.map

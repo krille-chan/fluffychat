@@ -128,7 +128,7 @@ gex(d){return"Kopiraj"},
 gi8(){return"Kopiraj v odlo\u017ei\u0161\u010de"},
 i9(d){return"Sporo\u010dila ni bilo mogo\u010de de\u0161ifrirati: "+d},
 gp0(){return"Check list"},
-dJ(d){return""+d+" udele\u017eencev"},
+dw(d){return""+d+" udele\u017eencev"},
 p9(d){return""+d+" invited"},
 gib(d){return"Ustvari"},
 ic(d){return d+" je ustvaril klepet"},
@@ -380,7 +380,7 @@ gjZ(){return"Why do you want to report this?"},
 goI(){return"Wipe your chat backup to create a new recovery key?"},
 goJ(){return"With these addresses you can recover your password."},
 goK(){return"Write a message\u2026"},
-gdE(){return"Yes"},
+gdF(){return"Yes"},
 goM(){return"You"},
 gen(){return"You are no longer participating in this chat"},
 goP(){return"You have been banned from this chat"},
@@ -418,7 +418,7 @@ gol(){return"Users"},
 gob(){return"Unlock old messages"},
 gkc(){return"Save this key manually by triggering the system share dialog or clipboard."},
 ly(d){return""+d+" files"},
-gdC(){return"User"},
+gdD(){return"User"},
 gie(){return"Custom"},
 goH(){return"Why is this message unreadable?"},
 gmD(){return"This can happen if the message was sent before you have signed in to your account at this device.\n\nIt is also possible that the sender has blocked your device or something went wrong with the internet connection.\n\nAre you able to read the message on another session? Then you can transfer the message from it! Go to Settings > Devices and make sure that your devices have verified each other. When you open the room the next time and both sessions are in the foreground, the keys will be transmitted automatically.\n\nDo you not want to lose the keys when logging out or switching devices? Make sure that you have enabled the chat backup in the settings."},
@@ -639,5 +639,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FE,C.aF)})()
 B.dQ(b.typeUniverse,JSON.parse('{"FE":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_314",e:"endPart",h:b})})($__dart_deferred_initializers__,"RhvdTgET1ExrlXBbn+vQ/oTfSmU=");
+a.eventLog.push({p:"main.dart.js_314",e:"endPart",h:b})})($__dart_deferred_initializers__,"xluDIzZkWrUexEgW2zN/zqFRy/E=");
 //# sourceMappingURL=main.dart.js_314.part.js.map

@@ -128,7 +128,7 @@ gex(d){return"Kopiera"},
 gi8(){return"Kopiera till urklipp"},
 i9(d){return"Kunde ej avkoda meddelande: "+d},
 gp0(){return"Check list"},
-dJ(d){return""+d+" deltagare"},
+dw(d){return""+d+" deltagare"},
 p9(d){return""+d+" invited"},
 gib(d){return"Skapa"},
 ic(d){return"\ud83d\udcac "+d+" skapade chatten"},
@@ -380,7 +380,7 @@ gjZ(){return"Varf\xf6r vill du rapportera detta?"},
 goI(){return"Radera din chatt-backup f\xf6r att skapa en ny \xe5terst\xe4llningsnyckel?"},
 goJ(){return"Med dessa addresser kan du \xe5terst\xe4lla ditt l\xf6senord."},
 goK(){return"Skriv ett meddelande\u2026"},
-gdE(){return"Ja"},
+gdF(){return"Ja"},
 goM(){return"Du"},
 gen(){return"Du deltar inte l\xe4ngre i denna chatt"},
 goP(){return"Du har blivit bannad fr\xe5n denna chatt"},
@@ -418,7 +418,7 @@ gol(){return"Anv\xe4ndare"},
 gob(){return"L\xe5s upp \xe4ldre meddelanden"},
 gkc(){return"Spara nyckeln manuellt genom att aktivera dela-funktionen eller urklippshanteraren p\xe5 enheten."},
 ly(d){return""+d+" filer"},
-gdC(){return"Anv\xe4ndare"},
+gdD(){return"Anv\xe4ndare"},
 gie(){return"Anpassad"},
 goH(){return"Varf\xf6r kan inte detta meddelande l\xe4sas?"},
 gmD(){return"Detta kan h\xe4nda om meddelandet skickades innan du loggade in p\xe5 ditt konto i den h\xe4r enheten.\n\nDet kan ocks\xe5 vara s\xe5 att avs\xe4ndaren har blockerat din enhet eller att n\xe5got gick fel med internetanslutningen.\n\nKan du l\xe4sa meddelandet i en annan session? I s\xe5dana fall kan du \xf6verf\xf6ra meddelandet fr\xe5n den sessionen! G\xe5 till Inst\xe4llningar > Enhet och s\xe4kerst\xe4ll att dina enheter har verifierat varandra. N\xe4r du \xf6ppnar rummet n\xe4sta g\xe5ng och b\xe5da sessionerna \xe4r i f\xf6rgrunden, s\xe5 kommer nycklarna att \xf6verf\xf6ras automatiskt.\n\nVill du inte f\xf6rlora nycklarna vid utloggning eller n\xe4r du byter enhet? S\xe4kerst\xe4ll att du har aktiverat s\xe4kerhetskopiering f\xf6r chatten i inst\xe4llningarna."},
@@ -639,5 +639,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FG,C.aF)})()
 B.dQ(b.typeUniverse,JSON.parse('{"FG":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_317",e:"endPart",h:b})})($__dart_deferred_initializers__,"y9EnGTUqL8Z1w75IeIiljzbZ+MU=");
+a.eventLog.push({p:"main.dart.js_317",e:"endPart",h:b})})($__dart_deferred_initializers__,"z8QR2PSA6u4SXVXuiFinAMt+hV4=");
 //# sourceMappingURL=main.dart.js_317.part.js.map

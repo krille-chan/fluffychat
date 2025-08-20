@@ -128,7 +128,7 @@ gex(d){return"Kop\xedrovat"},
 gi8(){return"Zkop\xedrovat do schr\xe1nky"},
 i9(d){return"Nebylo mo\u017en\xe9 de\u0161ifrovat zpr\xe1vu: "+d},
 gp0(){return"Check list"},
-dJ(d){return""+d+" \xfa\u010dastn\xedk\u016f"},
+dw(d){return""+d+" \xfa\u010dastn\xedk\u016f"},
 p9(d){return""+d+" invited"},
 gib(d){return"Vytvo\u0159it"},
 ic(d){return"\ud83d\udcac "+d+" zalo\u017eil/a chat"},
@@ -380,7 +380,7 @@ gjZ(){return"Pro\u010d to chcete nahl\xe1sit?"},
 goI(){return"Chcete vymazat z\xe1lohu chatu a vytvo\u0159it nov\xfd bezpe\u010dnostn\xed kl\xed\u010d?"},
 goJ(){return"S t\u011bmito adresami m\u016f\u017eete obnovit sv\xe9 heslo."},
 goK(){return"Napi\u0161te zpr\xe1vu\u2026"},
-gdE(){return"Ano"},
+gdF(){return"Ano"},
 goM(){return"Vy"},
 gen(){return"Tohoto chatu se nad\xe1le ne\xfa\u010dastn\xedte"},
 goP(){return"Byl v\xe1m zablokov\xe1n p\u0159\xedstup k tomuto chatu"},
@@ -418,7 +418,7 @@ gol(){return"U\u017eivatel\xe9"},
 gob(){return"Odemknout star\xe9 zpr\xe1vy"},
 gkc(){return"Ulo\u017ete tento kl\xed\u010d manu\xe1ln\u011b pomoc\xed syst\xe9mov\xe9ho dialogu sd\xedlen\xed nebo zkop\xedrov\xe1n\xedm do schr\xe1nky."},
 ly(d){return""+d+" soubor\u016f"},
-gdC(){return"U\u017eivatel"},
+gdD(){return"U\u017eivatel"},
 gie(){return"Vlastn\xed"},
 goH(){return"Pro\u010d nelze p\u0159e\u010d\xedst tuto zpr\xe1vu?"},
 gmD(){return"This can happen if the message was sent before you have signed in to your account at this device.\n\nIt is also possible that the sender has blocked your device or something went wrong with the internet connection.\n\nAre you able to read the message on another session? Then you can transfer the message from it! Go to Settings > Devices and make sure that your devices have verified each other. When you open the room the next time and both sessions are in the foreground, the keys will be transmitted automatically.\n\nDo you not want to lose the keys when logging out or switching devices? Make sure that you have enabled the chat backup in the settings."},
@@ -639,5 +639,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.F4,C.aF)})()
 B.dQ(b.typeUniverse,JSON.parse('{"F4":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_237",e:"endPart",h:b})})($__dart_deferred_initializers__,"2s5ZPIlYv9EBVqYpjTNMUqBzFcc=");
+a.eventLog.push({p:"main.dart.js_237",e:"endPart",h:b})})($__dart_deferred_initializers__,"fYSW8Si3shvP6zYc5lxdyG+kCic=");
 //# sourceMappingURL=main.dart.js_237.part.js.map

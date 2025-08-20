@@ -128,7 +128,7 @@ gex(d){return"M\xe1sol\xe1s"},
 gi8(){return"V\xe1g\xf3lapra m\xe1sol\xe1s"},
 i9(d){return"Nem siker\xfclt visszafejteni az \xfczenetet: "+d},
 gp0(){return"Tennival\xf3k list\xe1ja"},
-dJ(d){return""+d+" r\xe9sztvev\u0151"},
+dw(d){return""+d+" r\xe9sztvev\u0151"},
 p9(d){return""+d+" megh\xedvott"},
 gib(d){return"L\xe9trehoz"},
 ic(d){return"\ud83d\udcac "+d+" cseveg\xe9st hozott l\xe9tre"},
@@ -380,7 +380,7 @@ gjZ(){return"Mi\xe9rt k\xedv\xe1nja ezt bejelenteni?"},
 goI(){return"Le k\xedv\xe1nja t\xf6r\xf6lni a chat ment\xe9s\xe9t, hogy l\xe9trehozhasson egy \xfaj vissza\xe1ll\xedt\xe1si kulcsot?"},
 goJ(){return"Ezekkel a c\xedmekkel vissza tudja \xe1ll\xedtani a jelszav\xe1t."},
 goK(){return"\xcdrjon egy \xfczenetet\u2026"},
-gdE(){return"Igen"},
+gdF(){return"Igen"},
 goM(){return"\xd6n"},
 gen(){return"Imm\xe1ron nem vesz r\xe9szt ebben a cseveg\xe9sben"},
 goP(){return"Kitiltott\xe1k ebb\u0151l a cseveg\xe9sb\u0151l"},
@@ -418,7 +418,7 @@ gol(){return"Felhaszn\xe1l\xf3k"},
 gob(){return"R\xe9gi \xfczenetek felold\xe1sa"},
 gkc(){return"A kulcs manu\xe1lis ment\xe9se rendszer megoszt\xe1s vagy v\xe1g\xf3lap m\xe1sol\xe1s seg\xedts\xe9g\xe9vel."},
 ly(d){return""+d+" f\xe1jl"},
-gdC(){return"Felhaszn\xe1l\xf3"},
+gdD(){return"Felhaszn\xe1l\xf3"},
 gie(){return"Egyedi"},
 goH(){return"Mi\xe9rt olvashatatlan ez az \xfczenet?"},
 gmD(){return"Akkor fordulhat el\u0151, ha az \xfczenet az eszk\xf6zre val\xf3 bejelentkez\xe9s el\u0151tt ker\xfclt k\xfcld\xe9sre.\n\nAz is elk\xe9pzelhet\u0151, hogy a k\xfcld\u0151 blokkolta az eszk\xf6z\xe9t, vagy valami probl\xe9ma l\xe9pett fel az internet kapcsolatban.\n\nM\xe1s helyen l\xe1tja az \xfczenetet? Akkor \xe1t tudja m\xe1solni ide is! Menjen a Be\xe1ll\xedt\xe1sok > Eszk\xf6z\xf6k r\xe9szbe, \xe9s gy\u0151z\u0151dj\xf6n meg r\xf3la, hogy az eszk\xf6zei meger\u0151s\xedtett\xe9k egym\xe1st. Legk\xf6zelebb amikor ezt a szob\xe1t megnyitja, \xe9s mind a k\xe9t kliens az el\u0151t\xe9rben van, akkor szikroniz\xe1l\xf3dni fognak.\n\nNem akarja elvesz\xedteni a kulcsokat amikor kijelentkezik, vagy eszk\xf6zt cser\xe9l? Gy\u0151z\u0151dj\xf6n meg r\xf3la, hogy bekapcsolta a chat ment\xe9st a be\xe1ll\xedt\xe1sokban."},
@@ -639,5 +639,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fm,C.aF)})()
 B.dQ(b.typeUniverse,JSON.parse('{"Fm":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_286",e:"endPart",h:b})})($__dart_deferred_initializers__,"UAVeUmer+7Z+B0cYwiAAwfpVeEQ=");
+a.eventLog.push({p:"main.dart.js_286",e:"endPart",h:b})})($__dart_deferred_initializers__,"R97i8xhHDFApjsY9upLndFO8WIA=");
 //# sourceMappingURL=main.dart.js_286.part.js.map

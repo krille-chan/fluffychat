@@ -128,7 +128,7 @@ gex(d){return"Kopijuoti"},
 gi8(){return"Koipjuoti \u012f i\u0161karpin\u0119"},
 i9(d){return"Nepavyko i\u0161\u0161ifruoti prane\u0161imo: "+d},
 gp0(){return"Check list"},
-dJ(d){return""+d+" dalyviai"},
+dw(d){return""+d+" dalyviai"},
 p9(d){return""+d+" invited"},
 gib(d){return"Sukurti"},
 ic(d){return"\ud83d\udcac "+d+" suk\u016br\u0117 pokalb\u012f"},
@@ -380,7 +380,7 @@ gjZ(){return"Kod\u0117l norite apie tai prane\u0161ti?"},
 goI(){return"I\u0161trinti atsargin\u0119 pokalbi\u0173 kopij\u0105, kad sukurti nauj\u0105 atk\u016brimo rakt\u0105?"},
 goJ(){return"Naudodami \u0161iuos adresus galite atkurti savo slapta\u017eod\u012f."},
 goK(){return"Ra\u0161yti \u017einut\u0119\u2026"},
-gdE(){return"Taip"},
+gdF(){return"Taip"},
 goM(){return"J\u016bs"},
 gen(){return"J\u016bs nebedalyvaujate \u0161iame pokalbyje"},
 goP(){return"Jums buvo u\u017edrausta dalyvauti \u0161iame pokalbyje"},
@@ -418,7 +418,7 @@ gol(){return"Vartotojai"},
 gob(){return"Atrakinti senas \u017einutes"},
 gkc(){return"\u012era\u0161ykite \u0161\u012f rakt\u0105 rankiniu b\u016bdu, \u012fjung\u0119 sistemos bendrinimo dialogo lang\u0105 arba i\u0161karpin\u0119."},
 ly(d){return""+d+" failai"},
-gdC(){return"Vartotojas"},
+gdD(){return"Vartotojas"},
 gie(){return"Pasirinktinis"},
 goH(){return"Kod\u0117l \u0161i \u017einut\u0117 neperskaitoma?"},
 gmD(){return"Taip gali atsitikti, jei \u017einut\u0117 buvo i\u0161si\u0173sta prie\u0161 prisijungiant prie paskyros \u0161iame prietaise.\n\nTaip pat gali b\u016bti, kad siunt\u0117jas u\u017eblokavo j\u016bs\u0173 prietais\u0105 arba ka\u017ekas sutriko su interneto ry\u0161iu.\n\nAr galite perskaityti \u017einut\u0119 kitoje sesijoje? Tada galite perkelti \u017einut\u0119 i\u0161 jos! Eikite \u012f Nustatymai > Prietaisai ir \u012fsitikinkite, kad j\u016bs\u0173 prietaisai patvirtino vienas kit\u0105. Kai kit\u0105 kart\u0105 atidarysite kambar\u012f ir abi sesijos bus pirmame plane, raktai bus perduoti automati\u0161kai.\n\nNenorite prarasti rakt\u0173 atsijungdami arba keisdami \u012frenginius? \u012esitikinkite, kad nustatymuose \u012fjung\u0117te pokalbi\u0173 atsargin\u0119 kopij\u0105."},
@@ -639,5 +639,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fu,C.aF)})()
 B.dQ(b.typeUniverse,JSON.parse('{"Fu":{"aF":[]}}'))};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_302",e:"endPart",h:b})})($__dart_deferred_initializers__,"JV0i//ZFHyWhPZh8tjsxBzA1sk4=");
+a.eventLog.push({p:"main.dart.js_302",e:"endPart",h:b})})($__dart_deferred_initializers__,"u51I0f2fQa7SPtr2PsZSms3TxKg=");
 //# sourceMappingURL=main.dart.js_302.part.js.map
