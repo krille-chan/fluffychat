@@ -51,6 +51,7 @@ class LoadParticipantsUtilState extends State<LoadParticipantsUtil> {
         error = null;
       });
 
+      await widget.space.requestParticipants();
       await _cacheLevels();
     } catch (err, s) {
       error = err.toString();

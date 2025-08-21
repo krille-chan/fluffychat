@@ -75,6 +75,12 @@ class _SpaceViewState extends State<SpaceView> {
   void initState() {
     // #Pangea
     // loadHierarchy();
+    // load full participant list into memory to ensure widgets
+    // that rely on full participants list work as expected
+    final room = Matrix.of(context).client.getRoomById(widget.spaceId);
+    room?.requestParticipants().then((_) {
+      if (mounted) setState(() {});
+    });
 
     // If, on launch, this room has had updates to its children,
     // ensure the hierarchy is properly reloaded

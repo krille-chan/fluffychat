@@ -131,7 +131,6 @@ abstract class ClientManager {
         // to postLoad to confirm that these state events are completely loaded
         EventTypes.RoomPowerLevels,
         EventTypes.RoomJoinRules,
-        EventTypes.RoomMember,
         PangeaEventTypes.rules,
         PangeaEventTypes.botOptions,
         PangeaEventTypes.capacity,

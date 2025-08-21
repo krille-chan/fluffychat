@@ -645,6 +645,12 @@ class ChatController extends State<ChatPageWithRoom>
         onInsert: onInsert,
       );
       // #Pangea
+      // Users with assosiated events in the timeline will be loaded into the state
+      // in-memory cache by getTimeline, but to ensure all users (even those without
+      // event in the timeline) are loaded, we will request all users. This is important
+      // for widgets in the chat like the activity participants displays
+      room.requestParticipants();
+
       if (visibleEvents.length < 10 && timeline != null) {
         var prevNumEvents = timeline!.events.length;
         await requestHistory();
