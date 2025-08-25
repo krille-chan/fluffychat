@@ -344,6 +344,7 @@ abstract class AppRoutes {
                   shareItems ??= [];
                   shareItems.add(TextShareItem(body));
                 }
+                final userId = state.uri.queryParameters['userId'];
                 return defaultPageBuilder(
                   context,
                   state,
@@ -351,6 +352,7 @@ abstract class AppRoutes {
                     roomId: state.pathParameters['roomid']!,
                     shareItems: shareItems,
                     eventId: state.uri.queryParameters['event'],
+                    userId: userId,
                   ),
                 );
               },
