@@ -145,6 +145,8 @@ class VocabAnalyticsListView extends StatelessWidget {
               return VocabAnalyticsListTile(
                 onTap: () => controller.setConstructZoom(vocabItem.id),
                 constructUse: vocabItem,
+                emoji: vocabItem.id.userSetEmoji.firstOrNull ??
+                    vocabItem.id.getLemmaInfoCached()?.emoji.firstOrNull,
               );
             },
           ),

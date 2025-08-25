@@ -8,10 +8,12 @@ import 'package:fluffychat/pangea/toolbar/utils/shrinkable_text.dart';
 class VocabAnalyticsListTile extends StatefulWidget {
   const VocabAnalyticsListTile({
     super.key,
+    required this.emoji,
     required this.constructUse,
     required this.onTap,
   });
 
+  final String? emoji;
   final void Function() onTap;
   final ConstructUses constructUse;
 
@@ -51,18 +53,14 @@ class VocabAnalyticsListTileState extends State<VocabAnalyticsListTile> {
               Container(
                 alignment: Alignment.center,
                 height: (maxWidth - padding * 2) * 0.6,
-                child: Opacity(
-                  opacity:
-                      widget.constructUse.id.userSetEmoji.isEmpty ? 0.5 : 1,
-                  child: widget.constructUse.id.userSetEmoji.isNotEmpty
-                      ? Text(
-                          widget.constructUse.id.userSetEmoji.first,
-                          style: const TextStyle(
-                            fontSize: 22,
-                          ),
-                        )
-                      : widget.constructUse.constructLevel.icon(36.0),
-                ),
+                child: widget.emoji != null
+                    ? Text(
+                        widget.emoji!,
+                        style: const TextStyle(
+                          fontSize: 22,
+                        ),
+                      )
+                    : widget.constructUse.constructLevel.icon(36.0),
               ),
               Container(
                 alignment: Alignment.topCenter,

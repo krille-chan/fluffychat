@@ -24,7 +24,7 @@ class LemmaInfoRepo {
     _lemmaStorage.write(request.storageKey, response.toJson());
   }
 
-  static Future<LemmaInfoResponse> _fetch(LemmaInfoRequest request) async {
+  static LemmaInfoResponse? getCached(LemmaInfoRequest request) {
     final cachedJson = _lemmaStorage.read(request.storageKey);
 
     final cached =
@@ -32,16 +32,17 @@ class LemmaInfoRepo {
 
     if (cached != null) {
       if (DateTime.now().isBefore(cached.expireAt!)) {
-        // return cache as is if we're using expireAt and it's set but not expired
-        // debugPrint(
-        //   'using cached data for ${request.lemma} ${cached.toJson()}',
-        // );
         return cached;
       } else {
-        // if it's expired, remove it
         _lemmaStorage.remove(request.storageKey);
       }
     }
+    return null;
+  }
+
+  static Future<LemmaInfoResponse> _fetch(LemmaInfoRequest request) async {
+    final cached = getCached(request);
+    if (cached != null) return cached;
 
     final Requests req = Requests(
       choreoApiKey: Environment.choreoApiKey,

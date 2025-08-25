@@ -209,24 +209,28 @@ class ConstructIdentifier {
     }
   }
 
+  LemmaInfoRequest get _lemmaInfoRequest => LemmaInfoRequest(
+        partOfSpeech: category,
+        lemmaLang: MatrixState
+                .pangeaController.languageController.userL2?.langCodeShort ??
+            LanguageKeys.defaultLanguage,
+        userL1: MatrixState
+                .pangeaController.languageController.userL1?.langCodeShort ??
+            LanguageKeys.defaultLanguage,
+        lemma: lemma,
+      );
+
   /// [lemmmaLang] if not set, assumed to be userL2
-  Future<LemmaInfoResponse> getLemmaInfo([
+  Future<LemmaInfoResponse> getLemmaInfo() => LemmaInfoRepo.get(
+        _lemmaInfoRequest,
+      );
+
+  LemmaInfoResponse? getLemmaInfoCached([
     String? lemmaLang,
     String? userl1,
   ]) =>
-      LemmaInfoRepo.get(
-        LemmaInfoRequest(
-          partOfSpeech: category,
-          lemmaLang: lemmaLang ??
-              MatrixState
-                  .pangeaController.languageController.userL2?.langCodeShort ??
-              LanguageKeys.defaultLanguage,
-          userL1: userl1 ??
-              MatrixState
-                  .pangeaController.languageController.userL1?.langCodeShort ??
-              LanguageKeys.defaultLanguage,
-          lemma: lemma,
-        ),
+      LemmaInfoRepo.getCached(
+        _lemmaInfoRequest,
       );
 
   bool get isContentWord =>
