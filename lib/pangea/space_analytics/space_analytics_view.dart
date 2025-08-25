@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
@@ -52,7 +53,8 @@ class SpaceAnalyticsView extends StatelessWidget {
                             hideLabel: false,
                           ),
                           if (controller.room != null &&
-                              controller.availableAnalyticsRooms.isNotEmpty)
+                              controller.availableAnalyticsRooms.isNotEmpty &&
+                              kIsWeb)
                             _MenuButton(
                               text: L10n.of(context).download,
                               icon: Icons.download,
