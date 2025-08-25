@@ -98,6 +98,24 @@ class SpaceAnalyticsRequestedDialog extends StatelessWidget {
               ),
             ),
           ),
+          Positioned(
+            top: 4.0,
+            left: 4.0,
+            child: IconButton.filled(
+              style: IconButton.styleFrom(
+                backgroundColor: Theme.of(context)
+                    .colorScheme
+                    .surfaceContainerHigh
+                    .withAlpha(170),
+              ),
+              icon: Icon(
+                Icons.close_outlined,
+                color: Theme.of(context).colorScheme.onSurface,
+              ),
+              onPressed: Navigator.of(context).pop,
+              tooltip: L10n.of(context).close,
+            ),
+          ),
         ],
       ),
     );
