@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
 
-import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/constructs/construct_form.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_choice.dart';
 
@@ -18,52 +17,35 @@ class PracticeMatchActivity {
   }) {
     for (final ith in matchInfo.entries) {
       debugPrint(
-        'Construct: ${ith.key}, Forms: ${ith.value}',
+        'Construct: ${ith.key.form}, Forms: ${ith.value}',
       );
-    }
-    // for all the entries in matchInfo, remove an Strings that appear in multiple entries
-    final Map<String, int> allForms = {};
-    for (final ith in matchInfo.entries) {
-      for (final form in ith.value) {
-        if (allForms.containsKey(form)) {
-          allForms[form] = allForms[form]! + 1;
-        } else {
-          allForms[form] = 1;
-        }
-      }
     }
 
-    for (final ith in matchInfo.entries) {
-      if (ith.value.isEmpty) {
-        matchInfo.remove(ith.key);
-        continue;
+    final List<String> usedForms = [];
+    for (final matchEntry in matchInfo.entries) {
+      if (matchEntry.value.isEmpty) {
+        throw Exception(
+          "No forms available for construct ${matchEntry.key}",
+        );
       }
-      choices.add(
-        PracticeChoice(
-          choiceContent: ith.value.firstWhere(
-            (element) => allForms[element] == 1,
-            orElse: () {
-              ErrorHandler.logError(
-                m: "no unique emoji for construct",
-                data: {
-                  'construct': ith.key,
-                  'forms': ith.value,
-                  "practice_match": toJson(),
-                },
-              );
-              final String first = ith.value.first;
-              // remove the element from the other entry to avoid duplicates
-              for (final ith in matchInfo.entries) {
-                ith.value.removeWhere((choice) => choice == first);
-              }
-              return ith.value.first;
-            },
-          ),
-          form: ith.key,
+
+      final String choiceContent = matchEntry.value.firstWhere(
+        (element) => !usedForms.contains(element),
+        orElse: () => throw Exception(
+          "No unique form available for construct ${matchEntry.key}",
         ),
       );
+
+      choices.add(
+        PracticeChoice(
+          choiceContent: choiceContent,
+          form: matchEntry.key,
+        ),
+      );
+
+      usedForms.add(choiceContent);
       debugPrint(
-        'Added PracticeChoice Construct: ${ith.key}, Forms: ${ith.value}',
+        'Added PracticeChoice Construct: ${matchEntry.key}, Forms: ${matchEntry.value}',
       );
     }
 

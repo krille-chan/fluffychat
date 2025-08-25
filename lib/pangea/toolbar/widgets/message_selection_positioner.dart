@@ -173,7 +173,7 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
       );
 
   double get columnWidth => FluffyThemes.isColumnMode(context)
-      ? (FluffyThemes.columnWidth + FluffyThemes.navRailWidth + 1.0)
+      ? (FluffyThemes.columnWidth + FluffyThemes.navRailWidth + 2.0)
       : 0;
 
   double get _toolbarMaxWidth {

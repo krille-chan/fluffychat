@@ -1,5 +1,4 @@
 import 'package:fluffychat/pangea/constructs/construct_form.dart';
-import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/lemmas/lemma_info_response.dart';
 import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
 import 'package:fluffychat/pangea/practice_activities/message_activity_request.dart';
@@ -21,35 +20,26 @@ class EmojiActivityGenerator {
     MessageActivityRequest req,
   ) async {
     final Map<ConstructForm, List<String>> matchInfo = {};
-    final List<MapEntry<PangeaToken, List<String>>> tokensWithUserEmojis = [];
-    final List<PangeaToken> tokensNeedingServerEmojis = [];
-    //if user saved emojis, use those, otherwise generate.
     for (final token in req.targetTokens) {
       final List<String> userSavedEmojis = token.vocabConstructID.userSetEmoji;
-
       if (userSavedEmojis.isNotEmpty) {
-        tokensWithUserEmojis.add(MapEntry(token, userSavedEmojis));
+        matchInfo[token.vocabForm] = userSavedEmojis;
       } else {
-        tokensNeedingServerEmojis.add(token);
+        matchInfo[token.vocabForm] = [];
       }
     }
 
-    for (final entry in tokensWithUserEmojis) {
-      matchInfo[entry.key.vocabForm] = entry.value;
-    }
+    final List<Future<LemmaInfoResponse>> lemmaInfoFutures = req.targetTokens
+        .map((token) => token.vocabConstructID.getLemmaInfo())
+        .toList();
 
-    if (tokensNeedingServerEmojis.isNotEmpty) {
-      final List<Future<LemmaInfoResponse>> lemmaInfoFutures =
-          tokensNeedingServerEmojis
-              .map((token) => token.vocabConstructID.getLemmaInfo())
-              .toList();
+    final List<LemmaInfoResponse> lemmaInfos =
+        await Future.wait(lemmaInfoFutures);
 
-      final List<LemmaInfoResponse> lemmaInfos =
-          await Future.wait(lemmaInfoFutures);
-
-      for (int i = 0; i < tokensNeedingServerEmojis.length; i++) {
-        matchInfo[tokensNeedingServerEmojis[i].vocabForm] = lemmaInfos[i].emoji;
-      }
+    for (int i = 0; i < req.targetTokens.length; i++) {
+      final formKey = req.targetTokens[i].vocabForm;
+      matchInfo[formKey] ??= [];
+      matchInfo[formKey]!.addAll(lemmaInfos[i].emoji);
     }
 
     return MessageActivityResponse(
