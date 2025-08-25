@@ -26,23 +26,43 @@ class AnalyticsRequestIndicator extends StatefulWidget {
 class AnalyticsRequestIndicatorState extends State<AnalyticsRequestIndicator> {
   AnalyticsRequestIndicatorState();
 
-  Map<User, List<Room>> get _knockingAdmins {
+  final Map<User, List<Room>> _knockingAdmins = {};
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchKnockingAdmins();
+  }
+
+  @override
+  void didUpdateWidget(covariant AnalyticsRequestIndicator oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.room.id != widget.room.id) {
+      _fetchKnockingAdmins();
+    }
+  }
+
+  Future<void> _fetchKnockingAdmins() async {
+    setState(() => _knockingAdmins.clear());
+
     final admins =
         widget.room.getParticipants().where((u) => u.powerLevel >= 100);
 
-    final knockingAdmins = <User, List<Room>>{};
     for (final analyticsRoom in widget.room.client.allMyAnalyticsRooms) {
-      final knocking = analyticsRoom.getParticipants([Membership.knock]);
+      final knocking =
+          await analyticsRoom.requestParticipants([Membership.knock]);
       if (knocking.isEmpty) continue;
 
       for (final admin in admins) {
         if (knocking.any((u) => u.id == admin.id)) {
-          knockingAdmins.putIfAbsent(admin, () => []).add(analyticsRoom);
+          _knockingAdmins.putIfAbsent(admin, () => []).add(analyticsRoom);
         }
       }
     }
 
-    return knockingAdmins;
+    if (mounted) {
+      setState(() {});
+    }
   }
 
   Future<void> _onTap(BuildContext context) async {
@@ -71,7 +91,7 @@ class AnalyticsRequestIndicatorState extends State<AnalyticsRequestIndicator> {
       },
     );
 
-    if (mounted) setState(() {});
+    if (mounted) _fetchKnockingAdmins();
   }
 
   @override
