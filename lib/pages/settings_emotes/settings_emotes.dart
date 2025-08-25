@@ -27,7 +27,13 @@ class EmotesSettings extends StatefulWidget {
 }
 
 class EmotesSettingsController extends State<EmotesSettings> {
-  String? get roomId => GoRouterState.of(context).pathParameters['roomid'];
+  // #Pangea
+  // String? get roomId => GoRouterState.of(context).pathParameters['roomid'];
+  String? get roomId {
+    final pathParameters = GoRouterState.of(context).pathParameters;
+    return pathParameters['roomid'] ?? pathParameters['spaceid'];
+  }
+  // Pangea#
 
   Room? get room =>
       roomId != null ? Matrix.of(context).client.getRoomById(roomId!) : null;

@@ -140,6 +140,8 @@ abstract class ClientManager {
         PangeaEventTypes.activitySummary,
         PangeaEventTypes.constructSummary,
         PangeaEventTypes.activityRoomIds,
+        PangeaEventTypes.coursePlan,
+        PangeaEventTypes.courseUser,
         // Pangea#
       },
       logLevel: kReleaseMode ? Level.warning : Level.verbose,

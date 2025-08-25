@@ -28,7 +28,9 @@ Future<void> showInviteDialog(Room room, BuildContext context) async {
       if (acceptInvite == OkCancelResult.ok) {
         await room.join();
         context.go(
-          room.isSpace ? "/rooms?spaceId=${room.id}" : "/rooms/${room.id}",
+          room.isSpace
+              ? "/rooms/spaces/${room.id}/details"
+              : "/rooms/${room.id}",
         );
         return room.id;
       } else if (acceptInvite == OkCancelResult.cancel) {
@@ -38,7 +40,7 @@ Future<void> showInviteDialog(Room room, BuildContext context) async {
   );
 
   if (!resp.isError && resp.result is String) {
-    context.go("/rooms?spaceId=${resp.result}");
+    context.go("/rooms/spaces/${resp.result}/details");
   }
 }
 
@@ -48,7 +50,7 @@ void chatListHandleSpaceTap(
   Room space,
 ) {
   void setActiveSpaceAndCloseChat() {
-    context.go("/rooms?spaceId=${space.id}");
+    context.go("/rooms/spaces/${space.id}/details");
   }
 
   void autoJoin(Room space) {

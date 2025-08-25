@@ -14,6 +14,8 @@ import 'package:fluffychat/pangea/activity_sessions/activity_role_model.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_room_extension.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_summary/progress_indicators_enum.dart';
+import 'package:fluffychat/pangea/courses/course_plan_room_extension.dart';
+import 'package:fluffychat/pangea/courses/course_repo.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
@@ -28,10 +30,28 @@ class ActivityFinishedStatusMessage extends StatelessWidget {
   Map<String, ActivityRole> get _roles =>
       controller.room.activityPlan?.roles ?? {};
 
-  Future<void> _archiveToAnalytics() async {
+  Future<void> _archiveToAnalytics(BuildContext context) async {
     await controller.room.archiveActivity();
     await MatrixState.pangeaController.putAnalytics
         .sendActivityAnalytics(controller.room.id);
+
+    final courseParent = controller.room.courseParent;
+    if (courseParent?.coursePlan == null) return;
+    final coursePlan = await CourseRepo.get(
+      courseParent!.coursePlan!.uuid,
+    );
+
+    if (coursePlan == null) {
+      throw L10n.of(context).noCourseFound;
+    }
+
+    final activityId = controller.room.activityPlan!.bookmarkId;
+    final topicId = coursePlan.topicID(activityId);
+    if (topicId == null) {
+      throw L10n.of(context).activityNotFoundForCourse;
+    }
+
+    await courseParent.finishCourseActivity(activityId, topicId);
   }
 
   List<ActivityRoleModel> get _rolesWithSummaries {
@@ -226,7 +246,7 @@ class ActivityFinishedStatusMessage extends StatelessWidget {
                   onPressed: () async {
                     final resp = await showFutureLoadingDialog(
                       context: context,
-                      future: _archiveToAnalytics,
+                      future: () => _archiveToAnalytics(context),
                     );
 
                     if (!resp.isError) {

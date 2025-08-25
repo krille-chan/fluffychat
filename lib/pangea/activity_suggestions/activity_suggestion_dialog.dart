@@ -74,8 +74,9 @@ class ActivitySuggestionDialogState extends State<ActivitySuggestionDialog> {
 
       final ids = await widget.controller.launchToSpace();
       ids.length == 1
-          ? context.go("/rooms/${ids.first}")
-          : context.go("/rooms?spaceId=${widget.controller.room.id}");
+          ? context
+              .go("/rooms/spaces/${widget.controller.room.id}/${ids.first}")
+          : context.go("/rooms/spaces/${widget.controller.room.id}/details");
       Navigator.of(context).pop();
     } catch (e, s) {
       _launchError = L10n.of(context).errorLaunchActivityMessage;

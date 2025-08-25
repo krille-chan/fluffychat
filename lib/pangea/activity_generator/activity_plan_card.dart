@@ -39,14 +39,14 @@ class ActivityPlanCard extends StatelessWidget {
 
         final ids = await controller.launchToSpace();
         ids.length == 1
-            ? context.go("/rooms/${ids.first}")
-            : context.go("/rooms?spaceId=${controller.room.id}");
+            ? context.go("/rooms/spaces/${controller.room.id}/${ids.first}")
+            : context.go("/rooms/spaces/${controller.room.id}/details");
         Navigator.of(context).pop();
       },
     );
 
     if (!resp.isError) {
-      context.go("/rooms?spaceId=${controller.room.id}");
+      context.go("/rooms/spaces/${controller.room.id}/details");
     }
   }
 

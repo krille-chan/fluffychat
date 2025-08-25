@@ -87,7 +87,7 @@ class ClassController extends BaseController {
     Room? room = client.getRoomByAlias(alias) ?? client.getRoomById(alias);
     if (room != null) {
       room.isSpace
-          ? context.go("/rooms?spaceId=${room.id}")
+          ? context.go("/rooms/spaces/${room.id}/details")
           : context.go("/rooms/${room.id}");
       return;
     }
@@ -104,7 +104,7 @@ class ClassController extends BaseController {
     }
 
     room.isSpace
-        ? context.go("/rooms?spaceId=${room.id}")
+        ? context.go("/rooms/spaces/${room.id}/details")
         : context.go("/rooms/${room.id}");
   }
 
@@ -154,7 +154,7 @@ class ClassController extends BaseController {
           if (!(room?.isSpace ?? true)) {
             context.go("/rooms/${alreadyJoined.first}");
           } else {
-            context.go("/rooms?spaceId=${alreadyJoined.first}");
+            context.go("/rooms/spaces/${alreadyJoined.first}/details");
           }
           return null;
         }
@@ -212,7 +212,7 @@ class ClassController extends BaseController {
       }
 
       if (room.isSpace) {
-        context.go("/rooms?spaceId=${room.id}");
+        context.go("/rooms/spaces/${room.id}/details");
       } else {
         context.go("/rooms/${room.id}");
       }

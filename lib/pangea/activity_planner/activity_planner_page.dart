@@ -137,7 +137,7 @@ class ActivityPlannerPageState extends State<ActivityPlannerPage> {
                         ),
                         selected: false,
                         onSelected: (_) => context.go(
-                          '/rooms/${widget.roomID}/details/planner/generator',
+                          '/rooms/spaces/${widget.roomID}/details/planner/generator',
                         ),
                       ),
                     ],

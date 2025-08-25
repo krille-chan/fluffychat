@@ -166,6 +166,7 @@ class ModelKey {
   static const String activityPlanBookmarkId = "activity_id";
   static const String activityPlanEndAt = "end_at";
   static const String activityPlanDuration = "duration";
+  static const String activityPlanTopicId = "topic_id";
 
   static const String activityRequestTopic = "topic";
   static const String activityRequestMode = "mode";

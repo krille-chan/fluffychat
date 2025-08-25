@@ -214,7 +214,7 @@ class NewGroupController extends State<NewGroup> {
       GoogleAnalytics.createClass(room.name, spaceCode);
     }
 
-    context.go("/rooms?spaceId=$spaceId");
+    context.go("/rooms/spaces/$spaceId/details");
     // Pangea#
   }
 

@@ -4,7 +4,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_planner_builder.dart';
-import 'package:fluffychat/pangea/common/widgets/pressable_button.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
 
 class ActivitySuggestionCard extends StatelessWidget {
@@ -13,12 +12,19 @@ class ActivitySuggestionCard extends StatelessWidget {
   final double width;
   final double height;
 
+  final double? fontSize;
+  final double? fontSizeSmall;
+  final double? iconSize;
+
   const ActivitySuggestionCard({
     super.key,
     required this.controller,
     required this.onPressed,
     required this.width,
     required this.height,
+    this.fontSize,
+    this.fontSizeSmall,
+    this.iconSize,
   });
 
   ActivityPlanModel get activity => controller.updatedActivity;
@@ -26,40 +32,26 @@ class ActivitySuggestionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return PressableButton(
-      onPressed: onPressed,
-      borderRadius: BorderRadius.circular(24.0),
-      color: theme.brightness == Brightness.dark
-          ? theme.colorScheme.primary
-          : theme.colorScheme.surfaceContainerHighest,
-      colorFactor: theme.brightness == Brightness.dark ? 0.6 : 0.2,
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(24.0),
-        ),
-        height: height,
-        width: width,
-        child: Stack(
-          alignment: Alignment.topCenter,
-          children: [
-            Container(
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
+        onTap: onPressed,
+        child: SizedBox(
+          height: height,
+          width: width,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(12.0),
+            child: Container(
               decoration: BoxDecoration(
                 color: theme.colorScheme.surfaceContainer,
-                borderRadius: BorderRadius.circular(24.0),
               ),
-            ),
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  height: width,
-                  width: width,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(24.0),
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(24.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox(
+                    height: width,
+                    width: width,
                     child: activity.imageURL != null
                         ? activity.imageURL!.startsWith("mxc")
                             ? MxcImage(
@@ -77,104 +69,70 @@ class ActivitySuggestionCard extends StatelessWidget {
                                 errorWidget: (context, url, error) =>
                                     const SizedBox(),
                                 fit: BoxFit.cover,
+                                width: width,
+                                height: width,
                               )
-                        : null,
+                        : const SizedBox(),
                   ),
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      spacing: 8.0,
-                      children: [
-                        Row(
-                          children: [
-                            Flexible(
-                              child: Text(
-                                activity.title,
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                              ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            activity.title,
+                            style: TextStyle(
+                              fontSize: fontSize,
                             ),
-                          ],
-                        ),
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
-                          spacing: 8.0,
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                color: theme.colorScheme.primaryContainer,
-                                borderRadius: BorderRadius.circular(24.0),
-                              ),
-                              padding: const EdgeInsets.symmetric(
-                                vertical: 2.0,
-                                horizontal: 8.0,
-                              ),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                spacing: 8.0,
-                                children: [
-                                  const Icon(
-                                    Icons.group_outlined,
-                                    size: 12.0,
-                                  ),
-                                  Text(
-                                    "${activity.req.numberOfParticipants}",
-                                    style: theme.textTheme.labelSmall,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            if (activity.req.mode.isNotEmpty)
-                              Flexible(
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color: theme.colorScheme.primaryContainer,
-                                    borderRadius: BorderRadius.circular(24.0),
-                                  ),
-                                  padding: const EdgeInsets.symmetric(
-                                    vertical: 2.0,
-                                    horizontal: 8.0,
-                                  ),
+                            maxLines: 3,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            spacing: 8.0,
+                            children: [
+                              if (activity.req.mode.isNotEmpty)
+                                Padding(
+                                  padding: const EdgeInsets.all(4.0),
                                   child: Text(
                                     activity.req.mode,
-                                    style: theme.textTheme.labelSmall,
+                                    style: fontSizeSmall != null
+                                        ? TextStyle(fontSize: fontSizeSmall)
+                                        : theme.textTheme.labelSmall,
                                     overflow: TextOverflow.ellipsis,
                                   ),
                                 ),
+                              Padding(
+                                padding: const EdgeInsets.all(4.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  spacing: 4.0,
+                                  children: [
+                                    Icon(
+                                      Icons.group_outlined,
+                                      size: iconSize ?? 12.0,
+                                    ),
+                                    Text(
+                                      "${activity.req.numberOfParticipants}",
+                                      style: fontSizeSmall != null
+                                          ? TextStyle(fontSize: fontSizeSmall)
+                                          : theme.textTheme.labelSmall,
+                                    ),
+                                  ],
+                                ),
                               ),
-                          ],
-                        ),
-                      ],
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
-            Positioned(
-              top: 4.0,
-              right: 4.0,
-              child: IconButton(
-                icon: Icon(
-                  controller.isBookmarked ? Icons.save : Icons.save_outlined,
-                  color: Theme.of(context).colorScheme.onPrimaryContainer,
-                ),
-                onPressed: controller.toggleBookmarkedActivity,
-                style: IconButton.styleFrom(
-                  backgroundColor: Theme.of(context)
-                      .colorScheme
-                      .primaryContainer
-                      .withAlpha(180),
-                ),
+                ],
               ),
             ),
-          ],
+          ),
         ),
       ),
     );

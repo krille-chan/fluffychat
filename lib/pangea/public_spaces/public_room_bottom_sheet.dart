@@ -40,7 +40,7 @@ class PublicRoomBottomSheet extends StatefulWidget {
         .getRoomById(chunk!.roomId);
 
     if (room != null && room.membership == Membership.join) {
-      context.go("/rooms?spaceId=${room.id}");
+      context.go("/rooms/spaces/${room.id}/details");
       return null;
     }
 
@@ -100,7 +100,7 @@ class PublicRoomBottomSheetState extends State<PublicRoomBottomSheet> {
     if (chunk?.roomType != 'm.space' && !client.getRoomById(roomID)!.isSpace) {
       outerContext.go("/rooms/$roomID");
     } else {
-      context.go('/rooms?spaceId=$roomID');
+      context.go('/rooms/spaces/$roomID/details');
     }
   }
 

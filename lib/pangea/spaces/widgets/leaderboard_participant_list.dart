@@ -48,7 +48,7 @@ class LeaderboardParticipantListState
           space: widget.space,
           builder: (participantsLoader) {
             final participants = participantsLoader
-                .filteredParticipants("")
+                .sortedParticipants()
                 .where((p) => p.membership == Membership.join)
                 .toList();
 

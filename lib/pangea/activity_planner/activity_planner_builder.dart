@@ -13,6 +13,7 @@ import 'package:fluffychat/pangea/activity_planner/activity_plan_request.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_room_extension.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_plan_repo.dart';
 import 'package:fluffychat/pangea/chat/constants/default_power_level.dart';
+import 'package:fluffychat/pangea/chat_settings/constants/pangea_room_types.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/extensions/join_rule_extension.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
@@ -33,6 +34,9 @@ class ActivityPlannerBuilder extends StatefulWidget {
   final String? initialFilename;
   final Room room;
 
+  final bool enabledEdits;
+  final bool enableMultiLaunch;
+
   final Widget Function(ActivityPlannerBuilderState) builder;
 
   const ActivityPlannerBuilder({
@@ -41,6 +45,8 @@ class ActivityPlannerBuilder extends StatefulWidget {
     this.initialFilename,
     required this.room,
     required this.builder,
+    this.enabledEdits = false,
+    this.enableMultiLaunch = false,
   });
 
   @override
@@ -334,9 +340,13 @@ class ActivityPlannerBuilderState extends State<ActivityPlannerBuilder> {
 
   Future<String> _launchActivityRoom(int index) async {
     await updateImageURL();
-    final roomID = await Matrix.of(context).client.createGroupChat(
+    final roomID = await Matrix.of(context).client.createRoom(
+          creationContent: {
+            'type':
+                "${PangeaRoomTypes.activitySession}:${updatedActivity.bookmarkId}",
+          },
           visibility: Visibility.private,
-          groupName: "${updatedActivity.title} ${index + 1}",
+          name: "${updatedActivity.title} ${index + 1}",
           initialState: [
             if (imageURL != null)
               StateEvent(
@@ -356,7 +366,6 @@ class ActivityPlannerBuilderState extends State<ActivityPlannerBuilder> {
               ],
             ),
           ],
-          enableEncryption: false,
         );
 
     Room? activityRoom = room.client.getRoomById(roomID);

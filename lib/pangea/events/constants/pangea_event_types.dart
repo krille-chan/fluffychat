@@ -47,6 +47,9 @@ class PangeaEventTypes {
   /// Profile information related to a user's analytics
   static const profileAnalytics = "pangea.analytics_profile";
   static const profileActivities = "pangea.activities_profile";
-
   static const activityRoomIds = "pangea.activity_room_ids";
+
+  /// Relates to course plans
+  static const coursePlan = "pangea.course_plan";
+  static const courseUser = "p.course_user";
 }

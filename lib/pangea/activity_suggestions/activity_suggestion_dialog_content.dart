@@ -241,23 +241,24 @@ class _ActivitySuggestionBaseContent extends StatelessWidget {
         Row(
           spacing: 12.0,
           children: [
-            Expanded(
-              child: ElevatedButton(
-                style: controller.buttonStyle,
-                onPressed: activityController.startEditing,
-                child: Row(
-                  children: [
-                    const Icon(Icons.edit),
-                    Expanded(
-                      child: Text(
-                        L10n.of(context).edit,
-                        textAlign: TextAlign.center,
+            if (activityController.widget.enabledEdits)
+              Expanded(
+                child: ElevatedButton(
+                  style: controller.buttonStyle,
+                  onPressed: activityController.startEditing,
+                  child: Row(
+                    children: [
+                      const Icon(Icons.edit),
+                      Expanded(
+                        child: Text(
+                          L10n.of(context).edit,
+                          textAlign: TextAlign.center,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-            ),
             if (controller.widget.replaceActivity != null)
               Expanded(
                 child: ElevatedButton(
@@ -287,9 +288,11 @@ class _ActivitySuggestionBaseContent extends StatelessWidget {
                 style: controller.buttonStyle,
                 // onPressed: _launchActivity,
                 onPressed: () {
-                  activityController.setLaunchState(
-                    ActivityLaunchState.launching,
-                  );
+                  !activityController.widget.enableMultiLaunch
+                      ? controller.launchActivity()
+                      : activityController.setLaunchState(
+                          ActivityLaunchState.launching,
+                        );
                 },
                 child: Row(
                   spacing: 12.0,
@@ -393,7 +396,7 @@ class _ActivitySuggestionEditContent extends StatelessWidget {
         child: TextFormField(
           controller: activityController.participantsController,
           decoration: InputDecoration(
-            labelText: L10n.of(context).classRoster,
+            labelText: L10n.of(context).participants,
           ),
           maxLines: 1,
           keyboardType: TextInputType.number,

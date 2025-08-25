@@ -9,8 +9,8 @@ import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
 import 'package:fluffychat/pages/chat_list/dummy_chat_list_item.dart';
 import 'package:fluffychat/pages/chat_list/search_title.dart';
-import 'package:fluffychat/pages/chat_list/space_view.dart';
 import 'package:fluffychat/pangea/chat_list/widgets/pangea_chat_list_header.dart';
+import 'package:fluffychat/pangea/course_chats/course_chats_page.dart';
 import 'package:fluffychat/pangea/onboarding/onboarding.dart';
 import 'package:fluffychat/pangea/public_spaces/public_room_bottom_sheet.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
@@ -31,19 +31,24 @@ class ChatListViewBody extends StatelessWidget {
     final client = Matrix.of(context).client;
     final activeSpace = controller.activeSpaceId;
     if (activeSpace != null) {
-      return SpaceView(
+      // #Pangea
+      // return SpaceView(
+      //   key: ValueKey(activeSpace),
+      //   spaceId: activeSpace,
+      //   onBack: controller.clearActiveSpace,
+      //   onChatTab: (room) => controller.onChatTap(room),
+      //   onChatContext: (room, context) =>
+      //       controller.chatContextAction(room, context),
+      //   activeChat: controller.activeChat,
+      //   toParentSpace: controller.setActiveSpace,
+      // );
+      return CourseChats(
+        activeSpace,
         key: ValueKey(activeSpace),
-        spaceId: activeSpace,
-        onBack: controller.clearActiveSpace,
-        onChatTab: (room) => controller.onChatTap(room),
-        onChatContext: (room, context) =>
-            controller.chatContextAction(room, context),
         activeChat: controller.activeChat,
-        toParentSpace: controller.setActiveSpace,
-        // #Pangea
-        controller: controller,
-        // Pangea#
+        client: client,
       );
+      // Pangea#
     }
     final spaces = client.rooms.where((r) => r.isSpace);
     final spaceDelegateCandidates = <String, Room>{};

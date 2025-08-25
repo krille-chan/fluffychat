@@ -127,7 +127,7 @@ class PangeaInvitationSelectionController
       case InvitationFilter.public:
         return l10n.public;
       case InvitationFilter.participants:
-        return l10n.classRoster;
+        return l10n.participants;
     }
   }
 

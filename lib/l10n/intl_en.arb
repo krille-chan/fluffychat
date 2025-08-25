@@ -3387,7 +3387,7 @@
   "chatTopic": "Chat topic",
   "chatTopicDesc": "Set a chat topic",
   "inviteStudentByUserNameDesc": "If your student already has an account, you can search for them.",
-  "classRoster": "Participants",
+  "participants": "Participants",
   "almostPerfect": "That seems right! Here's what I would have said.",
   "prettyGood": "Pretty good! Here's what I would have said.",
   "letMeThink": "Hmm, let's see how you did!",
@@ -5192,5 +5192,54 @@
     }
   },
   "activityFinishedMessage": "All Finished!",
-  "endForAll": "End for all"
+  "endForAll": "End for all",
+  "newCourse": "New Course",
+  "newCourseSubtitle": "Which course template would you like to use?",
+  "failedToLoadCourses": "Failed to load courses",
+  "numModules": "{num} modules",
+  "@numModules": {
+    "type": "int",
+    "placeholders": {
+      "num": {
+        "type": "int"
+      }
+    }
+  },
+  "numActivityPlans": "{num} activity plans",
+  "@numActivityPlans": {
+    "type": "int",
+    "placeholders": {
+      "num": {
+        "type": "int"
+      }
+    }
+  },
+  "coursePlan": "Course Plan",
+  "editCourseLater": "You can edit template title, descriptions, and course image later.",
+  "newCourseAccess": "By default, courses are private and require admin approval to join. You can edit these settings at any time.",
+  "createCourse": "Create course",
+  "stats": "Stats",
+  "createGroupChat": "Create group chat",
+  "editCourse": "Edit course",
+  "inviteDesc": "By username, by code or link",
+  "editCourseDesc": "Here you can edit course title, description, etc.",
+  "permissionsDesc": "Set permissions such as who can invite users, send messages, create chats, etc.",
+  "accessDesc": "You can make your course open to the world! Or, make your course private and secure.",
+  "createGroupChatDesc": "Whereas activity sessions start and end, group chats will stay open for routine communication.",
+  "deleteDesc": "Only space admin can delete a chat. This is a destructive action which removes all users and deletes all chats. Proceed with caution.",
+  "failedToLoadCourseInfo": "Failed to load course information",
+  "noCourseFound": "No course information found",
+  "additionalParticipants": "+ {num} others",
+  "@additionalParticipants": {
+    "type": "int",
+    "placeholders": {
+      "num": {
+        "type": "int"
+      }
+    }
+  },
+  "activityNotFoundForCourse": "This activity was not found within the course",
+  "courseChats": "Course Chats",
+  "noSessionsFound": "None found. Ready to start?",
+  "myActivitySessions": "My Activity Sessions"
 }

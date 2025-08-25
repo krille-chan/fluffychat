@@ -72,7 +72,7 @@ class PangeaInvitationSelectionView extends StatelessWidget {
         ],
       ),
       onPressed: () => context.go(
-        room.isSpace ? "/rooms?spaceId=${room.id}" : "/rooms/${room.id}",
+        room.isSpace ? "/rooms/spaces/${room.id}/details" : "/rooms/${room.id}",
       ),
     );
 
