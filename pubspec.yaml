@@ -52,7 +52,7 @@ dependencies:
   html: ^0.15.4
   http: ^1.5.0
   image: ^4.1.7
-  image_picker: ^1.1.0
+  image_picker: ^1.2.0
   intl: any
   just_audio: ^0.10.4
   latlong2: ^0.9.1
