@@ -1,13 +1,9 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:flutter_highlighter/flutter_highlighter.dart';
 import 'package:flutter_highlighter/themes/shades-of-purple.dart';
 import 'package:matrix/matrix.dart';
-import 'package:path/path.dart' as path;
-import 'package:path_provider/path_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'package:fluffychat/config/app_config.dart';
@@ -27,31 +23,6 @@ class ErrorReporter {
     "TlsException",
     "HandshakeException",
   };
-
-  Future<File> _getTemporaryErrorLogFile() async {
-    final tempDir = await getTemporaryDirectory();
-    return File(path.join(tempDir.path, 'error_log.txt'));
-  }
-
-  Future<void> writeToTemporaryErrorLogFile(
-    Object error, [
-    StackTrace? stackTrace,
-  ]) async {
-    if (ingoredTypes.contains(error.runtimeType.toString())) return;
-    final file = await _getTemporaryErrorLogFile();
-    if (await file.exists()) await file.delete();
-    await file.writeAsString(
-      '[${DateTime.now().toIso8601String()}] $message -  $error\n$stackTrace',
-    );
-  }
-
-  Future<void> consumeTemporaryErrorLogFile() async {
-    final file = await _getTemporaryErrorLogFile();
-    if (!(await file.exists())) return;
-    final content = await file.readAsString();
-    _onErrorCallback(content);
-    await file.delete();
-  }
 
   void onErrorCallback(Object error, [StackTrace? stackTrace]) {
     if (ingoredTypes.contains(error.runtimeType.toString())) return;
