@@ -115,7 +115,7 @@ class ChatDetailsContent extends StatelessWidget {
                           ),
                         ),
                         TextButton.icon(
-                          onPressed: room.isDirectChat
+                          onPressed: room.isDirectChat || !room.canInvite
                               ? null
                               : () => context.push(
                                     '/rooms/${controller.roomId}/details/invite?filter=participants',
