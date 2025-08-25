@@ -110,10 +110,8 @@ class SpaceAnalyticsView extends StatelessWidget {
                                   children: [
                                     if (controller.selectedLanguage != null)
                                       Text(
-                                        controller.selectedLanguage!
-                                                .getDisplayName(context) ??
-                                            controller
-                                                .selectedLanguage!.displayName,
+                                        controller.selectedLanguage!.langCode
+                                            .toUpperCase(),
                                         style: TextStyle(
                                           color: theme
                                               .colorScheme.onPrimaryContainer,
@@ -507,19 +505,20 @@ class _RequestButton extends StatelessWidget {
         child: Opacity(
           opacity: status.enabled ? 0.9 : 0.3,
           child: Container(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 8.0,
-              vertical: 4.0,
-            ),
+            padding: (status != RequestStatus.unavailable)
+                ? const EdgeInsets.symmetric(
+                    horizontal: 8.0,
+                    vertical: 4.0,
+                  )
+                : null,
             decoration: status != RequestStatus.unavailable
                 ? BoxDecoration(
                     borderRadius: BorderRadius.circular(40),
                     color: status.backgroundColor(context),
                   )
                 : null,
-            child: Row(
+            child: Wrap(
               spacing: 8.0,
-              mainAxisSize: MainAxisSize.min,
               children: [
                 if (status.icon != null)
                   Icon(
