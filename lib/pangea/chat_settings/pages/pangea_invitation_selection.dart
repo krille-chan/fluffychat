@@ -100,7 +100,7 @@ class PangeaInvitationSelectionController
     }
 
     if (filter == InvitationFilter.public) {
-      searchUser(context, '');
+      searchUser(context, controller.text);
     }
 
     controller.addListener(() {
@@ -220,7 +220,7 @@ class PangeaInvitationSelectionController
   void setFilter(InvitationFilter newFilter) {
     if (filter == newFilter) return;
     if (newFilter == InvitationFilter.public) {
-      searchUser(context, '');
+      searchUser(context, controller.text);
     }
     setState(() => filter = newFilter);
   }
