@@ -257,7 +257,10 @@ class SpaceDetailsContentState extends State<SpaceDetailsContent> {
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
-                                fontSize: isColumnMode ? 32.0 : 12.0,
+                                fontSize: isColumnMode ? 32.0 : 16.0,
+                                fontWeight: isColumnMode
+                                    ? FontWeight.normal
+                                    : FontWeight.bold,
                               ),
                             ),
                             if (isColumnMode && courseController.course != null)

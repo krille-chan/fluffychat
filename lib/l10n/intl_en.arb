@@ -5240,7 +5240,8 @@
   },
   "activityNotFoundForCourse": "This activity was not found within the course",
   "courseChats": "Course Chats",
-  "noSessionsFound": "None found. Ready to start?",
   "myActivitySessions": "My Activity Sessions",
-  "directMessages": "Direct Messages"
+  "directMessages": "Direct Messages",
+  "whatNow": "What now?",
+  "chooseNextActivity": "Choose your next activity!"
 }

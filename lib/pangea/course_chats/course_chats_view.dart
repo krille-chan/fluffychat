@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart' as sdk;
 import 'package:matrix/matrix.dart';
 
@@ -106,7 +107,7 @@ class CourseChatsView extends StatelessWidget {
                     joinedSessions.length +
                     discoveredGroupChats.length +
                     discoveredSessions.length +
-                    7,
+                    6,
                 itemBuilder: (context, i) {
                   // courses chats title
                   if (i == 0) {
@@ -181,7 +182,7 @@ class CourseChatsView extends StatelessWidget {
                     return Padding(
                       padding: const EdgeInsets.only(
                         top: 20.0,
-                        bottom: 16.0,
+                        bottom: 12.0,
                       ),
                       child: courseController.loading
                           ? LinearProgressIndicator(
@@ -257,46 +258,14 @@ class CourseChatsView extends StatelessWidget {
                   i--;
 
                   if (i == 0) {
-                    return Padding(
-                      padding: const EdgeInsets.only(
-                        bottom: 4.0,
-                        left: 24.0,
-                        right: 24.0,
-                      ),
-                      child: Row(
-                        spacing: 4.0,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          const Icon(
-                            Icons.event_note_outlined,
-                            size: 14.0,
-                          ),
-                          Text(
-                            L10n.of(context).myActivitySessions,
-                            style: const TextStyle(fontSize: 12.0),
-                          ),
-                        ],
-                      ),
-                    );
-                  }
-                  i--;
-
-                  if (i == 0) {
                     return joinedSessions.isEmpty && discoveredSessions.isEmpty
-                        ? Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 12.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  L10n.of(context).noSessionsFound,
-                                  style: const TextStyle(
-                                    fontSize: 12.0,
-                                  ),
-                                ),
-                                const Icon(Icons.map_outlined, size: 24.0),
-                              ],
-                            ),
+                        ? ListTile(
+                            leading: const Icon(Icons.map_outlined),
+                            title: Text(L10n.of(context).whatNow),
+                            subtitle: Text(L10n.of(context).chooseNextActivity),
+                            trailing: const Icon(Icons.arrow_forward),
+                            onTap: () =>
+                                context.go("/rooms/spaces/${room.id}/details"),
                           )
                         : const SizedBox();
                   }
