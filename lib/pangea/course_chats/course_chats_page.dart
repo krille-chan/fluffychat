@@ -16,14 +16,12 @@ import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/course_chats/course_chats_view.dart';
 import 'package:fluffychat/pangea/courses/course_plan_model.dart';
 import 'package:fluffychat/pangea/courses/course_plan_room_extension.dart';
-import 'package:fluffychat/pangea/extensions/join_rule_extension.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/public_spaces/public_room_bottom_sheet.dart';
 import 'package:fluffychat/pangea/spaces/constants/space_constants.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/adaptive_dialog_action.dart';
-import 'package:fluffychat/widgets/adaptive_dialogs/show_modal_action_popup.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
@@ -421,15 +419,6 @@ class CourseChatsController extends State<CourseChats> {
     final displayname =
         room.getLocalizedDisplayname(MatrixLocals(L10n.of(context)));
 
-    final spacesWithPowerLevels = room.client.rooms
-        .where(
-          (space) =>
-              space.isSpace &&
-              space.canChangeStateEvent(EventTypes.SpaceChild) &&
-              !space.spaceChildren.any((c) => c.roomId == room.id),
-        )
-        .toList();
-
     final action = await showMenu<ChatContextAction>(
       context: posContext,
       position: position,
@@ -536,39 +525,6 @@ class CourseChatsController extends State<CourseChats> {
               ],
             ),
           ),
-          if (spacesWithPowerLevels.isNotEmpty &&
-              room.canChangeStateEvent(EventTypes.SpaceParent))
-            PopupMenuItem(
-              value: ChatContextAction.addToSpace,
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Icon(Icons.groups_outlined),
-                  const SizedBox(width: 12),
-                  Text(L10n.of(context).addToSpace),
-                ],
-              ),
-            ),
-          // if the room has a parent for which the user has a high enough power level
-          // to set parent's space child events, show option to remove the room from the space
-          if (room.spaceParents.isNotEmpty &&
-              room.canChangeStateEvent(EventTypes.SpaceParent) &&
-              room.pangeaSpaceParents.any(
-                (r) =>
-                    r.canChangeStateEvent(EventTypes.SpaceChild) &&
-                    r.id == widget.roomId,
-              ))
-            PopupMenuItem(
-              value: ChatContextAction.removeFromSpace,
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Icon(Icons.delete_sweep_outlined),
-                  const SizedBox(width: 12),
-                  Text(L10n.of(context).removeFromSpace),
-                ],
-              ),
-            ),
         ],
         PopupMenuItem(
           value: ChatContextAction.leave,
@@ -668,63 +624,6 @@ class CourseChatsController extends State<CourseChats> {
           context.go("/rooms");
         }
 
-        return;
-      case ChatContextAction.addToSpace:
-        final space = await showModalActionPopup(
-          context: context,
-          title: L10n.of(context).space,
-          actions: spacesWithPowerLevels
-              .map(
-                (space) => AdaptiveModalAction(
-                  value: space,
-                  label: space
-                      .getLocalizedDisplayname(MatrixLocals(L10n.of(context))),
-                ),
-              )
-              .toList(),
-        );
-        if (space == null) return;
-        if (room.isSpace) {
-          final resp = await showOkCancelAlertDialog(
-            context: context,
-            title: L10n.of(context).addSubspaceWarning,
-          );
-          if (resp == OkCancelResult.cancel) return;
-        }
-        await showFutureLoadingDialog(
-          context: context,
-          future: () => space.addToSpace(room.id),
-        );
-        try {
-          await space.setSpaceChildAccess();
-        } catch (e) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(L10n.of(context).accessSettingsWarning),
-              duration: const Duration(seconds: 10),
-            ),
-          );
-        }
-        return;
-      case ChatContextAction.removeFromSpace:
-        await showFutureLoadingDialog(
-          context: context,
-          future: () async {
-            final activeSpace = room.client.getRoomById(widget.roomId);
-            if (activeSpace == null) return;
-            await activeSpace.removeSpaceChild(room.id);
-          },
-        );
-        try {
-          await room.resetSpaceChildAccess();
-        } catch (e) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(L10n.of(context).accessSettingsWarning),
-              duration: const Duration(seconds: 10),
-            ),
-          );
-        }
         return;
       case ChatContextAction.delete:
         if (room.isSpace) {

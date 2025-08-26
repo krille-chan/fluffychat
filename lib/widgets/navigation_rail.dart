@@ -134,11 +134,12 @@ class SpacesNavigationRail extends StatelessWidget {
                             //   padding: EdgeInsets.all(10.0),
                             //   child: Icon(Icons.forum),
                             // ),
+                            // toolTip: L10n.of(context).chats,
                             icon: const Icon(Icons.forum_outlined),
                             selectedIcon: const Icon(Icons.forum),
                             onTap: () => context.go("/rooms"),
+                            toolTip: L10n.of(context).directMessages,
                             // Pangea#
-                            toolTip: L10n.of(context).chats,
                             unreadBadgeFilter: (room) => true,
                           );
                         }

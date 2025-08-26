@@ -79,32 +79,4 @@ extension JoinRuleExtensionOnRoom on Room {
       currentJoinRule,
     );
   }
-
-  Future<void> setSpaceChildAccess() async {
-    await pangeaSetJoinRules(
-      'knock_restricted',
-      allow: [
-        {
-          "type": "m.room_membership",
-          "room_id": id,
-        }
-      ],
-    );
-
-    await client.setRoomVisibilityOnDirectory(
-      id,
-      visibility: Visibility.private,
-    );
-  }
-
-  Future<void> resetSpaceChildAccess() async {
-    await pangeaSetJoinRules(
-      JoinRules.knock.toString().replaceAll('JoinRules.', ''),
-    );
-
-    await client.setRoomVisibilityOnDirectory(
-      id,
-      visibility: Visibility.private,
-    );
-  }
 }

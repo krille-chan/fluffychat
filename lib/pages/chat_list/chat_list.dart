@@ -22,7 +22,6 @@ import 'package:fluffychat/pangea/chat_settings/utils/delete_room.dart';
 import 'package:fluffychat/pangea/chat_settings/widgets/delete_space_dialog.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/common/utils/firebase_analytics.dart';
-import 'package:fluffychat/pangea/extensions/join_rule_extension.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/subscription/widgets/subscription_snackbar.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
@@ -44,6 +43,7 @@ import '../../widgets/matrix.dart';
 
 import 'package:fluffychat/utils/tor_stub.dart'
     if (dart.library.html) 'package:tor_detector_web/tor_detector_web.dart';
+
 
 enum PopupMenuAction {
   settings,
@@ -256,24 +256,36 @@ class ChatListController extends State<ChatList>
       case ActiveFilter.allChats:
         // #Pangea
         // return (room) => true;
-        return (room) => !room.isHiddenRoom && !room.isSpace;
+        return (room) =>
+            !room.isHiddenRoom &&
+            !room.isSpace &&
+            room.firstSpaceParent == null;
       // Pangea#
       case ActiveFilter.messages:
         // #Pangea
         // return (room) => !room.isSpace && room.isDirectChat;
         return (room) =>
-            !room.isSpace && room.isDirectChat && !room.isHiddenRoom;
+            !room.isSpace &&
+            room.isDirectChat &&
+            !room.isHiddenRoom &&
+            room.firstSpaceParent == null;
       // Pangea#
       case ActiveFilter.groups:
         // #Pangea
         // return (room) => !room.isSpace && !room.isDirectChat;
         return (room) =>
-            !room.isSpace && !room.isDirectChat && !room.isHiddenRoom;
+            !room.isSpace &&
+            !room.isDirectChat &&
+            !room.isHiddenRoom &&
+            room.firstSpaceParent == null;
       // Pangea#
       case ActiveFilter.unread:
         // #Pangea
         // return (room) => room.isUnreadOrInvited;
-        return (room) => room.isUnreadOrInvited && !room.isHiddenRoom;
+        return (room) =>
+            room.isUnreadOrInvited &&
+            !room.isHiddenRoom &&
+            room.firstSpaceParent == null;
       // Pangea#
       case ActiveFilter.spaces:
         return (room) => room.isSpace;
@@ -711,14 +723,16 @@ class ChatListController extends State<ChatList>
     final displayname =
         room.getLocalizedDisplayname(MatrixLocals(L10n.of(context)));
 
-    final spacesWithPowerLevels = room.client.rooms
-        .where(
-          (space) =>
-              space.isSpace &&
-              space.canChangeStateEvent(EventTypes.SpaceChild) &&
-              !space.spaceChildren.any((c) => c.roomId == room.id),
-        )
-        .toList();
+    // #Pangea
+    // final spacesWithPowerLevels = room.client.rooms
+    //     .where(
+    //       (space) =>
+    //           space.isSpace &&
+    //           space.canChangeStateEvent(EventTypes.SpaceChild) &&
+    //           !space.spaceChildren.any((c) => c.roomId == room.id),
+    //     )
+    //     .toList();
+    // Pangea#
 
     final action = await showMenu<ChatContextAction>(
       context: posContext,
@@ -842,45 +856,17 @@ class ChatListController extends State<ChatList>
           ),
           // #Pangea
           // if (spacesWithPowerLevels.isNotEmpty)
-          if (spacesWithPowerLevels.isNotEmpty &&
-              room.canChangeStateEvent(EventTypes.SpaceParent))
-            // Pangea#
-            PopupMenuItem(
-              value: ChatContextAction.addToSpace,
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  // #Pangea
-                  // const Icon(Icons.group_work_outlined),
-                  const Icon(Icons.groups_outlined),
-                  // Pangea#
-                  const SizedBox(width: 12),
-                  Text(L10n.of(context).addToSpace),
-                ],
-              ),
-            ),
-          // #Pangea
-          // if the room has a parent for which the user has a high enough power level
-          // to set parent's space child events, show option to remove the room from the space
-          if (room.spaceParents.isNotEmpty &&
-              room.canChangeStateEvent(EventTypes.SpaceParent) &&
-              room.pangeaSpaceParents.any(
-                (r) =>
-                    r.canChangeStateEvent(EventTypes.SpaceChild) &&
-                    r.id == activeSpaceId,
-              ) &&
-              activeSpaceId != null)
-            PopupMenuItem(
-              value: ChatContextAction.removeFromSpace,
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Icon(Icons.delete_sweep_outlined),
-                  const SizedBox(width: 12),
-                  Text(L10n.of(context).removeFromSpace),
-                ],
-              ),
-            ),
+          //   PopupMenuItem(
+          //     value: ChatContextAction.addToSpace,
+          //     child: Row(
+          //       mainAxisSize: MainAxisSize.min,
+          //       children: [
+          //         const Icon(Icons.group_work_outlined),
+          //         const SizedBox(width: 12),
+          //         Text(L10n.of(context).addToSpace),
+          //       ],
+          //     ),
+          //   ),
           // Pangea#
         ],
         PopupMenuItem(
@@ -996,69 +982,27 @@ class ChatListController extends State<ChatList>
         // Pangea#
 
         return;
-      case ChatContextAction.addToSpace:
-        final space = await showModalActionPopup(
-          context: context,
-          title: L10n.of(context).space,
-          actions: spacesWithPowerLevels
-              .map(
-                (space) => AdaptiveModalAction(
-                  value: space,
-                  label: space
-                      .getLocalizedDisplayname(MatrixLocals(L10n.of(context))),
-                ),
-              )
-              .toList(),
-        );
-        if (space == null) return;
-        // #Pangea
-        if (room.isSpace) {
-          final resp = await showOkCancelAlertDialog(
-            context: context,
-            title: L10n.of(context).addSubspaceWarning,
-          );
-          if (resp == OkCancelResult.cancel) return;
-        }
-        // Pangea#
-        await showFutureLoadingDialog(
-          context: context,
-          // #Pangea
-          // future: () => space.setSpaceChild(room.id),
-          future: () => space.addToSpace(room.id),
-          // Pangea#
-        );
-        // #Pangea
-        try {
-          await space.setSpaceChildAccess();
-        } catch (e) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(L10n.of(context).accessSettingsWarning),
-              duration: const Duration(seconds: 10),
-            ),
-          );
-        }
-        return;
-      case ChatContextAction.removeFromSpace:
-        await showFutureLoadingDialog(
-          context: context,
-          future: () async {
-            final activeSpace = room.client.getRoomById(activeSpaceId!);
-            if (activeSpace == null) return;
-            await activeSpace.removeSpaceChild(room.id);
-          },
-        );
-        try {
-          await room.resetSpaceChildAccess();
-        } catch (e) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(L10n.of(context).accessSettingsWarning),
-              duration: const Duration(seconds: 10),
-            ),
-          );
-        }
-        return;
+      // #Pangea
+      // case ChatContextAction.addToSpace:
+      //   final space = await showModalActionPopup(
+      //     context: context,
+      //     title: L10n.of(context).space,
+      //     actions: spacesWithPowerLevels
+      //         .map(
+      //           (space) => AdaptiveModalAction(
+      //             value: space,
+      //             label: space
+      //                 .getLocalizedDisplayname(MatrixLocals(L10n.of(context))),
+      //           ),
+      //         )
+      //         .toList(),
+      //   );
+      //   if (space == null) return;
+      //   await showFutureLoadingDialog(
+      //     context: context,
+      //     future: () => space.setSpaceChild(room.id),
+      //   );
+      // Pangea#
       case ChatContextAction.delete:
         if (room.isSpace) {
           final resp = await showDialog<bool?>(
@@ -1351,9 +1295,8 @@ enum ChatContextAction {
   markUnread,
   mute,
   leave,
-  addToSpace,
   // #Pangea
-  removeFromSpace,
+  // addToSpace,
   delete,
   // Pangea#
 }
