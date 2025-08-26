@@ -131,7 +131,7 @@ class UserController {
         ),
       );
     } else {
-      settingsUpdateStream.add(null);
+      settingsUpdateStream.add(updatedProfile);
     }
   }
 
