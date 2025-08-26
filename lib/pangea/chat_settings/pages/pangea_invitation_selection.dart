@@ -90,6 +90,14 @@ class PangeaInvitationSelectionController
   void initState() {
     super.initState();
 
+    _room?.requestParticipants(
+      [Membership.join, Membership.invite, Membership.knock],
+      false,
+      true,
+    ).then((_) {
+      if (mounted) setState(() {});
+    });
+
     if (widget.initialFilter != null &&
         availableFilters.contains(widget.initialFilter)) {
       filter = widget.initialFilter!;

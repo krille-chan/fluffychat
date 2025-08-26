@@ -53,18 +53,6 @@ class ChatDetailsController extends State<ChatDetails> {
   String? get roomId => widget.roomId;
 
   // #Pangea
-  @override
-  void initState() {
-    super.initState();
-
-    // Widgets within the chat details page rely on a fully-loaded in-memory
-    // participants list, so we need to ensure that the participants are loaded
-    final room = Matrix.of(context).client.getRoomById(widget.roomId);
-    room?.requestParticipants().then((_) {
-      if (mounted) setState(() {});
-    });
-  }
-
   final GlobalKey<ChatDetailsController> addConversationBotKey =
       GlobalKey<ChatDetailsController>();
 

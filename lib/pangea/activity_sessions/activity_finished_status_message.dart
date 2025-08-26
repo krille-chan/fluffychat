@@ -16,6 +16,7 @@ import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_summary/progress_indicators_enum.dart';
 import 'package:fluffychat/pangea/courses/course_plan_room_extension.dart';
 import 'package:fluffychat/pangea/courses/course_repo.dart';
+import 'package:fluffychat/pangea/spaces/utils/load_participants_util.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
@@ -80,192 +81,197 @@ class ActivityFinishedStatusMessage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (!controller.room.showActivityChatUI ||
-        !controller.room.activityIsFinished ||
-        controller.room.ownRole == null) {
-      return const SizedBox.shrink();
-    }
+    return LoadParticipantsBuilder(
+      room: controller.room,
+      builder: (context, participants) {
+        if (!controller.room.showActivityChatUI ||
+            !controller.room.activityIsFinished ||
+            controller.room.ownRole == null) {
+          return const SizedBox.shrink();
+        }
 
-    final summary = controller.room.activitySummary;
+        final summary = controller.room.activitySummary;
+        final theme = Theme.of(context);
 
-    final theme = Theme.of(context);
-
-    final user = controller.room.getParticipants().firstWhereOrNull(
+        final user = participants.participants.firstWhereOrNull(
           (u) => u.id == _highlightedRole?.userId,
         );
 
-    final userSummary =
-        controller.room.activitySummary?.summary?.participants.firstWhereOrNull(
-      (p) => p.participantId == _highlightedRole?.userId,
-    );
+        final userSummary = controller
+            .room.activitySummary?.summary?.participants
+            .firstWhereOrNull(
+          (p) => p.participantId == _highlightedRole?.userId,
+        );
 
-    return AnimatedSize(
-      duration: FluffyThemes.animationDuration,
-      child: Center(
-        child: Container(
-          padding: const EdgeInsets.all(16.0),
-          constraints: const BoxConstraints(
-            maxWidth: FluffyThemes.columnWidth * 1.5,
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              if (summary?.summary != null) ...[
-                Text(
-                  L10n.of(context).activityFinishedMessage,
-                  style: const TextStyle(fontSize: 18.0),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 4.0),
-                  child: Text(
-                    summary!.summary!.summary,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      fontSize: 14.0,
+        return AnimatedSize(
+          duration: FluffyThemes.animationDuration,
+          child: Center(
+            child: Container(
+              padding: const EdgeInsets.all(16.0),
+              constraints: const BoxConstraints(
+                maxWidth: FluffyThemes.columnWidth * 1.5,
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  if (summary?.summary != null) ...[
+                    Text(
+                      L10n.of(context).activityFinishedMessage,
+                      style: const TextStyle(fontSize: 18.0),
                     ),
-                  ),
-                ),
-                if (summary.analytics != null)
-                  Row(
-                    spacing: 8.0,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      ActivityAnalyticsChip(
-                        ConstructTypeEnum.vocab.indicator.icon,
-                        "${summary.analytics!.uniqueConstructCount(ConstructTypeEnum.vocab)}",
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 4.0),
+                      child: Text(
+                        summary!.summary!.summary,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          fontSize: 14.0,
+                        ),
                       ),
-                      ActivityAnalyticsChip(
-                        ConstructTypeEnum.morph.indicator.icon,
-                        "${summary.analytics!.uniqueConstructCount(ConstructTypeEnum.morph)}",
-                      ),
-                    ],
-                  ),
-                const SizedBox(height: 16.0),
-                if (_highlightedRole != null && userSummary != null)
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(24.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: theme.colorScheme.surfaceContainer,
-                      ),
-                      child: Column(
+                    ),
+                    if (summary.analytics != null)
+                      Row(
+                        spacing: 8.0,
+                        mainAxisSize: MainAxisSize.min,
                         children: [
-                          ActivityResultsCarousel(
-                            userId: _highlightedRole!.userId,
-                            selectedRole: _highlightedRole!,
-                            user: user,
-                            summary: userSummary,
-                            analytics: summary.analytics,
+                          ActivityAnalyticsChip(
+                            ConstructTypeEnum.vocab.indicator.icon,
+                            "${summary.analytics!.uniqueConstructCount(ConstructTypeEnum.vocab)}",
                           ),
-                          Wrap(
-                            alignment: WrapAlignment.center,
-                            children: _rolesWithSummaries.map(
-                              (role) {
-                                final user = controller.room
-                                    .getParticipants()
-                                    .firstWhereOrNull(
+                          ActivityAnalyticsChip(
+                            ConstructTypeEnum.morph.indicator.icon,
+                            "${summary.analytics!.uniqueConstructCount(ConstructTypeEnum.morph)}",
+                          ),
+                        ],
+                      ),
+                    const SizedBox(height: 16.0),
+                    if (_highlightedRole != null && userSummary != null)
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(24.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: theme.colorScheme.surfaceContainer,
+                          ),
+                          child: Column(
+                            children: [
+                              ActivityResultsCarousel(
+                                userId: _highlightedRole!.userId,
+                                selectedRole: _highlightedRole!,
+                                user: user,
+                                summary: userSummary,
+                                analytics: summary.analytics,
+                              ),
+                              Wrap(
+                                alignment: WrapAlignment.center,
+                                children: _rolesWithSummaries.map(
+                                  (role) {
+                                    final user = participants.participants
+                                        .firstWhereOrNull(
                                       (u) => u.id == role.userId,
                                     );
 
-                                return IntrinsicWidth(
-                                  child: ActivityParticipantIndicator(
-                                    availableRole: _roles[role.id]!,
-                                    avatarUrl: _roles[role.id]?.avatarUrl ??
-                                        user?.avatarUrl?.toString(),
-                                    onTap: _highlightedRole == role
-                                        ? null
-                                        : () => controller.highlightRole(role),
-                                    assignedRole: role,
-                                    selected: _highlightedRole == role,
-                                    padding: const EdgeInsets.symmetric(
-                                      vertical: 8.0,
-                                      horizontal: 24.0,
-                                    ),
-                                    borderRadius: BorderRadius.zero,
-                                  ),
-                                );
-                              },
-                            ).toList(),
+                                    return IntrinsicWidth(
+                                      child: ActivityParticipantIndicator(
+                                        availableRole: _roles[role.id]!,
+                                        avatarUrl: _roles[role.id]?.avatarUrl ??
+                                            user?.avatarUrl?.toString(),
+                                        onTap: _highlightedRole == role
+                                            ? null
+                                            : () =>
+                                                controller.highlightRole(role),
+                                        assignedRole: role,
+                                        selected: _highlightedRole == role,
+                                        padding: const EdgeInsets.symmetric(
+                                          vertical: 8.0,
+                                          horizontal: 24.0,
+                                        ),
+                                        borderRadius: BorderRadius.zero,
+                                      ),
+                                    );
+                                  },
+                                ).toList(),
+                              ),
+                            ],
                           ),
-                        ],
+                        ),
                       ),
-                    ),
-                  ),
-                const SizedBox(height: 20.0),
-              ] else if (summary?.isLoading ?? false)
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    spacing: 8.0,
-                    children: [
-                      const CircularProgressIndicator.adaptive(),
-                      Text(L10n.of(context).loadingActivitySummary),
-                    ],
-                  ),
-                )
-              else if (summary?.hasError ?? false)
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    spacing: 8.0,
-                    children: [
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
+                    const SizedBox(height: 20.0),
+                  ] else if (summary?.isLoading ?? false)
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        spacing: 8.0,
                         children: [
-                          const Icon(
-                            Icons.school_outlined,
-                            size: 24.0,
+                          const CircularProgressIndicator.adaptive(),
+                          Text(L10n.of(context).loadingActivitySummary),
+                        ],
+                      ),
+                    )
+                  else if (summary?.hasError ?? false)
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        spacing: 8.0,
+                        children: [
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const Icon(
+                                Icons.school_outlined,
+                                size: 24.0,
+                              ),
+                              const SizedBox(width: 8),
+                              Flexible(
+                                child: Text(
+                                  L10n.of(context).activitySummaryError,
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            ],
                           ),
-                          const SizedBox(width: 8),
-                          Flexible(
-                            child: Text(
-                              L10n.of(context).activitySummaryError,
-                              textAlign: TextAlign.center,
-                            ),
+                          TextButton(
+                            onPressed: () => controller.room.fetchSummaries(),
+                            child: Text(L10n.of(context).requestSummaries),
                           ),
                         ],
                       ),
-                      TextButton(
-                        onPressed: () => controller.room.fetchSummaries(),
-                        child: Text(L10n.of(context).requestSummaries),
-                      ),
-                    ],
-                  ),
-                ),
-              if (!controller.room.isHiddenActivityRoom)
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 12.0,
-                      vertical: 8.0,
                     ),
-                    foregroundColor: theme.colorScheme.onPrimaryContainer,
-                    backgroundColor: theme.colorScheme.primaryContainer,
-                  ),
-                  onPressed: () async {
-                    final resp = await showFutureLoadingDialog(
-                      context: context,
-                      future: () => _archiveToAnalytics(context),
-                    );
+                  if (!controller.room.isHiddenActivityRoom)
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 12.0,
+                          vertical: 8.0,
+                        ),
+                        foregroundColor: theme.colorScheme.onPrimaryContainer,
+                        backgroundColor: theme.colorScheme.primaryContainer,
+                      ),
+                      onPressed: () async {
+                        final resp = await showFutureLoadingDialog(
+                          context: context,
+                          future: () => _archiveToAnalytics(context),
+                        );
 
-                    if (!resp.isError) {
-                      context.go(
-                        "/rooms/analytics?mode=activities",
-                      );
-                    }
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(L10n.of(context).archiveToAnalytics),
-                    ],
-                  ),
-                ),
-            ],
+                        if (!resp.isError) {
+                          context.go(
+                            "/rooms/analytics?mode=activities",
+                          );
+                        }
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(L10n.of(context).archiveToAnalytics),
+                        ],
+                      ),
+                    ),
+                ],
+              ),
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

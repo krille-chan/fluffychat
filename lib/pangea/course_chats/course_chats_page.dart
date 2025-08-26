@@ -59,13 +59,6 @@ class CourseChatsController extends State<CourseChats> {
 
   @override
   void initState() {
-    // load full participant list into memory to ensure widgets
-    // that rely on full participants list work as expected
-    final room = widget.client.getRoomById(widget.roomId);
-    room?.requestParticipants().then((_) {
-      if (mounted) setState(() {});
-    });
-
     loadHierarchy(reload: true);
 
     // Listen for changes to the activeSpace's hierarchy,

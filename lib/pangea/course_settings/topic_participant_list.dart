@@ -35,9 +35,10 @@ class TopicParticipantList extends StatelessWidget {
         SizedBox(
           width: maxWidth,
           height: avatarSize,
-          child: LoadParticipantsUtil(
-            space: room,
-            builder: (participantsLoader) {
+          child: LoadParticipantsBuilder(
+            room: room,
+            loadProfiles: true,
+            builder: (context, participantsLoader) {
               final publicProfiles = Map.fromEntries(
                 users.map(
                   (u) => MapEntry(

@@ -26,11 +26,11 @@ class RoomParticipantsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return LoadParticipantsUtil(
-      space: room,
-      builder: (participantsLoader) {
-        final filteredParticipants = participantsLoader.sortedParticipants();
-
+    return LoadParticipantsBuilder(
+      room: room,
+      loadProfiles: true,
+      builder: (context, participantsLoader) {
+        final filteredParticipants = participantsLoader.sortedParticipants;
         final originalLeaders = filteredParticipants.take(3).toList();
         filteredParticipants.sort((a, b) {
           // always sort bot to the end

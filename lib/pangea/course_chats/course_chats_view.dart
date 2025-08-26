@@ -15,6 +15,8 @@ import 'package:fluffychat/pangea/courses/course_plan_builder.dart';
 import 'package:fluffychat/pangea/courses/course_plan_model.dart';
 import 'package:fluffychat/pangea/courses/course_plan_room_extension.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/space_analytics/analytics_request_indicator.dart';
+import 'package:fluffychat/pangea/spaces/widgets/knocking_users_indicator.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
 
 class CourseChatsView extends StatelessWidget {
@@ -59,7 +61,8 @@ class CourseChatsView extends StatelessWidget {
 
         for (final joinedRoom in joinedRooms) {
           if (joinedRoom.isActivitySession) {
-            if (activityIds.contains(joinedRoom.activityPlan?.bookmarkId)) {
+            if (topic == null ||
+                activityIds.contains(joinedRoom.activityPlan?.bookmarkId)) {
               joinedSessions.add(joinedRoom);
             }
           } else {
@@ -103,7 +106,7 @@ class CourseChatsView extends StatelessWidget {
                     joinedSessions.length +
                     discoveredGroupChats.length +
                     discoveredSessions.length +
-                    5,
+                    7,
                 itemBuilder: (context, i) {
                   // courses chats title
                   if (i == 0) {
@@ -130,6 +133,16 @@ class CourseChatsView extends StatelessWidget {
                     }
 
                     return const SizedBox();
+                  }
+                  i--;
+
+                  if (i == 0) {
+                    return KnockingUsersIndicator(room: room);
+                  }
+                  i--;
+
+                  if (i == 0) {
+                    return AnalyticsRequestIndicator(room: room);
                   }
                   i--;
 

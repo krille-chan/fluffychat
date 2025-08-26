@@ -45,8 +45,12 @@ class AnalyticsRequestIndicatorState extends State<AnalyticsRequestIndicator> {
   Future<void> _fetchKnockingAdmins() async {
     setState(() => _knockingAdmins.clear());
 
-    final admins =
-        widget.room.getParticipants().where((u) => u.powerLevel >= 100);
+    final admins = (await widget.room.requestParticipants(
+      [Membership.join, Membership.invite, Membership.knock],
+      false,
+      true,
+    ))
+        .where((u) => u.powerLevel >= 100);
 
     for (final analyticsRoom in widget.room.client.allMyAnalyticsRooms) {
       final knocking =
@@ -96,51 +100,46 @@ class AnalyticsRequestIndicatorState extends State<AnalyticsRequestIndicator> {
 
   @override
   Widget build(BuildContext context) {
-    return SliverList.builder(
-      itemCount: 1,
-      itemBuilder: (context, i) {
-        return AnimatedSize(
-          duration: FluffyThemes.animationDuration,
-          child: _knockingAdmins.isEmpty
-              ? const SizedBox()
-              : Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 4,
-                    vertical: 1,
+    return AnimatedSize(
+      duration: FluffyThemes.animationDuration,
+      child: _knockingAdmins.isEmpty
+          ? const SizedBox()
+          : Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 4,
+                vertical: 1,
+              ),
+              child: Material(
+                borderRadius: BorderRadius.circular(
+                  AppConfig.borderRadius,
+                ),
+                clipBehavior: Clip.hardEdge,
+                child: ListTile(
+                  minVerticalPadding: 0,
+                  trailing: Icon(
+                    Icons.arrow_right,
+                    size: 20,
+                    color: Theme.of(context).colorScheme.error,
                   ),
-                  child: Material(
-                    borderRadius: BorderRadius.circular(
-                      AppConfig.borderRadius,
-                    ),
-                    clipBehavior: Clip.hardEdge,
-                    child: ListTile(
-                      minVerticalPadding: 0,
-                      trailing: Icon(
-                        Icons.arrow_right,
-                        size: 20,
+                  title: Row(
+                    spacing: 8.0,
+                    children: [
+                      Icon(
+                        Icons.notifications_active_outlined,
                         color: Theme.of(context).colorScheme.error,
                       ),
-                      title: Row(
-                        spacing: 8.0,
-                        children: [
-                          Icon(
-                            Icons.notifications_active_outlined,
-                            color: Theme.of(context).colorScheme.error,
-                          ),
-                          Expanded(
-                            child: Text(
-                              L10n.of(context).adminRequestedAccess,
-                              style: Theme.of(context).textTheme.bodyMedium,
-                            ),
-                          ),
-                        ],
+                      Expanded(
+                        child: Text(
+                          L10n.of(context).adminRequestedAccess,
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
                       ),
-                      onTap: () => _onTap(context),
-                    ),
+                    ],
                   ),
+                  onTap: () => _onTap(context),
                 ),
-        );
-      },
+              ),
+            ),
     );
   }
 }

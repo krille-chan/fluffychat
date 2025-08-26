@@ -8,27 +8,33 @@ import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/user/models/analytics_profile_model.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
-class LoadParticipantsUtil extends StatefulWidget {
-  final Room space;
-  final Widget Function(LoadParticipantsUtilState) builder;
+class LoadParticipantsBuilder extends StatefulWidget {
+  final Room room;
+  final bool loadProfiles;
+  final Widget Function(
+    BuildContext context,
+    LoadParticipantsBuilderState,
+  ) builder;
 
-  const LoadParticipantsUtil({
-    required this.space,
+  const LoadParticipantsBuilder({
+    required this.room,
     required this.builder,
+    this.loadProfiles = false,
     super.key,
   });
 
   @override
-  State<LoadParticipantsUtil> createState() => LoadParticipantsUtilState();
+  State<LoadParticipantsBuilder> createState() =>
+      LoadParticipantsBuilderState();
 }
 
-class LoadParticipantsUtilState extends State<LoadParticipantsUtil> {
+class LoadParticipantsBuilderState extends State<LoadParticipantsBuilder> {
   bool loading = true;
   String? error;
 
   final Map<String, AnalyticsProfileModel> _levelsCache = {};
 
-  List<User> get participants => widget.space.getParticipants();
+  List<User> get participants => widget.room.getParticipants();
 
   @override
   void initState() {
@@ -37,9 +43,9 @@ class LoadParticipantsUtilState extends State<LoadParticipantsUtil> {
   }
 
   @override
-  void didUpdateWidget(LoadParticipantsUtil oldWidget) {
+  void didUpdateWidget(LoadParticipantsBuilder oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.space != widget.space) {
+    if (oldWidget.room.id != widget.room.id) {
       _loadParticipants();
     }
   }
@@ -51,15 +57,20 @@ class LoadParticipantsUtilState extends State<LoadParticipantsUtil> {
         error = null;
       });
 
-      await widget.space.requestParticipants();
-      await _cacheLevels();
+      await widget.room.requestParticipants(
+        [Membership.join, Membership.invite, Membership.knock],
+        false,
+        true,
+      );
+
+      if (widget.loadProfiles) await _cacheLevels();
     } catch (err, s) {
       error = err.toString();
       ErrorHandler.logError(
         e: err,
         s: s,
         data: {
-          'spaceId': widget.space.id,
+          'roomId': widget.room.id,
         },
       );
     } finally {
@@ -69,7 +80,7 @@ class LoadParticipantsUtilState extends State<LoadParticipantsUtil> {
     }
   }
 
-  List<User> sortedParticipants() {
+  List<User> get sortedParticipants {
     participants.sort((a, b) {
       if (a.id == BotName.byEnvironment) {
         return 1;
@@ -111,7 +122,7 @@ class LoadParticipantsUtilState extends State<LoadParticipantsUtil> {
 
   @override
   Widget build(BuildContext context) {
-    return widget.builder(this);
+    return widget.builder(context, this);
   }
 }
 

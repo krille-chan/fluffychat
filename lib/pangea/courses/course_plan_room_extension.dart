@@ -81,9 +81,14 @@ extension CoursePlanRoomExtension on Room {
   int ownCurrentTopicIndex(CoursePlanModel course) =>
       currentTopicIndex(client.userID!, course);
 
-  Map<String, List<User>> topicsToUsers(CoursePlanModel course) {
+  Future<Map<String, List<User>>> topicsToUsers(CoursePlanModel course) async {
     final Map<String, List<User>> topicUserMap = {};
-    final users = getParticipants();
+    final users = await requestParticipants(
+      [Membership.join, Membership.invite, Membership.knock],
+      false,
+      true,
+    );
+
     for (final user in users) {
       if (user.id == BotName.byEnvironment) continue;
       final topicIndex = currentTopicIndex(user.id, course);

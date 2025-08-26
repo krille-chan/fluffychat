@@ -163,6 +163,7 @@ abstract class ClientManager {
       // #Pangea
       syncFilter: Filter(
         room: RoomFilter(
+          state: StateFilter(lazyLoadMembers: true),
           timeline: StateFilter(
             notTypes: [
               PangeaEventTypes.construct,

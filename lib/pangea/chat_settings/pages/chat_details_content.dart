@@ -131,7 +131,8 @@ class ChatDetailsContent extends StatelessWidget {
                           ),
                           label: Text(
                             L10n.of(context).countParticipants(
-                              room.getParticipants().length,
+                              (room.summary.mJoinedMemberCount ?? 0) +
+                                  (room.summary.mInvitedMemberCount ?? 0),
                             ),
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,

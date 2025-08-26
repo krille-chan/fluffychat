@@ -34,9 +34,6 @@ class PangeaRoomDetailsView extends StatelessWidget {
       stream: room.client.onRoomState.stream
           .where((update) => update.roomId == room.id),
       builder: (context, snapshot) {
-        var members = room.getParticipants().toList()
-          ..sort((b, a) => a.powerLevel.compareTo(b.powerLevel));
-        members = members.take(10).toList();
         return Scaffold(
           appBar: room.isSpace
               ? null
