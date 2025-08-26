@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
@@ -13,10 +11,10 @@ import 'package:fluffychat/pangea/activity_suggestions/activity_suggestion_card.
 import 'package:fluffychat/pangea/activity_suggestions/activity_suggestion_dialog.dart';
 import 'package:fluffychat/pangea/common/widgets/error_indicator.dart';
 import 'package:fluffychat/pangea/course_creation/course_info_chip_widget.dart';
+import 'package:fluffychat/pangea/course_settings/pin_clipper.dart';
+import 'package:fluffychat/pangea/course_settings/topic_participant_list.dart';
 import 'package:fluffychat/pangea/courses/course_plan_builder.dart';
 import 'package:fluffychat/pangea/courses/course_plan_room_extension.dart';
-import 'package:fluffychat/pangea/spaces/utils/load_participants_util.dart';
-import 'package:fluffychat/widgets/avatar.dart';
 
 class CourseSettings extends StatelessWidget {
   final Room room;
@@ -45,7 +43,7 @@ class CourseSettings extends StatelessWidget {
 
     final theme = Theme.of(context);
     final isColumnMode = FluffyThemes.isColumnMode(context);
-    final double titleFontSize = isColumnMode ? 32.0 : 12.0;
+    final double titleFontSize = isColumnMode ? 24.0 : 12.0;
     final double descFontSize = isColumnMode ? 12.0 : 8.0;
     final double iconSize = isColumnMode ? 16.0 : 12.0;
 
@@ -57,7 +55,7 @@ class CourseSettings extends StatelessWidget {
     final topicsToUsers = room.topicsToUsers(course);
 
     return Column(
-      spacing: isColumnMode ? 30.0 : 12.0,
+      spacing: isColumnMode ? 40.0 : 36.0,
       mainAxisSize: MainAxisSize.min,
       children: course.topics.mapIndexed((index, topic) {
         final unlocked = index <= currentTopicIndex;
@@ -84,8 +82,8 @@ class CourseSettings extends StatelessWidget {
                             children: [
                               Stack(
                                 children: [
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(80),
+                                  ClipPath(
+                                    clipper: PinClipper(),
                                     child: topic.imageUrl != null
                                         ? CachedNetworkImage(
                                             width: 54.0,
@@ -221,106 +219,6 @@ class CourseSettings extends StatelessWidget {
           ),
         );
       }).toList(),
-    );
-  }
-}
-
-class TopicParticipantList extends StatelessWidget {
-  final Room room;
-  final List<User> users;
-  final double avatarSize;
-  final int maxVisible;
-  final double overlap;
-
-  const TopicParticipantList({
-    super.key,
-    required this.room,
-    required this.users,
-    this.avatarSize = 50.0,
-    this.maxVisible = 6,
-    this.overlap = 20.0,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final maxWidth =
-        (avatarSize - overlap) * min(users.length, maxVisible) + overlap;
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        SizedBox(
-          width: maxWidth,
-          height: avatarSize,
-          child: LoadParticipantsUtil(
-            space: room,
-            builder: (participantsLoader) {
-              final publicProfiles = Map.fromEntries(
-                users.map(
-                  (u) => MapEntry(
-                    u.id,
-                    participantsLoader.getAnalyticsProfile(u.id)?.level,
-                  ),
-                ),
-              );
-
-              users.sort((a, b) {
-                final aLevel = publicProfiles[a.id];
-                final bLevel = publicProfiles[b.id];
-                if (aLevel != null && bLevel != null) {
-                  return bLevel.compareTo(aLevel);
-                }
-                return 0;
-              });
-
-              return Stack(
-                children: users.take(maxVisible).mapIndexed((index, user) {
-                  final level = publicProfiles[user.id];
-                  final LinearGradient? gradient =
-                      level != null ? index.leaderboardGradient : null;
-                  return Positioned(
-                    left: index * (avatarSize - overlap),
-                    child: Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        if (gradient != null)
-                          CircleAvatar(
-                            radius: avatarSize / 2,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                gradient: gradient,
-                              ),
-                            ),
-                          )
-                        else
-                          SizedBox(
-                            height: avatarSize,
-                            width: avatarSize,
-                          ),
-                        Center(
-                          child: Avatar(
-                            mxContent: user.avatarUrl,
-                            name: user.calcDisplayname(),
-                            size: avatarSize - 6.0,
-                            userId: user.id,
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                }).toList(),
-              );
-            },
-          ),
-        ),
-        if (users.length > maxVisible)
-          Text(
-            L10n.of(context).additionalParticipants(users.length - maxVisible),
-            style: const TextStyle(
-              fontSize: 12.0,
-            ),
-          ),
-      ],
     );
   }
 }
