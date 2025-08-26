@@ -385,25 +385,13 @@ class SpaceDetailsContentState extends State<SpaceDetailsContent> {
                                 return Opacity(
                                   opacity: b.enabled ? 1.0 : 0.5,
                                   child: ListTile(
-                                    title: Text(
-                                      b.title,
-                                      style: const TextStyle(
-                                        fontSize: 12.0,
-                                      ),
-                                    ),
+                                    title: Text(b.title),
                                     subtitle: b.description != null
-                                        ? Text(
-                                            b.description!,
-                                            style: const TextStyle(
-                                              fontSize: 8.0,
-                                            ),
-                                          )
+                                        ? Text(b.description!)
                                         : null,
                                     leading: b.icon,
                                     onTap: b.enabled
-                                        ? () {
-                                            b.onPressed?.call();
-                                          }
+                                        ? () => b.onPressed?.call()
                                         : null,
                                   ),
                                 );
