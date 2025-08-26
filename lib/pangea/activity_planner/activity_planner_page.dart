@@ -60,94 +60,96 @@ class ActivityPlannerPageState extends State<ActivityPlannerPage> {
         break;
     }
 
-    return Scaffold(
-      appBar: ActivityPlannerPageAppBar(
-        pageMode: pageMode,
-        roomID: widget.roomID,
-      ),
-      body: Center(
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 800.0),
-          child: Column(
-            children: [
-              if ([PageMode.featuredActivities, PageMode.savedActivities]
-                  .contains(pageMode))
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Wrap(
-                    spacing: 12.0,
-                    runSpacing: 12.0,
-                    alignment: WrapAlignment.center,
-                    children: [
-                      FilterChip(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(32),
+    return SafeArea(
+      child: Scaffold(
+        appBar: ActivityPlannerPageAppBar(
+          pageMode: pageMode,
+          roomID: widget.roomID,
+        ),
+        body: Center(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 800.0),
+            child: Column(
+              children: [
+                if ([PageMode.featuredActivities, PageMode.savedActivities]
+                    .contains(pageMode))
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Wrap(
+                      spacing: 12.0,
+                      runSpacing: 12.0,
+                      alignment: WrapAlignment.center,
+                      children: [
+                        FilterChip(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(32),
+                          ),
+                          label: Row(
+                            spacing: 8.0,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const Icon(Symbols.star_shine, size: 24.0),
+                              Text(L10n.of(context).featuredActivities),
+                            ],
+                          ),
+                          selected: pageMode == PageMode.featuredActivities,
+                          onSelected: (_) => _setPageMode(
+                            PageMode.featuredActivities,
+                          ),
                         ),
-                        label: Row(
-                          spacing: 8.0,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            const Icon(Symbols.star_shine, size: 24.0),
-                            Text(L10n.of(context).featuredActivities),
-                          ],
+                        FilterChip(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(32),
+                          ),
+                          label: Row(
+                            spacing: 8.0,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              const Icon(Icons.save_outlined, size: 24.0),
+                              Text(L10n.of(context).saved),
+                            ],
+                          ),
+                          selected: pageMode == PageMode.savedActivities,
+                          onSelected: (_) => _setPageMode(
+                            PageMode.savedActivities,
+                          ),
                         ),
-                        selected: pageMode == PageMode.featuredActivities,
-                        onSelected: (_) => _setPageMode(
-                          PageMode.featuredActivities,
+                        FilterChip(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(32),
+                          ),
+                          label: Row(
+                            spacing: 8.0,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              CustomizedSvg(
+                                svgUrl:
+                                    "${AppConfig.assetsBaseURL}/${ActivitySuggestionsConstants.crayonIconPath}",
+                                colorReplacements: {
+                                  "#CDBEF9": colorToHex(
+                                    theme.colorScheme.secondary,
+                                  ),
+                                },
+                                height: 24.0,
+                                width: 24.0,
+                              ),
+                              Text(L10n.of(context).createActivityPlan),
+                            ],
+                          ),
+                          selected: false,
+                          onSelected: (_) => context.go(
+                            '/rooms/spaces/${widget.roomID}/details/planner/generator',
+                          ),
                         ),
-                      ),
-                      FilterChip(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(32),
-                        ),
-                        label: Row(
-                          spacing: 8.0,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            const Icon(Icons.save_outlined, size: 24.0),
-                            Text(L10n.of(context).saved),
-                          ],
-                        ),
-                        selected: pageMode == PageMode.savedActivities,
-                        onSelected: (_) => _setPageMode(
-                          PageMode.savedActivities,
-                        ),
-                      ),
-                      FilterChip(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(32),
-                        ),
-                        label: Row(
-                          spacing: 8.0,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            CustomizedSvg(
-                              svgUrl:
-                                  "${AppConfig.assetsBaseURL}/${ActivitySuggestionsConstants.crayonIconPath}",
-                              colorReplacements: {
-                                "#CDBEF9": colorToHex(
-                                  theme.colorScheme.secondary,
-                                ),
-                              },
-                              height: 24.0,
-                              width: 24.0,
-                            ),
-                            Text(L10n.of(context).createActivityPlan),
-                          ],
-                        ),
-                        selected: false,
-                        onSelected: (_) => context.go(
-                          '/rooms/spaces/${widget.roomID}/details/planner/generator',
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              body ??
-                  ErrorIndicator(
-                    message: L10n.of(context).oopsSomethingWentWrong,
-                  ),
-            ],
+                body ??
+                    ErrorIndicator(
+                      message: L10n.of(context).oopsSomethingWentWrong,
+                    ),
+              ],
+            ),
           ),
         ),
       ),
