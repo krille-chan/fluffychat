@@ -182,7 +182,7 @@ class ActivityPlanCard extends StatelessWidget {
                                                 width: 24.0,
                                                 height: 24.0,
                                                 cacheKey: controller
-                                                    .updatedActivity.bookmarkId,
+                                                    .updatedActivity.activityId,
                                                 fit: BoxFit.cover,
                                               )
                                             : CachedNetworkImage(

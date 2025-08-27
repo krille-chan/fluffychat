@@ -26,7 +26,7 @@ class ActivityPlanRepo {
   }
 
   static Future<void> _setCached(ActivityPlanModel response) =>
-      _activityPlanStorage.write(response.bookmarkId, response.toJson());
+      _activityPlanStorage.write(response.activityId, response.toJson());
 
   static Future<void> _removeCached(String id) =>
       _activityPlanStorage.remove(id);
@@ -62,14 +62,14 @@ class ActivityPlanRepo {
     );
 
     final Response res = await req.patch(
-      url: "${PApiUrls.activityPlan}/${update.bookmarkId}",
+      url: "${PApiUrls.activityPlan}/${update.activityId}",
       body: update.toJson(),
     );
 
     final decodedBody = jsonDecode(utf8.decode(res.bodyBytes));
     final response = ActivityPlanModel.fromJson(decodedBody["plan"]);
 
-    _removeCached(update.bookmarkId);
+    _removeCached(update.activityId);
     _setCached(response);
 
     return response;

@@ -221,7 +221,7 @@ class ActivityGeneratorState extends State<ActivityGenerator> {
           vocab: activity.vocab,
           imageURL: imageUrl,
           roles: activity.roles,
-          bookmarkId: activity.bookmarkId,
+          activityId: activity.activityId,
         );
       }
     });

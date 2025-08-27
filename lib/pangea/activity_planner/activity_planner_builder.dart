@@ -122,7 +122,7 @@ class ActivityPlannerBuilderState extends State<ActivityPlannerBuilder> {
       vocab: vocab,
       imageURL: imageURL,
       roles: widget.initialActivity.roles,
-      bookmarkId: widget.initialActivity.bookmarkId,
+      activityId: widget.initialActivity.activityId,
     );
   }
 
@@ -283,7 +283,7 @@ class ActivityPlannerBuilderState extends State<ActivityPlannerBuilder> {
       MatrixState.pangeaController.userController;
 
   bool get isBookmarked =>
-      _userController.isBookmarked(updatedActivity.bookmarkId);
+      _userController.isBookmarked(updatedActivity.activityId);
 
   Future<void> toggleBookmarkedActivity() async {
     isBookmarked
@@ -294,7 +294,7 @@ class ActivityPlannerBuilderState extends State<ActivityPlannerBuilder> {
 
   Future<void> _addBookmarkedActivity() async {
     await _userController.addBookmarkedActivity(
-      activityId: updatedActivity.bookmarkId,
+      activityId: updatedActivity.activityId,
     );
     await ActivityPlanRepo.set(updatedActivity);
   }
@@ -309,17 +309,17 @@ class ActivityPlannerBuilderState extends State<ActivityPlannerBuilder> {
       updatedActivity,
     ).then((resp) {
       _userController.updateBookmarkedActivity(
-        activityId: widget.initialActivity.bookmarkId,
-        newActivityId: resp.bookmarkId,
+        activityId: widget.initialActivity.activityId,
+        newActivityId: resp.activityId,
       );
     });
   }
 
   Future<void> _removeBookmarkedActivity() async {
     await _userController.removeBookmarkedActivity(
-      activityId: updatedActivity.bookmarkId,
+      activityId: updatedActivity.activityId,
     );
-    await ActivityPlanRepo.remove(updatedActivity.bookmarkId);
+    await ActivityPlanRepo.remove(updatedActivity.activityId);
   }
 
   Future<List<String>> launchToSpace() async {
@@ -343,7 +343,7 @@ class ActivityPlannerBuilderState extends State<ActivityPlannerBuilder> {
     final roomID = await Matrix.of(context).client.createRoom(
           creationContent: {
             'type':
-                "${PangeaRoomTypes.activitySession}:${updatedActivity.bookmarkId}",
+                "${PangeaRoomTypes.activitySession}:${updatedActivity.activityId}",
           },
           visibility: Visibility.private,
           name: "${updatedActivity.title} ${index + 1}",

@@ -4,9 +4,10 @@ import 'package:fluffychat/pangea/activity_planner/activity_plan_request.dart';
 import 'package:fluffychat/pangea/common/constants/model_keys.dart';
 
 class ActivityPlanModel {
-  final String bookmarkId;
+  final String activityId;
   final ActivityPlanRequest req;
   final String title;
+  final String description;
   final String learningObjective;
   final String instructions;
   final List<Vocab> vocab;
@@ -18,15 +19,21 @@ class ActivityPlanModel {
   ActivityPlanModel({
     required this.req,
     required this.title,
+    // TODO: when we bring back user's being able to make their own activity,
+    // then this should be required
+    String? description,
     required this.learningObjective,
     required this.instructions,
     required this.vocab,
-    required this.bookmarkId,
+    required this.activityId,
     Map<String, ActivityRole>? roles,
     this.imageURL,
     this.endAt,
     this.duration,
-  }) : _roles = roles;
+  })  : description = (description == null || description.isEmpty)
+            ? learningObjective
+            : description,
+        _roles = roles;
 
   Map<String, ActivityRole> get roles {
     if (_roles != null) return _roles!;
@@ -35,6 +42,7 @@ class ActivityPlanModel {
       defaultRoles['role_$i'] = ActivityRole(
         id: 'role_$i',
         name: 'Participant',
+        goal: learningObjective,
         avatarUrl: null,
       );
     }
@@ -43,6 +51,7 @@ class ActivityPlanModel {
 
   ActivityPlanModel copyWith({
     String? title,
+    String? description,
     String? learningObjective,
     String? instructions,
     List<Vocab>? vocab,
@@ -54,6 +63,7 @@ class ActivityPlanModel {
     return ActivityPlanModel(
       req: req,
       title: title ?? this.title,
+      description: description ?? this.description,
       learningObjective: learningObjective ?? this.learningObjective,
       instructions: instructions ?? this.instructions,
       vocab: vocab ?? this.vocab,
@@ -61,7 +71,7 @@ class ActivityPlanModel {
       endAt: endAt ?? this.endAt,
       duration: duration ?? this.duration,
       roles: roles ?? _roles,
-      bookmarkId: bookmarkId,
+      activityId: activityId,
     );
   }
 
@@ -87,6 +97,8 @@ class ActivityPlanModel {
       instructions: json[ModelKey.activityPlanInstructions],
       req: req,
       title: json[ModelKey.activityPlanTitle],
+      description: json[ModelKey.activityPlanDescription] ??
+          json[ModelKey.activityPlanLearningObjective],
       learningObjective: json[ModelKey.activityPlanLearningObjective],
       vocab: List<Vocab>.from(
         json[ModelKey.activityPlanVocab].map((vocab) => Vocab.fromJson(vocab)),
@@ -102,17 +114,18 @@ class ActivityPlanModel {
             )
           : null,
       roles: roles,
-      bookmarkId: json[ModelKey.activityPlanBookmarkId] ?? json["bookmark_id"],
+      activityId: json[ModelKey.activityId] ?? json["bookmark_id"],
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      ModelKey.activityPlanBookmarkId: bookmarkId,
+      ModelKey.activityId: activityId,
       ModelKey.activityPlanImageURL: imageURL,
       ModelKey.activityPlanInstructions: instructions,
       ModelKey.activityPlanRequest: req.toJson(),
       ModelKey.activityPlanTitle: title,
+      ModelKey.activityPlanDescription: description,
       ModelKey.activityPlanLearningObjective: learningObjective,
       ModelKey.activityPlanVocab: vocab.map((vocab) => vocab.toJson()).toList(),
       ModelKey.activityPlanEndAt: endAt?.toIso8601String(),
@@ -154,6 +167,7 @@ class ActivityPlanModel {
         other.title == title &&
         other.learningObjective == learningObjective &&
         other.instructions == instructions &&
+        other.description == description &&
         listEquals(other.vocab, vocab) &&
         other.imageURL == imageURL;
   }
@@ -163,6 +177,7 @@ class ActivityPlanModel {
       req.hashCode ^
       title.hashCode ^
       learningObjective.hashCode ^
+      description.hashCode ^
       instructions.hashCode ^
       Object.hashAll(vocab) ^
       imageURL.hashCode;
@@ -205,11 +220,13 @@ class Vocab {
 class ActivityRole {
   final String id;
   final String name;
+  final String goal;
   final String? avatarUrl;
 
   ActivityRole({
     required this.id,
     required this.name,
+    required this.goal,
     this.avatarUrl,
   });
 
@@ -223,6 +240,7 @@ class ActivityRole {
     return ActivityRole(
       id: json['id'],
       name: json['name'],
+      goal: json['goal'],
       avatarUrl: avatarUrl,
     );
   }
@@ -231,6 +249,7 @@ class ActivityRole {
     return {
       'id': id,
       'name': name,
+      'goal': goal,
       'avatar_url': avatarUrl,
     };
   }

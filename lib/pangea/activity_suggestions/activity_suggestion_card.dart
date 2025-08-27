@@ -58,7 +58,7 @@ class ActivitySuggestionCard extends StatelessWidget {
                                 uri: Uri.parse(activity.imageURL!),
                                 width: width,
                                 height: width,
-                                cacheKey: activity.bookmarkId,
+                                cacheKey: activity.activityId,
                                 fit: BoxFit.cover,
                               )
                             : CachedNetworkImage(

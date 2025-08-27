@@ -64,7 +64,7 @@ class _ActivitySuggestionDialogImage extends StatelessWidget {
                         ),
                         width: width / 2,
                         height: 200,
-                        cacheKey: activityController.updatedActivity.bookmarkId,
+                        cacheKey: activityController.updatedActivity.activityId,
                         fit: BoxFit.cover,
                       )
                     : CachedNetworkImage(
@@ -624,7 +624,7 @@ class _ActivitySuggestionLaunchContent extends StatelessWidget {
                         ),
                         width: 24.0,
                         height: 24.0,
-                        cacheKey: activityController.updatedActivity.bookmarkId,
+                        cacheKey: activityController.updatedActivity.activityId,
                         fit: BoxFit.cover,
                       )
                     : CachedNetworkImage(

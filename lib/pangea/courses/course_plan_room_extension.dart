@@ -41,7 +41,7 @@ extension CoursePlanRoomExtension on Room {
     }
 
     final activityIds =
-        course.topics[topicIndex].activities.map((a) => a.bookmarkId).toList();
+        course.topics[topicIndex].activities.map((a) => a.activityId).toList();
     return state.completedActivities(topicID).toSet().containsAll(activityIds);
   }
 

@@ -28,7 +28,7 @@ class Topic {
       title: json['title'] as String,
       description: json['description'] as String,
       location: json['location'] as String? ?? "Unknown",
-      uuid: json['uuid'] as String,
+      uuid: json['id'] as String,
       activities: (json['activities'] as List<dynamic>?)
               ?.map(
                 (e) => ActivityPlanModel.fromJson(e as Map<String, dynamic>),
@@ -45,13 +45,13 @@ class Topic {
       'title': title,
       'description': description,
       'location': location,
-      'uuid': uuid,
+      'id': uuid,
       'activities': activities.map((e) => e.toJson()).toList(),
       'image_url': imageUrl,
     };
   }
 
-  List<String> get activityIds => activities.map((e) => e.bookmarkId).toList();
+  List<String> get activityIds => activities.map((e) => e.activityId).toList();
 }
 
 /// Represents a course plan in the course planner response.
@@ -99,7 +99,7 @@ class CoursePlanModel {
   String? topicID(String activityID) {
     for (final topic in topics) {
       for (final activity in topic.activities) {
-        if (activity.bookmarkId == activityID) {
+        if (activity.activityId == activityID) {
           return topic.uuid;
         }
       }
@@ -115,7 +115,7 @@ class CoursePlanModel {
       cefrLevel: LanguageLevelTypeEnumExtension.fromString(json['cefr_level']),
       title: json['title'] as String,
       description: json['description'] as String,
-      uuid: json['uuid'] as String,
+      uuid: json['id'] as String,
       topics: (json['topics'] as List<dynamic>?)
               ?.map((e) => Topic.fromJson(e as Map<String, dynamic>))
               .toList() ??
@@ -132,7 +132,7 @@ class CoursePlanModel {
       'cefr_level': cefrLevel.string,
       'title': title,
       'description': description,
-      'uuid': uuid,
+      'id': uuid,
       'topics': topics.map((e) => e.toJson()).toList(),
       'image_url': imageUrl,
     };
