@@ -14,6 +14,7 @@ import 'package:fluffychat/pages/chat_list/status_msg_list.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/public_room_dialog.dart';
 import 'package:fluffychat/widgets/avatar.dart';
+import 'package:fluffychat/widgets/room_category_tile.dart';
 import '../../config/themes.dart';
 import '../../widgets/adaptive_dialogs/user_dialog.dart';
 import '../../widgets/matrix.dart';
@@ -250,22 +251,25 @@ class ChatListViewBody extends StatelessWidget {
                   ),
                 ),
               if (client.prevBatch != null)
-                SliverList.builder(
-                  itemCount: rooms.length,
-                  itemBuilder: (BuildContext context, int i) {
-                    final room = rooms[i];
-                    final space = spaceDelegateCandidates[room.id];
-                    return ChatListItem(
-                      room,
-                      space: space,
-                      key: Key('chat_list_item_${room.id}'),
-                      filter: filter,
-                      onTap: () => controller.onChatTap(room),
-                      onLongPress: (context) =>
-                          controller.chatContextAction(room, context, space),
-                      activeChat: controller.activeChat == room.id,
-                    );
-                  },
+                SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (context, index) {
+                      final categories = controller.categorizedRooms;
+                      if (index >= categories.length) return null;
+                      final category = categories[index];
+                      return RoomCategoryTile(
+                        category: category,
+                        onToggle: () =>
+                            controller.toggleCategoryCollapse(category.id),
+                        onRoomTap: controller.onChatTap,
+                        onRoomLongPress: (room, context) =>
+                            controller.chatContextAction(room, context),
+                        activeChat: controller.activeChat,
+                        filter: filter,
+                      );
+                    },
+                    childCount: controller.categorizedRooms.length,
+                  ),
                 ),
             ],
           ),
