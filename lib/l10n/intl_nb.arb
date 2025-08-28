@@ -2478,5 +2478,28 @@
         }
     },
     "jumpToLastReadMessage": "Hopp til sist leste melding",
-    "@jumpToLastReadMessage": {}
+    "@jumpToLastReadMessage": {},
+    "serverLimitReached": "Grensen for server er nådd! Venter i {seconds} sekunder...",
+    "@serverLimitReached": {
+        "type": "integer",
+        "placeholders": {
+            "seconds": {
+                "type": "int"
+            }
+        }
+    },
+    "blur": "Uskarphet:",
+    "@blur": {},
+    "opacity": "Ugjennomsiktighet:",
+    "@opacity": {},
+    "noContactInformationProvided": "Serveren oppgir ingen gyldig kontaktinformasjon",
+    "@noContactInformationProvided": {},
+    "supportPage": "Supportside",
+    "@supportPage": {},
+    "compress": "Komprimer",
+    "@compress": {},
+    "italicText": "Kursiv tekst",
+    "@italicText": {},
+    "strikeThrough": "Gjennomstreking",
+    "@strikeThrough": {}
 }
