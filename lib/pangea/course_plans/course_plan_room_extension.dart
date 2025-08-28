@@ -1,9 +1,9 @@
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pangea/bot/utils/bot_name.dart';
-import 'package:fluffychat/pangea/courses/course_plan_event.dart';
-import 'package:fluffychat/pangea/courses/course_plan_model.dart';
-import 'package:fluffychat/pangea/courses/course_user_event.dart';
+import 'package:fluffychat/pangea/course_plans/course_plan_event.dart';
+import 'package:fluffychat/pangea/course_plans/course_plan_model.dart';
+import 'package:fluffychat/pangea/course_plans/course_user_event.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 
 extension CoursePlanRoomExtension on Room {

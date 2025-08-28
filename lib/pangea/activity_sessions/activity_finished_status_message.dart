@@ -14,8 +14,8 @@ import 'package:fluffychat/pangea/activity_sessions/activity_role_model.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_room_extension.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_summary/progress_indicators_enum.dart';
-import 'package:fluffychat/pangea/courses/course_plan_room_extension.dart';
-import 'package:fluffychat/pangea/courses/course_repo.dart';
+import 'package:fluffychat/pangea/course_plans/course_plan_room_extension.dart';
+import 'package:fluffychat/pangea/course_plans/course_plans_repo.dart';
 import 'package:fluffychat/pangea/spaces/utils/load_participants_util.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -38,7 +38,7 @@ class ActivityFinishedStatusMessage extends StatelessWidget {
 
     final courseParent = controller.room.courseParent;
     if (courseParent?.coursePlan == null) return;
-    final coursePlan = await CourseRepo.get(
+    final coursePlan = await CoursePlansRepo.get(
       courseParent!.coursePlan!.uuid,
     );
 

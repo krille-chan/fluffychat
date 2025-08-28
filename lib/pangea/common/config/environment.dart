@@ -64,6 +64,14 @@ class Environment {
     return envEntry;
   }
 
+  static String get cmsApi {
+    final envEntry = appConfigOverride?.choreoApi ?? dotenv.env['CHOREO_API'];
+    if (envEntry == null) {
+      return "Not found";
+    }
+    return envEntry;
+  }
+
   static String get choreoApiKey {
     return appConfigOverride?.choreoApiKey ??
         dotenv.env['CHOREO_API_KEY'] ??

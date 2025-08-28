@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:fluffychat/pangea/courses/course_plan_model.dart';
-import 'package:fluffychat/pangea/courses/course_repo.dart';
+import 'package:fluffychat/pangea/course_plans/course_plan_model.dart';
+import 'package:fluffychat/pangea/course_plans/course_plans_repo.dart';
 
 class CoursePlanBuilder extends StatefulWidget {
   final String? courseId;
@@ -60,7 +60,7 @@ class CoursePlanController extends State<CoursePlanBuilder> {
         error = null;
       });
 
-      course = await CourseRepo.get(widget.courseId!);
+      course = await CoursePlansRepo.get(widget.courseId!);
       course == null
           ? widget.onNotFound?.call()
           : widget.onFound?.call(course!);

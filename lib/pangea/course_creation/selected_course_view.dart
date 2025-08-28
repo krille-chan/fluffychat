@@ -4,9 +4,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/pangea/course_creation/course_image_widget.dart';
 import 'package:fluffychat/pangea/course_creation/course_info_chip_widget.dart';
-import 'package:fluffychat/pangea/courses/course_plan_builder.dart';
-import 'package:fluffychat/pangea/courses/course_plan_model.dart';
+import 'package:fluffychat/pangea/course_plans/course_plan_builder.dart';
+import 'package:fluffychat/pangea/course_plans/course_plan_model.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 
@@ -57,39 +58,16 @@ class SelectedCourseView extends StatelessWidget {
                               return Column(
                                 spacing: 8.0,
                                 children: [
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(20.0),
-                                    child: course.imageUrl != null
-                                        ? CachedNetworkImage(
-                                            width: 100.0,
-                                            height: 100.0,
-                                            fit: BoxFit.cover,
-                                            imageUrl: course.imageUrl!,
-                                            placeholder: (context, url) {
-                                              return const Center(
-                                                child:
-                                                    CircularProgressIndicator(),
-                                              );
-                                            },
-                                            errorWidget: (context, url, error) {
-                                              return Container(
-                                                width: 100.0,
-                                                height: 100.0,
-                                                decoration: BoxDecoration(
-                                                  color: theme
-                                                      .colorScheme.secondary,
-                                                ),
-                                              );
-                                            },
-                                          )
-                                        : Container(
-                                            width: 100.0,
-                                            height: 100.0,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  theme.colorScheme.secondary,
-                                            ),
-                                          ),
+                                  CourseImage(
+                                    imageUrl: course.imageUrl,
+                                    width: 100.0,
+                                    replacement: Container(
+                                      width: 100.0,
+                                      height: 100.0,
+                                      decoration: BoxDecoration(
+                                        color: theme.colorScheme.secondary,
+                                      ),
+                                    ),
                                   ),
                                   Text(
                                     course.title,

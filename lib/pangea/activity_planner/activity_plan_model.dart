@@ -220,7 +220,7 @@ class Vocab {
 class ActivityRole {
   final String id;
   final String name;
-  final String goal;
+  final String? goal;
   final String? avatarUrl;
 
   ActivityRole({
@@ -238,9 +238,9 @@ class ActivityRole {
     }
 
     return ActivityRole(
-      id: json['id'],
-      name: json['name'],
-      goal: json['goal'],
+      id: json['id'] as String,
+      name: json['name'] as String,
+      goal: json['goal'] as String?,
       avatarUrl: avatarUrl,
     );
   }
