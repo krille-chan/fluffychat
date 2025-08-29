@@ -195,19 +195,25 @@ class CoursePlansRepo {
   static Future<CoursePlanModel> _fromCmsCoursePlan(
     CmsCoursePlan cmsCoursePlan,
   ) async {
-    final medias = await _getMedia(cmsCoursePlan);
-    final topics = await _getTopics(cmsCoursePlan);
-    final locations = await _getTopicLocations(topics ?? []);
-    final activities = await _getTopicActivities(topics ?? []);
-    final activityMedias = await _getActivityMedia(activities ?? []);
-    return CoursePlanModel.fromCmsDocs(
-      cmsCoursePlan,
-      medias,
-      topics,
-      locations,
-      activities,
-      activityMedias,
-    );
+    try {
+      final medias = await _getMedia(cmsCoursePlan);
+      final topics = await _getTopics(cmsCoursePlan);
+      final locations = await _getTopicLocations(topics ?? []);
+      final activities = await _getTopicActivities(topics ?? []);
+      final activityMedias = await _getActivityMedia(activities ?? []);
+      return CoursePlanModel.fromCmsDocs(
+        cmsCoursePlan,
+        medias,
+        topics,
+        locations,
+        activities,
+        activityMedias,
+      );
+    } catch (e, stack) {
+      print(e);
+      print(stack);
+      rethrow;
+    }
   }
 
   static Future<List<CmsCoursePlanMedia>?> _getMedia(

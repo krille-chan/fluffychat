@@ -114,16 +114,15 @@ class PayloadClient {
     Map<String, dynamic>? where,
     String? sort,
   }) async {
-    final queryParams = <String, String>{};
+    final Map<String, dynamic> queryParams = {};
 
     if (page != null) queryParams['page'] = page.toString();
     if (limit != null) queryParams['limit'] = limit.toString();
-    if (where != null) queryParams['where'] = jsonEncode(where);
+    if (where != null && where.isNotEmpty) queryParams['where'] = where;
     if (sort != null) queryParams['sort'] = sort;
 
     final endpoint =
-        '$basePath/$collection${queryParams.isNotEmpty ? '?${Uri(queryParameters: queryParams).query}' : ''}';
-
+        '$basePath/$collection${queryParams.isNotEmpty ? '?${queryStringify(queryParams)}' : ''}';
     final response = await get(endpoint);
     final json = jsonDecode(response.body) as Map<String, dynamic>;
 
@@ -177,5 +176,39 @@ class PayloadClient {
     final response = await delete(endpoint);
     final json = jsonDecode(response.body) as Map<String, dynamic>;
     return fromJson(json);
+  }
+
+  static String queryStringify(
+    Map<String, dynamic> params, {
+    bool encode = true,
+  }) {
+    final List<String> parts = [];
+
+    void build(String prefix, dynamic value) {
+      if (value == null) return;
+
+      if (value is Map) {
+        value.forEach((k, v) {
+          build('$prefix[$k]', v);
+        });
+      } else if (value is List) {
+        for (var i = 0; i < value.length; i++) {
+          build('$prefix[$i]', value[i]);
+        }
+      } else {
+        final String encodedKey =
+            encode ? Uri.encodeQueryComponent(prefix) : prefix;
+        final String encodedVal = encode
+            ? Uri.encodeQueryComponent(value.toString())
+            : value.toString();
+        parts.add('$encodedKey=$encodedVal');
+      }
+    }
+
+    params.forEach((key, value) {
+      build(key, value);
+    });
+
+    return parts.join('&');
   }
 }
