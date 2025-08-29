@@ -1,25 +1,26 @@
 import 'package:fluffychat/pangea/payload_client/join_field.dart';
 import 'package:fluffychat/pangea/payload_client/polymorphic_relationship.dart';
 
-/// Represents a course plan module from the CMS API
-class CmsCoursePlanModule {
+/// Represents a course plan topic from the CMS API
+class CmsCoursePlanTopic {
+  static const String slug = "course-plan-topics";
   final String id;
   final String title;
   final String description;
   final JoinField? coursePlanActivities;
-  final JoinField? coursePlanModuleLocations;
+  final JoinField? coursePlanTopicLocations;
   final List<String> coursePlans;
   final PolymorphicRelationship? createdBy;
   final PolymorphicRelationship? updatedBy;
   final String updatedAt;
   final String createdAt;
 
-  CmsCoursePlanModule({
+  CmsCoursePlanTopic({
     required this.id,
     required this.title,
     required this.description,
     required this.coursePlanActivities,
-    required this.coursePlanModuleLocations,
+    required this.coursePlanTopicLocations,
     required this.coursePlans,
     this.createdBy,
     this.updatedBy,
@@ -27,16 +28,16 @@ class CmsCoursePlanModule {
     required this.createdAt,
   });
 
-  factory CmsCoursePlanModule.fromJson(Map<String, dynamic> json) {
-    return CmsCoursePlanModule(
+  factory CmsCoursePlanTopic.fromJson(Map<String, dynamic> json) {
+    return CmsCoursePlanTopic(
       id: json['id'] as String,
       title: json['title'] as String,
       description: json['description'] as String,
       coursePlanActivities: JoinField.fromJson(
         json['coursePlanActivities'],
       ),
-      coursePlanModuleLocations: JoinField.fromJson(
-        json['coursePlanModuleLocations'],
+      coursePlanTopicLocations: JoinField.fromJson(
+        json['coursePlanTopicLocations'],
       ),
       coursePlans: List<String>.from(json['coursePlans']),
       createdBy: json['createdBy'] != null
@@ -56,7 +57,7 @@ class CmsCoursePlanModule {
       'title': title,
       'description': description,
       'coursePlanActivities': coursePlanActivities?.toJson(),
-      'coursePlanModuleLocations': coursePlanModuleLocations?.toJson(),
+      'coursePlanTopicLocations': coursePlanTopicLocations?.toJson(),
       'coursePlans': coursePlans,
       'createdBy': createdBy?.toJson(),
       'updatedBy': updatedBy?.toJson(),

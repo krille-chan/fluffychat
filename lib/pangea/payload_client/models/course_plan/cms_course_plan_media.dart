@@ -2,6 +2,7 @@ import 'package:fluffychat/pangea/payload_client/polymorphic_relationship.dart';
 
 /// Represents course plan media from the CMS API
 class CmsCoursePlanMedia {
+  static const String slug = "course-plan-media";
   final String id;
   final String? alt;
   final List<String> coursePlans;
