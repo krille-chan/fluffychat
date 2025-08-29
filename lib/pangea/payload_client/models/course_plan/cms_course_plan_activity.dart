@@ -66,6 +66,8 @@ class CmsCoursePlanVocab {
 
 /// Represents a course plan activity from the CMS API
 class CmsCoursePlanActivity {
+  static const String slug = "course-plan-activities";
+
   final String id;
   final String title;
   final String description;
@@ -77,7 +79,7 @@ class CmsCoursePlanActivity {
   final List<CmsCoursePlanActivityRole> roles;
   final List<CmsCoursePlanVocab> vocabs;
   final JoinField? coursePlanActivityMedia;
-  final List<String> coursePlanModules;
+  final List<String> coursePlanTopics;
   final PolymorphicRelationship? createdBy;
   final PolymorphicRelationship? updatedBy;
   final String updatedAt;
@@ -95,7 +97,7 @@ class CmsCoursePlanActivity {
     required this.roles,
     required this.vocabs,
     required this.coursePlanActivityMedia,
-    required this.coursePlanModules,
+    required this.coursePlanTopics,
     this.createdBy,
     this.updatedBy,
     required this.updatedAt,
@@ -129,7 +131,7 @@ class CmsCoursePlanActivity {
           .toList(),
       coursePlanActivityMedia:
           JoinField.fromJson(json['coursePlanActivityMedia']),
-      coursePlanModules: List<String>.from(json['coursePlanModules']),
+      coursePlanTopics: List<String>.from(json['coursePlanTopics']),
       createdBy: json['createdBy'] != null
           ? PolymorphicRelationship.fromJson(json['createdBy'])
           : null,
@@ -154,7 +156,7 @@ class CmsCoursePlanActivity {
       'roles': roles.map((role) => role.toJson()).toList(),
       'vocabs': vocabs.map((vocab) => vocab.toJson()).toList(),
       'coursePlanActivityMedia': coursePlanActivityMedia?.toJson(),
-      'coursePlanModules': coursePlanModules,
+      'coursePlanTopics': coursePlanTopics,
       'createdBy': createdBy?.toJson(),
       'updatedBy': updatedBy?.toJson(),
       'updatedAt': updatedAt,

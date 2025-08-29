@@ -3,6 +3,7 @@ import 'package:fluffychat/pangea/payload_client/polymorphic_relationship.dart';
 
 /// Represents a course plan from the CMS API
 class CmsCoursePlan {
+  static const String slug = "course-plans";
   final String id;
   final String title;
   final String description;
@@ -10,7 +11,7 @@ class CmsCoursePlan {
   final String l1; // Language of instruction
   final String l2; // Target language
   final JoinField? coursePlanMedia;
-  final JoinField? coursePlanModules;
+  final JoinField? coursePlanTopics;
   final PolymorphicRelationship? createdBy;
   final PolymorphicRelationship? updatedBy;
   final String updatedAt;
@@ -24,7 +25,7 @@ class CmsCoursePlan {
     required this.l1,
     required this.l2,
     this.coursePlanMedia,
-    this.coursePlanModules,
+    this.coursePlanTopics,
     this.createdBy,
     this.updatedBy,
     required this.updatedAt,
@@ -40,7 +41,7 @@ class CmsCoursePlan {
       l1: json['l1'],
       l2: json['l2'],
       coursePlanMedia: JoinField.fromJson(json['coursePlanMedia']),
-      coursePlanModules: JoinField.fromJson(json['coursePlanModules']),
+      coursePlanTopics: JoinField.fromJson(json['coursePlanTopics']),
       createdBy: PolymorphicRelationship.fromJson(json['createdBy']),
       updatedBy: PolymorphicRelationship.fromJson(json['updatedBy']),
       updatedAt: json['updatedAt'],
@@ -57,7 +58,7 @@ class CmsCoursePlan {
       'l1': l1,
       'l2': l2,
       'coursePlanMedia': coursePlanMedia?.toJson(),
-      'coursePlanModules': coursePlanModules?.toJson(),
+      'coursePlanTopics': coursePlanTopics?.toJson(),
       'createdBy': createdBy?.toJson(),
       'updatedBy': updatedBy?.toJson(),
       'updatedAt': updatedAt,

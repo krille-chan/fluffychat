@@ -1,36 +1,37 @@
 import 'package:fluffychat/pangea/payload_client/polymorphic_relationship.dart';
 
-/// Represents a course plan module location from the CMS API
-class CmsCoursePlanModuleLocation {
+/// Represents a course plan topic location from the CMS API
+class CmsCoursePlanTopicLocation {
+  static const String slug = "course-plan-topic-locations";
   final String id;
   final String name;
   // [longitude, latitude] - minItems: 2, maxItems: 2
   final List<double>? coordinates;
-  final List<String> coursePlanModules;
+  final List<String> coursePlanTopics;
   final PolymorphicRelationship? createdBy;
   final PolymorphicRelationship? updatedBy;
   final String updatedAt;
   final String createdAt;
 
-  CmsCoursePlanModuleLocation({
+  CmsCoursePlanTopicLocation({
     required this.id,
     required this.name,
     this.coordinates,
-    required this.coursePlanModules,
+    required this.coursePlanTopics,
     this.createdBy,
     this.updatedBy,
     required this.updatedAt,
     required this.createdAt,
   });
 
-  factory CmsCoursePlanModuleLocation.fromJson(Map<String, dynamic> json) {
-    return CmsCoursePlanModuleLocation(
+  factory CmsCoursePlanTopicLocation.fromJson(Map<String, dynamic> json) {
+    return CmsCoursePlanTopicLocation(
       id: json['id'] as String,
       name: json['name'] as String,
       coordinates: (json['coordinates'] as List<dynamic>?)
           ?.map((coord) => (coord as num).toDouble())
           .toList(),
-      coursePlanModules: List<String>.from(json['coursePlanModules']),
+      coursePlanTopics: List<String>.from(json['coursePlanTopics']),
       createdBy: json['createdBy'] != null
           ? PolymorphicRelationship.fromJson(json['createdBy'])
           : null,
@@ -47,7 +48,7 @@ class CmsCoursePlanModuleLocation {
       'id': id,
       'name': name,
       'coordinates': coordinates,
-      'coursePlanModules': coursePlanModules,
+      'coursePlanTopics': coursePlanTopics,
       'createdBy': createdBy?.toJson(),
       'updatedBy': updatedBy?.toJson(),
       'updatedAt': updatedAt,

@@ -1,5 +1,3 @@
-import 'package:get_storage/get_storage.dart';
-
 import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/pangea/course_plans/course_plan_model.dart';
 import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_enum.dart';
@@ -8,10 +6,11 @@ import 'package:fluffychat/pangea/payload_client/models/course_plan/cms_course_p
 import 'package:fluffychat/pangea/payload_client/models/course_plan/cms_course_plan_activity.dart';
 import 'package:fluffychat/pangea/payload_client/models/course_plan/cms_course_plan_activity_media.dart';
 import 'package:fluffychat/pangea/payload_client/models/course_plan/cms_course_plan_media.dart';
-import 'package:fluffychat/pangea/payload_client/models/course_plan/cms_course_plan_module.dart';
-import 'package:fluffychat/pangea/payload_client/models/course_plan/cms_course_plan_module_location.dart';
+import 'package:fluffychat/pangea/payload_client/models/course_plan/cms_course_plan_topic.dart';
+import 'package:fluffychat/pangea/payload_client/models/course_plan/cms_course_plan_topic_location.dart';
 import 'package:fluffychat/pangea/payload_client/payload_client.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:get_storage/get_storage.dart';
 
 class CourseFilter {
   final LanguageModel? targetLanguage;
@@ -170,7 +169,7 @@ class CoursePlansRepo {
     }
 
     final result = await payload.find(
-      "course-plans",
+      CmsCoursePlan.slug,
       CmsCoursePlan.fromJson,
       page: 1,
       limit: 10,
@@ -197,14 +196,14 @@ class CoursePlansRepo {
     CmsCoursePlan cmsCoursePlan,
   ) async {
     final medias = await _getMedia(cmsCoursePlan);
-    final modules = await _getModules(cmsCoursePlan);
-    final locations = await _getModuleLocations(modules ?? []);
-    final activities = await _getModuleActivities(modules ?? []);
+    final topics = await _getTopics(cmsCoursePlan);
+    final locations = await _getTopicLocations(topics ?? []);
+    final activities = await _getTopicActivities(topics ?? []);
     final activityMedias = await _getActivityMedia(activities ?? []);
     return CoursePlanModel.fromCmsDocs(
       cmsCoursePlan,
       medias,
-      modules,
+      topics,
       locations,
       activities,
       activityMedias,
@@ -222,7 +221,7 @@ class CoursePlansRepo {
     };
     final limit = docs.length;
     final cmsCoursePlanMediaResult = await payload.find(
-      "course-plan-media",
+      CmsCoursePlanMedia.slug,
       CmsCoursePlanMedia.fromJson,
       where: where,
       limit: limit,
@@ -232,34 +231,34 @@ class CoursePlansRepo {
     return cmsCoursePlanMediaResult.docs;
   }
 
-  static Future<List<CmsCoursePlanModule>?> _getModules(
+  static Future<List<CmsCoursePlanTopic>?> _getTopics(
     CmsCoursePlan cmsCoursePlan,
   ) async {
-    final docs = cmsCoursePlan.coursePlanModules?.docs;
+    final docs = cmsCoursePlan.coursePlanTopics?.docs;
     if (docs == null || docs.isEmpty) return null;
 
     final where = {
       "id": {"in": docs.join(",")},
     };
     final limit = docs.length;
-    final cmsCourseModulesResult = await payload.find(
-      "course-plan-modules",
-      CmsCoursePlanModule.fromJson,
+    final cmsCourseTopicsResult = await payload.find(
+      CmsCoursePlanTopic.slug,
+      CmsCoursePlanTopic.fromJson,
       where: where,
       limit: limit,
       page: 1,
       sort: "createdAt",
     );
-    return cmsCourseModulesResult.docs;
+    return cmsCourseTopicsResult.docs;
   }
 
-  static Future<List<CmsCoursePlanModuleLocation>?> _getModuleLocations(
-    List<CmsCoursePlanModule> modules,
+  static Future<List<CmsCoursePlanTopicLocation>?> _getTopicLocations(
+    List<CmsCoursePlanTopic> topics,
   ) async {
     final List<String> locations = [];
-    for (final module in modules) {
-      if (module.coursePlanModuleLocations?.docs != null) {
-        locations.addAll(module.coursePlanModuleLocations!.docs!);
+    for (final top in topics) {
+      if (top.coursePlanTopicLocations?.docs != null) {
+        locations.addAll(top.coursePlanTopicLocations!.docs!);
       }
     }
     if (locations.isEmpty) return null;
@@ -268,24 +267,24 @@ class CoursePlansRepo {
       "id": {"in": locations.join(",")},
     };
     final limit = locations.length;
-    final cmsCoursePlanModuleLocationsResult = await payload.find(
-      "course-plan-module-locations",
-      CmsCoursePlanModuleLocation.fromJson,
+    final cmsCoursePlanTopicLocationsResult = await payload.find(
+      CmsCoursePlanTopicLocation.slug,
+      CmsCoursePlanTopicLocation.fromJson,
       where: where,
       limit: limit,
       page: 1,
       sort: "createdAt",
     );
-    return cmsCoursePlanModuleLocationsResult.docs;
+    return cmsCoursePlanTopicLocationsResult.docs;
   }
 
-  static Future<List<CmsCoursePlanActivity>?> _getModuleActivities(
-    List<CmsCoursePlanModule> module,
+  static Future<List<CmsCoursePlanActivity>?> _getTopicActivities(
+    List<CmsCoursePlanTopic> topics,
   ) async {
     final List<String> activities = [];
-    for (final mod in module) {
-      if (mod.coursePlanActivities?.docs != null) {
-        activities.addAll(mod.coursePlanActivities!.docs!);
+    for (final top in topics) {
+      if (top.coursePlanActivities?.docs != null) {
+        activities.addAll(top.coursePlanActivities!.docs!);
       }
     }
     if (activities.isEmpty) return null;
@@ -295,7 +294,7 @@ class CoursePlansRepo {
     };
     final limit = activities.length;
     final cmsCoursePlanActivitiesResult = await payload.find(
-      "course-plan-activities",
+      CmsCoursePlanActivity.slug,
       CmsCoursePlanActivity.fromJson,
       where: where,
       limit: limit,
@@ -321,7 +320,7 @@ class CoursePlansRepo {
     };
     final limit = mediaIds.length;
     final cmsCoursePlanActivityMediasResult = await payload.find(
-      "course-plan-activity-medias",
+      CmsCoursePlanActivityMedia.slug,
       CmsCoursePlanActivityMedia.fromJson,
       where: where,
       limit: limit,

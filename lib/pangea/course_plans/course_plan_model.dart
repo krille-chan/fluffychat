@@ -9,8 +9,8 @@ import 'package:fluffychat/pangea/payload_client/models/course_plan/cms_course_p
 import 'package:fluffychat/pangea/payload_client/models/course_plan/cms_course_plan_activity.dart';
 import 'package:fluffychat/pangea/payload_client/models/course_plan/cms_course_plan_activity_media.dart';
 import 'package:fluffychat/pangea/payload_client/models/course_plan/cms_course_plan_media.dart';
-import 'package:fluffychat/pangea/payload_client/models/course_plan/cms_course_plan_module.dart';
-import 'package:fluffychat/pangea/payload_client/models/course_plan/cms_course_plan_module_location.dart';
+import 'package:fluffychat/pangea/payload_client/models/course_plan/cms_course_plan_topic.dart';
+import 'package:fluffychat/pangea/payload_client/models/course_plan/cms_course_plan_topic_location.dart';
 
 /// Represents a topic in the course planner response.
 class Topic {
@@ -150,8 +150,8 @@ class CoursePlanModel {
   factory CoursePlanModel.fromCmsDocs(
     CmsCoursePlan cmsCoursePlan,
     List<CmsCoursePlanMedia>? cmsCoursePlanMedias,
-    List<CmsCoursePlanModule>? cmsCoursePlanModules,
-    List<CmsCoursePlanModuleLocation>? cmsCoursePlanModuleLocations,
+    List<CmsCoursePlanTopic>? cmsCoursePlanModules,
+    List<CmsCoursePlanTopicLocation>? cmsCoursePlanModuleLocations,
     List<CmsCoursePlanActivity>? cmsCoursePlanActivities,
     List<CmsCoursePlanActivityMedia>? cmsCoursePlanActivityMedias,
   ) {
@@ -160,10 +160,10 @@ class CoursePlanModel {
     if (cmsCoursePlanModules != null) {
       for (final module in cmsCoursePlanModules) {
         // select locations of current module
-        List<CmsCoursePlanModuleLocation>? moduleLocations;
+        List<CmsCoursePlanTopicLocation>? moduleLocations;
         if (cmsCoursePlanModuleLocations != null) {
           for (final location in cmsCoursePlanModuleLocations) {
-            if (location.coursePlanModules.contains(module.id)) {
+            if (location.coursePlanTopics.contains(module.id)) {
               moduleLocations ??= [];
               moduleLocations.add(location);
             }
@@ -174,7 +174,7 @@ class CoursePlanModel {
         List<CmsCoursePlanActivity>? moduleActivities;
         if (cmsCoursePlanActivities != null) {
           for (final activity in cmsCoursePlanActivities) {
-            if (activity.coursePlanModules.contains(module.id)) {
+            if (activity.coursePlanTopics.contains(module.id)) {
               moduleActivities ??= [];
               moduleActivities.add(activity);
             }
