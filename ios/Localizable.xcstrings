@@ -1,0 +1,32 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "%lld unread messages" : {
+      "comment" : "Default notification title",
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Unread message"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "new",
+                  "value" : "%lld unread messages"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "New message - open app to read" : {
+      "comment" : "Default notification body"
+    }
+  },
+  "version" : "1.0"
+}
