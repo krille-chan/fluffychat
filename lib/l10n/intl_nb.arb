@@ -2478,5 +2478,54 @@
         }
     },
     "jumpToLastReadMessage": "Hopp til sist leste melding",
-    "@jumpToLastReadMessage": {}
+    "@jumpToLastReadMessage": {},
+    "serverLimitReached": "Grensen for server er nådd! Venter i {seconds} sekunder...",
+    "@serverLimitReached": {
+        "type": "integer",
+        "placeholders": {
+            "seconds": {
+                "type": "int"
+            }
+        }
+    },
+    "blur": "Uskarphet:",
+    "@blur": {},
+    "opacity": "Ugjennomsiktighet:",
+    "@opacity": {},
+    "noContactInformationProvided": "Serveren oppgir ingen gyldig kontaktinformasjon",
+    "@noContactInformationProvided": {},
+    "supportPage": "Supportside",
+    "@supportPage": {},
+    "compress": "Komprimer",
+    "@compress": {},
+    "italicText": "Kursiv tekst",
+    "@italicText": {},
+    "strikeThrough": "Gjennomstreking",
+    "@strikeThrough": {},
+    "youUnbannedUser": "Du opphevet utestengelsen av {user}",
+    "@youUnbannedUser": {
+        "placeholders": {
+            "user": {
+                "type": "String"
+            }
+        }
+    },
+    "disableEncryptionWarning": "Av sikkerhetshensyn kan du ikke deaktivere kryptering i en chat der det har vært aktivert tidligere.",
+    "@disableEncryptionWarning": {},
+    "deviceKeys": "Enhetsnøkler:",
+    "@deviceKeys": {},
+    "readUpToHere": "Lest frem til her",
+    "@readUpToHere": {},
+    "jump": "Hopp",
+    "@jump": {},
+    "reportErrorDescription": "😭 Å nei. Noe gikk galt. Hvis du ønsker det, kan du rapportere denne feilen til utviklerne.",
+    "@reportErrorDescription": {},
+    "invalidInput": "Ugyldig inndata!",
+    "@invalidInput": {},
+    "pleaseEnterANumber": "Vennligst skriv inn et tall større enn 0",
+    "@pleaseEnterANumber": {},
+    "archiveRoomDescription": "Chatten vil bli flyttet til arkivet. Andre brukere vil kunne se at du har forlatt chatten.",
+    "@archiveRoomDescription": {},
+    "removeDevicesDescription": "Du vil bli logget ut av denne enheten og vil ikke lenger kunne motta meldinger.",
+    "@removeDevicesDescription": {}
 }
