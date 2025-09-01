@@ -146,7 +146,20 @@ class _ShareScaffoldDialogState extends State<ShareScaffoldDialog> {
                       name: displayname,
                       size: Avatar.defaultSize * 0.75,
                     ),
-                    title: Text(displayname),
+                    title: Text(
+                      displayname,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    subtitle: Text(
+                      room.directChatMatrixID ??
+                          L10n.of(context).countParticipants(
+                            (room.summary.mJoinedMemberCount ?? 0) +
+                                (room.summary.mInvitedMemberCount ?? 0),
+                          ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                     value: selectedRoomId == room.id,
                     onChanged: (_) => _toggleRoom(room.id),
                   ),

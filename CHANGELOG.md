@@ -1,3 +1,23 @@
+## v2.1.1
+Bugfix release to trigger flatpak arm64 release again.
+
+- build: (deps): bump actions/checkout from 4 to 5 (dependabot[bot])
+- build: (deps): bump app_links from 6.4.0 to 6.4.1 (dependabot[bot])
+- build: (deps): bump file_picker from 10.2.3 to 10.3.1 (dependabot[bot])
+- build: (deps): bump msix from 3.16.10 to 3.16.12 (dependabot[bot])
+- build: (deps): bump package_info_plus from 8.3.0 to 8.3.1 (dependabot[bot])
+- build: (deps): bump share_plus from 11.0.0 to 11.1.0 (dependabot[bot])
+- build: Also build linux on github runners (Christian Kußowski)
+- build: Update macos podfile (Christian Kußowski)
+- chore: Follow up subtitle font style (Christian Kußowski)
+- chore: Slightly adjust font sizes and design (Christian Kußowski)
+- chore(translations): Translated using Weblate (Chinese (Traditional Han script)) (miullu)
+- chore(translations): Translated using Weblate (Norwegian Bokmål) (Frank Paul Silye)
+- chore(translations): Translated using Weblate (Polish) (Piotr Orzechowski)
+- feat: support xdp selector for linux (ShootingStarDragons)
+- fix: Follow up fix rectangle avatars (Christian Kußowski)
+- refactor: Remove broken push error reporter (Christian Kußowski)
+
 ## v2.1.0
 FluffyChat 2.1.0 brings support for room version 12 and a lot of bugfixes, updated translations and performance improvements. Also chat state events are now collapsed by default.
 
