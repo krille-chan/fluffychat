@@ -899,7 +899,7 @@ gf1(){return"Nome da cole\xe7\xe3o"},
 giC(){return y.a},
 gjm(){return"Abrir no mapa"},
 gdu(){return"Link"},
-gfV(){return"Este servidor precisa validar seu e-mail para efetuar o registro."},
+gfV(){return"Este servidor precisa validar seu e-mail para efetuar o cadastro."},
 gjn(){return"Ou"},
 gjo(){return"Participante"},
 gjp(){return"frase secreta ou chave de recupera\xe7\xe3o"},
@@ -1520,5 +1520,5 @@ w(A.Am,[A.Fw,A.Fx])})()
 B.dP(b.typeUniverse,JSON.parse('{"Am":{"aF":[]},"Fw":{"aF":[]},"Fx":{"aF":[]}}'))
 var y={h:" alterou a visibilidade do hist\xf3rico para: ",a:"(BETA) Ativar m\xfaltiplas contas neste dispositivo"}};
 ((a,b)=>{a[b]=a.current
-a.eventLog.push({p:"main.dart.js_16",e:"endPart",h:b})})($__dart_deferred_initializers__,"94kSEr6umDcYGPPR7hCWz6UF328=");
+a.eventLog.push({p:"main.dart.js_16",e:"endPart",h:b})})($__dart_deferred_initializers__,"tJHGnJEvfPOFfPb5HWq+n2YU6uE=");
 //# sourceMappingURL=main.dart.js_16.part.js.map
