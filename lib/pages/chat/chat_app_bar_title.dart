@@ -78,10 +78,10 @@ class ChatAppBarTitle extends StatelessWidget {
                               builder: (context, presence) {
                                 final lastActiveTimestamp =
                                     presence?.lastActiveTimestamp;
-                                final style = Theme.of(context)
-                                    .listTileTheme
-                                    .subtitleTextStyle
-                                    ?.copyWith(fontSize: 12);
+                                final style = TextStyle(
+                                  fontSize: 12,
+                                  color: Theme.of(context).colorScheme.outline,
+                                );
                                 if (presence?.currentlyActive == true) {
                                   return Text(
                                     L10n.of(context).currentlyActive,
