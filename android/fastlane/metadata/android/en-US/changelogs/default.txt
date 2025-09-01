@@ -1,1 +1,1 @@
-FluffyChat 2.1.0 brings support for room version 12 and a lot of bugfixes, updated translations and performance improvements. Also chat state events are now collapsed by default.
+Fixes broken error reporter for push notifications and wrong clipped avatars. Also updates dependencies and translations.
