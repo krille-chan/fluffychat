@@ -82,7 +82,7 @@ jobs:
       - run: ./flutter/bin/flutter build linux --target-platform linux-${{ matrix.arch }}
 
   build_debug_ios:
-    runs-on: macos-latest
+    runs-on: macos-15
     steps:
       - uses: actions/checkout@v5
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
@@ -90,10 +90,8 @@ jobs:
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           cache: true
-      - name: Setup Xcode version
-        uses: maxim-lobanov/setup-xcode@v1.6.0
-        with:
-          xcode-version: latest
+      - name: Use Xcode 16.4
+        run: sudo xcode-select --switch /Applications/Xcode_16.4.app
       - run: brew install sqlcipher
       - uses: moonrepo/setup-rust@v1
       - name: Add Firebase Messaging
