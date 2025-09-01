@@ -199,7 +199,7 @@ class PresenceAvatar extends StatelessWidget {
                                         overflow: TextOverflow.ellipsis,
                                         style: const TextStyle(
                                           color: Colors.black,
-                                          fontSize: 10.5,
+                                          fontSize: 9,
                                         ),
                                       ),
                                     ),
@@ -254,7 +254,7 @@ class PresenceAvatar extends StatelessWidget {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
-                      fontSize: 13,
+                      fontSize: 11,
                     ),
                   ),
                 ),
