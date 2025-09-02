@@ -59,10 +59,10 @@ class NewCourseView extends StatelessWidget {
                             value: controller.languageLevelFilter,
                             onChanged: controller.setLanguageLevelFilter,
                             items: LanguageLevelTypeEnum.values,
-                            displayname: (v) =>
-                                v?.string ?? L10n.of(context).cefrLevelLabel,
+                            displayname: (v) => v.string,
                             fontSize: descFontSize,
                             iconSize: iconSize,
+                            defaultName: L10n.of(context).cefrLevelLabel,
                           ),
                           CoursePlanFilter<LanguageModel>(
                             value: controller.instructionLanguageFilter,
@@ -70,11 +70,13 @@ class NewCourseView extends StatelessWidget {
                             items: MatrixState
                                 .pangeaController.pLanguageStore.baseOptions,
                             displayname: (v) =>
-                                v?.getDisplayName(context) ??
-                                L10n.of(context).languageOfInstructionsLabel,
+                                v.getDisplayName(context) ?? v.displayName,
                             enableSearch: true,
                             fontSize: descFontSize,
                             iconSize: iconSize,
+                            defaultName:
+                                L10n.of(context).languageOfInstructionsLabel,
+                            shortName: L10n.of(context).instructionsLanguage,
                           ),
                           CoursePlanFilter<LanguageModel>(
                             value: controller.targetLanguageFilter,
@@ -82,11 +84,11 @@ class NewCourseView extends StatelessWidget {
                             items: MatrixState
                                 .pangeaController.pLanguageStore.targetOptions,
                             displayname: (v) =>
-                                v?.getDisplayName(context) ??
-                                L10n.of(context).targetLanguageLabel,
+                                v.getDisplayName(context) ?? v.displayName,
                             enableSearch: true,
                             fontSize: descFontSize,
                             iconSize: iconSize,
+                            defaultName: L10n.of(context).targetLanguageLabel,
                           ),
                         ],
                       ),

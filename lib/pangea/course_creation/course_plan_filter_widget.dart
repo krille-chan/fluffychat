@@ -9,7 +9,9 @@ class CoursePlanFilter<T> extends StatefulWidget {
   final List<T> items;
 
   final void Function(T?) onChanged;
-  final String Function(T?) displayname;
+  final String defaultName;
+  final String? shortName;
+  final String Function(T) displayname;
 
   final bool enableSearch;
 
@@ -21,10 +23,12 @@ class CoursePlanFilter<T> extends StatefulWidget {
     required this.value,
     required this.items,
     required this.onChanged,
+    required this.defaultName,
     required this.displayname,
     required this.fontSize,
     required this.iconSize,
     this.enableSearch = false,
+    this.shortName,
   });
 
   @override
@@ -59,7 +63,9 @@ class CoursePlanFilterState<T> extends State<CoursePlanFilter<T>> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                widget.displayname(widget.value),
+                widget.value != null
+                    ? widget.displayname(widget.value as T)
+                    : widget.defaultName,
                 style: TextStyle(
                   color: theme.colorScheme.onPrimary,
                   fontSize: widget.fontSize,
@@ -79,7 +85,9 @@ class CoursePlanFilterState<T> extends State<CoursePlanFilter<T>> {
               (item) => DropdownMenuItem(
                 value: item,
                 child: DropdownTextButton(
-                  text: item == null ? "" : widget.displayname(item),
+                  text: item != null
+                      ? widget.displayname(item)
+                      : widget.shortName ?? widget.defaultName,
                   isSelected: item == widget.value,
                 ),
               ),
@@ -110,8 +118,10 @@ class CoursePlanFilterState<T> extends State<CoursePlanFilter<T>> {
                   ),
                 ),
                 searchMatchFn: (item, searchValue) {
-                  final displayName =
-                      widget.displayname(item.value).toLowerCase();
+                  final displayName = (item.value != null
+                          ? widget.displayname(item.value as T)
+                          : widget.defaultName)
+                      .toLowerCase();
 
                   final search = searchValue.toLowerCase();
                   return displayName.startsWith(search);

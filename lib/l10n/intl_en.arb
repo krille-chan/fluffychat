@@ -5264,5 +5264,6 @@
   "waitNotDone": "Wait I’m not done!",
   "waitingForOthersToFinish": "Waiting for the rest to finish up...",
   "saveToCompletedActivities": "Save to completed activities",
-  "generatingSummary": "Analyzing chat and generating results"
+  "generatingSummary": "Analyzing chat and generating results",
+  "instructionsLanguage": "Instructions language"
 }
