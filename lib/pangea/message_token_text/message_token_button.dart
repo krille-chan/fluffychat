@@ -312,7 +312,14 @@ class MessageTokenButtonContent extends StatelessWidget {
         return SizedBox(
           height: height,
           child: Text(
-            token.vocabConstructID.userSetEmoji.firstOrNull ?? '',
+            activity?.record.responses
+                    .firstWhereOrNull(
+                      (res) =>
+                          res.cId == token.vocabConstructID && res.isCorrect,
+                    )
+                    ?.text ??
+                token.vocabConstructID.userSetEmoji.firstOrNull ??
+                '',
             style: _emojiStyle,
           ),
         );

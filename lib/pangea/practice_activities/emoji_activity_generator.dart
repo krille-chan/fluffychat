@@ -1,4 +1,5 @@
 import 'package:fluffychat/pangea/constructs/construct_form.dart';
+import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/lemmas/lemma_info_response.dart';
 import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
 import 'package:fluffychat/pangea/practice_activities/message_activity_request.dart';
@@ -20,16 +21,17 @@ class EmojiActivityGenerator {
     MessageActivityRequest req,
   ) async {
     final Map<ConstructForm, List<String>> matchInfo = {};
+    final List<PangeaToken> missingEmojis = [];
     for (final token in req.targetTokens) {
       final List<String> userSavedEmojis = token.vocabConstructID.userSetEmoji;
       if (userSavedEmojis.isNotEmpty) {
-        matchInfo[token.vocabForm] = userSavedEmojis;
+        matchInfo[token.vocabForm] = [userSavedEmojis.first];
       } else {
-        matchInfo[token.vocabForm] = [];
+        missingEmojis.add(token);
       }
     }
 
-    final List<Future<LemmaInfoResponse>> lemmaInfoFutures = req.targetTokens
+    final List<Future<LemmaInfoResponse>> lemmaInfoFutures = missingEmojis
         .map((token) => token.vocabConstructID.getLemmaInfo())
         .toList();
 
@@ -38,8 +40,12 @@ class EmojiActivityGenerator {
 
     for (int i = 0; i < req.targetTokens.length; i++) {
       final formKey = req.targetTokens[i].vocabForm;
+      if (matchInfo[formKey] != null && matchInfo[formKey]!.isNotEmpty) {
+        continue; // Skip if user has already set emojis
+      }
+
       matchInfo[formKey] ??= [];
-      matchInfo[formKey]!.addAll(lemmaInfos[i].emoji);
+      matchInfo[formKey]!.add(lemmaInfos[i].emoji.first);
     }
 
     return MessageActivityResponse(
