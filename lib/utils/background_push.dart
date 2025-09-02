@@ -290,8 +290,11 @@ class BackgroundPush {
           // Pangea#
           currentPushers.first.data.url.toString() == gatewayUrl &&
           currentPushers.first.data.format ==
-              AppSettings.pushNotificationsPusherFormat
-                  .getItem(matrix!.store) &&
+              // #Pangea
+              // AppSettings.pushNotificationsPusherFormat
+              //     .getItem(matrix!.store) &&
+              null &&
+          // Pangea#
           mapEquals(
             currentPushers.single.data.additionalProperties,
             {"data_message": pusherDataMessageFormat},
@@ -334,8 +337,10 @@ class BackgroundPush {
             // Pangea#
             data: PusherData(
               url: Uri.parse(gatewayUrl!),
-              format: AppSettings.pushNotificationsPusherFormat
-                  .getItem(matrix!.store),
+              // #Pangea
+              // format: AppSettings.pushNotificationsPusherFormat
+              //     .getItem(matrix!.store),
+              // Pangea#
               additionalProperties: {"data_message": pusherDataMessageFormat},
             ),
             kind: 'http',
