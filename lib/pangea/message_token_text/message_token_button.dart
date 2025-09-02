@@ -287,7 +287,7 @@ class MessageTokenButtonContent extends StatelessWidget {
     this.onMatch,
   });
 
-  TextStyle get _emojiStyle => textStyle.copyWith(
+  TextStyle get _emojiStyle => TextStyle(
         fontSize: (textStyle.fontSize ?? tokenButtonDefaultFontSize) + 4,
       );
 
