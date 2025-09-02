@@ -1,6 +1,9 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:flutter/material.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cached_network_image_platform_interface/cached_network_image_platform_interface.dart';
 import 'package:collection/collection.dart';
 import 'package:matrix/matrix.dart';
 
@@ -15,6 +18,7 @@ import 'package:fluffychat/pangea/course_plans/course_plan_builder.dart';
 import 'package:fluffychat/pangea/course_plans/course_plan_room_extension.dart';
 import 'package:fluffychat/pangea/course_settings/pin_clipper.dart';
 import 'package:fluffychat/pangea/course_settings/topic_participant_list.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 
 class CourseSettings extends StatelessWidget {
   final Room room;
@@ -89,6 +93,13 @@ class CourseSettings extends StatelessWidget {
                                         clipper: PinClipper(),
                                         child: topic.imageUrl != null
                                             ? CachedNetworkImage(
+                                                imageRenderMethodForWeb:
+                                                    ImageRenderMethodForWeb
+                                                        .HttpGet,
+                                                httpHeaders: {
+                                                  'Authorization':
+                                                      'Bearer ${MatrixState.pangeaController.userController.accessToken}',
+                                                },
                                                 width: 54.0,
                                                 height: 54.0,
                                                 fit: BoxFit.cover,

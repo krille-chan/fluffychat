@@ -1,3 +1,5 @@
+import 'package:get_storage/get_storage.dart';
+
 import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/pangea/course_plans/course_plan_model.dart';
 import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_enum.dart';
@@ -10,7 +12,6 @@ import 'package:fluffychat/pangea/payload_client/models/course_plan/cms_course_p
 import 'package:fluffychat/pangea/payload_client/models/course_plan/cms_course_plan_topic_location.dart';
 import 'package:fluffychat/pangea/payload_client/payload_client.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:get_storage/get_storage.dart';
 
 class CourseFilter {
   final LanguageModel? targetLanguage;
@@ -195,25 +196,19 @@ class CoursePlansRepo {
   static Future<CoursePlanModel> _fromCmsCoursePlan(
     CmsCoursePlan cmsCoursePlan,
   ) async {
-    try {
-      final medias = await _getMedia(cmsCoursePlan);
-      final topics = await _getTopics(cmsCoursePlan);
-      final locations = await _getTopicLocations(topics ?? []);
-      final activities = await _getTopicActivities(topics ?? []);
-      final activityMedias = await _getActivityMedia(activities ?? []);
-      return CoursePlanModel.fromCmsDocs(
-        cmsCoursePlan,
-        medias,
-        topics,
-        locations,
-        activities,
-        activityMedias,
-      );
-    } catch (e, stack) {
-      print(e);
-      print(stack);
-      rethrow;
-    }
+    final medias = await _getMedia(cmsCoursePlan);
+    final topics = await _getTopics(cmsCoursePlan);
+    final locations = await _getTopicLocations(topics ?? []);
+    final activities = await _getTopicActivities(topics ?? []);
+    final activityMedias = await _getActivityMedia(activities ?? []);
+    return CoursePlanModel.fromCmsDocs(
+      cmsCoursePlan,
+      medias,
+      topics,
+      locations,
+      activities,
+      activityMedias,
+    );
   }
 
   static Future<List<CmsCoursePlanMedia>?> _getMedia(

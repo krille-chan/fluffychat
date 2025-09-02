@@ -1,9 +1,13 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:flutter/material.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cached_network_image_platform_interface/cached_network_image_platform_interface.dart';
 
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_planner_builder.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
 
 class ActivitySuggestionCard extends StatelessWidget {
@@ -63,6 +67,12 @@ class ActivitySuggestionCard extends StatelessWidget {
                               )
                             : CachedNetworkImage(
                                 imageUrl: activity.imageURL!,
+                                imageRenderMethodForWeb:
+                                    ImageRenderMethodForWeb.HttpGet,
+                                httpHeaders: {
+                                  'Authorization':
+                                      'Bearer ${MatrixState.pangeaController.userController.accessToken}',
+                                },
                                 placeholder: (context, url) => const Center(
                                   child: CircularProgressIndicator(),
                                 ),
