@@ -110,7 +110,7 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                         itemBuilder: (BuildContext context, int i) =>
                             SwitchListTile(
                           value: !deviceKeys[i].blocked,
-                          activeColor: deviceKeys[i].verified
+                          activeThumbColor: deviceKeys[i].verified
                               ? Colors.green
                               : Colors.orange,
                           onChanged: (_) =>
