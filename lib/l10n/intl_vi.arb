@@ -4262,7 +4262,6 @@
   "addEnvironmentOverride": "Thêm ghi đè môi trường",
   "defaultOption": "Mặc định",
   "chatWithActivities": "Trò chuyện với các hoạt động",
-  "findYourPeople": "Tìm người của bạn",
   "launch": "Khởi động",
   "launchActivityToChats": "Khởi động hoạt động đến các trò chuyện",
   "searchChats": "Tìm kiếm cuộc trò chuyện",
@@ -4390,7 +4389,6 @@
   "private": "Riêng tư",
   "cannotBeFoundInSearch": "Không thể tìm thấy trong tìm kiếm",
   "public": "Công khai",
-  "visibleToCommunity": "Có thể nhìn thấy bởi cộng đồng Pangea Chat rộng lớn hơn qua \"Tìm người của bạn\"",
   "howSpaceCanBeJoined": "Cách tham gia không gian này",
   "canBeFoundVia": "Có thể tìm thấy qua:",
   "canBeFoundViaInvitation": "• lời mời",
@@ -4529,10 +4527,6 @@
     "placeholders": {}
   },
   "@public": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "@visibleToCommunity": {
     "type": "String",
     "placeholders": {}
   },

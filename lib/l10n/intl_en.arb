@@ -4978,7 +4978,6 @@
   "deleteChatDesc": "Are you sure you want to delete this chat? It will be deleted for all participants and all messages within the chat will no longer be available for practice or learning analytics.",
   "deleteSpaceDesc": "The space and any selected chats and/or subspaces will be deleted for all participants and all messages within the chat will no longer be available for practice or learning analytics. This action cannot be undone.",
   "chatWithActivities": "Chat with activities",
-  "findYourPeople": "Find your people",
   "launch": "Launch",
   "launchActivityToChats": "Launch activity to chats",
   "searchChats": "Search chats",
@@ -5005,7 +5004,7 @@
   "private": "Private",
   "cannotBeFoundInSearch": "Cannot be found in search",
   "public": "Public",
-  "visibleToCommunity": "Visible to the broader Pangea Chat community via \"Find your people\"",
+  "visibleToCommunity": "Visible to the broader Pangea Chat community via \"Find a course\"",
   "howSpaceCanBeJoined": "How this space can be joined",
   "restricted": "Restricted",
   "canBeFoundVia": "Can be found via:",
@@ -5265,5 +5264,6 @@
   "waitingForOthersToFinish": "Waiting for the rest to finish up...",
   "saveToCompletedActivities": "Save to completed activities",
   "generatingSummary": "Analyzing chat and generating results",
-  "instructionsLanguage": "Instructions language"
+  "instructionsLanguage": "Instructions language",
+  "findCourse": "Find a course"
 }

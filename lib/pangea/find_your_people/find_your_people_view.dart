@@ -90,7 +90,7 @@ class FindYourPeopleView extends StatelessWidget {
                   horizontal: 12.0,
                 ),
                 child: Text(
-                  L10n.of(context).findYourPeople,
+                  L10n.of(context).findCourse,
                   style: const TextStyle(fontSize: 32.0),
                 ),
               ),
@@ -142,7 +142,7 @@ class FindYourPeopleView extends StatelessWidget {
                                       20.0,
                                       0,
                                     ),
-                                    hintText: L10n.of(context).findYourPeople,
+                                    hintText: L10n.of(context).findCourse,
                                     hintStyle: TextStyle(
                                       color:
                                           theme.colorScheme.onPrimaryContainer,

@@ -159,7 +159,7 @@ class SpacesNavigationRail extends StatelessWidget {
                               context.go('/rooms/communities');
                             },
                             icon: const Icon(Icons.groups),
-                            toolTip: L10n.of(context).findYourPeople,
+                            toolTip: L10n.of(context).findCourse,
                             // Pangea#
                           );
                         }

@@ -46,7 +46,7 @@ enum OnboardingStepsEnum {
       case OnboardingStepsEnum.chatWithBot:
         return l10n.getStartedBotChatButton;
       case OnboardingStepsEnum.joinSpace:
-        return l10n.findYourPeople;
+        return l10n.findCourse;
       case OnboardingStepsEnum.inviteFriends:
         return l10n.getStartedFriendsButton;
     }
