@@ -33,11 +33,17 @@ enum AliasActions { copy, delete, setCanonical }
 class ChatDetails extends StatefulWidget {
   final String roomId;
   final Widget? embeddedCloseButton;
+  // #Pangea
+  final String? activeTab;
+  // Pangea#
 
   const ChatDetails({
     super.key,
     required this.roomId,
     this.embeddedCloseButton,
+    // #Pangea
+    this.activeTab,
+    // Pangea#
   });
 
   @override
