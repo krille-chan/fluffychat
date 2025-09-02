@@ -2,7 +2,7 @@ import 'package:fluffychat/pangea/payload_client/polymorphic_relationship.dart';
 
 /// Represents course plan activity media from the CMS API
 class CmsCoursePlanActivityMedia {
-  static const String slug = "course-plan-activity-medias";
+  static const String slug = "course-plan-activity-media";
 
   final String id;
   final String? alt;
