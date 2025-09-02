@@ -6,10 +6,8 @@ import 'package:material_symbols_icons/symbols.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/pangea/extensions/pangea_rooms_chunk_extension.dart';
 import 'package:fluffychat/utils/adaptive_bottom_sheet.dart';
-import 'package:fluffychat/utils/fluffy_share.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -332,32 +330,6 @@ class PublicRoomBottomSheetState extends State<PublicRoomBottomSheet> {
                                 ],
                               ),
                             ),
-                            if (roomAlias != null)
-                              ElevatedButton(
-                                onPressed: () {
-                                  FluffyShare.share(
-                                    "${Environment.frontendURL}/#/join_with_alias?alias=${Uri.encodeComponent(roomAlias)}",
-                                    context,
-                                  );
-                                  Navigator.of(context).pop();
-                                },
-                                child: Row(
-                                  spacing: 8.0,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    const Icon(
-                                      Icons.share_outlined,
-                                      size: 20.0,
-                                    ),
-                                    Flexible(
-                                      child: Text(
-                                        L10n.of(context).shareSpaceLink,
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
                           ]
                         : [
                             ElevatedButton(
@@ -374,32 +346,6 @@ class PublicRoomBottomSheetState extends State<PublicRoomBottomSheet> {
                                 ],
                               ),
                             ),
-                            if (roomAlias != null)
-                              ElevatedButton(
-                                onPressed: () {
-                                  FluffyShare.share(
-                                    "${Environment.frontendURL}/#/join_with_alias?alias=${Uri.encodeComponent(roomAlias)}",
-                                    context,
-                                  );
-                                  Navigator.of(context).pop();
-                                },
-                                child: Row(
-                                  spacing: 8.0,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    const Icon(
-                                      Icons.share_outlined,
-                                      size: 20.0,
-                                    ),
-                                    Flexible(
-                                      child: Text(
-                                        L10n.of(context).shareSpaceLink,
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
                           ],
                   ),
                 ],
