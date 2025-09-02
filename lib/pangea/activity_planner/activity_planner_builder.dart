@@ -10,11 +10,11 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_request.dart';
-import 'package:fluffychat/pangea/activity_sessions/activity_room_extension.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_plan_repo.dart';
 import 'package:fluffychat/pangea/chat/constants/default_power_level.dart';
 import 'package:fluffychat/pangea/chat_settings/constants/pangea_room_types.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
+import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/extensions/join_rule_extension.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_enum.dart';
@@ -348,6 +348,10 @@ class ActivityPlannerBuilderState extends State<ActivityPlannerBuilder> {
           visibility: Visibility.private,
           name: "${updatedActivity.title} ${index + 1}",
           initialState: [
+            StateEvent(
+              type: PangeaEventTypes.activityPlan,
+              content: updatedActivity.toJson(),
+            ),
             if (imageURL != null)
               StateEvent(
                 type: EventTypes.RoomAvatar,
@@ -381,12 +385,6 @@ class ActivityPlannerBuilderState extends State<ActivityPlannerBuilder> {
     if (activityRoom.pangeaSpaceParents.isEmpty) {
       await room.client.waitForRoomInSync(activityRoom.id);
     }
-
-    await activityRoom.sendActivityPlan(
-      updatedActivity,
-      avatar: avatar,
-      filename: filename,
-    );
 
     return activityRoom.id;
   }

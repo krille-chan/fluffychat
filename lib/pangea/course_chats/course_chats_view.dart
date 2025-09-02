@@ -50,50 +50,56 @@ class CourseChatsView extends StatelessWidget {
         final Topic? topic = controller.selectedTopic;
         final List<String> activityIds = topic?.activityIds ?? [];
 
-        final childrenIds =
-            room.spaceChildren.map((c) => c.roomId).whereType<String>().toSet();
-
-        final joinedChats = [];
-        final joinedSessions = [];
-        final joinedRooms = room.client.rooms
-            .where((room) => childrenIds.remove(room.id))
-            .where((room) => !room.isHiddenRoom)
-            .toList();
-
-        for (final joinedRoom in joinedRooms) {
-          if (joinedRoom.isActivitySession) {
-            if (topic == null ||
-                activityIds.contains(joinedRoom.activityPlan?.activityId)) {
-              joinedSessions.add(joinedRoom);
-            }
-          } else {
-            joinedChats.add(joinedRoom);
-          }
-        }
-
-        final discoveredGroupChats = [];
-        final discoveredSessions = [];
-        final discoveredChildren =
-            controller.discoveredChildren ?? <SpaceRoomsChunk>[];
-
-        for (final child in discoveredChildren) {
-          if (child.roomType?.startsWith(PangeaRoomTypes.activitySession) ==
-              true) {
-            if (activityIds.contains(child.roomType!.split(":").last)) {
-              discoveredSessions.add(child);
-            }
-          } else {
-            discoveredGroupChats.add(child);
-          }
-        }
-
-        final isColumnMode = FluffyThemes.isColumnMode(context);
-
         return StreamBuilder(
           stream: room.client.onSync.stream
               .where((s) => s.hasRoomUpdate)
               .rateLimit(const Duration(seconds: 1)),
           builder: (context, snapshot) {
+            final childrenIds = room.spaceChildren
+                .map((c) => c.roomId)
+                .whereType<String>()
+                .toSet();
+
+            final joinedChats = [];
+            final joinedSessions = [];
+            final joinedRooms = room.client.rooms
+                .where((room) => childrenIds.remove(room.id))
+                .where((room) => !room.isHiddenRoom)
+                .toList();
+
+            for (final joinedRoom in joinedRooms) {
+              if (joinedRoom.isActivitySession) {
+                String? activityId = joinedRoom.activityPlan?.activityId;
+                if (activityId == null && joinedRoom.isActivityRoomType) {
+                  activityId = joinedRoom.roomType!.split(":").last;
+                }
+
+                if (topic == null || activityIds.contains(activityId)) {
+                  joinedSessions.add(joinedRoom);
+                }
+              } else {
+                joinedChats.add(joinedRoom);
+              }
+            }
+
+            final discoveredGroupChats = [];
+            final discoveredSessions = [];
+            final discoveredChildren =
+                controller.discoveredChildren ?? <SpaceRoomsChunk>[];
+
+            for (final child in discoveredChildren) {
+              final roomType = child.roomType;
+              if (roomType?.startsWith(PangeaRoomTypes.activitySession) ==
+                  true) {
+                if (activityIds.contains(roomType!.split(":").last)) {
+                  discoveredSessions.add(child);
+                }
+              } else {
+                discoveredGroupChats.add(child);
+              }
+            }
+
+            final isColumnMode = FluffyThemes.isColumnMode(context);
             return Padding(
               padding: isColumnMode
                   ? const EdgeInsets.symmetric(

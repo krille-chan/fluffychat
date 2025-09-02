@@ -578,13 +578,17 @@ abstract class AppRoutes {
                       pageBuilder: (context, state) => defaultPageBuilder(
                         context,
                         state,
-                        ChatDetails(
-                          roomId: state.pathParameters['spaceid']!,
-                        ),
+                        const EmptyPage(),
                       ),
-                      redirect: loggedOutRedirect,
+                      redirect: (context, state) {
+                        final subroute =
+                            state.fullPath?.split(":spaceid/details").last ??
+                                "";
+                        return "/rooms/spaces/${state.pathParameters['spaceid']}$subroute";
+                      },
                       routes: roomDetailsRoutes('spaceid'),
                     ),
+                    ...roomDetailsRoutes('spaceid'),
                     GoRoute(
                       path: ':roomid',
                       pageBuilder: (context, state) {

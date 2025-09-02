@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:fluffychat/pangea/course_creation/course_image_widget.dart';
+import 'package:fluffychat/pangea/common/widgets/url_image_widget.dart';
 import 'package:fluffychat/pangea/course_creation/course_info_chip_widget.dart';
 import 'package:fluffychat/pangea/course_plans/course_plan_model.dart';
 import 'package:fluffychat/widgets/hover_builder.dart';
@@ -41,7 +41,7 @@ class CoursePlanTile extends StatelessWidget {
               child: Row(
                 spacing: 4.0,
                 children: [
-                  CourseImage(
+                  ImageByUrl(
                     imageUrl: course.imageUrl,
                     width: 40.0,
                     replacement: Container(

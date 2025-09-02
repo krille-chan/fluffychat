@@ -30,13 +30,28 @@ class TwoColumnLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
+    // #Pangea
+    bool showNavRail = FluffyThemes.isColumnMode(context);
+    if (!showNavRail) {
+      final roomID = state.pathParameters['roomid'];
+      final spaceID = state.pathParameters['spaceid'];
+
+      if (roomID == null && spaceID == null) {
+        showNavRail = !["newcourse"].any(
+          (p) => state.fullPath?.contains(p) ?? false,
+        );
+      } else if (roomID == null) {
+        showNavRail = state.fullPath?.endsWith(':spaceid') == true;
+      }
+    }
+    // Pangea#
+
     return ScaffoldMessenger(
       child: Scaffold(
         body: Row(
           children: [
             // #Pangea
-            if (FluffyThemes.isColumnMode(context) ||
-                !(state.fullPath?.endsWith(":roomid") ?? false)) ...[
+            if (showNavRail) ...[
               SpacesNavigationRail(
                 activeSpaceId: state.pathParameters['spaceid'],
                 path: state.fullPath,

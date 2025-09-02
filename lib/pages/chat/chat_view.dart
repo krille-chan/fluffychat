@@ -13,9 +13,9 @@ import 'package:fluffychat/pages/chat/chat_app_bar_list_tile.dart';
 import 'package:fluffychat/pages/chat/chat_app_bar_title.dart';
 import 'package:fluffychat/pages/chat/chat_event_list.dart';
 import 'package:fluffychat/pages/chat/pinned_events.dart';
-import 'package:fluffychat/pangea/activity_sessions/activity_pinned_message.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_room_extension.dart';
-import 'package:fluffychat/pangea/activity_sessions/activity_status_message.dart';
+import 'package:fluffychat/pangea/activity_sessions/activity_session_chat/activity_pinned_message.dart';
+import 'package:fluffychat/pangea/activity_sessions/activity_session_chat/load_activity_summary_widget.dart';
 import 'package:fluffychat/pangea/chat/widgets/chat_input_bar.dart';
 import 'package:fluffychat/pangea/chat/widgets/chat_input_bar_header.dart';
 import 'package:fluffychat/pangea/chat/widgets/chat_view_background.dart';
@@ -435,7 +435,8 @@ class ChatView extends StatelessWidget {
                                   height: controller.inputBarHeight,
                                 ),
                               ),
-                            ActivityStatusMessage(room: controller.room),
+                            if (controller.room.activityIsFinished)
+                              LoadActivitySummaryWidget(room: controller.room),
                             // Pangea#
                           ],
                         ),

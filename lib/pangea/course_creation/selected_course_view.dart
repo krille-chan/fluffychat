@@ -4,7 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/pangea/course_creation/course_image_widget.dart';
+import 'package:fluffychat/pangea/common/widgets/url_image_widget.dart';
 import 'package:fluffychat/pangea/course_creation/course_info_chip_widget.dart';
 import 'package:fluffychat/pangea/course_plans/course_plan_builder.dart';
 import 'package:fluffychat/pangea/course_plans/course_plan_model.dart';
@@ -58,7 +58,7 @@ class SelectedCourseView extends StatelessWidget {
                               return Column(
                                 spacing: 8.0,
                                 children: [
-                                  CourseImage(
+                                  ImageByUrl(
                                     imageUrl: course.imageUrl,
                                     width: 100.0,
                                     replacement: Container(

@@ -4,16 +4,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
-import 'package:fluffychat/pangea/activity_sessions/activity_role_model.dart';
 import 'package:fluffychat/utils/string_color.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/hover_builder.dart';
 
 class ActivityParticipantIndicator extends StatelessWidget {
-  final ActivityRole availableRole;
-  final ActivityRoleModel? assignedRole;
-
+  final String name;
+  final String? userId;
   final String? avatarUrl;
 
   final VoidCallback? onTap;
@@ -25,9 +22,9 @@ class ActivityParticipantIndicator extends StatelessWidget {
 
   const ActivityParticipantIndicator({
     super.key,
-    required this.availableRole,
+    required this.name,
     this.avatarUrl,
-    this.assignedRole,
+    this.userId,
     this.selected = false,
     this.onTap,
     this.opacity = 1.0,
@@ -63,13 +60,13 @@ class ActivityParticipantIndicator extends StatelessWidget {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      assignedRole != null
+                      userId != null
                           ? avatarUrl == null || avatarUrl!.startsWith("mxc")
                               ? Avatar(
                                   mxContent: avatarUrl != null
                                       ? Uri.parse(avatarUrl!)
                                       : null,
-                                  name: assignedRole?.userId.localpart,
+                                  name: userId!.localpart,
                                   size: 60.0,
                                 )
                               : ClipRRect(
@@ -87,23 +84,20 @@ class ActivityParticipantIndicator extends StatelessWidget {
                                   theme.colorScheme.primaryContainer,
                             ),
                       Text(
-                        availableRole.name,
+                        name,
                         style: const TextStyle(
                           fontSize: 12.0,
                         ),
                       ),
                       Text(
-                        assignedRole?.userId.localpart ??
-                            L10n.of(context).openRoleLabel,
+                        userId?.localpart ?? L10n.of(context).openRoleLabel,
                         style: TextStyle(
                           fontSize: 12.0,
                           color:
                               (Theme.of(context).brightness == Brightness.light
-                                      ? assignedRole
-                                          ?.userId.localpart?.lightColorAvatar
-                                      : assignedRole
-                                          ?.userId.localpart?.lightColorText) ??
-                                  assignedRole?.role?.lightColorAvatar,
+                                      ? userId?.localpart?.lightColorAvatar
+                                      : userId?.localpart?.lightColorText) ??
+                                  name.lightColorAvatar,
                         ),
                       ),
                     ],

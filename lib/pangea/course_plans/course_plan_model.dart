@@ -195,6 +195,16 @@ class CoursePlanModel {
               }
             }
 
+            final Map<String, ActivityRole> roles = {};
+            for (final role in activity.roles) {
+              roles[role.id] = ActivityRole(
+                id: role.id,
+                name: role.name,
+                avatarUrl: role.avatarUrl,
+                goal: role.goal,
+              );
+            }
+
             activityPlans ??= [];
             activityPlans.add(
               ActivityPlanModel(
@@ -216,17 +226,7 @@ class CoursePlanModel {
                 vocab: activity.vocabs
                     .map((v) => Vocab(lemma: v.lemma, pos: v.pos))
                     .toList(),
-                roles: activity.roles.asMap().map(
-                      (index, v) => MapEntry(
-                        index.toString(),
-                        ActivityRole(
-                          id: v.id,
-                          name: v.name,
-                          avatarUrl: v.avatarUrl,
-                          goal: v.goal,
-                        ),
-                      ),
-                    ),
+                roles: roles,
                 imageURL: activityMedias != null && activityMedias.isNotEmpty
                     ? '${Environment.cmsApi}${activityMedias.first.url}'
                     : null,

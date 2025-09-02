@@ -22,21 +22,6 @@ import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import '../activity_summary/activity_summary_repo.dart';
 
 extension ActivityRoomExtension on Room {
-  Future<void> sendActivityPlan(
-    ActivityPlanModel activity, {
-    Uint8List? avatar,
-    String? filename,
-  }) async {
-    if (canChangeStateEvent(PangeaEventTypes.activityPlan)) {
-      await client.setRoomStateWithKey(
-        id,
-        PangeaEventTypes.activityPlan,
-        "",
-        activity.toJson(),
-      );
-    }
-  }
-
   Future<void> joinActivity(ActivityRole role) async {
     final currentRoles = activityRoles ?? ActivityRolesModel.empty;
     final activityRole = ActivityRoleModel(
@@ -279,8 +264,8 @@ extension ActivityRoomExtension on Room {
   ActivityRoleModel? get ownRole => activityRoles?.role(client.userID!);
 
   int get remainingRoles {
-    final availableRoles = activityPlan!.roles;
-    return max(0, availableRoles.length - (assignedRoles?.length ?? 0));
+    final availableRoles = activityPlan?.roles;
+    return max(0, (availableRoles?.length ?? 0) - (assignedRoles?.length ?? 0));
   }
 
   bool get showActivityChatUI {
@@ -288,6 +273,8 @@ extension ActivityRoomExtension on Room {
         powerForChangingStateEvent(PangeaEventTypes.activityRole) == 0 &&
         powerForChangingStateEvent(PangeaEventTypes.activitySummary) == 0;
   }
+
+  bool get activityHasStarted => remainingRoles == 0;
 
   bool get isActiveInActivity {
     if (!showActivityChatUI) return false;
@@ -329,11 +316,8 @@ extension ActivityRoomExtension on Room {
         (parent) => parent.coursePlan != null,
       );
 
-  bool get isActivitySession =>
-      getState(EventTypes.RoomCreate)
-              ?.content
-              .tryGet<String>('type')
-              ?.startsWith(PangeaRoomTypes.activitySession) ==
-          true ||
-      activityPlan != null;
+  bool get isActivityRoomType =>
+      roomType?.startsWith(PangeaRoomTypes.activitySession) == true;
+
+  bool get isActivitySession => isActivityRoomType || activityPlan != null;
 }

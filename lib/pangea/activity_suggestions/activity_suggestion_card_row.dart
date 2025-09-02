@@ -4,11 +4,13 @@ class ActivitySuggestionCardRow extends StatelessWidget {
   final IconData? icon;
   final Widget? leading;
   final Widget child;
+  final double? iconSize;
 
   const ActivitySuggestionCardRow({
     required this.child,
     this.icon,
     this.leading,
+    this.iconSize,
     super.key,
   });
 
@@ -23,7 +25,7 @@ class ActivitySuggestionCardRow extends StatelessWidget {
           if (icon != null)
             Icon(
               icon,
-              size: 24.0,
+              size: iconSize ?? 24.0,
             ),
           Expanded(child: child),
         ],

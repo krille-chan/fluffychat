@@ -12,12 +12,12 @@ import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_planner_builder.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_suggestion_dialog.dart';
 import 'package:fluffychat/pangea/chat_settings/widgets/language_level_dropdown.dart';
+import 'package:fluffychat/pangea/common/widgets/url_image_widget.dart';
 import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_enum.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import 'package:fluffychat/widgets/mxc_image.dart';
 
 class ActivityPlanCard extends StatelessWidget {
   final VoidCallback regenerate;
@@ -177,57 +177,15 @@ class ActivityPlanCard extends StatelessWidget {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
-                                controller.updatedActivity.imageURL != null
-                                    ? ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(4.0),
-                                        child: controller
-                                                .updatedActivity.imageURL!
-                                                .startsWith("mxc")
-                                            ? MxcImage(
-                                                uri: Uri.parse(
-                                                  controller.updatedActivity
-                                                      .imageURL!,
-                                                ),
-                                                width: 24.0,
-                                                height: 24.0,
-                                                cacheKey: controller
-                                                    .updatedActivity.activityId,
-                                                fit: BoxFit.cover,
-                                              )
-                                            : CachedNetworkImage(
-                                                imageRenderMethodForWeb:
-                                                    ImageRenderMethodForWeb
-                                                        .HttpGet,
-                                                imageUrl: controller
-                                                    .updatedActivity.imageURL!,
-                                                httpHeaders: {
-                                                  'Authorization':
-                                                      'Bearer ${MatrixState.pangeaController.userController.accessToken}',
-                                                },
-                                                fit: BoxFit.cover,
-                                                width: 24.0,
-                                                height: 24.0,
-                                                placeholder: (
-                                                  context,
-                                                  url,
-                                                ) =>
-                                                    const Center(
-                                                  child:
-                                                      CircularProgressIndicator(),
-                                                ),
-                                                errorWidget: (
-                                                  context,
-                                                  url,
-                                                  error,
-                                                ) =>
-                                                    const SizedBox(),
-                                              ),
-                                      )
-                                    : const Icon(
-                                        Icons.event_note_outlined,
-                                        size: 24.0,
-                                      ),
+                                ImageByUrl(
+                                  imageUrl: controller.updatedActivity.imageURL,
+                                  width: 24.0,
+                                  borderRadius: BorderRadius.circular(4.0),
+                                  replacement: const Icon(
+                                    Icons.event_note_outlined,
+                                    size: 24.0,
+                                  ),
+                                ),
                                 const SizedBox(width: itemPadding),
                                 Expanded(
                                   child: Text(

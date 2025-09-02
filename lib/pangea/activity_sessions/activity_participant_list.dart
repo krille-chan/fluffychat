@@ -56,8 +56,8 @@ class ActivityParticipantList extends StatelessWidget {
                     canSelect != null ? canSelect!(availableRole.id) : true;
 
                 return ActivityParticipantIndicator(
-                  availableRole: availableRole,
-                  assignedRole: assignedRole,
+                  name: availableRole.name,
+                  userId: assignedRole?.userId,
                   opacity: getOpacity != null ? getOpacity!(assignedRole) : 1.0,
                   avatarUrl:
                       availableRole.avatarUrl ?? user?.avatarUrl?.toString(),

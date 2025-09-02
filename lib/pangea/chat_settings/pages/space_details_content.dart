@@ -1,11 +1,8 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import 'package:go_router/go_router.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:matrix/matrix.dart';
-import 'package:universal_html/html.dart' as html;
 
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
@@ -14,7 +11,7 @@ import 'package:fluffychat/pangea/chat_settings/pages/room_details_buttons.dart'
 import 'package:fluffychat/pangea/chat_settings/pages/room_participants_widget.dart';
 import 'package:fluffychat/pangea/chat_settings/pages/space_details_button_row.dart';
 import 'package:fluffychat/pangea/chat_settings/widgets/delete_space_dialog.dart';
-import 'package:fluffychat/pangea/common/config/environment.dart';
+import 'package:fluffychat/pangea/common/widgets/share_room_button.dart';
 import 'package:fluffychat/pangea/course_chats/course_chats_page.dart';
 import 'package:fluffychat/pangea/course_creation/course_info_chip_widget.dart';
 import 'package:fluffychat/pangea/course_plans/course_plan_builder.dart';
@@ -23,7 +20,6 @@ import 'package:fluffychat/pangea/course_settings/course_settings.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/space_analytics/space_analytics.dart';
-import 'package:fluffychat/pangea/spaces/constants/space_constants.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -278,51 +274,7 @@ class SpaceDetailsContentState extends State<SpaceDetailsContent> {
                 if (widget.room.classCode != null)
                   Padding(
                     padding: const EdgeInsets.only(left: 16.0),
-                    child: PopupMenuButton(
-                      child: const Icon(Symbols.upload),
-                      onSelected: (value) async {
-                        final spaceCode = widget.room.classCode!;
-                        String toCopy = spaceCode;
-                        if (value == 0) {
-                          final String initialUrl = kIsWeb
-                              ? html.window.origin!
-                              : Environment.frontendURL;
-                          toCopy =
-                              "$initialUrl/#/join_with_link?${SpaceConstants.classCode}=${widget.room.classCode}";
-                        }
-
-                        await Clipboard.setData(ClipboardData(text: toCopy));
-                        ScaffoldMessenger.of(
-                          context,
-                        ).showSnackBar(
-                          SnackBar(
-                            content: Text(
-                              L10n.of(context).copiedToClipboard,
-                            ),
-                          ),
-                        );
-                      },
-                      itemBuilder: (BuildContext context) =>
-                          <PopupMenuEntry<int>>[
-                        PopupMenuItem<int>(
-                          value: 0,
-                          child: ListTile(
-                            title: Text(L10n.of(context).shareSpaceLink),
-                            contentPadding: const EdgeInsets.all(0),
-                          ),
-                        ),
-                        PopupMenuItem<int>(
-                          value: 1,
-                          child: ListTile(
-                            title: Text(
-                              L10n.of(context)
-                                  .shareInviteCode(widget.room.classCode!),
-                            ),
-                            contentPadding: const EdgeInsets.all(0),
-                          ),
-                        ),
-                      ],
-                    ),
+                    child: ShareRoomButton(room: widget.room),
                   ),
               ],
             ),

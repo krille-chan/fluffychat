@@ -28,12 +28,13 @@ extension RoomInformationRoomExtension on Room {
     return botOptions?.mode == BotMode.directChat && await botIsInRoom;
   }
 
+  String? get roomType =>
+      getState(EventTypes.RoomCreate)?.content.tryGet<String>('type');
+
   bool isAnalyticsRoomOfUser(String userId) =>
       isAnalyticsRoom && isMadeByUser(userId);
 
-  bool get isAnalyticsRoom =>
-      getState(EventTypes.RoomCreate)?.content.tryGet<String>('type') ==
-      PangeaRoomTypes.analytics;
+  bool get isAnalyticsRoom => roomType == PangeaRoomTypes.analytics;
 
   bool get isHiddenRoom => isAnalyticsRoom || isHiddenActivityRoom;
 }
