@@ -2527,5 +2527,38 @@
     "archiveRoomDescription": "Chatten vil bli flyttet til arkivet. Andre brukere vil kunne se at du har forlatt chatten.",
     "@archiveRoomDescription": {},
     "removeDevicesDescription": "Du vil bli logget ut av denne enheten og vil ikke lenger kunne motta meldinger.",
-    "@removeDevicesDescription": {}
+    "@removeDevicesDescription": {},
+    "profileNotFound": "Brukeren ble ikke funnet på serveren. Kanskje det er et tilkoblingsproblem, eller brukeren finnes ikke.",
+    "@profileNotFound": {},
+    "setTheme": "Angi tema:",
+    "@setTheme": {},
+    "setColorTheme": "Angi fargetema:",
+    "@setColorTheme": {},
+    "inviteGroupChat": "📨 Invitasjon til gruppechat",
+    "@inviteGroupChat": {},
+    "invitePrivateChat": "📨 Invitasjon til privat chat",
+    "@invitePrivateChat": {},
+    "pleaseChooseAStrongPassword": "Vennligst velg et sterkt passord",
+    "@pleaseChooseAStrongPassword": {},
+    "publicLink": "Offentlig lenke",
+    "@publicLink": {},
+    "publicChatAddresses": "Offentlige chatadresser",
+    "@publicChatAddresses": {},
+    "createNewAddress": "Opprett ny adresse",
+    "@createNewAddress": {},
+    "initAppError": "Det oppsto en feil under oppstart av appen",
+    "@initAppError": {},
+    "minimumPowerLevel": "{level} er det laveste strømnivået.",
+    "@minimumPowerLevel": {
+        "type": "String",
+        "placeholders": {
+            "level": {
+                "type": "String"
+            }
+        }
+    },
+    "sendReadReceipts": "Send lesebekreftelser",
+    "@sendReadReceipts": {},
+    "searchMore": "Søk mer...",
+    "@searchMore": {}
 }
