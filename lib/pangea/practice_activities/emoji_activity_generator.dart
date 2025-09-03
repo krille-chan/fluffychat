@@ -22,10 +22,14 @@ class EmojiActivityGenerator {
   ) async {
     final Map<ConstructForm, List<String>> matchInfo = {};
     final List<PangeaToken> missingEmojis = [];
+
+    final List<String> usedEmojis = [];
     for (final token in req.targetTokens) {
       final List<String> userSavedEmojis = token.vocabConstructID.userSetEmoji;
-      if (userSavedEmojis.isNotEmpty) {
+      if (userSavedEmojis.isNotEmpty &&
+          !usedEmojis.contains(userSavedEmojis.first)) {
         matchInfo[token.vocabForm] = [userSavedEmojis.first];
+        usedEmojis.add(userSavedEmojis.first);
       } else {
         missingEmojis.add(token);
       }
@@ -38,14 +42,18 @@ class EmojiActivityGenerator {
     final List<LemmaInfoResponse> lemmaInfos =
         await Future.wait(lemmaInfoFutures);
 
-    for (int i = 0; i < req.targetTokens.length; i++) {
-      final formKey = req.targetTokens[i].vocabForm;
-      if (matchInfo[formKey] != null && matchInfo[formKey]!.isNotEmpty) {
-        continue; // Skip if user has already set emojis
-      }
+    for (int i = 0; i < missingEmojis.length; i++) {
+      final e = lemmaInfos[i].emoji.firstWhere(
+            (e) => !usedEmojis.contains(e),
+            orElse: () => throw Exception(
+              "Not enough unique emojis for tokens in message",
+            ),
+          );
 
-      matchInfo[formKey] ??= [];
-      matchInfo[formKey]!.add(lemmaInfos[i].emoji.first);
+      final token = missingEmojis[i];
+      matchInfo[token.vocabForm] ??= [];
+      matchInfo[token.vocabForm]!.add(e);
+      usedEmojis.add(e);
     }
 
     return MessageActivityResponse(
