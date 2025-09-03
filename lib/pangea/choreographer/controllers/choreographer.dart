@@ -529,7 +529,7 @@ class Choreographer {
     }
   }
 
-  void onIgnoreMatch({required int cursorOffset}) {
+  void onIgnoreMatch({required int matchIndex}) {
     try {
       if (igc.igcTextData == null) {
         debugger(when: kDebugMode);
@@ -540,10 +540,6 @@ class Choreographer {
         );
         return;
       }
-
-      final int matchIndex = igc.igcTextData!.getTopMatchIndexForOffset(
-        cursorOffset,
-      );
 
       if (matchIndex == -1) {
         debugger(when: kDebugMode);
@@ -571,7 +567,7 @@ class Choreographer {
         Breadcrumb(
           data: {
             "igcTextData": igc.igcTextData?.toJson(),
-            "offset": cursorOffset,
+            "matchIndex": matchIndex,
           },
         ),
       );

@@ -1,39 +1,27 @@
-import 'dart:developer';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/bot/utils/bot_style.dart';
+import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
+import 'package:fluffychat/pangea/choreographer/enums/span_choice_type.dart';
 import 'package:fluffychat/pangea/choreographer/enums/span_data_type.dart';
+import 'package:fluffychat/pangea/choreographer/models/pangea_match_model.dart';
 import 'package:fluffychat/pangea/choreographer/models/span_data.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
 import '../../../../widgets/matrix.dart';
 import '../../../bot/widgets/bot_face_svg.dart';
-import '../../../common/controllers/pangea_controller.dart';
-import '../../enums/span_choice_type.dart';
-import '../../models/span_card_model.dart';
 import '../choice_array.dart';
 import 'why_button.dart';
 
-//switch for definition vs correction vs practice
-
-//always show a title
-//if description then show description
-//choices then show choices
-//
-
 class SpanCard extends StatefulWidget {
-  final PangeaController pangeaController = MatrixState.pangeaController;
-  final SpanCardModel scm;
-  final String roomId;
+  final int matchIndex;
+  final Choreographer choreographer;
 
-  SpanCard({
+  const SpanCard({
     super.key,
-    required this.scm,
-    required this.roomId,
+    required this.matchIndex,
+    required this.choreographer,
   });
 
   @override
@@ -43,60 +31,78 @@ class SpanCard extends StatefulWidget {
 class SpanCardState extends State<SpanCard> {
   bool fetchingData = false;
   int? selectedChoiceIndex;
+  final ScrollController scrollController = ScrollController();
 
-  BotExpression currentExpression = BotExpression.nonGold;
-
-  //on initState, get SpanDetails
   @override
   void initState() {
-    // debugger(when: kDebugMode);
     super.initState();
+    if (pangeaMatch?.isITStart == true) {
+      _onITStart();
+      return;
+    }
+
     getSpanDetails();
-    fetchSelected();
+    _fetchSelected();
   }
 
   @override
   void dispose() {
     TtsController.stop();
+    scrollController.dispose();
     super.dispose();
+  }
+
+  PangeaMatch? get pangeaMatch {
+    if (widget.choreographer.igc.igcTextData == null) return null;
+    if (widget.matchIndex >=
+        widget.choreographer.igc.igcTextData!.matches.length) {
+      ErrorHandler.logError(
+        m: "matchIndex out of bounds in span card",
+        data: {
+          "matchIndex": widget.matchIndex,
+          "matchesLength": widget.choreographer.igc.igcTextData?.matches.length,
+        },
+      );
+      return null;
+    }
+    return widget.choreographer.igc.igcTextData?.matches[widget.matchIndex];
   }
 
   //get selected choice
   SpanChoice? get selectedChoice {
     if (selectedChoiceIndex == null) return null;
-    return choiceByIndex(selectedChoiceIndex!);
+    return _choiceByIndex(selectedChoiceIndex!);
   }
 
-  SpanChoice? choiceByIndex(int index) {
-    if (widget.scm.pangeaMatch?.match.choices == null ||
-        widget.scm.pangeaMatch!.match.choices!.length <= index) {
+  SpanChoice? _choiceByIndex(int index) {
+    if (pangeaMatch?.match.choices == null ||
+        pangeaMatch!.match.choices!.length <= index) {
       return null;
     }
-    return widget.scm.pangeaMatch?.match.choices?[index];
+    return pangeaMatch?.match.choices?[index];
   }
 
-  void fetchSelected() {
-    if (widget.scm.pangeaMatch?.match.choices == null) {
+  void _fetchSelected() {
+    if (pangeaMatch?.match.choices == null) {
       return;
     }
 
     // if user ever selected the correct choice, automatically select it
     final selectedCorrectIndex =
-        widget.scm.pangeaMatch!.match.choices!.indexWhere((choice) {
+        pangeaMatch!.match.choices!.indexWhere((choice) {
       return choice.selected && choice.isBestCorrection;
     });
 
     if (selectedCorrectIndex != -1) {
       selectedChoiceIndex = selectedCorrectIndex;
-      currentExpression = BotExpression.gold;
       return;
     }
 
     if (selectedChoiceIndex == null) {
       DateTime? mostRecent;
-      final numChoices = widget.scm.pangeaMatch!.match.choices!.length;
+      final numChoices = pangeaMatch!.match.choices!.length;
       for (int i = 0; i < numChoices; i++) {
-        final choice = choiceByIndex(i);
+        final choice = _choiceByIndex(i);
         if (choice!.timestamp != null &&
             (mostRecent == null || choice.timestamp!.isAfter(mostRecent))) {
           mostRecent = choice.timestamp;
@@ -107,15 +113,15 @@ class SpanCardState extends State<SpanCard> {
   }
 
   Future<void> getSpanDetails({bool force = false}) async {
-    if (widget.scm.pangeaMatch?.isITStart ?? false) return;
+    if (pangeaMatch?.isITStart ?? false) return;
 
     if (!mounted) return;
     setState(() {
       fetchingData = true;
     });
 
-    await widget.scm.choreographer.igc.spanDataController.getSpanDetails(
-      widget.scm.matchIndex,
+    await widget.choreographer.igc.spanDataController.getSpanDetails(
+      widget.matchIndex,
       force: force,
     );
 
@@ -124,7 +130,13 @@ class SpanCardState extends State<SpanCard> {
     }
   }
 
-  Future<void> onChoiceSelect(int index) async {
+  void _onITStart() {
+    if (widget.choreographer.itEnabled && pangeaMatch != null) {
+      widget.choreographer.onITStart(pangeaMatch!);
+    }
+  }
+
+  Future<void> _onChoiceSelect(int index) async {
     selectedChoiceIndex = index;
     if (selectedChoice != null) {
       selectedChoice!.timestamp = DateTime.now();
@@ -137,28 +149,30 @@ class SpanCardState extends State<SpanCard> {
     }
   }
 
-  Future<void> onReplaceSelected() async {
-    await widget.scm.onReplacementSelect(
-      matchIndex: widget.scm.matchIndex,
+  Future<void> _onReplaceSelected() async {
+    await widget.choreographer.onReplacementSelect(
+      matchIndex: widget.matchIndex,
       choiceIndex: selectedChoiceIndex!,
     );
     _showFirstMatch();
   }
 
-  void onIgnoreMatch() {
+  void _onIgnoreMatch() {
     Future.delayed(
       Duration.zero,
       () {
-        widget.scm.onIgnore();
+        widget.choreographer.onIgnoreMatch(
+          matchIndex: widget.matchIndex,
+        );
         _showFirstMatch();
       },
     );
   }
 
   void _showFirstMatch() {
-    if (widget.scm.choreographer.igc.igcTextData != null &&
-        widget.scm.choreographer.igc.igcTextData!.matches.isNotEmpty) {
-      widget.scm.choreographer.igc.showFirstMatch(context);
+    if (widget.choreographer.igc.igcTextData != null &&
+        widget.choreographer.igc.igcTextData!.matches.isNotEmpty) {
+      widget.choreographer.igc.showFirstMatch(context);
     } else {
       MatrixState.pAnyState.closeOverlay();
     }
@@ -166,113 +180,103 @@ class SpanCardState extends State<SpanCard> {
 
   @override
   Widget build(BuildContext context) {
-    return WordMatchContent(controller: this);
+    return WordMatchContent(
+      controller: this,
+      scrollController: scrollController,
+    );
   }
 }
 
 class WordMatchContent extends StatelessWidget {
-  final PangeaController pangeaController = MatrixState.pangeaController;
   final SpanCardState controller;
+  final ScrollController scrollController;
 
-  WordMatchContent({
+  const WordMatchContent({
     required this.controller,
+    required this.scrollController,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    if (controller.widget.scm.pangeaMatch == null) {
+    if (controller.pangeaMatch == null || controller.pangeaMatch!.isITStart) {
       return const SizedBox();
     }
 
-    final ScrollController scrollController = ScrollController();
-
-    try {
-      return Column(
-        children: [
-          // if (!controller.widget.scm.pangeaMatch!.isITStart)
-          // CardHeader(
-          //   text: controller.error?.toString(),
-          //   botExpression: controller.error == null
-          //       ? controller.currentExpression
-          //       : BotExpression.addled,
-          //   onClose: () => controller.widget.scm.choreographer.setState(),
-          // ),
-          Scrollbar(
+    return Stack(
+      children: [
+        SizedBox(
+          height: 300.0,
+          child: Scrollbar(
             controller: scrollController,
-            thumbVisibility: true,
             child: SingleChildScrollView(
               controller: scrollController,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  // const SizedBox(height: 10.0),
-                  // if (matchCopy.description != null)
-                  //   Padding(
-                  //     padding: const EdgeInsets.only(),
-                  //     child: Text(
-                  //       matchCopy.description!,
-                  //       style: BotStyle.text(context),
-                  //     ),
-                  //   ),
                   const SizedBox(height: 8),
-                  if (!controller.widget.scm.pangeaMatch!.isITStart)
-                    ChoicesArray(
-                      originalSpan:
-                          controller.widget.scm.pangeaMatch!.matchContent,
-                      isLoading: controller.fetchingData,
-                      choices: controller.widget.scm.pangeaMatch!.match.choices
-                          ?.map(
-                            (e) => Choice(
-                              text: e.value,
-                              color: e.selected ? e.type.color : null,
-                              isGold: e.type.name == 'bestCorrection',
-                            ),
-                          )
-                          .toList(),
-                      onPressed: (value, index) =>
-                          controller.onChoiceSelect(index),
-                      selectedChoiceIndex: controller.selectedChoiceIndex,
-                      id: controller.widget.scm.pangeaMatch!.hashCode
-                          .toString(),
-                      langCode: MatrixState.pangeaController.languageController
-                          .activeL2Code(),
-                    ),
+                  ChoicesArray(
+                    originalSpan: controller.pangeaMatch!.matchContent,
+                    isLoading: controller.fetchingData,
+                    choices: controller.pangeaMatch!.match.choices
+                        ?.map(
+                          (e) => Choice(
+                            text: e.value,
+                            color: e.selected ? e.type.color : null,
+                            isGold: e.type.name == 'bestCorrection',
+                          ),
+                        )
+                        .toList(),
+                    onPressed: (value, index) =>
+                        controller._onChoiceSelect(index),
+                    selectedChoiceIndex: controller.selectedChoiceIndex,
+                    id: controller.pangeaMatch!.hashCode.toString(),
+                    langCode: MatrixState.pangeaController.languageController
+                        .activeL2Code(),
+                  ),
                   const SizedBox(height: 12),
                   PromptAndFeedback(controller: controller),
+                  const SizedBox(height: 60.0),
                 ],
               ),
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const SizedBox(width: 10),
-              Expanded(
-                child: Opacity(
-                  opacity: 0.8,
-                  child: TextButton(
-                    style: ButtonStyle(
-                      backgroundColor: WidgetStateProperty.all<Color>(
-                        Theme.of(context).colorScheme.primary.withAlpha(25),
+        ),
+        Positioned(
+          bottom: 0,
+          left: 0,
+          right: 0,
+          child: Container(
+            decoration: BoxDecoration(
+              color: Theme.of(context).cardColor,
+            ),
+            padding: const EdgeInsets.only(top: 8.0),
+            child: Row(
+              spacing: 10.0,
+              children: [
+                Expanded(
+                  child: Opacity(
+                    opacity: 0.8,
+                    child: TextButton(
+                      style: ButtonStyle(
+                        backgroundColor: WidgetStateProperty.all<Color>(
+                          Theme.of(context).colorScheme.primary.withAlpha(25),
+                        ),
                       ),
-                    ),
-                    onPressed: controller.onIgnoreMatch,
-                    child: Center(
-                      child: Text(L10n.of(context).ignoreInThisText),
+                      onPressed: controller._onIgnoreMatch,
+                      child: Center(
+                        child: Text(L10n.of(context).ignoreInThisText),
+                      ),
                     ),
                   ),
                 ),
-              ),
-              const SizedBox(width: 10),
-              if (!controller.widget.scm.pangeaMatch!.isITStart)
                 Expanded(
                   child: Opacity(
                     opacity: controller.selectedChoiceIndex != null ? 1.0 : 0.5,
                     child: TextButton(
                       onPressed: controller.selectedChoiceIndex != null
-                          ? controller.onReplaceSelected
+                          ? controller._onReplaceSelected
                           : null,
                       style: ButtonStyle(
                         backgroundColor: WidgetStateProperty.all<Color>(
@@ -296,48 +300,12 @@ class WordMatchContent extends StatelessWidget {
                     ),
                   ),
                 ),
-              const SizedBox(width: 10),
-              if (controller.widget.scm.pangeaMatch!.isITStart)
-                Expanded(
-                  child: TextButton(
-                    onPressed: () {
-                      MatrixState.pAnyState.closeOverlay();
-                      Future.delayed(
-                        Duration.zero,
-                        () => controller.widget.scm.onITStart(),
-                      );
-                    },
-                    style: ButtonStyle(
-                      backgroundColor: WidgetStateProperty.all<Color>(
-                        (Theme.of(context).colorScheme.primary).withAlpha(25),
-                      ),
-                    ),
-                    child: Text(L10n.of(context).helpMeTranslate),
-                  ),
-                ),
-            ],
+              ],
+            ),
           ),
-          // if (controller.widget.scm.pangeaMatch!.isITStart)
-          //   DontShowSwitchListTile(
-          //     controller: pangeaController,
-          //     onSwitch: (bool value) {
-          //       pangeaController.userController.updateProfile((profile) {
-          //         profile.userSettings.itAutoPlay = value;
-          //         return profile;
-          //       });
-          //     },
-          //   ),
-        ],
-      );
-    } on Exception catch (e) {
-      debugger(when: kDebugMode);
-      ErrorHandler.logError(
-        e: e,
-        s: StackTrace.current,
-        data: {},
-      );
-      rethrow;
-    }
+        ),
+      ],
+    );
   }
 }
 
@@ -351,14 +319,14 @@ class PromptAndFeedback extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (controller.widget.scm.pangeaMatch == null) {
+    if (controller.pangeaMatch == null) {
       return const SizedBox();
     }
 
     return Container(
-      constraints: controller.widget.scm.pangeaMatch!.isITStart
+      constraints: controller.pangeaMatch!.isITStart
           ? null
-          : const BoxConstraints(minHeight: 100),
+          : const BoxConstraints(minHeight: 75.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -391,7 +359,7 @@ class PromptAndFeedback extends StatelessWidget {
           if (!controller.fetchingData &&
               controller.selectedChoiceIndex == null)
             Text(
-              controller.widget.scm.pangeaMatch!.match.type.typeName
+              controller.pangeaMatch!.match.type.typeName
                   .defaultPrompt(context),
               style: BotStyle.text(context).copyWith(
                 fontStyle: FontStyle.italic,
@@ -399,111 +367,6 @@ class PromptAndFeedback extends StatelessWidget {
             ),
         ],
       ),
-    );
-  }
-}
-
-class LoadingText extends StatefulWidget {
-  const LoadingText({
-    super.key,
-  });
-
-  @override
-  LoadingTextState createState() => LoadingTextState();
-}
-
-class LoadingTextState extends State<LoadingText>
-    with SingleTickerProviderStateMixin {
-  late final AnimationController _controller = AnimationController(
-    duration: const Duration(seconds: 1),
-    vsync: this,
-  )..repeat();
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(
-          L10n.of(context).makingActivity,
-          style: BotStyle.text(context),
-        ),
-        AnimatedBuilder(
-          animation: _controller,
-          builder: (BuildContext context, Widget? child) {
-            return Text(
-              _controller.isAnimating ? '.' * _controller.value.toInt() : '',
-              style: BotStyle.text(context),
-            );
-          },
-        ),
-      ],
-    );
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-}
-
-class StartITButton extends StatelessWidget {
-  const StartITButton({
-    super.key,
-    required this.onITStart,
-  });
-
-  final void Function() onITStart;
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      type: MaterialType.transparency,
-      child: ListTile(
-        leading: const Icon(Icons.translate_outlined),
-        title: Text(L10n.of(context).helpMeTranslate),
-        onTap: () {
-          MatrixState.pAnyState.closeOverlay();
-          Future.delayed(Duration.zero, () => onITStart());
-        },
-      ),
-    );
-  }
-}
-
-class DontShowSwitchListTile extends StatefulWidget {
-  final PangeaController controller;
-  final Function(bool) onSwitch;
-
-  const DontShowSwitchListTile({
-    super.key,
-    required this.controller,
-    required this.onSwitch,
-  });
-
-  @override
-  DontShowSwitchListTileState createState() => DontShowSwitchListTileState();
-}
-
-class DontShowSwitchListTileState extends State<DontShowSwitchListTile> {
-  bool switchValue = false;
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return SwitchListTile.adaptive(
-      activeColor: AppConfig.activeToggleColor,
-      title: Text(L10n.of(context).interactiveTranslatorAutoPlaySliderHeader),
-      value: switchValue,
-      onChanged: (value) {
-        widget.onSwitch(value);
-        setState(() => switchValue = value);
-      },
     );
   }
 }

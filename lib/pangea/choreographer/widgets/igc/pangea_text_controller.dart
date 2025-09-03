@@ -13,7 +13,6 @@ import 'package:fluffychat/widgets/matrix.dart';
 import '../../../common/utils/overlay.dart';
 import '../../controllers/choreographer.dart';
 import '../../enums/edit_type.dart';
-import '../../models/span_card_model.dart';
 
 class PangeaTextController extends TextEditingController {
   Choreographer choreographer;
@@ -90,23 +89,8 @@ class PangeaTextController extends TextEditingController {
 
     final Widget? cardToShow = matchIndex != -1
         ? SpanCard(
-            scm: SpanCardModel(
-              // igcTextData: choreographer.igc.igcTextData!,
-              matchIndex: matchIndex,
-              onReplacementSelect: choreographer.onReplacementSelect,
-              // may not need this
-              onSentenceRewrite: ((sentenceRewrite) async {}),
-              onIgnore: () => choreographer.onIgnoreMatch(
-                cursorOffset: selection.baseOffset,
-              ),
-              onITStart: () {
-                choreographer.onITStart(
-                  choreographer.igc.igcTextData!.matches[matchIndex],
-                );
-              },
-              choreographer: choreographer,
-            ),
-            roomId: choreographer.roomId,
+            matchIndex: matchIndex,
+            choreographer: choreographer,
           )
         : null;
 
@@ -126,6 +110,7 @@ class PangeaTextController extends TextEditingController {
         transformTargetId: choreographer.inputTransformTargetKey,
         onDismiss: () => choreographer.setState(),
         ignorePointer: true,
+        isScrollable: false,
       );
     }
   }

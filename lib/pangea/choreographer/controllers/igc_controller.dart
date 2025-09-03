@@ -18,7 +18,6 @@ import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dar
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../common/utils/error_handler.dart';
 import '../../common/utils/overlay.dart';
-import '../models/span_card_model.dart';
 
 class _IGCTextDataCacheItem {
   Future<IGCTextData> data;
@@ -214,27 +213,15 @@ class IgcController {
       overlayKey: "span_card_overlay_$firstMatchIndex",
       context: context,
       cardToShow: SpanCard(
-        scm: SpanCardModel(
-          matchIndex: firstMatchIndex,
-          onReplacementSelect: choreographer.onReplacementSelect,
-          onSentenceRewrite: (value) async {},
-          onIgnore: () => choreographer.onIgnoreMatch(
-            cursorOffset: match.match.offset,
-          ),
-          onITStart: () {
-            if (choreographer.itEnabled && igcTextData != null) {
-              choreographer.onITStart(igcTextData!.matches[firstMatchIndex]);
-            }
-          },
-          choreographer: choreographer,
-        ),
-        roomId: choreographer.roomId,
+        matchIndex: firstMatchIndex,
+        choreographer: choreographer,
       ),
-      maxHeight: match.isITStart ? 260 : 350,
-      maxWidth: 350,
+      maxHeight: 325,
+      maxWidth: 325,
       transformTargetId: choreographer.inputTransformTargetKey,
       onDismiss: () => choreographer.setState(),
       ignorePointer: true,
+      isScrollable: false,
     );
   }
 
