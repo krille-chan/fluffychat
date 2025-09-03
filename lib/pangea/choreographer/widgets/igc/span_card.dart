@@ -203,51 +203,47 @@ class WordMatchContent extends StatelessWidget {
       return const SizedBox();
     }
 
-    return Stack(
-      children: [
-        SizedBox(
-          height: 300.0,
-          child: Scrollbar(
-            controller: scrollController,
-            child: SingleChildScrollView(
+    return SizedBox(
+      height: 300.0,
+      child: Column(
+        children: [
+          Expanded(
+            child: Scrollbar(
               controller: scrollController,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  const SizedBox(height: 8),
-                  ChoicesArray(
-                    originalSpan: controller.pangeaMatch!.matchContent,
-                    isLoading: controller.fetchingData,
-                    choices: controller.pangeaMatch!.match.choices
-                        ?.map(
-                          (e) => Choice(
-                            text: e.value,
-                            color: e.selected ? e.type.color : null,
-                            isGold: e.type.name == 'bestCorrection',
-                          ),
-                        )
-                        .toList(),
-                    onPressed: (value, index) =>
-                        controller._onChoiceSelect(index),
-                    selectedChoiceIndex: controller.selectedChoiceIndex,
-                    id: controller.pangeaMatch!.hashCode.toString(),
-                    langCode: MatrixState.pangeaController.languageController
-                        .activeL2Code(),
-                  ),
-                  const SizedBox(height: 12),
-                  PromptAndFeedback(controller: controller),
-                  const SizedBox(height: 60.0),
-                ],
+              child: SingleChildScrollView(
+                controller: scrollController,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    const SizedBox(height: 8),
+                    ChoicesArray(
+                      originalSpan: controller.pangeaMatch!.matchContent,
+                      isLoading: controller.fetchingData,
+                      choices: controller.pangeaMatch!.match.choices
+                          ?.map(
+                            (e) => Choice(
+                              text: e.value,
+                              color: e.selected ? e.type.color : null,
+                              isGold: e.type.name == 'bestCorrection',
+                            ),
+                          )
+                          .toList(),
+                      onPressed: (value, index) =>
+                          controller._onChoiceSelect(index),
+                      selectedChoiceIndex: controller.selectedChoiceIndex,
+                      id: controller.pangeaMatch!.hashCode.toString(),
+                      langCode: MatrixState.pangeaController.languageController
+                          .activeL2Code(),
+                    ),
+                    const SizedBox(height: 12),
+                    PromptAndFeedback(controller: controller),
+                  ],
+                ),
               ),
             ),
           ),
-        ),
-        Positioned(
-          bottom: 0,
-          left: 0,
-          right: 0,
-          child: Container(
+          Container(
             decoration: BoxDecoration(
               color: Theme.of(context).cardColor,
             ),
@@ -303,8 +299,8 @@ class WordMatchContent extends StatelessWidget {
               ],
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
