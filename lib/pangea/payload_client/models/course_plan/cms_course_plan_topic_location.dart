@@ -1,3 +1,4 @@
+import 'package:fluffychat/pangea/payload_client/join_field.dart';
 import 'package:fluffychat/pangea/payload_client/polymorphic_relationship.dart';
 
 /// Represents a course plan topic location from the CMS API
@@ -7,6 +8,7 @@ class CmsCoursePlanTopicLocation {
   final String name;
   // [longitude, latitude] - minItems: 2, maxItems: 2
   final List<double>? coordinates;
+  final JoinField? coursePlanTopicLocationMedia;
   final List<String> coursePlanTopics;
   final PolymorphicRelationship? createdBy;
   final PolymorphicRelationship? updatedBy;
@@ -17,6 +19,7 @@ class CmsCoursePlanTopicLocation {
     required this.id,
     required this.name,
     this.coordinates,
+    this.coursePlanTopicLocationMedia,
     required this.coursePlanTopics,
     this.createdBy,
     this.updatedBy,
@@ -31,6 +34,9 @@ class CmsCoursePlanTopicLocation {
       coordinates: (json['coordinates'] as List<dynamic>?)
           ?.map((coord) => (coord as num).toDouble())
           .toList(),
+      coursePlanTopicLocationMedia: json['coursePlanTopicLocationMedia'] != null
+          ? JoinField.fromJson(json['coursePlanTopicLocationMedia'])
+          : null,
       coursePlanTopics: List<String>.from(json['coursePlanTopics']),
       createdBy: json['createdBy'] != null
           ? PolymorphicRelationship.fromJson(json['createdBy'])
@@ -49,6 +55,7 @@ class CmsCoursePlanTopicLocation {
       'name': name,
       'coordinates': coordinates,
       'coursePlanTopics': coursePlanTopics,
+      'coursePlanTopicLocationMedia': coursePlanTopicLocationMedia?.toJson(),
       'createdBy': createdBy?.toJson(),
       'updatedBy': updatedBy?.toJson(),
       'updatedAt': updatedAt,
