@@ -109,7 +109,8 @@ class IgcController {
               .timeout((const Duration(seconds: 10)));
 
       // this will happen when the user changes the input while igc is fetching results
-      if (igcTextDataResponse.originalInput != choreographer.currentText) {
+      if (igcTextDataResponse.originalInput.trim() !=
+          choreographer.currentText.trim()) {
         return;
       }
       // get ignored matches from the original igcTextData
