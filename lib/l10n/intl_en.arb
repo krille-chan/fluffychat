@@ -5266,5 +5266,17 @@
   "generatingSummary": "Analyzing chat and generating results",
   "instructionsLanguage": "Instructions language",
   "findCourse": "Find a course",
-  "activityCompletedDesc": "Your completed activity was added to analytics where you can review and practice the language you used."
+  "activityCompletedDesc": "Your completed activity was added to analytics where you can review and practice the language you used.",
+  "pingParticipantsNotification": "{user} is looking for users to join the activity session in {room}",
+  "@pingParticipantsNotification": {
+    "type": "String",
+    "placeholders": {
+      "user": {
+        "type": "String"
+      },
+      "room": {
+        "type": "String"
+      }
+    }
+  }
 }
