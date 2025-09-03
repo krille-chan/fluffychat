@@ -5265,5 +5265,6 @@
   "saveToCompletedActivities": "Save to completed activities",
   "generatingSummary": "Analyzing chat and generating results",
   "instructionsLanguage": "Instructions language",
-  "findCourse": "Find a course"
+  "findCourse": "Find a course",
+  "activityCompletedDesc": "Your completed activity was added to analytics where you can review and practice the language you used."
 }

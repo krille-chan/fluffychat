@@ -83,7 +83,7 @@ extension ActivityRoomExtension on Room {
   Future<void> archiveActivity() async {
     final currentRoles = activityRoles ?? ActivityRolesModel.empty;
     final role = ownRole;
-    if (role == null || !role.isFinished) return;
+    if (role == null || !role.isFinished || role.isArchived) return;
 
     role.archivedAt = DateTime.now();
     currentRoles.updateRole(role);

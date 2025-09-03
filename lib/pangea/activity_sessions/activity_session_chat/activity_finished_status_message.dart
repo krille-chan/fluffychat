@@ -6,6 +6,7 @@ import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_room_extension.dart';
+import 'package:fluffychat/pangea/activity_sessions/activity_session_chat/saved_activity_analytics_dialog.dart';
 import 'package:fluffychat/pangea/course_plans/course_plan_room_extension.dart';
 import 'package:fluffychat/pangea/course_plans/course_plans_repo.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
@@ -129,9 +130,18 @@ class ActivityFinishedStatusMessage extends StatelessWidget {
                             );
 
                             if (!resp.isError) {
-                              context.go(
-                                "/rooms/analytics?mode=activities",
+                              final navigate = await showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return const SavedActivityAnalyticsDialog();
+                                },
                               );
+
+                              if (navigate == true) {
+                                context.go(
+                                  "/rooms/analytics?mode=activities",
+                                );
+                              }
                             }
                           },
                           child: Row(
