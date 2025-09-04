@@ -68,6 +68,7 @@ class ActivityParticipantIndicator extends StatelessWidget {
                                       : null,
                                   name: userId!.localpart,
                                   size: 60.0,
+                                  userId: userId,
                                 )
                               : ClipRRect(
                                   borderRadius: BorderRadius.circular(30),

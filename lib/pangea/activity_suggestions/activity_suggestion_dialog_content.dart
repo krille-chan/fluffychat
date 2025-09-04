@@ -51,19 +51,11 @@ class _ActivitySuggestionDialogImage extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(24.0),
       width: imageWidth,
-      child: activityController.avatar != null
-          ? ClipRRect(
-              borderRadius: BorderRadius.circular(20.0),
-              child: Image.memory(
-                activityController.avatar!,
-                fit: BoxFit.cover,
-              ),
-            )
-          : ImageByUrl(
-              imageUrl: activityController.updatedActivity.imageURL,
-              width: imageWidth,
-              borderRadius: BorderRadius.circular(20.0),
-            ),
+      child: ImageByUrl(
+        imageUrl: activityController.updatedActivity.imageURL,
+        width: imageWidth,
+        borderRadius: BorderRadius.circular(20.0),
+      ),
     );
   }
 }
