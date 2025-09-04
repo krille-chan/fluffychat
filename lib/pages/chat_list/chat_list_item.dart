@@ -277,18 +277,21 @@ class ChatListItem extends StatelessWidget {
                                             directChatMatrixId !=
                                                 room.lastEvent?.senderId),
                                       )
-                                    : null,
-                                initialData:
-                                    lastEvent?.calcLocalizedBodyFallback(
-                                  MatrixLocals(L10n.of(context)),
-                                  hideReply: true,
-                                  hideEdit: true,
-                                  plaintextBody: true,
-                                  removeMarkdown: true,
-                                  withSenderNamePrefix: (!isDirectChat ||
-                                      directChatMatrixId !=
-                                          room.lastEvent?.senderId),
-                                ),
+                                    : Future(
+                                        () => lastEvent
+                                            ?.calcLocalizedBodyFallback(
+                                          MatrixLocals(L10n.of(context)),
+                                          hideReply: true,
+                                          hideEdit: true,
+                                          plaintextBody: true,
+                                          removeMarkdown: true,
+                                          withSenderNamePrefix:
+                                              (!isDirectChat ||
+                                                  directChatMatrixId !=
+                                                      room.lastEvent?.senderId),
+                                        ),
+                                      ),
+                                initialData: "",
                                 builder: (context, snapshot) => Text(
                                   room.membership == Membership.invite
                                       ? room
