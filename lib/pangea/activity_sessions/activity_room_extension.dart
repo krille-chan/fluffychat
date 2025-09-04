@@ -8,6 +8,7 @@ import 'package:matrix/matrix.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_role_model.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_roles_model.dart';
+import 'package:fluffychat/pangea/activity_sessions/activity_session_analytics_repo.dart';
 import 'package:fluffychat/pangea/activity_summary/activity_summary_analytics_model.dart';
 import 'package:fluffychat/pangea/activity_summary/activity_summary_model.dart';
 import 'package:fluffychat/pangea/activity_summary/activity_summary_request_model.dart';
@@ -19,6 +20,7 @@ import 'package:fluffychat/pangea/course_plans/course_plan_room_extension.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 import '../activity_summary/activity_summary_repo.dart';
 
 extension ActivityRoomExtension on Room {
@@ -326,4 +328,41 @@ extension ActivityRoomExtension on Room {
       roomType?.startsWith(PangeaRoomTypes.activitySession) == true;
 
   bool get isActivitySession => isActivityRoomType || activityPlan != null;
+
+  Future<ActivitySummaryAnalyticsModel> getActivityAnalytics() async {
+    // wait for local storage box to init in getAnalytics initialization
+    if (!MatrixState.pangeaController.getAnalytics.initCompleter.isCompleted) {
+      await MatrixState.pangeaController.getAnalytics.initCompleter.future;
+    }
+
+    final cached = ActivitySessionAnalyticsRepo.get(id);
+    final analytics = cached?.analytics ?? ActivitySummaryAnalyticsModel();
+
+    final eventsSince = await getAllEvents(since: cached?.lastEventId);
+    final timeline = this.timeline ?? await getTimeline();
+    final messageEvents = getPangeaMessageEvents(
+      eventsSince,
+      timeline,
+      msgtypes: [
+        MessageTypes.Text,
+        MessageTypes.Audio,
+      ],
+    );
+
+    if (messageEvents.isEmpty) {
+      return analytics;
+    }
+
+    for (final pangeaMessage in messageEvents) {
+      analytics.addConstructs(pangeaMessage);
+    }
+
+    await ActivitySessionAnalyticsRepo.set(
+      id,
+      messageEvents.last.eventId,
+      analytics,
+    );
+
+    return analytics;
+  }
 }

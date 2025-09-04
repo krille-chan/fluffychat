@@ -76,6 +76,7 @@ class GetAnalyticsController extends BaseController {
 
     try {
       await GetStorage.init("analytics_storage");
+      await GetStorage.init("activity_analytics_storage");
       _client.updateAnalyticsRoomJoinRules();
       _client.addAnalyticsRoomsToSpaces();
 

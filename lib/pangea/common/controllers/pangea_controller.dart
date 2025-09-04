@@ -129,6 +129,7 @@ class PangeaController {
     'vocab_storage',
     'onboarding_storage',
     'analytics_request_storage',
+    'activity_analytics_storage',
   ];
 
   Future<void> clearCache({List<String> exclude = const []}) async {

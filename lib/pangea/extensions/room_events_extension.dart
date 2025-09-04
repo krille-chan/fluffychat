@@ -322,7 +322,7 @@ extension EventsRoomExtension on Room {
     return resp.chunk.map((e) => Event.fromMatrixEvent(e, this)).toList();
   }
 
-  Future<List<Event>> getAllEvents() async {
+  Future<List<Event>> getAllEvents({String? since}) async {
     final GetRoomEventsResponse initalResp =
         await client.getRoomEvents(id, Direction.b);
 
@@ -340,9 +340,20 @@ extension EventsRoomExtension on Room {
       resp.end != nextStartToken
           ? nextStartToken = resp.end
           : nextStartToken = null;
+
+      if (since != null && chunkMessages.any((e) => e.eventId == since)) {
+        break;
+      }
     }
 
     allMatrixEvents = allMatrixEvents.reversed.toList();
+    if (since != null) {
+      final index = allMatrixEvents.indexWhere((e) => e.eventId == since);
+      if (index != -1) {
+        allMatrixEvents = allMatrixEvents.sublist(index + 1);
+      }
+    }
+
     final List<Event> allEvents = allMatrixEvents
         .map((MatrixEvent message) => Event.fromMatrixEvent(message, this))
         .toList();
@@ -352,13 +363,14 @@ extension EventsRoomExtension on Room {
 
   List<PangeaMessageEvent> getPangeaMessageEvents(
     List<Event> events,
-    Timeline timeline,
-  ) {
+    Timeline timeline, {
+    List<String> msgtypes = const [MessageTypes.Text],
+  }) {
     final List<PangeaMessageEvent> allPangeaMessages = events
         .where(
           (Event event) =>
               event.type == EventTypes.Message &&
-              event.content['msgtype'] == MessageTypes.Text,
+              msgtypes.contains(event.content['msgtype']),
         )
         .map(
           (Event message) => PangeaMessageEvent(
