@@ -156,7 +156,7 @@ class ButtonControlledCarouselView extends StatelessWidget {
                       child: SingleChildScrollView(
                         child: Text(
                           p.feedback,
-                          style: const TextStyle(fontSize: 8.0),
+                          style: const TextStyle(fontSize: 12.0),
                         ),
                       ),
                     ),

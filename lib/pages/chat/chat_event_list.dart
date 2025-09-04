@@ -9,7 +9,6 @@ import 'package:fluffychat/pages/chat/events/message.dart';
 import 'package:fluffychat/pages/chat/seen_by_row.dart';
 import 'package:fluffychat/pages/chat/typing_indicators.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_message.dart';
-import 'package:fluffychat/pangea/activity_sessions/activity_session_chat/activity_finished_status_message.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_user_summaries_widget.dart';
 import 'package:fluffychat/pangea/events/extensions/pangea_event_extension.dart';
 import 'package:fluffychat/utils/account_config.dart';
@@ -95,7 +94,7 @@ class ChatEventList extends StatelessWidget {
             // Request history button or progress indicator:
             // #Pangea
             // if (i == events.length + 1) {
-            if (i == events.length + 3) {
+            if (i == events.length + 2) {
               // Pangea#
               if (timeline.isRequestingHistory) {
                 return const Center(
@@ -126,17 +125,13 @@ class ChatEventList extends StatelessWidget {
 
             // #Pangea
             if (i == 1) {
-              return ActivityFinishedStatusMessage(controller: controller);
-            }
-
-            if (i == 2) {
               return ActivityUserSummaries(controller: controller);
             }
             // Pangea#
 
             // #Pangea
             // i--;
-            i = i - 3;
+            i = i - 2;
             // Pangea#
 
             // The message at this index:
@@ -214,7 +209,7 @@ class ChatEventList extends StatelessWidget {
           },
           // #Pangea
           // childCount: events.length + 2,
-          childCount: events.length + 4,
+          childCount: events.length + 3,
           // Pangea#
           findChildIndexCallback: (key) =>
               controller.findChildIndexCallback(key, thisEventsKeyMap),

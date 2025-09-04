@@ -237,7 +237,18 @@ class ActivityPlannerBuilderState extends State<ActivityPlannerBuilder> {
             mxcUri.pathSegments.last,
           );
         } else {
-          final Response response = await http.get(Uri.parse(url));
+          final Response response = await http.get(
+            Uri.parse(url),
+            headers: {
+              'Authorization':
+                  'Bearer ${MatrixState.pangeaController.userController.accessToken}',
+            },
+          );
+          if (response.statusCode != 200) {
+            throw Exception(
+              "Failed to download image from URL: ${response.statusCode}",
+            );
+          }
           avatar = response.bodyBytes;
           filename = Uri.encodeComponent(
             Uri.parse(url).pathSegments.last,

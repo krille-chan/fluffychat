@@ -121,7 +121,7 @@ extension ActivityRoomExtension on Room {
     final events = await getAllEvents();
     final List<ActivitySummaryResultsMessage> messages = [];
     final ActivitySummaryAnalyticsModel analytics =
-        ActivitySummaryAnalyticsModel();
+        activitySummary?.analytics ?? ActivitySummaryAnalyticsModel();
 
     final timeline = this.timeline ?? await getTimeline();
     for (final event in events) {
@@ -148,7 +148,10 @@ extension ActivityRoomExtension on Room {
       );
 
       messages.add(activityMessage);
-      analytics.addConstructs(pangeaMessage);
+
+      if (activitySummary?.analytics == null) {
+        analytics.addConstructs(pangeaMessage);
+      }
     }
 
     try {
@@ -182,6 +185,7 @@ extension ActivityRoomExtension on Room {
         await setActivitySummary(
           ActivitySummaryModel(
             errorAt: DateTime.now(),
+            analytics: analytics,
           ),
         );
       }
@@ -274,7 +278,9 @@ extension ActivityRoomExtension on Room {
         powerForChangingStateEvent(PangeaEventTypes.activitySummary) == 0;
   }
 
-  bool get activityHasStarted => remainingRoles == 0;
+  bool get activityHasStarted =>
+      (activityPlan?.roles.length ?? 0) - (activityRoles?.roles.length ?? 0) <=
+      0;
 
   bool get isActiveInActivity {
     if (!showActivityChatUI) return false;

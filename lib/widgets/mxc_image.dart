@@ -65,6 +65,10 @@ class _MxcImageState extends State<MxcImage> {
         : _imageDataCache[cacheKey] = data;
   }
 
+  // #Pangea
+  Object? _error;
+  // Pangea#
+
   Future<void> _load() async {
     if (!mounted) return;
     final client =
@@ -112,12 +116,22 @@ class _MxcImageState extends State<MxcImage> {
       return;
     }
     try {
+      // #Pangea
+      setState(() => _error = null);
+      // Pangea#
       await _load();
     } on IOException catch (_) {
       if (!mounted) return;
       await Future.delayed(widget.retryDuration);
       _tryLoad();
     }
+    // #Pangea
+    catch (e) {
+      if (mounted) {
+        setState(() => _error = e);
+      }
+    }
+    // Pangea#
   }
 
   @override
@@ -153,37 +167,51 @@ class _MxcImageState extends State<MxcImage> {
 
     return AnimatedCrossFade(
       crossFadeState:
-          hasData ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+          // #Pangea
+          // hasData ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+          hasData || _error != null
+              ? CrossFadeState.showSecond
+              : CrossFadeState.showFirst,
+      // Pangea#
       duration: const Duration(milliseconds: 128),
       firstChild: placeholder(context),
-      secondChild: hasData
-          ? Image.memory(
-              data,
+      // #Pangea
+      // secondChild: hasData
+      secondChild: _error != null
+          ? SizedBox(
               width: widget.width,
               height: widget.height,
-              fit: widget.fit,
-              filterQuality:
-                  widget.isThumbnail ? FilterQuality.low : FilterQuality.medium,
-              errorBuilder: (context, e, s) {
-                Logs().d('Unable to render mxc image', e, s);
-                return SizedBox(
+            )
+          : hasData
+              // Pangea#
+              ? Image.memory(
+                  data,
                   width: widget.width,
                   height: widget.height,
-                  child: Material(
-                    color: Theme.of(context).colorScheme.surfaceContainer,
-                    child: Icon(
-                      Icons.broken_image_outlined,
-                      size: min(widget.height ?? 64, 64),
-                      color: Theme.of(context).colorScheme.onSurface,
-                    ),
-                  ),
-                );
-              },
-            )
-          : SizedBox(
-              width: widget.width,
-              height: widget.height,
-            ),
+                  fit: widget.fit,
+                  filterQuality: widget.isThumbnail
+                      ? FilterQuality.low
+                      : FilterQuality.medium,
+                  errorBuilder: (context, e, s) {
+                    Logs().d('Unable to render mxc image', e, s);
+                    return SizedBox(
+                      width: widget.width,
+                      height: widget.height,
+                      child: Material(
+                        color: Theme.of(context).colorScheme.surfaceContainer,
+                        child: Icon(
+                          Icons.broken_image_outlined,
+                          size: min(widget.height ?? 64, 64),
+                          color: Theme.of(context).colorScheme.onSurface,
+                        ),
+                      ),
+                    );
+                  },
+                )
+              : SizedBox(
+                  width: widget.width,
+                  height: widget.height,
+                ),
     );
   }
 }

@@ -7,6 +7,7 @@ import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_room_extension.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_session_chat/saved_activity_analytics_dialog.dart';
+import 'package:fluffychat/pangea/activity_summary/activity_summary_model.dart';
 import 'package:fluffychat/pangea/course_plans/course_plan_room_extension.dart';
 import 'package:fluffychat/pangea/course_plans/course_plans_repo.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
@@ -19,6 +20,30 @@ class ActivityFinishedStatusMessage extends StatelessWidget {
     super.key,
     required this.controller,
   });
+
+  Future<void> _onArchive(BuildContext context) async {
+    {
+      final resp = await showFutureLoadingDialog(
+        context: context,
+        future: () => _archiveToAnalytics(context),
+      );
+
+      if (!resp.isError) {
+        final navigate = await showDialog(
+          context: context,
+          builder: (context) {
+            return const SavedActivityAnalyticsDialog();
+          },
+        );
+
+        if (navigate == true) {
+          context.go(
+            "/rooms/analytics?mode=activities",
+          );
+        }
+      }
+    }
+  }
 
   Future<void> _archiveToAnalytics(BuildContext context) async {
     await controller.room.archiveActivity();
@@ -44,6 +69,11 @@ class ActivityFinishedStatusMessage extends StatelessWidget {
     await courseParent.finishCourseActivity(activityId, topicId);
   }
 
+  ActivitySummaryModel? get summary => controller.room.activitySummary;
+
+  bool get _enableArchive =>
+      summary?.summary != null || summary?.hasError == true;
+
   @override
   Widget build(BuildContext context) {
     if (!controller.room.showActivityChatUI ||
@@ -53,18 +83,13 @@ class ActivityFinishedStatusMessage extends StatelessWidget {
     }
 
     final theme = Theme.of(context);
-    final summary = controller.room.activitySummary;
-
     return AnimatedSize(
       duration: FluffyThemes.animationDuration,
       child: Container(
         margin: const EdgeInsets.only(top: 20.0),
-        padding: const EdgeInsets.only(
-          top: 12.0,
-          left: 12.0,
-          right: 12.0,
-        ),
+        padding: const EdgeInsets.all(12.0),
         decoration: BoxDecoration(
+          color: theme.colorScheme.surface,
           border: Border(
             top: BorderSide(color: theme.dividerColor),
           ),
@@ -123,27 +148,8 @@ class ActivityFinishedStatusMessage extends StatelessWidget {
                                 theme.colorScheme.onPrimaryContainer,
                             backgroundColor: theme.colorScheme.primaryContainer,
                           ),
-                          onPressed: () async {
-                            final resp = await showFutureLoadingDialog(
-                              context: context,
-                              future: () => _archiveToAnalytics(context),
-                            );
-
-                            if (!resp.isError) {
-                              final navigate = await showDialog(
-                                context: context,
-                                builder: (context) {
-                                  return const SavedActivityAnalyticsDialog();
-                                },
-                              );
-
-                              if (navigate == true) {
-                                context.go(
-                                  "/rooms/analytics?mode=activities",
-                                );
-                              }
-                            }
-                          },
+                          onPressed:
+                              _enableArchive ? () => _onArchive(context) : null,
                           child: Row(
                             spacing: 12.0,
                             mainAxisAlignment: MainAxisAlignment.center,
