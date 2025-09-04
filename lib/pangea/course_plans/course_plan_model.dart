@@ -238,15 +238,17 @@ class CoursePlanModel {
         }
 
         List<CmsCoursePlanTopicLocationMedia>? topicLocationMedias;
-        if (cmsCoursePlanTopicLocationMedias != null) {
+        if (cmsCoursePlanTopicLocationMedias != null &&
+            topicLocations != null &&
+            topicLocations.isNotEmpty) {
+          final location = topicLocations.first;
           for (final media in cmsCoursePlanTopicLocationMedias) {
-            if (media.coursePlanTopicLocations.contains(topic.id)) {
+            if (media.coursePlanTopicLocations.contains(location.id)) {
               topicLocationMedias ??= [];
               topicLocationMedias.add(media);
             }
           }
         }
-        // TODO: consume topicLocationMedias to form topic
 
         topics ??= [];
         topics.add(
@@ -258,6 +260,10 @@ class CoursePlanModel {
                 ? topicLocations.first.name
                 : "Any",
             activities: activityPlans,
+            imageUrl:
+                topicLocationMedias != null && topicLocationMedias.isNotEmpty
+                    ? '${Environment.cmsApi}${topicLocationMedias.last.url}'
+                    : null,
           ),
         );
       }
