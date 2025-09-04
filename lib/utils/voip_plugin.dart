@@ -14,9 +14,11 @@ import 'package:fluffychat/utils/platform_infos.dart';
 import '../../utils/voip/user_media_manager.dart';
 import '../widgets/matrix.dart';
 
+
 class VoipPlugin with WidgetsBindingObserver implements WebRTCDelegate {
   final MatrixState matrix;
   Client get client => matrix.client;
+
   VoipPlugin(this.matrix) {
     voip = VoIP(client, this);
     if (!kIsWeb) {
@@ -25,10 +27,14 @@ class VoipPlugin with WidgetsBindingObserver implements WebRTCDelegate {
       didChangeAppLifecycleState(wb.lifecycleState);
     }
   }
+
   bool background = false;
   bool speakerOn = false;
   late VoIP voip;
-  OverlayEntry? overlayEntry;
+
+  // Track whether we've already presented the call UI
+  bool _callRoutePushed = false;
+
   BuildContext get context => matrix.context;
 
   @override
@@ -37,43 +43,53 @@ class VoipPlugin with WidgetsBindingObserver implements WebRTCDelegate {
         state == AppLifecycleState.paused);
   }
 
+  /// Present the call UI via the root Navigator (works even when Overlay isn't ready)
   void addCallingOverlay(String callId, CallSession call) {
-    final context =
-        kIsWeb ? ChatList.contextForVoip! : this.context; // web is weird
+    // Prefer a global, always-ready context; fall back to previous behavior if needed
+    final ctx = Nav.ctx ?? (kIsWeb ? ChatList.contextForVoip! : context);
 
-    if (overlayEntry != null) {
-      Logs().e('[VOIP] addCallingOverlay: The call session already exists?');
-      overlayEntry!.remove();
+    // If app is still building and Nav.ctx is null, retry on next frame
+    if (Nav.ctx == null) {
+      debugPrint('[VOIP] addCallingOverlay: Nav.ctx is null; retry next frame');
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (voip.currentCID == call.callId) addCallingOverlay(callId, call);
+      });
+      return;
     }
-    // Overlay.of(context) is broken on web
-    // falling back on a dialog
-    if (kIsWeb) {
-      showDialog(
-        context: context,
-        builder: (context) => Calling(
-          context: context,
-          client: client,
-          callId: callId,
-          call: call,
-          onClear: () => Navigator.of(context).pop(),
-        ),
-      );
-    } else {
-      overlayEntry = OverlayEntry(
-        builder: (_) => Calling(
-          context: context,
-          client: client,
-          callId: callId,
-          call: call,
-          onClear: () {
-            overlayEntry?.remove();
-            overlayEntry = null;
-          },
-        ),
-      );
-      Overlay.of(context).insert(overlayEntry!);
+
+    // Avoid duplicate screens
+    if (_callRoutePushed) {
+      debugPrint('[VOIP] addCallingOverlay: route already pushed, ignoring');
+      return;
     }
+    _callRoutePushed = true;
+
+    // Web was using showDialog; showGeneralDialog also works there
+    showGeneralDialog(
+      context: ctx,
+      barrierDismissible: false,
+      barrierColor: Colors.black54,
+      barrierLabel: 'Call',
+      transitionDuration: const Duration(milliseconds: 150),
+      pageBuilder: (_, __, ___) => Calling(
+        context: ctx,
+        client: client,
+        callId: callId,
+        call: call,
+        onClear: () {
+          final nav = Nav.navigatorKey.currentState;
+          if (nav?.canPop() ?? false) {
+            nav!.pop();
+          }
+          _callRoutePushed = false;
+        },
+      ),
+    ).then((_) {
+      _callRoutePushed = false;
+    });
   }
+
+  // ==== WebRTCDelegate requirement implementations ====
 
   @override
   MediaDevices get mediaDevices => webrtc_impl.navigator.mediaDevices;
@@ -113,65 +129,68 @@ class VoipPlugin with WidgetsBindingObserver implements WebRTCDelegate {
     if (PlatformInfos.isAndroid) {
       try {
         final wasForeground = await FlutterForegroundTask.isAppOnForeground;
-
         await matrix.store.setString(
           'wasForeground',
           wasForeground == true ? 'true' : 'false',
         );
         FlutterForegroundTask.setOnLockScreenVisibility(true);
         FlutterForegroundTask.wakeUpScreen();
-        FlutterForegroundTask.launchApp();
+        if (wasForeground != true) {
+          FlutterForegroundTask.launchApp();
+        }
       } catch (e) {
         Logs().e('VOIP foreground failed $e');
       }
-      // use fallback flutter call pages for outgoing and video calls.
-      addCallingOverlay(call.callId, call);
-    } else {
-      addCallingOverlay(call.callId, call);
     }
+    addCallingOverlay(call.callId, call);
   }
 
   @override
   Future<void> handleCallEnded(CallSession session) async {
-    if (overlayEntry != null) {
-      overlayEntry!.remove();
-      overlayEntry = null;
-      if (PlatformInfos.isAndroid) {
-        FlutterForegroundTask.setOnLockScreenVisibility(false);
-        FlutterForegroundTask.stopService();
-        final wasForeground = matrix.store.getString('wasForeground');
-        wasForeground == 'false' ? FlutterForegroundTask.minimizeApp() : null;
+    final nav = Nav.navigatorKey.currentState;
+    if (_callRoutePushed && (nav?.canPop() ?? false)) {
+      nav!.pop();
+    }
+    _callRoutePushed = false;
+
+    if (PlatformInfos.isAndroid) {
+      FlutterForegroundTask.setOnLockScreenVisibility(false);
+      FlutterForegroundTask.stopService();
+      final wasForeground = matrix.store.getString('wasForeground');
+      if (wasForeground == 'false') {
+        FlutterForegroundTask.minimizeApp();
       }
     }
   }
 
   @override
   Future<void> handleGroupCallEnded(GroupCallSession groupCall) async {
-    // TODO: implement handleGroupCallEnded
+    // No-op for now; add UI cleanup if/when you implement group call UI.
   }
 
   @override
   Future<void> handleNewGroupCall(GroupCallSession groupCall) async {
-    // TODO: implement handleNewGroupCall
+    // No-op for now; add UI entry if/when you implement group call UI.
   }
 
   @override
-  // TODO: implement canHandleNewCall
   bool get canHandleNewCall =>
       voip.currentCID == null && voip.currentGroupCID == null;
 
   @override
   Future<void> handleMissedCall(CallSession session) async {
-    // TODO: implement handleMissedCall
+    // Optional: show a local notification / badge here.
   }
 
   @override
-  // TODO: implement keyProvider
-  EncryptionKeyProvider? get keyProvider => throw UnimplementedError();
+  EncryptionKeyProvider? get keyProvider => null;
 
   @override
   Future<void> registerListeners(CallSession session) {
-    // TODO: implement registerListeners
-    throw UnimplementedError();
+    return SynchronousFuture(null);
   }
+}
+class Nav {
+  static final navigatorKey = GlobalKey<NavigatorState>();
+  static BuildContext? get ctx => navigatorKey.currentContext;
 }
