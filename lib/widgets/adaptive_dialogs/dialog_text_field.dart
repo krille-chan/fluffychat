@@ -17,22 +17,23 @@ class DialogTextField extends StatelessWidget {
   final TextInputType? keyboardType;
   final int? maxLength;
   final bool autocorrect = true;
+  final TextCapitalization textCapitalization;
 
-  const DialogTextField({
-    super.key,
-    this.hintText,
-    this.labelText,
-    this.initialText,
-    this.prefixText,
-    this.suffixText,
-    this.minLines,
-    this.maxLines,
-    this.keyboardType,
-    this.maxLength,
-    this.controller,
-    this.counterText,
-    this.errorText,
-  });
+  const DialogTextField(
+      {super.key,
+      this.hintText,
+      this.labelText,
+      this.initialText,
+      this.prefixText,
+      this.suffixText,
+      this.minLines,
+      this.maxLines,
+      this.keyboardType,
+      this.maxLength,
+      this.controller,
+      this.counterText,
+      this.errorText,
+      this.textCapitalization = TextCapitalization.none});
 
   @override
   Widget build(BuildContext context) {
@@ -53,6 +54,7 @@ class DialogTextField extends StatelessWidget {
           maxLength: maxLength,
           keyboardType: keyboardType,
           autocorrect: autocorrect,
+          textCapitalization: textCapitalization,
           decoration: InputDecoration(
             errorText: errorText,
             hintText: hintText,
@@ -75,6 +77,7 @@ class DialogTextField extends StatelessWidget {
               maxLength: maxLength,
               keyboardType: keyboardType,
               autocorrect: autocorrect,
+              textCapitalization: textCapitalization,
               prefix: prefixText != null ? Text(prefixText) : null,
               suffix: suffixText != null ? Text(suffixText) : null,
               placeholder: labelText ?? hintText,
