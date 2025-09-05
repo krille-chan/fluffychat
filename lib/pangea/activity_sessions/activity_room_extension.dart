@@ -158,6 +158,7 @@ extension ActivityRoomExtension on Room {
 
     try {
       final resp = await ActivitySummaryRepo.get(
+        id,
         ActivitySummaryRequestModel(
           activity: activityPlan!,
           activityResults: messages,
@@ -172,6 +173,8 @@ extension ActivityRoomExtension on Room {
           analytics: analytics,
         ),
       );
+
+      ActivitySummaryRepo.delete(id, activityPlan!);
     } catch (e, s) {
       ErrorHandler.logError(
         e: e,

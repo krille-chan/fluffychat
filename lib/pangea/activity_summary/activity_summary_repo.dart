@@ -1,8 +1,9 @@
+import 'dart:async';
 import 'dart:convert';
 
-import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart';
 
+import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
 import 'package:fluffychat/pangea/activity_summary/activity_summary_request_model.dart';
 import 'package:fluffychat/pangea/activity_summary/activity_summary_response_model.dart';
 import 'package:fluffychat/pangea/common/config/environment.dart';
@@ -10,31 +11,49 @@ import 'package:fluffychat/pangea/common/network/requests.dart';
 import 'package:fluffychat/pangea/common/network/urls.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
+class _ActivitySummaryCacheItem {
+  final Completer<ActivitySummaryResponseModel> completer;
+  final DateTime timestamp;
+
+  _ActivitySummaryCacheItem(this.completer) : timestamp = DateTime.now();
+}
+
 class ActivitySummaryRepo {
-  static final GetStorage _activitySummaryStorage =
-      GetStorage('activity_summary_storage');
+  static final Map<String, _ActivitySummaryCacheItem> _cache = {};
+  static const Duration cacheDuration = Duration(minutes: 10);
 
-  static void set(
-    ActivitySummaryRequestModel request,
-    ActivitySummaryResponseModel response,
-  ) {
-    _activitySummaryStorage.write(_storageKey(request), response.toJson());
-  }
-
-  static String _storageKey(ActivitySummaryRequestModel request) {
-    // You may want to customize this key based on request fields
-    return request.activity.hashCode.toString();
+  static String _storageKey(String roomId, ActivityPlanModel activity) {
+    return '${roomId}_${activity.hashCode}';
   }
 
   static Future<ActivitySummaryResponseModel> get(
+    String roomId,
     ActivitySummaryRequestModel request,
   ) async {
-    final cachedJson = _activitySummaryStorage.read(_storageKey(request));
-    if (cachedJson != null) {
-      final cached = ActivitySummaryResponseModel.fromJson(cachedJson);
-      return cached;
+    final storageKey = _storageKey(roomId, request.activity);
+    final cached = _cache[storageKey];
+    if (cached != null) {
+      return _cache[storageKey]!.completer.future;
     }
 
+    _cache[storageKey] = _ActivitySummaryCacheItem(
+      Completer<ActivitySummaryResponseModel>(),
+    );
+
+    try {
+      final response = await _fetch(request);
+      _cache[storageKey]!.completer.complete(response);
+      return response;
+    } catch (e) {
+      _cache[storageKey]!.completer.completeError(e);
+      _cache.remove(storageKey);
+      rethrow;
+    }
+  }
+
+  static Future<ActivitySummaryResponseModel> _fetch(
+    ActivitySummaryRequestModel request,
+  ) async {
     final Requests req = Requests(
       choreoApiKey: Environment.choreoApiKey,
       accessToken: MatrixState.pangeaController.userController.accessToken,
@@ -46,10 +65,14 @@ class ActivitySummaryRepo {
     );
 
     final decodedBody = jsonDecode(utf8.decode(res.bodyBytes));
-    final response = ActivitySummaryResponseModel.fromJson(decodedBody);
+    return ActivitySummaryResponseModel.fromJson(decodedBody);
+  }
 
-    set(request, response);
-
-    return response;
+  static void delete(
+    String roomId,
+    ActivityPlanModel activity,
+  ) async {
+    final storageKey = _storageKey(roomId, activity);
+    _cache.remove(storageKey);
   }
 }
