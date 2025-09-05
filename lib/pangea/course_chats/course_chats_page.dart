@@ -463,7 +463,8 @@ class CourseChatsController extends State<CourseChats> {
                 const SizedBox(width: 12),
                 Expanded(
                   child: Text(
-                    L10n.of(context).goToSpace(space.getLocalizedDisplayname()),
+                    L10n.of(context)
+                        .goToCourse(space.getLocalizedDisplayname()),
                   ),
                 ),
               ],

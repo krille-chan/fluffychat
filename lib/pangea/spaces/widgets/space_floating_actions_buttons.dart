@@ -28,7 +28,7 @@ class SpaceFloatingActionButtons extends StatelessWidget {
             onPressed: () => context.go('/rooms/newspace'),
             icon: const Icon(Icons.add),
             label: Text(
-              L10n.of(context).space,
+              L10n.of(context).course,
               overflow: TextOverflow.fade,
             ),
           ),

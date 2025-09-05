@@ -30,8 +30,9 @@ class NewGroupView extends StatelessWidget {
         ),
         title: Text(
           controller.createGroupType == CreateGroupType.space
-              ? L10n.of(context).newSpace
               // #Pangea
+              // ? L10n.of(context).newSpace
+              ? L10n.of(context).newCourse
               // : L10n.of(context).createGroup,
               : L10n.of(context).newChat,
           // Pangea#
@@ -105,8 +106,9 @@ class NewGroupView extends StatelessWidget {
                     prefixIcon: const Icon(Icons.people_outlined),
                     labelText:
                         controller.createGroupType == CreateGroupType.space
-                            ? L10n.of(context).spaceName
                             // #Pangea
+                            // ? L10n.of(context).spaceName
+                            ? L10n.of(context).courseName
                             // : L10n.of(context).groupName,
                             : L10n.of(context).chatName,
                     // Pangea#
@@ -205,8 +207,9 @@ class NewGroupView extends StatelessWidget {
                       ? const LinearProgressIndicator()
                       : Text(
                           controller.createGroupType == CreateGroupType.space
-                              ? L10n.of(context).createNewSpace
                               // #Pangea
+                              // ? L10n.of(context).createNewSpace
+                              ? L10n.of(context).createNewCourse
                               // : L10n.of(context).createGroupAndInviteUsers,
                               : L10n.of(context).createChatAndInviteUsers,
                           // Pangea#

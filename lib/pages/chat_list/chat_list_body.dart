@@ -101,8 +101,9 @@ class ChatListViewBody extends StatelessWidget {
                       // PublicRoomsHorizontalList(publicRooms: publicRooms),
                       // Pangea#
                       SearchTitle(
-                        title: L10n.of(context).publicSpaces,
                         // #Pangea
+                        // title: L10n.of(context).publicSpaces,
+                        title: L10n.of(context).publicCourses,
                         // icon: const Icon(Icons.workspaces_outlined),
                         icon: const Icon(Icons.groups_outlined),
                         // Pangea#

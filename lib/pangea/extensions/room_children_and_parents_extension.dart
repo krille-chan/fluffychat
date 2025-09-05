@@ -100,8 +100,8 @@ extension ChildrenAndParentsRoomExtension on Room {
     if (!isSpace) return;
     final names = await showTextInputDialog(
       context: context,
-      title: L10n.of(context).createNewSpace,
-      hintText: L10n.of(context).spaceName,
+      title: L10n.of(context).createNewCourse,
+      hintText: L10n.of(context).courseName,
       minLines: 1,
       maxLines: 1,
       maxLength: 64,
