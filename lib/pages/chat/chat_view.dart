@@ -339,7 +339,11 @@ class ChatView extends StatelessWidget {
                                 child: ChatEventList(controller: controller),
                               ),
                             ),
-                            if (controller.showScrollDownButton)
+                            // #Pangea
+                            // if (controller.showScrollDownButton)
+                            if (controller.showScrollDownButton &&
+                                !controller.room.showActivityFinished)
+                              // Pangea#
                               Divider(
                                 height: 1,
                                 color: theme.dividerColor,
@@ -354,8 +358,13 @@ class ChatView extends StatelessWidget {
                                   onPressed: controller.goToNewRoomAction,
                                 ),
                               )
+                            // #Pangea
+                            // else if (controller.room.canSendDefaultMessages &&
+                            //     controller.room.membership == Membership.join)
                             else if (controller.room.canSendDefaultMessages &&
-                                controller.room.membership == Membership.join)
+                                controller.room.membership == Membership.join &&
+                                !controller.room.showActivityFinished)
+                              // Pangea#
                               Container(
                                 margin: EdgeInsets.all(bottomSheetPadding),
                                 constraints: const BoxConstraints(

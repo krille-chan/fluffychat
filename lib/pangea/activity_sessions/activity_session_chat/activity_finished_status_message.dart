@@ -76,9 +76,7 @@ class ActivityFinishedStatusMessage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (!controller.room.showActivityChatUI ||
-        controller.room.ownRole == null ||
-        !controller.room.hasCompletedActivity) {
+    if (!controller.room.showActivityFinished) {
       return const SizedBox.shrink();
     }
 
@@ -86,7 +84,6 @@ class ActivityFinishedStatusMessage extends StatelessWidget {
     return AnimatedSize(
       duration: FluffyThemes.animationDuration,
       child: Container(
-        margin: const EdgeInsets.only(top: 20.0),
         padding: const EdgeInsets.all(12.0),
         decoration: BoxDecoration(
           color: theme.colorScheme.surface,
@@ -96,7 +93,9 @@ class ActivityFinishedStatusMessage extends StatelessWidget {
         ),
         child: Center(
           child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 400),
+            constraints: const BoxConstraints(
+              maxWidth: 400,
+            ),
             child: Column(
               spacing: 12.0,
               mainAxisSize: MainAxisSize.min,
