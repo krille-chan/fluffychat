@@ -68,7 +68,7 @@ class LoginView extends StatelessWidget {
                       prefixIcon: const Icon(Icons.account_box_outlined),
                       errorText: controller.usernameError,
                       errorStyle: const TextStyle(color: Colors.orange),
-                      hintText: '@username:domain',
+                      hintText: 'username or email',
                       labelText: L10n.of(context).emailOrUsername,
                     ),
                   ),
