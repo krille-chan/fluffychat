@@ -115,7 +115,7 @@ class ButtonControlledCarouselView extends StatelessWidget {
                 (role) => role.userId == p.participantId,
               );
               return Container(
-                width: 250.0,
+                width: 350.0,
                 margin: const EdgeInsets.only(right: 5.0),
                 padding: const EdgeInsets.all(12.0),
                 decoration: ShapeDecoration(
