@@ -5132,7 +5132,7 @@
   "permissionsDesc": "Set permissions such as who can invite users, send messages, create chats, etc.",
   "accessDesc": "You can make your course open to the world! Or, make your course private and secure.",
   "createGroupChatDesc": "Whereas activity sessions start and end, group chats will stay open for routine communication.",
-  "deleteDesc": "Only course admins can delete a chat. This is a destructive action which removes all users and deletes all chats. Proceed with caution.",
+  "deleteDesc": "Only admins can delete a course. This is a destructive action which removes all users and deletes all selected chats within the course. Proceed with caution.",
   "failedToLoadCourseInfo": "Failed to load course information",
   "noCourseFound": "No course information found",
   "additionalParticipants": "+ {num} others",
