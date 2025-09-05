@@ -65,7 +65,12 @@ Future<MatrixSdkDatabase> _constructDatabase(String clientName) async {
 
   Directory? fileStorageLocation;
   try {
-    fileStorageLocation = await getTemporaryDirectory();
+    final tmpDir = await getTemporaryDirectory();
+    final appTmpDir = Directory(join(tmpDir.path, clientName));
+    if (!await appTmpDir.exists()) {
+      await appTmpDir.create(recursive: true);
+    }
+    fileStorageLocation = appTmpDir;
   } on MissingPlatformDirectoryException catch (_) {
     Logs().w(
       'No temporary directory for file cache available on this platform.',
