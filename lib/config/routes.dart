@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:fluffychat/pages/homeserver_picker/homeserver_picker.dart';
+import 'package:fluffychat/pages/intro/intro_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
@@ -16,7 +18,6 @@ import 'package:fluffychat/pages/chat_members/chat_members.dart';
 import 'package:fluffychat/pages/chat_permissions_settings/chat_permissions_settings.dart';
 import 'package:fluffychat/pages/chat_search/chat_search_page.dart';
 import 'package:fluffychat/pages/device_settings/device_settings.dart';
-import 'package:fluffychat/pages/homeserver_picker/homeserver_picker.dart';
 import 'package:fluffychat/pages/invitation_selection/invitation_selection.dart';
 import 'package:fluffychat/pages/login/login.dart';
 import 'package:fluffychat/pages/new_group/new_group.dart';
@@ -71,16 +72,34 @@ abstract class AppRoutes {
       pageBuilder: (context, state) => defaultPageBuilder(
         context,
         state,
-        const HomeserverPicker(addMultiAccount: false),
+        const IntroPage(addMultiAccount: false),
       ),
       redirect: loggedInRedirect,
       routes: [
+        GoRoute(
+          path: 'login_mxid',
+          pageBuilder: (context, state) => defaultPageBuilder(
+            context,
+            state,
+            Login(client: state.extra as Client),
+          ),
+          redirect: loggedInRedirect,
+        ),
         GoRoute(
           path: 'login',
           pageBuilder: (context, state) => defaultPageBuilder(
             context,
             state,
-            Login(client: state.extra as Client),
+            const HomeserverPickerPage(type: HomeserverPickerType.login),
+          ),
+          redirect: loggedInRedirect,
+        ),
+        GoRoute(
+          path: 'register',
+          pageBuilder: (context, state) => defaultPageBuilder(
+            context,
+            state,
+            const HomeserverPickerPage(type: HomeserverPickerType.register),
           ),
           redirect: loggedInRedirect,
         ),
@@ -259,7 +278,7 @@ abstract class AppRoutes {
                       pageBuilder: (context, state) => defaultPageBuilder(
                         context,
                         state,
-                        const HomeserverPicker(addMultiAccount: true),
+                        const IntroPage(addMultiAccount: true),
                       ),
                       routes: [
                         GoRoute(
