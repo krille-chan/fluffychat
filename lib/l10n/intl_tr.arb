@@ -3186,7 +3186,7 @@
     "@ignoreUser": {},
     "normalUser": "Normal kullanıcı",
     "@normalUser": {},
-    "commandHint_roomupgrade": "Bu {oda}yı verilen {oda}versiyonuna yükseltin",
+    "commandHint_roomupgrade": "Bu odayı belirtilen oda sürümüne yükseltin",
     "@commandHint_roomupgrade": {},
     "checkList": "Kontrol listesi",
     "@checkList": {},
