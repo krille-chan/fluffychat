@@ -5197,6 +5197,31 @@
     "type": "String",
     "course": {}
   },
+  "activityComplete": "This activity has been completed. The activity summary should be available below.",
+  "haventChattedMuch": "It looks like you haven't chatted much, try using some more vocab words! If you feel like you've completed your objective, you can end the activity below.",
+  "haveChatted": "It looks like you've been chatting for a while! If you feel like you've completed your objective, wrap up to finish the activity and we'll generate you a summary in the chat!",
+  "userDoneAndWaiting": "{num1}/{num2} participants have wrapped up. Wait for everyone to finish, and we'll generate you a summary in the chat! \n\nIf you'd like to rejoin the conversation, click the continue button in the chat.",
+  "@userDoneAndWaiting": {
+    "placeholders": {
+      "num1": {
+        "type": "int"
+      },
+      "num2": {
+        "type": "int"
+      }
+    }
+  },
+  "othersDoneAndWaiting": "${num1}/{num2} are done. Have you completed your objective?",
+  "@othersDoneAndWaiting": {
+    "placeholders": {
+      "num1": {
+        "type": "int"
+      },
+      "num2": {
+        "type": "int"
+      }
+    }
+  },
   "startNewSession": "Start new session",
   "joinOpenSession": "Join open session",
   "less": "less",

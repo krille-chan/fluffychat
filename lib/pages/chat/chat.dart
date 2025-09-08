@@ -2218,6 +2218,11 @@ class ChatController extends State<ChatPageWithRoom>
   void toggleShowInstructions() {
     if (mounted) setState(() => showInstructions = !showInstructions);
   }
+
+  bool showActivityDropdown = false;
+  void setShowDropdown(bool show) async {
+    setState(() => showActivityDropdown = show);
+  }
   // Pangea#
 
   late final ValueNotifier<bool> _displayChatDetailsColumn;

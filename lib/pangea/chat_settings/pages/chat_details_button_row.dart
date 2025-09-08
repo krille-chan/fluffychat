@@ -9,6 +9,7 @@ import 'package:matrix/matrix.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_details/chat_details.dart';
+import 'package:fluffychat/pangea/activity_sessions/activity_room_extension.dart';
 import 'package:fluffychat/pangea/bot/widgets/bot_face_svg.dart';
 import 'package:fluffychat/pangea/chat_settings/models/bot_options_model.dart';
 import 'package:fluffychat/pangea/chat_settings/pages/room_details_buttons.dart';
@@ -128,13 +129,15 @@ class ChatDetailsButtonRowState extends State<ChatDetailsButtonRow> {
             onSubmit: widget.controller.setBotOptions,
           ),
         ),
-        visible: !room.isDirectChat || room.botOptions != null,
+        visible: (!room.isDirectChat || room.botOptions != null) &&
+            !room.showActivityChatUI,
         enabled: room.canInvite,
       ),
       ButtonDetails(
         title: l10n.chatCapacity,
         icon: const Icon(Icons.reduce_capacity, size: 30.0),
         onPressed: widget.controller.setRoomCapacity,
+        visible: !room.showActivityChatUI,
         enabled: !room.isDirectChat && room.canSendDefaultStates,
         showInMainView: false,
       ),

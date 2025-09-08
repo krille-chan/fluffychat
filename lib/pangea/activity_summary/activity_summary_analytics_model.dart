@@ -32,6 +32,17 @@ class ActivitySummaryAnalyticsModel {
     return userAnalytics.constructsOfType(type).length;
   }
 
+  int totalXPForUser(String userId) {
+    final userAnalytics = constructs[userId];
+    if (userAnalytics == null) return 0;
+
+    int totalXP = 0;
+    for (final usage in userAnalytics.usages.values) {
+      totalXP += usage.timesUsed;
+    }
+    return totalXP;
+  }
+
   void addConstructs(PangeaMessageEvent event) {
     final uses = event.originalSent?.vocabAndMorphUses();
     if (uses == null || uses.isEmpty) return;

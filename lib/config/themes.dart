@@ -100,8 +100,12 @@ abstract class FluffyThemes {
         toolbarHeight: isColumnMode ? 72 : 56,
         shadowColor:
             isColumnMode ? colorScheme.surfaceContainer.withAlpha(128) : null,
-        surfaceTintColor: isColumnMode ? colorScheme.surface : null,
-        backgroundColor: isColumnMode ? colorScheme.surface : null,
+        // #Pangea
+        // surfaceTintColor: isColumnMode ? colorScheme.surface : null,
+        // backgroundColor: isColumnMode ? colorScheme.surface : null,
+        surfaceTintColor: colorScheme.surface,
+        backgroundColor: colorScheme.surface,
+        // Pangea#
         systemOverlayStyle: SystemUiOverlayStyle(
           statusBarColor: Colors.transparent,
           statusBarIconBrightness: brightness.reversed,
