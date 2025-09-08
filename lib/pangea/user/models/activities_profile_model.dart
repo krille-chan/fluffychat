@@ -1,5 +1,3 @@
-import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
-import 'package:fluffychat/pangea/activity_suggestions/activity_plan_repo.dart';
 import 'package:fluffychat/pangea/common/constants/model_keys.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 
@@ -26,14 +24,14 @@ class ActivitiesProfileModel {
     _bookmarkedActivities.remove(activityId);
   }
 
-  Future<List<ActivityPlanModel>> getBookmarkedActivities() => Future.wait(
-        _bookmarkedActivities.map((id) => ActivityPlanRepo.get(id)).toList(),
-      );
+  // Future<List<ActivityPlanModel>> getBookmarkedActivities() => Future.wait(
+  //       _bookmarkedActivities.map((id) => ActivityPlanRepo.get(id)).toList(),
+  //     );
 
-  List<ActivityPlanModel> getBookmarkedActivitiesSync() => _bookmarkedActivities
-      .map((id) => ActivityPlanRepo.getCached(id))
-      .whereType<ActivityPlanModel>()
-      .toList();
+  // List<ActivityPlanModel> getBookmarkedActivitiesSync() => _bookmarkedActivities
+  //     .map((id) => ActivityPlanRepo.getCached(id))
+  //     .whereType<ActivityPlanModel>()
+  //     .toList();
 
   static ActivitiesProfileModel fromJson(Map<String, dynamic> json) {
     if (!json.containsKey(PangeaEventTypes.profileActivities)) {

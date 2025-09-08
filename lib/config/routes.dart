@@ -28,8 +28,7 @@ import 'package:fluffychat/pages/settings_notifications/settings_notifications.d
 import 'package:fluffychat/pages/settings_password/settings_password.dart';
 import 'package:fluffychat/pages/settings_security/settings_security.dart';
 import 'package:fluffychat/pages/settings_style/settings_style.dart';
-import 'package:fluffychat/pangea/activity_generator/activity_generator.dart';
-import 'package:fluffychat/pangea/activity_planner/activity_planner_page.dart';
+import 'package:fluffychat/pangea/activity_sessions/activity_session_start/activity_session_start_page.dart';
 import 'package:fluffychat/pangea/analytics_page/analytics_page.dart';
 import 'package:fluffychat/pangea/analytics_summary/progress_indicators_enum.dart';
 import 'package:fluffychat/pangea/chat_settings/pages/pangea_invitation_selection.dart';
@@ -598,6 +597,19 @@ abstract class AppRoutes {
                     ),
                     ...roomDetailsRoutes('spaceid'),
                     GoRoute(
+                      path: 'activity/:activityid',
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        state,
+                        ActivitySessionStartPage(
+                          activityId: state.pathParameters['activityid']!,
+                          isNew: state.uri.queryParameters['new'] == 'true',
+                          parentId: state.pathParameters['spaceid']!,
+                        ),
+                      ),
+                      redirect: loggedOutRedirect,
+                    ),
+                    GoRoute(
                       path: ':roomid',
                       pageBuilder: (context, state) {
                         final body = state.uri.queryParameters['body'];
@@ -910,30 +922,6 @@ abstract class AppRoutes {
               roomId: state.pathParameters[roomKey]!,
             ),
           ),
-        ),
-        GoRoute(
-          path: 'planner',
-          pageBuilder: (context, state) => defaultPageBuilder(
-            context,
-            state,
-            ActivityPlannerPage(
-              roomID: state.pathParameters[roomKey]!,
-            ),
-          ),
-          redirect: loggedOutRedirect,
-          routes: [
-            GoRoute(
-              path: '/generator',
-              redirect: loggedOutRedirect,
-              pageBuilder: (context, state) => defaultPageBuilder(
-                context,
-                state,
-                ActivityGenerator(
-                  roomID: state.pathParameters[roomKey]!,
-                ),
-              ),
-            ),
-          ],
         ),
         GoRoute(
           path: 'access',

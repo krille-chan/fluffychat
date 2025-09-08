@@ -1,3 +1,4 @@
+import 'package:fluffychat/pangea/course_plans/course_location_model.dart';
 import 'package:fluffychat/pangea/payload_client/join_field.dart';
 import 'package:fluffychat/pangea/payload_client/polymorphic_relationship.dart';
 
@@ -61,5 +62,13 @@ class CmsCoursePlanTopicLocation {
       'updatedAt': updatedAt,
       'createdAt': createdAt,
     };
+  }
+
+  CourseLocationModel toCourseLocationModel() {
+    return CourseLocationModel(
+      uuid: id,
+      name: name,
+      mediaIds: coursePlanTopicLocationMedia?.docs ?? [],
+    );
   }
 }

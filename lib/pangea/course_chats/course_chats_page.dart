@@ -16,6 +16,7 @@ import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/course_chats/course_chats_view.dart';
 import 'package:fluffychat/pangea/course_plans/course_plan_model.dart';
 import 'package:fluffychat/pangea/course_plans/course_plan_room_extension.dart';
+import 'package:fluffychat/pangea/course_plans/course_topic_model.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/public_spaces/public_room_bottom_sheet.dart';
 import 'package:fluffychat/pangea/spaces/constants/space_constants.dart';
@@ -100,29 +101,29 @@ class CourseChatsController extends State<CourseChats> {
   }
 
   int get _selectedTopicIndex =>
-      course?.topics.indexWhere((t) => t.uuid == selectedTopicId) ?? -1;
+      course?.loadedTopics.indexWhere((t) => t.uuid == selectedTopicId) ?? -1;
 
   bool get canMoveLeft => _selectedTopicIndex > 0;
   bool get canMoveRight {
     if (course == null) return false;
-    final endIndex =
-        room?.ownCurrentTopicIndex(course!) ?? (course!.topics.length - 1);
+    final endIndex = room?.ownCurrentTopicIndex(course!) ??
+        (course!.loadedTopics.length - 1);
     return _selectedTopicIndex < endIndex;
   }
 
   void moveLeft() {
     if (canMoveLeft) {
-      setSelectedTopicId(course!.topics[_selectedTopicIndex - 1].uuid);
+      setSelectedTopicId(course!.loadedTopics[_selectedTopicIndex - 1].uuid);
     }
   }
 
   void moveRight() {
     if (canMoveRight) {
-      setSelectedTopicId(course!.topics[_selectedTopicIndex + 1].uuid);
+      setSelectedTopicId(course!.loadedTopics[_selectedTopicIndex + 1].uuid);
     }
   }
 
-  Topic? get selectedTopic => course?.topics.firstWhereOrNull(
+  CourseTopicModel? get selectedTopic => course?.loadedTopics.firstWhereOrNull(
         (topic) => topic.uuid == selectedTopicId,
       );
 

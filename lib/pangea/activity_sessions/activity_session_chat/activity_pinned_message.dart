@@ -10,7 +10,7 @@ import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/chat_app_bar_list_tile.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_room_extension.dart';
-import 'package:fluffychat/pangea/activity_suggestions/activity_suggestions_constants.dart';
+import 'package:fluffychat/pangea/activity_sessions/activity_session_constants.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
@@ -144,7 +144,7 @@ class ActivityPinnedMessageState extends State<ActivityPinnedMessage> {
                           ),
                           CachedNetworkImage(
                             imageUrl:
-                                "${AppConfig.assetsBaseURL}/${ActivitySuggestionsConstants.endActivityAssetPath}",
+                                "${AppConfig.assetsBaseURL}/${ActivitySessionConstants.endActivityAssetPath}",
                             width: isColumnMode ? 240.0 : 120.0,
                           ),
                           Row(

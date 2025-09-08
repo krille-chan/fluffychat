@@ -9,7 +9,7 @@ import 'package:fluffychat/pangea/user/models/analytics_profile_model.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class LoadParticipantsBuilder extends StatefulWidget {
-  final Room room;
+  final Room? room;
   final bool loadProfiles;
   final Widget Function(
     BuildContext context,
@@ -34,7 +34,7 @@ class LoadParticipantsBuilderState extends State<LoadParticipantsBuilder> {
 
   final Map<String, AnalyticsProfileModel> _levelsCache = {};
 
-  List<User> get participants => widget.room.getParticipants();
+  List<User> get participants => widget.room?.getParticipants() ?? [];
 
   @override
   void initState() {
@@ -45,7 +45,7 @@ class LoadParticipantsBuilderState extends State<LoadParticipantsBuilder> {
   @override
   void didUpdateWidget(LoadParticipantsBuilder oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.room.id != widget.room.id) {
+    if (oldWidget.room?.id != widget.room?.id) {
       _loadParticipants();
     }
   }
@@ -57,7 +57,7 @@ class LoadParticipantsBuilderState extends State<LoadParticipantsBuilder> {
         error = null;
       });
 
-      await widget.room.requestParticipants(
+      await widget.room?.requestParticipants(
         [Membership.join, Membership.invite, Membership.knock],
         false,
         true,
@@ -70,7 +70,7 @@ class LoadParticipantsBuilderState extends State<LoadParticipantsBuilder> {
         e: err,
         s: s,
         data: {
-          'roomId': widget.room.id,
+          'roomId': widget.room?.id,
         },
       );
     } finally {

@@ -1,3 +1,5 @@
+import 'package:fluffychat/pangea/course_plans/course_plan_model.dart';
+import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_enum.dart';
 import 'package:fluffychat/pangea/payload_client/join_field.dart';
 import 'package:fluffychat/pangea/payload_client/polymorphic_relationship.dart';
 
@@ -64,5 +66,18 @@ class CmsCoursePlan {
       'updatedAt': updatedAt,
       'createdAt': createdAt,
     };
+  }
+
+  CoursePlanModel toCoursePlanModel() {
+    return CoursePlanModel(
+      uuid: id,
+      targetLanguage: l2,
+      languageOfInstructions: l1,
+      cefrLevel: LanguageLevelTypeEnumExtension.fromString(cefrLevel),
+      title: title,
+      description: description,
+      mediaIds: coursePlanMedia?.docs ?? [],
+      topicIds: coursePlanTopics?.docs ?? [],
+    );
   }
 }

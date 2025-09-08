@@ -8,9 +8,7 @@ import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/events/message.dart';
 import 'package:fluffychat/pages/chat/seen_by_row.dart';
 import 'package:fluffychat/pages/chat/typing_indicators.dart';
-import 'package:fluffychat/pangea/activity_planner/activity_plan_message.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_user_summaries_widget.dart';
-import 'package:fluffychat/pangea/events/extensions/pangea_event_extension.dart';
 import 'package:fluffychat/utils/account_config.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/filtered_timeline_extension.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -144,67 +142,48 @@ class ChatEventList extends StatelessWidget {
               key: ValueKey(event.eventId),
               index: i,
               controller: controller.scrollController,
-              child:
-                  // #Pangea
-                  event.isActivityMessage
-                      ? ActivityPlanMessage(
-                          event,
-                          controller: controller,
-                          timeline: timeline,
-                          animateIn: animateIn,
-                          resetAnimateIn: () {
-                            controller.animateInEventIndex = null;
-                          },
-                          highlightMarker:
-                              controller.scrollToEventIdMarker == event.eventId,
-                          selected: controller.selectedEvents
-                              .any((e) => e.eventId == event.eventId),
-                        )
-                      :
-                      // Pangea#
-                      Message(
-                          event,
-                          animateIn: animateIn,
-                          resetAnimateIn: () {
-                            controller.animateInEventIndex = null;
-                          },
-                          onSwipe: () => controller.replyAction(replyTo: event),
-                          // #Pangea
-                          onInfoTab: (_) => {},
-                          // onInfoTab: controller.showEventInfo,
-                          // Pangea#
-                          onMention: () => controller.sendController.text +=
-                              '${event.senderFromMemoryOrFallback.mention} ',
-                          highlightMarker:
-                              controller.scrollToEventIdMarker == event.eventId,
-                          // #Pangea
-                          // onSelect: controller.onSelectMessage,
-                          onSelect: (_) {},
-                          // Pangea#
-                          scrollToEventId: (String eventId) =>
-                              controller.scrollToEventId(eventId),
-                          longPressSelect: controller.selectedEvents.isNotEmpty,
-                          // #Pangea
-                          immersionMode: controller.choreographer.immersionMode,
-                          controller: controller,
-                          isButton: event.eventId == controller.buttonEventID,
-                          // Pangea#
-                          selected: controller.selectedEvents
-                              .any((e) => e.eventId == event.eventId),
-                          singleSelected:
-                              controller.selectedEvents.singleOrNull?.eventId ==
-                                  event.eventId,
-                          onEdit: () => controller.editSelectedEventAction(),
-                          timeline: timeline,
-                          displayReadMarker: i > 0 &&
-                              controller.readMarkerEventId == event.eventId,
-                          nextEvent:
-                              i + 1 < events.length ? events[i + 1] : null,
-                          previousEvent: i > 0 ? events[i - 1] : null,
-                          wallpaperMode: hasWallpaper,
-                          scrollController: controller.scrollController,
-                          colors: colors,
-                        ),
+              child: Message(
+                event,
+                animateIn: animateIn,
+                resetAnimateIn: () {
+                  controller.animateInEventIndex = null;
+                },
+                onSwipe: () => controller.replyAction(replyTo: event),
+                // #Pangea
+                onInfoTab: (_) => {},
+                // onInfoTab: controller.showEventInfo,
+                // Pangea#
+                onMention: () => controller.sendController.text +=
+                    '${event.senderFromMemoryOrFallback.mention} ',
+                highlightMarker:
+                    controller.scrollToEventIdMarker == event.eventId,
+                // #Pangea
+                // onSelect: controller.onSelectMessage,
+                onSelect: (_) {},
+                // Pangea#
+                scrollToEventId: (String eventId) =>
+                    controller.scrollToEventId(eventId),
+                longPressSelect: controller.selectedEvents.isNotEmpty,
+                // #Pangea
+                immersionMode: controller.choreographer.immersionMode,
+                controller: controller,
+                isButton: event.eventId == controller.buttonEventID,
+                // Pangea#
+                selected: controller.selectedEvents
+                    .any((e) => e.eventId == event.eventId),
+                singleSelected:
+                    controller.selectedEvents.singleOrNull?.eventId ==
+                        event.eventId,
+                onEdit: () => controller.editSelectedEventAction(),
+                timeline: timeline,
+                displayReadMarker:
+                    i > 0 && controller.readMarkerEventId == event.eventId,
+                nextEvent: i + 1 < events.length ? events[i + 1] : null,
+                previousEvent: i > 0 ? events[i - 1] : null,
+                wallpaperMode: hasWallpaper,
+                scrollController: controller.scrollController,
+                colors: colors,
+              ),
             );
           },
           // #Pangea

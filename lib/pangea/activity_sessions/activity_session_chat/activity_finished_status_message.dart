@@ -60,6 +60,7 @@ class ActivityFinishedStatusMessage extends StatelessWidget {
       throw L10n.of(context).noCourseFound;
     }
 
+    await coursePlan.init();
     final activityId = controller.room.activityPlan!.activityId;
     final topicId = coursePlan.topicID(activityId);
     if (topicId == null) {

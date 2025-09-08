@@ -1,10 +1,18 @@
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
+import 'package:fluffychat/pangea/activity_sessions/activity_role_model.dart';
+import 'package:fluffychat/pangea/activity_sessions/activity_roles_model.dart';
 import 'package:fluffychat/pangea/bot/utils/bot_name.dart';
+import 'package:fluffychat/pangea/chat/constants/default_power_level.dart';
+import 'package:fluffychat/pangea/chat_settings/constants/pangea_room_types.dart';
 import 'package:fluffychat/pangea/course_plans/course_plan_event.dart';
 import 'package:fluffychat/pangea/course_plans/course_plan_model.dart';
+import 'package:fluffychat/pangea/course_plans/course_topic_model.dart';
 import 'package:fluffychat/pangea/course_plans/course_user_event.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
+import 'package:fluffychat/pangea/extensions/join_rule_extension.dart';
+import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 
 extension CoursePlanRoomExtension on Room {
   CoursePlanEvent? get coursePlan {
@@ -32,7 +40,7 @@ extension CoursePlanRoomExtension on Room {
     final state = _courseUserState(userID);
     if (state == null) return false;
 
-    final topicIndex = course.topics.indexWhere(
+    final topicIndex = course.loadedTopics.indexWhere(
       (t) => t.uuid == topicID,
     );
 
@@ -40,27 +48,28 @@ extension CoursePlanRoomExtension on Room {
       throw Exception('Topic not found');
     }
 
-    final activityIds =
-        course.topics[topicIndex].activities.map((a) => a.activityId).toList();
+    final activityIds = course.loadedTopics[topicIndex].loadedActivities
+        .map((a) => a.activityId)
+        .toList();
     return state.completedActivities(topicID).toSet().containsAll(activityIds);
   }
 
-  Topic? currentTopic(
+  CourseTopicModel? currentTopic(
     String userID,
     CoursePlanModel course,
   ) {
     if (coursePlan == null) return null;
-    final topicIDs = course.topics.map((t) => t.uuid).toList();
+    final topicIDs = course.loadedTopics.map((t) => t.uuid).toList();
     if (topicIDs.isEmpty) return null;
 
     final index = topicIDs.indexWhere(
       (t) => !_hasCompletedTopic(userID, t, course),
     );
 
-    return index == -1 ? null : course.topics[index];
+    return index == -1 ? null : course.loadedTopics[index];
   }
 
-  Topic? ownCurrentTopic(CoursePlanModel course) =>
+  CourseTopicModel? ownCurrentTopic(CoursePlanModel course) =>
       currentTopic(client.userID!, course);
 
   int currentTopicIndex(
@@ -68,7 +77,7 @@ extension CoursePlanRoomExtension on Room {
     CoursePlanModel course,
   ) {
     if (coursePlan == null) return -1;
-    final topicIDs = course.topics.map((t) => t.uuid).toList();
+    final topicIDs = course.loadedTopics.map((t) => t.uuid).toList();
     if (topicIDs.isEmpty) return -1;
 
     final index = topicIDs.indexWhere(
@@ -93,7 +102,7 @@ extension CoursePlanRoomExtension on Room {
       if (user.id == BotName.byEnvironment) continue;
       final topicIndex = currentTopicIndex(user.id, course);
       if (topicIndex != -1) {
-        final topicID = course.topics[topicIndex].uuid;
+        final topicID = course.loadedTopics[topicIndex].uuid;
         topicUserMap.putIfAbsent(topicID, () => []).add(user);
       }
     }
@@ -116,5 +125,58 @@ extension CoursePlanRoomExtension on Room {
       client.userID!,
       state.toJson(),
     );
+  }
+
+  Future<String> launchActivityRoom(
+    ActivityPlanModel activity,
+    ActivityRole? role,
+  ) async {
+    final roomID = await client.createRoom(
+      creationContent: {
+        'type': "${PangeaRoomTypes.activitySession}:${activity.activityId}",
+      },
+      visibility: Visibility.private,
+      name: activity.title,
+      initialState: [
+        StateEvent(
+          type: PangeaEventTypes.activityPlan,
+          content: activity.toJson(),
+        ),
+        if (activity.imageURL != null)
+          StateEvent(
+            type: EventTypes.RoomAvatar,
+            content: {'url': activity.imageURL},
+          ),
+        if (role != null)
+          StateEvent(
+            type: PangeaEventTypes.activityRole,
+            content: ActivityRolesModel({
+              role.id: ActivityRoleModel(
+                id: role.id,
+                userId: client.userID!,
+                role: role.name,
+              ),
+            }).toJson(),
+          ),
+        RoomDefaults.defaultPowerLevels(
+          client.userID!,
+        ),
+        await client.pangeaJoinRules(
+          'knock_restricted',
+          allow: [
+            {
+              "type": "m.room_membership",
+              "room_id": id,
+            }
+          ],
+        ),
+      ],
+    );
+
+    await addToSpace(roomID);
+    if (pangeaSpaceParents.isEmpty) {
+      await client.waitForRoomInSync(roomID);
+    }
+    return roomID;
   }
 }

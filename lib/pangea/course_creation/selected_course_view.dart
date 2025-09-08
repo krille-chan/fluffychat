@@ -52,7 +52,7 @@ class SelectedCourseView extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.all(12.0),
                         child: ListView.builder(
-                          itemCount: course.topics.length + 2,
+                          itemCount: course.loadedTopics.length + 2,
                           itemBuilder: (context, index) {
                             if (index == 0) {
                               return Column(
@@ -112,11 +112,11 @@ class SelectedCourseView extends StatelessWidget {
 
                             index--;
 
-                            if (index == course.topics.length) {
+                            if (index == course.loadedTopics.length) {
                               return const SizedBox(height: 150.0);
                             }
 
-                            final topic = course.topics[index];
+                            final topic = course.loadedTopics[index];
                             return Padding(
                               padding:
                                   const EdgeInsets.symmetric(vertical: 4.0),
@@ -186,17 +186,18 @@ class SelectedCourseView extends StatelessWidget {
                                             spacing: 8.0,
                                             mainAxisSize: MainAxisSize.min,
                                             children: [
-                                              CourseInfoChip(
-                                                icon: Icons.location_on,
-                                                text: topic.location,
-                                                fontSize: descFontSize,
-                                                iconSize: smallIconSize,
-                                              ),
+                                              if (topic.location != null)
+                                                CourseInfoChip(
+                                                  icon: Icons.location_on,
+                                                  text: topic.location!,
+                                                  fontSize: descFontSize,
+                                                  iconSize: smallIconSize,
+                                                ),
                                               CourseInfoChip(
                                                 icon: Icons.event_note_outlined,
                                                 text: L10n.of(context)
                                                     .numActivityPlans(
-                                                  topic.activities.length,
+                                                  topic.loadedActivities.length,
                                                 ),
                                                 fontSize: descFontSize,
                                                 iconSize: smallIconSize,

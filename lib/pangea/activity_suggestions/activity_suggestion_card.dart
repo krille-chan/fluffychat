@@ -3,11 +3,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
-import 'package:fluffychat/pangea/activity_planner/activity_planner_builder.dart';
 import 'package:fluffychat/pangea/common/widgets/url_image_widget.dart';
 
 class ActivitySuggestionCard extends StatelessWidget {
-  final ActivityPlannerBuilderState controller;
+  final ActivityPlanModel activity;
   final VoidCallback onPressed;
   final double width;
   final double height;
@@ -18,7 +17,7 @@ class ActivitySuggestionCard extends StatelessWidget {
 
   const ActivitySuggestionCard({
     super.key,
-    required this.controller,
+    required this.activity,
     required this.onPressed,
     required this.width,
     required this.height,
@@ -26,8 +25,6 @@ class ActivitySuggestionCard extends StatelessWidget {
     this.fontSizeSmall,
     this.iconSize,
   });
-
-  ActivityPlanModel get activity => controller.updatedActivity;
 
   @override
   Widget build(BuildContext context) {

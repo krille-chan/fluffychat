@@ -111,7 +111,6 @@ class PangeaController {
   static final List<String> _storageKeys = [
     'mode_list_storage',
     'activity_plan_storage',
-    'activity_plan_by_id_storage',
     'bookmarked_activities',
     'objective_list_storage',
     'topic_list_storage',
@@ -130,6 +129,11 @@ class PangeaController {
     'onboarding_storage',
     'analytics_request_storage',
     'activity_analytics_storage',
+    'course_topic_storage',
+    'course_media_storage',
+    'course_location_storage',
+    'course_activity_storage',
+    'course_location_media_storage',
   ];
 
   Future<void> clearCache({List<String> exclude = const []}) async {

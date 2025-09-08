@@ -83,14 +83,14 @@ class CourseInfoChips extends StatelessWidget {
         ),
         CourseInfoChip(
           icon: Icons.location_on,
-          text: L10n.of(context).numModules(course.topics.length),
+          text: L10n.of(context).numModules(course.topicIds.length),
           fontSize: fontSize,
           iconSize: iconSize,
           padding: padding,
         ),
         CourseInfoChip(
           icon: Icons.event_note_outlined,
-          text: L10n.of(context).numActivityPlans(course.activities),
+          text: L10n.of(context).numActivityPlans(course.totalActivities),
           fontSize: fontSize,
           iconSize: iconSize,
           padding: padding,

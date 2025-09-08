@@ -5,15 +5,16 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_participant_list.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_role_model.dart';
-import 'package:fluffychat/pangea/activity_sessions/activity_room_extension.dart';
-import 'package:fluffychat/pangea/activity_suggestions/activity_suggestion_card_row.dart';
+import 'package:fluffychat/pangea/activity_sessions/activity_session_details_row.dart';
 import 'package:fluffychat/pangea/common/widgets/url_image_widget.dart';
 import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_enum.dart';
 
 class ActivitySummary extends StatelessWidget {
-  final Room room;
+  final ActivityPlanModel activity;
+  final Room? room;
 
   final bool showInstructions;
   final VoidCallback toggleInstructions;
@@ -25,22 +26,18 @@ class ActivitySummary extends StatelessWidget {
 
   const ActivitySummary({
     super.key,
-    required this.room,
+    required this.activity,
     required this.showInstructions,
     required this.toggleInstructions,
     this.onTapParticipant,
     this.canSelectParticipant,
     this.isParticipantSelected,
     this.getParticipantOpacity,
+    this.room,
   });
 
   @override
   Widget build(BuildContext context) {
-    final activity = room.activityPlan;
-    if (activity == null) {
-      return const SizedBox();
-    }
-
     final theme = Theme.of(context);
     return Center(
       child: Container(
@@ -49,21 +46,15 @@ class ActivitySummary extends StatelessWidget {
           maxWidth: FluffyThemes.columnWidth * 1.5,
         ),
         child: Column(
-          spacing: 12.0,
+          spacing: 4.0,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(4.0),
-              child: ImageByUrl(
-                imageUrl: activity.imageURL,
-                width: 80.0,
-                borderRadius: BorderRadius.circular(20),
-              ),
-            ),
-            Text(
-              activity.learningObjective,
-              style: const TextStyle(fontSize: 12.0),
+            ImageByUrl(
+              imageUrl: activity.imageURL,
+              width: 80.0,
+              borderRadius: BorderRadius.circular(20),
             ),
             ActivityParticipantList(
+              activity: activity,
               room: room,
               onTap: onTapParticipant,
               canSelect: canSelectParticipant,
@@ -78,60 +69,61 @@ class ActivitySummary extends StatelessWidget {
                 spacing: 4.0,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 6.0,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  Stack(
+                    alignment: Alignment.bottomRight,
+                    children: [
+                      Text(
+                        activity.description,
+                        style: const TextStyle(
+                          fontSize: 12.0,
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: toggleInstructions,
+                        style: TextButton.styleFrom(
+                          minimumSize: Size.zero,
+                          padding: EdgeInsets.zero,
+                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(0.0),
+                          ),
+                          backgroundColor: theme.colorScheme.surface,
+                        ),
+                        child: Text(
+                          showInstructions
+                              ? L10n.of(context).less
+                              : L10n.of(context).more,
+                          style: TextStyle(
+                            fontSize: 12.0,
+                            color: theme.colorScheme.primary,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  if (showInstructions) ...[
+                    Row(
+                      spacing: 8.0,
+                      mainAxisSize: MainAxisSize.min,
                       children: [
+                        Text(
+                          activity.req.mode,
+                          style: const TextStyle(fontSize: 12.0),
+                        ),
                         Row(
-                          spacing: 8.0,
+                          spacing: 4.0,
                           mainAxisSize: MainAxisSize.min,
                           children: [
+                            const Icon(Icons.school, size: 12.0),
                             Text(
-                              activity.req.mode,
+                              activity.req.cefrLevel.string,
                               style: const TextStyle(fontSize: 12.0),
-                            ),
-                            Row(
-                              spacing: 4.0,
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                const Icon(Icons.school, size: 12.0),
-                                Text(
-                                  activity.req.cefrLevel.string,
-                                  style: const TextStyle(fontSize: 12.0),
-                                ),
-                              ],
                             ),
                           ],
                         ),
-                        GestureDetector(
-                          onTap: toggleInstructions,
-                          child: Row(
-                            spacing: 4.0,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                showInstructions
-                                    ? L10n.of(context).hideInstructions
-                                    : L10n.of(context).seeInstructions,
-                                style: const TextStyle(fontSize: 12.0),
-                              ),
-                              Icon(
-                                showInstructions
-                                    ? Icons.arrow_drop_up
-                                    : Icons.arrow_drop_down,
-                                size: 12.0,
-                              ),
-                            ],
-                          ),
-                        ),
                       ],
                     ),
-                  ),
-                  if (showInstructions) ...[
-                    ActivitySuggestionCardRow(
+                    ActivitySessionDetailsRow(
                       icon: Symbols.target,
                       iconSize: 16.0,
                       child: Text(
@@ -139,7 +131,7 @@ class ActivitySummary extends StatelessWidget {
                         style: const TextStyle(fontSize: 12.0),
                       ),
                     ),
-                    ActivitySuggestionCardRow(
+                    ActivitySessionDetailsRow(
                       icon: Symbols.steps,
                       iconSize: 16.0,
                       child: Text(
@@ -147,7 +139,7 @@ class ActivitySummary extends StatelessWidget {
                         style: const TextStyle(fontSize: 12.0),
                       ),
                     ),
-                    ActivitySuggestionCardRow(
+                    ActivitySessionDetailsRow(
                       icon: Symbols.dictionary,
                       iconSize: 16.0,
                       child: Wrap(

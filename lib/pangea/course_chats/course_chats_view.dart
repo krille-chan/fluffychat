@@ -13,8 +13,8 @@ import 'package:fluffychat/pangea/chat_settings/constants/pangea_room_types.dart
 import 'package:fluffychat/pangea/course_chats/course_chats_page.dart';
 import 'package:fluffychat/pangea/course_chats/unjoined_chat_list_item.dart';
 import 'package:fluffychat/pangea/course_plans/course_plan_builder.dart';
-import 'package:fluffychat/pangea/course_plans/course_plan_model.dart';
 import 'package:fluffychat/pangea/course_plans/course_plan_room_extension.dart';
+import 'package:fluffychat/pangea/course_plans/course_topic_model.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/space_analytics/analytics_request_indicator.dart';
 import 'package:fluffychat/pangea/spaces/widgets/knocking_users_indicator.dart';
@@ -41,13 +41,13 @@ class CourseChatsView extends StatelessWidget {
 
     return CoursePlanBuilder(
       courseId: room.coursePlan?.uuid,
-      onFound: (course) {
+      onLoaded: (course) {
         controller.setCourse(course);
         final topic = room.ownCurrentTopic(course);
         if (topic != null) controller.setSelectedTopicId(topic.uuid);
       },
       builder: (context, courseController) {
-        final Topic? topic = controller.selectedTopic;
+        final CourseTopicModel? topic = controller.selectedTopic;
         final List<String> activityIds = topic?.activityIds ?? [];
 
         return StreamBuilder(
@@ -220,23 +220,24 @@ class CourseChatsView extends StatelessWidget {
                                         ),
                                       ),
                                     ),
-                                    Row(
-                                      spacing: 6.0,
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        const Icon(
-                                          Icons.location_on,
-                                          size: 24.0,
-                                        ),
-                                        Text(
-                                          topic.location,
-                                          style: const TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w600,
+                                    if (topic.location != null)
+                                      Row(
+                                        spacing: 6.0,
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          const Icon(
+                                            Icons.location_on,
+                                            size: 24.0,
                                           ),
-                                        ),
-                                      ],
-                                    ),
+                                          Text(
+                                            topic.location!,
+                                            style: const TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     MouseRegion(
                                       cursor: controller.canMoveRight
                                           ? SystemMouseCursors.click

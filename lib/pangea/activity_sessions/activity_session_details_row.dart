@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class ActivitySuggestionCardRow extends StatelessWidget {
+class ActivitySessionDetailsRow extends StatelessWidget {
   final IconData? icon;
   final Widget? leading;
   final Widget child;
   final double? iconSize;
 
-  const ActivitySuggestionCardRow({
+  const ActivitySessionDetailsRow({
     required this.child,
     this.icon,
     this.leading,

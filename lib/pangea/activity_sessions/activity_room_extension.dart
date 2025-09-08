@@ -335,6 +335,14 @@ extension ActivityRoomExtension on Room {
   bool get showActivityFinished =>
       showActivityChatUI && ownRole != null && hasCompletedActivity;
 
+  String? get activityId {
+    if (!isActivitySession) return null;
+    if (isActivityRoomType) {
+      return roomType!.split(":").last;
+    }
+    return activityPlan?.activityId;
+  }
+
   Future<ActivitySummaryAnalyticsModel> getActivityAnalytics() async {
     // wait for local storage box to init in getAnalytics initialization
     if (!MatrixState.pangeaController.getAnalytics.initCompleter.isCompleted) {
