@@ -83,6 +83,7 @@ extension DateTimeExtension on DateTime {
 
     final l10n24h = L10n.of(context).alwaysUse24HourFormat == 'true';
 
+    // https://github.com/krille-chan/fluffychat/pull/1457#discussion_r1836817914
     if (PlatformInfos.isAndroid) {
       return mediaQuery24h;
     } else if (PlatformInfos.isIOS) {
