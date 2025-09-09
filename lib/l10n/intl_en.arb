@@ -5211,7 +5211,7 @@
       }
     }
   },
-  "othersDoneAndWaiting": "${num1}/{num2} are done. Have you completed your objective?",
+  "othersDoneAndWaiting": "{num1}/{num2} are done. Have you completed your objective?",
   "@othersDoneAndWaiting": {
     "placeholders": {
       "num1": {
