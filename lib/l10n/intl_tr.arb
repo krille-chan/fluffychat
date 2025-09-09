@@ -2592,7 +2592,7 @@
     "@chatDescriptionHasBeenChanged": {},
     "directChat": "Doğrudan sohbet",
     "@directChat": {},
-    "inviteGroupChat": "📨 Grup {sohbet}ine davet et",
+    "inviteGroupChat": "📨 Grup sohbetine davet et",
     "@inviteGroupChat": {},
     "invitePrivateChat": "📨 Gizli sohbete davet et",
     "@invitePrivateChat": {},
