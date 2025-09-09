@@ -15,6 +15,10 @@ class ActivityRolesModel {
     roles[role.id] = role;
   }
 
+  void dismissTooltip(ActivityRoleModel role) {
+    roles[role.id]?.dismissedGoalTooltip = true;
+  }
+
   void finishAll() {
     for (final id in roles.keys) {
       if (roles[id]!.isFinished) continue;

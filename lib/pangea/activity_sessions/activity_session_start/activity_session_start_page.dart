@@ -84,7 +84,7 @@ class ActivitySessionStartController extends State<ActivitySessionStartPage> {
       false;
 
   SessionState get state {
-    if (room?.ownRole != null) return SessionState.confirmedRole;
+    if (room?.ownRoleState != null) return SessionState.confirmedRole;
     if (_selectedRoleId != null) return SessionState.selectedRole;
     if (room == null) {
       return widget.isNew
@@ -99,7 +99,7 @@ class ActivitySessionStartController extends State<ActivitySessionStartPage> {
       case SessionState.confirmedRole:
         return L10n.of(context).waitingToFillRole(room!.remainingRoles);
       case SessionState.selectedRole:
-        return activity!.description;
+        return activity!.roles[_selectedRoleId!]!.goal;
       case SessionState.notStarted:
         return null;
 
@@ -131,7 +131,7 @@ class ActivitySessionStartController extends State<ActivitySessionStartPage> {
 
   bool isParticipantSelected(String id) {
     if (state == SessionState.confirmedRole) {
-      return room?.ownRole?.id == id;
+      return room?.ownRoleState?.id == id;
     }
     return _selectedRoleId == id;
   }

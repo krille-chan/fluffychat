@@ -6,6 +6,7 @@ class ActivityRoleModel {
   final String? role;
   DateTime? finishedAt;
   DateTime? archivedAt;
+  bool dismissedGoalTooltip;
 
   ActivityRoleModel({
     required this.id,
@@ -13,6 +14,7 @@ class ActivityRoleModel {
     this.role,
     this.finishedAt,
     this.archivedAt,
+    this.dismissedGoalTooltip = false,
   });
 
   bool get isFinished => finishedAt != null;
@@ -45,6 +47,7 @@ class ActivityRoleModel {
       archivedAt: json['archived_at'] != null
           ? DateTime.parse(json['archived_at'])
           : null,
+      dismissedGoalTooltip: json['dismissed_goal_tooltip'] as bool? ?? false,
     );
   }
 
@@ -55,6 +58,7 @@ class ActivityRoleModel {
       'role': role,
       'finished_at': finishedAt?.toIso8601String(),
       'archived_at': archivedAt?.toIso8601String(),
+      'dismissed_goal_tooltip': dismissedGoalTooltip,
     };
   }
 
@@ -67,7 +71,8 @@ class ActivityRoleModel {
         other.role == role &&
         other.finishedAt == finishedAt &&
         other.archivedAt == archivedAt &&
-        other.id == id;
+        other.id == id &&
+        other.dismissedGoalTooltip == dismissedGoalTooltip;
   }
 
   @override
@@ -76,5 +81,6 @@ class ActivityRoleModel {
       role.hashCode ^
       (finishedAt?.hashCode ?? 0) ^
       (archivedAt?.hashCode ?? 0) ^
-      id.hashCode;
+      id.hashCode ^
+      dismissedGoalTooltip.hashCode;
 }

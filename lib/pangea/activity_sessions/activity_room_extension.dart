@@ -43,7 +43,7 @@ extension ActivityRoomExtension on Room {
 
   Future<void> continueActivity() async {
     final currentRoles = activityRoles ?? ActivityRolesModel.empty;
-    final role = ownRole;
+    final role = ownRoleState;
     if (role == null || !role.isFinished) return;
 
     role.finishedAt = null; // Reset finished state
@@ -58,7 +58,7 @@ extension ActivityRoomExtension on Room {
 
   Future<void> finishActivity() async {
     final currentRoles = activityRoles ?? ActivityRolesModel.empty;
-    final role = ownRole;
+    final role = ownRoleState;
     if (role == null || role.isFinished) return;
     role.finishedAt = DateTime.now();
     currentRoles.updateRole(role);
@@ -84,11 +84,26 @@ extension ActivityRoomExtension on Room {
 
   Future<void> archiveActivity() async {
     final currentRoles = activityRoles ?? ActivityRolesModel.empty;
-    final role = ownRole;
+    final role = ownRoleState;
     if (role == null || !role.isFinished || role.isArchived) return;
 
     role.archivedAt = DateTime.now();
     currentRoles.updateRole(role);
+    await client.setRoomStateWithKey(
+      id,
+      PangeaEventTypes.activityRole,
+      "",
+      currentRoles.toJson(),
+    );
+  }
+
+  Future<void> dismissGoalTooltip() async {
+    final currentRoles = activityRoles ?? ActivityRolesModel.empty;
+    final role = ownRoleState;
+    if (role == null) return;
+    role.finishedAt = DateTime.now();
+    currentRoles.dismissTooltip(role);
+
     await client.setRoomStateWithKey(
       id,
       PangeaEventTypes.activityRole,
@@ -270,7 +285,14 @@ extension ActivityRoomExtension on Room {
     );
   }
 
-  ActivityRoleModel? get ownRole => activityRoles?.role(client.userID!);
+  ActivityRole? get ownRole {
+    final role = ownRoleState;
+    if (role == null || activityPlan == null) return null;
+
+    return activityPlan!.roles[role.id];
+  }
+
+  ActivityRoleModel? get ownRoleState => activityRoles?.role(client.userID!);
 
   int get remainingRoles {
     final availableRoles = activityPlan?.roles;
@@ -289,17 +311,17 @@ extension ActivityRoomExtension on Room {
 
   bool get isActiveInActivity {
     if (!showActivityChatUI) return false;
-    final role = ownRole;
+    final role = ownRoleState;
     return role != null && !role.isFinished;
   }
 
   bool get isInactiveInActivity {
     if (!showActivityChatUI) return false;
-    final role = ownRole;
+    final role = ownRoleState;
     return role == null || role.isFinished;
   }
 
-  bool get hasCompletedActivity => ownRole?.isFinished ?? false;
+  bool get hasCompletedActivity => ownRoleState?.isFinished ?? false;
 
   bool get activityIsFinished {
     final roles = activityRoles?.roles.values.where(
@@ -321,7 +343,10 @@ extension ActivityRoomExtension on Room {
     });
   }
 
-  bool get isHiddenActivityRoom => ownRole?.isArchived ?? false;
+  bool get isHiddenActivityRoom => ownRoleState?.isArchived ?? false;
+
+  bool get hasDismissedGoalTooltip =>
+      ownRoleState?.dismissedGoalTooltip ?? false;
 
   Room? get courseParent => pangeaSpaceParents.firstWhereOrNull(
         (parent) => parent.coursePlan != null,
@@ -333,7 +358,7 @@ extension ActivityRoomExtension on Room {
   bool get isActivitySession => isActivityRoomType || activityPlan != null;
 
   bool get showActivityFinished =>
-      showActivityChatUI && ownRole != null && hasCompletedActivity;
+      showActivityChatUI && ownRoleState != null && hasCompletedActivity;
 
   String? get activityId {
     if (!isActivitySession) return null;
