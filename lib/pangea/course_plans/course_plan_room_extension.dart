@@ -3,6 +3,7 @@ import 'package:matrix/matrix.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_role_model.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_roles_model.dart';
+import 'package:fluffychat/pangea/activity_sessions/activity_room_extension.dart';
 import 'package:fluffychat/pangea/bot/utils/bot_name.dart';
 import 'package:fluffychat/pangea/chat/constants/default_power_level.dart';
 import 'package:fluffychat/pangea/chat_settings/constants/pangea_room_types.dart';
@@ -31,6 +32,15 @@ extension CoursePlanRoomExtension on Room {
   }
 
   CourseUserState? get _ownCourseState => _courseUserState(client.userID!);
+
+  bool hasCompletedActivity(
+    String userID,
+    String activityID,
+  ) {
+    final state = _courseUserState(userID);
+    if (state == null) return false;
+    return state.hasCompletedActivity(activityID);
+  }
 
   bool _hasCompletedTopic(
     String userID,
@@ -89,6 +99,17 @@ extension CoursePlanRoomExtension on Room {
 
   int ownCurrentTopicIndex(CoursePlanModel course) =>
       currentTopicIndex(client.userID!, course);
+
+  String? activeActivityRoomId(String activityId) {
+    for (final child in spaceChildren) {
+      if (child.roomId == null) continue;
+      final room = client.getRoomById(child.roomId!);
+      if (room?.activityId == activityId && !room!.isHiddenActivityRoom) {
+        return room.id;
+      }
+    }
+    return null;
+  }
 
   Future<Map<String, List<User>>> topicsToUsers(CoursePlanModel course) async {
     final Map<String, List<User>> topicUserMap = {};

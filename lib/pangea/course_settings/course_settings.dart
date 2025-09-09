@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
@@ -164,24 +165,65 @@ class CourseSettings extends StatelessWidget {
                     ),
                     if (unlocked)
                       SizedBox(
-                        height: 210.0,
+                        height: isColumnMode ? 290.0 : 210.0,
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
                           itemCount: topic.loadedActivities.length,
                           itemBuilder: (context, index) {
+                            final activityId =
+                                topic.loadedActivities[index].activityId;
+
+                            final complete = room.hasCompletedActivity(
+                              room.client.userID!,
+                              activityId,
+                            );
+
+                            final activityRoomId = room.activeActivityRoomId(
+                              activityId,
+                            );
+
                             return Padding(
                               padding: const EdgeInsets.only(right: 24.0),
-                              child: ActivitySuggestionCard(
-                                activity: topic.loadedActivities[index],
-                                // TODO: go to activity start page
-                                onPressed: () => context.go(
-                                  "/rooms/spaces/${room.id}/activity/${topic.loadedActivities[index].activityId}",
+                              child: MouseRegion(
+                                cursor: SystemMouseCursors.click,
+                                child: GestureDetector(
+                                  onTap: () => context.go(
+                                    activityRoomId != null
+                                        ? "/rooms/spaces/${room.id}/$activityRoomId"
+                                        : "/rooms/spaces/${room.id}/activity/$activityId",
+                                  ),
+                                  child: Stack(
+                                    children: [
+                                      ActivitySuggestionCard(
+                                        activity: topic.loadedActivities[index],
+                                        width: isColumnMode ? 160.0 : 120.0,
+                                        height: isColumnMode ? 280.0 : 200.0,
+                                        fontSize: isColumnMode ? 20.0 : 12.0,
+                                        fontSizeSmall:
+                                            isColumnMode ? 12.0 : 8.0,
+                                        iconSize: isColumnMode ? 12.0 : 8.0,
+                                      ),
+                                      if (complete)
+                                        Container(
+                                          width: isColumnMode ? 160.0 : 120.0,
+                                          height: isColumnMode ? 280.0 : 200.0,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(12.0),
+                                            color: theme.colorScheme.surface
+                                                .withAlpha(180),
+                                          ),
+                                          child: Center(
+                                            child: SvgPicture.asset(
+                                              "assets/pangea/check.svg",
+                                              width: 48.0,
+                                              height: 48.0,
+                                            ),
+                                          ),
+                                        ),
+                                    ],
+                                  ),
                                 ),
-                                width: 120.0,
-                                height: 200.0,
-                                fontSize: 12.0,
-                                fontSizeSmall: 8.0,
-                                iconSize: 8.0,
                               ),
                             );
                           },

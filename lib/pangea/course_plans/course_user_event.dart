@@ -21,6 +21,14 @@ class CourseUserState {
     return _completedActivities[topicID] ?? [];
   }
 
+  bool hasCompletedActivity(
+    String activityID,
+  ) {
+    return _completedActivities.values.any(
+      (activities) => activities.contains(activityID),
+    );
+  }
+
   factory CourseUserState.fromJson(Map<String, dynamic> json) {
     final Map<String, List<String>> activities = {};
     final activityEntry =

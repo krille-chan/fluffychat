@@ -36,9 +36,9 @@ class ActivityFinishedStatusMessage extends StatelessWidget {
           },
         );
 
-        if (navigate == true) {
+        if (navigate == true && controller.room.courseParent != null) {
           context.go(
-            "/rooms/analytics?mode=activities",
+            "/rooms/spaces/${controller.room.courseParent!.id}/details?tab=course",
           );
         }
       }
