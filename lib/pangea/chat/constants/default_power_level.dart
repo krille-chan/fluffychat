@@ -70,7 +70,7 @@ class RoomDefaults {
           "invite": 50,
           "redact": 50,
           "events": {
-            PangeaEventTypes.courseUser: 100,
+            PangeaEventTypes.courseUser: 0,
             "m.room.power_levels": 100,
             "m.room.join_rules": 100,
             "m.space.child": spaceChild,

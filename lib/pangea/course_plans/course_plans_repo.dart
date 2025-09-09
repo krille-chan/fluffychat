@@ -2,11 +2,13 @@ import 'dart:async';
 
 import 'package:get_storage/get_storage.dart';
 
+import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/pangea/course_plans/course_plan_model.dart';
 import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_enum.dart';
 import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
 import 'package:fluffychat/pangea/payload_client/models/course_plan/cms_course_plan.dart';
-import 'package:fluffychat/pangea/payload_client/payload_repo.dart';
+import 'package:fluffychat/pangea/payload_client/payload_client.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 
 class CourseFilter {
   final LanguageModel? targetLanguage;
@@ -105,7 +107,11 @@ class CoursePlansRepo {
     cache[id] = completer;
 
     try {
-      final cmsCoursePlan = await PayloadRepo.payload.findById(
+      final PayloadClient payload = PayloadClient(
+        baseUrl: Environment.cmsApi,
+        accessToken: MatrixState.pangeaController.userController.accessToken,
+      );
+      final cmsCoursePlan = await payload.findById(
         "course-plans",
         id,
         CmsCoursePlan.fromJson,
@@ -176,7 +182,11 @@ class CoursePlansRepo {
       }
     }
 
-    final result = await PayloadRepo.payload.find(
+    final PayloadClient payload = PayloadClient(
+      baseUrl: Environment.cmsApi,
+      accessToken: MatrixState.pangeaController.userController.accessToken,
+    );
+    final result = await payload.find(
       CmsCoursePlan.slug,
       CmsCoursePlan.fromJson,
       page: 1,

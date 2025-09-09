@@ -129,6 +129,7 @@ class PangeaController {
     'onboarding_storage',
     'analytics_request_storage',
     'activity_analytics_storage',
+    'course_storage',
     'course_topic_storage',
     'course_media_storage',
     'course_location_storage',

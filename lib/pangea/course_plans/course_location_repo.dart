@@ -2,9 +2,11 @@ import 'dart:async';
 
 import 'package:get_storage/get_storage.dart';
 
+import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/pangea/course_plans/course_location_model.dart';
 import 'package:fluffychat/pangea/payload_client/models/course_plan/cms_course_plan_topic_location.dart';
-import 'package:fluffychat/pangea/payload_client/payload_repo.dart';
+import 'package:fluffychat/pangea/payload_client/payload_client.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 
 class CourseLocationRepo {
   static final Map<String, Completer<List<CourseLocationModel>>> _cache = {};
@@ -82,7 +84,11 @@ class CourseLocationRepo {
     final limit = uuids.length;
 
     try {
-      final cmsCoursePlanTopicLocationsResult = await PayloadRepo.payload.find(
+      final PayloadClient payload = PayloadClient(
+        baseUrl: Environment.cmsApi,
+        accessToken: MatrixState.pangeaController.userController.accessToken,
+      );
+      final cmsCoursePlanTopicLocationsResult = await payload.find(
         CmsCoursePlanTopicLocation.slug,
         CmsCoursePlanTopicLocation.fromJson,
         where: where,

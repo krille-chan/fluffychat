@@ -3,9 +3,11 @@ import 'dart:async';
 import 'package:get_storage/get_storage.dart';
 
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
+import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/pangea/payload_client/models/course_plan/cms_course_plan_activity.dart';
 import 'package:fluffychat/pangea/payload_client/models/course_plan/cms_course_plan_activity_media.dart';
-import 'package:fluffychat/pangea/payload_client/payload_repo.dart';
+import 'package:fluffychat/pangea/payload_client/payload_client.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 
 class CourseActivityRepo {
   static final Map<String, Completer<List<ActivityPlanModel>>> _cache = {};
@@ -78,7 +80,12 @@ class CourseActivityRepo {
     final limit = uuids.length;
 
     try {
-      final cmsCoursePlanActivitiesResult = await PayloadRepo.payload.find(
+      final PayloadClient payload = PayloadClient(
+        baseUrl: Environment.cmsApi,
+        accessToken: MatrixState.pangeaController.userController.accessToken,
+      );
+
+      final cmsCoursePlanActivitiesResult = await payload.find(
         CmsCoursePlanActivity.slug,
         CmsCoursePlanActivity.fromJson,
         where: where,
@@ -112,7 +119,12 @@ class CourseActivityRepo {
       "id": {"in": activityIds.join(",")},
     };
     final limit = activityIds.length;
-    final cmsCoursePlanActivityMediasResult = await PayloadRepo.payload.find(
+
+    final PayloadClient payload = PayloadClient(
+      baseUrl: Environment.cmsApi,
+      accessToken: MatrixState.pangeaController.userController.accessToken,
+    );
+    final cmsCoursePlanActivityMediasResult = await payload.find(
       CmsCoursePlanActivityMedia.slug,
       CmsCoursePlanActivityMedia.fromJson,
       where: where,
