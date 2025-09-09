@@ -61,14 +61,10 @@ class CoursePlanController extends State<CoursePlanBuilder> {
       });
 
       course = await CoursePlansRepo.get(widget.courseId!);
-      if (course == null) {
-        widget.onNotFound?.call();
-      } else {
-        await course!.init();
-      }
 
       widget.onLoaded?.call(course!);
     } catch (e) {
+      widget.onNotFound?.call();
       error = e;
     } finally {
       setState(() {

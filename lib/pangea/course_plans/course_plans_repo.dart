@@ -91,7 +91,7 @@ class CoursePlansRepo {
     await _courseStorage.write(_searchKey(filter), jsonList);
   }
 
-  static Future<CoursePlanModel?> get(String id) async {
+  static Future<CoursePlanModel> get(String id) async {
     final cached = _getCached(id);
     if (cached != null) {
       return cached;
@@ -113,6 +113,7 @@ class CoursePlansRepo {
 
       final coursePlan = cmsCoursePlan.toCoursePlanModel();
       await _setCached(coursePlan);
+      await coursePlan.init();
       completer.complete(coursePlan);
       return coursePlan;
     } catch (e) {
@@ -194,6 +195,8 @@ class CoursePlansRepo {
       coursePlans,
     );
 
+    final futures = coursePlans.map((c) => c.init());
+    await Future.wait(futures);
     return coursePlans;
   }
 }
