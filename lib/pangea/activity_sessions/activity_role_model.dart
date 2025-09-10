@@ -71,8 +71,7 @@ class ActivityRoleModel {
         other.role == role &&
         other.finishedAt == finishedAt &&
         other.archivedAt == archivedAt &&
-        other.id == id &&
-        other.dismissedGoalTooltip == dismissedGoalTooltip;
+        other.id == id;
   }
 
   @override
@@ -81,6 +80,5 @@ class ActivityRoleModel {
       role.hashCode ^
       (finishedAt?.hashCode ?? 0) ^
       (archivedAt?.hashCode ?? 0) ^
-      id.hashCode ^
-      dismissedGoalTooltip.hashCode;
+      id.hashCode;
 }
