@@ -17,6 +17,7 @@ import 'package:fluffychat/pangea/course_chats/course_chats_page.dart';
 import 'package:fluffychat/pangea/course_creation/course_info_chip_widget.dart';
 import 'package:fluffychat/pangea/course_plans/course_plan_builder.dart';
 import 'package:fluffychat/pangea/course_plans/course_plan_room_extension.dart';
+import 'package:fluffychat/pangea/course_plans/map_clipper.dart';
 import 'package:fluffychat/pangea/course_settings/course_settings.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
@@ -221,13 +222,15 @@ class SpaceDetailsContent extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       if (isColumnMode) ...[
-                        Avatar(
-                          mxContent: room.avatar,
-                          name: displayname,
-                          userId: room.directChatMatrixID,
-                          size: 80.0,
-                          borderRadius:
-                              room.isSpace ? BorderRadius.circular(24.0) : null,
+                        ClipPath(
+                          clipper: MapClipper(),
+                          child: Avatar(
+                            mxContent: room.avatar,
+                            name: displayname,
+                            userId: room.directChatMatrixID,
+                            size: 80.0,
+                            borderRadius: BorderRadius.circular(0.0),
+                          ),
                         ),
                         const SizedBox(width: 16.0),
                       ],

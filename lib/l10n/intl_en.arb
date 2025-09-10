@@ -5230,5 +5230,6 @@
   "myActivities": "My activities",
   "openToJoin": "Open to join",
   "results": "Results",
-  "activityDone": "Activity Done!"
+  "activityDone": "Activity Done!",
+  "moreLabel": "more"
 }

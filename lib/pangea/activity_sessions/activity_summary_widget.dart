@@ -69,37 +69,43 @@ class ActivitySummary extends StatelessWidget {
                 spacing: 4.0,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Stack(
-                    alignment: Alignment.bottomRight,
-                    children: [
-                      Text(
-                        activity.description,
-                        style: const TextStyle(
-                          fontSize: 12.0,
+                  InlineEllipsisText(
+                    text: activity.description,
+                    maxLines: showInstructions ? null : 2,
+                    trailingWidth: 50.0,
+                    style: DefaultTextStyle.of(context)
+                        .style
+                        .copyWith(fontSize: 12.0),
+                    trailing: WidgetSpan(
+                      alignment: PlaceholderAlignment.middle,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.surface,
+                        ),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 4.0,
+                        ),
+                        child: TextButton(
+                          onPressed: toggleInstructions,
+                          style: TextButton.styleFrom(
+                            minimumSize: Size.zero,
+                            padding: EdgeInsets.zero,
+                            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                            backgroundColor:
+                                Theme.of(context).colorScheme.surface,
+                          ),
+                          child: Text(
+                            showInstructions
+                                ? L10n.of(context).less
+                                : L10n.of(context).moreLabel,
+                            style: TextStyle(
+                              fontSize: 12.0,
+                              color: Theme.of(context).colorScheme.primary,
+                            ),
+                          ),
                         ),
                       ),
-                      TextButton(
-                        onPressed: toggleInstructions,
-                        style: TextButton.styleFrom(
-                          minimumSize: Size.zero,
-                          padding: EdgeInsets.zero,
-                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(0.0),
-                          ),
-                          backgroundColor: theme.colorScheme.surface,
-                        ),
-                        child: Text(
-                          showInstructions
-                              ? L10n.of(context).less
-                              : L10n.of(context).more,
-                          style: TextStyle(
-                            fontSize: 12.0,
-                            color: theme.colorScheme.primary,
-                          ),
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
                   if (showInstructions) ...[
                     Row(
@@ -176,6 +182,65 @@ class ActivitySummary extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class InlineEllipsisText extends StatelessWidget {
+  final String text;
+  final int? maxLines;
+  final TextStyle? style;
+  final WidgetSpan trailing;
+  final double trailingWidth;
+
+  const InlineEllipsisText({
+    super.key,
+    required this.text,
+    required this.trailing,
+    required this.trailingWidth,
+    this.maxLines,
+    this.style,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final effectiveStyle = style ?? DefaultTextStyle.of(context).style;
+    final span = TextSpan(text: text, style: effectiveStyle);
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final tp = TextPainter(
+          text: span,
+          maxLines: maxLines,
+          textDirection: TextDirection.ltr,
+          ellipsis: '…',
+        );
+
+        tp.layout(maxWidth: constraints.maxWidth);
+        String truncated = text;
+        if (tp.didExceedMaxLines && maxLines != null) {
+          // Find cutoff point where text fits
+          final pos = tp.getPositionForOffset(
+            Offset(
+              constraints.maxWidth - trailingWidth,
+              tp.preferredLineHeight * maxLines!,
+            ),
+          );
+          final endIndex = tp.getOffsetBefore(pos.offset) ?? text.length;
+          truncated = '${text.substring(0, endIndex).trimRight()}…';
+        }
+
+        tp.dispose();
+        return RichText(
+          text: TextSpan(
+            children: [
+              TextSpan(text: truncated, style: effectiveStyle),
+              trailing, // always visible
+            ],
+          ),
+          maxLines: maxLines,
+          overflow: TextOverflow.clip, // prevent extra wrapping
+        );
+      },
     );
   }
 }
