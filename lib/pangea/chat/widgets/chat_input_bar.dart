@@ -6,7 +6,7 @@ import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pages/chat/chat_emoji_picker.dart';
 import 'package:fluffychat/pages/chat/reply_display.dart';
-import 'package:fluffychat/pangea/activity_sessions/activity_room_extension.dart';
+import 'package:fluffychat/pangea/activity_sessions/activity_session_chat/activity_role_tooltip.dart';
 import 'package:fluffychat/pangea/chat/widgets/pangea_chat_input_row.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/it_bar.dart';
 
@@ -57,49 +57,9 @@ class ChatInputBarState extends State<ChatInputBar> {
       child: SizeChangedLayoutNotifier(
         child: Column(
           children: [
-            if (widget.controller.room.showActivityChatUI &&
-                widget.controller.room.ownRole?.goal != null)
-              Container(
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.surface,
-                  border: Border(
-                    top: BorderSide(
-                      color: Theme.of(context).colorScheme.outline,
-                      width: 0.1,
-                    ),
-                  ),
-                ),
-                child: AnimatedSize(
-                  duration: FluffyThemes.animationDuration,
-                  child: widget.controller.room.hasDismissedGoalTooltip
-                      ? const SizedBox()
-                      : Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: Row(
-                            spacing: 10.0,
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  widget.controller.room.ownRole!.goal!,
-                                  style: const TextStyle(
-                                    fontSize: 12.0,
-                                  ),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
-                              IconButton(
-                                icon: const Icon(Icons.close),
-                                onPressed: () async {
-                                  await widget.controller.room
-                                      .dismissGoalTooltip();
-                                  if (mounted) setState(() {});
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-                ),
-              ),
+            ActivityRoleTooltip(
+              choreographer: widget.controller.choreographer,
+            ),
             Container(
               padding: EdgeInsets.only(
                 bottom: widget.padding,
