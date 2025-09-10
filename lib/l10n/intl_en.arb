@@ -5231,5 +5231,6 @@
   "openToJoin": "Open to join",
   "results": "Results",
   "activityDone": "Activity Done!",
-  "moreLabel": "more"
+  "moreLabel": "more",
+  "promoCodeInfo": "Promo codes can be entered on the next page"
 }

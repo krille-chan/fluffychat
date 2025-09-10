@@ -106,7 +106,7 @@ class ManagementNotAvailableWarning extends StatelessWidget {
         }
 
         final DateFormat formatter = DateFormat('yyyy-MM-dd');
-        return L10n.of(context).promoSubscriptionExpirationDesc(
+        return L10n.of(context).trialExpiration(
           formatter.format(currentSubscriptionInfo!.expirationDate!),
         );
       }
