@@ -16,6 +16,7 @@ class NaviRailItem extends StatelessWidget {
   final bool Function(Room)? unreadBadgeFilter;
   // #Pangea
   final Color? backgroundColor;
+  final BorderRadius? borderRadius;
   // Pangea#
 
   const NaviRailItem({
@@ -27,6 +28,7 @@ class NaviRailItem extends StatelessWidget {
     this.unreadBadgeFilter,
     // #Pangea
     this.backgroundColor,
+    this.borderRadius,
     // Pangea#
     super.key,
   });
@@ -36,7 +38,7 @@ class NaviRailItem extends StatelessWidget {
 
     // #Pangea
     // final borderRadius = BorderRadius.circular(AppConfig.borderRadius);
-    final borderRadius = BorderRadius.circular(10.0);
+    final borderRadius = this.borderRadius ?? BorderRadius.circular(10.0);
 
     final isColumnMode = FluffyThemes.isColumnMode(context);
     final width = isColumnMode

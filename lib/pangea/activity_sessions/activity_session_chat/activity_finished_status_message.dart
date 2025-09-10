@@ -9,7 +9,6 @@ import 'package:fluffychat/pangea/activity_sessions/activity_room_extension.dart
 import 'package:fluffychat/pangea/activity_sessions/activity_session_chat/saved_activity_analytics_dialog.dart';
 import 'package:fluffychat/pangea/activity_summary/activity_summary_model.dart';
 import 'package:fluffychat/pangea/course_plans/course_plan_room_extension.dart';
-import 'package:fluffychat/pangea/course_plans/course_plans_repo.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
@@ -52,17 +51,11 @@ class ActivityFinishedStatusMessage extends StatelessWidget {
 
     final courseParent = controller.room.courseParent;
     if (courseParent?.coursePlan == null) return;
-    final coursePlan = await CoursePlansRepo.get(
-      courseParent!.coursePlan!.uuid,
-    );
-
     final activityId = controller.room.activityPlan!.activityId;
-    final topicId = coursePlan.topicID(activityId);
-    if (topicId == null) {
-      throw L10n.of(context).activityNotFoundForCourse;
-    }
-
-    await courseParent.finishCourseActivity(activityId, topicId);
+    await courseParent!.finishCourseActivity(
+      activityId,
+      controller.room.id,
+    );
   }
 
   ActivitySummaryModel? get summary => controller.room.activitySummary;

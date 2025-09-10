@@ -2247,13 +2247,11 @@ class ChatController extends State<ChatPageWithRoom>
           );
         }
 
-        if (room.isActivitySession == true &&
-            !room.activityHasStarted &&
-            room.courseParent != null) {
+        if (room.isActivitySession == true && !room.activityHasStarted) {
           return ActivitySessionStartPage(
             activityId: room.activityId!,
             room: room,
-            parentId: room.courseParent!.id,
+            parentId: room.courseParent?.id,
           );
         }
         // Pangea#

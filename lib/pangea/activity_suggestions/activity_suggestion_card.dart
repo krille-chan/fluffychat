@@ -14,6 +14,8 @@ class ActivitySuggestionCard extends StatelessWidget {
   final double? fontSizeSmall;
   final double? iconSize;
 
+  final int? openSessions;
+
   const ActivitySuggestionCard({
     super.key,
     required this.activity,
@@ -22,6 +24,7 @@ class ActivitySuggestionCard extends StatelessWidget {
     this.fontSize,
     this.fontSizeSmall,
     this.iconSize,
+    this.openSessions,
   });
 
   @override
@@ -66,14 +69,16 @@ class ActivitySuggestionCard extends StatelessWidget {
                         spacing: 8.0,
                         children: [
                           if (activity.req.mode.isNotEmpty)
-                            Padding(
-                              padding: const EdgeInsets.all(4.0),
-                              child: Text(
-                                activity.req.mode,
-                                style: fontSizeSmall != null
-                                    ? TextStyle(fontSize: fontSizeSmall)
-                                    : theme.textTheme.labelSmall,
-                                overflow: TextOverflow.ellipsis,
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.all(4.0),
+                                child: Text(
+                                  activity.req.mode,
+                                  style: fontSizeSmall != null
+                                      ? TextStyle(fontSize: fontSizeSmall)
+                                      : theme.textTheme.labelSmall,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
                               ),
                             ),
                           Padding(
@@ -95,6 +100,26 @@ class ActivitySuggestionCard extends StatelessWidget {
                               ],
                             ),
                           ),
+                          if (openSessions != null && openSessions! > 0)
+                            Padding(
+                              padding: const EdgeInsets.all(4.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                spacing: 4.0,
+                                children: [
+                                  Icon(
+                                    Icons.chat_bubble_outline,
+                                    size: iconSize ?? 12.0,
+                                  ),
+                                  Text(
+                                    "$openSessions",
+                                    style: fontSizeSmall != null
+                                        ? TextStyle(fontSize: fontSizeSmall)
+                                        : theme.textTheme.labelSmall,
+                                  ),
+                                ],
+                              ),
+                            ),
                         ],
                       ),
                     ],

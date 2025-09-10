@@ -5225,5 +5225,9 @@
   "startNewSession": "Start new session",
   "joinOpenSession": "Join open session",
   "less": "less",
-  "activityNotFound": "Activity not found"
+  "activityNotFound": "Activity not found",
+  "myActivities": "My activities",
+  "openToJoin": "Open to join",
+  "results": "Results",
+  "activityDone": "Activity Done!"
 }

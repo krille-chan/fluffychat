@@ -150,7 +150,23 @@ class ActivitySessionStartView extends StatelessWidget {
                                     ),
                                     ElevatedButton(
                                       style: buttonStyle,
-                                      onPressed: null,
+                                      onPressed:
+                                          controller.canJoinExistingSession
+                                              ? () async {
+                                                  final resp =
+                                                      await showFutureLoadingDialog(
+                                                    context: context,
+                                                    future: controller
+                                                        .joinExistingSession,
+                                                  );
+
+                                                  if (!resp.isError) {
+                                                    context.go(
+                                                      "/rooms/spaces/${controller.widget.parentId}/${resp.result}",
+                                                    );
+                                                  }
+                                                }
+                                              : null,
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
@@ -221,7 +237,7 @@ class ActivitySessionStartView extends StatelessWidget {
                                     ElevatedButton(
                                       style: buttonStyle,
                                       onPressed: controller.enableButtons
-                                          ? controller.onTap
+                                          ? controller.confirmRoleSelection
                                           : null,
                                       child: Row(
                                         mainAxisAlignment:

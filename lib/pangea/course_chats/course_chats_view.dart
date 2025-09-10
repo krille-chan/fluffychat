@@ -9,13 +9,11 @@ import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_room_extension.dart';
-import 'package:fluffychat/pangea/chat_settings/constants/pangea_room_types.dart';
+import 'package:fluffychat/pangea/course_chats/activity_template_chat_list_item.dart';
 import 'package:fluffychat/pangea/course_chats/course_chats_page.dart';
 import 'package:fluffychat/pangea/course_chats/unjoined_chat_list_item.dart';
 import 'package:fluffychat/pangea/course_plans/course_plan_builder.dart';
 import 'package:fluffychat/pangea/course_plans/course_plan_room_extension.dart';
-import 'package:fluffychat/pangea/course_plans/course_topic_model.dart';
-import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/space_analytics/analytics_request_indicator.dart';
 import 'package:fluffychat/pangea/spaces/widgets/knocking_users_indicator.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
@@ -41,63 +39,19 @@ class CourseChatsView extends StatelessWidget {
 
     return CoursePlanBuilder(
       courseId: room.coursePlan?.uuid,
-      onLoaded: (course) {
-        controller.setCourse(course);
-        final topic = room.ownCurrentTopic(course);
-        if (topic != null) controller.setSelectedTopicId(topic.uuid);
-      },
+      onLoaded: controller.setCourse,
       builder: (context, courseController) {
-        final CourseTopicModel? topic = controller.selectedTopic;
-        final List<String> activityIds = topic?.activityIds ?? [];
-
         return StreamBuilder(
           stream: room.client.onSync.stream
               .where((s) => s.hasRoomUpdate)
               .rateLimit(const Duration(seconds: 1)),
           builder: (context, snapshot) {
-            final childrenIds = room.spaceChildren
-                .map((c) => c.roomId)
-                .whereType<String>()
-                .toSet();
+            final joinedChats = controller.joinedChats;
+            final joinedSessions = controller.joinedActivities();
 
-            final joinedChats = [];
-            final joinedSessions = [];
-            final joinedRooms = room.client.rooms
-                .where((room) => childrenIds.remove(room.id))
-                .where((room) => !room.isHiddenRoom)
-                .toList();
-
-            for (final joinedRoom in joinedRooms) {
-              if (joinedRoom.isActivitySession) {
-                String? activityId = joinedRoom.activityPlan?.activityId;
-                if (activityId == null && joinedRoom.isActivityRoomType) {
-                  activityId = joinedRoom.roomType!.split(":").last;
-                }
-
-                if (topic == null || activityIds.contains(activityId)) {
-                  joinedSessions.add(joinedRoom);
-                }
-              } else {
-                joinedChats.add(joinedRoom);
-              }
-            }
-
-            final discoveredGroupChats = [];
-            final discoveredSessions = [];
-            final discoveredChildren =
-                controller.discoveredChildren ?? <SpaceRoomsChunk>[];
-
-            for (final child in discoveredChildren) {
-              final roomType = child.roomType;
-              if (roomType?.startsWith(PangeaRoomTypes.activitySession) ==
-                  true) {
-                if (activityIds.contains(roomType!.split(":").last)) {
-                  discoveredSessions.add(child);
-                }
-              } else {
-                discoveredGroupChats.add(child);
-              }
-            }
+            final discoveredGroupChats = controller.discoveredGroupChats;
+            final discoveredSessions =
+                controller.discoveredActivities().entries.toList();
 
             final isColumnMode = FluffyThemes.isColumnMode(context);
             return Padding(
@@ -113,7 +67,7 @@ class CourseChatsView extends StatelessWidget {
                     joinedSessions.length +
                     discoveredGroupChats.length +
                     discoveredSessions.length +
-                    6,
+                    7,
                 itemBuilder: (context, i) {
                   // courses chats title
                   if (i == 0) {
@@ -179,92 +133,6 @@ class CourseChatsView extends StatelessWidget {
                   i -= discoveredGroupChats.length;
 
                   if (i == 0) {
-                    if (room.coursePlan == null ||
-                        (courseController.course == null &&
-                            !courseController.loading)) {
-                      return const SizedBox();
-                    }
-
-                    return Padding(
-                      padding: const EdgeInsets.only(
-                        top: 20.0,
-                        bottom: 12.0,
-                      ),
-                      child: courseController.loading
-                          ? LinearProgressIndicator(
-                              borderRadius: BorderRadius.circular(
-                                AppConfig.borderRadius,
-                              ),
-                            )
-                          : topic != null
-                              ? Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    MouseRegion(
-                                      cursor: controller.canMoveLeft
-                                          ? SystemMouseCursors.click
-                                          : SystemMouseCursors.basic,
-                                      child: GestureDetector(
-                                        onTap: controller.canMoveLeft
-                                            ? controller.moveLeft
-                                            : null,
-                                        child: Opacity(
-                                          opacity: controller.canMoveLeft
-                                              ? 1.0
-                                              : 0.3,
-                                          child: const Icon(
-                                            Icons.arrow_left,
-                                            size: 24.0,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    if (topic.location != null)
-                                      Row(
-                                        spacing: 6.0,
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          const Icon(
-                                            Icons.location_on,
-                                            size: 24.0,
-                                          ),
-                                          Text(
-                                            topic.location!,
-                                            style: const TextStyle(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    MouseRegion(
-                                      cursor: controller.canMoveRight
-                                          ? SystemMouseCursors.click
-                                          : SystemMouseCursors.basic,
-                                      child: GestureDetector(
-                                        onTap: controller.canMoveRight
-                                            ? controller.moveRight
-                                            : null,
-                                        child: Opacity(
-                                          opacity: controller.canMoveRight
-                                              ? 1.0
-                                              : 0.3,
-                                          child: const Icon(
-                                            Icons.arrow_right,
-                                            size: 24.0,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                )
-                              : const SizedBox(),
-                    );
-                  }
-                  i--;
-
-                  if (i == 0) {
                     return joinedSessions.isEmpty && discoveredSessions.isEmpty
                         ? ListTile(
                             leading: const Icon(Icons.map_outlined),
@@ -279,6 +147,23 @@ class CourseChatsView extends StatelessWidget {
                   }
                   i--;
 
+                  if (i == 0) {
+                    return joinedSessions.isEmpty
+                        ? const SizedBox()
+                        : Padding(
+                            padding: const EdgeInsets.only(
+                              top: 20.0,
+                              bottom: 4.0,
+                            ),
+                            child: Text(
+                              L10n.of(context).myActivities,
+                              style: const TextStyle(fontSize: 12.0),
+                              textAlign: TextAlign.center,
+                            ),
+                          );
+                  }
+                  i--;
+
                   // joined activity sessions
                   if (i < joinedSessions.length) {
                     final joinedRoom = joinedSessions[i];
@@ -290,17 +175,58 @@ class CourseChatsView extends StatelessWidget {
                         context,
                       ),
                       activeChat: controller.widget.activeChat == joinedRoom.id,
+                      borderRadius: BorderRadius.circular(
+                        AppConfig.borderRadius / 2,
+                      ),
+                      trailing: joinedRoom.activityIsFinished
+                          ? SizedBox(
+                              height: 24.0,
+                              width: 54.0,
+                              child: ElevatedButton(
+                                onPressed: () =>
+                                    controller.onChatTap(joinedRoom),
+                                style: ElevatedButton.styleFrom(
+                                  padding: const EdgeInsets.all(0),
+                                ),
+                                child: Text(
+                                  L10n.of(context).results,
+                                  style: const TextStyle(
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              ),
+                            )
+                          : null,
                     );
                   }
                   i -= joinedSessions.length;
 
+                  if (i == 0) {
+                    return discoveredSessions.isEmpty
+                        ? const SizedBox()
+                        : Padding(
+                            padding: const EdgeInsets.only(
+                              top: 20.0,
+                              bottom: 4.0,
+                            ),
+                            child: Text(
+                              L10n.of(context).openToJoin,
+                              style: const TextStyle(fontSize: 12.0),
+                              textAlign: TextAlign.center,
+                            ),
+                          );
+                  }
+                  i--;
+
                   // unjoined activity sessions
                   if (i < discoveredSessions.length) {
-                    return UnjoinedChatListItem(
-                      chunk: discoveredSessions[i],
-                      onTap: () => controller.joinChildRoom(
-                        discoveredSessions[i],
-                      ),
+                    final activity = discoveredSessions[i].key;
+                    final sessions = discoveredSessions[i].value;
+                    return ActivityTemplateChatListItem(
+                      space: room,
+                      joinActivity: controller.joinChildRoom,
+                      activity: activity,
+                      sessions: sessions,
                     );
                   }
                   i -= discoveredSessions.length;

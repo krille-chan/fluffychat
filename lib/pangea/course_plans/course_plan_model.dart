@@ -1,3 +1,4 @@
+import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
 import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/pangea/course_plans/course_media_repo.dart';
 import 'package:fluffychat/pangea/course_plans/course_topic_model.dart';
@@ -56,6 +57,16 @@ class CoursePlanModel {
 
   int get totalActivities =>
       loadedTopics.fold(0, (sum, topic) => sum + topic.activityIds.length);
+
+  ActivityPlanModel? activityById(String activityID) {
+    for (final topic in loadedTopics) {
+      final activity = topic.activityById(activityID);
+      if (activity != null) {
+        return activity;
+      }
+    }
+    return null;
+  }
 
   /// Deserialize from JSON
   factory CoursePlanModel.fromJson(Map<String, dynamic> json) {

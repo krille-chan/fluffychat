@@ -182,6 +182,8 @@ class CourseSettings extends StatelessWidget {
                               activityId,
                             );
 
+                            final activity = topic.loadedActivities[index];
+
                             return Padding(
                               padding: const EdgeInsets.only(right: 24.0),
                               child: MouseRegion(
@@ -195,13 +197,15 @@ class CourseSettings extends StatelessWidget {
                                   child: Stack(
                                     children: [
                                       ActivitySuggestionCard(
-                                        activity: topic.loadedActivities[index],
+                                        activity: activity,
                                         width: isColumnMode ? 160.0 : 120.0,
                                         height: isColumnMode ? 280.0 : 200.0,
                                         fontSize: isColumnMode ? 20.0 : 12.0,
                                         fontSizeSmall:
                                             isColumnMode ? 12.0 : 8.0,
                                         iconSize: isColumnMode ? 12.0 : 8.0,
+                                        openSessions:
+                                            room.numOpenSessions(activityId),
                                       ),
                                       if (complete)
                                         Container(

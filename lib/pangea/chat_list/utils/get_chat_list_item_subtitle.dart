@@ -5,6 +5,7 @@ import 'package:matrix/matrix.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_room_extension.dart';
+import 'package:fluffychat/pangea/course_chats/open_roles_indicator.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -56,12 +57,29 @@ class ChatListItemSubtitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (room.showActivityChatUI) {
-      return Text(
-        room.activityPlan!.learningObjective,
-        style: style,
-        maxLines: 2,
-        overflow: TextOverflow.ellipsis,
-      );
+      if (room.isHiddenActivityRoom) {
+        return Text(
+          room.activityPlan!.learningObjective,
+          style: style,
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+        );
+      } else if (!room.activityHasStarted) {
+        return OpenRolesIndicator(
+          totalSlots: room.activityPlan!.req.numberOfParticipants,
+          userIds:
+              room.activityRoles?.roles.values.map((r) => r.userId).toList() ??
+                  [],
+          space: room.courseParent,
+        );
+      } else if (room.activityIsFinished) {
+        return Text(
+          L10n.of(context).activityDone,
+          style: style,
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+        );
+      }
     }
 
     final event = room.lastEvent;
