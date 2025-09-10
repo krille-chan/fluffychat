@@ -40,8 +40,7 @@ class ActivityRoleTooltipState extends State<ActivityRoleTooltip> {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.choreographer.itController.willOpen ||
-        room.showActivityChatUI && room.ownRole?.goal != null) {
+    if (!room.showActivityChatUI || room.ownRole?.goal == null) {
       return const SizedBox();
     }
 
