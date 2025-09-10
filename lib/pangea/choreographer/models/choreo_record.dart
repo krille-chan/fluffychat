@@ -223,6 +223,10 @@ class ChoreoRecord {
 
   List<ITStep> get itSteps =>
       choreoSteps.where((e) => e.itStep != null).map((e) => e.itStep!).toList();
+
+  bool endedWithIT(String sent) {
+    return includedIT && stepText() == sent;
+  }
 }
 
 /// A new ChoreoRecordStep is saved in the following cases:

@@ -590,8 +590,9 @@ class PangeaMessageEvent {
       throw Exception("Missing language codes");
     }
 
-    final includedIT = (originalSent?.choreo?.includedIT ?? false) &&
-        !(originalSent?.choreo?.includedIGC ?? true);
+    final includedIT =
+        (originalSent?.choreo?.endedWithIT(originalSent!.text) ?? false) &&
+            !(originalSent?.choreo?.includedIGC ?? true);
 
     RepresentationEvent? rep;
     if (!includedIT) {
