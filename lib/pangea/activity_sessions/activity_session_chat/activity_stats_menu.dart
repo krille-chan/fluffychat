@@ -32,10 +32,7 @@ class ActivityStatsMenuState extends State<ActivityStatsMenu> {
   ActivitySummaryAnalyticsModel? analytics;
   Room get room => widget.controller.room;
 
-  @override
-  void dispose() {
-    super.dispose();
-  }
+  StreamSubscription? _analyticsSubscription;
 
   @override
   void initState() {
@@ -43,6 +40,18 @@ class ActivityStatsMenuState extends State<ActivityStatsMenu> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _updateUsedVocab();
     });
+
+    _analyticsSubscription = widget
+        .controller.pangeaController.getAnalytics.analyticsStream.stream
+        .listen((_) {
+      _updateUsedVocab();
+    });
+  }
+
+  @override
+  void dispose() {
+    _analyticsSubscription?.cancel();
+    super.dispose();
   }
 
   Set<String>? get _usedVocab => analytics?.constructs[room.client.userID!]
