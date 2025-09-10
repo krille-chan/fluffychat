@@ -7,10 +7,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/analytics_misc/analytics_constants.dart';
 import 'package:fluffychat/pangea/analytics_misc/level_up/level_up_manager.dart';
 import 'package:fluffychat/pangea/analytics_misc/level_up/level_up_popup.dart';
-import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/pangea/common/utils/overlay.dart';
 import 'package:fluffychat/pangea/constructs/construct_repo.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -237,7 +237,7 @@ class LevelUpBannerState extends State<LevelUpBanner>
                             crossAxisAlignment: WrapCrossAlignment.center,
                             children: [
                               Text(
-                                "Level up",
+                                L10n.of(context).levelUp,
                                 style: style,
                                 overflow: TextOverflow.ellipsis,
                               ),
@@ -256,23 +256,25 @@ class LevelUpBannerState extends State<LevelUpBanner>
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            if (Environment.isStagingEnvironment)
-                              SizedBox(
-                                width: 32.0,
-                                height: 32.0,
-                                child: Center(
-                                  child: IconButton(
-                                    icon: const Icon(Icons.arrow_drop_down),
-                                    style: IconButton.styleFrom(
-                                      padding: const EdgeInsets.all(4.0),
-                                    ),
-                                    onPressed: _toggleDetails,
-                                    constraints: const BoxConstraints(),
-                                    color:
-                                        Theme.of(context).colorScheme.onSurface,
+                            SizedBox(
+                              width: 32.0,
+                              height: 32.0,
+                              child: Center(
+                                child: IconButton(
+                                  icon: const Icon(Icons.close),
+                                  style: IconButton.styleFrom(
+                                    padding: const EdgeInsets.all(4.0),
                                   ),
+                                  onPressed: () {
+                                    MatrixState.pAnyState
+                                        .closeOverlay("level_up_notification");
+                                  },
+                                  constraints: const BoxConstraints(),
+                                  color:
+                                      Theme.of(context).colorScheme.onSurface,
                                 ),
                               ),
+                            ),
                           ],
                         ),
                       ),
