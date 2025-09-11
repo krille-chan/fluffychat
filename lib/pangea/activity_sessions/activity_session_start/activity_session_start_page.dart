@@ -275,11 +275,15 @@ class ActivitySessionStartController extends State<ActivitySessionStartPage> {
       throw Exception("Activity is not part of a course");
     }
 
-    await room!.courseParent!.sendTextEvent(
-      L10n.of(context).pingParticipantsNotification(
-        room!.client.userID!.localpart ?? room!.client.userID!,
-        room!.getLocalizedDisplayname(MatrixLocals(L10n.of(context))),
-      ),
+    await room!.courseParent!.sendEvent(
+      {
+        "body": L10n.of(context).pingParticipantsNotification(
+          room!.client.userID!.localpart ?? room!.client.userID!,
+          room!.getLocalizedDisplayname(MatrixLocals(L10n.of(context))),
+        ),
+        "msgtype": "m.text",
+        "pangea.activity.session_room_id": room!.id,
+      },
     );
   }
 

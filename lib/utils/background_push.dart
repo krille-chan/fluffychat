@@ -24,6 +24,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import 'package:collection/collection.dart';
 import 'package:fcm_shared_isolate/fcm_shared_isolate.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -139,35 +140,61 @@ class BackgroundPush {
 
   // #Pangea
   Future<void> _onOpenNotification(RemoteMessage? message) async {
-    if (message == null ||
-        !message.data.containsKey('room_id') ||
-        message.data['room_id'] == null ||
-        message.data['room_id'].isEmpty) {
-      return;
-    }
+    const sessionIdKey = "content_pangea.activity.session_room_id";
 
-    try {
-      final roomId = message.data['room_id'];
+    // Early return if no room_id.
+    final roomId = message?.data['room_id'];
+    if (roomId is! String || roomId.isEmpty) return;
+
+    // Helper to ensure a room is loaded or synced.
+    Future<Room?> ensureRoomLoaded(String id) async {
       await client.roomsLoading;
       await client.accountDataLoading;
-      if (client.getRoomById(roomId) == null) {
-        await client
-            .waitForRoomInSync(roomId)
-            .timeout(const Duration(seconds: 30));
+
+      var room = client.getRoomById(id);
+      if (room == null) {
+        await client.waitForRoomInSync(id).timeout(const Duration(seconds: 30));
+        room = client.getRoomById(id);
       }
+      return room;
+    }
+
+    // Handle session room if provided.
+    final sessionRoomId = message?.data[sessionIdKey];
+    if (sessionRoomId is String && sessionRoomId.isNotEmpty) {
+      try {
+        final course = await ensureRoomLoaded(roomId);
+        if (course == null) return;
+
+        final session = client.getRoomById(sessionRoomId);
+        if (session?.membership == Membership.join) {
+          FluffyChatApp.router.go('/rooms/$sessionRoomId');
+          return;
+        }
+
+        await client.joinRoom(
+          sessionRoomId,
+          via: course.spaceChildren
+              .firstWhereOrNull((child) => child.roomId == sessionRoomId)
+              ?.via,
+        );
+
+        await ensureRoomLoaded(sessionRoomId);
+        FluffyChatApp.router.go('/rooms/$sessionRoomId');
+        return;
+      } catch (err, s) {
+        ErrorHandler.logError(e: err, s: s, data: {"roomId": sessionRoomId});
+      }
+    }
+
+    // Fallback: just open the original room.
+    try {
+      final room = await ensureRoomLoaded(roomId);
       FluffyChatApp.router.go(
-        client.getRoomById(roomId)?.membership == Membership.invite
-            ? '/rooms'
-            : '/rooms/$roomId',
+        room?.membership == Membership.invite ? '/rooms' : '/rooms/$roomId',
       );
     } catch (err, s) {
-      ErrorHandler.logError(
-        e: err,
-        s: s,
-        data: {
-          "roomId": message.data['room_id'],
-        },
-      );
+      ErrorHandler.logError(e: err, s: s, data: {"roomId": roomId});
     }
   }
   // Pangea#
