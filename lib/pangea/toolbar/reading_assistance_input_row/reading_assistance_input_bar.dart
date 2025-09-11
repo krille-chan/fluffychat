@@ -12,7 +12,7 @@ import 'package:fluffychat/pangea/toolbar/widgets/practice_mode_buttons.dart';
 
 const double minContentHeight = 120;
 
-class ReadingAssistanceInputBar extends StatelessWidget {
+class ReadingAssistanceInputBar extends StatefulWidget {
   final ChatController controller;
   final MessageOverlayController overlayController;
 
@@ -21,6 +21,21 @@ class ReadingAssistanceInputBar extends StatelessWidget {
     this.overlayController, {
     super.key,
   });
+
+  @override
+  ReadingAssistanceInputBarState createState() =>
+      ReadingAssistanceInputBarState();
+}
+
+class ReadingAssistanceInputBarState extends State<ReadingAssistanceInputBar> {
+  final ScrollController _scrollController = ScrollController();
+  MessageOverlayController get overlayController => widget.overlayController;
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
 
   Widget barContent(BuildContext context) {
     Widget? content;
@@ -120,8 +135,13 @@ class ReadingAssistanceInputBar extends StatelessWidget {
               duration: const Duration(
                 milliseconds: AppConfig.overlayAnimationDuration,
               ),
-              child: SingleChildScrollView(
-                child: barContent(context),
+              child: Scrollbar(
+                thumbVisibility: true,
+                controller: _scrollController,
+                child: SingleChildScrollView(
+                  controller: _scrollController,
+                  child: barContent(context),
+                ),
               ),
             ),
           ),

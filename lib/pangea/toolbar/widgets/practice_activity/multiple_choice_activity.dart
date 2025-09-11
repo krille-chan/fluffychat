@@ -258,15 +258,12 @@ class MultipleChoiceActivityState extends State<MultipleChoiceActivity> {
 
     return ConstrainedBox(
       constraints: const BoxConstraints(
-        // see https://github.com/pangeachat/client/issues/1422
         maxWidth: AppConfig.toolbarMinWidth,
         maxHeight: AppConfig.toolbarMaxHeight,
       ),
-      child: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(8),
-          child: content,
-        ),
+      child: Padding(
+        padding: const EdgeInsets.all(8),
+        child: content,
       ),
     );
   }
