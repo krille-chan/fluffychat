@@ -279,8 +279,7 @@ class MorphMeaningPopupState extends State<MorphMeaningPopup> {
                               ConstructXpWidget(
                                 id: widget.cId,
                                 onTap: () => context.go(
-                                  "/rooms/analytics?mode=morph",
-                                  extra: widget.cId,
+                                  "/rooms/analytics/${ConstructTypeEnum.morph.string}/${widget.cId.string}",
                                 ),
                               ),
                           ],

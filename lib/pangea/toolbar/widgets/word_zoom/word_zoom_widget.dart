@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/common/widgets/error_indicator.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
@@ -107,8 +108,7 @@ class WordZoomWidget extends StatelessWidget {
                       ConstructXpWidget(
                         id: token.vocabConstructID,
                         onTap: () => context.go(
-                          "/rooms/analytics?mode=vocab",
-                          extra: token.vocabConstructID,
+                          "/rooms/analytics/${ConstructTypeEnum.vocab.string}/${token.vocabConstructID.string}",
                         ),
                       ),
                     ],

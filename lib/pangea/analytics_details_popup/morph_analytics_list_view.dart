@@ -1,10 +1,13 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/analytics_details_popup/analytics_details_popup.dart';
+import 'package:fluffychat/pangea/analytics_downloads/analytics_download_button.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_use_model.dart';
 import 'package:fluffychat/pangea/common/config/environment.dart';
@@ -18,7 +21,7 @@ import 'package:fluffychat/pangea/morphs/morph_icon.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class MorphAnalyticsListView extends StatelessWidget {
-  final AnalyticsPopupWrapperState controller;
+  final ConstructAnalyticsViewState controller;
 
   const MorphAnalyticsListView({
     required this.controller,
@@ -40,6 +43,13 @@ class MorphAnalyticsListView extends StatelessWidget {
           ),
           if (!InstructionsEnum.morphAnalyticsList.isToggledOff)
             const SizedBox(height: 16.0),
+          if (kIsWeb)
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                DownloadAnalyticsButton(),
+              ],
+            ),
           Expanded(
             child: ListView.builder(
               key: const PageStorageKey<String>('morph-analytics'),
@@ -55,7 +65,6 @@ class MorphAnalyticsListView extends StatelessWidget {
                               .getDisplayTags(feature.feature)
                               .map((tag) => tag.toLowerCase())
                               .toSet(),
-                          onConstructZoom: controller.setConstructZoom,
                         ),
                       )
                     : const SizedBox.shrink();
@@ -71,13 +80,11 @@ class MorphAnalyticsListView extends StatelessWidget {
 class MorphFeatureBox extends StatelessWidget {
   final String morphFeature;
   final Set<String> allTags;
-  final void Function(ConstructIdentifier) onConstructZoom;
 
   const MorphFeatureBox({
     super.key,
     required this.morphFeature,
     required this.allTags,
-    required this.onConstructZoom,
   });
 
   MorphFeaturesEnum get feature =>
@@ -148,7 +155,9 @@ class MorphFeatureBox extends StatelessWidget {
                             morphFeature: morphFeature,
                             morphTag: morphTag,
                             constructAnalytics: analytics,
-                            onTap: () => onConstructZoom(id),
+                            onTap: () => context.go(
+                              "/rooms/analytics/${id.type.string}/${id.string}",
+                            ),
                           );
                         },
                       )

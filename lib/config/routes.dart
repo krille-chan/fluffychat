@@ -29,6 +29,7 @@ import 'package:fluffychat/pages/settings_password/settings_password.dart';
 import 'package:fluffychat/pages/settings_security/settings_security.dart';
 import 'package:fluffychat/pages/settings_style/settings_style.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_session_start/activity_session_start_page.dart';
+import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_page/analytics_page.dart';
 import 'package:fluffychat/pangea/analytics_summary/progress_indicators_enum.dart';
 import 'package:fluffychat/pangea/chat_settings/pages/pangea_invitation_selection.dart';
@@ -344,29 +345,112 @@ abstract class AppRoutes {
               pageBuilder: (context, state) => defaultPageBuilder(
                 context,
                 state,
-                AnalyticsPage(
-                  selectedIndicator: ProgressIndicatorEnum.fromString(
-                    state.uri.queryParameters['mode'] ?? 'vocab',
-                  ),
-                  constructZoom: state.extra is ConstructIdentifier
-                      ? state.extra as ConstructIdentifier
-                      : null,
-                ),
+                const AnalyticsPage(),
               ),
               routes: [
                 GoRoute(
-                  path: ':roomid',
+                  path: ConstructTypeEnum.morph.string,
                   pageBuilder: (context, state) => defaultPageBuilder(
                     context,
                     state,
-                    ChatPage(
-                      roomId: state.pathParameters['roomid']!,
-                      eventId: state.uri.queryParameters['event'],
-                      backButton: BackButton(
-                        onPressed: () => context.go(
-                          "/rooms/analytics?mode=activities",
+                    AnalyticsPage(
+                      indicator: FluffyThemes.isColumnMode(context)
+                          ? null
+                          : ProgressIndicatorEnum.morphsUsed,
+                    ),
+                  ),
+                  redirect: loggedOutRedirect,
+                  routes: [
+                    GoRoute(
+                      path: ':construct',
+                      pageBuilder: (context, state) {
+                        final construct = ConstructIdentifier.fromString(
+                          state.pathParameters['construct']!,
+                        );
+                        return defaultPageBuilder(
+                          context,
+                          state,
+                          AnalyticsPage(
+                            indicator: ProgressIndicatorEnum.morphsUsed,
+                            construct: construct,
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                ),
+                GoRoute(
+                  path: ConstructTypeEnum.vocab.string,
+                  pageBuilder: (context, state) => defaultPageBuilder(
+                    context,
+                    state,
+                    AnalyticsPage(
+                      indicator: FluffyThemes.isColumnMode(context)
+                          ? null
+                          : ProgressIndicatorEnum.wordsUsed,
+                    ),
+                  ),
+                  redirect: loggedOutRedirect,
+                  routes: [
+                    GoRoute(
+                      path: ':construct',
+                      pageBuilder: (context, state) {
+                        final construct = ConstructIdentifier.fromString(
+                          state.pathParameters['construct']!,
+                        );
+                        return defaultPageBuilder(
+                          context,
+                          state,
+                          AnalyticsPage(
+                            indicator: ProgressIndicatorEnum.wordsUsed,
+                            construct: construct,
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                ),
+                GoRoute(
+                  path: 'activities',
+                  pageBuilder: (context, state) => defaultPageBuilder(
+                    context,
+                    state,
+                    AnalyticsPage(
+                      indicator: FluffyThemes.isColumnMode(context)
+                          ? null
+                          : ProgressIndicatorEnum.activities,
+                    ),
+                  ),
+                  redirect: loggedOutRedirect,
+                  routes: [
+                    GoRoute(
+                      path: ':roomid',
+                      pageBuilder: (context, state) => defaultPageBuilder(
+                        context,
+                        state,
+                        ChatPage(
+                          roomId: state.pathParameters['roomid']!,
+                          eventId: state.uri.queryParameters['event'],
+                          backButton: BackButton(
+                            onPressed: () => context.go(
+                              "/rooms/analytics/activities",
+                            ),
+                          ),
                         ),
                       ),
+                      redirect: loggedOutRedirect,
+                    ),
+                  ],
+                ),
+                GoRoute(
+                  path: 'level',
+                  pageBuilder: (context, state) => defaultPageBuilder(
+                    context,
+                    state,
+                    AnalyticsPage(
+                      indicator: FluffyThemes.isColumnMode(context)
+                          ? null
+                          : ProgressIndicatorEnum.level,
                     ),
                   ),
                   redirect: loggedOutRedirect,

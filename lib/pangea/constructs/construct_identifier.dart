@@ -119,6 +119,28 @@ class ConstructIdentifier {
     return "$lemma:${type.string}-$category".toLowerCase();
   }
 
+  static ConstructIdentifier? fromString(String s) {
+    final parts = s.split(':');
+    if (parts.length != 2) return null;
+    final lemma = parts[0];
+    final typeAndCategory = parts[1].split('-');
+    if (typeAndCategory.length != 2) return null;
+    final typeString = typeAndCategory[0];
+    final category = typeAndCategory[1];
+
+    final type = ConstructTypeEnum.values.firstWhereOrNull(
+      (e) => e.string == typeString,
+    );
+
+    if (type == null) return null;
+
+    return ConstructIdentifier(
+      lemma: lemma,
+      type: type,
+      category: category,
+    );
+  }
+
   String get partialKey => "$lemma-${type.string}";
 
   ConstructUses get constructUses =>

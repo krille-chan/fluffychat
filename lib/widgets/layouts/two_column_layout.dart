@@ -7,7 +7,9 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/settings/settings.dart';
-import 'package:fluffychat/pangea/analytics_page/analytics_page_constants.dart';
+import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
+import 'package:fluffychat/pangea/analytics_page/analytics_page.dart';
+import 'package:fluffychat/pangea/analytics_summary/progress_indicators_enum.dart';
 import 'package:fluffychat/pangea/find_your_people/find_your_people_constants.dart';
 import 'package:fluffychat/widgets/navigation_rail.dart';
 
@@ -37,7 +39,7 @@ class TwoColumnLayout extends StatelessWidget {
       final spaceID = state.pathParameters['spaceid'];
 
       if (roomID == null && spaceID == null) {
-        showNavRail = !["newcourse"].any(
+        showNavRail = !["newcourse", ":construct"].any(
           (p) => state.fullPath?.contains(p) ?? false,
         );
       } else if (roomID == null) {
@@ -100,17 +102,6 @@ class _MainView extends StatelessWidget {
     required this.state,
   });
 
-  String get _asset {
-    const defaultAsset = FindYourPeopleConstants.sideBearFileName;
-    if (state.fullPath == null || state.fullPath!.isEmpty) return defaultAsset;
-
-    if (state.fullPath!.contains('analytics')) {
-      return AnalyticsPageConstants.dinoBotFileName;
-    }
-
-    return defaultAsset;
-  }
-
   @override
   Widget build(BuildContext context) {
     final path = state.fullPath;
@@ -121,16 +112,35 @@ class _MainView extends StatelessWidget {
       );
     }
 
+    if (path.contains("analytics")) {
+      ProgressIndicatorEnum indicator = ProgressIndicatorEnum.wordsUsed;
+      if (path.contains("analytics/level")) {
+        indicator = ProgressIndicatorEnum.level;
+      } else if (path.contains("analytics/${ConstructTypeEnum.morph.string}")) {
+        indicator = ProgressIndicatorEnum.morphsUsed;
+      } else if (path.contains("analytics/${ConstructTypeEnum.vocab.string}")) {
+        indicator = ProgressIndicatorEnum.wordsUsed;
+      } else if (path.contains("analytics/activities")) {
+        indicator = ProgressIndicatorEnum.activities;
+      }
+
+      return AnalyticsPage(
+        indicator: indicator,
+        isSidebar: true,
+      );
+    }
+
     if (path.contains("settings")) {
       return Settings(key: state.pageKey);
     }
 
-    if (['communities', 'analytics'].any((p) => path.contains(p))) {
+    if (path.contains('communities')) {
       return Center(
         child: SizedBox(
           width: 250.0,
           child: CachedNetworkImage(
-            imageUrl: "${AppConfig.assetsBaseURL}/$_asset",
+            imageUrl:
+                "${AppConfig.assetsBaseURL}/${FindYourPeopleConstants.sideBearFileName}",
             errorWidget: (context, url, error) => const SizedBox(),
             placeholder: (context, url) => const Center(
               child: CircularProgressIndicator.adaptive(),

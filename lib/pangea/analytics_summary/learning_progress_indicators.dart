@@ -123,7 +123,7 @@ class LearningProgressIndicatorsState
                             selected: widget.selected == c.indicator,
                             onPressed: () {
                               context.go(
-                                "/rooms/analytics?mode=${c.string}",
+                                "/rooms/analytics/${c.string}",
                               );
                             },
                             child: ProgressIndicatorBadge(
@@ -138,7 +138,7 @@ class LearningProgressIndicatorsState
                               ProgressIndicatorEnum.activities,
                           onPressed: () {
                             context.go(
-                              "/rooms/analytics?mode=activities",
+                              "/rooms/analytics/activities",
                             );
                           },
                           child: Tooltip(
@@ -232,7 +232,7 @@ class LearningProgressIndicatorsState
                         child: GestureDetector(
                           onTap: widget.canSelect
                               ? () {
-                                  context.go("/rooms/analytics?mode=level");
+                                  context.go("/rooms/analytics/level");
                                 }
                               : null,
                           child: Row(

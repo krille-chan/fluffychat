@@ -62,6 +62,7 @@ class PangeaController {
   PangeaController({required this.matrix, required this.matrixState}) {
     _setup();
     _setLanguageSubscription();
+    _initControllers();
     randomint = Random().nextInt(2000);
   }
 
@@ -74,12 +75,10 @@ class PangeaController {
   /// While many of these functions are asynchronous, they are not awaited here,
   /// because of order of execution does not matter,
   /// and running them at the same times speeds them up.
-  void initControllers() {
-    putAnalytics.initialize();
-    getAnalytics.initialize();
+  void _initControllers() {
+    _initAnalyticsControllers();
     subscriptionController.initialize();
     setPangeaPushRules();
-
     TtsController.setAvailableLanguages();
   }
 
@@ -181,8 +180,7 @@ class PangeaController {
       case LoginState.loggedOut:
       case LoginState.softLoggedOut:
         // Reset cached analytics data
-        putAnalytics.dispose();
-        getAnalytics.dispose();
+        _disposeAnalyticsControllers();
         userController.clear();
         _languageStream?.cancel();
         _languageStream = null;
@@ -190,8 +188,7 @@ class PangeaController {
         break;
       case LoginState.loggedIn:
         // Initialize analytics data
-        putAnalytics.initialize();
-        getAnalytics.initialize();
+        _initControllers();
         _setLanguageSubscription();
 
         userController.reinitialize().then((_) {
@@ -213,11 +210,19 @@ class PangeaController {
     GoogleAnalytics.analyticsUserUpdate(userID);
   }
 
-  Future<void> resetAnalytics() async {
-    putAnalytics.dispose();
-    getAnalytics.dispose();
+  Future<void> _initAnalyticsControllers() async {
     putAnalytics.initialize();
     await getAnalytics.initialize();
+  }
+
+  void _disposeAnalyticsControllers() {
+    putAnalytics.dispose();
+    getAnalytics.dispose();
+  }
+
+  Future<void> resetAnalytics() async {
+    _disposeAnalyticsControllers();
+    await _initAnalyticsControllers();
   }
 
   void _setLanguageSubscription() {
@@ -228,6 +233,7 @@ class PangeaController {
   }
 
   Future<void> setPangeaPushRules() async {
+    if (!matrixState.client.isLogged()) return;
     final List<Room> analyticsRooms =
         matrixState.client.rooms.where((room) => room.isAnalyticsRoom).toList();
 

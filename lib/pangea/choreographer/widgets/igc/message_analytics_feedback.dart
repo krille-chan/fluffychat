@@ -102,11 +102,11 @@ class MessageAnalyticsFeedbackState extends State<MessageAnalyticsFeedback>
   void _showAnalyticsDialog(ConstructTypeEnum? type) {
     switch (type) {
       case ConstructTypeEnum.morph:
-        context.go("/rooms/analytics?mode=morph");
+        context.go("/rooms/analytics/${ConstructTypeEnum.morph.string}");
         break;
       case ConstructTypeEnum.vocab:
       default:
-        context.go("/rooms/analytics?mode=vocab");
+        context.go("/rooms/analytics/${ConstructTypeEnum.vocab.string}");
         break;
     }
   }
