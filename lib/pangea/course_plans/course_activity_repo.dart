@@ -95,7 +95,7 @@ class CourseActivityRepo {
       );
 
       final imageUrls = await _fetchImageUrls(
-        cmsCoursePlanActivitiesResult.docs.map((a) => a.id).toList(),
+        cmsCoursePlanActivitiesResult.docs,
       );
 
       final activities = cmsCoursePlanActivitiesResult.docs
@@ -113,12 +113,23 @@ class CourseActivityRepo {
   }
 
   static Future<Map<String, String>> _fetchImageUrls(
-    List<String> activityIds,
+    List<CmsCoursePlanActivity> activities,
   ) async {
+    // map of mediaId to activityId
+    final activityToMediaId = Map.fromEntries(
+      activities
+          .where((a) => a.coursePlanActivityMedia?.docs?.isNotEmpty ?? false)
+          .map((a) {
+        final mediaIds = a.coursePlanActivityMedia?.docs;
+        return MapEntry(mediaIds?.firstOrNull, a.id);
+      }),
+    );
+
+    final mediaIds = activityToMediaId.keys.whereType<String>().toList();
     final where = {
-      "id": {"in": activityIds.join(",")},
+      "id": {"in": mediaIds.join(",")},
     };
-    final limit = activityIds.length;
+    final limit = mediaIds.length;
 
     final PayloadClient payload = PayloadClient(
       baseUrl: Environment.cmsApi,
@@ -132,8 +143,15 @@ class CourseActivityRepo {
       page: 1,
       sort: "createdAt",
     );
+
     return Map.fromEntries(
-      cmsCoursePlanActivityMediasResult.docs.map((e) => MapEntry(e.id, e.url!)),
+      cmsCoursePlanActivityMediasResult.docs.map((media) {
+        final activityId = activityToMediaId[media.id];
+        if (activityId != null && media.url != null) {
+          return MapEntry(activityId, '${Environment.cmsApi}${media.url!}');
+        }
+        return null;
+      }).whereType<MapEntry<String, String>>(),
     );
   }
 }
