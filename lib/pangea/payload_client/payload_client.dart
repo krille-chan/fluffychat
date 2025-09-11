@@ -124,6 +124,13 @@ class PayloadClient {
     final endpoint =
         '$basePath/$collection${queryParams.isNotEmpty ? '?${queryStringify(queryParams)}' : ''}';
     final response = await get(endpoint);
+
+    if (response.statusCode != 200) {
+      throw Exception(
+        'Failed to load documents: ${response.statusCode} ${response.body}',
+      );
+    }
+
     final json = jsonDecode(response.body) as Map<String, dynamic>;
 
     return PayloadPaginatedResponse.fromJson(json, fromJson);

@@ -126,6 +126,10 @@ class CourseActivityRepo {
     );
 
     final mediaIds = activityToMediaId.keys.whereType<String>().toList();
+    if (mediaIds.isEmpty) {
+      return {};
+    }
+
     final where = {
       "id": {"in": mediaIds.join(",")},
     };
