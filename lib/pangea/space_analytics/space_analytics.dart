@@ -228,9 +228,10 @@ class SpaceAnalyticsState extends State<SpaceAnalytics> {
     ];
     await Future.wait(futures);
 
-    selectedLanguage = availableLanguages.contains(_userL2)
-        ? _userL2
-        : availableLanguages.firstOrNull;
+    selectedLanguage =
+        availableLanguages.contains(_userL2) || availableLanguages.isEmpty
+            ? _userL2
+            : availableLanguages.firstOrNull;
 
     await refresh();
     if (mounted) {

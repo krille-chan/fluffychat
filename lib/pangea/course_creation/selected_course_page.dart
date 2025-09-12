@@ -2,7 +2,6 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 
-import 'package:collection/collection.dart';
 import 'package:go_router/go_router.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
@@ -28,11 +27,7 @@ class SelectedCourseController extends State<SelectedCourse> {
     final client = Matrix.of(context).client;
     Uint8List? avatar;
     Uri? avatarUrl;
-    final imageUrl = course.imageUrl ??
-        course.loadedTopics
-            .lastWhereOrNull((topic) => topic.imageUrl != null)
-            ?.imageUrl;
-
+    final imageUrl = course.imageUrl;
     if (imageUrl != null) {
       try {
         final Response response = await http.get(

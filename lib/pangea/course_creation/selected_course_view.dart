@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
@@ -8,6 +7,8 @@ import 'package:fluffychat/pangea/common/widgets/url_image_widget.dart';
 import 'package:fluffychat/pangea/course_creation/course_info_chip_widget.dart';
 import 'package:fluffychat/pangea/course_plans/course_plan_builder.dart';
 import 'package:fluffychat/pangea/course_plans/course_plan_model.dart';
+import 'package:fluffychat/pangea/course_plans/map_clipper.dart';
+import 'package:fluffychat/pangea/course_settings/pin_clipper.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 
@@ -58,14 +59,18 @@ class SelectedCourseView extends StatelessWidget {
                               return Column(
                                 spacing: 8.0,
                                 children: [
-                                  ImageByUrl(
-                                    imageUrl: course.imageUrl,
-                                    width: 100.0,
-                                    replacement: Container(
+                                  ClipPath(
+                                    clipper: MapClipper(),
+                                    child: ImageByUrl(
+                                      imageUrl: course.imageUrl,
                                       width: 100.0,
-                                      height: 100.0,
-                                      decoration: BoxDecoration(
-                                        color: theme.colorScheme.secondary,
+                                      borderRadius: BorderRadius.circular(0.0),
+                                      replacement: Container(
+                                        width: 100.0,
+                                        height: 100.0,
+                                        decoration: BoxDecoration(
+                                          color: theme.colorScheme.secondary,
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -124,39 +129,19 @@ class SelectedCourseView extends StatelessWidget {
                                 spacing: 8.0,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(80),
-                                    child: topic.imageUrl != null
-                                        ? CachedNetworkImage(
-                                            width: 40.0,
-                                            height: 40.0,
-                                            fit: BoxFit.cover,
-                                            imageUrl: topic.imageUrl!,
-                                            placeholder: (context, url) {
-                                              return const Center(
-                                                child:
-                                                    CircularProgressIndicator(),
-                                              );
-                                            },
-                                            errorWidget: (context, url, error) {
-                                              return Container(
-                                                width: 40.0,
-                                                height: 40.0,
-                                                decoration: BoxDecoration(
-                                                  color: theme
-                                                      .colorScheme.secondary,
-                                                ),
-                                              );
-                                            },
-                                          )
-                                        : Container(
-                                            width: 40.0,
-                                            height: 40.0,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  theme.colorScheme.secondary,
-                                            ),
-                                          ),
+                                  ClipPath(
+                                    clipper: PinClipper(),
+                                    child: ImageByUrl(
+                                      imageUrl: topic.imageUrl,
+                                      width: 45.0,
+                                      replacement: Container(
+                                        width: 45.0,
+                                        height: 45.0,
+                                        decoration: BoxDecoration(
+                                          color: theme.colorScheme.secondary,
+                                        ),
+                                      ),
+                                    ),
                                   ),
                                   Flexible(
                                     child: Column(

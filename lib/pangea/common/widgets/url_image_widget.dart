@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cached_network_image_platform_interface/cached_network_image_platform_interface.dart';
+import 'package:shimmer/shimmer.dart';
 
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
@@ -50,8 +51,18 @@ class ImageByUrl extends StatelessWidget {
                   context,
                   url,
                 ) =>
-                    const Center(
-                  child: CircularProgressIndicator(),
+                    Shimmer.fromColors(
+                  baseColor:
+                      Theme.of(context).colorScheme.primary.withAlpha(20),
+                  highlightColor:
+                      Theme.of(context).colorScheme.primary.withAlpha(50),
+                  child: Container(
+                    width: width,
+                    height: width,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.surface,
+                    ),
+                  ),
                 ),
                 errorWidget: (
                   context,

@@ -180,11 +180,16 @@ class ActivitySessionStartView extends StatelessWidget {
                                                 null)
                                               ElevatedButton(
                                                 style: buttonStyle,
-                                                onPressed: () =>
-                                                    showFutureLoadingDialog(
-                                                  context: context,
-                                                  future: controller.pingCourse,
-                                                ),
+                                                onPressed: controller
+                                                        .canPingParticipants
+                                                    ? () {
+                                                        showFutureLoadingDialog(
+                                                          context: context,
+                                                          future: controller
+                                                              .pingCourse,
+                                                        );
+                                                      }
+                                                    : null,
                                                 child: Row(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.center,

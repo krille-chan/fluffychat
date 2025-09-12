@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:fluffychat/pangea/common/widgets/url_image_widget.dart';
 import 'package:fluffychat/pangea/course_creation/course_info_chip_widget.dart';
 import 'package:fluffychat/pangea/course_plans/course_plan_model.dart';
+import 'package:fluffychat/pangea/course_plans/map_clipper.dart';
 import 'package:fluffychat/widgets/hover_builder.dart';
 
 class CoursePlanTile extends StatelessWidget {
@@ -41,14 +42,18 @@ class CoursePlanTile extends StatelessWidget {
               child: Row(
                 spacing: 4.0,
                 children: [
-                  ImageByUrl(
-                    imageUrl: course.imageUrl,
-                    width: 40.0,
-                    replacement: Container(
+                  ClipPath(
+                    clipper: MapClipper(),
+                    child: ImageByUrl(
+                      imageUrl: course.imageUrl,
+                      borderRadius: BorderRadius.circular(0.0),
                       width: 40.0,
-                      height: 40.0,
-                      decoration: BoxDecoration(
-                        color: theme.colorScheme.secondary,
+                      replacement: Container(
+                        width: 40.0,
+                        height: 40.0,
+                        decoration: BoxDecoration(
+                          color: theme.colorScheme.secondary,
+                        ),
                       ),
                     ),
                   ),

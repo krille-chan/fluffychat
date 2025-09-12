@@ -1,3 +1,5 @@
+import 'package:collection/collection.dart';
+
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
 import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/pangea/course_plans/course_media_repo.dart';
@@ -111,7 +113,9 @@ class CoursePlanModel {
   List<String> get loadedMediaUrls => CourseMediaRepo.getSync(mediaIds);
   Future<List<String>> fetchMediaUrls() => CourseMediaRepo.get(uuid, mediaIds);
   String? get imageUrl => loadedMediaUrls.isEmpty
-      ? null
+      ? loadedTopics
+          .lastWhereOrNull((topic) => topic.imageUrl != null)
+          ?.imageUrl
       : "${Environment.cmsApi}${loadedMediaUrls.first}";
 
   Future<void> init() async {

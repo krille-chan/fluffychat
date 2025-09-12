@@ -57,6 +57,8 @@ class ActivitySessionStartController extends State<ActivitySessionStartPage> {
   bool showInstructions = false;
   String? _selectedRoleId;
 
+  Timer? _pingCooldown;
+
   @override
   void initState() {
     super.initState();
@@ -76,6 +78,12 @@ class ActivitySessionStartController extends State<ActivitySessionStartPage> {
     if (oldWidget.activityId != widget.activityId) {
       _loadActivity();
     }
+  }
+
+  @override
+  void dispose() {
+    _pingCooldown?.cancel();
+    super.dispose();
   }
 
   Room? get room => widget.room;
@@ -150,6 +158,11 @@ class ActivitySessionStartController extends State<ActivitySessionStartPage> {
     // have the event where existing sessions are stored, joining an existing session is not possible
     if (room != null || parent?.allCourseUserStates == null) return false;
     return parent!.numOpenSessions(widget.activityId) > 0;
+  }
+
+  bool get canPingParticipants {
+    if (room == null || room?.courseParent == null) return false;
+    return _pingCooldown == null || !_pingCooldown!.isActive;
   }
 
   void toggleInstructions() {
@@ -276,6 +289,16 @@ class ActivitySessionStartController extends State<ActivitySessionStartPage> {
       throw Exception("Activity is not part of a course");
     }
 
+    if (!canPingParticipants) {
+      throw Exception("Ping is on cooldown");
+    }
+
+    _pingCooldown?.cancel();
+    _pingCooldown = Timer(const Duration(minutes: 1), () {
+      _pingCooldown = null;
+      if (mounted) setState(() {});
+    });
+
     await room!.courseParent!.sendEvent(
       {
         "body": L10n.of(context).pingParticipantsNotification(
@@ -286,6 +309,8 @@ class ActivitySessionStartController extends State<ActivitySessionStartPage> {
         "pangea.activity.session_room_id": room!.id,
       },
     );
+
+    if (mounted) setState(() {});
   }
 
   Future<void> playWithBot() async {
