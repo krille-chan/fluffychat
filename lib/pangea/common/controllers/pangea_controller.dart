@@ -62,7 +62,7 @@ class PangeaController {
   PangeaController({required this.matrix, required this.matrixState}) {
     _setup();
     _setLanguageSubscription();
-    _initControllers();
+    initControllers();
     randomint = Random().nextInt(2000);
   }
 
@@ -75,7 +75,7 @@ class PangeaController {
   /// While many of these functions are asynchronous, they are not awaited here,
   /// because of order of execution does not matter,
   /// and running them at the same times speeds them up.
-  void _initControllers() {
+  void initControllers() {
     _initAnalyticsControllers();
     subscriptionController.initialize();
     setPangeaPushRules();
@@ -188,7 +188,7 @@ class PangeaController {
         break;
       case LoginState.loggedIn:
         // Initialize analytics data
-        _initControllers();
+        initControllers();
         _setLanguageSubscription();
 
         userController.reinitialize().then((_) {
