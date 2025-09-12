@@ -32,6 +32,7 @@ import 'package:fluffychat/pangea/activity_sessions/activity_session_start/activ
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_page/analytics_page.dart';
 import 'package:fluffychat/pangea/analytics_summary/progress_indicators_enum.dart';
+import 'package:fluffychat/pangea/chat_settings/pages/edit_course.dart';
 import 'package:fluffychat/pangea/chat_settings/pages/pangea_invitation_selection.dart';
 import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
 import 'package:fluffychat/pangea/course_creation/new_course_page.dart';
@@ -996,6 +997,15 @@ abstract class AppRoutes {
       ];
 
   static List<RouteBase> roomDetailsRoutes(String roomKey) => [
+        GoRoute(
+          path: '/edit',
+          redirect: loggedOutRedirect,
+          pageBuilder: (context, state) => defaultPageBuilder(
+            context,
+            state,
+            EditCourse(roomId: state.pathParameters[roomKey]!),
+          ),
+        ),
         GoRoute(
           path: '/analytics',
           redirect: loggedOutRedirect,
