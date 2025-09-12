@@ -163,6 +163,11 @@ class SignupPageController extends State<SignupPage> {
           loadingAppleSSO = false;
           loadingGoogleSSO = false;
         });
+        if (e.toString().contains("Request has been canceled")) {
+          Navigator.of(context).pop();
+          return null;
+        }
+
         return e is MatrixException
             ? e.errorMessage
             : L10n.of(context).oopsSomethingWentWrong;
