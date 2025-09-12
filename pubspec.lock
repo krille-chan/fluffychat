@@ -333,10 +333,10 @@ packages:
     dependency: "direct main"
     description:
       name: device_info_plus
-      sha256: "98f28b42168cc509abc92f88518882fd58061ea372d7999aecc424345c7bff6a"
+      sha256: a7e611f8475a124caca8dac394c76c48218a244daa498c3584f97934267d1d4e
       url: "https://pub.dev"
     source: hosted
-    version: "11.5.0"
+    version: "12.0.0"
   device_info_plus_platform_interface:
     dependency: transitive
     description:
