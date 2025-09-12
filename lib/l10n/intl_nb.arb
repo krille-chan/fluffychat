@@ -2597,5 +2597,7 @@
         }
     },
     "appWantsToUseForLoginDescription": "Du gir herved tillatelse til at appen og nettstedet deler informasjon om deg.",
-    "@appWantsToUseForLoginDescription": {}
+    "@appWantsToUseForLoginDescription": {},
+    "exportEmotePack": "Eksportere smilefjes som .zip-fil",
+    "@exportEmotePack": {}
 }
