@@ -812,12 +812,14 @@ class CourseChatsController extends State<CourseChats> {
     final leaveTimeline = leaveUpdate?[widget.roomId]?.timeline?.events;
     if (joinTimeline == null && leaveTimeline == null) return false;
 
-    final bool hasJoinUpdate = joinTimeline!.any(
-      (event) => event.type == EventTypes.SpaceChild,
-    );
-    final bool hasLeaveUpdate = leaveTimeline!.any(
-      (event) => event.type == EventTypes.SpaceChild,
-    );
+    final bool hasJoinUpdate = joinTimeline?.any(
+          (event) => event.type == EventTypes.SpaceChild,
+        ) ??
+        false;
+    final bool hasLeaveUpdate = leaveTimeline?.any(
+          (event) => event.type == EventTypes.SpaceChild,
+        ) ??
+        false;
     return hasJoinUpdate || hasLeaveUpdate;
   }
 

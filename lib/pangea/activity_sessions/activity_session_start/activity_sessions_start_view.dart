@@ -7,9 +7,7 @@ import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_room_extension.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_session_start/activity_session_start_page.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_summary_widget.dart';
-import 'package:fluffychat/pangea/bot/utils/bot_name.dart';
 import 'package:fluffychat/pangea/common/widgets/error_indicator.dart';
-import 'package:fluffychat/pangea/common/widgets/share_room_button.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
@@ -56,19 +54,6 @@ class ActivitySessionStartView extends StatelessWidget {
                 ),
               ),
             ),
-            actions: [
-              if (controller.room != null)
-                Padding(
-                  padding: const EdgeInsets.only(right: 12.0),
-                  child: SizedBox(
-                    width: 40.0,
-                    height: 40.0,
-                    child: Center(
-                      child: ShareRoomButton(room: controller.room!),
-                    ),
-                  ),
-                ),
-            ],
           ),
           body: SafeArea(
             child: controller.loading
@@ -94,6 +79,7 @@ class ActivitySessionStartView extends StatelessWidget {
                                     ActivitySummary(
                                       activity: controller.activity!,
                                       room: controller.room,
+                                      course: controller.parent,
                                       showInstructions:
                                           controller.showInstructions,
                                       toggleInstructions:
@@ -119,138 +105,164 @@ class ActivitySessionStartView extends StatelessWidget {
                                 color: theme.colorScheme.surface,
                               ),
                               padding: const EdgeInsets.all(24.0),
-                              child: Column(
-                                spacing: 16.0,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  if (controller.descriptionText != null)
-                                    Text(
-                                      controller.descriptionText!,
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w600,
+                                  Flexible(
+                                    child: ConstrainedBox(
+                                      constraints: const BoxConstraints(
+                                        maxWidth: FluffyThemes.maxTimelineWidth,
                                       ),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  if (controller.state ==
-                                      SessionState.notStarted) ...[
-                                    ElevatedButton(
-                                      style: buttonStyle,
-                                      onPressed: () => context.go(
-                                        "/rooms/spaces/${controller.widget.parentId}/activity/${controller.widget.activityId}?new=true",
-                                      ),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
+                                      child: Column(
+                                        spacing: 16.0,
                                         children: [
-                                          Text(
-                                            L10n.of(context).startNewSession,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    ElevatedButton(
-                                      style: buttonStyle,
-                                      onPressed:
-                                          controller.canJoinExistingSession
-                                              ? () async {
-                                                  final resp =
-                                                      await showFutureLoadingDialog(
-                                                    context: context,
-                                                    future: controller
-                                                        .joinExistingSession,
-                                                  );
-
-                                                  if (!resp.isError) {
-                                                    context.go(
-                                                      "/rooms/spaces/${controller.widget.parentId}/${resp.result}",
-                                                    );
-                                                  }
-                                                }
-                                              : null,
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            L10n.of(context).joinOpenSession,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ] else if (controller.state ==
-                                      SessionState.confirmedRole) ...[
-                                    if (controller.room!.courseParent != null)
-                                      ElevatedButton(
-                                        style: buttonStyle,
-                                        onPressed: () =>
-                                            showFutureLoadingDialog(
-                                          context: context,
-                                          future: controller.pingCourse,
-                                        ),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
+                                          if (controller.descriptionText !=
+                                              null)
                                             Text(
-                                              L10n.of(context).pingParticipants,
+                                              controller.descriptionText!,
+                                              style: const TextStyle(
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                              textAlign: TextAlign.center,
                                             ),
-                                          ],
-                                        ),
-                                      ),
-                                    if (controller.room!.isRoomAdmin) ...[
-                                      if (!controller.isBotRoomMember)
-                                        ElevatedButton(
-                                          style: buttonStyle,
-                                          onPressed: () =>
-                                              showFutureLoadingDialog(
-                                            context: context,
-                                            future: () => controller.room!
-                                                .invite(BotName.byEnvironment),
-                                          ),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                L10n.of(context).playWithBot,
+                                          if (controller.state ==
+                                              SessionState.notStarted) ...[
+                                            ElevatedButton(
+                                              style: buttonStyle,
+                                              onPressed: () => context.go(
+                                                "/rooms/spaces/${controller.widget.parentId}/activity/${controller.widget.activityId}?new=true",
+                                              ),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    L10n.of(context)
+                                                        .startNewSession,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            ElevatedButton(
+                                              style: buttonStyle,
+                                              onPressed: controller
+                                                      .canJoinExistingSession
+                                                  ? () async {
+                                                      final resp =
+                                                          await showFutureLoadingDialog(
+                                                        context: context,
+                                                        future: controller
+                                                            .joinExistingSession,
+                                                      );
+
+                                                      if (!resp.isError) {
+                                                        context.go(
+                                                          "/rooms/spaces/${controller.widget.parentId}/${resp.result}",
+                                                        );
+                                                      }
+                                                    }
+                                                  : null,
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    L10n.of(context)
+                                                        .joinOpenSession,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ] else if (controller.state ==
+                                              SessionState.confirmedRole) ...[
+                                            if (controller.room!.courseParent !=
+                                                null)
+                                              ElevatedButton(
+                                                style: buttonStyle,
+                                                onPressed: () =>
+                                                    showFutureLoadingDialog(
+                                                  context: context,
+                                                  future: controller.pingCourse,
+                                                ),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Text(
+                                                      L10n.of(context)
+                                                          .pingParticipants,
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            if (controller
+                                                .room!.isRoomAdmin) ...[
+                                              if (!controller.isBotRoomMember)
+                                                ElevatedButton(
+                                                  style: buttonStyle,
+                                                  onPressed: () =>
+                                                      showFutureLoadingDialog(
+                                                    context: context,
+                                                    future:
+                                                        controller.playWithBot,
+                                                  ),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Text(
+                                                        L10n.of(context)
+                                                            .playWithBot,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ElevatedButton(
+                                                style: buttonStyle,
+                                                onPressed: () => context.go(
+                                                  "/rooms/${controller.room!.id}/invite",
+                                                ),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Text(
+                                                      L10n.of(context)
+                                                          .inviteFriends,
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
                                             ],
-                                          ),
-                                        ),
-                                      ElevatedButton(
-                                        style: buttonStyle,
-                                        onPressed: () => context.go(
-                                          "/rooms/${controller.room!.id}/invite",
-                                        ),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              L10n.of(context).inviteFriends,
+                                          ] else
+                                            ElevatedButton(
+                                              style: buttonStyle,
+                                              onPressed:
+                                                  controller.enableButtons
+                                                      ? controller
+                                                          .confirmRoleSelection
+                                                      : null,
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    controller.room
+                                                                ?.isRoomAdmin ??
+                                                            true
+                                                        ? L10n.of(context).start
+                                                        : L10n.of(context)
+                                                            .confirm,
+                                                  ),
+                                                ],
+                                              ),
                                             ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ] else
-                                    ElevatedButton(
-                                      style: buttonStyle,
-                                      onPressed: controller.enableButtons
-                                          ? controller.confirmRoleSelection
-                                          : null,
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            controller.room?.isRoomAdmin ?? true
-                                                ? L10n.of(context).start
-                                                : L10n.of(context).confirm,
-                                          ),
                                         ],
                                       ),
                                     ),
+                                  ),
                                 ],
                               ),
                             ),

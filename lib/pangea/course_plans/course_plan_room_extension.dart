@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+
+import 'package:http/http.dart' as http;
 import 'package:matrix/matrix.dart' as sdk;
 import 'package:matrix/matrix.dart';
 
@@ -15,6 +18,7 @@ import 'package:fluffychat/pangea/course_plans/course_user_event.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/extensions/join_rule_extension.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 
 extension CoursePlanRoomExtension on Room {
   CoursePlanEvent? get coursePlan {
@@ -101,6 +105,7 @@ extension CoursePlanRoomExtension on Room {
     }
 
     final activityIds = course.loadedTopics[topicIndex].loadedActivities
+        .where((a) => a.req.numberOfParticipants <= 2)
         .map((a) => a.activityId)
         .toList();
     return state.completedActivities.toSet().containsAll(activityIds);
@@ -214,6 +219,25 @@ extension CoursePlanRoomExtension on Room {
     ActivityPlanModel activity,
     ActivityRole? role,
   ) async {
+    Uri? avatarUrl;
+    if (activity.imageURL != null) {
+      try {
+        final http.Response response = await http.get(
+          Uri.parse(activity.imageURL!),
+          headers: {
+            'Authorization':
+                'Bearer ${MatrixState.pangeaController.userController.accessToken}',
+          },
+        );
+        if (response.statusCode != 200) {
+          throw Exception('Failed to load course image');
+        }
+        final avatar = response.bodyBytes;
+        avatarUrl = await client.uploadContent(avatar);
+      } catch (e) {
+        debugPrint("Error fetching course image: $e");
+      }
+    }
     final roomID = await client.createRoom(
       creationContent: {
         'type': "${PangeaRoomTypes.activitySession}:${activity.activityId}",
@@ -225,10 +249,10 @@ extension CoursePlanRoomExtension on Room {
           type: PangeaEventTypes.activityPlan,
           content: activity.toJson(),
         ),
-        if (activity.imageURL != null)
+        if (avatarUrl != null)
           StateEvent(
             type: EventTypes.RoomAvatar,
-            content: {'url': activity.imageURL},
+            content: {'url': avatarUrl.toString()},
           ),
         if (role != null)
           StateEvent(

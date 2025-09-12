@@ -130,7 +130,16 @@ class PangeaInvitationSelectionView extends StatelessWidget {
                     spacing: 12.0,
                     children: controller.availableFilters.map((filter) {
                       return FilterChip(
-                        label: Text(controller.filterLabel(filter)),
+                        label: filter == InvitationFilter.participants
+                            ? Row(
+                                spacing: 4.0,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  const Icon(Icons.group, size: 16.0),
+                                  Text(controller.filterLabel(filter)),
+                                ],
+                              )
+                            : Text(controller.filterLabel(filter)),
                         onSelected: (_) => controller.setFilter(filter),
                         selected: controller.filter == filter,
                       );

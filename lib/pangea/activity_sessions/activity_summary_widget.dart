@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import 'package:material_symbols_icons/symbols.dart';
@@ -15,6 +17,7 @@ import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_en
 class ActivitySummary extends StatelessWidget {
   final ActivityPlanModel activity;
   final Room? room;
+  final Room? course;
 
   final bool showInstructions;
   final VoidCallback toggleInstructions;
@@ -34,6 +37,7 @@ class ActivitySummary extends StatelessWidget {
     this.isParticipantSelected,
     this.getParticipantOpacity,
     this.room,
+    this.course,
   });
 
   @override
@@ -48,14 +52,22 @@ class ActivitySummary extends StatelessWidget {
         child: Column(
           spacing: 4.0,
           children: [
-            ImageByUrl(
-              imageUrl: activity.imageURL,
-              width: 80.0,
-              borderRadius: BorderRadius.circular(20),
+            LayoutBuilder(
+              builder: (context, constraints) {
+                return ImageByUrl(
+                  imageUrl: activity.imageURL,
+                  width: min(
+                    constraints.maxWidth,
+                    MediaQuery.sizeOf(context).height * 0.5,
+                  ),
+                  borderRadius: BorderRadius.circular(20),
+                );
+              },
             ),
             ActivityParticipantList(
               activity: activity,
               room: room,
+              course: course,
               onTap: onTapParticipant,
               canSelect: canSelectParticipant,
               isSelected: isParticipantSelected,

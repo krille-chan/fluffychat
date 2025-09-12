@@ -17,11 +17,11 @@ import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 enum InvitationFilter {
+  participants,
   space,
   contacts,
   knocking,
   invited,
-  participants,
   public;
 
   static InvitationFilter? fromString(String value) {
@@ -268,6 +268,9 @@ class PangeaInvitationSelectionController
         .toList();
 
     contacts.sort(_sortUsers);
+    if (_room?.isSpace ?? false) {
+      contacts.removeWhere((u) => u.id == BotName.byEnvironment);
+    }
     return contacts;
   }
 
@@ -341,8 +344,14 @@ class PangeaInvitationSelectionController
     } finally {
       setState(() => loading = false);
     }
+
+    final results = response.results;
+    if (_room?.isSpace ?? false) {
+      results.removeWhere((profile) => profile.userId == BotName.byEnvironment);
+    }
+
     setState(() {
-      foundProfiles = List<Profile>.from(response.results);
+      foundProfiles = List<Profile>.from(results);
       if (text.isValidMatrixId &&
           foundProfiles.indexWhere((profile) => text == profile.userId) == -1) {
         setState(
@@ -359,6 +368,7 @@ class PangeaInvitationSelectionController
                 [Membership.join, Membership.invite].contains(user.membership),
           )
           .toList();
+
       foundProfiles.removeWhere(
         (profile) =>
             participants?.indexWhere((u) => u.id == profile.userId) != -1 &&

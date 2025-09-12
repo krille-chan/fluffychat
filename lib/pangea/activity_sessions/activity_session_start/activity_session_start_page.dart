@@ -16,6 +16,7 @@ import 'package:fluffychat/pangea/course_plans/course_activity_repo.dart';
 import 'package:fluffychat/pangea/course_plans/course_plan_model.dart';
 import 'package:fluffychat/pangea/course_plans/course_plan_room_extension.dart';
 import 'package:fluffychat/pangea/course_plans/course_plans_repo.dart';
+import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
@@ -285,6 +286,27 @@ class ActivitySessionStartController extends State<ActivitySessionStartPage> {
         "pangea.activity.session_room_id": room!.id,
       },
     );
+  }
+
+  Future<void> playWithBot() async {
+    if (room == null) {
+      throw Exception("Room is null");
+    }
+
+    if (isBotRoomMember) {
+      throw Exception("Bot is a member of the room");
+    }
+
+    final future = room!.client.onRoomState.stream
+        .where(
+          (state) =>
+              state.roomId == room!.id &&
+              state.state.type == PangeaEventTypes.activityRole &&
+              state.state.senderId == BotName.byEnvironment,
+        )
+        .first;
+    room!.invite(BotName.byEnvironment);
+    await future.timeout(const Duration(seconds: 30));
   }
 
   @override
