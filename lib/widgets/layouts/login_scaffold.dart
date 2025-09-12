@@ -10,12 +10,14 @@ import 'package:fluffychat/utils/platform_infos.dart';
 class LoginScaffold extends StatelessWidget {
   final Widget body;
   final AppBar? appBar;
+  final Widget? bottomNavigationBar;
   final bool enforceMobileMode;
 
   const LoginScaffold({
     super.key,
     required this.body,
     this.appBar,
+    this.bottomNavigationBar,
     this.enforceMobileMode = false,
   });
 
@@ -30,6 +32,7 @@ class LoginScaffold extends StatelessWidget {
         key: const Key('LoginScaffold'),
         appBar: appBar,
         body: SafeArea(child: body),
+        bottomNavigationBar: bottomNavigationBar,
       );
     }
     return Container(
@@ -64,6 +67,7 @@ class LoginScaffold extends StatelessWidget {
                       key: const Key('LoginScaffold'),
                       appBar: appBar,
                       body: SafeArea(child: body),
+                      bottomNavigationBar: bottomNavigationBar,
                     ),
                   ),
                 ),

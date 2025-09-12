@@ -1,0 +1,232 @@
+import 'dart:async';
+import 'dart:convert';
+
+import 'package:collection/collection.dart';
+import 'package:fluffychat/pages/homeserver_picker/homeserver_picker.dart';
+import 'package:fluffychat/pages/homeserver_picker/public_homeserver_data.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
+import 'package:flutter_web_auth_2/flutter_web_auth_2.dart';
+import 'package:go_router/go_router.dart';
+import 'package:matrix/matrix.dart';
+import 'package:universal_html/html.dart' as html;
+
+import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
+import 'package:fluffychat/widgets/matrix.dart';
+import '../../utils/localized_exception_extension.dart';
+
+class HomeserverPickerViewModel extends StatefulWidget {
+  final HomeserverPickerType type;
+  final Widget Function(BuildContext, HomeserverPickerViewModelState) builder;
+  const HomeserverPickerViewModel({
+    required this.type,
+    required this.builder,
+    super.key,
+  });
+
+  @override
+  HomeserverPickerViewModelState createState() =>
+      HomeserverPickerViewModelState();
+}
+
+class HomeserverPickerViewModelState extends State<HomeserverPickerViewModel> {
+  bool isLoading = false;
+
+  final TextEditingController filterTextController = TextEditingController();
+
+  String? error;
+
+  List<PublicHomeserverData>? publicHomeservers;
+  PublicHomeserverData? selectedHomeserver;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchHomeservers();
+  }
+
+  void selectHomeserver(PublicHomeserverData? server) {
+    setState(() {
+      selectedHomeserver = server;
+    });
+  }
+
+  void fetchHomeservers() async {
+    setState(() {
+      error = null;
+      isLoading = true;
+    });
+    try {
+      final client = await Matrix.of(context).getLoginClient();
+      final response = await client.httpClient.get(AppConfig.homeserverList);
+      final json = jsonDecode(response.body) as Map<String, dynamic>;
+      final homeserverJsonList = json['public_servers'] as List;
+
+      final publicHomeservers = homeserverJsonList
+          .map((json) => PublicHomeserverData.fromJson(json))
+          .toList();
+
+      if (widget.type == HomeserverPickerType.register) {
+        publicHomeservers.removeWhere((server) {
+          return server.regMethod == null;
+        });
+      }
+
+      final defaultServer = publicHomeservers.singleWhereOrNull(
+            (server) => server.name == AppConfig.defaultHomeserver,
+          ) ??
+          PublicHomeserverData(name: AppConfig.defaultHomeserver);
+
+      publicHomeservers.insert(
+        0,
+        defaultServer,
+      );
+
+      setState(() {
+        selectedHomeserver = defaultServer;
+        this.publicHomeservers = publicHomeservers;
+        isLoading = false;
+      });
+    } catch (e, s) {
+      Logs().w('Unable to fetch public homeservers...', e, s);
+      setState(() {
+        isLoading = false;
+        error = e.toLocalizedString(context);
+        publicHomeservers = [
+          PublicHomeserverData(name: AppConfig.defaultHomeserver),
+        ];
+      });
+    }
+  }
+
+  /// Starts an analysis of the given homeserver. It uses the current domain and
+  /// makes sure that it is prefixed with https. Then it searches for the
+  /// well-known information and forwards to the login page depending on the
+  /// login type.
+  Future<void> checkHomeserverAction(
+    String homeserverInput, {
+    bool legacyPasswordLogin = false,
+  }) async {
+    if (homeserverInput.isEmpty) {
+      final client = await Matrix.of(context).getLoginClient();
+      setState(() {
+        error = loginFlows = null;
+        isLoading = false;
+        client.homeserver = null;
+      });
+      return;
+    }
+    setState(() {
+      error = loginFlows = null;
+      isLoading = true;
+    });
+
+    final l10n = L10n.of(context);
+
+    try {
+      var homeserver = Uri.parse(homeserverInput);
+      if (homeserver.scheme.isEmpty) {
+        homeserver = Uri.https(homeserverInput, '');
+      }
+      final client = await Matrix.of(context).getLoginClient();
+      final (_, _, loginFlows) = await client.checkHomeserver(homeserver);
+      this.loginFlows = loginFlows;
+      if (supportsSso && !legacyPasswordLogin) {
+        if (!PlatformInfos.isMobile) {
+          final consent = await showOkCancelAlertDialog(
+            context: context,
+            title: l10n.appWantsToUseForLogin(homeserverInput),
+            message: l10n.appWantsToUseForLoginDescription,
+            okLabel: l10n.continueText,
+          );
+          if (consent != OkCancelResult.ok) return;
+        }
+        return ssoLoginAction();
+      }
+      context.push(
+        '${GoRouter.of(context).routeInformationProvider.value.uri.path}/login',
+        extra: client,
+      );
+    } catch (e) {
+      setState(
+        () => error = (e).toLocalizedString(
+          context,
+          ExceptionContext.checkHomeserver,
+        ),
+      );
+    } finally {
+      if (mounted) {
+        setState(() => isLoading = false);
+      }
+    }
+  }
+
+  List<LoginFlow>? loginFlows;
+
+  bool _supportsFlow(String flowType) =>
+      loginFlows?.any((flow) => flow.type == flowType) ?? false;
+
+  bool get supportsSso => _supportsFlow('m.login.sso');
+
+  bool isDefaultPlatform =
+      (PlatformInfos.isMobile || PlatformInfos.isWeb || PlatformInfos.isMacOS);
+
+  bool get supportsPasswordLogin => _supportsFlow('m.login.password');
+
+  void ssoLoginAction() async {
+    final redirectUrl = kIsWeb
+        ? Uri.parse(html.window.location.href)
+            .resolveUri(
+              Uri(pathSegments: ['auth.html']),
+            )
+            .toString()
+        : isDefaultPlatform
+            ? '${AppConfig.appOpenUrlScheme.toLowerCase()}://login'
+            : 'http://localhost:3001//login';
+    final client = await Matrix.of(context).getLoginClient();
+    final url = client.homeserver!.replace(
+      path: '/_matrix/client/v3/login/sso/redirect',
+      queryParameters: {'redirectUrl': redirectUrl},
+    );
+
+    final urlScheme = isDefaultPlatform
+        ? Uri.parse(redirectUrl).scheme
+        : "http://localhost:3001";
+    final result = await FlutterWebAuth2.authenticate(
+      url: url.toString(),
+      callbackUrlScheme: urlScheme,
+      options: const FlutterWebAuth2Options(),
+    );
+    final token = Uri.parse(result).queryParameters['loginToken'];
+    if (token?.isEmpty ?? false) return;
+
+    setState(() {
+      error = null;
+      isLoading = true;
+    });
+    try {
+      await client.login(
+        LoginType.mLoginToken,
+        token: token,
+        initialDeviceDisplayName: PlatformInfos.clientName,
+      );
+    } catch (e) {
+      setState(() {
+        error = e.toLocalizedString(context);
+      });
+    } finally {
+      if (mounted) {
+        setState(() {
+          isLoading = false;
+        });
+      }
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) => widget.builder(context, this);
+}
