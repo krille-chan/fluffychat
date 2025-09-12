@@ -70,6 +70,7 @@ class ChatListItemSubtitle extends StatelessWidget {
           userIds:
               room.activityRoles?.roles.values.map((r) => r.userId).toList() ??
                   [],
+          room: room,
           space: room.courseParent,
         );
       } else if (room.activityIsFinished) {
