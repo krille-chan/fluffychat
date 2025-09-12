@@ -2578,5 +2578,24 @@
     "enterNewChat": "Bli med i ny chat",
     "@enterNewChat": {},
     "pleaseWaitUntilInvited": "Vennligst vent nå, til noen fra rommet inviterer deg.",
-    "@pleaseWaitUntilInvited": {}
+    "@pleaseWaitUntilInvited": {},
+    "notificationRuleSuppressNoticesDescription": "Demper varsler fra automatiserte klienter som roboter.",
+    "@notificationRuleSuppressNoticesDescription": {},
+    "notificationRuleInviteForMe": "Inviter for meg",
+    "@notificationRuleInviteForMe": {},
+    "notificationRuleInviteForMeDescription": "Varsler bruker når en blir invitert til et rom.",
+    "@notificationRuleInviteForMeDescription": {},
+    "newChatRequest": "📩 Ny chatforespørsel",
+    "@newChatRequest": {},
+    "appWantsToUseForLogin": "Bruk '{server}' for å logge inn",
+    "@appWantsToUseForLogin": {
+        "type": "String",
+        "placeholders": {
+            "server": {
+                "type": "String"
+            }
+        }
+    },
+    "appWantsToUseForLoginDescription": "Du gir herved tillatelse til at appen og nettstedet deler informasjon om deg.",
+    "@appWantsToUseForLoginDescription": {}
 }
