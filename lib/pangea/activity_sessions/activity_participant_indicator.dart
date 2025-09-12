@@ -100,7 +100,7 @@ class ActivityParticipantIndicator extends StatelessWidget {
                           fontSize: 12.0,
                           color:
                               (Theme.of(context).brightness == Brightness.light
-                                      ? userId?.localpart?.lightColorAvatar
+                                      ? userId?.localpart?.darkColor
                                       : userId?.localpart?.lightColorText) ??
                                   name.lightColorAvatar,
                         ),
