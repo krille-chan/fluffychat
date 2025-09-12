@@ -2562,7 +2562,7 @@
     "@hideRedactedMessages": {},
     "appLockDescription": "Bloquear la aplicación cuando no se use con código pin",
     "@appLockDescription": {},
-    "alwaysUse24HourFormat": "falso",
+    "alwaysUse24HourFormat": "true",
     "@alwaysUse24HourFormat": {
         "description": "Set to true to always display time of day in 24 hour format."
     },
