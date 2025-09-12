@@ -45,12 +45,13 @@ class CoursePlanController extends State<CoursePlanBuilder> {
   }
 
   Future<void> _loadCourse() async {
+    setState(() {
+      loading = false;
+      error = null;
+      course = null;
+    });
+
     if (widget.courseId == null) {
-      setState(() {
-        loading = false;
-        error = null;
-        course = null;
-      });
       return;
     }
 
