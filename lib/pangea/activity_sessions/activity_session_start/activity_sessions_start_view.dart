@@ -127,54 +127,12 @@ class ActivitySessionStartView extends StatelessWidget {
                                               textAlign: TextAlign.center,
                                             ),
                                           if (controller.state ==
-                                              SessionState.notStarted) ...[
-                                            ElevatedButton(
-                                              style: buttonStyle,
-                                              onPressed: () => context.go(
-                                                "/rooms/spaces/${controller.widget.parentId}/activity/${controller.widget.activityId}?new=true",
-                                              ),
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Text(
-                                                    L10n.of(context)
-                                                        .startNewSession,
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            ElevatedButton(
-                                              style: buttonStyle,
-                                              onPressed: controller
-                                                      .canJoinExistingSession
-                                                  ? () async {
-                                                      final resp =
-                                                          await showFutureLoadingDialog(
-                                                        context: context,
-                                                        future: controller
-                                                            .joinExistingSession,
-                                                      );
-
-                                                      if (!resp.isError) {
-                                                        context.go(
-                                                          "/rooms/spaces/${controller.widget.parentId}/${resp.result}",
-                                                        );
-                                                      }
-                                                    }
-                                                  : null,
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Text(
-                                                    L10n.of(context)
-                                                        .joinOpenSession,
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ] else if (controller.state ==
+                                              SessionState.notStarted)
+                                            _ActivityStartButtons(
+                                              controller,
+                                              buttonStyle,
+                                            )
+                                          else if (controller.state ==
                                               SessionState.confirmedRole) ...[
                                             if (controller.room!.courseParent !=
                                                 null)
@@ -275,6 +233,99 @@ class ActivitySessionStartView extends StatelessWidget {
                         ],
                       ),
           ),
+        );
+      },
+    );
+  }
+}
+
+class _ActivityStartButtons extends StatelessWidget {
+  final ActivitySessionStartController controller;
+  final ButtonStyle buttonStyle;
+  const _ActivityStartButtons(
+    this.controller,
+    this.buttonStyle,
+  );
+
+  @override
+  Widget build(BuildContext context) {
+    final hasActiveSession = controller.canJoinExistingSession;
+    return FutureBuilder(
+      future: controller.courseHasEnoughParticipants(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const LinearProgressIndicator();
+        }
+
+        final bool hasEnoughParticipants = snapshot.data ?? true;
+        return Column(
+          spacing: 16.0,
+          children: [
+            if (!hasEnoughParticipants) ...[
+              Text(
+                L10n.of(context).activityNeedsMembers(
+                  (controller.activity?.req.numberOfParticipants ?? 2) - 1,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              if (controller.parent?.canInvite ?? false)
+                ElevatedButton(
+                  style: buttonStyle,
+                  onPressed: () => context.go(
+                    "/rooms/spaces/${controller.parent!.id}/invite",
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        L10n.of(context).inviteFriendsToCourse,
+                      ),
+                    ],
+                  ),
+                ),
+            ] else ...[
+              ElevatedButton(
+                style: buttonStyle,
+                onPressed: () => context.go(
+                  "/rooms/spaces/${controller.widget.parentId}/activity/${controller.widget.activityId}?new=true",
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      hasActiveSession
+                          ? L10n.of(context).startNewSession
+                          : L10n.of(context).start,
+                    ),
+                  ],
+                ),
+              ),
+              if (hasActiveSession)
+                ElevatedButton(
+                  style: buttonStyle,
+                  onPressed: () async {
+                    final resp = await showFutureLoadingDialog(
+                      context: context,
+                      future: controller.joinExistingSession,
+                    );
+
+                    if (!resp.isError) {
+                      context.go(
+                        "/rooms/spaces/${controller.widget.parentId}/${resp.result}",
+                      );
+                    }
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        L10n.of(context).joinOpenSession,
+                      ),
+                    ],
+                  ),
+                ),
+            ],
+          ],
         );
       },
     );

@@ -177,6 +177,28 @@ class ActivitySessionStartController extends State<ActivitySessionStartPage> {
     if (mounted) setState(() => _selectedRoleId = id);
   }
 
+  Future<bool> courseHasEnoughParticipants() async {
+    final roomParticipants = widget.room?.getParticipants() ?? [];
+    final courseParticipants = await parent?.requestParticipants(
+          [Membership.join, Membership.invite, Membership.knock],
+          false,
+          true,
+        ) ??
+        [];
+
+    final botInRoom = roomParticipants.any(
+      (p) => p.id == BotName.byEnvironment,
+    );
+    final botInCourse = courseParticipants.any(
+      (p) => p.id == BotName.byEnvironment,
+    );
+
+    final addBotToAvailableUsers = !botInCourse && !botInRoom;
+    final availableParticipants =
+        courseParticipants.length + (addBotToAvailableUsers ? 1 : 0);
+    return availableParticipants >= (activity?.req.numberOfParticipants ?? 0);
+  }
+
   Future<void> _loadActivity() async {
     try {
       setState(() {

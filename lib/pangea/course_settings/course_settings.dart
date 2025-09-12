@@ -65,6 +65,12 @@ class CourseSettings extends StatelessWidget {
           children: course.loadedTopics.mapIndexed((index, topic) {
             final unlocked = index <= currentTopicIndex;
             final usersInTopic = topicsToUsers[topic.uuid] ?? [];
+            final activities = topic.loadedActivities;
+            activities.sort(
+              (a, b) => a.req.numberOfParticipants.compareTo(
+                b.req.numberOfParticipants,
+              ),
+            );
             return AbsorbPointer(
               absorbing: !unlocked,
               child: Opacity(
@@ -168,10 +174,9 @@ class CourseSettings extends StatelessWidget {
                         height: isColumnMode ? 290.0 : 210.0,
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
-                          itemCount: topic.loadedActivities.length,
+                          itemCount: activities.length,
                           itemBuilder: (context, index) {
-                            final activityId =
-                                topic.loadedActivities[index].activityId;
+                            final activityId = activities[index].activityId;
 
                             final complete = room.hasCompletedActivity(
                               room.client.userID!,
@@ -182,8 +187,7 @@ class CourseSettings extends StatelessWidget {
                               activityId,
                             );
 
-                            final activity = topic.loadedActivities[index];
-
+                            final activity = activities[index];
                             return Padding(
                               padding: const EdgeInsets.only(right: 24.0),
                               child: MouseRegion(

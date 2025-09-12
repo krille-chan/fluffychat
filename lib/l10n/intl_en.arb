@@ -5234,5 +5234,14 @@
   "moreLabel": "more",
   "promoCodeInfo": "Promo codes can be entered on the next page",
   "editsComingSoon": "The ability to edit cities and activities is coming soon.",
-  "editing": "Editing"
+  "editing": "Editing",
+  "activityNeedsMembers": "Uh oh! This activity needs {num} more people.",
+  "@activityNeedsMembers": {
+    "placeholders": {
+      "num": {
+        "type": "int"
+      }
+    }
+  },
+  "inviteFriendsToCourse": "Invite friends to my course"
 }
