@@ -15,13 +15,14 @@ class SavedActivityAnalyticsDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return BackdropFilter(
       filter: ImageFilter.blur(sigmaX: 2.5, sigmaY: 2.5),
       child: Dialog(
-        backgroundColor: Theme.of(context).colorScheme.surfaceContainerHigh,
+        backgroundColor: theme.colorScheme.surfaceContainerHigh,
         child: ConstrainedBox(
           constraints: const BoxConstraints(
-            maxWidth: 300.0,
+            maxWidth: 450.0,
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(12.0),
@@ -37,12 +38,12 @@ class SavedActivityAnalyticsDialog extends StatelessWidget {
                     children: [
                       Text(
                         L10n.of(context).niceJob,
-                        style: const TextStyle(fontSize: 12.0),
+                        style: theme.textTheme.headlineSmall,
                       ),
                       Text(
                         L10n.of(context).activityCompletedDesc,
-                        style: const TextStyle(fontSize: 8.0),
                         textAlign: TextAlign.center,
+                        style: theme.textTheme.bodyMedium,
                       ),
                     ],
                   ),
@@ -52,14 +53,12 @@ class SavedActivityAnalyticsDialog extends StatelessWidget {
                     errorWidget: (context, e, s) => const SizedBox.shrink(),
                     progressIndicatorBuilder: (context, _, __) =>
                         const SizedBox.shrink(),
-                    width: 100.0,
+                    width: 150.0,
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor:
-                          Theme.of(context).colorScheme.primaryContainer,
-                      foregroundColor:
-                          Theme.of(context).colorScheme.onPrimaryContainer,
+                      backgroundColor: theme.colorScheme.primaryContainer,
+                      foregroundColor: theme.colorScheme.onPrimaryContainer,
                       padding: const EdgeInsets.all(4.0),
                     ),
                     onPressed: () => Navigator.of(context).pop(true),
@@ -70,7 +69,6 @@ class SavedActivityAnalyticsDialog extends StatelessWidget {
                         const Icon(Icons.map_outlined, size: 12.0),
                         Text(
                           L10n.of(context).continueText,
-                          style: const TextStyle(fontSize: 12.0),
                         ),
                       ],
                     ),
