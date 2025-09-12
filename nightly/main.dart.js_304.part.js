@@ -559,12 +559,12 @@ gl_(){return"Legg til lenke"},
 gjT(){return"Unable to join chat. Maybe the other party has already closed the conversation."},
 geO(){return"Forrige"},
 gfB(){return"The other party is currently not logged in and therefore cannot receive messages!"},
-l3(d){return"Use '"+d+"' to log in"},
-gl4(){return"You hereby allow the app and website to share information about you."},
+l3(d){return"Bruk '"+d+"' for \xe5 logge inn"},
+gl4(){return"Du gir herved tillatelse til at appen og nettstedet deler informasjon om deg."},
 gnv(d){return"\xc5pne"},
 goG(){return"Venter p\xe5 server..."},
 gl2(){return"FluffyChat lets you chat with your friends across different messengers. Learn more at https://matrix.org or just tap *Continue*."},
-gmE(){return"\ud83d\udce9 New chat request"},
+gmE(){return"\ud83d\udce9 Ny chatforesp\xf8rsel"},
 glD(){return"Content notification settings"},
 gkd(){return"General notification settings"},
 go3(){return"Room notification settings"},
@@ -575,9 +575,9 @@ gmW(){return"Notifies the user when a message contains their username."},
 gn8(){return"Demp alle varslinger"},
 gn9(){return"Overrides all other rules and disables all notifications."},
 gnq(){return"Suppress Automated Messages"},
-gnr(){return"Suppresses notifications from automated clients like bots."},
-gn0(){return"Invite for Me"},
-gn1(){return"Notifies the user when they are invited to a room."},
+gnr(){return"Demper varsler fra automatiserte klienter som roboter."},
+gn0(){return"Inviter for meg"},
+gn1(){return"Varsler bruker n\xe5r en blir invitert til et rom."},
 gna(){return"Member Event"},
 gnb(){return"Suppresses notifications for membership events."},
 gn4(){return"User Mention"},
@@ -636,5 +636,5 @@ A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FM,C.aF)})()
 B.dP(b.typeUniverse,JSON.parse('{"FM":{"aF":[]}}'))};
-(a=>{a["oN0S23ZWTBbnvykalV5WLcnRvXQ="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["yhxAok9BJTVYilI1MZzrTjN98vc="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_304.part.js.map
