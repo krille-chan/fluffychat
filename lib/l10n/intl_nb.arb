@@ -10,7 +10,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "acceptedTheInvitation": "👍{username} godtok invitasjonen",
+    "acceptedTheInvitation": "👍 {username} godtok invitasjonen",
     "@acceptedTheInvitation": {
         "type": "String",
         "placeholders": {
@@ -152,7 +152,7 @@
             }
         }
     },
-    "changedTheChatDescriptionTo": "{username} endret sludrebeskrivelse til: «{description}»",
+    "changedTheChatDescriptionTo": "{username} endret chatbeskrivelse til: «{description}»",
     "@changedTheChatDescriptionTo": {
         "type": "String",
         "placeholders": {
@@ -164,7 +164,7 @@
             }
         }
     },
-    "changedTheChatNameTo": "{username} endret sludringsnavn til: «{chatname}»",
+    "changedTheChatNameTo": "{username} endret chatnavnet til: «{chatname}»",
     "@changedTheChatNameTo": {
         "type": "String",
         "placeholders": {
@@ -2597,5 +2597,58 @@
         }
     },
     "appWantsToUseForLoginDescription": "Du gir herved tillatelse til at appen og nettstedet deler informasjon om deg.",
-    "@appWantsToUseForLoginDescription": {}
+    "@appWantsToUseForLoginDescription": {},
+    "exportEmotePack": "Eksporter smilefjes som .zip-fil",
+    "@exportEmotePack": {},
+    "noUsersFoundWithQuery": "Dessverre ble ingen bruker funnet med \"{query}\". Sjekk om du har skrevet feil.",
+    "@noUsersFoundWithQuery": {
+        "type": "String",
+        "placeholders": {
+            "query": {
+                "type": "String"
+            }
+        }
+    },
+    "chatCanBeDiscoveredViaSearchOnServer": "Chatten kan oppdages via søket på {server}",
+    "@chatCanBeDiscoveredViaSearchOnServer": {
+        "type": "String",
+        "placeholders": {
+            "server": {
+                "type": "String"
+            }
+        }
+    },
+    "leaveEmptyToClearStatus": "La stå tomt for å slette statusen din.",
+    "@leaveEmptyToClearStatus": {},
+    "searchForUsers": "Søk etter @brukere...",
+    "@searchForUsers": {},
+    "pleaseEnterYourCurrentPassword": "Skriv inn ditt nåværende passord",
+    "@pleaseEnterYourCurrentPassword": {},
+    "databaseMigrationBody": "Vent litt. Dette kan ta et øyeblikk.",
+    "@databaseMigrationBody": {},
+    "wrongRecoveryKey": "Beklager ... dette ser ikke ut til å være riktig gjenopprettingsnøkkel.",
+    "@wrongRecoveryKey": {},
+    "declineInvitation": "Avslå invitasjon",
+    "@declineInvitation": {},
+    "restoreSessionBody": "Appen prøver nå å gjenopprette økten din fra sikkerhetskopien. Rapporter denne feilen til utviklerne på {url}. Feilmeldingen er: {error}",
+    "@restoreSessionBody": {
+        "type": "String",
+        "placeholders": {
+            "url": {
+                "type": "String"
+            },
+            "error": {
+                "type": "String"
+            }
+        }
+    },
+    "forwardMessageTo": "Videresende melding til {roomName}?",
+    "@forwardMessageTo": {
+        "type": "String",
+        "placeholders": {
+            "roomName": {
+                "type": "String"
+            }
+        }
+    }
 }
