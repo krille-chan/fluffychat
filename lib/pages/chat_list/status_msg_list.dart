@@ -150,10 +150,21 @@ class PresenceAvatar extends StatelessWidget {
                                   borderRadius:
                                       BorderRadius.circular(avatarSize),
                                 ),
-                                child: Avatar(
-                                  name: displayName,
-                                  mxContent: profile?.avatarUrl,
-                                  size: avatarSize - 6,
+                                alignment: Alignment.center,
+                                child: Container(
+                                  height: avatarSize - 6,
+                                  alignment: Alignment.center,
+                                  decoration: BoxDecoration(
+                                    color: theme.colorScheme.surface,
+                                    borderRadius:
+                                        BorderRadius.circular(avatarSize),
+                                  ),
+                                  padding: const EdgeInsets.all(3.0),
+                                  child: Avatar(
+                                    name: displayName,
+                                    mxContent: profile?.avatarUrl,
+                                    size: avatarSize - 12,
+                                  ),
                                 ),
                               ),
                               if (presence.userid == client.userID)
@@ -184,57 +195,68 @@ class PresenceAvatar extends StatelessWidget {
                                   left: 0,
                                   top: 0,
                                   right: 8,
-                                  child: Material(
-                                    elevation: statusMsgBubbleElevation,
-                                    shadowColor: statusMsgBubbleShadowColor,
-                                    borderRadius: BorderRadius.circular(
-                                      AppConfig.borderRadius / 2,
-                                    ),
-                                    color: statusMsgBubbleColor,
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(2.0),
-                                      child: Text(
-                                        statusMsg,
-                                        maxLines: 2,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: const TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 9,
+                                  child: Column(
+                                    spacing: 2,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Material(
+                                        elevation: statusMsgBubbleElevation,
+                                        shadowColor: statusMsgBubbleShadowColor,
+                                        borderRadius: BorderRadius.circular(
+                                          AppConfig.borderRadius / 2,
+                                        ),
+                                        color: statusMsgBubbleColor,
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                            vertical: 2.0,
+                                            horizontal: 4.0,
+                                          ),
+                                          child: Text(
+                                            statusMsg,
+                                            maxLines: 2,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: const TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 9,
+                                            ),
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ),
-                                ),
-                                Positioned(
-                                  left: 8,
-                                  top: 32,
-                                  child: Material(
-                                    color: statusMsgBubbleColor,
-                                    elevation: statusMsgBubbleElevation,
-                                    shadowColor: statusMsgBubbleShadowColor,
-                                    borderRadius: BorderRadius.circular(
-                                      AppConfig.borderRadius / 2,
-                                    ),
-                                    child: const SizedBox(
-                                      width: 8,
-                                      height: 8,
-                                    ),
-                                  ),
-                                ),
-                                Positioned(
-                                  left: 14,
-                                  top: 40,
-                                  child: Material(
-                                    color: statusMsgBubbleColor,
-                                    elevation: statusMsgBubbleElevation,
-                                    shadowColor: statusMsgBubbleShadowColor,
-                                    borderRadius: BorderRadius.circular(
-                                      AppConfig.borderRadius / 2,
-                                    ),
-                                    child: const SizedBox(
-                                      width: 4,
-                                      height: 4,
-                                    ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 8.0),
+                                        child: Material(
+                                          color: statusMsgBubbleColor,
+                                          elevation: statusMsgBubbleElevation,
+                                          shadowColor:
+                                              statusMsgBubbleShadowColor,
+                                          borderRadius: BorderRadius.circular(
+                                            AppConfig.borderRadius,
+                                          ),
+                                          child: const SizedBox.square(
+                                            dimension: 8,
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 13.0),
+                                        child: Material(
+                                          color: statusMsgBubbleColor,
+                                          elevation: statusMsgBubbleElevation,
+                                          shadowColor:
+                                              statusMsgBubbleShadowColor,
+                                          borderRadius: BorderRadius.circular(
+                                            AppConfig.borderRadius,
+                                          ),
+                                          child: const SizedBox.square(
+                                            dimension: 5,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ],
