@@ -2650,5 +2650,22 @@
                 "type": "String"
             }
         }
+    },
+    "hideUnimportantStateEvents": "Skjul uviktige tilstandshendelser",
+    "@hideUnimportantStateEvents": {},
+    "hidePresences": "Skjul statuslisten?",
+    "@hidePresences": {},
+    "signInWithPassword": "Logg inn med passord",
+    "@signInWithPassword": {},
+    "pleaseTryAgainLaterOrChooseDifferentServer": "Prøv igjen senere eller velg en annen server.",
+    "@pleaseTryAgainLaterOrChooseDifferentServer": {},
+    "signInWith": "Logg inn med {provider}",
+    "@signInWith": {
+        "type": "String",
+        "placeholders": {
+            "provider": {
+                "type": "String"
+            }
+        }
     }
 }
