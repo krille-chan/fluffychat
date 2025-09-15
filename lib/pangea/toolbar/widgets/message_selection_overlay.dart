@@ -19,6 +19,7 @@ import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dar
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_representation_event.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_text_model.dart';
+import 'package:fluffychat/pangea/message_token_text/tokens_util.dart';
 import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_activity_model.dart';
 import 'package:fluffychat/pangea/practice_activities/practice_choice.dart';
@@ -102,8 +103,6 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
   double maxWidth = AppConfig.toolbarMinWidth;
 
-  List<PangeaToken> newTokens = [];
-
   /////////////////////////////////////
   /// Lifecycle
   /////////////////////////////////////
@@ -148,14 +147,6 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
           MatrixState.pangeaController.languageController.userL2!.langCode,
         );
       }
-
-      newTokens = pangeaMessageEvent?.messageDisplayRepresentation?.tokens
-              ?.where((token) {
-            return token.lemma.saveVocab == true &&
-                token.vocabConstruct.uses.isEmpty &&
-                messageInUserL2;
-          }).toList() ??
-          [];
     } catch (e, s) {
       debugger(when: kDebugMode);
       ErrorHandler.logError(
@@ -554,14 +545,8 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     );
 
     if (mounted) {
-      setState(() {
-        newTokens.removeWhere(
-          (t) =>
-              t.text.offset == token.text.offset &&
-              t.text.length == token.text.length &&
-              t.lemma.text.equals(token.lemma.text),
-        );
-      });
+      TokensUtil.clearNewTokenCache(event.eventId);
+      setState(() {});
     }
   }
 
@@ -579,14 +564,8 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     return isSelected;
   }
 
-  bool isNewToken(PangeaToken token) {
-    if (newTokens.isEmpty) return false;
-    return newTokens.any(
-      (t) =>
-          t.text.offset == token.text.offset &&
-          t.text.length == token.text.length,
-    );
-  }
+  bool isNewToken(PangeaToken token) =>
+      TokensUtil.isNewToken(token, pangeaMessageEvent!);
 
   bool isTokenHighlighted(PangeaToken token) {
     if (_highlightedTokens == null) return false;

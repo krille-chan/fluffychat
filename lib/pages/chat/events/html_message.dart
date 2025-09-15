@@ -14,7 +14,7 @@ import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/message_token_text/message_token_button.dart';
-import 'package:fluffychat/pangea/message_token_text/token_position_model.dart';
+import 'package:fluffychat/pangea/message_token_text/tokens_util.dart';
 import 'package:fluffychat/pangea/toolbar/enums/reading_assistance_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/utils/token_rendering_util.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
@@ -396,6 +396,9 @@ class HtmlMessage extends StatelessWidget {
     );
 
     final fontSize = renderer.fontSize(context) ?? this.fontSize;
+    final newTokens = pangeaMessageEvent != null
+        ? TokensUtil.getNewTokens(pangeaMessageEvent!)
+        : [];
     // Pangea#
 
     switch (node.localName) {
@@ -415,10 +418,7 @@ class HtmlMessage extends StatelessWidget {
             ? isHighlighted!.call(token)
             : false;
 
-        final isNew = token != null &&
-            overlayController != null &&
-            overlayController!.isNewToken(token);
-
+        final isNew = token != null && newTokens.contains(token.text);
         final tokenWidth = renderer.tokenTextWidthForContainer(
           context,
           node.text,

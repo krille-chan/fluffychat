@@ -1,4 +1,27 @@
+import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
+import 'package:fluffychat/pangea/events/models/pangea_token_text_model.dart';
+import 'package:fluffychat/widgets/matrix.dart';
+
+class _TokenPositionCacheItem {
+  final List<TokenPosition> positions;
+  final DateTime timestamp;
+
+  _TokenPositionCacheItem(
+    this.positions,
+    this.timestamp,
+  );
+}
+
+class _NewTokenCacheItem {
+  final List<PangeaTokenText> tokens;
+  final DateTime timestamp;
+
+  _NewTokenCacheItem(
+    this.tokens,
+    this.timestamp,
+  );
+}
 
 class TokenPosition {
   final PangeaToken? token;
@@ -15,8 +38,73 @@ class TokenPosition {
 class TokensUtil {
   /// A cache of calculated adjacent token positions
   static final Map<String, _TokenPositionCacheItem> _tokenPositionCache = {};
+  static final Map<String, _NewTokenCacheItem> _newTokenCache = {};
 
   static const Duration _cacheDuration = Duration(minutes: 1);
+
+  static List<PangeaTokenText>? _getCachedNewTokens(String eventID) {
+    final cacheItem = _newTokenCache[eventID];
+    if (cacheItem == null) return null;
+    if (cacheItem.timestamp.isBefore(DateTime.now().subtract(_cacheDuration))) {
+      _newTokenCache.remove(eventID);
+      return null;
+    }
+
+    return cacheItem.tokens;
+  }
+
+  static void _setCachedNewTokens(
+    String eventID,
+    List<PangeaTokenText> tokens,
+  ) {
+    _newTokenCache[eventID] = _NewTokenCacheItem(
+      tokens,
+      DateTime.now(),
+    );
+  }
+
+  static List<PangeaTokenText> getNewTokens(
+    PangeaMessageEvent event,
+  ) {
+    final messageInUserL2 = event.messageDisplayLangCode.split("-")[0] ==
+        MatrixState.pangeaController.languageController.userL2?.langCodeShort;
+
+    final cached = _getCachedNewTokens(event.eventId);
+    if (cached != null) {
+      if (!messageInUserL2) {
+        _newTokenCache.remove(event.eventId);
+        return [];
+      }
+      return cached;
+    }
+
+    final tokens = event.messageDisplayRepresentation?.tokens;
+    if (!messageInUserL2 || tokens == null || tokens.isEmpty) {
+      return [];
+    }
+
+    final List<PangeaTokenText> newTokens = [];
+    for (final token in tokens) {
+      if (!token.lemma.saveVocab || !token.isContentWord) continue;
+      if (token.vocabConstruct.uses.isNotEmpty) continue;
+      if (newTokens.any((t) => t == token.text)) continue;
+
+      newTokens.add(token.text);
+      if (newTokens.length >= 3) break;
+    }
+
+    _setCachedNewTokens(event.eventId, newTokens);
+    return newTokens;
+  }
+
+  static bool isNewToken(PangeaToken token, PangeaMessageEvent event) {
+    final newTokens = getNewTokens(event);
+    return newTokens.any((t) => t == token.text);
+  }
+
+  static clearNewTokenCache(String eventID) {
+    _newTokenCache.remove(eventID);
+  }
 
   static List<TokenPosition>? _getCachedTokenPositions(String eventID) {
     final cacheItem = _tokenPositionCache[eventID];
@@ -157,14 +245,4 @@ class TokensUtil {
 
     return tokenPositions;
   }
-}
-
-class _TokenPositionCacheItem {
-  final List<TokenPosition> positions;
-  final DateTime timestamp;
-
-  _TokenPositionCacheItem(
-    this.positions,
-    this.timestamp,
-  );
 }

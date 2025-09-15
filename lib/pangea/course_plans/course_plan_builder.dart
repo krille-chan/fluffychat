@@ -68,9 +68,7 @@ class CoursePlanController extends State<CoursePlanBuilder> {
       widget.onNotFound?.call();
       error = e;
     } finally {
-      setState(() {
-        loading = false;
-      });
+      if (mounted) setState(() => loading = false);
     }
   }
 
