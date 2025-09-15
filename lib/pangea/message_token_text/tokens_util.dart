@@ -103,7 +103,7 @@ class TokensUtil {
   }
 
   static clearNewTokenCache(String eventID) {
-    _newTokenCache.remove(eventID);
+    _newTokenCache.clear();
   }
 
   static List<TokenPosition>? _getCachedTokenPositions(String eventID) {
