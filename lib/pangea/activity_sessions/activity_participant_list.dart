@@ -10,6 +10,7 @@ import 'package:fluffychat/pangea/activity_sessions/activity_room_extension.dart
 import 'package:fluffychat/pangea/spaces/utils/load_participants_util.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:fluffychat/widgets/member_actions_popup_menu_button.dart';
 
 class ActivityParticipantList extends StatelessWidget {
   final ActivityPlanModel activity;
@@ -79,8 +80,7 @@ class ActivityParticipantList extends StatelessWidget {
                   name: availableRole.name,
                   userId: assignedRole?.userId,
                   opacity: getOpacity != null ? getOpacity!(assignedRole) : 1.0,
-                  avatarUrl:
-                      availableRole.avatarUrl ?? user?.avatarUrl?.toString(),
+                  user: user,
                   onTap: onTap != null && selectable
                       ? () => onTap!(availableRole.id)
                       : null,
@@ -93,39 +93,45 @@ class ActivityParticipantList extends StatelessWidget {
               spacing: 12.0,
               runSpacing: 12.0,
               children: remainingMembers.map((member) {
-                return Container(
-                  decoration: BoxDecoration(
-                    color: theme.colorScheme.primaryContainer,
-                    borderRadius: BorderRadius.circular(18.0),
+                return InkWell(
+                  onTap: () => showMemberActionsPopupMenu(
+                    context: context,
+                    user: member,
                   ),
-                  padding: const EdgeInsets.all(4.0),
-                  child: Opacity(
-                    opacity: 0.5,
-                    child: Row(
-                      spacing: 4.0,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Avatar(
-                          size: 18.0,
-                          mxContent: member.avatarUrl,
-                          name: member.calcDisplayname(),
-                          userId: member.id,
-                        ),
-                        ConstrainedBox(
-                          constraints: const BoxConstraints(
-                            maxWidth: 80.0,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: theme.colorScheme.primaryContainer,
+                      borderRadius: BorderRadius.circular(18.0),
+                    ),
+                    padding: const EdgeInsets.all(4.0),
+                    child: Opacity(
+                      opacity: 0.5,
+                      child: Row(
+                        spacing: 4.0,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Avatar(
+                            size: 18.0,
+                            mxContent: member.avatarUrl,
+                            name: member.calcDisplayname(),
+                            userId: member.id,
                           ),
-                          child: Text(
-                            member.calcDisplayname(),
-                            style: TextStyle(
-                              fontSize: 12.0,
-                              color: theme.colorScheme.onPrimaryContainer,
+                          ConstrainedBox(
+                            constraints: const BoxConstraints(
+                              maxWidth: 80.0,
                             ),
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
+                            child: Text(
+                              member.calcDisplayname(),
+                              style: TextStyle(
+                                fontSize: 12.0,
+                                color: theme.colorScheme.onPrimaryContainer,
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 );

@@ -236,7 +236,7 @@ class ButtonControlledCarouselView extends StatelessWidget {
             return ActivityParticipantIndicator(
               name: userRoleInfo.name,
               userId: p.participantId,
-              avatarUrl: userRoleInfo.avatarUrl ?? user?.avatarUrl?.toString(),
+              user: user,
               borderRadius: BorderRadius.circular(4),
               selected: controller.highlightedRole?.id == userRole.id,
               onTap: () {
