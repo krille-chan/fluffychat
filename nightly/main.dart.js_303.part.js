@@ -421,7 +421,7 @@ gik(){return"Egendefinert"},
 goO(){return"Hvorfor er denne meldingen uleselig?"},
 gmK(){return"This can happen if the message was sent before you have signed in to your account at this device.\n\nIt is also possible that the sender has blocked your device or something went wrong with the internet connection.\n\nAre you able to read the message on another session? Then you can transfer the message from it! Go to Settings > Devices and make sure that your devices have verified each other. When you open the room the next time and both sessions are in the foreground, the keys will be transmitted automatically.\n\nDo you not want to lose the keys when logging out or switching devices? Make sure that you have enabled the chat backup in the settings."},
 gmG(){return"New space"},
-gmb(){return"Hide Status List?"},
+gmb(){return"Skjul statuslisten?"},
 eo(d){return"Empty chat (was "+d+")"},
 gmH(){return"Spaces allows you to consolidate your chats and build private or public communities."},
 glY(){return"Krypter denne chatten"},
@@ -636,5 +636,5 @@ A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FM,C.aF)})()
 B.dP(b.typeUniverse,JSON.parse('{"FM":{"aF":[]}}'))};
-(a=>{a["QZhu/xYs3xnxObm9El6GSR+kV4k="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["mABp/zTEuPqBeulbKOPa0ZN3bAY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_303.part.js.map
