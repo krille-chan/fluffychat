@@ -55,9 +55,61 @@ class ActivitySummaryAnalyticsModel {
     }
   }
 
+  Map<String, List> generateSuperlatives() {
+    final Map<String, List<String>> superlatives = {
+      'vocab': [],
+      'grammar': [],
+      'xp': [],
+    };
+    // Find all user IDs
+    final userIds = constructs.keys.toList();
+    if (userIds.isEmpty) {
+      return superlatives;
+    }
+    int maxVocab = 0;
+    int maxGrammar = 0;
+    int maxXp = 0;
+    final Map<String, int> allVocabs = {};
+    final Map<String, int> allGrammars = {};
+    final Map<String, int> allXPs = {};
+
+    for (final userId in userIds) {
+      //vocab
+      final vocabCount =
+          uniqueConstructCountForUser(userId, ConstructTypeEnum.vocab);
+      allVocabs[userId] = vocabCount;
+      if (vocabCount > maxVocab) maxVocab = vocabCount;
+
+      //grammar
+      final grammarCount =
+          uniqueConstructCountForUser(userId, ConstructTypeEnum.morph);
+      allGrammars[userId] = grammarCount;
+      if (grammarCount > maxGrammar) maxGrammar = grammarCount;
+
+      //XP
+      final xpCount = totalXPForUser(userId);
+      allXPs[userId] = xpCount;
+      if (xpCount > maxXp) maxXp = xpCount;
+    }
+    superlatives['vocab'] = allVocabs.entries
+        .where((e) => e.value == maxVocab && maxVocab > 0)
+        .map((e) => e.key)
+        .toList();
+
+    superlatives['grammar'] = allGrammars.entries
+        .where((e) => e.value == maxGrammar && maxGrammar > 0)
+        .map((e) => e.key)
+        .toList();
+
+    superlatives['xp'] = allXPs.entries
+        .where((e) => e.value == maxXp && maxXp > 0)
+        .map((e) => e.key)
+        .toList();
+    return superlatives;
+  }
+
   factory ActivitySummaryAnalyticsModel.fromJson(Map<String, dynamic> json) {
     final model = ActivitySummaryAnalyticsModel();
-
     for (final userEntry in json.entries) {
       final userId = userEntry.key;
       final constructList = userEntry.value as List<dynamic>;

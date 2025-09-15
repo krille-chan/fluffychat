@@ -127,7 +127,6 @@ extension ActivityRoomExtension on Room {
     if (activitySummary?.summary != null) {
       return;
     }
-
     await setActivitySummary(
       ActivitySummaryModel(
         requestedAt: DateTime.now(),
