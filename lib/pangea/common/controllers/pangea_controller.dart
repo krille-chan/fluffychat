@@ -12,7 +12,6 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/analytics_misc/get_analytics_controller.dart';
 import 'package:fluffychat/pangea/analytics_misc/put_analytics_controller.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/contextual_definition_controller.dart';
-import 'package:fluffychat/pangea/choreographer/controllers/word_net_controller.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/events/controllers/message_data_controller.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
@@ -28,7 +27,6 @@ import 'package:fluffychat/pangea/toolbar/controllers/tts_controller.dart';
 import 'package:fluffychat/pangea/user/controllers/permissions_controller.dart';
 import 'package:fluffychat/pangea/user/controllers/user_controller.dart';
 import 'package:fluffychat/widgets/matrix.dart';
-import '../../choreographer/controllers/it_feedback_controller.dart';
 import '../utils/firebase_analytics.dart';
 
 class PangeaController {
@@ -39,12 +37,10 @@ class PangeaController {
   late PermissionsController permissionsController;
   late GetAnalyticsController getAnalytics;
   late PutAnalyticsController putAnalytics;
-  late WordController wordNet;
   late MessageDataController messageData;
 
   // TODO: make these static so we can remove from here
   late ContextualDefinitionController definitions;
-  late ITFeedbackController itFeedback;
   late SubscriptionController subscriptionController;
   late TextToSpeechController textToSpeech;
   late SpeechToTextController speechToText;
@@ -91,10 +87,8 @@ class PangeaController {
     getAnalytics = GetAnalyticsController(this);
     putAnalytics = PutAnalyticsController(this);
     messageData = MessageDataController(this);
-    wordNet = WordController(this);
     definitions = ContextualDefinitionController(this);
     subscriptionController = SubscriptionController(this);
-    itFeedback = ITFeedbackController(this);
     textToSpeech = TextToSpeechController(this);
     speechToText = SpeechToTextController(this);
     PAuthGaurd.pController = this;

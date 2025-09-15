@@ -15,6 +15,7 @@ import 'package:fluffychat/pangea/activity_summary/activity_summary_request_mode
 import 'package:fluffychat/pangea/bot/utils/bot_name.dart';
 import 'package:fluffychat/pangea/chat_settings/constants/pangea_room_types.dart';
 import 'package:fluffychat/pangea/common/config/environment.dart';
+import 'package:fluffychat/pangea/common/network/requests.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/course_plans/course_plan_room_extension.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
@@ -190,15 +191,17 @@ extension ActivityRoomExtension on Room {
 
       ActivitySummaryRepo.delete(id, activityPlan!);
     } catch (e, s) {
-      ErrorHandler.logError(
-        e: e,
-        s: s,
-        data: {
-          "roomID": id,
-          "activityPlan": activityPlan?.toJson(),
-          "activityResults": messages.map((m) => m.toJson()).toList(),
-        },
-      );
+      if (e is! UnsubscribedException) {
+        ErrorHandler.logError(
+          e: e,
+          s: s,
+          data: {
+            "roomID": id,
+            "activityPlan": activityPlan?.toJson(),
+            "activityResults": messages.map((m) => m.toJson()).toList(),
+          },
+        );
+      }
 
       if (activitySummary?.summary == null) {
         await setActivitySummary(

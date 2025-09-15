@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/pangea/common/network/requests.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/common/widgets/error_indicator.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_text_model.dart';
@@ -98,14 +99,16 @@ class _PhoneticTranscriptionWidgetState
           .first.phoneticL1Transcription.content;
     } catch (e, s) {
       _error = e;
-      ErrorHandler.logError(
-        e: e,
-        s: s,
-        data: {
-          'text': widget.text,
-          'textLanguageCode': widget.textLanguage.langCode,
-        },
-      );
+      if (e is! UnsubscribedException) {
+        ErrorHandler.logError(
+          e: e,
+          s: s,
+          data: {
+            'text': widget.text,
+            'textLanguageCode': widget.textLanguage.langCode,
+          },
+        );
+      }
     } finally {
       if (mounted) {
         setState(() {
@@ -157,9 +160,20 @@ class _PhoneticTranscriptionWidgetState
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   if (_error != null)
-                    ErrorIndicator(
-                      message: L10n.of(context).failedToFetchTranscription,
-                    )
+                    _error is UnsubscribedException
+                        ? ErrorIndicator(
+                            message: L10n.of(context)
+                                .subscribeToUnlockTranscriptions,
+                            onTap: () {
+                              MatrixState
+                                  .pangeaController.subscriptionController
+                                  .showPaywall(context);
+                            },
+                          )
+                        : ErrorIndicator(
+                            message:
+                                L10n.of(context).failedToFetchTranscription,
+                          )
                   else if (_isLoading || _transcription == null)
                     const SizedBox(
                       width: 16,

@@ -4,17 +4,19 @@ class ErrorIndicator extends StatelessWidget {
   final String message;
   final double? iconSize;
   final TextStyle? style;
+  final VoidCallback? onTap;
 
   const ErrorIndicator({
     super.key,
     required this.message,
     this.iconSize,
     this.style,
+    this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    final content = Row(
       mainAxisSize: MainAxisSize.min,
       children: [
         Icon(
@@ -32,5 +34,14 @@ class ErrorIndicator extends StatelessWidget {
         ),
       ],
     );
+
+    if (onTap != null) {
+      return TextButton(
+        onPressed: onTap,
+        child: content,
+      );
+    }
+
+    return content;
   }
 }

@@ -42,9 +42,7 @@ class ReadingAssistanceContentState extends State<ReadingAssistanceContent> {
         MatrixState.pangeaController.subscriptionController.isSubscribed;
 
     if (subscribed != null && !subscribed) {
-      return MessageUnsubscribedCard(
-        controller: widget.overlayController,
-      );
+      return const MessageUnsubscribedCard();
     }
 
     if (widget.overlayController.practiceSelection?.hasHiddenWordActivity ??

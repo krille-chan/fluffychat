@@ -137,14 +137,20 @@ class OverlayMessage extends StatelessWidget {
             event.numberEmotes > 0 &&
             event.numberEmotes <= 3);
 
+    final isSubscribed =
+        MatrixState.pangeaController.subscriptionController.isSubscribed;
+
     final showTranslation = overlayController.showTranslation &&
-        overlayController.translation != null;
+        overlayController.translation != null &&
+        isSubscribed != false;
 
     final showTranscription =
-        overlayController.pangeaMessageEvent?.isAudioMessage == true;
+        overlayController.pangeaMessageEvent?.isAudioMessage == true &&
+            isSubscribed != false;
 
     final showSpeechTranslation = overlayController.showSpeechTranslation &&
-        overlayController.speechTranslation != null;
+        overlayController.speechTranslation != null &&
+        isSubscribed != false;
 
     final transcription = showTranscription
         ? Container(
@@ -200,7 +206,7 @@ class OverlayMessage extends StatelessWidget {
                                 isSelected: overlayController.isTokenSelected,
                               ),
                               if (MatrixState.pangeaController
-                                  .languageController.showTrancription)
+                                  .languageController.showTranscription)
                                 PhoneticTranscriptionWidget(
                                   text: overlayController
                                       .transcription!.transcript.text,

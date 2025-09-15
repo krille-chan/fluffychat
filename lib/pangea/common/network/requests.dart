@@ -10,14 +10,11 @@ import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_en
 import 'package:fluffychat/widgets/matrix.dart';
 
 class Requests {
-  late String? baseUrl;
-  // Matrix access token
   late String? accessToken;
   late String? choreoApiKey;
-  //Question: How can we make baseUrl optional?
+
   Requests({
     this.accessToken,
-    this.baseUrl = '',
     this.choreoApiKey,
   });
 
@@ -31,84 +28,31 @@ class Requests {
     dynamic encoded;
     encoded = jsonEncode(body);
 
-    debugPrint(baseUrl! + url);
-
     final http.Response response = await http.post(
-      _uriBuilder(url),
-      body: encoded,
-      headers: _headers,
-    );
-    handleError(response, body: body);
-
-    return response;
-  }
-
-  Future<http.Response> put({
-    required String url,
-    required Map<dynamic, dynamic> body,
-  }) async {
-    body[ModelKey.cefrLevel] = MatrixState
-        .pangeaController.userController.profile.userSettings.cefrLevel.string;
-
-    dynamic encoded;
-    encoded = jsonEncode(body);
-
-    debugPrint(baseUrl! + url);
-
-    final http.Response response = await http.put(
-      _uriBuilder(url),
+      Uri.parse(url),
       body: encoded,
       headers: _headers,
     );
 
     handleError(response, body: body);
-
     return response;
   }
 
-  Future<http.Response> patch({
-    required String url,
-    required Map<dynamic, dynamic> body,
-  }) async {
-    body[ModelKey.cefrLevel] = MatrixState
-        .pangeaController.userController.profile.userSettings.cefrLevel.string;
-
-    dynamic encoded;
-    encoded = jsonEncode(body);
-
-    debugPrint(baseUrl! + url);
-
-    final http.Response response = await http.patch(
-      _uriBuilder(url),
-      body: encoded,
-      headers: _headers,
-    );
-
-    handleError(response, body: body);
-
-    return response;
-  }
-
-  Future<http.Response> get({required String url, String objectId = ""}) async {
+  Future<http.Response> get({required String url}) async {
     final http.Response response =
-        await http.get(_uriBuilder(url + objectId), headers: _headers);
+        await http.get(Uri.parse(url), headers: _headers);
 
-    handleError(response, objectId: objectId);
-
+    handleError(response);
     return response;
   }
-
-  Uri _uriBuilder(url) =>
-      baseUrl != null ? Uri.parse(baseUrl! + url) : Uri.parse(url);
 
   void addBreadcrumb(
     http.Response response, {
     Map<dynamic, dynamic>? body,
-    String? objectId,
   }) {
     debugPrint("Error - code: ${response.statusCode}");
     debugPrint("api: ${response.request?.url}");
-    debugPrint("request body: ${body ?? objectId}");
+    debugPrint("request body: $body");
     Sentry.addBreadcrumb(
       Breadcrumb.http(
         url: response.request?.url ?? Uri(path: "not available"),
@@ -117,20 +61,23 @@ class Requests {
       ),
     );
     Sentry.addBreadcrumb(
-      Breadcrumb(data: {"body": body, "objectId": objectId}),
+      Breadcrumb(data: {"body": body}),
     );
   }
 
   void handleError(
     http.Response response, {
     Map<dynamic, dynamic>? body,
-    String? objectId,
   }) {
-    //PTODO - handle 401 error - unauthorized call
-    //kick them back to login?
+    if (response.statusCode == 401) {
+      final responseBody = jsonDecode(utf8.decode(response.bodyBytes));
+      if (responseBody['detail'] == 'No active subscription found') {
+        throw UnsubscribedException();
+      }
+    }
 
     if (response.statusCode >= 400) {
-      addBreadcrumb(response, body: body, objectId: objectId);
+      addBreadcrumb(response, body: body);
       throw response;
     }
   }
@@ -142,7 +89,6 @@ class Requests {
     };
     if (accessToken != null) {
       headers["Authorization"] = 'Bearer ${accessToken!}';
-      //headers["Matrix-Access-Token"] = accessToken!;
     }
     if (choreoApiKey != null) {
       headers['api_key'] = choreoApiKey!;
@@ -150,3 +96,5 @@ class Requests {
     return headers;
   }
 }
+
+class UnsubscribedException implements Exception {}

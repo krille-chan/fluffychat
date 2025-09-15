@@ -1,13 +1,12 @@
-import 'dart:developer';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_use_model.dart';
 import 'package:fluffychat/pangea/analytics_misc/text_loading_shimmer.dart';
+import 'package:fluffychat/pangea/common/network/requests.dart';
 import 'package:fluffychat/pangea/common/widgets/error_indicator.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/word_zoom/lemma_meaning_builder.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 
 class LemmaMeaningWidget extends StatelessWidget {
   final LemmaMeaningBuilderState controller;
@@ -31,7 +30,16 @@ class LemmaMeaningWidget extends StatelessWidget {
     }
 
     if (controller.error != null) {
-      debugger(when: kDebugMode);
+      if (controller.error is UnsubscribedException) {
+        return ErrorIndicator(
+          message: L10n.of(context).subscribeToUnlockDefinitions,
+          style: style,
+          onTap: () {
+            MatrixState.pangeaController.subscriptionController
+                .showPaywall(context);
+          },
+        );
+      }
       return ErrorIndicator(
         message: L10n.of(context).errorFetchingDefinition,
         style: style,

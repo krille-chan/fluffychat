@@ -1,15 +1,15 @@
-import 'dart:developer';
 import 'dart:math';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/analytics_misc/text_loading_shimmer.dart';
+import 'package:fluffychat/pangea/common/network/requests.dart';
 import 'package:fluffychat/pangea/common/widgets/error_indicator.dart';
 import 'package:fluffychat/pangea/morphs/get_grammar_copy.dart';
 import 'package:fluffychat/pangea/morphs/morph_features_enum.dart';
 import 'package:fluffychat/pangea/morphs/morph_meaning/morph_info_repo.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 
 class MorphMeaningWidget extends StatefulWidget {
   final MorphFeaturesEnum feature;
@@ -63,7 +63,6 @@ class MorphMeaningWidgetState extends State<MorphMeaningWidget> {
       final response = await _morphMeaning();
       _setMeaningText(response);
     } catch (e) {
-      debugger(when: kDebugMode);
       _error = e;
     } finally {
       if (mounted) setState(() => _isLoading = false);
@@ -117,9 +116,17 @@ class MorphMeaningWidgetState extends State<MorphMeaningWidget> {
 
     if (_error != null) {
       return Center(
-        child: ErrorIndicator(
-          message: L10n.of(context).errorFetchingDefinition,
-        ),
+        child: _error is UnsubscribedException
+            ? ErrorIndicator(
+                message: L10n.of(context).subscribeToUnlockDefinitions,
+                onTap: () {
+                  MatrixState.pangeaController.subscriptionController
+                      .showPaywall(context);
+                },
+              )
+            : ErrorIndicator(
+                message: L10n.of(context).errorFetchingDefinition,
+              ),
       );
     }
 

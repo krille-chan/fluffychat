@@ -48,11 +48,8 @@ class WordDataCard extends StatefulWidget {
 class WordDataCardController extends State<WordDataCard> {
   final PangeaController controller = MatrixState.pangeaController;
 
-  bool isLoadingWordNet = false;
   bool isLoadingContextualDefinition = false;
   ContextualDefinitionResponseModel? contextualDefinitionRes;
-  WordData? wordData;
-  Object? wordNetError;
 
   Object? definitionError;
   LanguageModel? activeL1;
@@ -66,12 +63,9 @@ class WordDataCardController extends State<WordDataCard> {
     activeL1 = controller.languageController.activeL1Model()!;
     activeL2 = controller.languageController.activeL2Model()!;
     if (activeL1 == null || activeL2 == null) {
-      wordNetError = noLanguages;
       definitionError = noLanguages;
-    } else if (!widget.hasInfo) {
-      getContextualDefinition();
     } else {
-      getWordNet();
+      getContextualDefinition();
     }
     super.initState();
   }
@@ -80,11 +74,7 @@ class WordDataCardController extends State<WordDataCard> {
   void didUpdateWidget(covariant WordDataCard oldWidget) {
     // debugger(when: kDebugMode);
     if (oldWidget.word != widget.word) {
-      if (!widget.hasInfo) {
-        getContextualDefinition();
-      } else {
-        getWordNet();
-      }
+      getContextualDefinition();
     }
     super.didUpdateWidget(oldWidget);
   }
@@ -127,32 +117,6 @@ class WordDataCardController extends State<WordDataCard> {
     }
   }
 
-  Future<void> getWordNet() async {
-    if (mounted) {
-      setState(() {
-        wordData = null;
-        isLoadingWordNet = true;
-      });
-    }
-    try {
-      wordData = await controller.wordNet.getWordDataGlobal(
-        word: widget.word,
-        fullText: widget.fullText,
-        userL1: activeL1?.langCode,
-        userL2: activeL2?.langCode,
-      );
-    } catch (err) {
-      ErrorHandler.logError(
-        e: err,
-        s: StackTrace.current,
-        data: {"word": widget.word, "hasInfo": widget.hasInfo},
-      );
-      wordNetError = err;
-    } finally {
-      if (mounted) setState(() => isLoadingWordNet = false);
-    }
-  }
-
   void handleGetDefinitionButtonPress() {
     if (isLoadingContextualDefinition) return;
     getContextualDefinition();
@@ -172,12 +136,6 @@ class WordDataCardView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (controller.wordNetError != null) {
-      return CardErrorWidget(
-        error: controller.wordNetError!.toString(),
-        maxWidth: AppConfig.toolbarMinWidth,
-      );
-    }
     if (controller.activeL1 == null || controller.activeL2 == null) {
       ErrorHandler.logError(
         m: "should not be here",
@@ -210,30 +168,6 @@ class WordDataCardView extends StatelessWidget {
                     style: BotStyle.text(context),
                   ),
                 const SizedBox(height: 5.0),
-                if (controller.wordData != null &&
-                    controller.wordNetError == null &&
-                    controller.activeL1 != null &&
-                    controller.activeL2 != null)
-                  WordNetInfo(
-                    wordData: controller.wordData!,
-                    activeL1: controller.activeL1!,
-                    activeL2: controller.activeL2!,
-                  ),
-                if (controller.isLoadingWordNet)
-                  const ToolbarContentLoadingIndicator(),
-                const SizedBox(height: 5.0),
-                // if (controller.widget.hasInfo &&
-                //     !controller.isLoadingContextualDefinition &&
-                //     controller.contextualDefinitionRes == null)
-                //   Material(
-                //     type: MaterialType.transparency,
-                //     child: ListTile(
-                //       leading: const BotFace(
-                //           width: 40, expression: BotExpression.surprised),
-                //       title: Text(L10n.of(context).askPangeaBot),
-                //       onTap: controller.handleGetDefinitionButtonPress,
-                //     ),
-                //   ),
                 if (controller.isLoadingContextualDefinition)
                   const ToolbarContentLoadingIndicator(),
                 if (controller.contextualDefinitionRes != null)

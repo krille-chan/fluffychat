@@ -8,6 +8,7 @@ import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/choreographer/constants/choreo_constants.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/it_controller.dart';
+import 'package:fluffychat/pangea/choreographer/controllers/it_feedback_controller.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/igc/word_data_card.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/it_feedback_card.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
@@ -17,7 +18,6 @@ import 'package:fluffychat/pangea/instructions/instructions_inline_tooltip.dart'
 import 'package:fluffychat/pangea/learning_settings/pages/settings_learning.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../../common/utils/overlay.dart';
-import '../controllers/it_feedback_controller.dart';
 import '../models/it_response_model.dart';
 import 'choice_array.dart';
 

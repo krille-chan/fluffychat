@@ -549,12 +549,15 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final modes = widget.overlayController.showLanguageAssistance
+    final isSubscribed =
+        MatrixState.pangeaController.subscriptionController.isSubscribed;
+    List<SelectMode> modes = widget.overlayController.showLanguageAssistance
         ? messageEvent?.isAudioMessage == true
             ? audioModes
             : textModes
         : [];
 
+    if (isSubscribed == false) modes = [];
     return Material(
       type: MaterialType.transparency,
       child: SizedBox(
