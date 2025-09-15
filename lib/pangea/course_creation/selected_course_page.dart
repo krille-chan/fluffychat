@@ -46,6 +46,7 @@ class SelectedCourseController extends State<SelectedCourse> {
 
     final roomId = await client.createPangeaSpace(
       name: course.title,
+      topic: course.description,
       introChatName: L10n.of(context).introductions,
       announcementsChatName: L10n.of(context).announcements,
       visibility: sdk.Visibility.private,

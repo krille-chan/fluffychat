@@ -233,6 +233,7 @@ extension CoursePlanRoomExtension on Room {
       },
       visibility: sdk.Visibility.private,
       name: activity.title,
+      topic: activity.description,
       initialState: [
         StateEvent(
           type: PangeaEventTypes.activityPlan,

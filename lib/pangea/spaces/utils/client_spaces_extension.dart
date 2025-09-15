@@ -15,6 +15,7 @@ extension SpacesClientExtension on Client {
     required String name,
     required String introChatName,
     required String announcementsChatName,
+    String? topic,
     Visibility visibility = Visibility.private,
     JoinRules joinRules = JoinRules.public,
     Uint8List? avatar,
@@ -26,6 +27,7 @@ extension SpacesClientExtension on Client {
       creationContent: {'type': RoomCreationTypes.mSpace},
       visibility: visibility,
       name: name.trim(),
+      topic: topic?.trim(),
       powerLevelContentOverride: {'events_default': 100},
       initialState: [
         RoomDefaults.defaultSpacePowerLevels(

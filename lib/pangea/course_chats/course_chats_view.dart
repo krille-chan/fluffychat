@@ -8,7 +8,6 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
-import 'package:fluffychat/pangea/activity_sessions/activity_room_extension.dart';
 import 'package:fluffychat/pangea/course_chats/activity_template_chat_list_item.dart';
 import 'package:fluffychat/pangea/course_chats/course_chats_page.dart';
 import 'package:fluffychat/pangea/course_chats/unjoined_chat_list_item.dart';
@@ -178,25 +177,6 @@ class CourseChatsView extends StatelessWidget {
                       borderRadius: BorderRadius.circular(
                         AppConfig.borderRadius / 2,
                       ),
-                      trailing: joinedRoom.activityIsFinished
-                          ? SizedBox(
-                              height: 24.0,
-                              width: 54.0,
-                              child: ElevatedButton(
-                                onPressed: () =>
-                                    controller.onChatTap(joinedRoom),
-                                style: ElevatedButton.styleFrom(
-                                  padding: const EdgeInsets.all(0),
-                                ),
-                                child: Text(
-                                  L10n.of(context).results,
-                                  style: const TextStyle(
-                                    fontSize: 12,
-                                  ),
-                                ),
-                              ),
-                            )
-                          : null,
                     );
                   }
                   i -= joinedSessions.length;
