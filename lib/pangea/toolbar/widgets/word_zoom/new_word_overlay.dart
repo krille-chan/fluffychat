@@ -105,18 +105,11 @@ class _NewWordOverlayState extends State<NewWordOverlay>
           final fade = 1.0 - (_fadeAnim!.value);
           final move = _moveAnim!.value;
 
-          final seedSize = 75 * scale * fade;
-
-          // Calculate movement to top left if fullscreen, or top right of word card if mobile
-          final screenSize = MediaQuery.of(context).size;
-          final moveX =
-              columnMode ? -move * (screenSize.width / 2 - 50) : move * 130;
-
-          final moveY =
-              columnMode ? -move * (screenSize.height / 2 - 50) : move * -120;
+          final seedSize = 75 * scale;
+          final moveY = -move * 60;
 
           return Transform.translate(
-            offset: Offset(moveX, moveY),
+            offset: Offset(0, moveY),
             child: Opacity(
               opacity: fade,
               child: Transform.rotate(
