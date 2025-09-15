@@ -51,6 +51,12 @@ class ChatSearchMessageTab extends StatelessWidget {
           );
         }
         final events = snapshot.data?.$1 ?? [];
+        events.removeWhere(
+          (event) =>
+              event.type != EventTypes.Message ||
+              event.messageType != MessageTypes.Text ||
+              event.redacted,
+        );
 
         return SelectionArea(
           child: ListView.separated(
