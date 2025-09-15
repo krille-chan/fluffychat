@@ -104,30 +104,16 @@ extension CoursePlanRoomExtension on Room {
       throw Exception('Topic not found');
     }
 
-    final numTwoPersonActivities = course
-        .loadedTopics[topicIndex].loadedActivities
-        .where((a) => a.req.numberOfParticipants <= 2)
-        .length;
+    final topicActivities = course.loadedTopics[topicIndex].loadedActivities;
+    final topicActivityIds = topicActivities.map((a) => a.activityId).toSet();
+    final numTwoPersonActivities =
+        topicActivities.where((a) => a.req.numberOfParticipants <= 2).length;
 
-    return state.completedActivities.length >= numTwoPersonActivities;
+    final completedTopicActivities =
+        state.completedActivities.intersection(topicActivityIds);
+
+    return completedTopicActivities.length >= numTwoPersonActivities;
   }
-
-  CourseTopicModel? currentTopic(
-    String userID,
-    CoursePlanModel course,
-  ) {
-    if (coursePlan == null) return null;
-    if (course.loadedTopics.isEmpty) return null;
-
-    final index = course.loadedTopics.indexWhere(
-      (t) => !_hasCompletedTopic(userID, t, course),
-    );
-
-    return index == -1 ? null : course.loadedTopics[index];
-  }
-
-  CourseTopicModel? ownCurrentTopic(CoursePlanModel course) =>
-      currentTopic(client.userID!, course);
 
   int currentTopicIndex(
     String userID,
@@ -136,11 +122,13 @@ extension CoursePlanRoomExtension on Room {
     if (coursePlan == null) return -1;
     if (course.loadedTopics.isEmpty) return -1;
 
-    final index = course.loadedTopics.indexWhere(
-      (t) => !_hasCompletedTopic(userID, t, course),
-    );
+    for (int i = 0; i < course.loadedTopics.length; i++) {
+      if (!_hasCompletedTopic(userID, course.loadedTopics[i], course)) {
+        return i;
+      }
+    }
 
-    return index == -1 ? 0 : index;
+    return 0;
   }
 
   int ownCurrentTopicIndex(CoursePlanModel course) =>
