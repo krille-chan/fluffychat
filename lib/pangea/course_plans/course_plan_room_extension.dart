@@ -104,11 +104,12 @@ extension CoursePlanRoomExtension on Room {
       throw Exception('Topic not found');
     }
 
-    final activityIds = course.loadedTopics[topicIndex].loadedActivities
+    final numTwoPersonActivities = course
+        .loadedTopics[topicIndex].loadedActivities
         .where((a) => a.req.numberOfParticipants <= 2)
-        .map((a) => a.activityId)
-        .toList();
-    return state.completedActivities.toSet().containsAll(activityIds);
+        .length;
+
+    return state.completedActivities.length >= numTwoPersonActivities;
   }
 
   CourseTopicModel? currentTopic(
