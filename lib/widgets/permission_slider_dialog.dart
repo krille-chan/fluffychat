@@ -14,7 +14,7 @@ Future<int?> showPermissionChooser(
   return await showAdaptiveDialog<int>(
     context: context,
     builder: (context) => AlertDialog.adaptive(
-      title: Text(L10n.of(context).chatPermissions),
+      title: Center(child: Text(L10n.of(context).chatPermissions)),
       content: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 256, maxHeight: 256),
         child: Column(
@@ -39,6 +39,7 @@ Future<int?> showPermissionChooser(
       actions: [
         AdaptiveDialogAction(
           bigButtons: true,
+          borderRadius: AdaptiveDialogAction.topRadius,
           onPressed: () {
             final level = int.tryParse(controller.text.trim());
             if (level == null) {
@@ -55,18 +56,23 @@ Future<int?> showPermissionChooser(
         ),
         if (maxLevel >= 100 && currentLevel != 100)
           AdaptiveDialogAction(
+            borderRadius: AdaptiveDialogAction.centerRadius,
             bigButtons: true,
             onPressed: () => Navigator.of(context).pop<int>(100),
             child: Text(L10n.of(context).admin),
           ),
         if (maxLevel >= 50 && currentLevel != 50)
           AdaptiveDialogAction(
+            borderRadius: maxLevel != 0
+                ? AdaptiveDialogAction.centerRadius
+                : AdaptiveDialogAction.bottomRadius,
             bigButtons: true,
             onPressed: () => Navigator.of(context).pop<int>(50),
             child: Text(L10n.of(context).moderator),
           ),
         if (currentLevel != 0)
           AdaptiveDialogAction(
+            borderRadius: AdaptiveDialogAction.bottomRadius,
             bigButtons: true,
             onPressed: () => Navigator.of(context).pop<int>(0),
             child: Text(L10n.of(context).normalUser),
