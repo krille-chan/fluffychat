@@ -215,7 +215,7 @@ class HtmlMessage extends StatelessWidget {
         : [];
 
     for (final TokenPosition tokenPosition in tokenPositions) {
-      final String tokenSpanText = tokens!
+      String tokenSpanText = tokens!
           .sublist(tokenPosition.startIndex, tokenPosition.endIndex + 1)
           .map((t) => t.text.content)
           .join();
@@ -244,6 +244,11 @@ class HtmlMessage extends StatelessWidget {
           .skip(tokenIndex + tokenLength)
           .toString();
 
+      if (after.startsWith('\n')) {
+        after.replaceFirst('\n', '');
+        tokenSpanText += '\n';
+      }
+
       result.replaceRange(substringIndex, substringIndex + 1, [
         if (before.isNotEmpty) before,
         '<token offset="${tokenPosition.token!.text.offset}" length="${tokenPosition.token!.text.length}">$tokenSpanText</token>',
@@ -251,10 +256,6 @@ class HtmlMessage extends StatelessWidget {
       ]);
 
       position = substringIndex;
-    }
-
-    for (int i = 0; i < result.length; i++) {
-      if (result[i] == '\n') result[i] = '<br>';
     }
 
     if (pangeaMessageEvent?.textDirection == TextDirection.rtl) {
@@ -274,6 +275,8 @@ class HtmlMessage extends StatelessWidget {
       final inverted = _invertTags(result);
       return inverted.join().trim();
     }
+
+    debugPrint("HTML after adding token tags: $result");
     return result.join().trim();
   }
 
@@ -425,62 +428,68 @@ class HtmlMessage extends StatelessWidget {
           node.text,
         );
 
-        return WidgetSpan(
-          alignment: readingAssistanceMode == ReadingAssistanceMode.practiceMode
-              ? PlaceholderAlignment.bottom
-              : PlaceholderAlignment.middle,
-          child: Column(
-            children: [
-              if (renderer.showCenterStyling && token != null)
-                MessageTokenButton(
-                  token: token,
-                  overlayController: overlayController,
-                  textStyle: renderer.style(
-                    context,
-                    color: renderer.backgroundColor(
-                      context,
-                      selected,
-                      highlighted,
-                      isNew,
-                    ),
-                  ),
-                  width: tokenWidth,
-                  animateIn: isTransitionAnimation,
-                ),
-              MouseRegion(
-                cursor: SystemMouseCursors.click,
-                child: GestureDetector(
-                  behavior: HitTestBehavior.translucent,
-                  onTap: onClick != null && token != null
-                      ? () => onClick?.call(token)
-                      : null,
-                  child: RichText(
-                    textDirection: pangeaMessageEvent?.textDirection,
-                    text: TextSpan(
-                      children: [
-                        LinkifySpan(
-                          text: node.text,
-                          style: renderer.style(
-                            context,
-                            color: renderer.backgroundColor(
-                              context,
-                              selected,
-                              highlighted,
-                              isNew,
-                            ),
-                          ),
-                          linkStyle: linkStyle,
-                          onOpen: (url) =>
-                              UrlLauncher(context, url.url).launchUrl(),
+        return TextSpan(
+          children: [
+            WidgetSpan(
+              alignment:
+                  readingAssistanceMode == ReadingAssistanceMode.practiceMode
+                      ? PlaceholderAlignment.bottom
+                      : PlaceholderAlignment.middle,
+              child: Column(
+                children: [
+                  if (renderer.showCenterStyling && token != null)
+                    MessageTokenButton(
+                      token: token,
+                      overlayController: overlayController,
+                      textStyle: renderer.style(
+                        context,
+                        color: renderer.backgroundColor(
+                          context,
+                          selected,
+                          highlighted,
+                          isNew,
                         ),
-                      ],
+                      ),
+                      width: tokenWidth,
+                      animateIn: isTransitionAnimation,
+                    ),
+                  MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    child: GestureDetector(
+                      behavior: HitTestBehavior.translucent,
+                      onTap: onClick != null && token != null
+                          ? () => onClick?.call(token)
+                          : null,
+                      child: RichText(
+                        textDirection: pangeaMessageEvent?.textDirection,
+                        text: TextSpan(
+                          children: [
+                            LinkifySpan(
+                              text: node.text.trim(),
+                              style: renderer.style(
+                                context,
+                                color: renderer.backgroundColor(
+                                  context,
+                                  selected,
+                                  highlighted,
+                                  isNew,
+                                ),
+                              ),
+                              linkStyle: linkStyle,
+                              onOpen: (url) =>
+                                  UrlLauncher(context, url.url).launchUrl(),
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
-                ),
+                ],
+                // ),
               ),
-            ],
-            // ),
-          ),
+            ),
+            if (node.text.endsWith('\n')) const TextSpan(text: '\n'),
+          ],
         );
       // Pangea#
       case 'br':

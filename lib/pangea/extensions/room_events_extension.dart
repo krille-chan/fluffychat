@@ -247,6 +247,7 @@ extension EventsRoomExtension on Room {
         event['body'],
         getEmotePacks: () => getImagePacksFlat(ImagePackUsage.emoticon),
         getMention: getMention,
+        convertLinebreaks: client.convertLinebreaksInFormatting,
       );
       // if the decoded html is the same as the body, there is no need in sending a formatted message
       if (HtmlUnescape().convert(html.replaceAll(RegExp(r'<br />\n?'), '\n')) !=
