@@ -5246,5 +5246,6 @@
   "inviteFriendsToCourse": "Invite friends to my course",
   "subscribeToUnlockActivitySummaries": "Subscribe to unlock activity summaries",
   "subscribeToUnlockDefinitions": "Subscribe to unlock definitions",
-  "subscribeToUnlockTranscriptions": "Subscribe to unlock transcriptions"
+  "subscribeToUnlockTranscriptions": "Subscribe to unlock transcriptions",
+  "pingSent": "🔔 Course ping sent! 🔔"
 }

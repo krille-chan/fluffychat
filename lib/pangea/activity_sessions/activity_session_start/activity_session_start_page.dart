@@ -332,7 +332,18 @@ class ActivitySessionStartController extends State<ActivitySessionStartPage> {
       },
     );
 
-    if (mounted) setState(() {});
+    if (mounted) {
+      setState(() {});
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            L10n.of(context).pingSent,
+            textAlign: TextAlign.center,
+          ),
+          duration: const Duration(milliseconds: 2000),
+        ),
+      );
+    }
   }
 
   Future<void> playWithBot() async {
