@@ -16,6 +16,7 @@ class ActivityParticipantIndicator extends StatelessWidget {
 
   final VoidCallback? onTap;
   final bool selected;
+  final bool selectable;
   final double opacity;
 
   final EdgeInsetsGeometry? padding;
@@ -27,6 +28,7 @@ class ActivityParticipantIndicator extends StatelessWidget {
     this.user,
     this.userId,
     this.selected = false,
+    this.selectable = true,
     this.onTap,
     this.opacity = 1.0,
     this.padding,
@@ -58,7 +60,7 @@ class ActivityParticipantIndicator extends StatelessWidget {
                     ),
                 decoration: BoxDecoration(
                   borderRadius: borderRadius ?? BorderRadius.circular(8.0),
-                  color: hovered || selected
+                  color: (hovered || selected) && selectable
                       ? theme.colorScheme.surfaceContainerHighest
                       : Colors.transparent,
                 ),

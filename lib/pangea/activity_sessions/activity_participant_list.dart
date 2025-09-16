@@ -85,6 +85,7 @@ class ActivityParticipantList extends StatelessWidget {
                       ? () => onTap!(availableRole.id)
                       : null,
                   selected: selected,
+                  selectable: selectable,
                 );
               }).toList(),
             ),

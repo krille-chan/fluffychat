@@ -32,6 +32,7 @@ class CourseTopicRepo {
     final topics = <CourseTopicModel>[];
     final toFetch = <String>[];
 
+    await _storage.initStorage;
     for (final uuid in uuids) {
       final cached = _getCached(uuid);
       if (cached != null) {

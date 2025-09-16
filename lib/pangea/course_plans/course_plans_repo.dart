@@ -94,6 +94,7 @@ class CoursePlansRepo {
   }
 
   static Future<CoursePlanModel> get(String id) async {
+    await _courseStorage.initStorage;
     final cached = _getCached(id);
     if (cached != null) {
       return cached;
@@ -131,6 +132,7 @@ class CoursePlansRepo {
   }
 
   static Future<List<CoursePlanModel>> search({CourseFilter? filter}) async {
+    await _courseStorage.initStorage;
     final cached = _getCachedSearchResults(filter ?? CourseFilter());
     if (cached != null && cached.isNotEmpty) {
       return cached;
