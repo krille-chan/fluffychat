@@ -58,6 +58,7 @@ import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/instructions/instructions_enum.dart';
 import 'package:fluffychat/pangea/learning_settings/constants/language_constants.dart';
 import 'package:fluffychat/pangea/learning_settings/widgets/p_language_dialog.dart';
+import 'package:fluffychat/pangea/message_token_text/tokens_util.dart';
 import 'package:fluffychat/pangea/spaces/utils/load_participants_util.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
@@ -448,18 +449,7 @@ class ChatController extends State<ChatPageWithRoom>
           update is Map<String, dynamic> &&
           (update['level_up'] != null || update['unlocked_constructs'] != null),
     )
-        // .listen(
-        //   (update) => Future.delayed(
-        //     const Duration(milliseconds: 500),
-        //     () => LevelUpUtil.showLevelUpDialog(
-        //       update['level_up'],
-        //       context,
-        //     ),
-        //   ),
-        // )
         .listen(
-      // remove delay now that GetAnalyticsController._onLevelUp
-      // is async is should take roughly 500ms to make requests anyway
       (update) {
         if (update['level_up'] != null) {
           LevelUpUtil.showLevelUpDialog(
@@ -791,6 +781,7 @@ class ChatController extends State<ChatPageWithRoom>
     _botAudioSubscription?.cancel();
     _router.routeInformationProvider.removeListener(_onRouteChanged);
     carouselController.dispose();
+    TokensUtil.clearNewTokenCache();
     //Pangea#
     super.dispose();
   }
@@ -2074,12 +2065,12 @@ class ChatController extends State<ChatPageWithRoom>
     }
   }
 
-  Future<void> _sendMessageAnalytics(
+  void _sendMessageAnalytics(
     String? eventId, {
     PangeaRepresentation? originalSent,
     PangeaMessageTokens? tokensSent,
     ChoreoRecord? choreo,
-  }) async {
+  }) {
     // There's a listen in my_analytics_controller that decides when to auto-update
     // analytics based on when / how many messages the logged in user send. This
     // stream sends the data for newly sent messages.

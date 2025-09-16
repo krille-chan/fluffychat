@@ -1,3 +1,5 @@
+import 'package:matrix/matrix.dart';
+
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_text_model.dart';
@@ -66,6 +68,10 @@ class TokensUtil {
   static List<PangeaTokenText> getNewTokens(
     PangeaMessageEvent event,
   ) {
+    if (!event.eventId.isValidMatrixId) {
+      return [];
+    }
+
     final messageInUserL2 = event.messageDisplayLangCode.split("-")[0] ==
         MatrixState.pangeaController.languageController.userL2?.langCodeShort;
 
@@ -102,7 +108,7 @@ class TokensUtil {
     return newTokens.any((t) => t == token.text);
   }
 
-  static clearNewTokenCache(String eventID) {
+  static clearNewTokenCache() {
     _newTokenCache.clear();
   }
 

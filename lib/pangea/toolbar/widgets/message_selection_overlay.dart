@@ -545,7 +545,6 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
     );
 
     if (mounted) {
-      TokensUtil.clearNewTokenCache(event.eventId);
       setState(() {});
     }
   }

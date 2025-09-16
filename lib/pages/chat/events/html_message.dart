@@ -396,9 +396,10 @@ class HtmlMessage extends StatelessWidget {
     );
 
     final fontSize = renderer.fontSize(context) ?? this.fontSize;
-    final newTokens = pangeaMessageEvent != null
-        ? TokensUtil.getNewTokens(pangeaMessageEvent!)
-        : [];
+    final newTokens =
+        pangeaMessageEvent != null && !pangeaMessageEvent!.ownMessage
+            ? TokensUtil.getNewTokens(pangeaMessageEvent!)
+            : [];
     // Pangea#
 
     switch (node.localName) {
