@@ -27,7 +27,11 @@ jobs:
       - run: rm ./assets/vodozemac/.gitignore
       - run: flutter pub get
       - name: Build Release Web
-        run: ./scripts/build-web.sh
+        run: |
+          flutter config --enable-web
+          flutter clean
+          flutter pub get
+          flutter build web --dart-define=FLUTTER_WEB_CANVASKIT_URL=canvaskit/ --profile --source-maps
         
       - name: Upload files
         uses: actions/upload-artifact@v4
