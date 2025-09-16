@@ -30,8 +30,6 @@ void main() async {
   } catch (e) {
     Logs().e('Failed to load .env file', e);
   }
-  // await dotenv.load(fileName: ".env");
-  // await dotenv.load(fileName: Environment.fileName);
 
   await Future.wait([
     ErrorHandler.initialize(),

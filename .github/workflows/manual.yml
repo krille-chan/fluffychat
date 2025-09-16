@@ -28,7 +28,6 @@ jobs:
       - uses: actions/setup-java@v4
         with:
           java-version: ${{ env.JAVA_VERSION }}
-          distribution: 'zulu'
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
@@ -40,6 +39,9 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.3'
+          distribution: 'zulu'
+      - name: Add Firebase Messaging
+        run: ./scripts/add-firebase-messaging.sh
       - name: Update env files to selected environment
         run: |
           rm .env

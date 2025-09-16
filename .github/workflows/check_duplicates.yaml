@@ -1,6 +1,9 @@
 # #Pangea
 # name: Check duplicates
 
+on:
+    
+
 # on:
 #   issues:
 #     types: [opened]

@@ -60,11 +60,7 @@ jobs:
           echo "$WEB_APP_ENV" > .env
           echo "$WEB_APP_ENV" > assets/.env
       - name: Build Release Web
-        run: |
-          flutter config --enable-web
-          flutter clean
-          flutter pub get
-          flutter build web --dart-define=FLUTTER_WEB_CANVASKIT_URL=canvaskit/ --release --source-maps
+        run: flutter build web --dart-define=FLUTTER_WEB_CANVASKIT_URL=canvaskit/ --release --source-maps --base-href "/web/"
       - name: Create archive
         run: tar -czf pangeachat-web.tar.gz build/web/
       - name: Upload Web Build
@@ -104,6 +100,8 @@ jobs:
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           cache: true
+      - name: Add Firebase Messaging
+        run: ./scripts/add-firebase-messaging.sh
       - name: Set up Android SDK
         if: ${{ env.ACT }} # Only run on local act setups, as GitHub Actions provides the Android SDK on Ubuntu
         uses: android-actions/setup-android@v2
@@ -119,12 +117,11 @@ jobs:
           cp .env assets/.env
       - name: Apply .env patch
         run: git apply ./scripts/enable_mobile_env.patch
-      - name: Install Fastlane
-        run: gem install fastlane -NV
       - name: Remove Emoji Font
         run: |
           rm -rf fonts/NotoEmoji
           yq -i 'del( .flutter.fonts[] | select(.family == "NotoEmoji") )' pubspec.yaml
+      - uses: moonrepo/setup-rust@v1
       - run: flutter pub get
       - name: Prepare Android Release Build
         env:
@@ -145,38 +142,35 @@ jobs:
           asset_name: pangeachat.apk
           asset_content_type: application/vnd.android.package-archive
 
-  # #Pangea
-  # build_linux:
-  #   strategy:
-  #     matrix:
-  #       arch: [ x64 ]
-  #   runs-on: ubuntu-latest
-  #   needs: create_release
-  #   steps:
-  #     - uses: actions/checkout@v4
-  #     - run: cat .github/workflows/versions.env >> $GITHUB_ENV
-  #     - name: Install dependencies
-  #       run: sudo apt-get update && sudo apt-get install curl clang cmake ninja-build pkg-config libgtk-3-dev libblkid-dev liblzma-dev libjsoncpp-dev cmake-data libsecret-1-dev libsecret-1-0 librhash0 libssl-dev libwebkit2gtk-4.1-dev -y
-  #     - name: Install dependencies for audio-player
-  #       run: sudo apt-get install libgstreamer1.0-dev libgstreamer-plugins-base1.0-dev
-  #     - name: Install Flutter
-  #       run: |
-  #         git clone --branch ${{ env.FLUTTER_VERSION }} https://github.com/flutter/flutter.git
-  #         ./flutter/bin/flutter doctor
-  #     - run: ./flutter/bin/flutter pub get
-  #     - run: ./flutter/bin/flutter build linux --target-platform linux-${{ matrix.arch }}
-  #     - name: Create archive
-  #       run: tar -czf pangeachat-linux-${{ matrix.arch }}.tar.gz -C build/linux/${{ matrix.arch }}/release/bundle/ .
-  #     - name: Upload to release
-  #       uses: actions/upload-release-asset@v1
-  #       env:
-  #         GITHUB_TOKEN: ${{ secrets.PAGES_DEPLOY_TOKEN }}
-  #       with:
-  #         upload_url: ${{ needs.create_release.outputs.upload_url }}
-  #         asset_path: pangeachat-linux-${{ matrix.arch }}.tar.gz
-  #         asset_name: pangeachat-linux-${{ matrix.arch }}.tar.gz
-  #         asset_content_type: application/gzip
-  # Pangea#
+  build_linux:
+    strategy:
+      matrix:
+        arch: [ x64 ]
+    runs-on: ubuntu-latest
+    needs: create_release
+    steps:
+    - uses: actions/checkout@v5
+    - run: cat .github/workflows/versions.env >> $GITHUB_ENV
+    - name: Install dependencies
+      run: sudo apt-get update && sudo apt-get install curl clang cmake ninja-build pkg-config libgtk-3-dev libblkid-dev liblzma-dev libjsoncpp-dev cmake-data libsecret-1-dev libsecret-1-0 librhash0 libssl-dev libwebkit2gtk-4.1-dev -y
+    - name: Install Flutter
+      run: |
+        git clone --branch ${{ env.FLUTTER_VERSION }} https://github.com/flutter/flutter.git
+        ./flutter/bin/flutter doctor
+    - uses: moonrepo/setup-rust@v1
+    - run: ./flutter/bin/flutter pub get
+    - run: ./flutter/bin/flutter build linux --target-platform linux-${{ matrix.arch }}
+    - name: Create archive
+      run: tar -czf fluffychat-linux-${{ matrix.arch }}.tar.gz -C build/linux/${{ matrix.arch }}/release/bundle/ .
+    - name: Upload to release
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.PAGES_DEPLOY_TOKEN }}
+      with:
+        upload_url: ${{ needs.create_release.outputs.upload_url }}
+        asset_path: pangeachat-linux-${{ matrix.arch }}.tar.gz
+        asset_name: pangeachat-linux-${{ matrix.arch }}.tar.gz
+        asset_content_type: application/gzip
 
   deploy_web:
     runs-on: ubuntu-latest

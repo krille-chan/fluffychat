@@ -32,7 +32,6 @@ dependencies:
   dynamic_color: ^1.7.0
   emoji_picker_flutter: ^3.1.0
   emojis: ^0.9.9
-  #fcm_shared_isolate: ^0.2.0
   file_picker: ^8.1.2
   file_selector: ^1.0.3
   flutter:
@@ -121,8 +120,6 @@ dependencies:
   firebase_core: ^3.1.0
   firebase_messaging: ^15.1.5
   flutter_dotenv: ^5.1.0
-  fcm_shared_isolate:
-    path: pangea_packages/fcm_shared_isolate
   flutter_svg: ^2.0.10+1
   get_storage: ^2.1.1
   in_app_purchase: ^3.2.1
@@ -193,6 +190,8 @@ msix_config:
   install_certificate: false
 
 dependency_overrides:
+  fcm_shared_isolate:
+    path: pangea_packages/fcm_shared_isolate
   # https://github.com/juliansteenbakker/flutter_secure_storage/issues/920
   flutter_secure_storage_linux:
     git:
