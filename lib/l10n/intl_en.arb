@@ -3374,5 +3374,7 @@
   "moreEvents": "More events",
   "@moreEvents": {},
   "declineInvitation": "Decline invitation",
-  "@declineInvitation": {}
+  "@declineInvitation": {},
+  "loginWithExistingAccount": "Login with existing account",
+  "createNewAccount": "Create new account"
 }
