@@ -50,11 +50,19 @@ class OverMessageOverlay extends StatelessWidget {
                       .link,
                   child: OverlayCenterContent(
                     event: controller.widget.event,
-                    messageHeight: controller.originalMessageSize.height,
+                    messageHeight:
+                        controller.widget.overlayController.selectedMode ==
+                                SelectMode.practice
+                            ? controller.originalMessageSize.height
+                            : null,
                     messageWidth:
-                        controller.widget.overlayController.showingExtraContent
-                            ? max(controller.originalMessageSize.width, 150)
-                            : controller.originalMessageSize.width,
+                        controller.widget.overlayController.selectedMode ==
+                                SelectMode.practice
+                            ? controller.widget.overlayController
+                                    .showingExtraContent
+                                ? max(controller.originalMessageSize.width, 150)
+                                : controller.originalMessageSize.width
+                            : null,
                     overlayController: controller.widget.overlayController,
                     chatController: controller.widget.chatController,
                     nextEvent: controller.widget.nextEvent,

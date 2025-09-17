@@ -444,13 +444,8 @@ class PangeaToken {
   ConstructForm get vocabForm =>
       ConstructForm(form: text.content, cId: vocabConstructID);
 
-  /// [setEmoji] sets the emoji for the lemma
-  /// NOTE: assumes that the language of the lemma is the same as the user's current l2
   Future<void> setEmoji(List<String> emojis) =>
       vocabConstructID.setUserLemmaInfo(UserSetLemmaInfo(emojis: emojis));
-
-  Future<void> setMeaning(String meaning) =>
-      vocabConstructID.setUserLemmaInfo(UserSetLemmaInfo(meaning: meaning));
 
   /// [getEmoji] gets the emoji for the lemma
   /// NOTE: assumes that the language of the lemma is the same as the user's current l2
@@ -570,4 +565,6 @@ class PangeaToken {
     return daysSinceLastUseByType(a, morphFeature) *
         (vocabConstructID.isContentWord ? 10 : 9);
   }
+
+  String get uniqueId => "${text.content}::${text.offset}";
 }

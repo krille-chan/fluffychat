@@ -71,7 +71,6 @@ class OverlayCenterContent extends StatelessWidget {
                 child: OverlayMessage(
                   key: overlayKey,
                   event,
-                  immersionMode: chatController.choreographer.immersionMode,
                   controller: chatController,
                   overlayController: overlayController,
                   nextEvent: nextEvent,

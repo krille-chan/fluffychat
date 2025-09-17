@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class OverlayContainer extends StatelessWidget {
@@ -40,8 +42,8 @@ class OverlayContainer extends StatelessWidget {
       constraints: BoxConstraints(
         maxWidth: maxWidth,
         maxHeight: maxHeight,
-        minHeight: 100,
-        minWidth: 100,
+        minHeight: min(100, maxHeight),
+        minWidth: min(100, maxWidth),
       ),
       child: isScrollable ? SingleChildScrollView(child: content) : content,
     );

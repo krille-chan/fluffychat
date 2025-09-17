@@ -33,7 +33,6 @@ class PracticeModeButtons extends StatelessWidget {
               child: ToolbarButton(
                 mode: MessageMode.listening,
                 overlayController: overlayController,
-                onPressed: overlayController.updateToolbarMode,
                 buttonSize: buttonSize,
               ),
             ),
@@ -44,7 +43,6 @@ class PracticeModeButtons extends StatelessWidget {
               child: ToolbarButton(
                 mode: MessageMode.wordMorph,
                 overlayController: overlayController,
-                onPressed: overlayController.updateToolbarMode,
                 buttonSize: buttonSize,
               ),
             ),
@@ -55,7 +53,6 @@ class PracticeModeButtons extends StatelessWidget {
               child: ToolbarButton(
                 mode: MessageMode.wordMeaning,
                 overlayController: overlayController,
-                onPressed: overlayController.updateToolbarMode,
                 buttonSize: buttonSize,
               ),
             ),
@@ -66,7 +63,6 @@ class PracticeModeButtons extends StatelessWidget {
               child: ToolbarButton(
                 mode: MessageMode.wordEmoji,
                 overlayController: overlayController,
-                onPressed: overlayController.updateToolbarMode,
                 buttonSize: buttonSize,
               ),
             ),

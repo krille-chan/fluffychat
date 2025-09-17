@@ -50,7 +50,6 @@ class Message extends StatelessWidget {
   final ScrollController scrollController;
   final List<Color> colors;
   // #Pangea
-  final bool immersionMode;
   final ChatController controller;
   final bool isButton;
   // Pangea#
@@ -77,7 +76,6 @@ class Message extends StatelessWidget {
     required this.scrollController,
     required this.colors,
     // #Pangea
-    required this.immersionMode,
     required this.controller,
     this.isButton = false,
     // Pangea#
@@ -737,8 +735,6 @@ class Message extends StatelessWidget {
                                                             // #Pangea
                                                             pangeaMessageEvent:
                                                                 pangeaMessageEvent,
-                                                            immersionMode:
-                                                                immersionMode,
                                                             controller:
                                                                 controller,
                                                             nextEvent:

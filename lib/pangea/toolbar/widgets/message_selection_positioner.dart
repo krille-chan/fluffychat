@@ -29,8 +29,6 @@ class MessageSelectionPositioner extends StatefulWidget {
   final MessageOverlayController overlayController;
   final ChatController chatController;
   final Event event;
-
-  final PangeaMessageEvent? pangeaMessageEvent;
   final PangeaToken? initialSelectedToken;
   final Event? nextEvent;
   final Event? prevEvent;
@@ -39,7 +37,6 @@ class MessageSelectionPositioner extends StatefulWidget {
     required this.overlayController,
     required this.chatController,
     required this.event,
-    this.pangeaMessageEvent,
     this.initialSelectedToken,
     this.nextEvent,
     this.prevEvent,
@@ -59,10 +56,13 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
   ScrollController? scrollController;
 
   bool finishedTransition = false;
-  bool startedTransition = false;
+  bool _startedTransition = false;
 
   ReadingAssistanceMode readingAssistanceMode =
       ReadingAssistanceMode.selectMode;
+
+  PangeaMessageEvent get pangeaMessageEvent =>
+      widget.overlayController.pangeaMessageEvent;
 
   @override
   void initState() {
@@ -151,7 +151,7 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
     return reactionsEvents.where((e) => !e.redacted).isNotEmpty;
   }
 
-  double get reactionsHeight {
+  double get _reactionsHeight {
     if (_reactionsRenderBox != null) {
       return _reactionsRenderBox!.size.height;
     }
@@ -277,12 +277,11 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
   double get _contentHeight {
     final messageHeight =
         _overlayMessageSize?.height ?? originalMessageSize.height;
-    return messageHeight + reactionsHeight + AppConfig.toolbarMenuHeight + 4.0;
+    return messageHeight + _reactionsHeight + AppConfig.toolbarMenuHeight + 4.0;
   }
 
   double get overheadContentHeight {
-    return (widget.pangeaMessageEvent != null &&
-                widget.overlayController.selectedToken != null
+    return (widget.overlayController.selectedToken != null
             ? AppConfig.toolbarMaxHeight
             : 40.0) +
         4.0;
@@ -290,8 +289,7 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
 
   double? get _wordCardLeftOffset {
     if (ownMessage) return null;
-    if (widget.pangeaMessageEvent != null &&
-        widget.overlayController.selectedToken != null &&
+    if (widget.overlayController.selectedToken != null &&
         mediaQuery != null &&
         (mediaQuery!.size.width < _toolbarMaxWidth + messageLeftOffset!)) {
       return mediaQuery!.size.width - _toolbarMaxWidth - 8.0;
@@ -319,7 +317,7 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
     if (_screenHeight == null) return false;
     final bottomOffset = _originalMessageOffset.dy +
         originalMessageSize.height +
-        reactionsHeight +
+        _reactionsHeight +
         AppConfig.toolbarMenuHeight +
         4.0;
 
@@ -332,7 +330,7 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
 
     final messageHeight = originalMessageSize.height;
     final originalContentHeight =
-        messageHeight + reactionsHeight + AppConfig.toolbarMenuHeight + 8.0;
+        messageHeight + _reactionsHeight + AppConfig.toolbarMenuHeight + 8.0;
 
     final screenHeight = mediaQuery!.size.height - mediaQuery!.padding.bottom;
 
@@ -359,7 +357,7 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
   void onStartedTransition() {
     if (mounted) {
       setState(() {
-        startedTransition = true;
+        _startedTransition = true;
       });
     }
   }
@@ -399,7 +397,7 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
                   alignment:
                       ownMessage ? Alignment.centerRight : Alignment.centerLeft,
                   children: [
-                    if (!startedTransition) ...[
+                    if (!_startedTransition) ...[
                       OverMessageOverlay(controller: this),
                       if (shouldScroll)
                         Positioned(
@@ -426,7 +424,6 @@ class MessageSelectionPositionerState extends State<MessageSelectionPositioner>
                         right: 0,
                         bottom: 20,
                         child: ReadingAssistanceInputBar(
-                          widget.chatController,
                           widget.overlayController,
                         ),
                       ),

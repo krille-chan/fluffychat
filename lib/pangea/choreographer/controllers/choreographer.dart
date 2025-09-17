@@ -705,12 +705,6 @@ class Choreographer {
         chatController.room,
       );
 
-  bool get immersionMode =>
-      pangeaController.permissionsController.isToolEnabled(
-        ToolSetting.immersionMode,
-        chatController.room,
-      );
-
   bool get isAutoIGCEnabled =>
       pangeaController.permissionsController.isToolEnabled(
         ToolSetting.autoIGC,

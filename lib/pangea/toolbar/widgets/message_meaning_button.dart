@@ -27,7 +27,6 @@ class MessageMeaningButton extends StatelessWidget {
         mode: MessageMode.messageMeaning,
         overlayController: overlayController,
         buttonSize: buttonSize,
-        onPressed: overlayController.updateToolbarMode,
       ),
       secondChild: Container(
         width: buttonSize,

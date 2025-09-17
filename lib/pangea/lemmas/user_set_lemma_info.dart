@@ -1,3 +1,5 @@
+import 'package:collection/collection.dart';
+
 class UserSetLemmaInfo {
   final String? meaning;
   final List<String>? emojis;
@@ -26,9 +28,9 @@ class UserSetLemmaInfo {
       identical(this, other) ||
       other is UserSetLemmaInfo &&
           runtimeType == other.runtimeType &&
-          emojis == other.emojis &&
+          const ListEquality().equals(emojis, other.emojis) &&
           meaning == other.meaning;
 
   @override
-  int get hashCode => emojis.hashCode ^ meaning.hashCode;
+  int get hashCode => meaning.hashCode ^ Object.hashAll(emojis ?? []);
 }

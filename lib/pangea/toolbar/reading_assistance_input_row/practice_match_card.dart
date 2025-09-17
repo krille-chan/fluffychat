@@ -69,10 +69,8 @@ class MatchActivityCard extends StatelessWidget {
       mainAxisSize: MainAxisSize.max,
       spacing: 4.0,
       children: [
-        if (overlayController.toolbarMode == MessageMode.listening &&
-            overlayController.pangeaMessageEvent != null)
+        if (overlayController.toolbarMode == MessageMode.listening)
           MessageAudioCard(
-            messageEvent: overlayController.pangeaMessageEvent!,
             overlayController: overlayController,
           ),
         Wrap(

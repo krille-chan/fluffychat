@@ -25,14 +25,14 @@ const double tokenButtonDefaultFontSize = 10;
 const int maxEmojisPerLemma = 1;
 const double estimatedEmojiWidthRatio = 2;
 
-class MessageTokenButton extends StatefulWidget {
+class TokenPracticeButton extends StatefulWidget {
   final MessageOverlayController? overlayController;
   final PangeaToken token;
   final TextStyle textStyle;
   final double width;
   final bool animateIn;
 
-  const MessageTokenButton({
+  const TokenPracticeButton({
     super.key,
     required this.overlayController,
     required this.token,
@@ -42,10 +42,10 @@ class MessageTokenButton extends StatefulWidget {
   });
 
   @override
-  MessageTokenButtonState createState() => MessageTokenButtonState();
+  TokenPracticeButtonState createState() => TokenPracticeButtonState();
 }
 
-class MessageTokenButtonState extends State<MessageTokenButton>
+class TokenPracticeButtonState extends State<TokenPracticeButton>
     with TickerProviderStateMixin {
   AnimationController? _controller;
   Animation<double>? _heightAnimation;
@@ -102,7 +102,7 @@ class MessageTokenButtonState extends State<MessageTokenButton>
   }
 
   @override
-  void didUpdateWidget(covariant MessageTokenButton oldWidget) {
+  void didUpdateWidget(covariant TokenPracticeButton oldWidget) {
     super.didUpdateWidget(oldWidget);
     _setSelected();
     if (_isEmpty != _wasEmpty) {

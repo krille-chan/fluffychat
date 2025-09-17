@@ -8,7 +8,6 @@ import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/choice_animation.dart';
 import 'package:fluffychat/pangea/constructs/construct_form.dart';
 import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
-import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/morphs/morph_features_enum.dart';
 import 'package:fluffychat/pangea/morphs/morph_icon.dart';
@@ -32,12 +31,10 @@ const int numberOfMorphDistractors = 3;
 class MessageMorphInputBarContent extends StatefulWidget {
   final MessageOverlayController overlayController;
   final PracticeActivityModel activity;
-  final PangeaMessageEvent pangeaMessageEvent;
 
   const MessageMorphInputBarContent({
     super.key,
     required this.overlayController,
-    required this.pangeaMessageEvent,
     required this.activity,
   });
 
@@ -150,7 +147,7 @@ class MessageMorphInputBarContentState
                           form: token.text.content,
                         ),
                       ),
-                      widget.pangeaMessageEvent,
+                      widget.overlayController.pangeaMessageEvent,
                       () => overlay.setState(() {}),
                     );
                   },

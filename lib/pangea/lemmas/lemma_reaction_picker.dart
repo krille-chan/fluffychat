@@ -4,7 +4,7 @@ import 'package:collection/collection.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/pages/chat/chat.dart';
-import 'package:fluffychat/pangea/toolbar/reading_assistance_input_row/lemma_emoji_choice_item.dart';
+import 'package:fluffychat/pangea/lemmas/lemma_emoji_picker.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
@@ -74,36 +74,11 @@ class LemmaReactionPicker extends StatelessWidget {
       );
     }
 
-    return Container(
-      height: 50,
-      alignment: Alignment.center,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        spacing: 4.0,
-        children: loading
-            ? [1, 2, 3, 4, 5]
-                .map(
-                  (e) => const LemmaEmojiChoicePlaceholder(),
-                )
-                .toList()
-            : emojis
-                .map(
-                  (emoji) => Opacity(
-                    opacity: sentReactions.contains(
-                      emoji,
-                    )
-                        ? 0.33
-                        : 1,
-                    child: LemmaEmojiChoiceItem(
-                      content: emoji,
-                      onTap: () => sentReactions.contains(emoji)
-                          ? null
-                          : setEmoji(emoji, context),
-                    ),
-                  ),
-                )
-                .toList(),
-      ),
+    return LemmaEmojiPicker(
+      emojis: emojis,
+      onSelect: (emoji) => setEmoji(emoji, context),
+      disabled: (emoji) => sentReactions.contains(emoji),
+      loading: loading,
     );
   }
 }

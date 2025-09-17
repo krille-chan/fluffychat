@@ -165,7 +165,6 @@ class ChatEventList extends StatelessWidget {
                     controller.scrollToEventId(eventId),
                 longPressSelect: controller.selectedEvents.isNotEmpty,
                 // #Pangea
-                immersionMode: controller.choreographer.immersionMode,
                 controller: controller,
                 isButton: event.eventId == controller.buttonEventID,
                 // Pangea#

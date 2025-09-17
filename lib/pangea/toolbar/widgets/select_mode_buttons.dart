@@ -28,6 +28,7 @@ enum SelectMode {
   audio(Icons.volume_up),
   translate(Icons.translate),
   practice(Symbols.fitness_center),
+  emoji(Icons.add_reaction_outlined),
   speechTranslation(Icons.translate);
 
   final IconData icon;
@@ -43,6 +44,8 @@ enum SelectMode {
         return l10n.translationTooltip;
       case SelectMode.practice:
         return l10n.practice;
+      case SelectMode.emoji:
+        return l10n.emojis;
     }
   }
 }
@@ -145,14 +148,12 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
         SelectMode.audio,
         SelectMode.translate,
         SelectMode.practice,
+        SelectMode.emoji,
       ];
 
   static List<SelectMode> get audioModes => [
         SelectMode.speechTranslation,
-        // SelectMode.practice,
       ];
-
-  SelectMode? _selectedMode;
 
   bool _isLoadingAudio = false;
   PangeaAudioFile? _audioBytes;
@@ -171,6 +172,8 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
   Completer<String>? _transcriptionCompleter;
 
   MatrixState? matrix;
+
+  SelectMode? get _selectedMode => widget.overlayController.selectedMode;
 
   @override
   void initState() {
@@ -218,20 +221,17 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
     _clear();
 
     if (mode == null) {
-      setState(() {
-        matrix?.audioPlayer?.stop();
-        matrix?.audioPlayer?.seek(null);
-        _selectedMode = null;
-      });
+      matrix?.audioPlayer?.stop();
+      matrix?.audioPlayer?.seek(null);
+      widget.overlayController.setSelectMode(mode);
       return;
     }
 
-    setState(
-      () => _selectedMode = _selectedMode == mode &&
-              (mode != SelectMode.audio || _audioError != null)
-          ? null
-          : mode,
-    );
+    final selectedMode = _selectedMode == mode &&
+            (mode != SelectMode.audio || _audioError != null)
+        ? null
+        : mode;
+    widget.overlayController.setSelectMode(selectedMode);
 
     if (_selectedMode == SelectMode.audio) {
       _playAudio();
@@ -302,7 +302,7 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
 
   Future<void> _playAudio() async {
     final playerID =
-        "${widget.overlayController.pangeaMessageEvent?.eventId}_button";
+        "${widget.overlayController.pangeaMessageEvent.eventId}_button";
 
     if (matrix?.audioPlayer != null &&
         matrix?.voiceMessageEventId.value == playerID) {
@@ -319,7 +319,7 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
     matrix?.audioPlayer?.dispose();
     matrix?.audioPlayer = AudioPlayer();
     matrix?.voiceMessageEventId.value =
-        "${widget.overlayController.pangeaMessageEvent?.eventId}_button";
+        "${widget.overlayController.pangeaMessageEvent.eventId}_button";
 
     _onPlayerStateChanged =
         matrix?.audioPlayer?.playerStateStream.listen((state) {

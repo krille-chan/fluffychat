@@ -269,6 +269,42 @@ extension AnalyticsRoomExtension on Room {
     }
   }
 
+  UserSetLemmaInfo? getUserSetLemmaInfo(ConstructIdentifier cId) {
+    final state = getState(PangeaEventTypes.userSetLemmaInfo, cId.string);
+    if (state == null) return null;
+    try {
+      return UserSetLemmaInfo.fromJson(state.content);
+    } catch (e, s) {
+      ErrorHandler.logError(
+        e: e,
+        s: s,
+        data: {
+          "roomID": id,
+          "stateContent": state.content,
+          "stateKey": state.stateKey,
+        },
+      );
+      return null;
+    }
+  }
+
+  Future<void> setUserSetLemmaInfo(
+    ConstructIdentifier cId,
+    UserSetLemmaInfo info,
+  ) async {
+    final syncFuture = client.onRoomState.stream.firstWhere((event) {
+      return event.roomId == id &&
+          event.state.type == PangeaEventTypes.userSetLemmaInfo;
+    });
+    client.setRoomStateWithKey(
+      id,
+      PangeaEventTypes.userSetLemmaInfo,
+      cId.string,
+      info.toJson(),
+    );
+    await syncFuture.timeout(const Duration(seconds: 10));
+  }
+
   List<String> get activityRoomIds {
     final state = getState(PangeaEventTypes.activityRoomIds);
     if (state?.content[ModelKey.roomIds] is List) {
