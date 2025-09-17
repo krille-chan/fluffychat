@@ -82,7 +82,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "areGuestsAllowedToJoin": "Visitantes podem entrar?",
+    "areGuestsAllowedToJoin": "Visitantes podem entrar",
     "@areGuestsAllowedToJoin": {
         "type": "String",
         "placeholders": {}
@@ -3296,7 +3296,7 @@
     "@boldText": {},
     "recordAVideo": "Gravar um vídeo",
     "@recordAVideo": {},
-    "optionalMessage": "Mensagem... (opcional)",
+    "optionalMessage": "(Opcional) mensagem...",
     "@optionalMessage": {},
     "joinedChats": "Conversas que entrou",
     "@joinedChats": {},
