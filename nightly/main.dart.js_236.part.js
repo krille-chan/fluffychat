@@ -79,7 +79,7 @@ hG(d,e){return d+" zm\u011bnili nastaven\xed pravidel p\u0159ipojen\xed na: "+e}
 hH(d){return d+" zm\u011bnili sv\u016fj avatar"},
 hI(d){return d+" zm\u011bnili nastaven\xed alias\u016f m\xedstnosti"},
 hJ(d){return d+" zm\u011bnili odkaz k pozv\xe1n\xed do m\xedstnosti"},
-ge0(){return"Zm\u011bnit heslo"},
+ge_(){return"Zm\u011bnit heslo"},
 ghu(){return"Zm\u011bnit domovsk\xfd server"},
 gf8(){return"Zm\u011b\u0148te sv\u016fj styl"},
 gf7(){return"Zm\u011bnit n\xe1zev skupiny"},
@@ -161,7 +161,7 @@ gez(){return"Vlastn\xed emoji a n\xe1lepky"},
 glL(){return"P\u0159idat nebo sd\xedlet vlastn\xed emoji nebo n\xe1lepky, kter\xe9 mohou b\xfdt pou\u017eit\xe9 v konverzaci."},
 geD(){return"Kl\xe1vesov\xe1 zkratka emotikonu"},
 giE(){return"Mus\xedte si vybrat kl\xe1vesovou zkratku emotikonu a obr\xe1zek!"},
-gdV(){return"Pr\xe1zdn\xfd chat"},
+ge0(){return"Pr\xe1zdn\xfd chat"},
 giF(){return"Povolit bal\xed\u010dek emotikon v\u0161ude"},
 ged(){return"Povolit \u0161ifrov\xe1n\xed"},
 giG(){return"\u0160ifrov\xe1n\xed ji\u017e nebude mo\u017en\xe9 vypnout. Jste si t\xedm jisti?"},
@@ -305,7 +305,7 @@ gdT(d){return"Hledat"},
 geR(){return"Bezpe\u010dnostn\xed"},
 gfH(){return"Kl\xed\u010d k obnoven\xed"},
 gjG(){return"Ztracen\xfd kl\xed\u010d k obnoven\xed?"},
-gdY(d){return"Odeslat"},
+gdX(d){return"Odeslat"},
 gfR(){return"Odeslat zpr\xe1vu"},
 gfS(){return"Odeslat jako text"},
 gfT(){return"Odeslat audio"},
@@ -632,9 +632,10 @@ gpf(){return"Show navigation rail on mobile"},
 glM(){return"Custom reaction"},
 gpj(){return"More events"},
 glP(){return"Decline invitation"},
+gpn(){return"No messages yet"},
 A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fk,C.aF)})()
 B.dP(b.typeUniverse,JSON.parse('{"Fk":{"aF":[]}}'))};
-(a=>{a["bH+0YYPa+eum0J3XSAOzqycRyVY="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["mC8xhMizTKsKNOb1P6EYm/H9mMw="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_236.part.js.map

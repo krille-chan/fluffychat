@@ -79,7 +79,7 @@ hG(d,e){return d+" heeft de toetredingsregels gewijzigd in: "+e},
 hH(d){return d+"'s avatar is gewijzigd"},
 hI(d){return d+" heeft de chat aliassen gewijzigd"},
 hJ(d){return d+" heeft de uitnodigingslink gewijzigd"},
-ge0(){return"Wachtwoord wijzigen"},
+ge_(){return"Wachtwoord wijzigen"},
 ghu(){return"Homeserver wijzigen"},
 gf8(){return"Je stijl veranderen"},
 gf7(){return"Groepsnaam wijzigen"},
@@ -161,7 +161,7 @@ gez(){return"Aangepaste emoticons en stickers"},
 glL(){return"Voeg toe of deel aangepaste emoji's of stickers die gebruikt kunnen worden in elke chat."},
 geD(){return"Emoticon korte code"},
 giE(){return"Je moet een emoticon korte code en afbeelding kiezen!"},
-gdV(){return"Lege chat"},
+ge0(){return"Lege chat"},
 giF(){return"Emoticonpakket overal inschakelen"},
 ged(){return"Versleuteling inschakelen"},
 giG(){return"Je kunt de versleuteling hierna niet meer uitschakelen. Weet je het zeker?"},
@@ -305,7 +305,7 @@ gdT(d){return"Zoeken"},
 geR(){return"Beveiliging"},
 gfH(){return"Herstelsleutel"},
 gjG(){return"Herstelsleutel verloren?"},
-gdY(d){return"Verstuur"},
+gdX(d){return"Verstuur"},
 gfR(){return"Stuur een bericht"},
 gfS(){return"Als tekst versturen"},
 gfT(){return"Audio versturen"},
@@ -632,9 +632,10 @@ gpf(){return"Navigatiebalk op mobiel tonen"},
 glM(){return"Aangepaste reactie"},
 gpj(){return"Meer gebeurtenissen"},
 glP(){return"Uitnodiging afwijzen"},
+gpn(){return"No messages yet"},
 A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FN,C.aF)})()
 B.dP(b.typeUniverse,JSON.parse('{"FN":{"aF":[]}}'))};
-(a=>{a["hH4ri4G8ygPzpUQsZFHvko8oFG8="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["481OhBV75Q5Lk56C9sE6pb740aM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_305.part.js.map

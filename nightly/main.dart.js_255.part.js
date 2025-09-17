@@ -79,7 +79,7 @@ hG(d,e){return d+" \u015dan\u011dis regulojn pri ali\u011dado al: "+e},
 hH(d){return d+" \u015dan\u011dis sian profilbildon"},
 hI(d){return d+" \u015dan\u011dis la kromnomojn de la \u0109ambro"},
 hJ(d){return d+" \u015dan\u011dis la invitan ligilon"},
-ge0(){return"\u015can\u011di pasvorton"},
+ge_(){return"\u015can\u011di pasvorton"},
 ghu(){return"\u015can\u011di hejmservilon"},
 gf8(){return"\u015can\u011du la ha\u016dton"},
 gf7(){return"\u015can\u011di nomon de la grupo"},
@@ -161,7 +161,7 @@ gez(){return"Custom emojis and stickers"},
 glL(){return"Add or share custom emojis or stickers which can be used in any chat."},
 geD(){return"Mallongigo de mieneto"},
 giE(){return"Vi devas elekti mallongigon de mieneto kaj bildon!"},
-gdV(){return"Malplena babilo"},
+ge0(){return"Malplena babilo"},
 giF(){return"\u015calti mienetaron \u0109ie"},
 ged(){return"\u015calti \u0109ifradon"},
 giG(){return"Vi ne povos mal\u015dalti la \u0109ifradon. \u0108u vi certas?"},
@@ -305,7 +305,7 @@ gdT(d){return"Ser\u0109i"},
 geR(){return"Sekureco"},
 gfH(){return"Recovery key"},
 gjG(){return"Recovery key lost?"},
-gdY(d){return"Sendi"},
+gdX(d){return"Sendi"},
 gfR(){return"Sendi mesa\u011don"},
 gfS(){return"Sendi kiel tekston"},
 gfT(){return"Sendi sondosieron"},
@@ -632,9 +632,10 @@ gpf(){return"Show navigation rail on mobile"},
 glM(){return"Custom reaction"},
 gpj(){return"More events"},
 glP(){return"Decline invitation"},
+gpn(){return"No messages yet"},
 A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fp,C.aF)})()
 B.dP(b.typeUniverse,JSON.parse('{"Fp":{"aF":[]}}'))};
-(a=>{a["a1RBBOIsrtnFTd6N1Gxz1JQ9FQM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["l49uUhKfDGX09WJMAORjFgK6COs="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_255.part.js.map

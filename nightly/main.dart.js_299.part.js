@@ -79,7 +79,7 @@ hG(d,e){return d+" \u10d2\u10d0\u10ec\u10d4\u10d5\u10e0\u10d8\u10d0\u10dc\u10d4\
 hH(d){return d+" \u10e8\u10d4\u10ea\u10d5\u10d0\u10da\u10d0 \u10de\u10e0\u10dd\u10e4\u10d8\u10da\u10d8\u10e1 \u10e4\u10dd\u10e2\u10dd"},
 hI(d){return d+" \u10dd\u10d7\u10d0\u10ee\u10d8\u10e1 \u10db\u10d4\u10e2\u10e1\u10d0\u10ee\u10d4\u10da\u10d4\u10d1\u10d8 \u10e8\u10d4\u10ea\u10d5\u10d0\u10da\u10d0"},
 hJ(d){return d+" \u10db\u10dd\u10ec\u10d5\u10d4\u10d5\u10d8\u10e1 \u10d1\u10db\u10e3\u10da\u10d8 \u10e8\u10d4\u10ea\u10d5\u10d0\u10da\u10d0"},
-ge0(){return"\u10de\u10d0\u10e0\u10dd\u10da\u10d8\u10e1 \u10e8\u10d4\u10ea\u10d5\u10da\u10d0"},
+ge_(){return"\u10de\u10d0\u10e0\u10dd\u10da\u10d8\u10e1 \u10e8\u10d4\u10ea\u10d5\u10da\u10d0"},
 ghu(){return"\u10e1\u10d0\u10ee\u10da\u10d8\u10e1 \u10e1\u10d4\u10e0\u10d5\u10d4\u10e0\u10d8\u10e1 \u10e8\u10d4\u10ea\u10d5\u10da\u10d0"},
 gf8(){return"\u10e1\u10e2\u10d8\u10da\u10d8\u10e1 \u10e8\u10d4\u10ea\u10d5\u10da\u10d0"},
 gf7(){return"\u10ef\u10d2\u10e3\u10e4\u10d8\u10e1 \u10d2\u10d0\u10d3\u10d0\u10e0\u10e5\u10db\u10d4\u10d5\u10d0"},
@@ -161,7 +161,7 @@ gez(){return"Custom emojis and stickers"},
 glL(){return"Add or share custom emojis or stickers which can be used in any chat."},
 geD(){return"Emote shortcode"},
 giE(){return"You need to pick an emote shortcode and an image!"},
-gdV(){return"Empty chat"},
+ge0(){return"Empty chat"},
 giF(){return"Enable emote pack globally"},
 ged(){return"Enable encryption"},
 giG(){return"You won't be able to disable the encryption anymore. Are you sure?"},
@@ -305,7 +305,7 @@ gdT(d){return"Search"},
 geR(){return"Security"},
 gfH(){return"Recovery key"},
 gjG(){return"Recovery key lost?"},
-gdY(d){return"Send"},
+gdX(d){return"Send"},
 gfR(){return"Send a message"},
 gfS(){return"Send as text"},
 gfT(){return"Send audio"},
@@ -632,9 +632,10 @@ gpf(){return"Show navigation rail on mobile"},
 glM(){return"Custom reaction"},
 gpj(){return"More events"},
 glP(){return"Decline invitation"},
+gpn(){return"No messages yet"},
 A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FI,C.aF)})()
 B.dP(b.typeUniverse,JSON.parse('{"FI":{"aF":[]}}'))};
-(a=>{a["r2TSsOXldn4ZKLyFR6+WBnYyFec="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["7RkRE8U084W80zd2SZjhluoqrpQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_299.part.js.map

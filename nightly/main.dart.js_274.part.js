@@ -79,7 +79,7 @@ hG(d,e){return d+" mudou as regras de acceso a: "+e},
 hH(d){return d+" mudou o avatar"},
 hI(d){return d+" mudou os alias da sala"},
 hJ(d){return d+" mudou a ligaz\xf3n de convite"},
-ge0(){return"Mudar contrasinal"},
+ge_(){return"Mudar contrasinal"},
 ghu(){return"Mudar de servidor de inicio"},
 gf8(){return"Cambiar o estilo"},
 gf7(){return"Mudar o nome do grupo"},
@@ -161,7 +161,7 @@ gez(){return"Emojis personais e adhesivos"},
 glL(){return"Engade ou comparte emojis personais e adhesivos que poden usarse nas charlas."},
 geD(){return"Atallo de Emote"},
 giE(){return"Escribe un atallo e asocialle unha imaxe!"},
-gdV(){return"Conversa baleira"},
+ge0(){return"Conversa baleira"},
 giF(){return"Activar paquete emote globalmente"},
 ged(){return"Activar cifraxe"},
 giG(){return"Non poder\xe1s desactivar a cifraxe posteriormente, tes certeza?"},
@@ -305,7 +305,7 @@ gdT(d){return"Buscar"},
 geR(){return"Seguridade"},
 gfH(){return"Chave de recuperaci\xf3n"},
 gjG(){return"Perdeches a chave de recuperaci\xf3n?"},
-gdY(d){return"Enviar"},
+gdX(d){return"Enviar"},
 gfR(){return"Enviar unha mensaxe"},
 gfS(){return"Enviar como texto"},
 gfT(){return"Enviar audio"},
@@ -632,9 +632,10 @@ gpf(){return"Show navigation rail on mobile"},
 glM(){return"Reacci\xf3n personalizada"},
 gpj(){return"M\xe1is eventos"},
 glP(){return"Rexeitar o convite"},
+gpn(){return"No messages yet"},
 A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fy,C.aF)})()
 B.dP(b.typeUniverse,JSON.parse('{"Fy":{"aF":[]}}'))};
-(a=>{a["/ue57gWatsjWtlqGgkPWhe6H8nA="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["QDUo+LVvLAW05izz1zq4F5AqfeQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_274.part.js.map

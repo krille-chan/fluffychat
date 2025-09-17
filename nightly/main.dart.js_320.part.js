@@ -79,7 +79,7 @@ hG(d,e){return d+" kat\u0131l\u0131m kurallar\u0131n\u0131 de\u011fi\u015ftirdi:
 hH(d){return d+" avatar\u0131n\u0131 de\u011fi\u015ftirdi"},
 hI(d){return d+" oda takma adlar\u0131n\u0131 de\u011fi\u015ftirdi"},
 hJ(d){return d+" davet ba\u011flant\u0131s\u0131n\u0131 de\u011fi\u015ftirdi"},
-ge0(){return"Parolay\u0131 de\u011fi\u015ftir"},
+ge_(){return"Parolay\u0131 de\u011fi\u015ftir"},
 ghu(){return"Ana sunucuyu de\u011fi\u015ftir"},
 gf8(){return"Tarz\u0131n\u0131z\u0131 de\u011fi\u015ftirin"},
 gf7(){return"Grubun ad\u0131n\u0131 de\u011fi\u015ftir"},
@@ -161,7 +161,7 @@ gez(){return"\xd6zel emojiler ve \xe7\u0131kartmalar"},
 glL(){return"Herhangi bir sohbette kullan\u0131labilecek \xf6zel emojiler veya \xe7\u0131kartmalar ekleyin veya payla\u015f\u0131n."},
 geD(){return"\u0130fade k\u0131sa kodu"},
 giE(){return"Bir ifade k\u0131sa kodu ve bir resim se\xe7meniz gerekiyor!"},
-gdV(){return"Bo\u015f sohbet"},
+ge0(){return"Bo\u015f sohbet"},
 giF(){return"\u0130fade paketini k\xfcresel olarak etkinle\u015ftir"},
 ged(){return"\u015eifrelemeyi etkinle\u015ftir"},
 giG(){return"Art\u0131k \u015fifrelemeyi devre d\u0131\u015f\u0131 b\u0131rakamayacaks\u0131n\u0131z. Emin misiniz?"},
@@ -305,7 +305,7 @@ gdT(d){return"Ara"},
 geR(){return"G\xfcvenlik"},
 gfH(){return"Kurtarma anahtar\u0131"},
 gjG(){return"Kurtarma anahtar\u0131 kay\u0131p m\u0131?"},
-gdY(d){return"G\xf6nder"},
+gdX(d){return"G\xf6nder"},
 gfR(){return"Bir mesaj g\xf6nder"},
 gfS(){return"Metin olarak g\xf6nder"},
 gfT(){return"Ses g\xf6nder"},
@@ -632,10 +632,11 @@ gpf(){return"Show navigation rail on mobile"},
 glM(){return"Custom reaction"},
 gpj(){return"More events"},
 glP(){return"Decline invitation"},
+gpn(){return"No messages yet"},
 A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.G_,C.aF)})()
 B.dP(b.typeUniverse,JSON.parse('{"G_":{"aF":[]}}'))
 var y={c:" adresinde geli\u015ftiricilere bildirin. Hata mesaj\u0131: "}};
-(a=>{a["zGVlOVMKYrSmwxuJvh7Nt25J5Og="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["78dAE6maFiQQAUL/Z2U3S5+xe6U="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_320.part.js.map

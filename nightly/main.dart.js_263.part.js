@@ -79,7 +79,7 @@ hG(d,e){return d+"(e)k batzeko arauak aldatu ditu: "+e},
 hH(d){return d+"(e)k profileko abatarra aldatu du"},
 hI(d){return d+"(e)k gelaren ezizena aldatu du"},
 hJ(d){return d+"(e)k gonbidapen-esteka aldatu du"},
-ge0(){return"Aldatu pasahitza"},
+ge_(){return"Aldatu pasahitza"},
 ghu(){return"Aldatu zerbitzaria"},
 gf8(){return"Aldatu itxura"},
 gf7(){return"Taldearen izena aldatu"},
@@ -161,7 +161,7 @@ gez(){return"Emoji eta pegatina propioak"},
 glL(){return"Gehitu edo partekatu edozein txatetan erabil daitezkeen emoji edo pegatina propioak."},
 geD(){return"Laburdura"},
 giE(){return"Emote-laburdura eta irudi bat aukeratu behar dituzu!"},
-gdV(){return"Txata hutsik dago"},
+ge0(){return"Txata hutsik dago"},
 giF(){return"Gaitu emote-sorta txat guztietarako"},
 ged(){return"Gaitu zifratzea"},
 giG(){return"Ezingo duzu zifratzea ezgaitu. Ziur zaude?"},
@@ -305,7 +305,7 @@ gdT(d){return"Bilatu"},
 geR(){return"Segurtasuna"},
 gfH(){return"Berreskuratze-gakoa"},
 gjG(){return"Berreskuratze-gakoa galdu duzu?"},
-gdY(d){return"Bidali"},
+gdX(d){return"Bidali"},
 gfR(){return"Bidali mezua"},
 gfS(){return"Bidali testu bezala"},
 gfT(){return"Bidali audioa"},
@@ -632,10 +632,11 @@ gpf(){return"Erakutsi nabigazio-barra mugikorrean"},
 glM(){return"Erreakzio pertsonalizatua"},
 gpj(){return"Gertaera gehiago"},
 glP(){return"Uko egin gonbidapenari"},
+gpn(){return"No messages yet"},
 A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.Fs,C.aF)})()
 B.dP(b.typeUniverse,JSON.parse('{"Fs":{"aF":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["NBp82JMM1aV6gdVrUsF0gBDzChU="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["7RE7HpmmS77QhaEDFLjeEzK6pdM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_263.part.js.map

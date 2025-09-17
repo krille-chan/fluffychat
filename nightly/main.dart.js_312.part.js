@@ -79,7 +79,7 @@ hG(d,e){return d+" zmenili nastavenie pravidiel pripojenia na: "+e},
 hH(d){return d+" si zmenili profilov\xfd obr\xe1zok"},
 hI(d){return d+" zmenili nastavenie aliasov chatu"},
 hJ(d){return d+" zmenili odkaz k pozv\xe1nke do miestnosti"},
-ge0(){return"Zmeni\u0165 heslo"},
+ge_(){return"Zmeni\u0165 heslo"},
 ghu(){return"Zmeni\u0165 pou\u017eit\xfd server"},
 gf8(){return"Zmena \u0161t\xfdlu"},
 gf7(){return"Zmeni\u0165 n\xe1zov skupiny"},
@@ -161,7 +161,7 @@ gez(){return"Custom emojis and stickers"},
 glL(){return"Add or share custom emojis or stickers which can be used in any chat."},
 geD(){return"K\xf3d emotikonu"},
 giE(){return"Mus\xedte zvoli\u0165 k\xf3d emotikonu a obr\xe1zok!"},
-gdV(){return"Pr\xe1zdny chat"},
+ge0(){return"Pr\xe1zdny chat"},
 giF(){return"Enable emote pack globally"},
 ged(){return"Enable encryption"},
 giG(){return"\u0160ifrovanie u\u017e nebude mo\u017en\xe9 vypn\xfa\u0165. Ste si t\xfdm ist\xed?"},
@@ -305,7 +305,7 @@ gdT(d){return"H\u013eada\u0165"},
 geR(){return"Bezpe\u010dnos\u0165"},
 gfH(){return"Recovery key"},
 gjG(){return"Recovery key lost?"},
-gdY(d){return"Odosla\u0165"},
+gdX(d){return"Odosla\u0165"},
 gfR(){return"Odosla\u0165 spr\xe1vu"},
 gfS(){return"Posla\u0165 ako text"},
 gfT(){return"Posla\u0165 zvuk"},
@@ -632,9 +632,10 @@ gpf(){return"Show navigation rail on mobile"},
 glM(){return"Custom reaction"},
 gpj(){return"More events"},
 glP(){return"Decline invitation"},
+gpn(){return"No messages yet"},
 A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FT,C.aF)})()
 B.dP(b.typeUniverse,JSON.parse('{"FT":{"aF":[]}}'))};
-(a=>{a["nqJ0oxUwas68YFiDBIsh+EUMUI0="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["HwqepLhkN0VmhbW9/DP9t4fa3GU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_312.part.js.map

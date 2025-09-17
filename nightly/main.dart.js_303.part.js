@@ -79,7 +79,7 @@ hG(d,e){return d+" endret tilgangsreglene til: "+e},
 hH(d){return d+" endret avataren sin"},
 hI(d){return d+" endret rom-aliasene"},
 hJ(d){return d+" endret invitasjonslenken"},
-ge0(){return"Endre passord"},
+ge_(){return"Endre passord"},
 ghu(){return"Endre hjemmetjener"},
 gf8(){return"Endre din stil"},
 gf7(){return"Endre gruppens navn"},
@@ -161,7 +161,7 @@ gez(){return"Egendefinerte emojier og klistremerker"},
 glL(){return"Add or share custom emojis or stickers which can be used in any chat."},
 geD(){return"Smilefjes-kode"},
 giE(){return"Du m\xe5 velge en smilefjes-kode og et bilde!"},
-gdV(){return"Tom sludring"},
+ge0(){return"Tom sludring"},
 giF(){return"Skru p\xe5 smilefjespakke for hele programmet"},
 ged(){return"Skru p\xe5 kryptering"},
 giG(){return"Du vil ikke kunne skru av kryptering lenger. Er du sikker?"},
@@ -305,7 +305,7 @@ gdT(d){return"S\xf8k"},
 geR(){return"Sikkerhet"},
 gfH(){return"Gjenopprettingsn\xf8kkel"},
 gjG(){return"Recovery key lost?"},
-gdY(d){return"Send"},
+gdX(d){return"Send"},
 gfR(){return"Send en melding"},
 gfS(){return"Send som tekst"},
 gfT(){return"Send lyd"},
@@ -632,9 +632,10 @@ gpf(){return"Show navigation rail on mobile"},
 glM(){return"Custom reaction"},
 gpj(){return"More events"},
 glP(){return"Avsl\xe5 invitasjon"},
+gpn(){return"No messages yet"},
 A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FM,C.aF)})()
 B.dP(b.typeUniverse,JSON.parse('{"FM":{"aF":[]}}'))};
-(a=>{a["mABp/zTEuPqBeulbKOPa0ZN3bAY="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["kmKA1BN7G/d/OenJpudiU6n3VKk="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_303.part.js.map

@@ -79,7 +79,7 @@ hG(d,e){return d+" ha cambiato le regole per unirsi in: "+e},
 hH(d){return d+" ha cambiato il suo avatar"},
 hI(d){return d+" ha modificato gli alias della stanza"},
 hJ(d){return d+" ha cambiato il link di invito"},
-ge0(){return"Cambia la password"},
+ge_(){return"Cambia la password"},
 ghu(){return"Cambia il server principale"},
 gf8(){return"Cambia il tuo stile"},
 gf7(){return"Cambia il nome del gruppo"},
@@ -161,7 +161,7 @@ gez(){return"Emoji e adesivi personalizzati"},
 glL(){return"Aggiungi o condividi emoji o adesivi personalizzati che possono essere utilizzati in qualsiasi chat."},
 geD(){return"Scorciatoia emote"},
 giE(){return"Devi scegliere una scorciatoia emote e aggiungere un immagine!"},
-gdV(){return"Discussione vuota"},
+ge0(){return"Discussione vuota"},
 giF(){return"Abilita i pacchetti emotes globalmente"},
 ged(){return"Abilita la crittografia"},
 giG(){return"Non potrai disabilitare la crittografia in futuro. Sei sicuro?"},
@@ -305,7 +305,7 @@ gdT(d){return"Cerca"},
 geR(){return"Sicurezza"},
 gfH(){return"Chiave di recupero"},
 gjG(){return"Chiave di recupero smarrita?"},
-gdY(d){return"Invia"},
+gdX(d){return"Invia"},
 gfR(){return"Invia un messaggio"},
 gfS(){return"Invia come testo"},
 gfT(){return"Invia un file audio"},
@@ -632,9 +632,10 @@ gpf(){return"Mostra barra di navigazione su mobile"},
 glM(){return"Reazione personalizzata"},
 gpj(){return"Altri eventi"},
 glP(){return"Decline invitation"},
+gpn(){return"No messages yet"},
 A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FG,C.aF)})()
 B.dP(b.typeUniverse,JSON.parse('{"FG":{"aF":[]}}'))};
-(a=>{a["GIagOYPB9y+1pkOL0VXB/Y2Zegc="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["FCgmuTQtNwT/37SdutOgNJciuwQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_295.part.js.map

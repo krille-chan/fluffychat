@@ -79,7 +79,7 @@ hG(d,e){return d+" nomain\u012bja pievieno\u0161an\u0101s nosac\u012bjumus uz "+
 hH(d){return d+" nomain\u012bja savu att\u0113lu"},
 hI(d){return d+" nomain\u012bja istabas aizst\u0101jv\u0101rdus"},
 hJ(d){return d+" nomain\u012bja uzaicin\u0101juma saiti"},
-ge0(){return"Nomain\u012bt paroli"},
+ge_(){return"Nomain\u012bt paroli"},
 ghu(){return"Main\u012bt m\u0101jasserveri"},
 gf8(){return"Main\u012bt izskatu"},
 gf7(){return"Main\u012bt kopas nosaukumu"},
@@ -161,7 +161,7 @@ gez(){return"Piel\u0101gotas emocijz\u012bmes un uzl\u012bmes"},
 glL(){return"Pievienot vai kop\u012bgot piel\u0101gotas emocijz\u012bmes vai uzl\u012bmes, kas var tikt izmantotas jebkur\u0101 t\u0113rz\u0113\u0161an\u0101."},
 geD(){return"Emocijas \u012bskods"},
 giE(){return"Nepiecie\u0161ams izv\u0113l\u0113ties emocijas \u012bskodu un att\u0113lu."},
-gdV(){return"Tuk\u0161a t\u0113rz\u0113\u0161ana"},
+ge0(){return"Tuk\u0161a t\u0113rz\u0113\u0161ana"},
 giF(){return"Iesp\u0113jot k\u0101 visp\u0101r\u0113ju emociju paku"},
 ged(){return"Iesp\u0113jot \u0161ifr\u0113\u0161anu"},
 giG(){return"Vairs neb\u016bs iesp\u0113jams atsp\u0113jot \u0161ifr\u0113\u0161anu. Vai tie\u0161\u0101m to dar\u012bt?"},
@@ -305,7 +305,7 @@ gdT(d){return"Mekl\u0113t"},
 geR(){return"Dro\u0161\u012bba"},
 gfH(){return"Atkopes atsl\u0113ga"},
 gjG(){return"Pazaud\u0113ta atkopes atsl\u0113ga?"},
-gdY(d){return"Nos\u016bt\u012bt"},
+gdX(d){return"Nos\u016bt\u012bt"},
 gfR(){return"Nos\u016bt\u012bt zi\u0146u"},
 gfS(){return"Nos\u016bt\u012bt k\u0101 tekstu"},
 gfT(){return"Nos\u016bt\u012bt ska\u0146u"},
@@ -632,9 +632,10 @@ gpf(){return"R\u0101d\u012bt p\u0101rvieto\u0161an\u0101s sliedi viedier\u012bc\
 glM(){return"Piel\u0101gota reakcija"},
 gpj(){return"Vair\u0101k notikumu"},
 glP(){return"Noraid\u012bt uzaicin\u0101jumu"},
+gpn(){return"No messages yet"},
 A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FL,C.aF)})()
 B.dP(b.typeUniverse,JSON.parse('{"FL":{"aF":[]}}'))};
-(a=>{a["PsdQ1R7J39Fx1ta9Pcr6HklEJLg="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["eft9rajJoWtvywU5PyWhAfI2eXU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_302.part.js.map

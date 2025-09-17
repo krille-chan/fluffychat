@@ -79,7 +79,7 @@ hG(d,e){return d+" changed the join rules to: "+e},
 hH(d){return d+" changed their avatar"},
 hI(d){return d+" changed the room aliases"},
 hJ(d){return d+" changed the invitation link"},
-ge0(){return"Cambiar li contrasigne"},
+ge_(){return"Cambiar li contrasigne"},
 ghu(){return"Cambiar li hem-servitor"},
 gf8(){return"Cambiar li stil"},
 gf7(){return"Change the name of the group"},
@@ -161,7 +161,7 @@ gez(){return"Custom emojis and stickers"},
 glL(){return"Add or share custom emojis or stickers which can be used in any chat."},
 geD(){return"Curt-code de emotion"},
 giE(){return"You need to pick an emote shortcode and an image!"},
-gdV(){return"Vacui conversation"},
+ge0(){return"Vacui conversation"},
 giF(){return"Enable emote pack globally"},
 ged(){return"Activar li ciffration"},
 giG(){return"You won't be able to disable the encryption anymore. Are you sure?"},
@@ -305,7 +305,7 @@ gdT(d){return"Sercha"},
 geR(){return"Securit\xe1"},
 gfH(){return"Clave de regania"},
 gjG(){return"Recovery key lost?"},
-gdY(d){return"Inviar"},
+gdX(d){return"Inviar"},
 gfR(){return"Send a message"},
 gfS(){return"Send as text"},
 gfT(){return"Inviar audio"},
@@ -632,9 +632,10 @@ gpf(){return"Show navigation rail on mobile"},
 glM(){return"Custom reaction"},
 gpj(){return"More events"},
 glP(){return"Decline invitation"},
+gpn(){return"No messages yet"},
 A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FF,C.aF)})()
 B.dP(b.typeUniverse,JSON.parse('{"FF":{"aF":[]}}'))};
-(a=>{a["/WhdPGMzZ5rcrVGPRpKeM23r6Yg="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["8UpQw10Bm556Z+hgL491xEjg5cI="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_293.part.js.map

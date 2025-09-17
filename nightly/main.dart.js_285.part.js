@@ -79,7 +79,7 @@ hG(d,e){return d+" m\xf3dos\xedtotta a csatlakoz\xe1si szab\xe1lyokat a k\xf6vet
 hH(d){return d+" m\xf3dos\xedtotta a profilk\xe9p\xe9t"},
 hI(d){return d+" m\xf3dos\xedtotta a szoba \xe1lneveit"},
 hJ(d){return d+" m\xf3dos\xedtotta a megh\xedv\xf3 hivatkoz\xe1st"},
-ge0(){return"Jelsz\xf3 m\xf3dos\xedt\xe1sa"},
+ge_(){return"Jelsz\xf3 m\xf3dos\xedt\xe1sa"},
 ghu(){return"Matrix-kiszolg\xe1l\xf3 v\xe1lt\xe1s"},
 gf8(){return"St\xedlus\xe1nak m\xf3dos\xedt\xe1sa"},
 gf7(){return"Csoport nev\xe9nek m\xf3dos\xedt\xe1sa"},
@@ -161,7 +161,7 @@ gez(){return"Egyedi hangulatjelek \xe9s matric\xe1k"},
 glL(){return"Egyedi hangulatjelek \xe9s matric\xe1k hozz\xe1ad\xe1sa, amelyek b\xe1rmely cseveg\xe9sben felhaszn\xe1lhat\xf3ak."},
 geD(){return"Hangulatjel r\xf6vidk\xf3d"},
 giE(){return"Ki kell v\xe1lasztania egy hangulatjel r\xf6vidk\xf3dot \xe9s egy k\xe9pet!"},
-gdV(){return"\xdcres cseveg\xe9s"},
+ge0(){return"\xdcres cseveg\xe9s"},
 giF(){return"Hangulatjel csomag enged\xe9lyez\xe9se glob\xe1lisan"},
 ged(){return"Titkos\xedt\xe1s enged\xe9lyez\xe9se"},
 giG(){return"T\xf6bb\xe9 nem fogja tudni kikapcsolni a titkos\xedt\xe1st. Biztos benne?"},
@@ -305,7 +305,7 @@ gdT(d){return"Keres\xe9s"},
 geR(){return"Biztons\xe1g"},
 gfH(){return"Vissza\xe1ll\xedt\xf3 kulcs"},
 gjG(){return"Elveszett vissza\xe1ll\xedt\xf3 kulcs?"},
-gdY(d){return"K\xfcld\xe9s"},
+gdX(d){return"K\xfcld\xe9s"},
 gfR(){return"\xdczenet k\xfcld\xe9se"},
 gfS(){return"K\xfcld\xe9s sz\xf6vegk\xe9nt"},
 gfT(){return"Hang\xfczenet k\xfcld\xe9se"},
@@ -632,9 +632,10 @@ gpf(){return"Show navigation rail on mobile"},
 glM(){return"Custom reaction"},
 gpj(){return"More events"},
 glP(){return"Decline invitation"},
+gpn(){return"No messages yet"},
 A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FC,C.aF)})()
 B.dP(b.typeUniverse,JSON.parse('{"FC":{"aF":[]}}'))};
-(a=>{a["4vqn+REP/QXcnrs+UEWyuDCDqhU="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["fU9QMLegwDPIE6vYScaPcuxnFtI="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_285.part.js.map

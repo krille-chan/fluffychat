@@ -79,7 +79,7 @@ hG(d,e){return d+" a chang\xe9 les r\xe8gles d'acc\xe8s \xe0 la discussion en : 
 hH(d){return d+" a chang\xe9 son avatar"},
 hI(d){return d+" a chang\xe9 les adresses du salon"},
 hJ(d){return d+" a chang\xe9 le lien d'invitation"},
-ge0(){return"Changer de mot de passe"},
+ge_(){return"Changer de mot de passe"},
 ghu(){return"Changer le serveur d'accueil"},
 gf8(){return"Changez votre style"},
 gf7(){return"Changer le nom du groupe"},
@@ -161,7 +161,7 @@ gez(){return"\xc9motic\xf4nes et autocollants personnalis\xe9s"},
 glL(){return"Ajoutez ou partagez des \xe9motic\xf4nes ou autocollants personnalis\xe9s qui peuvent \xeatre utilis\xe9s dans n'importe quelle discussion."},
 geD(){return"Raccourci de l'\xe9motic\xf4ne"},
 giE(){return"Vous devez s\xe9lectionner un raccourci d'\xe9motic\xf4ne et une image\xa0!"},
-gdV(){return"Discussion vide"},
+ge0(){return"Discussion vide"},
 giF(){return"Activer globalement le pack d'\xe9motic\xf4nes"},
 ged(){return"Activer le chiffrement"},
 giG(){return"Vous ne pourrez plus d\xe9sactiver le chiffrement. \xcates-vous s\xfbr(e)\xa0?"},
@@ -305,7 +305,7 @@ gdT(d){return"Rechercher"},
 geR(){return"S\xe9curit\xe9"},
 gfH(){return"Cl\xe9 de r\xe9cup\xe9ration"},
 gjG(){return"Cl\xe9 de r\xe9cup\xe9ration perdue ?"},
-gdY(d){return"Envoyer"},
+gdX(d){return"Envoyer"},
 gfR(){return"Envoyer un message"},
 gfS(){return"Envoyer un texte"},
 gfT(){return"Envoyer un fichier audio"},
@@ -632,9 +632,10 @@ gpf(){return"Show navigation rail on mobile"},
 glM(){return"Custom reaction"},
 gpj(){return"More events"},
 glP(){return"Decline invitation"},
+gpn(){return"No messages yet"},
 A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fw,C.aF)})()
 B.dP(b.typeUniverse,JSON.parse('{"Fw":{"aF":[]}}'))};
-(a=>{a["jncN67ze3Kl+sZcW1cdoFYIPYj8="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["qh+gD7vUkXve/tLDoBhQKwWRpIg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_269.part.js.map

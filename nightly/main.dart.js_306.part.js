@@ -80,7 +80,7 @@ hG(d,e){return d+" zmieni\u0142/-a zasady wej\u015bcia na "+e},
 hH(d){return d+" zmieni\u0142/-a zdj\u0119cie profilowe"},
 hI(d){return d+" zmieni\u0142/-a alias pokoju"},
 hJ(d){return d+" zmieni\u0142/-a link z zaproszeniem do pokoju"},
-ge0(){return"Zmie\u0144 has\u0142o"},
+ge_(){return"Zmie\u0144 has\u0142o"},
 ghu(){return"Zmie\u0144 serwer domy\u015blny"},
 gf8(){return"Zmie\u0144 sw\xf3j styl"},
 gf7(){return"Zmie\u0144 nazw\u0119 grupy"},
@@ -162,7 +162,7 @@ gez(){return"W\u0142asne emotikony i naklejki"},
 glL(){return"Dodaj lub podziel si\u0119 w\u0142asnymi emotikonami i naklejkami, kt\xf3re b\u0119d\u0105 mog\u0142y by\u0107 u\u017cyte w dowolnym czacie."},
 geD(){return"Skr\xf3cony kod emotikonu"},
 giE(){return"Musisz wybra\u0107 kod emotikonu oraz obraz!"},
-gdV(){return"Pusty czat"},
+ge0(){return"Pusty czat"},
 giF(){return"W\u0142\u0105cz paczk\u0119 emotikon\xf3w globalnie"},
 ged(){return"W\u0142\u0105cz szyfowanie"},
 giG(){return"Nie b\u0119dziesz ju\u017c m\xf3g\u0142 wy\u0142\u0105czy\u0107 szyfrowania. Jeste\u015b pewny?"},
@@ -306,7 +306,7 @@ gdT(d){return"Szukaj"},
 geR(){return"Bezpiecze\u0144stwo"},
 gfH(){return"Klucz odzyskiwania"},
 gjG(){return"Utracono klucz odzyskiwania?"},
-gdY(d){return"Wy\u015blij"},
+gdX(d){return"Wy\u015blij"},
 gfR(){return"Wy\u015blij wiadomo\u015b\u0107"},
 gfS(){return"Wy\u015blij jako tekst"},
 gfT(){return"Wy\u015blij d\u017awi\u0119k"},
@@ -633,9 +633,10 @@ gpf(){return"Pokazuj pasek nawigacyjny na urz\u0105dzeniach mobilnych"},
 glM(){return"W\u0142asna reakcja"},
 gpj(){return"Wi\u0119cej zdarze\u0144"},
 glP(){return"Odrzu\u0107 zaproszenie"},
+gpn(){return"No messages yet"},
 A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FO,C.aF)})()
 B.dP(b.typeUniverse,JSON.parse('{"FO":{"aF":[]}}'))};
-(a=>{a["Z0Yyg1vlJ4YUye9jKZcb1CaMcoU="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["LN9KKiKAQ6j9YzNzqpbvFT+GP2I="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_306.part.js.map

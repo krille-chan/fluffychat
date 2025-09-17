@@ -79,7 +79,7 @@ hG(d,e){return d+" hat die Zugangsregeln ge\xe4ndert zu: "+e},
 hH(d){return d+" hat das Profilbild ge\xe4ndert"},
 hI(d){return d+" hat die Raum-Aliasse ge\xe4ndert"},
 hJ(d){return d+" hat den Einladungslink ge\xe4ndert"},
-ge0(){return"Passwort \xe4ndern"},
+ge_(){return"Passwort \xe4ndern"},
 ghu(){return"Anderen Homeserver verwenden"},
 gf8(){return"\xc4ndere Deinen Style"},
 gf7(){return"Gruppenname \xe4ndern"},
@@ -161,7 +161,7 @@ gez(){return"Eigene Emojis und Sticker"},
 glL(){return"Eigene Emojis oder Sticker zur Nutzung im Chat hinzuf\xfcgen oder teilen."},
 geD(){return"Emoticon-K\xfcrzel"},
 giE(){return"W\xe4hle ein Emoticon-K\xfcrzel und ein Bild!"},
-gdV(){return"Leerer Chat"},
+ge0(){return"Leerer Chat"},
 giF(){return"Aktiviere Emoticon-B\xfcndel global"},
 ged(){return"Verschl\xfcsselung anschalten"},
 giG(){return"Du wirst die Verschl\xfcsselung nicht mehr ausstellen k\xf6nnen. Bist Du sicher?"},
@@ -305,7 +305,7 @@ gdT(d){return"Suchen"},
 geR(){return"Sicherheit"},
 gfH(){return"Wiederherstellungs-Schl\xfcssel"},
 gjG(){return"Wiederherstellungsschl\xfcssel verloren?"},
-gdY(d){return"Senden"},
+gdX(d){return"Senden"},
 gfR(){return"Nachricht schreiben"},
 gfS(){return"Sende als Text"},
 gfT(){return"Sende Audiodatei"},
@@ -632,10 +632,11 @@ gpf(){return"Navigationsleiste auf dem Smartphone anzeigen"},
 glM(){return"Benutzerdefinierte Reaktion"},
 gpj(){return"Weitere Ereignisse"},
 glP(){return"Einladung ablehnen"},
+gpn(){return"No messages yet"},
 A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.Fm,C.aF)})()
 B.dP(b.typeUniverse,JSON.parse('{"Fm":{"aF":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
-(a=>{a["0W25gKMSgyZvj7IqJcr9Px+RAkI="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["XprJSBLWi2MCa0yic7X/IxSfa7g="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_245.part.js.map

@@ -79,7 +79,7 @@ hG(d,e){return d+" cambi\xf3 las reglas de ingreso a "+e},
 hH(d){return d+" cambi\xf3 su imagen de perfil"},
 hI(d){return d+" cambi\xf3 el alias de la sala"},
 hJ(d){return d+" cambi\xf3 el enlace de invitaci\xf3n"},
-ge0(){return"Cambiar la contrase\xf1a"},
+ge_(){return"Cambiar la contrase\xf1a"},
 ghu(){return"Cambiar el servidor"},
 gf8(){return"Cambia tu estilo"},
 gf7(){return"Cambiar el nombre del grupo"},
@@ -161,7 +161,7 @@ gez(){return"Emojis y stickers personalizados"},
 glL(){return"Agrega o comparte emojis y stickers personalizados que se pueden utilizar en cualquier chat."},
 geD(){return"Atajo de emote"},
 giE(){return"\xa1Debes elegir un atajo de emote y una imagen!"},
-gdV(){return"Chat vac\xedo"},
+ge0(){return"Chat vac\xedo"},
 giF(){return"Habilitar paquete de emoticonos a nivel general"},
 ged(){return"Habilitar la encriptaci\xf3n"},
 giG(){return"Ya no podr\xe1 deshabilitar el cifrado. \xbfEst\xe1s seguro?"},
@@ -305,7 +305,7 @@ gdT(d){return"Buscar"},
 geR(){return"Seguridad"},
 gfH(){return"Clave de recuperaci\xf3n"},
 gjG(){return"\xbfPerdi\xf3 su clave de recuperaci\xf3n?"},
-gdY(d){return"Enviar"},
+gdX(d){return"Enviar"},
 gfR(){return"Enviar un mensaje"},
 gfS(){return"Enviar como texto"},
 gfT(){return"Enviar audio"},
@@ -632,9 +632,10 @@ gpf(){return"Mostrar carril de navegaci\xf3n en m\xf3vil"},
 glM(){return"Reacci\xf3n personalizada"},
 gpj(){return"M\xe1s eventos"},
 glP(){return"Rechazar invitaci\xf3n"},
+gpn(){return"No messages yet"},
 A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fq,C.aF)})()
 B.dP(b.typeUniverse,JSON.parse('{"Fq":{"aF":[]}}'))};
-(a=>{a["9tQw8E7a4CEvkXCo3FO1oUrlGnw="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["KT/7PY8OW0rcMMs0IiHTOZ2IKMM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_257.part.js.map

@@ -79,7 +79,7 @@ hG(d,e){return d+"\ub2d8\uc774 \ucc38\uac00 \uaddc\uce59\uc744 "+e+" \ub85c \ubc
 hH(d){return d+"\ub2d8\uc774 \uc790\uc2e0\uc758 \uc544\ubc14\ud0c0\ub97c \ubc14\uafc8"},
 hI(d){return d+"\ub2d8\uc774 \ubc29 \ubcc4\uba85\uc744 \ubc14\uafc8"},
 hJ(d){return d+"\ub2d8\uc774 \ucd08\ub300 \ub9c1\ud06c\ub97c \ubc14\uafc8"},
-ge0(){return"\ube44\ubc00\ubc88\ud638 \ubc14\uafb8\uae30"},
+ge_(){return"\ube44\ubc00\ubc88\ud638 \ubc14\uafb8\uae30"},
 ghu(){return"\ud648\uc11c\ubc84 \ubc14\uafb8\uae30"},
 gf8(){return"\uc2a4\ud0c0\uc77c \ubc14\uafb8\uae30"},
 gf7(){return"\ucc44\ud305\uc758 \uc774\ub984 \ubc14\uafb8\uae30"},
@@ -161,7 +161,7 @@ gez(){return"\ucee4\uc2a4\ud140 \uc774\ubaa8\uc9c0\uc640 \uc2a4\ud2f0\ucee4"},
 glL(){return"\ubaa8\ub4e0 \ucc44\ud305\uc5d0\uc11c \uc0ac\uc6a9\ud560 \uc218\uc788\ub294 \ucee4\uc2a4\ud140 \uc774\ubaa8\uc9c0\uc640 \uc2a4\ud2f0\ucee4\ub97c \ucd94\uac00\ud558\uac70\ub098 \uacf5\uc720\ud569\ub2c8\ub2e4."},
 geD(){return"\uc774\ubaa8\ud2b8 \ub2e8\ucd95\ud0a4"},
 giE(){return"\uc774\ubaa8\ud2b8 \ub2e8\ucd95\ud0a4\uc640 \uc774\ubbf8\uc9c0\ub97c \uace8\ub77c\uc57c \ud569\ub2c8\ub2e4!"},
-gdV(){return"\ube48 \ucc44\ud305"},
+ge0(){return"\ube48 \ucc44\ud305"},
 giF(){return"\uc774\ubaa8\ud2b8 \ud329 \ud56d\uc0c1 \uc0ac\uc6a9\ud558\uae30"},
 ged(){return"\uc554\ud638\ud654 \uc0ac\uc6a9"},
 giG(){return"\ub2f9\uc2e0\uc740 \ub2e4\uc2dc \uc554\ud638\ud654\ub97c \ube44\ud65c\uc131\ud654\ud560 \uc218 \uc5c6\uc2b5\ub2c8\ub2e4. \ud655\uc2e4\ud55c\uac00\uc694?"},
@@ -305,7 +305,7 @@ gdT(d){return"\uac80\uc0c9"},
 geR(){return"\ubcf4\uc548"},
 gfH(){return"\ubcf5\uad6c\ud0a4"},
 gjG(){return"\ubcf5\uad6c\ud0a4\ub97c \ubd84\uc2e4\ud558\uc168\ub098\uc694?"},
-gdY(d){return"\ubcf4\ub0b4\uae30"},
+gdX(d){return"\ubcf4\ub0b4\uae30"},
 gfR(){return"\uba54\uc2dc\uc9c0 \ubcf4\ub0b4\uae30"},
 gfS(){return"\ud14d\uc2a4\ud2b8\ub85c \ubcf4\ub0b4\uae30"},
 gfT(){return"\uc624\ub514\uc624 \ubcf4\ub0b4\uae30"},
@@ -632,9 +632,10 @@ gpf(){return"Show navigation rail on mobile"},
 glM(){return"Custom reaction"},
 gpj(){return"More events"},
 glP(){return"Decline invitation"},
+gpn(){return"No messages yet"},
 A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FJ,C.aF)})()
 B.dP(b.typeUniverse,JSON.parse('{"FJ":{"aF":[]}}'))};
-(a=>{a["htpGlx7SQEEhSFbo0rJECx2NxgQ="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["JtSGZ16Ic3KNEoeBHRf+bDXyiRw="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_300.part.js.map

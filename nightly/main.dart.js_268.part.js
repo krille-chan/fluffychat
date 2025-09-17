@@ -79,7 +79,7 @@ hG(d,e){return"Pinalitan ni "+d+" ang mga tuntunin sa pagsali sa: "+e},
 hH(d){return"Pinalitan ni "+d+" ang kanilang avatar"},
 hI(d){return"Pinalitan ni "+d+" ang mga alias ng room"},
 hJ(d){return"Pinalitan ni "+d+" ang link ng imbitasyon"},
-ge0(){return"Palitan ang password"},
+ge_(){return"Palitan ang password"},
 ghu(){return"Palitan ang homeserver"},
 gf8(){return"Palitan ang iyong istilio"},
 gf7(){return"Palitan ng pangalan ng grupo"},
@@ -161,7 +161,7 @@ gez(){return"Mga custom emoji at sticker"},
 glL(){return"Magdagdag o magbahagi ng mga custom emoji o sticker na maaring gamitin sa anumang chat."},
 geD(){return"Shortcode ng emoji"},
 giE(){return"Kailangan mong pumili ng emote shortcode at isang larawan!"},
-gdV(){return"Walang lamang chat"},
+ge0(){return"Walang lamang chat"},
 giF(){return"I-enable ang emote pack globally"},
 ged(){return"I-enable ang encryption"},
 giG(){return"Hindi mo madi-disable ang encryption. Sigurado ka ba?"},
@@ -305,7 +305,7 @@ gdT(d){return"Search"},
 geR(){return"Security"},
 gfH(){return"Recovery key"},
 gjG(){return"Recovery key lost?"},
-gdY(d){return"Send"},
+gdX(d){return"Send"},
 gfR(){return"Send a message"},
 gfS(){return"Send as text"},
 gfT(){return"Send audio"},
@@ -632,9 +632,10 @@ gpf(){return"Show navigation rail on mobile"},
 glM(){return"Custom reaction"},
 gpj(){return"More events"},
 glP(){return"Decline invitation"},
+gpn(){return"No messages yet"},
 A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fv,C.aF)})()
 B.dP(b.typeUniverse,JSON.parse('{"Fv":{"aF":[]}}'))};
-(a=>{a["eF/gHL5S1P5kNa+PxOgu3cXKypM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["8T6+3BiC+bAifHvhTAwnvUDHedg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_268.part.js.map

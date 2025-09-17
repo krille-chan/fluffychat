@@ -79,7 +79,7 @@ hG(d,e){return d+" \xe4ndrade anslutningsreglerna till "+e},
 hH(d){return d+" \xe4ndrade sin avatar"},
 hI(d){return d+" \xe4ndrade rummets alias"},
 hJ(d){return d+" \xe4ndrade inbjudningsl\xe4nken"},
-ge0(){return"\xc4ndra l\xf6senord"},
+ge_(){return"\xc4ndra l\xf6senord"},
 ghu(){return"\xc4ndra hemserver"},
 gf8(){return"\xc4ndra din stil"},
 gf7(){return"\xc4ndra namn p\xe5 gruppen"},
@@ -161,7 +161,7 @@ gez(){return"Custom emojis and stickers"},
 glL(){return"Add or share custom emojis or stickers which can be used in any chat."},
 geD(){return"Dekal kod"},
 giE(){return"Du m\xe5ste v\xe4lja en dekal-kod och en bild!"},
-gdV(){return"Tom chatt"},
+ge0(){return"Tom chatt"},
 giF(){return"Aktivera dekal-paket globalt"},
 ged(){return"Aktivera kryptering"},
 giG(){return"Du kommer inte ha fortsatt m\xf6jlighet till att inaktivera krypteringen. \xc4r du s\xe4ker?"},
@@ -305,7 +305,7 @@ gdT(d){return"S\xf6k"},
 geR(){return"S\xe4kerhet"},
 gfH(){return"\xc5terst\xe4llningsnyckel"},
 gjG(){return"Borttappad \xe5terst\xe4llningsnyckel?"},
-gdY(d){return"Skicka"},
+gdX(d){return"Skicka"},
 gfR(){return"Skicka ett meddelande"},
 gfS(){return"Skicka som text"},
 gfT(){return"Skicka ljud"},
@@ -632,9 +632,10 @@ gpf(){return"Show navigation rail on mobile"},
 glM(){return"Custom reaction"},
 gpj(){return"More events"},
 glP(){return"Decline invitation"},
+gpn(){return"No messages yet"},
 A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FW,C.aF)})()
 B.dP(b.typeUniverse,JSON.parse('{"FW":{"aF":[]}}'))};
-(a=>{a["fQF3GZO/fdfr7/K3zRiV68KH0OE="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["kHQdzygMOEOcoUy8GRqcUdDv/eM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_316.part.js.map
