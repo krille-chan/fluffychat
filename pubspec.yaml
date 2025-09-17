@@ -25,7 +25,7 @@ dependencies:
   emoji_picker_flutter: ^4.3.0
   emojis: ^0.9.9
   file_picker: ^10.3.3
-  file_selector: ^1.0.3
+  file_selector: ^1.0.4
   flutter:
     sdk: flutter
   flutter_foreground_task: ^9.1.0
