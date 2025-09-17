@@ -76,6 +76,7 @@ class TokenEmojiButtonState extends State<TokenEmojiButton>
                     : Icon(
                         Icons.add_reaction_outlined,
                         size: buttonSize - 4.0,
+                        color: Theme.of(context).colorScheme.primary,
                       ),
               ),
             );
