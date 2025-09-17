@@ -30,31 +30,38 @@ class MorphAnalyticsListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final padding = FluffyThemes.isColumnMode(context)
+        ? const EdgeInsets.all(16.0)
+        : EdgeInsets.zero;
+
     return Padding(
-      padding: FluffyThemes.isColumnMode(context)
-          ? const EdgeInsets.all(16.0)
-          : const EdgeInsets.all(0.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Add your text widget here
-          const InstructionsInlineTooltip(
-            instructionsEnum: InstructionsEnum.morphAnalyticsList,
-          ),
-          if (!InstructionsEnum.morphAnalyticsList.isToggledOff)
-            const SizedBox(height: 16.0),
-          if (kIsWeb)
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                DownloadAnalyticsButton(),
-              ],
+      padding: padding,
+      child: CustomScrollView(
+        key: const PageStorageKey<String>('morph-analytics'),
+        slivers: [
+          const SliverToBoxAdapter(
+            child: InstructionsInlineTooltip(
+              instructionsEnum: InstructionsEnum.morphAnalyticsList,
             ),
-          Expanded(
-            child: ListView.builder(
-              key: const PageStorageKey<String>('morph-analytics'),
-              itemCount: controller.features.length,
-              itemBuilder: (context, index) {
+          ),
+
+          if (!InstructionsEnum.morphAnalyticsList.isToggledOff)
+            const SliverToBoxAdapter(child: SizedBox(height: 16.0)),
+
+          if (kIsWeb)
+            const SliverToBoxAdapter(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  DownloadAnalyticsButton(),
+                ],
+              ),
+            ),
+
+          // Morph feature boxes
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (context, index) {
                 final feature = controller.features[index];
                 return feature.displayTags.isNotEmpty
                     ? Padding(
@@ -69,6 +76,7 @@ class MorphAnalyticsListView extends StatelessWidget {
                       )
                     : const SizedBox.shrink();
               },
+              childCount: controller.features.length,
             ),
           ),
         ],

@@ -88,9 +88,6 @@ class VocabAnalyticsListView extends StatelessWidget {
 
     return Column(
       children: [
-        const InstructionsInlineTooltip(
-          instructionsEnum: InstructionsEnum.analyticsVocabList,
-        ),
         AnimatedContainer(
           duration: const Duration(milliseconds: 300),
           curve: Curves.easeInOut,
@@ -138,26 +135,40 @@ class VocabAnalyticsListView extends StatelessWidget {
           ),
         ),
         Expanded(
-          child: GridView.builder(
+          child: CustomScrollView(
             key: const PageStorageKey("vocab-analytics-list-view-page-key"),
-            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: 100.0,
-              mainAxisExtent: 100.0,
-              crossAxisSpacing: 8.0,
-              mainAxisSpacing: 8.0,
-            ),
-            itemCount: _filteredVocab.length,
-            itemBuilder: (context, index) {
-              final vocabItem = _filteredVocab[index];
-              return VocabAnalyticsListTile(
-                onTap: () => context.go(
-                  "/rooms/analytics/${vocabItem.id.type.string}/${vocabItem.id.string}",
+            slivers: [
+              // Full-width tooltip
+              const SliverToBoxAdapter(
+                child: InstructionsInlineTooltip(
+                  instructionsEnum: InstructionsEnum.analyticsVocabList,
                 ),
-                constructUse: vocabItem,
-                emoji: vocabItem.id.userSetEmoji.firstOrNull ??
-                    vocabItem.id.getLemmaInfoCached()?.emoji.firstOrNull,
-              );
-            },
+              ),
+
+              // Grid of vocab tiles
+              SliverGrid(
+                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                  maxCrossAxisExtent: 100.0,
+                  mainAxisExtent: 100.0,
+                  crossAxisSpacing: 8.0,
+                  mainAxisSpacing: 8.0,
+                ),
+                delegate: SliverChildBuilderDelegate(
+                  (context, index) {
+                    final vocabItem = _filteredVocab[index];
+                    return VocabAnalyticsListTile(
+                      onTap: () => context.go(
+                        "/rooms/analytics/${vocabItem.id.type.string}/${vocabItem.id.string}",
+                      ),
+                      constructUse: vocabItem,
+                      emoji: vocabItem.id.userSetEmoji.firstOrNull ??
+                          vocabItem.id.getLemmaInfoCached()?.emoji.firstOrNull,
+                    );
+                  },
+                  childCount: _filteredVocab.length,
+                ),
+              ),
+            ],
           ),
         ),
       ],
