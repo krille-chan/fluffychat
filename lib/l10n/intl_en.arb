@@ -3374,5 +3374,6 @@
   "moreEvents": "More events",
   "@moreEvents": {},
   "declineInvitation": "Decline invitation",
-  "@declineInvitation": {}
+  "@declineInvitation": {},
+  "noMessagesYet": "No messages yet"
 }
