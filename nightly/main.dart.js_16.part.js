@@ -675,7 +675,7 @@ mf(d){return d+" abra\xe7ou voc\xea"},
 hk(d){return d+" atendeu \xe0 chamada"},
 geZ(){return"Qualquer pessoa pode entrar"},
 gf_(){return"Arquivo"},
-ghl(){return"Visitantes podem entrar?"},
+ghl(){return"Visitantes podem entrar"},
 gd8(){return"Tem certeza?"},
 ghm(){return"Tem certeza que deseja se desconectar?"},
 ghn(){return"Para poder validar a outra pessoa, por favor, digite sua frase secreta ou chave de recupera\xe7\xe3o."},
@@ -1253,7 +1253,7 @@ gl0(){return"Todos os dispositivos"},
 glJ(){return"Dispositivos verificados por ambos se ativado"},
 glI(){return"Dispositivos verificados por ambos"},
 gou(){return"Somente dispositivos verificados"},
-gnx(){return"Mensagem... (opcional)"},
+gnx(){return"(Opcional) mensagem..."},
 gmP(){return"N\xe3o h\xe1 suporte neste dispositivo"},
 glZ(){return"Abrir a conversa nova"},
 gl5(){return"Aprovar"},
@@ -1518,5 +1518,5 @@ x(A.AJ,C.aF)
 w(A.AJ,[A.FP,A.FQ])})()
 B.dP(b.typeUniverse,JSON.parse('{"AJ":{"aF":[]},"FP":{"aF":[]},"FQ":{"aF":[]}}'))
 var y={h:" alterou a visibilidade do hist\xf3rico para: ",a:"(BETA) Ativar m\xfaltiplas contas neste dispositivo"}};
-(a=>{a["pr6Wum43EPOl0780bdOw5yTkrfM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["BL1omUk38iDVIOV5fQqZL1vMZQY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_16.part.js.map
