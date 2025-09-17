@@ -636,7 +636,7 @@ gpn(){return"No messages yet"},
 A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.Fm,C.aF)})()
-B.dP(b.typeUniverse,JSON.parse('{"Fm":{"aF":[]}}'))
+B.dQ(b.typeUniverse,JSON.parse('{"Fm":{"aF":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
-(a=>{a["XprJSBLWi2MCa0yic7X/IxSfa7g="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["dRIs+t9Bp2w0mvenmYbAo5Cu3MA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_245.part.js.map

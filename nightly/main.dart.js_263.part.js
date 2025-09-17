@@ -636,7 +636,7 @@ gpn(){return"No messages yet"},
 A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.Fs,C.aF)})()
-B.dP(b.typeUniverse,JSON.parse('{"Fs":{"aF":[]}}'))
+B.dQ(b.typeUniverse,JSON.parse('{"Fs":{"aF":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["7RE7HpmmS77QhaEDFLjeEzK6pdM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["KQHOYG3kCxdm3bTgnML8URjFZL0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_263.part.js.map

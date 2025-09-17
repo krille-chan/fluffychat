@@ -636,7 +636,7 @@ gpn(){return"No messages yet"},
 A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.G_,C.aF)})()
-B.dP(b.typeUniverse,JSON.parse('{"G_":{"aF":[]}}'))
+B.dQ(b.typeUniverse,JSON.parse('{"G_":{"aF":[]}}'))
 var y={c:" adresinde geli\u015ftiricilere bildirin. Hata mesaj\u0131: "}};
-(a=>{a["78dAE6maFiQQAUL/Z2U3S5+xe6U="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["5pkx3ckzSuRngVs4twEp3RIak8E="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_320.part.js.map

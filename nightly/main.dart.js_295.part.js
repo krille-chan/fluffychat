@@ -636,6 +636,6 @@ gpn(){return"No messages yet"},
 A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FG,C.aF)})()
-B.dP(b.typeUniverse,JSON.parse('{"FG":{"aF":[]}}'))};
-(a=>{a["FCgmuTQtNwT/37SdutOgNJciuwQ="]=a.current})($__dart_deferred_initializers__);
+B.dQ(b.typeUniverse,JSON.parse('{"FG":{"aF":[]}}'))};
+(a=>{a["UbfeGNlOa+gm/Mk92uWfbw4rXz0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_295.part.js.map
