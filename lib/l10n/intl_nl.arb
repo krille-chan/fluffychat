@@ -3384,5 +3384,7 @@
     "customReaction": "Aangepaste reactie",
     "@customReaction": {},
     "declineInvitation": "Uitnodiging afwijzen",
-    "@declineInvitation": {}
+    "@declineInvitation": {},
+    "noMessagesYet": "Nog geen berichten",
+    "@noMessagesYet": {}
 }
