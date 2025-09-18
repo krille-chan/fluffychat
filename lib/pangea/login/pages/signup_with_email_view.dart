@@ -39,10 +39,18 @@ class SignupWithEmailView extends StatelessWidget {
           FullWidthTextField(
             hintText: L10n.of(context).password,
             textInputAction: TextInputAction.done,
-            obscureText: true,
+            obscureText: !controller.showPassword,
             validator: controller.password1TextFieldValidator,
             controller: controller.passwordController,
             onSubmitted: controller.enableSignUp ? controller.signup : null,
+            suffix: IconButton(
+              icon: Icon(
+                controller.showPassword
+                    ? Icons.visibility_off
+                    : Icons.visibility,
+              ),
+              onPressed: controller.toggleShowPassword,
+            ),
           ),
           FullWidthButton(
             title: L10n.of(context).signUp,

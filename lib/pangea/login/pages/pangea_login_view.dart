@@ -40,7 +40,7 @@ class PangeaLoginView extends StatelessWidget {
                   hintText: L10n.of(context).password,
                   autofillHints: const [AutofillHints.password],
                   autoFocus: true,
-                  obscureText: true,
+                  obscureText: !controller.showPassword,
                   textInputAction: TextInputAction.go,
                   onSubmitted: (_) {
                     controller.enabledSignIn ? controller.login() : null;
@@ -52,6 +52,14 @@ class PangeaLoginView extends StatelessWidget {
                     return null;
                   },
                   controller: controller.passwordController,
+                  suffix: IconButton(
+                    icon: Icon(
+                      controller.showPassword
+                          ? Icons.visibility_off
+                          : Icons.visibility,
+                    ),
+                    onPressed: controller.toggleShowPassword,
+                  ),
                 ),
               ],
             ),
