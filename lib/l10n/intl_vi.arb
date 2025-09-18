@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2025-07-10 15:55:50.516947",
+  "@@last_modified": "2025-07-24 12:57:05.290437",
   "about": "Giới thiệu",
   "@about": {
     "type": "String",
@@ -4499,6 +4499,104 @@
     }
   },
   "@saved": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "chatCapacitySetTooLow": "Dung lượng trò chuyện phải ít nhất là {count}.",
+  "spaceCapacitySetTooLow": "Dung lượng không gian phải ít nhất là {count}.",
+  "reset": "Đặt lại",
+  "errorGenerateActivityMessage": "Không thể tạo hoạt động",
+  "errorRegenerateActivityMessage": "Không thể tái tạo hoạt động",
+  "errorFetchingActivitiesMessage": "Không thể lấy hoạt động",
+  "errorFetchingDefinition": "Không thể lấy định nghĩa",
+  "errorProcessAnalytics": "Không thể xử lý phân tích",
+  "errorDownloading": "Tải xuống thất bại",
+  "errorFetchingLevelSummary": "Không thể lấy tóm tắt cấp độ",
+  "errorLoadingSpaceChildren": "Không thể tải trò chuyện trong không gian này",
+  "unexpectedError": "Lỗi không mong đợi.",
+  "pleaseReload": "Vui lòng tải lại và thử lại.",
+  "translationError": "Lỗi dịch thuật",
+  "errorFetchingTranslation": "Không thể lấy bản dịch",
+  "errorFetchingActivity": "Không thể lấy hoạt động",
+  "check": "Kiểm tra",
+  "unableToFindRoom": "Không tìm thấy trò chuyện hoặc không gian nào với mã đó. Vui lòng thử lại.",
+  "@chatCapacitySetTooLow": {
+    "type": "int",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@spaceCapacitySetTooLow": {
+    "type": "int",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@reset": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@errorGenerateActivityMessage": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@errorRegenerateActivityMessage": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@errorFetchingActivitiesMessage": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@errorFetchingDefinition": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@errorProcessAnalytics": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@errorDownloading": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@errorFetchingLevelSummary": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@errorLoadingSpaceChildren": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unexpectedError": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@pleaseReload": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@translationError": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@errorFetchingTranslation": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@errorFetchingActivity": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@check": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unableToFindRoom": {
     "type": "String",
     "placeholders": {}
   }

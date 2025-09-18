@@ -1,6 +1,6 @@
 {
   "@@locale": "es",
-  "@@last_modified": "2025-05-23 14:51:23.780564",
+  "@@last_modified": "2025-07-24 13:19:34.706481",
   "about": "Acerca de",
   "@about": {
     "type": "String",
@@ -5915,6 +5915,417 @@
     "placeholders": {}
   },
   "@announcements": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "customReaction": "Reacción personalizada",
+  "chatCapacitySetTooLow": "La capacidad de chat debe ser al menos {count}.",
+  "spaceCapacitySetTooLow": "La capacidad del espacio debe ser al menos {count}.",
+  "grammarCopyVERBFORMshrt": "Corto",
+  "constructUseCollected": "Recopilado en chat",
+  "modeLabel": "Tipo de actividad",
+  "makeYourOwnActivity": "Crea tu propia actividad",
+  "deleteChatDesc": "¿Estás seguro de que deseas eliminar este chat? Se eliminará para todos los participantes y todos los mensajes dentro del chat ya no estarán disponibles para práctica o análisis de aprendizaje.",
+  "deleteSpaceDesc": "El espacio y cualquier chat y/o subespacio seleccionado se eliminarán para todos los participantes y todos los mensajes dentro del chat ya no estarán disponibles para práctica o análisis de aprendizaje. Esta acción no se puede deshacer.",
+  "maxFifty": "Máximo 50",
+  "activities": "Actividades",
+  "access": "Acceso",
+  "addSubspace": "Agregar subespacio",
+  "botSettings": "Configuración del bot",
+  "activitySuggestionTimeoutMessage": "Estamos trabajando arduamente para generar actividades para ti, por favor vuelve en un minuto",
+  "accessSettingsWarning": "¡Ups! Parece que no tienes permiso para configurar las reglas de acceso de esta sala. Debes revisarlas para asegurarte de que sean lo que necesitas y hablar con un administrador de la sala si necesitas cambiarlas",
+  "howSpaceCanBeFound": "Cómo se puede encontrar este espacio",
+  "private": "Privado",
+  "cannotBeFoundInSearch": "No se puede encontrar en la búsqueda",
+  "public": "Público",
+  "visibleToCommunity": "Visible para la comunidad más amplia de Pangea Chat a través de \"Encuentra a tu gente\"",
+  "howSpaceCanBeJoined": "Cómo se puede unirse a este espacio",
+  "canBeFoundVia": "Se puede encontrar a través de:",
+  "canBeFoundViaInvitation": "• invitación",
+  "canBeFoundViaCodeOrLink": "• código o enlace",
+  "canBeFoundViaKnock": "• solicitud para unirse y aprobación del administrador",
+  "createYourSpace": "Crea tu espacio",
+  "youHaveLeveledUp": "¡Has subido de nivel!",
+  "sendActivities": "Enviar actividades",
+  "getStartedBotChatDesc": "¡Chatear con IA es un excelente lugar para comenzar y las herramientas de lectura, escritura, escucha y habla de Pangea facilitan todo!",
+  "getStartedCommunitiesDesc": "¡Aprender con una comunidad es donde brilla Pangea Chat!\nPuedes unirte a tu clase, encontrar una escuela o incluso crear la tuya propia.",
+  "getStartedFriendsDesc": "¿Tienes un amigo que quiere aprender contigo?",
+  "getStartedBotChatComplete": "¡Bien hecho! Estás chateando con el bot!",
+  "getStartedCommunitiesComplete": "¡Genial, te has unido a un espacio!",
+  "getStartedComplete": "¡Has completado esta sección!\nSigue explorando nuestras increíbles funciones chateando con amigos.",
+  "getStartedFriendsComplete": "¡Woohoo! ¡Tienes amigos! 😉",
+  "getStartedBotChatButton": "¡Comienza a chatear!",
+  "getStartedFriendsButton": "Chatear con un amigo",
+  "groupChat": "Chat grupal",
+  "directMessage": "Mensaje directo",
+  "newDirectMessage": "Nuevo mensaje directo",
+  "speakingExercisesTooltip": "Hablar",
+  "noChatsFoundHereYet": "Aún no se han encontrado chats aquí",
+  "duration": "Duración",
+  "transcriptionFailed": "Error al transcribir el audio",
+  "aUserIsKnocking": "Un usuario está solicitando unirse a tu espacio",
+  "usersAreKnocking": "{users} usuarios están solicitando unirse a tu espacio",
+  "failedToFetchTranscription": "Error al obtener la transcripción",
+  "deleteEmptySpaceDesc": "El espacio será eliminado para todos los participantes. Esta acción no se puede deshacer.",
+  "regenerate": "Regenerar",
+  "mySavedActivities": "Mis actividades guardadas",
+  "noSavedActivities": "No hay actividades guardadas",
+  "saveActivity": "Guardar esta actividad",
+  "yourSavedActivities": "Actividades guardadas",
+  "failedToPlayVideo": "Error al reproducir el video",
+  "done": "Hecho",
+  "inThisSpace": "En este espacio",
+  "myContacts": "Mis contactos",
+  "inviteAllInSpace": "Invitar a todos en este espacio",
+  "spaceParticipantsHaveBeenInvitedToTheChat": "Todos los participantes del espacio han sido invitados al chat",
+  "numKnocking": "{count} tocando",
+  "numInvited": "{count} invitado",
+  "saved": "Guardado",
+  "reset": "Restablecer",
+  "errorGenerateActivityMessage": "Error al generar la actividad",
+  "errorRegenerateActivityMessage": "Error al regenerar la actividad",
+  "errorFetchingActivitiesMessage": "Error al obtener actividades",
+  "errorFetchingDefinition": "Error al obtener la definición",
+  "errorProcessAnalytics": "Error al procesar análisis",
+  "errorDownloading": "Error en la descarga",
+  "errorFetchingLevelSummary": "Error al obtener el resumen del nivel",
+  "errorLoadingSpaceChildren": "Error al cargar chats dentro de este espacio",
+  "unexpectedError": "Error inesperado.",
+  "pleaseReload": "Por favor, recarga e intenta de nuevo.",
+  "translationError": "Error de traducción",
+  "errorFetchingTranslation": "Error al obtener la traducción",
+  "errorFetchingActivity": "Error al obtener la actividad",
+  "check": "Verificar",
+  "unableToFindRoom": "No se encontró chat o espacio con ese código. Por favor, intenta de nuevo.",
+  "@customReaction": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@chatCapacitySetTooLow": {
+    "type": "int",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@spaceCapacitySetTooLow": {
+    "type": "int",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@grammarCopyVERBFORMshrt": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@constructUseCollected": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@modeLabel": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@deleteChatDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@deleteSpaceDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@maxFifty": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@activities": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@access": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@addSubspace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@botSettings": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@activitySuggestionTimeoutMessage": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@accessSettingsWarning": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@howSpaceCanBeFound": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@private": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@cannotBeFoundInSearch": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@public": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@visibleToCommunity": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@howSpaceCanBeJoined": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@canBeFoundVia": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@canBeFoundViaInvitation": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@canBeFoundViaCodeOrLink": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@canBeFoundViaKnock": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@createYourSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@youHaveLeveledUp": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@sendActivities": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@getStartedBotChatDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@getStartedCommunitiesDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@getStartedFriendsDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@getStartedBotChatComplete": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@getStartedCommunitiesComplete": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@getStartedComplete": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@getStartedFriendsComplete": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@getStartedBotChatButton": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@getStartedFriendsButton": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@groupChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@directMessage": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@newDirectMessage": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@speakingExercisesTooltip": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@noChatsFoundHereYet": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@duration": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@transcriptionFailed": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@aUserIsKnocking": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@usersAreKnocking": {
+    "type": "int",
+    "placeholders": {
+      "users": {
+        "type": "int"
+      }
+    }
+  },
+  "@failedToFetchTranscription": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@deleteEmptySpaceDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@regenerate": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@mySavedActivities": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@noSavedActivities": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@saveActivity": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@yourSavedActivities": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@failedToPlayVideo": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@done": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@inThisSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@myContacts": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@inviteAllInSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@spaceParticipantsHaveBeenInvitedToTheChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@numKnocking": {
+    "type": "String",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@numInvited": {
+    "type": "String",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@saved": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@reset": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@errorGenerateActivityMessage": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@errorRegenerateActivityMessage": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@errorFetchingActivitiesMessage": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@errorFetchingDefinition": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@errorProcessAnalytics": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@errorDownloading": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@errorFetchingLevelSummary": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@errorLoadingSpaceChildren": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unexpectedError": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@pleaseReload": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@translationError": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@errorFetchingTranslation": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@errorFetchingActivity": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@check": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unableToFindRoom": {
     "type": "String",
     "placeholders": {}
   }
