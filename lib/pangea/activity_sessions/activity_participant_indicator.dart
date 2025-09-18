@@ -38,84 +38,89 @@ class ActivityParticipantIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return MouseRegion(
-      cursor: SystemMouseCursors.click,
-      child: GestureDetector(
-        onTap: onTap ??
-            (user != null
-                ? () => showMemberActionsPopupMenu(
-                      context: context,
-                      user: user!,
-                    )
-                : null),
-        child: HoverBuilder(
-          builder: (context, hovered) {
-            return Opacity(
-              opacity: opacity,
-              child: Container(
-                padding: padding ??
-                    const EdgeInsets.symmetric(
-                      vertical: 4.0,
-                      horizontal: 8.0,
-                    ),
-                decoration: BoxDecoration(
-                  borderRadius: borderRadius ?? BorderRadius.circular(8.0),
-                  color: (hovered || selected) && selectable
-                      ? theme.colorScheme.surfaceContainerHighest
-                      : Colors.transparent,
-                ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    userId != null
-                        ? user?.avatarUrl == null ||
-                                user!.avatarUrl!.toString().startsWith("mxc")
-                            ? Avatar(
-                                mxContent: user?.avatarUrl != null
-                                    ? user!.avatarUrl!
-                                    : null,
-                                name: userId!.localpart,
-                                size: 60.0,
-                                userId: userId,
-                              )
-                            : ClipRRect(
-                                borderRadius: BorderRadius.circular(30),
-                                child: CachedNetworkImage(
-                                  imageUrl: user!.avatarUrl!.toString(),
-                                  width: 60.0,
-                                  height: 60.0,
-                                  fit: BoxFit.cover,
-                                ),
-                              )
-                        : CircleAvatar(
-                            radius: 30.0,
-                            backgroundColor: theme.colorScheme.primaryContainer,
-                            child: const Icon(
-                              Icons.question_mark,
-                              size: 30.0,
+    return AbsorbPointer(
+      absorbing: !selectable,
+      child: MouseRegion(
+        cursor: SystemMouseCursors.basic,
+        child: GestureDetector(
+          onTap: onTap ??
+              (user != null
+                  ? () => showMemberActionsPopupMenu(
+                        context: context,
+                        user: user!,
+                      )
+                  : null),
+          child: HoverBuilder(
+            builder: (context, hovered) {
+              return Opacity(
+                opacity: opacity,
+                child: Container(
+                  padding: padding ??
+                      const EdgeInsets.symmetric(
+                        vertical: 4.0,
+                        horizontal: 8.0,
+                      ),
+                  decoration: BoxDecoration(
+                    borderRadius: borderRadius ?? BorderRadius.circular(8.0),
+                    color: (hovered || selected) && selectable
+                        ? theme.colorScheme.surfaceContainerHighest
+                        : Colors.transparent,
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      userId != null
+                          ? user?.avatarUrl == null ||
+                                  user!.avatarUrl!.toString().startsWith("mxc")
+                              ? Avatar(
+                                  mxContent: user?.avatarUrl != null
+                                      ? user!.avatarUrl!
+                                      : null,
+                                  name: userId!.localpart,
+                                  size: 60.0,
+                                  userId: userId,
+                                )
+                              : ClipRRect(
+                                  borderRadius: BorderRadius.circular(30),
+                                  child: CachedNetworkImage(
+                                    imageUrl: user!.avatarUrl!.toString(),
+                                    width: 60.0,
+                                    height: 60.0,
+                                    fit: BoxFit.cover,
+                                  ),
+                                )
+                          : CircleAvatar(
+                              radius: 30.0,
+                              backgroundColor:
+                                  theme.colorScheme.primaryContainer,
+                              child: const Icon(
+                                Icons.question_mark,
+                                size: 30.0,
+                              ),
                             ),
-                          ),
-                    Text(
-                      name,
-                      style: const TextStyle(
-                        fontSize: 12.0,
+                      Text(
+                        name,
+                        style: const TextStyle(
+                          fontSize: 12.0,
+                        ),
                       ),
-                    ),
-                    Text(
-                      userId?.localpart ?? L10n.of(context).openRoleLabel,
-                      style: TextStyle(
-                        fontSize: 12.0,
-                        color: (Theme.of(context).brightness == Brightness.light
-                            ? (userId?.localpart?.darkColor ?? name.darkColor)
-                            : (userId?.localpart?.lightColorText ??
-                                name.lightColorText)),
+                      Text(
+                        userId?.localpart ?? L10n.of(context).openRoleLabel,
+                        style: TextStyle(
+                          fontSize: 12.0,
+                          color: (Theme.of(context).brightness ==
+                                  Brightness.light
+                              ? (userId?.localpart?.darkColor ?? name.darkColor)
+                              : (userId?.localpart?.lightColorText ??
+                                  name.lightColorText)),
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            );
-          },
+              );
+            },
+          ),
         ),
       ),
     );
