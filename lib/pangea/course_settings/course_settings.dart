@@ -9,6 +9,7 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_suggestion_card.dart';
 import 'package:fluffychat/pangea/common/widgets/error_indicator.dart';
 import 'package:fluffychat/pangea/common/widgets/url_image_widget.dart';
@@ -172,69 +173,9 @@ class CourseSettings extends StatelessWidget {
                     if (unlocked)
                       SizedBox(
                         height: isColumnMode ? 290.0 : 210.0,
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: activities.length,
-                          itemBuilder: (context, index) {
-                            final activityId = activities[index].activityId;
-
-                            final complete = room.hasCompletedActivity(
-                              room.client.userID!,
-                              activityId,
-                            );
-
-                            final activityRoomId = room.activeActivityRoomId(
-                              activityId,
-                            );
-
-                            final activity = activities[index];
-                            return Padding(
-                              padding: const EdgeInsets.only(right: 24.0),
-                              child: MouseRegion(
-                                cursor: SystemMouseCursors.click,
-                                child: GestureDetector(
-                                  onTap: () => context.go(
-                                    activityRoomId != null
-                                        ? "/rooms/spaces/${room.id}/$activityRoomId"
-                                        : "/rooms/spaces/${room.id}/activity/$activityId",
-                                  ),
-                                  child: Stack(
-                                    children: [
-                                      ActivitySuggestionCard(
-                                        activity: activity,
-                                        width: isColumnMode ? 160.0 : 120.0,
-                                        height: isColumnMode ? 280.0 : 200.0,
-                                        fontSize: isColumnMode ? 20.0 : 12.0,
-                                        fontSizeSmall:
-                                            isColumnMode ? 12.0 : 8.0,
-                                        iconSize: isColumnMode ? 12.0 : 8.0,
-                                        openSessions:
-                                            room.numOpenSessions(activityId),
-                                      ),
-                                      if (complete)
-                                        Container(
-                                          width: isColumnMode ? 160.0 : 120.0,
-                                          height: isColumnMode ? 280.0 : 200.0,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(12.0),
-                                            color: theme.colorScheme.surface
-                                                .withAlpha(180),
-                                          ),
-                                          child: Center(
-                                            child: SvgPicture.asset(
-                                              "assets/pangea/check.svg",
-                                              width: 48.0,
-                                              height: 48.0,
-                                            ),
-                                          ),
-                                        ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            );
-                          },
+                        child: TopicActivitiesList(
+                          room: room,
+                          activities: activities,
                         ),
                       ),
                   ],
@@ -244,6 +185,99 @@ class CourseSettings extends StatelessWidget {
           }).toList(),
         );
       },
+    );
+  }
+}
+
+class TopicActivitiesList extends StatefulWidget {
+  final Room room;
+  final List<ActivityPlanModel> activities;
+  const TopicActivitiesList({
+    super.key,
+    required this.room,
+    required this.activities,
+  });
+  @override
+  State<TopicActivitiesList> createState() => TopicActivitiesListState();
+}
+
+class TopicActivitiesListState extends State<TopicActivitiesList> {
+  final ScrollController _scrollController = ScrollController();
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isColumnMode = FluffyThemes.isColumnMode(context);
+    return Scrollbar(
+      thumbVisibility: true,
+      controller: _scrollController,
+      child: ListView.builder(
+        controller: _scrollController,
+        scrollDirection: Axis.horizontal,
+        itemCount: widget.activities.length,
+        itemBuilder: (context, index) {
+          final activityId = widget.activities[index].activityId;
+
+          final complete = widget.room.hasCompletedActivity(
+            widget.room.client.userID!,
+            activityId,
+          );
+
+          final activityRoomId = widget.room.activeActivityRoomId(
+            activityId,
+          );
+
+          final activity = widget.activities[index];
+          return Padding(
+            padding: const EdgeInsets.only(right: 24.0),
+            child: MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: GestureDetector(
+                onTap: () => context.go(
+                  activityRoomId != null
+                      ? "/rooms/spaces/${widget.room.id}/$activityRoomId"
+                      : "/rooms/spaces/${widget.room.id}/activity/$activityId",
+                ),
+                child: Stack(
+                  children: [
+                    ActivitySuggestionCard(
+                      activity: activity,
+                      width: isColumnMode ? 160.0 : 120.0,
+                      height: isColumnMode ? 280.0 : 200.0,
+                      fontSize: isColumnMode ? 20.0 : 12.0,
+                      fontSizeSmall: isColumnMode ? 12.0 : 8.0,
+                      iconSize: isColumnMode ? 12.0 : 8.0,
+                      openSessions: widget.room.numOpenSessions(activityId),
+                    ),
+                    if (complete)
+                      Container(
+                        width: isColumnMode ? 160.0 : 120.0,
+                        height: isColumnMode ? 280.0 : 200.0,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12.0),
+                          color: theme.colorScheme.surface.withAlpha(180),
+                        ),
+                        child: Center(
+                          child: SvgPicture.asset(
+                            "assets/pangea/check.svg",
+                            width: 48.0,
+                            height: 48.0,
+                          ),
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+            ),
+          );
+        },
+      ),
     );
   }
 }
