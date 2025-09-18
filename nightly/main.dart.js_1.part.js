@@ -634,7 +634,7 @@ gpf(){return"\u5728\u79fb\u52a8\u8bbe\u5907\u4e0a\u663e\u793a\u5bfc\u822a\u680f"
 glM(){return"\u81ea\u5b9a\u4e49\u56de\u5e94"},
 gpj(){return"\u66f4\u591a\u4e8b\u4ef6"},
 glP(){return"\u62d2\u7edd\u9080\u8bf7"},
-gpn(){return"No messages yet"},
+gpn(){return"\u5c1a\u65e0\u6d88\u606f"},
 A(d,e){return this.gbb(this).$1(e)}}
 A.G3.prototype={
 gl1(){return"false"},
@@ -1260,5 +1260,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.AK,C.aF)
 y(A.G3,A.AK)})()
 B.dQ(b.typeUniverse,JSON.parse('{"AK":{"aF":[]},"G3":{"aF":[]}}'))};
-(a=>{a["An9g258jja3pSiZDut8utR+ZpXg="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["894dZlf0CnQNl441AuxWjm1+ZyQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_1.part.js.map
