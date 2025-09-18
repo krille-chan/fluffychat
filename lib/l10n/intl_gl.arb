@@ -3351,7 +3351,7 @@
     "@pleaseWaitUntilInvited": {},
     "youHaveKnocked": "Petaches á porta",
     "@youHaveKnocked": {},
-    "sentVoiceMessage": "🎙️ {duration} - Mensaxe de voz de  {sender}",
+    "sentVoiceMessage": "🎙️ {duration} - Mensaxe de voz de {sender}",
     "@sentVoiceMessage": {
         "type": "String",
         "placeholders": {
@@ -3381,5 +3381,7 @@
     "customReaction": "Reacción personalizada",
     "@customReaction": {},
     "declineInvitation": "Rexeitar o convite",
-    "@declineInvitation": {}
+    "@declineInvitation": {},
+    "noMessagesYet": "Aínda non hai mensaxes",
+    "@noMessagesYet": {}
 }
