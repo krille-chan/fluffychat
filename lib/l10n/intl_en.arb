@@ -5247,5 +5247,7 @@
   "subscribeToUnlockActivitySummaries": "Subscribe to unlock activity summaries",
   "subscribeToUnlockDefinitions": "Subscribe to unlock definitions",
   "subscribeToUnlockTranscriptions": "Subscribe to unlock transcriptions",
-  "pingSent": "🔔 Course ping sent! 🔔"
+  "pingSent": "🔔 Course ping sent! 🔔",
+  "courseTitle": "Course title",
+  "courseDesc": "Course description"
 }

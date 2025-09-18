@@ -181,6 +181,7 @@ class EditCourseController extends State<EditCourse> {
                                         borderRadius:
                                             BorderRadius.circular(4.0),
                                       ),
+                                      hintText: L10n.of(context).courseTitle,
                                     ),
                                   ),
                                   TextField(
@@ -190,6 +191,7 @@ class EditCourseController extends State<EditCourse> {
                                         borderRadius:
                                             BorderRadius.circular(4.0),
                                       ),
+                                      hintText: L10n.of(context).courseDesc,
                                     ),
                                     maxLines: null,
                                   ),
