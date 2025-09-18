@@ -18,6 +18,7 @@ import 'package:fluffychat/pangea/course_plans/course_plan_builder.dart';
 import 'package:fluffychat/pangea/course_plans/course_plan_room_extension.dart';
 import 'package:fluffychat/pangea/course_settings/pin_clipper.dart';
 import 'package:fluffychat/pangea/course_settings/topic_participant_list.dart';
+import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 
 class CourseSettings extends StatelessWidget {
   final Room room;
@@ -41,7 +42,37 @@ class CourseSettings extends StatelessWidget {
     }
 
     if (controller.course == null) {
-      return Center(child: Text(L10n.of(context).noCourseFound));
+      return room.canChangeStateEvent(PangeaEventTypes.coursePlan)
+          ? Column(
+              spacing: 50.0,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  L10n.of(context).noCourseFound,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor:
+                        Theme.of(context).colorScheme.primaryContainer,
+                    foregroundColor:
+                        Theme.of(context).colorScheme.onPrimaryContainer,
+                  ),
+                  onPressed: () =>
+                      context.go("/rooms/spaces/${room.id}/addcourse"),
+                  child: Row(
+                    spacing: 8.0,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(Icons.map_outlined),
+                      Text(L10n.of(context).addCoursePlan),
+                    ],
+                  ),
+                ),
+              ],
+            )
+          : Center(child: Text(L10n.of(context).noCourseFound));
     }
 
     final theme = Theme.of(context);

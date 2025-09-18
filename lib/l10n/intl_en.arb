@@ -5100,7 +5100,7 @@
   "activityFinishedMessage": "All Finished!",
   "endForAll": "End for all",
   "newCourse": "New Course",
-  "newCourseSubtitle": "Which course template would you like to use?",
+  "newCourseSubtitle": "Which course plan plan would you like to use?",
   "failedToLoadCourses": "Failed to load courses",
   "numModules": "{num} modules",
   "@numModules": {
@@ -5134,7 +5134,7 @@
   "createGroupChatDesc": "Whereas activity sessions start and end, group chats will stay open for routine communication.",
   "deleteDesc": "Only admins can delete a course. This is a destructive action which removes all users and deletes all selected chats within the course. Proceed with caution.",
   "failedToLoadCourseInfo": "Failed to load course information",
-  "noCourseFound": "No course information found",
+  "noCourseFound": "Oh, this course needs a plan!\n\nCourse plans are a sequence of topics and conversation activities.",
   "additionalParticipants": "+ {num} others",
   "@additionalParticipants": {
     "type": "int",
@@ -5250,5 +5250,6 @@
   "pingSent": "🔔 Course ping sent! 🔔",
   "courseTitle": "Course title",
   "courseDesc": "Course description",
-  "courseSavedSuccessfully": "Course saved successfully"
+  "courseSavedSuccessfully": "Course saved successfully",
+  "addCoursePlan": "Add a course plan"
 }

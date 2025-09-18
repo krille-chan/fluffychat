@@ -147,6 +147,17 @@ extension CoursePlanRoomExtension on Room {
     return null;
   }
 
+  Future<void> addCourseToSpace(String courseId) async {
+    await client.setRoomStateWithKey(
+      id,
+      PangeaEventTypes.coursePlan,
+      "",
+      {
+        "uuid": courseId,
+      },
+    );
+  }
+
   Future<Map<String, List<User>>> topicsToUsers(CoursePlanModel course) async {
     final Map<String, List<User>> topicUserMap = {};
     final users = await requestParticipants(

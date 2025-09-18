@@ -7,7 +7,11 @@ import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_en
 import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
 
 class NewCourse extends StatefulWidget {
-  const NewCourse({super.key});
+  final String? spaceId;
+  const NewCourse({
+    super.key,
+    this.spaceId,
+  });
 
   @override
   State<NewCourse> createState() => NewCourseController();

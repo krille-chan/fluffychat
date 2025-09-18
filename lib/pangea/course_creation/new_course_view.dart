@@ -23,10 +23,15 @@ class NewCourseView extends StatelessWidget {
     const double descFontSize = 12.0;
 
     const double iconSize = 12.0;
+    final spaceId = controller.widget.spaceId;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(L10n.of(context).newCourse),
+        title: Text(
+          spaceId != null
+              ? L10n.of(context).addCoursePlan
+              : L10n.of(context).newCourse,
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(12.0),
@@ -41,6 +46,7 @@ class NewCourseView extends StatelessWidget {
                 L10n.of(context).newCourseSubtitle,
                 style: const TextStyle(
                   fontSize: titleFontSize,
+                  fontStyle: FontStyle.italic,
                 ),
               ),
               Padding(
@@ -125,7 +131,9 @@ class NewCourseView extends StatelessWidget {
                         child: CoursePlanTile(
                           course: controller.courses[index],
                           onTap: () => context.go(
-                            "/rooms/communities/newcourse/${controller.courses[index].uuid}",
+                            spaceId != null
+                                ? "/rooms/spaces/$spaceId/addcourse/${controller.courses[index].uuid}"
+                                : "/rooms/communities/newcourse/${controller.courses[index].uuid}",
                           ),
                           titleFontSize: titleFontSize,
                           chipFontSize: descFontSize,
