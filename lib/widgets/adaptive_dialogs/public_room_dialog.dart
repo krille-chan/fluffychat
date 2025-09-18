@@ -210,6 +210,7 @@ class PublicRoomDialog extends StatelessWidget {
       actions: [
         AdaptiveDialogAction(
           bigButtons: true,
+          borderRadius: AdaptiveDialogAction.topRadius,
           onPressed: () => _joinRoom(context),
           child: Text(
             chunk?.joinRule == 'knock' &&
@@ -222,6 +223,7 @@ class PublicRoomDialog extends StatelessWidget {
         ),
         AdaptiveDialogAction(
           bigButtons: true,
+          borderRadius: AdaptiveDialogAction.bottomRadius,
           onPressed: Navigator.of(context).pop,
           child: Text(L10n.of(context).close),
         ),
