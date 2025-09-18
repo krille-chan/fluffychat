@@ -114,8 +114,8 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
 
   Map<String?, List<Client?>> get accountBundles {
     final resBundles = <String?, List<_AccountBundleWithClient>>{};
-    for (var i = 0; i < widget.clients.length; i++) {
-      final bundles = widget.clients[i].accountBundles;
+    for (Client client in widget.clients) {
+      final bundles = client.accountBundles;
       for (final bundle in bundles) {
         if (bundle.name == null) {
           continue;
@@ -123,7 +123,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         resBundles[bundle.name] ??= [];
         resBundles[bundle.name]!.add(
           _AccountBundleWithClient(
-            client: widget.clients[i],
+            client: client,
             bundle: bundle,
           ),
         );
