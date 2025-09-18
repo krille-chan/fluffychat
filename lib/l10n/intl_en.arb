@@ -5249,5 +5249,6 @@
   "subscribeToUnlockTranscriptions": "Subscribe to unlock transcriptions",
   "pingSent": "🔔 Course ping sent! 🔔",
   "courseTitle": "Course title",
-  "courseDesc": "Course description"
+  "courseDesc": "Course description",
+  "courseSavedSuccessfully": "Course saved successfully"
 }

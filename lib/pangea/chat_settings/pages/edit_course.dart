@@ -60,6 +60,26 @@ class EditCourseController extends State<EditCourse> {
     }
   }
 
+  Future<void> _save() async {
+    final resp = await showFutureLoadingDialog(
+      context: context,
+      future: _saveChanges,
+    );
+
+    if (mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            resp.isError
+                ? L10n.of(context).oopsSomethingWentWrong
+                : L10n.of(context).courseSavedSuccessfully,
+            textAlign: TextAlign.center,
+          ),
+        ),
+      );
+    }
+  }
+
   Future<void> _setAvatarAction() async {
     if (_room == null) return;
     final actions = [
@@ -220,10 +240,7 @@ class EditCourseController extends State<EditCourse> {
                           Container(
                             padding: const EdgeInsets.symmetric(vertical: 16.0),
                             child: ElevatedButton(
-                              onPressed: () => showFutureLoadingDialog(
-                                context: context,
-                                future: _saveChanges,
-                              ),
+                              onPressed: _save,
                               child: Row(
                                 spacing: 8.0,
                                 mainAxisAlignment: MainAxisAlignment.center,
