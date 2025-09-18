@@ -314,9 +314,9 @@ class SpaceDetailsContent extends StatelessWidget {
                       return SingleChildScrollView(
                         child: Column(
                           children: [
-                            if (courseController.course != null) ...[
+                            if (room.topic.isNotEmpty) ...[
                               Text(
-                                courseController.course!.description,
+                                room.topic,
                                 style: TextStyle(
                                   fontSize: isColumnMode ? 16.0 : 12.0,
                                 ),

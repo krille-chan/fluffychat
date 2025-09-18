@@ -33,6 +33,14 @@ class EditCourseController extends State<EditCourse> {
       _titleController.text = _room!.name;
       _descController.text = _room!.topic;
     }
+
+    _titleController.addListener(() {
+      setState(() {});
+    });
+
+    _descController.addListener(() {
+      setState(() {});
+    });
   }
 
   @override
@@ -44,8 +52,18 @@ class EditCourseController extends State<EditCourse> {
 
   Room? get _room => Matrix.of(context).client.getRoomById(widget.roomId);
 
+  bool get hasChanges {
+    if (_room == null) return false;
+    final title = _titleController.text.trim();
+    final desc = _descController.text.trim();
+    if (title.isNotEmpty && title != _room!.name) return true;
+    if (desc.isNotEmpty && desc != _room!.topic) return true;
+    if (_avatar != null) return true;
+    return false;
+  }
+
   Future<void> _saveChanges() async {
-    if (_room == null) return;
+    if (_room == null || !hasChanges) return;
     final title = _titleController.text.trim();
     final desc = _descController.text.trim();
 
@@ -58,6 +76,16 @@ class EditCourseController extends State<EditCourse> {
     if (_avatar != null) {
       await _room!.setAvatar(_avatar!);
     }
+
+    _room!.client.onRoomState.stream.first.then((_) {
+      if (mounted) {
+        setState(() {
+          _titleController.text = _room!.name;
+          _descController.text = _room!.topic;
+          _avatar = null;
+        });
+      }
+    });
   }
 
   Future<void> _save() async {
@@ -240,7 +268,7 @@ class EditCourseController extends State<EditCourse> {
                           Container(
                             padding: const EdgeInsets.symmetric(vertical: 16.0),
                             child: ElevatedButton(
-                              onPressed: _save,
+                              onPressed: hasChanges ? _save : null,
                               child: Row(
                                 spacing: 8.0,
                                 mainAxisAlignment: MainAxisAlignment.center,
