@@ -157,11 +157,27 @@ class SpacesNavigationRail extends StatelessWidget {
                             //   child: Icon(Icons.add),
                             // ),
                             // toolTip: L10n.of(context).createNewSpace,
+                            backgroundColor: Colors.transparent,
+                            borderRadius: BorderRadius.circular(0),
                             isSelected: isCommunities,
                             onTap: () {
                               context.go('/rooms/communities');
                             },
-                            icon: const Icon(Icons.groups),
+                            icon: ClipPath(
+                              clipper: MapClipper(),
+                              child: Container(
+                                width: width - (isColumnMode ? 32.0 : 24.0),
+                                height: width - (isColumnMode ? 32.0 : 24.0),
+                                color: isCommunities
+                                    ? Theme.of(context)
+                                        .colorScheme
+                                        .primaryContainer
+                                    : Theme.of(context)
+                                        .colorScheme
+                                        .surfaceContainerHigh,
+                                child: const Icon(Icons.add),
+                              ),
+                            ),
                             toolTip: L10n.of(context).findCourse,
                             // Pangea#
                           );
