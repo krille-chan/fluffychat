@@ -156,10 +156,17 @@ class EditCourseController extends State<EditCourse> {
                                               )
                                             : ImageByUrl(
                                                 imageUrl:
-                                                    _room?.avatar.toString(),
+                                                    _room?.avatar?.toString(),
                                                 width: 200.0,
                                                 borderRadius:
                                                     BorderRadius.circular(0.0),
+                                                replacement: Container(
+                                                  width: 200.0,
+                                                  height: 200.0,
+                                                  color: Theme.of(context)
+                                                      .colorScheme
+                                                      .surfaceContainerHighest,
+                                                ),
                                               ),
                                       ),
                                       Positioned(
