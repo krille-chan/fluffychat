@@ -112,6 +112,7 @@ class RoomCreationStateEventState extends State<RoomCreationStateEvent> {
               top: 16.0,
             ),
             onClose: () => setState(() {}),
+            animate: false,
           ),
           if (_members <= 1 && InstructionsEnum.clickMessage.isToggledOff)
             const InstructionsInlineTooltip(
@@ -121,6 +122,7 @@ class RoomCreationStateEventState extends State<RoomCreationStateEvent> {
                 right: 16.0,
                 top: 16.0,
               ),
+              animate: false,
             ),
           // Pangea#
         ],
