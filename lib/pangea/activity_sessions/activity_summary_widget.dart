@@ -2,8 +2,10 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+import 'package:flutter_html/flutter_html.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:matrix/matrix.dart';
+import 'package:matrix/src/utils/markdown.dart';
 
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
@@ -156,9 +158,15 @@ class ActivitySummary extends StatelessWidget {
                     ActivitySessionDetailsRow(
                       icon: Symbols.steps,
                       iconSize: 16.0,
-                      child: Text(
-                        activity.instructions,
-                        style: const TextStyle(fontSize: 12.0),
+                      child: Html(
+                        data: markdown(activity.instructions),
+                        style: {
+                          "body": Style(
+                            margin: Margins.all(0),
+                            padding: HtmlPaddings.all(0),
+                            fontSize: FontSize(12.0),
+                          ),
+                        },
                       ),
                     ),
                     ActivitySessionDetailsRow(

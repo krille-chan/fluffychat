@@ -114,15 +114,6 @@ class ActivityPlanModel {
     };
   }
 
-  /// activity content displayed nicely in markdown
-  /// use target emoji for learning objective
-  /// use step emoji for instructions
-  String get markdown {
-    final String markdown =
-        '''🎯 $learningObjective \n🪜 $instructions \n\n📖 $vocabString''';
-    return markdown;
-  }
-
   String get vocabString {
     final List<String> vocabList = [];
     String vocabString = "";
