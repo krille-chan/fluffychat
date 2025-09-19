@@ -58,7 +58,6 @@ class PangeaController {
   PangeaController({required this.matrix, required this.matrixState}) {
     _setup();
     _setLanguageSubscription();
-    initControllers();
     randomint = Random().nextInt(2000);
   }
 
