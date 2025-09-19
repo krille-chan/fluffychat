@@ -199,7 +199,7 @@ class ActivitySessionStartController extends State<ActivitySessionStartPage>
     if (mounted) setState(() => _selectedRoleId = id);
   }
 
-  Future<bool> courseHasEnoughParticipants() async {
+  Future<int> neededCourseParticipants() async {
     final courseParticipants = await courseParent?.requestParticipants(
           [Membership.join, Membership.invite, Membership.knock],
           false,
@@ -214,7 +214,10 @@ class ActivitySessionStartController extends State<ActivitySessionStartPage>
     final addBotToAvailableUsers = !botInCourse && !isBotRoomMember;
     final availableParticipants =
         courseParticipants.length + (addBotToAvailableUsers ? 1 : 0);
-    return availableParticipants >= (activity?.req.numberOfParticipants ?? 0);
+    if (availableParticipants >= (activity?.req.numberOfParticipants ?? 0)) {
+      return 0;
+    }
+    return (activity?.req.numberOfParticipants ?? 0) - availableParticipants;
   }
 
   Future<void> _loadActivity() async {

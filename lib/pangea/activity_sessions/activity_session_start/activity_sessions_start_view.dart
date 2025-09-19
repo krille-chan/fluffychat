@@ -258,21 +258,20 @@ class _ActivityStartButtons extends StatelessWidget {
   Widget build(BuildContext context) {
     final hasActiveSession = controller.canJoinExistingSession;
     return FutureBuilder(
-      future: controller.courseHasEnoughParticipants(),
+      future: controller.neededCourseParticipants(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const LinearProgressIndicator();
         }
 
-        final bool hasEnoughParticipants = snapshot.data ?? true;
+        final int neededParticipants = snapshot.data ?? 0;
+        final bool hasEnoughParticipants = neededParticipants <= 0;
         return Column(
           spacing: 16.0,
           children: [
             if (!hasEnoughParticipants) ...[
               Text(
-                L10n.of(context).activityNeedsMembers(
-                  (controller.activity?.req.numberOfParticipants ?? 2) - 1,
-                ),
+                L10n.of(context).activityNeedsMembers(neededParticipants),
                 textAlign: TextAlign.center,
               ),
               if (controller.courseParent?.canInvite ?? false)
