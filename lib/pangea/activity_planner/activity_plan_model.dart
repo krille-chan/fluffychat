@@ -140,20 +140,6 @@ class ActivityPlanModel {
     return vocabString;
   }
 
-  List get vocabList {
-    final List<String> vocabList = [];
-    // cycle through vocab with index
-    for (var i = 0; i < vocab.length; i++) {
-      // if the lemma appears more than once in the vocab list, show the pos
-      // vocab is a wrapped list of string, separated by commas
-      final v = vocab[i];
-      final bool showPos =
-          vocab.where((vocab) => vocab.lemma == v.lemma).length > 1;
-      vocabList.add("${v.lemma}${showPos ? ' (${v.pos})' : ''}");
-    }
-    return vocabList;
-  }
-
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;

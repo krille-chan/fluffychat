@@ -115,10 +115,14 @@ class ReadingAssistanceContentState extends State<ReadingAssistanceContent> {
                 "word-zoom-card-${widget.overlayController.selectedToken!.text.uniqueKey}",
               )
               .key,
-          token: widget.overlayController.selectedToken!,
-          overlayController: widget.overlayController,
+          token: widget.overlayController.selectedToken!.text,
+          construct: widget.overlayController.selectedToken!.vocabConstructID,
+          event: widget.overlayController.event,
           wordIsNew: widget.overlayController
               .isNewToken(widget.overlayController.selectedToken!),
+          onClose: () => widget.overlayController.updateSelectedSpan(null),
+          langCode: widget
+              .overlayController.pangeaMessageEvent.messageDisplayLangCode,
         );
     }
   }

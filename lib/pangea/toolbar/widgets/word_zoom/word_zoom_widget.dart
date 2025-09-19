@@ -1,59 +1,51 @@
 import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
+import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/common/widgets/error_indicator.dart';
-import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
-import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
+import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
+import 'package:fluffychat/pangea/events/models/pangea_token_text_model.dart';
 import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
 import 'package:fluffychat/pangea/learning_settings/utils/p_language_store.dart';
 import 'package:fluffychat/pangea/lemmas/construct_xp_widget.dart';
 import 'package:fluffychat/pangea/lemmas/lemma_reaction_picker.dart';
 import 'package:fluffychat/pangea/phonetic_transcription/phonetic_transcription_widget.dart';
-import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
-import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/practice_activity/word_audio_button.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/word_zoom/lemma_meaning_builder.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/word_zoom/new_word_overlay.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class WordZoomWidget extends StatelessWidget {
-  final PangeaToken token;
-  final MessageOverlayController overlayController;
+  final PangeaTokenText token;
+  final ConstructIdentifier construct;
+
+  final String langCode;
+  final VoidCallback onClose;
+
   final bool wordIsNew;
+  final Event? event;
 
   const WordZoomWidget({
     super.key,
     required this.token,
-    required this.overlayController,
-    required this.wordIsNew,
+    required this.construct,
+    required this.langCode,
+    required this.onClose,
+    this.wordIsNew = false,
+    this.event,
   });
 
-  PangeaToken get _selectedToken => overlayController.selectedToken!;
-
-  bool get hasEmojiActivity =>
-      overlayController.practiceSelection?.hasActiveActivityByToken(
-            ActivityTypeEnum.emoji,
-            _selectedToken,
-          ) ==
-          true &&
-      overlayController.hideWordCardContent;
-
-  String get transformTargetId => "word-zoom-card-${token.text.uniqueKey}";
+  String get transformTargetId => "word-zoom-card-${token.uniqueKey}";
 
   LayerLink get layerLink =>
       MatrixState.pAnyState.layerLinkAndKey(transformTargetId).link;
 
-  PangeaMessageEvent get messageEvent => overlayController.pangeaMessageEvent;
-
   @override
   Widget build(BuildContext context) {
-    // final GlobalKey cardKey = MatrixState.pAnyState
-    //     .layerLinkAndKey("word-zoom-card-${token.text.uniqueKey}")
-    //     .key;
     final overlayColor = Theme.of(context).scaffoldBackgroundColor;
     return Stack(
       children: [
@@ -81,8 +73,7 @@ class WordZoomWidget extends StatelessWidget {
                         child: MouseRegion(
                           cursor: SystemMouseCursors.click,
                           child: GestureDetector(
-                            onTap: () =>
-                                overlayController.updateSelectedSpan(null),
+                            onTap: onClose,
                             child: const Icon(
                               Icons.close,
                               size: 16.0,
@@ -92,7 +83,7 @@ class WordZoomWidget extends StatelessWidget {
                       ),
                       Flexible(
                         child: Text(
-                          token.text.content,
+                          token.content,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 28.0,
@@ -106,16 +97,16 @@ class WordZoomWidget extends StatelessWidget {
                         ),
                       ),
                       ConstructXpWidget(
-                        id: token.vocabConstructID,
+                        id: construct,
                         onTap: () => context.go(
-                          "/rooms/analytics/${ConstructTypeEnum.vocab.string}/${token.vocabConstructID.string}",
+                          "/rooms/analytics/${ConstructTypeEnum.vocab.string}/${construct.string}",
                         ),
                       ),
                     ],
                   ),
                   LemmaMeaningBuilder(
-                    langCode: messageEvent.messageDisplayLangCode,
-                    constructId: token.vocabConstructID,
+                    langCode: langCode,
+                    constructId: construct,
                     builder: (context, controller) {
                       if (controller.editMode) {
                         return Column(
@@ -123,8 +114,8 @@ class WordZoomWidget extends StatelessWidget {
                           children: [
                             Text(
                               "${L10n.of(context).pangeaBotIsFallible} ${L10n.of(context).whatIsMeaning(
-                                token.vocabConstructID.lemma,
-                                token.vocabConstructID.category,
+                                construct.lemma,
+                                construct.category,
                               )}",
                               textAlign: TextAlign.center,
                               style:
@@ -192,9 +183,9 @@ class WordZoomWidget extends StatelessWidget {
                           if (MatrixState.pangeaController.languageController
                               .showTranscription)
                             PhoneticTranscriptionWidget(
-                              text: token.text.content,
+                              text: token.content,
                               textLanguage: PLanguageStore.byLangCode(
-                                    messageEvent.messageDisplayLangCode,
+                                    langCode,
                                   ) ??
                                   LanguageModel.unknown,
                               style: const TextStyle(fontSize: 14.0),
@@ -202,16 +193,15 @@ class WordZoomWidget extends StatelessWidget {
                             )
                           else
                             WordAudioButton(
-                              text: token.text.content,
-                              uniqueID: "lemma-content-${token.text.content}",
-                              langCode: messageEvent.messageDisplayLangCode,
+                              text: token.content,
+                              uniqueID: "lemma-content-${token.content}",
+                              langCode: langCode,
                               iconSize: 24.0,
                             ),
                           LemmaReactionPicker(
                             emojis: controller.lemmaInfo?.emoji ?? [],
                             loading: controller.isLoading,
-                            event: messageEvent.event,
-                            controller: overlayController.widget.chatController,
+                            event: event,
                           ),
                           if (controller.error != null)
                             ErrorIndicator(
@@ -227,8 +217,8 @@ class WordZoomWidget extends StatelessWidget {
                                   controller.toggleEditMode(true),
                               onDoubleTap: () =>
                                   controller.toggleEditMode(true),
-                              child: token.lemma.text.toLowerCase() ==
-                                      token.text.content.toLowerCase()
+                              child: construct.lemma.toLowerCase() ==
+                                      token.content.toLowerCase()
                                   ? Text(
                                       controller.lemmaInfo!.meaning,
                                       style: const TextStyle(fontSize: 14.0),
@@ -242,7 +232,7 @@ class WordZoomWidget extends StatelessWidget {
                                               fontSize: 14.0,
                                             ),
                                         children: [
-                                          TextSpan(text: token.lemma.text),
+                                          TextSpan(text: construct.lemma),
                                           const WidgetSpan(
                                             child: SizedBox(width: 8.0),
                                           ),
@@ -269,9 +259,7 @@ class WordZoomWidget extends StatelessWidget {
         wordIsNew
             ? NewWordOverlay(
                 key: ValueKey(transformTargetId),
-                token: token,
                 overlayColor: overlayColor,
-                overlayController: overlayController,
                 transformTargetId: transformTargetId,
               )
             : const SizedBox.shrink(),

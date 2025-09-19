@@ -9,13 +9,19 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
+import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_room_extension.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_session_details_row.dart';
 import 'package:fluffychat/pangea/activity_summary/activity_summary_analytics_model.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/bot/utils/bot_name.dart';
+import 'package:fluffychat/pangea/common/utils/overlay.dart';
+import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
+import 'package:fluffychat/pangea/events/models/pangea_token_text_model.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/toolbar/widgets/word_zoom/word_zoom_widget.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 
 class ActivityStatsMenu extends StatefulWidget {
   final ChatController controller;
@@ -60,7 +66,7 @@ class ActivityStatsMenuState extends State<ActivityStatsMenu> {
       .toSet();
 
   double get _percentVocabComplete {
-    final vocabList = room.activityPlan?.vocabList ?? [];
+    final vocabList = room.activityPlan?.vocab.map((v) => v.lemma) ?? [];
     if (vocabList.isEmpty || _usedVocab == null) {
       return 0;
     }
@@ -226,11 +232,13 @@ class ActivityStatsMenuState extends State<ActivityStatsMenu> {
                               spacing: 4.0,
                               runSpacing: 4.0,
                               children: [
-                                ...room.activityPlan!.vocabList.map(
-                                  (vocabWord) => VocabTile(
-                                    vocabWord: vocabWord,
+                                ...room.activityPlan!.vocab.map(
+                                  (v) => VocabTile(
+                                    vocab: v,
+                                    langCode:
+                                        room.activityPlan!.req.targetLanguage,
                                     isUsed:
-                                        (_usedVocab ?? {}).contains(vocabWord),
+                                        (_usedVocab ?? {}).contains(v.lemma),
                                   ),
                                 ),
                               ],
@@ -316,12 +324,14 @@ class ActivityStatsMenuState extends State<ActivityStatsMenu> {
 }
 
 class VocabTile extends StatelessWidget {
-  final String vocabWord;
+  final Vocab vocab;
+  final String langCode;
   final bool isUsed;
 
   const VocabTile({
     super.key,
-    required this.vocabWord,
+    required this.vocab,
+    required this.langCode,
     required this.isUsed,
   });
 
@@ -329,20 +339,81 @@ class VocabTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final color =
         isUsed ? AppConfig.goldLight.withAlpha(100) : Colors.transparent;
-    return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 8.0,
-        vertical: 4.0,
-      ),
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Text(
-        vocabWord,
-        style: TextStyle(
-          color: Theme.of(context).colorScheme.onSurface,
-          fontSize: 14.0,
+    return CompositedTransformTarget(
+      link: MatrixState.pAnyState
+          .layerLinkAndKey(
+            "activity-vocab-${vocab.lemma}",
+          )
+          .link,
+      child: InkWell(
+        key: MatrixState.pAnyState
+            .layerLinkAndKey(
+              "activity-vocab-${vocab.lemma}",
+            )
+            .key,
+        borderRadius: BorderRadius.circular(
+          24.0,
+        ),
+        onTap: () {
+          OverlayUtil.showPositionedCard(
+            overlayKey: "activity-vocab-${vocab.lemma}",
+            context: context,
+            cardToShow: Material(
+              type: MaterialType.transparency,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Theme.of(context).cardColor,
+                  border: Border.all(
+                    color: Theme.of(context).colorScheme.primary,
+                    width: 4.0,
+                  ),
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(AppConfig.borderRadius),
+                  ),
+                ),
+                child: WordZoomWidget(
+                  token: PangeaTokenText(
+                    content: vocab.lemma,
+                    length: vocab.lemma.characters.length,
+                    offset: 0,
+                  ),
+                  construct: ConstructIdentifier(
+                    lemma: vocab.lemma,
+                    type: ConstructTypeEnum.vocab,
+                    category: vocab.pos,
+                  ),
+                  langCode: langCode,
+                  onClose: () {
+                    MatrixState.pAnyState.closeOverlay(
+                      "activity-vocab-${vocab.lemma}",
+                    );
+                  },
+                ),
+              ),
+            ),
+            transformTargetId: "activity-vocab-${vocab.lemma}",
+            closePrevOverlay: false,
+            addBorder: false,
+            maxWidth: AppConfig.toolbarMinWidth,
+            maxHeight: AppConfig.toolbarMaxHeight,
+          );
+        },
+        child: Container(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 8.0,
+            vertical: 4.0,
+          ),
+          decoration: BoxDecoration(
+            color: color,
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Text(
+            vocab.lemma,
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.onSurface,
+              fontSize: 14.0,
+            ),
+          ),
         ),
       ),
     );

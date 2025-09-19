@@ -4721,7 +4721,7 @@
   "whoIsAllowedToJoinThisChat": "Who is allowed to join this chat",
   "dontForgetPassword": "Don't forget your password!",
   "enableAutocorrectToolName": "Enable device autocorrect",
-  "enableAutocorrectDescription": "If your device supports the language your learning, you can enable device autocorrect to fix common errors as you type.",
+  "enableAutocorrectDescription": "If your device supports the language you're learning, you can enable device autocorrect to fix common errors as you type.",
   "ttsDisbledTitle": "Text-to-speech disabled",
   "ttsDisabledBody": "You can enable text-to-speech in your learning settings",
   "noSpaceDescriptionYet": "No course description created yet.",

@@ -12,23 +12,19 @@ import '../../learning_settings/models/language_model.dart';
 class UserSettings {
   DateTime? dateOfBirth;
   DateTime? createdAt;
-  bool? autoPlayMessages;
   bool? publicProfile;
   String? targetLanguage;
   String? sourceLanguage;
   String? country;
-  bool? hasJoinedHelpSpace;
   LanguageLevelTypeEnum cefrLevel;
 
   UserSettings({
     this.dateOfBirth,
     this.createdAt,
-    this.autoPlayMessages,
     this.publicProfile,
     this.targetLanguage,
     this.sourceLanguage,
     this.country,
-    this.hasJoinedHelpSpace,
     this.cefrLevel = LanguageLevelTypeEnum.a1,
   });
 
@@ -39,12 +35,10 @@ class UserSettings {
         createdAt: json[ModelKey.userCreatedAt] != null
             ? DateTime.parse(json[ModelKey.userCreatedAt])
             : null,
-        autoPlayMessages: json[ModelKey.autoPlayMessages],
         publicProfile: json[ModelKey.publicProfile],
         targetLanguage: json[ModelKey.l2LanguageKey],
         sourceLanguage: json[ModelKey.l1LanguageKey],
         country: json[ModelKey.userCountry],
-        hasJoinedHelpSpace: json[ModelKey.hasJoinedHelpSpace],
         cefrLevel: json[ModelKey.cefrLevel] is String
             ? LanguageLevelTypeEnumExtension.fromString(
                 json[ModelKey.cefrLevel],
@@ -56,12 +50,10 @@ class UserSettings {
     final Map<String, dynamic> data = <String, dynamic>{};
     data[ModelKey.userDateOfBirth] = dateOfBirth?.toIso8601String();
     data[ModelKey.userCreatedAt] = createdAt?.toIso8601String();
-    data[ModelKey.autoPlayMessages] = autoPlayMessages;
     data[ModelKey.publicProfile] = publicProfile;
     data[ModelKey.l2LanguageKey] = targetLanguage;
     data[ModelKey.l1LanguageKey] = sourceLanguage;
     data[ModelKey.userCountry] = country;
-    data[ModelKey.hasJoinedHelpSpace] = hasJoinedHelpSpace;
     data[ModelKey.cefrLevel] = cefrLevel.string;
     return data;
   }
@@ -100,9 +92,6 @@ class UserSettings {
     return UserSettings(
       dateOfBirth: dob,
       createdAt: createdAt,
-      autoPlayMessages: (accountData[ModelKey.autoPlayMessages]
-              ?.content[ModelKey.autoPlayMessages] as bool?) ??
-          false,
       publicProfile: (accountData[ModelKey.publicProfile]
               ?.content[ModelKey.publicProfile] as bool?) ??
           false,
@@ -119,12 +108,10 @@ class UserSettings {
     return UserSettings(
       dateOfBirth: dateOfBirth,
       createdAt: createdAt,
-      autoPlayMessages: autoPlayMessages,
       publicProfile: publicProfile,
       targetLanguage: targetLanguage,
       sourceLanguage: sourceLanguage,
       country: country,
-      hasJoinedHelpSpace: hasJoinedHelpSpace,
       cefrLevel: cefrLevel,
     );
   }
@@ -136,12 +123,10 @@ class UserSettings {
     return other is UserSettings &&
         other.dateOfBirth == dateOfBirth &&
         other.createdAt == createdAt &&
-        other.autoPlayMessages == autoPlayMessages &&
-        other.publicProfile == publicProfile &&
+        (other.publicProfile ?? false) == (publicProfile ?? false) &&
         other.targetLanguage == targetLanguage &&
         other.sourceLanguage == sourceLanguage &&
         other.country == country &&
-        other.hasJoinedHelpSpace == hasJoinedHelpSpace &&
         other.cefrLevel == cefrLevel;
   }
 
@@ -149,12 +134,10 @@ class UserSettings {
   int get hashCode => Object.hashAll([
         dateOfBirth.hashCode,
         createdAt.hashCode,
-        autoPlayMessages.hashCode,
-        publicProfile.hashCode,
+        (publicProfile ?? false).hashCode,
         targetLanguage.hashCode,
         sourceLanguage.hashCode,
         country.hashCode,
-        hasJoinedHelpSpace.hashCode,
         cefrLevel.hashCode,
       ]);
 }

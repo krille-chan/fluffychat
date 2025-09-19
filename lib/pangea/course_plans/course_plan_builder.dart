@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:get_storage/get_storage.dart';
+
 import 'package:fluffychat/pangea/course_plans/course_plan_model.dart';
 import 'package:fluffychat/pangea/course_plans/course_plans_repo.dart';
 
@@ -33,7 +35,9 @@ class CoursePlanController extends State<CoursePlanBuilder> {
   @override
   void initState() {
     super.initState();
-    _loadCourse();
+    _initStorage().then((_) {
+      if (mounted) _loadCourse();
+    });
   }
 
   @override
@@ -44,13 +48,20 @@ class CoursePlanController extends State<CoursePlanBuilder> {
     }
   }
 
-  Future<void> _loadCourse() async {
-    setState(() {
-      loading = false;
-      error = null;
-      course = null;
-    });
+  Future<void> _initStorage() async {
+    final futures = [
+      GetStorage.init("course_storage"),
+      GetStorage.init("course_activity_storage"),
+      GetStorage.init("course_location_media_storage"),
+      GetStorage.init("course_location_storage"),
+      GetStorage.init("course_media_storage"),
+      GetStorage.init("course_topic_storage"),
+    ];
 
+    await Future.wait(futures);
+  }
+
+  Future<void> _loadCourse() async {
     if (widget.courseId == null) {
       return;
     }
@@ -59,10 +70,10 @@ class CoursePlanController extends State<CoursePlanBuilder> {
       setState(() {
         loading = true;
         error = null;
+        course = null;
       });
 
       course = await CoursePlansRepo.get(widget.courseId!);
-
       widget.onLoaded?.call(course!);
     } catch (e) {
       widget.onNotFound?.call();

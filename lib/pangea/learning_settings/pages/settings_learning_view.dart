@@ -319,7 +319,9 @@ class SettingsLearningView extends StatelessWidget {
                       child: SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
-                          onPressed: controller.submit,
+                          onPressed: controller.haveSettingsBeenChanged
+                              ? controller.submit
+                              : null,
                           child: Text(L10n.of(context).saveChanges),
                         ),
                       ),
