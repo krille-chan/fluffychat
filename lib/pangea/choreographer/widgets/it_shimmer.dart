@@ -78,7 +78,7 @@ class ITShimmerElement extends StatelessWidget {
               Theme.of(context).colorScheme.primary.withAlpha(50),
             ),
           ),
-          onPressed: () {},
+          onPressed: null,
           child: Text(
             text,
             style: Theme.of(context)
