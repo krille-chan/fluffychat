@@ -50,7 +50,7 @@ extension MessageModeExtension on MessageMode {
       case MessageMode.messageMeaning:
         return Icons.star;
       case MessageMode.wordEmoji:
-        return Icons.add_reaction_outlined;
+        return Symbols.imagesmode;
       case MessageMode.wordMorph:
         return Symbols.toys_and_games;
     }
@@ -72,13 +72,12 @@ extension MessageModeExtension on MessageMode {
         return '';
       case MessageMode.messageMeaning:
         return L10n.of(context).meaning;
-      //TODO: add L10n
       case MessageMode.wordEmoji:
-        return "Emoji";
+        return L10n.of(context).image;
       case MessageMode.wordMorph:
-        return "Grammar";
+        return L10n.of(context).grammar;
       case MessageMode.wordMeaning:
-        return "Meaning";
+        return L10n.of(context).meaning;
     }
   }
 
@@ -100,11 +99,11 @@ extension MessageModeExtension on MessageMode {
         return L10n.of(context).meaning;
       //TODO: add L10n
       case MessageMode.wordEmoji:
-        return "Emoji";
+        return L10n.of(context).image;
       case MessageMode.wordMorph:
-        return "Grammar";
+        return L10n.of(context).grammar;
       case MessageMode.wordMeaning:
-        return "Meaning";
+        return L10n.of(context).meaning;
     }
   }
 

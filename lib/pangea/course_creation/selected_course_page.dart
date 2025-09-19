@@ -1,10 +1,6 @@
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
-import 'package:http/http.dart' as http;
-import 'package:http/http.dart';
 import 'package:matrix/matrix.dart' as sdk;
 
 import 'package:fluffychat/l10n/l10n.dart';
@@ -27,25 +23,6 @@ class SelectedCourse extends StatefulWidget {
 class SelectedCourseController extends State<SelectedCourse> {
   Future<void> launchCourse(CoursePlanModel course) async {
     final client = Matrix.of(context).client;
-    Uint8List? avatar;
-    Uri? avatarUrl;
-    final imageUrl = course.imageUrl;
-    if (imageUrl != null) {
-      try {
-        final Response response = await http.get(
-          Uri.parse(imageUrl),
-          headers: {
-            'Authorization':
-                'Bearer ${MatrixState.pangeaController.userController.accessToken}',
-          },
-        );
-        avatar = response.bodyBytes;
-        avatarUrl = await client.uploadContent(avatar);
-      } catch (e) {
-        debugPrint("Error fetching course image: $e");
-      }
-    }
-
     final roomId = await client.createPangeaSpace(
       name: course.title,
       topic: course.description,
@@ -61,8 +38,7 @@ class SelectedCourseController extends State<SelectedCourse> {
           },
         ),
       ],
-      avatar: avatar,
-      avatarUrl: avatarUrl,
+      avatarUrl: course.imageUrl,
       spaceChild: 0,
     );
 

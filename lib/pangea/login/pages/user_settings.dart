@@ -241,6 +241,8 @@ class UserSettingsState extends State<UserSettingsPage> {
           },
         ),
       );
+
+      await _pangeaController.subscriptionController.reinitialize();
       context.go(
         _pangeaController.classController.cachedClassCode == null
             ? '/user_age/join_space'

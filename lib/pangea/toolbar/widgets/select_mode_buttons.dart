@@ -28,7 +28,7 @@ enum SelectMode {
   audio(Icons.volume_up),
   translate(Icons.translate),
   practice(Symbols.fitness_center),
-  emoji(Icons.add_reaction_outlined),
+  emoji(Symbols.imagesmode),
   speechTranslation(Icons.translate);
 
   final IconData icon;
@@ -45,7 +45,7 @@ enum SelectMode {
       case SelectMode.practice:
         return l10n.practice;
       case SelectMode.emoji:
-        return l10n.emojis;
+        return l10n.image;
     }
   }
 }

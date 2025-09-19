@@ -201,8 +201,7 @@ class NewGroupController extends State<NewGroup> {
           announcementsChatName: L10n.of(context).announcements,
           visibility: sdk.Visibility.private,
           joinRules: sdk.JoinRules.knock,
-          avatar: avatar,
-          avatarUrl: avatarUrl,
+          avatarUrl: avatarUrl.toString(),
         );
 
     if (!mounted) return;

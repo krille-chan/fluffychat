@@ -65,6 +65,13 @@ class SubscriptionController extends BaseController {
   Completer<void> initCompleter = Completer<void>();
 
   Future<void> initialize() async {
+    if (_userID == null || !_pangeaController.matrixState.client.isLogged()) {
+      debugPrint(
+        "Attempted to initalize subscription information with null userId",
+      );
+      return;
+    }
+
     if (initCompleter.isCompleted) return;
     if (_isInitializing) {
       await initCompleter.future;
@@ -84,13 +91,6 @@ class SubscriptionController extends BaseController {
 
   Future<void> _initialize() async {
     try {
-      if (_userID == null) {
-        debugPrint(
-          "Attempted to initalize subscription information with null userId",
-        );
-        return;
-      }
-
       await _pangeaController.userController.initCompleter.future;
 
       availableSubscriptionInfo = AvailableSubscriptionsInfo();
