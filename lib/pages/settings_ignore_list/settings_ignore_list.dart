@@ -43,9 +43,25 @@ class SettingsIgnoreListController extends State<SettingsIgnoreList> {
       errorText = null;
     });
 
+    final client = Matrix.of(context).client;
     showFutureLoadingDialog(
       context: context,
-      future: () => Matrix.of(context).client.ignoreUser(userId),
+      future: () async {
+        for (final room in client.rooms) {
+          final isInviteFromUser = room.membership == Membership.invite &&
+              room.getState(EventTypes.RoomMember, client.userID!)?.senderId ==
+                  userId;
+
+          if (room.directChatMatrixID == userId || isInviteFromUser) {
+            try {
+              await room.leave();
+            } catch (e, s) {
+              Logs().w('Unable to leave room with blocked user $userId', e, s);
+            }
+          }
+        }
+        await client.ignoreUser(userId);
+      },
     );
     setState(() {});
     controller.clear();
