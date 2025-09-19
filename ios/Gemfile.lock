@@ -2,6 +2,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     CFPropertyList (3.0.3)
+    abbrev (0.1.2)
     addressable (2.8.4)
       public_suffix (>= 2.0.2, < 6.0)
     artifactory (3.0.15)
@@ -145,9 +146,11 @@ GEM
     mini_mime (1.1.0)
     multi_json (1.15.0)
     multipart-post (2.0.0)
+    mutex_m (0.3.0)
     nanaimo (0.3.0)
     naturally (2.2.1)
     os (1.1.1)
+    ostruct (0.6.3)
     plist (3.6.0)
     public_suffix (5.0.3)
     rake (13.0.3)
@@ -156,7 +159,7 @@ GEM
       trailblazer-option (>= 0.1.1, < 0.2.0)
       uber (< 0.2.0)
     retriable (3.1.2)
-    rexml (3.3.9)
+    rexml (3.4.2)
     rouge (2.0.7)
     ruby2_keywords (0.0.4)
     rubyzip (2.3.0)
@@ -199,7 +202,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  abbrev
   fastlane
+  mutex_m
+  ostruct
 
 BUNDLED WITH
    2.1.4
