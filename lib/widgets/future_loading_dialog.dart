@@ -14,7 +14,8 @@ import 'package:fluffychat/widgets/adaptive_dialogs/adaptive_dialog_action.dart'
 /// null.
 Future<Result<T>> showFutureLoadingDialog<T>({
   required BuildContext context,
-  required Future<T> Function() future,
+  Future<T> Function()? future,
+  Future<T> Function(void Function(double?) setProgress)? futureWithProgress,
   String? title,
   String? backLabel,
   bool barrierDismissible = false,
@@ -22,7 +23,10 @@ Future<Result<T>> showFutureLoadingDialog<T>({
   ExceptionContext? exceptionContext,
   bool ignoreError = false,
 }) async {
-  final futureExec = future();
+  assert(future != null || futureWithProgress != null);
+  final onProgressStream = StreamController<double?>();
+  final futureExec =
+      futureWithProgress?.call(onProgressStream.add) ?? future!();
   final resultFuture = ResultFuture(futureExec);
 
   if (delay) {
@@ -46,6 +50,7 @@ Future<Result<T>> showFutureLoadingDialog<T>({
       title: title,
       backLabel: backLabel,
       exceptionContext: exceptionContext,
+      onProgressStream: onProgressStream.stream,
     ),
   );
   return result ??
@@ -60,6 +65,7 @@ class LoadingDialog<T> extends StatefulWidget {
   final String? backLabel;
   final Future<T> future;
   final ExceptionContext? exceptionContext;
+  final Stream<double?> onProgressStream;
 
   const LoadingDialog({
     super.key,
@@ -67,6 +73,7 @@ class LoadingDialog<T> extends StatefulWidget {
     this.title,
     this.backLabel,
     this.exceptionContext,
+    required this.onProgressStream,
   });
 
   @override
@@ -110,7 +117,13 @@ class LoadingDialogState<T> extends State<LoadingDialog> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             if (exception == null) ...[
-              const CircularProgressIndicator.adaptive(),
+              StreamBuilder(
+                stream: widget.onProgressStream,
+                builder: (context, snapshot) =>
+                    CircularProgressIndicator.adaptive(
+                  value: snapshot.data,
+                ),
+              ),
               const SizedBox(width: 20),
             ],
             Expanded(

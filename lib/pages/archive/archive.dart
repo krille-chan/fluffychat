@@ -52,8 +52,10 @@ class ArchiveController extends State<Archive> {
     }
     await showFutureLoadingDialog(
       context: context,
-      future: () async {
+      futureWithProgress: (onProgress) async {
+        final count = archive.length;
         while (archive.isNotEmpty) {
+          onProgress(1 - (archive.length / count));
           Logs().v('Forget room ${archive.last.getLocalizedDisplayname()}');
           await archive.last.forget();
           archive.removeLast();
