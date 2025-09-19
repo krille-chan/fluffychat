@@ -71,7 +71,7 @@ class _ActivityStatsButtonState extends State<ActivityStatsButton> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 350,
+      width: 300,
       height: 55,
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: InkWell(
@@ -80,11 +80,17 @@ class _ActivityStatsButtonState extends State<ActivityStatsButton> {
           !widget.controller.showActivityDropdown,
         ),
         child: Container(
-          decoration: BoxDecoration(
+          decoration: ShapeDecoration(
             color: AppConfig.goldLight.withAlpha(100),
-            borderRadius: BorderRadius.circular(20),
+            shape: RoundedRectangleBorder(
+              side: const BorderSide(
+                width: 0.20,
+                color: AppConfig.gold,
+              ),
+              borderRadius: BorderRadius.circular(12),
+            ),
           ),
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [

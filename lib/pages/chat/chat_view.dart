@@ -17,6 +17,7 @@ import 'package:fluffychat/pangea/activity_sessions/activity_room_extension.dart
 import 'package:fluffychat/pangea/activity_sessions/activity_session_chat/activity_finished_status_message.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_session_chat/activity_stats_menu.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_session_chat/load_activity_summary_widget.dart';
+import 'package:fluffychat/pangea/analytics_misc/level_up/star_rain_widget.dart';
 import 'package:fluffychat/pangea/chat/widgets/chat_input_bar.dart';
 import 'package:fluffychat/pangea/chat/widgets/chat_input_bar_header.dart';
 import 'package:fluffychat/pangea/chat/widgets/chat_view_background.dart';
@@ -456,7 +457,10 @@ class ChatView extends StatelessWidget {
                                 ),
                               ),
                             if (controller.room.activityIsFinished)
-                              LoadActivitySummaryWidget(room: controller.room),
+                              LoadActivitySummaryWidget(
+                                room: controller.room,
+                              ),
+
                             ActivityFinishedStatusMessage(
                               controller: controller,
                             ),
@@ -491,6 +495,13 @@ class ChatView extends StatelessWidget {
                             ),
                           ),
                         ActivityStatsMenu(controller),
+                        if (controller.room.activitySummary?.summary != null &&
+                            controller.hasRainedConfetti == false)
+                          StarRainWidget(
+                            showBlast: true,
+                            onFinished: () =>
+                                controller.setHasRainedConfetti(true),
+                          ),
                         // Pangea#
                       ],
                     ),

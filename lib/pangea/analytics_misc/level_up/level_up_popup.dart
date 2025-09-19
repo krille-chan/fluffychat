@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 
 import 'package:animated_flip_counter/animated_flip_counter.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:confetti/confetti.dart';
 import 'package:material_symbols_icons/symbols.dart';
 import 'package:matrix/matrix_api_lite/generated/model.dart';
 
@@ -15,7 +14,7 @@ import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/analytics_misc/learning_skills_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/level_up/level_up_banner.dart';
 import 'package:fluffychat/pangea/analytics_misc/level_up/level_up_manager.dart';
-import 'package:fluffychat/pangea/analytics_misc/level_up/rain_confetti.dart';
+import 'package:fluffychat/pangea/analytics_misc/level_up/star_rain_widget.dart';
 import 'package:fluffychat/pangea/analytics_summary/progress_bar/level_bar.dart';
 import 'package:fluffychat/pangea/analytics_summary/progress_bar/progress_bar_details.dart';
 import 'package:fluffychat/pangea/common/widgets/error_indicator.dart';
@@ -26,7 +25,7 @@ import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
 
-class LevelUpPopup extends StatelessWidget {
+class LevelUpPopup extends StatefulWidget {
   final Completer<ConstructSummary> constructSummaryCompleter;
   const LevelUpPopup({
     required this.constructSummaryCompleter,
@@ -34,29 +33,48 @@ class LevelUpPopup extends StatelessWidget {
   });
 
   @override
+  State<LevelUpPopup> createState() => _LevelUpPopupState();
+}
+
+class _LevelUpPopupState extends State<LevelUpPopup> {
+  bool shouldShowRain = false;
+
+  void setShowRain(bool show) {
+    setState(() {
+      shouldShowRain = show;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return FullWidthDialog(
-      maxWidth: 400,
-      maxHeight: 800,
-      dialogContent: Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: kIsWeb
-              ? Text(
-                  L10n.of(context).youHaveLeveledUp,
-                  style: const TextStyle(
-                    color: AppConfig.gold,
-                    fontWeight: FontWeight.w600,
-                  ),
-                )
-              : null,
+    return Stack(
+      children: [
+        FullWidthDialog(
+          maxWidth: 400,
+          maxHeight: 800,
+          dialogContent: Scaffold(
+            appBar: AppBar(
+              centerTitle: true,
+              title: kIsWeb
+                  ? Text(
+                      L10n.of(context).youHaveLeveledUp,
+                      style: const TextStyle(
+                        color: AppConfig.gold,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    )
+                  : null,
+            ),
+            body: LevelUpPopupContent(
+              prevLevel: LevelUpManager.instance.prevLevel,
+              level: LevelUpManager.instance.level,
+              constructSummaryCompleter: widget.constructSummaryCompleter,
+              onRainTrigger: () => setShowRain(true),
+            ),
+          ),
         ),
-        body: LevelUpPopupContent(
-          prevLevel: LevelUpManager.instance.prevLevel,
-          level: LevelUpManager.instance.level,
-          constructSummaryCompleter: constructSummaryCompleter,
-        ),
-      ),
+        if (shouldShowRain) const StarRainWidget(showBlast: true),
+      ],
     );
   }
 }
@@ -66,11 +84,14 @@ class LevelUpPopupContent extends StatefulWidget {
   final int level;
   final Completer<ConstructSummary> constructSummaryCompleter;
 
+  final VoidCallback? onRainTrigger;
+
   const LevelUpPopupContent({
     super.key,
     required this.prevLevel,
     required this.level,
     required this.constructSummaryCompleter,
+    this.onRainTrigger,
   });
 
   @override
@@ -80,12 +101,11 @@ class LevelUpPopupContent extends StatefulWidget {
 class _LevelUpPopupContentState extends State<LevelUpPopupContent>
     with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
-  late final ConfettiController _confettiController;
   late final Future<Profile> profile;
 
   int displayedLevel = -1;
   Uri? avatarUrl;
-  bool _hasBlastedConfetti = false;
+  final bool _hasBlastedConfetti = false;
 
   String language = MatrixState.pangeaController.languageController
           .activeL2Code()
@@ -102,8 +122,6 @@ class _LevelUpPopupContentState extends State<LevelUpPopupContent>
     _loadConstructSummary();
     LevelUpManager.instance.markPopupSeen();
     displayedLevel = widget.prevLevel;
-    _confettiController =
-        ConfettiController(duration: const Duration(seconds: 1));
 
     final client = Matrix.of(context).client;
     client.fetchOwnProfile().then((profile) {
@@ -124,10 +142,11 @@ class _LevelUpPopupContentState extends State<LevelUpPopupContent>
       }
     });
 
+    // Listener to trigger rain confetti via callback
     _controller.addListener(() {
       if (_controller.value >= 0.5 && !_hasBlastedConfetti) {
-        _hasBlastedConfetti = true;
-        rainConfetti(context);
+        // _hasBlastedConfetti = true;
+        if (widget.onRainTrigger != null) widget.onRainTrigger!();
       }
     });
 
@@ -137,9 +156,7 @@ class _LevelUpPopupContentState extends State<LevelUpPopupContent>
   @override
   void dispose() {
     _controller.dispose();
-    _confettiController.dispose();
     LevelUpManager.instance.reset();
-    stopConfetti();
     super.dispose();
   }
 

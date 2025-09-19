@@ -2214,6 +2214,13 @@ class ChatController extends State<ChatPageWithRoom>
   void setShowDropdown(bool show) async {
     setState(() => showActivityDropdown = show);
   }
+
+  bool hasRainedConfetti = false;
+  void setHasRainedConfetti(bool show) {
+    if (mounted) {
+      setState(() => hasRainedConfetti = show);
+    }
+  }
   // Pangea#
 
   late final ValueNotifier<bool> _displayChatDetailsColumn;

@@ -120,10 +120,11 @@ class ButtonControlledCarouselView extends StatelessWidget {
                 margin: const EdgeInsets.only(right: 5.0),
                 padding: const EdgeInsets.all(12.0),
                 decoration: ShapeDecoration(
+                  color: AppConfig.goldLight.withAlpha(100),
                   shape: RoundedRectangleBorder(
-                    side: BorderSide(
-                      width: 0.10,
-                      color: Theme.of(context).colorScheme.outline,
+                    side: const BorderSide(
+                      width: 0.20,
+                      color: AppConfig.gold,
                     ),
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -175,7 +176,6 @@ class ButtonControlledCarouselView extends StatelessWidget {
                               Text(
                                 p.cefrLevel,
                                 style: const TextStyle(
-                                  color: AppConfig.yellowDark,
                                   fontSize: 12.0,
                                 ),
                               ),
@@ -264,12 +264,11 @@ class SuperlativeTile extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Icon(icon, size: 14, color: AppConfig.gold),
+        Icon(icon, size: 14, color: Theme.of(context).colorScheme.onSurface),
         const SizedBox(width: 2),
         const Text(
           "1st",
           style: TextStyle(
-            color: AppConfig.gold,
             fontSize: 12.0,
           ),
         ),
