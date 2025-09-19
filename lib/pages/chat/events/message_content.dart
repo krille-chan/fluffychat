@@ -22,6 +22,7 @@ import 'html_message.dart';
 import 'image_bubble.dart';
 import 'map_bubble.dart';
 import 'message_download_content.dart';
+import 'text_message.dart';
 
 class MessageContent extends StatelessWidget {
   final Event event;
@@ -255,43 +256,56 @@ class MessageContent extends StatelessWidget {
                 },
               );
             }
-            var html = AppConfig.renderHtml && event.isRichMessage
+            var messageContent = AppConfig.renderHtml && event.isRichMessage
                 ? event.formattedText
                 : event.body;
             if (event.messageType == MessageTypes.Emote) {
-              html = '* $html';
+              messageContent = '* $messageContent';
             }
 
             final bigEmotes = event.onlyEmotes &&
                 event.numberEmotes > 0 &&
                 event.numberEmotes <= 3;
+            final textFontSize = AppConfig.fontSizeFactor *
+                AppConfig.messageFontSize *
+                (bigEmotes ? 5 : 1);
+            final linkStyle = TextStyle(
+              color: linkColor,
+              fontSize: AppConfig.fontSizeFactor * AppConfig.messageFontSize,
+              decoration: TextDecoration.underline,
+              decorationColor: linkColor,
+            );
+
             return Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: 16,
                 vertical: 8,
               ),
-              child: HtmlMessage(
-                html: html,
-                textColor: textColor,
-                room: event.room,
-                fontSize: AppConfig.fontSizeFactor *
-                    AppConfig.messageFontSize *
-                    (bigEmotes ? 5 : 1),
-                limitHeight: !selected,
-                linkStyle: TextStyle(
-                  color: linkColor,
-                  fontSize:
-                      AppConfig.fontSizeFactor * AppConfig.messageFontSize,
-                  decoration: TextDecoration.underline,
-                  decorationColor: linkColor,
-                ),
-                onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
-                eventId: event.eventId,
-                checkboxCheckedEvents: event.aggregatedEvents(
-                  timeline,
-                  EventCheckboxRoomExtension.relationshipType,
-                ),
-              ),
+              child: AppConfig.renderHtml && event.isRichMessage
+                  ? HtmlMessage(
+                      html: messageContent,
+                      textColor: textColor,
+                      room: event.room,
+                      fontSize: textFontSize,
+                      limitHeight: !selected,
+                      linkStyle: linkStyle,
+                      onOpen: (url) =>
+                          UrlLauncher(context, url.url).launchUrl(),
+                      eventId: event.eventId,
+                      checkboxCheckedEvents: event.aggregatedEvents(
+                        timeline,
+                        EventCheckboxRoomExtension.relationshipType,
+                      ),
+                    )
+                  : TextMessage(
+                      text: messageContent,
+                      fontSize: textFontSize,
+                      textColor: textColor,
+                      limitHeight: !selected,
+                      linkStyle: linkStyle,
+                      onOpen: (url) =>
+                          UrlLauncher(context, url.url).launchUrl(),
+                    ),
             );
         }
       case EventTypes.CallInvite:
