@@ -78,8 +78,8 @@ class ActivitySessionStartView extends StatelessWidget {
                                   children: [
                                     ActivitySummary(
                                       activity: controller.activity!,
-                                      room: controller.room,
-                                      course: controller.parent,
+                                      room: controller.activityRoom,
+                                      course: controller.courseParent,
                                       showInstructions:
                                           controller.showInstructions,
                                       toggleInstructions:
@@ -89,6 +89,12 @@ class ActivitySessionStartView extends StatelessWidget {
                                           controller.isParticipantSelected,
                                       canSelectParticipant:
                                           controller.canSelectParticipant,
+                                      assignedRoles: controller
+                                              .roomSummaries?[
+                                                  controller.widget.roomId]
+                                              ?.activityRoles
+                                              .roles ??
+                                          {},
                                     ),
                                   ],
                                 ),
@@ -134,7 +140,8 @@ class ActivitySessionStartView extends StatelessWidget {
                                             )
                                           else if (controller.state ==
                                               SessionState.confirmedRole) ...[
-                                            if (controller.room!.courseParent !=
+                                            if (controller.courseParent!
+                                                    .courseParent !=
                                                 null)
                                               ElevatedButton(
                                                 style: buttonStyle,
@@ -160,7 +167,7 @@ class ActivitySessionStartView extends StatelessWidget {
                                                 ),
                                               ),
                                             if (controller
-                                                .room!.isRoomAdmin) ...[
+                                                .courseParent!.isRoomAdmin) ...[
                                               if (!controller.isBotRoomMember)
                                                 ElevatedButton(
                                                   style: buttonStyle,
@@ -185,7 +192,7 @@ class ActivitySessionStartView extends StatelessWidget {
                                               ElevatedButton(
                                                 style: buttonStyle,
                                                 onPressed: () => context.go(
-                                                  "/rooms/${controller.room!.id}/invite",
+                                                  "/rooms/${controller.courseParent!.id}/invite",
                                                 ),
                                                 child: Row(
                                                   mainAxisAlignment:
@@ -212,7 +219,7 @@ class ActivitySessionStartView extends StatelessWidget {
                                                     MainAxisAlignment.center,
                                                 children: [
                                                   Text(
-                                                    controller.room
+                                                    controller.courseParent
                                                                 ?.isRoomAdmin ??
                                                             true
                                                         ? L10n.of(context).start
@@ -268,11 +275,11 @@ class _ActivityStartButtons extends StatelessWidget {
                 ),
                 textAlign: TextAlign.center,
               ),
-              if (controller.parent?.canInvite ?? false)
+              if (controller.courseParent?.canInvite ?? false)
                 ElevatedButton(
                   style: buttonStyle,
                   onPressed: () => context.go(
-                    "/rooms/spaces/${controller.parent!.id}/invite",
+                    "/rooms/spaces/${controller.courseParent!.id}/invite",
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -287,7 +294,7 @@ class _ActivityStartButtons extends StatelessWidget {
               ElevatedButton(
                 style: buttonStyle,
                 onPressed: () => context.go(
-                  "/rooms/spaces/${controller.widget.parentId}/activity/${controller.widget.activityId}?new=true",
+                  "/rooms/spaces/${controller.widget.parentId}/activity/${controller.widget.activityId}?launch=true",
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,

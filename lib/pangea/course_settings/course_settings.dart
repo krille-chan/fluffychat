@@ -284,7 +284,6 @@ class TopicActivitiesListState extends State<TopicActivitiesList> {
                       fontSize: isColumnMode ? 20.0 : 12.0,
                       fontSizeSmall: isColumnMode ? 12.0 : 8.0,
                       iconSize: isColumnMode ? 12.0 : 8.0,
-                      openSessions: widget.room.numOpenSessions(activityId),
                     ),
                     if (complete)
                       Container(

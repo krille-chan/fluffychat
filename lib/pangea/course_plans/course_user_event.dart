@@ -3,22 +3,11 @@ class CourseUserState {
 
   // Map of activityIds to list of roomIds
   final Map<String, List<String>> _completedActivities;
-  final Map<String, List<String>> _joinedActivities;
 
   CourseUserState({
     required this.userID,
     required Map<String, List<String>> completedActivities,
-    required Map<String, List<String>> joinActivities,
-  })  : _completedActivities = completedActivities,
-        _joinedActivities = joinActivities;
-
-  void joinActivity(
-    String activityID,
-    String roomID,
-  ) {
-    _joinedActivities[activityID] ??= [];
-    _joinedActivities[activityID]!.add(roomID);
-  }
+  }) : _completedActivities = completedActivities;
 
   void completeActivity(
     String activityID,
@@ -28,11 +17,7 @@ class CourseUserState {
     _completedActivities[activityID]!.add(roomID);
   }
 
-  Map<String, List<String>> get joinedActivities => _joinedActivities;
-
   Set<String> get completedActivities => _completedActivities.keys.toSet();
-  Set<String> get joinedActivityRooms =>
-      _joinedActivities.values.expand((e) => e).toSet();
 
   bool hasCompletedActivity(
     String activityID,
@@ -42,7 +27,6 @@ class CourseUserState {
 
   factory CourseUserState.fromJson(Map<String, dynamic> json) {
     final activityEntry = json['comp_act_by_topic'];
-    final joinEntry = json['join_act_by_topic'];
 
     final Map<String, List<String>> activityMap = {};
     if (activityEntry != null) {
@@ -51,17 +35,9 @@ class CourseUserState {
       });
     }
 
-    final Map<String, List<String>> joinMap = {};
-    if (joinEntry != null) {
-      joinEntry.forEach((key, value) {
-        joinMap[key] = List<String>.from(value);
-      });
-    }
-
     return CourseUserState(
       userID: json['user_id'],
       completedActivities: activityMap,
-      joinActivities: joinMap,
     );
   }
 
@@ -69,7 +45,6 @@ class CourseUserState {
     return {
       'user_id': userID,
       'comp_act_by_topic': _completedActivities,
-      'join_act_by_topic': _joinedActivities,
     };
   }
 }

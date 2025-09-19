@@ -17,8 +17,8 @@ import 'package:fluffychat/pangea/chat_settings/widgets/delete_space_dialog.dart
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/course_chats/course_chats_view.dart';
 import 'package:fluffychat/pangea/course_chats/extended_space_rooms_chunk.dart';
+import 'package:fluffychat/pangea/course_plans/activity_summaries_provider.dart';
 import 'package:fluffychat/pangea/course_plans/course_plan_model.dart';
-import 'package:fluffychat/pangea/course_plans/course_plan_room_extension.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/public_spaces/public_room_bottom_sheet.dart';
 import 'package:fluffychat/pangea/spaces/constants/space_constants.dart';
@@ -46,7 +46,8 @@ class CourseChats extends StatefulWidget {
   State<CourseChats> createState() => CourseChatsController();
 }
 
-class CourseChatsController extends State<CourseChats> {
+class CourseChatsController extends State<CourseChats>
+    with ActivitySummariesProvider {
   String get roomId => widget.roomId;
   Room? get room => widget.client.getRoomById(widget.roomId);
 
@@ -125,20 +126,7 @@ class CourseChatsController extends State<CourseChats> {
       .toList();
 
   Map<ActivityPlanModel, List<ExtendedSpaceRoomsChunk>> discoveredActivities() {
-    if (discoveredChildren == null) return {};
-
-    final courseStates = room?.allCourseUserStates ?? {};
-    final Map<String, List<String>> roomsToUsers = {};
-    if (courseStates.isNotEmpty) {
-      for (final state in courseStates.values) {
-        final userID = state.userID;
-        for (final roomId in state.joinedActivityRooms) {
-          roomsToUsers[roomId] ??= [];
-          roomsToUsers[roomId]!.add(userID);
-        }
-      }
-    }
-
+    if (discoveredChildren == null || roomSummaries == null) return {};
     final Map<ActivityPlanModel, List<ExtendedSpaceRoomsChunk>> sessionsMap =
         {};
 
@@ -146,14 +134,16 @@ class CourseChatsController extends State<CourseChats> {
       if (chunk.roomType?.startsWith(PangeaRoomTypes.activitySession) != true) {
         continue;
       }
-      final activityId = chunk.roomType!.split(":").last;
-      final activity = course?.activityById(activityId);
-      if (activity == null) {
+
+      final summary = roomSummaries?[chunk.roomId];
+      if (summary == null) {
         continue;
       }
 
-      final users = roomsToUsers[chunk.roomId];
-      if (users != null && activity.req.numberOfParticipants <= users.length) {
+      final activity = summary.activityPlan;
+      final users =
+          summary.activityRoles.roles.values.map((r) => r.userId).toList();
+      if (activity.req.numberOfParticipants <= users.length) {
         // Don't show full activities
         continue;
       }
@@ -162,8 +152,8 @@ class CourseChatsController extends State<CourseChats> {
       sessionsMap[activity]!.add(
         ExtendedSpaceRoomsChunk(
           chunk: chunk,
-          activityId: activityId,
-          userIds: users ?? [],
+          activityId: activity.activityId,
+          userIds: users,
         ),
       );
     }
@@ -221,6 +211,9 @@ class CourseChatsController extends State<CourseChats> {
     try {
       await _loadHierarchy(activeSpace: room, reload: reload);
       await _joinDefaultChats();
+      await loadRoomSummaries(
+        room.spaceChildren.map((c) => c.roomId).whereType<String>().toList(),
+      );
     } catch (e, s) {
       Logs().w('Unable to load hierarchy', e, s);
       if (mounted) {
@@ -441,6 +434,42 @@ class CourseChatsController extends State<CourseChats> {
         discoveredChildren?.remove(item);
       });
     }
+  }
+
+  Future<void> joinActivity(
+    String activityId,
+    ExtendedSpaceRoomsChunk chunk,
+  ) async {
+    final hasRole = chunk.userIds.contains(widget.client.userID);
+    final roomId = chunk.chunk.roomId;
+    if (!hasRole) {
+      context.go(
+        "/rooms/spaces/${widget.roomId}/activity/$activityId?roomid=$roomId",
+      );
+      return;
+    }
+
+    await widget.client.joinRoom(
+      roomId,
+      via: widget.client
+          .getRoomById(widget.roomId)
+          ?.spaceChildren
+          .firstWhereOrNull(
+            (child) => child.roomId == roomId,
+          )
+          ?.via,
+    );
+
+    final room = widget.client.getRoomById(roomId);
+    if (room == null || room.membership != Membership.join) {
+      await widget.client.waitForRoomInSync(roomId, join: true);
+    }
+
+    if (widget.client.getRoomById(roomId) == null) {
+      throw Exception("Failed to join room");
+    }
+
+    context.go("/rooms/spaces/${widget.roomId}/$roomId");
   }
 
   void chatContextAction(

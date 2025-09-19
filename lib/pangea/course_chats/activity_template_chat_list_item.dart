@@ -9,19 +9,20 @@ import 'package:fluffychat/pangea/common/widgets/url_image_widget.dart';
 import 'package:fluffychat/pangea/course_chats/extended_space_rooms_chunk.dart';
 import 'package:fluffychat/pangea/course_chats/open_roles_indicator.dart';
 import 'package:fluffychat/widgets/avatar.dart';
+import 'package:fluffychat/widgets/future_loading_dialog.dart';
 
 class ActivityTemplateChatListItem extends StatelessWidget {
   final Room space;
-  final Function(SpaceRoomsChunk) joinActivity;
   final ActivityPlanModel activity;
   final List<ExtendedSpaceRoomsChunk> sessions;
+  final Function(ExtendedSpaceRoomsChunk) joinActivity;
 
   const ActivityTemplateChatListItem({
     super.key,
     required this.space,
-    required this.joinActivity,
     required this.activity,
     required this.sessions,
+    required this.joinActivity,
   });
 
   @override
@@ -105,7 +106,10 @@ class ActivityTemplateChatListItem extends StatelessWidget {
                       height: 24.0,
                       width: 40.0,
                       child: ElevatedButton(
-                        onPressed: () => joinActivity(e.chunk),
+                        onPressed: () => showFutureLoadingDialog(
+                          context: context,
+                          future: () => joinActivity(e),
+                        ),
                         style: ElevatedButton.styleFrom(
                           padding: const EdgeInsets.all(0),
                         ),

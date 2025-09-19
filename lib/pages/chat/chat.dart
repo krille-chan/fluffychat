@@ -2241,7 +2241,7 @@ class ChatController extends State<ChatPageWithRoom>
         if (room.isActivitySession == true && !room.activityHasStarted) {
           return ActivitySessionStartPage(
             activityId: room.activityId!,
-            room: room,
+            roomId: room.id,
             parentId: room.courseParent?.id,
           );
         }

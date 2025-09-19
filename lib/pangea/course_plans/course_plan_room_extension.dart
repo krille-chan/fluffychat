@@ -62,23 +62,6 @@ extension CoursePlanRoomExtension on Room {
     );
   }
 
-  Set<String> openSessions(String activityId) {
-    final Set<String> sessions = {};
-    final Set<String> childIds =
-        spaceChildren.map((child) => child.roomId).whereType<String>().toSet();
-
-    for (final userState in allCourseUserStates.values) {
-      final activitySessions = userState.joinedActivities[activityId]?.toSet();
-      if (activitySessions == null) continue;
-      sessions.addAll(
-        activitySessions.intersection(childIds),
-      );
-    }
-    return sessions;
-  }
-
-  int numOpenSessions(String activityId) => openSessions(activityId).length;
-
   bool hasCompletedActivity(
     String userID,
     String activityID,
@@ -177,25 +160,6 @@ extension CoursePlanRoomExtension on Room {
     return topicUserMap;
   }
 
-  Future<void> joinCourseActivity(
-    String activityID,
-    String roomID,
-  ) async {
-    CourseUserState? state = _ownCourseState;
-    state ??= CourseUserState(
-      userID: client.userID!,
-      completedActivities: {},
-      joinActivities: {},
-    );
-    state.joinActivity(activityID, roomID);
-    await client.setRoomStateWithKey(
-      id,
-      PangeaEventTypes.courseUser,
-      client.userID!,
-      state.toJson(),
-    );
-  }
-
   Future<void> finishCourseActivity(
     String activityID,
     String roomID,
@@ -204,7 +168,6 @@ extension CoursePlanRoomExtension on Room {
     state ??= CourseUserState(
       userID: client.userID!,
       completedActivities: {},
-      joinActivities: {},
     );
     state.completeActivity(activityID, roomID);
     await client.setRoomStateWithKey(
@@ -285,11 +248,6 @@ extension CoursePlanRoomExtension on Room {
     if (pangeaSpaceParents.isEmpty) {
       await client.waitForRoomInSync(roomID);
     }
-
-    await joinCourseActivity(
-      activity.activityId,
-      roomID,
-    );
     return roomID;
   }
 }
