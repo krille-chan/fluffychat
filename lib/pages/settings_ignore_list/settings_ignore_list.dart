@@ -47,6 +47,7 @@ class SettingsIgnoreListController extends State<SettingsIgnoreList> {
       context: context,
       future: () => Matrix.of(context).client.ignoreUser(userId),
     );
+    setState(() {});
     controller.clear();
   }
 
