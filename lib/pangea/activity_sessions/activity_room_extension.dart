@@ -24,8 +24,25 @@ import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../activity_summary/activity_summary_repo.dart';
 
+class RoleException implements Exception {
+  final String message;
+  RoleException(this.message);
+
+  @override
+  String toString() => "RoleException: $message";
+}
+
 extension ActivityRoomExtension on Room {
   Future<void> joinActivity(ActivityRole role) async {
+    final assigned = assignedRoles?.values ?? [];
+    if (assigned.any((r) => r.userId != client.userID && r.role == role.name)) {
+      throw RoleException("Role already taken");
+    }
+
+    if (assigned.any((r) => r.userId == client.userID)) {
+      throw RoleException("User already has a role");
+    }
+
     final currentRoles = activityRoles ?? ActivityRolesModel.empty;
     final activityRole = ActivityRoleModel(
       id: role.id,

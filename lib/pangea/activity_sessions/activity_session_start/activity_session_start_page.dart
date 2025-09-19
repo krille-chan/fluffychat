@@ -161,7 +161,9 @@ class ActivitySessionStartController extends State<ActivitySessionStartPage>
     }
 
     final availableRoles = activity!.roles;
-    final assignedRoles = activityRoom?.assignedRoles ?? {};
+    final assignedRoles = activityRoom?.assignedRoles ??
+        roomSummaries?[widget.roomId]?.activityRoles.roles ??
+        {};
     final unassignedIds = availableRoles.keys
         .where((id) => !assignedRoles.containsKey(id))
         .toList();
@@ -273,9 +275,15 @@ class ActivitySessionStartController extends State<ActivitySessionStartPage>
       }
     }
 
-    await activityRoom!.joinActivity(
-      activity!.roles[_selectedRoleId!]!,
-    );
+    try {
+      await activityRoom!.joinActivity(
+        activity!.roles[_selectedRoleId!]!,
+      );
+    } catch (e) {
+      if (e is! RoleException) {
+        rethrow;
+      }
+    }
 
     context.go("/rooms/spaces/${widget.parentId}/${widget.roomId}");
   }
