@@ -632,10 +632,10 @@ gpf(){return"R\u0101d\u012bt p\u0101rvieto\u0161an\u0101s sliedi viedier\u012bc\
 glM(){return"Piel\u0101gota reakcija"},
 gpj(){return"Vair\u0101k notikumu"},
 glP(){return"Noraid\u012bt uzaicin\u0101jumu"},
-gpn(){return"No messages yet"},
+gpn(){return"V\u0113l nav zi\u0146u"},
 A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FL,C.aF)})()
 B.dQ(b.typeUniverse,JSON.parse('{"FL":{"aF":[]}}'))};
-(a=>{a["tHVmtXpFuWCMcQ/zXLLhnkabcZw="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["U2nwe+C2SW7gVelPAompQezj2lE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_303.part.js.map
