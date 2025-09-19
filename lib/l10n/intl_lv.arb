@@ -3368,5 +3368,7 @@
     "moreEvents": "Vairāk notikumu",
     "@moreEvents": {},
     "declineInvitation": "Noraidīt uzaicinājumu",
-    "@declineInvitation": {}
+    "@declineInvitation": {},
+    "noMessagesYet": "Vēl nav ziņu",
+    "@noMessagesYet": {}
 }
