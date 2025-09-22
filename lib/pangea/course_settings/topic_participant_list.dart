@@ -8,6 +8,7 @@ import 'package:matrix/matrix.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/spaces/utils/load_participants_util.dart';
 import 'package:fluffychat/widgets/avatar.dart';
+import 'package:fluffychat/widgets/member_actions_popup_menu_button.dart';
 
 class TopicParticipantList extends StatelessWidget {
   final Room room;
@@ -64,33 +65,42 @@ class TopicParticipantList extends StatelessWidget {
                       level != null ? index.leaderboardGradient : null;
                   return Positioned(
                     left: index * (avatarSize - overlap),
-                    child: Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        if (gradient != null)
-                          CircleAvatar(
-                            radius: avatarSize / 2,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                gradient: gradient,
+                    child: MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
+                        onTap: () => showMemberActionsPopupMenu(
+                          context: context,
+                          user: user,
+                        ),
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            if (gradient != null)
+                              CircleAvatar(
+                                radius: avatarSize / 2,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    gradient: gradient,
+                                  ),
+                                ),
+                              )
+                            else
+                              SizedBox(
+                                height: avatarSize,
+                                width: avatarSize,
+                              ),
+                            Center(
+                              child: Avatar(
+                                mxContent: user.avatarUrl,
+                                name: user.calcDisplayname(),
+                                size: avatarSize - 6.0,
+                                userId: user.id,
                               ),
                             ),
-                          )
-                        else
-                          SizedBox(
-                            height: avatarSize,
-                            width: avatarSize,
-                          ),
-                        Center(
-                          child: Avatar(
-                            mxContent: user.avatarUrl,
-                            name: user.calcDisplayname(),
-                            size: avatarSize - 6.0,
-                            userId: user.id,
-                          ),
+                          ],
                         ),
-                      ],
+                      ),
                     ),
                   );
                 }).toList(),
