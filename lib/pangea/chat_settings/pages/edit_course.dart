@@ -69,23 +69,21 @@ class EditCourseController extends State<EditCourse> {
 
     if (title.isNotEmpty && title != _room!.name) {
       await _room!.setName(title);
+    } else if (title.isEmpty) {
+      _titleController.text = _room!.name;
     }
+
     if (desc.isNotEmpty && desc != _room!.topic) {
       await _room!.setDescription(desc);
+    } else if (desc.isEmpty) {
+      _descController.text = _room!.topic;
     }
+
     if (_avatar != null) {
       await _room!.setAvatar(_avatar!);
     }
 
-    _room!.client.onRoomState.stream.first.then((_) {
-      if (mounted) {
-        setState(() {
-          _titleController.text = _room!.name;
-          _descController.text = _room!.topic;
-          _avatar = null;
-        });
-      }
-    });
+    if (mounted) setState(() {});
   }
 
   Future<void> _save() async {
