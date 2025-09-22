@@ -5,17 +5,17 @@ import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class TokenEmojiButton extends StatefulWidget {
-  final PangeaToken token;
+  final PangeaToken? token;
   final String eventId;
-  final String targetId;
-  final VoidCallback onSelect;
+  final String? targetId;
+  final VoidCallback? onSelect;
 
   const TokenEmojiButton({
     super.key,
     required this.token,
     required this.eventId,
-    required this.targetId,
-    required this.onSelect,
+    this.targetId,
+    this.onSelect,
   });
 
   @override
@@ -53,36 +53,45 @@ class TokenEmojiButtonState extends State<TokenEmojiButton>
 
   @override
   Widget build(BuildContext context) {
-    final emoji = widget.token.vocabConstructID.userSetEmoji.firstOrNull;
+    final eligible = widget.token?.lemma.saveVocab ?? false;
+    final emoji = widget.token?.vocabConstructID.userSetEmoji.firstOrNull;
     if (_sizeAnimation != null) {
-      return CompositedTransformTarget(
-        link: MatrixState.pAnyState.layerLinkAndKey(widget.targetId).link,
-        child: AnimatedBuilder(
-          key: MatrixState.pAnyState.layerLinkAndKey(widget.targetId).key,
-          animation: _sizeAnimation!,
-          builder: (context, child) {
-            return Container(
-              height: _sizeAnimation!.value,
-              width: _sizeAnimation!.value,
-              alignment: Alignment.center,
-              child: InkWell(
-                onTap: widget.onSelect,
-                borderRadius: BorderRadius.circular(99.0),
-                child: emoji != null
-                    ? Text(
-                        emoji,
-                        style: TextStyle(fontSize: buttonSize - 4.0),
-                      )
-                    : Icon(
-                        Icons.add_reaction_outlined,
-                        size: buttonSize - 4.0,
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
-              ),
-            );
-          },
-        ),
+      final content = AnimatedBuilder(
+        key: widget.targetId != null
+            ? MatrixState.pAnyState.layerLinkAndKey(widget.targetId!).key
+            : null,
+        animation: _sizeAnimation!,
+        builder: (context, child) {
+          return Container(
+            height: _sizeAnimation!.value,
+            width: eligible ? _sizeAnimation!.value : 0,
+            alignment: Alignment.center,
+            child: eligible
+                ? InkWell(
+                    onTap: widget.onSelect,
+                    borderRadius: BorderRadius.circular(99.0),
+                    child: emoji != null
+                        ? Text(
+                            emoji,
+                            style: TextStyle(fontSize: buttonSize - 4.0),
+                          )
+                        : Icon(
+                            Icons.add_reaction_outlined,
+                            size: buttonSize - 4.0,
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                  )
+                : null,
+          );
+        },
       );
+      return widget.targetId != null
+          ? CompositedTransformTarget(
+              link:
+                  MatrixState.pAnyState.layerLinkAndKey(widget.targetId!).link,
+              child: content,
+            )
+          : content;
     }
 
     return const SizedBox.shrink();

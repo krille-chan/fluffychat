@@ -124,6 +124,7 @@ class HtmlMessage extends StatelessWidget {
     'tg-forward',
     // #Pangea
     'token',
+    'nontoken',
     // Pangea#
   };
 
@@ -253,6 +254,12 @@ class HtmlMessage extends StatelessWidget {
       ]);
 
       position = substringIndex;
+    }
+
+    for (int i = 0; i < result.length; i++) {
+      if (!result[i].startsWith('<') && !result[i].endsWith('>')) {
+        result[i] = '<nontoken>${result[i]}</nontoken>';
+      }
     }
 
     if (pangeaMessageEvent?.textDirection == TextDirection.rtl) {
@@ -913,48 +920,74 @@ class HtmlMessage extends StatelessWidget {
           'sub' => const TextStyle(fontFeatures: [FontFeature.subscripts()]),
           _ => null,
         };
-        // Pangea#
-        return TextSpan(
-          style: switch (node.localName) {
-            'body' => TextStyle(
-                fontSize: fontSize,
-                color: textColor,
+        return WidgetSpan(
+          alignment: readingAssistanceMode == ReadingAssistanceMode.practiceMode
+              ? PlaceholderAlignment.bottom
+              : PlaceholderAlignment.middle,
+          child: Column(
+            children: [
+              if (node.localName == 'nontoken' &&
+                  overlayController?.selectedMode == SelectMode.emoji)
+                TokenEmojiButton(
+                  token: null,
+                  eventId: event.eventId,
+                ),
+              RichText(
+                text: TextSpan(
+                  style: style,
+                  children: _renderWithLineBreaks(
+                    node.nodes,
+                    context,
+                    textStyle.merge(style ?? const TextStyle()),
+                    depth: depth,
+                  ),
+                ),
               ),
-            'a' => linkStyle,
-            'strong' => const TextStyle(fontWeight: FontWeight.bold),
-            'em' || 'i' => const TextStyle(fontStyle: FontStyle.italic),
-            'del' ||
-            's' ||
-            'strikethrough' =>
-              const TextStyle(decoration: TextDecoration.lineThrough),
-            'u' => const TextStyle(decoration: TextDecoration.underline),
-            'h1' => TextStyle(fontSize: fontSize * 1.6, height: 2),
-            'h2' => TextStyle(fontSize: fontSize * 1.5, height: 2),
-            'h3' => TextStyle(fontSize: fontSize * 1.4, height: 2),
-            'h4' => TextStyle(fontSize: fontSize * 1.3, height: 1.75),
-            'h5' => TextStyle(fontSize: fontSize * 1.2, height: 1.75),
-            'h6' => TextStyle(fontSize: fontSize * 1.1, height: 1.5),
-            'span' => TextStyle(
-                color: node.attributes['color']?.hexToColor ??
-                    node.attributes['data-mx-color']?.hexToColor ??
-                    textColor,
-                backgroundColor:
-                    node.attributes['data-mx-bg-color']?.hexToColor,
-              ),
-            'sup' =>
-              const TextStyle(fontFeatures: [FontFeature.superscripts()]),
-            'sub' => const TextStyle(fontFeatures: [FontFeature.subscripts()]),
-            _ => null,
-          },
-          children: _renderWithLineBreaks(
-            node.nodes,
-            context,
-            // #Pangea
-            textStyle.merge(style ?? const TextStyle()),
-            // Pangea#
-            depth: depth,
+            ],
           ),
         );
+      // return TextSpan(
+      //   style: switch (node.localName) {
+      //     'body' => TextStyle(
+      //         fontSize: fontSize,
+      //         color: textColor,
+      //       ),
+      //     'a' => linkStyle,
+      //     'strong' => const TextStyle(fontWeight: FontWeight.bold),
+      //     'em' || 'i' => const TextStyle(fontStyle: FontStyle.italic),
+      //     'del' ||
+      //     's' ||
+      //     'strikethrough' =>
+      //       const TextStyle(decoration: TextDecoration.lineThrough),
+      //     'u' => const TextStyle(decoration: TextDecoration.underline),
+      //     'h1' => TextStyle(fontSize: fontSize * 1.6, height: 2),
+      //     'h2' => TextStyle(fontSize: fontSize * 1.5, height: 2),
+      //     'h3' => TextStyle(fontSize: fontSize * 1.4, height: 2),
+      //     'h4' => TextStyle(fontSize: fontSize * 1.3, height: 1.75),
+      //     'h5' => TextStyle(fontSize: fontSize * 1.2, height: 1.75),
+      //     'h6' => TextStyle(fontSize: fontSize * 1.1, height: 1.5),
+      //     'span' => TextStyle(
+      //         color: node.attributes['color']?.hexToColor ??
+      //             node.attributes['data-mx-color']?.hexToColor ??
+      //             textColor,
+      //         backgroundColor:
+      //             node.attributes['data-mx-bg-color']?.hexToColor,
+      //       ),
+      //     'sup' => const TextStyle(
+      //         fontFeatures: [FontFeature.superscripts()],
+      //       ),
+      //     'sub' => const TextStyle(
+      //         fontFeatures: [FontFeature.subscripts()],
+      //       ),
+      //     _ => null,
+      //   },
+      //   children: _renderWithLineBreaks(
+      //     node.nodes,
+      //     context,
+      //     depth: depth,
+      //   ),
+      // );
+      // Pangea#
     }
   }
 
