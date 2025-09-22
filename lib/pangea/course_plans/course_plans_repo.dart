@@ -1,7 +1,5 @@
 import 'dart:async';
 
-import 'package:get_storage/get_storage.dart';
-
 import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/pangea/course_plans/course_plan_model.dart';
 import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_enum.dart';
@@ -9,6 +7,7 @@ import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
 import 'package:fluffychat/pangea/payload_client/models/course_plan/cms_course_plan.dart';
 import 'package:fluffychat/pangea/payload_client/payload_client.dart';
 import 'package:fluffychat/widgets/matrix.dart';
+import 'package:get_storage/get_storage.dart';
 
 class CourseFilter {
   final LanguageModel? targetLanguage;
@@ -159,14 +158,14 @@ class CoursePlansRepo {
         }
         if (filter.languageOfInstructions != null) {
           where["and"].add({
-            "languageOfInstructions": {
+            "l1": {
               "equals": filter.languageOfInstructions!.langCode,
             },
           });
         }
         if (filter.targetLanguage != null) {
           where["and"].add({
-            "targetLanguage": {"equals": filter.targetLanguage!.langCode},
+            "l2": {"equals": filter.targetLanguage!.langCode},
           });
         }
       } else if (numberOfFilter == 1) {
@@ -174,12 +173,12 @@ class CoursePlansRepo {
           where["cefrLevel"] = {"equals": filter.cefrLevel!.string};
         }
         if (filter.languageOfInstructions != null) {
-          where["languageOfInstructions"] = {
+          where["l1"] = {
             "equals": filter.languageOfInstructions!.langCode,
           };
         }
         if (filter.targetLanguage != null) {
-          where["targetLanguage"] = {"equals": filter.targetLanguage!.langCode};
+          where["l2"] = {"equals": filter.targetLanguage!.langCode};
         }
       }
     }
