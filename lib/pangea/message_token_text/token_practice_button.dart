@@ -31,6 +31,7 @@ class TokenPracticeButton extends StatefulWidget {
   final TextStyle textStyle;
   final double width;
   final bool animateIn;
+  final Color textColor;
 
   const TokenPracticeButton({
     super.key,
@@ -38,6 +39,7 @@ class TokenPracticeButton extends StatefulWidget {
     required this.token,
     required this.textStyle,
     required this.width,
+    required this.textColor,
     this.animateIn = false,
   });
 
@@ -215,6 +217,7 @@ class TokenPracticeButtonState extends State<TokenPracticeButton>
         height: tokenButtonHeight,
         width: widget.width,
         textStyle: widget.textStyle,
+        textColor: widget.textColor,
         sizeAnimation: _iconSizeAnimation!,
         onHover: _setHovered,
         onTap: () => widget.overlayController!.onMorphActivitySelect(
@@ -238,6 +241,7 @@ class TokenPracticeButtonState extends State<TokenPracticeButton>
             height: _heightAnimation!.value,
             width: widget.width,
             textStyle: widget.textStyle,
+            textColor: widget.textColor,
             sizeAnimation: _iconSizeAnimation!,
             onHover: _setHovered,
             onTap: () => widget.overlayController!.onMorphActivitySelect(
@@ -264,6 +268,7 @@ class MessageTokenButtonContent extends StatelessWidget {
   final double height;
   final double width;
   final TextStyle textStyle;
+  final Color textColor;
   final Animation<double> sizeAnimation;
 
   final Function(bool)? onHover;
@@ -281,6 +286,7 @@ class MessageTokenButtonContent extends StatelessWidget {
     required this.height,
     required this.width,
     required this.textStyle,
+    required this.textColor,
     required this.sizeAnimation,
     this.onHover,
     this.onTap,
@@ -357,7 +363,7 @@ class MessageTokenButtonContent extends StatelessWidget {
               builder: (context, child) {
                 return Icon(
                   Symbols.toys_and_games,
-                  color: Theme.of(context).colorScheme.onSurface,
+                  color: textColor,
                   size: sizeAnimation.value, // Use the new animation
                 );
               },
@@ -382,8 +388,7 @@ class MessageTokenButtonContent extends StatelessWidget {
           borderRadius: _borderRadius,
           child: CustomPaint(
             painter: DottedBorderPainter(
-              color: theme.colorScheme.onSurface
-                  .withAlpha((colorAlpha * 255).toInt()),
+              color: textColor.withAlpha((colorAlpha * 255).toInt()),
               borderRadius: _borderRadius,
             ),
             child: Container(

@@ -457,6 +457,7 @@ class HtmlMessage extends StatelessWidget {
                       ),
                       width: tokenWidth,
                       animateIn: isTransitionAnimation,
+                      textColor: textColor,
                     ),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
