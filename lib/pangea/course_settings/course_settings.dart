@@ -11,7 +11,7 @@ import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_suggestion_card.dart';
-import 'package:fluffychat/pangea/common/widgets/error_indicator.dart';
+import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/common/widgets/url_image_widget.dart';
 import 'package:fluffychat/pangea/course_creation/course_info_chip_widget.dart';
 import 'package:fluffychat/pangea/course_plans/activity_summaries_provider.dart';
@@ -39,9 +39,6 @@ class CourseSettingsState extends State<CourseSettings>
   CoursePlanController get controller => widget.controller;
   Room get room => widget.room;
 
-  bool _loading = true;
-  String? _error;
-
   @override
   void initState() {
     super.initState();
@@ -50,36 +47,24 @@ class CourseSettingsState extends State<CourseSettings>
 
   Future<void> _loadSummaries() async {
     try {
-      setState(() {
-        _loading = true;
-        _error = null;
-      });
-
       await loadRoomSummaries(
         room.spaceChildren.map((c) => c.roomId).whereType<String>().toList(),
       );
-    } catch (e) {
-      _error = e.toString();
-    } finally {
-      if (mounted) {
-        setState(() => _loading = false);
-      }
+    } catch (e, s) {
+      ErrorHandler.logError(
+        e: e,
+        s: s,
+        data: {
+          "message": "Failed to load activity summaries",
+          "roomId": room.id,
+        },
+      );
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    if (_loading || controller.loading) {
-      return const Center(child: CircularProgressIndicator());
-    }
-
-    if (_error != null || controller.error != null) {
-      return Center(
-        child: ErrorIndicator(message: L10n.of(context).failedToLoadCourseInfo),
-      );
-    }
-
-    if (controller.course == null) {
+    if (controller.course == null || controller.error != null) {
       return room.canChangeStateEvent(PangeaEventTypes.coursePlan)
           ? Column(
               spacing: 50.0,
@@ -110,7 +95,13 @@ class CourseSettingsState extends State<CourseSettings>
                 ),
               ],
             )
-          : Center(child: Text(L10n.of(context).noCourseFound));
+          : Center(
+              child: Text(
+                L10n.of(context).noCourseFound,
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+            );
     }
 
     final theme = Theme.of(context);
