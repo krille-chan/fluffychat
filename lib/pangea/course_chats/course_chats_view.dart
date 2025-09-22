@@ -8,6 +8,7 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
+import 'package:fluffychat/pangea/analytics_summary/learning_progress_indicators.dart';
 import 'package:fluffychat/pangea/course_chats/activity_template_chat_list_item.dart';
 import 'package:fluffychat/pangea/course_chats/course_chats_page.dart';
 import 'package:fluffychat/pangea/course_chats/unjoined_chat_list_item.dart';
@@ -71,22 +72,21 @@ class CourseChatsView extends StatelessWidget {
                   // courses chats title
                   if (i == 0) {
                     if (isColumnMode) {
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10.0),
+                      return const Padding(
+                        padding: EdgeInsets.symmetric(
+                          vertical: 4.0,
+                          horizontal: 8.0,
+                        ),
                         child: Column(
                           spacing: 12.0,
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            const SizedBox(height: 24.0),
-                            const Icon(
+                            LearningProgressIndicators(),
+                            Icon(
                               Icons.chat_bubble_outline,
                               size: 30.0,
                             ),
-                            Text(
-                              L10n.of(context).courseChats,
-                              style: const TextStyle(fontSize: 12.0),
-                            ),
-                            const SizedBox(height: 14.0),
+                            SizedBox(height: 12.0),
                           ],
                         ),
                       );

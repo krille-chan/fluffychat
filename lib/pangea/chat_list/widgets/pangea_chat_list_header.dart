@@ -26,12 +26,7 @@ class PangeaChatListHeader extends StatelessWidget
       delegate: SliverChildListDelegate(
         [
           Padding(
-            padding: const EdgeInsets.only(
-              top: 16,
-              left: 16,
-              right: 16,
-              bottom: 16,
-            ),
+            padding: const EdgeInsets.all(16.0),
             child: Column(
               children: [
                 const LearningProgressIndicators(),
