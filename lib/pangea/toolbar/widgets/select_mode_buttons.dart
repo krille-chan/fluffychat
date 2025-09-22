@@ -233,7 +233,7 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
         : mode;
     widget.overlayController.setSelectMode(selectedMode);
 
-    if (_selectedMode == SelectMode.audio) {
+    if (selectedMode == SelectMode.audio) {
       _playAudio();
       return;
     } else {
@@ -241,17 +241,17 @@ class SelectModeButtonsState extends State<SelectModeButtons> {
       matrix?.audioPlayer?.seek(null);
     }
 
-    if (_selectedMode == SelectMode.practice) {
+    if (selectedMode == SelectMode.practice) {
       widget.lauchPractice();
       return;
     }
 
-    if (_selectedMode == SelectMode.translate) {
+    if (selectedMode == SelectMode.translate) {
       await _fetchTranslation();
       widget.overlayController.setShowTranslation(true);
     }
 
-    if (_selectedMode == SelectMode.speechTranslation) {
+    if (selectedMode == SelectMode.speechTranslation) {
       await _fetchSpeechTranslation();
       widget.overlayController.setShowSpeechTranslation(true);
     }

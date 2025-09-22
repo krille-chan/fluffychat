@@ -934,7 +934,7 @@ class HtmlMessage extends StatelessWidget {
                 ),
               RichText(
                 text: TextSpan(
-                  style: style,
+                  style: textStyle.merge(style),
                   children: _renderWithLineBreaks(
                     node.nodes,
                     context,
