@@ -5,13 +5,9 @@ import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_role_model.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_roles_model.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_room_extension.dart';
-import 'package:fluffychat/pangea/bot/utils/bot_name.dart';
 import 'package:fluffychat/pangea/chat/constants/default_power_level.dart';
 import 'package:fluffychat/pangea/chat_settings/constants/pangea_room_types.dart';
 import 'package:fluffychat/pangea/course_plans/course_plan_event.dart';
-import 'package:fluffychat/pangea/course_plans/course_plan_model.dart';
-import 'package:fluffychat/pangea/course_plans/course_topic_model.dart';
-import 'package:fluffychat/pangea/course_plans/course_user_event.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/extensions/join_rule_extension.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
@@ -22,96 +18,6 @@ extension CoursePlanRoomExtension on Room {
     if (event == null) return null;
     return CoursePlanEvent.fromJson(event.content);
   }
-
-  CourseUserState? _courseUserState(String userID) {
-    final event = getState(
-      PangeaEventTypes.courseUser,
-      userID,
-    );
-    if (event == null) return null;
-
-    try {
-      return CourseUserState.fromJson(event.content);
-    } catch (e) {
-      return null;
-    }
-  }
-
-  CourseUserState? get _ownCourseState => _courseUserState(client.userID!);
-
-  Map<String, CourseUserState> get allCourseUserStates {
-    final content = states[PangeaEventTypes.courseUser];
-    if (content == null || content.isEmpty) return {};
-    return Map<String, CourseUserState>.fromEntries(
-      content.entries.map(
-        (e) {
-          try {
-            return MapEntry(
-              e.key,
-              CourseUserState.fromJson(e.value.content),
-            );
-          } catch (e) {
-            return null;
-          }
-        },
-      ).whereType<MapEntry<String, CourseUserState>>(),
-    );
-  }
-
-  bool hasCompletedActivity(
-    String userID,
-    String activityID,
-  ) {
-    final state = _courseUserState(userID);
-    if (state == null) return false;
-    return state.hasCompletedActivity(activityID);
-  }
-
-  bool _hasCompletedTopic(
-    String userID,
-    CourseTopicModel topic,
-    CoursePlanModel course,
-  ) {
-    final state = _courseUserState(userID);
-    if (state == null) return false;
-
-    final topicIndex = course.loadedTopics.indexWhere(
-      (t) => t.uuid == topic.uuid,
-    );
-
-    if (topicIndex == -1) {
-      throw Exception('Topic not found');
-    }
-
-    final topicActivities = course.loadedTopics[topicIndex].loadedActivities;
-    final topicActivityIds = topicActivities.map((a) => a.activityId).toSet();
-    final numTwoPersonActivities =
-        topicActivities.where((a) => a.req.numberOfParticipants <= 2).length;
-
-    final completedTopicActivities =
-        state.completedActivities.intersection(topicActivityIds);
-
-    return completedTopicActivities.length >= numTwoPersonActivities;
-  }
-
-  int currentTopicIndex(
-    String userID,
-    CoursePlanModel course,
-  ) {
-    if (coursePlan == null) return -1;
-    if (course.loadedTopics.isEmpty) return -1;
-
-    for (int i = 0; i < course.loadedTopics.length; i++) {
-      if (!_hasCompletedTopic(userID, course.loadedTopics[i], course)) {
-        return i;
-      }
-    }
-
-    return 0;
-  }
-
-  int ownCurrentTopicIndex(CoursePlanModel course) =>
-      currentTopicIndex(client.userID!, course);
 
   String? activeActivityRoomId(String activityId) {
     for (final child in spaceChildren) {
@@ -134,43 +40,6 @@ extension CoursePlanRoomExtension on Room {
       {
         "uuid": courseId,
       },
-    );
-  }
-
-  Future<Map<String, List<User>>> topicsToUsers(CoursePlanModel course) async {
-    final Map<String, List<User>> topicUserMap = {};
-    final users = await requestParticipants(
-      [Membership.join, Membership.invite, Membership.knock],
-      false,
-      true,
-    );
-
-    for (final user in users) {
-      if (user.id == BotName.byEnvironment) continue;
-      final topicIndex = currentTopicIndex(user.id, course);
-      if (topicIndex != -1) {
-        final topicID = course.loadedTopics[topicIndex].uuid;
-        topicUserMap.putIfAbsent(topicID, () => []).add(user);
-      }
-    }
-    return topicUserMap;
-  }
-
-  Future<void> finishCourseActivity(
-    String activityID,
-    String roomID,
-  ) async {
-    CourseUserState? state = _ownCourseState;
-    state ??= CourseUserState(
-      userID: client.userID!,
-      completedActivities: {},
-    );
-    state.completeActivity(activityID, roomID);
-    await client.setRoomStateWithKey(
-      id,
-      PangeaEventTypes.courseUser,
-      client.userID!,
-      state.toJson(),
     );
   }
 

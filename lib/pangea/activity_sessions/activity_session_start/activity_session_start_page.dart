@@ -71,16 +71,7 @@ class ActivitySessionStartController extends State<ActivitySessionStartPage>
   @override
   void initState() {
     super.initState();
-    _loadActivity();
-
-    if (courseParent != null) {
-      loadRoomSummaries(
-        courseParent!.spaceChildren
-            .map((c) => c.roomId)
-            .whereType<String>()
-            .toList(),
-      );
-    }
+    _load();
   }
 
   @override
@@ -94,7 +85,7 @@ class ActivitySessionStartController extends State<ActivitySessionStartPage>
     }
 
     if (oldWidget.activityId != widget.activityId) {
-      _loadActivity();
+      _load();
     }
   }
 
@@ -220,32 +211,50 @@ class ActivitySessionStartController extends State<ActivitySessionStartPage>
     return (activity?.req.numberOfParticipants ?? 0) - availableParticipants;
   }
 
-  Future<void> _loadActivity() async {
+  Future<void> _load() async {
     try {
       setState(() {
         loading = true;
         error = null;
       });
-
-      if (courseParent?.coursePlan != null) {
-        course = await CoursePlansRepo.get(courseParent!.coursePlan!.uuid);
-      }
-
-      final activities = await CourseActivityRepo.get(
-        widget.activityId,
-        [widget.activityId],
-      );
-
-      if (activities.isEmpty) {
-        throw Exception("Activity not found");
-      }
-
-      if (mounted) setState(() => activity = activities.first);
+      final futures = <Future>[];
+      futures.add(_loadSummary());
+      futures.add(_loadActivity());
+      await Future.wait(futures);
     } catch (e) {
-      if (mounted) setState(() => error = e);
+      error = e;
     } finally {
-      if (mounted) setState(() => loading = false);
+      if (mounted) {
+        setState(() => loading = false);
+      }
     }
+  }
+
+  Future<void> _loadSummary() async {
+    if (courseParent == null) return;
+    await loadRoomSummaries(
+      courseParent!.spaceChildren
+          .map((c) => c.roomId)
+          .whereType<String>()
+          .toList(),
+    );
+  }
+
+  Future<void> _loadActivity() async {
+    if (courseParent?.coursePlan != null) {
+      course = await CoursePlansRepo.get(courseParent!.coursePlan!.uuid);
+    }
+
+    final activities = await CourseActivityRepo.get(
+      widget.activityId,
+      [widget.activityId],
+    );
+
+    if (activities.isEmpty) {
+      throw Exception("Activity not found");
+    }
+
+    activity = activities.first;
   }
 
   Future<void> joinActivity() async {

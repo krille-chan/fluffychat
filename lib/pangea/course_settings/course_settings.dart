@@ -14,13 +14,14 @@ import 'package:fluffychat/pangea/activity_suggestions/activity_suggestion_card.
 import 'package:fluffychat/pangea/common/widgets/error_indicator.dart';
 import 'package:fluffychat/pangea/common/widgets/url_image_widget.dart';
 import 'package:fluffychat/pangea/course_creation/course_info_chip_widget.dart';
+import 'package:fluffychat/pangea/course_plans/activity_summaries_provider.dart';
 import 'package:fluffychat/pangea/course_plans/course_plan_builder.dart';
 import 'package:fluffychat/pangea/course_plans/course_plan_room_extension.dart';
 import 'package:fluffychat/pangea/course_settings/pin_clipper.dart';
 import 'package:fluffychat/pangea/course_settings/topic_participant_list.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 
-class CourseSettings extends StatelessWidget {
+class CourseSettings extends StatefulWidget {
   final Room room;
   final CoursePlanController controller;
   const CourseSettings(
@@ -30,12 +31,49 @@ class CourseSettings extends StatelessWidget {
   });
 
   @override
+  State<CourseSettings> createState() => CourseSettingsState();
+}
+
+class CourseSettingsState extends State<CourseSettings>
+    with ActivitySummariesProvider {
+  CoursePlanController get controller => widget.controller;
+  Room get room => widget.room;
+
+  bool _loading = true;
+  String? _error;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadSummaries();
+  }
+
+  Future<void> _loadSummaries() async {
+    try {
+      setState(() {
+        _loading = true;
+        _error = null;
+      });
+
+      await loadRoomSummaries(
+        room.spaceChildren.map((c) => c.roomId).whereType<String>().toList(),
+      );
+    } catch (e) {
+      _error = e.toString();
+    } finally {
+      if (mounted) {
+        setState(() => _loading = false);
+      }
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    if (controller.loading) {
+    if (_loading || controller.loading) {
       return const Center(child: CircularProgressIndicator());
     }
 
-    if (controller.error != null) {
+    if (_error != null || controller.error != null) {
       return Center(
         child: ErrorIndicator(message: L10n.of(context).failedToLoadCourseInfo),
       );
@@ -82,20 +120,20 @@ class CourseSettings extends StatelessWidget {
     final double iconSize = isColumnMode ? 16.0 : 12.0;
 
     final course = controller.course!;
-    final currentTopicIndex = room.currentTopicIndex(
+    final topicIndex = currentTopicIndex(
       room.client.userID!,
       course,
     );
 
     return FutureBuilder(
-      future: room.topicsToUsers(course),
+      future: topicsToUsers(room, course),
       builder: (context, snapshot) {
         final topicsToUsers = snapshot.data ?? {};
         return Column(
           spacing: isColumnMode ? 40.0 : 36.0,
           mainAxisSize: MainAxisSize.min,
           children: course.loadedTopics.mapIndexed((index, topic) {
-            final unlocked = index <= currentTopicIndex;
+            final unlocked = index <= topicIndex;
             final usersInTopic = topicsToUsers[topic.uuid] ?? [];
             final activities = topic.loadedActivities;
             activities.sort(
@@ -207,6 +245,7 @@ class CourseSettings extends StatelessWidget {
                         child: TopicActivitiesList(
                           room: room,
                           activities: activities,
+                          controller: this,
                         ),
                       ),
                   ],
@@ -223,10 +262,13 @@ class CourseSettings extends StatelessWidget {
 class TopicActivitiesList extends StatefulWidget {
   final Room room;
   final List<ActivityPlanModel> activities;
+  final CourseSettingsState controller;
+
   const TopicActivitiesList({
     super.key,
     required this.room,
     required this.activities,
+    required this.controller,
   });
   @override
   State<TopicActivitiesList> createState() => TopicActivitiesListState();
@@ -255,7 +297,7 @@ class TopicActivitiesListState extends State<TopicActivitiesList> {
         itemBuilder: (context, index) {
           final activityId = widget.activities[index].activityId;
 
-          final complete = widget.room.hasCompletedActivity(
+          final complete = widget.controller.hasCompletedActivity(
             widget.room.client.userID!,
             activityId,
           );

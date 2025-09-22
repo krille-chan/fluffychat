@@ -57,7 +57,7 @@ class SelectedCourseView extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.all(12.0),
                           child: ListView.builder(
-                            itemCount: course.loadedTopics.length + 2,
+                            itemCount: course.loadedTopics.length + 1,
                             itemBuilder: (context, index) {
                               if (index == 0) {
                                 return Column(
@@ -122,11 +122,6 @@ class SelectedCourseView extends StatelessWidget {
                               }
 
                               index--;
-
-                              if (index == course.loadedTopics.length) {
-                                return const SizedBox(height: 150.0);
-                              }
-
                               final topic = course.loadedTopics[index];
                               return Padding(
                                 padding:

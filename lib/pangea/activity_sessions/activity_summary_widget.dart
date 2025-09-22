@@ -1,3 +1,5 @@
+// ignore_for_file: implementation_imports
+
 import 'dart:math';
 
 import 'package:flutter/material.dart';
