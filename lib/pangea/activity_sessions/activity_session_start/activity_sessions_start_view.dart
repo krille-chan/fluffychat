@@ -4,7 +4,6 @@ import 'package:go_router/go_router.dart';
 
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/pangea/activity_sessions/activity_room_extension.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_session_start/activity_session_start_page.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_summary_widget.dart';
 import 'package:fluffychat/pangea/common/widgets/error_indicator.dart';
@@ -140,9 +139,7 @@ class ActivitySessionStartView extends StatelessWidget {
                                             )
                                           else if (controller.state ==
                                               SessionState.confirmedRole) ...[
-                                            if (controller.courseParent!
-                                                    .courseParent !=
-                                                null)
+                                            if (controller.courseParent != null)
                                               ElevatedButton(
                                                 style: buttonStyle,
                                                 onPressed: controller
@@ -167,7 +164,7 @@ class ActivitySessionStartView extends StatelessWidget {
                                                 ),
                                               ),
                                             if (controller
-                                                .courseParent!.isRoomAdmin) ...[
+                                                .activityRoom!.isRoomAdmin) ...[
                                               if (!controller.isBotRoomMember)
                                                 ElevatedButton(
                                                   style: buttonStyle,
@@ -192,7 +189,7 @@ class ActivitySessionStartView extends StatelessWidget {
                                               ElevatedButton(
                                                 style: buttonStyle,
                                                 onPressed: () => context.go(
-                                                  "/rooms/${controller.courseParent!.id}/invite",
+                                                  "/rooms/${controller.activityRoom!.id}/invite",
                                                 ),
                                                 child: Row(
                                                   mainAxisAlignment:
@@ -219,7 +216,7 @@ class ActivitySessionStartView extends StatelessWidget {
                                                     MainAxisAlignment.center,
                                                 children: [
                                                   Text(
-                                                    controller.courseParent
+                                                    controller.activityRoom
                                                                 ?.isRoomAdmin ??
                                                             true
                                                         ? L10n.of(context).start
@@ -274,11 +271,11 @@ class _ActivityStartButtons extends StatelessWidget {
                 L10n.of(context).activityNeedsMembers(neededParticipants),
                 textAlign: TextAlign.center,
               ),
-              if (controller.courseParent?.canInvite ?? false)
+              if (controller.activityRoom?.canInvite ?? false)
                 ElevatedButton(
                   style: buttonStyle,
                   onPressed: () => context.go(
-                    "/rooms/spaces/${controller.courseParent!.id}/invite",
+                    "/rooms/spaces/${controller.activityRoom!.id}/invite",
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
