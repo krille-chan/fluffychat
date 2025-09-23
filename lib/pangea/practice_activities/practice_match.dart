@@ -32,7 +32,7 @@ class PracticeMatchActivity {
       final String choiceContent = matchEntry.value.firstWhere(
         (element) => !usedForms.contains(element),
         orElse: () => throw Exception(
-          "No unique form available for construct ${matchEntry.key}",
+          "No unique form available for construct ${matchEntry.key.form}",
         ),
       );
 

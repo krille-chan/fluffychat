@@ -160,10 +160,24 @@ class PracticeSelection {
       return [];
     }
 
+    final List<PangeaToken> activityTokens = [];
+    tokens.shuffle();
+    for (final t in tokens) {
+      if (activityTokens.length >= _maxQueueLength) {
+        break;
+      }
+      if (!activityTokens.any(
+        (token) =>
+            token.text.content.toLowerCase() == t.text.content.toLowerCase(),
+      )) {
+        activityTokens.add(t);
+      }
+    }
+
     return [
       PracticeTarget(
         activityType: activityType,
-        tokens: tokens.take(_maxQueueLength).shuffled().toList(),
+        tokens: activityTokens,
         userL2: _userL2,
       ),
     ];
