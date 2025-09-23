@@ -33,4 +33,17 @@ enum LearningSkillsEnum {
         return "";
     }
   }
+
+  String? description(BuildContext context) {
+    switch (this) {
+      case LearningSkillsEnum.reading:
+        return L10n.of(context).readingAnalyticsDesc;
+      case LearningSkillsEnum.hearing:
+        return L10n.of(context).audioAnalyticsDesc;
+      case LearningSkillsEnum.speaking:
+        return L10n.of(context).speakingAnalyticsDesc;
+      default:
+        return null;
+    }
+  }
 }

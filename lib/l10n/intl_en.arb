@@ -5252,5 +5252,8 @@
   "courseDesc": "Course description",
   "courseSavedSuccessfully": "Course saved successfully",
   "addCoursePlan": "Add a course plan",
-  "activityStatsButtonInstruction": "Click here to view your activity stats and to close the activity when finished"
+  "activityStatsButtonInstruction": "Click here to view your activity stats and to close the activity when finished",
+  "readingAnalyticsDesc": "Click practice on each message for reading activities.",
+  "speakingAnalyticsDesc": "Record voice messages for speaking practice.",
+  "audioAnalyticsDesc": "Click practice on each message for listening activities."
 }

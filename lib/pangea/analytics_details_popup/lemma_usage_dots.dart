@@ -58,6 +58,8 @@ class LemmaUsageDots extends StatelessWidget {
         ? construct.lemmaCategory.color(context)
         : construct.lemmaCategory.darkColor(context));
 
+    final description = category.description(context);
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 20),
       child: Row(
@@ -75,11 +77,20 @@ class LemmaUsageDots extends StatelessWidget {
           ),
           const SizedBox(width: 8.0),
           Flexible(
-            child: Wrap(
-              spacing: 3,
-              runSpacing: 5,
-              children: dots,
-            ),
+            child: dots.isEmpty
+                ? description != null
+                    ? Text(
+                        description,
+                        style: const TextStyle(
+                          fontStyle: FontStyle.italic,
+                        ),
+                      )
+                    : const SizedBox()
+                : Wrap(
+                    spacing: 3,
+                    runSpacing: 5,
+                    children: dots,
+                  ),
           ),
         ],
       ),
