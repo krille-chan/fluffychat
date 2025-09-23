@@ -535,7 +535,7 @@ gnO(){return"Przygotuj wysy\u0142anie za\u0142\u0105cznika..."},
 gku(){return"Wysy\u0142anie za\u0142\u0105cznika..."},
 kv(d,e){return"Wysy\u0142anie "+d+" z "+e+" cz\u0119\u015bci za\u0142\u0105cznika..."},
 kz(d){return"Osi\u0105gni\u0119to limit serwera. Czekanie "+d+" sekund..."},
-gnu(){return"Tylko kiedy Twoje urz\u0105dzenie nie jest zweryfikowane"},
+gnu(){return"Jedno z Twoich urz\u0105dze\u0144 nie jest zweryfikowane"},
 gmQ(){return"Uwaga: Urz\u0105dzenia dodane do kopii zapasowej czatu automatycznie zostaj\u0105 zweryfikowane."},
 gib(){return"Kontynuuj"},
 gl9(d){return"Rozmazanie:"},
@@ -638,5 +638,5 @@ A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FO,C.aF)})()
 B.dQ(b.typeUniverse,JSON.parse('{"FO":{"aF":[]}}'))};
-(a=>{a["ssRvm4ajzqs7kLRXmpgJ9YNjObw="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["roJuUyY7SyYY962JzzmKJdpWau0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_307.part.js.map
