@@ -268,7 +268,9 @@ class _ActivityStartButtons extends StatelessWidget {
           children: [
             if (!hasEnoughParticipants) ...[
               Text(
-                L10n.of(context).activityNeedsMembers(neededParticipants),
+                neededParticipants > 1
+                    ? L10n.of(context).activityNeedsMembers(neededParticipants)
+                    : L10n.of(context).activityNeedsOneMember,
                 textAlign: TextAlign.center,
               ),
               ElevatedButton(

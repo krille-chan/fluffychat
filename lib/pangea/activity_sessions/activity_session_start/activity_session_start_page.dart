@@ -302,7 +302,7 @@ class ActivitySessionStartController extends State<ActivitySessionStartPage>
 
   Future<void> confirmRoleSelection() async {
     if (state != SessionState.selectedRole) return;
-    if (activityRoom != null) {
+    if (activityRoom?.membership == Membership.join) {
       await showFutureLoadingDialog(
         context: context,
         future: () => activityRoom!.joinActivity(

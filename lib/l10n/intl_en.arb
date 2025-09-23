@@ -5235,6 +5235,7 @@
   "promoCodeInfo": "Promo codes can be entered on the next page",
   "editsComingSoon": "The ability to edit cities and activities is coming soon.",
   "editing": "Editing",
+  "activityNeedsOneMember": "Uh oh! This activity needs 1 more person.",
   "activityNeedsMembers": "Uh oh! This activity needs {num} more people.",
   "@activityNeedsMembers": {
     "placeholders": {
