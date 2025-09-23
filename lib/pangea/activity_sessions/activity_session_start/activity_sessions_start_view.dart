@@ -277,7 +277,7 @@ class _ActivityStartButtons extends StatelessWidget {
                 style: buttonStyle,
                 onPressed: controller.courseParent?.canInvite ?? false
                     ? () => context.go(
-                          "/rooms/spaces/${controller.activityRoom!.id}/invite",
+                          "/rooms/spaces/${controller.courseParent!.id}/invite",
                         )
                     : null,
                 child: Row(
