@@ -29,6 +29,7 @@ enum InstructionsEnum {
   morphAnalyticsList,
   readingAssistanceOverview,
   emptyChatWarning,
+  activityStatsMenu,
 }
 
 extension InstructionsEnumExtension on InstructionsEnum {
@@ -60,6 +61,7 @@ extension InstructionsEnumExtension on InstructionsEnum {
       case InstructionsEnum.analyticsVocabList:
       case InstructionsEnum.morphAnalyticsList:
       case InstructionsEnum.readingAssistanceOverview:
+      case InstructionsEnum.activityStatsMenu:
         ErrorHandler.logError(
           e: Exception("No title for this instruction"),
           m: 'InstructionsEnumExtension.title',
@@ -73,21 +75,6 @@ extension InstructionsEnumExtension on InstructionsEnum {
         return l10n.emptyChatWarningTitle;
     }
   }
-
-  // IconData? get icon {
-  //   switch (this) {
-  //     case InstructionsEnum.itInstructions:
-  //       return Icons.translate;
-  //     case InstructionsEnum.clickMessage:
-  //       return Icons.touch_app;
-  //     case InstructionsEnum.blurMeansTranslate:
-  //       return Icons.blur_on;
-  //     case InstructionsEnum.tooltipInstructions:
-  //       return Icons.help;
-  //     case InstructionsEnum.missingVoice:
-  //       return Icons.mic_off;
-  //   }
-  // }
 
   String body(L10n l10n) {
     switch (this) {
@@ -135,6 +122,8 @@ extension InstructionsEnumExtension on InstructionsEnum {
         return l10n.readingAssistanceOverviewBody;
       case InstructionsEnum.emptyChatWarning:
         return l10n.emptyChatWarningDesc;
+      case InstructionsEnum.activityStatsMenu:
+        return l10n.activityStatsButtonInstruction;
     }
   }
 

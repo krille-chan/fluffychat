@@ -5251,5 +5251,6 @@
   "courseTitle": "Course title",
   "courseDesc": "Course description",
   "courseSavedSuccessfully": "Course saved successfully",
-  "addCoursePlan": "Add a course plan"
+  "addCoursePlan": "Add a course plan",
+  "activityStatsButtonInstruction": "Click here to view your activity stats and to close the activity when finished"
 }

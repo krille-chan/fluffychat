@@ -44,6 +44,7 @@ class PangeaAnyState {
     BuildContext context, {
     String? overlayKey,
     bool canPop = true,
+    bool rootOverlay = false,
   }) {
     if (overlayKey != null &&
         entries.any((element) => element.key == overlayKey)) {
@@ -62,7 +63,10 @@ class PangeaAnyState {
       activeOverlays.add(overlayKey);
     }
 
-    Overlay.of(context).insert(entry);
+    Overlay.of(
+      context,
+      rootOverlay: rootOverlay,
+    ).insert(entry);
   }
 
   void closeOverlay([String? overlayKey]) {
