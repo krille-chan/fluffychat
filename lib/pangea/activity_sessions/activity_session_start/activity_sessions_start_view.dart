@@ -271,21 +271,22 @@ class _ActivityStartButtons extends StatelessWidget {
                 L10n.of(context).activityNeedsMembers(neededParticipants),
                 textAlign: TextAlign.center,
               ),
-              if (controller.activityRoom?.canInvite ?? false)
-                ElevatedButton(
-                  style: buttonStyle,
-                  onPressed: () => context.go(
-                    "/rooms/spaces/${controller.activityRoom!.id}/invite",
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        L10n.of(context).inviteFriendsToCourse,
-                      ),
-                    ],
-                  ),
+              ElevatedButton(
+                style: buttonStyle,
+                onPressed: controller.courseParent?.canInvite ?? false
+                    ? () => context.go(
+                          "/rooms/spaces/${controller.activityRoom!.id}/invite",
+                        )
+                    : null,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      L10n.of(context).inviteFriendsToCourse,
+                    ),
+                  ],
                 ),
+              ),
             ] else ...[
               ElevatedButton(
                 style: buttonStyle,
