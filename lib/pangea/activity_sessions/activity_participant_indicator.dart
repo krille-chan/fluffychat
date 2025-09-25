@@ -38,18 +38,18 @@ class ActivityParticipantIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return AbsorbPointer(
-      absorbing: !selectable,
-      child: MouseRegion(
-        cursor: SystemMouseCursors.basic,
-        child: GestureDetector(
-          onTap: onTap ??
-              (user != null
-                  ? () => showMemberActionsPopupMenu(
-                        context: context,
-                        user: user!,
-                      )
-                  : null),
+    return MouseRegion(
+      cursor: SystemMouseCursors.basic,
+      child: GestureDetector(
+        onTap: onTap ??
+            (user != null
+                ? () => showMemberActionsPopupMenu(
+                      context: context,
+                      user: user!,
+                    )
+                : null),
+        child: AbsorbPointer(
+          absorbing: !selectable,
           child: HoverBuilder(
             builder: (context, hovered) {
               return Opacity(
