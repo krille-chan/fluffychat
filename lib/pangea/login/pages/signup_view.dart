@@ -1,9 +1,12 @@
 // Flutter imports:
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/common/widgets/pangea_logo_svg.dart';
 import 'package:fluffychat/pangea/login/widgets/p_sso_button.dart';
@@ -91,6 +94,10 @@ class SignupPageView extends StatelessWidget {
                               decoration: TextDecoration.underline,
                               color: theme.colorScheme.primary,
                             ),
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                launchUrlString(AppConfig.termsOfServiceUrl);
+                              },
                           ),
                           TextSpan(
                             text: L10n.of(context)
