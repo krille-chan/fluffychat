@@ -24,7 +24,6 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:collection/collection.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_new_badger/flutter_new_badger.dart';
@@ -140,6 +139,7 @@ class BackgroundPush {
   // #Pangea
   Future<void> _onOpenNotification(RemoteMessage? message) async {
     const sessionIdKey = "content_pangea.activity.session_room_id";
+    const activityIdKey = "content_pangea.activity.id";
 
     // Early return if no room_id.
     final roomId = message?.data['room_id'];
@@ -160,7 +160,11 @@ class BackgroundPush {
 
     // Handle session room if provided.
     final sessionRoomId = message?.data[sessionIdKey];
-    if (sessionRoomId is String && sessionRoomId.isNotEmpty) {
+    final activityId = message?.data[activityIdKey];
+    if (sessionRoomId is String &&
+        sessionRoomId.isNotEmpty &&
+        activityId is String &&
+        activityId.isNotEmpty) {
       try {
         final course = await ensureRoomLoaded(roomId);
         if (course == null) return;
@@ -171,15 +175,9 @@ class BackgroundPush {
           return;
         }
 
-        await client.joinRoom(
-          sessionRoomId,
-          via: course.spaceChildren
-              .firstWhereOrNull((child) => child.roomId == sessionRoomId)
-              ?.via,
+        FluffyChatApp.router.go(
+          '/rooms/spaces/$roomId/activity/$activityId?roomid=$sessionRoomId',
         );
-
-        await ensureRoomLoaded(sessionRoomId);
-        FluffyChatApp.router.go('/rooms/$sessionRoomId');
         return;
       } catch (err, s) {
         ErrorHandler.logError(e: err, s: s, data: {"roomId": sessionRoomId});

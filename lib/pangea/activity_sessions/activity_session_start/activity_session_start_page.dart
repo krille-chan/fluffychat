@@ -390,6 +390,7 @@ class ActivitySessionStartController extends State<ActivitySessionStartPage>
         ),
         "msgtype": "m.text",
         "pangea.activity.session_room_id": activityRoom!.id,
+        "pangea.activity.id": widget.activityId,
       },
     );
 
