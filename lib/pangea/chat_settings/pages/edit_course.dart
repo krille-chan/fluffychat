@@ -54,29 +54,27 @@ class EditCourseController extends State<EditCourse> {
 
   bool get hasChanges {
     if (_room == null) return false;
-    final title = _titleController.text.trim();
-    final desc = _descController.text.trim();
-    if (title.isNotEmpty && title != _room!.name) return true;
-    if (desc.isNotEmpty && desc != _room!.topic) return true;
+    if (_titleController.text.trim() != _room!.name) return true;
+    if (_descController.text.trim() != _room!.topic) return true;
     if (_avatar != null) return true;
     return false;
   }
 
+  bool get _isValid {
+    return _titleController.text.isNotEmpty;
+  }
+
   Future<void> _saveChanges() async {
-    if (_room == null || !hasChanges) return;
+    if (_room == null || !hasChanges || !_isValid) return;
     final title = _titleController.text.trim();
     final desc = _descController.text.trim();
 
-    if (title.isNotEmpty && title != _room!.name) {
+    if (title != _room!.name) {
       await _room!.setName(title);
-    } else if (title.isEmpty) {
-      _titleController.text = _room!.name;
     }
 
-    if (desc.isNotEmpty && desc != _room!.topic) {
+    if (desc != _room!.topic) {
       await _room!.setDescription(desc);
-    } else if (desc.isEmpty) {
-      _descController.text = _room!.topic;
     }
 
     if (_avatar != null) {
@@ -266,7 +264,7 @@ class EditCourseController extends State<EditCourse> {
                           Container(
                             padding: const EdgeInsets.symmetric(vertical: 16.0),
                             child: ElevatedButton(
-                              onPressed: hasChanges ? _save : null,
+                              onPressed: hasChanges && _isValid ? _save : null,
                               child: Row(
                                 spacing: 8.0,
                                 mainAxisAlignment: MainAxisAlignment.center,
