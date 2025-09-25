@@ -81,7 +81,7 @@ class NewTripPageState extends State<NewTripPage> with CourseSearchProvider {
                             enableSearch: true,
                             defaultName:
                                 L10n.of(context).languageOfInstructionsLabel,
-                            shortName: L10n.of(context).instructionsLanguage,
+                            shortName: L10n.of(context).allLanguages,
                           ),
                           CoursePlanFilter<LanguageModel>(
                             value: targetLanguageFilter,
@@ -92,6 +92,7 @@ class NewTripPageState extends State<NewTripPage> with CourseSearchProvider {
                                 v.getDisplayName(context) ?? v.displayName,
                             enableSearch: true,
                             defaultName: L10n.of(context).targetLanguageLabel,
+                            shortName: L10n.of(context).allLanguages,
                           ),
                           CoursePlanFilter<LanguageLevelTypeEnum>(
                             value: languageLevelFilter,
@@ -99,6 +100,7 @@ class NewTripPageState extends State<NewTripPage> with CourseSearchProvider {
                             items: LanguageLevelTypeEnum.values,
                             displayname: (v) => v.string,
                             defaultName: L10n.of(context).cefrLevelLabel,
+                            shortName: L10n.of(context).allCefrLevels,
                           ),
                         ],
                       ),

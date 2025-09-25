@@ -5286,5 +5286,7 @@
   "email": "Email",
   "forgotPassword": "Forgot password?",
   "writingAnalyticsDesc": "Send messages to practice writing.",
-  "endActivity": "End activity"
+  "endActivity": "End activity",
+  "allLanguages": "All languages",
+  "allCefrLevels": "All CEFR levels"
 }

@@ -115,7 +115,7 @@ class PublicTripPageState extends State<PublicTripPage> {
                             enableSearch: true,
                             defaultName:
                                 L10n.of(context).languageOfInstructionsLabel,
-                            shortName: L10n.of(context).instructionsLanguage,
+                            shortName: L10n.of(context).allLanguages,
                           ),
                           CoursePlanFilter<LanguageModel>(
                             value: targetLanguageFilter,
@@ -126,6 +126,7 @@ class PublicTripPageState extends State<PublicTripPage> {
                                 v.getDisplayName(context) ?? v.displayName,
                             enableSearch: true,
                             defaultName: L10n.of(context).targetLanguageLabel,
+                            shortName: L10n.of(context).allLanguages,
                           ),
                           CoursePlanFilter<LanguageLevelTypeEnum>(
                             value: languageLevelFilter,
@@ -133,6 +134,7 @@ class PublicTripPageState extends State<PublicTripPage> {
                             items: LanguageLevelTypeEnum.values,
                             displayname: (v) => v.string,
                             defaultName: L10n.of(context).cefrLevelLabel,
+                            shortName: L10n.of(context).allCefrLevels,
                           ),
                         ],
                       ),
