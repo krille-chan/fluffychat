@@ -5,6 +5,7 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/pages/chat/encryption_button.dart';
 import 'package:fluffychat/utils/other_party_can_receive.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -227,7 +228,6 @@ class ChatInputRow extends StatelessWidget {
                 ),
               Container(
                 height: height,
-                width: height,
                 alignment: Alignment.center,
                 child: IconButton(
                   tooltip: L10n.of(context).emojis,
@@ -255,6 +255,11 @@ class ChatInputRow extends StatelessWidget {
                   ),
                   onPressed: controller.emojiPickerAction,
                 ),
+              ),
+              Container(
+                height: height,
+                alignment: Alignment.center,
+                child: EncryptionButton(controller.room),
               ),
               if (Matrix.of(context).isMultiAccount &&
                   Matrix.of(context).hasComplexBundles &&
