@@ -805,10 +805,10 @@ packages:
     dependency: "direct main"
     description:
       name: go_router
-      sha256: b1488741c9ce37b72e026377c69a59c47378493156fc38efb5a54f6def3f92a3
+      sha256: c752e2d08d088bf83742cb05bf83003f3e9d276ff1519b5c92f9d5e60e5ddd23
       url: "https://pub.dev"
     source: hosted
-    version: "16.2.2"
+    version: "16.2.4"
   gsettings:
     dependency: transitive
     description:
