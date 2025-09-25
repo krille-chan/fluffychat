@@ -5257,5 +5257,6 @@
   "readingAnalyticsDesc": "Click practice on each message for reading activities.",
   "speakingAnalyticsDesc": "Record voice messages for speaking practice.",
   "audioAnalyticsDesc": "Click practice on each message for listening activities.",
+  "writingAnalyticsDesc": "Send messages to practice writing.",
   "endActivity": "End activity"
 }

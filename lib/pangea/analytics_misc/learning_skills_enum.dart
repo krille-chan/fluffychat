@@ -42,6 +42,8 @@ enum LearningSkillsEnum {
         return L10n.of(context).audioAnalyticsDesc;
       case LearningSkillsEnum.speaking:
         return L10n.of(context).speakingAnalyticsDesc;
+      case LearningSkillsEnum.writing:
+        return L10n.of(context).writingAnalyticsDesc;
       default:
         return null;
     }
