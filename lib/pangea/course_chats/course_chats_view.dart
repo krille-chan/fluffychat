@@ -113,8 +113,9 @@ class CourseChatsView extends StatelessWidget {
                     return ChatListItem(
                       joinedRoom,
                       onTap: () => controller.onChatTap(joinedRoom),
-                      onLongPress: (context) => chatContextMenuAction(
+                      onLongPress: (c) => chatContextMenuAction(
                         joinedRoom,
+                        c,
                         context,
                         () => controller.onChatTap(joinedRoom),
                       ),
@@ -171,8 +172,9 @@ class CourseChatsView extends StatelessWidget {
                     return ChatListItem(
                       joinedRoom,
                       onTap: () => controller.onChatTap(joinedRoom),
-                      onLongPress: (context) => chatContextMenuAction(
+                      onLongPress: (c) => chatContextMenuAction(
                         joinedRoom,
+                        c,
                         context,
                         () => controller.onChatTap(joinedRoom),
                       ),

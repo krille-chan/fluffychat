@@ -17,9 +17,13 @@ import 'package:fluffychat/widgets/future_loading_dialog.dart';
 void chatContextMenuAction(
   Room room,
   BuildContext context,
+  BuildContext outerContext,
   VoidCallback onChatTap, [
   Room? space,
 ]) async {
+  final theme = Theme.of(context);
+  final l10n = L10n.of(context);
+
   final overlay = Overlay.of(context).context.findRenderObject() as RenderBox;
 
   final button = context.findRenderObject() as RenderBox;
@@ -35,8 +39,7 @@ void chatContextMenuAction(
     Offset.zero & overlay.size,
   );
 
-  final displayname =
-      room.getLocalizedDisplayname(MatrixLocals(L10n.of(context)));
+  final displayname = room.getLocalizedDisplayname(MatrixLocals(l10n));
 
   final action = await showMenu<ChatContextAction>(
     context: context,
@@ -57,8 +60,7 @@ void chatContextMenuAction(
               constraints: const BoxConstraints(maxWidth: 128),
               child: Text(
                 displayname,
-                style:
-                    TextStyle(color: Theme.of(context).colorScheme.onSurface),
+                style: TextStyle(color: theme.colorScheme.onSurface),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -82,7 +84,7 @@ void chatContextMenuAction(
               const SizedBox(width: 12),
               Expanded(
                 child: Text(
-                  L10n.of(context).goToCourse(space.getLocalizedDisplayname()),
+                  l10n.goToCourse(space.getLocalizedDisplayname()),
                 ),
               ),
             ],
@@ -102,8 +104,8 @@ void chatContextMenuAction(
               const SizedBox(width: 12),
               Text(
                 room.pushRuleState == PushRuleState.notify
-                    ? L10n.of(context).notificationsOn
-                    : L10n.of(context).notificationsOff,
+                    ? l10n.notificationsOn
+                    : l10n.notificationsOff,
               ),
             ],
           ),
@@ -121,9 +123,7 @@ void chatContextMenuAction(
                 ),
                 const SizedBox(width: 12),
                 Text(
-                  room.markedUnread
-                      ? L10n.of(context).markAsRead
-                      : L10n.of(context).markAsUnread,
+                  room.markedUnread ? l10n.markAsRead : l10n.markAsUnread,
                 ),
               ],
             ),
@@ -139,9 +139,7 @@ void chatContextMenuAction(
                 ),
                 const SizedBox(width: 12),
                 Text(
-                  room.isFavourite
-                      ? L10n.of(context).unpin
-                      : L10n.of(context).pin,
+                  room.isFavourite ? l10n.unpin : l10n.pin,
                 ),
               ],
             ),
@@ -158,7 +156,7 @@ void chatContextMenuAction(
               ),
               const SizedBox(width: 12),
               Text(
-                L10n.of(context).endActivity,
+                l10n.endActivity,
               ),
             ],
           ),
@@ -171,15 +169,13 @@ void chatContextMenuAction(
             children: [
               Icon(
                 Icons.logout_outlined,
-                color: Theme.of(context).colorScheme.onErrorContainer,
+                color: theme.colorScheme.onErrorContainer,
               ),
               const SizedBox(width: 12),
               Text(
-                room.membership == Membership.invite
-                    ? L10n.of(context).delete
-                    : L10n.of(context).leave,
+                room.membership == Membership.invite ? l10n.delete : l10n.leave,
                 style: TextStyle(
-                  color: Theme.of(context).colorScheme.onErrorContainer,
+                  color: theme.colorScheme.onErrorContainer,
                 ),
               ),
             ],
@@ -193,13 +189,13 @@ void chatContextMenuAction(
             children: [
               Icon(
                 Icons.delete_outlined,
-                color: Theme.of(context).colorScheme.onErrorContainer,
+                color: theme.colorScheme.onErrorContainer,
               ),
               const SizedBox(width: 12),
               Text(
-                L10n.of(context).delete,
+                l10n.delete,
                 style: TextStyle(
-                  color: Theme.of(context).colorScheme.onErrorContainer,
+                  color: theme.colorScheme.onErrorContainer,
                 ),
               ),
             ],
@@ -215,7 +211,7 @@ void chatContextMenuAction(
       onChatTap.call();
       return;
     case ChatContextAction.goToSpace:
-      context.go("/rooms/spaces/${space!.id}/details");
+      outerContext.go("/rooms/spaces/${space!.id}/details");
       return;
     case ChatContextAction.favorite:
       await showFutureLoadingDialog(
@@ -242,12 +238,12 @@ void chatContextMenuAction(
     case ChatContextAction.leave:
       final confirmed = await showOkCancelAlertDialog(
         context: context,
-        title: L10n.of(context).areYouSure,
+        title: l10n.areYouSure,
         message: room.isSpace
-            ? L10n.of(context).leaveSpaceDescription
-            : L10n.of(context).leaveRoomDescription,
-        okLabel: L10n.of(context).leave,
-        cancelLabel: L10n.of(context).cancel,
+            ? l10n.leaveSpaceDescription
+            : l10n.leaveRoomDescription,
+        okLabel: l10n.leave,
+        cancelLabel: l10n.cancel,
         isDestructive: true,
       );
       if (confirmed != OkCancelResult.ok) return;
@@ -257,7 +253,11 @@ void chatContextMenuAction(
         future: room.isSpace ? room.leaveSpace : room.leave,
       );
       if (!resp.isError) {
-        context.go("/rooms/spaces/${room.id}/details");
+        outerContext.go(
+          room.courseParent != null
+              ? "/rooms/spaces/${room.courseParent!.id}/details"
+              : "/rooms",
+        );
       }
 
       return;
@@ -273,13 +273,11 @@ void chatContextMenuAction(
       } else {
         final confirmed = await showOkCancelAlertDialog(
           context: context,
-          title: L10n.of(context).areYouSure,
-          okLabel: L10n.of(context).delete,
-          cancelLabel: L10n.of(context).cancel,
+          title: l10n.areYouSure,
+          okLabel: l10n.delete,
+          cancelLabel: l10n.cancel,
           isDestructive: true,
-          message: room.isSpace
-              ? L10n.of(context).deleteSpaceDesc
-              : L10n.of(context).deleteChatDesc,
+          message: room.isSpace ? l10n.deleteSpaceDesc : l10n.deleteChatDesc,
         );
         if (confirmed != OkCancelResult.ok) return;
         final resp = await showFutureLoadingDialog(
@@ -287,7 +285,11 @@ void chatContextMenuAction(
           future: room.delete,
         );
         if (!resp.isError) {
-          context.go("/rooms/spaces/${room.id}/details");
+          outerContext.go(
+            room.courseParent != null
+                ? "/rooms/spaces/${room.courseParent!.id}/details"
+                : "/rooms",
+          );
         }
       }
       return;
