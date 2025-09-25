@@ -256,11 +256,6 @@ class ChatInputRow extends StatelessWidget {
                   onPressed: controller.emojiPickerAction,
                 ),
               ),
-              Container(
-                height: height,
-                alignment: Alignment.center,
-                child: EncryptionButton(controller.room),
-              ),
               if (Matrix.of(context).isMultiAccount &&
                   Matrix.of(context).hasComplexBundles &&
                   Matrix.of(context).currentBundle!.length > 1)

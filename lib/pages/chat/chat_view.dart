@@ -1,5 +1,6 @@
 import 'dart:ui' as ui;
 
+import 'package:fluffychat/pages/chat/encryption_button.dart';
 import 'package:flutter/material.dart';
 
 import 'package:badges/badges.dart';
@@ -126,6 +127,7 @@ class ChatView extends StatelessWidget {
             icon: const Icon(Icons.call_outlined),
             tooltip: L10n.of(context).placeCall,
           ),
+        EncryptionButton(controller.room),
         ChatSettingsPopupMenu(controller.room, true),
       ];
     }
