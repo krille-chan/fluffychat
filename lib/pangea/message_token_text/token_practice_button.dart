@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
 import 'package:material_symbols_icons/symbols.dart';
+import 'package:shimmer/shimmer.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
@@ -391,15 +392,23 @@ class MessageTokenButtonContent extends StatelessWidget {
               color: textColor.withAlpha((colorAlpha * 255).toInt()),
               borderRadius: _borderRadius,
             ),
-            child: Container(
-              height: height,
-              padding: const EdgeInsets.only(top: 10.0),
-              width: max(width, 24.0),
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: theme.colorScheme.primary
-                    .withAlpha((max(0, colorAlpha - 0.7) * 255).toInt()),
-                borderRadius: _borderRadius,
+            child: Shimmer.fromColors(
+              enabled: selectedChoice != null,
+              baseColor: selectedChoice != null
+                  ? AppConfig.gold.withAlpha(20)
+                  : Colors.transparent,
+              highlightColor: selectedChoice != null
+                  ? AppConfig.gold.withAlpha(50)
+                  : Colors.transparent,
+              child: Container(
+                height: height,
+                padding: const EdgeInsets.only(top: 10.0),
+                width: max(width, 24.0),
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: theme.colorScheme.surface,
+                  borderRadius: _borderRadius,
+                ),
               ),
             ),
           ),
