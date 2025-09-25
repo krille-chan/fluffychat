@@ -262,9 +262,12 @@ class ChatDetailsView extends StatelessWidget {
                           Divider(color: theme.dividerColor),
                           ListTile(
                             leading: CircleAvatar(
-                              backgroundColor: theme.scaffoldBackgroundColor,
+                              backgroundColor:
+                                  theme.colorScheme.surfaceContainer,
                               foregroundColor: iconColor,
-                              child: const Icon(Icons.shield_outlined),
+                              child: const Icon(
+                                Icons.admin_panel_settings_outlined,
+                              ),
                             ),
                             title: Text(
                               L10n.of(context).accessAndVisibility,
@@ -282,10 +285,11 @@ class ChatDetailsView extends StatelessWidget {
                               L10n.of(context).whoCanPerformWhichAction,
                             ),
                             leading: CircleAvatar(
-                              backgroundColor: theme.scaffoldBackgroundColor,
+                              backgroundColor:
+                                  theme.colorScheme.surfaceContainer,
                               foregroundColor: iconColor,
                               child: const Icon(
-                                Icons.edit_attributes_outlined,
+                                Icons.tune_outlined,
                               ),
                             ),
                             trailing: const Icon(Icons.chevron_right_outlined),
