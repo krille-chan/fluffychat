@@ -1,4 +1,5 @@
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
+import 'package:fluffychat/pangea/analytics_misc/constructs_model.dart';
 import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 
@@ -43,16 +44,19 @@ class ActivitySummaryAnalyticsModel {
     return totalXP;
   }
 
-  void addConstructs(PangeaMessageEvent event) {
+  void addMessageConstructs(PangeaMessageEvent event) {
     final uses = event.originalSent?.vocabAndMorphUses();
     if (uses == null || uses.isEmpty) return;
+    addConstructs(event.senderId, uses);
+  }
 
-    final user =
-        constructs[event.senderId] ??= UserConstructAnalytics(event.senderId);
-
+  void addConstructs(String userId, List<OneConstructUse> uses) {
+    final user = constructs[userId] ??= UserConstructAnalytics(userId);
     for (final use in uses) {
       user.addUsage(use.identifier);
     }
+
+    constructs[userId] = user;
   }
 
   Map<String, List> generateSuperlatives() {

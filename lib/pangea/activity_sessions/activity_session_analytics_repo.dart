@@ -4,12 +4,12 @@ import 'package:fluffychat/pangea/activity_summary/activity_summary_analytics_mo
 
 class CachedActivityAnalytics {
   final DateTime timestamp;
-  final String lastEventId;
+  final DateTime lastUseTimestamp;
   final ActivitySummaryAnalyticsModel analytics;
 
   CachedActivityAnalytics(
     this.timestamp,
-    this.lastEventId,
+    this.lastUseTimestamp,
     this.analytics,
   );
 }
@@ -31,10 +31,11 @@ class ActivitySessionAnalyticsRepo {
         return null;
       }
 
-      final lastEventId = json['last_event_id'] as String;
+      final lastUseTimestamp =
+          DateTime.parse(json['last_use_timestamp'] as String);
       final analyticsJson = json['analytics'] as Map<String, dynamic>;
       final analytics = ActivitySummaryAnalyticsModel.fromJson(analyticsJson);
-      return CachedActivityAnalytics(timestamp, lastEventId, analytics);
+      return CachedActivityAnalytics(timestamp, lastUseTimestamp, analytics);
     } catch (e) {
       _activityAnalyticsStorage.remove(roomId);
       return null;
@@ -43,12 +44,12 @@ class ActivitySessionAnalyticsRepo {
 
   static Future<void> set(
     String roomId,
-    String lastEventId,
+    DateTime lastUseTimestamp,
     ActivitySummaryAnalyticsModel analytics,
   ) async {
     final json = {
       'timestamp': DateTime.now().toIso8601String(),
-      'last_event_id': lastEventId,
+      'last_use_timestamp': lastUseTimestamp.toIso8601String(),
       'analytics': analytics.toJson(),
     };
     await _activityAnalyticsStorage.write(roomId, json);

@@ -9,6 +9,7 @@ import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
 import 'package:fluffychat/pangea/analytics_summary/learning_progress_indicators.dart';
+import 'package:fluffychat/pangea/chat_settings/widgets/chat_context_menu_action.dart';
 import 'package:fluffychat/pangea/course_chats/activity_template_chat_list_item.dart';
 import 'package:fluffychat/pangea/course_chats/course_chats_page.dart';
 import 'package:fluffychat/pangea/course_chats/unjoined_chat_list_item.dart';
@@ -112,9 +113,10 @@ class CourseChatsView extends StatelessWidget {
                     return ChatListItem(
                       joinedRoom,
                       onTap: () => controller.onChatTap(joinedRoom),
-                      onLongPress: (context) => controller.chatContextAction(
+                      onLongPress: (context) => chatContextMenuAction(
                         joinedRoom,
                         context,
+                        () => controller.onChatTap(joinedRoom),
                       ),
                       activeChat: controller.widget.activeChat == joinedRoom.id,
                     );
@@ -169,9 +171,10 @@ class CourseChatsView extends StatelessWidget {
                     return ChatListItem(
                       joinedRoom,
                       onTap: () => controller.onChatTap(joinedRoom),
-                      onLongPress: (context) => controller.chatContextAction(
+                      onLongPress: (context) => chatContextMenuAction(
                         joinedRoom,
                         context,
+                        () => controller.onChatTap(joinedRoom),
                       ),
                       activeChat: controller.widget.activeChat == joinedRoom.id,
                       borderRadius: BorderRadius.circular(

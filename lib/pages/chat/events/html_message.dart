@@ -460,6 +460,8 @@ class HtmlMessage extends StatelessWidget {
                           selected,
                           highlighted,
                           isNew,
+                          readingAssistanceMode ==
+                              ReadingAssistanceMode.practiceMode,
                         ),
                       ),
                       width: tokenWidth,
@@ -486,6 +488,8 @@ class HtmlMessage extends StatelessWidget {
                                   selected,
                                   highlighted,
                                   isNew,
+                                  readingAssistanceMode ==
+                                      ReadingAssistanceMode.practiceMode,
                                 ),
                               ),
                               linkStyle: linkStyle,
@@ -627,6 +631,7 @@ class HtmlMessage extends StatelessWidget {
                           false,
                           false,
                           false,
+                          false,
                         ),
                       ),
                     ),
@@ -641,6 +646,7 @@ class HtmlMessage extends StatelessWidget {
                         context,
                         color: renderer.backgroundColor(
                           context,
+                          false,
                           false,
                           false,
                           false,

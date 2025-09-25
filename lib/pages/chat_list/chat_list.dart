@@ -18,8 +18,7 @@ import 'package:fluffychat/pages/chat_list/chat_list_view.dart';
 import 'package:fluffychat/pangea/chat_list/utils/app_version_util.dart';
 import 'package:fluffychat/pangea/chat_list/utils/chat_list_handle_space_tap.dart';
 import 'package:fluffychat/pangea/chat_settings/constants/pangea_room_types.dart';
-import 'package:fluffychat/pangea/chat_settings/utils/delete_room.dart';
-import 'package:fluffychat/pangea/chat_settings/widgets/delete_space_dialog.dart';
+import 'package:fluffychat/pangea/chat_settings/widgets/chat_context_menu_action.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/subscription/widgets/subscription_snackbar.dart';
@@ -32,7 +31,6 @@ import 'package:fluffychat/widgets/adaptive_dialogs/adaptive_dialog_action.dart'
 import 'package:fluffychat/widgets/adaptive_dialogs/show_modal_action_popup.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_text_input_dialog.dart';
-import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/share_scaffold_dialog.dart';
 import '../../../utils/account_bundles.dart';
@@ -42,6 +40,7 @@ import '../../widgets/matrix.dart';
 
 import 'package:fluffychat/utils/tor_stub.dart'
     if (dart.library.html) 'package:tor_detector_web/tor_detector_web.dart';
+
 
 enum PopupMenuAction {
   settings,
@@ -700,351 +699,290 @@ class ChatListController extends State<ChatList>
     super.dispose();
   }
 
+  // #Pangea
   void chatContextAction(
     Room room,
     BuildContext posContext, [
     Room? space,
-  ]) async {
-    final overlay =
-        Overlay.of(posContext).context.findRenderObject() as RenderBox;
+  ]) =>
+      chatContextMenuAction(
+        room,
+        posContext,
+        () => onChatTap(room),
+        space,
+      );
+  // void chatContextAction(
+  //   Room room,
+  //   BuildContext posContext, [
+  //   Room? space,
+  // ]) async {
+  //   final overlay =
+  //       Overlay.of(posContext).context.findRenderObject() as RenderBox;
 
-    final button = posContext.findRenderObject() as RenderBox;
+  //   final button = posContext.findRenderObject() as RenderBox;
 
-    final position = RelativeRect.fromRect(
-      Rect.fromPoints(
-        button.localToGlobal(const Offset(0, -65), ancestor: overlay),
-        button.localToGlobal(
-          button.size.bottomRight(Offset.zero) + const Offset(-50, 0),
-          ancestor: overlay,
-        ),
-      ),
-      Offset.zero & overlay.size,
-    );
+  //   final position = RelativeRect.fromRect(
+  //     Rect.fromPoints(
+  //       button.localToGlobal(const Offset(0, -65), ancestor: overlay),
+  //       button.localToGlobal(
+  //         button.size.bottomRight(Offset.zero) + const Offset(-50, 0),
+  //         ancestor: overlay,
+  //       ),
+  //     ),
+  //     Offset.zero & overlay.size,
+  //   );
 
-    final displayname =
-        room.getLocalizedDisplayname(MatrixLocals(L10n.of(context)));
+  //   final displayname =
+  //       room.getLocalizedDisplayname(MatrixLocals(L10n.of(context)));
 
-    // #Pangea
-    // final spacesWithPowerLevels = room.client.rooms
-    //     .where(
-    //       (space) =>
-    //           space.isSpace &&
-    //           space.canChangeStateEvent(EventTypes.SpaceChild) &&
-    //           !space.spaceChildren.any((c) => c.roomId == room.id),
-    //     )
-    //     .toList();
-    // Pangea#
+  //   final spacesWithPowerLevels = room.client.rooms
+  //       .where(
+  //         (space) =>
+  //             space.isSpace &&
+  //             space.canChangeStateEvent(EventTypes.SpaceChild) &&
+  //             !space.spaceChildren.any((c) => c.roomId == room.id),
+  //       )
+  //       .toList();
 
-    final action = await showMenu<ChatContextAction>(
-      context: posContext,
-      position: position,
-      items: [
-        PopupMenuItem(
-          value: ChatContextAction.open,
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            spacing: 12.0,
-            children: [
-              Avatar(
-                mxContent: room.avatar,
-                name: displayname,
-                // #Pangea
-                userId: room.directChatMatrixID,
-                // Pangea#
-              ),
-              ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 128),
-                child: Text(
-                  displayname,
-                  style:
-                      TextStyle(color: Theme.of(context).colorScheme.onSurface),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
-            ],
-          ),
-        ),
-        const PopupMenuDivider(),
-        if (space != null)
-          PopupMenuItem(
-            value: ChatContextAction.goToSpace,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Avatar(
-                  mxContent: space.avatar,
-                  size: Avatar.defaultSize / 2,
-                  name: space.getLocalizedDisplayname(),
-                  // #Pangea
-                  userId: space.directChatMatrixID,
-                  // Pangea#
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: Text(
-                    // Pangea#
-                    // L10n.of(context).goToSpace(space.getLocalizedDisplayname()),
-                    L10n.of(context)
-                        .goToCourse(space.getLocalizedDisplayname()),
-                    // Pangea#
-                  ),
-                ),
-              ],
-            ),
-          ),
-        if (room.membership == Membership.join) ...[
-          PopupMenuItem(
-            value: ChatContextAction.mute,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(
-                  // #Pangea
-                  // room.pushRuleState == PushRuleState.notify
-                  //     ? Icons.notifications_off_outlined
-                  //     : Icons.notifications_off,
-                  room.pushRuleState == PushRuleState.notify
-                      ? Icons.notifications_on_outlined
-                      : Icons.notifications_off_outlined,
-                  // Pangea#
-                ),
-                const SizedBox(width: 12),
-                Text(
-                  // #Pangea
-                  // room.pushRuleState == PushRuleState.notify
-                  //     ? L10n.of(context).muteChat
-                  //     : L10n.of(context).unmuteChat,
-                  room.pushRuleState == PushRuleState.notify
-                      ? L10n.of(context).notificationsOn
-                      : L10n.of(context).notificationsOff,
-                  // Pangea#
-                ),
-              ],
-            ),
-          ),
-          PopupMenuItem(
-            value: ChatContextAction.markUnread,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(
-                  room.markedUnread
-                      ? Icons.mark_as_unread
-                      : Icons.mark_as_unread_outlined,
-                ),
-                const SizedBox(width: 12),
-                Text(
-                  room.markedUnread
-                      ? L10n.of(context).markAsRead
-                      : L10n.of(context).markAsUnread,
-                ),
-              ],
-            ),
-          ),
-          PopupMenuItem(
-            value: ChatContextAction.favorite,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(
-                  room.isFavourite ? Icons.push_pin : Icons.push_pin_outlined,
-                ),
-                const SizedBox(width: 12),
-                Text(
-                  room.isFavourite
-                      ? L10n.of(context).unpin
-                      : L10n.of(context).pin,
-                ),
-              ],
-            ),
-          ),
-          // #Pangea
-          // if (spacesWithPowerLevels.isNotEmpty)
-          //   PopupMenuItem(
-          //     value: ChatContextAction.addToSpace,
-          //     child: Row(
-          //       mainAxisSize: MainAxisSize.min,
-          //       children: [
-          //         const Icon(Icons.group_work_outlined),
-          //         const SizedBox(width: 12),
-          //         Text(L10n.of(context).addToSpace),
-          //       ],
-          //     ),
-          //   ),
-          // Pangea#
-        ],
-        PopupMenuItem(
-          value: ChatContextAction.leave,
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Icon(
-                // #Pangea
-                // Icons.delete_outlined,
-                Icons.logout_outlined,
-                // Pangea#
-                color: Theme.of(context).colorScheme.onErrorContainer,
-              ),
-              const SizedBox(width: 12),
-              Text(
-                room.membership == Membership.invite
-                    ? L10n.of(context).delete
-                    : L10n.of(context).leave,
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.onErrorContainer,
-                ),
-              ),
-            ],
-          ),
-        ),
-        // #Pangea
-        if (room.isRoomAdmin && !room.isDirectChat)
-          PopupMenuItem(
-            value: ChatContextAction.delete,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(
-                  Icons.delete_outlined,
-                  color: Theme.of(context).colorScheme.onErrorContainer,
-                ),
-                const SizedBox(width: 12),
-                Text(
-                  L10n.of(context).delete,
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.onErrorContainer,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        // Pangea#
-      ],
-    );
+  //   final action = await showMenu<ChatContextAction>(
+  //     context: posContext,
+  //     position: position,
+  //     items: [
+  //       PopupMenuItem(
+  //         value: ChatContextAction.open,
+  //         child: Row(
+  //           mainAxisSize: MainAxisSize.min,
+  //           spacing: 12.0,
+  //           children: [
+  //             Avatar(
+  //               mxContent: room.avatar,
+  //               name: displayname,
+  //             ),
+  //             ConstrainedBox(
+  //               constraints: const BoxConstraints(maxWidth: 128),
+  //               child: Text(
+  //                 displayname,
+  //                 style:
+  //                     TextStyle(color: Theme.of(context).colorScheme.onSurface),
+  //                 maxLines: 2,
+  //                 overflow: TextOverflow.ellipsis,
+  //               ),
+  //             ),
+  //           ],
+  //         ),
+  //       ),
+  //       const PopupMenuDivider(),
+  //       if (space != null)
+  //         PopupMenuItem(
+  //           value: ChatContextAction.goToSpace,
+  //           child: Row(
+  //             mainAxisSize: MainAxisSize.min,
+  //             children: [
+  //               Avatar(
+  //                 mxContent: space.avatar,
+  //                 size: Avatar.defaultSize / 2,
+  //                 name: space.getLocalizedDisplayname(),
+  //               ),
+  //               const SizedBox(width: 12),
+  //               Expanded(
+  //                 child: Text(
+  //                   L10n.of(context).goToSpace(space.getLocalizedDisplayname()),
+  //                 ),
+  //               ),
+  //             ],
+  //           ),
+  //         ),
+  //       if (room.membership == Membership.join) ...[
+  //         PopupMenuItem(
+  //           value: ChatContextAction.mute,
+  //           child: Row(
+  //             mainAxisSize: MainAxisSize.min,
+  //             children: [
+  //               Icon(
+  //                 room.pushRuleState == PushRuleState.notify
+  //                     ? Icons.notifications_off_outlined
+  //                     : Icons.notifications_off,
+  //               ),
+  //               const SizedBox(width: 12),
+  //               Text(
+  //                 room.pushRuleState == PushRuleState.notify
+  //                     ? L10n.of(context).muteChat
+  //                     : L10n.of(context).unmuteChat,
+  //               ),
+  //             ],
+  //           ),
+  //         ),
+  //         PopupMenuItem(
+  //           value: ChatContextAction.markUnread,
+  //           child: Row(
+  //             mainAxisSize: MainAxisSize.min,
+  //             children: [
+  //               Icon(
+  //                 room.markedUnread
+  //                     ? Icons.mark_as_unread
+  //                     : Icons.mark_as_unread_outlined,
+  //               ),
+  //               const SizedBox(width: 12),
+  //               Text(
+  //                 room.markedUnread
+  //                     ? L10n.of(context).markAsRead
+  //                     : L10n.of(context).markAsUnread,
+  //               ),
+  //             ],
+  //           ),
+  //         ),
+  //         PopupMenuItem(
+  //           value: ChatContextAction.favorite,
+  //           child: Row(
+  //             mainAxisSize: MainAxisSize.min,
+  //             children: [
+  //               Icon(
+  //                 room.isFavourite ? Icons.push_pin : Icons.push_pin_outlined,
+  //               ),
+  //               const SizedBox(width: 12),
+  //               Text(
+  //                 room.isFavourite
+  //                     ? L10n.of(context).unpin
+  //                     : L10n.of(context).pin,
+  //               ),
+  //             ],
+  //           ),
+  //         ),
+  //         if (spacesWithPowerLevels.isNotEmpty)
+  //           PopupMenuItem(
+  //             value: ChatContextAction.addToSpace,
+  //             child: Row(
+  //               mainAxisSize: MainAxisSize.min,
+  //               children: [
+  //                 const Icon(Icons.group_work_outlined),
+  //                 const SizedBox(width: 12),
+  //                 Text(L10n.of(context).addToSpace),
+  //               ],
+  //             ),
+  //           ),
+  //       ],
+  //       PopupMenuItem(
+  //         value: ChatContextAction.leave,
+  //         child: Row(
+  //           mainAxisSize: MainAxisSize.min,
+  //           children: [
+  //             Icon(
+  //               Icons.delete_outlined,
+  //               color: Theme.of(context).colorScheme.onErrorContainer,
+  //             ),
+  //             const SizedBox(width: 12),
+  //             Text(
+  //               room.membership == Membership.invite
+  //                   ? L10n.of(context).delete
+  //                   : L10n.of(context).leave,
+  //               style: TextStyle(
+  //                 color: Theme.of(context).colorScheme.onErrorContainer,
+  //               ),
+  //             ),
+  //           ],
+  //         ),
+  //       ),
+  //       if (room.membership == Membership.invite)
+  //         PopupMenuItem(
+  //           value: ChatContextAction.block,
+  //           child: Row(
+  //             mainAxisSize: MainAxisSize.min,
+  //             children: [
+  //               Icon(
+  //                 Icons.block_outlined,
+  //                 color: Theme.of(context).colorScheme.onErrorContainer,
+  //               ),
+  //               const SizedBox(width: 12),
+  //               Text(
+  //                 L10n.of(context).block,
+  //                 style: TextStyle(
+  //                   color: Theme.of(context).colorScheme.onErrorContainer,
+  //                 ),
+  //               ),
+  //             ],
+  //           ),
+  //         ),
+  //     ],
+  //   );
 
-    if (action == null) return;
-    if (!mounted) return;
+  //   if (action == null) return;
+  //   if (!mounted) return;
 
-    switch (action) {
-      case ChatContextAction.open:
-        onChatTap(room);
-        return;
-      case ChatContextAction.goToSpace:
-        setActiveSpace(space!.id);
-        return;
-      case ChatContextAction.favorite:
-        await showFutureLoadingDialog(
-          context: context,
-          future: () => room.setFavourite(!room.isFavourite),
-        );
-        return;
-      case ChatContextAction.markUnread:
-        await showFutureLoadingDialog(
-          context: context,
-          future: () => room.markUnread(!room.markedUnread),
-        );
-        return;
-      case ChatContextAction.mute:
-        await showFutureLoadingDialog(
-          context: context,
-          future: () => room.setPushRuleState(
-            room.pushRuleState == PushRuleState.notify
-                ? PushRuleState.mentionsOnly
-                : PushRuleState.notify,
-          ),
-        );
-        return;
-      case ChatContextAction.leave:
-        final confirmed = await showOkCancelAlertDialog(
-          context: context,
-          title: L10n.of(context).areYouSure,
-          // #Pangea
-          // message: L10n.of(context).archiveRoomDescription,
-          message: room.isSpace
-              ? L10n.of(context).leaveSpaceDescription
-              : L10n.of(context).leaveRoomDescription,
-          // Pangea#
-          okLabel: L10n.of(context).leave,
-          cancelLabel: L10n.of(context).cancel,
-          isDestructive: true,
-        );
-        // #Pangea
-        // if (confirmed == OkCancelResult.cancel) return;
-        if (confirmed != OkCancelResult.ok) return;
-        // Pangea#
-        if (!mounted) return;
+  //   switch (action) {
+  //     case ChatContextAction.open:
+  //       onChatTap(room);
+  //       return;
+  //     case ChatContextAction.goToSpace:
+  //       setActiveSpace(space!.id);
+  //       return;
+  //     case ChatContextAction.favorite:
+  //       await showFutureLoadingDialog(
+  //         context: context,
+  //         future: () => room.setFavourite(!room.isFavourite),
+  //       );
+  //       return;
+  //     case ChatContextAction.markUnread:
+  //       await showFutureLoadingDialog(
+  //         context: context,
+  //         future: () => room.markUnread(!room.markedUnread),
+  //       );
+  //       return;
+  //     case ChatContextAction.mute:
+  //       await showFutureLoadingDialog(
+  //         context: context,
+  //         future: () => room.setPushRuleState(
+  //           room.pushRuleState == PushRuleState.notify
+  //               ? PushRuleState.mentionsOnly
+  //               : PushRuleState.notify,
+  //         ),
+  //       );
+  //       return;
+  //     case ChatContextAction.block:
+  //       final inviteEvent = room.getState(
+  //         EventTypes.RoomMember,
+  //         room.client.userID!,
+  //       );
+  //       context.go(
+  //         '/rooms/settings/security/ignorelist',
+  //         extra: inviteEvent?.senderId,
+  //       );
+  //     case ChatContextAction.leave:
+  //       final confirmed = await showOkCancelAlertDialog(
+  //         context: context,
+  //         title: L10n.of(context).areYouSure,
+  //         message: L10n.of(context).archiveRoomDescription,
+  //         okLabel: L10n.of(context).leave,
+  //         cancelLabel: L10n.of(context).cancel,
+  //         isDestructive: true,
+  //       );
+  //       if (confirmed == OkCancelResult.cancel) return;
+  //       if (!mounted) return;
 
-        // #Pangea
-        // await showFutureLoadingDialog(context: context, future: room.leave);
-        final resp = await showFutureLoadingDialog(
-          context: context,
-          future: room.isSpace ? room.leaveSpace : room.leave,
-        );
-        if (mounted && !resp.isError) {
-          context.go("/rooms");
-        }
-        // Pangea#
+  //       await showFutureLoadingDialog(context: context, future: room.leave);
 
-        return;
-      // #Pangea
-      // case ChatContextAction.addToSpace:
-      //   final space = await showModalActionPopup(
-      //     context: context,
-      //     title: L10n.of(context).space,
-      //     actions: spacesWithPowerLevels
-      //         .map(
-      //           (space) => AdaptiveModalAction(
-      //             value: space,
-      //             label: space
-      //                 .getLocalizedDisplayname(MatrixLocals(L10n.of(context))),
-      //           ),
-      //         )
-      //         .toList(),
-      //   );
-      //   if (space == null) return;
-      //   await showFutureLoadingDialog(
-      //     context: context,
-      //     future: () => space.setSpaceChild(room.id),
-      //   );
-      // Pangea#
-      case ChatContextAction.delete:
-        if (room.isSpace) {
-          final resp = await showDialog<bool?>(
-            context: context,
-            builder: (_) => DeleteSpaceDialog(space: room),
-          );
-          if (resp == true && mounted) {
-            context.go("/rooms");
-          }
-        } else {
-          final confirmed = await showOkCancelAlertDialog(
-            context: context,
-            title: L10n.of(context).areYouSure,
-            okLabel: L10n.of(context).delete,
-            cancelLabel: L10n.of(context).cancel,
-            isDestructive: true,
-            message: room.isSpace
-                ? L10n.of(context).deleteSpaceDesc
-                : L10n.of(context).deleteChatDesc,
-          );
-          if (confirmed != OkCancelResult.ok) return;
-          if (!mounted) return;
-
-          final resp = await showFutureLoadingDialog(
-            context: context,
-            future: room.delete,
-          );
-          if (mounted && !resp.isError) {
-            activeSpaceId != null
-                ? context.go('/rooms/spaces/$activeSpaceId/details')
-                : context.go("/rooms");
-          }
-        }
-        return;
-      // Pangea#
-    }
-  }
+  //       return;
+  //     case ChatContextAction.addToSpace:
+  //       final space = await showModalActionPopup(
+  //         context: context,
+  //         title: L10n.of(context).space,
+  //         actions: spacesWithPowerLevels
+  //             .map(
+  //               (space) => AdaptiveModalAction(
+  //                 value: space,
+  //                 label: space
+  //                     .getLocalizedDisplayname(MatrixLocals(L10n.of(context))),
+  //               ),
+  //             )
+  //             .toList(),
+  //       );
+  //       if (space == null) return;
+  //       await showFutureLoadingDialog(
+  //         context: context,
+  //         future: () => space.setSpaceChild(room.id),
+  //       );
+  //   }
+  // }
+  // Pangea#
 
   void dismissStatusList() async {
     final result = await showOkCancelAlertDialog(
@@ -1302,6 +1240,7 @@ enum ChatContextAction {
   // #Pangea
   // addToSpace,
   delete,
+  endActivity,
   // Pangea#
 }
 

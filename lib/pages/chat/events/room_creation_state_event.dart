@@ -104,14 +104,13 @@ class RoomCreationStateEventState extends State<RoomCreationStateEvent> {
           ),
           // #Pangea
           const SizedBox(height: 16.0),
-          InstructionsInlineTooltip(
+          const InstructionsInlineTooltip(
             instructionsEnum: InstructionsEnum.clickMessage,
-            padding: const EdgeInsets.only(
+            padding: EdgeInsets.only(
               left: 16.0,
               right: 16.0,
               top: 16.0,
             ),
-            onClose: () => setState(() {}),
             animate: false,
           ),
           if (_members <= 1 && InstructionsEnum.clickMessage.isToggledOff)

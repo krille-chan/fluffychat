@@ -89,42 +89,32 @@ class ActivitySummary extends StatelessWidget {
                 spacing: 4.0,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  InlineEllipsisText(
-                    text: activity.description,
-                    maxLines: showInstructions ? null : 2,
-                    trailingWidth: 50.0,
-                    style: DefaultTextStyle.of(context)
-                        .style
-                        .copyWith(fontSize: 12.0),
-                    trailing: WidgetSpan(
-                      alignment: PlaceholderAlignment.middle,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Theme.of(context).colorScheme.surface,
+                  Text(
+                    activity.description,
+                    style: theme.textTheme.bodyMedium,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 4.0,
+                    ),
+                    child: Row(
+                      spacing: 4.0,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          L10n.of(context).details,
+                          style: theme.textTheme.bodyMedium,
                         ),
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 4.0,
-                        ),
-                        child: TextButton(
-                          onPressed: toggleInstructions,
-                          style: TextButton.styleFrom(
-                            minimumSize: Size.zero,
-                            padding: EdgeInsets.zero,
-                            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                            backgroundColor:
-                                Theme.of(context).colorScheme.surface,
-                          ),
-                          child: Text(
+                        InkWell(
+                          onTap: toggleInstructions,
+                          child: Icon(
                             showInstructions
-                                ? L10n.of(context).less
-                                : L10n.of(context).moreLabel,
-                            style: TextStyle(
-                              fontSize: 12.0,
-                              color: Theme.of(context).colorScheme.primary,
-                            ),
+                                ? Icons.arrow_drop_up
+                                : Icons.arrow_drop_down,
+                            size: 20.0,
                           ),
                         ),
-                      ),
+                      ],
                     ),
                   ),
                   if (showInstructions) ...[
@@ -134,7 +124,7 @@ class ActivitySummary extends StatelessWidget {
                       children: [
                         Text(
                           activity.req.mode,
-                          style: const TextStyle(fontSize: 12.0),
+                          style: theme.textTheme.bodyMedium,
                         ),
                         Row(
                           spacing: 4.0,
@@ -143,7 +133,7 @@ class ActivitySummary extends StatelessWidget {
                             const Icon(Icons.school, size: 12.0),
                             Text(
                               activity.req.cefrLevel.string,
-                              style: const TextStyle(fontSize: 12.0),
+                              style: theme.textTheme.bodyMedium,
                             ),
                           ],
                         ),
@@ -154,7 +144,7 @@ class ActivitySummary extends StatelessWidget {
                       iconSize: 16.0,
                       child: Text(
                         activity.learningObjective,
-                        style: const TextStyle(fontSize: 12.0),
+                        style: theme.textTheme.bodyMedium,
                       ),
                     ),
                     ActivitySessionDetailsRow(
@@ -166,7 +156,9 @@ class ActivitySummary extends StatelessWidget {
                           "body": Style(
                             margin: Margins.all(0),
                             padding: HtmlPaddings.all(0),
-                            fontSize: FontSize(12.0),
+                            fontSize: FontSize(
+                              theme.textTheme.bodyMedium!.fontSize!,
+                            ),
                           ),
                         },
                       ),
@@ -194,7 +186,7 @@ class ActivitySummary extends StatelessWidget {
                                 ),
                                 child: Text(
                                   vocab.lemma,
-                                  style: const TextStyle(fontSize: 12),
+                                  style: theme.textTheme.bodyMedium,
                                 ),
                               ),
                             )

@@ -3,6 +3,11 @@ part of "pangea_room_extension.dart";
 extension RoomInformationRoomExtension on Room {
   String? get creatorId => getState(EventTypes.RoomCreate)?.senderId;
 
+  DateTime? get creationTimestamp {
+    final creationEvent = getState(EventTypes.RoomCreate) as Event?;
+    return creationEvent?.originServerTs;
+  }
+
   bool isFirstOrSecondChild(String roomId) {
     return isSpace &&
         (spaceChildren.any((room) => room.roomId == roomId) ||

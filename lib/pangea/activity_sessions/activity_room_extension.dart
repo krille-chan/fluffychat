@@ -12,6 +12,7 @@ import 'package:fluffychat/pangea/activity_sessions/activity_session_analytics_r
 import 'package:fluffychat/pangea/activity_summary/activity_summary_analytics_model.dart';
 import 'package:fluffychat/pangea/activity_summary/activity_summary_model.dart';
 import 'package:fluffychat/pangea/activity_summary/activity_summary_request_model.dart';
+import 'package:fluffychat/pangea/analytics_misc/constructs_model.dart';
 import 'package:fluffychat/pangea/bot/utils/bot_name.dart';
 import 'package:fluffychat/pangea/chat_settings/constants/pangea_room_types.dart';
 import 'package:fluffychat/pangea/common/config/environment.dart';
@@ -160,7 +161,10 @@ extension ActivityRoomExtension on Room {
     final timeline = this.timeline ?? await getTimeline();
     for (final event in events) {
       if (event.type != EventTypes.Message ||
-          event.messageType != MessageTypes.Text) {
+          ![
+            MessageTypes.Text,
+            MessageTypes.Audio,
+          ].contains(event.messageType)) {
         continue;
       }
 
@@ -170,21 +174,38 @@ extension ActivityRoomExtension on Room {
         ownMessage: client.userID == event.senderId,
       );
 
-      final activityMessage = ActivitySummaryResultsMessage(
-        userId: event.senderId,
-        sent: pangeaMessage.originalSent?.text ?? event.body,
-        written: pangeaMessage.originalWrittenContent,
-        time: event.originServerTs,
-        tool: [
-          if (pangeaMessage.originalSent?.choreo?.includedIT == true) "it",
-          if (pangeaMessage.originalSent?.choreo?.includedIGC == true) "igc",
-        ],
-      );
+      if (event.messageType == MessageTypes.Audio &&
+          pangeaMessage.getSpeechToTextLocal() == null) {
+        continue;
+      }
+
+      final activityMessage = event.messageType == MessageTypes.Text
+          ? ActivitySummaryResultsMessage(
+              userId: event.senderId,
+              sent: pangeaMessage.originalSent?.text ?? event.body,
+              written: pangeaMessage.originalWrittenContent,
+              time: event.originServerTs,
+              tool: [
+                if (pangeaMessage.originalSent?.choreo?.includedIT == true)
+                  "it",
+                if (pangeaMessage.originalSent?.choreo?.includedIGC == true)
+                  "igc",
+              ],
+            )
+          : ActivitySummaryResultsMessage(
+              userId: event.senderId,
+              sent:
+                  pangeaMessage.getSpeechToTextLocal()!.transcript.text.trim(),
+              written:
+                  pangeaMessage.getSpeechToTextLocal()!.transcript.text.trim(),
+              time: event.originServerTs,
+              tool: [],
+            );
 
       messages.add(activityMessage);
 
       if (activitySummary?.analytics == null) {
-        analytics.addConstructs(pangeaMessage);
+        analytics.addMessageConstructs(pangeaMessage);
       }
     }
 
@@ -396,28 +417,33 @@ extension ActivityRoomExtension on Room {
     final cached = ActivitySessionAnalyticsRepo.get(id);
     final analytics = cached?.analytics ?? ActivitySummaryAnalyticsModel();
 
-    final eventsSince = await getAllEvents(since: cached?.lastEventId);
-    final timeline = this.timeline ?? await getTimeline();
-    final messageEvents = getPangeaMessageEvents(
-      eventsSince,
-      timeline,
-      msgtypes: [
-        MessageTypes.Text,
-        MessageTypes.Audio,
-      ],
-    );
+    DateTime? timestamp = creationTimestamp;
+    if (cached != null) {
+      timestamp = cached.lastUseTimestamp;
+    }
 
-    if (messageEvents.isEmpty) {
+    final List<OneConstructUse> uses = [];
+
+    for (final use
+        in MatrixState.pangeaController.getAnalytics.constructListModel.uses) {
+      final useTimestamp = use.metadata.timeStamp;
+      if (timestamp != null &&
+          (useTimestamp == timestamp || useTimestamp.isBefore(timestamp))) {
+        break;
+      }
+
+      if (use.metadata.roomId != id) continue;
+      uses.add(use);
+    }
+
+    if (uses.isEmpty) {
       return analytics;
     }
 
-    for (final pangeaMessage in messageEvents) {
-      analytics.addConstructs(pangeaMessage);
-    }
-
+    analytics.addConstructs(client.userID!, uses);
     await ActivitySessionAnalyticsRepo.set(
       id,
-      messageEvents.last.eventId,
+      uses.first.metadata.timeStamp,
       analytics,
     );
 

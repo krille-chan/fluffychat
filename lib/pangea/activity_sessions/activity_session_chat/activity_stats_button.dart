@@ -30,7 +30,7 @@ class ActivityStatsButton extends StatefulWidget {
 
 class _ActivityStatsButtonState extends State<ActivityStatsButton> {
   StreamSubscription? _analyticsSubscription;
-  ActivitySummaryAnalyticsModel analytics = ActivitySummaryAnalyticsModel();
+  ActivitySummaryAnalyticsModel? analytics;
 
   @override
   void initState() {
@@ -47,7 +47,8 @@ class _ActivityStatsButtonState extends State<ActivityStatsButton> {
   Client get client => widget.controller.room.client;
 
   void _showInstructionPopup() {
-    if (InstructionsEnum.activityStatsMenu.isToggledOff || xpCount <= 0) {
+    if (InstructionsEnum.activityStatsMenu.isToggledOff ||
+        (xpCount ?? 0) <= 0) {
       return;
     }
 
@@ -112,16 +113,16 @@ class _ActivityStatsButtonState extends State<ActivityStatsButton> {
     super.dispose();
   }
 
-  int get xpCount => analytics.totalXPForUser(
+  int? get xpCount => analytics?.totalXPForUser(
         client.userID!,
       );
 
-  int get vocabCount => analytics.uniqueConstructCountForUser(
+  int? get vocabCount => analytics?.uniqueConstructCountForUser(
         client.userID!,
         ConstructTypeEnum.vocab,
       );
 
-  int get grammarCount => analytics.uniqueConstructCountForUser(
+  int? get grammarCount => analytics?.uniqueConstructCountForUser(
         client.userID!,
         ConstructTypeEnum.morph,
       );
@@ -131,7 +132,7 @@ class _ActivityStatsButtonState extends State<ActivityStatsButton> {
     final analytics = await widget.controller.room.getActivityAnalytics();
     if (mounted) {
       setState(() => this.analytics = analytics);
-      if (prevXP == 0 && xpCount > 0) _showInstructionPopup();
+      if (prevXP == 0 && (xpCount ?? 0) > 0) _showInstructionPopup();
     }
   }
 
@@ -143,32 +144,34 @@ class _ActivityStatsButtonState extends State<ActivityStatsButton> {
         !widget.controller.showActivityDropdown,
       ),
       borderRadius: BorderRadius.circular(12),
-      color: xpCount > 0
+      color: (xpCount ?? 0) > 0
           ? AppConfig.gold.withAlpha(180)
           : theme.colorScheme.surface,
-      depressed: xpCount <= 0 || widget.controller.showActivityDropdown,
+      depressed: (xpCount ?? 0) <= 0 || widget.controller.showActivityDropdown,
       child: AnimatedContainer(
         duration: FluffyThemes.animationDuration,
         width: 300,
         height: 55,
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         decoration: BoxDecoration(
-          color: xpCount > 0
+          color: (xpCount ?? 0) > 0
               ? AppConfig.gold.withAlpha(180)
               : theme.colorScheme.surface,
           borderRadius: BorderRadius.circular(12),
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            _StatsBadge(icon: Icons.radar, value: "$xpCount XP"),
-            _StatsBadge(icon: Symbols.dictionary, value: "$vocabCount"),
-            _StatsBadge(
-              icon: Symbols.toys_and_games,
-              value: "$grammarCount",
-            ),
-          ],
-        ),
+        child: analytics == null
+            ? const CircularProgressIndicator.adaptive()
+            : Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  _StatsBadge(icon: Icons.radar, value: "$xpCount XP"),
+                  _StatsBadge(icon: Symbols.dictionary, value: "$vocabCount"),
+                  _StatsBadge(
+                    icon: Symbols.toys_and_games,
+                    value: "$grammarCount",
+                  ),
+                ],
+              ),
       ),
     );
   }

@@ -91,7 +91,9 @@ class TokenRenderingUtil {
     bool selected,
     bool highlighted,
     bool isNew,
+    bool practiceMode,
   ) {
+    if (practiceMode) return Colors.white.withAlpha(0);
     if (highlighted) return Theme.of(context).colorScheme.primary;
     if (isNew) return AppConfig.success;
     return selected

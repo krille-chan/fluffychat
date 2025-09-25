@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_room_extension.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
+import 'package:fluffychat/pangea/instructions/instructions_inline_tooltip.dart';
 
 class ActivityRoleTooltip extends StatefulWidget {
   final Choreographer choreographer;
@@ -54,34 +54,14 @@ class ActivityRoleTooltipState extends State<ActivityRoleTooltip> {
           ),
         ),
       ),
-      child: AnimatedSize(
-        duration: FluffyThemes.animationDuration,
-        child: room.hasDismissedGoalTooltip
-            ? const SizedBox()
-            : Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Row(
-                  spacing: 10.0,
-                  children: [
-                    Expanded(
-                      child: Text(
-                        room.ownRole!.goal!,
-                        style: const TextStyle(
-                          fontSize: 12.0,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                    IconButton(
-                      icon: const Icon(Icons.close),
-                      onPressed: () async {
-                        await room.dismissGoalTooltip();
-                        if (mounted) setState(() {});
-                      },
-                    ),
-                  ],
-                ),
-              ),
+      child: InlineTooltip(
+        message: room.ownRole!.goal!,
+        isClosed: room.hasDismissedGoalTooltip,
+        onClose: () async {
+          await room.dismissGoalTooltip();
+          if (mounted) setState(() {});
+        },
+        padding: const EdgeInsets.all(16.0),
       ),
     );
   }

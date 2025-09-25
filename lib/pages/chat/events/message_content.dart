@@ -360,7 +360,11 @@ class MessageContent extends StatelessWidget {
                 pangeaMessageEvent: pangeaMessageEvent,
                 nextEvent: nextEvent,
                 prevEvent: prevEvent,
-                onClick: event.isActivityMessage ? null : onClick,
+                onClick: event.isActivityMessage ||
+                        readingAssistanceMode ==
+                            ReadingAssistanceMode.practiceMode
+                    ? null
+                    : onClick,
                 isTransitionAnimation: isTransitionAnimation,
                 readingAssistanceMode: readingAssistanceMode,
                 // Pangea#

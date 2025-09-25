@@ -5,52 +5,83 @@ import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/instructions/instructions_enum.dart';
 
-class InstructionsInlineTooltip extends StatefulWidget {
+class InstructionsInlineTooltip extends StatelessWidget {
   final InstructionsEnum instructionsEnum;
-  final bool bold;
   final bool animate;
   final EdgeInsets? padding;
-  final VoidCallback? onClose;
 
   const InstructionsInlineTooltip({
     super.key,
     required this.instructionsEnum,
-    this.bold = false,
     this.animate = true,
     this.padding,
-    this.onClose,
   });
 
   @override
-  InstructionsInlineTooltipState createState() =>
-      InstructionsInlineTooltipState();
+  Widget build(BuildContext context) {
+    return InlineTooltip(
+      message: instructionsEnum.body(L10n.of(context)),
+      isClosed: instructionsEnum.isToggledOff,
+      onClose: () => instructionsEnum.setToggledOff(true),
+      animate: animate,
+      padding: padding,
+    );
+  }
 }
 
-class InstructionsInlineTooltipState extends State<InstructionsInlineTooltip>
+class InlineTooltip extends StatefulWidget {
+  final String message;
+  final bool isClosed;
+
+  final EdgeInsets? padding;
+  final VoidCallback? onClose;
+  final bool animate;
+
+  const InlineTooltip({
+    super.key,
+    required this.message,
+    required this.isClosed,
+    this.onClose,
+    this.animate = true,
+    this.padding,
+  });
+
+  @override
+  InlineTooltipState createState() => InlineTooltipState();
+}
+
+class InlineTooltipState extends State<InlineTooltip>
     with TickerProviderStateMixin {
-  bool _isToggledOff = true;
   AnimationController? _controller;
   Animation<double>? _animation;
 
+  bool _isClosed = true;
+
   @override
-  void didUpdateWidget(covariant InstructionsInlineTooltip oldWidget) {
-    if (oldWidget.instructionsEnum != widget.instructionsEnum) {
-      setToggled();
+  void initState() {
+    super.initState();
+    _isClosed = widget.isClosed;
+    _openTooltip();
+  }
+
+  @override
+  void didUpdateWidget(covariant InlineTooltip oldWidget) {
+    if (oldWidget.message != widget.message) {
+      _isClosed = widget.isClosed;
+      _openTooltip();
     }
     super.didUpdateWidget(oldWidget);
   }
 
   @override
-  void initState() {
-    super.initState();
-    setToggled();
+  void dispose() {
+    _controller?.dispose();
+    super.dispose();
   }
 
-  Future<void> setToggled() async {
-    _isToggledOff = widget.instructionsEnum.isToggledOff;
-
+  Future<void> _openTooltip() async {
     if (widget.animate) {
-      // Initialize AnimationController and Animation only if animate is true
+      _controller?.dispose();
       _controller = AnimationController(
         duration: FluffyThemes.animationDuration,
         vsync: this,
@@ -62,7 +93,7 @@ class InstructionsInlineTooltipState extends State<InstructionsInlineTooltip>
       );
 
       // Start in correct state
-      if (!_isToggledOff) {
+      if (!_isClosed) {
         await _controller!.forward();
       }
     }
@@ -70,37 +101,18 @@ class InstructionsInlineTooltipState extends State<InstructionsInlineTooltip>
     if (mounted) setState(() {});
   }
 
-  @override
-  void dispose() {
-    _controller?.dispose();
-    super.dispose();
-  }
-
   Future<void> _closeTooltip() async {
-    widget.instructionsEnum.setToggledOff(true);
-    setState(() => _isToggledOff = true);
+    widget.onClose?.call();
+    setState(() => _isClosed = true);
 
     if (widget.animate) {
       await _controller?.reverse();
     }
-    widget.onClose?.call();
   }
 
   @override
   Widget build(BuildContext context) {
-    return widget.animate
-        ? SizeTransition(
-            sizeFactor: _animation!,
-            axisAlignment: -1.0,
-            child: _buildTooltipContent(context),
-          )
-        : (_isToggledOff
-            ? const SizedBox.shrink()
-            : _buildTooltipContent(context));
-  }
-
-  Widget _buildTooltipContent(BuildContext context) {
-    return Padding(
+    final content = Padding(
       padding: widget.padding ?? const EdgeInsets.all(0),
       child: DecoratedBox(
         decoration: BoxDecoration(
@@ -125,7 +137,7 @@ class InstructionsInlineTooltipState extends State<InstructionsInlineTooltip>
               Flexible(
                 child: Center(
                   child: Text(
-                    widget.instructionsEnum.body(L10n.of(context)),
+                    widget.message,
                     style: FluffyThemes.isColumnMode(context)
                         ? Theme.of(context).textTheme.titleLarge
                         : Theme.of(context).textTheme.bodyLarge,
@@ -147,5 +159,13 @@ class InstructionsInlineTooltipState extends State<InstructionsInlineTooltip>
         ),
       ),
     );
+
+    return widget.animate
+        ? SizeTransition(
+            sizeFactor: _animation!,
+            axisAlignment: -1.0,
+            child: content,
+          )
+        : (_isClosed ? const SizedBox.shrink() : content);
   }
 }
