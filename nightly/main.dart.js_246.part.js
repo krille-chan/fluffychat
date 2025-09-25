@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cDI(){return new A.Fm(B.de("de"))},
+cDJ(){return new A.Fm(B.de("de"))},
 Fm:function Fm(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -638,5 +638,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.Fm,C.aF)})()
 B.dQ(b.typeUniverse,JSON.parse('{"Fm":{"aF":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
-(a=>{a["C/YcsNAJh7SB3817CiCIcLmJvRc="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["dmKUEYqobD84wnhkD774aL4g408="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_246.part.js.map

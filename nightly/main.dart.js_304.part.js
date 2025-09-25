@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cE7(){return new A.FM(B.de("nb"))},
+cE8(){return new A.FM(B.de("nb"))},
 FM:function FM(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -632,10 +632,10 @@ gpf(){return"Show navigation rail on mobile"},
 glM(){return"Custom reaction"},
 gpj(){return"More events"},
 glP(){return"Avsl\xe5 invitasjon"},
-gpn(){return"No messages yet"},
+gpn(){return"Ingen meldinger enda"},
 A(d,e){return this.gbb(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FM,C.aF)})()
 B.dQ(b.typeUniverse,JSON.parse('{"FM":{"aF":[]}}'))};
-(a=>{a["yfNgzQQ0Hma2TqG9oZZE2iuXJCk="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["TWT1LVBOj15V0QzBsiEkeSgheLU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_304.part.js.map
