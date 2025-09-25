@@ -118,6 +118,7 @@ abstract class FluffyThemes {
       ),
       snackBarTheme: isColumnMode
           ? const SnackBarThemeData(
+              showCloseIcon: true,
               behavior: SnackBarBehavior.floating,
               width: FluffyThemes.columnWidth * 1.5,
             )
