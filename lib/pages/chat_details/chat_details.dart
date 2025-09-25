@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
-import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:matrix/matrix.dart';
 
@@ -88,20 +87,6 @@ class ChatDetailsController extends State<ChatDetails> {
           content: Text(L10n.of(context).chatDescriptionHasBeenChanged),
         ),
       );
-    }
-  }
-
-  void goToEmoteSettings() async {
-    final room = Matrix.of(context).client.getRoomById(roomId!)!;
-    // okay, we need to test if there are any emote state events other than the default one
-    // if so, we need to be directed to a selection screen for which pack we want to look at
-    // otherwise, we just open the normal one.
-    if ((room.states['im.ponies.room_emotes'] ?? <String, Event>{})
-        .keys
-        .any((String s) => s.isNotEmpty)) {
-      context.push('/rooms/${room.id}/details/multiple_emotes');
-    } else {
-      context.push('/rooms/${room.id}/details/emotes');
     }
   }
 
