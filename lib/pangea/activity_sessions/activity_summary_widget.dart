@@ -89,29 +89,34 @@ class ActivitySummary extends StatelessWidget {
                 spacing: 4.0,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(
-                    activity.description,
-                    style: theme.textTheme.bodyMedium,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 4.0,
-                    ),
-                    child: Row(
+                  InkWell(
+                    onTap: toggleInstructions,
+                    child: Column(
                       spacing: 4.0,
-                      mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          L10n.of(context).details,
+                          activity.description,
                           style: theme.textTheme.bodyMedium,
                         ),
-                        InkWell(
-                          onTap: toggleInstructions,
-                          child: Icon(
-                            showInstructions
-                                ? Icons.arrow_drop_up
-                                : Icons.arrow_drop_down,
-                            size: 20.0,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 4.0,
+                          ),
+                          child: Row(
+                            spacing: 4.0,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                L10n.of(context).details,
+                                style: theme.textTheme.bodyMedium,
+                              ),
+                              Icon(
+                                showInstructions
+                                    ? Icons.arrow_drop_up
+                                    : Icons.arrow_drop_down,
+                                size: 20.0,
+                              ),
+                            ],
                           ),
                         ),
                       ],
