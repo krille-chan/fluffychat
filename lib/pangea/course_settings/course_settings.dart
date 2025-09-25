@@ -64,6 +64,10 @@ class CourseSettingsState extends State<CourseSettings>
 
   @override
   Widget build(BuildContext context) {
+    if (controller.loading) {
+      return const Center(child: CircularProgressIndicator.adaptive());
+    }
+
     if (controller.course == null || controller.error != null) {
       return room.canChangeStateEvent(PangeaEventTypes.coursePlan)
           ? Column(
