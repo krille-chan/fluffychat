@@ -2667,5 +2667,7 @@
                 "type": "String"
             }
         }
-    }
+    },
+    "noMessagesYet": "Ingen meldinger enda",
+    "@noMessagesYet": {}
 }
