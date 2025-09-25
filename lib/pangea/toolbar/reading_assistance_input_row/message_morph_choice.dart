@@ -87,8 +87,6 @@ class MessageMorphInputBarContentState
             : 4.0;
 
     return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      mainAxisSize: MainAxisSize.max,
       spacing: spacing,
       children: [
         Row(
@@ -158,21 +156,20 @@ class MessageMorphInputBarContentState
             },
           ).toList(),
         ),
-        Container(
-          constraints: BoxConstraints(
-            minHeight: overlay.maxWidth > 600 ? 20 : 34,
+        if (selectedTag != null)
+          Container(
+            constraints: BoxConstraints(
+              minHeight: overlay.maxWidth > 600 ? 20 : 34,
+            ),
+            alignment: Alignment.center,
+            child: MorphMeaningWidget(
+              feature: morph,
+              tag: selectedTag!,
+              style: overlay.maxWidth > 600
+                  ? Theme.of(context).textTheme.bodyLarge
+                  : Theme.of(context).textTheme.bodySmall,
+            ),
           ),
-          alignment: Alignment.center,
-          child: selectedTag != null
-              ? MorphMeaningWidget(
-                  feature: morph,
-                  tag: selectedTag!,
-                  style: overlay.maxWidth > 600
-                      ? Theme.of(context).textTheme.bodyLarge
-                      : Theme.of(context).textTheme.bodySmall,
-                )
-              : const SizedBox.shrink(),
-        ),
       ],
     );
   }
