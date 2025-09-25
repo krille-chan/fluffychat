@@ -119,6 +119,12 @@ class NewCourseController extends State<NewCourse> with CourseSearchProvider {
                     );
                   }
 
+                  if (courses.isEmpty) {
+                    return Center(
+                      child: Text(L10n.of(context).noCoursesFound),
+                    );
+                  }
+
                   return Expanded(
                     child: ListView.builder(
                       itemCount: courses.length,
