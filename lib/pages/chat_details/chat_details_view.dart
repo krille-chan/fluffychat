@@ -208,33 +208,23 @@ class ChatDetailsView extends StatelessWidget {
                           ],
                         ),
                         Divider(color: theme.dividerColor),
-                        if (!room.canChangeStateEvent(EventTypes.RoomTopic))
-                          ListTile(
-                            title: Text(
-                              L10n.of(context).chatDescription,
-                              style: TextStyle(
-                                color: theme.colorScheme.secondary,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          )
-                        else
-                          Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: TextButton.icon(
-                              onPressed: controller.setTopicAction,
-                              label: Text(L10n.of(context).setChatDescription),
-                              icon: const Icon(Icons.edit_outlined),
-                              style: TextButton.styleFrom(
-                                iconColor:
-                                    theme.colorScheme.onSecondaryContainer,
-                                backgroundColor:
-                                    theme.colorScheme.secondaryContainer,
-                                foregroundColor:
-                                    theme.colorScheme.onSecondaryContainer,
-                              ),
+                        ListTile(
+                          title: Text(
+                            L10n.of(context).chatDescription,
+                            style: TextStyle(
+                              color: theme.colorScheme.secondary,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
+                          trailing: room
+                                  .canChangeStateEvent(EventTypes.RoomTopic)
+                              ? IconButton(
+                                  onPressed: controller.setTopicAction,
+                                  tooltip: L10n.of(context).setChatDescription,
+                                  icon: const Icon(Icons.edit_outlined),
+                                )
+                              : null,
+                        ),
                         Padding(
                           padding: const EdgeInsets.symmetric(
                             horizontal: 16.0,
