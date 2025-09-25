@@ -434,7 +434,9 @@ abstract class AppRoutes {
               pageBuilder: (context, state) => defaultPageBuilder(
                 context,
                 state,
-                const AnalyticsPage(),
+                const AnalyticsPage(
+                  indicator: ProgressIndicatorEnum.wordsUsed,
+                ),
               ),
               routes: [
                 GoRoute(
@@ -442,10 +444,8 @@ abstract class AppRoutes {
                   pageBuilder: (context, state) => defaultPageBuilder(
                     context,
                     state,
-                    AnalyticsPage(
-                      indicator: FluffyThemes.isColumnMode(context)
-                          ? null
-                          : ProgressIndicatorEnum.morphsUsed,
+                    const AnalyticsPage(
+                      indicator: ProgressIndicatorEnum.morphsUsed,
                     ),
                   ),
                   redirect: loggedOutRedirect,
@@ -473,10 +473,8 @@ abstract class AppRoutes {
                   pageBuilder: (context, state) => defaultPageBuilder(
                     context,
                     state,
-                    AnalyticsPage(
-                      indicator: FluffyThemes.isColumnMode(context)
-                          ? null
-                          : ProgressIndicatorEnum.wordsUsed,
+                    const AnalyticsPage(
+                      indicator: ProgressIndicatorEnum.wordsUsed,
                     ),
                   ),
                   redirect: loggedOutRedirect,
@@ -504,10 +502,8 @@ abstract class AppRoutes {
                   pageBuilder: (context, state) => defaultPageBuilder(
                     context,
                     state,
-                    AnalyticsPage(
-                      indicator: FluffyThemes.isColumnMode(context)
-                          ? null
-                          : ProgressIndicatorEnum.activities,
+                    const AnalyticsPage(
+                      indicator: ProgressIndicatorEnum.activities,
                     ),
                   ),
                   redirect: loggedOutRedirect,
@@ -536,10 +532,8 @@ abstract class AppRoutes {
                   pageBuilder: (context, state) => defaultPageBuilder(
                     context,
                     state,
-                    AnalyticsPage(
-                      indicator: FluffyThemes.isColumnMode(context)
-                          ? null
-                          : ProgressIndicatorEnum.level,
+                    const AnalyticsPage(
+                      indicator: ProgressIndicatorEnum.level,
                     ),
                   ),
                   redirect: loggedOutRedirect,
