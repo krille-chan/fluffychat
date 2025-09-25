@@ -352,13 +352,11 @@ class ChatView extends StatelessWidget {
                             ),
                             // #Pangea
                             // if (controller.showScrollDownButton)
-                            if (controller.showScrollDownButton &&
-                                !controller.room.showActivityFinished)
-                              // Pangea#
-                              Divider(
-                                height: 1,
-                                color: theme.dividerColor,
-                              ),
+                            //   Divider(
+                            //     height: 1,
+                            //     color: theme.dividerColor,
+                            //   ),
+                            // Pangea#
                             if (controller.room.isExtinct)
                               Container(
                                 margin: EdgeInsets.all(bottomSheetPadding),
@@ -374,7 +372,7 @@ class ChatView extends StatelessWidget {
                             //     controller.room.membership == Membership.join)
                             else if (controller.room.canSendDefaultMessages &&
                                 controller.room.membership == Membership.join &&
-                                !controller.room.showActivityFinished)
+                                controller.room.isAbandonedDMRoom == true)
                               // Pangea#
                               Container(
                                 margin: EdgeInsets.all(bottomSheetPadding),
@@ -453,7 +451,8 @@ class ChatView extends StatelessWidget {
                               AnimatedSize(
                                 duration: const Duration(milliseconds: 200),
                                 child: SizedBox(
-                                  height: controller.inputBarHeight,
+                                  height: controller.inputBarHeight +
+                                      bottomSheetPadding,
                                 ),
                               ),
                             if (controller.room.activityIsFinished)
