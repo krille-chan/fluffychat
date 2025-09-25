@@ -147,7 +147,7 @@ void chatContextMenuAction(
             ),
           ),
       ],
-      if (room.isActiveInActivity)
+      if (room.isActiveInActivity && room.activityHasStarted)
         PopupMenuItem(
           value: ChatContextAction.endActivity,
           child: Row(
