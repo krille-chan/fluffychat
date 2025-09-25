@@ -74,6 +74,7 @@ class TokenEmojiButtonState extends State<TokenEmojiButton>
                         ? Text(
                             emoji,
                             style: TextStyle(fontSize: buttonSize - 4.0),
+                            textScaler: TextScaler.noScaling,
                           )
                         : Icon(
                             Icons.add_reaction_outlined,
