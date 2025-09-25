@@ -67,9 +67,11 @@ class _IconRainState extends State<IconRain> with TickerProviderStateMixin {
             swayFrequency: widget.swayFrequency,
             fadeMidpoint: 0.4 + _random.nextDouble() * 0.2, // 40-60% down
             onComplete: () {
-              setState(() {
-                _icons.removeWhere((i) => i.key == _icons.first.key);
-              });
+              if (mounted) {
+                setState(() {
+                  _icons.removeWhere((i) => i.key == _icons.first.key);
+                });
+              }
             },
           ),
         );
@@ -98,9 +100,11 @@ class _IconRainState extends State<IconRain> with TickerProviderStateMixin {
             swayFrequency: widget.swayFrequency,
             fadeMidpoint: 0.4 + _random.nextDouble() * 0.2, // 40-60% down
             onComplete: () {
-              setState(() {
-                _icons.removeWhere((i) => i.key == _icons.first.key);
-              });
+              if (mounted) {
+                setState(() {
+                  _icons.removeWhere((i) => i.key == _icons.first.key);
+                });
+              }
             },
           ),
         );

@@ -4,6 +4,7 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
+import 'package:fluffychat/pangea/login/pages/login_options_view.dart';
 import 'package:fluffychat/pangea/login/pages/pangea_login_view.dart';
 import 'package:fluffychat/pangea/login/widgets/p_sso_button.dart';
 import 'package:fluffychat/pangea/user/utils/p_login.dart';
@@ -17,8 +18,12 @@ class Login extends StatefulWidget {
   // #Pangea
   // final Client client;
   // const Login({required this.client, super.key});
+  final bool withEmail;
 
-  const Login({super.key});
+  const Login({
+    super.key,
+    this.withEmail = false,
+  });
   // Pangea#
 
   @override
@@ -329,7 +334,8 @@ class LoginController extends State<Login> {
   @override
   // #Pangea
   // Widget build(BuildContext context) => LoginView(this);
-  Widget build(BuildContext context) => PangeaLoginView(this);
+  Widget build(BuildContext context) =>
+      widget.withEmail ? PasswordLoginView(this) : LoginOptionsView(this);
   // Pangea#
 }
 

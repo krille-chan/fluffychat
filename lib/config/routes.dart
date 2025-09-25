@@ -41,10 +41,13 @@ import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/find_your_people/find_your_people.dart';
 import 'package:fluffychat/pangea/guard/p_vguard.dart';
 import 'package:fluffychat/pangea/learning_settings/pages/settings_learning.dart';
+import 'package:fluffychat/pangea/login/pages/language_selection_page.dart';
 import 'package:fluffychat/pangea/login/pages/login_or_signup_view.dart';
+import 'package:fluffychat/pangea/login/pages/new_trip_page.dart';
+import 'package:fluffychat/pangea/login/pages/plan_trip_page.dart';
+import 'package:fluffychat/pangea/login/pages/private_trip_page.dart';
+import 'package:fluffychat/pangea/login/pages/public_trip_page.dart';
 import 'package:fluffychat/pangea/login/pages/signup.dart';
-import 'package:fluffychat/pangea/login/pages/space_code_onboarding.dart';
-import 'package:fluffychat/pangea/login/pages/user_settings.dart';
 import 'package:fluffychat/pangea/onboarding/onboarding.dart';
 import 'package:fluffychat/pangea/space_analytics/space_analytics.dart';
 import 'package:fluffychat/pangea/spaces/constants/space_constants.dart';
@@ -116,25 +119,54 @@ abstract class AppRoutes {
             // Pangea#
           ),
           redirect: loggedInRedirect,
-        ),
-        // #Pangea
-        GoRoute(
-          path: 'signup',
-          pageBuilder: (context, state) => defaultPageBuilder(
-            context,
-            state,
-            const SignupPage(),
-          ),
-          redirect: loggedInRedirect,
+          // #Pangea
           routes: [
             GoRoute(
               path: 'email',
               pageBuilder: (context, state) => defaultPageBuilder(
                 context,
                 state,
-                const SignupPage(withEmail: true),
+                const Login(withEmail: true),
               ),
               redirect: loggedInRedirect,
+            ),
+          ],
+          // Pangea#
+        ),
+        // #Pangea
+        GoRoute(
+          path: 'languages',
+          pageBuilder: (context, state) => defaultPageBuilder(
+            context,
+            state,
+            const LanguageSelectionPage(),
+          ),
+          redirect: loggedInRedirect,
+          routes: [
+            GoRoute(
+              path: ':langcode',
+              pageBuilder: (context, state) => defaultPageBuilder(
+                context,
+                state,
+                SignupPage(
+                  langCode: state.pathParameters['langcode']!,
+                ),
+              ),
+              redirect: loggedInRedirect,
+              routes: [
+                GoRoute(
+                  path: 'email',
+                  pageBuilder: (context, state) => defaultPageBuilder(
+                    context,
+                    state,
+                    SignupPage(
+                      withEmail: true,
+                      langCode: state.pathParameters['langcode']!,
+                    ),
+                  ),
+                  redirect: loggedInRedirect,
+                ),
+              ],
             ),
           ],
         ),
@@ -177,24 +209,80 @@ abstract class AppRoutes {
       ),
     ),
     GoRoute(
-      path: '/user_age',
+      path: '/course',
       pageBuilder: (context, state) => defaultPageBuilder(
         context,
         state,
-        const UserSettingsPage(),
+        const LanguageSelectionPage(),
       ),
       redirect: loggedOutRedirect,
       routes: [
         GoRoute(
-          path: 'join_space',
-          pageBuilder: (context, state) {
-            return defaultPageBuilder(
-              context,
-              state,
-              const SpaceCodeOnboarding(),
-            );
-          },
+          path: ':langcode',
+          pageBuilder: (context, state) => defaultPageBuilder(
+            context,
+            state,
+            PlanTripPage(
+              langCode: state.pathParameters['langcode']!,
+            ),
+          ),
           redirect: loggedOutRedirect,
+          routes: [
+            GoRoute(
+              path: 'private',
+              pageBuilder: (context, state) {
+                return defaultPageBuilder(
+                  context,
+                  state,
+                  PrivateTripPage(
+                    langCode: state.pathParameters['langcode']!,
+                  ),
+                );
+              },
+              redirect: loggedOutRedirect,
+            ),
+            GoRoute(
+              path: 'public',
+              pageBuilder: (context, state) {
+                return defaultPageBuilder(
+                  context,
+                  state,
+                  PublicTripPage(
+                    langCode: state.pathParameters['langcode']!,
+                  ),
+                );
+              },
+              redirect: loggedOutRedirect,
+            ),
+            GoRoute(
+              path: 'own',
+              pageBuilder: (context, state) {
+                return defaultPageBuilder(
+                  context,
+                  state,
+                  NewTripPage(
+                    langCode: state.pathParameters['langcode']!,
+                  ),
+                );
+              },
+              redirect: loggedOutRedirect,
+              routes: [
+                GoRoute(
+                  path: ':courseid',
+                  pageBuilder: (context, state) {
+                    return defaultPageBuilder(
+                      context,
+                      state,
+                      SelectedCourse(
+                        state.pathParameters['courseid']!,
+                      ),
+                    );
+                  },
+                  redirect: loggedOutRedirect,
+                ),
+              ],
+            ),
+          ],
         ),
       ],
     ),

@@ -12,17 +12,17 @@ class CoursePlanTile extends StatelessWidget {
   final CoursePlanModel course;
   final VoidCallback onTap;
 
-  final double titleFontSize;
-  final double chipFontSize;
-  final double chipIconSize;
+  final double? titleFontSize;
+  final double? chipFontSize;
+  final double? chipIconSize;
 
   const CoursePlanTile({
     super.key,
     required this.course,
     required this.onTap,
-    required this.titleFontSize,
-    required this.chipFontSize,
-    required this.chipIconSize,
+    this.titleFontSize,
+    this.chipFontSize,
+    this.chipIconSize,
   });
 
   @override

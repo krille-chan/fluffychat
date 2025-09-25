@@ -8,8 +8,8 @@ class CourseInfoChip extends StatelessWidget {
   final IconData icon;
   final String text;
 
-  final double fontSize;
-  final double iconSize;
+  final double? fontSize;
+  final double? iconSize;
   final EdgeInsets? padding;
 
   const CourseInfoChip({
@@ -47,15 +47,15 @@ class CourseInfoChip extends StatelessWidget {
 
 class CourseInfoChips extends StatelessWidget {
   final CoursePlanModel course;
-  final double fontSize;
-  final double iconSize;
+  final double? fontSize;
+  final double? iconSize;
   final EdgeInsets? padding;
 
   const CourseInfoChips(
     this.course, {
     super.key,
-    required this.fontSize,
-    required this.iconSize,
+    this.fontSize,
+    this.iconSize,
     this.padding,
   });
 

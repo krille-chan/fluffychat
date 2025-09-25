@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
@@ -13,7 +14,10 @@ import 'package:fluffychat/widgets/matrix.dart';
 
 class SignupPage extends StatefulWidget {
   final bool withEmail;
+  final String langCode;
+
   const SignupPage({
+    required this.langCode,
     this.withEmail = false,
     super.key,
   });
@@ -154,7 +158,7 @@ class SignupPageController extends State<SignupPage> {
     if (!valid) return;
     setState(() => loadingSignup = true);
 
-    await showFutureLoadingDialog(
+    final resp = await showFutureLoadingDialog(
       context: context,
       future: _signupFuture,
       onError: (e, s) {
@@ -173,6 +177,8 @@ class SignupPageController extends State<SignupPage> {
             : L10n.of(context).oopsSomethingWentWrong;
       },
     );
+
+    if (!resp.isError) context.go("/course/${widget.langCode}");
   }
 
   Future<void> _signupFuture() async {
@@ -200,6 +206,10 @@ class SignupPageController extends State<SignupPage> {
         auth: auth,
       ),
     );
+
+    if (!client.isLogged()) {
+      throw Exception(L10n.of(context).oopsSomethingWentWrong);
+    }
 
     GoogleAnalytics.login("pangea", registerRes?.userId);
 

@@ -265,7 +265,7 @@ class UserController {
   }
 
   /// Checks if user data is available and the user's l2 is set.
-  Future<bool> get isUserDataAvailableAndL2Set async {
+  Future<bool> get isUserL2Set async {
     try {
       // the function fetchUserModel() uses a completer, so it shouldn't
       // re-call the endpoint if it has already been called

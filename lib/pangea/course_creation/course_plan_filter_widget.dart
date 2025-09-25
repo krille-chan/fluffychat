@@ -15,9 +15,6 @@ class CoursePlanFilter<T> extends StatefulWidget {
 
   final bool enableSearch;
 
-  final double fontSize;
-  final double iconSize;
-
   const CoursePlanFilter({
     super.key,
     required this.value,
@@ -25,8 +22,6 @@ class CoursePlanFilter<T> extends StatefulWidget {
     required this.onChanged,
     required this.defaultName,
     required this.displayname,
-    required this.fontSize,
-    required this.iconSize,
     this.enableSearch = false,
     this.shortName,
   });
@@ -51,7 +46,7 @@ class CoursePlanFilterState<T> extends State<CoursePlanFilter<T>> {
       child: DropdownButton2<T>(
         customButton: Container(
           decoration: BoxDecoration(
-            color: theme.colorScheme.primary,
+            border: Border.all(color: theme.colorScheme.onSurface),
             borderRadius: BorderRadius.circular(12.0),
           ),
           padding: const EdgeInsets.symmetric(
@@ -66,15 +61,11 @@ class CoursePlanFilterState<T> extends State<CoursePlanFilter<T>> {
                 widget.value != null
                     ? widget.displayname(widget.value as T)
                     : widget.defaultName,
-                style: TextStyle(
-                  color: theme.colorScheme.onPrimary,
-                  fontSize: widget.fontSize,
-                ),
+                style: theme.textTheme.labelMedium,
               ),
-              Icon(
+              const Icon(
                 Icons.arrow_drop_down,
-                color: theme.colorScheme.onPrimary,
-                size: widget.iconSize,
+                size: 12.0,
               ),
             ],
           ),
