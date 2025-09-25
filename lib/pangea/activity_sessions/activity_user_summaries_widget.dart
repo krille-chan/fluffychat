@@ -5,6 +5,7 @@ import 'package:material_symbols_icons/symbols.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_participant_indicator.dart';
@@ -100,10 +101,12 @@ class ButtonControlledCarouselView extends StatelessWidget {
         )
         .toList();
 
+    final isColumnMode = FluffyThemes.isColumnMode(context);
+
     return Column(
       children: [
         SizedBox(
-          height: 200.0,
+          height: 270.0,
           child: ListView(
             shrinkWrap: true,
             controller: controller.carouselController,
@@ -116,7 +119,7 @@ class ButtonControlledCarouselView extends StatelessWidget {
                 (role) => role.userId == p.participantId,
               );
               return Container(
-                width: 350.0,
+                width: isColumnMode ? 400.0 : 350.0,
                 margin: const EdgeInsets.only(right: 5.0),
                 padding: const EdgeInsets.all(12.0),
                 decoration: ShapeDecoration(
