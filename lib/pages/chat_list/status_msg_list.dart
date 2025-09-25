@@ -76,7 +76,12 @@ class StatusMessageList extends StatelessWidget {
               return SizedBox(
                 height: StatusMessageList.height,
                 child: ListView.builder(
-                  padding: const EdgeInsets.all(8),
+                  padding: const EdgeInsets.only(
+                    left: 8.0,
+                    right: 8.0,
+                    top: 8.0,
+                    bottom: 6.0,
+                  ),
                   scrollDirection: Axis.horizontal,
                   itemCount: presences.length,
                   itemBuilder: (context, i) => PresenceAvatar(
@@ -108,7 +113,7 @@ class PresenceAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final avatarSize = height - 16 - 16 - 8;
+    final avatarSize = height - 16 - 16 - 6;
     final client = Matrix.of(context).client;
     return FutureBuilder<Profile>(
       future: client.getProfileFromUserId(presence.userid),
