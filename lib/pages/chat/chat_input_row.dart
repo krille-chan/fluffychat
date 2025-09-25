@@ -117,7 +117,7 @@ class ChatInputRow extends StatelessWidget {
               AnimatedContainer(
                 duration: FluffyThemes.animationDuration,
                 curve: FluffyThemes.animationCurve,
-                width: controller.sendController.text.isNotEmpty ? 0 : height,
+                width: controller.sendController.text.isNotEmpty ? 0 : 40,
                 height: height,
                 alignment: Alignment.center,
                 decoration: const BoxDecoration(),
@@ -265,7 +265,6 @@ class ChatInputRow extends StatelessWidget {
                   Matrix.of(context).hasComplexBundles &&
                   Matrix.of(context).currentBundle!.length > 1)
                 Container(
-                  width: height,
                   height: height,
                   alignment: Alignment.center,
                   child: _ChatAccountPicker(controller),
