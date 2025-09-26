@@ -31,7 +31,7 @@ class InstructionsToggleState extends State<InstructionsToggle> {
   @override
   Widget build(BuildContext context) {
     return SwitchListTile.adaptive(
-      activeColor: AppConfig.activeToggleColor,
+      activeThumbColor: AppConfig.activeToggleColor,
       title: Text(L10n.of(context).doNotShowAgain),
       value: widget.instructionsKey.isToggledOff,
       onChanged: ((value) async {

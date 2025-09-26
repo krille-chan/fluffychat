@@ -42,37 +42,33 @@ class AppConfigDialogState extends State<AppConfigDialog> {
             maxWidth: 256,
           ),
           child: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                ...widget.overrides.map((override) {
-                  return RadioListTile<AppConfigOverride?>.adaptive(
-                    title: Text(
-                      override.environment ?? L10n.of(context).unkDisplayName,
+            child: RadioGroup<AppConfigOverride?>(
+              groupValue: selectedOverride,
+              onChanged: (override) {
+                setState(() {
+                  selectedOverride = override;
+                });
+              },
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  ...widget.overrides.map((override) {
+                    return RadioListTile<AppConfigOverride?>.adaptive(
+                      title: Text(
+                        override.environment ?? L10n.of(context).unkDisplayName,
+                      ),
+                      value: override,
+                    );
+                  }).toList()
+                    ..insert(
+                      0,
+                      RadioListTile<AppConfigOverride?>.adaptive(
+                        title: Text(L10n.of(context).defaultOption),
+                        value: null,
+                      ),
                     ),
-                    value: override,
-                    groupValue: selectedOverride,
-                    onChanged: (override) {
-                      setState(() {
-                        selectedOverride = override;
-                      });
-                    },
-                  );
-                }).toList()
-                  ..insert(
-                    0,
-                    RadioListTile<AppConfigOverride?>.adaptive(
-                      title: Text(L10n.of(context).defaultOption),
-                      value: null,
-                      groupValue: selectedOverride,
-                      onChanged: (override) {
-                        setState(() {
-                          selectedOverride = null;
-                        });
-                      },
-                    ),
-                  ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

@@ -47,7 +47,7 @@ class PSettingsSwitchListTileState
       contentPadding: EdgeInsets.zero,
       value: currentValue,
       title: Text(widget.title),
-      activeColor: AppConfig.activeToggleColor,
+      activeThumbColor: AppConfig.activeToggleColor,
       subtitle: widget.subtitle != null ? Text(widget.subtitle!) : null,
       onChanged: widget.enabled
           ? (bool newValue) async {

@@ -301,7 +301,8 @@ class SettingsLearningView extends StatelessWidget {
                                     subtitle: Text(
                                       L10n.of(context).publicProfileDesc,
                                     ),
-                                    activeColor: AppConfig.activeToggleColor,
+                                    activeThumbColor:
+                                        AppConfig.activeToggleColor,
                                     contentPadding: EdgeInsets.zero,
                                   ),
                                   ResetInstructionsListTile(
