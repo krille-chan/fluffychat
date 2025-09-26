@@ -66,6 +66,9 @@ class PApiUrls {
   static String activitySummary =
       "${PApiUrls._choreoEndpoint}/activity_summary";
 
+  static String activityFeedback =
+      "${PApiUrls._choreoEndpoint}/activity_plan/feedback";
+
   static String morphFeaturesAndTags = "${PApiUrls._choreoEndpoint}/morphs";
   static String constructSummary =
       "${PApiUrls._choreoEndpoint}/construct_summary";

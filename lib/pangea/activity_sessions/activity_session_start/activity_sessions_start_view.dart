@@ -4,6 +4,10 @@ import 'package:go_router/go_router.dart';
 
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/pangea/activity_feedback/activity_feedback_repo.dart';
+import 'package:fluffychat/pangea/activity_feedback/activity_feedback_request.dart';
+import 'package:fluffychat/pangea/activity_sessions/activity_session_start/activity_feedback_request_dialog.dart';
+import 'package:fluffychat/pangea/activity_sessions/activity_session_start/activity_feedback_response_dialog.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_session_start/activity_session_start_page.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_summary_widget.dart';
 import 'package:fluffychat/pangea/common/widgets/error_indicator.dart';
@@ -53,6 +57,51 @@ class ActivitySessionStartView extends StatelessWidget {
                 ),
               ),
             ),
+            actions: [
+              IconButton(
+                icon: const Icon(Icons.flag_outlined),
+                onPressed: () async {
+                  final feedback = await showDialog<String?>(
+                    context: context,
+                    builder: (context) {
+                      return const ActivityFeedbackRequestDialog();
+                    },
+                  );
+
+                  if (feedback == null || feedback.isEmpty) {
+                    return;
+                  }
+
+                  final resp = await showFutureLoadingDialog(
+                    context: context,
+                    future: () => ActivityFeedbackRepo.submitFeedback(
+                      ActivityFeedbackRequest(
+                        activityId: controller.widget.activityId,
+                        feedbackText: feedback,
+                        userId: Matrix.of(context).client.userID!,
+                        userL1: MatrixState.pangeaController.languageController
+                            .activeL1Code()!,
+                        userL2: MatrixState.pangeaController.languageController
+                            .activeL2Code()!,
+                      ),
+                    ),
+                  );
+
+                  if (resp.isError) {
+                    return;
+                  }
+
+                  await showDialog(
+                    context: context,
+                    builder: (context) {
+                      return ActivityFeedbackResponseDialog(
+                        feedback: resp.result!.userFriendlyResponse,
+                      );
+                    },
+                  );
+                },
+              ),
+            ],
           ),
           body: SafeArea(
             child: controller.loading
