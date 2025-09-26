@@ -94,10 +94,12 @@ class TokenRenderingUtil {
     bool practiceMode,
   ) {
     if (practiceMode) return Colors.white.withAlpha(0);
-    if (highlighted) return Theme.of(context).colorScheme.primary;
-    if (isNew) return AppConfig.success;
+    if (highlighted) {
+      return Theme.of(context).colorScheme.primary.withAlpha(200);
+    }
+    if (isNew) return AppConfig.success.withAlpha(200);
     return selected
-        ? Theme.of(context).colorScheme.primary
+        ? Theme.of(context).colorScheme.primary.withAlpha(200)
         : Colors.white.withAlpha(0);
   }
 }
