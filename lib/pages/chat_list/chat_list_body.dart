@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
@@ -9,13 +9,17 @@ import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
 import 'package:fluffychat/pages/chat_list/dummy_chat_list_item.dart';
 import 'package:fluffychat/pages/chat_list/search_title.dart';
+import 'package:fluffychat/pangea/bot/widgets/bot_face_svg.dart';
 import 'package:fluffychat/pangea/chat_list/widgets/pangea_chat_list_header.dart';
+import 'package:fluffychat/pangea/chat_settings/utils/bot_client_extension.dart';
 import 'package:fluffychat/pangea/course_chats/course_chats_page.dart';
-import 'package:fluffychat/pangea/onboarding/onboarding.dart';
+import 'package:fluffychat/pangea/instructions/instructions_enum.dart';
+import 'package:fluffychat/pangea/instructions/instructions_inline_tooltip.dart';
 import 'package:fluffychat/pangea/public_spaces/public_room_bottom_sheet.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/user_dialog.dart';
 import 'package:fluffychat/widgets/avatar.dart';
+import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import '../../config/themes.dart';
 import '../../widgets/matrix.dart';
 
@@ -87,7 +91,10 @@ class ChatListViewBody extends StatelessWidget {
             slivers: [
               // #Pangea
               // ChatListHeader(controller: controller),
-              PangeaChatListHeader(controller: controller),
+              PangeaChatListHeader(
+                controller: controller,
+                showSearch: rooms.length >= 7,
+              ),
               // Pangea#
               SliverList(
                 delegate: SliverChildListDelegate(
@@ -219,51 +226,61 @@ class ChatListViewBody extends StatelessWidget {
                         title: L10n.of(context).chats,
                         icon: const Icon(Icons.forum_outlined),
                       ),
-                    if (client.prevBatch != null &&
-                        rooms.isEmpty &&
-                        !controller.isSearchMode) ...[
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              const Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  DummyChatListItem(
-                                    opacity: 0.5,
-                                    animate: false,
-                                  ),
-                                  DummyChatListItem(
-                                    opacity: 0.3,
-                                    animate: false,
-                                  ),
-                                ],
-                              ),
-                              Icon(
-                                CupertinoIcons.chat_bubble_text_fill,
-                                size: 128,
-                                color: theme.colorScheme.secondary,
-                              ),
-                            ],
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Text(
-                              client.rooms.isEmpty
-                                  ? L10n.of(context).noChatsFoundHereYet
-                                  : L10n.of(context).noMoreChatsFound,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: theme.colorScheme.secondary,
-                              ),
-                            ),
-                          ),
-                        ],
+                    // #Pangea
+                    const InstructionsInlineTooltip(
+                      instructionsEnum: InstructionsEnum.chatListTooltip,
+                      padding: EdgeInsets.only(
+                        left: 16.0,
+                        right: 16.0,
+                        bottom: 16.0,
                       ),
-                    ],
+                    ),
+                    // if (client.prevBatch != null &&
+                    //     rooms.isEmpty &&
+                    //     !controller.isSearchMode) ...[
+                    //   Column(
+                    //     mainAxisAlignment: MainAxisAlignment.center,
+                    //     children: [
+                    //       Stack(
+                    //         alignment: Alignment.center,
+                    //         children: [
+                    //           const Column(
+                    //             mainAxisSize: MainAxisSize.min,
+                    //             children: [
+                    //               DummyChatListItem(
+                    //                 opacity: 0.5,
+                    //                 animate: false,
+                    //               ),
+                    //               DummyChatListItem(
+                    //                 opacity: 0.3,
+                    //                 animate: false,
+                    //               ),
+                    //             ],
+                    //           ),
+                    //           Icon(
+                    //             CupertinoIcons.chat_bubble_text_fill,
+                    //             size: 128,
+                    //             color: theme.colorScheme.secondary,
+                    //           ),
+                    //         ],
+                    //       ),
+                    //       Padding(
+                    //         padding: const EdgeInsets.all(16.0),
+                    //         child: Text(
+                    //           client.rooms.isEmpty
+                    //               ? L10n.of(context).noChatsFoundHereYet
+                    //               : L10n.of(context).noMoreChatsFound,
+                    //           textAlign: TextAlign.center,
+                    //           style: TextStyle(
+                    //             fontSize: 18,
+                    //             color: theme.colorScheme.secondary,
+                    //           ),
+                    //         ),
+                    //       ),
+                    //     ],
+                    //   ),
+                    // ],
+                    // Pangea#
                   ],
                 ),
               ),
@@ -296,13 +313,39 @@ class ChatListViewBody extends StatelessWidget {
                   },
                 ),
               // #Pangea
-              const SliverPadding(padding: EdgeInsets.all(12.0)),
-              if (!FluffyThemes.isColumnMode(context))
-                SliverList.builder(
-                  itemCount: 1,
-                  itemBuilder: (context, _) {
-                    return const Onboarding();
-                  },
+              if (!client.hasBotDM && !controller.isSearchMode)
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 1,
+                    ),
+                    child: Material(
+                      borderRadius:
+                          BorderRadius.circular(AppConfig.borderRadius),
+                      clipBehavior: Clip.hardEdge,
+                      child: ListTile(
+                        leading: const BotFace(
+                          expression: BotExpression.idle,
+                          width: Avatar.defaultSize,
+                        ),
+                        trailing: const Icon(
+                          Icons.chat_bubble_outline,
+                        ),
+                        title: Text(L10n.of(context).directMessageBotTitle),
+                        subtitle: Text(L10n.of(context).directMessageBotDesc),
+                        onTap: () async {
+                          final resp = await showFutureLoadingDialog<String>(
+                            context: context,
+                            future: () =>
+                                Matrix.of(context).client.startChatWithBot(),
+                          );
+                          if (resp.isError) return;
+                          context.go("/rooms/${resp.result}");
+                        },
+                      ),
+                    ),
+                  ),
                 ),
               // Pangea#
             ],

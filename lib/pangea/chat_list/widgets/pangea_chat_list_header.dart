@@ -4,17 +4,17 @@ import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pangea/analytics_summary/learning_progress_indicators.dart';
-import 'package:fluffychat/pangea/onboarding/onboarding.dart';
-import 'package:fluffychat/pangea/onboarding/onboarding_steps_enum.dart';
 
 class PangeaChatListHeader extends StatelessWidget
     implements PreferredSizeWidget {
   final ChatListController controller;
   final bool globalSearch;
+  final bool showSearch;
 
   const PangeaChatListHeader({
     super.key,
     required this.controller,
+    required this.showSearch,
     this.globalSearch = true,
   });
 
@@ -32,9 +32,7 @@ class PangeaChatListHeader extends StatelessWidget
                 const LearningProgressIndicators(),
                 AnimatedSize(
                   duration: FluffyThemes.animationDuration,
-                  child: OnboardingController.complete(
-                    OnboardingStepsEnum.joinSpace,
-                  )
+                  child: showSearch
                       ? TextField(
                           controller: controller.searchController,
                           focusNode: controller.searchFocusNode,

@@ -5,8 +5,6 @@ import 'package:go_router/go_router.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pangea/chat_list/widgets/chat_list_view_body_wrapper.dart';
-import 'package:fluffychat/pangea/onboarding/onboarding.dart';
-import 'package:fluffychat/pangea/onboarding/onboarding_steps_enum.dart';
 
 class ChatListView extends StatelessWidget {
   final ChatListController controller;
@@ -53,14 +51,9 @@ class ChatListView extends StatelessWidget {
                 // #Pangea
                 // body: ChatListViewBody(controller),
                 body: ChatListViewBodyWrapper(controller: controller),
-                // floatingActionButton: !controller.isSearchMode &&
-                //         controller.activeSpaceId == null
+                // Pangea#
                 floatingActionButton: !controller.isSearchMode &&
-                        controller.activeSpaceId == null &&
-                        OnboardingController.complete(
-                          OnboardingStepsEnum.chatWithBot,
-                        )
-                    // Pangea#
+                        controller.activeSpaceId == null
                     ? FloatingActionButton.extended(
                         onPressed: () => context.go('/rooms/newprivatechat'),
                         // #Pangea

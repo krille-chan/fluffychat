@@ -2,8 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:go_router/go_router.dart';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pages/archive/archive.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
@@ -39,6 +41,7 @@ import 'package:fluffychat/pangea/course_creation/new_course_page.dart';
 import 'package:fluffychat/pangea/course_creation/selected_course_page.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/find_your_people/find_your_people.dart';
+import 'package:fluffychat/pangea/find_your_people/find_your_people_constants.dart';
 import 'package:fluffychat/pangea/guard/p_vguard.dart';
 import 'package:fluffychat/pangea/learning_settings/pages/settings_learning.dart';
 import 'package:fluffychat/pangea/login/pages/language_selection_page.dart';
@@ -48,7 +51,6 @@ import 'package:fluffychat/pangea/login/pages/plan_trip_page.dart';
 import 'package:fluffychat/pangea/login/pages/private_trip_page.dart';
 import 'package:fluffychat/pangea/login/pages/public_trip_page.dart';
 import 'package:fluffychat/pangea/login/pages/signup.dart';
-import 'package:fluffychat/pangea/onboarding/onboarding.dart';
 import 'package:fluffychat/pangea/space_analytics/space_analytics.dart';
 import 'package:fluffychat/pangea/spaces/constants/space_constants.dart';
 import 'package:fluffychat/pangea/spaces/utils/join_with_alias.dart';
@@ -322,7 +324,13 @@ abstract class AppRoutes {
             FluffyThemes.isColumnMode(context)
                 // #Pangea
                 // ? const EmptyPage()
-                ? const Onboarding()
+                ? Center(
+                    child: CachedNetworkImage(
+                      width: 250.0,
+                      imageUrl:
+                          "${AppConfig.assetsBaseURL}/${FindYourPeopleConstants.sideBearFileName}",
+                    ),
+                  )
                 // Pangea#
                 : ChatList(
                     activeChat: state.pathParameters['roomid'],

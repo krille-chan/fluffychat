@@ -5288,5 +5288,8 @@
   "writingAnalyticsDesc": "Send messages to practice writing.",
   "endActivity": "End activity",
   "allLanguages": "All languages",
-  "allCefrLevels": "All CEFR levels"
+  "allCefrLevels": "All CEFR levels",
+  "chatListTooltip": "Here you’ll find your direct messages! Click on any user’s avatar and “start conversation” to send a DM.",
+  "directMessageBotTitle": "Direct message Pangea Bot",
+  "directMessageBotDesc": "Talking to humans is more fun but... AI is always ready!"
 }
