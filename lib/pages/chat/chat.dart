@@ -667,7 +667,10 @@ class ChatController extends State<ChatPageWithRoom>
       name: fileName ?? audioFile.path,
     );
 
-    await room.sendFileEvent(
+    setState(() {
+      replyEvent = null;
+    });
+    room.sendFileEvent(
       file,
       inReplyTo: replyEvent,
       extraContent: {
@@ -691,9 +694,7 @@ class ChatController extends State<ChatPageWithRoom>
       );
       return null;
     });
-    setState(() {
-      replyEvent = null;
-    });
+    return;
   }
 
   void hideEmojiPicker() {
