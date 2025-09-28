@@ -3375,5 +3375,8 @@
   "@moreEvents": {},
   "declineInvitation": "Decline invitation",
   "@declineInvitation": {},
-  "noMessagesYet": "No messages yet"
+  "noMessagesYet": "No messages yet",
+  "longPressToRecordVoiceMessage": "Long press to record voice message.",
+  "pause": "Pause",
+  "resume": "Resume"
 }
