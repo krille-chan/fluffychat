@@ -57,8 +57,13 @@ class ChatInputBarState extends State<ChatInputBar> {
       child: SizeChangedLayoutNotifier(
         child: Column(
           children: [
-            ActivityRoleTooltip(
-              choreographer: widget.controller.choreographer,
+            ConstrainedBox(
+              constraints: const BoxConstraints(
+                maxWidth: FluffyThemes.maxTimelineWidth,
+              ),
+              child: ActivityRoleTooltip(
+                choreographer: widget.controller.choreographer,
+              ),
             ),
             Container(
               padding: EdgeInsets.only(
