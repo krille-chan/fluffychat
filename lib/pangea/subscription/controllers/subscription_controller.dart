@@ -80,7 +80,9 @@ class SubscriptionController extends BaseController {
     _isInitializing = true;
     await _initialize();
     _isInitializing = false;
-    initCompleter.complete();
+    if (!initCompleter.isCompleted) {
+      initCompleter.complete();
+    }
   }
 
   Future<void> reinitialize() async {

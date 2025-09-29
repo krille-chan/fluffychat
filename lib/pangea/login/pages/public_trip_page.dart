@@ -5,14 +5,11 @@ import 'package:fluffychat/pangea/common/widgets/error_indicator.dart';
 import 'package:fluffychat/pangea/course_creation/course_plan_filter_widget.dart';
 import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_enum.dart';
 import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
-import 'package:fluffychat/pangea/learning_settings/utils/p_language_store.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class PublicTripPage extends StatefulWidget {
-  final String langCode;
   const PublicTripPage({
     super.key,
-    required this.langCode,
   });
 
   @override
@@ -31,7 +28,7 @@ class PublicTripPageState extends State<PublicTripPage> {
   void initState() {
     super.initState();
 
-    final target = PLanguageStore.byLangCode(widget.langCode);
+    final target = MatrixState.pangeaController.languageController.userL2;
     if (target != null) {
       setTargetLanguageFilter(target);
     }

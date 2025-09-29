@@ -5,10 +5,8 @@ import 'package:fluffychat/pangea/common/widgets/pangea_logo_svg.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class PrivateTripPage extends StatefulWidget {
-  final String langCode;
   const PrivateTripPage({
     super.key,
-    required this.langCode,
   });
 
   @override

@@ -134,7 +134,7 @@ class _MainView extends StatelessWidget {
       return Settings(key: state.pageKey);
     }
 
-    if (path.contains('communities')) {
+    if (path.contains('course')) {
       return Center(
         child: SizedBox(
           width: 250.0,

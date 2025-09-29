@@ -93,7 +93,7 @@ class LoginOrSignupViewState extends State<LoginOrSignupView> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     ElevatedButton(
-                      onPressed: () => context.go('/home/languages'),
+                      onPressed: () => context.go('/home/signup'),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: theme.colorScheme.surface,
                         foregroundColor: theme.colorScheme.onSurface,

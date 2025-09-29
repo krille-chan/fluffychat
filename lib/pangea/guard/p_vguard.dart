@@ -12,7 +12,7 @@ class PAuthGaurd {
   static PangeaController? pController;
 
   /// Redirect for /home routes
-  static FutureOr<String?> loggedInRedirect(
+  static FutureOr<String?> homeRedirect(
     BuildContext context,
     GoRouterState state,
   ) async {
@@ -24,11 +24,19 @@ class PAuthGaurd {
         Matrix.of(context).widget.clients.any((client) => client.isLogged());
     if (!isLogged) return null;
 
-    return _onboardingRedirect(context, state);
+    // If user hasn't set their L2,
+    // and their URL doesn’t include ‘course,’ redirect
+    final bool hasSetL2 = await pController!.userController.isUserL2Set;
+    final langCode = state.pathParameters['langcode'];
+    return !hasSetL2
+        ? langCode != null
+            ? '/registration/$langCode'
+            : '/registration'
+        : '/rooms';
   }
 
-  /// Redirect for onboarding and /rooms routes
-  static FutureOr<String?> loggedOutRedirect(
+  /// Redirect for /rooms routes
+  static FutureOr<String?> roomsRedirect(
     BuildContext context,
     GoRouterState state,
   ) async {
@@ -42,24 +50,30 @@ class PAuthGaurd {
       return '/home';
     }
 
-    return _onboardingRedirect(context, state);
-  }
-
-  static Future<String?> _onboardingRedirect(
-    BuildContext context,
-    GoRouterState state,
-  ) async {
     // If user hasn't set their L2,
     // and their URL doesn’t include ‘course,’ redirect
     final bool hasSetL2 = await pController!.userController.isUserL2Set;
-    final bool shouldRedirect =
-        !hasSetL2 && !(state.fullPath?.contains('course') ?? false);
 
     final langCode = state.pathParameters['langcode'];
-    return shouldRedirect
+    return !hasSetL2
         ? langCode != null
-            ? '/course/$langCode'
-            : '/course'
+            ? '/registration/$langCode'
+            : '/registration'
         : null;
+  }
+
+  /// Redirect for onboarding routes
+  static FutureOr<String?> onboardingRedirect(
+    BuildContext context,
+    GoRouterState state,
+  ) async {
+    if (pController == null) {
+      return Matrix.of(context).client.isLogged() ? null : '/home';
+    }
+
+    final isLogged = Matrix.of(context).widget.clients.any(
+          (client) => client.isLogged(),
+        );
+    return isLogged ? null : '/home';
   }
 }

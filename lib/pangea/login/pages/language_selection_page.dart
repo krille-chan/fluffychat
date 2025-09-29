@@ -29,6 +29,7 @@ class LanguageSelectionPageState extends State<LanguageSelectionPage> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final languages = MatrixState.pangeaController.pLanguageStore.targetOptions;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(L10n.of(context).languages),
@@ -114,11 +115,16 @@ class LanguageSelectionPageState extends State<LanguageSelectionPage> {
                 ),
                 ElevatedButton(
                   onPressed: _selectedLanguage != null
-                      ? () => context.go(
-                            Matrix.of(context).client.isLogged()
-                                ? "/course/${_selectedLanguage!.langCode}"
-                                : "/home/languages/${_selectedLanguage!.langCode}",
-                          )
+                      ? () {
+                          context.go(
+                            GoRouterState.of(context)
+                                        .fullPath
+                                        ?.contains('home') ==
+                                    true
+                                ? '/home/signup/${_selectedLanguage!.langCode}'
+                                : '/registration/${_selectedLanguage!.langCode}',
+                          );
+                        }
                       : null,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: theme.colorScheme.surface,

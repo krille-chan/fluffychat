@@ -178,7 +178,7 @@ class SignupPageController extends State<SignupPage> {
       },
     );
 
-    if (!resp.isError) context.go("/course/${widget.langCode}");
+    if (!resp.isError) context.go('/registration/${widget.langCode}');
   }
 
   Future<void> _signupFuture() async {

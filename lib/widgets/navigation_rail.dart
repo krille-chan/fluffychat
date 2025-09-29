@@ -43,7 +43,7 @@ class SpacesNavigationRail extends StatelessWidget {
         .startsWith('/rooms/settings');
     // #Pangea
     final isAnalytics = path?.contains('analytics') ?? false;
-    final isCommunities = path?.contains('communities') ?? false;
+    final isCourse = path?.contains('course') ?? false;
     final isColumnMode = FluffyThemes.isColumnMode(context);
 
     final width = isColumnMode
@@ -125,7 +125,7 @@ class SpacesNavigationRail extends StatelessWidget {
                             isSelected: activeSpaceId == null &&
                                 !isSettings &&
                                 !isAnalytics &&
-                                !isCommunities,
+                                !isCourse,
                             // onTap: onGoToChats,
                             // icon: const Padding(
                             //   padding: EdgeInsets.all(10.0),
@@ -159,16 +159,16 @@ class SpacesNavigationRail extends StatelessWidget {
                             // toolTip: L10n.of(context).createNewSpace,
                             backgroundColor: Colors.transparent,
                             borderRadius: BorderRadius.circular(0),
-                            isSelected: isCommunities,
+                            isSelected: isCourse,
                             onTap: () {
-                              context.go('/rooms/communities');
+                              context.go('/rooms/course');
                             },
                             icon: ClipPath(
                               clipper: MapClipper(),
                               child: Container(
                                 width: width - (isColumnMode ? 32.0 : 24.0),
                                 height: width - (isColumnMode ? 32.0 : 24.0),
-                                color: isCommunities
+                                color: isCourse
                                     ? Theme.of(context)
                                         .colorScheme
                                         .primaryContainer

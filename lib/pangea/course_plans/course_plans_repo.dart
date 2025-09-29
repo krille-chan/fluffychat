@@ -160,13 +160,13 @@ class CoursePlansRepo {
         if (filter.languageOfInstructions != null) {
           where["and"].add({
             "l1": {
-              "equals": filter.languageOfInstructions!.langCode,
+              "equals": filter.languageOfInstructions!.langCodeShort,
             },
           });
         }
         if (filter.targetLanguage != null) {
           where["and"].add({
-            "l2": {"equals": filter.targetLanguage!.langCode},
+            "l2": {"equals": filter.targetLanguage!.langCodeShort},
           });
         }
       } else if (numberOfFilter == 1) {

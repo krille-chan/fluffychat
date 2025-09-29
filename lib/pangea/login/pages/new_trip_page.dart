@@ -10,14 +10,16 @@ import 'package:fluffychat/pangea/course_creation/course_plan_filter_widget.dart
 import 'package:fluffychat/pangea/course_creation/course_search_provider.dart';
 import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_enum.dart';
 import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
-import 'package:fluffychat/pangea/learning_settings/utils/p_language_store.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class NewTripPage extends StatefulWidget {
-  final String langCode;
+  final String route;
+  final String? spaceId;
+
   const NewTripPage({
     super.key,
-    required this.langCode,
+    required this.route,
+    this.spaceId,
   });
 
   @override
@@ -29,7 +31,7 @@ class NewTripPageState extends State<NewTripPage> with CourseSearchProvider {
   void initState() {
     super.initState();
 
-    final target = PLanguageStore.byLangCode(widget.langCode);
+    final target = MatrixState.pangeaController.languageController.userL2;
     if (target != null) {
       setTargetLanguageFilter(target);
     }
@@ -43,6 +45,7 @@ class NewTripPageState extends State<NewTripPage> with CourseSearchProvider {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final spaceId = widget.spaceId;
     return Scaffold(
       appBar: AppBar(
         title: Row(
@@ -50,7 +53,11 @@ class NewTripPageState extends State<NewTripPage> with CourseSearchProvider {
           mainAxisSize: MainAxisSize.min,
           children: [
             const Icon(Icons.map_outlined),
-            Text(L10n.of(context).startOwnTripTitle),
+            Text(
+              spaceId != null
+                  ? L10n.of(context).addCoursePlan
+                  : L10n.of(context).startOwnTripTitle,
+            ),
           ],
         ),
       ),
@@ -133,7 +140,9 @@ class NewTripPageState extends State<NewTripPage> with CourseSearchProvider {
                               padding: const EdgeInsets.only(bottom: 10.0),
                               child: InkWell(
                                 onTap: () => context.go(
-                                  '/course/${widget.langCode}/own/${course.uuid}',
+                                  spaceId != null
+                                      ? '/rooms/spaces/$spaceId/addcourse/${courses[index].uuid}'
+                                      : '/${widget.route}/course/own/${course.uuid}',
                                 ),
                                 borderRadius: BorderRadius.circular(12.0),
                                 child: Container(
