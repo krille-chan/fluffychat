@@ -31,19 +31,19 @@ mixin CourseSearchProvider<T extends StatefulWidget> on State<T> {
     );
   }
 
-  void setLanguageLevelFilter(LanguageLevelTypeEnum? level) {
+  void setLanguageLevelFilter(LanguageLevelTypeEnum? level, {reload = true}) {
     languageLevelFilter = level;
-    _loadCourses();
+    if (reload) _loadCourses();
   }
 
-  void setInstructionLanguageFilter(LanguageModel? language) {
+  void setInstructionLanguageFilter(LanguageModel? language, {reload = true}) {
     instructionLanguageFilter = language;
-    _loadCourses();
+    if (reload) _loadCourses();
   }
 
-  void setTargetLanguageFilter(LanguageModel? language) {
+  void setTargetLanguageFilter(LanguageModel? language, {reload = true}) {
     targetLanguageFilter = language;
-    _loadCourses();
+    if (reload) _loadCourses();
   }
 
   Future<void> _loadCourses() async {

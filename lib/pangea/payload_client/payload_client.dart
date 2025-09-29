@@ -112,6 +112,7 @@ class PayloadClient {
     int? page,
     int? limit,
     Map<String, dynamic>? where,
+    Map<String, dynamic>? select,
     String? sort,
   }) async {
     final Map<String, dynamic> queryParams = {};
@@ -119,6 +120,7 @@ class PayloadClient {
     if (page != null) queryParams['page'] = page.toString();
     if (limit != null) queryParams['limit'] = limit.toString();
     if (where != null && where.isNotEmpty) queryParams['where'] = where;
+    if (select != null && select.isNotEmpty) queryParams['select'] = select;
     if (sort != null) queryParams['sort'] = sort;
 
     final endpoint =

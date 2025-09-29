@@ -33,12 +33,12 @@ class NewTripPageState extends State<NewTripPage> with CourseSearchProvider {
 
     final target = MatrixState.pangeaController.languageController.userL2;
     if (target != null) {
-      setTargetLanguageFilter(target);
+      setTargetLanguageFilter(target, reload: false);
     }
 
     final base = MatrixState.pangeaController.languageController.systemLanguage;
     if (base != null) {
-      setInstructionLanguageFilter(base);
+      setInstructionLanguageFilter(base, reload: false);
     }
   }
 
