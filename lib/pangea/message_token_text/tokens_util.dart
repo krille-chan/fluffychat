@@ -35,6 +35,12 @@ class TokenPosition {
     required this.startIndex,
     required this.endIndex,
   });
+
+  Map<String, dynamic> toJson() => {
+        'token': token?.toJson(),
+        'startIndex': startIndex,
+        'endIndex': endIndex,
+      };
 }
 
 class TokensUtil {
@@ -157,10 +163,14 @@ class TokensUtil {
 
       final int startIndex = i;
       if (isPunct || nextIsPunct) {
-        while (nextToken != null && currentToken?.end == nextToken.start) {
+        bool punctPickup = true;
+        while (nextToken != null &&
+            currentToken?.end == nextToken.start &&
+            punctPickup) {
           i++;
           currentToken = nextToken;
           nextToken = i < tokens.length - 1 ? tokens[i + 1] : null;
+          punctPickup = nextToken?.pos == 'PUNCT';
         }
       }
 
