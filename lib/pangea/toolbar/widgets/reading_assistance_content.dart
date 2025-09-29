@@ -123,6 +123,8 @@ class ReadingAssistanceContentState extends State<ReadingAssistanceContent> {
           onClose: () => widget.overlayController.updateSelectedSpan(null),
           langCode: widget
               .overlayController.pangeaMessageEvent.messageDisplayLangCode,
+          onDismissNewWordOverlay: () =>
+              widget.overlayController.setState(() {}),
         );
     }
   }

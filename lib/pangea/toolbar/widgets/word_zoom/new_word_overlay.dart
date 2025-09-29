@@ -5,16 +5,19 @@ import 'package:flutter/material.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/pangea/common/utils/overlay.dart';
 import 'package:fluffychat/pangea/constructs/construct_level_enum.dart';
+import 'package:fluffychat/pangea/message_token_text/tokens_util.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class NewWordOverlay extends StatefulWidget {
   final Color overlayColor;
   final String transformTargetId;
+  final VoidCallback? onDismiss;
 
   const NewWordOverlay({
     super.key,
     required this.overlayColor,
     required this.transformTargetId,
+    this.onDismiss,
   });
 
   @override
@@ -57,7 +60,10 @@ class _NewWordOverlayState extends State<NewWordOverlay>
     WidgetsBinding.instance.addPostFrameCallback((_) {
       columnMode = FluffyThemes.isColumnMode(context);
       _showFlyingWidget();
-      _controller?.forward();
+      _controller?.forward().then((_) {
+        TokensUtil.clearNewTokenCache();
+        widget.onDismiss?.call();
+      });
     });
   }
 
@@ -80,9 +86,6 @@ class _NewWordOverlayState extends State<NewWordOverlay>
       context: context,
       closePrevOverlay: false,
       ignorePointer: true,
-      // onDismiss: () {
-      //   MatrixState.pAnyState.closeOverlay(widget.transformTargetId);
-      // },
       offset: const Offset(0, 65),
       targetAnchor: Alignment.center,
       overlayKey: widget.transformTargetId,

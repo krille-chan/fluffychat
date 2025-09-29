@@ -517,9 +517,6 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
   void onSelectNewToken(PangeaToken token) {
     if (!isNewToken(token)) return;
-    final future =
-        MatrixState.pangeaController.getAnalytics.analyticsStream.stream.first;
-
     MatrixState.pangeaController.putAnalytics.setState(
       AnalyticsStream(
         eventId: event.eventId,
@@ -542,13 +539,6 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
         targetID: "word-zoom-card-${token.text.uniqueKey}",
       ),
     );
-
-    future.then((_) {
-      TokensUtil.clearNewTokenCache();
-      if (mounted) {
-        setState(() {});
-      }
-    });
   }
 
   /// Whether the given token is currently selected or highlighted

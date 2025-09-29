@@ -27,6 +27,7 @@ class WordZoomWidget extends StatelessWidget {
   final VoidCallback onClose;
 
   final bool wordIsNew;
+  final VoidCallback? onDismissNewWordOverlay;
   final Event? event;
 
   const WordZoomWidget({
@@ -36,6 +37,7 @@ class WordZoomWidget extends StatelessWidget {
     required this.langCode,
     required this.onClose,
     this.wordIsNew = false,
+    this.onDismissNewWordOverlay,
     this.event,
   });
 
@@ -261,6 +263,7 @@ class WordZoomWidget extends StatelessWidget {
                 key: ValueKey(transformTargetId),
                 overlayColor: overlayColor,
                 transformTargetId: transformTargetId,
+                onDismiss: onDismissNewWordOverlay,
               )
             : const SizedBox.shrink(),
       ],
