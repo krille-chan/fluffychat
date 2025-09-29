@@ -54,15 +54,19 @@ class ReadingAssistanceInputBarState extends State<ReadingAssistanceInputBar> {
         case MessageMode.wordZoom:
         case MessageMode.noneSelected:
         case MessageMode.messageMeaning:
-          //TODO: show all emojis for the lemmas and allow sending normal reactions
-          content = Text(
-            L10n.of(context).choosePracticeMode,
-            style: Theme.of(context)
-                .textTheme
-                .bodyLarge
-                ?.copyWith(fontStyle: FontStyle.italic),
-            textAlign: TextAlign.center,
-          );
+          content = overlayController.isTotallyDone
+              ? Text(
+                  L10n.of(context).allDone,
+                  textAlign: TextAlign.center,
+                )
+              : Text(
+                  L10n.of(context).choosePracticeMode,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyLarge
+                      ?.copyWith(fontStyle: FontStyle.italic),
+                  textAlign: TextAlign.center,
+                );
 
         case MessageMode.messageTranslation:
           if (overlayController.isTranslationUnlocked) {
