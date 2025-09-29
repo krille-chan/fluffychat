@@ -101,10 +101,13 @@ class SpaceAnalyticsView extends StatelessWidget {
                               children: [
                                 if (controller.selectedLanguage != null)
                                   Text(
-                                    controller.selectedLanguage!
-                                            .getDisplayName(context) ??
-                                        controller
-                                            .selectedLanguage!.displayName,
+                                    mini
+                                        ? controller.selectedLanguage!.langCode
+                                            .toUpperCase()
+                                        : controller.selectedLanguage!
+                                                .getDisplayName(context) ??
+                                            controller
+                                                .selectedLanguage!.displayName,
                                     style: TextStyle(
                                       color:
                                           theme.colorScheme.onPrimaryContainer,
