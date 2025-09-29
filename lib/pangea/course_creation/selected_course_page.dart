@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
@@ -23,29 +25,33 @@ class SelectedCourse extends StatefulWidget {
 class SelectedCourseController extends State<SelectedCourse> {
   Future<void> launchCourse(CoursePlanModel course) async {
     final client = Matrix.of(context).client;
-    final roomId = await client.createPangeaSpace(
-      name: course.title,
-      topic: course.description,
-      introChatName: L10n.of(context).introductions,
-      announcementsChatName: L10n.of(context).announcements,
-      visibility: sdk.Visibility.private,
-      joinRules: sdk.JoinRules.knock,
-      initialState: [
-        sdk.StateEvent(
-          type: PangeaEventTypes.coursePlan,
-          content: {
-            "uuid": course.uuid,
-          },
-        ),
-      ],
-      avatarUrl: course.imageUrl,
-      spaceChild: 0,
-    );
+    final Completer<String> completer = Completer<String>();
+    client
+        .createPangeaSpace(
+          name: course.title,
+          topic: course.description,
+          introChatName: L10n.of(context).introductions,
+          announcementsChatName: L10n.of(context).announcements,
+          visibility: sdk.Visibility.private,
+          joinRules: sdk.JoinRules.knock,
+          initialState: [
+            sdk.StateEvent(
+              type: PangeaEventTypes.coursePlan,
+              content: {
+                "uuid": course.uuid,
+              },
+            ),
+          ],
+          avatarUrl: course.imageUrl,
+          spaceChild: 0,
+        )
+        .then((spaceId) => completer.complete(spaceId))
+        .catchError((error) => completer.completeError(error));
 
-    if (!mounted) return;
-    final room = client.getRoomById(roomId);
-    if (room == null) return;
-    context.go("/rooms/spaces/${room.id}/details");
+    context.go(
+      "/rooms/course/own/${widget.courseId}/invite",
+      extra: completer,
+    );
   }
 
   Future<void> addCourseToSpace(CoursePlanModel course) async {
