@@ -48,7 +48,11 @@ class SettingsController extends State<Settings> {
     final matrix = Matrix.of(context);
     final success = await showFutureLoadingDialog(
       context: context,
-      future: () => matrix.client.setDisplayName(matrix.client.userID!, input),
+      future: () => matrix.client.setProfileField(
+        matrix.client.userID!,
+        'displayname',
+        {'displayname': input},
+      ),
     );
     if (success.error == null) {
       updateProfile();
