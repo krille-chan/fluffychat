@@ -83,12 +83,8 @@ class PangeaSsoButton extends StatelessWidget {
     final theme = Theme.of(context);
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        backgroundColor: theme.colorScheme.surface,
-        foregroundColor: theme.colorScheme.onSurface,
-        side: BorderSide(
-          width: 1,
-          color: theme.colorScheme.onSurface,
-        ),
+        backgroundColor: theme.colorScheme.primaryContainer,
+        foregroundColor: theme.colorScheme.onPrimaryContainer,
       ),
       child: Row(
         spacing: 8.0,
@@ -99,7 +95,7 @@ class PangeaSsoButton extends StatelessWidget {
             height: 20,
             width: 20,
             colorFilter: ColorFilter.mode(
-              theme.colorScheme.onSurface,
+              theme.colorScheme.onPrimaryContainer,
               BlendMode.srcIn,
             ),
           ),

@@ -57,12 +57,8 @@ class PlanTripPage extends StatelessWidget {
                         '/$route/course/private',
                       ),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: theme.colorScheme.surface,
-                        foregroundColor: theme.colorScheme.onSurface,
-                        side: BorderSide(
-                          width: 1,
-                          color: theme.colorScheme.onSurface,
-                        ),
+                        backgroundColor: theme.colorScheme.primaryContainer,
+                        foregroundColor: theme.colorScheme.onPrimaryContainer,
                       ),
                       child: Row(
                         spacing: 4.0,
@@ -78,12 +74,8 @@ class PlanTripPage extends StatelessWidget {
                         '/$route/course/public',
                       ),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: theme.colorScheme.surface,
-                        foregroundColor: theme.colorScheme.onSurface,
-                        side: BorderSide(
-                          width: 1,
-                          color: theme.colorScheme.onSurface,
-                        ),
+                        backgroundColor: theme.colorScheme.primaryContainer,
+                        foregroundColor: theme.colorScheme.onPrimaryContainer,
                       ),
                       child: Row(
                         spacing: 4.0,
@@ -99,12 +91,8 @@ class PlanTripPage extends StatelessWidget {
                         '/$route/course/own',
                       ),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: theme.colorScheme.surface,
-                        foregroundColor: theme.colorScheme.onSurface,
-                        side: BorderSide(
-                          width: 1,
-                          color: theme.colorScheme.onSurface,
-                        ),
+                        backgroundColor: theme.colorScheme.primaryContainer,
+                        foregroundColor: theme.colorScheme.onPrimaryContainer,
                       ),
                       child: Row(
                         spacing: 4.0,

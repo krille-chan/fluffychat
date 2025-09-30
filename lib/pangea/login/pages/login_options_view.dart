@@ -50,12 +50,8 @@ class LoginOptionsView extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () => context.go('/home/login/email'),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: theme.colorScheme.surface,
-                    foregroundColor: theme.colorScheme.onSurface,
-                    side: BorderSide(
-                      width: 1,
-                      color: theme.colorScheme.onSurface,
-                    ),
+                    backgroundColor: theme.colorScheme.primaryContainer,
+                    foregroundColor: theme.colorScheme.onPrimaryContainer,
                   ),
                   child: Row(
                     spacing: 8.0,
@@ -63,7 +59,8 @@ class LoginOptionsView extends StatelessWidget {
                     children: [
                       PangeaLogoSvg(
                         width: 20,
-                        forceColor: Theme.of(context).colorScheme.onSurface,
+                        forceColor:
+                            Theme.of(context).colorScheme.onPrimaryContainer,
                       ),
                       Text(L10n.of(context).email),
                     ],
