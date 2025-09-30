@@ -184,9 +184,12 @@ class ITController {
               e is TimeoutException ? SentryLevel.warning : SentryLevel.error,
         );
       }
-      choreographer.errorService.setErrorAndLock(
-        ChoreoError(raw: e),
-      );
+
+      if (_willOpen) {
+        choreographer.errorService.setErrorAndLock(
+          ChoreoError(raw: e),
+        );
+      }
     } finally {
       choreographer.stopLoading();
     }
