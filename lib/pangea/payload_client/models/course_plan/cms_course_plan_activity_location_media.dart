@@ -1,12 +1,12 @@
 import 'package:fluffychat/pangea/payload_client/image_sizes.dart';
 import 'package:fluffychat/pangea/payload_client/polymorphic_relationship.dart';
 
-/// Represents course plan media from the CMS API
-class CmsCoursePlanMedia {
-  static const String slug = "course-plan-media";
+/// Represents a course plan activity location media from the CMS API
+class CmsCoursePlanActivityLocationMedia {
+  static const String slug = "course-plan-activity-location-media";
   final String id;
   final String? alt;
-  final List<String> coursePlans;
+  final List<String> coursePlanActivityLocations;
   final PolymorphicRelationship? createdBy;
   final PolymorphicRelationship? updatedBy;
   final String? prefix;
@@ -23,10 +23,10 @@ class CmsCoursePlanMedia {
   final double? focalY;
   final ImageSizes? sizes;
 
-  CmsCoursePlanMedia({
+  CmsCoursePlanActivityLocationMedia({
     required this.id,
     this.alt,
-    required this.coursePlans,
+    required this.coursePlanActivityLocations,
     this.createdBy,
     this.updatedBy,
     this.prefix,
@@ -44,11 +44,14 @@ class CmsCoursePlanMedia {
     this.sizes,
   });
 
-  factory CmsCoursePlanMedia.fromJson(Map<String, dynamic> json) {
-    return CmsCoursePlanMedia(
+  factory CmsCoursePlanActivityLocationMedia.fromJson(
+    Map<String, dynamic> json,
+  ) {
+    return CmsCoursePlanActivityLocationMedia(
       id: json['id'],
       alt: json['alt'],
-      coursePlans: List<String>.from(json['coursePlans'] as List),
+      coursePlanActivityLocations:
+          List<String>.from(json['coursePlanActivityLocations'] as List),
       createdBy: json['createdBy'] != null
           ? PolymorphicRelationship.fromJson(json['createdBy'])
           : null,
@@ -67,7 +70,6 @@ class CmsCoursePlanMedia {
       height: json['height'],
       focalX: json['focalX']?.toDouble(),
       focalY: json['focalY']?.toDouble(),
-      sizes: json['sizes'] != null ? ImageSizes.fromJson(json['sizes']) : null,
     );
   }
 
@@ -75,7 +77,7 @@ class CmsCoursePlanMedia {
     return {
       'id': id,
       'alt': alt,
-      'coursePlans': coursePlans,
+      'coursePlanActivityLocations': coursePlanActivityLocations,
       'createdBy': createdBy?.toJson(),
       'updatedBy': updatedBy?.toJson(),
       'prefix': prefix,

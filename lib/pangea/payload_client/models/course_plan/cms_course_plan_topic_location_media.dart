@@ -1,3 +1,4 @@
+import 'package:fluffychat/pangea/payload_client/image_sizes.dart';
 import 'package:fluffychat/pangea/payload_client/polymorphic_relationship.dart';
 
 /// Represents a course plan topic location from the CMS API
@@ -20,6 +21,7 @@ class CmsCoursePlanTopicLocationMedia {
   final int? height;
   final double? focalX;
   final double? focalY;
+  final ImageSizes? sizes;
 
   CmsCoursePlanTopicLocationMedia({
     required this.id,
@@ -39,6 +41,7 @@ class CmsCoursePlanTopicLocationMedia {
     this.height,
     this.focalX,
     this.focalY,
+    this.sizes,
   });
 
   factory CmsCoursePlanTopicLocationMedia.fromJson(Map<String, dynamic> json) {
@@ -87,6 +90,7 @@ class CmsCoursePlanTopicLocationMedia {
       'height': height,
       'focalX': focalX,
       'focalY': focalY,
+      'sizes': sizes?.toJson(),
     };
   }
 }
