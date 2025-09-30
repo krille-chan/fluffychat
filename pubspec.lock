@@ -1123,7 +1123,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: b4b9bb6254325e9d00961db3c558db3126359783
+      resolved-ref: "47329df6affd0ccc928e1cd40279bb67cf55ceaf"
       url: "https://github.com/famedly/matrix-dart-sdk.git"
     source: git
     version: "2.0.1"
@@ -1455,6 +1455,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.1"
+  receive_sharing_intent:
+    dependency: "direct main"
+    description:
+      name: receive_sharing_intent
+      sha256: ec76056e4d258ad708e76d85591d933678625318e411564dcb9059048ca3a593
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.8.1"
   record:
     dependency: "direct main"
     description:
