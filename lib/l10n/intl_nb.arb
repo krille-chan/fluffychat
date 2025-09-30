@@ -2669,5 +2669,44 @@
         }
     },
     "noMessagesYet": "Ingen meldinger enda",
-    "@noMessagesYet": {}
+    "@noMessagesYet": {},
+    "notificationRuleMasterDescription": "Overstyrer alle andre regler og deaktiverer alle varsler.",
+    "@notificationRuleMasterDescription": {},
+    "notificationRuleSuppressNotices": "Undertrykk automatiserte meldinger",
+    "@notificationRuleSuppressNotices": {},
+    "startedKeyVerification": "{sender} startet nøkkelverifisering",
+    "@startedKeyVerification": {
+        "type": "String",
+        "placeholders": {
+            "sender": {
+                "type": "String"
+            }
+        }
+    },
+    "transparent": "Gjennomsiktig",
+    "@transparent": {},
+    "stickers": "Stickers",
+    "@stickers": {},
+    "commandHint_ignore": "Ignorer den oppgitte matrix IDen",
+    "@commandHint_ignore": {},
+    "commandHint_unignore": "Opphev ignorering av den gitte matrix IDen",
+    "@commandHint_unignore": {},
+    "unreadChatsInApp": "{appname}: {unread} uleste chatter",
+    "@unreadChatsInApp": {
+        "type": "String",
+        "placeholders": {
+            "appname": {
+                "type": "String"
+            },
+            "unread": {
+                "type": "String"
+            }
+        }
+    },
+    "changeTheVisibilityOfChatHistory": "Endre synligheten til chatloggen",
+    "@changeTheVisibilityOfChatHistory": {},
+    "changeTheCanonicalRoomAlias": "Endre hovedadressen til den offentlige chatten",
+    "@changeTheCanonicalRoomAlias": {},
+    "sendRoomNotifications": "Send en @room varsling",
+    "@sendRoomNotifications": {}
 }
