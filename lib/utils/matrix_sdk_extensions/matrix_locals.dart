@@ -360,4 +360,7 @@ class MatrixLocals extends MatrixLocalizations {
             ? ''
             : '${duration.inMinutes.toString().padLeft(2, '0')}:${(duration.inSeconds % 60).toString().padLeft(2, '0')}',
       );
+
+  @override
+  String get refreshingLastEvent => l10n.loadingPleaseWait;
 }
