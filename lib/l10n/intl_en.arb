@@ -5298,5 +5298,6 @@
   "directMessageBotDesc": "Talking to humans is more fun but... AI is always ready!",
   "inviteYourFriends": "Invite your friends",
   "playWithAI": "Play with AI for now",
-  "courseStartDesc": "Pangea Bot is ready to go anytime!\n\n...but learning is better with friends!"
+  "courseStartDesc": "Pangea Bot is ready to go anytime!\n\n...but learning is better with friends!",
+  "activityDropdownDesc": "When you’re done with this activity, click below"
 }
