@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
 
+import 'package:fluffychat/pangea/course_plans/course_plan_room_extension.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import '../common/controllers/pangea_controller.dart';
 
@@ -53,13 +54,19 @@ class PAuthGaurd {
     // If user hasn't set their L2,
     // and their URL doesn’t include ‘course,’ redirect
     final bool hasSetL2 = await pController!.userController.isUserL2Set;
+    final bool inCourse = Matrix.of(context).client.rooms.any(
+              (r) => r.isSpace && r.coursePlan != null,
+            ) ||
+        state.fullPath?.contains('course') == true;
 
     final langCode = state.pathParameters['langcode'];
     return !hasSetL2
         ? langCode != null
             ? '/registration/$langCode'
             : '/registration'
-        : null;
+        : inCourse
+            ? null
+            : '/registration/course';
   }
 
   /// Redirect for onboarding routes
