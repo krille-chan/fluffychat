@@ -3387,5 +3387,11 @@
     "declineInvitation": "Keeldu kutsest",
     "@declineInvitation": {},
     "noMessagesYet": "Pole veel ühtegi sõnumit",
-    "@noMessagesYet": {}
+    "@noMessagesYet": {},
+    "longPressToRecordVoiceMessage": "Pika vajutusega saad salvestada häälsõnumi.",
+    "@longPressToRecordVoiceMessage": {},
+    "pause": "Peata",
+    "@pause": {},
+    "resume": "Jätka",
+    "@resume": {}
 }
