@@ -6,6 +6,8 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_room_extension.dart';
+import 'package:fluffychat/pangea/instructions/instructions_enum.dart';
+import 'package:fluffychat/pangea/instructions/instructions_inline_tooltip.dart';
 import 'package:fluffychat/widgets/hover_builder.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -13,7 +15,11 @@ import '../../config/themes.dart';
 import '../../widgets/avatar.dart';
 
 class ActivityArchive extends StatelessWidget {
-  const ActivityArchive({super.key});
+  final String? selectedRoomId;
+  const ActivityArchive({
+    super.key,
+    this.selectedRoomId,
+  });
 
   List<Room> get archive =>
       MatrixState.pangeaController.getAnalytics.archivedActivities;
@@ -22,18 +28,19 @@ class ActivityArchive extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaxWidthBody(
       withScrolling: false,
-      child: Builder(
-        builder: (BuildContext context) {
-          if (archive.isEmpty) {
-            return const Center(
-              child: Icon(Icons.archive_outlined, size: 80),
+      child: ListView.builder(
+        itemCount: archive.length + 1,
+        itemBuilder: (BuildContext context, int i) {
+          if (i == 0) {
+            return const InstructionsInlineTooltip(
+              instructionsEnum: InstructionsEnum.activityAnalyticsList,
+              padding: EdgeInsets.all(8.0),
             );
           }
-          return ListView.builder(
-            itemCount: archive.length,
-            itemBuilder: (BuildContext context, int i) => AnalyticsActivityItem(
-              room: archive[i],
-            ),
+          i--;
+          return AnalyticsActivityItem(
+            room: archive[i],
+            selected: archive[i].id == selectedRoomId,
           );
         },
       ),
@@ -43,9 +50,11 @@ class ActivityArchive extends StatelessWidget {
 
 class AnalyticsActivityItem extends StatelessWidget {
   final Room room;
+  final bool selected;
   const AnalyticsActivityItem({
     super.key,
     required this.room,
+    this.selected = false,
   });
 
   @override
@@ -57,12 +66,14 @@ class AnalyticsActivityItem extends StatelessWidget {
         )
         ?.cefrLevel;
 
+    final theme = Theme.of(context);
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 8,
         vertical: 1,
       ),
       child: Material(
+        color: selected ? theme.colorScheme.secondaryContainer : null,
         borderRadius: BorderRadius.circular(AppConfig.borderRadius),
         clipBehavior: Clip.hardEdge,
         child: ListTile(

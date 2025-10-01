@@ -27,6 +27,7 @@ enum InstructionsEnum {
   chooseMorphs,
   analyticsVocabList,
   morphAnalyticsList,
+  activityAnalyticsList,
   readingAssistanceOverview,
   emptyChatWarning,
   activityStatsMenu,
@@ -64,6 +65,7 @@ extension InstructionsEnumExtension on InstructionsEnum {
       case InstructionsEnum.readingAssistanceOverview:
       case InstructionsEnum.activityStatsMenu:
       case InstructionsEnum.chatListTooltip:
+      case InstructionsEnum.activityAnalyticsList:
         ErrorHandler.logError(
           e: Exception("No title for this instruction"),
           m: 'InstructionsEnumExtension.title',
@@ -120,6 +122,8 @@ extension InstructionsEnumExtension on InstructionsEnum {
         return l10n.analyticsVocabListBody;
       case InstructionsEnum.morphAnalyticsList:
         return l10n.morphAnalyticsListBody;
+      case InstructionsEnum.activityAnalyticsList:
+        return l10n.activityAnalyticsListBody;
       case InstructionsEnum.readingAssistanceOverview:
         return l10n.readingAssistanceOverviewBody;
       case InstructionsEnum.emptyChatWarning:

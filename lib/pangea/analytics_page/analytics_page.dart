@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
@@ -28,6 +29,7 @@ class AnalyticsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final analyticsRoomId = GoRouterState.of(context).pathParameters['roomid'];
     return Scaffold(
       appBar: construct != null ? AppBar() : null,
       body: SafeArea(
@@ -60,7 +62,9 @@ class AnalyticsPage extends StatelessWidget {
                         view: ConstructTypeEnum.vocab,
                       );
                     } else if (indicator == ProgressIndicatorEnum.activities) {
-                      return const ActivityArchive();
+                      return ActivityArchive(
+                        selectedRoomId: analyticsRoomId,
+                      );
                     }
 
                     return Center(

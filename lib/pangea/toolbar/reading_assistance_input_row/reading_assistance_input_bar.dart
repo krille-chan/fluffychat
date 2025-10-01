@@ -131,22 +131,26 @@ class ReadingAssistanceInputBarState extends State<ReadingAssistanceInputBar> {
         PracticeModeButtons(
           overlayController: overlayController,
         ),
-        Material(
-          child: Container(
-            padding: const EdgeInsets.all(8.0),
-            alignment: Alignment.center,
-            constraints: const BoxConstraints(
-              minHeight: minContentHeight,
-              maxHeight: AppConfig.readingAssistanceInputBarHeight,
-            ),
-            child: Scrollbar(
-              thumbVisibility: true,
-              controller: _scrollController,
-              child: SingleChildScrollView(
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: Material(
+            borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+            child: Container(
+              padding: const EdgeInsets.all(8.0),
+              alignment: Alignment.center,
+              constraints: const BoxConstraints(
+                minHeight: minContentHeight,
+                maxHeight: AppConfig.readingAssistanceInputBarHeight,
+              ),
+              child: Scrollbar(
+                thumbVisibility: true,
                 controller: _scrollController,
-                child: SizedBox(
-                  width: overlayController.maxWidth,
-                  child: barContent(context),
+                child: SingleChildScrollView(
+                  controller: _scrollController,
+                  child: SizedBox(
+                    width: overlayController.maxWidth,
+                    child: barContent(context),
+                  ),
                 ),
               ),
             ),
