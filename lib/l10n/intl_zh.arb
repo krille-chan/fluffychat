@@ -3387,5 +3387,11 @@
     "declineInvitation": "拒绝邀请",
     "@declineInvitation": {},
     "noMessagesYet": "尚无消息",
-    "@noMessagesYet": {}
+    "@noMessagesYet": {},
+    "longPressToRecordVoiceMessage": "长按录制语音消息。",
+    "@longPressToRecordVoiceMessage": {},
+    "pause": "暂停",
+    "@pause": {},
+    "resume": "继续",
+    "@resume": {}
 }
