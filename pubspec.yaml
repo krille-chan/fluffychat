@@ -23,6 +23,7 @@ dependencies:
   dynamic_color: ^1.8.1
   emoji_picker_flutter: ^4.3.0
   emojis: ^0.9.9
+  fcm_shared_isolate: ^0.2.0
   file_picker: ^10.3.3
   file_selector: ^1.0.4
   flutter:

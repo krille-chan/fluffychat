@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
 import 'package:desktop_notifications/desktop_notifications.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:image/image.dart';
 import 'package:matrix/matrix.dart';
 import 'package:universal_html/html.dart' as html;
@@ -79,6 +80,21 @@ extension LocalNotificationsExtension on MatrixState {
         body: body,
         icon: thumbnailUri?.toString(),
         tag: event.room.id,
+      );
+    } else if (Platform.isMacOS) {
+      final plugin = backgroundPush?.notificationsPlugin;
+      if (plugin == null) {
+        Logs().w('Local notification requested on macOS but plugin missing');
+        return;
+      }
+      await plugin.show(
+        roomId.hashCode,
+        title,
+        body,
+        const NotificationDetails(
+          macOS: DarwinNotificationDetails(),
+        ),
+        payload: roomId,
       );
     } else if (Platform.isLinux) {
       final avatarUrl = event.room.avatar;

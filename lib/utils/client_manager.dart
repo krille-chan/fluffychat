@@ -160,6 +160,7 @@ abstract class ClientManager {
       const InitializationSettings(
         android: AndroidInitializationSettings('notifications_icon'),
         iOS: DarwinInitializationSettings(),
+        macOS: DarwinInitializationSettings(),
       ),
     );
 
@@ -175,6 +176,7 @@ abstract class ClientManager {
           priority: Priority.max,
         ),
         iOS: DarwinNotificationDetails(sound: 'notification.caf'),
+        macOS: DarwinNotificationDetails(),
       ),
     );
   }
