@@ -127,6 +127,10 @@ msix_config:
   sign_msix: false
   install_certificate: false
 
+# Guidelines for adding a dependency override:
+# 1. Don't do it if you can avoid it or fix it upstream in a manageable time
+# 2. Always link an (upstream?) issue
+# 3. Explain how and when this can be removed (overrides must be temporarily)
 dependency_overrides:
   # https://github.com/juliansteenbakker/flutter_secure_storage/issues/920
   flutter_secure_storage_linux:
