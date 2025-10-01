@@ -2,49 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-/// Response model for paginated results from PayloadCMS
-class PayloadPaginatedResponse<T> {
-  final List<T> docs;
-  final int totalDocs;
-  final int limit;
-  final int page;
-  final int totalPages;
-  final bool hasNextPage;
-  final bool hasPrevPage;
-  final int? nextPage;
-  final int? prevPage;
-
-  PayloadPaginatedResponse({
-    required this.docs,
-    required this.totalDocs,
-    required this.limit,
-    required this.page,
-    required this.totalPages,
-    required this.hasNextPage,
-    required this.hasPrevPage,
-    this.nextPage,
-    this.prevPage,
-  });
-
-  factory PayloadPaginatedResponse.fromJson(
-    Map<String, dynamic> json,
-    T Function(Map<String, dynamic>) fromJsonT,
-  ) {
-    return PayloadPaginatedResponse<T>(
-      docs: (json['docs'] as List<dynamic>)
-          .map((e) => fromJsonT(e as Map<String, dynamic>))
-          .toList(),
-      totalDocs: json['totalDocs'] as int,
-      limit: json['limit'] as int,
-      page: json['page'] as int,
-      totalPages: json['totalPages'] as int,
-      hasNextPage: json['hasNextPage'] as bool,
-      hasPrevPage: json['hasPrevPage'] as bool,
-      nextPage: json['nextPage'] as int?,
-      prevPage: json['prevPage'] as int?,
-    );
-  }
-}
+import 'package:fluffychat/pangea/payload_client/paginated_response.dart';
 
 /// Generic PayloadCMS client for CRUD operations
 class PayloadClient {
@@ -67,14 +25,17 @@ class PayloadClient {
   }
 
   /// Generic GET request
-  Future<http.Response> get(String endpoint) async {
+  Future<http.Response> _get(String endpoint) async {
     final url = Uri.parse('$baseUrl$endpoint');
     final response = await http.get(url, headers: _headers);
     return response;
   }
 
   /// Generic POST request
-  Future<http.Response> post(String endpoint, Map<String, dynamic> body) async {
+  Future<http.Response> _post(
+    String endpoint,
+    Map<String, dynamic> body,
+  ) async {
     final url = Uri.parse('$baseUrl$endpoint');
     final response = await http.post(
       url,
@@ -85,7 +46,7 @@ class PayloadClient {
   }
 
   /// Generic PATCH request
-  Future<http.Response> patch(
+  Future<http.Response> _patch(
     String endpoint,
     Map<String, dynamic> body,
   ) async {
@@ -99,7 +60,7 @@ class PayloadClient {
   }
 
   /// Generic DELETE request
-  Future<http.Response> delete(String endpoint) async {
+  Future<http.Response> _delete(String endpoint) async {
     final url = Uri.parse('$baseUrl$endpoint');
     final response = await http.delete(url, headers: _headers);
     return response;
@@ -125,7 +86,7 @@ class PayloadClient {
 
     final endpoint =
         '$basePath/$collection${queryParams.isNotEmpty ? '?${queryStringify(queryParams)}' : ''}';
-    final response = await get(endpoint);
+    final response = await _get(endpoint);
 
     if (response.statusCode >= 400) {
       throw Exception(
@@ -145,7 +106,7 @@ class PayloadClient {
     T Function(Map<String, dynamic>) fromJson,
   ) async {
     final endpoint = '$basePath/$collection/$id';
-    final response = await get(endpoint);
+    final response = await _get(endpoint);
     if (response.statusCode >= 400) {
       throw Exception(
         'Failed to load document: ${response.statusCode} ${response.body}',
@@ -162,7 +123,7 @@ class PayloadClient {
     T Function(Map<String, dynamic>) fromJson,
   ) async {
     final endpoint = '$basePath/$collection';
-    final response = await post(endpoint, data);
+    final response = await _post(endpoint, data);
 
     if (response.statusCode >= 400) {
       throw Exception(
@@ -182,7 +143,7 @@ class PayloadClient {
     T Function(Map<String, dynamic>) fromJson,
   ) async {
     final endpoint = '$basePath/$collection/$id';
-    final response = await patch(endpoint, data);
+    final response = await _patch(endpoint, data);
     if (response.statusCode >= 400) {
       throw Exception(
         'Failed to update document: ${response.statusCode} ${response.body}',
@@ -199,7 +160,7 @@ class PayloadClient {
     T Function(Map<String, dynamic>) fromJson,
   ) async {
     final endpoint = '$basePath/$collection/$id';
-    final response = await delete(endpoint);
+    final response = await _delete(endpoint);
     if (response.statusCode >= 400) {
       throw Exception(
         'Failed to delete document: ${response.statusCode} ${response.body}',
