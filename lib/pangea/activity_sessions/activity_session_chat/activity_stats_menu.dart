@@ -114,8 +114,8 @@ class ActivityStatsMenuState extends State<ActivityStatsMenu> {
     final isColumnMode = FluffyThemes.isColumnMode(context);
 
     // Completion status variables
-    final bool userComplete = room.hasCompletedActivity;
-    final bool activityComplete = room.activityIsFinished;
+    final bool userComplete = room.hasCompletedRole;
+    final bool activityComplete = room.isActivityFinished;
     bool shouldShowEndForAll = true;
     bool shouldShowImDone = true;
 

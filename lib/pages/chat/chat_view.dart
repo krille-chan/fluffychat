@@ -455,7 +455,7 @@ class ChatView extends StatelessWidget {
                                       bottomSheetPadding,
                                 ),
                               ),
-                            if (controller.room.activityIsFinished)
+                            if (controller.room.isActivityFinished)
                               LoadActivitySummaryWidget(
                                 room: controller.room,
                               ),

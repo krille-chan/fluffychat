@@ -57,7 +57,7 @@ class ActivityFinishedStatusMessage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (!controller.room.showActivityFinished) {
+    if (!controller.room.hasCompletedRole) {
       return const SizedBox.shrink();
     }
 
@@ -84,7 +84,7 @@ class ActivityFinishedStatusMessage extends StatelessWidget {
               spacing: 12.0,
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: controller.room.activityIsFinished
+              children: controller.room.isActivityFinished
                   ? [
                       if (summary?.isLoading ?? false) ...[
                         Text(
@@ -129,7 +129,7 @@ class ActivityFinishedStatusMessage extends StatelessWidget {
                           child: Text(L10n.of(context).requestSummaries),
                         ),
                       ],
-                      if (!controller.room.isHiddenActivityRoom)
+                      if (!controller.room.hasArchivedActivity)
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             padding: const EdgeInsets.symmetric(

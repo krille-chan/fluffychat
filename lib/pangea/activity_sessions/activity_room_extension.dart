@@ -34,6 +34,65 @@ class RoleException implements Exception {
 }
 
 extension ActivityRoomExtension on Room {
+  ActivityPlanModel? get activityPlan {
+    final stateEvent = getState(PangeaEventTypes.activityPlan);
+    if (stateEvent == null) return null;
+
+    try {
+      return ActivityPlanModel.fromJson(stateEvent.content);
+    } catch (e, s) {
+      ErrorHandler.logError(
+        e: e,
+        s: s,
+        data: {
+          "roomID": id,
+          "stateEvent": stateEvent.content,
+        },
+      );
+      return null;
+    }
+  }
+
+  ActivitySummaryModel? get activitySummary {
+    final stateEvent = getState(PangeaEventTypes.activitySummary);
+    if (stateEvent == null) return null;
+
+    try {
+      return ActivitySummaryModel.fromJson(stateEvent.content);
+    } catch (e, s) {
+      ErrorHandler.logError(
+        e: e,
+        s: s,
+        data: {
+          "roomID": id,
+          "stateEvent": stateEvent.content,
+        },
+      );
+      return null;
+    }
+  }
+
+  ActivityRolesModel? get activityRoles {
+    final content = getState(PangeaEventTypes.activityRole)?.content;
+    if (content == null) return null;
+
+    try {
+      return ActivityRolesModel.fromJson(content);
+    } catch (e, s) {
+      if (!kDebugMode && !Environment.isStagingEnvironment) {
+        ErrorHandler.logError(
+          e: e,
+          s: s,
+          data: {
+            "roomID": id,
+            "stateEvent": content,
+          },
+        );
+      }
+      return null;
+    }
+  }
+
   Future<void> joinActivity(ActivityRole role) async {
     final assigned = assignedRoles?.values ?? [];
     if (assigned.any((r) => r.userId != client.userID && r.role == role.name)) {
@@ -252,162 +311,6 @@ extension ActivityRoomExtension on Room {
     }
   }
 
-  ActivityPlanModel? get activityPlan {
-    final stateEvent = getState(PangeaEventTypes.activityPlan);
-    if (stateEvent == null) return null;
-
-    try {
-      return ActivityPlanModel.fromJson(stateEvent.content);
-    } catch (e, s) {
-      ErrorHandler.logError(
-        e: e,
-        s: s,
-        data: {
-          "roomID": id,
-          "stateEvent": stateEvent.content,
-        },
-      );
-      return null;
-    }
-  }
-
-  ActivitySummaryModel? get activitySummary {
-    final stateEvent = getState(PangeaEventTypes.activitySummary);
-    if (stateEvent == null) return null;
-
-    try {
-      return ActivitySummaryModel.fromJson(stateEvent.content);
-    } catch (e, s) {
-      ErrorHandler.logError(
-        e: e,
-        s: s,
-        data: {
-          "roomID": id,
-          "stateEvent": stateEvent.content,
-        },
-      );
-      return null;
-    }
-  }
-
-  ActivityRolesModel? get activityRoles {
-    final content = getState(PangeaEventTypes.activityRole)?.content;
-    if (content == null) return null;
-
-    try {
-      return ActivityRolesModel.fromJson(content);
-    } catch (e, s) {
-      if (!kDebugMode && !Environment.isStagingEnvironment) {
-        ErrorHandler.logError(
-          e: e,
-          s: s,
-          data: {
-            "roomID": id,
-            "stateEvent": content,
-          },
-        );
-      }
-      return null;
-    }
-  }
-
-  Map<String, ActivityRoleModel>? get assignedRoles {
-    final roles = activityRoles?.roles;
-    if (roles == null) return null;
-
-    final participants = getParticipants();
-    return Map.fromEntries(
-      roles.entries.where(
-        (r) => participants.any(
-          (p) => p.id == r.value.userId && p.membership == Membership.join,
-        ),
-      ),
-    );
-  }
-
-  ActivityRole? get ownRole {
-    final role = ownRoleState;
-    if (role == null || activityPlan == null) return null;
-
-    return activityPlan!.roles[role.id];
-  }
-
-  ActivityRoleModel? get ownRoleState => activityRoles?.role(client.userID!);
-
-  int get remainingRoles {
-    final availableRoles = activityPlan?.roles;
-    return max(0, (availableRoles?.length ?? 0) - (assignedRoles?.length ?? 0));
-  }
-
-  bool get showActivityChatUI {
-    return activityPlan != null &&
-        powerForChangingStateEvent(PangeaEventTypes.activityRole) == 0 &&
-        powerForChangingStateEvent(PangeaEventTypes.activitySummary) == 0;
-  }
-
-  bool get activityHasStarted =>
-      (activityPlan?.roles.length ?? 0) - (activityRoles?.roles.length ?? 0) <=
-      0;
-
-  bool get isActiveInActivity {
-    if (!showActivityChatUI) return false;
-    final role = ownRoleState;
-    return role != null && !role.isFinished;
-  }
-
-  bool get isInactiveInActivity {
-    if (!showActivityChatUI) return false;
-    final role = ownRoleState;
-    return role == null || role.isFinished;
-  }
-
-  bool get hasCompletedActivity => ownRoleState?.isFinished ?? false;
-
-  bool get activityIsFinished {
-    final roles = activityRoles?.roles.values.where(
-      (r) => r.userId != BotName.byEnvironment,
-    );
-
-    if (roles == null || roles.isEmpty) return false;
-    if (!roles.any((r) => r.isFinished)) return false;
-
-    return roles.every((r) {
-      if (r.isFinished) return true;
-
-      // if the user is in the chat (not null && membership is join),
-      // then the activity is not finished for them
-      final user = getParticipants().firstWhereOrNull(
-        (u) => u.id == r.userId,
-      );
-      return user == null || user.membership != Membership.join;
-    });
-  }
-
-  bool get isHiddenActivityRoom => ownRoleState?.isArchived ?? false;
-
-  bool get hasDismissedGoalTooltip =>
-      ownRoleState?.dismissedGoalTooltip ?? false;
-
-  Room? get courseParent => pangeaSpaceParents.firstWhereOrNull(
-        (parent) => parent.coursePlan != null,
-      );
-
-  bool get isActivityRoomType =>
-      roomType?.startsWith(PangeaRoomTypes.activitySession) == true;
-
-  bool get isActivitySession => isActivityRoomType || activityPlan != null;
-
-  bool get showActivityFinished =>
-      showActivityChatUI && ownRoleState != null && hasCompletedActivity;
-
-  String? get activityId {
-    if (!isActivitySession) return null;
-    if (isActivityRoomType) {
-      return roomType!.split(":").last;
-    }
-    return activityPlan?.activityId;
-  }
-
   Future<ActivitySummaryAnalyticsModel> getActivityAnalytics() async {
     // wait for local storage box to init in getAnalytics initialization
     if (!MatrixState.pangeaController.getAnalytics.initCompleter.isCompleted) {
@@ -449,4 +352,101 @@ extension ActivityRoomExtension on Room {
 
     return analytics;
   }
+
+  // UI-related helper functions
+
+  bool get showActivityChatUI {
+    return activityPlan != null &&
+        powerForChangingStateEvent(PangeaEventTypes.activityRole) == 0 &&
+        powerForChangingStateEvent(PangeaEventTypes.activitySummary) == 0;
+  }
+
+  // helper functions for activity role state in overall activity
+
+  Map<String, ActivityRoleModel>? get assignedRoles {
+    final roles = activityRoles?.roles;
+    if (roles == null) return null;
+
+    final participants = getParticipants();
+    return Map.fromEntries(
+      roles.entries.where(
+        (r) => participants.any(
+          (p) => p.id == r.value.userId && p.membership == Membership.join,
+        ),
+      ),
+    );
+  }
+
+  int get numRemainingRoles {
+    final availableRoles = activityPlan?.roles;
+    return max(0, (availableRoles?.length ?? 0) - (assignedRoles?.length ?? 0));
+  }
+
+  // helper functions for activity role state for specific users
+
+  ActivityRole? get ownRole {
+    final role = ownRoleState;
+    if (role == null || activityPlan == null) return null;
+
+    return activityPlan!.roles[role.id];
+  }
+
+  ActivityRoleModel? get ownRoleState => activityRoles?.role(client.userID!);
+
+  // helper functions for activity state for overall activity
+
+  bool get isActivitySession =>
+      roomType?.startsWith(PangeaRoomTypes.activitySession) == true ||
+      activityPlan != null;
+
+  String? get activityId {
+    if (!isActivitySession) return null;
+    if (roomType?.startsWith(PangeaRoomTypes.activitySession) == true) {
+      return roomType!.split(":").last;
+    }
+    return activityPlan?.activityId;
+  }
+
+  bool get isActivityStarted =>
+      (activityPlan?.roles.length ?? 0) - (activityRoles?.roles.length ?? 0) <=
+      0;
+
+  bool get isActivityFinished {
+    final roles = activityRoles?.roles.values.where(
+      (r) => r.userId != BotName.byEnvironment,
+    );
+
+    if (roles == null || roles.isEmpty) return false;
+    if (!roles.any((r) => r.isFinished)) return false;
+
+    return roles.every((r) {
+      if (r.isFinished) return true;
+
+      // if the user is in the chat (not null && membership is join),
+      // then the activity is not finished for them
+      final user = getParticipants().firstWhereOrNull(
+        (u) => u.id == r.userId,
+      );
+      return user == null || user.membership != Membership.join;
+    });
+  }
+
+  // helper functions for activity state for specific users
+
+  bool get hasPickedRole => ownRoleState != null;
+
+  bool get hasCompletedRole => ownRoleState?.isFinished ?? false;
+
+  bool get hasArchivedActivity => ownRoleState?.isArchived ?? false;
+
+  bool get hasDismissedGoalTooltip =>
+      ownRoleState?.dismissedGoalTooltip ?? false;
+
+  bool get isActiveInActivity => hasPickedRole && !hasCompletedRole;
+
+  // helper functions for activity course context
+
+  Room? get courseParent => pangeaSpaceParents.firstWhereOrNull(
+        (parent) => parent.coursePlan != null,
+      );
 }

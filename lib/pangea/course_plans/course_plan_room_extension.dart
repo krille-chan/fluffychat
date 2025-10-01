@@ -25,7 +25,7 @@ extension CoursePlanRoomExtension on Room {
       final room = client.getRoomById(child.roomId!);
       if (room?.membership == Membership.join &&
           room?.activityId == activityId &&
-          !room!.isHiddenActivityRoom) {
+          !room!.hasArchivedActivity) {
         return room.id;
       }
     }

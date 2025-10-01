@@ -41,5 +41,5 @@ extension RoomInformationRoomExtension on Room {
 
   bool get isAnalyticsRoom => roomType == PangeaRoomTypes.analytics;
 
-  bool get isHiddenRoom => isAnalyticsRoom || isHiddenActivityRoom;
+  bool get isHiddenRoom => isAnalyticsRoom || hasArchivedActivity;
 }

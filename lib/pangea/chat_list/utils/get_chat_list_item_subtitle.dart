@@ -57,14 +57,14 @@ class ChatListItemSubtitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (room.showActivityChatUI) {
-      if (room.isHiddenActivityRoom) {
+      if (room.hasArchivedActivity) {
         return Text(
           room.activityPlan!.learningObjective,
           style: style,
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
         );
-      } else if (!room.activityHasStarted) {
+      } else if (!room.isActivityStarted) {
         return OpenRolesIndicator(
           totalSlots: room.activityPlan!.req.numberOfParticipants,
           userIds:
@@ -73,7 +73,7 @@ class ChatListItemSubtitle extends StatelessWidget {
           room: room,
           space: room.courseParent,
         );
-      } else if (room.activityIsFinished) {
+      } else if (room.isActivityFinished) {
         return Text(
           L10n.of(context).activityDone,
           style: style,
