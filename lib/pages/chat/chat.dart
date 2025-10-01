@@ -20,7 +20,6 @@ import 'package:hermes/config/setting_keys.dart';
 import 'package:hermes/config/themes.dart';
 import 'package:hermes/pages/chat/chat_view.dart';
 import 'package:hermes/pages/chat/event_info_dialog.dart';
-import 'package:hermes/pages/chat/recording_dialog.dart';
 import 'package:hermes/pages/chat_details/chat_details.dart';
 import 'package:hermes/utils/error_reporter.dart';
 import 'package:hermes/utils/file_selector.dart';

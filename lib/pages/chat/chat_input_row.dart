@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:animations/animations.dart';
 import 'package:matrix/matrix.dart';
-import 'package:fluffychat/pages/chat/recording_input_row.dart';
-import 'package:fluffychat/pages/chat/recording_view_model.dart';
 import 'package:hermes/config/setting_keys.dart';
+import 'package:hermes/pages/chat/recording_input_row.dart';
+import 'package:hermes/pages/chat/recording_view_model.dart';
 import 'package:hermes/l10n/l10n.dart';
 import 'package:hermes/config/app_config.dart';
 import 'package:hermes/utils/other_party_can_receive.dart';

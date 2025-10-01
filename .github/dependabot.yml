@@ -10,7 +10,7 @@ updates:
       prefix: "build: "
       include: "scope"
     assignees:
-      - "krille-chan"
+      - "allomanta"
     open-pull-requests-limit: 5
   - package-ecosystem: "github-actions"
     directory: "/"

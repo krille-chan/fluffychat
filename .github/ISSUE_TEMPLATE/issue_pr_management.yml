@@ -22,6 +22,6 @@ jobs:
           days-before-pr-stale: 365
           days-before-pr-close: 14
           exempt-milestones: true
-          exempt-assignees: krille-chan
+          exempt-assignees: allomanta
           operations-per-run: 500
           repo-token: ${{ secrets.GITHUB_TOKEN }}

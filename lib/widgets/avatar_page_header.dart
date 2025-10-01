@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:fluffychat/config/themes.dart';
+import 'package:hermes/config/themes.dart';
 
 class AvatarPageHeader extends StatelessWidget {
   final Widget avatar;
@@ -23,7 +23,7 @@ class AvatarPageHeader extends StatelessWidget {
     final onAvatarEdit = this.onAvatarEdit;
     return Center(
       child: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: FluffyThemes.columnWidth),
+        constraints: const BoxConstraints(maxWidth: PantheonThemes.columnWidth),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,

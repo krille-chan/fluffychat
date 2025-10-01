@@ -1,4 +1,4 @@
-# Contributing to FluffyChat
+# Contributing to Hermes
 Contributions are always welcome. Yet we might lack manpower to review all of them in time.
 
 To improve the process please make sure that you read the following guidelines carefully:

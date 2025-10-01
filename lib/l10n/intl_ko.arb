@@ -143,8 +143,8 @@
     "type": "String",
     "placeholders": {}
   },
-  "fluffychat": "FluffyChat",
-  "@fluffychat": {
+  "hermes": "Hermes",
+  "@hermes": {
     "type": "String",
     "placeholders": {}
   },
@@ -1294,8 +1294,8 @@
     "type": "String",
     "placeholders": {}
   },
-  "newMessageInFluffyChat": "💬 FluffyChat에서 새로운 메시지",
-  "@newMessageInFluffyChat": {
+  "newMessageInHermes": "💬 Hermes에서 새로운 메시지",
+  "@newMessageInHermes": {
     "type": "String",
     "placeholders": {}
   },
@@ -1441,7 +1441,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "title": "FluffyChat",
+  "title": "Hermes",
   "@title": {
     "description": "Title for the application",
     "type": "String",
@@ -1603,7 +1603,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "noGoogleServicesWarning": "이 휴대폰에 Firebase Cloud Messaging 서비스가 없는 것 같습니다. FluffyChat에서 푸시 알림을 받으려면 ntfy 사용을 추천합니다. ntfy 혹은 다른 푸시 알림 제공자를 사용하면 알림을 보안적인 방법으로 받을 수 있습니다. ntfy는 PlayStore와 F-Droid에서 설치 가능합니다.",
+  "noGoogleServicesWarning": "이 휴대폰에 Firebase Cloud Messaging 서비스가 없는 것 같습니다. Hermes에서 푸시 알림을 받으려면 ntfy 사용을 추천합니다. ntfy 혹은 다른 푸시 알림 제공자를 사용하면 알림을 보안적인 방법으로 받을 수 있습니다. ntfy는 PlayStore와 F-Droid에서 설치 가능합니다.",
   "@noGoogleServicesWarning": {
     "type": "String",
     "placeholders": {}
@@ -1867,7 +1867,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "inviteText": "{username}님이 당신을 FluffyChat에 초대했습니다.\n1. FluffyChat 설치: https://fluffychat.im \n2. 가입하거나 로그인 \n3. 초대 링크 열기: \n {link}",
+  "inviteText": "{username}님이 당신을 Hermes에 초대했습니다.\n1. Hermes 설치: https://hermes.im \n2. 가입하거나 로그인 \n3. 초대 링크 열기: \n {link}",
   "@inviteText": {
     "type": "String",
     "placeholders": {
@@ -2250,7 +2250,7 @@
   "@reportErrorDescription": {},
   "widgetJitsi": "Jitsi Meet",
   "@widgetJitsi": {},
-  "indexedDbErrorLong": "메시지 저장은 기본적으로 사생활 보호 모드에서 사용할 수 없습니다.\n- about:config 로 이동\n- dom.indexedDB.privateBrowsing.enabled 를 true로 설정\n그렇지 않으면 FluffyChat을 실행할 수 없습니다.",
+  "indexedDbErrorLong": "메시지 저장은 기본적으로 사생활 보호 모드에서 사용할 수 없습니다.\n- about:config 로 이동\n- dom.indexedDB.privateBrowsing.enabled 를 true로 설정\n그렇지 않으면 Hermes을 실행할 수 없습니다.",
   "@indexedDbErrorLong": {},
   "startFirstChat": "첫 번째 채팅을 시작하기",
   "@startFirstChat": {},
@@ -2308,7 +2308,7 @@
   "@unbanUserDescription": {},
   "youRejectedTheInvitation": "초대를 거부했습니다",
   "@youRejectedTheInvitation": {},
-  "otherCallingPermissions": "마이크, 카메라 그리고 다름 FluffyChat 권한",
+  "otherCallingPermissions": "마이크, 카메라 그리고 다름 Hermes 권한",
   "@otherCallingPermissions": {},
   "messagesStyle": "메세지:",
   "@messagesStyle": {},
@@ -2318,7 +2318,7 @@
   "@newSpaceDescription": {},
   "chatDescription": "채팅 설명",
   "@chatDescription": {},
-  "callingAccountDetails": "FluffyChat이 android 전화앱을 사용 할 수 있도록 허가.",
+  "callingAccountDetails": "Hermes이 android 전화앱을 사용 할 수 있도록 허가.",
   "@callingAccountDetails": {},
   "enterSpace": "스페이스에 입장",
   "@enterSpace": {},
@@ -2446,7 +2446,7 @@
       }
     }
   },
-  "appearOnTopDetails": "앱이 상단에 표시되도록 허용 (이미 FluffyChat을 통화 계정으로 설정한 경우에는 필요하지 않음)",
+  "appearOnTopDetails": "앱이 상단에 표시되도록 허용 (이미 Hermes을 통화 계정으로 설정한 경우에는 필요하지 않음)",
   "@appearOnTopDetails": {},
   "enterRoom": "방에 입장",
   "@enterRoom": {},
@@ -2637,7 +2637,7 @@
   "@indexedDbErrorTitle": {},
   "storeSecurlyOnThisDevice": "이 기기에 안전하게 저장",
   "@storeSecurlyOnThisDevice": {},
-  "screenSharingDetail": "FluffyChat에 당신의 화면을 공유하는중",
+  "screenSharingDetail": "Hermes에 당신의 화면을 공유하는중",
   "@screenSharingDetail": {},
   "blockUsername": "유저 이름 무시",
   "@blockUsername": {},
@@ -3072,7 +3072,7 @@
   },
   "noContactInformationProvided": "서버가 유효한 연락처 정보를 제공하지 않음",
   "@noContactInformationProvided": {},
-  "welcomeText": "안녕하세요 👋 FluffyChat이에요. 당신은 htpps://matrix.org와 호환되는 모든 홈서버를 사용할 수 있어요. 그리고 모두와 대화해보세요. 거대한 분산 대화망이니까요!",
+  "welcomeText": "안녕하세요 👋 Hermes이에요. 당신은 htpps://matrix.org와 호환되는 모든 홈서버를 사용할 수 있어요. 그리고 모두와 대화해보세요. 거대한 분산 대화망이니까요!",
   "@welcomeText": {},
   "changeGeneralChatSettings": "일반 채팅 설정 번경하기",
   "@changeGeneralChatSettings": {},
@@ -3196,7 +3196,7 @@
   "@previous": {},
   "newChatRequest": "📩 새 채팅 요청",
   "@newChatRequest": {},
-  "appIntroduction": "FluffyChat는 다른 메신저들을 사용하는 친구들과도 채팅할 수 있습니다. https://matrix.org에 방문하거나 *계속*을 눌러 자세한 정보를 확인하세요.",
+  "appIntroduction": "Hermes는 다른 메신저들을 사용하는 친구들과도 채팅할 수 있습니다. https://matrix.org에 방문하거나 *계속*을 눌러 자세한 정보를 확인하세요.",
   "@appIntroduction": {},
   "synchronizingPleaseWaitCounter": " 동기화중… ({percentage}%)",
   "@synchronizingPleaseWaitCounter": {

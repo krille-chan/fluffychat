@@ -1,6 +1,6 @@
-*Thank you so much for your contribution to FluffyChat ❤️❤️❤️*
+*Thank you so much for your contribution to Hermes ❤️❤️❤️*
 
-- [ ] I have read and understood the [contributing guidelines](https://github.com/krille-chan/fluffychat/blob/main/CONTRIBUTING.md). 
+- [ ] I have read and understood the [contributing guidelines](https://github.com/allomanta/hermes/blob/main/CONTRIBUTING.md). 
 
 ### Pull Request has been tested on:
 

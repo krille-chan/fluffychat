@@ -102,7 +102,7 @@ slots:
   dbus-svc:
     interface: dbus
     bus: session
-    name: chat.fluffy.hermes
+    name: chat.pantheon.hermes
 
 apps:
   hermes:

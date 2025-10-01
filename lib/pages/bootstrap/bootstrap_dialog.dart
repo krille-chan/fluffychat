@@ -109,7 +109,8 @@ class BootstrapDialogState extends State<BootstrapDialog> {
         body: Center(
           child: ConstrainedBox(
             constraints: const BoxConstraints(
-                maxWidth: PantheonThemes.columnWidth * 1.5),
+              maxWidth: PantheonThemes.columnWidth * 1.5,
+            ),
             child: ListView(
               padding: const EdgeInsets.all(16.0),
               children: [

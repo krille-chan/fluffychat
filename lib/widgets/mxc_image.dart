@@ -143,7 +143,7 @@ class _MxcImageState extends State<MxcImage> {
     final hasData = data != null && data.isNotEmpty;
 
     return AnimatedSwitcher(
-      duration: FluffyThemes.animationDuration,
+      duration: PantheonThemes.animationDuration,
       child: hasData
           ? ClipRRect(
               borderRadius: widget.borderRadius,

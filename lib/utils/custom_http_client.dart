@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:http/io_client.dart';
 import 'package:http/retry.dart' as retry;
-import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:hermes/utils/platform_infos.dart';
 import 'package:hermes/config/isrg_x1.dart';
 
 /// Custom Client to add an additional certificate. This is for the isrg X1
