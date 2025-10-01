@@ -9,16 +9,17 @@ class OverlayListEntry {
   final OverlayEntry entry;
   final String? key;
   final bool canPop;
+  final bool blockOverlay;
 
   OverlayListEntry(
     this.entry, {
     this.key,
     this.canPop = true,
+    this.blockOverlay = false,
   });
 }
 
 class PangeaAnyState {
-  final Set<String> activeOverlays = {};
   final Map<String, LayerLinkAndKey> _layerLinkAndKeys = {};
   List<OverlayListEntry> entries = [];
 
@@ -39,16 +40,21 @@ class PangeaAnyState {
     return _layerLinkAndKeys[transformTargetId]!;
   }
 
-  void openOverlay(
+  bool openOverlay(
     OverlayEntry entry,
     BuildContext context, {
     String? overlayKey,
     bool canPop = true,
+    bool blockOverlay = false,
     bool rootOverlay = false,
   }) {
+    if (entries.any((e) => e.blockOverlay)) {
+      return false;
+    }
+
     if (overlayKey != null &&
         entries.any((element) => element.key == overlayKey)) {
-      return;
+      return false;
     }
 
     entries.add(
@@ -56,17 +62,16 @@ class PangeaAnyState {
         entry,
         key: overlayKey,
         canPop: canPop,
+        blockOverlay: blockOverlay,
       ),
     );
-
-    if (overlayKey != null) {
-      activeOverlays.add(overlayKey);
-    }
 
     Overlay.of(
       context,
       rootOverlay: rootOverlay,
     ).insert(entry);
+
+    return true;
   }
 
   void closeOverlay([String? overlayKey]) {
@@ -89,10 +94,6 @@ class PangeaAnyState {
         );
       }
       entries.remove(entry);
-
-      if (overlayKey != null) {
-        activeOverlays.remove(overlayKey);
-      }
     }
   }
 
@@ -126,10 +127,6 @@ class PangeaAnyState {
         );
       }
 
-      if (shouldRemove[i].key != null) {
-        activeOverlays.remove(shouldRemove[i].key);
-      }
-
       entries.remove(shouldRemove[i]);
     }
   }
@@ -137,8 +134,10 @@ class PangeaAnyState {
   RenderBox? getRenderBox(String key) =>
       layerLinkAndKey(key).key.currentContext?.findRenderObject() as RenderBox?;
 
-  bool isOverlayOpen(String overlayKey) {
-    return entries.any((element) => element.key == overlayKey);
+  bool isOverlayOpen(RegExp regex) {
+    return entries.any(
+      (element) => element.key != null && regex.hasMatch(element.key!),
+    );
   }
 
   List<String> getMatchingOverlayKeys(RegExp regex) {

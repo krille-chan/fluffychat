@@ -1609,15 +1609,6 @@ class ChatController extends State<ChatPageWithRoom>
   }
 
   // #Pangea
-  /// Close the combined selection view overlay and clear the message
-  /// text and selection stored for the text in that overlay
-  void closeSelectionOverlay() {
-    MatrixState.pAnyState.closeAllOverlays();
-    // selectedTokenIndicies.clear();
-  }
-  // Pangea#
-
-  // #Pangea
   // void clearSelectedEvents() => setState(() {
   //       selectedEvents.clear();
   //       showEmojiPicker = false;
@@ -1625,7 +1616,7 @@ class ChatController extends State<ChatPageWithRoom>
   void clearSelectedEvents() {
     if (!mounted) return;
     setState(() {
-      closeSelectionOverlay();
+      MatrixState.pAnyState.closeAllOverlays();
       selectedEvents.clear();
       showEmojiPicker = false;
     });

@@ -40,7 +40,7 @@ class LevelUpUtil {
 
     if (!context.mounted) return;
 
-    await OverlayUtil.showOverlay(
+    OverlayUtil.showOverlay(
       overlayKey: "level_up_notification",
       context: context,
       child: LevelUpBanner(
@@ -66,8 +66,7 @@ class LevelUpUtil {
 
   static Future<void> _waitForSnackbars(BuildContext context) async {
     final snackbarRegex = RegExp(r'_snackbar$');
-    while (MatrixState.pAnyState.activeOverlays
-        .any((id) => snackbarRegex.hasMatch(id))) {
+    while (MatrixState.pAnyState.isOverlayOpen(snackbarRegex)) {
       await Future.delayed(const Duration(milliseconds: 100));
     }
   }

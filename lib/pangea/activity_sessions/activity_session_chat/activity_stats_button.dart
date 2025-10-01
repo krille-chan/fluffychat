@@ -15,6 +15,7 @@ import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/common/utils/overlay.dart';
 import 'package:fluffychat/pangea/common/widgets/pressable_button.dart';
 import 'package:fluffychat/pangea/instructions/instructions_enum.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 
 class ActivityStatsButton extends StatefulWidget {
   final ChatController controller;
@@ -54,6 +55,9 @@ class _ActivityStatsButtonState extends State<ActivityStatsButton> {
 
   bool get _shouldShowInstructions {
     if (InstructionsEnum.activityStatsMenu.isToggledOff ||
+        MatrixState.pAnyState.isOverlayOpen(
+          RegExp(r"^word-zoom-card-.*$"),
+        ) ||
         _xpCount <= 0 ||
         widget.controller.timeline == null) {
       return false;
@@ -111,7 +115,7 @@ class _ActivityStatsButtonState extends State<ActivityStatsButton> {
 
     OverlayUtil.showTutorialOverlay(
       context,
-      Center(
+      overlayContent: Center(
         child: Container(
           padding: const EdgeInsets.all(16.0),
           decoration: BoxDecoration(
@@ -144,12 +148,13 @@ class _ActivityStatsButtonState extends State<ActivityStatsButton> {
           ),
         ),
       ),
-      cellRect,
+      overlayKey: "activity_stats_menu_instruction",
+      anchorRect: cellRect,
       borderRadius: 12.0,
       padding: 8.0,
-      onClick: () => widget.controller.setShowDropdown(true),
-      onDismiss: () {
+      onClick: () {
         InstructionsEnum.activityStatsMenu.setToggledOff(true);
+        widget.controller.setShowDropdown(true);
       },
     );
   }

@@ -18,7 +18,7 @@ enum OverlayPositionEnum {
 }
 
 class OverlayUtil {
-  static showOverlay({
+  static bool showOverlay({
     required BuildContext context,
     required Widget child,
     String? transformTargetId,
@@ -35,6 +35,7 @@ class OverlayUtil {
     Alignment? followerAnchor,
     bool ignorePointer = false,
     bool canPop = true,
+    bool rootOverlay = false,
   }) {
     try {
       if (position == OverlayPositionEnum.transform) {
@@ -96,11 +97,12 @@ class OverlayUtil {
         ),
       );
 
-      MatrixState.pAnyState.openOverlay(
+      return MatrixState.pAnyState.openOverlay(
         entry,
         context,
         overlayKey: overlayKey,
         canPop: canPop,
+        rootOverlay: rootOverlay,
       );
     } catch (err, stack) {
       debugger(when: kDebugMode);
@@ -109,6 +111,7 @@ class OverlayUtil {
         s: stack,
         data: {},
       );
+      return false;
     }
   }
 
@@ -215,15 +218,17 @@ class OverlayUtil {
   }
 
   static void showTutorialOverlay(
-    BuildContext context,
-    Widget overlayContent,
-    Rect anchorRect, {
+    BuildContext context, {
+    required Widget overlayContent,
+    required String overlayKey,
+    required Rect anchorRect,
     double? borderRadius,
     double? padding,
     final VoidCallback? onClick,
-    final VoidCallback? onDismiss,
   }) {
-    MatrixState.pAnyState.closeAllOverlays();
+    // force close all overlays to prevent showing
+    // constuct / level up notification on top of tutorial
+    MatrixState.pAnyState.closeAllOverlays(force: true);
     final entry = OverlayEntry(
       builder: (context) {
         return AnchoredOverlayWidget(
@@ -231,7 +236,7 @@ class OverlayUtil {
           borderRadius: borderRadius,
           padding: padding,
           onClick: onClick,
-          onDismiss: onDismiss,
+          overlayKey: overlayKey,
           child: overlayContent,
         );
       },
@@ -240,6 +245,9 @@ class OverlayUtil {
       entry,
       context,
       rootOverlay: true,
+      overlayKey: overlayKey,
+      canPop: false,
+      blockOverlay: true,
     );
   }
 }

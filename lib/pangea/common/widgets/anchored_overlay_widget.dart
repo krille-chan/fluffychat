@@ -7,18 +7,18 @@ import 'package:fluffychat/widgets/matrix.dart';
 class AnchoredOverlayWidget extends StatefulWidget {
   final Widget child;
   final Rect anchorRect;
+  final String overlayKey;
   final double? borderRadius;
   final double? padding;
   final VoidCallback? onClick;
-  final VoidCallback? onDismiss;
 
   const AnchoredOverlayWidget({
     required this.child,
     required this.anchorRect,
+    required this.overlayKey,
     this.borderRadius,
     this.padding,
     this.onClick,
-    this.onDismiss,
     super.key,
   });
 
@@ -41,6 +41,17 @@ class _AnchoredOverlayWidgetState extends State<AnchoredOverlayWidget> {
     );
   }
 
+  Future<void> _closeOverlay() async {
+    if (mounted) {
+      setState(() {
+        _visible = false;
+      });
+      await Future.delayed(FluffyThemes.animationDuration);
+    }
+
+    MatrixState.pAnyState.closeOverlay(widget.overlayKey);
+  }
+
   @override
   Widget build(BuildContext context) {
     final leftPosition = (widget.anchorRect.left +
@@ -58,11 +69,9 @@ class _AnchoredOverlayWidgetState extends State<AnchoredOverlayWidget> {
           onTapDown: (details) {
             final tapPos = details.globalPosition;
             if (widget.anchorRect.contains(tapPos)) {
+              _closeOverlay();
               widget.onClick?.call();
             }
-
-            widget.onDismiss?.call();
-            MatrixState.pAnyState.closeOverlay();
           },
           child: Stack(
             children: [

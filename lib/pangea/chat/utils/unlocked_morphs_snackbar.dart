@@ -40,7 +40,6 @@ class ConstructNotificationUtil {
     if (_closedOverlays.contains(overlayKey)) return;
     _closedOverlays.add(overlayKey);
     MatrixState.pAnyState.closeOverlay(overlayKey);
-    MatrixState.pAnyState.activeOverlays.remove(overlayKey);
     unlockedConstructs.remove(construct);
     closeCompleter?.complete();
     closeCompleter = null;
@@ -58,7 +57,7 @@ class ConstructNotificationUtil {
         );
         closeCompleter = Completer();
 
-        OverlayUtil.showOverlay(
+        final bool result = OverlayUtil.showOverlay(
           overlayKey: "${construct.string}_snackbar",
           context: context,
           child: ConstructNotificationOverlay(
@@ -72,13 +71,14 @@ class ConstructNotificationUtil {
           canPop: false,
         );
 
-        MatrixState.pAnyState.activeOverlays
-            .add("${construct.string}_snackbar");
+        // if the overlay could not be shown, break the loop
+        if (!result) {
+          showingNotification = false;
+          break;
+        }
 
         await closeCompleter!.future;
       } catch (e) {
-        MatrixState.pAnyState.activeOverlays
-            .remove("${construct.string}_snackbar");
         showingNotification = false;
         break;
       }
