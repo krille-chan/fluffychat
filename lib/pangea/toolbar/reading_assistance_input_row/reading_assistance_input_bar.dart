@@ -48,6 +48,10 @@ class ReadingAssistanceInputBarState extends State<ReadingAssistanceInputBar> {
       return const SizedBox();
       // return ReactionsPicker(controller);
     } else {
+      final activityType = overlayController.toolbarMode.associatedActivityType;
+      final activityCompleted = activityType != null &&
+          overlayController.isPracticeActivityDone(activityType);
+
       switch (overlayController.toolbarMode) {
         case MessageMode.messageSpeechToText:
         case MessageMode.practiceActivity:
@@ -57,6 +61,7 @@ class ReadingAssistanceInputBarState extends State<ReadingAssistanceInputBar> {
           content = overlayController.isTotallyDone
               ? Text(
                   L10n.of(context).allDone,
+                  style: Theme.of(context).textTheme.bodyLarge,
                   textAlign: TextAlign.center,
                 )
               : Text(
@@ -80,19 +85,26 @@ class ReadingAssistanceInputBarState extends State<ReadingAssistanceInputBar> {
         case MessageMode.wordEmoji:
         case MessageMode.wordMeaning:
         case MessageMode.listening:
-          if (target != null) {
+          if (target == null || activityCompleted) {
+            content = Text(
+              L10n.of(context).allDone,
+              style: Theme.of(context).textTheme.bodyLarge,
+              textAlign: TextAlign.center,
+            );
+          } else {
             content = PracticeActivityCard(
               targetTokensAndActivityType: target,
               overlayController: overlayController,
             );
-          } else {
-            content = Text(
-              L10n.of(context).allDone,
-              textAlign: TextAlign.center,
-            );
           }
         case MessageMode.wordMorph:
-          if (target != null) {
+          if (activityCompleted) {
+            content = Text(
+              L10n.of(context).allDone,
+              style: Theme.of(context).textTheme.bodyLarge,
+              textAlign: TextAlign.center,
+            );
+          } else if (target != null) {
             content = PracticeActivityCard(
               targetTokensAndActivityType: target,
               overlayController: overlayController,
@@ -123,20 +135,17 @@ class ReadingAssistanceInputBarState extends State<ReadingAssistanceInputBar> {
           child: Container(
             padding: const EdgeInsets.all(8.0),
             alignment: Alignment.center,
-            constraints: BoxConstraints(
+            constraints: const BoxConstraints(
               minHeight: minContentHeight,
               maxHeight: AppConfig.readingAssistanceInputBarHeight,
-              maxWidth: overlayController.maxWidth,
             ),
-            child: AnimatedSize(
-              duration: const Duration(
-                milliseconds: AppConfig.overlayAnimationDuration,
-              ),
-              child: Scrollbar(
-                thumbVisibility: true,
+            child: Scrollbar(
+              thumbVisibility: true,
+              controller: _scrollController,
+              child: SingleChildScrollView(
                 controller: _scrollController,
-                child: SingleChildScrollView(
-                  controller: _scrollController,
+                child: SizedBox(
+                  width: overlayController.maxWidth,
                   child: barContent(context),
                 ),
               ),

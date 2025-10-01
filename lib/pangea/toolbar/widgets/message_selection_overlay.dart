@@ -344,29 +344,19 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
   bool get isPracticeComplete => isTranslationUnlocked;
 
-  bool get isEmojiDone =>
-      practiceSelection
-          ?.activities(ActivityTypeEnum.emoji)
-          .every((a) => a.isComplete) ==
+  bool isPracticeActivityDone(ActivityTypeEnum activityType) =>
+      practiceSelection?.activities(activityType).every((a) => a.isComplete) ==
       true;
+
+  bool get isEmojiDone => isPracticeActivityDone(ActivityTypeEnum.emoji);
 
   bool get isMeaningDone =>
-      practiceSelection
-          ?.activities(ActivityTypeEnum.wordMeaning)
-          .every((a) => a.isComplete) ==
-      true;
+      isPracticeActivityDone(ActivityTypeEnum.wordMeaning);
 
   bool get isListeningDone =>
-      practiceSelection
-          ?.activities(ActivityTypeEnum.wordFocusListening)
-          .every((a) => a.isComplete) ==
-      true;
+      isPracticeActivityDone(ActivityTypeEnum.wordFocusListening);
 
-  bool get isMorphDone =>
-      practiceSelection
-          ?.activities(ActivityTypeEnum.morphId)
-          .every((a) => a.isComplete) ==
-      true;
+  bool get isMorphDone => isPracticeActivityDone(ActivityTypeEnum.morphId);
 
   /// you have to complete one of the mode mini-games to unlock translation
   bool get isTranslationUnlocked =>
