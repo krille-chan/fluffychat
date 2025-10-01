@@ -14,7 +14,15 @@ extension LocalizedBody on Event {
   Future<async.Result<MatrixFile?>> _getFile(BuildContext context) =>
       showFutureLoadingDialog(
         context: context,
-        future: downloadAndDecryptAttachment,
+        futureWithProgress: (onProgress) {
+          final fileSize =
+              infoMap['size'] is int ? infoMap['size'] as int : null;
+          return downloadAndDecryptAttachment(
+            onDownloadProgress: fileSize == null
+                ? null
+                : (bytes) => onProgress(bytes / fileSize),
+          );
+        },
       );
 
   void saveFile(BuildContext context) async {

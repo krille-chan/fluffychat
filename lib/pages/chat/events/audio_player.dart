@@ -47,6 +47,7 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
   static const double buttonSize = 36;
 
   AudioPlayerStatus status = AudioPlayerStatus.notDownloaded;
+  double? _downloadProgress;
 
   late final MatrixState matrix;
   List<int>? _waveform;
@@ -149,7 +150,20 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
 
     setState(() => status = AudioPlayerStatus.downloading);
     try {
-      matrixFile = await widget.event.downloadAndDecryptAttachment();
+      final fileSize = widget.event.content
+          .tryGetMap<String, dynamic>('info')
+          ?.tryGet<int>('size');
+      matrixFile = await widget.event.downloadAndDecryptAttachment(
+        onDownloadProgress: fileSize != null && fileSize > 0
+            ? (progress) {
+                final progressPercentage = progress / fileSize;
+                setState(() {
+                  _downloadProgress =
+                      progressPercentage < 1 ? progressPercentage : null;
+                });
+              }
+            : null,
+      );
 
       if (!kIsWeb) {
         final tempDir = await getTemporaryDirectory();
@@ -320,6 +334,7 @@ class AudioPlayerState extends State<AudioPlayerWidget> {
                               ? CircularProgressIndicator(
                                   strokeWidth: 2,
                                   color: widget.color,
+                                  value: _downloadProgress,
                                 )
                               : InkWell(
                                   borderRadius: BorderRadius.circular(64),

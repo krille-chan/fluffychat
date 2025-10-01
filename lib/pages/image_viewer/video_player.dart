@@ -32,6 +32,8 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
   ChewieController? _chewieController;
   VideoPlayerController? _videoPlayerController;
 
+  double? _downloadProgress;
+
   // The video_player package only doesn't support Windows and Linux.
   final _supportsVideoPlayer =
       !PlatformInfos.isWindows && !PlatformInfos.isLinux;
@@ -43,7 +45,20 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
     }
 
     try {
-      final videoFile = await widget.event.downloadAndDecryptAttachment();
+      final fileSize = widget.event.content
+          .tryGetMap<String, dynamic>('info')
+          ?.tryGet<int>('size');
+      final videoFile = await widget.event.downloadAndDecryptAttachment(
+        onDownloadProgress: fileSize == null
+            ? null
+            : (progress) {
+                final progressPercentage = progress / fileSize;
+                setState(() {
+                  _downloadProgress =
+                      progressPercentage < 1 ? progressPercentage : null;
+                });
+              },
+      );
 
       // Dispose the controllers if we already have them.
       _disposeControllers();
@@ -165,7 +180,11 @@ class EventVideoPlayerState extends State<EventVideoPlayer> {
                         ),
                 ),
               ),
-              const Center(child: CircularProgressIndicator.adaptive()),
+              Center(
+                child: CircularProgressIndicator.adaptive(
+                  value: _downloadProgress,
+                ),
+              ),
             ],
           );
   }
