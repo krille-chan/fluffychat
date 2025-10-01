@@ -82,18 +82,6 @@ class ActivityStatsMenuState extends State<ActivityStatsMenu> {
     return nonBotRoles.length;
   }
 
-  int _getCompletedRolesCount() {
-    final assignedRoles = room.assignedRoles;
-    if (assignedRoles == null) return 0;
-
-    // Filter out the bot and count only finished non-bot roles
-    return assignedRoles.values
-        .where(
-          (role) => role.userId != BotName.byEnvironment && role.isFinished,
-        )
-        .length;
-  }
-
   bool _isBotParticipant() {
     final assignedRoles = room.assignedRoles;
     if (assignedRoles == null) return false;

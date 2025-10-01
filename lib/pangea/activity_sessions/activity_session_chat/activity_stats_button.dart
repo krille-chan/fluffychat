@@ -44,11 +44,58 @@ class _ActivityStatsButtonState extends State<ActivityStatsButton> {
         .listen((_) => _updateAnalytics());
   }
 
-  Client get client => widget.controller.room.client;
+  @override
+  void dispose() {
+    _analyticsSubscription?.cancel();
+    super.dispose();
+  }
 
-  void _showInstructionPopup() {
+  Client get _client => widget.controller.room.client;
+
+  bool get _shouldShowInstructions {
     if (InstructionsEnum.activityStatsMenu.isToggledOff ||
-        (xpCount ?? 0) <= 0) {
+        _xpCount <= 0 ||
+        widget.controller.timeline == null) {
+      return false;
+    }
+
+    int count = 0;
+    for (final event in widget.controller.timeline!.events) {
+      if (event.senderId == _client.userID &&
+          event.type == EventTypes.Message &&
+          [
+            MessageTypes.Text,
+            MessageTypes.Audio,
+          ].contains(event.messageType)) {
+        count++;
+      }
+
+      if (count >= 3) return true;
+    }
+
+    return false;
+  }
+
+  int get _xpCount =>
+      analytics?.totalXPForUser(
+        _client.userID!,
+      ) ??
+      0;
+
+  int? get _vocabCount => analytics?.uniqueConstructCountForUser(
+        _client.userID!,
+        ConstructTypeEnum.vocab,
+      );
+
+  int? get _grammarCount => analytics?.uniqueConstructCountForUser(
+        _client.userID!,
+        ConstructTypeEnum.morph,
+      );
+
+  /// Show a tutorial overlay that blocks the screen and points
+  /// to the stats menu button with an explanation of what it does.
+  void _showStatsMenuDropdownInstructions() {
+    if (!_shouldShowInstructions) {
       return;
     }
 
@@ -107,32 +154,11 @@ class _ActivityStatsButtonState extends State<ActivityStatsButton> {
     );
   }
 
-  @override
-  void dispose() {
-    _analyticsSubscription?.cancel();
-    super.dispose();
-  }
-
-  int? get xpCount => analytics?.totalXPForUser(
-        client.userID!,
-      );
-
-  int? get vocabCount => analytics?.uniqueConstructCountForUser(
-        client.userID!,
-        ConstructTypeEnum.vocab,
-      );
-
-  int? get grammarCount => analytics?.uniqueConstructCountForUser(
-        client.userID!,
-        ConstructTypeEnum.morph,
-      );
-
   Future<void> _updateAnalytics() async {
-    final prevXP = xpCount;
     final analytics = await widget.controller.room.getActivityAnalytics();
     if (mounted) {
       setState(() => this.analytics = analytics);
-      if (prevXP == 0 && (xpCount ?? 0) > 0) _showInstructionPopup();
+      _showStatsMenuDropdownInstructions();
     }
   }
 
@@ -144,17 +170,17 @@ class _ActivityStatsButtonState extends State<ActivityStatsButton> {
         !widget.controller.showActivityDropdown,
       ),
       borderRadius: BorderRadius.circular(12),
-      color: (xpCount ?? 0) > 0
+      color: _xpCount > 0
           ? AppConfig.gold.withAlpha(180)
           : theme.colorScheme.surface,
-      depressed: (xpCount ?? 0) <= 0 || widget.controller.showActivityDropdown,
+      depressed: _xpCount <= 0 || widget.controller.showActivityDropdown,
       child: AnimatedContainer(
         duration: FluffyThemes.animationDuration,
         width: 300,
         height: 55,
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         decoration: BoxDecoration(
-          color: (xpCount ?? 0) > 0
+          color: _xpCount > 0
               ? AppConfig.gold.withAlpha(180)
               : theme.colorScheme.surface,
           borderRadius: BorderRadius.circular(12),
@@ -164,11 +190,11 @@ class _ActivityStatsButtonState extends State<ActivityStatsButton> {
             : Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  _StatsBadge(icon: Icons.radar, value: "$xpCount XP"),
-                  _StatsBadge(icon: Symbols.dictionary, value: "$vocabCount"),
+                  _StatsBadge(icon: Icons.radar, value: "$_xpCount XP"),
+                  _StatsBadge(icon: Symbols.dictionary, value: "$_vocabCount"),
                   _StatsBadge(
                     icon: Symbols.toys_and_games,
-                    value: "$grammarCount",
+                    value: "$_grammarCount",
                   ),
                 ],
               ),
