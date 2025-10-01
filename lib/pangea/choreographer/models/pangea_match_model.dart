@@ -134,7 +134,7 @@ class PangeaMatch {
   ) {
     double opacityFactor = 1.0;
     if (openMatchIndex != null && openMatchIndex != matchIndex) {
-      opacityFactor = 0.5;
+      opacityFactor = 0.2;
     }
 
     final int alpha = (255 * opacityFactor).round();
