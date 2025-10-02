@@ -3383,5 +3383,15 @@
     "declineInvitation": "Rexeitar o convite",
     "@declineInvitation": {},
     "noMessagesYet": "Aínda non hai mensaxes",
-    "@noMessagesYet": {}
+    "@noMessagesYet": {},
+    "checkList": "Comprobar lista",
+    "@checkList": {},
+    "displayNavigationRail": "Mostrar carril de navegación nos móbiles",
+    "@displayNavigationRail": {},
+    "longPressToRecordVoiceMessage": "Pulsación longa para gravar mensaxe de voz.",
+    "@longPressToRecordVoiceMessage": {},
+    "pause": "Deter",
+    "@pause": {},
+    "resume": "Continuar",
+    "@resume": {}
 }
