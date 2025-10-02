@@ -135,6 +135,9 @@
           </intent-filter>
         </service>
 
+        <!-- From flutter_local_notifications package for notification actions -->
+        <receiver android:exported="false" android:name="com.dexterous.flutterlocalnotifications.ActionBroadcastReceiver" />
+
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data

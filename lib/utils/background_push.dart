@@ -20,6 +20,8 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+import 'dart:isolate';
+import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -32,6 +34,7 @@ import 'package:unifiedpush/unifiedpush.dart';
 import 'package:unifiedpush_ui/unifiedpush_ui.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/utils/notification_background_handler.dart';
 import 'package:fluffychat/utils/push_helper.dart';
 import 'package:fluffychat/widgets/fluffy_chat_app.dart';
 import '../config/app_config.dart';
@@ -72,12 +75,38 @@ class BackgroundPush {
 
   void _init() async {
     try {
+      if (PlatformInfos.isAndroid) {
+        final port = ReceivePort();
+        IsolateNameServer.removePortNameMapping('background_tab_port');
+        IsolateNameServer.registerPortWithName(
+          port.sendPort,
+          'background_tab_port',
+        );
+        port.listen(
+          (message) async {
+            try {
+              await notificationTap(
+                NotificationResponseJson.fromJsonString(message),
+                client: client,
+                router: FluffyChatApp.router,
+              );
+            } catch (e, s) {
+              Logs().wtf('Main Notification Tap crashed', e, s);
+            }
+          },
+        );
+      }
       await _flutterLocalNotificationsPlugin.initialize(
         const InitializationSettings(
           android: AndroidInitializationSettings('notifications_icon'),
           iOS: DarwinInitializationSettings(),
         ),
-        onDidReceiveNotificationResponse: goToRoom,
+        onDidReceiveNotificationResponse: (response) => notificationTap(
+          response,
+          client: client,
+          router: FluffyChatApp.router,
+        ),
+        onDidReceiveBackgroundNotificationResponse: notificationTapBackground,
       );
       Logs().v('Flutter Local Notifications initialized');
       //<GOOGLE_SERVICES>firebase.setListeners(
@@ -278,7 +307,14 @@ class BackgroundPush {
         return;
       }
       _wentToRoomOnStartup = true;
-      goToRoom(details.notificationResponse);
+      final response = details.notificationResponse;
+      if (response != null) {
+        notificationTap(
+          response,
+          client: client,
+          router: FluffyChatApp.router,
+        );
+      }
     });
   }
 
@@ -321,30 +357,6 @@ class BackgroundPush {
           AppSettings.pushNotificationsGatewayUrl.getItem(matrix!.store),
       token: _fcmToken,
     );
-  }
-
-  Future<void> goToRoom(NotificationResponse? response) async {
-    try {
-      final roomId = response?.payload;
-      Logs().v('[Push] Attempting to go to room $roomId...');
-      if (roomId == null) {
-        return;
-      }
-      await client.roomsLoading;
-      await client.accountDataLoading;
-      if (client.getRoomById(roomId) == null) {
-        await client
-            .waitForRoomInSync(roomId)
-            .timeout(const Duration(seconds: 30));
-      }
-      FluffyChatApp.router.go(
-        client.getRoomById(roomId)?.membership == Membership.invite
-            ? '/rooms'
-            : '/rooms/$roomId',
-      );
-    } catch (e, s) {
-      Logs().e('[Push] Failed to open room', e, s);
-    }
   }
 
   Future<void> setupUp() async {
