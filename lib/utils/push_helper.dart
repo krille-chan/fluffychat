@@ -317,24 +317,23 @@ Future<void> _tryPushHelper(
     title,
     body,
     platformChannelSpecifics,
-    payload:
-        FluffyChatPushPayload(client.clientName, event.room.id, event.eventId)
-            .toString(),
+    payload: HermesPushPayload(client.clientName, event.room.id, event.eventId)
+        .toString(),
   );
   Logs().v('Push helper has been completed!');
 }
 
-class FluffyChatPushPayload {
+class HermesPushPayload {
   final String? clientName, roomId, eventId;
 
-  FluffyChatPushPayload(this.clientName, this.roomId, this.eventId);
+  HermesPushPayload(this.clientName, this.roomId, this.eventId);
 
-  factory FluffyChatPushPayload.fromString(String payload) {
+  factory HermesPushPayload.fromString(String payload) {
     final parts = payload.split('|');
     if (parts.length != 3) {
-      return FluffyChatPushPayload(null, null, null);
+      return HermesPushPayload(null, null, null);
     }
-    return FluffyChatPushPayload(parts[0], parts[1], parts[2]);
+    return HermesPushPayload(parts[0], parts[1], parts[2]);
   }
 
   @override

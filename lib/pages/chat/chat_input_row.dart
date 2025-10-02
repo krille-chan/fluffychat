@@ -126,8 +126,9 @@ class ChatInputRow extends StatelessWidget {
                   AnimatedContainer(
                     duration: PantheonThemes.animationDuration,
                     curve: PantheonThemes.animationCurve,
-                    width:
-                        controller.sendController.text.isNotEmpty ? 0 : height - 10,
+                    width: controller.sendController.text.isNotEmpty
+                        ? 0
+                        : height - 10,
                     height: height,
                     alignment: Alignment.center,
                     decoration: const BoxDecoration(),
@@ -148,7 +149,8 @@ class ChatInputRow extends StatelessWidget {
                                       theme.colorScheme.onPrimaryContainer,
                                   foregroundColor:
                                       theme.colorScheme.primaryContainer,
-                                  child: const Icon(Icons.gps_fixed_outlined),
+                                  child: const Icon(Icons.gps_fixed_outlined,
+                                  ),
                                 ),
                                 title: Text(L10n.of(context).shareLocation),
                                 contentPadding: const EdgeInsets.all(0),
@@ -183,7 +185,7 @@ class ChatInputRow extends StatelessWidget {
                               contentPadding: const EdgeInsets.all(0),
                             ),
                           ),
-                    if (PlatformInfos.isMobile)
+                        if (PlatformInfos.isMobile)
                             PopupMenuItem<String>(
                               value: 'camera-video',
                               child: ListTile(
