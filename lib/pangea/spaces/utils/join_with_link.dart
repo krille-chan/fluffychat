@@ -33,7 +33,7 @@ class _JoinClassWithLinkState extends State<JoinClassWithLink> {
       }
 
       if (widget.classCode != null) {
-        await MatrixState.pangeaController.classController
+        await MatrixState.pangeaController.spaceCodeController
             .cacheSpaceCode(widget.classCode!);
       }
       context.go("/home");

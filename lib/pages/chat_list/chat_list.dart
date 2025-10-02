@@ -581,7 +581,7 @@ class ChatListController extends State<ChatList>
           );
 
           final String? justInputtedCode =
-              MatrixState.pangeaController.classController.justInputtedCode();
+              MatrixState.pangeaController.spaceCodeController.justInputtedCode;
           final newSpaceCode = space?.classCode;
           if (newSpaceCode?.toLowerCase() == justInputtedCode?.toLowerCase()) {
             return;
@@ -1103,7 +1103,8 @@ class ChatListController extends State<ChatList>
   void _initPangeaControllers(Client client) {
     MatrixState.pangeaController.initControllers();
     if (mounted) {
-      MatrixState.pangeaController.classController.joinCachedSpaceCode(context);
+      MatrixState.pangeaController.spaceCodeController
+          .joinCachedSpaceCode(context);
     }
   }
   // Pangea#

@@ -244,7 +244,7 @@ class UserSettingsState extends State<UserSettingsPage> {
 
       await _pangeaController.subscriptionController.reinitialize();
       context.go(
-        _pangeaController.classController.cachedClassCode == null
+        _pangeaController.spaceCodeController.cachedSpaceCode == null
             ? '/user_age/join_space'
             : '/rooms',
       );

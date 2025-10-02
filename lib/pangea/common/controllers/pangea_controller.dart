@@ -19,7 +19,7 @@ import 'package:fluffychat/pangea/guard/p_vguard.dart';
 import 'package:fluffychat/pangea/learning_settings/controllers/language_controller.dart';
 import 'package:fluffychat/pangea/learning_settings/utils/locale_provider.dart';
 import 'package:fluffychat/pangea/learning_settings/utils/p_language_store.dart';
-import 'package:fluffychat/pangea/spaces/controllers/space_controller.dart';
+import 'package:fluffychat/pangea/spaces/controllers/space_code_controller.dart';
 import 'package:fluffychat/pangea/subscription/controllers/subscription_controller.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/speech_to_text_controller.dart';
 import 'package:fluffychat/pangea/toolbar/controllers/text_to_speech_controller.dart';
@@ -33,7 +33,7 @@ class PangeaController {
   ///pangeaControllers
   late UserController userController;
   late LanguageController languageController;
-  late ClassController classController;
+  late SpaceCodeController spaceCodeController;
   late PermissionsController permissionsController;
   late GetAnalyticsController getAnalytics;
   late PutAnalyticsController putAnalytics;
@@ -81,7 +81,7 @@ class PangeaController {
   _addRefInObjects() {
     userController = UserController(this);
     languageController = LanguageController(this);
-    classController = ClassController(this);
+    spaceCodeController = SpaceCodeController(this);
     permissionsController = PermissionsController(this);
     getAnalytics = GetAnalyticsController(this);
     putAnalytics = PutAnalyticsController(this);
@@ -115,7 +115,6 @@ class PangeaController {
     'morph_meaning_storage',
     'practice_record_cache',
     'practice_selection_cache',
-    'class_storage',
     'subscription_storage',
     'vocab_storage',
     'onboarding_storage',

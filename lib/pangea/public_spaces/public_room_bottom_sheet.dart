@@ -83,13 +83,13 @@ class PublicRoomBottomSheetState extends State<PublicRoomBottomSheet> {
   bool get _isKnockRoom => widget.chunk?.joinRule == 'knock';
 
   Future<void> _joinWithCode() async {
-    final resp =
-        await MatrixState.pangeaController.classController.joinClasswithCode(
+    final resp = await MatrixState.pangeaController.spaceCodeController
+        .joinSpaceWithCode(
       context,
       _codeController.text,
       notFoundError: L10n.of(context).notTheCodeError,
     );
-    if (!resp.isError) {
+    if (resp != null) {
       Navigator.of(context).pop(true);
     }
   }

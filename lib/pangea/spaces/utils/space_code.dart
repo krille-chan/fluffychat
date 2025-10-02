@@ -1,21 +1,8 @@
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
-
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/widgets/adaptive_dialogs/show_text_input_dialog.dart';
-import 'package:fluffychat/widgets/matrix.dart';
-
 class SpaceCodeUtil {
-  static const codeLength = 7;
-
-  static bool isValidCode(String? spacecode) {
-    if (spacecode == null) return false;
-    return spacecode.length == codeLength && spacecode.contains(r'[0-9]');
-  }
-
   static Future<String> generateSpaceCode(Client client) async {
     final response = await client.httpClient.get(
       Uri.parse(
@@ -36,41 +23,4 @@ class SpaceCodeUtil {
       throw Exception('Invalid response, access_code not found $response');
     }
   }
-
-  static Future<void> joinWithSpaceCodeDialog(
-    BuildContext context,
-  ) async {
-    final String? spaceCode = await showTextInputDialog(
-      context: context,
-      title: L10n.of(context).joinWithClassCode,
-      okLabel: L10n.of(context).ok,
-      cancelLabel: L10n.of(context).cancel,
-      hintText: L10n.of(context).joinWithClassCodeHint,
-      autoSubmit: true,
-    );
-    if (spaceCode == null || spaceCode.isEmpty) return;
-    await MatrixState.pangeaController.classController.joinClasswithCode(
-      context,
-      spaceCode,
-    );
-  }
-
-  static messageDialog(
-    BuildContext context,
-    String title,
-    void Function()? action,
-  ) =>
-      showDialog(
-        context: context,
-        useRootNavigator: false,
-        builder: (context) => AlertDialog(
-          content: Text(title),
-          actions: [
-            TextButton(
-              onPressed: action,
-              child: Text(L10n.of(context).ok),
-            ),
-          ],
-        ),
-      );
 }

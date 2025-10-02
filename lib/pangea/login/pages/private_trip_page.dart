@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:go_router/go_router.dart';
+
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/common/widgets/pangea_logo_svg.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -35,10 +37,15 @@ class PrivateTripPageState extends State<PrivateTripPage> {
       return;
     }
 
-    await MatrixState.pangeaController.classController.joinClasswithCode(
+    final spaceId = await MatrixState.pangeaController.spaceCodeController
+        .joinSpaceWithCode(
       context,
       _code,
     );
+
+    if (spaceId != null) {
+      context.go('/rooms/spaces/$spaceId/details');
+    }
   }
 
   @override
