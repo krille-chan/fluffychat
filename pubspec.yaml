@@ -114,19 +114,6 @@ flutter:
     - assets/sounds/
     - assets/vodozemac/
 
-msix_config:
-  display_name: FluffyChat
-  publisher_display_name: FluffyChat
-  publisher: CN=FluffyChat, O=Head of bad integration tests, L=Matrix, S=Internet, C=EU
-  identity_name: chat.fluffy.fluffychat
-  logo_path: assets\logo.png
-  capabilities: internetClient, location, microphone, webcam
-  protocol_activation: https
-  app_uri_handler_hosts: fluffychat.im, matrix.to
-  execution_alias: fluffychat
-  sign_msix: false
-  install_certificate: false
-
 # Guidelines for adding a dependency override:
 # 1. Don't do it if you can avoid it or fix it upstream in a manageable time
 # 2. Always link an (upstream?) issue

@@ -27,6 +27,7 @@ class _PresenceBuilderState extends State<PresenceBuilder> {
   StreamSubscription<CachedPresence>? _sub;
 
   void _updatePresence(CachedPresence? presence) {
+    if (!mounted) return;
     setState(() {
       _presence = presence;
     });
