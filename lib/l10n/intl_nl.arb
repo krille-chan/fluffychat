@@ -3386,5 +3386,11 @@
     "declineInvitation": "Uitnodiging afwijzen",
     "@declineInvitation": {},
     "noMessagesYet": "Nog geen berichten",
-    "@noMessagesYet": {}
+    "@noMessagesYet": {},
+    "longPressToRecordVoiceMessage": "Lang drukken om een spraakbericht op te nemen.",
+    "@longPressToRecordVoiceMessage": {},
+    "pause": "Pauzeer",
+    "@pause": {},
+    "resume": "Hervat",
+    "@resume": {}
 }
