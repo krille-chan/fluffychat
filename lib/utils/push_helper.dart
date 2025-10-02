@@ -289,10 +289,12 @@ Future<void> _tryPushHelper(
         ],
         cancelNotification: false,
         allowGeneratedReplies: true,
+        semanticAction: SemanticAction.reply,
       ),
       AndroidNotificationAction(
         FluffyChatNotificationActions.markAsRead.name,
         l10n.markAsRead,
+        semanticAction: SemanticAction.markAsRead,
       ),
     ],
   );
