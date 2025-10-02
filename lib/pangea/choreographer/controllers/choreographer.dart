@@ -122,6 +122,11 @@ class Choreographer {
       return;
     }
 
+    if (chatController.shouldShowLanguageMismatchPopup) {
+      chatController.showLanguageMismatchPopup();
+      return;
+    }
+
     if (!igc.hasRelevantIGCTextData && !itController.dismissed) {
       getLanguageHelp().then((value) => _sendWithIGC(context));
     } else {

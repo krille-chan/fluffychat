@@ -126,6 +126,7 @@ class PangeaController {
     'course_location_storage',
     'course_activity_storage',
     'course_location_media_storage',
+    'language_mismatch',
   ];
 
   Future<void> clearCache({List<String> exclude = const []}) async {

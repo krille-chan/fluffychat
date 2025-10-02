@@ -5300,5 +5300,7 @@
   "playWithAI": "Play with AI for now",
   "courseStartDesc": "Pangea Bot is ready to go anytime!\n\n...but learning is better with friends!",
   "activityDropdownDesc": "When you’re done with this activity, click below",
-  "activityAnalyticsListBody": "These are your completed activities! After finishing activities, you can view them here."
+  "activityAnalyticsListBody": "These are your completed activities! After finishing activities, you can view them here.",
+  "languageMismatchTitle": "Language mismatch",
+  "languageMismatchDesc": "Your target language doesn't match the language of this activity. Update your target language?"
 }

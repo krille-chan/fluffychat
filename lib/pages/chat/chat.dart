@@ -42,6 +42,8 @@ import 'package:fluffychat/pangea/chat/widgets/event_too_large_dialog.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/choreographer.dart';
 import 'package:fluffychat/pangea/choreographer/enums/edit_type.dart';
 import 'package:fluffychat/pangea/choreographer/models/choreo_record.dart';
+import 'package:fluffychat/pangea/choreographer/utils/language_mismatch_repo.dart';
+import 'package:fluffychat/pangea/choreographer/widgets/igc/language_mismatch_popup.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/igc/message_analytics_feedback.dart';
 import 'package:fluffychat/pangea/choreographer/widgets/igc/pangea_text_controller.dart';
 import 'package:fluffychat/pangea/common/constants/model_keys.dart';
@@ -2156,6 +2158,42 @@ class ChatController extends State<ChatPageWithRoom>
         },
       );
     }
+  }
+
+  bool get shouldShowLanguageMismatchPopup {
+    if (!LanguageMismatchRepo.shouldShow) {
+      return false;
+    }
+
+    final l2 = choreographer.l2Lang?.langCodeShort;
+    final activityLang = room.activityPlan?.req.targetLanguage.split('-').first;
+    return activityLang != null && l2 != null && l2 != activityLang;
+  }
+
+  Future<void> showLanguageMismatchPopup() async {
+    if (!shouldShowLanguageMismatchPopup) {
+      return;
+    }
+
+    final targetLanguage = room.activityPlan!.req.targetLanguage;
+    LanguageMismatchRepo.set();
+    OverlayUtil.showPositionedCard(
+      context: context,
+      cardToShow: LanguageMismatchPopup(
+        targetLanguage: targetLanguage,
+        choreographer: choreographer,
+        onUpdate: () async {
+          await choreographer.getLanguageHelp(manual: true);
+          final matches = choreographer.igc.igcTextData?.matches;
+          if (matches?.isNotEmpty == true) {
+            choreographer.igc.showFirstMatch(context);
+          }
+        },
+      ),
+      maxHeight: 325,
+      maxWidth: 325,
+      transformTargetId: choreographer.inputTransformTargetKey,
+    );
   }
 
   void _showAnalyticsFeedback(

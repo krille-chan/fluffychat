@@ -100,8 +100,12 @@ class StartIGCButtonState extends State<StartIGCButton>
         );
         return;
       case AssistanceState.notFetched:
-        await widget.controller.choreographer.getLanguageHelp(manual: true);
-        _showFirstMatch();
+        if (widget.controller.shouldShowLanguageMismatchPopup) {
+          widget.controller.showLanguageMismatchPopup();
+        } else {
+          await widget.controller.choreographer.getLanguageHelp(manual: true);
+          _showFirstMatch();
+        }
         return;
       case AssistanceState.fetched:
         _showFirstMatch();
