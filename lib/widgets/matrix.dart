@@ -371,6 +371,71 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     }
   }
 
+  void initSettings() {
+    AppConfig.fontSizeFactor =
+        double.tryParse(store.getString(SettingKeys.fontSizeFactor) ?? '') ??
+            AppConfig.fontSizeFactor;
+
+    AppConfig.renderHtml =
+        store.getBool(SettingKeys.renderHtml) ?? AppConfig.renderHtml;
+
+    AppConfig.swipeRightToLeftToReply =
+        store.getBool(SettingKeys.swipeRightToLeftToReply) ??
+            AppConfig.swipeRightToLeftToReply;
+
+    AppConfig.swipePopEnableFullScreenDrag =
+        store.getBool(SettingKeys.swipePopEnableFullScreenDrag) ??
+            AppConfig.swipePopEnableFullScreenDrag;
+
+    AppConfig.swipePopDurationMs =
+        store.getInt(SettingKeys.swipePopDurationMs) ??
+            AppConfig.swipePopDurationMs;
+
+    AppConfig.swipePopMinimumDragFraction =
+        store.getDouble(SettingKeys.swipePopMinimumDragFraction) ??
+            AppConfig.swipePopMinimumDragFraction;
+
+    AppConfig.swipePopVelocityThreshold =
+        store.getDouble(SettingKeys.swipePopVelocityThreshold) ??
+            AppConfig.swipePopVelocityThreshold;
+
+    AppConfig.hideRedactedEvents =
+        store.getBool(SettingKeys.hideRedactedEvents) ??
+            AppConfig.hideRedactedEvents;
+
+    AppConfig.hideUnknownEvents =
+        store.getBool(SettingKeys.hideUnknownEvents) ??
+            AppConfig.hideUnknownEvents;
+
+    AppConfig.separateChatTypes =
+        store.getBool(SettingKeys.separateChatTypes) ??
+            AppConfig.separateChatTypes;
+
+    AppConfig.autoplayImages =
+        store.getBool(SettingKeys.autoplayImages) ?? AppConfig.autoplayImages;
+
+    AppConfig.sendTypingNotifications =
+        store.getBool(SettingKeys.sendTypingNotifications) ??
+            AppConfig.sendTypingNotifications;
+
+    AppConfig.sendPublicReadReceipts =
+        store.getBool(SettingKeys.sendPublicReadReceipts) ??
+            AppConfig.sendPublicReadReceipts;
+
+    AppConfig.sendOnEnter =
+        store.getBool(SettingKeys.sendOnEnter) ?? AppConfig.sendOnEnter;
+
+    AppConfig.experimentalVoip = store.getBool(SettingKeys.experimentalVoip) ??
+        AppConfig.experimentalVoip;
+
+    AppConfig.showPresences =
+        store.getBool(SettingKeys.showPresences) ?? AppConfig.showPresences;
+
+    AppConfig.displayNavigationRail =
+        store.getBool(SettingKeys.displayNavigationRail) ??
+            AppConfig.displayNavigationRail;
+  }
+
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);

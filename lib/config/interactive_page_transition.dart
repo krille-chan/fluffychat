@@ -1,54 +1,123 @@
-import 'package:flutter/material.dart';
+/// Swipe-to-pop page transition utilities used for iOS-style navigation.
+import 'dart:math' as math;
 
-class InteractivePageTransition extends Page {
-  final Widget child;
-  final bool isLeftToRight;
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
+import 'package:hermes/config/app_config.dart';
+import 'package:hermes/widgets/reply_swipeable.dart';
 
-  const InteractivePageTransition({
-    required LocalKey super.key,
+/// A [Page] that wraps content in an iOS-style swipe-to-pop route.
+class SwipePopPage<T> extends Page<T> {
+  /// Creates a [SwipePopPage] that reads defaults from [AppConfig].
+  SwipePopPage({
     required this.child,
+    Duration? duration,
+    this.curve = Curves.decelerate,
+    this.reverseCurve = Curves.easeOutCubic,
+    bool? enableFullScreenDrag,
+    double? minimumDragFraction,
+    double? velocityThreshold,
+    super.key,
+    super.name,
+    super.arguments,
     super.restorationId,
-    this.isLeftToRight = true,
-  });
+  })  : duration = duration ?? AppConfig.swipePopDuration,
+        enableFullScreenDrag =
+            enableFullScreenDrag ?? AppConfig.swipePopEnableFullScreenDrag,
+        minimumDragFraction =
+            (minimumDragFraction ?? AppConfig.swipePopMinimumDragFraction)
+                .clamp(0.0, 1.0),
+        velocityThreshold =
+            velocityThreshold ?? AppConfig.swipePopVelocityThreshold;
 
+  final Widget child;
+  final Duration duration;
+  final Curve curve;
+  final Curve reverseCurve;
+  final bool enableFullScreenDrag;
+  final double minimumDragFraction;
+  final double velocityThreshold;
+
+  /// Builds the concrete [PageRoute] wired with swipe handling.
   @override
-  Route createRoute(BuildContext context) {
-    return InteractivePageRoute(
+  Route<T> createRoute(BuildContext context) {
+    return SwipePopPageRoute<T>(
+      builder: (_) => child,
+      duration: duration,
+      curve: curve,
+      reverseCurve: reverseCurve,
+      enableFullScreenDrag: enableFullScreenDrag,
+      minimumDragFraction: minimumDragFraction,
+      velocityThreshold: velocityThreshold,
       settings: this,
-      builder: (BuildContext context) => child,
-      isLeftToRight: isLeftToRight,
     );
   }
 }
 
-class InteractivePageRoute extends PageRoute {
-  final WidgetBuilder builder;
-  final bool isLeftToRight;
-
-  InteractivePageRoute({
+/// A [PageRoute] that supports configurable swipe-to-pop gestures.
+class SwipePopPageRoute<T> extends PageRoute<T> {
+  /// Configures a swipe-enabled route with the provided animation options.
+  SwipePopPageRoute({
     required this.builder,
-    required this.isLeftToRight,
+    required this.duration,
+    required this.curve,
+    required this.reverseCurve,
+    required this.enableFullScreenDrag,
+    required this.minimumDragFraction,
+    required this.velocityThreshold,
     super.settings,
-  }) : super(fullscreenDialog: false);
+  }) : assert(minimumDragFraction >= 0 && minimumDragFraction <= 1);
 
+  final WidgetBuilder builder;
+  final Duration duration;
+  final Curve curve;
+  final Curve reverseCurve;
+  final bool enableFullScreenDrag;
+  final double minimumDragFraction;
+  final double velocityThreshold;
+
+  /// Always render the page as opaque so the previous route stays hidden.
   @override
-  bool get opaque => false;
+  bool get opaque => true;
 
+  /// Prevent dismissing via tapping the barrier; only swipes should pop.
   @override
   bool get barrierDismissible => false;
 
+  /// Pages do not paint a modal barrier for this transition.
   @override
   Color? get barrierColor => null;
 
+  /// There is no semantic barrier label because no barrier is shown.
   @override
   String? get barrierLabel => null;
 
+  /// Preserve route state when it is partially covered during gestures.
   @override
   bool get maintainState => true;
 
+  /// Use the configured forward duration for pushes.
   @override
-  Duration get transitionDuration => const Duration(milliseconds: 300);
+  Duration get transitionDuration => duration;
 
+  /// Mirror the forward duration when popping the route.
+  @override
+  Duration get reverseTransitionDuration => duration;
+
+  /// Enable native-style pop gestures when allowed by configuration.
+  @override
+  bool get popGestureEnabled => enableFullScreenDrag;
+
+  /// Build the underlying page contents without wrapping animations.
+  @override
+  Widget buildPage(
+    BuildContext context,
+    Animation<double> animation,
+    Animation<double> secondaryAnimation,
+  ) =>
+      builder(context);
+
+  /// Wrap the page with gesture handling and Cupertino-style animations.
   @override
   Widget buildTransitions(
     BuildContext context,
@@ -56,187 +125,326 @@ class InteractivePageRoute extends PageRoute {
     Animation<double> secondaryAnimation,
     Widget child,
   ) {
-    return SwipeBackDetector(
-      isLeftToRight: isLeftToRight,
-      onSwipeBack: () {
-        if (Navigator.of(context).canPop()) {
-          Navigator.of(context).pop();
-        }
-      },
-      child: SlideTransition(
-        position: Tween<Offset>(
-          begin:
-              isLeftToRight ? const Offset(1.0, 0.0) : const Offset(-1.0, 0.0),
-          end: Offset.zero,
-        ).animate(
-          CurvedAnimation(
-            parent: animation,
-            curve: Curves.easeInOut,
-          ),
-        ),
-        child: child,
-      ),
+    final wrapped = enableFullScreenDrag
+        ? _FullScreenPopGestureDetector<T>(
+            route: this,
+            minimumDragFraction: minimumDragFraction,
+            velocityThreshold: velocityThreshold,
+            child: child,
+          )
+        : child;
+
+    return CupertinoPageTransition(
+      primaryRouteAnimation: animation,
+      secondaryRouteAnimation: secondaryAnimation,
+      linearTransition: navigator?.userGestureInProgress ?? false,
+      child: wrapped,
     );
   }
 
-  @override
-  Widget buildPage(
-    BuildContext context,
-    Animation<double> animation,
-    Animation<double> secondaryAnimation,
-  ) {
-    return builder(context);
-  }
+  /// Exposes the route's animation controller to gesture helpers.
+  AnimationController get popGestureController => controller!;
+
+  /// Exposes the navigator to coordinate gesture lifecycle events.
+  NavigatorState get popGestureNavigator => navigator!;
 }
 
-class SwipeBackDetector extends StatefulWidget {
-  final Widget child;
-  final VoidCallback onSwipeBack;
-  final bool isLeftToRight;
-
-  const SwipeBackDetector({
-    super.key,
+/// Detects a full-screen horizontal drag and proxies it to the route.
+class _FullScreenPopGestureDetector<T> extends StatefulWidget {
+  /// Creates a widget that attaches swipe tracking to [route].
+  const _FullScreenPopGestureDetector({
+    required this.route,
     required this.child,
-    required this.onSwipeBack,
-    this.isLeftToRight = true,
+    required this.minimumDragFraction,
+    required this.velocityThreshold,
   });
 
+  final SwipePopPageRoute<T> route;
+  final Widget child;
+  final double minimumDragFraction;
+  final double velocityThreshold;
+
+  /// Builds the backing state object that listens for drag gestures.
   @override
-  State<SwipeBackDetector> createState() => _SwipeBackDetectorState();
+  State<_FullScreenPopGestureDetector<T>> createState() =>
+      _FullScreenPopGestureDetectorState<T>();
 }
 
-class _SwipeBackDetectorState extends State<SwipeBackDetector>
-    with SingleTickerProviderStateMixin {
-  static const double _kSwipeThreshold = 0.2;
-  static const double _kMaxSlideDistance = 0.75;
+/// Handles gesture recognition and forwards drag progress to the controller.
+class _FullScreenPopGestureDetectorState<T>
+    extends State<_FullScreenPopGestureDetector<T>> {
+  _FullScreenPopGestureController<T>? _controller;
+  late _RightSwipeDragGestureRecognizer _recognizer;
 
-  late AnimationController _controller;
-  double _dragExtent = 0.0;
-  bool _dragging = false;
-
+  /// Prepare the drag recognizer with handlers for the swipe lifecycle.
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 200),
-    );
-    _controller.addStatusListener(_handleAnimationStatusChanged);
+    _recognizer = _RightSwipeDragGestureRecognizer(debugOwner: this)
+      ..onStart = _handleDragStart
+      ..onUpdate = _handleDragUpdate
+      ..onEnd = _handleDragEnd
+      ..onCancel = _handleDragCancel
+      ..dragStartBehavior = DragStartBehavior.down;
   }
 
+  /// Update gesture settings when inherited configuration changes.
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _recognizer.gestureSettings = MediaQuery.maybeGestureSettingsOf(context);
+    _recognizer.contextTextDirection = Directionality.of(context);
+  }
+
+  /// Dispose the recognizer and ensure the navigator ends any active gesture.
   @override
   void dispose() {
-    _controller.dispose();
+    _recognizer.dispose();
+    if (_controller != null) {
+      final navigator = _controller!.navigator;
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (navigator.mounted) navigator.didStopUserGesture();
+      });
+      _controller = null;
+    }
     super.dispose();
   }
 
-  void _handleAnimationStatusChanged(AnimationStatus status) {
-    if (status == AnimationStatus.completed && _controller.value == 1.0) {
-      widget.onSwipeBack();
-    }
+  /// Begin tracking a pointer if swiping back is currently allowed.
+  void _handlePointerDown(PointerDownEvent event) {
+    if (!widget.route.popGestureEnabled) return;
+    _recognizer.addPointer(event);
   }
 
+  /// Start a new gesture controller when the finger begins moving.
   void _handleDragStart(DragStartDetails details) {
-    if (widget.isLeftToRight) {
-      setState(() {
-        _dragging = true;
-        _dragExtent = 0.0;
-      });
-    }
+    widget.route.popGestureController.stop();
+    _controller = _FullScreenPopGestureController<T>(
+      route: widget.route,
+      duration: widget.route.duration,
+      forwardCurve: widget.route.curve,
+      reverseCurve: widget.route.reverseCurve,
+      minimumDragFraction: widget.minimumDragFraction,
+      velocityThreshold: widget.velocityThreshold,
+    );
   }
 
+  /// Update the pop animation as the user drags the page to the right.
   void _handleDragUpdate(DragUpdateDetails details) {
-    if (!_dragging) return;
-
-    final screenWidth = MediaQuery.of(context).size.width;
-    final delta = details.primaryDelta ?? 0.0;
-
-    // if ((widget.isLeftToRight && delta > 0) ||
-    //     (!widget.isLeftToRight && delta < 0)) {
-    setState(() {
-      _dragExtent += delta;
-      // Normalize to [0, 1] range with damping as we approach maxDistance
-      final normalizedDragExtent =
-          (_dragExtent / screenWidth).clamp(0.0, _kMaxSlideDistance);
-      _controller.value = normalizedDragExtent;
-    });
-    // }
+    if (_controller == null) return;
+    final size = context.size;
+    if (size == null || size.width == 0) return;
+    final delta = _convertToLogical((details.primaryDelta ?? 0) / size.width);
+    if (delta <= 0) return;
+    _controller!.dragUpdate(delta);
   }
 
+  /// Decide whether to complete the pop when the gesture finishes.
   void _handleDragEnd(DragEndDetails details) {
-    if (!_dragging) return;
-
-    final thresholdMet = _controller.value > _kSwipeThreshold;
-
-    if (thresholdMet) {
-      _controller.animateTo(1.0, curve: Curves.easeOut);
-    } else {
-      _controller.animateTo(0.0, curve: Curves.easeIn);
-    }
-
-    setState(() {
-      _dragging = false;
-    });
+    if (_controller == null) return;
+    final velocity = _convertToLogical(details.velocity.pixelsPerSecond.dx);
+    final progress = 1 - widget.route.popGestureController.value;
+    _controller!.dragEnd(velocity: velocity, dragFraction: progress);
+    _controller = null;
   }
 
+  /// Revert the animation if the drag cancels.
+  void _handleDragCancel() {
+    _controller?.dragCancel();
+    _controller = null;
+  }
+
+  /// Normalize deltas so RTL layouts read swipes consistently.
+  double _convertToLogical(double value) {
+    final td = Directionality.of(context);
+    return td == TextDirection.rtl ? -value : value;
+  }
+
+  /// Wrap the child with pointer listeners that feed the recognizer.
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onHorizontalDragStart: _handleDragStart,
-      onHorizontalDragUpdate: _handleDragUpdate,
-      onHorizontalDragEnd: _handleDragEnd,
-      child: AnimatedBuilder(
-        animation: _controller,
-        builder: (context, child) {
-          final slideAmount = _controller.value;
+    return Listener(
+      onPointerDown: _handlePointerDown,
+      behavior: HitTestBehavior.translucent,
+      child: widget.child,
+    );
+  }
+}
 
-          return Stack(
-            children: [
-              // Background (room list) becoming visible as we slide
-              if (slideAmount > 0)
-                Positioned.fill(
-                  child: FractionalTranslation(
-                    translation: Offset(-1 + slideAmount, 0),
-                    child: Container(
-                      color: Theme.of(context).scaffoldBackgroundColor,
-                    ),
-                  ),
-                ),
+/// A drag recognizer that only accepts rightward swipes in LTR layouts.
+class _RightSwipeDragGestureRecognizer extends HorizontalDragGestureRecognizer {
+  _RightSwipeDragGestureRecognizer({super.debugOwner});
 
-              // Foreground (current chat room) sliding away
-              Transform.translate(
-                offset:
-                    Offset(MediaQuery.of(context).size.width * slideAmount, 0),
-                child: widget.child,
-              ),
+  double _accumulatedDelta = 0.0;
+  bool _resolvedDirection = false;
+  TextDirection? _textDirection;
 
-              // Shadow effect along the left edge when sliding
-              if (slideAmount > 0)
-                Positioned(
-                  left: 0,
-                  top: 0,
-                  bottom: 0,
-                  width: 5.0,
-                  child: Opacity(
-                    opacity: slideAmount,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withValues(alpha: 0.3),
-                            blurRadius: 5.0,
-                            spreadRadius: 2.0,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-            ],
-          );
-        },
-        child: widget.child,
-      ),
+  /// Store the ambient text direction to interpret deltas correctly.
+  set contextTextDirection(TextDirection direction) {
+    _textDirection = direction;
+  }
+
+  /// Use the stored direction or default to left-to-right layouts.
+  TextDirection get _effectiveTextDirection =>
+      _textDirection ?? TextDirection.ltr;
+
+  /// Reset state before tracking a new pointer.
+  @override
+  void addPointer(PointerDownEvent event) {
+    _accumulatedDelta = 0.0;
+    _resolvedDirection = false;
+    super.addPointer(event);
+  }
+
+  /// Reject swipes that move in the opposite direction of a back gesture.
+  @override
+  void handleEvent(PointerEvent event) {
+    if (event is PointerMoveEvent && !_resolvedDirection) {
+      final dir = _effectiveTextDirection;
+      final logicalDelta =
+          dir == TextDirection.rtl ? -event.delta.dx : event.delta.dx;
+      _accumulatedDelta += logicalDelta;
+      if (_accumulatedDelta.abs() > kTouchSlop) {
+        _resolvedDirection = true;
+        if (_accumulatedDelta < 0) {
+          resolve(GestureDisposition.rejected);
+          stopTrackingPointer(event.pointer);
+          return;
+        }
+      }
+    }
+    super.handleEvent(event);
+  }
+
+  /// Clear any accumulated state after tracking completes.
+  @override
+  void didStopTrackingLastPointer(int pointer) {
+    _resolvedDirection = false;
+    _accumulatedDelta = 0.0;
+    super.didStopTrackingLastPointer(pointer);
+  }
+}
+
+/// Drives the pop animation in response to drag updates.
+class _FullScreenPopGestureController<T> {
+  /// Hooks the controller into the route and notifies the navigator.
+  _FullScreenPopGestureController({
+    required SwipePopPageRoute<T> route,
+    required this.duration,
+    required this.forwardCurve,
+    required this.reverseCurve,
+    required this.minimumDragFraction,
+    required this.velocityThreshold,
+  })  : controller = route.popGestureController,
+        navigator = route.popGestureNavigator {
+    getIsCurrent = () => route.isCurrent;
+    navigator.didStartUserGesture();
+  }
+
+  final AnimationController controller;
+  final NavigatorState navigator;
+  final Duration duration;
+  final Curve forwardCurve;
+  final Curve reverseCurve;
+  final double minimumDragFraction;
+  final double velocityThreshold;
+  late final bool Function() getIsCurrent;
+
+  /// Update the animation progress as the finger moves.
+  void dragUpdate(double delta) {
+    controller.value = (controller.value - delta).clamp(0.0, 1.0);
+  }
+
+  /// Decide whether to complete the pop or restore the pushed page.
+  void dragEnd({required double velocity, required double dragFraction}) {
+    if (!getIsCurrent()) {
+      _animateToPushed();
+      return;
+    }
+
+    final shouldPop = (velocity > velocityThreshold)
+        ? true
+        : (velocity < -velocityThreshold)
+            ? false
+            : (dragFraction > minimumDragFraction);
+
+    if (shouldPop) {
+      navigator.pop();
+      _listenUntilSettled();
+    } else {
+      _animateToPushed();
+    }
+  }
+
+  /// Cancel the interaction and animate back to the pushed position.
+  void dragCancel() => _animateToPushed();
+
+  /// Animate the page to the fully pushed state.
+  void _animateToPushed() {
+    controller.animateTo(
+      1.0,
+      duration: _scaledDuration(1.0),
+      curve: forwardCurve,
+    );
+    _listenUntilSettled();
+  }
+
+  /// Keep the navigator informed until the animation finishes.
+  void _listenUntilSettled() {
+    void listener(AnimationStatus status) {
+      if (status == AnimationStatus.completed ||
+          status == AnimationStatus.dismissed) {
+        navigator.didStopUserGesture();
+        controller.removeStatusListener(listener);
+      }
+    }
+
+    controller.addStatusListener(listener);
+  }
+
+  /// Scale the animation duration based on the remaining distance.
+  Duration _scaledDuration(double target) {
+    final distance = (controller.value - target).abs();
+    final ms = math.max(1, (duration.inMilliseconds * distance).round());
+    return Duration(milliseconds: ms);
+  }
+}
+
+/// Prevents swipe-to-pop from triggering inside reply swipe regions.
+class BlockSwipeArea extends StatelessWidget {
+  /// Creates a region that blocks swipe-to-pop from the configured side.
+  const BlockSwipeArea({
+    super.key,
+    this.direction = ReplySwipeDirection.startToEnd,
+    required this.child,
+  });
+
+  final ReplySwipeDirection direction;
+  final Widget child;
+
+  /// Install a recognizer that absorbs pop gestures in the configured zone.
+  @override
+  Widget build(BuildContext context) {
+    return RawGestureDetector(
+      behavior: HitTestBehavior.opaque,
+      gestures: {
+        _SwipePopBlockRecognizer:
+            GestureRecognizerFactoryWithHandlers<_SwipePopBlockRecognizer>(
+          () => _SwipePopBlockRecognizer(debugOwner: this),
+          (recognizer) {
+            recognizer
+              ..onStart = (_) {}
+              ..onUpdate = (_) {}
+              ..onEnd = (_) {}
+              ..onCancel = () {}
+              ..gestureSettings = MediaQuery.maybeGestureSettingsOf(context)
+              ..textDirection = Directionality.of(context)
+              ..dragStartBehavior = DragStartBehavior.down
+              ..direction = direction;
+          },
+        ),
+      },
+      child: child,
     );
   }
 }

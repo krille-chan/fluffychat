@@ -30,6 +30,81 @@ class SettingsChatView extends StatelessWidget {
         child: MaxWidthBody(
           child: Column(
             children: [
+              const ListTile(
+                title: Text('Swipe back gesture'),
+                subtitle: Text(
+                  'Adjust how sensitive the back-swipe navigation should be.',
+                ),
+              ),
+              SwitchListTile.adaptive(
+                value: controller.swipeEnableFullScreenDrag,
+                title: const Text('Enable full-screen swipe back'),
+                onChanged: controller.setSwipeEnableFullScreenDrag,
+              ),
+              ListTile(
+                title: const Text('Swipe duration'),
+                subtitle:
+                    const Text('Controls how long the transition animates.'),
+                trailing: Text('${controller.swipeDurationMs.round()} ms'),
+              ),
+              Slider.adaptive(
+                min: 120,
+                max: 600,
+                divisions: 24,
+                value: controller.swipeDurationMs.clamp(120, 600).toDouble(),
+                onChanged: controller.swipeEnableFullScreenDrag
+                    ? controller.updateSwipeDuration
+                    : null,
+                onChangeEnd: controller.swipeEnableFullScreenDrag
+                    ? controller.saveSwipeDuration
+                    : null,
+              ),
+              ListTile(
+                title: const Text('Required swipe distance'),
+                subtitle: const Text(
+                  'Percentage of the screen that must be swiped before popping.',
+                ),
+                trailing: Text(
+                  '${(controller.swipeMinimumDragFraction * 100).round()}%',
+                ),
+              ),
+              Slider.adaptive(
+                min: 0.05,
+                max: 1.0,
+                divisions: 19,
+                value: controller.swipeMinimumDragFraction
+                    .clamp(0.05, 1.0)
+                    .toDouble(),
+                onChanged: controller.swipeEnableFullScreenDrag
+                    ? controller.updateSwipeMinimumDragFraction
+                    : null,
+                onChangeEnd: controller.swipeEnableFullScreenDrag
+                    ? controller.saveSwipeMinimumDragFraction
+                    : null,
+              ),
+              ListTile(
+                title: const Text('Swipe release velocity'),
+                subtitle: const Text(
+                  'Minimum fling speed needed when the drag is short.',
+                ),
+                trailing:
+                    Text('${controller.swipeVelocityThreshold.round()} px/s'),
+              ),
+              Slider.adaptive(
+                min: 50,
+                max: 2000,
+                divisions: 39,
+                value: controller.swipeVelocityThreshold
+                    .clamp(50.0, 2000.0)
+                    .toDouble(),
+                onChanged: controller.swipeEnableFullScreenDrag
+                    ? controller.updateSwipeVelocityThreshold
+                    : null,
+                onChangeEnd: controller.swipeEnableFullScreenDrag
+                    ? controller.saveSwipeVelocityThreshold
+                    : null,
+              ),
+              Divider(color: theme.dividerColor),
               SettingsSwitchListTile.adaptive(
                 title: L10n.of(context).formattedMessages,
                 subtitle: L10n.of(context).formattedMessagesDescription,
