@@ -220,7 +220,9 @@ abstract class AppRoutes {
                 return defaultPageBuilder(
                   context,
                   state,
-                  const PublicTripPage(),
+                  const PublicTripPage(
+                    showFilters: false,
+                  ),
                 );
               },
             ),
@@ -230,7 +232,10 @@ abstract class AppRoutes {
                 return defaultPageBuilder(
                   context,
                   state,
-                  const NewTripPage(route: 'registration'),
+                  const NewTripPage(
+                    route: 'registration',
+                    showFilters: false,
+                  ),
                 );
               },
               routes: [

@@ -15,11 +15,13 @@ import 'package:fluffychat/widgets/matrix.dart';
 class NewTripPage extends StatefulWidget {
   final String route;
   final String? spaceId;
+  final bool showFilters;
 
   const NewTripPage({
     super.key,
     required this.route,
     this.spaceId,
+    this.showFilters = true,
   });
 
   @override
@@ -70,51 +72,53 @@ class NewTripPageState extends State<NewTripPage> with CourseSearchProvider {
             ),
             child: Column(
               children: [
-                Row(
-                  children: [
-                    Expanded(
-                      child: Wrap(
-                        spacing: 8.0,
-                        runSpacing: 8.0,
-                        alignment: WrapAlignment.start,
-                        children: [
-                          CoursePlanFilter<LanguageModel>(
-                            value: instructionLanguageFilter,
-                            onChanged: setInstructionLanguageFilter,
-                            items: MatrixState
-                                .pangeaController.pLanguageStore.baseOptions,
-                            displayname: (v) =>
-                                v.getDisplayName(context) ?? v.displayName,
-                            enableSearch: true,
-                            defaultName:
-                                L10n.of(context).languageOfInstructionsLabel,
-                            shortName: L10n.of(context).allLanguages,
-                          ),
-                          CoursePlanFilter<LanguageModel>(
-                            value: targetLanguageFilter,
-                            onChanged: setTargetLanguageFilter,
-                            items: MatrixState
-                                .pangeaController.pLanguageStore.targetOptions,
-                            displayname: (v) =>
-                                v.getDisplayName(context) ?? v.displayName,
-                            enableSearch: true,
-                            defaultName: L10n.of(context).targetLanguageLabel,
-                            shortName: L10n.of(context).allLanguages,
-                          ),
-                          CoursePlanFilter<LanguageLevelTypeEnum>(
-                            value: languageLevelFilter,
-                            onChanged: setLanguageLevelFilter,
-                            items: LanguageLevelTypeEnum.values,
-                            displayname: (v) => v.string,
-                            defaultName: L10n.of(context).cefrLevelLabel,
-                            shortName: L10n.of(context).allCefrLevels,
-                          ),
-                        ],
+                if (widget.showFilters) ...[
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Wrap(
+                          spacing: 8.0,
+                          runSpacing: 8.0,
+                          alignment: WrapAlignment.start,
+                          children: [
+                            CoursePlanFilter<LanguageModel>(
+                              value: instructionLanguageFilter,
+                              onChanged: setInstructionLanguageFilter,
+                              items: MatrixState
+                                  .pangeaController.pLanguageStore.baseOptions,
+                              displayname: (v) =>
+                                  v.getDisplayName(context) ?? v.displayName,
+                              enableSearch: true,
+                              defaultName:
+                                  L10n.of(context).languageOfInstructionsLabel,
+                              shortName: L10n.of(context).allLanguages,
+                            ),
+                            CoursePlanFilter<LanguageModel>(
+                              value: targetLanguageFilter,
+                              onChanged: setTargetLanguageFilter,
+                              items: MatrixState.pangeaController.pLanguageStore
+                                  .targetOptions,
+                              displayname: (v) =>
+                                  v.getDisplayName(context) ?? v.displayName,
+                              enableSearch: true,
+                              defaultName: L10n.of(context).targetLanguageLabel,
+                              shortName: L10n.of(context).allLanguages,
+                            ),
+                            CoursePlanFilter<LanguageLevelTypeEnum>(
+                              value: languageLevelFilter,
+                              onChanged: setLanguageLevelFilter,
+                              items: LanguageLevelTypeEnum.values,
+                              displayname: (v) => v.string,
+                              defaultName: L10n.of(context).cefrLevelLabel,
+                              shortName: L10n.of(context).allCefrLevels,
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 20.0),
+                    ],
+                  ),
+                  const SizedBox(height: 20.0),
+                ],
                 loading || error != null || courses.isEmpty
                     ? Center(
                         child: Padding(
