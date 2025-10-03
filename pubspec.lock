@@ -1887,10 +1887,10 @@ packages:
     dependency: "direct main"
     description:
       name: unifiedpush
-      sha256: "1418375efb580af9640de4eaf4209cb6481f9a48792648ced3051f30e67d9568"
+      sha256: b52a0eff848d0446b9d521e0ad2f7bc76c4dda88d0f6ac0a79f1765ccfe37939
       url: "https://pub.dev"
     source: hosted
-    version: "6.0.2"
+    version: "6.1.0"
   unifiedpush_android:
     dependency: transitive
     description:
