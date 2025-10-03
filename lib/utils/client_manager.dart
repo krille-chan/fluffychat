@@ -30,20 +30,27 @@ abstract class ClientManager {
     bool initialize = true,
     required SharedPreferences store,
   }) async {
+    Logs().i('Getting clients from store');
+
     if (PlatformInfos.isLinux) {
       Hive.init((await getApplicationSupportDirectory()).path);
     } else {
       await Hive.initFlutter();
     }
+
     final clientNames = <String>{};
     try {
       final clientNamesList = store.getStringList(clientNamespace) ?? [];
+      Logs().i('Found client names in store: $clientNamesList');
       clientNames.addAll(clientNamesList);
     } catch (e, s) {
       Logs().w('Client names in store are corrupted', e, s);
       await store.remove(clientNamespace);
     }
     if (clientNames.isEmpty) {
+      Logs().i(
+        'No client names found, adding default client name ${PlatformInfos.clientName}',
+      );
       clientNames.add(PlatformInfos.clientName);
       await store.setStringList(clientNamespace, clientNames.toList());
     }
@@ -86,6 +93,7 @@ abstract class ClientManager {
     String clientName,
     SharedPreferences store,
   ) async {
+    Logs().i('Adding client name $clientName to store');
     final clientNamesList = store.getStringList(clientNamespace) ?? [];
     clientNamesList.add(clientName);
     await store.setStringList(clientNamespace, clientNamesList);
