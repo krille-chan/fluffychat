@@ -8,7 +8,13 @@ import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/client_manager.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
+import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/utils/push_helper.dart';
+import '../config/app_config.dart';
+import '../config/setting_keys.dart';
 
 bool _vodInitialized = false;
 
@@ -52,9 +58,10 @@ void notificationTapBackground(
     await vod.init();
     _vodInitialized = true;
   }
+  final store = await SharedPreferences.getInstance();
   final client = (await ClientManager.getClients(
     initialize: false,
-    store: await SharedPreferences.getInstance(),
+    store: store,
   ))
       .first;
   await client.abortSync();
@@ -62,6 +69,11 @@ void notificationTapBackground(
     waitForFirstSync: false,
     waitUntilLoadCompletedLoaded: false,
   );
+
+  AppConfig.sendPublicReadReceipts =
+      store.getBool(SettingKeys.sendPublicReadReceipts) ??
+          AppConfig.sendPublicReadReceipts;
+
   if (!client.isLogged()) {
     throw Exception('Notification tab in background but not logged in!');
   }
@@ -77,14 +89,17 @@ Future<void> notificationTap(
   NotificationResponse notificationResponse, {
   GoRouter? router,
   required Client client,
+  L10n? l10n,
 }) async {
   Logs().d(
     'Notification action handler started',
     notificationResponse.notificationResponseType.name,
   );
+  final payload =
+      FluffyChatPushPayload.fromString(notificationResponse.payload ?? '');
   switch (notificationResponse.notificationResponseType) {
     case NotificationResponseType.selectedNotification:
-      final roomId = notificationResponse.payload;
+      final roomId = payload.roomId;
       if (roomId == null) return;
 
       if (router == null) {
@@ -111,7 +126,7 @@ Future<void> notificationTap(
       if (actionType == null) {
         throw Exception('Selected notification with action but no action ID');
       }
-      final roomId = notificationResponse.payload;
+      final roomId = payload.roomId;
       if (roomId == null) {
         throw Exception('Selected notification with action but no payload');
       }
@@ -127,9 +142,9 @@ Future<void> notificationTap(
       switch (actionType) {
         case FluffyChatNotificationActions.markAsRead:
           await room.setReadMarker(
-            room.lastEvent!.eventId,
-            mRead: room.lastEvent!.eventId,
-            public: false, // TODO: Load preference here
+            payload.eventId ?? room.lastEvent!.eventId,
+            mRead: payload.eventId ?? room.lastEvent!.eventId,
+            public: AppConfig.sendPublicReadReceipts,
           );
         case FluffyChatNotificationActions.reply:
           final input = notificationResponse.input;
@@ -138,7 +153,65 @@ Future<void> notificationTap(
               'Selected notification with reply action but without input',
             );
           }
-          await room.sendTextEvent(input);
+
+          final eventId = await room.sendTextEvent(input);
+
+          if (PlatformInfos.isAndroid) {
+            final messagingStyleInformation =
+                await AndroidFlutterLocalNotificationsPlugin()
+                    .getActiveNotificationMessagingStyle(room.id.hashCode);
+            if (messagingStyleInformation == null) return;
+            l10n ??= await lookupL10n(const Locale('en'));
+            messagingStyleInformation.messages?.add(
+              Message(
+                input,
+                DateTime.now(),
+                Person(key: room.client.userID, name: l10n.you),
+              ),
+            );
+
+            await FlutterLocalNotificationsPlugin().show(
+              room.id.hashCode,
+              room.getLocalizedDisplayname(MatrixLocals(l10n)),
+              input,
+              NotificationDetails(
+                android: AndroidNotificationDetails(
+                  AppConfig.pushNotificationsChannelId,
+                  l10n.incomingMessages,
+                  category: AndroidNotificationCategory.message,
+                  shortcutId: room.id,
+                  styleInformation: messagingStyleInformation,
+                  groupKey: room.id,
+                  playSound: false,
+                  enableVibration: false,
+                  actions: <AndroidNotificationAction>[
+                    AndroidNotificationAction(
+                      FluffyChatNotificationActions.reply.name,
+                      l10n.reply,
+                      inputs: [
+                        AndroidNotificationActionInput(
+                          label: l10n.writeAMessage,
+                        ),
+                      ],
+                      cancelNotification: false,
+                      allowGeneratedReplies: true,
+                      semanticAction: SemanticAction.reply,
+                    ),
+                    AndroidNotificationAction(
+                      FluffyChatNotificationActions.markAsRead.name,
+                      l10n.markAsRead,
+                      semanticAction: SemanticAction.markAsRead,
+                    ),
+                  ],
+                ),
+              ),
+              payload: FluffyChatPushPayload(
+                client.clientName,
+                room.id,
+                eventId,
+              ).toString(),
+            );
+          }
       }
   }
 }

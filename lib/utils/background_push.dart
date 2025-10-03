@@ -89,6 +89,7 @@ class BackgroundPush {
                 NotificationResponseJson.fromJsonString(message),
                 client: client,
                 router: FluffyChatApp.router,
+                l10n: l10n,
               );
             } catch (e, s) {
               Logs().wtf('Main Notification Tap crashed', e, s);
@@ -105,6 +106,7 @@ class BackgroundPush {
           response,
           client: client,
           router: FluffyChatApp.router,
+          l10n: l10n,
         ),
         onDidReceiveBackgroundNotificationResponse: notificationTapBackground,
       );
@@ -313,6 +315,7 @@ class BackgroundPush {
           response,
           client: client,
           router: FluffyChatApp.router,
+          l10n: l10n,
         );
       }
     });
