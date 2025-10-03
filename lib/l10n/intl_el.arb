@@ -266,5 +266,170 @@
         "description": "Set to true to always display time of day in 24 hour format."
     },
     "setCustomPermissionLevel": "Όρισε προσαρμοσμένο επίπεδο άδειας",
-    "@setCustomPermissionLevel": {}
+    "@setCustomPermissionLevel": {},
+    "setPermissionsLevelDescription": "Επέλεξε έναν προκαθορισμένο ρόλο παρακάτω ή εισήγαγε ένα προσαρμοσμένο επίπεδο άδειας μεταξύ 0 και 100.",
+    "@setPermissionsLevelDescription": {},
+    "ignoreUser": "Αγνόηση χρήστη",
+    "@ignoreUser": {},
+    "normalUser": "Κανονικός χρήστης",
+    "@normalUser": {},
+    "aboutHomeserver": "Σχετικά με {homeserver}",
+    "@aboutHomeserver": {
+        "type": "String",
+        "placeholders": {
+            "homeserver": {
+                "type": "String"
+            }
+        }
+    },
+    "commandHint_roomupgrade": "Αναβάθμιση αυτού του δωματίου στην δεδομένη έκδοση δωματίου",
+    "@commandHint_roomupgrade": {},
+    "appLockDescription": "Κλείδωμα εφαρμογής όταν δεν χρησιμοποιείται με κωδικό PIN",
+    "@appLockDescription": {},
+    "swipeRightToLeftToReply": "Σύρσιμο δεξιά προς αριστερά για απάντηση",
+    "@swipeRightToLeftToReply": {},
+    "countChatsAndCountParticipants": "{chats} συνομιλίες και {participants} συμμετέχοντες",
+    "@countChatsAndCountParticipants": {
+        "type": "String",
+        "placeholders": {
+            "chats": {
+                "type": "int"
+            },
+            "participants": {
+                "type": "int"
+            }
+        }
+    },
+    "noMoreChatsFound": "Δεν βρέθηκαν άλλες συνομιλίες...",
+    "@noMoreChatsFound": {},
+    "noChatsFoundHere": "Δεν υπάρχουν συνομιλίες ακόμα. Ξεκίνα μια νέα συνομιλία με κάποιον χρησιμοποιώντας το κουμπί παρακάτω. ⤵️",
+    "@noChatsFoundHere": {},
+    "unread": "Μη αναγνωσμένα",
+    "@unread": {},
+    "space": "Χώρος",
+    "@space": {},
+    "spaces": "Χώροι",
+    "@spaces": {},
+    "changeDeviceName": "Αλλαγή ονόματος συσκευής",
+    "@changeDeviceName": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "changedTheChatAvatar": "{username} άλλαξε το άβαταρ συνομιλίας",
+    "@changedTheChatAvatar": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "changedTheChatDescriptionTo": "{username} άλλαξε την περιγραφή συνομιλίας σε: '{description}'",
+    "@changedTheChatDescriptionTo": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "description": {
+                "type": "String"
+            }
+        }
+    },
+    "changedTheChatNameTo": "{username} άλλαξε το όνομα συνομιλίας σε: '{chatname}'",
+    "@changedTheChatNameTo": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "chatname": {
+                "type": "String"
+            }
+        }
+    },
+    "changedTheChatPermissions": "{username} άλλαξε τα δικαιώματα συνομιλίας",
+    "@changedTheChatPermissions": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "changedTheDisplaynameTo": "{username} άλλαξε το εμφανιζόμενο όνομά του σε: '{displayname}'",
+    "@changedTheDisplaynameTo": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "displayname": {
+                "type": "String"
+            }
+        }
+    },
+    "changedTheGuestAccessRules": "{username} άλλαξε τους κανόνες πρόσβασης των επισκεπτών",
+    "@changedTheGuestAccessRules": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "changedTheGuestAccessRulesTo": "{username} άλλαξε τους κανόνες πρόσβασης των επισκεπτών σε: {rules}",
+    "@changedTheGuestAccessRulesTo": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "rules": {
+                "type": "String"
+            }
+        }
+    },
+    "changedTheHistoryVisibility": "{username} άλλαξε την ορατότητα ιστορικού",
+    "@changedTheHistoryVisibility": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "changedTheHistoryVisibilityTo": "{username} άλλαξε την ορατότητα ιστορικού σε: {rules}",
+    "@changedTheHistoryVisibilityTo": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "rules": {
+                "type": "String"
+            }
+        }
+    },
+    "changedTheJoinRules": "{username} άλλαξε τους κανόνες συμμετοχής",
+    "@changedTheJoinRules": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "changedTheJoinRulesTo": "{username} άλλαξε τους κανόνες συμμετοχής σε: {joinRules}",
+    "@changedTheJoinRulesTo": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "joinRules": {
+                "type": "String"
+            }
+        }
+    }
 }
