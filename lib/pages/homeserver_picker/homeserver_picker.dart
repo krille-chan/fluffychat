@@ -172,9 +172,55 @@ class HomeserverPickerController extends State<HomeserverPicker> {
     }
   }
 
+  _checkSSOSuccess() async {
+    final href = html.window.location.href;
+    final uri = Uri.parse(href);
+
+    String? token;
+
+    // Try to get the token from query parameters
+    token = uri.queryParameters['loginToken'];
+
+    // If not found, try to get it from fragment
+    if (token == null && uri.fragment.isNotEmpty) {
+      final fragmentUri = Uri.parse('?' + uri.fragment.split('?').last);
+      token = fragmentUri.queryParameters['loginToken'];
+    }
+
+    final homeserver = Uri.parse(AppConfig.defaultHomeserver);
+
+    if (token != null) {
+      final client = await Matrix.of(context).getLoginClient();
+      setState(() {
+        error = null;
+        isLoading = true;
+        client.homeserver = homeserver;
+      });
+      try {
+        await client.login(
+          LoginType.mLoginToken,
+          token: token,
+          initialDeviceDisplayName: PlatformInfos.clientName,
+        );
+      } catch (e) {
+        setState(() {
+          error = e.toLocalizedString(context);
+        });
+      } finally {
+        if (mounted) {
+          setState(() {
+            error = null;
+            isLoading = false;
+          });
+        }
+      }
+    }
+  }
+
   @override
   void initState() {
     _checkTorBrowser();
+    _checkSSOSuccess();
     super.initState();
   }
 
