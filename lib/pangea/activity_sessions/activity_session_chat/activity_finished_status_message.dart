@@ -57,7 +57,8 @@ class ActivityFinishedStatusMessage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (!controller.room.hasCompletedRole) {
+    if (!controller.room.hasCompletedRole ||
+        controller.room.hasArchivedActivity) {
       return const SizedBox.shrink();
     }
 
