@@ -111,4 +111,8 @@ class CourseLocationRepo {
       _cache.remove(topicId);
     }
   }
+
+  static Future<void> clearCache() async {
+    await _storage.erase();
+  }
 }

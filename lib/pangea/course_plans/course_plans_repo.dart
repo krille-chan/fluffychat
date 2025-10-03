@@ -3,7 +3,12 @@ import 'dart:async';
 import 'package:get_storage/get_storage.dart';
 
 import 'package:fluffychat/pangea/common/config/environment.dart';
+import 'package:fluffychat/pangea/course_plans/course_activity_repo.dart';
+import 'package:fluffychat/pangea/course_plans/course_location_media_repo.dart';
+import 'package:fluffychat/pangea/course_plans/course_location_repo.dart';
+import 'package:fluffychat/pangea/course_plans/course_media_repo.dart';
 import 'package:fluffychat/pangea/course_plans/course_plan_model.dart';
+import 'package:fluffychat/pangea/course_plans/course_topic_repo.dart';
 import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_enum.dart';
 import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
 import 'package:fluffychat/pangea/payload_client/models/course_plan/cms_course_plan.dart';
@@ -41,8 +46,27 @@ class CourseFilter {
 class CoursePlansRepo {
   static final Map<String, Completer<CoursePlanModel>> cache = {};
   static final GetStorage _courseStorage = GetStorage("course_storage");
+  static const Duration cacheDuration = Duration(days: 1);
+
+  static DateTime? get lastUpdated {
+    final entry = _courseStorage.read("last_updated");
+    if (entry != null && entry is String) {
+      try {
+        return DateTime.parse(entry);
+      } catch (e) {
+        _courseStorage.remove("last_updated");
+      }
+    }
+    return null;
+  }
 
   static CoursePlanModel? _getCached(String id) {
+    if (lastUpdated != null &&
+        DateTime.now().difference(lastUpdated!) > cacheDuration) {
+      clearCache();
+      return null;
+    }
+
     final json = _courseStorage.read(id);
     if (json != null) {
       try {
@@ -55,6 +79,12 @@ class CoursePlansRepo {
   }
 
   static Future<void> _setCached(CoursePlanModel coursePlan) async {
+    if (lastUpdated == null) {
+      await _courseStorage.write(
+        "last_updated",
+        DateTime.now().toIso8601String(),
+      );
+    }
     await _courseStorage.write(coursePlan.uuid, coursePlan.toJson());
   }
 
@@ -205,5 +235,18 @@ class CoursePlansRepo {
         .map((id) => _getCached(id))
         .whereType<CoursePlanModel>()
         .toList();
+  }
+
+  static Future<void> clearCache() async {
+    final List<Future> futures = [
+      CourseActivityRepo.clearCache(),
+      CourseLocationMediaRepo.clearCache(),
+      CourseLocationRepo.clearCache(),
+      CourseMediaRepo.clearCache(),
+      CourseTopicRepo.clearCache(),
+      _courseStorage.erase(),
+    ];
+
+    await Future.wait(futures);
   }
 }

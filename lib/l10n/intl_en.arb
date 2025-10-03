@@ -5293,6 +5293,7 @@
   "directMessageBotTitle": "Direct message Pangea Bot",
   "feedbackTitle": "Activity Feedback",
   "feedbackDesc": "How should the activity be improved? If you can provide some details, we’ll make the change!",
+  "feedbackRespDesc": "Check back tomorrow for activity updates.",
   "feedbackHint": "Your feedback",
   "feedbackButton": "Submit feedback",
   "directMessageBotDesc": "Talking to humans is more fun but... AI is always ready!",

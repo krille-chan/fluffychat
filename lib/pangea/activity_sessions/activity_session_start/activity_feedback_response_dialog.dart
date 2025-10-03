@@ -65,6 +65,10 @@ class ActivityFeedbackResponseDialog extends StatelessWidget {
                       feedback,
                       textAlign: TextAlign.center,
                     ),
+                    Text(
+                      L10n.of(context).feedbackRespDesc,
+                      textAlign: TextAlign.center,
+                    ),
                     const SizedBox.shrink(),
                   ],
                 ),

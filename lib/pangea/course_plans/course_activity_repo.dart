@@ -13,7 +13,48 @@ class CourseActivityRepo {
   static final Map<String, Completer<List<ActivityPlanModel>>> _cache = {};
   static final GetStorage _storage = GetStorage('course_activity_storage');
 
+  static Map<String, DateTime> get sentFeedback {
+    final entry = _storage.read("sent_feedback");
+    if (entry != null && entry is Map<String, dynamic>) {
+      try {
+        return Map<String, DateTime>.from(
+          entry.map((key, value) => MapEntry(key, DateTime.parse(value))),
+        );
+      } catch (e) {
+        _storage.remove("sent_feedback");
+      }
+    }
+    return {};
+  }
+
+  static Future<void> setSentFeedback(String activityId) async {
+    final currentValue = sentFeedback;
+    currentValue[activityId] = DateTime.now();
+    await _storage.write(
+      "sent_feedback",
+      currentValue.map((key, value) => MapEntry(key, value.toIso8601String())),
+    );
+  }
+
+  static Future<void> _clearSentFeedback(String activityId) async {
+    final currentValue = sentFeedback;
+    currentValue.remove(activityId);
+    await _storage.write(
+      "sent_feedback",
+      currentValue.map((key, value) => MapEntry(key, value.toIso8601String())),
+    );
+  }
+
   static ActivityPlanModel? _getCached(String uuid) {
+    final sentActivityFeedback = sentFeedback[uuid];
+    if (sentActivityFeedback != null &&
+        DateTime.now().difference(sentActivityFeedback) >
+            const Duration(minutes: 15)) {
+      _storage.remove(uuid);
+      _clearSentFeedback(uuid);
+      return null;
+    }
+
     final json = _storage.read<Map<String, dynamic>>(uuid);
     if (json != null) {
       try {
@@ -158,5 +199,9 @@ class CourseActivityRepo {
         return null;
       }).whereType<MapEntry<String, String>>(),
     );
+  }
+
+  static Future<void> clearCache() async {
+    await _storage.erase();
   }
 }
