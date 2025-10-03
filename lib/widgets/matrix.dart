@@ -22,7 +22,6 @@ import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/common/controllers/pangea_controller.dart';
 import 'package:fluffychat/pangea/common/utils/any_state_holder.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
-import 'package:fluffychat/pangea/course_plans/course_plan_room_extension.dart';
 import 'package:fluffychat/pangea/learning_settings/utils/locale_provider.dart';
 import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_file_extension.dart';
@@ -381,18 +380,12 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       } else {
         // #Pangea
         final isL2Set = await pangeaController.userController.isUserL2Set;
-        final inCourse = client.rooms.any(
-          (r) =>
-              r.isSpace &&
-              r.membership == Membership.join &&
-              r.coursePlan != null,
-        );
         final langCode = FluffyChatApp.router.state.pathParameters['langcode'];
         final registrationRedirect =
             langCode != null ? '/registration/$langCode' : '/registration';
         FluffyChatApp.router.go(
           state == LoginState.loggedIn
-              ? isL2Set && inCourse
+              ? isL2Set
                   ? '/rooms'
                   : registrationRedirect
               : '/home',

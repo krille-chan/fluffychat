@@ -126,7 +126,56 @@ class CoursePlansRepo {
     }
   }
 
-  static Future<List<CoursePlanModel>> search({CourseFilter? filter}) async {
+  static Future<List<CoursePlanModel>> search(
+    List<String> ids, {
+    Map<String, dynamic>? where,
+  }) async {
+    final PayloadClient payload = PayloadClient(
+      baseUrl: Environment.cmsApi,
+      accessToken: MatrixState.pangeaController.userController.accessToken,
+    );
+
+    final missingIds = ids
+        .where(
+          (id) => _courseStorage.read(id) == null,
+        )
+        .toList();
+
+    where ??= {};
+    where["id"] = {
+      "in": missingIds,
+    };
+
+    final searchResult = await payload.find(
+      CmsCoursePlan.slug,
+      CmsCoursePlan.fromJson,
+      page: 1,
+      limit: 10,
+      where: where,
+    );
+
+    final coursePlans = searchResult.docs
+        .map(
+          (cmsCoursePlan) => cmsCoursePlan.toCoursePlanModel(),
+        )
+        .toList();
+
+    for (final plan in coursePlans) {
+      await _setCached(plan);
+    }
+
+    final futures = coursePlans.map((c) => c.init());
+    await Future.wait(futures);
+
+    return ids
+        .map((id) => _getCached(id))
+        .whereType<CoursePlanModel>()
+        .toList();
+  }
+
+  static Future<List<CoursePlanModel>> searchByFilter({
+    CourseFilter? filter,
+  }) async {
     await _courseStorage.initStorage;
 
     final Map<String, dynamic> where = {};
@@ -190,51 +239,7 @@ class CoursePlansRepo {
       select: {"id": true},
     );
 
-    final missingIds = result.docs
-        .where(
-          (id) => _courseStorage.read(id) == null,
-        )
-        .toList();
-
-    // If all of the returned IDs are in the cached list,  ensure all of the course details have been cached, and return
-    if (missingIds.isEmpty) {
-      return result.docs
-          .map((id) => _getCached(id))
-          .whereType<CoursePlanModel>()
-          .toList();
-    }
-
-    // Else, take the list of returned course IDs minus the list of cached course IDs and
-    // fetch/cache the course details for each. Cache the newly returned list with all the IDs.
-    where["id"] = {
-      "in": missingIds,
-    };
-
-    final searchResult = await payload.find(
-      CmsCoursePlan.slug,
-      CmsCoursePlan.fromJson,
-      page: 1,
-      limit: 10,
-      where: where,
-    );
-
-    final coursePlans = searchResult.docs
-        .map(
-          (cmsCoursePlan) => cmsCoursePlan.toCoursePlanModel(),
-        )
-        .toList();
-
-    for (final plan in coursePlans) {
-      await _setCached(plan);
-    }
-
-    final futures = coursePlans.map((c) => c.init());
-    await Future.wait(futures);
-
-    return result.docs
-        .map((id) => _getCached(id))
-        .whereType<CoursePlanModel>()
-        .toList();
+    return search(result.docs, where: where);
   }
 
   static Future<void> clearCache() async {

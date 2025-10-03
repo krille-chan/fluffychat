@@ -65,6 +65,16 @@ class CreatePangeaAccountPageState extends State<CreatePangeaAccountPage> {
     }
   }
 
+  Future<void> _updateTargetLanguage() async {
+    await MatrixState.pangeaController.userController.updateProfile(
+      (profile) {
+        profile.userSettings.targetLanguage = widget.langCode;
+        return profile;
+      },
+      waitForDataInSync: true,
+    );
+  }
+
   Future<void> _createUserInPangea() async {
     setState(() {
       _loadingProfile = true;
@@ -73,6 +83,7 @@ class CreatePangeaAccountPageState extends State<CreatePangeaAccountPage> {
 
     final l2Set = await MatrixState.pangeaController.userController.isUserL2Set;
     if (l2Set) {
+      await _updateTargetLanguage();
       _onProfileCreated();
       return;
     }
