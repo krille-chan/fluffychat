@@ -52,7 +52,10 @@ class SpaceCodeController extends BaseController {
     );
 
     if (spaceId != null) {
-      context.go('/rooms/spaces/$spaceId/details');
+      final room = _pangeaController.matrixState.client.getRoomById(spaceId);
+      room?.isSpace ?? true
+          ? context.go('/rooms/spaces/$spaceId/details')
+          : context.go('/rooms/${room?.id}');
       return spaceId;
     }
 
