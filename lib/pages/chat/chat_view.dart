@@ -243,11 +243,21 @@ class ChatView extends StatelessWidget {
                                     .where(
                                       (syncUpdate) => syncUpdate.hasRoomUpdate,
                                     ),
-                                builder: (context, _) => UnreadRoomsBadge(
-                                  filter: (r) => r.id != controller.roomId,
-                                  badgePosition:
-                                      BadgePosition.topEnd(end: 8, top: 4),
-                                  child: const Center(child: BackButton()),
+                                // #Pangea
+                                // builder: (context, _) => UnreadRoomsBadge(
+                                builder: (context, _) => Center(
+                                  child: SizedBox(
+                                    height: kToolbarHeight,
+                                    child: UnreadRoomsBadge(
+                                      // Pangea#
+                                      filter: (r) => r.id != controller.roomId,
+                                      badgePosition: BadgePosition.topEnd(
+                                        end: 8,
+                                        top: 4,
+                                      ),
+                                      child: const Center(child: BackButton()),
+                                    ),
+                                  ),
                                 ),
                               ),
                 titleSpacing: FluffyThemes.isColumnMode(context) ? 24 : 0,
