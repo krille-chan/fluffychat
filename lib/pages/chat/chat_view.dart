@@ -25,7 +25,6 @@ import 'package:hermes/widgets/matrix.dart';
 import 'package:hermes/widgets/mxc_image.dart';
 import 'package:hermes/widgets/unread_rooms_badge.dart';
 
-import 'package:flutter/services.dart';
 import '../../utils/stream_extension.dart';
 import 'chat_emoji_picker.dart';
 import 'chat_input_row.dart';
