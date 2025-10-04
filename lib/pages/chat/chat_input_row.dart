@@ -141,94 +141,95 @@ class ChatInputRow extends StatelessWidget {
                       itemBuilder: (BuildContext context) =>
                           <PopupMenuEntry<String>>[
                         if (PlatformInfos.isMobile) ...[
-                            PopupMenuItem<String>(
-                              value: 'location',
-                              child: ListTile(
-                                leading: CircleAvatar(
-                                  backgroundColor:
-                                      theme.colorScheme.onPrimaryContainer,
-                                  foregroundColor:
-                                      theme.colorScheme.primaryContainer,
-                                  child: const Icon(Icons.gps_fixed_outlined,
-                                  ),
-                                ),
-                                title: Text(L10n.of(context).shareLocation),
-                                contentPadding: const EdgeInsets.all(0),
-                              ),
-                            ),
-                            PopupMenuItem<String>(
-                              value: 'camera',
-                              child: ListTile(
-                                leading: CircleAvatar(
-                                  backgroundColor:
-                                      theme.colorScheme.onPrimaryContainer,
-                                  foregroundColor:
-                                      theme.colorScheme.primaryContainer,
-                                  child: const Icon(Icons.camera_alt_outlined),
-                                ),
-                                title: Text(L10n.of(context).takeAPhoto),
-                                contentPadding: const EdgeInsets.all(0),
-                              ),
-                            ),
-                          ],
-                        PopupMenuItem<String>(
-                            value: 'image',
+                          PopupMenuItem<String>(
+                            value: 'location',
                             child: ListTile(
                               leading: CircleAvatar(
                                 backgroundColor:
                                     theme.colorScheme.onPrimaryContainer,
                                 foregroundColor:
                                     theme.colorScheme.primaryContainer,
-                                child: const Icon(Icons.photo_outlined),
+                                child: const Icon(
+                                  Icons.gps_fixed_outlined,
+                                ),
                               ),
-                              title: Text(L10n.of(context).sendImage),
+                              title: Text(L10n.of(context).shareLocation),
                               contentPadding: const EdgeInsets.all(0),
                             ),
                           ),
+                          PopupMenuItem<String>(
+                            value: 'camera',
+                            child: ListTile(
+                              leading: CircleAvatar(
+                                backgroundColor:
+                                    theme.colorScheme.onPrimaryContainer,
+                                foregroundColor:
+                                    theme.colorScheme.primaryContainer,
+                                child: const Icon(Icons.camera_alt_outlined),
+                              ),
+                              title: Text(L10n.of(context).takeAPhoto),
+                              contentPadding: const EdgeInsets.all(0),
+                            ),
+                          ),
+                        ],
+                        PopupMenuItem<String>(
+                          value: 'image',
+                          child: ListTile(
+                            leading: CircleAvatar(
+                              backgroundColor:
+                                  theme.colorScheme.onPrimaryContainer,
+                              foregroundColor:
+                                  theme.colorScheme.primaryContainer,
+                              child: const Icon(Icons.photo_outlined),
+                            ),
+                            title: Text(L10n.of(context).sendImage),
+                            contentPadding: const EdgeInsets.all(0),
+                          ),
+                        ),
                         if (PlatformInfos.isMobile)
-                            PopupMenuItem<String>(
-                              value: 'camera-video',
-                              child: ListTile(
-                                leading: CircleAvatar(
-                                  backgroundColor:
-                                      theme.colorScheme.onPrimaryContainer,
-                                  foregroundColor:
-                                      theme.colorScheme.primaryContainer,
-                                  child: const Icon(Icons.videocam_outlined),
-                                ),
-                                title: Text(L10n.of(context).recordAVideo),
-                                contentPadding: const EdgeInsets.all(0),
-                              ),
-                            ),
-                        PopupMenuItem<String>(
-                            value: 'video',
+                          PopupMenuItem<String>(
+                            value: 'camera-video',
                             child: ListTile(
                               leading: CircleAvatar(
                                 backgroundColor:
                                     theme.colorScheme.onPrimaryContainer,
                                 foregroundColor:
                                     theme.colorScheme.primaryContainer,
-                                child:
-                                    const Icon(Icons.video_camera_back_outlined),
+                                child: const Icon(Icons.videocam_outlined),
                               ),
-                              title: Text(L10n.of(context).sendVideo),
+                              title: Text(L10n.of(context).recordAVideo),
                               contentPadding: const EdgeInsets.all(0),
                             ),
                           ),
                         PopupMenuItem<String>(
-                            value: 'file',
-                            child: ListTile(
-                              leading: CircleAvatar(
-                                backgroundColor:
-                                    theme.colorScheme.onPrimaryContainer,
-                                foregroundColor:
-                                    theme.colorScheme.primaryContainer,
-                                child: const Icon(Icons.attachment_outlined),
-                              ),
-                              title: Text(L10n.of(context).sendFile),
-                              contentPadding: const EdgeInsets.all(0),
+                          value: 'video',
+                          child: ListTile(
+                            leading: CircleAvatar(
+                              backgroundColor:
+                                  theme.colorScheme.onPrimaryContainer,
+                              foregroundColor:
+                                  theme.colorScheme.primaryContainer,
+                              child:
+                                  const Icon(Icons.video_camera_back_outlined),
                             ),
+                            title: Text(L10n.of(context).sendVideo),
+                            contentPadding: const EdgeInsets.all(0),
                           ),
+                        ),
+                        PopupMenuItem<String>(
+                          value: 'file',
+                          child: ListTile(
+                            leading: CircleAvatar(
+                              backgroundColor:
+                                  theme.colorScheme.onPrimaryContainer,
+                              foregroundColor:
+                                  theme.colorScheme.primaryContainer,
+                              child: const Icon(Icons.attachment_outlined),
+                            ),
+                            title: Text(L10n.of(context).sendFile),
+                            contentPadding: const EdgeInsets.all(0),
+                          ),
+                        ),
                       ],
                     ),
                   ),
