@@ -152,7 +152,7 @@
             }
         }
     },
-    "changedTheChatDescriptionTo": "{username} endret chatbeskrivelse til: «{description}»",
+    "changedTheChatDescriptionTo": "{username} endret chatbeskrivelsen til: '{description}'",
     "@changedTheChatDescriptionTo": {
         "type": "String",
         "placeholders": {
@@ -164,7 +164,7 @@
             }
         }
     },
-    "changedTheChatNameTo": "{username} endret chatnavnet til: «{chatname}»",
+    "changedTheChatNameTo": "{username} endret chatnavnet til: '{chatname}'",
     "@changedTheChatNameTo": {
         "type": "String",
         "placeholders": {
@@ -185,7 +185,7 @@
             }
         }
     },
-    "changedTheDisplaynameTo": "{username} endret visningsnavn til: {displayname}",
+    "changedTheDisplaynameTo": "{username} endret visningsnavn til: '{displayname}'",
     "@changedTheDisplaynameTo": {
         "type": "String",
         "placeholders": {
@@ -1851,7 +1851,7 @@
     "@noMoreChatsFound": {},
     "confirmMatrixId": "Vennligst bekreft din Matrix-ID for å slette kontoen din.",
     "@confirmMatrixId": {},
-    "unread": "",
+    "unread": "Ulest",
     "@unread": {},
     "aboutHomeserver": "Om {homeserver}",
     "@aboutHomeserver": {
@@ -2708,5 +2708,46 @@
     "changeTheCanonicalRoomAlias": "Endre hovedadressen til den offentlige chatten",
     "@changeTheCanonicalRoomAlias": {},
     "sendRoomNotifications": "Send en @room varsling",
-    "@sendRoomNotifications": {}
+    "@sendRoomNotifications": {},
+    "formattedMessagesDescription": "Vis rikt meldingsinnhold som fet skrift ved hjelp av markdown.",
+    "@formattedMessagesDescription": {},
+    "verifyOtherUser": "🔐 Verifiser annen bruker",
+    "@verifyOtherUser": {},
+    "verifyOtherDevice": "🔐 Verifiser annen enhet",
+    "@verifyOtherDevice": {},
+    "sendTypingNotificationsDescription": "Andre deltakere i en chat kan se når du skriver en ny melding.",
+    "@sendTypingNotificationsDescription": {},
+    "sendReadReceiptsDescription": "Andre deltakere i en chat kan se når du har lest en melding.",
+    "@sendReadReceiptsDescription": {},
+    "commandHint_logout": "Logg av din nåværende enhet",
+    "@commandHint_logout": {},
+    "commandHint_logoutall": "Logg ut alle aktive enheter",
+    "@commandHint_logoutall": {},
+    "resume": "Gjenoppta",
+    "@resume": {},
+    "unknownPushRule": "Ukjent push-regel '{rule}'",
+    "@unknownPushRule": {
+        "type": "String",
+        "placeholders": {
+            "rule": {
+                "type": "String"
+            }
+        }
+    },
+    "sentVoiceMessage": "🎙️ {duration} – Talemelding fra {sender}",
+    "@sentVoiceMessage": {
+        "type": "String",
+        "placeholders": {
+            "sender": {
+                "type": "String"
+            },
+            "duration": {
+                "type": "String"
+            }
+        }
+    },
+    "deletePushRuleCanNotBeUndone": "Hvis du sletter denne varslingsinnstillingen, kan du ikke angre dette.",
+    "@deletePushRuleCanNotBeUndone": {},
+    "shareKeysWith": "Del nøkler med...",
+    "@shareKeysWith": {}
 }
