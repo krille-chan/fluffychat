@@ -1,10 +1,8 @@
-/// Swipe-to-pop page transition utilities used for iOS-style navigation.
 import 'dart:math' as math;
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:hermes/config/app_config.dart';
-import 'package:hermes/widgets/reply_swipeable.dart';
 
 /// A [Page] that wraps content in an iOS-style swipe-to-pop route.
 class SwipePopPage<T> extends Page<T> {
@@ -235,7 +233,6 @@ class _FullScreenPopGestureDetectorState<T>
     final size = context.size;
     if (size == null || size.width == 0) return;
     final delta = _convertToLogical((details.primaryDelta ?? 0) / size.width);
-    if (delta <= 0) return;
     _controller!.dragUpdate(delta);
   }
 
@@ -265,7 +262,7 @@ class _FullScreenPopGestureDetectorState<T>
   Widget build(BuildContext context) {
     return Listener(
       onPointerDown: _handlePointerDown,
-      behavior: HitTestBehavior.translucent,
+      behavior: HitTestBehavior.deferToChild,
       child: widget.child,
     );
   }
@@ -391,9 +388,17 @@ class _FullScreenPopGestureController<T> {
 
   /// Keep the navigator informed until the animation finishes.
   void _listenUntilSettled() {
+    bool isSettled(AnimationStatus status) =>
+        status == AnimationStatus.completed ||
+        status == AnimationStatus.dismissed;
+
+    if (!controller.isAnimating && isSettled(controller.status)) {
+      navigator.didStopUserGesture();
+      return;
+    }
+
     void listener(AnimationStatus status) {
-      if (status == AnimationStatus.completed ||
-          status == AnimationStatus.dismissed) {
+      if (isSettled(status)) {
         navigator.didStopUserGesture();
         controller.removeStatusListener(listener);
       }
@@ -407,44 +412,5 @@ class _FullScreenPopGestureController<T> {
     final distance = (controller.value - target).abs();
     final ms = math.max(1, (duration.inMilliseconds * distance).round());
     return Duration(milliseconds: ms);
-  }
-}
-
-/// Prevents swipe-to-pop from triggering inside reply swipe regions.
-class BlockSwipeArea extends StatelessWidget {
-  /// Creates a region that blocks swipe-to-pop from the configured side.
-  const BlockSwipeArea({
-    super.key,
-    this.direction = ReplySwipeDirection.startToEnd,
-    required this.child,
-  });
-
-  final ReplySwipeDirection direction;
-  final Widget child;
-
-  /// Install a recognizer that absorbs pop gestures in the configured zone.
-  @override
-  Widget build(BuildContext context) {
-    return RawGestureDetector(
-      behavior: HitTestBehavior.opaque,
-      gestures: {
-        _SwipePopBlockRecognizer:
-            GestureRecognizerFactoryWithHandlers<_SwipePopBlockRecognizer>(
-          () => _SwipePopBlockRecognizer(debugOwner: this),
-          (recognizer) {
-            recognizer
-              ..onStart = (_) {}
-              ..onUpdate = (_) {}
-              ..onEnd = (_) {}
-              ..onCancel = () {}
-              ..gestureSettings = MediaQuery.maybeGestureSettingsOf(context)
-              ..textDirection = Directionality.of(context)
-              ..dragStartBehavior = DragStartBehavior.down
-              ..direction = direction;
-          },
-        ),
-      },
-      child: child,
-    );
   }
 }
