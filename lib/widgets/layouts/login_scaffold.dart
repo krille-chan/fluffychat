@@ -59,7 +59,7 @@ class LoginScaffold extends StatelessWidget {
                   child: ConstrainedBox(
                     constraints: isMobileMode
                         ? const BoxConstraints()
-                        : const BoxConstraints(maxWidth: 480, maxHeight: 640),
+                        : const BoxConstraints(maxWidth: 480, maxHeight: 860),
                     child: Scaffold(
                       key: const Key('LoginScaffold'),
                       appBar: appBar,

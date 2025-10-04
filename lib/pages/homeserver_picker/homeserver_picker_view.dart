@@ -119,7 +119,7 @@ class HomeserverPickerView extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 32),
+                    const Spacer(),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 32.0),
                       child: SelectableLinkify(
@@ -134,7 +134,6 @@ class HomeserverPickerView extends StatelessWidget {
                         onOpen: (link) => launchUrlString(link.url),
                       ),
                     ),
-                    const Spacer(),
                     Padding(
                       padding: const EdgeInsets.all(32.0),
                       child: Column(
