@@ -62,6 +62,9 @@ class Matrix extends StatefulWidget {
 class MatrixState extends State<Matrix> with WidgetsBindingObserver {
   int _activeClient = -1;
   String? activeBundle;
+  String? _activeSpaceId;
+  String? get activeSpaceId => _activeSpaceId;
+  set activeSpaceId(id) => _activeSpaceId = id;
 
   SharedPreferences get store => widget.store;
 
@@ -256,8 +259,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       request.onUpdate = null;
       hidPopup = true;
       await KeyVerificationDialog(request: request).show(
-        HermesApp.router.routerDelegate.navigatorKey.currentContext ??
-            context,
+        HermesApp.router.routerDelegate.navigatorKey.currentContext ?? context,
       );
     });
     onLoginStateChanged[name] ??= c.onLoginStateChanged.stream.listen((state) {
@@ -282,8 +284,7 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
           HermesApp.router.go('/rooms');
         }
       } else {
-        HermesApp.router
-            .go(state == LoginState.loggedIn ? '/rooms' : '/home');
+        HermesApp.router.go(state == LoginState.loggedIn ? '/rooms' : '/home');
       }
     });
     onUiaRequest[name] ??= c.onUiaRequest.stream.listen(uiaRequestHandler);
@@ -322,9 +323,9 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
         this,
         onFcmError: (errorMsg, {Uri? link}) async {
           final result = await showOkCancelAlertDialog(
-            context: HermesApp
-                    .router.routerDelegate.navigatorKey.currentContext ??
-                context,
+            context:
+                HermesApp.router.routerDelegate.navigatorKey.currentContext ??
+                    context,
             title: L10n.of(context).pushNotificationsNotAvailable,
             message: errorMsg,
             okLabel:

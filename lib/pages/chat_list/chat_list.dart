@@ -96,19 +96,18 @@ class ChatListController extends State<ChatList>
 
   late ActiveFilter activeFilter;
 
-  String? _activeSpaceId;
-  String? get activeSpaceId => _activeSpaceId;
+  String? get activeSpaceId => Matrix.of(context).activeSpaceId;
 
   void setActiveSpace(String spaceId) async {
     await Matrix.of(context).client.getRoomById(spaceId)!.postLoad();
 
     setState(() {
-      _activeSpaceId = spaceId;
+      Matrix.of(context).activeSpaceId = spaceId;
     });
   }
 
   void clearActiveSpace() => setState(() {
-        _activeSpaceId = null;
+        Matrix.of(context).activeSpaceId = null;
       });
 
   void onChatTap(Room room) async {
@@ -818,7 +817,7 @@ class ChatListController extends State<ChatList>
     context.go('/rooms');
     setState(() {
       activeFilter = ActiveFilter.allChats;
-      _activeSpaceId = null;
+      Matrix.of(context).activeSpaceId = null;
       Matrix.of(context).setActiveClient(client);
     });
     _clientStream.add(client);
@@ -827,7 +826,7 @@ class ChatListController extends State<ChatList>
   void setActiveBundle(String bundle) {
     context.go('/rooms');
     setState(() {
-      _activeSpaceId = null;
+      Matrix.of(context).activeSpaceId = null;
       Matrix.of(context).activeBundle = bundle;
       if (!Matrix.of(context)
           .currentBundle!

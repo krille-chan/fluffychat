@@ -1091,9 +1091,55 @@ class ChatController extends State<ChatPageWithRoom>
     inputFocus.requestFocus();
   }
 
+  void handleExitEvent() {
+    if (selectedEvents.isNotEmpty) {
+      clearSelectedEvents();
+    } else if (showEmojiPicker) {
+      emojiPickerAction();
+    }
+  }
+
+  void onKeyEvent(KeyEvent event) {
+    switch (event.logicalKey) {
+      // case LogicalKeyboardKey.escape:
+      //   if (event is KeyDownEvent) {
+      //     handleExitEvent();
+      //   }
+      //   return;
+      case LogicalKeyboardKey.arrowDown:
+      case LogicalKeyboardKey.keyJ:
+        if (event is KeyDownEvent && HardwareKeyboard.instance.isAltPressed) {
+          goToNextRoomAction(false);
+        }
+        break;
+      case LogicalKeyboardKey.arrowUp:
+      case LogicalKeyboardKey.keyK:
+        print("DEBUG: " + event.logicalKey.toString());
+        if (event is KeyDownEvent && HardwareKeyboard.instance.isAltPressed) {
+          goToNextRoomAction(true);
+        }
+        break;
+    }
+  }
+
   void goToNextRoomAction(bool reverse) async {
-    final rooms = room.client.rooms;
-    int nextIndex = rooms.indexWhere((r) => r.id == room.id);
+    List<Room> rooms;
+    final spaceId = Matrix.of(context).activeSpaceId;
+
+    if (spaceId == null) {
+      rooms = sendingClient.rooms;
+    } else {
+      final hierarchy = await room.client.getSpaceHierarchy(
+        spaceId,
+        suggestedOnly: false,
+        maxDepth: 2,
+      );
+      rooms = hierarchy.rooms
+          .map((c) => room.client.getRoomById(c.roomId))
+          .nonNulls
+          .toList();
+    }
+    var nextIndex = rooms.indexWhere((r) => r.id == room.id);
 
     if (reverse) {
       nextIndex--;

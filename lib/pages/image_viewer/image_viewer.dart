@@ -64,9 +64,6 @@ class ImageViewerController extends State<ImageViewer> {
       case LogicalKeyboardKey.arrowDown:
         if (canGoNext) nextImage();
         break;
-      case LogicalKeyboardKey.escape:
-        Navigator.of(context, rootNavigator: false).pop();
-        break;
     }
   }
 

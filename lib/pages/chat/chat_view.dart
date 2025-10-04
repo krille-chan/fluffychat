@@ -156,47 +156,17 @@ class ChatView extends StatelessWidget {
     final keyboardFocusNode = FocusNode();
 
     // Function to handle escape key without popping
-    void _handleExitEvent() {
-      if (controller.selectedEvents.isNotEmpty) {
-        controller.clearSelectedEvents();
-      } else if (controller.showEmojiPicker) {
-        controller.emojiPickerAction();
-      }
-    }
 
     return KeyboardListener(
       focusNode: keyboardFocusNode,
       autofocus: true,
-      onKeyEvent: (KeyEvent event) {
-        switch (event.logicalKey) {
-          case LogicalKeyboardKey.escape:
-            if (event is KeyDownEvent) {
-              _handleExitEvent();
-            }
-            return;
-          case LogicalKeyboardKey.arrowDown:
-          case LogicalKeyboardKey.keyJ:
-            if (event is KeyDownEvent &&
-                HardwareKeyboard.instance.isAltPressed) {
-              controller.goToNextRoomAction(false);
-            }
-            break;
-          case LogicalKeyboardKey.arrowUp:
-          case LogicalKeyboardKey.keyK:
-            print("DEBUG: " + event.logicalKey.toString());
-            if (event is KeyDownEvent &&
-                HardwareKeyboard.instance.isAltPressed) {
-              controller.goToNextRoomAction(true);
-            }
-            break;
-        }
-      },
+      onKeyEvent: controller.onKeyEvent,
       child: PopScope(
         canPop:
             controller.selectedEvents.isEmpty && !controller.showEmojiPicker,
         onPopInvokedWithResult: (pop, _) async {
           if (pop) return;
-          _handleExitEvent();
+          controller.handleExitEvent();
         },
         child: StreamBuilder(
           stream: controller.room.client.onRoomState.stream

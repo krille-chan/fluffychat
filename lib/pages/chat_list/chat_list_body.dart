@@ -163,10 +163,10 @@ class ChatListViewBody extends StatelessWidget {
                               ActiveFilter.allChats,
                             ActiveFilter.groups,
                             ActiveFilter.unread,
-                            if (spaceDelegateCandidates.isNotEmpty &&
-                                !AppSettings.displayNavigationRail.value &&
-                                !FluffyThemes.isColumnMode(context))
-                              ActiveFilter.spaces,
+                            // if (spaceDelegateCandidates.isNotEmpty &&
+                            //     !AppConfig.displayNavigationRail &&
+                                // !FluffyThemes.isColumnMode(context))
+                            //   ActiveFilter.spaces,
                           ]
                               .map(
                                 (filter) => Padding(
