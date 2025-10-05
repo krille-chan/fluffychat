@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:matrix/matrix.dart';
-import 'package:swipe_to_action/swipe_to_action.dart';
 
 import 'package:hermes/config/setting_keys.dart';
 import 'package:hermes/l10n/l10n.dart';
@@ -16,6 +15,7 @@ import 'package:hermes/utils/string_color.dart';
 import 'package:hermes/widgets/avatar.dart';
 import 'package:hermes/widgets/matrix.dart';
 import 'package:hermes/widgets/member_actions_popup_menu_button.dart';
+import 'package:hermes/utils/reply_swipe.dart';
 import '../../../config/app_config.dart';
 import 'message_content.dart';
 import 'message_reactions.dart';
@@ -30,7 +30,7 @@ class Message extends StatelessWidget {
   final void Function(Event) onSelect;
   final void Function(Event) onInfoTab;
   final void Function(String) scrollToEventId;
-  final void Function() onSwipe;
+  final void Function() onReply;
   final void Function() onMention;
   final void Function() onEdit;
   final bool longPressSelect;
@@ -55,7 +55,7 @@ class Message extends StatelessWidget {
     required this.onSelect,
     required this.onInfoTab,
     required this.scrollToEventId,
-    required this.onSwipe,
+    required this.onReply,
     this.selected = false,
     required this.onEdit,
     required this.singleSelected,
@@ -195,18 +195,21 @@ class Message extends StatelessWidget {
         singleSelected && event.room.canSendDefaultMessages;
 
     return Center(
-      child: Swipeable(
+      child: ReplySwipe(
         key: ValueKey(event.eventId),
-        background: const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 12.0),
+        backgroundBuilder: (context, direction, progress) => Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12.0),
           child: Center(
-            child: Icon(Icons.check_outlined),
+            child: Opacity(
+              opacity: progress,
+              child: const Icon(Icons.check_outlined),
+            ),
           ),
         ),
         direction: AppSettings.swipeRightToLeftToReply.value
-            ? SwipeDirection.endToStart
-            : SwipeDirection.startToEnd,
-        onSwipe: (_) => onSwipe(),
+            ? ReplySwipeDirection.endToStart
+            : ReplySwipeDirection.startToEnd,
+        onReply: onReply,
         child: Container(
           constraints: const BoxConstraints(
             maxWidth: PantheonThemes.maxTimelineWidth,
