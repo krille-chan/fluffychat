@@ -1001,7 +1001,7 @@
     },
     "storeSecurlyOnThisDevice": "Droši uzglabāt šajā ierīcē",
     "@storeSecurlyOnThisDevice": {},
-    "yourChatBackupHasBeenSetUp": "Tērzēšanu rezerves kopēšana tika iestatīta.",
+    "yourChatBackupHasBeenSetUp": "Tērzēšanu rezerves kopēšana iestatīta.",
     "@yourChatBackupHasBeenSetUp": {},
     "chatBackup": "Tērzēšanu rezerves kopēšana",
     "@chatBackup": {
@@ -2322,7 +2322,7 @@
     },
     "setTheme": "Iestatīt izskatu:",
     "@setTheme": {},
-    "changeTheHomeserver": "Mainīt mājasserveri",
+    "changeTheHomeserver": "Mainīt mājserveri",
     "@changeTheHomeserver": {
         "type": "String",
         "placeholders": {}
