@@ -3385,5 +3385,13 @@
     "customReaction": "Erreakzio pertsonalizatua",
     "@customReaction": {},
     "declineInvitation": "Uko egin gonbidapenari",
-    "@declineInvitation": {}
+    "@declineInvitation": {},
+    "noMessagesYet": "Mezurik ez oraingoz",
+    "@noMessagesYet": {},
+    "longPressToRecordVoiceMessage": "Sakatuta mantendu ahots-mezua grabatzeko.",
+    "@longPressToRecordVoiceMessage": {},
+    "pause": "Gelditu",
+    "@pause": {},
+    "resume": "Jarraitu",
+    "@resume": {}
 }
