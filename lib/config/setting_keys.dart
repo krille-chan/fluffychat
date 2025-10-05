@@ -64,7 +64,7 @@ enum AppSettings<T> {
   unifiedPushEndpoint<String>('chat.pantheon.unifiedpush.endpoint', ''),
   pushNotificationsGatewayUrl<String>(
     'pushNotificationsGatewayUrl',
-    'https://push.hermes.im/_matrix/push/v1/notify',
+    'https://push.lageveen.co/_matrix/push/v1/notify',
   ),
   pushNotificationsPusherFormat<String>(
     'pushNotificationsPusherFormat',
