@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
+import 'package:hermes/utils/swipeable_page.dart';
 import 'package:matrix/matrix.dart';
 
-import 'package:hermes/config/interactive_page_transition.dart';
 import 'package:hermes/config/themes.dart';
 import 'package:hermes/pages/archive/archive.dart';
 import 'package:hermes/pages/chat/chat.dart';
