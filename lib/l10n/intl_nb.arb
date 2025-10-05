@@ -2749,5 +2749,41 @@
     "deletePushRuleCanNotBeUndone": "Hvis du sletter denne varslingsinnstillingen, kan du ikke angre dette.",
     "@deletePushRuleCanNotBeUndone": {},
     "shareKeysWith": "Del nøkler med...",
-    "@shareKeysWith": {}
+    "@shareKeysWith": {},
+    "canceledKeyVerification": "{sender} avbrøt nøkkelverifisering",
+    "@canceledKeyVerification": {
+        "type": "String",
+        "placeholders": {
+            "sender": {
+                "type": "String"
+            }
+        }
+    },
+    "completedKeyVerification": "{sender} fullførte nøkkelverifisering",
+    "@completedKeyVerification": {
+        "type": "String",
+        "placeholders": {
+            "sender": {
+                "type": "String"
+            }
+        }
+    },
+    "isReadyForKeyVerification": "{sender} er klar for nøkkelverifisering",
+    "@isReadyForKeyVerification": {
+        "type": "String",
+        "placeholders": {
+            "sender": {
+                "type": "String"
+            }
+        }
+    },
+    "requestedKeyVerification": "{sender} har bedt om nøkkelverifisering",
+    "@requestedKeyVerification": {
+        "type": "String",
+        "placeholders": {
+            "sender": {
+                "type": "String"
+            }
+        }
+    }
 }
