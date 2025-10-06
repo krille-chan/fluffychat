@@ -2785,5 +2785,11 @@
                 "type": "String"
             }
         }
-    }
+    },
+    "notificationRuleEncryptedRoomOneToOne": "Kryptert rom én-til-én",
+    "@notificationRuleEncryptedRoomOneToOne": {},
+    "notificationRuleEncryptedRoomOneToOneDescription": "Varsler brukeren om meldinger i krypterte en-til-en-rom.",
+    "@notificationRuleEncryptedRoomOneToOneDescription": {},
+    "notificationRuleRoomOneToOne": "Rom én-til-én",
+    "@notificationRuleRoomOneToOne": {}
 }
