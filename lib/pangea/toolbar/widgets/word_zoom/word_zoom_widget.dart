@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
-import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/common/widgets/error_indicator.dart';
 import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
+import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_text_model.dart';
 import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
 import 'package:fluffychat/pangea/learning_settings/utils/p_language_store.dart';
-import 'package:fluffychat/pangea/lemmas/construct_xp_widget.dart';
 import 'package:fluffychat/pangea/lemmas/lemma_reaction_picker.dart';
 import 'package:fluffychat/pangea/phonetic_transcription/phonetic_transcription_widget.dart';
+import 'package:fluffychat/pangea/token_info_feedback/token_info_feedback_button.dart';
+import 'package:fluffychat/pangea/token_info_feedback/token_info_feedback_request.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/practice_activity/word_audio_button.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/word_zoom/lemma_meaning_builder.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/word_zoom/new_word_overlay.dart';
@@ -24,21 +24,26 @@ class WordZoomWidget extends StatelessWidget {
   final ConstructIdentifier construct;
 
   final String langCode;
-  final VoidCallback onClose;
+  final VoidCallback? onClose;
 
   final bool wordIsNew;
   final VoidCallback? onDismissNewWordOverlay;
   final Event? event;
+
+  final TokenInfoFeedbackRequestData? requestData;
+  final PangeaMessageEvent? pangeaMessageEvent;
 
   const WordZoomWidget({
     super.key,
     required this.token,
     required this.construct,
     required this.langCode,
-    required this.onClose,
+    this.onClose,
     this.wordIsNew = false,
     this.onDismissNewWordOverlay,
     this.event,
+    this.requestData,
+    this.pangeaMessageEvent,
   });
 
   String get transformTargetId => "word-zoom-card-${token.uniqueKey}";
@@ -69,20 +74,25 @@ class WordZoomWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      SizedBox(
-                        width: 24.0,
-                        height: 24.0,
-                        child: MouseRegion(
-                          cursor: SystemMouseCursors.click,
-                          child: GestureDetector(
-                            onTap: onClose,
-                            child: const Icon(
-                              Icons.close,
-                              size: 16.0,
+                      onClose != null
+                          ? SizedBox(
+                              width: 24.0,
+                              height: 24.0,
+                              child: MouseRegion(
+                                cursor: SystemMouseCursors.click,
+                                child: GestureDetector(
+                                  onTap: onClose,
+                                  child: const Icon(
+                                    Icons.close,
+                                    size: 16.0,
+                                  ),
+                                ),
+                              ),
+                            )
+                          : const SizedBox(
+                              width: 24.0,
+                              height: 24.0,
                             ),
-                          ),
-                        ),
-                      ),
                       Flexible(
                         child: Text(
                           token.content,
@@ -98,12 +108,22 @@ class WordZoomWidget extends StatelessWidget {
                           ),
                         ),
                       ),
-                      ConstructXpWidget(
-                        id: construct,
-                        onTap: () => context.go(
-                          "/rooms/analytics/${ConstructTypeEnum.vocab.string}/${construct.string}",
-                        ),
-                      ),
+                      requestData != null && pangeaMessageEvent != null
+                          ? TokenInfoFeedbackButton(
+                              requestData: requestData!,
+                              langCode: langCode,
+                              event: pangeaMessageEvent!,
+                              onUpdate: () {
+                                // close the zoom when updating
+                                if (onClose != null) {
+                                  onClose!();
+                                }
+                              },
+                            )
+                          : const SizedBox(
+                              width: 24.0,
+                              height: 24.0,
+                            ),
                     ],
                   ),
                   LemmaMeaningBuilder(

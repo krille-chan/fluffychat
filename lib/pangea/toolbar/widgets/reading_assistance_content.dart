@@ -8,6 +8,7 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/practice_activities/activity_type_enum.dart';
+import 'package:fluffychat/pangea/token_info_feedback/token_info_feedback_request.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_unsubscribed_card.dart';
@@ -71,6 +72,16 @@ class ReadingAssistanceContentState extends State<ReadingAssistanceContent> {
     //   return MessageModeLockedCard(controller: widget.overlayController);
     // }
 
+    final tokens =
+        widget.overlayController.pangeaMessageEvent.originalSent?.tokens;
+    final selectedToken = widget.overlayController.selectedToken;
+    final selectedTokenIndex = selectedToken != null
+        ? tokens?.indexWhere(
+              (t) => t.text == selectedToken.text,
+            ) ??
+            -1
+        : -1;
+
     switch (widget.overlayController.toolbarMode) {
       case MessageMode.messageTranslation:
       // return MessageTranslationCard(
@@ -125,6 +136,21 @@ class ReadingAssistanceContentState extends State<ReadingAssistanceContent> {
               .overlayController.pangeaMessageEvent.messageDisplayLangCode,
           onDismissNewWordOverlay: () =>
               widget.overlayController.setState(() {}),
+          requestData: selectedTokenIndex >= 0
+              ? TokenInfoFeedbackRequestData(
+                  userId: Matrix.of(context).client.userID!,
+                  roomId: widget.overlayController.event.room.id,
+                  fullText: widget
+                      .overlayController.pangeaMessageEvent.messageDisplayText,
+                  detectedLanguage: widget.overlayController.pangeaMessageEvent
+                      .messageDisplayLangCode,
+                  tokens: tokens ?? [],
+                  selectedToken: selectedTokenIndex,
+                  wordCardL1: MatrixState.pangeaController.languageController
+                      .activeL1Code()!,
+                )
+              : null,
+          pangeaMessageEvent: widget.overlayController.pangeaMessageEvent,
         );
     }
   }
