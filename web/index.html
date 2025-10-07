@@ -51,15 +51,15 @@
 <body>
   <script>
     window.addEventListener('load', function (ev) {
-      { { flutter_js } }
-      { { flutter_build_config } }
+      {{flutter_js}}
+      {{flutter_build_config}}
 
       _flutter.loader.load({
         // #Pangea
-        entrypointUrl: "main.dart.js?v=" + {{ flutter_service_worker_version }},
-      // Pangea#
-      serviceWorker: {
-      serviceWorkerVersion: {{ flutter_service_worker_version }},
+        entrypointUrl: "main.dart.js?v=" + {{flutter_service_worker_version}},
+        // Pangea#
+        serviceWorker: {
+          serviceWorkerVersion: {{flutter_service_worker_version}},
         },
       onEntrypointLoaded: function (engineInitializer) {
         engineInitializer.initializeEngine({ useColorEmoji: true }).then(function (appRunner) {
@@ -72,7 +72,7 @@
 
   <!-- #Pangea -->
   <script>
-    (function () {
+    (function() {
       const userAgent = navigator.userAgent || navigator.vendor || window.opera;
       const isAndroid = /android/i.test(userAgent);
       const isIOS = /iPhone|iPad|iPod/i.test(userAgent);
@@ -107,7 +107,8 @@
     <img class="center" src="splash/img/light-1x.png" /> -->
     <div class="center">
       <div class="image">
-        <img src="https://pangea-chat-client-assets.s3.us-east-1.amazonaws.com/pangea-logo.svg">
+        <img src="
+https://pangea-chat-client-assets.s3.us-east-1.amazonaws.com/pangea-logo.svg" />
       </div>
       <div class="custom-loader"></div>
     </div>
