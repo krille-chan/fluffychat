@@ -2165,9 +2165,14 @@ class ChatController extends State<ChatPageWithRoom>
       return false;
     }
 
+    final l1 = choreographer.l1Lang?.langCodeShort;
     final l2 = choreographer.l2Lang?.langCodeShort;
     final activityLang = room.activityPlan?.req.targetLanguage.split('-').first;
-    return activityLang != null && l2 != null && l2 != activityLang;
+
+    return activityLang != null &&
+        l2 != null &&
+        l2 != activityLang &&
+        l1 != activityLang;
   }
 
   Future<void> showLanguageMismatchPopup() async {
