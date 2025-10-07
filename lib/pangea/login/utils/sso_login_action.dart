@@ -54,9 +54,6 @@ Future<void> pangeaSSOLoginAction(
   final token = Uri.parse(result).queryParameters['loginToken'];
   if (token?.isEmpty ?? false) return;
 
-  final langCode = FluffyChatApp.router.state.pathParameters['langcode'];
-  final path = langCode != null ? '/registration/$langCode' : '/registration';
-
   final redirect = client.onLoginStateChanged.stream
       .where((state) => state == LoginState.loggedIn)
       .first
@@ -65,7 +62,7 @@ Future<void> pangeaSSOLoginAction(
       final route = FluffyChatApp.router.state.fullPath;
       if (route == null ||
           (!route.contains("/rooms") && !route.contains('registration'))) {
-        context.go(path);
+        context.go('/registration/create');
       }
     },
   ).timeout(const Duration(seconds: 30));
@@ -80,7 +77,7 @@ Future<void> pangeaSSOLoginAction(
     final route = FluffyChatApp.router.state.fullPath;
     if (route == null ||
         (!route.contains("/rooms") && !route.contains('registration'))) {
-      context.go(path);
+      context.go('/registration/create');
     }
   } else {
     await redirect;

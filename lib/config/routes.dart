@@ -135,7 +135,7 @@ abstract class AppRoutes {
         ),
         // #Pangea
         GoRoute(
-          path: 'signup',
+          path: 'language',
           pageBuilder: (context, state) => defaultPageBuilder(
             context,
             state,
@@ -143,13 +143,11 @@ abstract class AppRoutes {
           ),
           routes: [
             GoRoute(
-              path: ':langcode',
+              path: 'signup',
               pageBuilder: (context, state) => defaultPageBuilder(
                 context,
                 state,
-                SignupPage(
-                  langCode: state.pathParameters['langcode']!,
-                ),
+                const SignupPage(),
               ),
               routes: [
                 GoRoute(
@@ -157,9 +155,8 @@ abstract class AppRoutes {
                   pageBuilder: (context, state) => defaultPageBuilder(
                     context,
                     state,
-                    SignupPage(
+                    const SignupPage(
                       withEmail: true,
-                      langCode: state.pathParameters['langcode']!,
                     ),
                   ),
                 ),
@@ -196,6 +193,14 @@ abstract class AppRoutes {
       ),
       redirect: PAuthGaurd.onboardingRedirect,
       routes: [
+        GoRoute(
+          path: 'create',
+          pageBuilder: (context, state) => defaultPageBuilder(
+            context,
+            state,
+            const CreatePangeaAccountPage(),
+          ),
+        ),
         GoRoute(
           path: 'course',
           pageBuilder: (context, state) => defaultPageBuilder(
@@ -270,16 +275,6 @@ abstract class AppRoutes {
               ],
             ),
           ],
-        ),
-        GoRoute(
-          path: ':langcode',
-          pageBuilder: (context, state) => defaultPageBuilder(
-            context,
-            state,
-            CreatePangeaAccountPage(
-              langCode: state.pathParameters['langcode']!,
-            ),
-          ),
         ),
       ],
     ),

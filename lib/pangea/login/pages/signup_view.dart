@@ -59,7 +59,7 @@ class SignupPageView extends StatelessWidget {
                   ),
                   ElevatedButton(
                     onPressed: () => context.go(
-                      '/home/signup/${controller.widget.langCode}/email',
+                      '/home/language/signup/email',
                     ),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: theme.colorScheme.primaryContainer,

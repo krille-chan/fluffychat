@@ -21,8 +21,13 @@ class SpaceCodeController extends BaseController {
   late PangeaController _pangeaController;
   static final GetStorage _spaceStorage = GetStorage('class_storage');
 
+  Completer<void> initCompleter = Completer<void>();
+
   SpaceCodeController(PangeaController pangeaController) : super() {
     _pangeaController = pangeaController;
+    GetStorage.init('class_storage').then(
+      (_) => initCompleter.complete(),
+    );
   }
 
   Future<void> cacheSpaceCode(String code) async {

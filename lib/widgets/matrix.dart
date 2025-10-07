@@ -380,14 +380,11 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       } else {
         // #Pangea
         final isL2Set = await pangeaController.userController.isUserL2Set;
-        final langCode = FluffyChatApp.router.state.pathParameters['langcode'];
-        final registrationRedirect =
-            langCode != null ? '/registration/$langCode' : '/registration';
         FluffyChatApp.router.go(
           state == LoginState.loggedIn
               ? isL2Set
                   ? '/rooms'
-                  : registrationRedirect
+                  : '/registration/create'
               : '/home',
         );
         // FluffyChatApp.router

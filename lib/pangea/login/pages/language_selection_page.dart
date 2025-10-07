@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
+import 'package:fluffychat/pangea/login/utils/lang_code_repo.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class LanguageSelectionPage extends StatefulWidget {
@@ -23,6 +24,17 @@ class LanguageSelectionPageState extends State<LanguageSelectionPage> {
 
   void _setSelectedLanguage(LanguageModel? l) {
     setState(() => _selectedLanguage = l);
+  }
+
+  Future<void> _submit() async {
+    if (_selectedLanguage == null) return;
+
+    await LangCodeRepo.set(_selectedLanguage!.langCode);
+    context.go(
+      GoRouterState.of(context).fullPath?.contains('home') == true
+          ? '/home/language/signup'
+          : '/registration/create',
+    );
   }
 
   @override
@@ -114,18 +126,7 @@ class LanguageSelectionPageState extends State<LanguageSelectionPage> {
                   ),
                 ),
                 ElevatedButton(
-                  onPressed: _selectedLanguage != null
-                      ? () {
-                          context.go(
-                            GoRouterState.of(context)
-                                        .fullPath
-                                        ?.contains('home') ==
-                                    true
-                                ? '/home/signup/${_selectedLanguage!.langCode}'
-                                : '/registration/${_selectedLanguage!.langCode}',
-                          );
-                        }
-                      : null,
+                  onPressed: _selectedLanguage != null ? _submit : null,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: theme.colorScheme.primaryContainer,
                     foregroundColor: theme.colorScheme.onPrimaryContainer,

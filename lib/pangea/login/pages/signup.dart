@@ -14,10 +14,8 @@ import 'package:fluffychat/widgets/matrix.dart';
 
 class SignupPage extends StatefulWidget {
   final bool withEmail;
-  final String langCode;
 
   const SignupPage({
-    required this.langCode,
     this.withEmail = false,
     super.key,
   });
@@ -178,7 +176,7 @@ class SignupPageController extends State<SignupPage> {
       },
     );
 
-    if (!resp.isError) context.go('/registration/${widget.langCode}');
+    if (!resp.isError) context.go('/registration/create');
   }
 
   Future<void> _signupFuture() async {

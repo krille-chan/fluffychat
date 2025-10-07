@@ -7,6 +7,7 @@ import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/pangea/common/widgets/pangea_logo_svg.dart';
 import 'package:fluffychat/pangea/login/widgets/app_config_dialog.dart';
+import 'package:fluffychat/widgets/matrix.dart';
 
 class LoginOrSignupView extends StatefulWidget {
   const LoginOrSignupView({super.key});
@@ -23,6 +24,9 @@ class LoginOrSignupViewState extends State<LoginOrSignupView> {
     super.initState();
     _loadOverrides();
   }
+
+  String? get _cachedSpaceCode =>
+      MatrixState.pangeaController.spaceCodeController.cachedSpaceCode;
 
   Future<void> _loadOverrides() async {
     final overrides = await Environment.getAppConfigOverrides();
@@ -93,7 +97,11 @@ class LoginOrSignupViewState extends State<LoginOrSignupView> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     ElevatedButton(
-                      onPressed: () => context.go('/home/signup'),
+                      onPressed: () => context.go(
+                        _cachedSpaceCode != null
+                            ? '/home/language/signup'
+                            : '/home/language',
+                      ),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: theme.colorScheme.primaryContainer,
                         foregroundColor: theme.colorScheme.onPrimaryContainer,
