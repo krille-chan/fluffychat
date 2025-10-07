@@ -87,11 +87,6 @@ Future<void> _loginFuture({
         : null,
     password: controller.passwordController.text.trim(),
     initialDeviceDisplayName: PlatformInfos.clientName,
-    onInitStateChanged: (state) {
-      if (state == InitState.settingUpEncryption) {
-        context.go("/rooms");
-      }
-    },
   );
 
   if (client.onLoginStateChanged.value == LoginState.loggedIn) {
