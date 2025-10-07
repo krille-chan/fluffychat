@@ -76,7 +76,7 @@ class RoomParticipantsSection extends StatelessWidget {
           runAlignment: WrapAlignment.center,
           children: [...filteredParticipants, null].mapIndexed((index, user) {
             if (user == null) {
-              return room.canInvite
+              return room.canInvite && !room.isDirectChat
                   ? MouseRegion(
                       cursor: SystemMouseCursors.click,
                       child: GestureDetector(
