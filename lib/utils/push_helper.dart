@@ -38,7 +38,7 @@ Future<void> pushHelper(
   } catch (e, s) {
     Logs().e('Push Helper has crashed! Writing into temporary file', e, s);
 
-    l10n ??= await lookupL10n(const Locale('en'));
+    l10n ??= await lookupL10n(PlatformDispatcher.instance.locale);
     flutterLocalNotificationsPlugin.show(
       notification.roomId?.hashCode ?? 0,
       l10n.newMessageInFluffyChat,
