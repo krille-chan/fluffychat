@@ -79,7 +79,7 @@ hG(d,e){return d+" zm\u011bnili nastaven\xed pravidel p\u0159ipojen\xed na: "+e}
 hH(d){return d+" zm\u011bnili sv\u016fj avatar"},
 hI(d){return d+" zm\u011bnili nastaven\xed alias\u016f m\xedstnosti"},
 hJ(d){return d+" zm\u011bnili odkaz k pozv\xe1n\xed do m\xedstnosti"},
-ge_(){return"Zm\u011bnit heslo"},
+ge0(){return"Zm\u011bnit heslo"},
 ghu(){return"Zm\u011bnit domovsk\xfd server"},
 gf7(){return"Zm\u011b\u0148te sv\u016fj styl"},
 gf6(){return"Zm\u011bnit n\xe1zev skupiny"},
@@ -162,7 +162,7 @@ gfe(){return"Vlastn\xed emoji a n\xe1lepky"},
 glL(){return"P\u0159idat nebo sd\xedlet vlastn\xed emoji nebo n\xe1lepky, kter\xe9 mohou b\xfdt pou\u017eit\xe9 v konverzaci."},
 geC(){return"Kl\xe1vesov\xe1 zkratka emotikonu"},
 giF(){return"Mus\xedte si vybrat kl\xe1vesovou zkratku emotikonu a obr\xe1zek!"},
-ge0(){return"Pr\xe1zdn\xfd chat"},
+ge1(){return"Pr\xe1zdn\xfd chat"},
 giG(){return"Povolit bal\xed\u010dek emotikon v\u0161ude"},
 gee(){return"Povolit \u0161ifrov\xe1n\xed"},
 giH(){return"\u0160ifrov\xe1n\xed ji\u017e nebude mo\u017en\xe9 vypnout. Jste si t\xedm jisti?"},
@@ -306,7 +306,7 @@ gdT(d){return"Hledat"},
 geQ(){return"Bezpe\u010dnostn\xed"},
 gfH(){return"Kl\xed\u010d k obnoven\xed"},
 gjH(){return"Ztracen\xfd kl\xed\u010d k obnoven\xed?"},
-gdX(d){return"Odeslat"},
+gdY(d){return"Odeslat"},
 gfR(){return"Odeslat zpr\xe1vu"},
 gfS(){return"Odeslat jako text"},
 gfT(){return"Odeslat audio"},
@@ -637,5 +637,5 @@ A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fc,C.aF)})()
 B.dQ(b.typeUniverse,JSON.parse('{"Fc":{"aF":[]}}'))};
-(a=>{a["8XNJDtUnB7V2LZ9zj9EWGxlMUQ4="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["KlCiqRmQ1N1Nmhx8v6btyOXUwgs="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_236.part.js.map

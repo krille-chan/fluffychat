@@ -79,7 +79,7 @@ hG(d,e){return d+" muutis liitumise reegleid j\xe4rgnevalt: "+e},
 hH(d){return d+" muutis oma tunnuspilti"},
 hI(d){return d+" muutis jututoa aliast"},
 hJ(d){return d+" muutis kutse linki"},
-ge_(){return"Muuda salas\xf5na"},
+ge0(){return"Muuda salas\xf5na"},
 ghu(){return"Muuda koduserverit"},
 gf7(){return"Muuda oma stiili"},
 gf6(){return"Muuda vestlusr\xfchma nime"},
@@ -162,7 +162,7 @@ gfe(){return"Kohandatud emotikonid ja kleepsud"},
 glL(){return"Lisa v\xf5i jaga kohandatud emotikone v\xf5i kleepsupakke, mida v\xf5iks kasutada igas vestluses."},
 geC(){return"Emotsioonitegevuse l\xfchikood"},
 giF(){return"Sa pead valima emotsioonitegevuse l\xfchikoodi ja pildi!"},
-ge0(){return"Vestlust pole olnud"},
+ge1(){return"Vestlust pole olnud"},
 giG(){return"V\xf5ta emotsioonitegevuste pakid l\xe4bivalt kasutusele"},
 gee(){return"Kasuta kr\xfcptimist"},
 giH(){return"Sa ei saa hiljem enam kr\xfcptimist v\xe4lja l\xfclitada. Kas oled kindel?"},
@@ -306,7 +306,7 @@ gdT(d){return"Otsi"},
 geQ(){return"Turvalisus"},
 gfH(){return"Taastev\xf5ti"},
 gjH(){return"Kas taasetv\xf5ti on kadunud?"},
-gdX(d){return"Saada"},
+gdY(d){return"Saada"},
 gfR(){return"Saada s\xf5num"},
 gfS(){return"Saada tekstis\xf5numina"},
 gfT(){return"Saada helifail"},
@@ -637,5 +637,5 @@ A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fj,C.aF)})()
 B.dQ(b.typeUniverse,JSON.parse('{"Fj":{"aF":[]}}'))};
-(a=>{a["ZK945MsAd74Lz1wzmUzOPyGTYro="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["aZ3MczWBeuTnawA4UN8/KCpPyHU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_261.part.js.map

@@ -79,7 +79,7 @@ hG(d,e){return d+" m\xf3dos\xedtotta a csatlakoz\xe1si szab\xe1lyokat a k\xf6vet
 hH(d){return d+" m\xf3dos\xedtotta a profilk\xe9p\xe9t"},
 hI(d){return d+" m\xf3dos\xedtotta a szoba \xe1lneveit"},
 hJ(d){return d+" m\xf3dos\xedtotta a megh\xedv\xf3 hivatkoz\xe1st"},
-ge_(){return"Jelsz\xf3 m\xf3dos\xedt\xe1sa"},
+ge0(){return"Jelsz\xf3 m\xf3dos\xedt\xe1sa"},
 ghu(){return"Matrix-kiszolg\xe1l\xf3 v\xe1lt\xe1s"},
 gf7(){return"St\xedlus\xe1nak m\xf3dos\xedt\xe1sa"},
 gf6(){return"Csoport nev\xe9nek m\xf3dos\xedt\xe1sa"},
@@ -162,7 +162,7 @@ gfe(){return"Egyedi hangulatjelek \xe9s matric\xe1k"},
 glL(){return"Egyedi hangulatjelek \xe9s matric\xe1k hozz\xe1ad\xe1sa, amelyek b\xe1rmely cseveg\xe9sben felhaszn\xe1lhat\xf3ak."},
 geC(){return"Hangulatjel r\xf6vidk\xf3d"},
 giF(){return"Ki kell v\xe1lasztania egy hangulatjel r\xf6vidk\xf3dot \xe9s egy k\xe9pet!"},
-ge0(){return"\xdcres cseveg\xe9s"},
+ge1(){return"\xdcres cseveg\xe9s"},
 giG(){return"Hangulatjel csomag enged\xe9lyez\xe9se glob\xe1lisan"},
 gee(){return"Titkos\xedt\xe1s enged\xe9lyez\xe9se"},
 giH(){return"T\xf6bb\xe9 nem fogja tudni kikapcsolni a titkos\xedt\xe1st. Biztos benne?"},
@@ -306,7 +306,7 @@ gdT(d){return"Keres\xe9s"},
 geQ(){return"Biztons\xe1g"},
 gfH(){return"Vissza\xe1ll\xedt\xf3 kulcs"},
 gjH(){return"Elveszett vissza\xe1ll\xedt\xf3 kulcs?"},
-gdX(d){return"K\xfcld\xe9s"},
+gdY(d){return"K\xfcld\xe9s"},
 gfR(){return"\xdczenet k\xfcld\xe9se"},
 gfS(){return"K\xfcld\xe9s sz\xf6vegk\xe9nt"},
 gfT(){return"Hang\xfczenet k\xfcld\xe9se"},
@@ -637,5 +637,5 @@ A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fu,C.aF)})()
 B.dQ(b.typeUniverse,JSON.parse('{"Fu":{"aF":[]}}'))};
-(a=>{a["yhhfA/ZhTx5Y6iAlVTjw6EeMXHg="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["EXdSwt8UJiOcoq1Oxgmn2XkTckY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_285.part.js.map

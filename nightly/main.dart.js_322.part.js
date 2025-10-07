@@ -79,7 +79,7 @@ hG(d,e){return d+" changed the join rules to: "+e},
 hH(d){return d+" \u0111\xe3 thay \u0111\u1ed5i \u1ea3nh \u0111\u1ea1i di\u1ec7n c\u1ee7a m\xecnh"},
 hI(d){return d+" \u0111\xe3 \u0111\u1ed5i \u0111\u1ecba ch\u1ec9 ph\xf2ng chat"},
 hJ(d){return d+" \u0111\xe3 thay \u0111\u1ed5i \u0111\u01b0\u1eddng d\u1eabn m\u1eddi"},
-ge_(){return"Thay \u0111\u1ed5i m\u1eadt kh\u1ea9u"},
+ge0(){return"Thay \u0111\u1ed5i m\u1eadt kh\u1ea9u"},
 ghu(){return"Thay \u0111\u1ed5i m\xe1y ch\u1ee7 nh\xe0"},
 gf7(){return"Change your style"},
 gf6(){return"Thay \u0111\u1ed5i t\xean nh\xf3m"},
@@ -162,7 +162,7 @@ gfe(){return"Custom emojis and stickers"},
 glL(){return"Add or share custom emojis or stickers which can be used in any chat."},
 geC(){return"Emote shortcode"},
 giF(){return"You need to pick an emote shortcode and an image!"},
-ge0(){return"Empty chat"},
+ge1(){return"Empty chat"},
 giG(){return"Enable emote pack globally"},
 gee(){return"Enable encryption"},
 giH(){return"You won't be able to disable the encryption anymore. Are you sure?"},
@@ -306,7 +306,7 @@ gdT(d){return"Search"},
 geQ(){return"Security"},
 gfH(){return"Recovery key"},
 gjH(){return"Recovery key lost?"},
-gdX(d){return"Send"},
+gdY(d){return"Send"},
 gfR(){return"Send a message"},
 gfS(){return"Send as text"},
 gfT(){return"Send audio"},
@@ -637,5 +637,5 @@ A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FU,C.aF)})()
 B.dQ(b.typeUniverse,JSON.parse('{"FU":{"aF":[]}}'))};
-(a=>{a["CBV26jR9PPv89M+fi5ih/g6R2Jk="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["prdPKYgd2dgwzFHOFHdQi4mBun4="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_322.part.js.map

@@ -79,7 +79,7 @@ hG(d,e){return d+" mengubah aturan bergabung ke: "+e},
 hH(d){return d+" mengubah avatarnya"},
 hI(d){return d+" mengubah alias ruangan"},
 hJ(d){return d+" mengubah tautan undangan"},
-ge_(){return"Ubah kata sandi"},
+ge0(){return"Ubah kata sandi"},
 ghu(){return"Ubah homeserver"},
 gf7(){return"Ubah tema"},
 gf6(){return"Ubah nama grup"},
@@ -162,7 +162,7 @@ gfe(){return"Emoji dan stiker kustom"},
 glL(){return"Tambakan atau bagikan emoji atau stiker kustom yang dapat digunakan dalam obrolan apa pun."},
 geC(){return"Shortcode emote"},
 giF(){return"Kamu harus memilih shortcode emote dan gambar!"},
-ge0(){return"Chat kosong"},
+ge1(){return"Chat kosong"},
 giG(){return"Aktifkan paket emote secara global"},
 gee(){return"Aktifkan enkripsi"},
 giH(){return"Kamu tidak akan bisa menonaktifkan enkripsi. Apakah kamu yakin?"},
@@ -306,7 +306,7 @@ gdT(d){return"Cari"},
 geQ(){return"Keamanan"},
 gfH(){return"Kunci pemulihan"},
 gjH(){return"Kunci pemulihan hilang?"},
-gdX(d){return"Kirim"},
+gdY(d){return"Kirim"},
 gfR(){return"Kirim pesan"},
 gfS(){return"Kirim sebagai teks"},
 gfT(){return"Kirim suara"},
@@ -638,5 +638,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.Fw,C.aF)})()
 B.dQ(b.typeUniverse,JSON.parse('{"Fw":{"aF":[]}}'))
 var y={a:"Memberi tahu pengguna tentang pesan dalam ruangan satu ke satu."}};
-(a=>{a["muZFHm8UhV8c4ukguVgRZM0gWpo="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["QmSsECn3S04Pkj5Efz+RyxCiaZM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_288.part.js.map

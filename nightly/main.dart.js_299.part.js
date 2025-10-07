@@ -79,7 +79,7 @@ hG(d,e){return d+" \u10d2\u10d0\u10ec\u10d4\u10d5\u10e0\u10d8\u10d0\u10dc\u10d4\
 hH(d){return d+" \u10e8\u10d4\u10ea\u10d5\u10d0\u10da\u10d0 \u10de\u10e0\u10dd\u10e4\u10d8\u10da\u10d8\u10e1 \u10e4\u10dd\u10e2\u10dd"},
 hI(d){return d+" \u10dd\u10d7\u10d0\u10ee\u10d8\u10e1 \u10db\u10d4\u10e2\u10e1\u10d0\u10ee\u10d4\u10da\u10d4\u10d1\u10d8 \u10e8\u10d4\u10ea\u10d5\u10d0\u10da\u10d0"},
 hJ(d){return d+" \u10db\u10dd\u10ec\u10d5\u10d4\u10d5\u10d8\u10e1 \u10d1\u10db\u10e3\u10da\u10d8 \u10e8\u10d4\u10ea\u10d5\u10d0\u10da\u10d0"},
-ge_(){return"\u10de\u10d0\u10e0\u10dd\u10da\u10d8\u10e1 \u10e8\u10d4\u10ea\u10d5\u10da\u10d0"},
+ge0(){return"\u10de\u10d0\u10e0\u10dd\u10da\u10d8\u10e1 \u10e8\u10d4\u10ea\u10d5\u10da\u10d0"},
 ghu(){return"\u10e1\u10d0\u10ee\u10da\u10d8\u10e1 \u10e1\u10d4\u10e0\u10d5\u10d4\u10e0\u10d8\u10e1 \u10e8\u10d4\u10ea\u10d5\u10da\u10d0"},
 gf7(){return"\u10e1\u10e2\u10d8\u10da\u10d8\u10e1 \u10e8\u10d4\u10ea\u10d5\u10da\u10d0"},
 gf6(){return"\u10ef\u10d2\u10e3\u10e4\u10d8\u10e1 \u10d2\u10d0\u10d3\u10d0\u10e0\u10e5\u10db\u10d4\u10d5\u10d0"},
@@ -162,7 +162,7 @@ gfe(){return"Custom emojis and stickers"},
 glL(){return"Add or share custom emojis or stickers which can be used in any chat."},
 geC(){return"Emote shortcode"},
 giF(){return"You need to pick an emote shortcode and an image!"},
-ge0(){return"Empty chat"},
+ge1(){return"Empty chat"},
 giG(){return"Enable emote pack globally"},
 gee(){return"Enable encryption"},
 giH(){return"You won't be able to disable the encryption anymore. Are you sure?"},
@@ -306,7 +306,7 @@ gdT(d){return"Search"},
 geQ(){return"Security"},
 gfH(){return"Recovery key"},
 gjH(){return"Recovery key lost?"},
-gdX(d){return"Send"},
+gdY(d){return"Send"},
 gfR(){return"Send a message"},
 gfS(){return"Send as text"},
 gfT(){return"Send audio"},
@@ -637,5 +637,5 @@ A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FA,C.aF)})()
 B.dQ(b.typeUniverse,JSON.parse('{"FA":{"aF":[]}}'))};
-(a=>{a["KXmWDpDL4UdeghMCVwd8Lnx7oJg="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["tl3THHBqYgoRNk3FDYckQrGqNy0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_299.part.js.map

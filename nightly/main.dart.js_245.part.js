@@ -79,7 +79,7 @@ hG(d,e){return d+" hat die Zugangsregeln ge\xe4ndert zu: "+e},
 hH(d){return d+" hat das Profilbild ge\xe4ndert"},
 hI(d){return d+" hat die Raum-Aliasse ge\xe4ndert"},
 hJ(d){return d+" hat den Einladungslink ge\xe4ndert"},
-ge_(){return"Passwort \xe4ndern"},
+ge0(){return"Passwort \xe4ndern"},
 ghu(){return"Anderen Homeserver verwenden"},
 gf7(){return"\xc4ndere Deinen Style"},
 gf6(){return"Gruppenname \xe4ndern"},
@@ -162,7 +162,7 @@ gfe(){return"Eigene Emojis und Sticker"},
 glL(){return"Eigene Emojis oder Sticker zur Nutzung im Chat hinzuf\xfcgen oder teilen."},
 geC(){return"Emoticon-K\xfcrzel"},
 giF(){return"W\xe4hle ein Emoticon-K\xfcrzel und ein Bild!"},
-ge0(){return"Leerer Chat"},
+ge1(){return"Leerer Chat"},
 giG(){return"Aktiviere Emoticon-B\xfcndel global"},
 gee(){return"Verschl\xfcsselung anschalten"},
 giH(){return"Du wirst die Verschl\xfcsselung nicht mehr ausstellen k\xf6nnen. Bist Du sicher?"},
@@ -306,7 +306,7 @@ gdT(d){return"Suchen"},
 geQ(){return"Sicherheit"},
 gfH(){return"Wiederherstellungs-Schl\xfcssel"},
 gjH(){return"Wiederherstellungsschl\xfcssel verloren?"},
-gdX(d){return"Senden"},
+gdY(d){return"Senden"},
 gfR(){return"Nachricht schreiben"},
 gfS(){return"Sende als Text"},
 gfT(){return"Sende Audiodatei"},
@@ -638,5 +638,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.Fe,C.aF)})()
 B.dQ(b.typeUniverse,JSON.parse('{"Fe":{"aF":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
-(a=>{a["SLRv4HBDQMaFpRu+Wx6jViAetT8="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["RL4ui7viDLW/fCsVthy+JjBx1QY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_245.part.js.map

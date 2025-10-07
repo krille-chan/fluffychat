@@ -80,7 +80,7 @@ hG(d,e){return d+" zmieni\u0142/-a zasady wej\u015bcia na "+e},
 hH(d){return d+" zmieni\u0142/-a zdj\u0119cie profilowe"},
 hI(d){return d+" zmieni\u0142/-a alias pokoju"},
 hJ(d){return d+" zmieni\u0142/-a link z zaproszeniem do pokoju"},
-ge_(){return"Zmie\u0144 has\u0142o"},
+ge0(){return"Zmie\u0144 has\u0142o"},
 ghu(){return"Zmie\u0144 serwer domy\u015blny"},
 gf7(){return"Zmie\u0144 sw\xf3j styl"},
 gf6(){return"Zmie\u0144 nazw\u0119 grupy"},
@@ -163,7 +163,7 @@ gfe(){return"W\u0142asne emotikony i naklejki"},
 glL(){return"Dodaj lub podziel si\u0119 w\u0142asnymi emotikonami i naklejkami, kt\xf3re b\u0119d\u0105 mog\u0142y by\u0107 u\u017cyte w dowolnym czacie."},
 geC(){return"Skr\xf3cony kod emotikonu"},
 giF(){return"Musisz wybra\u0107 kod emotikonu oraz obraz!"},
-ge0(){return"Pusty czat"},
+ge1(){return"Pusty czat"},
 giG(){return"W\u0142\u0105cz paczk\u0119 emotikon\xf3w globalnie"},
 gee(){return"W\u0142\u0105cz szyfowanie"},
 giH(){return"Nie b\u0119dziesz ju\u017c m\xf3g\u0142 wy\u0142\u0105czy\u0107 szyfrowania. Jeste\u015b pewny?"},
@@ -307,7 +307,7 @@ gdT(d){return"Szukaj"},
 geQ(){return"Bezpiecze\u0144stwo"},
 gfH(){return"Klucz odzyskiwania"},
 gjH(){return"Utracono klucz odzyskiwania?"},
-gdX(d){return"Wy\u015blij"},
+gdY(d){return"Wy\u015blij"},
 gfR(){return"Wy\u015blij wiadomo\u015b\u0107"},
 gfS(){return"Wy\u015blij jako tekst"},
 gfT(){return"Wy\u015blij d\u017awi\u0119k"},
@@ -638,5 +638,5 @@ A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FG,C.aF)})()
 B.dQ(b.typeUniverse,JSON.parse('{"FG":{"aF":[]}}'))};
-(a=>{a["IT1ggi1WcAYT5Ws/8gJMOh3Frlw="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["3E44DtLkX4m1HsSxxIb9GvbLAhY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_306.part.js.map

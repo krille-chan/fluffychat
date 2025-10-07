@@ -79,7 +79,7 @@ hG(d,e){return d+" pakeit\u0117 prisijungimo taisykles \u012f: "+e},
 hH(d){return d+" pakeit\u0117 savo avatar\u0105"},
 hI(d){return d+" pakeit\u0117 kambario pseudonimus"},
 hJ(d){return d+" pakeit\u0117 pakvietimo nuorod\u0105"},
-ge_(){return"Keisti slapta\u017eod\u012f"},
+ge0(){return"Keisti slapta\u017eod\u012f"},
 ghu(){return"Pakeisti nam\u0173 server\u012f"},
 gf7(){return"Keisti savo stili\u0173"},
 gf6(){return"Keisti grup\u0117s pavadinim\u0105"},
@@ -162,7 +162,7 @@ gfe(){return"Custom emojis and stickers"},
 glL(){return"Add or share custom emojis or stickers which can be used in any chat."},
 geC(){return"Jaustuko trumpasis kodas"},
 giF(){return"Turite pasirinkti jaustuko trump\u0105j\u012f kod\u0105 ir paveiksliuk\u0105!"},
-ge0(){return"Tu\u0161\u010dias pokalbis"},
+ge1(){return"Tu\u0161\u010dias pokalbis"},
 giG(){return"\u012egalinti jaustuk\u0173 paket\u0105 visur"},
 gee(){return"Aktyvuoti \u0161ifravim\u0105"},
 giH(){return"\u0160ifravimo nebegal\u0117site i\u0161jungti. Ar j\u016bs tuo tikri?"},
@@ -306,7 +306,7 @@ gdT(d){return"Ie\u0161koti"},
 geQ(){return"Apsauga"},
 gfH(){return"Atk\u016brimo raktas"},
 gjH(){return"Pamestas atk\u016brimo raktas?"},
-gdX(d){return"Si\u0173sti"},
+gdY(d){return"Si\u0173sti"},
 gfR(){return"Si\u0173sti \u017einut\u0119"},
 gfS(){return"Si\u0173sti kaip tekst\u0105"},
 gfT(){return"Si\u0173sti garso \u012fra\u0161\u0105"},
@@ -637,5 +637,5 @@ A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FC,C.aF)})()
 B.dQ(b.typeUniverse,JSON.parse('{"FC":{"aF":[]}}'))};
-(a=>{a["fa8vAFj6JQwUGW3fu4gA40u7p1o="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["TWex3VAgAes8XWrsnFUKo+ZD3YA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_301.part.js.map

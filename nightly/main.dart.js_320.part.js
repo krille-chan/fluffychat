@@ -79,7 +79,7 @@ hG(d,e){return d+" kat\u0131l\u0131m kurallar\u0131n\u0131 de\u011fi\u015ftirdi:
 hH(d){return d+" avatar\u0131n\u0131 de\u011fi\u015ftirdi"},
 hI(d){return d+" oda takma adlar\u0131n\u0131 de\u011fi\u015ftirdi"},
 hJ(d){return d+" davet ba\u011flant\u0131s\u0131n\u0131 de\u011fi\u015ftirdi"},
-ge_(){return"Parolay\u0131 de\u011fi\u015ftir"},
+ge0(){return"Parolay\u0131 de\u011fi\u015ftir"},
 ghu(){return"Ana sunucuyu de\u011fi\u015ftir"},
 gf7(){return"Tarz\u0131n\u0131z\u0131 de\u011fi\u015ftirin"},
 gf6(){return"Grubun ad\u0131n\u0131 de\u011fi\u015ftir"},
@@ -162,7 +162,7 @@ gfe(){return"\xd6zel emojiler ve \xe7\u0131kartmalar"},
 glL(){return"Herhangi bir sohbette kullan\u0131labilecek \xf6zel emojiler veya \xe7\u0131kartmalar ekleyin veya payla\u015f\u0131n."},
 geC(){return"\u0130fade k\u0131sa kodu"},
 giF(){return"Bir ifade k\u0131sa kodu ve bir resim se\xe7meniz gerekiyor!"},
-ge0(){return"Bo\u015f sohbet"},
+ge1(){return"Bo\u015f sohbet"},
 giG(){return"\u0130fade paketini k\xfcresel olarak etkinle\u015ftir"},
 gee(){return"\u015eifrelemeyi etkinle\u015ftir"},
 giH(){return"Art\u0131k \u015fifrelemeyi devre d\u0131\u015f\u0131 b\u0131rakamayacaks\u0131n\u0131z. Emin misiniz?"},
@@ -306,7 +306,7 @@ gdT(d){return"Ara"},
 geQ(){return"G\xfcvenlik"},
 gfH(){return"Kurtarma anahtar\u0131"},
 gjH(){return"Kurtarma anahtar\u0131 kay\u0131p m\u0131?"},
-gdX(d){return"G\xf6nder"},
+gdY(d){return"G\xf6nder"},
 gfR(){return"Bir mesaj g\xf6nder"},
 gfS(){return"Metin olarak g\xf6nder"},
 gfT(){return"Ses g\xf6nder"},
@@ -638,5 +638,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.FS,C.aF)})()
 B.dQ(b.typeUniverse,JSON.parse('{"FS":{"aF":[]}}'))
 var y={c:" adresinde geli\u015ftiricilere bildirin. Hata mesaj\u0131: "}};
-(a=>{a["7SnHPGz8gccuCLukxXFHVYizFUk="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["wXQKVwFJbirsZhKaUHw5nS4tUYY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_320.part.js.map

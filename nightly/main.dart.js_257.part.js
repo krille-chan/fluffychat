@@ -79,7 +79,7 @@ hG(d,e){return d+" cambi\xf3 las reglas de ingreso a "+e},
 hH(d){return d+" cambi\xf3 su imagen de perfil"},
 hI(d){return d+" cambi\xf3 el alias de la sala"},
 hJ(d){return d+" cambi\xf3 el enlace de invitaci\xf3n"},
-ge_(){return"Cambiar la contrase\xf1a"},
+ge0(){return"Cambiar la contrase\xf1a"},
 ghu(){return"Cambiar el servidor"},
 gf7(){return"Cambia tu estilo"},
 gf6(){return"Cambiar el nombre del grupo"},
@@ -162,7 +162,7 @@ gfe(){return"Emojis y stickers personalizados"},
 glL(){return"Agrega o comparte emojis y stickers personalizados que se pueden utilizar en cualquier chat."},
 geC(){return"Atajo de emote"},
 giF(){return"\xa1Debes elegir un atajo de emote y una imagen!"},
-ge0(){return"Chat vac\xedo"},
+ge1(){return"Chat vac\xedo"},
 giG(){return"Habilitar paquete de emoticonos a nivel general"},
 gee(){return"Habilitar la encriptaci\xf3n"},
 giH(){return"Ya no podr\xe1 deshabilitar el cifrado. \xbfEst\xe1s seguro?"},
@@ -306,7 +306,7 @@ gdT(d){return"Buscar"},
 geQ(){return"Seguridad"},
 gfH(){return"Clave de recuperaci\xf3n"},
 gjH(){return"\xbfPerdi\xf3 su clave de recuperaci\xf3n?"},
-gdX(d){return"Enviar"},
+gdY(d){return"Enviar"},
 gfR(){return"Enviar un mensaje"},
 gfS(){return"Enviar como texto"},
 gfT(){return"Enviar audio"},
@@ -637,5 +637,5 @@ A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fi,C.aF)})()
 B.dQ(b.typeUniverse,JSON.parse('{"Fi":{"aF":[]}}'))};
-(a=>{a["CEnX/praVGxsjn9H0kuDKev9E/g="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["ji87mfQsoASiXxYjE2HG7H3DvXk="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_257.part.js.map

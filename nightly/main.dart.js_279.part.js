@@ -79,7 +79,7 @@ hG(d,e){return d+" je promijenio/la pravila pridru\u017eivanja u: "+e},
 hH(d){return d+" je promijenio/la svoj avatar"},
 hI(d){return d+" je promijenio/la pseudonime soba"},
 hJ(d){return d+" je promijenio/la poveznicu poziva"},
-ge_(){return"Promijeni lozinku"},
+ge0(){return"Promijeni lozinku"},
 ghu(){return"Promijeni doma\u0107eg poslu\u017eitelja"},
 gf7(){return"Promijeni tvoj stil"},
 gf6(){return"Promijeni ime grupe"},
@@ -162,7 +162,7 @@ gfe(){return"Prilago\u0111eni emojiji i naljepnice"},
 glL(){return"Dodaj ili dijeli prilago\u0111ene emojije ili naljepnice koje se mogu koristiti u bilo kojem razgovoru."},
 geC(){return"Kratica emotikona"},
 giF(){return"Mora\u0161 odabrati jednu kraticu emotikona i sliku!"},
-ge0(){return"Prazan razgovor"},
+ge1(){return"Prazan razgovor"},
 giG(){return"Aktiviraj paket emotikona globalno"},
 gee(){return"Aktiviraj \u0161ifriranje"},
 giH(){return"Vi\u0161e ne\u0107e\u0161 mo\u0107i deaktivirati \u0161ifriranje. Stvarno to \u017eeli\u0161?"},
@@ -306,7 +306,7 @@ gdT(d){return"Tra\u017ei"},
 geQ(){return"Sigurnost"},
 gfH(){return"Klju\u010d za obnavljanje"},
 gjH(){return"Izgubio/la si klju\u010d za obnavljanje?"},
-gdX(d){return"Po\u0161alji"},
+gdY(d){return"Po\u0161alji"},
 gfR(){return"Po\u0161alji poruku"},
 gfS(){return"Po\u0161alji kao tekst"},
 gfT(){return"Po\u0161alji audio datoteku"},
@@ -637,5 +637,5 @@ A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Ft,C.aF)})()
 B.dQ(b.typeUniverse,JSON.parse('{"Ft":{"aF":[]}}'))};
-(a=>{a["sShgsyoxE8pl3RPDiXn2UtZR3gk="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["obYCVIydX4AqI80cm8KGUbNBtoo="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_279.part.js.map

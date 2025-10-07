@@ -79,7 +79,7 @@ hG(d,e){return d+" changed the join rules to: "+e},
 hH(d){return d+" changed their avatar"},
 hI(d){return d+" changed the room aliases"},
 hJ(d){return d+" changed the invitation link"},
-ge_(){return"Change password"},
+ge0(){return"Change password"},
 ghu(){return"Change the homeserver"},
 gf7(){return"Change your style"},
 gf6(){return"Change the name of the group"},
@@ -162,7 +162,7 @@ gfe(){return"Custom emojis and stickers"},
 glL(){return"Add or share custom emojis or stickers which can be used in any chat."},
 geC(){return"Emote shortcode"},
 giF(){return"You need to pick an emote shortcode and an image!"},
-ge0(){return"Empty chat"},
+ge1(){return"Empty chat"},
 giG(){return"Enable emote pack globally"},
 gee(){return"Enable encryption"},
 giH(){return"You won't be able to disable the encryption anymore. Are you sure?"},
@@ -306,7 +306,7 @@ gdT(d){return"Search"},
 geQ(){return"Security"},
 gfH(){return"Recovery key"},
 gjH(){return"Recovery key lost?"},
-gdX(d){return"Send"},
+gdY(d){return"Send"},
 gfR(){return"Send a message"},
 gfS(){return"Send as text"},
 gfT(){return"Send audio"},
@@ -637,5 +637,5 @@ A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fa,C.aF)})()
 B.dQ(b.typeUniverse,JSON.parse('{"Fa":{"aF":[]}}'))};
-(a=>{a["33S8qpAnujy+WM4TvI0SU6LkB8A="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["CbLcYlVOfd7RhzqSpLmPYzRW6W4="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_225.part.js.map

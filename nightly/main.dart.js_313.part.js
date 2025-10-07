@@ -79,7 +79,7 @@ hG(d,e){return d+" je spremenila pravila pridru\u017eitve v: "+e},
 hH(d){return d+" je spremenil avatar"},
 hI(d){return d+" je spremenil vzdevke sobe"},
 hJ(d){return d+" je spremenil povezavo za povabilo"},
-ge_(){return"Spremeni geslo"},
+ge0(){return"Spremeni geslo"},
 ghu(){return"Spremenite doma\u010di stre\u017enik"},
 gf7(){return"Spremenite svoj slog"},
 gf6(){return"Spremenite ime skupine"},
@@ -162,7 +162,7 @@ gfe(){return"Custom emojis and stickers"},
 glL(){return"Add or share custom emojis or stickers which can be used in any chat."},
 geC(){return"Emote shortcode"},
 giF(){return"You need to pick an emote shortcode and an image!"},
-ge0(){return"Empty chat"},
+ge1(){return"Empty chat"},
 giG(){return"Enable emote pack globally"},
 gee(){return"Enable encryption"},
 giH(){return"You won't be able to disable the encryption anymore. Are you sure?"},
@@ -306,7 +306,7 @@ gdT(d){return"Search"},
 geQ(){return"Security"},
 gfH(){return"Recovery key"},
 gjH(){return"Recovery key lost?"},
-gdX(d){return"Send"},
+gdY(d){return"Send"},
 gfR(){return"Send a message"},
 gfS(){return"Send as text"},
 gfT(){return"Send audio"},
@@ -637,5 +637,5 @@ A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FM,C.aF)})()
 B.dQ(b.typeUniverse,JSON.parse('{"FM":{"aF":[]}}'))};
-(a=>{a["QgiWYQRF5VvhiiQfLsb4rOPfJ2k="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["xIh9OkT+WVGbjMdLn3bREpFD1Tg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_313.part.js.map

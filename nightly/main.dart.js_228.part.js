@@ -79,7 +79,7 @@ hG(d,e){return d+" ha canviat les normes d\u2019uni\xf3 a: "+e},
 hH(d){return d+" ha canviat la seva imatge de perfil"},
 hI(d){return d+" ha canviat l\u2019\xe0lies de la sala"},
 hJ(d){return d+" ha canviat l\u2019enlla\xe7 per a convidar"},
-ge_(){return"Canvia la contrasenya"},
+ge0(){return"Canvia la contrasenya"},
 ghu(){return"Canvia el servidor"},
 gf7(){return"Canvia l\u2019estil"},
 gf6(){return"Canvia el nom del grup"},
@@ -162,7 +162,7 @@ gfe(){return"Emojis i stickers propis"},
 glL(){return"Afegeix o comparteix emojis o stickers. Els podr\xe0s fer servir en qualsevol conversa."},
 geC(){return"Codi d'emoticona"},
 giF(){return"Has de seleccionar un codi d'emoticona i una imatge!"},
-ge0(){return"Xat buit"},
+ge1(){return"Xat buit"},
 giG(){return"Activa el paquet d'emoticones global"},
 gee(){return"Activa el xifratge"},
 giH(){return"No podreu desactivar el xifratge mai m\xe9s. N\u2019esteu segur?"},
@@ -306,7 +306,7 @@ gdT(d){return"Cerca"},
 geQ(){return"Seguretat"},
 gfH(){return"Clau de recuperaci\xf3"},
 gjH(){return"Que has perdut la clau de recuperaci\xf3?"},
-gdX(d){return"Envia"},
+gdY(d){return"Envia"},
 gfR(){return"Envia un missatge"},
 gfS(){return"Envia com a text"},
 gfT(){return"Envia un \xe0udio"},
@@ -637,5 +637,5 @@ A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fb,C.aF)})()
 B.dQ(b.typeUniverse,JSON.parse('{"Fb":{"aF":[]}}'))};
-(a=>{a["cw1AoJzk/jaUtVuCEykN7PhOzgE="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["jTX6CjMzFZLk5ha5iEsq/5yANSc="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_228.part.js.map

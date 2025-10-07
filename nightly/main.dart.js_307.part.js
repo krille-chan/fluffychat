@@ -79,7 +79,7 @@ hG(d,e){return d+" a schimbat regulile de al\u0103turare la: "+e},
 hH(d){return d+" s-a schimbat avatarul"},
 hI(d){return d+" a schimbat pseudonimele camerei"},
 hJ(d){return d+" a schimbat linkul de invita\u021bie"},
-ge_(){return"Schimba\u021bi parola"},
+ge0(){return"Schimba\u021bi parola"},
 ghu(){return"Schimba\u021bi homeserver-ul"},
 gf7(){return"Schimba\u021bi tema aplica\u021biei"},
 gf6(){return"Schimba\u021bi numele grupului"},
@@ -162,7 +162,7 @@ gfe(){return"Custom emojis and stickers"},
 glL(){return"Add or share custom emojis or stickers which can be used in any chat."},
 geC(){return"Shortcode de emote"},
 giF(){return"Trebuie s\u0103 alege\u021bi shortcode pentru emote \u0219i o imagine!"},
-ge0(){return"Chat gol"},
+ge1(){return"Chat gol"},
 giG(){return"Activa\u021bi pachet de emote global"},
 gee(){return"Activa\u021bi criptare"},
 giH(){return"Activ\xe2nd criptare, nu mai pute\u021bi s\u0103 o dezactiva\u021bi \xeen viitor. Sunte\u021bi sigur?"},
@@ -306,7 +306,7 @@ gdT(d){return"C\u0103uta\u021bi"},
 geQ(){return"Securitate"},
 gfH(){return"Cheie de recuperare"},
 gjH(){return"Cheia de recuperare pierdut\u0103?"},
-gdX(d){return"Trimite\u021bi"},
+gdY(d){return"Trimite\u021bi"},
 gfR(){return"Trimite\u021bi un mesaj"},
 gfS(){return"Trimite\u021bi ca text"},
 gfT(){return"Trimite\u021bi audio"},
@@ -637,5 +637,5 @@ A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FJ,C.aF)})()
 B.dQ(b.typeUniverse,JSON.parse('{"FJ":{"aF":[]}}'))};
-(a=>{a["cw1OTxpL0xibkRDgui545bBcqoI="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["THRmbAU9a47qYqDpBjTdpzjgtEg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_307.part.js.map

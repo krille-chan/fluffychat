@@ -79,7 +79,7 @@ hG(d,e){return d+" a chang\xe9 les r\xe8gles d'acc\xe8s \xe0 la discussion en : 
 hH(d){return d+" a chang\xe9 son avatar"},
 hI(d){return d+" a chang\xe9 les adresses du salon"},
 hJ(d){return d+" a chang\xe9 le lien d'invitation"},
-ge_(){return"Changer de mot de passe"},
+ge0(){return"Changer de mot de passe"},
 ghu(){return"Changer le serveur d'accueil"},
 gf7(){return"Changez votre style"},
 gf6(){return"Changer le nom du groupe"},
@@ -162,7 +162,7 @@ gfe(){return"\xc9motic\xf4nes et autocollants personnalis\xe9s"},
 glL(){return"Ajoutez ou partagez des \xe9motic\xf4nes ou autocollants personnalis\xe9s qui peuvent \xeatre utilis\xe9s dans n'importe quelle discussion."},
 geC(){return"Raccourci de l'\xe9motic\xf4ne"},
 giF(){return"Vous devez s\xe9lectionner un raccourci d'\xe9motic\xf4ne et une image\xa0!"},
-ge0(){return"Discussion vide"},
+ge1(){return"Discussion vide"},
 giG(){return"Activer globalement le pack d'\xe9motic\xf4nes"},
 gee(){return"Activer le chiffrement"},
 giH(){return"Vous ne pourrez plus d\xe9sactiver le chiffrement. \xcates-vous s\xfbr(e)\xa0?"},
@@ -306,7 +306,7 @@ gdT(d){return"Rechercher"},
 geQ(){return"S\xe9curit\xe9"},
 gfH(){return"Cl\xe9 de r\xe9cup\xe9ration"},
 gjH(){return"Cl\xe9 de r\xe9cup\xe9ration perdue ?"},
-gdX(d){return"Envoyer"},
+gdY(d){return"Envoyer"},
 gfR(){return"Envoyer un message"},
 gfS(){return"Envoyer un texte"},
 gfT(){return"Envoyer un fichier audio"},
@@ -637,5 +637,5 @@ A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fo,C.aF)})()
 B.dQ(b.typeUniverse,JSON.parse('{"Fo":{"aF":[]}}'))};
-(a=>{a["ets85bs9nN85mHEn+nOuw2AzZbM="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["E5KGuJ/xzl4COfD88dQbjbH1i88="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_269.part.js.map

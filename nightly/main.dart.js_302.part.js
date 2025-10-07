@@ -79,7 +79,7 @@ hG(d,e){return d+" nomain\u012bja pievieno\u0161an\u0101s nosac\u012bjumus uz "+
 hH(d){return d+" nomain\u012bja savu att\u0113lu"},
 hI(d){return d+" nomain\u012bja istabas aizst\u0101jv\u0101rdus"},
 hJ(d){return d+" nomain\u012bja uzaicin\u0101juma saiti"},
-ge_(){return"Nomain\u012bt paroli"},
+ge0(){return"Nomain\u012bt paroli"},
 ghu(){return"Main\u012bt m\u0101jasserveri"},
 gf7(){return"Main\u012bt izskatu"},
 gf6(){return"Main\u012bt kopas nosaukumu"},
@@ -162,7 +162,7 @@ gfe(){return"Piel\u0101gotas emocijz\u012bmes un uzl\u012bmes"},
 glL(){return"Pievienot vai kop\u012bgot piel\u0101gotas emocijz\u012bmes vai uzl\u012bmes, kas var tikt izmantotas jebkur\u0101 t\u0113rz\u0113\u0161an\u0101."},
 geC(){return"Emocijas \u012bskods"},
 giF(){return"Nepiecie\u0161ams izv\u0113l\u0113ties emocijas \u012bskodu un att\u0113lu."},
-ge0(){return"Tuk\u0161a t\u0113rz\u0113\u0161ana"},
+ge1(){return"Tuk\u0161a t\u0113rz\u0113\u0161ana"},
 giG(){return"Iesp\u0113jot k\u0101 visp\u0101r\u0113ju emociju paku"},
 gee(){return"Iesp\u0113jot \u0161ifr\u0113\u0161anu"},
 giH(){return"Vairs neb\u016bs iesp\u0113jams atsp\u0113jot \u0161ifr\u0113\u0161anu. Vai tie\u0161\u0101m to dar\u012bt?"},
@@ -306,7 +306,7 @@ gdT(d){return"Mekl\u0113t"},
 geQ(){return"Dro\u0161\u012bba"},
 gfH(){return"Atkopes atsl\u0113ga"},
 gjH(){return"Pazaud\u0113ta atkopes atsl\u0113ga?"},
-gdX(d){return"Nos\u016bt\u012bt"},
+gdY(d){return"Nos\u016bt\u012bt"},
 gfR(){return"Nos\u016bt\u012bt zi\u0146u"},
 gfS(){return"Nos\u016bt\u012bt k\u0101 tekstu"},
 gfT(){return"Nos\u016bt\u012bt ska\u0146u"},
@@ -637,5 +637,5 @@ A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FD,C.aF)})()
 B.dQ(b.typeUniverse,JSON.parse('{"FD":{"aF":[]}}'))};
-(a=>{a["Q76jls3ZrnKKs6Pz2RQZEOno+Qo="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["CkVTF+U8CsSUGjcoK0kwVZuoFyc="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_302.part.js.map

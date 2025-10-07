@@ -79,7 +79,7 @@ hG(d,e){return d+" asetti liittymiss\xe4\xe4nn\xf6iksi: "+e},
 hH(d){return d+" vaihtoi profiilikuvaansa"},
 hI(d){return d+" muutti huoneen aliaksia"},
 hJ(d){return d+" muutti kutsulinkki\xe4"},
-ge_(){return"Vaihda salasana"},
+ge0(){return"Vaihda salasana"},
 ghu(){return"Vaihda kotipalvelinta"},
 gf7(){return"Vaihda tyyli\xe4si"},
 gf6(){return"Vaihda ryhm\xe4n nime\xe4"},
@@ -162,7 +162,7 @@ gfe(){return"Custom emojis and stickers"},
 glL(){return"Add or share custom emojis or stickers which can be used in any chat."},
 geC(){return"Emote-lyhytkoodi"},
 giF(){return"Emote-lyhytkoodi ja kuva on valittava!"},
-ge0(){return"Tyhj\xe4 keskustelu"},
+ge1(){return"Tyhj\xe4 keskustelu"},
 giG(){return"Ota emote-paketti k\xe4ytt\xf6\xf6n kaikkialla"},
 gee(){return"Ota salaus k\xe4ytt\xf6\xf6n"},
 giH(){return"Et voi poistaa salausta my\xf6hemmin. Oletko varma?"},
@@ -306,7 +306,7 @@ gdT(d){return"Hae"},
 geQ(){return"Turvallisuus"},
 gfH(){return"Palautusavain"},
 gjH(){return"Kadonnut palautusavain?"},
-gdX(d){return"L\xe4het\xe4"},
+gdY(d){return"L\xe4het\xe4"},
 gfR(){return"L\xe4het\xe4 viesti"},
 gfS(){return"L\xe4het\xe4 tekstin\xe4"},
 gfT(){return"L\xe4het\xe4 \xe4\xe4niviesti"},
@@ -637,5 +637,5 @@ A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fm,C.aF)})()
 B.dQ(b.typeUniverse,JSON.parse('{"Fm":{"aF":[]}}'))};
-(a=>{a["68b2V7fjKoEoxzE0+4R6GDWCB38="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["nQ62Z/m2yMkcYWsVaejmO0IQVL8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_267.part.js.map

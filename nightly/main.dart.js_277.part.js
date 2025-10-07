@@ -79,7 +79,7 @@ hG(d,e){return d+" \u05e9\u05d9\u05e0\u05d4 \u05d0\u05ea \u05db\u05dc\u05dc\u05d
 hH(d){return d+" \u05e9\u05d9\u05e0\u05d4 \u05d0\u05ea \u05d4\u05d0\u05d5\u05d5\u05d8\u05d0\u05e8 \u05e9\u05dc\u05d5"},
 hI(d){return d+" \u05e9\u05d9\u05e0\u05d4 \u05d0\u05ea \u05db\u05d9\u05e0\u05d5\u05d9 \u05d4\u05d7\u05d3\u05e8"},
 hJ(d){return d+" \u05e9\u05d9\u05e0\u05d4 \u05d0\u05ea \u05e7\u05d9\u05e9\u05d5\u05e8 \u05d4\u05d4\u05d6\u05de\u05e0\u05d4"},
-ge_(){return"\u05e9\u05e0\u05d4 \u05e1\u05d9\u05e1\u05de\u05d0"},
+ge0(){return"\u05e9\u05e0\u05d4 \u05e1\u05d9\u05e1\u05de\u05d0"},
 ghu(){return"\u05e9\u05e0\u05d4 \u05d0\u05ea \u05e9\u05e8\u05ea \u05d4\u05d1\u05d9\u05ea"},
 gf7(){return"\u05e9\u05e0\u05d4 \u05d0\u05ea \u05d4\u05e1\u05d2\u05e0\u05d5\u05df \u05e9\u05dc\u05da"},
 gf6(){return"\u05e9\u05e0\u05d4 \u05d0\u05ea \u05e9\u05dd \u05d4\u05e7\u05d1\u05d5\u05e6\u05d4"},
@@ -162,7 +162,7 @@ gfe(){return"Custom emojis and stickers"},
 glL(){return"Add or share custom emojis or stickers which can be used in any chat."},
 geC(){return"Emote shortcode"},
 giF(){return"You need to pick an emote shortcode and an image!"},
-ge0(){return"\u05e6'\u05d0\u05d8 \u05e8\u05d9\u05e7"},
+ge1(){return"\u05e6'\u05d0\u05d8 \u05e8\u05d9\u05e7"},
 giG(){return"Enable emote pack globally"},
 gee(){return"\u05d0\u05e4\u05e9\u05e8 \u05d4\u05e6\u05e4\u05e0\u05d4"},
 giH(){return"\u05dc\u05d0 \u05ea\u05d5\u05db\u05dc \u05dc\u05d1\u05d8\u05dc \u05d0\u05ea \u05d4\u05d4\u05e6\u05e4\u05e0\u05d4 \u05d9\u05d5\u05ea\u05e8. \u05d4\u05d0\u05dd \u05d0\u05ea\u05d4 \u05d1\u05d8\u05d5\u05d7?"},
@@ -306,7 +306,7 @@ gdT(d){return"Search"},
 geQ(){return"Security"},
 gfH(){return"Recovery key"},
 gjH(){return"Recovery key lost?"},
-gdX(d){return"Send"},
+gdY(d){return"Send"},
 gfR(){return"Send a message"},
 gfS(){return"Send as text"},
 gfT(){return"Send audio"},
@@ -637,5 +637,5 @@ A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.Fr,C.aF)})()
 B.dQ(b.typeUniverse,JSON.parse('{"Fr":{"aF":[]}}'))};
-(a=>{a["r9qorUjm5grZk/G49FShy8B85aY="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["GDNfgkae8K07oyIyG5hpsoJc5QI="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_277.part.js.map
