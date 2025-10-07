@@ -6,6 +6,7 @@ import 'package:collection/collection.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/pangea/activity_sessions/activity_room_extension.dart';
 import 'package:fluffychat/pangea/bot/utils/bot_name.dart';
 import 'package:fluffychat/pangea/chat_settings/pages/pangea_invitation_selection_view.dart';
 import 'package:fluffychat/pangea/common/config/environment.dart';
@@ -377,12 +378,33 @@ class PangeaInvitationSelectionController
     });
   }
 
-  void inviteAction(BuildContext context, String id, String displayname) async {
+  void inviteAction(String userID) async {
     final room = Matrix.of(context).client.getRoomById(widget.roomId)!;
 
     final success = await showFutureLoadingDialog(
       context: context,
-      future: () => room.invite(id),
+      future: () async {
+        await room.invite(userID);
+        if (room.courseParent != null && room.courseParent!.canInvite) {
+          await room.courseParent!.requestParticipants(
+            [Membership.join, Membership.invite],
+            false,
+            true,
+          );
+
+          final existingParticipant = room.courseParent!
+              .getParticipants()
+              .firstWhereOrNull((u) => u.id == userID);
+
+          if (existingParticipant == null ||
+              ![
+                Membership.invite,
+                Membership.join,
+              ].contains(existingParticipant.membership)) {
+            await room.courseParent!.invite(userID);
+          }
+        }
+      },
     );
     if (success.error == null) {
       ScaffoldMessenger.of(context).showSnackBar(

@@ -168,12 +168,7 @@ class PangeaInvitationSelectionView extends StatelessWidget {
                                   controller.foundProfiles[i].userId,
                                 ),
                                 onTap: () => controller.inviteAction(
-                                  context,
                                   controller.foundProfiles[i].userId,
-                                  controller.foundProfiles[i].displayName ??
-                                      controller
-                                          .foundProfiles[i].userId.localpart ??
-                                      L10n.of(context).user,
                                 ),
                                 controller: controller,
                               ),
@@ -259,11 +254,7 @@ class PangeaInvitationSelectionView extends StatelessWidget {
                                   isMember:
                                       participants.contains(contacts[i].id),
                                   onTap: () => controller.inviteAction(
-                                    context,
                                     contacts[i].id,
-                                    contacts[i].displayName ??
-                                        contacts[i].id.localpart ??
-                                        L10n.of(context).user,
                                   ),
                                   controller: controller,
                                 );
