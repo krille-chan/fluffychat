@@ -2791,5 +2791,75 @@
     "notificationRuleEncryptedRoomOneToOneDescription": "Varsler brukeren om meldinger i krypterte en-til-en-rom.",
     "@notificationRuleEncryptedRoomOneToOneDescription": {},
     "notificationRuleRoomOneToOne": "Rom én-til-én",
-    "@notificationRuleRoomOneToOne": {}
+    "@notificationRuleRoomOneToOne": {},
+    "customEmojisAndStickersBody": "Legg til eller del tilpassede emojier eller klistremerker som kan brukes i hvilken som helst chat.",
+    "@customEmojisAndStickersBody": {},
+    "homeserver": "Hjemmeserver",
+    "@homeserver": {},
+    "errorObtainingLocation": "Feil ved henting av posisjon: {error}",
+    "@errorObtainingLocation": {
+        "type": "String",
+        "placeholders": {
+            "error": {
+                "type": "String"
+            }
+        }
+    },
+    "chatDescription": "Chat beskrivelse",
+    "@chatDescription": {},
+    "hideRedactedMessages": "Skjul redigerte meldinger",
+    "@hideRedactedMessages": {},
+    "hideRedactedMessagesBody": "Hvis noen redigerer en melding, vil ikke denne meldingen lenger være synlig i chatten.",
+    "@hideRedactedMessagesBody": {},
+    "blockListDescription": "Du kan blokkere brukere som forstyrrer deg. Du vil ikke kunne motta meldinger eller rominvitasjoner fra brukerne på din personlige blokkeringsliste.",
+    "@blockListDescription": {},
+    "blockUsername": "Ignorer brukernavn",
+    "@blockUsername": {},
+    "inviteContactToGroupQuestion": "Vil du invitere {contact} til chatten «{groupName}»?",
+    "@inviteContactToGroupQuestion": {},
+    "noChatDescriptionYet": "Ingen chatbeskrivelse er opprettet ennå.",
+    "@noChatDescriptionYet": {},
+    "redactMessageDescription": "Meldingen vil bli redigert for alle deltakerne i denne samtalen. Dette kan ikke angres.",
+    "@redactMessageDescription": {},
+    "optionalRedactReason": "(Valgfritt) Årsak til redigering av denne meldingen...",
+    "@optionalRedactReason": {},
+    "locationDisabledNotice": "Lokasjonstjenester er deaktivert. Vennligst aktiver dem for at du skal kunne dele posisjonen din.",
+    "@locationDisabledNotice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "locationPermissionDeniedNotice": "Lokasjonstillatelse nektet. Gi dem tillatelse til å dele din lokasjon.",
+    "@locationPermissionDeniedNotice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "dehydrate": "Eksporter økten og slett enheten",
+    "@dehydrate": {},
+    "dehydrateWarning": "Denne handlingen kan ikke angres. Sørg for at du lagrer sikkerhetskopifilen på en trygg måte.",
+    "@dehydrateWarning": {},
+    "dehydrateTor": "TOR-brukere: Eksporter økt",
+    "@dehydrateTor": {},
+    "dehydrateTorLong": "For TOR-brukere anbefales det å eksportere økten før vinduet lukkes.",
+    "@dehydrateTorLong": {},
+    "hydrateTor": "TOR-brukere: Importer eksportert økt",
+    "@hydrateTor": {},
+    "hydrateTorLong": "Eksporterte du økten din sist gang på TOR? Importer den raskt og fortsett å chatte.",
+    "@hydrateTorLong": {},
+    "noEncryptionForPublicRooms": "Du kan bare aktivere kryptering på rom som ikke er offentlig tilgjengelig.",
+    "@noEncryptionForPublicRooms": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noMatrixServer": "{server1} er ingen matrix-server, bruk {server2} i stedet?",
+    "@noMatrixServer": {
+        "type": "String",
+        "placeholders": {
+            "server1": {
+                "type": "String"
+            },
+            "server2": {
+                "type": "String"
+            }
+        }
+    }
 }
