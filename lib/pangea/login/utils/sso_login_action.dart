@@ -62,7 +62,7 @@ Future<void> pangeaSSOLoginAction(
       final route = FluffyChatApp.router.state.fullPath;
       if (route == null ||
           (!route.contains("/rooms") && !route.contains('registration'))) {
-        context.go('/registration/create');
+        context.go('/rooms');
       }
     },
   ).timeout(const Duration(seconds: 30));
@@ -77,7 +77,7 @@ Future<void> pangeaSSOLoginAction(
     final route = FluffyChatApp.router.state.fullPath;
     if (route == null ||
         (!route.contains("/rooms") && !route.contains('registration'))) {
-      context.go('/registration/create');
+      context.go('/rooms');
     }
   } else {
     await redirect;

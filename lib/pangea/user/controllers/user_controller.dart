@@ -106,6 +106,7 @@ class UserController {
     Profile Function(Profile) update, {
     waitForDataInSync = false,
   }) async {
+    await initialize();
     final prevTargetLang = _pangeaController.languageController.userL2;
     final prevBaseLang = _pangeaController.languageController.userL1;
     final prevHash = profile.hashCode;

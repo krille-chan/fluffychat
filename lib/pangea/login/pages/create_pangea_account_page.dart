@@ -131,6 +131,7 @@ class CreatePangeaAccountPageState extends State<CreatePangeaAccountPage> {
   }
 
   Future<void> _updateTargetLanguage() async {
+    if (_langCode == null) return;
     await MatrixState.pangeaController.userController.updateProfile(
       (profile) {
         profile.userSettings.targetLanguage = _langCode;
@@ -150,7 +151,12 @@ class CreatePangeaAccountPageState extends State<CreatePangeaAccountPage> {
 
     try {
       if (_langCode == null) {
-        throw Exception('No language selected');
+        // at this point, there's no cached selected language, and couldn't get
+        // language from cached course code, so go back to the language selection page
+        if (mounted) {
+          context.go('/registration');
+        }
+        return;
       }
 
       final updateFuture = [
