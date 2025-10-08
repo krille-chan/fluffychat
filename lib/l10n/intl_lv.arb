@@ -2322,7 +2322,7 @@
     },
     "setTheme": "Iestatīt izskatu:",
     "@setTheme": {},
-    "changeTheHomeserver": "Mainīt mājserveri",
+    "changeTheHomeserver": "Mainīt mājasserveri",
     "@changeTheHomeserver": {
         "type": "String",
         "placeholders": {}
