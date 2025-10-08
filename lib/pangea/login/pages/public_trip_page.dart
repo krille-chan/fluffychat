@@ -11,7 +11,6 @@ import 'package:fluffychat/pangea/course_creation/course_info_chip_widget.dart';
 import 'package:fluffychat/pangea/course_creation/course_plan_filter_widget.dart';
 import 'package:fluffychat/pangea/course_plans/course_plan_model.dart';
 import 'package:fluffychat/pangea/course_plans/course_plans_repo.dart';
-import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_enum.dart';
 import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
 import 'package:fluffychat/pangea/spaces/utils/public_course_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -34,8 +33,6 @@ class PublicTripPageState extends State<PublicTripPage> {
   bool loading = true;
   Object? error;
 
-  LanguageLevelTypeEnum? languageLevelFilter;
-  LanguageModel? instructionLanguageFilter;
   LanguageModel? targetLanguageFilter;
 
   List<PublicCoursesChunk> discoveredCourses = [];
@@ -51,20 +48,7 @@ class PublicTripPageState extends State<PublicTripPage> {
       setTargetLanguageFilter(target);
     }
 
-    final base = MatrixState.pangeaController.languageController.systemLanguage;
-    if (base != null) {
-      setInstructionLanguageFilter(base);
-    }
-
     _loadCourses();
-  }
-
-  void setLanguageLevelFilter(LanguageLevelTypeEnum? level) {
-    setState(() => languageLevelFilter = level);
-  }
-
-  void setInstructionLanguageFilter(LanguageModel? language) {
-    setState(() => instructionLanguageFilter = language);
   }
 
   void setTargetLanguageFilter(LanguageModel? language) {
@@ -79,26 +63,6 @@ class PublicTripPageState extends State<PublicTripPage> {
               ),
         )
         .toList();
-
-    if (languageLevelFilter != null) {
-      filtered = filtered.where(
-        (chunk) {
-          final course = coursePlans[chunk.courseId];
-          if (course == null) return false;
-          return course.cefrLevel == languageLevelFilter;
-        },
-      ).toList();
-    }
-
-    if (instructionLanguageFilter != null) {
-      filtered = filtered.where(
-        (chunk) {
-          final course = coursePlans[chunk.courseId];
-          if (course == null) return false;
-          return course.baseLanguageModel == instructionLanguageFilter;
-        },
-      ).toList();
-    }
 
     if (targetLanguageFilter != null) {
       filtered = filtered.where(
@@ -200,18 +164,6 @@ class PublicTripPageState extends State<PublicTripPage> {
                           alignment: WrapAlignment.start,
                           children: [
                             CoursePlanFilter<LanguageModel>(
-                              value: instructionLanguageFilter,
-                              onChanged: setInstructionLanguageFilter,
-                              items: MatrixState
-                                  .pangeaController.pLanguageStore.baseOptions,
-                              displayname: (v) =>
-                                  v.getDisplayName(context) ?? v.displayName,
-                              enableSearch: true,
-                              defaultName:
-                                  L10n.of(context).languageOfInstructionsLabel,
-                              shortName: L10n.of(context).allLanguages,
-                            ),
-                            CoursePlanFilter<LanguageModel>(
                               value: targetLanguageFilter,
                               onChanged: setTargetLanguageFilter,
                               items: MatrixState.pangeaController.pLanguageStore
@@ -221,14 +173,6 @@ class PublicTripPageState extends State<PublicTripPage> {
                               enableSearch: true,
                               defaultName: L10n.of(context).targetLanguageLabel,
                               shortName: L10n.of(context).allLanguages,
-                            ),
-                            CoursePlanFilter<LanguageLevelTypeEnum>(
-                              value: languageLevelFilter,
-                              onChanged: setLanguageLevelFilter,
-                              items: LanguageLevelTypeEnum.values,
-                              displayname: (v) => v.string,
-                              defaultName: L10n.of(context).cefrLevelLabel,
-                              shortName: L10n.of(context).allCefrLevels,
                             ),
                           ],
                         ),

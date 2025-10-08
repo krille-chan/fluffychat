@@ -8,7 +8,6 @@ import 'package:fluffychat/pangea/common/widgets/url_image_widget.dart';
 import 'package:fluffychat/pangea/course_creation/course_info_chip_widget.dart';
 import 'package:fluffychat/pangea/course_creation/course_plan_filter_widget.dart';
 import 'package:fluffychat/pangea/course_creation/course_search_provider.dart';
-import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_enum.dart';
 import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -37,11 +36,6 @@ class NewTripPageState extends State<NewTripPage> with CourseSearchProvider {
     final target = MatrixState.pangeaController.languageController.userL2;
     if (target != null) {
       setTargetLanguageFilter(target, reload: false);
-    }
-
-    final base = MatrixState.pangeaController.languageController.systemLanguage;
-    if (base != null) {
-      setInstructionLanguageFilter(base, reload: false);
     }
   }
 
@@ -83,18 +77,6 @@ class NewTripPageState extends State<NewTripPage> with CourseSearchProvider {
                           alignment: WrapAlignment.start,
                           children: [
                             CoursePlanFilter<LanguageModel>(
-                              value: instructionLanguageFilter,
-                              onChanged: setInstructionLanguageFilter,
-                              items: MatrixState
-                                  .pangeaController.pLanguageStore.baseOptions,
-                              displayname: (v) =>
-                                  v.getDisplayName(context) ?? v.displayName,
-                              enableSearch: true,
-                              defaultName:
-                                  L10n.of(context).languageOfInstructionsLabel,
-                              shortName: L10n.of(context).allLanguages,
-                            ),
-                            CoursePlanFilter<LanguageModel>(
                               value: targetLanguageFilter,
                               onChanged: setTargetLanguageFilter,
                               items: MatrixState.pangeaController.pLanguageStore
@@ -104,14 +86,6 @@ class NewTripPageState extends State<NewTripPage> with CourseSearchProvider {
                               enableSearch: true,
                               defaultName: L10n.of(context).targetLanguageLabel,
                               shortName: L10n.of(context).allLanguages,
-                            ),
-                            CoursePlanFilter<LanguageLevelTypeEnum>(
-                              value: languageLevelFilter,
-                              onChanged: setLanguageLevelFilter,
-                              items: LanguageLevelTypeEnum.values,
-                              displayname: (v) => v.string,
-                              defaultName: L10n.of(context).cefrLevelLabel,
-                              shortName: L10n.of(context).allCefrLevels,
                             ),
                           ],
                         ),

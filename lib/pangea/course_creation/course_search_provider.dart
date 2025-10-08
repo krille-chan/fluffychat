@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:fluffychat/pangea/course_plans/course_plan_model.dart';
 import 'package:fluffychat/pangea/course_plans/course_plans_repo.dart';
-import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_enum.dart';
 import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
 
 mixin CourseSearchProvider<T extends StatefulWidget> on State<T> {
@@ -10,9 +9,6 @@ mixin CourseSearchProvider<T extends StatefulWidget> on State<T> {
   Object? error;
 
   List<CoursePlanModel> courses = [];
-
-  LanguageLevelTypeEnum? languageLevelFilter;
-  LanguageModel? instructionLanguageFilter;
   LanguageModel? targetLanguageFilter;
 
   @override
@@ -26,19 +22,7 @@ mixin CourseSearchProvider<T extends StatefulWidget> on State<T> {
   CourseFilter get _filter {
     return CourseFilter(
       targetLanguage: targetLanguageFilter,
-      languageOfInstructions: instructionLanguageFilter,
-      cefrLevel: languageLevelFilter,
     );
-  }
-
-  void setLanguageLevelFilter(LanguageLevelTypeEnum? level, {reload = true}) {
-    languageLevelFilter = level;
-    if (reload) _loadCourses();
-  }
-
-  void setInstructionLanguageFilter(LanguageModel? language, {reload = true}) {
-    instructionLanguageFilter = language;
-    if (reload) _loadCourses();
   }
 
   void setTargetLanguageFilter(LanguageModel? language, {reload = true}) {
