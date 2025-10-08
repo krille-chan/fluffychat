@@ -62,17 +62,19 @@ class CoursePlanController extends State<CoursePlanBuilder> {
   }
 
   Future<void> _loadCourse() async {
+    setState(() {
+      loading = true;
+      error = null;
+      course = null;
+    });
+
     if (widget.courseId == null) {
+      widget.onNotFound?.call();
+      setState(() => loading = false);
       return;
     }
 
     try {
-      setState(() {
-        loading = true;
-        error = null;
-        course = null;
-      });
-
       course = await CoursePlansRepo.get(widget.courseId!);
       widget.onLoaded?.call(course!);
     } catch (e) {

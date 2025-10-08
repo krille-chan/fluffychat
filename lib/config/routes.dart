@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:go_router/go_router.dart';
+import 'package:matrix/matrix_api_lite/generated/model.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
@@ -226,10 +227,27 @@ abstract class AppRoutes {
                   context,
                   state,
                   const PublicTripPage(
+                    route: 'registration',
                     showFilters: false,
                   ),
                 );
               },
+              routes: [
+                GoRoute(
+                  path: ':courseid',
+                  pageBuilder: (context, state) {
+                    return defaultPageBuilder(
+                      context,
+                      state,
+                      SelectedCourse(
+                        state.pathParameters['courseid']!,
+                        SelectedCourseMode.join,
+                        roomChunk: state.extra as PublicRoomsChunk?,
+                      ),
+                    );
+                  },
+                ),
+              ],
             ),
             GoRoute(
               path: 'own',
@@ -252,6 +270,7 @@ abstract class AppRoutes {
                       state,
                       SelectedCourse(
                         state.pathParameters['courseid']!,
+                        SelectedCourseMode.launch,
                       ),
                     );
                   },
@@ -428,9 +447,27 @@ abstract class AppRoutes {
                     return defaultPageBuilder(
                       context,
                       state,
-                      const PublicTripPage(),
+                      const PublicTripPage(
+                        route: 'rooms',
+                      ),
                     );
                   },
+                  routes: [
+                    GoRoute(
+                      path: ':courseid',
+                      pageBuilder: (context, state) {
+                        return defaultPageBuilder(
+                          context,
+                          state,
+                          SelectedCourse(
+                            state.pathParameters['courseid']!,
+                            SelectedCourseMode.join,
+                            roomChunk: state.extra as PublicRoomsChunk?,
+                          ),
+                        );
+                      },
+                    ),
+                  ],
                 ),
                 GoRoute(
                   path: 'own',
@@ -450,6 +487,7 @@ abstract class AppRoutes {
                           state,
                           SelectedCourse(
                             state.pathParameters['courseid']!,
+                            SelectedCourseMode.launch,
                           ),
                         );
                       },
@@ -838,6 +876,7 @@ abstract class AppRoutes {
                             state,
                             SelectedCourse(
                               state.pathParameters['courseId']!,
+                              SelectedCourseMode.addToSpace,
                               spaceId: state.pathParameters['spaceid']!,
                             ),
                           ),

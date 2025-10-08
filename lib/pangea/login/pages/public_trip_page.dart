@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
+import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/bot/widgets/bot_face_svg.dart';
@@ -17,9 +18,11 @@ import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
 class PublicTripPage extends StatefulWidget {
+  final String route;
   final bool showFilters;
   const PublicTripPage({
     super.key,
+    required this.route,
     this.showFilters = true,
   });
 
@@ -69,7 +72,13 @@ class PublicTripPageState extends State<PublicTripPage> {
   }
 
   List<PublicCoursesChunk> get filteredCourses {
-    List<PublicCoursesChunk> filtered = discoveredCourses;
+    List<PublicCoursesChunk> filtered = discoveredCourses
+        .where(
+          (c) => !Matrix.of(context).client.rooms.any(
+                (r) => r.id == c.room.roomId && r.membership == Membership.join,
+              ),
+        )
+        .toList();
 
     if (languageLevelFilter != null) {
       filtered = filtered.where(
@@ -131,8 +140,6 @@ class PublicTripPageState extends State<PublicTripPage> {
           'nextBatch': nextBatch,
         },
       );
-    } finally {
-      setState(() => loading = false);
     }
 
     try {
@@ -155,7 +162,7 @@ class PublicTripPageState extends State<PublicTripPage> {
       );
     } finally {
       if (mounted) {
-        setState(() {});
+        setState(() => loading = false);
       }
     }
   }
@@ -297,7 +304,10 @@ class PublicTripPageState extends State<PublicTripPage> {
                             L10n.of(context).emptyChat;
 
                         return InkWell(
-                          onTap: () {},
+                          onTap: () => context.go(
+                            '/${widget.route}/course/public/${filteredCourses[index].courseId}',
+                            extra: roomChunk,
+                          ),
                           borderRadius: BorderRadius.circular(12.0),
                           child: Container(
                             padding: const EdgeInsets.all(12.0),
