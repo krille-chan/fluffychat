@@ -10,6 +10,7 @@ import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_room_extension.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_session_start/activity_sessions_start_view.dart';
+import 'package:fluffychat/pangea/activity_sessions/activity_session_start/bot_join_error_dialog.dart';
 import 'package:fluffychat/pangea/bot/utils/bot_name.dart';
 import 'package:fluffychat/pangea/course_plans/activity_summaries_provider.dart';
 import 'package:fluffychat/pangea/course_plans/course_activity_repo.dart';
@@ -431,6 +432,21 @@ class ActivitySessionStartController extends State<ActivitySessionStartPage>
   }
 
   Future<void> playWithBot() async {
+    final resp = await showFutureLoadingDialog(
+      context: context,
+      future: _playWithBot,
+      showError: (e) => e is! TimeoutException,
+    );
+
+    if (resp.isError && resp.error is TimeoutException) {
+      showDialog(
+        context: context,
+        builder: (_) => const BotJoinErrorDialog(),
+      );
+    }
+  }
+
+  Future<void> _playWithBot() async {
     if (activityRoom == null) {
       throw Exception("Room is null");
     }
@@ -439,16 +455,19 @@ class ActivitySessionStartController extends State<ActivitySessionStartPage>
       throw Exception("Bot is a member of the room");
     }
 
-    final future = activityRoom!.client.onRoomState.stream
-        .where(
-          (state) =>
-              state.roomId == activityRoom!.id &&
-              state.state.type == PangeaEventTypes.activityRole &&
-              state.state.senderId == BotName.byEnvironment,
-        )
-        .first;
+    final Future<({String roomId, StrippedStateEvent state})?> future =
+        activityRoom!.client.onRoomState.stream
+            .where(
+              (state) =>
+                  state.roomId == activityRoom!.id &&
+                  state.state.type == PangeaEventTypes.activityRole &&
+                  state.state.senderId == BotName.byEnvironment,
+            )
+            .first;
     activityRoom!.invite(BotName.byEnvironment);
-    await future.timeout(const Duration(seconds: 30));
+    await future.timeout(
+      const Duration(seconds: 5),
+    );
   }
 
   @override

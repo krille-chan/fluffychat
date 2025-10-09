@@ -222,12 +222,8 @@ class ActivitySessionStartView extends StatelessWidget {
                                               if (!controller.isBotRoomMember)
                                                 ElevatedButton(
                                                   style: buttonStyle,
-                                                  onPressed: () =>
-                                                      showFutureLoadingDialog(
-                                                    context: context,
-                                                    future:
-                                                        controller.playWithBot,
-                                                  ),
+                                                  onPressed:
+                                                      controller.playWithBot,
                                                   child: Row(
                                                     mainAxisAlignment:
                                                         MainAxisAlignment
