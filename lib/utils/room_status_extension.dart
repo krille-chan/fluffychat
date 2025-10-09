@@ -54,4 +54,50 @@ extension RoomStatusExtension on Room {
     );
     return lastReceipts.toList();
   }
+
+  /// Gets the category of this room based on its tags
+  String get tagCategory {
+    // Use existing Matrix SDK functionality for favorites
+    if (isFavourite) return 'favourite';
+
+    // Check for low priority tag stored in account data
+    try {
+      final accountData = client.accountData['m.lowpriority.$id'];
+      if (accountData?.content['lowpriority'] == true) return 'lowpriority';
+    } catch (e) {
+      // Ignore errors when reading account data
+    }
+
+    return 'normal';
+  }
+
+  /// Toggles favorite status and clears low priority if favorited
+  Future<void> toggleFavorite() async {
+    final willBeFavorite = !isFavourite;
+    await setFavourite(willBeFavorite);
+    if (willBeFavorite) {
+      await setLowPriority(false);
+    }
+  }
+
+  /// Sets or removes the low priority flag for this room
+  Future<void> setLowPriority(bool isLowPriority) async {
+    final key = 'm.lowpriority.$id';
+    if (isLowPriority) {
+      await setFavourite(false); // Clear favorite when setting low priority
+      await client.setAccountData(client.userID!, key, {'lowpriority': true});
+    } else {
+      await client.setAccountData(client.userID!, key, {});
+    }
+  }
+
+  /// Checks if this room has the low priority tag
+  bool get isTaggedLowPriority {
+    try {
+      final accountData = client.accountData['m.lowpriority.$id'];
+      return accountData?.content['lowpriority'] == true;
+    } catch (e) {
+      return false;
+    }
+  }
 }
