@@ -93,6 +93,8 @@ class CmsCoursePlanActivity {
   final List<CmsCoursePlanVocab> vocabs;
   final JoinField? coursePlanActivityMedia;
   final List<String> coursePlanTopics;
+  final String? coursePlanActivityTranslationGroup;
+  final String? originalCoursePlanActivity;
   final PolymorphicRelationship? createdBy;
   final PolymorphicRelationship? updatedBy;
   final String updatedAt;
@@ -112,6 +114,8 @@ class CmsCoursePlanActivity {
     required this.vocabs,
     required this.coursePlanActivityMedia,
     required this.coursePlanTopics,
+    this.coursePlanActivityTranslationGroup,
+    this.originalCoursePlanActivity,
     this.createdBy,
     this.updatedBy,
     required this.updatedAt,
@@ -147,6 +151,9 @@ class CmsCoursePlanActivity {
       coursePlanActivityMedia:
           JoinField.fromJson(json['coursePlanActivityMedia']),
       coursePlanTopics: List<String>.from(json['coursePlanTopics']),
+      coursePlanActivityTranslationGroup:
+          json['coursePlanActivityTranslationGroup'] as String?,
+      originalCoursePlanActivity: json['originalCoursePlanActivity'] as String?,
       createdBy: json['createdBy'] != null
           ? PolymorphicRelationship.fromJson(json['createdBy'])
           : null,
@@ -173,6 +180,8 @@ class CmsCoursePlanActivity {
       'vocabs': vocabs.map((vocab) => vocab.toJson()).toList(),
       'coursePlanActivityMedia': coursePlanActivityMedia?.toJson(),
       'coursePlanTopics': coursePlanTopics,
+      'coursePlanActivityTranslationGroup': coursePlanActivityTranslationGroup,
+      'originalCoursePlanActivity': originalCoursePlanActivity,
       'createdBy': createdBy?.toJson(),
       'updatedBy': updatedBy?.toJson(),
       'updatedAt': updatedAt,

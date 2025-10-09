@@ -14,6 +14,8 @@ class CmsCoursePlan {
   final String l2; // Target language
   final JoinField? coursePlanMedia;
   final JoinField? coursePlanTopics;
+  final String? coursePlanTranslationGroup;
+  final String? originalCoursePlan;
   final PolymorphicRelationship? createdBy;
   final PolymorphicRelationship? updatedBy;
   final String updatedAt;
@@ -28,6 +30,8 @@ class CmsCoursePlan {
     required this.l2,
     this.coursePlanMedia,
     this.coursePlanTopics,
+    this.coursePlanTranslationGroup,
+    this.originalCoursePlan,
     this.createdBy,
     this.updatedBy,
     required this.updatedAt,
@@ -44,6 +48,8 @@ class CmsCoursePlan {
       l2: json['l2'],
       coursePlanMedia: JoinField.fromJson(json['coursePlanMedia']),
       coursePlanTopics: JoinField.fromJson(json['coursePlanTopics']),
+      coursePlanTranslationGroup: json['coursePlanTranslationGroup'],
+      originalCoursePlan: json['originalCoursePlan'],
       createdBy: PolymorphicRelationship.fromJson(json['createdBy']),
       updatedBy: PolymorphicRelationship.fromJson(json['updatedBy']),
       updatedAt: json['updatedAt'],
@@ -61,6 +67,8 @@ class CmsCoursePlan {
       'l2': l2,
       'coursePlanMedia': coursePlanMedia?.toJson(),
       'coursePlanTopics': coursePlanTopics?.toJson(),
+      'coursePlanTranslationGroup': coursePlanTranslationGroup,
+      'originalCoursePlan': originalCoursePlan,
       'createdBy': createdBy?.toJson(),
       'updatedBy': updatedBy?.toJson(),
       'updatedAt': updatedAt,

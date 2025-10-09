@@ -11,6 +11,8 @@ class CmsCoursePlanTopic {
   final JoinField? coursePlanActivities;
   final JoinField? coursePlanTopicLocations;
   final List<String> coursePlans;
+  final String? coursePlanTopicTranslationGroup;
+  final String? originalCoursePlanTopic;
   final PolymorphicRelationship? createdBy;
   final PolymorphicRelationship? updatedBy;
   final String updatedAt;
@@ -23,6 +25,8 @@ class CmsCoursePlanTopic {
     required this.coursePlanActivities,
     required this.coursePlanTopicLocations,
     required this.coursePlans,
+    this.coursePlanTopicTranslationGroup,
+    this.originalCoursePlanTopic,
     this.createdBy,
     this.updatedBy,
     required this.updatedAt,
@@ -41,6 +45,9 @@ class CmsCoursePlanTopic {
         json['coursePlanTopicLocations'],
       ),
       coursePlans: List<String>.from(json['coursePlans']),
+      coursePlanTopicTranslationGroup:
+          json['coursePlanTopicTranslationGroup'] as String?,
+      originalCoursePlanTopic: json['originalCoursePlanTopic'] as String?,
       createdBy: json['createdBy'] != null
           ? PolymorphicRelationship.fromJson(json['createdBy'])
           : null,
@@ -60,6 +67,8 @@ class CmsCoursePlanTopic {
       'coursePlanActivities': coursePlanActivities?.toJson(),
       'coursePlanTopicLocations': coursePlanTopicLocations?.toJson(),
       'coursePlans': coursePlans,
+      'coursePlanTopicTranslationGroup': coursePlanTopicTranslationGroup,
+      'originalCoursePlanTopic': originalCoursePlanTopic,
       'createdBy': createdBy?.toJson(),
       'updatedBy': updatedBy?.toJson(),
       'updatedAt': updatedAt,
