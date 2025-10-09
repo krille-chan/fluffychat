@@ -68,6 +68,9 @@ extension LocalNotificationsExtension on MatrixState {
         );
       }
 
+      // #Pangea
+      _audioPlayer.volume = AppConfig.volume;
+      // Pangea#
       _audioPlayer.play();
 
       html.Notification(

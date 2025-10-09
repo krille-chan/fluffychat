@@ -194,6 +194,8 @@ abstract class AppConfig {
       "https://pangea-chat-client-assets.s3.us-east-1.amazonaws.com";
 
   static String errorSubscriptionId = "pangea_subscription_error";
+
+  static double volume = 1.0;
   // Pangea#
 
   static void loadFromJson(Map<String, dynamic> json) {

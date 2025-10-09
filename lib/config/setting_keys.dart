@@ -34,6 +34,9 @@ abstract class SettingKeys {
   static const String showPresences = 'chat.fluffy.show_presences';
   static const String displayNavigationRail =
       'chat.fluffy.display_navigation_rail';
+  // #Pangea
+  static const String volume = 'pangea.volume';
+  // Pangea#
 }
 
 enum AppSettings<T> {

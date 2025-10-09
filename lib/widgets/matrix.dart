@@ -528,6 +528,10 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     AppConfig.displayNavigationRail =
         store.getBool(SettingKeys.displayNavigationRail) ??
             AppConfig.displayNavigationRail;
+
+    // #Pangea
+    AppConfig.volume = store.getDouble(SettingKeys.volume) ?? AppConfig.volume;
+    // Pangea#
   }
 
   @override

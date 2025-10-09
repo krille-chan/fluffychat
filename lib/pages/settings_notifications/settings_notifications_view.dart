@@ -48,6 +48,28 @@ class SettingsNotificationsView extends StatelessWidget {
             return SelectionArea(
               child: Column(
                 children: [
+                  // #Pangea
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: Row(
+                      children: [
+                        const Icon(Icons.volume_up),
+                        Expanded(
+                          child: ValueListenableBuilder(
+                            valueListenable: controller.volumeNotifier,
+                            builder: (context, volume, _) {
+                              return Slider(
+                                value: volume,
+                                max: 1.0,
+                                onChanged: controller.updateVolume,
+                              );
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  // Pangea#
                   if (pushRules != null)
                     for (final category in pushCategories) ...[
                       ListTile(

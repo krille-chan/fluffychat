@@ -28,6 +28,7 @@ class LevelUpUtil {
   ) async {
     // Remove delay since GetAnalyticsController._onLevelUp is already async
     final player = AudioPlayer();
+    player.setVolume(AppConfig.volume);
 
     // Wait for any existing snackbars to dismiss
     await _waitForSnackbars(context);
