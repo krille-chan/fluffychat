@@ -1,10 +1,8 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 
-import 'package:fluffychat/config/themes.dart';
+import 'package:material_symbols_icons/symbols.dart';
+
 import 'package:fluffychat/pangea/common/utils/overlay.dart';
-import 'package:fluffychat/pangea/constructs/construct_level_enum.dart';
 import 'package:fluffychat/pangea/message_token_text/tokens_util.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
@@ -27,30 +25,46 @@ class NewWordOverlay extends StatefulWidget {
 class _NewWordOverlayState extends State<NewWordOverlay>
     with TickerProviderStateMixin {
   AnimationController? _controller;
-  Animation<double>? _xpScaleAnim;
-  Animation<double>? _fadeAnim;
+  Animation<double>? _opacityAnim;
   Animation<double>? _moveAnim;
-  bool columnMode = false;
-
-  Widget? get svg => ConstructLevelEnum.seeds.icon();
+  Animation<double>? _backgroundFadeAnim;
 
   @override
   void initState() {
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 1850),
+      duration: const Duration(milliseconds: 2000),
     );
 
-    _xpScaleAnim = CurvedAnimation(
-      parent: _controller!,
-      curve: const Interval(0.0, 0.5, curve: Curves.easeInOut),
-    );
+    _opacityAnim = TweenSequence<double>([
+      TweenSequenceItem(
+        tween: Tween<double>(begin: 0.0, end: 1.0)
+            .chain(CurveTween(curve: Curves.easeIn)),
+        weight: 25,
+      ),
+      TweenSequenceItem(
+        tween: ConstantTween<double>(1.0),
+        weight: 25,
+      ),
+      TweenSequenceItem(
+        tween: Tween<double>(begin: 1.0, end: 0.0)
+            .chain(CurveTween(curve: Curves.easeOut)),
+        weight: 50,
+      ),
+    ]).animate(_controller!);
 
-    _fadeAnim = CurvedAnimation(
-      parent: _controller!,
-      curve: const Interval(0.5, 1.0, curve: Curves.easeOut),
-    );
+    _backgroundFadeAnim = TweenSequence<double>([
+      TweenSequenceItem(
+        tween: ConstantTween<double>(1.0),
+        weight: 50,
+      ),
+      TweenSequenceItem(
+        tween: Tween<double>(begin: 1.0, end: 0.0)
+            .chain(CurveTween(curve: Curves.easeOut)),
+        weight: 50,
+      ),
+    ]).animate(_controller!);
 
     _moveAnim = CurvedAnimation(
       parent: _controller!,
@@ -58,7 +72,6 @@ class _NewWordOverlayState extends State<NewWordOverlay>
     );
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      columnMode = FluffyThemes.isColumnMode(context);
       _showFlyingWidget();
       _controller?.forward().then((_) {
         TokensUtil.clearNewTokenCache();
@@ -75,10 +88,7 @@ class _NewWordOverlayState extends State<NewWordOverlay>
   }
 
   void _showFlyingWidget() {
-    if (_controller == null ||
-        _xpScaleAnim == null ||
-        _fadeAnim == null ||
-        _moveAnim == null) {
+    if (_controller == null || _opacityAnim == null || _moveAnim == null) {
       return;
     }
 
@@ -86,32 +96,22 @@ class _NewWordOverlayState extends State<NewWordOverlay>
       context: context,
       closePrevOverlay: false,
       ignorePointer: true,
-      offset: const Offset(0, 65),
+      offset: const Offset(0, 45),
       targetAnchor: Alignment.center,
       overlayKey: widget.transformTargetId,
       transformTargetId: widget.transformTargetId,
       child: AnimatedBuilder(
         animation: _controller!,
         builder: (context, child) {
-          final scale = _xpScaleAnim!.value;
-          final fade = 1.0 - (_fadeAnim!.value);
+          final opacity = _opacityAnim!.value;
           final move = _moveAnim!.value;
-
-          final seedSize = 75 * scale;
           final moveY = -move * 60;
 
           return Transform.translate(
             offset: Offset(0, moveY),
             child: Opacity(
-              opacity: fade,
-              child: Transform.rotate(
-                angle: scale * 2 * pi,
-                child: SizedBox(
-                  width: seedSize,
-                  height: seedSize,
-                  child: svg ?? const SizedBox(),
-                ),
-              ),
+              opacity: opacity,
+              child: const NewVocabBubble(),
             ),
           );
         },
@@ -130,7 +130,7 @@ class _NewWordOverlayState extends State<NewWordOverlay>
           top: 50,
           bottom: 5,
           child: Opacity(
-            opacity: 1 - _fadeAnim!.value,
+            opacity: _backgroundFadeAnim!.value,
             child: Container(
               height: double.infinity,
               width: double.infinity,
@@ -139,6 +139,44 @@ class _NewWordOverlayState extends State<NewWordOverlay>
           ),
         );
       },
+    );
+  }
+}
+
+class NewVocabBubble extends StatelessWidget {
+  const NewVocabBubble({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Container(
+      decoration: BoxDecoration(
+        color: theme.colorScheme.surfaceContainerHighest,
+        borderRadius: const BorderRadius.all(Radius.circular(16.0)),
+      ),
+      padding: const EdgeInsets.symmetric(
+        vertical: 8.0,
+        horizontal: 16.0,
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(
+            Symbols.toys_and_games,
+            color: theme.colorScheme.primary,
+            size: 24,
+          ),
+          const SizedBox(width: 4.0),
+          Text(
+            "+ 1",
+            style: TextStyle(
+              color: theme.colorScheme.primary,
+              fontWeight: FontWeight.bold,
+              fontSize: 14,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
