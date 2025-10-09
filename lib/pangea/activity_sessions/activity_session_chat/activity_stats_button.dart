@@ -14,6 +14,7 @@ import 'package:fluffychat/pangea/activity_summary/activity_summary_analytics_mo
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/common/utils/overlay.dart';
 import 'package:fluffychat/pangea/common/widgets/pressable_button.dart';
+import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/instructions/instructions_enum.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
@@ -31,6 +32,7 @@ class ActivityStatsButton extends StatefulWidget {
 
 class _ActivityStatsButtonState extends State<ActivityStatsButton> {
   StreamSubscription? _analyticsSubscription;
+  StreamSubscription? _rolesSubscription;
   ActivitySummaryAnalyticsModel? analytics;
 
   @override
@@ -43,11 +45,23 @@ class _ActivityStatsButtonState extends State<ActivityStatsButton> {
     _analyticsSubscription = widget
         .controller.pangeaController.getAnalytics.analyticsStream.stream
         .listen((_) => _updateAnalytics());
+
+    _rolesSubscription = widget.controller.room.client.onRoomState.stream
+        .where(
+      (u) =>
+          u.roomId == widget.controller.room.id &&
+          u.state.type == PangeaEventTypes.activityRole,
+    )
+        .listen((_) {
+      debugPrint("ON ROOM STATE");
+      _showStatsMenuDropdownInstructions();
+    });
   }
 
   @override
   void dispose() {
     _analyticsSubscription?.cancel();
+    _rolesSubscription?.cancel();
     super.dispose();
   }
 
@@ -58,11 +72,18 @@ class _ActivityStatsButtonState extends State<ActivityStatsButton> {
         MatrixState.pAnyState.isOverlayOpen(
           RegExp(r"^word-zoom-card-.*$"),
         ) ||
-        _xpCount <= 0 ||
         widget.controller.timeline == null) {
       return false;
     }
 
+    // if someone has finished the activity, enable the tooltip
+    final activityRoles =
+        widget.controller.room.activityRoles?.roles.values.toList() ?? [];
+    if (activityRoles.any((r) => r.isFinished)) {
+      return true;
+    }
+
+    // otherwise, if no one has finished, only show if the user has sent >= 3 messages
     int count = 0;
     for (final event in widget.controller.timeline!.events) {
       if (event.senderId == _client.userID &&
