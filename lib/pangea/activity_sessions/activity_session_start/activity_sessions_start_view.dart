@@ -334,7 +334,7 @@ class _ActivityStartButtons extends StatelessWidget {
               ElevatedButton(
                 style: buttonStyle,
                 onPressed: controller.courseParent?.canInvite ?? false
-                    ? () => context.go(
+                    ? () => context.push(
                           "/rooms/spaces/${controller.courseParent!.id}/invite",
                         )
                     : null,
