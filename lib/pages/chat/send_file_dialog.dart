@@ -332,6 +332,7 @@ class SendFileDialogState extends State<SendFileDialog> {
                       padding: const EdgeInsets.only(bottom: 8.0),
                       child: DialogTextField(
                         controller: _labelTextController,
+                        textCapitalization: TextCapitalization.sentences,
                         labelText: L10n.of(context).optionalMessage,
                         minLines: 1,
                         maxLines: 3,
