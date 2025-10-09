@@ -155,7 +155,11 @@ Future<void> notificationTap(
             );
           }
 
-          final eventId = await room.sendTextEvent(input);
+          final eventId = await room.sendTextEvent(
+            input,
+            parseCommands: false,
+            displayPendingEvent: false,
+          );
 
           if (PlatformInfos.isAndroid) {
             final ownProfile = await room.client.fetchOwnProfile();

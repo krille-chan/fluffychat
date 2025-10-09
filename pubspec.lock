@@ -1113,10 +1113,11 @@ packages:
   matrix:
     dependency: "direct main"
     description:
-      name: matrix
-      sha256: "832d112e556cbb6fcf5e7e4528c840c1f95f865682ade277dc2b9e4128431021"
-      url: "https://pub.dev"
-    source: hosted
+      path: "."
+      ref: HEAD
+      resolved-ref: e772d4db6887ce853b0d685b45fb502ba0a4caca
+      url: "https://github.com/famedly/matrix-dart-sdk.git"
+    source: git
     version: "3.0.0"
   meta:
     dependency: transitive
