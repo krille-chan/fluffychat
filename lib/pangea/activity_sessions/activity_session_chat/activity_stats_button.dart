@@ -170,24 +170,29 @@ class _ActivityStatsButtonState extends State<ActivityStatsButton> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final roleState =
+        widget.controller.room.activityRoles?.roles.values.toList() ?? [];
+
+    final enabled = _xpCount > 0 || roleState.any((r) => r.isFinished);
+
     return PressableButton(
       onPressed: () => widget.controller.setShowDropdown(
         !widget.controller.showActivityDropdown,
       ),
       borderRadius: BorderRadius.circular(12),
-      color: _xpCount > 0
+      color: enabled
           ? (theme.brightness == Brightness.light
               ? AppConfig.yellowLight
               : Color.lerp(AppConfig.gold, Colors.black, 0.3)!)
           : theme.colorScheme.surface,
-      depressed: _xpCount <= 0 || widget.controller.showActivityDropdown,
+      depressed: !enabled || widget.controller.showActivityDropdown,
       child: AnimatedContainer(
         duration: FluffyThemes.animationDuration,
         width: 300,
         height: 55,
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         decoration: BoxDecoration(
-          color: _xpCount > 0
+          color: enabled
               ? theme.brightness == Brightness.light
                   ? AppConfig.yellowLight
                   : Color.lerp(AppConfig.gold, Colors.black, 0.3)!
