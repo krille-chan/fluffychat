@@ -66,6 +66,7 @@ class ActivityParticipantIndicator extends StatelessWidget {
                         ? theme.colorScheme.surfaceContainerHighest
                         : Colors.transparent,
                   ),
+                  constraints: const BoxConstraints(maxWidth: 200.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -103,6 +104,7 @@ class ActivityParticipantIndicator extends StatelessWidget {
                         style: const TextStyle(
                           fontSize: 12.0,
                         ),
+                        textAlign: TextAlign.center,
                       ),
                       Text(
                         userId?.localpart ?? L10n.of(context).openRoleLabel,
@@ -114,6 +116,9 @@ class ActivityParticipantIndicator extends StatelessWidget {
                               : (userId?.localpart?.lightColorText ??
                                   name.lightColorText)),
                         ),
+                        textAlign: TextAlign.center,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                       ),
                     ],
                   ),
