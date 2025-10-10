@@ -57,10 +57,9 @@ class WordZoomWidget extends StatelessWidget {
     return Stack(
       children: [
         Container(
+          height: AppConfig.toolbarMaxHeight - 8,
           padding: const EdgeInsets.all(12.0),
           constraints: const BoxConstraints(
-            minHeight: AppConfig.toolbarMinHeight - 8,
-            maxHeight: AppConfig.toolbarMaxHeight - 8,
             maxWidth: AppConfig.toolbarMinWidth,
           ),
           child: CompositedTransformTarget(
@@ -68,7 +67,6 @@ class WordZoomWidget extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 spacing: 12.0,
-                mainAxisSize: MainAxisSize.min,
                 children: [
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -132,7 +130,6 @@ class WordZoomWidget extends StatelessWidget {
                     builder: (context, controller) {
                       if (controller.editMode) {
                         return Column(
-                          mainAxisSize: MainAxisSize.min,
                           children: [
                             Text(
                               "${L10n.of(context).pangeaBotIsFallible} ${L10n.of(context).whatIsMeaning(
@@ -140,13 +137,15 @@ class WordZoomWidget extends StatelessWidget {
                                 construct.category,
                               )}",
                               textAlign: TextAlign.center,
-                              style:
-                                  const TextStyle(fontStyle: FontStyle.italic),
+                              style: const TextStyle(
+                                fontStyle: FontStyle.italic,
+                              ),
                             ),
                             const SizedBox(height: 10),
                             Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 16.0),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 16.0,
+                              ),
                               child: TextField(
                                 minLines: 1,
                                 maxLines: 3,
