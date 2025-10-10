@@ -151,6 +151,7 @@ class SpaceDetailsContent extends StatelessWidget {
       ),
       ButtonDetails(
         title: l10n.leave,
+        description: l10n.leaveDesc,
         icon: const Icon(Icons.logout_outlined, size: 30.0),
         onPressed: () async {
           final confirmed = await showOkCancelAlertDialog(

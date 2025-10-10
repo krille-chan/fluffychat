@@ -5311,5 +5311,6 @@
   "noPublicCoursesFound": "No public courses found. Would you like to create one?",
   "noCourseTemplatesFound": "We couldn't find any courses for your target language. You can chat with Pangea Bot in the meantime, and check back later for more courses.",
   "botActivityJoinFailMessage": "Pangea Bot is taking a while to respond. Please try again later, or invite a friend.",
-  "unsubscribedResponseError": "This feature requires a subscription"
+  "unsubscribedResponseError": "This feature requires a subscription",
+  "leaveDesc": "Leave this space and all chats within it"
 }
