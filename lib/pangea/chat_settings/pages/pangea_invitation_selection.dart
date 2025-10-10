@@ -399,6 +399,7 @@ class PangeaInvitationSelectionController
       },
     );
     if (success.error == null) {
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(L10n.of(context).contactHasBeenInvitedToTheChat),
