@@ -61,7 +61,7 @@ jobs:
       - run: flutter pub get
       - name: Prepare web
         run: ./scripts/prepare-web.sh
-      - run: flutter build web
+      - run: flutter build web --no-web-resources-cdn
 
   build_debug_linux:
     strategy:
