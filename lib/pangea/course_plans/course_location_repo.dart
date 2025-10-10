@@ -60,8 +60,9 @@ class CourseLocationRepo {
     if (toFetch.isNotEmpty) {
       final fetchedLocations = await _fetch(courseId, toFetch);
       locations.addAll(fetchedLocations);
-      for (int i = 0; i < toFetch.length; i++) {
-        await _setCached(toFetch[i], fetchedLocations[i]);
+      for (int i = 0; i < fetchedLocations.length; i++) {
+        final location = fetchedLocations[i];
+        await _setCached(location.uuid, location);
       }
     }
 
