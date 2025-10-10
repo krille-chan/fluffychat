@@ -194,10 +194,6 @@ class PangeaInvitationSelectionController
     if (a.id == client.userID) return -1;
     if (b.id == client.userID) return 1;
 
-    // sort the bot to the bottom
-    if (a.id == BotName.byEnvironment) return 1;
-    if (b.id == BotName.byEnvironment) return -1;
-
     if (participants != null) {
       final participantA = participants!.firstWhereOrNull((u) => u.id == a.id);
       final participantB = participants!.firstWhereOrNull((u) => u.id == b.id);
@@ -268,10 +264,8 @@ class PangeaInvitationSelectionController
         )
         .toList();
 
+    contacts.removeWhere((u) => u.id == BotName.byEnvironment);
     contacts.sort(_sortUsers);
-    if (_room?.isSpace ?? false) {
-      contacts.removeWhere((u) => u.id == BotName.byEnvironment);
-    }
     return contacts;
   }
 
@@ -347,9 +341,7 @@ class PangeaInvitationSelectionController
     }
 
     final results = response.results;
-    if (_room?.isSpace ?? false) {
-      results.removeWhere((profile) => profile.userId == BotName.byEnvironment);
-    }
+    results.removeWhere((profile) => profile.userId == BotName.byEnvironment);
 
     setState(() {
       foundProfiles = List<Profile>.from(results);
@@ -372,8 +364,8 @@ class PangeaInvitationSelectionController
 
       foundProfiles.removeWhere(
         (profile) =>
-            participants?.indexWhere((u) => u.id == profile.userId) != -1 &&
-            BotName.byEnvironment != profile.userId,
+            participants?.indexWhere((u) => u.id == profile.userId) != -1 ||
+            BotName.byEnvironment == profile.userId,
       );
     });
   }

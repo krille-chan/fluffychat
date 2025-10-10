@@ -10,11 +10,8 @@ import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_details/chat_details.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_room_extension.dart';
-import 'package:fluffychat/pangea/bot/widgets/bot_face_svg.dart';
-import 'package:fluffychat/pangea/chat_settings/models/bot_options_model.dart';
 import 'package:fluffychat/pangea/chat_settings/pages/room_details_buttons.dart';
 import 'package:fluffychat/pangea/chat_settings/utils/delete_room.dart';
-import 'package:fluffychat/pangea/chat_settings/widgets/conversation_bot/conversation_bot_settings.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
@@ -115,23 +112,6 @@ class ChatDetailsButtonRowState extends State<ChatDetailsButtonRow> {
         visible: kIsWeb,
         enabled: room.ownPowerLevel >= 50,
         showInMainView: false,
-      ),
-      ButtonDetails(
-        title: l10n.botSettings,
-        icon: const BotFace(
-          width: 30.0,
-          expression: BotExpression.idle,
-        ),
-        onPressed: () => showDialog<BotOptionsModel?>(
-          context: context,
-          builder: (BuildContext context) => ConversationBotSettingsDialog(
-            room: room,
-            onSubmit: widget.controller.setBotOptions,
-          ),
-        ),
-        visible: (!room.isDirectChat || room.botOptions != null) &&
-            !room.showActivityChatUI,
-        enabled: room.canInvite,
       ),
       ButtonDetails(
         title: l10n.chatCapacity,

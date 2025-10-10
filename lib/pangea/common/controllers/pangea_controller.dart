@@ -11,6 +11,9 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/analytics_misc/get_analytics_controller.dart';
 import 'package:fluffychat/pangea/analytics_misc/put_analytics_controller.dart';
+import 'package:fluffychat/pangea/bot/utils/bot_room_extension.dart';
+import 'package:fluffychat/pangea/chat_settings/models/bot_options_model.dart';
+import 'package:fluffychat/pangea/chat_settings/utils/bot_client_extension.dart';
 import 'package:fluffychat/pangea/choreographer/controllers/contextual_definition_controller.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/events/controllers/message_data_controller.dart';
@@ -48,7 +51,8 @@ class PangeaController {
   ///store Services
   final pLanguageStore = PLanguageStore();
 
-  StreamSubscription? _languageStream;
+  StreamSubscription? _languageSubscription;
+  StreamSubscription? _settingsSubscription;
 
   ///Matrix Variables
   MatrixState matrixState;
@@ -57,7 +61,7 @@ class PangeaController {
   int? randomint;
   PangeaController({required this.matrix, required this.matrixState}) {
     _setup();
-    _setLanguageSubscription();
+    _setSettingsSubscriptions();
     randomint = Random().nextInt(2000);
   }
 
@@ -175,14 +179,16 @@ class PangeaController {
         // Reset cached analytics data
         _disposeAnalyticsControllers();
         userController.clear();
-        _languageStream?.cancel();
-        _languageStream = null;
+        _languageSubscription?.cancel();
+        _settingsSubscription?.cancel();
+        _languageSubscription = null;
+        _settingsSubscription = null;
         _logOutfromPangea(context);
         break;
       case LoginState.loggedIn:
         // Initialize analytics data
         initControllers();
-        _setLanguageSubscription();
+        _setSettingsSubscriptions();
 
         userController.reinitialize().then((_) {
           final l1 = userController.profile.userSettings.sourceLanguage;
@@ -218,11 +224,39 @@ class PangeaController {
     await _initAnalyticsControllers();
   }
 
-  void _setLanguageSubscription() {
-    _languageStream?.cancel();
-    _languageStream = userController.languageStream.stream.listen(
-      (_) => clearCache(exclude: ["analytics_storage"]),
-    );
+  void _setSettingsSubscriptions() {
+    _languageSubscription?.cancel();
+    _languageSubscription =
+        userController.languageStream.stream.listen(_onLanguageUpdate);
+    _settingsSubscription?.cancel();
+    _settingsSubscription = userController.settingsUpdateStream.stream
+        .listen((_) => _updateBotOptions());
+  }
+
+  Future<void> _onLanguageUpdate(LanguageUpdate update) async {
+    clearCache(exclude: ["analytics_storage"]);
+    _updateBotOptions();
+  }
+
+  Future<void> _updateBotOptions() async {
+    if (!matrixState.client.isLogged()) return;
+    final botDM = matrixState.client.botDM;
+    if (botDM == null) {
+      return;
+    }
+
+    final targetLanguage = languageController.userL2?.langCode;
+    final cefrLevel = userController.profile.userSettings.cefrLevel;
+    final updateBotOptions = botDM.botOptions ?? BotOptionsModel();
+
+    if (updateBotOptions.targetLanguage == targetLanguage &&
+        updateBotOptions.languageLevel == cefrLevel) {
+      return;
+    }
+
+    updateBotOptions.targetLanguage = targetLanguage;
+    updateBotOptions.languageLevel = cefrLevel;
+    await botDM.setBotOptions(updateBotOptions);
   }
 
   Future<void> setPangeaPushRules() async {

@@ -1,6 +1,3 @@
-import 'dart:developer';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
@@ -12,12 +9,9 @@ import 'package:matrix/matrix.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/settings/settings.dart';
 import 'package:fluffychat/pangea/chat/constants/default_power_level.dart';
-import 'package:fluffychat/pangea/chat_settings/models/bot_options_model.dart';
 import 'package:fluffychat/pangea/chat_settings/pages/pangea_room_details.dart';
-import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/download/download_room_extension.dart';
 import 'package:fluffychat/pangea/download/download_type_enum.dart';
-import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/extensions/join_rule_extension.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/utils/file_selector.dart';
@@ -265,31 +259,6 @@ class ChatDetailsController extends State<ChatDetails> {
             "${L10n.of(context).oopsSomethingWentWrong} ${L10n.of(context).errorPleaseRefresh}",
           ),
         ),
-      );
-    }
-  }
-
-  Future<void> setBotOptions(BotOptionsModel botOptions) async {
-    if (roomId == null) return;
-    final Room? room = Matrix.of(context).client.getRoomById(roomId!);
-    if (room == null) return;
-
-    try {
-      await Matrix.of(context).client.setRoomStateWithKey(
-            room.id,
-            PangeaEventTypes.botOptions,
-            '',
-            botOptions.toJson(),
-          );
-    } catch (err, stack) {
-      debugger(when: kDebugMode);
-      ErrorHandler.logError(
-        e: err,
-        s: stack,
-        data: {
-          "botOptions": botOptions.toJson(),
-          "roomID": room.id,
-        },
       );
     }
   }
