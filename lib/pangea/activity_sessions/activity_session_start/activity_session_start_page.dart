@@ -311,6 +311,15 @@ class ActivitySessionStartController extends State<ActivitySessionStartPage>
     }
 
     try {
+      // Since the method that check for assigned roles needs to know each
+      // participant's membership status (to exclude left users), we need
+      // to pre-load the room's participants list.
+      activityRoom!.requestParticipants(
+        [Membership.join, Membership.invite, Membership.knock],
+        false,
+        true,
+      );
+
       await activityRoom!.joinActivity(
         activity!.roles[_selectedRoleId!]!,
       );

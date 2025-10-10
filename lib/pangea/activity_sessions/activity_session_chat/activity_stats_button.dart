@@ -53,7 +53,6 @@ class _ActivityStatsButtonState extends State<ActivityStatsButton> {
           u.state.type == PangeaEventTypes.activityRole,
     )
         .listen((_) {
-      debugPrint("ON ROOM STATE");
       _showStatsMenuDropdownInstructions();
     });
   }
