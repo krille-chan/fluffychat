@@ -48,9 +48,10 @@ class CreatePangeaAccountPageState extends State<CreatePangeaAccountPage> {
   String? _spaceId;
   String? _courseLangCode;
 
-  String? get _cachedLangCode => LangCodeRepo.get();
+  Future<String?> get _cachedLangCode => LangCodeRepo.get();
 
-  String? get _langCode => _courseLangCode ?? _cachedLangCode;
+  Future<String?> get _langCode async =>
+      _courseLangCode ?? (await _cachedLangCode);
 
   String? get _cachedSpaceCode =>
       MatrixState.pangeaController.spaceCodeController.cachedSpaceCode;
@@ -131,10 +132,10 @@ class CreatePangeaAccountPageState extends State<CreatePangeaAccountPage> {
   }
 
   Future<void> _updateTargetLanguage() async {
-    if (_langCode == null) return;
+    final langCode = await _langCode;
     await MatrixState.pangeaController.userController.updateProfile(
       (profile) {
-        profile.userSettings.targetLanguage = _langCode;
+        profile.userSettings.targetLanguage = langCode;
         return profile;
       },
       waitForDataInSync: true,
@@ -150,15 +151,7 @@ class CreatePangeaAccountPageState extends State<CreatePangeaAccountPage> {
     }
 
     try {
-      if (_langCode == null) {
-        // at this point, there's no cached selected language, and couldn't get
-        // language from cached course code, so go back to the language selection page
-        if (mounted) {
-          context.go('/registration');
-        }
-        return;
-      }
-
+      final langCode = await _langCode;
       final updateFuture = [
         _setAvatar(),
         MatrixState.pangeaController.userController.updateProfile(
@@ -170,18 +163,19 @@ class CreatePangeaAccountPageState extends State<CreatePangeaAccountPage> {
               profile.userSettings.sourceLanguage = systemLang;
             }
 
-            profile.userSettings.targetLanguage = _langCode;
+            profile.userSettings.targetLanguage = langCode;
             profile.userSettings.createdAt = DateTime.now();
             return profile;
           },
           waitForDataInSync: true,
         ),
-        MatrixState.pangeaController.userController.updateAnalyticsProfile(
-          targetLanguage: PLanguageStore.byLangCode(_langCode!),
-          baseLanguage:
-              MatrixState.pangeaController.languageController.systemLanguage,
-          level: 1,
-        ),
+        if (langCode != null)
+          MatrixState.pangeaController.userController.updateAnalyticsProfile(
+            targetLanguage: PLanguageStore.byLangCode(langCode),
+            baseLanguage:
+                MatrixState.pangeaController.languageController.systemLanguage,
+            level: 1,
+          ),
       ];
 
       await Future.wait(updateFuture).timeout(
