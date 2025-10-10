@@ -48,7 +48,6 @@ class ActivityRoleTooltipState extends State<ActivityRoleTooltip> {
 
     return Container(
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surface,
         border: Border(
           top: BorderSide(
             color: Theme.of(context).colorScheme.outline,
