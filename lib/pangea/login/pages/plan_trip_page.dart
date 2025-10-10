@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/common/widgets/pangea_logo_svg.dart';
 
@@ -12,6 +14,9 @@ class PlanTripPage extends StatelessWidget {
     required this.route,
     super.key,
   });
+
+  static String mapStartFileName = "start_trip.svg";
+  static String mapUnlockFileName = "unlock_trip.svg";
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +69,15 @@ class PlanTripPage extends StatelessWidget {
                         spacing: 4.0,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Icon(Icons.map_outlined),
+                          SvgPicture.network(
+                            "${AppConfig.assetsBaseURL}/$mapUnlockFileName",
+                            width: 24.0,
+                            height: 24.0,
+                            colorFilter: ColorFilter.mode(
+                              theme.colorScheme.onPrimaryContainer,
+                              BlendMode.srcIn,
+                            ),
+                          ),
                           Text(L10n.of(context).unlockPrivateTrip),
                         ],
                       ),
@@ -81,7 +94,11 @@ class PlanTripPage extends StatelessWidget {
                         spacing: 4.0,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Icon(Symbols.map_search),
+                          Icon(
+                            Symbols.map_search,
+                            size: 24.0,
+                            color: theme.colorScheme.onPrimaryContainer,
+                          ),
                           Text(L10n.of(context).joinPublicTrip),
                         ],
                       ),
@@ -98,7 +115,15 @@ class PlanTripPage extends StatelessWidget {
                         spacing: 4.0,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Icon(Icons.map_outlined),
+                          SvgPicture.network(
+                            "${AppConfig.assetsBaseURL}/$mapStartFileName",
+                            width: 24.0,
+                            height: 24.0,
+                            colorFilter: ColorFilter.mode(
+                              theme.colorScheme.onPrimaryContainer,
+                              BlendMode.srcIn,
+                            ),
+                          ),
                           Text(L10n.of(context).startOwnTrip),
                         ],
                       ),
