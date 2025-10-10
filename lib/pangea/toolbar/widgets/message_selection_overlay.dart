@@ -35,7 +35,6 @@ import 'package:fluffychat/pangea/toolbar/enums/reading_assistance_mode_enum.dar
 import 'package:fluffychat/pangea/toolbar/models/speech_to_text_models.dart';
 import 'package:fluffychat/pangea/toolbar/reading_assistance_input_row/morph_selection.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_positioner.dart';
-import 'package:fluffychat/pangea/toolbar/widgets/reading_assistance_content.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/select_mode_buttons.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/word_zoom/lemma_meaning_builder.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
@@ -90,8 +89,6 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
 
   List<PangeaTokenText>? _highlightedTokens;
   bool initialized = false;
-
-  final GlobalKey<ReadingAssistanceContentState> wordZoomKey = GlobalKey();
 
   ReadingAssistanceMode? readingAssistanceMode; // default mode
 
@@ -234,8 +231,6 @@ class MessageOverlayController extends State<MessageSelectionOverlay>
             phase == SchedulerPhase.postFrameCallbacks)) {
       // It's safe to call setState immediately
       try {
-        wordZoomKey.currentState?.setState(() {});
-
         super.setState(fn);
       } catch (e, s) {
         ErrorHandler.logError(

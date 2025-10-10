@@ -202,42 +202,23 @@ class ActivitySummary extends StatelessWidget {
                                   overlayKey:
                                       "activity-summary-vocab-${vocab.lemma}",
                                   context: context,
-                                  cardToShow: Material(
-                                    type: MaterialType.transparency,
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        color: Theme.of(context).cardColor,
-                                        border: Border.all(
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .primary,
-                                          width: 4.0,
-                                        ),
-                                        borderRadius: const BorderRadius.all(
-                                          Radius.circular(
-                                            AppConfig.borderRadius,
-                                          ),
-                                        ),
-                                      ),
-                                      child: WordZoomWidget(
-                                        token: PangeaTokenText(
-                                          content: vocab.lemma,
-                                          length: vocab.lemma.characters.length,
-                                          offset: 0,
-                                        ),
-                                        construct: ConstructIdentifier(
-                                          lemma: vocab.lemma,
-                                          type: ConstructTypeEnum.vocab,
-                                          category: vocab.pos,
-                                        ),
-                                        langCode: activity.req.targetLanguage,
-                                        onClose: () {
-                                          MatrixState.pAnyState.closeOverlay(
-                                            "activity-summary-vocab-${vocab.lemma}",
-                                          );
-                                        },
-                                      ),
+                                  cardToShow: WordZoomWidget(
+                                    token: PangeaTokenText(
+                                      content: vocab.lemma,
+                                      length: vocab.lemma.characters.length,
+                                      offset: 0,
                                     ),
+                                    construct: ConstructIdentifier(
+                                      lemma: vocab.lemma,
+                                      type: ConstructTypeEnum.vocab,
+                                      category: vocab.pos,
+                                    ),
+                                    langCode: activity.req.targetLanguage,
+                                    onClose: () {
+                                      MatrixState.pAnyState.closeOverlay(
+                                        "activity-summary-vocab-${vocab.lemma}",
+                                      );
+                                    },
                                   ),
                                   transformTargetId:
                                       "activity-summary-vocab-${vocab.lemma}",

@@ -121,6 +121,17 @@ class _TokenInfoFeedbackDialogState extends State<TokenInfoFeedbackDialog> {
     return response.userFriendlyMessage;
   }
 
+  Future<void> _submit() async {
+    final resp = await showFutureLoadingDialog(
+      context: context,
+      future: () => _submitFeedback(),
+    );
+
+    if (!resp.isError) {
+      Navigator.of(context).pop(resp.result!);
+    }
+  }
+
   Future<void> _updateLemmaInfo(
     PangeaToken token,
     LemmaInfoResponse response,
@@ -164,111 +175,96 @@ class _TokenInfoFeedbackDialogState extends State<TokenInfoFeedbackDialog> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20.0),
         ),
-        child: SizedBox(
+        child: Container(
           width: 325.0,
+          constraints: const BoxConstraints(
+            maxHeight: 600.0,
+          ),
+          padding: const EdgeInsets.all(12.0),
           child: Column(
             spacing: 20.0,
             mainAxisSize: MainAxisSize.min,
             children: [
               // Header with title and close button
-              Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Row(
-                  children: [
-                    IconButton(
-                      icon: const Icon(Icons.close),
-                      onPressed: () => Navigator.of(context).pop(),
-                    ),
-                    Expanded(
-                      child: Text(
-                        L10n.of(context).tokenInfoFeedbackDialogTitle,
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                        ),
-                        textAlign: TextAlign.center,
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.close),
+                    onPressed: () => Navigator.of(context).pop(),
+                  ),
+                  Expanded(
+                    child: Text(
+                      L10n.of(context).tokenInfoFeedbackDialogTitle,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
                       ),
+                      textAlign: TextAlign.center,
                     ),
-                    const SizedBox(
-                      width: 40.0,
-                      height: 40.0,
-                      child: Center(
-                        child: Icon(Icons.flag_outlined),
-                      ),
+                  ),
+                  const SizedBox(
+                    width: 40.0,
+                    height: 40.0,
+                    child: Center(
+                      child: Icon(Icons.flag_outlined),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
+
               // Content
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 20.0,
-                ),
-                child: Column(
-                  spacing: 20.0,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    // Placeholder for word card
-                    Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Theme.of(context).colorScheme.outline,
-                        ),
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      child: Center(
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    spacing: 20.0,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      // Placeholder for word card
+                      Center(
                         child: WordZoomWidget(
                           token: selectedToken.text,
                           construct: selectedToken.vocabConstructID,
                           langCode: widget.langCode,
                         ),
                       ),
-                    ),
-                    // Description text
-                    Text(
-                      L10n.of(context).tokenInfoFeedbackDialogDesc,
-                      textAlign: TextAlign.center,
-                    ),
-                    // Feedback text field
-                    TextField(
-                      controller: _feedbackController,
-                      decoration: InputDecoration(
-                        hintText: L10n.of(context).feedbackHint,
+                      // Description text
+                      Text(
+                        L10n.of(context).tokenInfoFeedbackDialogDesc,
+                        textAlign: TextAlign.center,
                       ),
-                      keyboardType: TextInputType.multiline,
-                      minLines: 1,
-                      maxLines: 5,
-                    ),
-                    // Submit button
-                    ValueListenableBuilder<TextEditingValue>(
-                      valueListenable: _feedbackController,
-                      builder: (context, value, _) {
-                        final isNotEmpty = value.text.isNotEmpty;
-                        return ElevatedButton(
-                          onPressed: isNotEmpty
-                              ? () async {
-                                  final resp = await showFutureLoadingDialog(
-                                    context: context,
-                                    future: () => _submitFeedback(),
-                                  );
-
-                                  if (!resp.isError) {
-                                    Navigator.of(context).pop(resp.result!);
-                                  }
-                                }
-                              : null,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(L10n.of(context).feedbackButton),
-                            ],
-                          ),
-                        );
-                      },
-                    ),
-                    const SizedBox.shrink(),
-                  ],
+                      // Feedback text field
+                      TextFormField(
+                        controller: _feedbackController,
+                        decoration: InputDecoration(
+                          hintText: L10n.of(context).feedbackHint,
+                        ),
+                        keyboardType: TextInputType.multiline,
+                        minLines: 1,
+                        maxLines: 5,
+                        onFieldSubmitted: _feedbackController.text.isNotEmpty
+                            ? (_) => _submit()
+                            : null,
+                      ),
+                    ],
+                  ),
                 ),
+              ),
+
+              ValueListenableBuilder<TextEditingValue>(
+                valueListenable: _feedbackController,
+                builder: (context, value, _) {
+                  final isNotEmpty = value.text.isNotEmpty;
+                  return ElevatedButton(
+                    onPressed: isNotEmpty ? _submit : null,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(L10n.of(context).feedbackButton),
+                      ],
+                    ),
+                  );
+                },
               ),
             ],
           ),
