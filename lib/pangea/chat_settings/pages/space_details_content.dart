@@ -290,6 +290,10 @@ class SpaceDetailsContent extends StatelessWidget {
                     case SpaceSettingsTabs.course:
                       return SingleChildScrollView(
                         child: CourseSettings(
+                          // on redirect back to chat settings after completing activity,
+                          // course settings doesn't refresh activity details by default
+                          // the key forces a rebuild on this redirect
+                          key: ValueKey(controller.widget.activeTab),
                           courseController,
                           room: room,
                         ),
