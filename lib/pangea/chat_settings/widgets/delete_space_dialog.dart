@@ -215,6 +215,10 @@ class DeleteSpaceDialogState extends State<DeleteSpaceDialog> {
                 spacing: 8.0,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  OutlinedButton(
+                    onPressed: Navigator.of(context).pop,
+                    child: Text(L10n.of(context).cancel),
+                  ),
                   AnimatedSize(
                     duration: FluffyThemes.animationDuration,
                     child: OutlinedButton(
@@ -235,10 +239,6 @@ class DeleteSpaceDialogState extends State<DeleteSpaceDialog> {
                             )
                           : Text(L10n.of(context).delete),
                     ),
-                  ),
-                  OutlinedButton(
-                    onPressed: Navigator.of(context).pop,
-                    child: Text(L10n.of(context).cancel),
                   ),
                 ],
               ),
