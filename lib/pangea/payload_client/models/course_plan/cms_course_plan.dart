@@ -86,6 +86,8 @@ class CmsCoursePlan {
       description: description,
       mediaIds: coursePlanMedia?.docs ?? [],
       topicIds: coursePlanTopics?.docs ?? [],
+      updatedAt: DateTime.parse(updatedAt),
+      createdAt: DateTime.parse(createdAt),
     );
   }
 }
