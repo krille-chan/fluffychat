@@ -101,43 +101,39 @@ class NewTripPageState extends State<NewTripPage> with CourseSearchProvider {
                           child: loading
                               ? const CircularProgressIndicator.adaptive()
                               : Center(
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(32.0),
-                                    child: Column(
-                                      spacing: 12.0,
-                                      children: [
-                                        const BotFace(
-                                          expression: BotExpression.addled,
-                                          width: Avatar.defaultSize * 1.5,
+                                  child: Column(
+                                    spacing: 12.0,
+                                    children: [
+                                      const BotFace(
+                                        expression: BotExpression.addled,
+                                        width: Avatar.defaultSize * 1.5,
+                                      ),
+                                      Text(
+                                        L10n.of(context).noCourseTemplatesFound,
+                                        textAlign: TextAlign.center,
+                                        style: theme.textTheme.bodyLarge,
+                                      ),
+                                      ElevatedButton(
+                                        onPressed: () => context.go(
+                                          '/rooms',
                                         ),
-                                        Text(
-                                          L10n.of(context)
-                                              .noCourseTemplatesFound,
-                                          textAlign: TextAlign.center,
-                                          style: theme.textTheme.bodyLarge,
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: theme
+                                              .colorScheme.primaryContainer,
+                                          foregroundColor: theme
+                                              .colorScheme.onPrimaryContainer,
                                         ),
-                                        ElevatedButton(
-                                          onPressed: () => context.go(
-                                            '/rooms',
-                                          ),
-                                          style: ElevatedButton.styleFrom(
-                                            backgroundColor: theme
-                                                .colorScheme.primaryContainer,
-                                            foregroundColor: theme
-                                                .colorScheme.onPrimaryContainer,
-                                          ),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                L10n.of(context).continueText,
-                                              ),
-                                            ],
-                                          ),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              L10n.of(context).continueText,
+                                            ),
+                                          ],
                                         ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                         ),
