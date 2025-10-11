@@ -23,7 +23,6 @@ class ReplySwipe extends StatefulWidget {
     this.maxDragPx = 96.0,
     this.hapticOnThreshold = true,
     this.backgroundBuilder,
-    this.allowedPointerKinds, // optional filter (e.g., {touch, trackpad})
   });
 
   final Widget child;
@@ -33,10 +32,6 @@ class ReplySwipe extends StatefulWidget {
   final double maxDragPx;
   final bool hapticOnThreshold;
   final ReplyBackgroundBuilder? backgroundBuilder;
-
-  /// Optional: restrict which input devices can trigger the drag (passes to
-  /// recognizer.supportedDevices). If null, uses Flutter's default.
-  final Set<PointerDeviceKind>? allowedPointerKinds;
 
   @override
   State<ReplySwipe> createState() => _ReplySwipeState();
@@ -113,8 +108,6 @@ class _ReplySwipeState extends State<ReplySwipe>
             onAccepted: () {}, // hook if needed
           ),
           (rec) {
-            // Optional: restrict devices like Swipeable.allowedPointerKinds
-            rec.supportedDevices = widget.allowedPointerKinds;
             rec.allowedSign = allowedSign;
 
             rec

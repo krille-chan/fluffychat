@@ -198,11 +198,12 @@ class Message extends StatelessWidget {
       child: ReplySwipe(
         key: ValueKey(event.eventId),
         backgroundBuilder: (context, direction, progress) => Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12.0),
-          child: Center(
+          padding: const EdgeInsets.only(right: 20.0),
+          child: Align(
+            alignment: Alignment.centerRight,
             child: Opacity(
               opacity: progress,
-              child: const Icon(Icons.check_outlined),
+              child: const Icon(Icons.reply_outlined),
             ),
           ),
         ),
