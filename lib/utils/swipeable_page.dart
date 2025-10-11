@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:hermes/config/app_config.dart';
 
-/// A [Page] that wraps content in an iOS-style swipe-to-pop route.
+/// A [Page] that wraps content in a swipe-to-pop route.
 class SwipePopPage<T> extends Page<T> {
   /// Creates a [SwipePopPage] that reads defaults from [AppConfig].
   SwipePopPage({

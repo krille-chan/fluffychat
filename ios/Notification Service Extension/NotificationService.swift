@@ -23,7 +23,7 @@ class NotificationService: UNNotificationServiceExtension {
             os_log("[HermesPushHelper] New message received")
             
             guard let roomId = bestAttemptContent.userInfo["room_id"] as? String,
-                  let eventId = bestAttemptContent.userInfo["event_id"] as? String else {
+                  let _ = bestAttemptContent.userInfo["event_id"] as? String else {
                 os_log("[HermesPushHelper] Room ID or Event ID is missing!")
                 let emptyContent = UNMutableNotificationContent()
                 contentHandler(emptyContent)
