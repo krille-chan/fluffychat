@@ -3,6 +3,7 @@ import 'dart:math' as math;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:hermes/config/app_config.dart';
+import 'package:hermes/utils/directed_swipe_recognizer.dart';
 
 /// A [Page] that wraps content in a swipe-to-pop route.
 class SwipePopPage<T> extends Page<T> {
@@ -172,13 +173,16 @@ class _FullScreenPopGestureDetector<T> extends StatefulWidget {
 class _FullScreenPopGestureDetectorState<T>
     extends State<_FullScreenPopGestureDetector<T>> {
   _FullScreenPopGestureController<T>? _controller;
-  late _RightSwipeDragGestureRecognizer _recognizer;
+  late DirectionalSwipeRecognizer _recognizer;
 
   /// Prepare the drag recognizer with handlers for the swipe lifecycle.
   @override
   void initState() {
     super.initState();
-    _recognizer = _RightSwipeDragGestureRecognizer(debugOwner: this)
+    _recognizer = DirectionalSwipeRecognizer(
+      allowedSign: 1,
+      debugOwner: this,
+    )
       ..onStart = _handleDragStart
       ..onUpdate = _handleDragUpdate
       ..onEnd = _handleDragEnd
@@ -191,7 +195,8 @@ class _FullScreenPopGestureDetectorState<T>
   void didChangeDependencies() {
     super.didChangeDependencies();
     _recognizer.gestureSettings = MediaQuery.maybeGestureSettingsOf(context);
-    _recognizer.contextTextDirection = Directionality.of(context);
+    final textDirection = Directionality.of(context);
+    _recognizer.allowedSign = textDirection == TextDirection.rtl ? -1 : 1;
   }
 
   /// Dispose the recognizer and ensure the navigator ends any active gesture.
@@ -227,7 +232,7 @@ class _FullScreenPopGestureDetectorState<T>
     );
   }
 
-  /// Update the pop animation as the user drags the page to the right.
+  /// Update the pop animation as the user drags the page toward the back gesture.
   void _handleDragUpdate(DragUpdateDetails details) {
     if (_controller == null) return;
     final size = context.size;
@@ -257,7 +262,7 @@ class _FullScreenPopGestureDetectorState<T>
     return td == TextDirection.rtl ? -value : value;
   }
 
-  /// Wrap the child with pointer listeners that feed the recognizer.
+/// Wrap the child with pointer listeners that feed the recognizer.
   @override
   Widget build(BuildContext context) {
     return Listener(
@@ -265,60 +270,6 @@ class _FullScreenPopGestureDetectorState<T>
       behavior: HitTestBehavior.deferToChild,
       child: widget.child,
     );
-  }
-}
-
-/// A drag recognizer that only accepts rightward swipes in LTR layouts.
-class _RightSwipeDragGestureRecognizer extends HorizontalDragGestureRecognizer {
-  _RightSwipeDragGestureRecognizer({super.debugOwner});
-
-  double _accumulatedDelta = 0.0;
-  bool _resolvedDirection = false;
-  TextDirection? _textDirection;
-
-  /// Store the ambient text direction to interpret deltas correctly.
-  set contextTextDirection(TextDirection direction) {
-    _textDirection = direction;
-  }
-
-  /// Use the stored direction or default to left-to-right layouts.
-  TextDirection get _effectiveTextDirection =>
-      _textDirection ?? TextDirection.ltr;
-
-  /// Reset state before tracking a new pointer.
-  @override
-  void addPointer(PointerDownEvent event) {
-    _accumulatedDelta = 0.0;
-    _resolvedDirection = false;
-    super.addPointer(event);
-  }
-
-  /// Reject swipes that move in the opposite direction of a back gesture.
-  @override
-  void handleEvent(PointerEvent event) {
-    if (event is PointerMoveEvent && !_resolvedDirection) {
-      final dir = _effectiveTextDirection;
-      final logicalDelta =
-          dir == TextDirection.rtl ? -event.delta.dx : event.delta.dx;
-      _accumulatedDelta += logicalDelta;
-      if (_accumulatedDelta.abs() > kTouchSlop) {
-        _resolvedDirection = true;
-        if (_accumulatedDelta < 0) {
-          resolve(GestureDisposition.rejected);
-          stopTrackingPointer(event.pointer);
-          return;
-        }
-      }
-    }
-    super.handleEvent(event);
-  }
-
-  /// Clear any accumulated state after tracking completes.
-  @override
-  void didStopTrackingLastPointer(int pointer) {
-    _resolvedDirection = false;
-    _accumulatedDelta = 0.0;
-    super.didStopTrackingLastPointer(pointer);
   }
 }
 
