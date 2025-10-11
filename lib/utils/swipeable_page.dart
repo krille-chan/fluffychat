@@ -3,7 +3,7 @@ import 'dart:math' as math;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:hermes/config/app_config.dart';
-import 'package:hermes/utils/directed_swipe_recognizer.dart';
+import 'package:hermes/utils/horizontal_swipe_recognizer.dart';
 
 /// A [Page] that wraps content in a swipe-to-pop route.
 class SwipePopPage<T> extends Page<T> {
@@ -173,13 +173,13 @@ class _FullScreenPopGestureDetector<T> extends StatefulWidget {
 class _FullScreenPopGestureDetectorState<T>
     extends State<_FullScreenPopGestureDetector<T>> {
   _FullScreenPopGestureController<T>? _controller;
-  late DirectionalSwipeRecognizer _recognizer;
+  late HorizontalSwipeRecognizer _recognizer;
 
   /// Prepare the drag recognizer with handlers for the swipe lifecycle.
   @override
   void initState() {
     super.initState();
-    _recognizer = DirectionalSwipeRecognizer(
+    _recognizer = HorizontalSwipeRecognizer(
       allowedSign: 1,
       debugOwner: this,
     )
@@ -262,7 +262,7 @@ class _FullScreenPopGestureDetectorState<T>
     return td == TextDirection.rtl ? -value : value;
   }
 
-/// Wrap the child with pointer listeners that feed the recognizer.
+  /// Wrap the child with pointer listeners that feed the recognizer.
   @override
   Widget build(BuildContext context) {
     return Listener(

@@ -1,6 +1,6 @@
-import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
-import 'package:hermes/utils/directed_swipe_recognizer.dart';
+import 'package:flutter/services.dart';
+import 'package:hermes/utils/horizontal_swipe_recognizer.dart';
 
 typedef ReplyBackgroundBuilder = Widget Function(
   BuildContext context,
@@ -91,11 +91,10 @@ class _ReplySwipeState extends State<ReplySwipe>
     return RawGestureDetector(
       behavior: HitTestBehavior.deferToChild,
       gestures: {
-        DirectionalSwipeRecognizer:
-            GestureRecognizerFactoryWithHandlers<DirectionalSwipeRecognizer>(
-          () => DirectionalSwipeRecognizer(
+        HorizontalSwipeRecognizer:
+            GestureRecognizerFactoryWithHandlers<HorizontalSwipeRecognizer>(
+          () => HorizontalSwipeRecognizer(
             allowedSign: allowedSign,
-            onAccepted: () {}, // hook if needed
           ),
           (rec) {
             rec.allowedSign = allowedSign;
