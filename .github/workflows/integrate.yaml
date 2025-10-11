@@ -16,10 +16,7 @@ jobs:
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           cache: true
-      - name: Fetch dependencies
-        run: |
-          rm -f .dart_tool/package_graph.json
-          flutter pub get
+      - run: flutter pub get
       - run: flutter gen-l10n
       - name: Check formatting
         run: dart format lib/ test/ --set-exit-if-changed
