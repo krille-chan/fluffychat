@@ -3392,5 +3392,11 @@
     "declineInvitation": "Diúltaigh don chuireadh",
     "@declineInvitation": {},
     "noMessagesYet": "Gan aon teachtaireachtaí fós",
-    "@noMessagesYet": {}
+    "@noMessagesYet": {},
+    "longPressToRecordVoiceMessage": "Brúigh go fada chun teachtaireacht gutha a thaifeadadh.",
+    "@longPressToRecordVoiceMessage": {},
+    "pause": "Sos",
+    "@pause": {},
+    "resume": "Atosú",
+    "@resume": {}
 }
