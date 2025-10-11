@@ -57,6 +57,11 @@ class BackgroundPush {
   void Function(String errorMsg, {Uri? link})? onFcmError;
   L10n? l10n;
 
+  static const Set<String> _legacyPushGatewayUrls = {
+    'https://push.fluffychat.im/_matrix/push/v1/notify',
+    'https://push.fluffychat.im/_matrix/push/v1/legacy',
+  };
+
   FlutterLocalNotificationsPlugin get notificationsPlugin =>
       _flutterLocalNotificationsPlugin;
 
@@ -370,10 +375,30 @@ class BackgroundPush {
         return;
       }
     }
+    final gatewayUrl = await _resolveFirebaseGatewayUrl();
+    if (gatewayUrl?.isEmpty ?? true) {
+      Logs().w('[Push] Missing push gateway URL');
+      return;
+    }
     await setupPusher(
-      gatewayUrl: AppSettings.pushNotificationsGatewayUrl.value,
+      gatewayUrl: gatewayUrl,
       token: _fcmToken,
     );
+  }
+
+  Future<String?> _resolveFirebaseGatewayUrl() async {
+    final store = matrix?.store;
+    if (store == null) {
+      return null;
+    }
+    final currentUrl = AppSettings.pushNotificationsGatewayUrl.value(store);
+    if (_legacyPushGatewayUrls.contains(currentUrl)) {
+      final updatedUrl = AppSettings.pushNotificationsGatewayUrl.defaultValue;
+      await AppSettings.pushNotificationsGatewayUrl.setItem(store, updatedUrl);
+      Logs().i('[Push] Migrated legacy push gateway URL to $updatedUrl');
+      return updatedUrl;
+    }
+    return currentUrl;
   }
 
   Future<void> setupUp() async {
