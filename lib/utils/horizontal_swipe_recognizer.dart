@@ -31,11 +31,6 @@ class HorizontalSwipeRecognizer extends HorizontalDragGestureRecognizer {
     super.addAllowedPointer(event);
   }
 
-  double _slopFor(PointerEvent event) {
-    final kind = _pointerKind ?? event.kind;
-    return computeHitSlop(kind, gestureSettings);
-  }
-
   @override
   void handleEvent(PointerEvent event) {
     if (!_resolvedDirection &&
@@ -47,7 +42,8 @@ class HorizontalSwipeRecognizer extends HorizontalDragGestureRecognizer {
       if (deltaX != 0.0) {
         final logicalDelta = deltaX * allowedSign;
         _accumulatedDelta += logicalDelta;
-        final slop = _slopFor(event);
+        final slop =
+            computeHitSlop(_pointerKind ?? event.kind, gestureSettings);
         if (_accumulatedDelta.abs() > slop) {
           _resolvedDirection = true;
           if (_accumulatedDelta < 0) {

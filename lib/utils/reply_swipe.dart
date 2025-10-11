@@ -51,7 +51,16 @@ class _ReplySwipeState extends State<ReplySwipe>
       setState(() => _dragX = clamped);
       final crossed = _dragX >= widget.thresholdPx;
       if (widget.hapticOnThreshold && crossed && !_thresholdBuzzed) {
-        HapticFeedback.selectionClick();
+        final future = HapticFeedback.selectionClick();
+        assert(() {
+          future.then(
+            (_) => debugPrint('ReplySwipe: selectionClick succeeded'),
+            onError: (Object error, StackTrace stack) {
+              debugPrint('ReplySwipe: selectionClick failed: $error');
+            },
+          );
+          return true;
+        }());
         _thresholdBuzzed = true;
       }
       if (!crossed) _thresholdBuzzed = false;
@@ -87,9 +96,9 @@ class _ReplySwipeState extends State<ReplySwipe>
     final allowedSign = widget.leftToRight ? -1 : 1;
     final sign = allowedSign.toDouble();
     final progress = (_dragX / widget.maxDragPx).clamp(0.0, 1.0).toDouble();
+    final backgroundBuilder = widget.backgroundBuilder;
 
     return RawGestureDetector(
-      behavior: HitTestBehavior.deferToChild,
       gestures: {
         HorizontalSwipeRecognizer:
             GestureRecognizerFactoryWithHandlers<HorizontalSwipeRecognizer>(
@@ -120,13 +129,14 @@ class _ReplySwipeState extends State<ReplySwipe>
       child: Stack(
         alignment: Alignment.center,
         children: [
-          Positioned.fill(
-            child: widget.backgroundBuilder!(
-              context,
-              widget.leftToRight,
-              progress,
+          if (backgroundBuilder != null)
+            Positioned.fill(
+              child: backgroundBuilder(
+                context,
+                widget.leftToRight,
+                progress,
+              ),
             ),
-          ),
           Transform.translate(
             offset: Offset(sign * _dragX, 0.0),
             child: widget.child,

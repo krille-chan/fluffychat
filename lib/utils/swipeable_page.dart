@@ -194,9 +194,10 @@ class _FullScreenPopGestureDetectorState<T>
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _recognizer.gestureSettings = MediaQuery.maybeGestureSettingsOf(context);
     final textDirection = Directionality.of(context);
-    _recognizer.allowedSign = textDirection == TextDirection.rtl ? -1 : 1;
+    _recognizer
+      ..gestureSettings = MediaQuery.maybeGestureSettingsOf(context)
+      ..allowedSign = textDirection == TextDirection.rtl ? -1 : 1;
   }
 
   /// Dispose the recognizer and ensure the navigator ends any active gesture.
