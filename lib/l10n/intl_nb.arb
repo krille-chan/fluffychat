@@ -2861,5 +2861,51 @@
                 "type": "String"
             }
         }
-    }
+    },
+    "roomNotificationSettings": "Innstillinger for romvarsler",
+    "@roomNotificationSettings": {},
+    "userSpecificNotificationSettings": "Brukerspesifikke varslingsinnstillinger",
+    "@userSpecificNotificationSettings": {},
+    "otherNotificationSettings": "Andre varslingsinnstillinger",
+    "@otherNotificationSettings": {},
+    "contentNotificationSettings": "Innstillinger for innholdsvarslinger",
+    "@contentNotificationSettings": {},
+    "generalNotificationSettings": "Generelle varslingsinnstillinger",
+    "@generalNotificationSettings": {},
+    "appIntroduction": "Med FluffyChat kan du chatte med vennene dine på tvers av forskjellige meldingstjenester. Finn ut mer på https://matrix.org eller trykk bare på *Fortsett*.",
+    "@appIntroduction": {},
+    "notificationRuleContainsUserNameDescription": "Varsler bruker når en melding inneholder ens brukernavn.",
+    "@notificationRuleContainsUserNameDescription": {},
+    "hideMemberChangesInPublicChats": "Skjul medlemsendringer i offentlige chatter",
+    "@hideMemberChangesInPublicChats": {},
+    "removeFromSpace": "Fjern fra området",
+    "@removeFromSpace": {},
+    "addToSpaceDescription": "Velg områder hvor denne chatten legges til.",
+    "@addToSpaceDescription": {},
+    "pleaseEnterRecoveryKeyDescription": "For å låse opp gamle meldinger, vennligst skriv inn gjenopprettingsnøkkelen som ble generert i en tidligere økt. Gjenopprettingsnøkkelen er IKKE passordet ditt.",
+    "@pleaseEnterRecoveryKeyDescription": {},
+    "reactedWith": "{sender} reagerte med {reaction}",
+    "@reactedWith": {
+        "type": "String",
+        "placeholders": {
+            "sender": {
+                "type": "String"
+            },
+            "reaction": {
+                "type": "String"
+            }
+        }
+    },
+    "pinMessage": "Fest til rommet",
+    "@pinMessage": {},
+    "emojis": "Emojier",
+    "@emojis": {},
+    "placeCall": "Ringe opp",
+    "@placeCall": {},
+    "unsupportedAndroidVersionLong": "Denne funksjonen krever en nyere Android-versjon. Se etter oppdateringer eller støtte for Lineage OS.",
+    "@unsupportedAndroidVersionLong": {},
+    "videoCallsBetaWarning": "Vær oppmerksom på at videosamtaler for øyeblikket er i betaversjon. Det fungerer kanskje ikke som forventet eller i det hele tatt.",
+    "@videoCallsBetaWarning": {},
+    "experimentalVideoCalls": "Eksperimentelle videoanrop",
+    "@experimentalVideoCalls": {}
 }
