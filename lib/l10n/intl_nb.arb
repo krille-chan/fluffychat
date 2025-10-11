@@ -2907,5 +2907,13 @@
     "videoCallsBetaWarning": "Vær oppmerksom på at videosamtaler for øyeblikket er i betaversjon. Det fungerer kanskje ikke som forventet eller i det hele tatt.",
     "@videoCallsBetaWarning": {},
     "experimentalVideoCalls": "Eksperimentelle videoanrop",
-    "@experimentalVideoCalls": {}
+    "@experimentalVideoCalls": {},
+    "notificationRuleRoomnotifDescription": "Varsler brukeren når en melding inneholder ‘@room’.",
+    "@notificationRuleRoomnotifDescription": {},
+    "notificationRuleTombstoneDescription": "Varsler brukeren om meldinger om deaktivering av rom.",
+    "@notificationRuleTombstoneDescription": {},
+    "notificationRuleReactionDescription": "Demper varsler for reaksjoner.",
+    "@notificationRuleReactionDescription": {},
+    "notificationRuleSuppressEdits": "Demp redigeringer",
+    "@notificationRuleSuppressEdits": {}
 }
