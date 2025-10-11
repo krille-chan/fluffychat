@@ -197,7 +197,7 @@ class Message extends StatelessWidget {
     return Center(
       child: ReplySwipe(
         key: ValueKey(event.eventId),
-        backgroundBuilder: (context, direction, progress) => Padding(
+        backgroundBuilder: (context, leftToRight, progress) => Padding(
           padding: const EdgeInsets.only(right: 20.0),
           child: Align(
             alignment: Alignment.centerRight,
@@ -207,9 +207,7 @@ class Message extends StatelessWidget {
             ),
           ),
         ),
-        direction: AppSettings.swipeRightToLeftToReply.value
-            ? ReplySwipeDirection.endToStart
-            : ReplySwipeDirection.startToEnd,
+        leftToRight: AppConfig.swipeRightToLeftToReply,
         onReply: onReply,
         child: Container(
           constraints: const BoxConstraints(
