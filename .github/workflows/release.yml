@@ -6,7 +6,37 @@ on:
       - main
 
 jobs:
+  version_check:
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.version.outputs.changed }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Determine version change
+        id: version
+        run: |
+          set -eo pipefail
+          current=$(grep '^version:' pubspec.yaml | awk '{print $2}' | head -n1)
+          if git rev-parse HEAD^ >/dev/null 2>&1; then
+            previous=$(git show HEAD^:pubspec.yaml | grep '^version:' | awk '{print $2}' | head -n1)
+          else
+            previous=""
+          fi
+          echo "Current version: $current"
+          echo "Previous version: $previous"
+          if [ "$current" != "$previous" ]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          fi
+
   build-and-release:
+    needs: version_check
+    if: needs.version_check.outputs.changed == 'true'
     runs-on: macos-14
     permissions:
       contents: write
