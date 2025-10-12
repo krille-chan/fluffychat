@@ -51,7 +51,7 @@ class _ReplySwipeState extends State<ReplySwipe>
       setState(() => _dragX = clamped);
       final crossed = _dragX >= widget.thresholdPx;
       if (widget.hapticOnThreshold && crossed && !_thresholdBuzzed) {
-        final future = HapticFeedback.selectionClick();
+        final future = HapticFeedback.vibrate();
         assert(() {
           future.then(
             (_) => debugPrint('ReplySwipe: selectionClick succeeded'),
