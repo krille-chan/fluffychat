@@ -766,6 +766,18 @@ class ChatController extends State<ChatPageWithRoom>
     });
   }
 
+  void copyEventAction(Event event) {
+    final text = event
+        .getDisplayEvent(timeline!)
+        .calcLocalizedBodyFallback(MatrixLocals(L10n.of(context)));
+
+    Clipboard.setData(ClipboardData(text: text));
+    setState(() {
+      showEmojiPicker = false;
+      selectedEvents.clear();
+    });
+  }
+
   void reportEventAction() async {
     final event = selectedEvents.single;
     final score = await showModalActionPopup<int>(

@@ -22,6 +22,15 @@ import 'message_reactions.dart';
 import 'reply_content.dart';
 import 'state_message.dart';
 
+enum _MessageAction {
+  reply,
+  copy,
+  forward,
+  pin,
+  edit,
+  redact,
+}
+
 class Message extends StatelessWidget {
   final Event event;
   final Event? nextEvent;
@@ -32,6 +41,7 @@ class Message extends StatelessWidget {
   final void Function(String) scrollToEventId;
   final void Function() onReply;
   final void Function() onForward;
+  final void Function() onCopy;
   final void Function() onPin;
   final void Function() onRedact;
   final void Function() onMention;
@@ -60,6 +70,7 @@ class Message extends StatelessWidget {
     required this.scrollToEventId,
     required this.onReply,
     required this.onForward,
+    required this.onCopy,
     required this.onPin,
     required this.onRedact,
     this.selected = false,
@@ -79,31 +90,99 @@ class Message extends StatelessWidget {
   });
 
   Future<void> _showContextMenu(BuildContext context, Offset anchor) async {
-    final result = await showMenu<String>(
+    final result = await showMenu<_MessageAction>(
       context: context,
       position:
           RelativeRect.fromLTRB(anchor.dx, anchor.dy, anchor.dx, anchor.dy),
       items: const [
-        PopupMenuItem(value: 'reply', child: Text('Reply')),
-        PopupMenuItem(value: 'copy', child: Text('Copy')),
-        PopupMenuItem(value: 'forward', child: Text('Forward')),
-        PopupMenuItem(value: 'pin', child: Text('Pin')),
-        PopupMenuItem(value: 'edit', child: Text('Edit')),
-        PopupMenuItem(value: 'redact', child: Text('Redact')),
+        PopupMenuItem(
+          value: _MessageAction.reply,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(Icons.reply_outlined, size: 18),
+              SizedBox(width: 12),
+              Text('Reply'),
+            ],
+          ),
+        ),
+        PopupMenuItem(
+          value: _MessageAction.copy,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(Icons.copy_outlined, size: 18),
+              SizedBox(width: 12),
+              Text('Copy'),
+            ],
+          ),
+        ),
+        PopupMenuItem(
+          value: _MessageAction.forward,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(Icons.forward, size: 18),
+              SizedBox(width: 12),
+              Text('Forward'),
+            ],
+          ),
+        ),
+        PopupMenuItem(
+          value: _MessageAction.pin,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(Icons.push_pin_outlined, size: 18),
+              SizedBox(width: 12),
+              Text('Pin'),
+            ],
+          ),
+        ),
+        PopupMenuItem(
+          value: _MessageAction.edit,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(Icons.edit_outlined, size: 18),
+              SizedBox(width: 12),
+              Text('Edit'),
+            ],
+          ),
+        ),
+        PopupMenuItem(
+          value: _MessageAction.redact,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(Icons.delete_outlined, size: 18),
+              SizedBox(width: 12),
+              Text('Delete'),
+            ],
+          ),
+        ),
       ],
     );
     switch (result) {
-      case 'reply':
+      case _MessageAction.reply:
         onReply();
         break;
-      case 'forward':
+      case _MessageAction.copy:
+        onCopy();
+        break;
+      case _MessageAction.forward:
         onForward();
         break;
-      case 'pin':
+      case _MessageAction.pin:
         onPin();
         break;
-      case 'edit':
+      case _MessageAction.edit:
         onEdit();
+        break;
+      case _MessageAction.redact:
+        onRedact();
+        break;
+      case null:
         break;
       // handle others
     }

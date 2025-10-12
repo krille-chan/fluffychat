@@ -145,6 +145,7 @@ class ChatEventList extends StatelessWidget {
                 onPin: () => controller.pinEvent(event),
                 onRedact: () => controller.redactEventAction(event),
                 onEdit: () => controller.editEventAction(event),
+                onCopy: () => controller.copyEventAction(event),
                 onInfoTab: controller.showEventInfo,
                 onMention: () => controller.sendController.text +=
                     '${event.senderFromMemoryOrFallback.mention} ',
