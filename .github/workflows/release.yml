@@ -55,16 +55,16 @@ jobs:
           restore-keys: |
             pub-${{ runner.os }}-
 
-      - name: Cache CocoaPods
-        uses: actions/cache@v4
-        if: runner.os == 'macOS'
-        with:
-          path: |
-            ~/Library/Caches/CocoaPods
-            macos/Pods
-          key: pods-${{ hashFiles('macos/Podfile.lock') }}
-          restore-keys: |
-            pods-
+      # - name: Cache CocoaPods
+      #   uses: actions/cache@v4
+      #   if: runner.os == 'macOS'
+      #   with:
+      #     path: |
+      #       ~/Library/Caches/CocoaPods
+      #       macos/Pods
+      #     key: pods-${{ hashFiles('macos/Podfile.lock') }}
+      #     restore-keys: |
+      #       pods-
 
       - name: Cache Gradle
         uses: actions/cache@v4
@@ -83,8 +83,8 @@ jobs:
           channel: stable
           cache: true
 
-      - name: Enable desktop support
-        run: flutter config --enable-macos-desktop
+      # - name: Enable desktop support
+      #   run: flutter config --enable-macos-desktop
 
       - name: Fetch dependencies
         run: flutter pub get
@@ -130,22 +130,22 @@ jobs:
           mv "$APK_PATH" "$OUTPUT_APK"
           echo "ANDROID_APK=$OUTPUT_APK" >> $GITHUB_ENV
 
-      - name: Build macOS app
-        id: build_macos
-        continue-on-error: true
-        run: |
-          flutter build macos --release \
-            --build-name $FLUTTER_VERSION_NAME \
-            --build-number $FLUTTER_BUILD_NUMBER
+      # - name: Build macOS app
+      #   id: build_macos
+      #   continue-on-error: true
+      #   run: |
+      #     flutter build macos --release \
+      #       --build-name $FLUTTER_VERSION_NAME \
+      #       --build-number $FLUTTER_BUILD_NUMBER
 
-      - name: Archive macOS app bundle
-        if: steps.build_macos.outcome == 'success'
-        run: |
-          OUTPUT_DIR="build/macos/Build/Products/Release"
-          ARCHIVE_NAME="Hermes-macos-${FLUTTER_VERSION_NAME}-${FLUTTER_BUILD_NUMBER}.zip"
-          cd "$OUTPUT_DIR"
-          zip -r "$ARCHIVE_NAME" Hermes.app
-          echo "MACOS_ARCHIVE=$OUTPUT_DIR/$ARCHIVE_NAME" >> $GITHUB_ENV
+      # - name: Archive macOS app bundle
+      #   if: steps.build_macos.outcome == 'success'
+      #   run: |
+      #     OUTPUT_DIR="build/macos/Build/Products/Release"
+      #     ARCHIVE_NAME="Hermes-macos-${FLUTTER_VERSION_NAME}-${FLUTTER_BUILD_NUMBER}.zip"
+      #     cd "$OUTPUT_DIR"
+      #     zip -r "$ARCHIVE_NAME" Hermes.app
+      #     echo "MACOS_ARCHIVE=$OUTPUT_DIR/$ARCHIVE_NAME" >> $GITHUB_ENV
 
       - name: Assemble release file list
         run: |
