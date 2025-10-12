@@ -26,7 +26,8 @@ extension LocalNotificationsExtension on MatrixState {
 
   void showLocalNotification(Event event) async {
     Logs().v(
-        '[Notifications] event received for ${event.room.id} (${event.type})');
+      '[Notifications] event received for ${event.room.id} (${event.type})',
+    );
     final roomId = event.room.id;
     if (activeRoomId == roomId) {
       if (kIsWeb && webHasFocus) return;

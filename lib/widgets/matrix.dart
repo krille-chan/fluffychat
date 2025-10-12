@@ -295,8 +295,6 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
             c.onNotification.stream.listen(showLocalNotification);
       });
     } else if (PlatformInfos.isLinux || PlatformInfos.isMacOS) {
-      Logs().v(
-          '[Notifications] Subscribing desktop listener for ${c.clientName}');
       onNotification[name] ??=
           c.onNotification.stream.listen(showLocalNotification);
     }

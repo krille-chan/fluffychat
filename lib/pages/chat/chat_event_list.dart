@@ -141,6 +141,10 @@ class ChatEventList extends StatelessWidget {
                   controller.animateInEventIndex = null;
                 },
                 onReply: () => controller.replyAction(replyTo: event),
+                onForward: () => controller.forwardEventAction(event),
+                onPin: () => controller.pinEvent(event),
+                onRedact: () => controller.redactEventAction(event),
+                onEdit: () => controller.editEventAction(event),
                 onInfoTab: controller.showEventInfo,
                 onMention: () => controller.sendController.text +=
                     '${event.senderFromMemoryOrFallback.mention} ',
@@ -155,7 +159,6 @@ class ChatEventList extends StatelessWidget {
                 singleSelected:
                     controller.selectedEvents.singleOrNull?.eventId ==
                         event.eventId,
-                onEdit: () => controller.editSelectedEventAction(),
                 timeline: timeline,
                 displayReadMarker:
                     i > 0 && controller.readMarkerEventId == event.eventId,

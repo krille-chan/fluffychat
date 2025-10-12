@@ -53,7 +53,7 @@ class ChatView extends StatelessWidget {
         if (controller.canPinSelectedEvents)
           IconButton(
             icon: const Icon(Icons.push_pin_outlined),
-            onPressed: controller.pinEvent,
+            onPressed: controller.pinSelectedEvent,
             tooltip: L10n.of(context).pinMessage,
           ),
         if (controller.canRedactSelectedEvents)

@@ -31,6 +31,9 @@ class Message extends StatelessWidget {
   final void Function(Event) onInfoTab;
   final void Function(String) scrollToEventId;
   final void Function() onReply;
+  final void Function() onForward;
+  final void Function() onPin;
+  final void Function() onRedact;
   final void Function() onMention;
   final void Function() onEdit;
   final bool longPressSelect;
@@ -56,6 +59,9 @@ class Message extends StatelessWidget {
     required this.onInfoTab,
     required this.scrollToEventId,
     required this.onReply,
+    required this.onForward,
+    required this.onPin,
+    required this.onRedact,
     this.selected = false,
     required this.onEdit,
     required this.singleSelected,
@@ -71,6 +77,37 @@ class Message extends StatelessWidget {
     this.isCollapsed = false,
     super.key,
   });
+
+  Future<void> _showContextMenu(BuildContext context, Offset anchor) async {
+    final result = await showMenu<String>(
+      context: context,
+      position:
+          RelativeRect.fromLTRB(anchor.dx, anchor.dy, anchor.dx, anchor.dy),
+      items: const [
+        PopupMenuItem(value: 'reply', child: Text('Reply')),
+        PopupMenuItem(value: 'copy', child: Text('Copy')),
+        PopupMenuItem(value: 'forward', child: Text('Forward')),
+        PopupMenuItem(value: 'pin', child: Text('Pin')),
+        PopupMenuItem(value: 'edit', child: Text('Edit')),
+        PopupMenuItem(value: 'redact', child: Text('Redact')),
+      ],
+    );
+    switch (result) {
+      case 'reply':
+        onReply();
+        break;
+      case 'forward':
+        onForward();
+        break;
+      case 'pin':
+        onPin();
+        break;
+      case 'edit':
+        onEdit();
+        break;
+      // handle others
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -285,9 +322,17 @@ class Message extends StatelessWidget {
                                       : null,
                                   enableFeedback: !selected,
                                   onLongPress: () => onSelect(event),
-                                  onTap: longPressSelect
-                                      ? () => onSelect(event)
-                                      : null,
+                                  onTapUp: longPressSelect
+                                      ? (_) => onSelect(event)
+                                      : (details) => _showContextMenu(
+                                            context,
+                                            details.globalPosition,
+                                          ),
+                                  onSecondaryTapUp: (details) =>
+                                      _showContextMenu(
+                                    context,
+                                    details.globalPosition,
+                                  ),
                                   borderRadius: BorderRadius.circular(
                                     AppConfig.borderRadius / 2,
                                   ),

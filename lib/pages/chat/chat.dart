@@ -835,6 +835,53 @@ class ChatController extends State<ChatPageWithRoom>
     }
   }
 
+  void redactEventAction(Event event) async {
+    final reasonInput = event.status.isSent
+        ? await showTextInputDialog(
+            context: context,
+            title: L10n.of(context).redactMessage,
+            message: L10n.of(context).redactMessageDescription,
+            isDestructive: true,
+            hintText: L10n.of(context).optionalRedactReason,
+            maxLength: 255,
+            maxLines: 3,
+            minLines: 1,
+            okLabel: L10n.of(context).remove,
+            cancelLabel: L10n.of(context).cancel,
+          )
+        : null;
+    if (reasonInput == null) return;
+    final reason = reasonInput.isEmpty ? null : reasonInput;
+    await showFutureLoadingDialog(
+      context: context,
+      futureWithProgress: (onProgress) async {
+        if (event.status.isSent) {
+          if (event.canRedact) {
+            await event.redactEvent(reason: reason);
+          } else {
+            final client = currentRoomBundle.firstWhere(
+              (cl) => selectedEvents.first.senderId == cl!.userID,
+              orElse: () => null,
+            );
+            if (client == null) {
+              return;
+            }
+            final room = client.getRoomById(roomId)!;
+            await Event.fromJson(event.toJson(), room).redactEvent(
+              reason: reason,
+            );
+          }
+        } else {
+          await event.cancelSend();
+        }
+      },
+    );
+    setState(() {
+      showEmojiPicker = false;
+      selectedEvents.clear();
+    });
+  }
+
   void redactEventsAction() async {
     final reasonInput = selectedEvents.any((event) => event.status.isSent)
         ? await showTextInputDialog(
@@ -923,6 +970,20 @@ class ChatController extends State<ChatPageWithRoom>
     }
     return currentRoomBundle
         .any((cl) => selectedEvents.first.senderId == cl!.userID);
+  }
+
+  void forwardEventAction(Event event) async {
+    final timeline = this.timeline;
+    if (timeline == null) return;
+
+    final items = [ContentShareItem(event.getDisplayEvent(timeline).content)];
+    await showScaffoldDialog(
+      context: context,
+      builder: (context) => ShareScaffoldDialog(
+        items: items,
+      ),
+    );
+    if (!mounted) return;
   }
 
   void forwardEventsAction() async {
@@ -1064,6 +1125,28 @@ class ChatController extends State<ChatPageWithRoom>
     if (selectedEvents.length <= 1) {
       clearSelectedEvents();
     }
+  }
+
+  void editEventAction(Event event) {
+    final client = currentRoomBundle.firstWhere(
+      (cl) => event.senderId == cl!.userID,
+      orElse: () => null,
+    );
+    if (client == null) {
+      return;
+    }
+    setSendingClient(client);
+    setState(() {
+      pendingText = sendController.text;
+      editEvent = event;
+      sendController.text =
+          editEvent!.getDisplayEvent(timeline!).calcLocalizedBodyFallback(
+                MatrixLocals(L10n.of(context)),
+                withSenderNamePrefix: false,
+                hideReply: true,
+              );
+    });
+    inputFocus.requestFocus();
   }
 
   void editSelectedEventAction() {
@@ -1266,7 +1349,20 @@ class ChatController extends State<ChatPageWithRoom>
     }
   }
 
-  void pinEvent() {
+  void pinEvent(Event event) {
+    final pinnedEventIds = room.pinnedEventIds;
+    if (pinnedEventIds.contains(event.eventId)) {
+      pinnedEventIds.remove(event.eventId);
+    } else {
+      pinnedEventIds.add(event.eventId);
+    }
+    showFutureLoadingDialog(
+      context: context,
+      future: () => room.setPinnedEvents(pinnedEventIds),
+    );
+  }
+
+  void pinSelectedEvent() {
     final pinnedEventIds = room.pinnedEventIds;
     final selectedEventIds = selectedEvents.map((e) => e.eventId).toSet();
     final unpin = selectedEventIds.length == 1 &&
