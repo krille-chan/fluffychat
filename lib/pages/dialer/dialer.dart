@@ -255,7 +255,7 @@ class MyCallingPage extends State<Calling> {
   void _handleCallState(CallState state) {
     Logs().v('CallingPage::handleCallState: ${state.toString()}');
     if ({CallState.kConnected, CallState.kEnded}.contains(state)) {
-      HapticFeedback.heavyImpact();
+      HapticFeedback.vibrate();
     }
 
     if (mounted) {
