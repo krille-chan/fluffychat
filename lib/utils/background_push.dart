@@ -57,6 +57,8 @@ class BackgroundPush {
   void Function(String errorMsg, {Uri? link})? onFcmError;
   L10n? l10n;
 
+  Timer? _macosPollingTimer;
+
   static const Set<String> _legacyPushGatewayUrls = {
     'https://push.fluffychat.im/_matrix/push/v1/notify',
     'https://push.fluffychat.im/_matrix/push/v1/legacy',
@@ -106,11 +108,16 @@ class BackgroundPush {
           },
         );
       }
+      const darwinSettings = DarwinInitializationSettings(
+        defaultPresentAlert: true,
+        defaultPresentSound: true,
+        defaultPresentBadge: true,
+      );
       await _flutterLocalNotificationsPlugin.initialize(
         const InitializationSettings(
           android: AndroidInitializationSettings('notifications_icon'),
-          iOS: DarwinInitializationSettings(),
-          macOS: DarwinInitializationSettings(),
+          iOS: darwinSettings,
+          macOS: darwinSettings,
         ),
         onDidReceiveNotificationResponse: (response) => notificationTap(
           response,
@@ -167,6 +174,7 @@ class BackgroundPush {
     instance.matrix = matrix;
     // ignore: prefer_initializing_formals
     instance.onFcmError = onFcmError;
+    instance._maybeStartMacPolling();
     return instance;
   }
 
@@ -204,10 +212,27 @@ class BackgroundPush {
           ?.requestNotificationsPermission();
     }
     if (PlatformInfos.isMacOS) {
-      _flutterLocalNotificationsPlugin
+      final macPlugin = _flutterLocalNotificationsPlugin
           .resolvePlatformSpecificImplementation<
-              MacOSFlutterLocalNotificationsPlugin>()
-          ?.requestPermissions(alert: true, badge: true, sound: true);
+              MacOSFlutterLocalNotificationsPlugin>();
+      if (macPlugin == null) {
+        Logs().w('[Notifications] macOS plugin not available');
+      } else {
+        final macPermissionResult = await macPlugin.requestPermissions(
+          alert: true,
+          badge: true,
+          sound: true,
+        );
+        Logs().v(
+          '[Notifications] macOS requestPermissions result: '
+          '${macPermissionResult ?? "unknown"}',
+        );
+        final launchDetails = await macPlugin.getNotificationAppLaunchDetails();
+        Logs().v(
+          '[Notifications] macOS launch details: '
+          '${launchDetails ?? "none"}',
+        );
+      }
     }
     final clientName = PlatformInfos.clientName;
     oldTokens ??= <String>{};
@@ -339,6 +364,34 @@ class BackgroundPush {
         );
       }
     });
+  }
+
+  void _maybeStartMacPolling() {
+    if (!PlatformInfos.isMacOS) {
+      return;
+    }
+    if (_macosPollingTimer == null) {
+      Logs().v('[Push] Starting macOS poll timer');
+      _macosPollingTimer = Timer.periodic(
+        const Duration(minutes: 1),
+        (_) => _pollMacNotifications(),
+      );
+    }
+    unawaited(_pollMacNotifications());
+  }
+
+  Future<void> _pollMacNotifications() async {
+    if (!PlatformInfos.isMacOS ||
+        matrix == null ||
+        client.onLoginStateChanged.value != LoginState.loggedIn) {
+      return;
+    }
+    try {
+      Logs().v('[Push] macOS poll: running oneShotSync');
+      await client.oneShotSync(timeout: const Duration(seconds: 20));
+    } catch (e, s) {
+      Logs().w('[Push] macOS poll sync failed', e, s);
+    }
   }
 
   Future<void> _noFcmWarning() async {

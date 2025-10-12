@@ -44,7 +44,17 @@ Future<void> pushHelper(
       l10n.newMessageInHermes,
       l10n.openAppToReadMessages,
       NotificationDetails(
-        iOS: const DarwinNotificationDetails(),
+        iOS: const DarwinNotificationDetails(
+          presentAlert: true,
+          presentSound: true,
+          presentBadge: true,
+        ),
+        macOS: const DarwinNotificationDetails(
+          presentAlert: true,
+          presentSound: true,
+          presentBadge: true,
+          interruptionLevel: InterruptionLevel.timeSensitive,
+        ),
         android: AndroidNotificationDetails(
           AppConfig.pushNotificationsChannelId,
           l10n.incomingMessages,
@@ -78,7 +88,8 @@ Future<void> _tryPushHelper(
 
   if (notification.roomId != null &&
       activeRoomId == notification.roomId &&
-      WidgetsBinding.instance.lifecycleState == AppLifecycleState.resumed) {
+      WidgetsBinding.instance.lifecycleState == AppLifecycleState.resumed &&
+      PlatformInfos.isMobile) {
     Logs().v('Room is in foreground. Stop push helper here.');
     return;
   }

@@ -288,12 +288,17 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
       }
     });
     onUiaRequest[name] ??= c.onUiaRequest.stream.listen(uiaRequestHandler);
-    if (PlatformInfos.isWeb || PlatformInfos.isLinux) {
+    if (PlatformInfos.isWeb) {
       c.onSync.stream.first.then((s) {
         html.Notification.requestPermission();
         onNotification[name] ??=
             c.onNotification.stream.listen(showLocalNotification);
       });
+    } else if (PlatformInfos.isLinux || PlatformInfos.isMacOS) {
+      Logs().v(
+          '[Notifications] Subscribing desktop listener for ${c.clientName}');
+      onNotification[name] ??=
+          c.onNotification.stream.listen(showLocalNotification);
     }
   }
 

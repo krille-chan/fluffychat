@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
 import 'package:collection/collection.dart';
 import 'package:desktop_notifications/desktop_notifications.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -26,10 +25,12 @@ extension LocalNotificationsExtension on MatrixState {
     ..load();
 
   void showLocalNotification(Event event) async {
+    Logs().v(
+        '[Notifications] event received for ${event.room.id} (${event.type})');
     final roomId = event.room.id;
     if (activeRoomId == roomId) {
       if (kIsWeb && webHasFocus) return;
-      if (PlatformInfos.isDesktop &&
+      if ((PlatformInfos.isLinux || PlatformInfos.isWindows) &&
           WidgetsBinding.instance.lifecycleState == AppLifecycleState.resumed) {
         return;
       }
@@ -82,6 +83,7 @@ extension LocalNotificationsExtension on MatrixState {
         tag: event.room.id,
       );
     } else if (Platform.isMacOS) {
+      Logs().v('[Notifications] preparing macOS notification for $roomId');
       final plugin = backgroundPush?.notificationsPlugin;
       if (plugin == null) {
         Logs().w('Local notification requested on macOS but plugin missing');
@@ -92,9 +94,17 @@ extension LocalNotificationsExtension on MatrixState {
         title,
         body,
         const NotificationDetails(
-          macOS: DarwinNotificationDetails(),
+          macOS: DarwinNotificationDetails(
+            presentAlert: true,
+            presentSound: true,
+            presentBadge: true,
+            interruptionLevel: InterruptionLevel.timeSensitive,
+          ),
         ),
         payload: roomId,
+      );
+      Logs().v(
+        '[Notifications] macOS notification displayed via plugin for $roomId',
       );
     } else if (Platform.isLinux) {
       final avatarUrl = event.room.avatar;
