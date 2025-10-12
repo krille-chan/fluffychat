@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:matrix/matrix.dart';
 import 'package:hermes/l10n/l10n.dart';
@@ -8,13 +9,19 @@ import 'package:hermes/utils/platform_infos.dart';
 import 'package:hermes/widgets/mxc_image.dart';
 import '../../widgets/avatar.dart';
 
+class _CloseStickerPickerIntent extends Intent {
+  const _CloseStickerPickerIntent();
+}
+
 class StickerPickerDialog extends StatefulWidget {
   final Room room;
   final void Function(ImagePackImageContent) onSelected;
+  final VoidCallback? onEscape;
 
   const StickerPickerDialog({
     required this.onSelected,
     required this.room,
+    this.onEscape,
     super.key,
   });
 
@@ -131,61 +138,78 @@ class StickerPickerDialogState extends State<StickerPickerDialog> {
       );
     };
 
-    return Scaffold(
-      backgroundColor: theme.colorScheme.onInverseSurface,
-      body: SizedBox(
-        width: double.maxFinite,
-        child: CustomScrollView(
-          slivers: <Widget>[
-            SliverAppBar(
-              floating: true,
-              pinned: true,
-              scrolledUnderElevation: 0,
-              automaticallyImplyLeading: false,
-              backgroundColor: Colors.transparent,
-              title: SizedBox(
-                height: 42,
-                child: TextField(
-                  autofocus: false,
-                  focusNode: _searchFocusNode,
-                  decoration: InputDecoration(
-                    filled: true,
-                    hintText: L10n.of(context).search,
-                    prefixIcon: const Icon(Icons.search_outlined),
-                    contentPadding: EdgeInsets.zero,
-                  ),
-                  onChanged: (s) => setState(() => searchFilter = s),
-                ),
-              ),
-            ),
-            if (packSlugs.isEmpty)
-              SliverFillRemaining(
-                child: Center(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(L10n.of(context).noEmotesFound),
-                      const SizedBox(height: 12),
-                      OutlinedButton.icon(
-                        onPressed: () => UrlLauncher(
-                          context,
-                          'https://matrix.to/#/#hermes-stickers:janian.de',
-                        ).launchUrl(),
-                        icon: const Icon(Icons.explore_outlined),
-                        label: Text(L10n.of(context).discover),
+    return Shortcuts(
+      shortcuts: <LogicalKeySet, Intent>{
+        LogicalKeySet(LogicalKeyboardKey.escape):
+            const _CloseStickerPickerIntent(),
+      },
+      child: Actions(
+        actions: <Type, Action<Intent>>{
+          _CloseStickerPickerIntent:
+              CallbackAction<_CloseStickerPickerIntent>(
+            onInvoke: (intent) {
+              widget.onEscape?.call();
+              return null;
+            },
+          ),
+        },
+        child: Scaffold(
+          backgroundColor: theme.colorScheme.onInverseSurface,
+          body: SizedBox(
+            width: double.maxFinite,
+            child: CustomScrollView(
+              slivers: <Widget>[
+                SliverAppBar(
+                  floating: true,
+                  pinned: true,
+                  scrolledUnderElevation: 0,
+                  automaticallyImplyLeading: false,
+                  backgroundColor: Colors.transparent,
+                  title: SizedBox(
+                    height: 42,
+                    child: TextField(
+                      autofocus: false,
+                      focusNode: _searchFocusNode,
+                      decoration: InputDecoration(
+                        filled: true,
+                        hintText: L10n.of(context).search,
+                        prefixIcon: const Icon(Icons.search_outlined),
+                        contentPadding: EdgeInsets.zero,
                       ),
-                    ],
+                      onChanged: (s) => setState(() => searchFilter = s),
+                    ),
                   ),
                 ),
-              )
-            else
-              SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  packBuilder,
-                  childCount: packSlugs.length,
-                ),
-              ),
-          ],
+                if (packSlugs.isEmpty)
+                  SliverFillRemaining(
+                    child: Center(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(L10n.of(context).noEmotesFound),
+                          const SizedBox(height: 12),
+                          OutlinedButton.icon(
+                            onPressed: () => UrlLauncher(
+                              context,
+                              'https://matrix.to/#/#hermes-stickers:janian.de',
+                            ).launchUrl(),
+                            icon: const Icon(Icons.explore_outlined),
+                            label: Text(L10n.of(context).discover),
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
+                else
+                  SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      packBuilder,
+                      childCount: packSlugs.length,
+                    ),
+                  ),
+              ],
+            ),
+          ),
         ),
       ),
     );
