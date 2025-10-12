@@ -4,6 +4,7 @@ import 'package:matrix/matrix.dart';
 import 'package:hermes/l10n/l10n.dart';
 import 'package:hermes/config/app_config.dart';
 import 'package:hermes/utils/url_launcher.dart';
+import 'package:hermes/utils/platform_infos.dart';
 import 'package:hermes/widgets/mxc_image.dart';
 import '../../widgets/avatar.dart';
 
@@ -23,6 +24,32 @@ class StickerPickerDialog extends StatefulWidget {
 
 class StickerPickerDialogState extends State<StickerPickerDialog> {
   String? searchFilter;
+  late final FocusNode _searchFocusNode = FocusNode();
+
+  @override
+  void initState() {
+    super.initState();
+    if (PlatformInfos.isDesktop) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) {
+          _searchFocusNode.requestFocus();
+        }
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    _searchFocusNode.dispose();
+    super.dispose();
+  }
+
+  void _handleStickerSelected(ImagePackImageContent image) {
+    if (PlatformInfos.isMobile) {
+      FocusScope.of(context).unfocus();
+    }
+    widget.onSelected(image);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +110,7 @@ class StickerPickerDialogState extends State<StickerPickerDialog> {
                         ImagePackImageContent.fromJson(image.toJson().copy());
                     // set the body, if it doesn't exist, to the key
                     imageCopy.body ??= imageKeys[imageIndex];
-                    widget.onSelected(imageCopy);
+                    _handleStickerSelected(imageCopy);
                   },
                   child: AbsorbPointer(
                     absorbing: true,
@@ -120,6 +147,7 @@ class StickerPickerDialogState extends State<StickerPickerDialog> {
                 height: 42,
                 child: TextField(
                   autofocus: false,
+                  focusNode: _searchFocusNode,
                   decoration: InputDecoration(
                     filled: true,
                     hintText: L10n.of(context).search,
