@@ -2915,5 +2915,21 @@
     "notificationRuleReactionDescription": "Demper varsler for reaksjoner.",
     "@notificationRuleReactionDescription": {},
     "notificationRuleSuppressEdits": "Demp redigeringer",
-    "@notificationRuleSuppressEdits": {}
+    "@notificationRuleSuppressEdits": {},
+    "chatHasBeenAddedToThisSpace": "Chatten er lagt til i dette området",
+    "@chatHasBeenAddedToThisSpace": {},
+    "clearArchive": "Tøm arkivet",
+    "@clearArchive": {},
+    "commandHint_markasgroup": "Merk som gruppe",
+    "@commandHint_markasgroup": {},
+    "commandHint_ban": "Utesteng den gitte brukeren fra dette rommet",
+    "@commandHint_ban": {
+        "type": "String",
+        "description": "Usage hint for the command /ban"
+    },
+    "commandHint_clearcache": "Tøm cache",
+    "@commandHint_clearcache": {
+        "type": "String",
+        "description": "Usage hint for the command /clearcache"
+    }
 }
