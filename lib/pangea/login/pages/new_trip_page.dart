@@ -43,6 +43,7 @@ class NewTripPageState extends State<NewTripPage> with CourseSearchProvider {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final spaceId = widget.spaceId;
+    final courseEntries = courses.entries.toList();
     return Scaffold(
       appBar: AppBar(
         title: Row(
@@ -142,14 +143,15 @@ class NewTripPageState extends State<NewTripPage> with CourseSearchProvider {
                         child: ListView.separated(
                           separatorBuilder: (context, index) =>
                               const SizedBox(height: 10.0),
-                          itemCount: courses.length,
+                          itemCount: courseEntries.length,
                           itemBuilder: (context, index) {
-                            final course = courses[index];
+                            final course = courseEntries[index].value;
+                            final courseId = courseEntries[index].key;
                             return InkWell(
                               onTap: () => context.go(
                                 spaceId != null
-                                    ? '/rooms/spaces/$spaceId/addcourse/${courses[index].uuid}'
-                                    : '/${widget.route}/course/own/${course.uuid}',
+                                    ? '/rooms/spaces/$spaceId/addcourse/$courseId'
+                                    : '/${widget.route}/course/own/$courseId',
                               ),
                               borderRadius: BorderRadius.circular(12.0),
                               child: Container(
@@ -195,7 +197,7 @@ class NewTripPageState extends State<NewTripPage> with CourseSearchProvider {
                                       ],
                                     ),
                                     CourseInfoChips(
-                                      course,
+                                      courseId,
                                       iconSize: 12.0,
                                       fontSize: 12.0,
                                     ),

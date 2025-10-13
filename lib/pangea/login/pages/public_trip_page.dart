@@ -9,8 +9,9 @@ import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/common/widgets/url_image_widget.dart';
 import 'package:fluffychat/pangea/course_creation/course_info_chip_widget.dart';
 import 'package:fluffychat/pangea/course_creation/course_plan_filter_widget.dart';
-import 'package:fluffychat/pangea/course_plans/course_plan_model.dart';
-import 'package:fluffychat/pangea/course_plans/course_plans_repo.dart';
+import 'package:fluffychat/pangea/course_plans/courses/course_plan_model.dart';
+import 'package:fluffychat/pangea/course_plans/courses/course_plans_repo.dart';
+import 'package:fluffychat/pangea/course_plans/courses/get_localized_courses_request.dart';
 import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
 import 'package:fluffychat/pangea/spaces/utils/public_course_extension.dart';
 import 'package:fluffychat/widgets/avatar.dart';
@@ -107,13 +108,17 @@ class PublicTripPageState extends State<PublicTripPage> {
     }
 
     try {
-      final searchResult = await CoursePlansRepo.search(
-        discoveredCourses.map((c) => c.courseId).toList(),
+      final resp = await CoursePlansRepo.search(
+        GetLocalizedCoursesRequest(
+          coursePlanIds: discoveredCourses.map((c) => c.courseId).toList(),
+          l1: MatrixState.pangeaController.languageController.activeL1Code()!,
+        ),
       );
+      final searchResult = resp.coursePlans;
 
       coursePlans.clear();
-      for (final course in searchResult) {
-        coursePlans[course.uuid] = course;
+      for (final entry in searchResult.entries) {
+        coursePlans[entry.key] = entry.value;
       }
     } catch (e, s) {
       ErrorHandler.logError(
@@ -240,8 +245,8 @@ class PublicTripPageState extends State<PublicTripPage> {
                         }
 
                         final roomChunk = filteredCourses[index].room;
-                        final course =
-                            coursePlans[filteredCourses[index].courseId];
+                        final courseId = filteredCourses[index].courseId;
+                        final course = coursePlans[courseId];
 
                         final displayname = roomChunk.name ??
                             roomChunk.canonicalAlias ??
@@ -249,7 +254,7 @@ class PublicTripPageState extends State<PublicTripPage> {
 
                         return InkWell(
                           onTap: () => context.go(
-                            '/${widget.route}/course/public/${filteredCourses[index].courseId}',
+                            '/${widget.route}/course/public/$courseId',
                             extra: roomChunk,
                           ),
                           borderRadius: BorderRadius.circular(12.0),
@@ -296,7 +301,7 @@ class PublicTripPageState extends State<PublicTripPage> {
                                 ),
                                 if (course != null) ...[
                                   CourseInfoChips(
-                                    course,
+                                    courseId,
                                     iconSize: 12.0,
                                     fontSize: 12.0,
                                   ),

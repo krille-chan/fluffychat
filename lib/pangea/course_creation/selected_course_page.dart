@@ -8,8 +8,9 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/course_creation/selected_course_view.dart';
-import 'package:fluffychat/pangea/course_plans/course_plan_model.dart';
-import 'package:fluffychat/pangea/course_plans/course_plan_room_extension.dart';
+import 'package:fluffychat/pangea/course_plans/courses/course_plan_builder.dart';
+import 'package:fluffychat/pangea/course_plans/courses/course_plan_model.dart';
+import 'package:fluffychat/pangea/course_plans/courses/course_plan_room_extension.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/spaces/utils/client_spaces_extension.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -39,7 +40,22 @@ class SelectedCourse extends StatefulWidget {
   SelectedCourseController createState() => SelectedCourseController();
 }
 
-class SelectedCourseController extends State<SelectedCourse> {
+class SelectedCourseController extends State<SelectedCourse>
+    with CoursePlanProvider {
+  @override
+  initState() {
+    super.initState();
+    loadCourse(widget.courseId).then((_) => loadTopics());
+  }
+
+  @override
+  void didUpdateWidget(covariant SelectedCourse oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.courseId != widget.courseId) {
+      loadCourse(widget.courseId).then((_) => loadTopics());
+    }
+  }
+
   String get title {
     switch (widget.mode) {
       case SelectedCourseMode.launch:
@@ -65,15 +81,18 @@ class SelectedCourseController extends State<SelectedCourse> {
   Future<void> submit(CoursePlanModel course) async {
     switch (widget.mode) {
       case SelectedCourseMode.launch:
-        return launchCourse(course);
+        return launchCourse(widget.courseId, course);
       case SelectedCourseMode.addToSpace:
         return addCourseToSpace(course);
       case SelectedCourseMode.join:
-        return joinCourse(course);
+        return joinCourse();
     }
   }
 
-  Future<void> launchCourse(CoursePlanModel course) async {
+  Future<void> launchCourse(
+    String courseId,
+    CoursePlanModel course,
+  ) async {
     final client = Matrix.of(context).client;
     final Completer<String> completer = Completer<String>();
     client
@@ -88,7 +107,7 @@ class SelectedCourseController extends State<SelectedCourse> {
             sdk.StateEvent(
               type: PangeaEventTypes.coursePlan,
               content: {
-                "uuid": course.uuid,
+                "uuid": courseId,
               },
             ),
           ],
@@ -129,7 +148,7 @@ class SelectedCourseController extends State<SelectedCourse> {
     context.go("/rooms/spaces/${space.id}/details");
   }
 
-  Future<void> joinCourse(CoursePlanModel course) async {
+  Future<void> joinCourse() async {
     if (widget.roomChunk == null) {
       throw Exception("Room chunk is null");
     }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/pangea/course_plans/course_plan_model.dart';
+import 'package:fluffychat/pangea/course_plans/courses/course_plan_builder.dart';
 import 'package:fluffychat/pangea/learning_settings/enums/language_level_type_enum.dart';
 
 class CourseInfoChip extends StatelessWidget {
@@ -45,14 +45,14 @@ class CourseInfoChip extends StatelessWidget {
   }
 }
 
-class CourseInfoChips extends StatelessWidget {
-  final CoursePlanModel course;
+class CourseInfoChips extends StatefulWidget {
+  final String courseId;
   final double? fontSize;
   final double? iconSize;
   final EdgeInsets? padding;
 
   const CourseInfoChips(
-    this.course, {
+    this.courseId, {
     super.key,
     this.fontSize,
     this.iconSize,
@@ -60,7 +60,31 @@ class CourseInfoChips extends StatelessWidget {
   });
 
   @override
+  State<CourseInfoChips> createState() => CourseInfoChipsState();
+}
+
+class CourseInfoChipsState extends State<CourseInfoChips>
+    with CoursePlanProvider {
+  @override
+  void initState() {
+    super.initState();
+    loadCourse(widget.courseId);
+  }
+
+  @override
+  void didUpdateWidget(covariant CourseInfoChips oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.courseId != widget.courseId) {
+      loadCourse(widget.courseId);
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
+    if (course == null) {
+      return const SizedBox.shrink();
+    }
+
     return Wrap(
       spacing: 8.0,
       runSpacing: 8.0,
@@ -69,31 +93,24 @@ class CourseInfoChips extends StatelessWidget {
         CourseInfoChip(
           icon: Icons.language,
           text:
-              "${course.baseLanguageDisplay} → ${course.targetLanguageDisplay}",
-          fontSize: fontSize,
-          iconSize: iconSize,
-          padding: padding,
+              "${course!.baseLanguageDisplay} → ${course!.targetLanguageDisplay}",
+          fontSize: widget.fontSize,
+          iconSize: widget.iconSize,
+          padding: widget.padding,
         ),
         CourseInfoChip(
           icon: Icons.school,
-          text: course.cefrLevel.string,
-          fontSize: fontSize,
-          iconSize: iconSize,
-          padding: padding,
+          text: course!.cefrLevel.string,
+          fontSize: widget.fontSize,
+          iconSize: widget.iconSize,
+          padding: widget.padding,
         ),
         CourseInfoChip(
           icon: Icons.location_on,
-          text: L10n.of(context).numModules(course.topicIds.length),
-          fontSize: fontSize,
-          iconSize: iconSize,
-          padding: padding,
-        ),
-        CourseInfoChip(
-          icon: Icons.event_note_outlined,
-          text: L10n.of(context).numActivityPlans(course.totalActivities),
-          fontSize: fontSize,
-          iconSize: iconSize,
-          padding: padding,
+          text: L10n.of(context).numModules(course!.topicIds.length),
+          fontSize: widget.fontSize,
+          iconSize: widget.iconSize,
+          padding: widget.padding,
         ),
       ],
     );

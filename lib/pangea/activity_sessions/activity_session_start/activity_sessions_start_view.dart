@@ -11,7 +11,7 @@ import 'package:fluffychat/pangea/activity_sessions/activity_session_start/activ
 import 'package:fluffychat/pangea/activity_sessions/activity_session_start/activity_session_start_page.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_summary_widget.dart';
 import 'package:fluffychat/pangea/common/widgets/error_indicator.dart';
-import 'package:fluffychat/pangea/course_plans/course_activity_repo.dart';
+import 'package:fluffychat/pangea/course_plans/course_activities/course_activity_repo.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
@@ -94,6 +94,8 @@ class ActivitySessionStartView extends StatelessWidget {
 
                   CourseActivityRepo.setSentFeedback(
                     controller.widget.activityId,
+                    MatrixState.pangeaController.languageController
+                        .activeL1Code()!,
                   );
 
                   await showDialog(

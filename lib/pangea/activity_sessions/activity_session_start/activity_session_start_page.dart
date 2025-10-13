@@ -12,11 +12,10 @@ import 'package:fluffychat/pangea/activity_sessions/activity_room_extension.dart
 import 'package:fluffychat/pangea/activity_sessions/activity_session_start/activity_sessions_start_view.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_session_start/bot_join_error_dialog.dart';
 import 'package:fluffychat/pangea/bot/utils/bot_name.dart';
-import 'package:fluffychat/pangea/course_plans/activity_summaries_provider.dart';
-import 'package:fluffychat/pangea/course_plans/course_activity_repo.dart';
-import 'package:fluffychat/pangea/course_plans/course_plan_model.dart';
-import 'package:fluffychat/pangea/course_plans/course_plan_room_extension.dart';
-import 'package:fluffychat/pangea/course_plans/course_plans_repo.dart';
+import 'package:fluffychat/pangea/course_plans/course_activities/activity_summaries_provider.dart';
+import 'package:fluffychat/pangea/course_plans/course_activities/course_activity_repo.dart';
+import 'package:fluffychat/pangea/course_plans/course_activities/course_activity_translation_request.dart';
+import 'package:fluffychat/pangea/course_plans/courses/course_plan_room_extension.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
@@ -59,7 +58,6 @@ class ActivitySessionStartPage extends StatefulWidget {
 class ActivitySessionStartController extends State<ActivitySessionStartPage>
     with ActivitySummariesProvider {
   ActivityPlanModel? activity;
-  CoursePlanModel? course;
 
   bool loading = true;
   Object? error;
@@ -264,14 +262,14 @@ class ActivitySessionStartController extends State<ActivitySessionStartPage>
   }
 
   Future<void> _loadActivity() async {
-    if (courseParent?.coursePlan != null) {
-      course = await CoursePlansRepo.get(courseParent!.coursePlan!.uuid);
-    }
-
-    final activities = await CourseActivityRepo.get(
+    final activitiesResponse = await CourseActivityRepo.get(
+      TranslateActivityRequest(
+        activityIds: [widget.activityId],
+        l1: MatrixState.pangeaController.languageController.activeL1Code()!,
+      ),
       widget.activityId,
-      [widget.activityId],
     );
+    final activities = activitiesResponse.plans.values.toList();
 
     if (activities.isEmpty) {
       throw Exception("Activity not found");

@@ -15,8 +15,7 @@ import 'package:fluffychat/pangea/chat_settings/constants/pangea_room_types.dart
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/course_chats/course_chats_view.dart';
 import 'package:fluffychat/pangea/course_chats/extended_space_rooms_chunk.dart';
-import 'package:fluffychat/pangea/course_plans/activity_summaries_provider.dart';
-import 'package:fluffychat/pangea/course_plans/course_plan_model.dart';
+import 'package:fluffychat/pangea/course_plans/course_activities/activity_summaries_provider.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/public_spaces/public_room_bottom_sheet.dart';
 import 'package:fluffychat/pangea/spaces/constants/space_constants.dart';
@@ -52,8 +51,6 @@ class CourseChatsController extends State<CourseChats>
   String? _nextBatch;
   bool noMoreRooms = false;
   bool isLoading = false;
-
-  CoursePlanModel? course;
 
   @override
   void initState() {
@@ -91,12 +88,6 @@ class CourseChatsController extends State<CourseChats>
   void dispose() {
     _roomSubscription?.cancel();
     super.dispose();
-  }
-
-  void setCourse(CoursePlanModel? course) {
-    setState(() {
-      this.course = course;
-    });
   }
 
   Set<String> get childrenIds =>
@@ -148,7 +139,6 @@ class CourseChatsController extends State<CourseChats>
       sessionsMap[activity]!.add(
         ExtendedSpaceRoomsChunk(
           chunk: chunk,
-          activityId: activity.activityId,
           userIds: users,
         ),
       );

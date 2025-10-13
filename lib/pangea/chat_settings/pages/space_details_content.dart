@@ -15,8 +15,7 @@ import 'package:fluffychat/pangea/chat_settings/widgets/delete_space_dialog.dart
 import 'package:fluffychat/pangea/common/widgets/share_room_button.dart';
 import 'package:fluffychat/pangea/course_chats/course_chats_page.dart';
 import 'package:fluffychat/pangea/course_creation/course_info_chip_widget.dart';
-import 'package:fluffychat/pangea/course_plans/course_plan_builder.dart';
-import 'package:fluffychat/pangea/course_plans/course_plan_room_extension.dart';
+import 'package:fluffychat/pangea/course_plans/courses/course_plan_room_extension.dart';
 import 'package:fluffychat/pangea/course_plans/map_clipper.dart';
 import 'package:fluffychat/pangea/course_settings/course_settings.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
@@ -204,159 +203,153 @@ class SpaceDetailsContent extends StatelessWidget {
     final displayname = room.getLocalizedDisplayname(
       MatrixLocals(L10n.of(context)),
     );
-    return CoursePlanBuilder(
-      courseId: room.coursePlan?.uuid,
-      builder: (context, courseController) {
-        return Column(
-          mainAxisSize: MainAxisSize.min,
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Row(
+          crossAxisAlignment: isColumnMode
+              ? CrossAxisAlignment.start
+              : CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Row(
-              crossAxisAlignment: isColumnMode
-                  ? CrossAxisAlignment.start
-                  : CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Flexible(
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      if (isColumnMode) ...[
-                        ClipPath(
-                          clipper: MapClipper(),
-                          child: Avatar(
-                            mxContent: room.avatar,
-                            name: displayname,
-                            userId: room.directChatMatrixID,
-                            size: 80.0,
-                            borderRadius: BorderRadius.circular(0.0),
+            Flexible(
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  if (isColumnMode) ...[
+                    ClipPath(
+                      clipper: MapClipper(),
+                      child: Avatar(
+                        mxContent: room.avatar,
+                        name: displayname,
+                        userId: room.directChatMatrixID,
+                        size: 80.0,
+                        borderRadius: BorderRadius.circular(0.0),
+                      ),
+                    ),
+                    const SizedBox(width: 16.0),
+                  ],
+                  Flexible(
+                    child: Column(
+                      spacing: 12.0,
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          displayname,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: isColumnMode ? 32.0 : 16.0,
+                            fontWeight: isColumnMode
+                                ? FontWeight.normal
+                                : FontWeight.bold,
                           ),
                         ),
-                        const SizedBox(width: 16.0),
+                        if (isColumnMode && room.coursePlan != null)
+                          CourseInfoChips(
+                            room.coursePlan!.uuid,
+                            fontSize: 12.0,
+                            iconSize: 12.0,
+                          ),
                       ],
-                      Flexible(
-                        child: Column(
-                          spacing: 12.0,
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              displayname,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                fontSize: isColumnMode ? 32.0 : 16.0,
-                                fontWeight: isColumnMode
-                                    ? FontWeight.normal
-                                    : FontWeight.bold,
-                              ),
-                            ),
-                            if (isColumnMode && courseController.course != null)
-                              CourseInfoChips(
-                                courseController.course!,
-                                fontSize: 12.0,
-                                iconSize: 12.0,
-                              ),
-                          ],
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
-                ),
-                if (room.classCode != null)
-                  Padding(
-                    padding: const EdgeInsets.only(left: 16.0),
-                    child: ShareRoomButton(room: room),
-                  ),
-              ],
-            ),
-            SizedBox(height: isColumnMode ? 24.0 : 12.0),
-            SpaceDetailsButtonRow(
-              controller: controller,
-              room: room,
-              selectedTab: tab(context),
-              onTabSelected: (tab) => setSelectedTab(tab, context),
-              buttons: _buttons(context),
-            ),
-            SizedBox(height: isColumnMode ? 30.0 : 14.0),
-            Expanded(
-              child: Builder(
-                builder: (context) {
-                  switch (tab(context)) {
-                    case SpaceSettingsTabs.chat:
-                      return CourseChats(
-                        room.id,
-                        activeChat: null,
-                        client: room.client,
-                      );
-                    case SpaceSettingsTabs.course:
-                      return SingleChildScrollView(
-                        child: CourseSettings(
-                          // on redirect back to chat settings after completing activity,
-                          // course settings doesn't refresh activity details by default
-                          // the key forces a rebuild on this redirect
-                          key: ValueKey(controller.widget.activeTab),
-                          courseController,
-                          room: room,
-                        ),
-                      );
-                    case SpaceSettingsTabs.participants:
-                      return SingleChildScrollView(
-                        child: RoomParticipantsSection(room: room),
-                      );
-                    case SpaceSettingsTabs.analytics:
-                      return SingleChildScrollView(
-                        child: Center(
-                          child: SpaceAnalytics(roomId: room.id),
-                        ),
-                      );
-                    case SpaceSettingsTabs.more:
-                      final buttons = _buttons(context)
-                          .where(
-                            (b) => !b.showInMainView && b.visible,
-                          )
-                          .toList();
-
-                      return SingleChildScrollView(
-                        child: Column(
-                          children: [
-                            if (room.topic.isNotEmpty) ...[
-                              Text(
-                                room.topic,
-                                style: TextStyle(
-                                  fontSize: isColumnMode ? 16.0 : 12.0,
-                                ),
-                              ),
-                              SizedBox(height: isColumnMode ? 30.0 : 14.0),
-                            ],
-                            Column(
-                              spacing: 10.0,
-                              mainAxisSize: MainAxisSize.min,
-                              children: buttons.map((b) {
-                                return Opacity(
-                                  opacity: b.enabled ? 1.0 : 0.5,
-                                  child: ListTile(
-                                    title: Text(b.title),
-                                    subtitle: b.description != null
-                                        ? Text(b.description!)
-                                        : null,
-                                    leading: b.icon,
-                                    onTap: b.enabled
-                                        ? () => b.onPressed?.call()
-                                        : null,
-                                  ),
-                                );
-                              }).toList(),
-                            ),
-                          ],
-                        ),
-                      );
-                  }
-                },
+                ],
               ),
             ),
+            if (room.classCode != null)
+              Padding(
+                padding: const EdgeInsets.only(left: 16.0),
+                child: ShareRoomButton(room: room),
+              ),
           ],
-        );
-      },
+        ),
+        SizedBox(height: isColumnMode ? 24.0 : 12.0),
+        SpaceDetailsButtonRow(
+          controller: controller,
+          room: room,
+          selectedTab: tab(context),
+          onTabSelected: (tab) => setSelectedTab(tab, context),
+          buttons: _buttons(context),
+        ),
+        SizedBox(height: isColumnMode ? 30.0 : 14.0),
+        Expanded(
+          child: Builder(
+            builder: (context) {
+              switch (tab(context)) {
+                case SpaceSettingsTabs.chat:
+                  return CourseChats(
+                    room.id,
+                    activeChat: null,
+                    client: room.client,
+                  );
+                case SpaceSettingsTabs.course:
+                  return SingleChildScrollView(
+                    child: CourseSettings(
+                      // on redirect back to chat settings after completing activity,
+                      // course settings doesn't refresh activity details by default
+                      // the key forces a rebuild on this redirect
+                      key: ValueKey(controller.widget.activeTab),
+                      room: room,
+                    ),
+                  );
+                case SpaceSettingsTabs.participants:
+                  return SingleChildScrollView(
+                    child: RoomParticipantsSection(room: room),
+                  );
+                case SpaceSettingsTabs.analytics:
+                  return SingleChildScrollView(
+                    child: Center(
+                      child: SpaceAnalytics(roomId: room.id),
+                    ),
+                  );
+                case SpaceSettingsTabs.more:
+                  final buttons = _buttons(context)
+                      .where(
+                        (b) => !b.showInMainView && b.visible,
+                      )
+                      .toList();
+
+                  return SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        if (room.topic.isNotEmpty) ...[
+                          Text(
+                            room.topic,
+                            style: TextStyle(
+                              fontSize: isColumnMode ? 16.0 : 12.0,
+                            ),
+                          ),
+                          SizedBox(height: isColumnMode ? 30.0 : 14.0),
+                        ],
+                        Column(
+                          spacing: 10.0,
+                          mainAxisSize: MainAxisSize.min,
+                          children: buttons.map((b) {
+                            return Opacity(
+                              opacity: b.enabled ? 1.0 : 0.5,
+                              child: ListTile(
+                                title: Text(b.title),
+                                subtitle: b.description != null
+                                    ? Text(b.description!)
+                                    : null,
+                                leading: b.icon,
+                                onTap: b.enabled
+                                    ? () => b.onPressed?.call()
+                                    : null,
+                              ),
+                            );
+                          }).toList(),
+                        ),
+                      ],
+                    ),
+                  );
+              }
+            },
+          ),
+        ),
+      ],
     );
   }
 }

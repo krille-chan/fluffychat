@@ -10,8 +10,9 @@ import 'package:matrix/matrix.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/common/widgets/error_indicator.dart';
-import 'package:fluffychat/pangea/course_plans/course_plan_room_extension.dart';
-import 'package:fluffychat/pangea/course_plans/course_plans_repo.dart';
+import 'package:fluffychat/pangea/course_plans/courses/course_plan_room_extension.dart';
+import 'package:fluffychat/pangea/course_plans/courses/course_plans_repo.dart';
+import 'package:fluffychat/pangea/course_plans/courses/get_localized_courses_request.dart';
 import 'package:fluffychat/pangea/learning_settings/utils/p_language_store.dart';
 import 'package:fluffychat/pangea/login/utils/lang_code_repo.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -99,7 +100,12 @@ class CreatePangeaAccountPageState extends State<CreatePangeaAccountPage> {
         throw Exception('No course plan associated with space $spaceId');
       }
 
-      final course = await CoursePlansRepo.get(courseId);
+      final course = await CoursePlansRepo.get(
+        GetLocalizedCoursesRequest(
+          coursePlanIds: [courseId],
+          l1: MatrixState.pangeaController.languageController.activeL1Code()!,
+        ),
+      );
 
       _spaceId = spaceId;
       _courseLangCode = course.targetLanguage;

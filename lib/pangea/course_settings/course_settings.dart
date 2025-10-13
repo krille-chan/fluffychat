@@ -12,20 +12,19 @@ import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
 import 'package:fluffychat/pangea/activity_suggestions/activity_suggestion_card.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
+import 'package:fluffychat/pangea/common/widgets/error_indicator.dart';
 import 'package:fluffychat/pangea/common/widgets/url_image_widget.dart';
 import 'package:fluffychat/pangea/course_creation/course_info_chip_widget.dart';
-import 'package:fluffychat/pangea/course_plans/activity_summaries_provider.dart';
-import 'package:fluffychat/pangea/course_plans/course_plan_builder.dart';
-import 'package:fluffychat/pangea/course_plans/course_plan_room_extension.dart';
+import 'package:fluffychat/pangea/course_plans/course_activities/activity_summaries_provider.dart';
+import 'package:fluffychat/pangea/course_plans/courses/course_plan_builder.dart';
+import 'package:fluffychat/pangea/course_plans/courses/course_plan_room_extension.dart';
 import 'package:fluffychat/pangea/course_settings/pin_clipper.dart';
 import 'package:fluffychat/pangea/course_settings/topic_participant_list.dart';
 import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 
 class CourseSettings extends StatefulWidget {
   final Room room;
-  final CoursePlanController controller;
-  const CourseSettings(
-    this.controller, {
+  const CourseSettings({
     super.key,
     required this.room,
   });
@@ -35,14 +34,43 @@ class CourseSettings extends StatefulWidget {
 }
 
 class CourseSettingsState extends State<CourseSettings>
-    with ActivitySummariesProvider {
-  CoursePlanController get controller => widget.controller;
+    with ActivitySummariesProvider, CoursePlanProvider {
   Room get room => widget.room;
+  bool _loadingActivities = true;
 
   @override
   void initState() {
     super.initState();
     _loadSummaries();
+    if (widget.room.coursePlan != null) {
+      _loadCourseInfo();
+    }
+  }
+
+  @override
+  void didUpdateWidget(covariant CourseSettings oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.room.id != widget.room.id) {
+      if (widget.room.coursePlan != null) {
+        _loadCourseInfo();
+      }
+    }
+  }
+
+  Future<void> _loadCourseInfo() async {
+    setState(() => _loadingActivities = true);
+    await loadCourse(widget.room.coursePlan!.uuid);
+    if (course != null) {
+      await loadTopics();
+
+      final futures = <Future>[];
+      for (final topicId in course!.topicIds) {
+        futures.add(loadActivity(topicId));
+      }
+      await Future.wait(futures);
+    }
+
+    if (mounted) setState(() => _loadingActivities = false);
   }
 
   Future<void> _loadSummaries() async {
@@ -64,11 +92,11 @@ class CourseSettingsState extends State<CourseSettings>
 
   @override
   Widget build(BuildContext context) {
-    if (controller.loading) {
+    if (loadingCourse) {
       return const Center(child: CircularProgressIndicator.adaptive());
     }
 
-    if (controller.course == null || controller.error != null) {
+    if (course == null || courseError != null) {
       return room.canChangeStateEvent(PangeaEventTypes.coursePlan)
           ? Column(
               spacing: 50.0,
@@ -114,149 +142,172 @@ class CourseSettingsState extends State<CourseSettings>
     final double descFontSize = isColumnMode ? 12.0 : 8.0;
     final double iconSize = isColumnMode ? 16.0 : 12.0;
 
-    final course = controller.course!;
-    final topicIndex = currentTopicIndex(
+    if (loadingTopics) {
+      return const Center(child: CircularProgressIndicator.adaptive());
+    }
+
+    final activeTopicId = currentTopicId(
       room.client.userID!,
-      course,
+      course!,
     );
 
-    return FutureBuilder(
-      future: topicsToUsers(room, course),
-      builder: (context, snapshot) {
-        final topicsToUsers = snapshot.data ?? {};
-        return Column(
-          spacing: isColumnMode ? 40.0 : 36.0,
-          mainAxisSize: MainAxisSize.min,
-          children: course.loadedTopics.mapIndexed((index, topic) {
-            final unlocked = index <= topicIndex;
-            final usersInTopic = topicsToUsers[topic.uuid] ?? [];
-            final activities = topic.loadedActivities;
-            activities.sort(
-              (a, b) => a.req.numberOfParticipants.compareTo(
-                b.req.numberOfParticipants,
-              ),
-            );
-            return AbsorbPointer(
-              absorbing: !unlocked,
-              child: Opacity(
-                opacity: unlocked ? 1.0 : 0.5,
-                child: Column(
-                  spacing: 12.0,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    LayoutBuilder(
-                      builder: (context, constraints) {
-                        return Row(
-                          spacing: 8.0,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Flexible(
-                              child: Row(
-                                spacing: 4.0,
-                                mainAxisSize: MainAxisSize.min,
+    final int? topicIndex =
+        activeTopicId == null ? null : course!.topicIds.indexOf(activeTopicId);
+
+    final Map<String, List<User>> userTopics = _loadingActivities
+        ? {}
+        : topicsToUsers(
+            room,
+            course!,
+          );
+
+    return Column(
+      spacing: isColumnMode ? 40.0 : 36.0,
+      mainAxisSize: MainAxisSize.min,
+      children: course!.topicIds.mapIndexed((index, topicId) {
+        final topic = course!.loadedTopics[topicId];
+        if (topic == null) {
+          return const SizedBox();
+        }
+
+        final usersInTopic = userTopics[topicId] ?? [];
+        final activityError = activityErrors[topicId];
+
+        final bool locked = topicIndex == null ? false : index > topicIndex;
+        final disabled = locked || _loadingActivities || activityError != null;
+        return AbsorbPointer(
+          absorbing: disabled,
+          child: Opacity(
+            opacity: disabled ? 0.5 : 1.0,
+            child: Column(
+              spacing: 12.0,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                LayoutBuilder(
+                  builder: (context, constraints) {
+                    return Row(
+                      spacing: 8.0,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Flexible(
+                          child: Row(
+                            spacing: 4.0,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Stack(
                                 children: [
-                                  Stack(
-                                    children: [
-                                      ClipPath(
-                                        clipper: PinClipper(),
-                                        child: ImageByUrl(
-                                          imageUrl: topic.imageUrl,
-                                          width: 54.0,
-                                          replacement: Container(
-                                            width: 54.0,
-                                            height: 54.0,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  theme.colorScheme.secondary,
-                                            ),
-                                          ),
+                                  ClipPath(
+                                    clipper: PinClipper(),
+                                    child: ImageByUrl(
+                                      imageUrl: topic.imageUrl,
+                                      width: 54.0,
+                                      replacement: Container(
+                                        width: 54.0,
+                                        height: 54.0,
+                                        decoration: BoxDecoration(
+                                          color: theme.colorScheme.secondary,
                                         ),
                                       ),
-                                      if (!unlocked)
-                                        const Positioned(
-                                          bottom: 0,
-                                          right: 0,
-                                          child: Icon(Icons.lock, size: 24.0),
-                                        ),
-                                    ],
-                                  ),
-                                  Flexible(
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          topic.title,
-                                          maxLines: 1,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: TextStyle(
-                                            fontSize: titleFontSize,
-                                          ),
-                                        ),
-                                        if (topic.location != null)
-                                          CourseInfoChip(
-                                            icon: Icons.location_on,
-                                            text: topic.location!,
-                                            fontSize: descFontSize,
-                                            iconSize: iconSize,
-                                          ),
-                                        if (constraints.maxWidth < 700.0)
-                                          Padding(
-                                            padding: const EdgeInsetsGeometry
-                                                .symmetric(
-                                              vertical: 4.0,
-                                            ),
-                                            child: TopicParticipantList(
-                                              room: room,
-                                              users: usersInTopic,
-                                              avatarSize:
-                                                  isColumnMode ? 50.0 : 25.0,
-                                              overlap:
-                                                  isColumnMode ? 20.0 : 8.0,
-                                            ),
-                                          ),
-                                      ],
                                     ),
                                   ),
+                                  if (locked)
+                                    const Positioned(
+                                      bottom: 0,
+                                      right: 0,
+                                      child: Icon(Icons.lock, size: 24.0),
+                                    )
+                                  else if (_loadingActivities)
+                                    const SizedBox(
+                                      width: 54.0,
+                                      height: 54.0,
+                                      child:
+                                          CircularProgressIndicator.adaptive(),
+                                    ),
                                 ],
                               ),
-                            ),
-                            if (constraints.maxWidth >= 700.0)
-                              TopicParticipantList(
-                                room: room,
-                                users: usersInTopic,
-                                avatarSize: isColumnMode ? 50.0 : 25.0,
-                                overlap: isColumnMode ? 20.0 : 8.0,
+                              Flexible(
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      topic.title,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: TextStyle(
+                                        fontSize: titleFontSize,
+                                      ),
+                                    ),
+                                    if (topic.location != null)
+                                      CourseInfoChip(
+                                        icon: Icons.location_on,
+                                        text: topic.location!,
+                                        fontSize: descFontSize,
+                                        iconSize: iconSize,
+                                      ),
+                                    if (constraints.maxWidth < 700.0)
+                                      Padding(
+                                        padding:
+                                            const EdgeInsetsGeometry.symmetric(
+                                          vertical: 4.0,
+                                        ),
+                                        child: TopicParticipantList(
+                                          room: room,
+                                          users: usersInTopic,
+                                          avatarSize:
+                                              isColumnMode ? 50.0 : 25.0,
+                                          overlap: isColumnMode ? 20.0 : 8.0,
+                                        ),
+                                      ),
+                                  ],
+                                ),
                               ),
-                          ],
-                        );
-                      },
-                    ),
-                    if (unlocked)
-                      SizedBox(
-                        height: isColumnMode ? 290.0 : 210.0,
-                        child: TopicActivitiesList(
-                          room: room,
-                          activities: activities,
-                          controller: this,
+                            ],
+                          ),
                         ),
-                      ),
-                  ],
+                        if (constraints.maxWidth >= 700.0)
+                          TopicParticipantList(
+                            room: room,
+                            users: usersInTopic,
+                            avatarSize: isColumnMode ? 50.0 : 25.0,
+                            overlap: isColumnMode ? 20.0 : 8.0,
+                          ),
+                      ],
+                    );
+                  },
                 ),
-              ),
-            );
-          }).toList(),
+                if (!locked)
+                  _loadingActivities
+                      ? const Center(
+                          child: CircularProgressIndicator.adaptive(),
+                        )
+                      : activityError != null
+                          ? ErrorIndicator(
+                              message: L10n.of(context).oopsSomethingWentWrong,
+                            )
+                          : topic.loadedActivities.isNotEmpty
+                              ? SizedBox(
+                                  height: isColumnMode ? 290.0 : 210.0,
+                                  child: TopicActivitiesList(
+                                    room: room,
+                                    activities: topic.loadedActivities,
+                                    controller: this,
+                                  ),
+                                )
+                              : const SizedBox(),
+              ],
+            ),
+          ),
         );
-      },
+      }).toList(),
     );
   }
 }
 
 class TopicActivitiesList extends StatefulWidget {
   final Room room;
-  final List<ActivityPlanModel> activities;
+  final Map<String, ActivityPlanModel> activities;
   final CourseSettingsState controller;
 
   const TopicActivitiesList({
@@ -282,26 +333,33 @@ class TopicActivitiesListState extends State<TopicActivitiesList> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isColumnMode = FluffyThemes.isColumnMode(context);
+
+    final activityEntries = widget.activities.entries.toList();
+    activityEntries.sort(
+      (a, b) => a.value.req.numberOfParticipants.compareTo(
+        b.value.req.numberOfParticipants,
+      ),
+    );
+
     return Scrollbar(
       thumbVisibility: true,
       controller: _scrollController,
       child: ListView.builder(
         controller: _scrollController,
         scrollDirection: Axis.horizontal,
-        itemCount: widget.activities.length,
+        itemCount: activityEntries.length,
         itemBuilder: (context, index) {
-          final activityId = widget.activities[index].activityId;
-
+          final activityEntry = activityEntries[index];
           final complete = widget.controller.hasCompletedActivity(
             widget.room.client.userID!,
-            activityId,
+            activityEntry.key,
           );
 
           final activityRoomId = widget.room.activeActivityRoomId(
-            activityId,
+            activityEntry.key,
           );
 
-          final activity = widget.activities[index];
+          final activity = activityEntry.value;
           return Padding(
             padding: const EdgeInsets.only(right: 24.0),
             child: MouseRegion(
@@ -310,7 +368,7 @@ class TopicActivitiesListState extends State<TopicActivitiesList> {
                 onTap: () => context.go(
                   activityRoomId != null
                       ? "/rooms/spaces/${widget.room.id}/$activityRoomId"
-                      : "/rooms/spaces/${widget.room.id}/activity/$activityId",
+                      : "/rooms/spaces/${widget.room.id}/activity/${activityEntry.key}",
                 ),
                 child: Stack(
                   children: [

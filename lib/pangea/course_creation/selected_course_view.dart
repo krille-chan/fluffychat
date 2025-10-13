@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 
-import 'package:go_router/go_router.dart';
-
 import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/pangea/common/widgets/error_indicator.dart';
 import 'package:fluffychat/pangea/common/widgets/url_image_widget.dart';
 import 'package:fluffychat/pangea/course_creation/course_info_chip_widget.dart';
 import 'package:fluffychat/pangea/course_creation/selected_course_page.dart';
-import 'package:fluffychat/pangea/course_plans/course_plan_builder.dart';
 import 'package:fluffychat/pangea/course_plans/map_clipper.dart';
 import 'package:fluffychat/pangea/course_settings/pin_clipper.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
@@ -29,6 +27,7 @@ class SelectedCourseView extends StatelessWidget {
     const double mediumIconSize = 16.0;
     const double smallIconSize = 12.0;
 
+    final course = controller.course;
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -36,17 +35,18 @@ class SelectedCourseView extends StatelessWidget {
         ),
       ),
       body: SafeArea(
-        child: CoursePlanBuilder(
-          courseId: controller.widget.courseId,
-          onNotFound: () => context.go("/rooms/course/own"),
-          builder: (context, courseController) {
-            final course = courseController.course;
-            return Container(
-              alignment: Alignment.topCenter,
-              child: ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 500.0),
-                child: course == null
-                    ? const Center(child: CircularProgressIndicator.adaptive())
+        child: Container(
+          alignment: Alignment.topCenter,
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 500.0),
+            child: controller.loadingCourse
+                ? const Center(child: CircularProgressIndicator.adaptive())
+                : controller.courseError != null || course == null
+                    ? Center(
+                        child: ErrorIndicator(
+                          message: L10n.of(context).oopsSomethingWentWrong,
+                        ),
+                      )
                     : Column(
                         children: [
                           Expanded(
@@ -57,7 +57,7 @@ class SelectedCourseView extends StatelessWidget {
                                 right: 12.0,
                               ),
                               child: ListView.builder(
-                                itemCount: course.loadedTopics.length + 2,
+                                itemCount: course.topicIds.length + 2,
                                 itemBuilder: (context, index) {
                                   String displayname = course.title;
                                   final roomChunk = controller.widget.roomChunk;
@@ -104,7 +104,7 @@ class SelectedCourseView extends StatelessWidget {
                                           ),
                                         ),
                                         CourseInfoChips(
-                                          course,
+                                          controller.widget.courseId,
                                           fontSize: descFontSize,
                                           iconSize: smallIconSize,
                                         ),
@@ -135,11 +135,17 @@ class SelectedCourseView extends StatelessWidget {
 
                                   index--;
 
-                                  if (index >= course.loadedTopics.length) {
+                                  if (index >= course.topicIds.length) {
                                     return const SizedBox(height: 12.0);
                                   }
 
-                                  final topic = course.loadedTopics[index];
+                                  final topicId = course.topicIds[index];
+                                  final topic = course.loadedTopics[topicId];
+
+                                  if (topic == null) {
+                                    return const SizedBox();
+                                  }
+
                                   return Padding(
                                     padding: const EdgeInsets.symmetric(
                                       vertical: 4.0,
@@ -201,17 +207,6 @@ class SelectedCourseView extends StatelessWidget {
                                                         fontSize: descFontSize,
                                                         iconSize: smallIconSize,
                                                       ),
-                                                    CourseInfoChip(
-                                                      icon: Icons
-                                                          .event_note_outlined,
-                                                      text: L10n.of(context)
-                                                          .numActivityPlans(
-                                                        topic.loadedActivities
-                                                            .length,
-                                                      ),
-                                                      fontSize: descFontSize,
-                                                      iconSize: smallIconSize,
-                                                    ),
                                                   ],
                                                 ),
                                               ),
@@ -307,9 +302,7 @@ class SelectedCourseView extends StatelessWidget {
                           ),
                         ],
                       ),
-              ),
-            );
-          },
+          ),
         ),
       ),
     );

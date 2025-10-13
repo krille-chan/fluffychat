@@ -5,6 +5,7 @@ import 'package:fluffychat/pangea/common/constants/model_keys.dart';
 
 class ActivityPlanModel {
   final String activityId;
+
   final ActivityPlanRequest req;
   final String title;
   final String description;
@@ -66,6 +67,7 @@ class ActivityPlanModel {
       );
     }
 
+    final activityId = json[ModelKey.activityId] ?? json["bookmark_id"];
     return ActivityPlanModel(
       imageURL: json[ModelKey.activityPlanImageURL],
       instructions: json[ModelKey.activityPlanInstructions],
@@ -88,7 +90,7 @@ class ActivityPlanModel {
             )
           : null,
       roles: roles,
-      activityId: json[ModelKey.activityId] ?? json["bookmark_id"],
+      activityId: activityId,
     );
   }
 
