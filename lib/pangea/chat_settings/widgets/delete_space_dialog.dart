@@ -77,6 +77,27 @@ class DeleteSpaceDialogState extends State<DeleteSpaceDialog> {
     });
   }
 
+  void _toggleSelectAll() {
+    setState(() {
+      if (_roomsToDelete.length == _selectableRooms.length) {
+        _roomsToDelete.clear();
+      } else {
+        _roomsToDelete
+          ..clear()
+          ..addAll(_selectableRooms);
+      }
+    });
+  }
+
+  List<SpaceRoomsChunk> get _selectableRooms {
+    return _rooms.where((chunk) {
+      final room = widget.space.client.getRoomById(chunk.roomId);
+      return room != null &&
+          room.membership == Membership.join &&
+          room.isRoomAdmin;
+    }).toList();
+  }
+
   Future<void> _deleteSpace() async {
     setState(() {
       _deleting = true;
@@ -174,35 +195,53 @@ class DeleteSpaceDialogState extends State<DeleteSpaceDialog> {
 
                     return Padding(
                       padding: const EdgeInsets.symmetric(vertical: 16.0),
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: _rooms.length,
-                        itemBuilder: (context, index) {
-                          final chunk = _rooms[index];
-
-                          final room =
-                              widget.space.client.getRoomById(chunk.roomId);
-                          final isMember = room != null &&
-                              room.membership == Membership.join &&
-                              room.isRoomAdmin;
-
-                          final displayname = chunk.name ??
-                              chunk.canonicalAlias ??
-                              L10n.of(context).emptyChat;
-
-                          return AnimatedOpacity(
-                            duration: FluffyThemes.animationDuration,
-                            opacity: isMember ? 1 : 0.5,
-                            child: CheckboxListTile(
-                              value: _roomsToDelete.contains(chunk),
-                              onChanged: isMember
-                                  ? (value) => _onRoomSelected(value, chunk)
-                                  : null,
-                              title: Text(displayname),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          if (_selectableRooms.length > 1)
+                            CheckboxListTile(
+                              value: _roomsToDelete.length ==
+                                  _selectableRooms.length,
+                              onChanged: (_) => _toggleSelectAll(),
+                              title: Text(
+                                _roomsToDelete.length == _selectableRooms.length
+                                    ? L10n.of(context).deselectAll
+                                    : L10n.of(context).selectAll,
+                              ),
                               controlAffinity: ListTileControlAffinity.leading,
                             ),
-                          );
-                        },
+                          ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: _rooms.length,
+                            itemBuilder: (context, index) {
+                              final chunk = _rooms[index];
+
+                              final room =
+                                  widget.space.client.getRoomById(chunk.roomId);
+                              final isMember = room != null &&
+                                  room.membership == Membership.join &&
+                                  room.isRoomAdmin;
+
+                              final displayname = chunk.name ??
+                                  chunk.canonicalAlias ??
+                                  L10n.of(context).emptyChat;
+
+                              return AnimatedOpacity(
+                                duration: FluffyThemes.animationDuration,
+                                opacity: isMember ? 1 : 0.5,
+                                child: CheckboxListTile(
+                                  value: _roomsToDelete.contains(chunk),
+                                  onChanged: isMember
+                                      ? (value) => _onRoomSelected(value, chunk)
+                                      : null,
+                                  title: Text(displayname),
+                                  controlAffinity:
+                                      ListTileControlAffinity.leading,
+                                ),
+                              );
+                            },
+                          ),
+                        ],
                       ),
                     );
                   },
