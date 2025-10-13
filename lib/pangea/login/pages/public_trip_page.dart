@@ -61,9 +61,13 @@ class PublicTripPageState extends State<PublicTripPage> {
   List<PublicCoursesChunk> get filteredCourses {
     List<PublicCoursesChunk> filtered = discoveredCourses
         .where(
-          (c) => !Matrix.of(context).client.rooms.any(
-                (r) => r.id == c.room.roomId && r.membership == Membership.join,
-              ),
+          (c) =>
+              !Matrix.of(context).client.rooms.any(
+                    (r) =>
+                        r.id == c.room.roomId &&
+                        r.membership == Membership.join,
+                  ) &&
+              coursePlans.containsKey(c.courseId),
         )
         .toList();
 
