@@ -42,34 +42,34 @@ class CourseSettingsState extends State<CourseSettings>
   void initState() {
     super.initState();
     _loadSummaries();
-    if (widget.room.coursePlan != null) {
-      _loadCourseInfo();
-    }
+    _loadCourseInfo();
   }
 
   @override
   void didUpdateWidget(covariant CourseSettings oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.room.id != widget.room.id) {
-      if (widget.room.coursePlan != null) {
-        _loadCourseInfo();
-      }
+      _loadCourseInfo();
     }
   }
 
   Future<void> _loadCourseInfo() async {
+    if (widget.room.coursePlan == null) {
+      setState(() {
+        course = null;
+        loadingCourse = false;
+        loadingTopics = false;
+        _loadingActivities = false;
+      });
+      return;
+    }
+
     setState(() => _loadingActivities = true);
     await loadCourse(widget.room.coursePlan!.uuid);
     if (course != null) {
       await loadTopics();
-
-      final futures = <Future>[];
-      for (final topicId in course!.topicIds) {
-        futures.add(loadActivity(topicId));
-      }
-      await Future.wait(futures);
+      await loadAllActivities();
     }
-
     if (mounted) setState(() => _loadingActivities = false);
   }
 

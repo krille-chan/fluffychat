@@ -99,4 +99,14 @@ mixin CoursePlanProvider<T extends StatefulWidget> on State<T> {
       }
     }
   }
+
+  Future<void> loadAllActivities() async {
+    if (course == null) return;
+
+    final futures = <Future>[];
+    for (final topicId in course!.topicIds) {
+      futures.add(loadActivity(topicId));
+    }
+    await Future.wait(futures);
+  }
 }
