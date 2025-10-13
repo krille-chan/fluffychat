@@ -161,8 +161,7 @@ class VocabAnalyticsListView extends StatelessWidget {
                         "/rooms/analytics/${vocabItem.id.type.string}/${vocabItem.id.string}",
                       ),
                       constructUse: vocabItem,
-                      emoji: vocabItem.id.userSetEmoji.firstOrNull ??
-                          vocabItem.id.getLemmaInfoCached()?.emoji.firstOrNull,
+                      emoji: vocabItem.id.userSetEmoji.firstOrNull,
                     );
                   },
                   childCount: _filteredVocab.length,

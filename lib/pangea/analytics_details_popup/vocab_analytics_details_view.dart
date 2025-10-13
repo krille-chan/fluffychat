@@ -114,12 +114,9 @@ class VocabDetailsView extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 16.0),
-              LemmmaHighlightEmojiRow(
+              LemmaHighlightEmojiRow(
                 controller: controller,
-                isSelected: false,
                 cId: constructId,
-                onTapOverride: null,
-                iconSize: _iconSize,
               ),
             ],
           ),

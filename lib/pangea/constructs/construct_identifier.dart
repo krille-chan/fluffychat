@@ -10,6 +10,8 @@ import 'package:fluffychat/pangea/analytics_misc/client_analytics_extension.dart
 import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_use_model.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_use_type_enum.dart';
+import 'package:fluffychat/pangea/analytics_misc/constructs_model.dart';
+import 'package:fluffychat/pangea/analytics_misc/put_analytics_controller.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/emojis/emoji_stack.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
@@ -173,6 +175,57 @@ class ConstructIdentifier {
         );
         return null;
     }
+  }
+
+  /// Sets emoji and awards XP if it's a NEW emoji selection or from game
+  Future<void> setEmojiWithXP({
+    required String emoji,
+    bool isFromCorrectAnswer = false,
+    String? eventId,
+    String? roomId,
+  }) async {
+    final hadEmojiPreviously = userSetEmoji.isNotEmpty;
+    //correct answers already award xp so we don't here, but we do still need to set the emoji if it isn't already set
+    final shouldAwardXP = !hadEmojiPreviously && !isFromCorrectAnswer;
+
+    //Set emoji representation
+    await setUserLemmaInfo(UserSetLemmaInfo(emojis: [emoji]));
+
+    if (shouldAwardXP) {
+      await _recordEmojiAnalytics(
+        eventId: eventId,
+        roomId: roomId,
+      );
+    }
+  }
+
+  Future<void> _recordEmojiAnalytics({
+    String? eventId,
+    String? roomId,
+  }) async {
+    const useType = ConstructUseTypeEnum.em;
+
+    MatrixState.pangeaController.putAnalytics.setState(
+      AnalyticsStream(
+        eventId: eventId,
+        roomId: roomId,
+        constructs: [
+          OneConstructUse(
+            useType: useType,
+            lemma: lemma,
+            constructType: type,
+            metadata: ConstructUseMetaData(
+              roomId: roomId,
+              timeStamp: DateTime.now(),
+              eventId: eventId,
+            ),
+            category: category,
+            form: lemma,
+            xp: useType.pointValue,
+          ),
+        ],
+      ),
+    );
   }
 
   Future<void> setUserLemmaInfo(UserSetLemmaInfo newLemmaInfo) async {

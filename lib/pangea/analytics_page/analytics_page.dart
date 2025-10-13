@@ -15,7 +15,7 @@ import 'package:fluffychat/pangea/analytics_summary/progress_indicators_enum.dar
 import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
-class AnalyticsPage extends StatelessWidget {
+class AnalyticsPage extends StatefulWidget {
   final ProgressIndicatorEnum? indicator;
   final ConstructIdentifier? construct;
   final bool isSidebar;
@@ -28,61 +28,80 @@ class AnalyticsPage extends StatelessWidget {
   });
 
   @override
+  State<AnalyticsPage> createState() => _AnalyticsPageState();
+}
+
+class _AnalyticsPageState extends State<AnalyticsPage> {
+  @override
+  void initState() {
+    super.initState();
+    final analytics = MatrixState.pangeaController.getAnalytics;
+
+    // Check if getAnalytics is initialized, if not wait for the first stream entry
+    if (!analytics.initCompleter.isCompleted) {
+      analytics.analyticsStream.stream.first.then((_) {
+        if (mounted) {
+          setState(() {});
+        }
+      });
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     final analyticsRoomId = GoRouterState.of(context).pathParameters['roomid'];
     return Scaffold(
-      appBar: construct != null ? AppBar() : null,
+      appBar: widget.construct != null ? AppBar() : null,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsetsGeometry.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              if (isSidebar ||
-                  (!FluffyThemes.isColumnMode(context) && construct == null))
+              if (widget.isSidebar ||
+                  (!FluffyThemes.isColumnMode(context) &&
+                      widget.construct == null))
                 LearningProgressIndicators(
-                  selected: indicator,
-                  canSelect: indicator != ProgressIndicatorEnum.level,
+                  selected: widget.indicator,
+                  canSelect: widget.indicator != ProgressIndicatorEnum.level,
                 ),
               Expanded(
-                child: StreamBuilder(
-                  stream: MatrixState
-                      .pangeaController.getAnalytics.analyticsStream.stream,
-                  builder: (context, _) {
-                    if (indicator == ProgressIndicatorEnum.level) {
-                      return const LevelDialogContent();
-                    } else if (indicator == ProgressIndicatorEnum.morphsUsed) {
-                      return ConstructAnalyticsView(
-                        construct: construct,
-                        view: ConstructTypeEnum.morph,
-                      );
-                    } else if (indicator == ProgressIndicatorEnum.wordsUsed) {
-                      return ConstructAnalyticsView(
-                        construct: construct,
-                        view: ConstructTypeEnum.vocab,
-                      );
-                    } else if (indicator == ProgressIndicatorEnum.activities) {
-                      return ActivityArchive(
-                        selectedRoomId: analyticsRoomId,
-                      );
-                    }
+                child: () {
+                  if (widget.indicator == ProgressIndicatorEnum.level) {
+                    return const LevelDialogContent();
+                  } else if (widget.indicator ==
+                      ProgressIndicatorEnum.morphsUsed) {
+                    return ConstructAnalyticsView(
+                      construct: widget.construct,
+                      view: ConstructTypeEnum.morph,
+                    );
+                  } else if (widget.indicator ==
+                      ProgressIndicatorEnum.wordsUsed) {
+                    return ConstructAnalyticsView(
+                      construct: widget.construct,
+                      view: ConstructTypeEnum.vocab,
+                    );
+                  } else if (widget.indicator ==
+                      ProgressIndicatorEnum.activities) {
+                    return ActivityArchive(
+                      selectedRoomId: analyticsRoomId,
+                    );
+                  }
 
-                    return Center(
-                      child: SizedBox(
-                        width: 250.0,
-                        child: CachedNetworkImage(
-                          imageUrl:
-                              "${AppConfig.assetsBaseURL}/${AnalyticsPageConstants.dinoBotFileName}",
-                          errorWidget: (context, url, error) =>
-                              const SizedBox(),
-                          placeholder: (context, url) => const Center(
-                            child: CircularProgressIndicator.adaptive(),
-                          ),
+                  return Center(
+                    child: SizedBox(
+                      width: 250.0,
+                      child: CachedNetworkImage(
+                        imageUrl:
+                            "${AppConfig.assetsBaseURL}/${AnalyticsPageConstants.dinoBotFileName}",
+                        errorWidget: (context, url, error) => const SizedBox(),
+                        placeholder: (context, url) => const Center(
+                          child: CircularProgressIndicator.adaptive(),
                         ),
                       ),
-                    );
-                  },
-                ),
+                    ),
+                  );
+                }(),
               ),
             ],
           ),

@@ -211,10 +211,13 @@ class PracticeActivityModel {
     }
     if (isCorrect) {
       if (activityType == ActivityTypeEnum.emoji) {
-        // final allEmojis = ;
-
         choice.form.cId
-            .setUserLemmaInfo(UserSetLemmaInfo(emojis: [choice.choiceContent]))
+            .setEmojiWithXP(
+          emoji: choice.choiceContent,
+          isFromCorrectAnswer: true,
+          eventId: event?.eventId,
+          roomId: event?.room.id,
+        )
             .then((value) {
           callback();
         });
