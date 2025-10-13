@@ -134,81 +134,6 @@ class WordZoomWidget extends StatelessWidget {
                           langCode: langCode,
                           constructId: construct,
                           builder: (context, controller) {
-                            if (controller.editMode) {
-                              return Column(
-                                children: [
-                                  Text(
-                                    "${L10n.of(context).pangeaBotIsFallible} ${L10n.of(context).whatIsMeaning(
-                                      construct.lemma,
-                                      construct.category,
-                                    )}",
-                                    textAlign: TextAlign.center,
-                                    style: const TextStyle(
-                                      fontStyle: FontStyle.italic,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 10),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 16.0,
-                                    ),
-                                    child: TextField(
-                                      minLines: 1,
-                                      maxLines: 3,
-                                      controller: controller.controller,
-                                      decoration: InputDecoration(
-                                        hintText: controller.lemmaInfo?.meaning,
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(height: 10),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      ElevatedButton(
-                                        onPressed: () =>
-                                            controller.toggleEditMode(false),
-                                        style: ElevatedButton.styleFrom(
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10.0),
-                                          ),
-                                          padding: const EdgeInsets.symmetric(
-                                            horizontal: 10,
-                                          ),
-                                        ),
-                                        child: Text(L10n.of(context).cancel),
-                                      ),
-                                      const SizedBox(width: 10),
-                                      ElevatedButton(
-                                        onPressed: () =>
-                                            controller.controller.text !=
-                                                        controller.lemmaInfo
-                                                            ?.meaning &&
-                                                    controller.controller.text
-                                                        .isNotEmpty
-                                                ? controller.editLemmaMeaning(
-                                                    controller.controller.text,
-                                                  )
-                                                : null,
-                                        style: ElevatedButton.styleFrom(
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10.0),
-                                          ),
-                                          padding: const EdgeInsets.symmetric(
-                                            horizontal: 10,
-                                          ),
-                                        ),
-                                        child:
-                                            Text(L10n.of(context).saveChanges),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              );
-                            }
-
                             return Column(
                               spacing: 12.0,
                               mainAxisSize: MainAxisSize.min,
@@ -246,44 +171,37 @@ class WordZoomWidget extends StatelessWidget {
                                     controller.lemmaInfo == null)
                                   const CircularProgressIndicator.adaptive()
                                 else
-                                  GestureDetector(
-                                    onLongPress: () =>
-                                        controller.toggleEditMode(true),
-                                    onDoubleTap: () =>
-                                        controller.toggleEditMode(true),
-                                    child: construct.lemma.toLowerCase() ==
-                                            token.content.toLowerCase()
-                                        ? Text(
-                                            controller.lemmaInfo!.meaning,
-                                            style:
-                                                const TextStyle(fontSize: 14.0),
-                                            textAlign: TextAlign.center,
-                                          )
-                                        : RichText(
-                                            text: TextSpan(
-                                              style:
-                                                  DefaultTextStyle.of(context)
-                                                      .style
-                                                      .copyWith(
-                                                        fontSize: 14.0,
-                                                      ),
-                                              children: [
-                                                TextSpan(text: construct.lemma),
-                                                const WidgetSpan(
-                                                  child: SizedBox(width: 8.0),
+                                  construct.lemma.toLowerCase() ==
+                                          token.content.toLowerCase()
+                                      ? Text(
+                                          controller.lemmaInfo!.meaning,
+                                          style:
+                                              const TextStyle(fontSize: 14.0),
+                                          textAlign: TextAlign.center,
+                                        )
+                                      : RichText(
+                                          text: TextSpan(
+                                            style: DefaultTextStyle.of(context)
+                                                .style
+                                                .copyWith(
+                                                  fontSize: 14.0,
                                                 ),
-                                                const TextSpan(text: ":"),
-                                                const WidgetSpan(
-                                                  child: SizedBox(width: 8.0),
-                                                ),
-                                                TextSpan(
-                                                  text: controller
-                                                      .lemmaInfo!.meaning,
-                                                ),
-                                              ],
-                                            ),
+                                            children: [
+                                              TextSpan(text: construct.lemma),
+                                              const WidgetSpan(
+                                                child: SizedBox(width: 8.0),
+                                              ),
+                                              const TextSpan(text: ":"),
+                                              const WidgetSpan(
+                                                child: SizedBox(width: 8.0),
+                                              ),
+                                              TextSpan(
+                                                text: controller
+                                                    .lemmaInfo!.meaning,
+                                              ),
+                                            ],
                                           ),
-                                  ),
+                                        ),
                               ],
                             );
                           },
