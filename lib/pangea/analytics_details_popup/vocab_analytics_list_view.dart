@@ -139,7 +139,8 @@ class VocabAnalyticsListView extends StatelessWidget {
             key: const PageStorageKey("vocab-analytics-list-view-page-key"),
             slivers: [
               // Full-width tooltip
-              if (!controller.isSearching && controller.selectedConstructLevel == null)
+              if (!controller.isSearching &&
+                  controller.selectedConstructLevel == null)
                 const SliverToBoxAdapter(
                   child: InstructionsInlineTooltip(
                     instructionsEnum: InstructionsEnum.analyticsVocabList,

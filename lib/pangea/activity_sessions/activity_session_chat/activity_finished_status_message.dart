@@ -36,7 +36,7 @@ class ActivityFinishedStatusMessage extends StatelessWidget {
         );
 
         if (navigate == true && controller.room.courseParent != null) {
-          context.go(
+          context.push(
             "/rooms/spaces/${controller.room.courseParent!.id}/details?tab=course",
           );
         }
