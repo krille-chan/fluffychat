@@ -37,7 +37,8 @@ class TokenInfoFeedbackButton extends StatelessWidget {
   }
 
   void _showSuccessSnackBar(String message, BuildContext context) {
-    ScaffoldMessenger.of(context).showSnackBar(
+    final messenger = ScaffoldMessenger.of(context);
+    messenger.showSnackBar(
       SnackBar(
         content: Row(
           children: [
@@ -55,7 +56,7 @@ class TokenInfoFeedbackButton extends StatelessWidget {
         action: SnackBarAction(
           label: L10n.of(context).close,
           onPressed: () {
-            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+            messenger.hideCurrentSnackBar();
           },
         ),
       ),
