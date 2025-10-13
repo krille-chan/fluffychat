@@ -139,11 +139,12 @@ class VocabAnalyticsListView extends StatelessWidget {
             key: const PageStorageKey("vocab-analytics-list-view-page-key"),
             slivers: [
               // Full-width tooltip
-              const SliverToBoxAdapter(
-                child: InstructionsInlineTooltip(
-                  instructionsEnum: InstructionsEnum.analyticsVocabList,
+              if (!controller.isSearching && controller.selectedConstructLevel == null)
+                const SliverToBoxAdapter(
+                  child: InstructionsInlineTooltip(
+                    instructionsEnum: InstructionsEnum.analyticsVocabList,
+                  ),
                 ),
-              ),
 
               // Grid of vocab tiles
               SliverGrid(
