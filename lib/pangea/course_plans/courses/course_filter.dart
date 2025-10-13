@@ -49,11 +49,11 @@ class CourseFilter {
       }
       if (languageOfInstructions != null) {
         where["l1"] = {
-          "equals": languageOfInstructions!.langCode,
+          "equals": languageOfInstructions!.langCodeShort,
         };
       }
       if (targetLanguage != null) {
-        where["l2"] = {"equals": targetLanguage!.langCode};
+        where["l2"] = {"equals": targetLanguage!.langCodeShort};
       }
     }
 

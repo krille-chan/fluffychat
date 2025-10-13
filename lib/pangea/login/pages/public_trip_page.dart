@@ -52,8 +52,10 @@ class PublicTripPageState extends State<PublicTripPage> {
     _loadCourses();
   }
 
-  void setTargetLanguageFilter(LanguageModel? language) {
+  void setTargetLanguageFilter(LanguageModel? language, {bool reload = true}) {
+    if (targetLanguageFilter?.langCodeShort == language?.langCodeShort) return;
     setState(() => targetLanguageFilter = language);
+    if (reload) _loadCourses();
   }
 
   List<PublicCoursesChunk> get filteredCourses {
@@ -70,7 +72,8 @@ class PublicTripPageState extends State<PublicTripPage> {
         (chunk) {
           final course = coursePlans[chunk.courseId];
           if (course == null) return false;
-          return course.targetLanguageModel == targetLanguageFilter;
+          return course.targetLanguage.split('-').first ==
+              targetLanguageFilter!.langCodeShort;
         },
       ).toList();
     }
@@ -110,7 +113,8 @@ class PublicTripPageState extends State<PublicTripPage> {
     try {
       final resp = await CoursePlansRepo.search(
         GetLocalizedCoursesRequest(
-          coursePlanIds: discoveredCourses.map((c) => c.courseId).toList(),
+          coursePlanIds:
+              discoveredCourses.map((c) => c.courseId).toSet().toList(),
           l1: MatrixState.pangeaController.languageController.activeL1Code()!,
         ),
       );
