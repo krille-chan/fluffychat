@@ -33,6 +33,8 @@ extension CoursePlanRoomExtension on Room {
   }
 
   Future<void> addCourseToSpace(String courseId) async {
+    if (coursePlan?.uuid == courseId) return;
+    final future = waitForRoomInSync();
     await client.setRoomStateWithKey(
       id,
       PangeaEventTypes.coursePlan,
@@ -41,6 +43,9 @@ extension CoursePlanRoomExtension on Room {
         "uuid": courseId,
       },
     );
+    if (coursePlan?.uuid != courseId) {
+      await future;
+    }
   }
 
   Future<String> launchActivityRoom(

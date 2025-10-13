@@ -292,6 +292,7 @@ class SpaceDetailsContent extends StatelessWidget {
                       // the key forces a rebuild on this redirect
                       key: ValueKey(controller.widget.activeTab),
                       room: room,
+                      courseId: room.coursePlan?.uuid,
                     ),
                   );
                 case SpaceSettingsTabs.participants:

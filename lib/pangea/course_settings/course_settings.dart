@@ -24,9 +24,15 @@ import 'package:fluffychat/pangea/events/constants/pangea_event_types.dart';
 
 class CourseSettings extends StatefulWidget {
   final Room room;
+
+  /// The course ID to load, from the course plan event in the room.
+  /// Separate from the room to trigger didUpdateWidget on change
+  final String? courseId;
+
   const CourseSettings({
     super.key,
     required this.room,
+    required this.courseId,
   });
 
   @override
@@ -48,13 +54,14 @@ class CourseSettingsState extends State<CourseSettings>
   @override
   void didUpdateWidget(covariant CourseSettings oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.room.id != widget.room.id) {
+    if (oldWidget.room.id != widget.room.id ||
+        oldWidget.courseId != widget.courseId) {
       _loadCourseInfo();
     }
   }
 
   Future<void> _loadCourseInfo() async {
-    if (widget.room.coursePlan == null) {
+    if (widget.courseId == null) {
       setState(() {
         course = null;
         loadingCourse = false;
@@ -65,7 +72,7 @@ class CourseSettingsState extends State<CourseSettings>
     }
 
     setState(() => _loadingActivities = true);
-    await loadCourse(widget.room.coursePlan!.uuid);
+    await loadCourse(widget.courseId!);
     if (course != null) {
       await loadTopics();
       await loadAllActivities();
