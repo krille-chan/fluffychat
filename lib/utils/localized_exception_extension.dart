@@ -71,7 +71,6 @@ extension LocalizedExceptionExtension on Object {
       return L10n.of(context).badServerLoginTypesException(
         serverVersions,
         supportedVersions,
-        supportedVersions,
       );
     }
     if (this is IOException ||
