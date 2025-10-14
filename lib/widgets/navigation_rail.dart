@@ -178,7 +178,7 @@ class SpacesNavigationRail extends StatelessWidget {
                                 child: const Icon(Icons.add),
                               ),
                             ),
-                            toolTip: L10n.of(context).findCourse,
+                            toolTip: L10n.of(context).addCourse,
                             // Pangea#
                           );
                         }

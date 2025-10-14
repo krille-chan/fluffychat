@@ -1,22 +1,25 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/bot/widgets/bot_face_svg.dart';
 import 'package:fluffychat/pangea/common/widgets/url_image_widget.dart';
 import 'package:fluffychat/pangea/course_creation/course_info_chip_widget.dart';
 import 'package:fluffychat/pangea/course_creation/course_language_filter.dart';
 import 'package:fluffychat/pangea/course_creation/course_search_provider.dart';
+import 'package:fluffychat/pangea/login/pages/add_course_page.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
-class NewTripPage extends StatefulWidget {
+class NewCoursePage extends StatefulWidget {
   final String route;
   final String? spaceId;
   final bool showFilters;
 
-  const NewTripPage({
+  const NewCoursePage({
     super.key,
     required this.route,
     this.spaceId,
@@ -24,10 +27,11 @@ class NewTripPage extends StatefulWidget {
   });
 
   @override
-  State<NewTripPage> createState() => NewTripPageState();
+  State<NewCoursePage> createState() => NewCoursePageState();
 }
 
-class NewTripPageState extends State<NewTripPage> with CourseSearchProvider {
+class NewCoursePageState extends State<NewCoursePage>
+    with CourseSearchProvider {
   @override
   void initState() {
     super.initState();
@@ -49,11 +53,19 @@ class NewTripPageState extends State<NewTripPage> with CourseSearchProvider {
           spacing: 10.0,
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(Icons.map_outlined),
+            SvgPicture.network(
+              "${AppConfig.assetsBaseURL}/${AddCoursePage.mapStartFileName}",
+              width: 24.0,
+              height: 24.0,
+              colorFilter: ColorFilter.mode(
+                theme.colorScheme.onSurface,
+                BlendMode.srcIn,
+              ),
+            ),
             Text(
               spaceId != null
                   ? L10n.of(context).addCoursePlan
-                  : L10n.of(context).startOwnTripTitle,
+                  : L10n.of(context).startOwn,
             ),
           ],
         ),

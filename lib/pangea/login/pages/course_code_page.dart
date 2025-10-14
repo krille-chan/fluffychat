@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/common/widgets/pangea_logo_svg.dart';
+import 'package:fluffychat/pangea/login/pages/add_course_page.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
-class PrivateTripPage extends StatefulWidget {
-  const PrivateTripPage({
+class CourseCodePage extends StatefulWidget {
+  const CourseCodePage({
     super.key,
   });
 
   @override
-  State<PrivateTripPage> createState() => PrivateTripPageState();
+  State<CourseCodePage> createState() => CourseCodePageState();
 }
 
-class PrivateTripPageState extends State<PrivateTripPage> {
+class CourseCodePageState extends State<CourseCodePage> {
   final TextEditingController _codeController = TextEditingController();
 
   @override
@@ -57,8 +60,16 @@ class PrivateTripPageState extends State<PrivateTripPage> {
           spacing: 10.0,
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(Icons.map_outlined),
-            Text(L10n.of(context).unlockPrivateTripTitle),
+            SvgPicture.network(
+              "${AppConfig.assetsBaseURL}/${AddCoursePage.mapUnlockFileName}",
+              width: 24.0,
+              height: 24.0,
+              colorFilter: ColorFilter.mode(
+                theme.colorScheme.onSurface,
+                BlendMode.srcIn,
+              ),
+            ),
+            Text(L10n.of(context).joinCourseWithCode),
           ],
         ),
       ),
@@ -81,7 +92,7 @@ class PrivateTripPageState extends State<PrivateTripPage> {
                   spacing: 16.0,
                   children: [
                     Text(
-                      L10n.of(context).courseCode,
+                      L10n.of(context).enterCodeToJoin,
                       style: theme.textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
@@ -102,7 +113,7 @@ class PrivateTripPageState extends State<PrivateTripPage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(L10n.of(context).unlockMyTrip),
+                          Text(L10n.of(context).submit),
                         ],
                       ),
                     ),

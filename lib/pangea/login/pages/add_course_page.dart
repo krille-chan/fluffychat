@@ -8,9 +8,9 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/common/widgets/pangea_logo_svg.dart';
 
-class PlanTripPage extends StatelessWidget {
+class AddCoursePage extends StatelessWidget {
   final String route;
-  const PlanTripPage({
+  const AddCoursePage({
     required this.route,
     super.key,
   });
@@ -28,7 +28,7 @@ class PlanTripPage extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             const Icon(Icons.map_outlined),
-            Text(L10n.of(context).planTrip),
+            Text(L10n.of(context).addCourse),
           ],
         ),
         automaticallyImplyLeading: route == 'registration',
@@ -51,12 +51,6 @@ class PlanTripPage extends StatelessWidget {
                 Column(
                   spacing: 16.0,
                   children: [
-                    Text(
-                      L10n.of(context).howAreYouTraveling,
-                      style: theme.textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
                     ElevatedButton(
                       onPressed: () => context.go(
                         '/$route/course/private',
@@ -78,7 +72,7 @@ class PlanTripPage extends StatelessWidget {
                               BlendMode.srcIn,
                             ),
                           ),
-                          Text(L10n.of(context).unlockPrivateTrip),
+                          Text(L10n.of(context).joinCourseWithCode),
                         ],
                       ),
                     ),
@@ -99,7 +93,7 @@ class PlanTripPage extends StatelessWidget {
                             size: 24.0,
                             color: theme.colorScheme.onPrimaryContainer,
                           ),
-                          Text(L10n.of(context).joinPublicTrip),
+                          Text(L10n.of(context).joinPublicCourse),
                         ],
                       ),
                     ),
@@ -124,7 +118,7 @@ class PlanTripPage extends StatelessWidget {
                               BlendMode.srcIn,
                             ),
                           ),
-                          Text(L10n.of(context).startOwnTrip),
+                          Text(L10n.of(context).startOwn),
                         ],
                       ),
                     ),
@@ -132,7 +126,7 @@ class PlanTripPage extends StatelessWidget {
                       contentPadding: const EdgeInsets.all(0.0),
                       leading: const Icon(Icons.school),
                       title: Text(
-                        L10n.of(context).tripPlanDesc,
+                        L10n.of(context).joinCourseDesc,
                         style: theme.textTheme.labelLarge,
                       ),
                     ),

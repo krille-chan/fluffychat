@@ -5173,7 +5173,6 @@
   "saveToCompletedActivities": "Save to completed activities",
   "generatingSummary": "Analyzing chat and generating results",
   "instructionsLanguage": "Instructions language",
-  "findCourse": "Find a course",
   "activityCompletedDesc": "Your completed activity was added to analytics where you can review and practice the language you used.",
   "pingParticipantsNotification": "{user} is looking for users to join the activity session in {room}",
   "@pingParticipantsNotification": {
@@ -5263,18 +5262,9 @@
   "languages": "Languages",
   "chooseLanguage": "Choose a language.",
   "letsGo": "Let's go",
-  "planTrip": "Plan your trip",
-  "howAreYouTraveling": "How are you traveling?",
-  "unlockPrivateTrip": "Unlock a private trip",
-  "joinPublicTrip": "Join a public trip",
-  "startOwnTrip": "Start my own",
-  "tripPlanDesc": "Trips are courses. Each has 8-10 sequenced topics with a range of task-based language learning activities.",
-  "unlockPrivateTripTitle": "Unlock private trip",
-  "browsePublicTrips": "Browse public trips",
-  "startOwnTripTitle": "Start my own trip",
-  "courseCode": "What’s the secret password?",
-  "courseCodeHint": "Trip code or link",
-  "unlockMyTrip": "Unlock my trip",
+  "startOwn": "Start my own",
+  "joinCourseDesc": "Each course has 8-10 sequenced topics with a range of task-based language learning activities.",
+  "courseCodeHint": "Course code",
   "anyLevel": "Any Level",
   "signupOption": "How do you want to sign up?",
   "withApple": "With Apple",
@@ -5320,5 +5310,8 @@
   "@shareCourse": {
     "type": "String",
     "placeholders": {}
-  }
+  },
+  "addCourse": "Add a course",
+  "joinCourseWithCode": "Join course with code",
+  "joinPublicCourse": "Join public course"
 }
