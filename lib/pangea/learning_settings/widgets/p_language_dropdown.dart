@@ -17,10 +17,8 @@ class PLanguageDropdown extends StatefulWidget {
   final bool isL2List;
   final String? decorationText;
   final String? error;
-  final String? Function(LanguageModel?)? validator;
   final Color? backgroundColor;
   final bool hasError;
-  final bool enabled;
 
   const PLanguageDropdown({
     super.key,
@@ -30,10 +28,8 @@ class PLanguageDropdown extends StatefulWidget {
     this.decorationText,
     this.isL2List = false,
     this.error,
-    this.validator,
     this.backgroundColor,
     this.hasError = false,
-    this.enabled = true,
   });
 
   @override
@@ -87,14 +83,12 @@ class PLanguageDropdownState extends State<PLanguageDropdown> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         DropdownButtonFormField2<LanguageModel>(
-          enableFeedback: widget.enabled,
           customButton: widget.initialLanguage != null &&
                   sortedLanguages.contains(widget.initialLanguage)
               ? LanguageDropDownEntry(
                   languageModel: widget.initialLanguage!,
                   isL2List: widget.isL2List,
                   isDropdown: true,
-                  enabled: widget.enabled,
                 )
               : null,
           menuItemStyleData: const MenuItemStyleData(
@@ -144,15 +138,13 @@ class PLanguageDropdownState extends State<PLanguageDropdown> {
                   child: LanguageDropDownEntry(
                     languageModel: languageModel,
                     isL2List: widget.isL2List,
-                    enabled: widget.enabled,
                   ),
                 ),
               ),
             ),
           ],
-          onChanged: widget.enabled ? (value) => widget.onChange(value!) : null,
+          onChanged: (value) => widget.onChange(value!),
           value: widget.initialLanguage,
-          validator: (value) => widget.validator?.call(value),
           dropdownSearchData: DropdownSearchData(
             searchController: _searchController,
             searchInnerWidgetHeight: 50,
