@@ -1012,8 +1012,8 @@
     "type": "String",
     "placeholders": {}
   },
-  "fluffychat": "Stawi",
-  "@fluffychat": {
+  "stawi": "Stawi",
+  "@stawi": {
     "type": "String",
     "placeholders": {}
   },
@@ -1199,7 +1199,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "inviteText": "{username} invited you to Stawi.\n1. Visit fluffychat.im and install the app \n2. Sign up or sign in \n3. Open the invite link: \n {link}",
+  "inviteText": "{username} invited you to Stawi.\n1. Visit stawi.im and install the app \n2. Sign up or sign in \n3. Open the invite link: \n {link}",
   "@inviteText": {
     "type": "String",
     "placeholders": {
@@ -2645,7 +2645,7 @@
   "@callingAccountDetails": {},
   "appearOnTop": "Appear on top",
   "@appearOnTop": {},
-  "appearOnTopDetails": "Allows the app to appear on top (not needed if you already have Fluffychat setup as a calling account)",
+  "appearOnTopDetails": "Allows the app to appear on top (not needed if you already have Stawi setup as a calling account)",
   "@appearOnTopDetails": {},
   "otherCallingPermissions": "Microphone, camera and other Stawi permissions",
   "@otherCallingPermissions": {},

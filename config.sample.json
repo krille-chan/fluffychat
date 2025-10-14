@@ -3,8 +3,8 @@
   "application_welcome_message": null,
   "default_homeserver": "matrix.stawi.im",
   "partition_id": "9bsv0s0hijjg02qk7l1g",
-  "web_base_url": "https://app.stawi.im/",
-  "privacy_url": "https://stawi.im/en/privacy.html",
+  "web_base_url": "https://stawi.im/",
+  "privacy_url": "https://stawi.im/privacy",
   "render_html": false,
   "hide_redacted_events": false,
   "hide_unknown_events": false

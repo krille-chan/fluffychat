@@ -25,18 +25,18 @@ abstract class AppConfig {
   static const Color primaryColorLight = Color(0xFFCCBDEA);
   static const Color secondaryColor = Color(0xFF41a2bc);
   static String _privacyUrl =
-      'https://stawi.im/docs/privacy';
+      'https://stawi.im/privacy';
 
   static const Set<String> defaultReactions = {'👍', '❤️', '😂', '😮', '😢'};
 
   static String get privacyUrl => _privacyUrl;
   static const String website = 'https://stawi.im';
   static const String enablePushTutorial =
-      'https://github.com/krille-chan/fluffychat/wiki/Push-Notifications-without-Google-Services';
+      'https://stawi.im/Push-Notifications-without-Google-Services';
   static const String encryptionTutorial =
-      'https://github.com/krille-chan/fluffychat/wiki/How-to-use-end-to-end-encryption-in-FluffyChat';
+      'https://stawi.im/End-to-end-encryption-in-Stawi';
   static const String startChatTutorial =
-      'https://github.com/krille-chan/fluffychat/wiki/How-to-Find-Users-in-FluffyChat';
+      'https://stawi.im/getting-started';
   static const String appId = 'im.stawi';
   static const String appOpenUrlScheme = 'im.stawi';
   static String _webBaseUrl = 'https://stawi.im';
