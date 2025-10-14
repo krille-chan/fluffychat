@@ -13,7 +13,7 @@ class ActivityPlanModel {
   final String learningObjective;
   final String instructions;
   final List<Vocab> vocab;
-  final String? imageURL;
+  final String? _imageURL;
   final DateTime? endAt;
   final Duration? duration;
   final Map<String, ActivityRole>? _roles;
@@ -29,13 +29,17 @@ class ActivityPlanModel {
     required this.vocab,
     required this.activityId,
     Map<String, ActivityRole>? roles,
-    this.imageURL,
+    String? imageURL,
     this.endAt,
     this.duration,
   })  : description = (description == null || description.isEmpty)
             ? learningObjective
             : description,
-        _roles = roles;
+        _roles = roles,
+        _imageURL = imageURL;
+
+  String? get imageURL =>
+      _imageURL != null ? "${Environment.cmsApi}$_imageURL" : null;
 
   Map<String, ActivityRole> get roles {
     if (_roles != null) return _roles!;
@@ -68,14 +72,9 @@ class ActivityPlanModel {
       );
     }
 
-    String? imageUrlEntry = json[ModelKey.activityPlanImageURL];
-    if (imageUrlEntry != null) {
-      imageUrlEntry = "${Environment.cmsApi}$imageUrlEntry";
-    }
-
     final activityId = json[ModelKey.activityId] ?? json["bookmark_id"];
     return ActivityPlanModel(
-      imageURL: imageUrlEntry,
+      imageURL: json[ModelKey.activityPlanImageURL],
       instructions: json[ModelKey.activityPlanInstructions],
       req: req,
       title: json[ModelKey.activityPlanTitle],
@@ -103,7 +102,7 @@ class ActivityPlanModel {
   Map<String, dynamic> toJson() {
     return {
       ModelKey.activityId: activityId,
-      ModelKey.activityPlanImageURL: imageURL,
+      ModelKey.activityPlanImageURL: _imageURL,
       ModelKey.activityPlanInstructions: instructions,
       ModelKey.activityPlanRequest: req.toJson(),
       ModelKey.activityPlanTitle: title,
@@ -150,7 +149,7 @@ class ActivityPlanModel {
         other.instructions == instructions &&
         other.description == description &&
         listEquals(other.vocab, vocab) &&
-        other.imageURL == imageURL;
+        other._imageURL == _imageURL;
   }
 
   @override
@@ -161,7 +160,7 @@ class ActivityPlanModel {
       description.hashCode ^
       instructions.hashCode ^
       Object.hashAll(vocab) ^
-      imageURL.hashCode;
+      _imageURL.hashCode;
 }
 
 class Vocab {
