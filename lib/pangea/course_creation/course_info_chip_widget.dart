@@ -92,8 +92,7 @@ class CourseInfoChipsState extends State<CourseInfoChips>
       children: [
         CourseInfoChip(
           icon: Icons.language,
-          text:
-              "${course!.baseLanguageDisplay} → ${course!.targetLanguageDisplay}",
+          text: course!.targetLanguageDisplay,
           fontSize: widget.fontSize,
           iconSize: widget.iconSize,
           padding: widget.padding,

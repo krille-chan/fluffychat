@@ -52,10 +52,6 @@ class CoursePlanModel {
       targetLanguageModel?.langCode.toUpperCase() ??
       targetLanguage.toUpperCase();
 
-  String get baseLanguageDisplay =>
-      baseLanguageModel?.langCode.toUpperCase() ??
-      languageOfInstructions.toUpperCase();
-
   /// Deserialize from JSON
   factory CoursePlanModel.fromJson(Map<String, dynamic> json) {
     return CoursePlanModel(
