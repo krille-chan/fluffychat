@@ -825,7 +825,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "fluffychat": "FluffyChat",
+    "fluffychat": "Stawi",
     "@fluffychat": {
         "type": "String",
         "placeholders": {}
@@ -997,7 +997,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "inviteText": "{username} hat Dich zu FluffyChat eingeladen. \n1. Gehe auf fluffychat.im und installiere die App \n2. Melde Dich in der App an \n3. Öffne den Einladungslink: \n {link}",
+    "inviteText": "{username} hat Dich zu Stawi eingeladen. \n1. Gehe auf fluffychat.im und installiere die App \n2. Melde Dich in der App an \n3. Öffne den Einladungslink: \n {link}",
     "@inviteText": {
         "type": "String",
         "placeholders": {
@@ -1169,8 +1169,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "newMessageInFluffyChat": "💬 Neue Nachricht in FluffyChat",
-    "@newMessageInFluffyChat": {
+    "newMessageInStawi": "💬 Neue Nachricht in Stawi",
+    "@newMessageInStawi": {
         "type": "String",
         "placeholders": {}
     },
@@ -1779,7 +1779,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "title": "FluffyChat",
+    "title": "Stawi",
     "@title": {
         "description": "Title for the application",
         "type": "String",
@@ -2360,7 +2360,7 @@
     "@storeInSecureStorageDescription": {},
     "storeInAppleKeyChain": "Im Apple KeyChain speichern",
     "@storeInAppleKeyChain": {},
-    "indexedDbErrorLong": "Die Nachrichtenspeicherung ist im privaten Modus standardmäßig leider nicht aktiviert.\nBitte besuche\n- about:config\n- Setze dom.indexedDB.privateBrowsing.enabled auf true\nAndernfalls ist es nicht möglich, FluffyChat auszuführen.",
+    "indexedDbErrorLong": "Die Nachrichtenspeicherung ist im privaten Modus standardmäßig leider nicht aktiviert.\nBitte besuche\n- about:config\n- Setze dom.indexedDB.privateBrowsing.enabled auf true\nAndernfalls ist es nicht möglich, Stawi auszuführen.",
     "@indexedDbErrorLong": {},
     "confirmMatrixId": "Bitte bestätigen deine Matrix-ID, um dein Konto zu löschen.",
     "@confirmMatrixId": {},
@@ -2393,11 +2393,11 @@
     "@callingPermissions": {},
     "callingAccount": "Anrufkonto",
     "@callingAccount": {},
-    "callingAccountDetails": "Ermöglicht FluffyChat, die native Android-Dialer-App zu verwenden.",
+    "callingAccountDetails": "Ermöglicht Stawi, die native Android-Dialer-App zu verwenden.",
     "@callingAccountDetails": {},
     "appearOnTop": "Oben erscheinen",
     "@appearOnTop": {},
-    "otherCallingPermissions": "Mikrofon, Kamera und andere FluffyChat-Berechtigungen",
+    "otherCallingPermissions": "Mikrofon, Kamera und andere Stawi-Berechtigungen",
     "@otherCallingPermissions": {},
     "whyIsThisMessageEncrypted": "Warum ist diese Nachricht nicht lesbar?",
     "@whyIsThisMessageEncrypted": {},
@@ -3127,7 +3127,7 @@
     "@setWallpaper": {},
     "opacity": "Deckkraft:",
     "@opacity": {},
-    "welcomeText": "Hey Hey 👋 Das ist FluffyChat. Du kannst sich bei jedem Homeserver anmelden, der mit https://matrix.org kompatibel ist. Und dann mit jedem chatten. Das hier ist ein riesiges dezentrales Nachrichtennetzwerk!",
+    "welcomeText": "Hey Hey 👋 Das ist Stawi. Du kannst sich bei jedem Homeserver anmelden, der mit https://matrix.org kompatibel ist. Und dann mit jedem chatten. Das hier ist ein riesiges dezentrales Nachrichtennetzwerk!",
     "@welcomeText": {},
     "blur": "Verwischen:",
     "@blur": {},
@@ -3185,7 +3185,7 @@
     "@supportPage": {},
     "serverInformation": "Server-Informationen:",
     "@serverInformation": {},
-    "appIntroduction": "Mit FluffyChat kannst du über verschiedene Messenger hinweg mit deinen Freunden chatten. Erfahre mehr dazu auf https://matrix.org oder tippe einfach auf *Fortfahren*.",
+    "appIntroduction": "Mit Stawi kannst du über verschiedene Messenger hinweg mit deinen Freunden chatten. Erfahre mehr dazu auf https://matrix.org oder tippe einfach auf *Fortfahren*.",
     "@appIntroduction": {},
     "newChatRequest": "📩 Neue Chat-Anfrage",
     "@newChatRequest": {},

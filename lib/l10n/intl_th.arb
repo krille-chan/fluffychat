@@ -158,7 +158,7 @@
       }
     }
   },
-  "fluffychat": "FluffyChat",
+  "fluffychat": "Stawi",
   "@fluffychat": {
     "type": "String",
     "placeholders": {}
@@ -1094,7 +1094,7 @@
     }
   },
   "@callingPermissions": {},
-  "@newMessageInFluffyChat": {
+  "@newMessageInStawi": {
     "type": "String",
     "placeholders": {}
   },

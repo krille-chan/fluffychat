@@ -657,7 +657,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "fluffychat": "FluffyChat",
+    "fluffychat": "Stawi",
     "@fluffychat": {
         "type": "String",
         "placeholders": {}
@@ -824,7 +824,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "inviteText": "{username} har invitert deg til FluffyChat. \n1. Installer FluffyChat: https://fluffychat.im \n2. Registrer deg eller logg inn \n3. Åpne invitasjonslenken: {link}",
+    "inviteText": "{username} har invitert deg til Stawi. \n1. Installer Stawi: https://fluffychat.im \n2. Registrer deg eller logg inn \n3. Åpne invitasjonslenken: {link}",
     "@inviteText": {
         "type": "String",
         "placeholders": {
@@ -986,8 +986,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "newMessageInFluffyChat": "Ny melding i FluffyChat",
-    "@newMessageInFluffyChat": {
+    "newMessageInStawi": "Ny melding i Stawi",
+    "@newMessageInStawi": {
         "type": "String",
         "placeholders": {}
     },
@@ -1011,7 +1011,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "noGoogleServicesWarning": "Bruk https://microg.org/ for å få Google-tjenester (uten at det går ut over personvernet) for å få push-merknader i FluffyChat:",
+    "noGoogleServicesWarning": "Bruk https://microg.org/ for å få Google-tjenester (uten at det går ut over personvernet) for å få push-merknader i Stawi:",
     "@noGoogleServicesWarning": {
         "type": "String",
         "placeholders": {}
@@ -1472,7 +1472,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "title": "FluffyChat",
+    "title": "Stawi",
     "@title": {
         "description": "Title for the application",
         "type": "String",
@@ -2327,11 +2327,11 @@
     "@screenSharingDetail": {},
     "callingPermissions": "Anropstillatelser",
     "@callingPermissions": {},
-    "callingAccountDetails": "Lar FluffyChat bruke den innebygde Android-oppringingsappen.",
+    "callingAccountDetails": "Lar Stawi bruke den innebygde Android-oppringingsappen.",
     "@callingAccountDetails": {},
     "appearOnTop": "Vis øverst",
     "@appearOnTop": {},
-    "otherCallingPermissions": "Mikrofon, kamera og andre FluffyChat-tillatelser",
+    "otherCallingPermissions": "Mikrofon, kamera og andre Stawi-tillatelser",
     "@otherCallingPermissions": {},
     "whyIsThisMessageEncrypted": "Hvorfor er denne meldingen uleselig?",
     "@whyIsThisMessageEncrypted": {},

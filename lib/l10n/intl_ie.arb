@@ -1098,7 +1098,7 @@
   },
   "homeserver": "Hem-servitor",
   "@homeserver": {},
-  "fluffychat": "FluffyChat",
+  "fluffychat": "Stawi",
   "@fluffychat": {
     "type": "String",
     "placeholders": {}
@@ -1142,7 +1142,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "title": "FluffyChat",
+  "title": "Stawi",
   "@title": {
     "description": "Title for the application",
     "type": "String",
@@ -1675,7 +1675,7 @@
       }
     }
   },
-  "@newMessageInFluffyChat": {
+  "@newMessageInStawi": {
     "type": "String",
     "placeholders": {}
   },

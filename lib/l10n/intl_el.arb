@@ -956,7 +956,7 @@
     "type": "String",
     "placeholders": {}
   },
-  "@newMessageInFluffyChat": {
+  "@newMessageInStawi": {
     "type": "String",
     "placeholders": {}
   },

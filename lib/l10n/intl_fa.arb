@@ -1217,8 +1217,8 @@
     "type": "String",
     "placeholders": {}
   },
-  "newMessageInFluffyChat": "💬 پیام جدید در فلافی‌چت",
-  "@newMessageInFluffyChat": {
+  "newMessageInStawi": "💬 پیام جدید در فلافی‌چت",
+  "@newMessageInStawi": {
     "type": "String",
     "placeholders": {}
   },

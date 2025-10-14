@@ -34,7 +34,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "fluffychat": "FluffyChat",
+    "fluffychat": "Stawi",
     "@fluffychat": {
         "type": "String",
         "placeholders": {}
@@ -873,8 +873,8 @@
         "type": "String",
         "placeholders": {}
     },
-    "newMessageInFluffyChat": "💬 Nauja žinutė FluffyChat'e",
-    "@newMessageInFluffyChat": {
+    "newMessageInStawi": "💬 Nauja žinutė Stawi'e",
+    "@newMessageInStawi": {
         "type": "String",
         "placeholders": {}
     },
@@ -1275,7 +1275,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "title": "FluffyChat",
+    "title": "Stawi",
     "@title": {
         "description": "Title for the application",
         "type": "String",
@@ -1311,7 +1311,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "noGoogleServicesWarning": "Atrodo, kad jūsų telefone nėra Google Services. Tai geras sprendimas jūsų privatumui! Norėdami gauti tiesioginius pranešimus FluffyChat, rekomenduojame naudoti https://microg.org/ arba https://unifiedpush.org/.",
+    "noGoogleServicesWarning": "Atrodo, kad jūsų telefone nėra Google Services. Tai geras sprendimas jūsų privatumui! Norėdami gauti tiesioginius pranešimus Stawi, rekomenduojame naudoti https://microg.org/ arba https://unifiedpush.org/.",
     "@noGoogleServicesWarning": {
         "type": "String",
         "placeholders": {}
@@ -1837,7 +1837,7 @@
             }
         }
     },
-    "inviteText": "{username} pakvietė jus prisijungti prie FluffyChat. \n1. Įdiekite FluffyChat: https://fluffychat.im \n2. Prisiregistruokite arba prisijunkite \n3. Atidarykite pakvietimo nuorodą: {link}",
+    "inviteText": "{username} pakvietė jus prisijungti prie Stawi. \n1. Įdiekite Stawi: https://fluffychat.im \n2. Prisiregistruokite arba prisijunkite \n3. Atidarykite pakvietimo nuorodą: {link}",
     "@inviteText": {
         "type": "String",
         "placeholders": {
@@ -2324,7 +2324,7 @@
     "@callingAccount": {},
     "newSpace": "Nauja erdvė",
     "@newSpace": {},
-    "callingAccountDetails": "Leidžia FluffyChat naudoti vietinę Android rinkiklio programą.",
+    "callingAccountDetails": "Leidžia Stawi naudoti vietinę Android rinkiklio programą.",
     "@callingAccountDetails": {},
     "appearOnTop": "Rodyti viršuje",
     "@appearOnTop": {},
@@ -2363,7 +2363,7 @@
     "@recoveryKey": {},
     "recoveryKeyLost": "Pamestas atkūrimo raktas?",
     "@recoveryKeyLost": {},
-    "indexedDbErrorLong": "Deja, pagal numatytuosius nustatymus žinučių saugojimas privačiame režime nėra įjungtas.\nPrašome apsilankyti\n - about:config\n - nustatykite dom.indexedDB.privateBrowsing.enabled į true\nPriešingu atveju FluffyChat paleisti neįmanoma.",
+    "indexedDbErrorLong": "Deja, pagal numatytuosius nustatymus žinučių saugojimas privačiame režime nėra įjungtas.\nPrašome apsilankyti\n - about:config\n - nustatykite dom.indexedDB.privateBrowsing.enabled į true\nPriešingu atveju Stawi paleisti neįmanoma.",
     "@indexedDbErrorLong": {},
     "countFiles": "{count} failai",
     "@countFiles": {
@@ -2395,7 +2395,7 @@
     "@screenSharingTitle": {},
     "appearOnTopDetails": "Leidžia programėlę rodyti viršuje (nebūtina, jei jau esate nustatę Fluffychat kaip skambinimo paskyrą)",
     "@appearOnTopDetails": {},
-    "otherCallingPermissions": "Mikrofonas, kamera ir kiti FluffyChat leidimai",
+    "otherCallingPermissions": "Mikrofonas, kamera ir kiti Stawi leidimai",
     "@otherCallingPermissions": {},
     "whyIsThisMessageEncrypted": "Kodėl ši žinutė neperskaitoma?",
     "@whyIsThisMessageEncrypted": {},
