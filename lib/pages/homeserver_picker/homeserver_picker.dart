@@ -49,7 +49,8 @@ class HomeserverPickerController extends State<HomeserverPicker> {
   /// well-known information and forwards to the login page depending on the
   /// login type.
   Future<void> checkHomeserverAction() async {
-    final homeserverInput = AppConfig.defaultHomeserver.trim().toLowerCase().replaceAll(' ', '-');
+    final homeserverInput =
+        AppConfig.defaultHomeserver.trim().toLowerCase().replaceAll(' ', '-');
 
     if (homeserverInput.isEmpty) {
       final client = await Matrix.of(context).getLoginClient();

@@ -13,7 +13,6 @@ abstract class AppConfig {
   static String _partitionId = '9bsv0s0hijjg02qk7l1g';
   static String get partitionId => _partitionId;
 
-
   static String get defaultHomeserver => _defaultHomeserver;
   static double fontSizeFactor = 1;
   static const Color chatColor = primaryColor;
@@ -24,8 +23,7 @@ abstract class AppConfig {
   static const Color primaryColor = Color(0xFF5625BA);
   static const Color primaryColorLight = Color(0xFFCCBDEA);
   static const Color secondaryColor = Color(0xFF41a2bc);
-  static String _privacyUrl =
-      'https://stawi.im/privacy';
+  static String _privacyUrl = 'https://stawi.im/privacy';
 
   static const Set<String> defaultReactions = {'👍', '❤️', '😂', '😮', '😢'};
 
@@ -35,18 +33,15 @@ abstract class AppConfig {
       'https://stawi.im/Push-Notifications-without-Google-Services';
   static const String encryptionTutorial =
       'https://stawi.im/End-to-end-encryption-in-Stawi';
-  static const String startChatTutorial =
-      'https://stawi.im/getting-started';
+  static const String startChatTutorial = 'https://stawi.im/getting-started';
   static const String appId = 'im.stawi';
   static const String appOpenUrlScheme = 'im.stawi';
   static String _webBaseUrl = 'https://stawi.im';
 
   static String get webBaseUrl => _webBaseUrl;
   static const String sourceCodeUrl = 'https://github.com/staawi/stawi_app';
-  static const String supportUrl =
-      'https://github.com/staawi/stawi_app/issues';
-  static const String changelogUrl =
-      'https://stawi.im/changelog';
+  static const String supportUrl = 'https://github.com/staawi/stawi_app/issues';
+  static const String changelogUrl = 'https://stawi.im/changelog';
   static final Uri newIssueUrl = Uri(
     scheme: 'https',
     host: 'stawi.im',
