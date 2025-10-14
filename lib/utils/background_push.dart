@@ -76,18 +76,24 @@ class BackgroundPush {
   void _init() async {
     try {
       // #Pangea
+      // Handle notifications when app is opened from terminated/background state
       FirebaseMessaging.instance.getInitialMessage().then(_onOpenNotification);
       FirebaseMessaging.onMessageOpenedApp.listen(_onOpenNotification);
       // Pangea#
       await _flutterLocalNotificationsPlugin.initialize(
         const InitializationSettings(
-          android: AndroidInitializationSettings('notifications_icon'),
+          // #Pangea
+          // android: AndroidInitializationSettings('notifications_icon'),
+          android: AndroidInitializationSettings('@mipmap/ic_launcher'),
+          // Pangea#
           iOS: DarwinInitializationSettings(),
         ),
         onDidReceiveNotificationResponse: goToRoom,
       );
 
       // #Pangea
+      // Handle notifications when app is in foreground
+      // Pass additionalData to preserve activity session info for local notifications
       FirebaseMessaging.onMessage.listen((RemoteMessage message) {
         pushHelper(
           PushNotification.fromJson(message.data),
@@ -95,6 +101,7 @@ class BackgroundPush {
           l10n: l10n,
           activeRoomId: matrix?.activeRoomId,
           flutterLocalNotificationsPlugin: _flutterLocalNotificationsPlugin,
+          additionalData: message.data,
         );
       });
       // Pangea#
@@ -137,36 +144,32 @@ class BackgroundPush {
   }
 
   // #Pangea
-  Future<void> _onOpenNotification(RemoteMessage? message) async {
-    const sessionIdKey = "content_pangea.activity.session_room_id";
-    const activityIdKey = "content_pangea.activity.id";
+  // Helper to ensure a room is loaded or synced.
+  Future<Room?> _ensureRoomLoaded(String id) async {
+    await client.roomsLoading;
+    await client.accountDataLoading;
 
-    // Early return if no room_id.
-    final roomId = message?.data['room_id'];
-    if (roomId is! String || roomId.isEmpty) return;
-
-    // Helper to ensure a room is loaded or synced.
-    Future<Room?> ensureRoomLoaded(String id) async {
-      await client.roomsLoading;
-      await client.accountDataLoading;
-
-      var room = client.getRoomById(id);
-      if (room == null) {
-        await client.waitForRoomInSync(id).timeout(const Duration(seconds: 30));
-        room = client.getRoomById(id);
-      }
-      return room;
+    var room = client.getRoomById(id);
+    if (room == null) {
+      await client.waitForRoomInSync(id).timeout(const Duration(seconds: 30));
+      room = client.getRoomById(id);
     }
+    return room;
+  }
 
+  // Navigate to activity session or fallback to room
+  Future<void> _navigateToActivityOrRoom({
+    required String roomId,
+    String? sessionRoomId,
+    String? activityId,
+  }) async {
     // Handle session room if provided.
-    final sessionRoomId = message?.data[sessionIdKey];
-    final activityId = message?.data[activityIdKey];
-    if (sessionRoomId is String &&
+    if (sessionRoomId != null &&
         sessionRoomId.isNotEmpty &&
-        activityId is String &&
+        activityId != null &&
         activityId.isNotEmpty) {
       try {
-        final course = await ensureRoomLoaded(roomId);
+        final course = await _ensureRoomLoaded(roomId);
         if (course == null) return;
 
         final session = client.getRoomById(sessionRoomId);
@@ -186,13 +189,31 @@ class BackgroundPush {
 
     // Fallback: just open the original room.
     try {
-      final room = await ensureRoomLoaded(roomId);
+      final room = await _ensureRoomLoaded(roomId);
       FluffyChatApp.router.go(
         room?.membership == Membership.invite ? '/rooms' : '/rooms/$roomId',
       );
     } catch (err, s) {
       ErrorHandler.logError(e: err, s: s, data: {"roomId": roomId});
     }
+  }
+
+  Future<void> _onOpenNotification(RemoteMessage? message) async {
+    const sessionIdKey = "content_pangea.activity.session_room_id";
+    const activityIdKey = "content_pangea.activity.id";
+
+    // Early return if no room_id.
+    final roomId = message?.data['room_id'];
+    if (roomId is! String || roomId.isEmpty) return;
+
+    final sessionRoomId = message?.data[sessionIdKey] as String?;
+    final activityId = message?.data[activityIdKey] as String?;
+
+    await _navigateToActivityOrRoom(
+      roomId: roomId,
+      sessionRoomId: sessionRoomId,
+      activityId: activityId,
+    );
   }
   // Pangea#
 
@@ -461,23 +482,38 @@ class BackgroundPush {
 
   Future<void> goToRoom(NotificationResponse? response) async {
     try {
-      final roomId = response?.payload;
-      Logs().v('[Push] Attempting to go to room $roomId...');
-      if (roomId == null) {
+      final payload = response?.payload;
+      Logs().v('[Push] Attempting to go to room with payload: $payload');
+      if (payload == null) {
         return;
       }
-      await client.roomsLoading;
-      await client.accountDataLoading;
-      if (client.getRoomById(roomId) == null) {
-        await client
-            .waitForRoomInSync(roomId)
-            .timeout(const Duration(seconds: 30));
+
+      // #Pangea - Handle activity session data if present
+      String? roomId;
+      String? sessionRoomId;
+      String? activityId;
+
+      try {
+        final payloadData = jsonDecode(payload) as Map<String, dynamic>;
+        roomId = payloadData['room_id'] as String?;
+        sessionRoomId =
+            payloadData['content_pangea.activity.session_room_id'] as String?;
+        activityId = payloadData['content_pangea.activity.id'] as String?;
+      } catch (_) {
+        // If payload is not JSON, treat it as a simple room ID
+        roomId = payload;
       }
-      FluffyChatApp.router.go(
-        client.getRoomById(roomId)?.membership == Membership.invite
-            ? '/rooms'
-            : '/rooms/$roomId',
+
+      if (roomId == null || roomId.isEmpty) {
+        return;
+      }
+
+      await _navigateToActivityOrRoom(
+        roomId: roomId,
+        sessionRoomId: sessionRoomId,
+        activityId: activityId,
       );
+      // Pangea#
     } catch (e, s) {
       Logs().e('[Push] Failed to open room', e, s);
       // #Pangea

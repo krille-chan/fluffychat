@@ -216,7 +216,10 @@ abstract class ClientManager {
 
     await flutterLocalNotificationsPlugin.initialize(
       const InitializationSettings(
-        android: AndroidInitializationSettings('notifications_icon'),
+        // #Pangea
+        // android: AndroidInitializationSettings('notifications_icon'),
+        android: AndroidInitializationSettings('@mipmap/ic_launcher'),
+        // Pangea#
         iOS: DarwinInitializationSettings(),
       ),
     );

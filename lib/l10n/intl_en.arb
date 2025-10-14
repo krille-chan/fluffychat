@@ -5314,5 +5314,6 @@
   "unsubscribedResponseError": "This feature requires a subscription",
   "leaveDesc": "Leave this space and all chats within it",
   "selectAll": "Select all",
-  "deselectAll": "Deselect all"
+  "deselectAll": "Deselect all",
+  "newMessageInPangeaChat": "💬 New message in Pangea Chat"
 }
