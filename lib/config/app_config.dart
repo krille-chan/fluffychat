@@ -46,7 +46,7 @@ abstract class AppConfig {
   static const String supportUrl =
       'https://github.com/staawi/stawi_app/issues';
   static const String changelogUrl =
-      'https:/stawi.im/changelog';
+      'https://stawi.im/changelog';
   static final Uri newIssueUrl = Uri(
     scheme: 'https',
     host: 'stawi.im',
