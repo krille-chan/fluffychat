@@ -205,7 +205,7 @@ class PracticeActivityModel {
               xp: constructUseType.pointValue,
             ),
           ],
-          targetID: token.text.uniqueKey,
+          targetID: "message-token-${token.text.uniqueKey}-${event?.eventId}",
         ),
       );
     }
