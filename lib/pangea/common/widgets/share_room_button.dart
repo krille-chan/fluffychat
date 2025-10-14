@@ -26,6 +26,7 @@ class ShareRoomButton extends StatelessWidget {
 
     return PopupMenuButton(
       useRootNavigator: true,
+      tooltip: L10n.of(context).shareCourse,
       child: const Icon(Symbols.upload),
       onSelected: (value) async {
         final spaceCode = room.classCode!;

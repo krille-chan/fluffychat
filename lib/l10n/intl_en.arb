@@ -5315,5 +5315,10 @@
   "leaveDesc": "Leave this space and all chats within it",
   "selectAll": "Select all",
   "deselectAll": "Deselect all",
-  "newMessageInPangeaChat": "💬 New message in Pangea Chat"
+  "newMessageInPangeaChat": "💬 New message in Pangea Chat",
+  "shareCourse": "Share course",
+  "@shareCourse": {
+    "type": "String",
+    "placeholders": {}
+  }
 }
