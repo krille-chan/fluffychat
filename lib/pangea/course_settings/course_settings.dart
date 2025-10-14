@@ -250,6 +250,7 @@ class CourseSettings extends StatelessWidget {
                                   child: TopicActivitiesList(
                                     room: room,
                                     activities: topic.loadedActivities,
+                                    loading: controller.loadingCourseSummary,
                                     hasCompletedActivity:
                                         controller.hasCompletedActivity,
                                   ),
@@ -267,12 +268,14 @@ class CourseSettings extends StatelessWidget {
 class TopicActivitiesList extends StatefulWidget {
   final Room room;
   final Map<String, ActivityPlanModel> activities;
+  final bool loading;
   final bool Function(String userId, String activityId) hasCompletedActivity;
 
   const TopicActivitiesList({
     super.key,
     required this.room,
     required this.activities,
+    required this.loading,
     required this.hasCompletedActivity,
   });
   @override
@@ -339,7 +342,19 @@ class TopicActivitiesListState extends State<TopicActivitiesList> {
                       fontSizeSmall: isColumnMode ? 12.0 : 8.0,
                       iconSize: isColumnMode ? 12.0 : 8.0,
                     ),
-                    if (complete)
+                    if (widget.loading)
+                      Container(
+                        width: isColumnMode ? 160.0 : 120.0,
+                        height: isColumnMode ? 280.0 : 200.0,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12.0),
+                          color: theme.colorScheme.surface.withAlpha(180),
+                        ),
+                        child: const Center(
+                          child: CircularProgressIndicator.adaptive(),
+                        ),
+                      )
+                    else if (complete)
                       Container(
                         width: isColumnMode ? 160.0 : 120.0,
                         height: isColumnMode ? 280.0 : 200.0,

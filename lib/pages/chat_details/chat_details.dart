@@ -53,12 +53,13 @@ class ChatDetails extends StatefulWidget {
 class ChatDetailsController extends State<ChatDetails>
     with ActivitySummariesProvider, CoursePlanProvider {
   bool loadingActivities = true;
+  bool loadingCourseSummary = true;
 
   @override
   void initState() {
     super.initState();
-    _loadSummaries();
     _loadCourseInfo();
+    _loadSummaries();
   }
 
   @override
@@ -66,6 +67,7 @@ class ChatDetailsController extends State<ChatDetails>
     super.didUpdateWidget(oldWidget);
     if (oldWidget.roomId != widget.roomId) {
       _loadCourseInfo();
+      _loadSummaries();
     }
   }
 
@@ -394,11 +396,11 @@ class ChatDetailsController extends State<ChatDetails>
       return;
     }
 
-    setState(() => loadingActivities = true);
+    if (mounted) setState(() => loadingActivities = true);
     await loadCourse(room.coursePlan!.uuid);
     if (course != null) {
-      await loadTopics();
-      await loadAllActivities();
+      if (mounted) await loadTopics();
+      if (mounted) await loadAllActivities();
     }
     if (mounted) setState(() => loadingActivities = false);
   }
@@ -407,6 +409,8 @@ class ChatDetailsController extends State<ChatDetails>
     try {
       final room = Matrix.of(context).client.getRoomById(roomId!);
       if (room == null || !room.isSpace) return;
+
+      if (mounted) setState(() => loadingCourseSummary = true);
       await loadRoomSummaries(
         room.spaceChildren.map((c) => c.roomId).whereType<String>().toList(),
       );
@@ -419,6 +423,8 @@ class ChatDetailsController extends State<ChatDetails>
           "roomId": roomId,
         },
       );
+    } finally {
+      if (mounted) setState(() => loadingCourseSummary = false);
     }
   }
   // Pangea#

@@ -196,10 +196,12 @@ class CourseChatsController extends State<CourseChats>
 
     try {
       await _loadHierarchy(activeSpace: room, reload: reload);
-      await _joinDefaultChats();
-      await loadRoomSummaries(
-        room.spaceChildren.map((c) => c.roomId).whereType<String>().toList(),
-      );
+      if (mounted) await _joinDefaultChats();
+      if (mounted) {
+        await loadRoomSummaries(
+          room.spaceChildren.map((c) => c.roomId).whereType<String>().toList(),
+        );
+      }
     } catch (e, s) {
       Logs().w('Unable to load hierarchy', e, s);
       if (mounted) {
