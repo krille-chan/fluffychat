@@ -4,17 +4,12 @@ on:
   pull_request:
   merge_group:
 
-env:
-  FLUTTER_CACHE_KEY: ${{ runner.os }}-flutter-${{ env.FLUTTER_VERSION }}
-  PUB_CACHE_KEY: ${{ runner.os }}-pub-cache
-  GRADLE_CACHE_KEY: ${{ runner.os }}-gradle-cache
-  CARGO_CACHE_KEY: ${{ runner.os }}-cargo-cache
-  ANDROID_BUILD_CACHE_KEY: ${{ runner.os }}-android-build-cache
-  FLUTTER_BUILD_CACHE_KEY: ${{ runner.os }}-flutter-build-cache
-
 jobs:
   code_tests:
     runs-on: ubuntu-latest
+    env:
+      FLUTTER_CACHE_KEY: ${{ runner.os }}-flutter-${{ env.FLUTTER_VERSION }}
+      PUB_CACHE_KEY: ${{ runner.os }}-pub-cache
     steps:
       - uses: actions/checkout@v5
       - name: Cache Flutter SDK
@@ -50,6 +45,13 @@ jobs:
 
   build_debug_apk:
     runs-on: ubuntu-latest
+    env:
+      FLUTTER_CACHE_KEY: ${{ runner.os }}-flutter-${{ env.FLUTTER_VERSION }}
+      PUB_CACHE_KEY: ${{ runner.os }}-pub-cache
+      GRADLE_CACHE_KEY: ${{ runner.os }}-gradle-cache
+      CARGO_CACHE_KEY: ${{ runner.os }}-cargo-cache
+      ANDROID_BUILD_CACHE_KEY: ${{ runner.os }}-android-build-cache
+      FLUTTER_BUILD_CACHE_KEY: ${{ runner.os }}-flutter-build-cache
     steps:
       - uses: actions/checkout@v5
       - name: Cache Flutter SDK
@@ -110,6 +112,10 @@ jobs:
 
   build_debug_web:
     runs-on: ubuntu-latest
+    env:
+      FLUTTER_CACHE_KEY: ${{ runner.os }}-flutter-${{ env.FLUTTER_VERSION }}
+      PUB_CACHE_KEY: ${{ runner.os }}-pub-cache
+      CARGO_CACHE_KEY: ${{ runner.os }}-cargo-cache
     steps:
       - uses: actions/checkout@v5
       - name: Cache Flutter SDK
@@ -147,6 +153,10 @@ jobs:
       matrix:
         arch: [ x64, arm64 ]
     runs-on: ${{ matrix.arch == 'arm64' && 'ubuntu-24.04-arm' || 'ubuntu-latest'}}
+    env:
+      FLUTTER_CACHE_KEY: ${{ runner.os }}-flutter-${{ env.FLUTTER_VERSION }}
+      PUB_CACHE_KEY: ${{ runner.os }}-pub-cache
+      CARGO_CACHE_KEY: ${{ runner.os }}-cargo-cache
     steps:
       - uses: actions/checkout@v5
       - name: Cache Flutter SDK
@@ -180,6 +190,10 @@ jobs:
 
   build_debug_ios:
     runs-on: macos-15
+    env:
+      FLUTTER_CACHE_KEY: ${{ runner.os }}-flutter-${{ env.FLUTTER_VERSION }}
+      PUB_CACHE_KEY: ${{ runner.os }}-pub-cache
+      CARGO_CACHE_KEY: ${{ runner.os }}-cargo-cache
     steps:
       - uses: actions/checkout@v5
       - name: Cache Flutter SDK
