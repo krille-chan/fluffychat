@@ -98,6 +98,9 @@ abstract class AppConfig {
     if (json['default_homeserver'] is String) {
       _defaultHomeserver = json['default_homeserver'];
     }
+    if (json['partition_id'] is String) {
+      _partitionId = json['partition_id'];
+    }
     if (json['privacy_url'] is String) {
       _privacyUrl = json['privacy_url'];
     }
