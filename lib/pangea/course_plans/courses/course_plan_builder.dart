@@ -69,11 +69,24 @@ mixin CoursePlanProvider<T extends StatefulWidget> on State<T> {
         course!.fetchTopics(),
       ];
       await Future.wait(courseFutures);
+      await _loadTopicsMedia();
     } catch (e) {
       topicError = e;
     } finally {
       if (mounted) setState(() => loadingTopics = false);
     }
+  }
+
+  Future<void> _loadTopicsMedia() async {
+    final List<Future> futures = [];
+    if (course == null) return;
+    for (final topicId in course!.topicIds) {
+      final topic = course!.loadedTopics[topicId];
+      if (topic != null) {
+        futures.add(topic.fetchLocationMedia());
+      }
+    }
+    await Future.wait(futures);
   }
 
   Future<void> loadActivity(String topicId) async {
@@ -86,11 +99,7 @@ mixin CoursePlanProvider<T extends StatefulWidget> on State<T> {
       if (topic == null) {
         throw Exception("Topic is null");
       }
-
-      final topicFutures = <Future>[];
-      topicFutures.add(topic.fetchActivities());
-      topicFutures.add(topic.fetchLocationMedia());
-      await Future.wait(topicFutures);
+      await topic.fetchActivities();
     } catch (e) {
       activityErrors[topicId] = e;
     } finally {

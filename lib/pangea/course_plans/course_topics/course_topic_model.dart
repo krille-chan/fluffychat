@@ -35,7 +35,7 @@ class CourseTopicModel {
           uuids: locationIds,
         ),
       );
-  Future<CourseLocationResponse> fetchLocations() => CourseLocationRepo.get(
+  Future<CourseLocationResponse> _fetchLocations() => CourseLocationRepo.get(
         CourseInfoBatchRequest(
           batchId: uuid,
           uuids: locationIds,
@@ -65,7 +65,7 @@ class CourseTopicModel {
 
   Future<List<String>> fetchLocationMedia() async {
     final allLocationMedia = <String>[];
-    final locationResp = await fetchLocations();
+    final locationResp = await _fetchLocations();
     for (final location in locationResp.locations) {
       final mediaResp = await CourseLocationMediaRepo.get(
         CourseInfoBatchRequest(
