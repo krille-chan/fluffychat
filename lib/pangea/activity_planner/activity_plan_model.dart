@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 
 import 'package:fluffychat/pangea/activity_planner/activity_plan_request.dart';
+import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/pangea/common/constants/model_keys.dart';
 
 class ActivityPlanModel {
@@ -67,9 +68,14 @@ class ActivityPlanModel {
       );
     }
 
+    String? imageUrlEntry = json[ModelKey.activityPlanImageURL];
+    if (imageUrlEntry != null) {
+      imageUrlEntry = "${Environment.cmsApi}$imageUrlEntry";
+    }
+
     final activityId = json[ModelKey.activityId] ?? json["bookmark_id"];
     return ActivityPlanModel(
-      imageURL: json[ModelKey.activityPlanImageURL],
+      imageURL: imageUrlEntry,
       instructions: json[ModelKey.activityPlanInstructions],
       req: req,
       title: json[ModelKey.activityPlanTitle],
