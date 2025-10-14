@@ -1,0 +1,34 @@
+name: Sync Upstream Branch
+
+on:
+  schedule:
+    - cron: '0 2 * * *'   # Run daily at 2 AM UTC
+  workflow_dispatch:
+
+jobs:
+  sync-upstream:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout fork
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Add and fetch upstream
+        run: |
+          git remote add upstream https://github.com/krille-chan/fluffychat.git
+          git fetch upstream
+
+      - name: Sync upstream branch
+        run: |
+          # Create or update local upstream branch
+          git checkout upstream || git checkout -b upstream
+          git reset --hard upstream/main
+          git push origin upstream --force

@@ -1,3 +1,4 @@
-* @krille-chan
+* @pitabwire
 pubspec.* @dependabot
+.github/workflows/* @dependabot
 lib/l10n/*.arb @weblate

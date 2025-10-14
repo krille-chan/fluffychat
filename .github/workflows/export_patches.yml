@@ -1,0 +1,20 @@
+name: Export Local Patches
+
+on:
+  workflow_dispatch:
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - run: |
+          mkdir -p patches
+          git format-patch upstream/main..main -o patches/
+      - uses: actions/upload-artifact@v4
+        with:
+          name: stawi-patches
+          path: patches/

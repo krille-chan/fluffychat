@@ -1,0 +1,33 @@
+name: Rebase Main onto Upstream
+
+on:
+  workflow_run:
+    workflows: ["Sync Upstream Branch"]
+    types: [completed]
+  workflow_dispatch:
+
+jobs:
+  rebase:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
+
+    steps:
+      - name: Checkout main branch
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Add and fetch upstream
+        run: |
+          git remote add upstream https://github.com/krille-chan/fluffychat.git
+          git fetch upstream
+
+      - name: Rebase main onto upstream
+        run: bash scripts/rebase-main.sh

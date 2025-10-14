@@ -103,8 +103,14 @@ import_sorter:
 
 flutter_native_splash:
   color: "#ffffff"
-  color_dark: "#000000"
-  image: "assets/info-logo.png"
+  image: "assets/splash_logo_black.png"
+  color_dark: "#121212"
+  image_dark: "assets/splash_logo.png"
+  android_12:
+    image: "assets/splash_logo_black.png"
+    icon_background_color: "#ffffff"
+    image_dark: "assets/splash_logo.png"
+    icon_background_color_dark: "#121212"
 
 flutter:
   generate: true
