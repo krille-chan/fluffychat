@@ -8,7 +8,7 @@ import 'package:fluffychat/pangea/bot/widgets/bot_face_svg.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/common/widgets/url_image_widget.dart';
 import 'package:fluffychat/pangea/course_creation/course_info_chip_widget.dart';
-import 'package:fluffychat/pangea/course_creation/course_plan_filter_widget.dart';
+import 'package:fluffychat/pangea/course_creation/course_language_filter.dart';
 import 'package:fluffychat/pangea/course_plans/courses/course_plan_model.dart';
 import 'package:fluffychat/pangea/course_plans/courses/course_plans_repo.dart';
 import 'package:fluffychat/pangea/course_plans/courses/get_localized_courses_request.dart';
@@ -176,16 +176,9 @@ class PublicTripPageState extends State<PublicTripPage> {
                           runSpacing: 8.0,
                           alignment: WrapAlignment.start,
                           children: [
-                            CoursePlanFilter<LanguageModel>(
+                            CourseLanguageFilter(
                               value: targetLanguageFilter,
                               onChanged: setTargetLanguageFilter,
-                              items: MatrixState.pangeaController.pLanguageStore
-                                  .targetOptions,
-                              displayname: (v) =>
-                                  v.getDisplayName(context) ?? v.displayName,
-                              enableSearch: true,
-                              defaultName: L10n.of(context).targetLanguageLabel,
-                              shortName: L10n.of(context).allLanguages,
                             ),
                           ],
                         ),

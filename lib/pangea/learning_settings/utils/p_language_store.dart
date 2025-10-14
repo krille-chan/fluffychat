@@ -21,6 +21,12 @@ class PLanguageStore {
   List<LanguageModel> get targetOptions =>
       _langList.where((element) => element.l2).toList();
 
+  List<LanguageModel> get unlocalizedTargetOptions => _langList
+      .where(
+        (element) => element.l2 && element.langCode == element.langCodeShort,
+      )
+      .toList();
+
   List<LanguageModel> get baseOptions => _langList.toList();
 
   static Future<void> initialize({forceRefresh = false}) async {
