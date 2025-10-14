@@ -4,11 +4,29 @@ on:
   pull_request:
   merge_group:
 
+env:
+  FLUTTER_CACHE_KEY: ${{ runner.os }}-flutter-${{ env.FLUTTER_VERSION }}
+  PUB_CACHE_KEY: ${{ runner.os }}-pub-cache
+  GRADLE_CACHE_KEY: ${{ runner.os }}-gradle-cache
+  CARGO_CACHE_KEY: ${{ runner.os }}-cargo-cache
+  ANDROID_BUILD_CACHE_KEY: ${{ runner.os }}-android-build-cache
+  FLUTTER_BUILD_CACHE_KEY: ${{ runner.os }}-flutter-build-cache
+
 jobs:
   code_tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+      - name: Cache Flutter SDK
+        uses: actions/cache@v4
+        with:
+          path: /opt/hostedtoolcache/flutter
+          key: ${{ env.FLUTTER_CACHE_KEY }}
+      - name: Cache Pub dependencies
+        uses: actions/cache@v4
+        with:
+          path: /home/runner/.pub-cache
+          key: ${{ env.PUB_CACHE_KEY }}
       - run: ./scripts/generate-locale-config.sh
       - run: git diff --exit-code
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
@@ -34,6 +52,49 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+      - name: Cache Flutter SDK
+        uses: actions/cache@v4
+        with:
+          path: /opt/hostedtoolcache/flutter
+          key: ${{ env.FLUTTER_CACHE_KEY }}
+      - name: Cache Pub dependencies
+        uses: actions/cache@v4
+        with:
+          path: /home/runner/.pub-cache
+          key: ${{ env.PUB_CACHE_KEY }}
+      - name: Cache Gradle
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+            ~/.gradle/build-cache
+          key: ${{ env.GRADLE_CACHE_KEY }}
+      - name: Cache Android build
+        uses: actions/cache@v4
+        with:
+          path: |
+            android/.gradle
+            android/app/build
+            android/build
+            build
+          key: ${{ env.ANDROID_BUILD_CACHE_KEY }}-${{ hashFiles('**/pubspec.yaml', '**/android/build.gradle', '**/android/app/build.gradle') }}
+      - name: Cache Flutter build
+        uses: actions/cache@v4
+        with:
+          path: |
+            .flutter-plugins
+            .flutter-plugins-dependencies
+            .dart_tool
+          key: ${{ env.FLUTTER_BUILD_CACHE_KEY }}-${{ hashFiles('**/pubspec.yaml', '**/pubspec.lock') }}
+      - name: Cache Cargo
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: ${{ env.CARGO_CACHE_KEY }}
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
       - uses: actions/setup-java@v5
         with:
@@ -51,6 +112,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+      - name: Cache Flutter SDK
+        uses: actions/cache@v4
+        with:
+          path: /opt/hostedtoolcache/flutter
+          key: ${{ env.FLUTTER_CACHE_KEY }}
+      - name: Cache Pub dependencies
+        uses: actions/cache@v4
+        with:
+          path: /home/runner/.pub-cache
+          key: ${{ env.PUB_CACHE_KEY }}
+      - name: Cache Cargo
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: ${{ env.CARGO_CACHE_KEY }}
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
       - uses: subosito/flutter-action@v2
         with:
@@ -70,6 +149,24 @@ jobs:
     runs-on: ${{ matrix.arch == 'arm64' && 'ubuntu-24.04-arm' || 'ubuntu-latest'}}
     steps:
       - uses: actions/checkout@v5
+      - name: Cache Flutter SDK
+        uses: actions/cache@v4
+        with:
+          path: flutter
+          key: ${{ env.FLUTTER_CACHE_KEY }}
+      - name: Cache Pub dependencies
+        uses: actions/cache@v4
+        with:
+          path: /home/runner/.pub-cache
+          key: ${{ env.PUB_CACHE_KEY }}
+      - name: Cache Cargo
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: ${{ env.CARGO_CACHE_KEY }}
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
       - name: Install dependencies
         run: sudo apt-get update && sudo apt-get install git wget curl clang cmake ninja-build pkg-config libgtk-3-dev libblkid-dev liblzma-dev libjsoncpp-dev cmake-data libsecret-1-dev libsecret-1-0 librhash0 libssl-dev libwebkit2gtk-4.1-dev -y
@@ -85,6 +182,24 @@ jobs:
     runs-on: macos-15
     steps:
       - uses: actions/checkout@v5
+      - name: Cache Flutter SDK
+        uses: actions/cache@v4
+        with:
+          path: /Users/runner/hostedtoolcache/flutter
+          key: ${{ env.FLUTTER_CACHE_KEY }}
+      - name: Cache Pub dependencies
+        uses: actions/cache@v4
+        with:
+          path: /Users/runner/.pub-cache
+          key: ${{ env.PUB_CACHE_KEY }}
+      - name: Cache Cargo
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: ${{ env.CARGO_CACHE_KEY }}
       - run: cat .github/workflows/versions.env >> $GITHUB_ENV
       - uses: subosito/flutter-action@v2
         with:
