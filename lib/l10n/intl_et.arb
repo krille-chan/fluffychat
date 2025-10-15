@@ -3395,8 +3395,6 @@
   "greenFeedback": "See on see, mida ma paneksin!",
   "yellowFeedback": "Hm, võid proovida seda ja vaadata, kas see töötab! Selle sõna kasutamiseks klõpsa seda uuesti.",
   "redFeedback": "Ma arvan, et see ei ole õige...",
-  "itInstructionsTitle": "Ma saan sind aidata tõlkida!",
-  "itInstructionsBody": "Sa võid klõpsata ja hoida valikuid sõna info saamiseks.",
   "oneday": "Viimased 24 tundi",
   "oneweek": "Viimased 7 päeva",
   "onemonth": "Eelmine kuu",
@@ -4038,8 +4036,6 @@
   "emptyChatNameWarning": "Palun sisestage selle vestluse nimi",
   "emptyClassNameWarning": "Palun sisestage selle klassi nimi",
   "emptySpaceNameWarning": "Palun sisestage selle ruumi nimi",
-  "blurMeansTranslateTitle": "Miks on sõnum udustatud?",
-  "blurMeansTranslateBody": "Kui Immersion Mode on sisse lülitatud, udustatakse sõnumeid, mis saadetakse teie baaskeeles, samal ajal kui Pangea Bot tõlgib neid teie sihtkeelde. Immersion Mode'i saab sisse või välja lülitada üksikute ja ruumi seadetes.",
   "someErrorTitle": "Hmm, midagi on valesti",
   "someErrorBody": "See võib olla viga või midagi teie baaskeeles.",
   "bestCorrectionFeedback": "See on õige!",
@@ -4164,9 +4160,6 @@
   "runGrammarCorrection": "Kontrolli sõnumit",
   "grammarCorrectionFailed": "Vajadusel parandada",
   "grammarCorrectionComplete": "Väga hea!",
-  "tooltipInstructionsTitle": "Ei tea, mida see teeb?",
-  "tooltipInstructionsMobileBody": "Puuduta ja hoia, et vaadata tööriistatekste.",
-  "tooltipInstructionsBrowserBody": "Liigu hiirega üle üksuste, et vaadata tööriistatekste.",
   "addSpaceToSpaceDescription": "Vali ruum, mida lisada vanemaks",
   "chatCapacity": "Vestluse maht",
   "spaceCapacity": "Ruumimaht",
@@ -4229,13 +4222,10 @@
   "feedback": "Valikuline tagasiside",
   "reportContentIssueDescription": "Oh ei! Tehisintellekt võib pakkuda isikupärastatud õpikogemusi, kuid... ka hallutsineerib. Palun andke meile tagasisidet ja proovime uuesti.",
   "changeContent": "Oh ei! Tehisintellekt võib pakkuda isikupärastatud õpikogemusi, kuid... ka hallutsineerib. Mis see peaks olema?",
-  "clickTheWordAgainToDeselect": "Klõpsa valitud sõnale, et tühistada valik.",
   "l2SupportNa": "Pole saadaval",
   "l2SupportAlpha": "Alpha",
   "l2SupportBeta": "Beta",
   "l2SupportFull": "Täielik",
-  "missingVoiceTitle": "Puuduv hääl",
-  "voiceNotAvailable": "Selle keele jaoks ei ole heli installitud.",
   "openVoiceSettings": "Ava hääle seaded",
   "playAudio": "Esita",
   "stop": "Lõpeta",
@@ -4518,7 +4508,6 @@
   "other": "Muu",
   "levelShort": "TASE {level}",
   "botModeValidation": "Palun valige vestlusrežiim",
-  "clickBestOption": "Valige parimad valikud, et tõlkida oma sõnum!",
   "completeActivitiesToUnlock": "Lõpeta vähemalt üks tegevus, et lukustada tõlge!",
   "botSettingsSubtitle": "Kutsuge bot modererima vestlustegevust",
   "invitePeople": "Kutsuge kasutajaid",
@@ -4960,14 +4949,6 @@
     "placeholders": {}
   },
   "@redFeedback": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "@itInstructionsTitle": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "@itInstructionsBody": {
     "type": "String",
     "placeholders": {}
   },
@@ -7582,14 +7563,6 @@
     "type": "String",
     "placeholders": {}
   },
-  "@blurMeansTranslateTitle": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "@blurMeansTranslateBody": {
-    "type": "String",
-    "placeholders": {}
-  },
   "@someErrorTitle": {
     "type": "String",
     "placeholders": {}
@@ -8115,18 +8088,6 @@
     "type": "String",
     "placeholders": {}
   },
-  "@tooltipInstructionsTitle": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "@tooltipInstructionsMobileBody": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "@tooltipInstructionsBrowserBody": {
-    "type": "String",
-    "placeholders": {}
-  },
   "@addSpaceToSpaceDescription": {
     "type": "String",
     "placeholders": {}
@@ -8394,10 +8355,6 @@
     "type": "String",
     "placeholders": {}
   },
-  "@clickTheWordAgainToDeselect": {
-    "type": "String",
-    "placeholders": {}
-  },
   "@l2SupportNa": {
     "type": "String",
     "placeholders": {}
@@ -8411,14 +8368,6 @@
     "placeholders": {}
   },
   "@l2SupportFull": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "@missingVoiceTitle": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "@voiceNotAvailable": {
     "type": "String",
     "placeholders": {}
   },
@@ -9551,10 +9500,6 @@
     }
   },
   "@botModeValidation": {
-    "type": "String",
-    "placeholders": {}
-  },
-  "@clickBestOption": {
     "type": "String",
     "placeholders": {}
   },
