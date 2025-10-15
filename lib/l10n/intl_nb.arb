@@ -2931,5 +2931,90 @@
     "@commandHint_clearcache": {
         "type": "String",
         "description": "Usage hint for the command /clearcache"
+    },
+    "homeserverDescription": "Alle dataene dine lagres på hjemmeserveren, akkurat som hos en e-postleverandør. Du kan velge hvilken hjemmeserver du vil bruke, samtidig som du fortsatt kan kommunisere med alle. Lær mer på https://matrix.org.",
+    "@homeserverDescription": {},
+    "doesNotSeemToBeAValidHomeserver": "Ser ikke ut til å være en kompatibel hjemmeserver. Feil URL?",
+    "@doesNotSeemToBeAValidHomeserver": {},
+    "prepareSendingAttachment": "Forbered sending av vedlegg...",
+    "@prepareSendingAttachment": {},
+    "generatingVideoThumbnail": "Genererer videominiatyrbilde ...",
+    "@generatingVideoThumbnail": {},
+    "compressVideo": "Komprimerer video...",
+    "@compressVideo": {},
+    "welcomeText": "Hei, hei! 👋 Dette er FluffyChat. Du kan logge på hvilken som helst hjemmeserver som er kompatibel med https://matrix.org. Og deretter chatte med hvem som helst. Det er et stort desentralisert meldingsnettverk!",
+    "@welcomeText": {},
+    "notificationRuleIsUserMentionDescription": "Varsler brukeren når de er direkte nevnt i en melding.",
+    "@notificationRuleIsUserMentionDescription": {},
+    "notificationRuleContainsDisplayName": "Inneholder visningsnavn",
+    "@notificationRuleContainsDisplayName": {},
+    "notificationRuleContainsDisplayNameDescription": "Varsler brukeren når en melding inneholder ens visningsnavnet.",
+    "@notificationRuleContainsDisplayNameDescription": {},
+    "notificationRuleIsUserMention": "Brukeromtale",
+    "@notificationRuleIsUserMention": {},
+    "notificationRuleIsRoomMention": "Romomtale",
+    "@notificationRuleIsRoomMention": {},
+    "whatIsAHomeserver": "Hva er en hjemmeserver?",
+    "@whatIsAHomeserver": {},
+    "commandHint_me": "Beskriv deg selv",
+    "@commandHint_me": {
+        "type": "String",
+        "description": "Usage hint for the command /me"
+    },
+    "commandHint_myroomavatar": "Angi bilde for dette rommet (med mxc-uri)",
+    "@commandHint_myroomavatar": {
+        "type": "String",
+        "description": "Usage hint for the command /myroomavatar"
+    },
+    "commandHint_myroomnick": "Angi visningsnavnet ditt for dette rommet",
+    "@commandHint_myroomnick": {
+        "type": "String",
+        "description": "Usage hint for the command /myroomnick"
+    },
+    "commandHint_plain": "Send uformatert tekst",
+    "@commandHint_plain": {
+        "type": "String",
+        "description": "Usage hint for the command /plain"
+    },
+    "commandHint_react": "Send svar som en reaksjon",
+    "@commandHint_react": {
+        "type": "String",
+        "description": "Usage hint for the command /react"
+    },
+    "commandHint_send": "Send tekst",
+    "@commandHint_send": {
+        "type": "String",
+        "description": "Usage hint for the command /send"
+    },
+    "commandHint_unban": "Opphev utestengelsen til den gitte brukeren fra dette rommet",
+    "@commandHint_unban": {
+        "type": "String",
+        "description": "Usage hint for the command /unban"
+    },
+    "commandInvalid": "Ugyldig kommando",
+    "@commandInvalid": {
+        "type": "String"
+    },
+    "commandMissing": "{command} er ikke en kommando.",
+    "@commandMissing": {
+        "type": "String",
+        "placeholders": {
+            "command": {
+                "type": "String"
+            }
+        },
+        "description": "State that {command} is not a valid /command."
+    },
+    "checkList": "Sjekkliste",
+    "@checkList": {},
+    "createNewSpace": "Nytt område",
+    "@createNewSpace": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "emoteKeyboardNoRecents": "Nylig brukte emotes vil vises her ...",
+    "@emoteKeyboardNoRecents": {
+        "type": "String",
+        "placeholders": {}
     }
 }
