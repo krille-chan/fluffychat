@@ -11,6 +11,7 @@ import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart' as sdk;
 import 'package:matrix/matrix.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
@@ -18,6 +19,7 @@ import 'package:fluffychat/pages/chat_list/chat_list_view.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
+import 'package:fluffychat/utils/room_status_extension.dart';
 import 'package:fluffychat/utils/show_scaffold_dialog.dart';
 import 'package:fluffychat/utils/show_update_snackbar.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_modal_action_popup.dart';
@@ -98,6 +100,86 @@ class ChatListController extends State<ChatList>
 
   String? _activeSpaceId;
   String? get activeSpaceId => _activeSpaceId;
+
+  // Room category management
+  Map<String, bool> categoryCollapsedStates = {};
+
+  List<RoomCategory> get categorizedRooms => _categorizeRooms(
+        filteredRooms,
+        categoryCollapsedStates,
+      );
+
+  List<RoomCategory> _categorizeRooms(
+    List<Room> rooms,
+    Map<String, bool> collapsedStates,
+  ) {
+    final favourites =
+        rooms.where((r) => r.tagCategory == 'favourite').toList();
+    final normal = rooms.where((r) => r.tagCategory == 'normal').toList();
+    final lowPriority =
+        rooms.where((r) => r.tagCategory == 'lowpriority').toList();
+
+    final categories = <RoomCategory>[];
+
+    if (favourites.isNotEmpty) {
+      categories.add(
+        RoomCategory(
+          id: 'favourite',
+          name: 'Favourites',
+          rooms: favourites,
+          isCollapsed: collapsedStates['favourite'] ?? false,
+        ),
+      );
+    }
+
+    if (normal.isNotEmpty) {
+      categories.add(
+        RoomCategory(
+          id: 'normal',
+          name: 'Rooms',
+          rooms: normal,
+          isCollapsed: collapsedStates['normal'] ?? false,
+        ),
+      );
+    }
+
+    if (lowPriority.isNotEmpty) {
+      categories.add(
+        RoomCategory(
+          id: 'lowpriority',
+          name: 'Low Priority',
+          rooms: lowPriority,
+          isCollapsed: collapsedStates['lowpriority'] ?? true,
+        ),
+      );
+    }
+
+    return categories;
+  }
+
+  void toggleCategoryCollapse(String categoryId) {
+    setState(() {
+      categoryCollapsedStates[categoryId] =
+          !(categoryCollapsedStates[categoryId] ?? false);
+    });
+    SharedPreferences.getInstance().then(
+      (prefs) => prefs.setBool(
+        'category_collapsed_$categoryId',
+        categoryCollapsedStates[categoryId] ?? false,
+      ),
+    );
+  }
+
+  void loadCollapsedStates() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      categoryCollapsedStates = {
+        'favourite': prefs.getBool('category_collapsed_favourite') ?? false,
+        'normal': prefs.getBool('category_collapsed_normal') ?? false,
+        'lowpriority': prefs.getBool('category_collapsed_lowpriority') ?? true,
+      };
+    });
+  }
 
   void setActiveSpace(String spaceId) async {
     await Matrix.of(context).client.getRoomById(spaceId)!.postLoad();
@@ -400,6 +482,7 @@ class ChatListController extends State<ChatList>
   @override
   void initState() {
     _initReceiveSharingIntent();
+    loadCollapsedStates();
 
     scrollController.addListener(_onScroll);
     _waitForFirstSync();
@@ -569,6 +652,23 @@ class ChatListController extends State<ChatList>
               ],
             ),
           ),
+          PopupMenuItem(
+            value: ChatContextAction.tagLowPriority,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  room.isTaggedLowPriority
+                      ? Icons.visibility
+                      : Icons.visibility_off,
+                ),
+                const SizedBox(width: 12),
+                Text(
+                  room.isTaggedLowPriority ? 'Show Room' : 'Low Priority',
+                ),
+              ],
+            ),
+          ),
           if (spacesWithPowerLevels.isNotEmpty)
             PopupMenuItem(
               value: ChatContextAction.addToSpace,
@@ -639,7 +739,7 @@ class ChatListController extends State<ChatList>
       case ChatContextAction.favorite:
         await showFutureLoadingDialog(
           context: context,
-          future: () => room.setFavourite(!room.isFavourite),
+          future: () => room.toggleFavorite(),
         );
         return;
       case ChatContextAction.markUnread:
@@ -657,6 +757,14 @@ class ChatListController extends State<ChatList>
                 : PushRuleState.notify,
           ),
         );
+        return;
+
+      case ChatContextAction.tagLowPriority:
+        await showFutureLoadingDialog(
+          context: context,
+          future: () => room.setLowPriority(!room.isTaggedLowPriority),
+        );
+        setState(() {});
         return;
       case ChatContextAction.block:
         final inviteEvent = room.getState(
@@ -934,4 +1042,19 @@ enum ChatContextAction {
   leave,
   addToSpace,
   block,
+  tagLowPriority,
+}
+
+class RoomCategory {
+  final String id;
+  final String name;
+  final List<Room> rooms;
+  final bool isCollapsed;
+
+  const RoomCategory({
+    required this.id,
+    required this.name,
+    required this.rooms,
+    this.isCollapsed = false,
+  });
 }
