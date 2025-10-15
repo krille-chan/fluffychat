@@ -76,39 +76,34 @@ class WordZoomWidget extends StatelessWidget {
                       children: [
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             onClose != null
-                                ? SizedBox(
-                                    width: 24.0,
-                                    height: 24.0,
-                                    child: MouseRegion(
-                                      cursor: SystemMouseCursors.click,
-                                      child: GestureDetector(
-                                        onTap: onClose,
-                                        child: const Icon(
-                                          Icons.close,
-                                          size: 16.0,
-                                        ),
-                                      ),
-                                    ),
+                                ? IconButton(
+                                    icon: const Icon(Icons.close),
+                                    onPressed: onClose,
                                   )
                                 : const SizedBox(
-                                    width: 24.0,
-                                    height: 24.0,
+                                    width: 40.0,
+                                    height: 40.0,
                                   ),
                             Flexible(
-                              child: Text(
-                                token.content,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 28.0,
-                                  fontWeight: FontWeight.w600,
-                                  height: 1.2,
-                                  color: Theme.of(context).brightness ==
-                                          Brightness.light
-                                      ? AppConfig.yellowDark
-                                      : AppConfig.yellowLight,
+                              child: Container(
+                                constraints: const BoxConstraints(
+                                  minHeight: 40.0,
+                                ),
+                                alignment: Alignment.center,
+                                child: Text(
+                                  token.content,
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: 28.0,
+                                    fontWeight: FontWeight.w600,
+                                    height: 1.2,
+                                    color: Theme.of(context).brightness ==
+                                            Brightness.light
+                                        ? AppConfig.yellowDark
+                                        : AppConfig.yellowLight,
+                                  ),
                                 ),
                               ),
                             ),
@@ -125,8 +120,8 @@ class WordZoomWidget extends StatelessWidget {
                                     },
                                   )
                                 : const SizedBox(
-                                    width: 24.0,
-                                    height: 24.0,
+                                    width: 40.0,
+                                    height: 40.0,
                                   ),
                           ],
                         ),
