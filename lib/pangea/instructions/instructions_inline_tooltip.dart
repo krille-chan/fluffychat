@@ -9,12 +9,14 @@ class InstructionsInlineTooltip extends StatelessWidget {
   final InstructionsEnum instructionsEnum;
   final bool animate;
   final EdgeInsets? padding;
+  final TextStyle? textStyle;
 
   const InstructionsInlineTooltip({
     super.key,
     required this.instructionsEnum,
     this.animate = true,
     this.padding,
+    this.textStyle,
   });
 
   @override
@@ -25,6 +27,7 @@ class InstructionsInlineTooltip extends StatelessWidget {
       onClose: () => instructionsEnum.setToggledOff(true),
       animate: animate,
       padding: padding,
+      textStyle: textStyle,
     );
   }
 }
@@ -37,6 +40,8 @@ class InlineTooltip extends StatefulWidget {
   final VoidCallback? onClose;
   final bool animate;
 
+  final TextStyle? textStyle;
+
   const InlineTooltip({
     super.key,
     required this.message,
@@ -44,6 +49,7 @@ class InlineTooltip extends StatefulWidget {
     this.onClose,
     this.animate = true,
     this.padding,
+    this.textStyle,
   });
 
   @override
@@ -138,9 +144,10 @@ class InlineTooltipState extends State<InlineTooltip>
                 child: Center(
                   child: Text(
                     widget.message,
-                    style: FluffyThemes.isColumnMode(context)
-                        ? Theme.of(context).textTheme.titleLarge
-                        : Theme.of(context).textTheme.bodyLarge,
+                    style: widget.textStyle ??
+                        (FluffyThemes.isColumnMode(context)
+                            ? Theme.of(context).textTheme.titleLarge
+                            : Theme.of(context).textTheme.bodyLarge),
                     textAlign: TextAlign.center,
                   ),
                 ),

@@ -19,6 +19,8 @@ import 'package:fluffychat/pangea/common/utils/overlay.dart';
 import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_text_model.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
+import 'package:fluffychat/pangea/instructions/instructions_enum.dart';
+import 'package:fluffychat/pangea/instructions/instructions_inline_tooltip.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/word_zoom/word_zoom_widget.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -174,6 +176,12 @@ class ActivityStatsMenuState extends State<ActivityStatsMenu> {
                               room.activityPlan!.learningObjective,
                               style: const TextStyle(fontSize: 12.0),
                             ),
+                          ),
+                          InstructionsInlineTooltip(
+                            instructionsEnum: InstructionsEnum.highlightVocab,
+                            textStyle: FluffyThemes.isColumnMode(context)
+                                ? Theme.of(context).textTheme.titleMedium
+                                : Theme.of(context).textTheme.bodyLarge,
                           ),
                           ActivitySessionDetailsRow(
                             icon: Symbols.dictionary,
