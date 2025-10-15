@@ -5,6 +5,7 @@ import 'package:collection/collection.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:fluffychat/config/themes.dart';
+import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/analytics_details_popup/analytics_details_popup.dart';
 import 'package:fluffychat/pangea/analytics_details_popup/vocab_analytics_list_tile.dart';
 import 'package:fluffychat/pangea/analytics_downloads/analytics_download_button.dart';
@@ -148,27 +149,41 @@ class VocabAnalyticsListView extends StatelessWidget {
                 ),
 
               // Grid of vocab tiles
-              SliverGrid(
-                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: 100.0,
-                  mainAxisExtent: 100.0,
-                  crossAxisSpacing: 8.0,
-                  mainAxisSpacing: 8.0,
-                ),
-                delegate: SliverChildBuilderDelegate(
-                  (context, index) {
-                    final vocabItem = _filteredVocab[index];
-                    return VocabAnalyticsListTile(
-                      onTap: () => context.go(
-                        "/rooms/analytics/${vocabItem.id.type.string}/${vocabItem.id.string}",
+              _filteredVocab.isEmpty
+                  ? SliverToBoxAdapter(
+                      child: controller.selectedConstructLevel != null
+                          ? Padding(
+                              padding: const EdgeInsets.all(24.0),
+                              child: Text(
+                                L10n.of(context).vocabLevelsDesc,
+                                style: Theme.of(context).textTheme.bodyMedium,
+                                textAlign: TextAlign.center,
+                              ),
+                            )
+                          : const SizedBox.shrink(),
+                    )
+                  : SliverGrid(
+                      gridDelegate:
+                          const SliverGridDelegateWithMaxCrossAxisExtent(
+                        maxCrossAxisExtent: 100.0,
+                        mainAxisExtent: 100.0,
+                        crossAxisSpacing: 8.0,
+                        mainAxisSpacing: 8.0,
                       ),
-                      constructUse: vocabItem,
-                      emoji: vocabItem.id.userSetEmoji.firstOrNull,
-                    );
-                  },
-                  childCount: _filteredVocab.length,
-                ),
-              ),
+                      delegate: SliverChildBuilderDelegate(
+                        (context, index) {
+                          final vocabItem = _filteredVocab[index];
+                          return VocabAnalyticsListTile(
+                            onTap: () => context.go(
+                              "/rooms/analytics/${vocabItem.id.type.string}/${vocabItem.id.string}",
+                            ),
+                            constructUse: vocabItem,
+                            emoji: vocabItem.id.userSetEmoji.firstOrNull,
+                          );
+                        },
+                        childCount: _filteredVocab.length,
+                      ),
+                    ),
             ],
           ),
         ),
