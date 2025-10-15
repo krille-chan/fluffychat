@@ -8,6 +8,7 @@ import 'package:matrix/matrix.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_details/chat_details.dart';
+import 'package:fluffychat/pangea/analytics_summary/learning_progress_indicators.dart';
 import 'package:fluffychat/pangea/chat_settings/pages/room_details_buttons.dart';
 import 'package:fluffychat/pangea/chat_settings/pages/room_participants_widget.dart';
 import 'package:fluffychat/pangea/chat_settings/pages/space_details_button_row.dart';
@@ -206,6 +207,7 @@ class SpaceDetailsContent extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
+        if (!isColumnMode) const LearningProgressIndicators(),
         Row(
           crossAxisAlignment: isColumnMode
               ? CrossAxisAlignment.start
