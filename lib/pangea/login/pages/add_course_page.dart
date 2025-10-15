@@ -130,6 +130,11 @@ class AddCoursePage extends StatelessWidget {
                         style: theme.textTheme.labelLarge,
                       ),
                     ),
+                    if (route == "registration")
+                      TextButton(
+                        child: Text(L10n.of(context).skipForNow),
+                        onPressed: () => context.go('/rooms'),
+                      ),
                   ],
                 ),
               ],
