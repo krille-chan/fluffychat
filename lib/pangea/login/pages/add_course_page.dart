@@ -31,7 +31,7 @@ class AddCoursePage extends StatelessWidget {
             Text(L10n.of(context).addCourse),
           ],
         ),
-        automaticallyImplyLeading: route == 'registration',
+        automaticallyImplyLeading: false,
       ),
       body: SafeArea(
         child: Center(
