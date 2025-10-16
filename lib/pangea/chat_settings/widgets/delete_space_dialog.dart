@@ -179,48 +179,47 @@ class DeleteSpaceDialogState extends State<DeleteSpaceDialog> {
                 style: TextStyle(color: Theme.of(context).colorScheme.error),
               ),
             ),
-            Flexible(
-              child: SingleChildScrollView(
-                child: Builder(
-                  builder: (context) {
-                    if (_loadingRooms) {
-                      return const Center(
-                        child: SizedBox(
-                          height: 20,
-                          width: 20,
-                          child: CircularProgressIndicator.adaptive(),
-                        ),
-                      );
-                    }
+            Builder(
+              builder: (context) {
+                if (_loadingRooms) {
+                  return const Center(
+                    child: SizedBox(
+                      height: 20,
+                      width: 20,
+                      child: CircularProgressIndicator.adaptive(),
+                    ),
+                  );
+                }
 
-                    if (_roomLoadError != null) {
-                      return Center(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 16.0),
-                          child: ErrorIndicator(message: _roomLoadError!),
-                        ),
-                      );
-                    }
-
-                    return Padding(
+                if (_roomLoadError != null) {
+                  return Center(
+                    child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 16.0),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          if (_selectableRooms.length > 1)
-                            CheckboxListTile(
-                              value: _roomsToDelete.length ==
-                                  _selectableRooms.length,
-                              onChanged: (_) => _toggleSelectAll(),
-                              title: Text(
-                                _roomsToDelete.length == _selectableRooms.length
-                                    ? L10n.of(context).deselectAll
-                                    : L10n.of(context).selectAll,
-                              ),
-                              controlAffinity: ListTileControlAffinity.leading,
+                      child: ErrorIndicator(message: _roomLoadError!),
+                    ),
+                  );
+                }
+
+                return Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 16.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        if (_selectableRooms.length > 1)
+                          CheckboxListTile(
+                            value: _roomsToDelete.length ==
+                                _selectableRooms.length,
+                            onChanged: (_) => _toggleSelectAll(),
+                            title: Text(
+                              _roomsToDelete.length == _selectableRooms.length
+                                  ? L10n.of(context).deselectAll
+                                  : L10n.of(context).selectAll,
                             ),
-                          ListView.builder(
-                            shrinkWrap: true,
+                            controlAffinity: ListTileControlAffinity.leading,
+                          ),
+                        Expanded(
+                          child: ListView.builder(
                             itemCount: _rooms.length,
                             itemBuilder: (context, index) {
                               final chunk = _rooms[index];
@@ -250,12 +249,12 @@ class DeleteSpaceDialogState extends State<DeleteSpaceDialog> {
                               );
                             },
                           ),
-                        ],
-                      ),
-                    );
-                  },
-                ),
-              ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(8.0, 16.0, 8.0, 8.0),
