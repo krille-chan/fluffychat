@@ -165,8 +165,17 @@ class CreatePangeaAccountPageState extends State<CreatePangeaAccountPage> {
     }
 
     try {
-      final targetLangCode = await _targetLangCode;
       final baseLangCode = await _baseLangCode;
+      final targetLangCode = await _targetLangCode;
+
+      // User's L2 is not set and they niether have a target language in their
+      // local storage nor can they get it from a course they plan to join.
+      // Redirect back to language selection.
+      // This can happen if a user creates a new account via login => SSO
+      if (targetLangCode == null) {
+        context.go('/registration');
+      }
+
       final updateFuture = [
         _setAvatar(),
         MatrixState.pangeaController.userController.updateProfile(
