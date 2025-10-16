@@ -40,14 +40,17 @@ class CourseCodePageState extends State<CourseCodePage> {
       return;
     }
 
-    final spaceId = await MatrixState.pangeaController.spaceCodeController
+    final roomId = await MatrixState.pangeaController.spaceCodeController
         .joinSpaceWithCode(
       context,
       _code,
     );
 
-    if (spaceId != null) {
-      context.go('/rooms/spaces/$spaceId/details');
+    if (roomId != null) {
+      final room = Matrix.of(context).client.getRoomById(roomId);
+      room?.isSpace ?? true
+          ? context.go('/rooms/spaces/$roomId/details')
+          : context.go('/rooms/$roomId');
     }
   }
 
