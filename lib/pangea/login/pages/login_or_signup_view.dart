@@ -97,7 +97,9 @@ class LoginOrSignupViewState extends State<LoginOrSignupView> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     ElevatedButton(
-                      onPressed: () => context.go(
+                      // push instead of go so the app bar back button doesn't go to the language selection page
+                      // https://github.com/pangeachat/client/issues/4421
+                      onPressed: () => context.push(
                         _cachedSpaceCode != null
                             ? '/home/language/signup'
                             : '/home/language',
