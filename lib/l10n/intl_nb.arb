@@ -3016,5 +3016,17 @@
     "@emoteKeyboardNoRecents": {
         "type": "String",
         "placeholders": {}
-    }
+    },
+    "unableToJoinChat": "Kan ikke bli med i chatten. Kanskje den andre parten allerede har lukket samtalen.",
+    "@unableToJoinChat": {},
+    "otherPartyNotLoggedIn": "Den andre parten er ikke logget inn og kan derfor ikke motta meldinger!",
+    "@otherPartyNotLoggedIn": {},
+    "notificationRuleIsRoomMentionDescription": "Varsler brukeren når det er en romomtale.",
+    "@notificationRuleIsRoomMentionDescription": {},
+    "notificationRuleRoomnotif": "Romvarsel",
+    "@notificationRuleRoomnotif": {},
+    "notificationRuleCall": "Anrop",
+    "@notificationRuleCall": {},
+    "notificationRuleCallDescription": "Varsler brukeren om anrop.",
+    "@notificationRuleCallDescription": {}
 }
