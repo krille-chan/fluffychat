@@ -1,6 +1,6 @@
 {
   "@@locale": "es",
-  "@@last_modified": "2025-07-24 13:19:34.706481",
+  "@@last_modified": "2025-10-16 13:30:49.638463",
   "about": "Acerca de",
   "@about": {
     "type": "String",
@@ -6316,6 +6316,1120 @@
     "placeholders": {}
   },
   "@unableToFindRoom": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "joinWithClassCode": "Unirse al curso",
+  "errorDisableITClassDesc": "La asistencia de traducción está desactivada para el curso en el que se encuentra este chat.",
+  "errorDisableIGCClassDesc": "La asistencia de gramática está desactivada para el curso en el que se encuentra este chat.",
+  "participants": "Participantes",
+  "invitedToSpace": "{user} te ha invitado a unirte a un curso: {space}. ¿Deseas aceptar?",
+  "blurMeansTranslateBody": "Mientras el Modo Inmersión está activado, los mensajes que se envían en tu idioma base estarán difuminados mientras Pangea Bot los traduce a tu idioma de destino. El Modo Inmersión se puede activar o desactivar en la configuración individual y del curso.",
+  "updatedNewSpaceDescription": "Los cursos te permiten consolidar tus chats y construir comunidades privadas o públicas.",
+  "generateActivitiesButton": "Generar actividad",
+  "leaveSpaceDescription": "Al abandonar el curso, abandonarás todos los chats dentro de él. Otros usuarios verán que has dejado el curso.",
+  "noSpaceDescriptionYet": "Aún no se ha creado una descripción del curso.",
+  "knockSpaceSuccess": "¡Has solicitado unirte a este curso! Un administrador responderá a tu solicitud cuando la reciba 😀",
+  "enterSpaceCode": "Ingresa el código del curso",
+  "joinSpaceOnboardingDesc": "¿Tienes un código o enlace de invitación a un curso público?",
+  "spaceChildPermission": "Quién puede agregar nuevos chats a este curso",
+  "configureSpace": "Configurar curso",
+  "changeTheNameOfTheSpace": "Cambiar el nombre del curso",
+  "errorLaunchActivityMessage": "Error al iniciar la actividad",
+  "numCompletedActivities": "Número de actividades completadas",
+  "viewingAnalytics": "Viendo {visible}/{users} análisis",
+  "request": "Solicitar",
+  "requestAll": "Solicitar todo",
+  "confirmMessageUnpin": "¿Estás seguro de que quieres desanclar este mensaje?",
+  "createActivityPlan": "Crear un nuevo plan de actividades",
+  "saveAndLaunch": "Guardar y lanzar",
+  "launchToSpace": "Lanzar al curso",
+  "numberOfActivities": "Número de sesiones de actividad",
+  "maximumActivityParticipants": "Cada actividad puede tener un máximo de {count} participante(s).",
+  "pending": "Pendiente",
+  "inactive": "Inactivo",
+  "unjoinedActivityMessage": "¿Quieres participar? ¡Elige un rol abierto!\n¡O simplemente pasa el rato y mira el espectáculo!",
+  "fullActivityMessage": "¡Siéntete libre de ver el espectáculo! Aunque no hay roles abiertos para participar, puedes ver el chat.",
+  "confirmRole": "Confirmar rol",
+  "openRoleLabel": "ABIERTO",
+  "joinedTheActivity": "👋 {username} se unió como {role}",
+  "finishedTheActivity": "🎯 {username} finalizó esta actividad",
+  "endActivityTitle": "He terminado",
+  "endActivityDesc": "¿Completaste los objetivos?\nEsta es tu confirmación de que te estás retirando de los mensajes. ¡Pero no te preocupes, la diversión continúa en el chat! Siéntete libre de pasar el rato y disfrutar del espectáculo hasta que todos hagan clic en 'He terminado'.",
+  "archiveToAnalytics": "Agregar a mis actividades completadas",
+  "activitySummaryError": "Resúmenes de actividades no disponibles",
+  "requestSummaries": "Solicitar resúmenes",
+  "loadingActivitySummary": "Resumen de actividad en carga...",
+  "generatingNewActivities": "¡Eres el primer usuario de este par de idiomas! Por favor, danos un minuto, estamos preparando actividades solo para ti.",
+  "requestAccessTitle": "¿Solicitar acceso a vista de análisis?",
+  "requestAccessDesc": "¿Te gustaría solicitar acceso para ver análisis de participantes?\n\nSi los participantes están de acuerdo, los administradores de este curso podrán ver:\n    • vocabulario total\n    • conceptos gramaticales totales\n    • sesiones de actividad completadas\n    • los conceptos gramaticales específicos utilizados, correctamente e incorrectamente\n\nNo podrán ver:\n    • mensajes en chats fuera del curso\n    • lista de vocabulario",
+  "requestAccess": "Solicitar acceso ({count})",
+  "analyticsInactiveTitle": "Las solicitudes a usuarios inactivos no pudieron ser enviadas",
+  "analyticsInactiveDesc": "Los usuarios inactivos que no han iniciado sesión desde que se introdujo esta función no verán tu solicitud.\n\nEl botón de Solicitar aparecerá una vez que regresen. Puedes reenviar la solicitud más tarde haciendo clic en el botón Solicitar bajo su nombre cuando esté disponible.",
+  "accessRequestedTitle": "Solicitud de acceso a análisis",
+  "accessRequestedDesc": "Los administradores de “{space}” están solicitando ver tus análisis de aprendizaje.\n\nSi estás de acuerdo, los administradores de este curso podrán ver:\n    • vocabulario total\n    • conceptos gramaticales totales\n    • sesiones de actividad completadas\n    • los conceptos gramaticales específicos utilizados, correctamente e incorrectamente\n\nNo podrán ver:\n    • mensajes en chats fuera del curso\n    • lista de vocabulario",
+  "allowAccess": "Permitir acceso",
+  "denyAccess": "Denegar acceso",
+  "adminRequestedAccess": "Los administradores solicitaron ver tus análisis.",
+  "lastUpdated": "Actualizado\n{time}",
+  "activityFinishedMessage": "¡Todo terminado!",
+  "endForAll": "Finalizar para todos",
+  "newCourse": "Nuevo curso",
+  "newCourseSubtitle": "¿Qué plan de curso te gustaría usar?",
+  "failedToLoadCourses": "Error al cargar cursos",
+  "numModules": "{num} módulos",
+  "numActivityPlans": "{num} planes de actividad",
+  "coursePlan": "Plan de curso",
+  "editCourseLater": "Puedes editar el título, las descripciones y la imagen del curso más tarde.",
+  "newCourseAccess": "Por defecto, los cursos son privados y requieren aprobación del administrador para unirse. Puedes editar estos ajustes en cualquier momento.",
+  "createCourse": "Crear curso",
+  "stats": "Estadísticas",
+  "createGroupChat": "Crear chat grupal",
+  "editCourse": "Editar curso",
+  "inviteDesc": "Por nombre de usuario, por código o enlace",
+  "editCourseDesc": "Aquí puedes editar el título, la descripción, etc., del curso.",
+  "permissionsDesc": "Configura permisos como quién puede invitar usuarios, enviar mensajes, crear chats, etc.",
+  "accessDesc": "¡Puedes hacer que tu curso sea abierto al mundo! O, hacer que tu curso sea privado y seguro.",
+  "createGroupChatDesc": "Mientras que las sesiones de actividad comienzan y terminan, los chats grupales permanecerán abiertos para la comunicación rutinaria.",
+  "deleteDesc": "Solo los administradores pueden eliminar un curso. Esta es una acción destructiva que elimina a todos los usuarios y elimina todos los chats seleccionados dentro del curso. Procede con precaución.",
+  "failedToLoadCourseInfo": "Error al cargar la información del curso",
+  "noCourseFound": "¡Oh, este curso necesita un plan!\n\nLos planes de curso son una secuencia de temas y actividades de conversación.",
+  "additionalParticipants": "+ {num} otros",
+  "activityNotFoundForCourse": "No se encontró esta actividad dentro del curso",
+  "courseChats": "Chats del curso",
+  "myActivitySessions": "Mis sesiones de actividad",
+  "directMessages": "Mensajes directos",
+  "whatNow": "¿Y ahora?",
+  "chooseNextActivity": "¡Elige tu próxima actividad!",
+  "seeInstructions": "Ver instrucciones",
+  "hideInstructions": "Ocultar instrucciones",
+  "letsGo": "¡Vamos!",
+  "chooseRole": "¡Elige un rol!",
+  "chooseRoleToParticipate": "¡Elige un rol para participar!",
+  "waitingToFillRole": "Esperando llenar {num} roles...",
+  "pingParticipants": "Enviar aviso a los participantes del curso",
+  "playWithBot": "Jugar con Pangea Bot",
+  "inviteFriends": "Invitar amigos",
+  "waitNotDone": "¡Espera, no he terminado!",
+  "waitingForOthersToFinish": "Esperando a que los demás terminen...",
+  "saveToCompletedActivities": "Guardar en actividades completadas",
+  "generatingSummary": "Analizando el chat y generando resultados",
+  "instructionsLanguage": "Idioma de las instrucciones",
+  "findCourse": "Buscar un curso",
+  "activityCompletedDesc": "Tu actividad completada se agregó a los análisis donde puedes revisar y practicar el idioma que usaste.",
+  "pingParticipantsNotification": "{user} busca usuarios para unirse a la sesión de actividad en {room}",
+  "course": "Curso",
+  "courses": "Cursos",
+  "courseName": "Nombre del curso",
+  "createNewCourse": "Nuevo curso",
+  "publicCourses": "Cursos públicos",
+  "goToCourse": "Ir al curso: {course}",
+  "activityComplete": "Esta actividad ha sido completada. El resumen de la actividad debería estar disponible abajo.",
+  "haventChattedMuch": "Parece que no has chateado mucho, ¡intenta usar algunas palabras de vocabulario más! Si sientes que has cumplido tu objetivo, puedes terminar la actividad abajo.",
+  "haveChatted": "¡Parece que has estado chateando por un tiempo! Si sientes que has cumplido tu objetivo, termina para finalizar la actividad y te generaremos un resumen en el chat.",
+  "userDoneAndWaiting": "{num1}/{num2} participantes han terminado. Espera a que todos terminen, y te generaremos un resumen en el chat! \n\nSi quieres volver a unirte a la conversación, haz clic en el botón de continuar en el chat.",
+  "othersDoneAndWaiting": "{num1}/{num2} han terminado. ¿Has cumplido tu objetivo?",
+  "startNewSession": "Iniciar nueva sesión",
+  "joinOpenSession": "Unirse a sesión abierta",
+  "less": "menos",
+  "activityNotFound": "Actividad no encontrada",
+  "levelUp": "Subir de nivel",
+  "myActivities": "Mis actividades",
+  "openToJoin": "Abierto para unirse",
+  "results": "Resultados",
+  "activityDone": "¡Actividad terminada!",
+  "moreLabel": "más",
+  "promoCodeInfo": "Los códigos promocionales se pueden ingresar en la siguiente página",
+  "editsComingSoon": "La capacidad de editar ciudades y actividades llegará pronto.",
+  "editing": "Editando",
+  "activityNeedsOneMember": "¡Vaya! Esta actividad necesita 1 persona más.",
+  "activityNeedsMembers": "¡Vaya! Esta actividad necesita {num} personas más.",
+  "inviteFriendsToCourse": "Invitar a amigos a mi curso",
+  "subscribeToUnlockActivitySummaries": "Suscríbete para desbloquear resúmenes de actividades",
+  "subscribeToUnlockDefinitions": "Suscríbete para desbloquear definiciones",
+  "subscribeToUnlockTranscriptions": "Suscríbete para desbloquear transcripciones",
+  "pingSent": "🔔 ¡Ping del curso enviado! 🔔",
+  "courseTitle": "Título del curso",
+  "courseDesc": "Descripción del curso",
+  "courseSavedSuccessfully": "Curso guardado con éxito",
+  "addCoursePlan": "Agregar un plan de curso",
+  "activityStatsButtonInstruction": "Haz clic aquí para ver tus estadísticas de actividad y cerrar la actividad cuando termines",
+  "readingAnalyticsDesc": "Haz clic en practicar en cada mensaje para actividades de lectura.",
+  "speakingAnalyticsDesc": "Graba mensajes de voz para practicar speaking.",
+  "audioAnalyticsDesc": "Haz clic en practicar en cada mensaje para actividades de listening.",
+  "loginToAccount": "Iniciar sesión en mi cuenta",
+  "appDescription": "Aprende un idioma\nmientras envías mensajes a tus amigos.",
+  "languages": "Idiomas",
+  "chooseLanguage": "Elige un idioma.",
+  "planTrip": "Planifica tu viaje",
+  "howAreYouTraveling": "¿Cómo viajas?",
+  "unlockPrivateTrip": "Desbloquear un viaje privado",
+  "joinPublicTrip": "Unirse a un viaje público",
+  "startOwnTrip": "Comenzar el propio",
+  "tripPlanDesc": "Los viajes son cursos. Cada uno tiene de 8 a 10 temas secuenciales con una variedad de actividades de aprendizaje de idiomas basadas en tareas.",
+  "unlockPrivateTripTitle": "Desbloquear viaje privado",
+  "browsePublicTrips": "Explorar viajes públicos",
+  "startOwnTripTitle": "Comenzar mi propio viaje",
+  "courseCode": "¿Cuál es la contraseña secreta?",
+  "courseCodeHint": "Código o enlace del viaje",
+  "unlockMyTrip": "Desbloquear mi viaje",
+  "anyLevel": "Cualquier nivel",
+  "signupOption": "¿Cómo quieres registrarte?",
+  "withApple": "Con Apple",
+  "withGoogle": "Con Google",
+  "withEmail": "Con correo electrónico",
+  "createAccount": "Crear cuenta",
+  "noCoursesFound": "No se encontraron cursos",
+  "loginWithEmail": "Iniciar sesión con correo electrónico",
+  "usernameOrEmail": "Nombre de usuario o correo electrónico",
+  "email": "Correo electrónico",
+  "forgotPassword": "¿Olvidaste tu contraseña?",
+  "writingAnalyticsDesc": "Envía mensajes para practicar la escritura.",
+  "endActivity": "Finalizar actividad",
+  "allLanguages": "Todos los idiomas",
+  "allCefrLevels": "Todos los niveles CEFR",
+  "chatListTooltip": "¡Aquí encontrarás tus mensajes directos! Haz clic en el avatar de cualquier usuario y \"iniciar conversación\" para enviar un mensaje directo.",
+  "directMessageBotTitle": "Mensaje directo Pangea Bot",
+  "feedbackTitle": "Retroalimentación de la actividad",
+  "feedbackDesc": "¿Cómo se puede mejorar la actividad? ¡Si puedes proporcionar algunos detalles, haremos el cambio!",
+  "feedbackHint": "Tus comentarios",
+  "feedbackButton": "Enviar comentarios",
+  "directMessageBotDesc": "Hablar con humanos es más divertido pero... ¡la IA siempre está lista!",
+  "inviteYourFriends": "Invita a tus amigos",
+  "playWithAI": "Juega con IA por ahora",
+  "courseStartDesc": "¡Pangea Bot está listo para comenzar en cualquier momento!\n\n...pero aprender es mejor con amigos!",
+  "@joinWithClassCode": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@errorDisableITClassDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@errorDisableIGCClassDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@participants": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@invitedToSpace": {
+    "type": "String",
+    "placeholders": {
+      "user": {
+        "type": "String"
+      },
+      "space": {
+        "type": "String"
+      }
+    }
+  },
+  "@blurMeansTranslateBody": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@updatedNewSpaceDescription": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@generateActivitiesButton": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@leaveSpaceDescription": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@noSpaceDescriptionYet": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@knockSpaceSuccess": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@enterSpaceCode": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@joinSpaceOnboardingDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@spaceChildPermission": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@configureSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@changeTheNameOfTheSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@errorLaunchActivityMessage": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@numCompletedActivities": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@viewingAnalytics": {
+    "type": "String",
+    "placeholders": {
+      "visible": {
+        "type": "int"
+      },
+      "users": {
+        "type": "int"
+      }
+    }
+  },
+  "@request": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@requestAll": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@confirmMessageUnpin": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@createActivityPlan": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@saveAndLaunch": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@launchToSpace": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@numberOfActivities": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@maximumActivityParticipants": {
+    "type": "String",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@pending": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@inactive": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unjoinedActivityMessage": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@fullActivityMessage": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@confirmRole": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@openRoleLabel": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@joinedTheActivity": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      },
+      "role": {
+        "type": "String"
+      }
+    }
+  },
+  "@finishedTheActivity": {
+    "type": "String",
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "@endActivityTitle": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@endActivityDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@archiveToAnalytics": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@activitySummaryError": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@requestSummaries": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@loadingActivitySummary": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@generatingNewActivities": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@requestAccessTitle": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@requestAccessDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@requestAccess": {
+    "type": "String",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@analyticsInactiveTitle": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@analyticsInactiveDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@accessRequestedTitle": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@accessRequestedDesc": {
+    "type": "String",
+    "placeholders": {
+      "space": {
+        "type": "String"
+      }
+    }
+  },
+  "@allowAccess": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@denyAccess": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@adminRequestedAccess": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@lastUpdated": {
+    "type": "String",
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "@activityFinishedMessage": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@endForAll": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@newCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@newCourseSubtitle": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@failedToLoadCourses": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@numModules": {
+    "type": "int",
+    "placeholders": {
+      "num": {
+        "type": "int"
+      }
+    }
+  },
+  "@numActivityPlans": {
+    "type": "int",
+    "placeholders": {
+      "num": {
+        "type": "int"
+      }
+    }
+  },
+  "@coursePlan": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@editCourseLater": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@newCourseAccess": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@createCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@stats": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@createGroupChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@editCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@inviteDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@editCourseDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@permissionsDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@accessDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@createGroupChatDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@deleteDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@failedToLoadCourseInfo": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@noCourseFound": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@additionalParticipants": {
+    "type": "int",
+    "placeholders": {
+      "num": {
+        "type": "int"
+      }
+    }
+  },
+  "@activityNotFoundForCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@courseChats": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@myActivitySessions": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@directMessages": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@whatNow": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@chooseNextActivity": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@seeInstructions": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@hideInstructions": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@letsGo": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@chooseRole": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@chooseRoleToParticipate": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@waitingToFillRole": {
+    "type": "int",
+    "placeholders": {
+      "num": {
+        "type": "int"
+      }
+    }
+  },
+  "@pingParticipants": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@playWithBot": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@inviteFriends": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@waitNotDone": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@waitingForOthersToFinish": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@saveToCompletedActivities": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@generatingSummary": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@instructionsLanguage": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@findCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@activityCompletedDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@pingParticipantsNotification": {
+    "type": "String",
+    "placeholders": {
+      "user": {
+        "type": "String"
+      },
+      "room": {
+        "type": "String"
+      }
+    }
+  },
+  "@course": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@courses": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@courseName": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@createNewCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@publicCourses": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@goToCourse": {
+    "type": "String",
+    "placeholders": {
+      "course": {}
+    }
+  },
+  "@activityComplete": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@haventChattedMuch": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@haveChatted": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@userDoneAndWaiting": {
+    "type": "String",
+    "placeholders": {
+      "num1": {
+        "type": "int"
+      },
+      "num2": {
+        "type": "int"
+      }
+    }
+  },
+  "@othersDoneAndWaiting": {
+    "type": "String",
+    "placeholders": {
+      "num1": {
+        "type": "int"
+      },
+      "num2": {
+        "type": "int"
+      }
+    }
+  },
+  "@startNewSession": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@joinOpenSession": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@less": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@activityNotFound": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@levelUp": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@myActivities": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@openToJoin": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@results": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@activityDone": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@moreLabel": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@promoCodeInfo": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@editsComingSoon": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@editing": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@activityNeedsOneMember": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@activityNeedsMembers": {
+    "type": "String",
+    "placeholders": {
+      "num": {
+        "type": "int"
+      }
+    }
+  },
+  "@inviteFriendsToCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@subscribeToUnlockActivitySummaries": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@subscribeToUnlockDefinitions": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@subscribeToUnlockTranscriptions": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@pingSent": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@courseTitle": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@courseDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@courseSavedSuccessfully": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@addCoursePlan": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@activityStatsButtonInstruction": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@readingAnalyticsDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@speakingAnalyticsDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@audioAnalyticsDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@loginToAccount": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@appDescription": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@languages": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@chooseLanguage": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@planTrip": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@howAreYouTraveling": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unlockPrivateTrip": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@joinPublicTrip": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@startOwnTrip": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@tripPlanDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unlockPrivateTripTitle": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@browsePublicTrips": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@startOwnTripTitle": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@courseCode": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@courseCodeHint": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unlockMyTrip": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@anyLevel": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@signupOption": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@withApple": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@withGoogle": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@withEmail": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@createAccount": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@noCoursesFound": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@loginWithEmail": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@usernameOrEmail": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@email": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@forgotPassword": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@writingAnalyticsDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@endActivity": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@allLanguages": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@allCefrLevels": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@chatListTooltip": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@directMessageBotTitle": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@feedbackTitle": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@feedbackDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@feedbackHint": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@feedbackButton": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@directMessageBotDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@inviteYourFriends": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@playWithAI": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@courseStartDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "inviteFriendsToActivity": "Invitar a amigos a la actividad",
+  "inviteFriendsToActivityCourse": "Invitar a amigos a la actividad y al curso",
+  "feedbackRespDesc": "Vuelve mañana para ver las actualizaciones de la actividad.",
+  "activityDropdownDesc": "Cuando termines con esta actividad, haz clic abajo",
+  "activityAnalyticsListBody": "¡Estas son tus actividades completadas! Después de terminar las actividades, puedes verlas aquí.",
+  "languageMismatchTitle": "Incompatibilidad de idioma",
+  "languageMismatchDesc": "El idioma de destino no coincide con el idioma de esta actividad. ¿Quieres actualizar tu idioma de destino?",
+  "reportWordIssueTooltip": "Reportar problema con la información de la palabra",
+  "tokenInfoFeedbackDialogTitle": "Retroalimentación sobre la información de la palabra",
+  "tokenInfoFeedbackDialogDesc": "La IA comete errores. Por favor, describe cualquier problema que hayas encontrado con la información anterior.",
+  "noPublicCoursesFound": "No se encontraron cursos públicos. ¿Te gustaría crear uno?",
+  "noCourseTemplatesFound": "No pudimos encontrar cursos para tu idioma de destino. Mientras tanto, puedes chatear con Pangea Bot y volver más tarde para más cursos.",
+  "botActivityJoinFailMessage": "Pangea Bot está tardando en responder. Por favor, intenta nuevamente más tarde, o invita a un amigo.",
+  "unsubscribedResponseError": "Esta función requiere una suscripción",
+  "leaveDesc": "Salir de este espacio y de todos los chats dentro de él",
+  "selectAll": "Seleccionar todo",
+  "deselectAll": "Deseleccionar todo",
+  "@inviteFriendsToActivity": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@inviteFriendsToActivityCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@feedbackRespDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@activityDropdownDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@activityAnalyticsListBody": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@languageMismatchTitle": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@languageMismatchDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@reportWordIssueTooltip": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@tokenInfoFeedbackDialogTitle": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@tokenInfoFeedbackDialogDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@noPublicCoursesFound": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@noCourseTemplatesFound": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@botActivityJoinFailMessage": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@unsubscribedResponseError": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@leaveDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@selectAll": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@deselectAll": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "clickBestOption": "¡Elige las mejores opciones para traducir tu mensaje! Haz clic y mantén presionadas las opciones para obtener una pista.",
+  "startOwn": "Comenzar el propio",
+  "joinCourseDesc": "Cada curso tiene de 8 a 10 temas secuenciados con una variedad de actividades de aprendizaje de idiomas basadas en tareas.",
+  "newMessageInPangeaChat": "🗨️ Nuevo mensaje en Pangea Chat",
+  "shareCourse": "Compartir curso",
+  "addCourse": "Agregar un curso",
+  "joinCourseWithCode": "Unirse al curso con código",
+  "joinPublicCourse": "Unirse a curso público",
+  "vocabLevelsDesc": "¡Aquí es donde irán las palabras de vocabulario una vez que las hayas subido de nivel!",
+  "highlightVocabTooltip": "Resalta las palabras de vocabulario objetivo a continuación enviándolas o practicando con ellas en el chat",
+  "@clickBestOption": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@startOwn": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@joinCourseDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@newMessageInPangeaChat": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@shareCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@addCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@joinCourseWithCode": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@joinPublicCourse": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@vocabLevelsDesc": {
+    "type": "String",
+    "placeholders": {}
+  },
+  "@highlightVocabTooltip": {
     "type": "String",
     "placeholders": {}
   }

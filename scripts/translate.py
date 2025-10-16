@@ -128,6 +128,10 @@ def reconcile_metadata(
     translations = load_translations(lang_code)
 
     for key in translation_keys:
+        # Skip keys that weren't successfully translated
+        if key not in translations:
+            continue
+
         translation = translations[key]
         meta_key = f"@{key}"
         existing_meta = translations.get(meta_key, {})
@@ -312,7 +316,79 @@ def append_translate(lang_code: str, lang_display_name: str) -> None:
             temperature=0.0,
         )
         response = chat_completion.choices[0].message.content
-        _new_translations = json.loads(response)
+
+        # Try to parse JSON with error handling and retry logic
+        max_retries = 3
+        retry_count = 0
+        _new_translations = None
+        messages = [
+            {
+                "role": "system",
+                "content": "You are a translator that will only response to translation requests in json format without any additional information.",
+            },
+            {
+                "role": "user",
+                "content": prompt,
+            },
+            {
+                "role": "assistant",
+                "content": response,
+            },
+        ]
+
+        while retry_count < max_retries and _new_translations is None:
+            try:
+                # Try to clean up common JSON formatting issues first
+                cleaned_response = response.strip()
+                if cleaned_response.startswith("```json"):
+                    cleaned_response = cleaned_response[7:]
+                if cleaned_response.endswith("```"):
+                    cleaned_response = cleaned_response[:-3]
+                cleaned_response = cleaned_response.strip()
+
+                _new_translations = json.loads(cleaned_response)
+                break
+            except json.JSONDecodeError as e:
+                retry_count += 1
+                print(f"JSON parsing error (attempt {retry_count}/{max_retries}): {e}")
+                print(f"Problematic response: {response[:200]}...")
+
+                if retry_count < max_retries:
+                    print("Asking LLM to fix the JSON error...")
+
+                    # Append the error to the conversation and ask LLM to resolve it
+                    error_message = f"The previous response caused a JSON parsing error: {str(e)}. The response was: {response}\n\nPlease provide a corrected response that is valid JSON format only, without any markdown formatting or additional text."
+
+                    messages.append(
+                        {
+                            "role": "user",
+                            "content": error_message,
+                        }
+                    )
+
+                    chat_completion = client.chat.completions.create(
+                        messages=messages,
+                        model="gpt-4.1-nano",
+                        temperature=0.0,
+                        max_tokens=8000,
+                    )
+                    response = chat_completion.choices[0].message.content
+
+                    # Add the new response to the conversation
+                    messages.append(
+                        {
+                            "role": "assistant",
+                            "content": response,
+                        }
+                    )
+
+        if _new_translations is None:
+            print(
+                f"Failed to parse JSON after {max_retries} attempts. Skipping chunk {i//20 + 1}"
+            )
+            progress += len(chunk)
+            continue
+
         new_translations.update(_new_translations)
         print(f"Translated {progress + len(chunk)}/{len(needed_translations)}")
         progress += len(chunk)
@@ -330,7 +406,7 @@ def load_supported_languages() -> list[tuple[str, str]]:
     """
     Load the supported languages from the languages.json file.
     """
-    with open("scripts/languages.json", "r", encoding="utf-8") as f:
+    with open("languages.json", "r", encoding="utf-8") as f:
         raw_languages = json.load(f)
     languages: list[tuple[str, str]] = []
     for lang in raw_languages:

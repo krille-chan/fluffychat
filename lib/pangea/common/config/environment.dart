@@ -1,12 +1,10 @@
 import 'dart:convert';
 
-import 'package:flutter/services.dart';
-
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:get_storage/get_storage.dart';
-
 import 'package:fluffychat/pangea/common/constants/local.key.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:get_storage/get_storage.dart';
 
 class Environment {
   static bool get itIsTime =>
