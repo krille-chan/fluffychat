@@ -60,6 +60,14 @@ class CourseFilter {
     return where;
   }
 
+  Map<String, dynamic> toJson() {
+    return {
+      "targetLanguage": targetLanguage?.toJson(),
+      "languageOfInstructions": languageOfInstructions?.toJson(),
+      "cefrLevel": cefrLevel?.string,
+    };
+  }
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;

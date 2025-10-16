@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/course_plans/courses/course_filter.dart';
 import 'package:fluffychat/pangea/course_plans/courses/course_plan_model.dart';
 import 'package:fluffychat/pangea/course_plans/courses/course_plans_repo.dart';
@@ -40,8 +41,22 @@ mixin CourseSearchProvider<T extends StatefulWidget> on State<T> {
       });
       final resp = await CoursePlansRepo.searchByFilter(filter: _filter);
       courses = resp.coursePlans;
+      if (courses.isEmpty) {
+        ErrorHandler.logError(
+          e: "No courses found",
+          data: {
+            'filter': _filter.toJson(),
+          },
+        );
+      }
     } catch (e, s) {
-      debugPrint("Failed to load courses: $e\n$s");
+      ErrorHandler.logError(
+        e: e,
+        s: s,
+        data: {
+          'filter': _filter.toJson(),
+        },
+      );
       error = e;
     } finally {
       if (mounted) setState(() => loading = false);
