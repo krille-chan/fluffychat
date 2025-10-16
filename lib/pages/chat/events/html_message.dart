@@ -160,8 +160,14 @@ class HtmlMessage extends StatelessWidget {
       );
     }
 
-    // We must not render tags which are not in the allow list:
-    if (!allowedHtmlTags.contains(node.localName)) return const TextSpan();
+    // We turn all disallowed tags into spans. This drops the tag name, but
+    // still renders the content as is.
+    if (!allowedHtmlTags.contains(node.localName)) {
+      final sanitizedNode = dom.Element.tag('span');
+      sanitizedNode.nodes.addAll(node.nodes);
+
+      node = sanitizedNode;
+    }
 
     switch (node.localName) {
       case 'br':
@@ -472,7 +478,7 @@ class HtmlMessage extends StatelessWidget {
                 color: textColor,
               ),
             'a' => linkStyle,
-            'strong' => const TextStyle(fontWeight: FontWeight.bold),
+            'strong' || 'b' => const TextStyle(fontWeight: FontWeight.bold),
             'em' || 'i' => const TextStyle(fontStyle: FontStyle.italic),
             'del' ||
             's' ||
