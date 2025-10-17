@@ -7,7 +7,7 @@
     "@repeatPassword": {},
     "notAnImage": "Не файл выявы.",
     "@notAnImage": {},
-    "setCustomPermissionLevel": "Задайце карыстальніцкі ўзровень дазволу",
+    "setCustomPermissionLevel": "Задаць карыстальніцкі ўзровень дазволу",
     "@setCustomPermissionLevel": {},
     "setPermissionsLevelDescription": "Калі ласка, выберыце ролю ніжэй ці ўвядзіце карыстальніцкі ўзровень дазволу паміж 0 і 100.",
     "@setPermissionsLevelDescription": {},
@@ -87,14 +87,14 @@
     },
     "addChatDescription": "Дадайце апісанне чату...",
     "@addChatDescription": {},
-    "addToSpace": "Дадаць прастору",
+    "addToSpace": "Дадаць у прастору",
     "@addToSpace": {},
     "admin": "Адмін",
     "@admin": {
         "type": "String",
         "placeholders": {}
     },
-    "alias": "займенне",
+    "alias": "псеўданім",
     "@alias": {
         "type": "String",
         "placeholders": {}
@@ -109,13 +109,13 @@
         "type": "String",
         "placeholders": {}
     },
-    "commandHint_roomupgrade": "Палепшыце гэты пакой да версіі дадзенага пакою",
+    "commandHint_roomupgrade": "Абнавіце гэты пакой да згаданай версіі",
     "@commandHint_roomupgrade": {},
-    "commandHint_googly": "Дасылае смешныя вочы",
+    "commandHint_googly": "Даслаць смешныя вочы",
     "@commandHint_googly": {},
-    "commandHint_cuddle": "Дасылае ўсмешку",
+    "commandHint_cuddle": "Даслаць усмешку",
     "@commandHint_cuddle": {},
-    "commandHint_hug": "Дасылае абдыманне",
+    "commandHint_hug": "Даслаць абдымашкі",
     "@commandHint_hug": {},
     "googlyEyesContent": "{senderName} даслаў вам смешныя вочы",
     "@googlyEyesContent": {
@@ -144,7 +144,7 @@
             }
         }
     },
-    "answeredTheCall": "{senderName} адказаў на выклік",
+    "answeredTheCall": "{senderName} адказаў(-ла) на выклік",
     "@answeredTheCall": {
         "type": "String",
         "placeholders": {
@@ -170,7 +170,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "areGuestsAllowedToJoin": "Карыстальнікі-госці могуць далучыцца",
+    "areGuestsAllowedToJoin": "Ці дазволена карыстальнікам-гасцям далучыцца",
     "@areGuestsAllowedToJoin": {
         "type": "String",
         "placeholders": {}
@@ -222,7 +222,7 @@
     "@swipeRightToLeftToReply": {},
     "sendOnEnter": "Дасылаць на enter",
     "@sendOnEnter": {},
-    "badServerVersionsException": "Хатні сервер падтрымлівае наступныя версіі спецыфікацыі:\n{serverVersions}\nАле гэьа праграма падтрымлівае толькі:\n{supportedVersions}",
+    "badServerVersionsException": "Хатні сервер падтрымлівае наступныя версіі спецыфікацыі:\n{serverVersions}\nАле гэта праграма падтрымлівае толькі:{supportedVersions}",
     "@badServerVersionsException": {
         "type": "String",
         "placeholders": {
@@ -248,11 +248,11 @@
     },
     "noMoreChatsFound": "Болей чатаў не знойдзена...",
     "@noMoreChatsFound": {},
-    "noChatsFoundHere": "Здаецца, тут пуств. Пачніце новы чат з кімсьці праз кнопку ніжэй. ⤵️",
+    "noChatsFoundHere": "Здаецца, тут пуста. Пачніце новы чат з кімсьці праз кнопку ніжэй. ⤵️",
     "@noChatsFoundHere": {},
-    "joinedChats": "Чаты, да якіх далучыўся",
+    "joinedChats": "Чаты, да якіх вы далучыліся",
     "@joinedChats": {},
-    "unread": "Непрачытана",
+    "unread": "Непрачытаные",
     "@unread": {},
     "space": "Прастора",
     "@space": {},
@@ -268,7 +268,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "bannedUser": "{username} заюлакіраваў {targetName}",
+    "bannedUser": "{username} заблакіраваў {targetName}",
     "@bannedUser": {
         "type": "String",
         "placeholders": {
@@ -290,7 +290,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "botMessages": "Паведамленні бота",
+    "botMessages": "Паведамленні ботаў",
     "@botMessages": {
         "type": "String",
         "placeholders": {}
@@ -441,5 +441,381 @@
         }
     },
     "noMessagesYet": "Паведамленняў пакуль што няма",
-    "@noMessagesYet": {}
+    "@noMessagesYet": {},
+    "changedTheRoomAliases": "{username} змяніў псеўданімы пакою",
+    "@changedTheRoomAliases": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "changedTheRoomInvitationLink": "{username} змяніў(-ла) запрашальную спасылку",
+    "@changedTheRoomInvitationLink": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "changePassword": "Змяніць пароль",
+    "@changePassword": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "changeTheHomeserver": "Змяніць дамашні сервер",
+    "@changeTheHomeserver": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "changeTheme": "Змяніць ваш стыль",
+    "@changeTheme": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "changeTheNameOfTheGroup": "Змяніць назву групы",
+    "@changeTheNameOfTheGroup": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "changeYourAvatar": "Змяніць вашу выяву",
+    "@changeYourAvatar": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "channelCorruptedDecryptError": "Шыфраванне было сапсавана",
+    "@channelCorruptedDecryptError": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "chat": "Чат",
+    "@chat": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "yourChatBackupHasBeenSetUp": "Рэзервовае капіраванне чатаў было наладжана.",
+    "@yourChatBackupHasBeenSetUp": {},
+    "chatBackup": "Рэзервовае капіраванне чатаў",
+    "@chatBackup": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "chatBackupDescription": "Вашы старыя паведамленні абаронены ключом аднаўлення. Калі ласка, пераканайцеся ў тым, што вы яго не згубіце.",
+    "@chatBackupDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "chatDetails": "Дэталі чата",
+    "@chatDetails": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "chatHasBeenAddedToThisSpace": "Чат быў дададзены ў гэту прастору",
+    "@chatHasBeenAddedToThisSpace": {},
+    "chats": "Чаты",
+    "@chats": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "chooseAStrongPassword": "Стварыце надзейны пароль",
+    "@chooseAStrongPassword": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "clearArchive": "Ачысціць архіў",
+    "@clearArchive": {},
+    "close": "Закрыць",
+    "@close": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "commandHint_markasdm": "Пазначыць як пакой асабоных паведамленняў для дадання Matrix ID",
+    "@commandHint_markasdm": {},
+    "commandHint_markasgroup": "Пазначыць як групу",
+    "@commandHint_markasgroup": {},
+    "commandHint_ban": "Заблакіраваць карыстальніка у гэтым пакое",
+    "@commandHint_ban": {
+        "type": "String",
+        "description": "Usage hint for the command /ban"
+    },
+    "commandHint_clearcache": "Ачысціць кэш",
+    "@commandHint_clearcache": {
+        "type": "String",
+        "description": "Usage hint for the command /clearcache"
+    },
+    "commandHint_create": "Стварыць пусты групавы чат.\nВыкарыстоўвайце --no-encryption каб адключыць шыфраванне",
+    "@commandHint_create": {
+        "type": "String",
+        "description": "Usage hint for the command /create"
+    },
+    "commandHint_discardsession": "Спыніць сеанс",
+    "@commandHint_discardsession": {
+        "type": "String",
+        "description": "Usage hint for the command /discardsession"
+    },
+    "commandHint_dm": "Пачаць асобны чат.\nВыкарыстоўвайце --no-encryption, каб адключыць шыфраванне",
+    "@commandHint_dm": {
+        "type": "String",
+        "description": "Usage hint for the command /dm"
+    },
+    "commandHint_html": "Даслаць тэкст з разметкай HTML",
+    "@commandHint_html": {
+        "type": "String",
+        "description": "Usage hint for the command /html"
+    },
+    "commandHint_invite": "Запрасіць карыстальніка ў гэты пакой",
+    "@commandHint_invite": {
+        "type": "String",
+        "description": "Usage hint for the command /invite"
+    },
+    "commandHint_join": "Далучыцца да гэтага пакою",
+    "@commandHint_join": {
+        "type": "String",
+        "description": "Usage hint for the command /join"
+    },
+    "commandHint_kick": "Выдаліць карыстальніка з гэтага пакою",
+    "@commandHint_kick": {
+        "type": "String",
+        "description": "Usage hint for the command /kick"
+    },
+    "commandHint_leave": "Пакінуць гэты пакой",
+    "@commandHint_leave": {
+        "type": "String",
+        "description": "Usage hint for the command /leave"
+    },
+    "commandHint_me": "Апішыце сябе",
+    "@commandHint_me": {
+        "type": "String",
+        "description": "Usage hint for the command /me"
+    },
+    "commandHint_myroomavatar": "Задаць выяву гэтага пакою (ад mxc-uri)",
+    "@commandHint_myroomavatar": {
+        "type": "String",
+        "description": "Usage hint for the command /myroomavatar"
+    },
+    "commandHint_myroomnick": "Задайце адлюстроўваемае імя для гэтага пакою",
+    "@commandHint_myroomnick": {
+        "type": "String",
+        "description": "Usage hint for the command /myroomnick"
+    },
+    "commandHint_op": "Задайце ўзровень правоў гэтага карыстальніка (па змаўчанні: 50)",
+    "@commandHint_op": {
+        "type": "String",
+        "description": "Usage hint for the command /op"
+    },
+    "commandHint_plain": "Даслаць неадфарматыраваны тэкст",
+    "@commandHint_plain": {
+        "type": "String",
+        "description": "Usage hint for the command /plain"
+    },
+    "commandHint_react": "Даслаць адказ як рэакцыю",
+    "@commandHint_react": {
+        "type": "String",
+        "description": "Usage hint for the command /react"
+    },
+    "commandHint_send": "Даслаць тэкст",
+    "@commandHint_send": {
+        "type": "String",
+        "description": "Usage hint for the command /send"
+    },
+    "commandHint_unban": "Разблакіраваць карыстальніка ў гэтым пакое",
+    "@commandHint_unban": {
+        "type": "String",
+        "description": "Usage hint for the command /unban"
+    },
+    "commandInvalid": "Няслушная каманда",
+    "@commandInvalid": {
+        "type": "String"
+    },
+    "commandMissing": "{command} не каманда.",
+    "@commandMissing": {
+        "type": "String",
+        "placeholders": {
+            "command": {
+                "type": "String"
+            }
+        },
+        "description": "State that {command} is not a valid /command."
+    },
+    "compareEmojiMatch": "Калі ласка, параўнайце эмодзі",
+    "@compareEmojiMatch": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "compareNumbersMatch": "Калі ьаска, параўнайце цыфры",
+    "@compareNumbersMatch": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "configureChat": "Наладзіць чат",
+    "@configureChat": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "confirm": "Пацвердзіць",
+    "@confirm": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "connect": "Далучыцца",
+    "@connect": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "contactHasBeenInvitedToTheGroup": "Кантакт быў запрошаны ў групу",
+    "@contactHasBeenInvitedToTheGroup": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "containsDisplayName": "Мае адлюстроўваемае імя",
+    "@containsDisplayName": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "containsUserName": "Мае імя карыстальніка",
+    "@containsUserName": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "contentHasBeenReported": "Пра кантэнт было паведамлена адміністратарам сервера",
+    "@contentHasBeenReported": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "copiedToClipboard": "Скапіравана ў буфер",
+    "@copiedToClipboard": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "copy": "Капіраваць",
+    "@copy": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "copyToClipboard": "Скапіраваць у буфер",
+    "@copyToClipboard": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "couldNotDecryptMessage": "Немагчыма расшыфраваць паведамленне: {error}",
+    "@couldNotDecryptMessage": {
+        "type": "String",
+        "placeholders": {
+            "error": {
+                "type": "String"
+            }
+        }
+    },
+    "checkList": "Кантрольны спіс",
+    "@checkList": {},
+    "countParticipants": "{count} удзельніка(-ў)",
+    "@countParticipants": {
+        "type": "String",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "countInvited": "Запрошана {count}",
+    "@countInvited": {
+        "type": "String",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "create": "Стварыць",
+    "@create": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "createdTheChat": "💬 {username} стварыў(-ла) чат",
+    "@createdTheChat": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "createGroup": "Стварыць групу",
+    "@createGroup": {},
+    "createNewSpace": "Новая прастора",
+    "@createNewSpace": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "currentlyActive": "Зараз актыўны",
+    "@currentlyActive": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "darkTheme": "Цёмная",
+    "@darkTheme": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "dateAndTimeOfDay": "{date}, {timeOfDay}",
+    "@dateAndTimeOfDay": {
+        "type": "String",
+        "placeholders": {
+            "date": {
+                "type": "String"
+            },
+            "timeOfDay": {
+                "type": "String"
+            }
+        }
+    },
+    "dateWithoutYear": "{day}-{month}",
+    "@dateWithoutYear": {
+        "type": "String",
+        "placeholders": {
+            "month": {
+                "type": "String"
+            },
+            "day": {
+                "type": "String"
+            }
+        }
+    },
+    "dateWithYear": "{year}-{month}-{day}",
+    "@dateWithYear": {
+        "type": "String",
+        "placeholders": {
+            "year": {
+                "type": "String"
+            },
+            "month": {
+                "type": "String"
+            },
+            "day": {
+                "type": "String"
+            }
+        }
+    },
+    "deactivateAccountWarning": "Гэта дэактывіруе ваш уліковы запіс. Гэта дзеянне не можа быць адменена! Вы ўпэўнены?",
+    "@deactivateAccountWarning": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "defaultPermissionLevel": "Узровень дазволаў для новых карыстальнікаў па змаўчанні",
+    "@defaultPermissionLevel": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "delete": "Выдаліць",
+    "@delete": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "deleteAccount": "Выдаліць уліковы запіс",
+    "@deleteAccount": {
+        "type": "String",
+        "placeholders": {}
+    }
 }
