@@ -26,7 +26,6 @@ enum InstructionsEnum {
   emptyChatWarning,
   activityStatsMenu,
   chatListTooltip,
-  highlightVocab,
 }
 
 extension InstructionsEnumExtension on InstructionsEnum {
@@ -52,7 +51,6 @@ extension InstructionsEnumExtension on InstructionsEnum {
       case InstructionsEnum.activityStatsMenu:
       case InstructionsEnum.chatListTooltip:
       case InstructionsEnum.activityAnalyticsList:
-      case InstructionsEnum.highlightVocab:
         ErrorHandler.logError(
           e: Exception("No title for this instruction"),
           m: 'InstructionsEnumExtension.title',
@@ -107,8 +105,6 @@ extension InstructionsEnumExtension on InstructionsEnum {
         return l10n.activityStatsButtonInstruction;
       case InstructionsEnum.chatListTooltip:
         return l10n.chatListTooltip;
-      case InstructionsEnum.highlightVocab:
-        return l10n.highlightVocabTooltip;
     }
   }
 
