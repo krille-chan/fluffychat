@@ -561,7 +561,7 @@
             }
         }
     },
-    "countParticipants": "{count} участника(ов)",
+    "countParticipants": "{count, plural, one{один участник} few{{count} участника} other{{count} участников}}",
     "@countParticipants": {
         "type": "String",
         "placeholders": {
@@ -1087,7 +1087,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "loadCountMoreParticipants": "Загрузить еще {count} участника(ов)",
+    "loadCountMoreParticipants": "{count, plural, one{Загрузить еще одного участника} few{Загрузить еще # участников} other{Загрузить еще # участников}}",
     "@loadCountMoreParticipants": {
         "type": "String",
         "placeholders": {
@@ -1888,7 +1888,7 @@
             }
         }
     },
-    "userAndOthersAreTyping": "{username} и {count} других участников печатают…",
+    "userAndOthersAreTyping": "{count, plural, one{{username} и ещё один участник печатают…} few{{username} и ещё # участника печатают…} other{{username} и ещё # участников печатают…}}",
     "@userAndOthersAreTyping": {
         "type": "String",
         "placeholders": {
@@ -3009,7 +3009,7 @@
     "@inviteOtherUsers": {},
     "changeTheVisibilityOfChatHistory": "Изменить видимость истории чата",
     "@changeTheVisibilityOfChatHistory": {},
-    "countChatsAndCountParticipants": "{chats} чатов и {participants} участников",
+    "countChatsAndCountParticipants": "{chats, plural, one{{participants, plural, one{один чат с одним участником} few{один чат с {participants} участниками} other{один чат с {participants} участниками}}} few{{participants, plural, one{{chats} чата с одним участником} few{{chats} чата с {participants} участниками} other{{chats} чата с {participants} участниками}}} other{{participants, plural, one{{chats} чатов с одним участником} few{{chats} чатов с {participants} участниками} other{{chats} чатов с {participants} участниками}}}}",
     "@countChatsAndCountParticipants": {
         "type": "String",
         "placeholders": {
