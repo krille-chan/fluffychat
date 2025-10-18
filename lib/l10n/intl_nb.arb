@@ -3028,5 +3028,106 @@
     "notificationRuleCall": "Anrop",
     "@notificationRuleCall": {},
     "notificationRuleCallDescription": "Varsler brukeren om anrop.",
-    "@notificationRuleCallDescription": {}
+    "@notificationRuleCallDescription": {},
+    "waitingPartnerAcceptRequest": "Venter på at partneren skal godta forespørselen…",
+    "@waitingPartnerAcceptRequest": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "waitingPartnerEmoji": "Venter på at partneren skal godta emojien…",
+    "@waitingPartnerEmoji": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "wipeChatBackup": "Vil du slette sikkerhetskopien av chatten din for å opprette en ny gjenopprettingsnøkkel?",
+    "@wipeChatBackup": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "switchToAccount": "Bytt til konto {number}",
+    "@switchToAccount": {
+        "type": "number",
+        "placeholders": {
+            "number": {
+                "type": "String"
+            }
+        }
+    },
+    "widgetEtherpad": "Tekstnotat",
+    "@widgetEtherpad": {},
+    "noOneCanJoin": "Ingen kan bli med",
+    "@noOneCanJoin": {},
+    "userWouldLikeToChangeTheChat": "{user} vil gjerne bli med i chatten.",
+    "@userWouldLikeToChangeTheChat": {
+        "placeholders": {
+            "user": {
+                "type": "String"
+            }
+        }
+    },
+    "noPublicLinkHasBeenCreatedYet": "Ingen offentlig lenke er opprettet ennå",
+    "@noPublicLinkHasBeenCreatedYet": {},
+    "commandHint_html": "Send HTML-formatert tekst",
+    "@commandHint_html": {
+        "type": "String",
+        "description": "Usage hint for the command /html"
+    },
+    "commandHint_kick": "Fjern den gitte brukeren fra dette rommet",
+    "@commandHint_kick": {
+        "type": "String",
+        "description": "Usage hint for the command /kick"
+    },
+    "commandHint_leave": "Forlat dette rommet",
+    "@commandHint_leave": {
+        "type": "String",
+        "description": "Usage hint for the command /leave"
+    },
+    "commandHint_discardsession": "Forkast økten",
+    "@commandHint_discardsession": {
+        "type": "String",
+        "description": "Usage hint for the command /discardsession"
+    },
+    "commandHint_dm": "Start en direkte chat\nBruk --no-encryption for å deaktivere kryptering",
+    "@commandHint_dm": {
+        "type": "String",
+        "description": "Usage hint for the command /dm"
+    },
+    "commandHint_create": "Opprett en tom gruppechat\nBruk --no-encryption for å deaktivere kryptering",
+    "@commandHint_create": {
+        "type": "String",
+        "description": "Usage hint for the command /create"
+    },
+    "redactedBy": "Redigert av {username}",
+    "@redactedBy": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "directChat": "Direkte chat",
+    "@directChat": {},
+    "redactedByBecause": "Redigert av {username} fordi: «{reason}»",
+    "@redactedByBecause": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "reason": {
+                "type": "String"
+            }
+        }
+    },
+    "redactMessage": "Rediger melding",
+    "@redactMessage": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "roomVersion": "Rom versjon",
+    "@roomVersion": {
+        "type": "String",
+        "placeholders": {}
+    }
 }
