@@ -1,15 +1,15 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cEO(d){return new A.AD(B.df(d))},
-cEP(){return new A.FI(B.df("pt_BR"))},
-cEQ(){return new A.FJ(B.df("pt_PT"))},
-AD:function AD(d){this.a=d},
-FI:function FI(d){this.a=d},
-FJ:function FJ(d){this.a=d}},C
+cEO(d){return new A.AE(B.df(d))},
+cEP(){return new A.FJ(B.df("pt_BR"))},
+cEQ(){return new A.FK(B.df("pt_PT"))},
+AE:function AE(d){this.a=d},
+FJ:function FJ(d){this.a=d},
+FK:function FK(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[4],A)
 C=c[54]
-A.AD.prototype={
+A.AE.prototype={
 gl2(){return"true"},
 gjP(){return"Repita a senha"},
 gmP(){return"N\xe3o \xe9 um arquivo de imagem."},
@@ -638,7 +638,7 @@ gpi(){return"More events"},
 glQ(){return"Decline invitation"},
 gpn(){return"No messages yet"},
 A(d,e){return this.gbc(this).$1(e)}}
-A.FI.prototype={
+A.FJ.prototype={
 gl2(){return"true"},
 gjP(){return"Repita a senha"},
 gmP(){return"N\xe3o \xe9 um arquivo de imagem."},
@@ -1266,7 +1266,7 @@ glN(){return"Rea\xe7\xe3o personalizada"},
 gpi(){return"Mais eventos"},
 glQ(){return"Rejeitar convite"},
 A(d,e){return this.gbc(this).$1(e)}}
-A.FJ.prototype={
+A.FK.prototype={
 gjP(){return"Repete a palavra-passe"},
 gbc(d){return"Remover"},
 gev(){return"Acerca de"},
@@ -1515,9 +1515,9 @@ eU(d){return d+" enviou um autocolante"},
 fY(d){return d+" enviou um v\xeddeo"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit,w=a.inheritMany
-x(A.AD,C.aF)
-w(A.AD,[A.FI,A.FJ])})()
-B.dQ(b.typeUniverse,JSON.parse('{"AD":{"aF":[]},"FI":{"aF":[]},"FJ":{"aF":[]}}'))
+x(A.AE,C.aF)
+w(A.AE,[A.FJ,A.FK])})()
+B.dQ(b.typeUniverse,JSON.parse('{"AE":{"aF":[]},"FJ":{"aF":[]},"FK":{"aF":[]}}'))
 var y={h:" alterou a visibilidade do hist\xf3rico para: ",a:"(BETA) Ativar m\xfaltiplas contas neste dispositivo"}};
-(a=>{a["+wZH+PgNvzWummYGNmbwD3XLipI="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["FjOcWewMlEGmWeSKQRbIW0IuOCA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_16.part.js.map
