@@ -38,9 +38,7 @@ enum SpaceActions {
 class SpaceView extends StatefulWidget {
   final String spaceId;
   final void Function() onBack;
-  final void Function(String spaceId) toParentSpace;
   final void Function(Room room) onChatTab;
-  final void Function(Room room, BuildContext context) onChatContext;
   final String? activeChat;
 
   const SpaceView({
@@ -48,8 +46,6 @@ class SpaceView extends StatefulWidget {
     required this.onBack,
     required this.onChatTab,
     required this.activeChat,
-    required this.toParentSpace,
-    required this.onChatContext,
     super.key,
   });
 
@@ -525,25 +521,6 @@ class _SpaceViewState extends State<SpaceView> {
                   .where((s) => s.hasRoomUpdate)
                   .rateLimit(const Duration(seconds: 1)),
               builder: (context, snapshot) {
-                final childrenIds = room.spaceChildren
-                    .map((c) => c.roomId)
-                    .whereType<String>()
-                    .toSet();
-
-                final joinedRooms = Map.fromEntries(
-                  room.client.rooms
-                      .where((room) => childrenIds.remove(room.id))
-                      .map((room) => MapEntry(room.id, room)),
-                );
-
-                final joinedParents = room.spaceParents
-                    .map((parent) {
-                      final roomId = parent.roomId;
-                      if (roomId == null) return null;
-                      return room.client.getRoomById(roomId);
-                    })
-                    .whereType<Room>()
-                    .toList();
                 final filter = _filterController.text.trim().toLowerCase();
                 return CustomScrollView(
                   slivers: [
@@ -576,47 +553,6 @@ class _SpaceViewState extends State<SpaceView> {
                       ),
                     ),
                     SliverList.builder(
-                      itemCount: joinedParents.length,
-                      itemBuilder: (context, i) {
-                        final displayname =
-                            joinedParents[i].getLocalizedDisplayname();
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 8,
-                            vertical: 1,
-                          ),
-                          child: Material(
-                            borderRadius:
-                                BorderRadius.circular(AppConfig.borderRadius),
-                            clipBehavior: Clip.hardEdge,
-                            child: ListTile(
-                              minVerticalPadding: 0,
-                              leading: Icon(
-                                Icons.adaptive.arrow_back_outlined,
-                                size: 16,
-                              ),
-                              title: Row(
-                                children: [
-                                  Avatar(
-                                    mxContent: joinedParents[i].avatar,
-                                    name: displayname,
-                                    size: Avatar.defaultSize / 2,
-                                    borderRadius: BorderRadius.circular(
-                                      AppConfig.borderRadius / 4,
-                                    ),
-                                  ),
-                                  const SizedBox(width: 8),
-                                  Expanded(child: Text(displayname)),
-                                ],
-                              ),
-                              onTap: () =>
-                                  widget.toParentSpace(joinedParents[i].id),
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                    SliverList.builder(
                       itemCount: _discoveredChildren.length + 1,
                       itemBuilder: (context, i) {
                         if (i == _discoveredChildren.length) {
@@ -643,7 +579,10 @@ class _SpaceViewState extends State<SpaceView> {
                         if (!displayname.toLowerCase().contains(filter)) {
                           return const SizedBox.shrink();
                         }
-                        final joinedRoom = joinedRooms[item.roomId];
+                        var joinedRoom = room.client.getRoomById(item.roomId);
+                        if (joinedRoom?.membership == Membership.leave) {
+                          joinedRoom = null;
+                        }
                         return Padding(
                           padding: const EdgeInsets.symmetric(
                             horizontal: 8,
@@ -664,7 +603,7 @@ class _SpaceViewState extends State<SpaceView> {
                                 contentPadding:
                                     const EdgeInsets.symmetric(horizontal: 8),
                                 onTap: joinedRoom != null
-                                    ? () => widget.onChatTab(joinedRoom)
+                                    ? () => widget.onChatTab(joinedRoom!)
                                     : () => _joinChildRoom(item),
                                 onLongPress: isAdmin
                                     ? () => _showSpaceChildEditMenu(

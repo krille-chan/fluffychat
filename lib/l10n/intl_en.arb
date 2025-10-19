@@ -3383,5 +3383,14 @@
   "moveToDifferentSpace": "Move to different space",
   "moveUp": "Move up",
   "moveDown": "Move down",
-  "removeFromSpaceDescription": "The chat will be removed from the space but still appear in your chat list."
+  "removeFromSpaceDescription": "The chat will be removed from the space but still appear in your chat list.",
+  "countChats": "{chats} chats",
+  "@countChats": {
+    "type": "String",
+    "placeholders": {
+      "chats": {
+        "type": "int"
+      }
+    }
+  }
 }

@@ -242,10 +242,8 @@ class ChatListItem extends StatelessWidget {
                   Expanded(
                     child: room.isSpace && room.membership == Membership.join
                         ? Text(
-                            L10n.of(context).countChatsAndCountParticipants(
-                              room.spaceChildren.length,
-                              (room.summary.mJoinedMemberCount ?? 1),
-                            ),
+                            L10n.of(context)
+                                .countChats(room.spaceChildren.length),
                             style: TextStyle(color: theme.colorScheme.outline),
                           )
                         : typingText.isNotEmpty
