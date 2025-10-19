@@ -363,8 +363,13 @@ class BackgroundPush {
   }
 
   Future<void> setupUp() async {
-    await UnifiedPushUi(matrix!.context, ["default"], UPFunctions())
-        .registerAppWithDialog();
+    await UnifiedPushUi(
+      context: matrix!.context,
+      instances: ["default"],
+      unifiedPushFunctions: UPFunctions(),
+      showNoDistribDialog: false,
+      onNoDistribDialogDismissed: () {}, // TODO: Implement me
+    ).registerAppWithDialog();
   }
 
   Future<void> _newUpEndpoint(PushEndpoint newPushEndpoint, String i) async {
