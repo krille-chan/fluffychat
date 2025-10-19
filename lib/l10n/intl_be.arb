@@ -7,7 +7,7 @@
     "@repeatPassword": {},
     "notAnImage": "Не файл выявы.",
     "@notAnImage": {},
-    "setCustomPermissionLevel": "Задайце карыстальніцкі ўзровень дазволу",
+    "setCustomPermissionLevel": "Задаць карыстальніцкі ўзровень дазволу",
     "@setCustomPermissionLevel": {},
     "setPermissionsLevelDescription": "Калі ласка, выберыце ролю ніжэй ці ўвядзіце карыстальніцкі ўзровень дазволу паміж 0 і 100.",
     "@setPermissionsLevelDescription": {},
@@ -87,14 +87,14 @@
     },
     "addChatDescription": "Дадайце апісанне чату...",
     "@addChatDescription": {},
-    "addToSpace": "Дадаць прастору",
+    "addToSpace": "Дадаць у прастору",
     "@addToSpace": {},
     "admin": "Адмін",
     "@admin": {
         "type": "String",
         "placeholders": {}
     },
-    "alias": "займенне",
+    "alias": "псеўданім",
     "@alias": {
         "type": "String",
         "placeholders": {}
@@ -109,13 +109,13 @@
         "type": "String",
         "placeholders": {}
     },
-    "commandHint_roomupgrade": "Палепшыце гэты пакой да версіі дадзенага пакою",
+    "commandHint_roomupgrade": "Абнавіце гэты пакой да згаданай версіі",
     "@commandHint_roomupgrade": {},
-    "commandHint_googly": "Дасылае смешныя вочы",
+    "commandHint_googly": "Даслаць смешныя вочы",
     "@commandHint_googly": {},
-    "commandHint_cuddle": "Дасылае ўсмешку",
+    "commandHint_cuddle": "Даслаць усмешку",
     "@commandHint_cuddle": {},
-    "commandHint_hug": "Дасылае абдыманне",
+    "commandHint_hug": "Даслаць абдымашкі",
     "@commandHint_hug": {},
     "googlyEyesContent": "{senderName} даслаў вам смешныя вочы",
     "@googlyEyesContent": {
@@ -144,7 +144,7 @@
             }
         }
     },
-    "answeredTheCall": "{senderName} адказаў на выклік",
+    "answeredTheCall": "{senderName} адказаў(-ла) на выклік",
     "@answeredTheCall": {
         "type": "String",
         "placeholders": {
@@ -170,7 +170,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "areGuestsAllowedToJoin": "Карыстальнікі-госці могуць далучыцца",
+    "areGuestsAllowedToJoin": "Ці дазволена карыстальнікам-гасцям далучыцца",
     "@areGuestsAllowedToJoin": {
         "type": "String",
         "placeholders": {}
@@ -222,7 +222,7 @@
     "@swipeRightToLeftToReply": {},
     "sendOnEnter": "Дасылаць на enter",
     "@sendOnEnter": {},
-    "badServerVersionsException": "Хатні сервер падтрымлівае наступныя версіі спецыфікацыі:\n{serverVersions}\nАле гэьа праграма падтрымлівае толькі:\n{supportedVersions}",
+    "badServerVersionsException": "Хатні сервер падтрымлівае наступныя версіі спецыфікацыі:\n{serverVersions}\nАле гэта праграма падтрымлівае толькі:{supportedVersions}",
     "@badServerVersionsException": {
         "type": "String",
         "placeholders": {
@@ -248,11 +248,11 @@
     },
     "noMoreChatsFound": "Болей чатаў не знойдзена...",
     "@noMoreChatsFound": {},
-    "noChatsFoundHere": "Здаецца, тут пуств. Пачніце новы чат з кімсьці праз кнопку ніжэй. ⤵️",
+    "noChatsFoundHere": "Здаецца, тут пуста. Пачніце новы чат з кімсьці праз кнопку ніжэй. ⤵️",
     "@noChatsFoundHere": {},
-    "joinedChats": "Чаты, да якіх далучыўся",
+    "joinedChats": "Чаты, да якіх вы далучыліся",
     "@joinedChats": {},
-    "unread": "Непрачытана",
+    "unread": "Непрачытаные",
     "@unread": {},
     "space": "Прастора",
     "@space": {},
@@ -268,7 +268,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "bannedUser": "{username} заюлакіраваў {targetName}",
+    "bannedUser": "{username} заблакіраваў {targetName}",
     "@bannedUser": {
         "type": "String",
         "placeholders": {
@@ -290,7 +290,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "botMessages": "Паведамленні бота",
+    "botMessages": "Паведамленні ботаў",
     "@botMessages": {
         "type": "String",
         "placeholders": {}
@@ -441,5 +441,2375 @@
         }
     },
     "noMessagesYet": "Паведамленняў пакуль што няма",
-    "@noMessagesYet": {}
+    "@noMessagesYet": {},
+    "changedTheRoomAliases": "{username} змяніў псеўданімы пакою",
+    "@changedTheRoomAliases": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "changedTheRoomInvitationLink": "{username} змяніў(-ла) запрашальную спасылку",
+    "@changedTheRoomInvitationLink": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "changePassword": "Змяніць пароль",
+    "@changePassword": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "changeTheHomeserver": "Змяніць дамашні сервер",
+    "@changeTheHomeserver": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "changeTheme": "Змяніць ваш стыль",
+    "@changeTheme": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "changeTheNameOfTheGroup": "Змяніць назву групы",
+    "@changeTheNameOfTheGroup": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "changeYourAvatar": "Змяніць вашу выяву",
+    "@changeYourAvatar": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "channelCorruptedDecryptError": "Шыфраванне было сапсавана",
+    "@channelCorruptedDecryptError": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "chat": "Чат",
+    "@chat": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "yourChatBackupHasBeenSetUp": "Рэзервовае капіраванне чатаў было наладжана.",
+    "@yourChatBackupHasBeenSetUp": {},
+    "chatBackup": "Рэзервовае капіраванне чатаў",
+    "@chatBackup": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "chatBackupDescription": "Вашы старыя паведамленні абаронены ключом аднаўлення. Калі ласка, пераканайцеся ў тым, што вы яго не згубіце.",
+    "@chatBackupDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "chatDetails": "Дэталі чата",
+    "@chatDetails": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "chatHasBeenAddedToThisSpace": "Чат быў дададзены ў гэту прастору",
+    "@chatHasBeenAddedToThisSpace": {},
+    "chats": "Чаты",
+    "@chats": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "chooseAStrongPassword": "Стварыце надзейны пароль",
+    "@chooseAStrongPassword": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "clearArchive": "Ачысціць архіў",
+    "@clearArchive": {},
+    "close": "Закрыць",
+    "@close": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "commandHint_markasdm": "Пазначыць як пакой асабоных паведамленняў для дадання Matrix ID",
+    "@commandHint_markasdm": {},
+    "commandHint_markasgroup": "Пазначыць як групу",
+    "@commandHint_markasgroup": {},
+    "commandHint_ban": "Заблакіраваць карыстальніка у гэтым пакое",
+    "@commandHint_ban": {
+        "type": "String",
+        "description": "Usage hint for the command /ban"
+    },
+    "commandHint_clearcache": "Ачысціць кэш",
+    "@commandHint_clearcache": {
+        "type": "String",
+        "description": "Usage hint for the command /clearcache"
+    },
+    "commandHint_create": "Стварыць пусты групавы чат.\nВыкарыстоўвайце --no-encryption каб адключыць шыфраванне",
+    "@commandHint_create": {
+        "type": "String",
+        "description": "Usage hint for the command /create"
+    },
+    "commandHint_discardsession": "Спыніць сеанс",
+    "@commandHint_discardsession": {
+        "type": "String",
+        "description": "Usage hint for the command /discardsession"
+    },
+    "commandHint_dm": "Пачаць асобны чат.\nВыкарыстоўвайце --no-encryption, каб адключыць шыфраванне",
+    "@commandHint_dm": {
+        "type": "String",
+        "description": "Usage hint for the command /dm"
+    },
+    "commandHint_html": "Даслаць тэкст з разметкай HTML",
+    "@commandHint_html": {
+        "type": "String",
+        "description": "Usage hint for the command /html"
+    },
+    "commandHint_invite": "Запрасіць карыстальніка ў гэты пакой",
+    "@commandHint_invite": {
+        "type": "String",
+        "description": "Usage hint for the command /invite"
+    },
+    "commandHint_join": "Далучыцца да гэтага пакою",
+    "@commandHint_join": {
+        "type": "String",
+        "description": "Usage hint for the command /join"
+    },
+    "commandHint_kick": "Выдаліць карыстальніка з гэтага пакою",
+    "@commandHint_kick": {
+        "type": "String",
+        "description": "Usage hint for the command /kick"
+    },
+    "commandHint_leave": "Пакінуць гэты пакой",
+    "@commandHint_leave": {
+        "type": "String",
+        "description": "Usage hint for the command /leave"
+    },
+    "commandHint_me": "Апішыце сябе",
+    "@commandHint_me": {
+        "type": "String",
+        "description": "Usage hint for the command /me"
+    },
+    "commandHint_myroomavatar": "Задаць выяву гэтага пакою (ад mxc-uri)",
+    "@commandHint_myroomavatar": {
+        "type": "String",
+        "description": "Usage hint for the command /myroomavatar"
+    },
+    "commandHint_myroomnick": "Задайце адлюстроўваемае імя для гэтага пакою",
+    "@commandHint_myroomnick": {
+        "type": "String",
+        "description": "Usage hint for the command /myroomnick"
+    },
+    "commandHint_op": "Задайце ўзровень правоў гэтага карыстальніка (па змаўчанні: 50)",
+    "@commandHint_op": {
+        "type": "String",
+        "description": "Usage hint for the command /op"
+    },
+    "commandHint_plain": "Даслаць неадфарматыраваны тэкст",
+    "@commandHint_plain": {
+        "type": "String",
+        "description": "Usage hint for the command /plain"
+    },
+    "commandHint_react": "Даслаць адказ як рэакцыю",
+    "@commandHint_react": {
+        "type": "String",
+        "description": "Usage hint for the command /react"
+    },
+    "commandHint_send": "Даслаць тэкст",
+    "@commandHint_send": {
+        "type": "String",
+        "description": "Usage hint for the command /send"
+    },
+    "commandHint_unban": "Разблакіраваць карыстальніка ў гэтым пакое",
+    "@commandHint_unban": {
+        "type": "String",
+        "description": "Usage hint for the command /unban"
+    },
+    "commandInvalid": "Няслушная каманда",
+    "@commandInvalid": {
+        "type": "String"
+    },
+    "commandMissing": "{command} не каманда.",
+    "@commandMissing": {
+        "type": "String",
+        "placeholders": {
+            "command": {
+                "type": "String"
+            }
+        },
+        "description": "State that {command} is not a valid /command."
+    },
+    "compareEmojiMatch": "Калі ласка, параўнайце эмодзі",
+    "@compareEmojiMatch": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "compareNumbersMatch": "Калі ьаска, параўнайце цыфры",
+    "@compareNumbersMatch": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "configureChat": "Наладзіць чат",
+    "@configureChat": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "confirm": "Пацвердзіць",
+    "@confirm": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "connect": "Далучыцца",
+    "@connect": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "contactHasBeenInvitedToTheGroup": "Кантакт быў запрошаны ў групу",
+    "@contactHasBeenInvitedToTheGroup": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "containsDisplayName": "Мае адлюстроўваемае імя",
+    "@containsDisplayName": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "containsUserName": "Мае імя карыстальніка",
+    "@containsUserName": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "contentHasBeenReported": "Пра кантэнт было паведамлена адміністратарам сервера",
+    "@contentHasBeenReported": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "copiedToClipboard": "Скапіравана ў буфер",
+    "@copiedToClipboard": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "copy": "Капіраваць",
+    "@copy": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "copyToClipboard": "Скапіраваць у буфер",
+    "@copyToClipboard": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "couldNotDecryptMessage": "Немагчыма расшыфраваць паведамленне: {error}",
+    "@couldNotDecryptMessage": {
+        "type": "String",
+        "placeholders": {
+            "error": {
+                "type": "String"
+            }
+        }
+    },
+    "checkList": "Кантрольны спіс",
+    "@checkList": {},
+    "countParticipants": "{count} удзельніка(-ў)",
+    "@countParticipants": {
+        "type": "String",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "countInvited": "Запрошана {count}",
+    "@countInvited": {
+        "type": "String",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "create": "Стварыць",
+    "@create": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "createdTheChat": "💬 {username} стварыў(-ла) чат",
+    "@createdTheChat": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "createGroup": "Стварыць групу",
+    "@createGroup": {},
+    "createNewSpace": "Новая прастора",
+    "@createNewSpace": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "currentlyActive": "Зараз актыўны",
+    "@currentlyActive": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "darkTheme": "Цёмная",
+    "@darkTheme": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "dateAndTimeOfDay": "{date}, {timeOfDay}",
+    "@dateAndTimeOfDay": {
+        "type": "String",
+        "placeholders": {
+            "date": {
+                "type": "String"
+            },
+            "timeOfDay": {
+                "type": "String"
+            }
+        }
+    },
+    "dateWithoutYear": "{day}-{month}",
+    "@dateWithoutYear": {
+        "type": "String",
+        "placeholders": {
+            "month": {
+                "type": "String"
+            },
+            "day": {
+                "type": "String"
+            }
+        }
+    },
+    "dateWithYear": "{year}-{month}-{day}",
+    "@dateWithYear": {
+        "type": "String",
+        "placeholders": {
+            "year": {
+                "type": "String"
+            },
+            "month": {
+                "type": "String"
+            },
+            "day": {
+                "type": "String"
+            }
+        }
+    },
+    "deactivateAccountWarning": "Гэта дэактывіруе ваш уліковы запіс. Гэта дзеянне не можа быць адменена! Вы ўпэўнены?",
+    "@deactivateAccountWarning": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "defaultPermissionLevel": "Узровень дазволаў для новых карыстальнікаў па змаўчанні",
+    "@defaultPermissionLevel": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "delete": "Выдаліць",
+    "@delete": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "deleteAccount": "Выдаліць уліковы запіс",
+    "@deleteAccount": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "deleteMessage": "Выдаліць паведамленне",
+    "@deleteMessage": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "device": "Прылада",
+    "@device": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "deviceId": "ID прылады",
+    "@deviceId": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "devices": "Прылады",
+    "@devices": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "directChats": "Асобныя чаты",
+    "@directChats": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "allRooms": "Усе групавыя чаты",
+    "@allRooms": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "displaynameHasBeenChanged": "Адлюстроўваемае імя было зменена",
+    "@displaynameHasBeenChanged": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "downloadFile": "Спампаваць файл",
+    "@downloadFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "edit": "Змяніць",
+    "@edit": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "editBlockedServers": "Змяніць заблакіраваныя сервера",
+    "@editBlockedServers": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "chatPermissions": "Дазволы чату",
+    "@chatPermissions": {},
+    "editDisplayname": "Змяніць адлюстроўваемае імя",
+    "@editDisplayname": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "editRoomAliases": "Змяніць псеўданімы пакою",
+    "@editRoomAliases": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "editRoomAvatar": "Змяніць выяву пакою",
+    "@editRoomAvatar": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "emoteExists": "Эмодзі ўжо існуе!",
+    "@emoteExists": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "emoteInvalid": "Недапушчальнае скарачэнне эмодзі!",
+    "@emoteInvalid": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "emoteKeyboardNoRecents": "Нядаўна ўжытыя эмодзі паявяцца тут...",
+    "@emoteKeyboardNoRecents": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "emotePacks": "Наборы эмодзі для пакою",
+    "@emotePacks": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "emoteSettings": "Налады эмодзі",
+    "@emoteSettings": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "globalChatId": "ID габальнага чату",
+    "@globalChatId": {},
+    "accessAndVisibility": "Даступнасць і бачнасць",
+    "@accessAndVisibility": {},
+    "accessAndVisibilityDescription": "Каму дазволена далучацца да гэтага чату і як ён можа быць знойдзены.",
+    "@accessAndVisibilityDescription": {},
+    "calls": "Выклікі",
+    "@calls": {},
+    "customEmojisAndStickers": "Карыстальніцкія эмодзі і стыкеры",
+    "@customEmojisAndStickers": {},
+    "customEmojisAndStickersBody": "Дадаць ці падзяліцца карыстальніцкімі эмодзі ці стыкерамі, што могуць быць ужыты ў любым чаце.",
+    "@customEmojisAndStickersBody": {},
+    "emoteShortcode": "Скарачэнне эмодзі",
+    "@emoteShortcode": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "emoteWarnNeedToPick": "Вы павінны задауь скарачэнне эмодзі і выяву!",
+    "@emoteWarnNeedToPick": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "emptyChat": "Пусты чат",
+    "@emptyChat": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "enableEmotesGlobally": "Уключыць набор эмодзі глабальна",
+    "@enableEmotesGlobally": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "enableEncryption": "Уключыць шыфраванне",
+    "@enableEncryption": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "enableEncryptionWarning": "Вы больш не зможаце адключыць шыфраванне. Вы ўпэўнены?",
+    "@enableEncryptionWarning": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "encrypted": "Зашыфравана",
+    "@encrypted": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "encryption": "Шыфраванне",
+    "@encryption": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "encryptionNotEnabled": "Шыфраванне не ўключана",
+    "@encryptionNotEnabled": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "endedTheCall": "{senderName} скончыў выклік",
+    "@endedTheCall": {
+        "type": "String",
+        "placeholders": {
+            "senderName": {
+                "type": "String"
+            }
+        }
+    },
+    "enableMultiAccounts": "(БЭТА) Уключыць некалькі ўліковых запісаў на гэтац прыладзе",
+    "@enableMultiAccounts": {},
+    "enterAnEmailAddress": "Увядзіце электроную пошту (email)",
+    "@enterAnEmailAddress": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "homeserver": "Дамашні сервер",
+    "@homeserver": {},
+    "enterYourHomeserver": "Увядзіце адрас дамашняга сервера",
+    "@enterYourHomeserver": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "errorObtainingLocation": "Памылка атрымання месцазнаходжання: {error}",
+    "@errorObtainingLocation": {
+        "type": "String",
+        "placeholders": {
+            "error": {
+                "type": "String"
+            }
+        }
+    },
+    "everythingReady": "Усё гатова!",
+    "@everythingReady": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "extremeOffensive": "Занадта абражальны",
+    "@extremeOffensive": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "fileName": "Назва файла",
+    "@fileName": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "fluffychat": "FluffyChat",
+    "@fluffychat": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "fontSize": "Памер шрыфту",
+    "@fontSize": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "forward": "Пераслаць",
+    "@forward": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "fromJoining": "З далучэння",
+    "@fromJoining": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "fromTheInvitation": "З запрашэння",
+    "@fromTheInvitation": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "goToTheNewRoom": "Перайсці ў новы пакой",
+    "@goToTheNewRoom": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "group": "Група",
+    "@group": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "chatDescription": "Апісанне чату",
+    "@chatDescription": {},
+    "chatDescriptionHasBeenChanged": "Апісанне чату зменена",
+    "@chatDescriptionHasBeenChanged": {},
+    "groupIsPublic": "Група публічная",
+    "@groupIsPublic": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "groups": "Групы",
+    "@groups": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "groupWith": "Групы з {displayname}",
+    "@groupWith": {
+        "type": "String",
+        "placeholders": {
+            "displayname": {
+                "type": "String"
+            }
+        }
+    },
+    "guestsAreForbidden": "Госці забаронены",
+    "@guestsAreForbidden": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "guestsCanJoin": "Госці могуць далучацца",
+    "@guestsCanJoin": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "hasWithdrawnTheInvitationFor": "{username} адазваў запрашэнне для {targetName}",
+    "@hasWithdrawnTheInvitationFor": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "targetName": {
+                "type": "String"
+            }
+        }
+    },
+    "help": "Дапамога",
+    "@help": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "hideRedactedEvents": "Схаваць адрэдагаваныя падзеі",
+    "@hideRedactedEvents": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "hideRedactedMessages": "Схаваць адрэдагаваныя паведамленні",
+    "@hideRedactedMessages": {},
+    "hideRedactedMessagesBody": "Калі хтосьці рэдагуе паведамленне, яно будзе схавана ў чаце.",
+    "@hideRedactedMessagesBody": {},
+    "hideInvalidOrUnknownMessageFormats": "Хаваць памылковыя ці невядомыя фарматы паведамленняў",
+    "@hideInvalidOrUnknownMessageFormats": {},
+    "howOffensiveIsThisContent": "Наколькі абражальны гэты кантэнт?",
+    "@howOffensiveIsThisContent": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "id": "ID",
+    "@id": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "identity": "Ідэнтыфікацыя",
+    "@identity": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "block": "Заблакіраваць",
+    "@block": {},
+    "blockedUsers": "Заблакіраваныя карыстальнікі",
+    "@blockedUsers": {},
+    "blockListDescription": "Вы можаце заблакіраваць карыстальнікаў, якія вам перашкаджаюць. Вы не атрымаеце ад іх ні паведамленняў, ні запрашэнняў.",
+    "@blockListDescription": {},
+    "blockUsername": "Ігнараваць імя карыстальніка",
+    "@blockUsername": {},
+    "iHaveClickedOnLink": "Я перайшоў па спасылцы",
+    "@iHaveClickedOnLink": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "incorrectPassphraseOrKey": "Няслушны фраза-пароль ці ключ аднаўлення",
+    "@incorrectPassphraseOrKey": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "inoffensive": "Безабідны",
+    "@inoffensive": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "inviteContact": "Запрасіць кантакт",
+    "@inviteContact": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "inviteContactToGroupQuestion": "Вы хаціце запрасіць {contact} да чату \"{groupName}\"?",
+    "@inviteContactToGroupQuestion": {},
+    "inviteContactToGroup": "Запрасіць кантакт да {groupName}",
+    "@inviteContactToGroup": {
+        "type": "String",
+        "placeholders": {
+            "groupName": {
+                "type": "String"
+            }
+        }
+    },
+    "noChatDescriptionYet": "Апісанне чату яшчэ няма.",
+    "@noChatDescriptionYet": {},
+    "tryAgain": "Паспрабуйце зноў",
+    "@tryAgain": {},
+    "invalidServerName": "Недапушчальная назва сервера",
+    "@invalidServerName": {},
+    "invited": "Запрошаны",
+    "@invited": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "redactMessageDescription": "Гэта паведамленне будзе адрэдагавана для усіх карыстальнікаў. Вы не зможаце яго адмяніць.",
+    "@redactMessageDescription": {},
+    "optionalRedactReason": "(Неабавязкова) Прычына рэдагавання паведамлення...",
+    "@optionalRedactReason": {},
+    "invitedUser": "📩 {username} запрасіў(-ла) {targetName}",
+    "@invitedUser": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "targetName": {
+                "type": "String"
+            }
+        }
+    },
+    "invitedUsersOnly": "Толькі запрошаныя карыстальнікі",
+    "@invitedUsersOnly": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "inviteForMe": "Запрашэнне для мяне",
+    "@inviteForMe": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "inviteText": "{username} запрасіў вас у FluffyChat.\n1. Перайдзіце на fluffychat.im і ўстанааіце праграму \n2. Зарэгестрыруйцесь альбо увайдзіце\n3. Перайдзіце па запрашальнай спасылке: \n {link}",
+    "@inviteText": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "link": {
+                "type": "String"
+            }
+        }
+    },
+    "isTyping": "піша…",
+    "@isTyping": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "joinedTheChat": "👋 {username} далучыўся(лася) да чату",
+    "@joinedTheChat": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "joinRoom": "Далучыцца да пакою",
+    "@joinRoom": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "kicked": "👞 {username} выгнаў(-ла) {targetName}",
+    "@kicked": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "targetName": {
+                "type": "String"
+            }
+        }
+    },
+    "kickedAndBanned": "🙅 {username} выгнаў(-ла) і заблакіраваў(-ла) {targetName}",
+    "@kickedAndBanned": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "targetName": {
+                "type": "String"
+            }
+        }
+    },
+    "kickFromChat": "Выгнаць з чату",
+    "@kickFromChat": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "lastActiveAgo": "Апошняя актыўнасць: {localizedTimeShort}",
+    "@lastActiveAgo": {
+        "type": "String",
+        "placeholders": {
+            "localizedTimeShort": {
+                "type": "String"
+            }
+        }
+    },
+    "leave": "Выйсці",
+    "@leave": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "leftTheChat": "Выйсці з чату",
+    "@leftTheChat": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "license": "Ліцэнзія",
+    "@license": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "lightTheme": "Светлая",
+    "@lightTheme": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "loadCountMoreParticipants": "Загрузіць яшчэ {count} удзельнікаў",
+    "@loadCountMoreParticipants": {
+        "type": "String",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "dehydrate": "Экспарт сеансу і ачыстка прылады",
+    "@dehydrate": {},
+    "dehydrateWarning": "Гэта дзеянне не можа быць адменена. Пераканайцеся, што вы бяспечна захавалі файл рэзервовай копіі.",
+    "@dehydrateWarning": {},
+    "dehydrateTor": "Карвстальнікі TOR: Экспарт сэсіі",
+    "@dehydrateTor": {},
+    "dehydrateTorLong": "Для карыстальнікаў TOR прапануем экспартаваць сэсію перад ьым, як закрывауь акно.",
+    "@dehydrateTorLong": {},
+    "hydrateTor": "Карыстальнікі TOR: Імпарт экспарту сэсіі",
+    "@hydrateTor": {},
+    "hydrateTorLong": "Вы экспартавалі сэсію ў мінулы раз праз TOR? Хутка імпартуйце яе і працягніце размовы.",
+    "@hydrateTorLong": {},
+    "hydrate": "Аднавіць з рэзервовай копіі",
+    "@hydrate": {},
+    "loadingPleaseWait": "Загрузка... Калі ласка, пачакайце.",
+    "@loadingPleaseWait": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "loadMore": "Загрузіць больш…",
+    "@loadMore": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "locationDisabledNotice": "Сервісы месцазнаходжанн, адключаны. Калі ласка, уключыце іх, каб зноў дзяліцца месцазнаходжаннем.",
+    "@locationDisabledNotice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "locationPermissionDeniedNotice": "Дазвол атрымання месцазнаходжання скасаваны. Калі ласка, дайце яго каб дзяліцца месцазнаходжаннем.",
+    "@locationPermissionDeniedNotice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "login": "Логін",
+    "@login": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "logInTo": "Увайсці ў {homeserver}",
+    "@logInTo": {
+        "type": "String",
+        "placeholders": {
+            "homeserver": {
+                "type": "String"
+            }
+        }
+    },
+    "logout": "Выйсці",
+    "@logout": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "memberChanges": "Змяненні ўдзельнікаў",
+    "@memberChanges": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "mention": "Згадаць",
+    "@mention": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "messages": "Паведамленні",
+    "@messages": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "messagesStyle": "Паведамленні:",
+    "@messagesStyle": {},
+    "moderator": "Мадэратар",
+    "@moderator": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "muteChat": "Заглушыць чат",
+    "@muteChat": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "needPantalaimonWarning": "Пераканайцеся, калі ласка, што вы выкарыстоўваеце Pantalaimon для end-to-end шыфравання.",
+    "@needPantalaimonWarning": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "newChat": "Новы чат",
+    "@newChat": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "newMessageInFluffyChat": "💬 Новае паведамленне ў FluffyChat",
+    "@newMessageInFluffyChat": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "newVerificationRequest": "Новы запыт на верыфікацыю!",
+    "@newVerificationRequest": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "next": "Далей",
+    "@next": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "no": "Не",
+    "@no": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noConnectionToTheServer": "Няма злучэння з серверам",
+    "@noConnectionToTheServer": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noEmotesFound": "Эмодзі не знойдзены. 😕",
+    "@noEmotesFound": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noEncryptionForPublicRooms": "Вы зможаце актывіраваць шыфраванне як толькі пакой перастане быць агульнадаступным.",
+    "@noEncryptionForPublicRooms": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noGoogleServicesWarning": "Здаецца, на вашай прыладзе няма ці недаступны Firebase Cloud Messaging. Каб далей атрымліваць паведамленні, мы прапануем усталяваць ntfy ці іншы правайдэр паведамленняў, каб атрымлтваць іх бяспечна. Вы модацеспампаваць ntfy з PlayStore ці F-Droid.",
+    "@noGoogleServicesWarning": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noMatrixServer": "{server1} не з'яўляецца серверам matrix. Выкарыстоўваць {server2} замест яго?",
+    "@noMatrixServer": {
+        "type": "String",
+        "placeholders": {
+            "server1": {
+                "type": "String"
+            },
+            "server2": {
+                "type": "String"
+            }
+        }
+    },
+    "shareInviteLink": "Падзяліцца запрашальнай спасылкай",
+    "@shareInviteLink": {},
+    "scanQrCode": "Сканіраваць QR-код",
+    "@scanQrCode": {},
+    "none": "Нічога",
+    "@none": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noPasswordRecoveryDescription": "Вы яшчэ не дадалі метад аднаўлення пароля.",
+    "@noPasswordRecoveryDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noPermission": "Няма дазволу",
+    "@noPermission": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "noRoomsFound": "Пакоі не знойдзены…",
+    "@noRoomsFound": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "notifications": "Паведамленні",
+    "@notifications": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "setChatDescription": "Задаць апісанне чату",
+    "@setChatDescription": {},
+    "setInvitationLink": "Задаць запрашальную спасылку",
+    "@setInvitationLink": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "setPermissionsLevel": "Задаць ўзровееь дазволаў",
+    "@setPermissionsLevel": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "setStatus": "Задаць статус",
+    "@setStatus": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "settings": "Налады",
+    "@settings": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "share": "Падзяліцца",
+    "@share": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "sharedTheLocation": "{username} падзяліўся(-лася) сваім месцазнаходжаннем",
+    "@sharedTheLocation": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "shareLocation": "Падзяліцца месцазнаходжаннем",
+    "@shareLocation": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "showPassword": "Паказаць пароль",
+    "@showPassword": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "presenceStyle": "Прысутнасць:",
+    "@presenceStyle": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "presencesToggle": "Паказваць паведасленні статусаў іншых карыстальнікаў",
+    "@presencesToggle": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "singlesignon": "Адзіны ўваход",
+    "@singlesignon": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "skip": "Прапусціць",
+    "@skip": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "sourceCode": "Зыходны код",
+    "@sourceCode": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "spaceIsPublic": "Прастора публічна",
+    "@spaceIsPublic": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "spaceName": "Назва прасторы",
+    "@spaceName": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "startedACall": "{senderName} пачаў выклік",
+    "@startedACall": {
+        "type": "String",
+        "placeholders": {
+            "senderName": {
+                "type": "String"
+            }
+        }
+    },
+    "startFirstChat": "Пачніце ваш першы чат",
+    "@startFirstChat": {},
+    "status": "Статус",
+    "@status": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "statusExampleMessage": "Як вашыя справы?",
+    "@statusExampleMessage": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "submit": "Дастасаваць",
+    "@submit": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "synchronizingPleaseWait": "Сінхранізацыя... Калі ласка, пачакайце.",
+    "@synchronizingPleaseWait": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "synchronizingPleaseWaitCounter": " Сінхарнізацыя… ({percentage}%)",
+    "@synchronizingPleaseWaitCounter": {
+        "type": "String",
+        "placeholders": {
+            "percentage": {
+                "type": "String"
+            }
+        }
+    },
+    "systemTheme": "Сістэма",
+    "@systemTheme": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "theyDontMatch": "Яны не супадаюць",
+    "@theyDontMatch": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "theyMatch": "Яны супадаюць",
+    "@theyMatch": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "title": "FluffyChat",
+    "@title": {
+        "description": "Title for the application",
+        "type": "String",
+        "placeholders": {}
+    },
+    "toggleFavorite": "Пераключыць Захаванае",
+    "@toggleFavorite": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "toggleMuted": "Пераключыць гук",
+    "@toggleMuted": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "visibleForEveryone": "Бачна ўсім",
+    "@visibleForEveryone": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "voiceMessage": "Галасавое паведамленне",
+    "@voiceMessage": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "waitingPartnerAcceptRequest": "Чакаем, калі партнёр прыме запыт…",
+    "@waitingPartnerAcceptRequest": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "waitingPartnerEmoji": "Чакаем, калі партнёр прыме эмодзі…",
+    "@waitingPartnerEmoji": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "waitingPartnerNumbers": "Чакаем, калі партнёр прыме цыфры…",
+    "@waitingPartnerNumbers": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "wallpaper": "Шпалеры:",
+    "@wallpaper": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "warning": "Увага!",
+    "@warning": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "weSentYouAnEmail": "Мы даслалі вам ліст на email",
+    "@weSentYouAnEmail": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "whoCanPerformWhichAction": "Хто якія дзеянні можа выконваць",
+    "@whoCanPerformWhichAction": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "whoIsAllowedToJoinThisGroup": "Каму дазволена далучацца да гэтай группы",
+    "@whoIsAllowedToJoinThisGroup": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "whyDoYouWantToReportThis": "Чаму вы хаціце паскардзіцца?",
+    "@whyDoYouWantToReportThis": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "wipeChatBackup": "Ачысціць рэзервовую копію чата, каб стварыць новы ключ аднаўлення?",
+    "@wipeChatBackup": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "withTheseAddressesRecoveryDescription": "З гэтымі адрасамі, вы сожаце аднавіць свой пароль.",
+    "@withTheseAddressesRecoveryDescription": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "writeAMessage": "Напісать паведамленне…",
+    "@writeAMessage": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "yes": "Так",
+    "@yes": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "you": "Вы",
+    "@you": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "youAreNoLongerParticipatingInThisChat": "Вы больш не ўдзельнічаеце ў гэтым чаце",
+    "@youAreNoLongerParticipatingInThisChat": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "youHaveBeenBannedFromThisChat": "Вы былі заблакіраваны ў гэтым чаце",
+    "@youHaveBeenBannedFromThisChat": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "yourPublicKey": "Ваш публічны ключ",
+    "@yourPublicKey": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "messageInfo": "Інфармацыя пра паведамленне",
+    "@messageInfo": {},
+    "time": "Час",
+    "@time": {},
+    "messageType": "Тып паведамлення",
+    "@messageType": {},
+    "sender": "Адпраўшчык",
+    "@sender": {},
+    "openGallery": "Адкрыць галерэю",
+    "@openGallery": {},
+    "removeFromSpace": "Выдаліць з прасторы",
+    "@removeFromSpace": {},
+    "addToSpaceDescription": "Выберыце прастору, да якой дадаць гэты чат.",
+    "@addToSpaceDescription": {},
+    "start": "Пачаць",
+    "@start": {},
+    "pleaseEnterRecoveryKeyDescription": "Каб разблакіраваць вашы мінулыя паведамленні, калі ласка, ўвядзіце ключ аднаўлення, што быў згенерыраваны ў мінулац сэсіі. Ключ аднаўлення гэта НЕ ваш пароль.",
+    "@pleaseEnterRecoveryKeyDescription": {},
+    "publish": "Апублікаваць",
+    "@publish": {},
+    "videoWithSize": "Відэа ({size})",
+    "@videoWithSize": {
+        "type": "String",
+        "placeholders": {
+            "size": {
+                "type": "String"
+            }
+        }
+    },
+    "openChat": "Адкрыць чат",
+    "@openChat": {},
+    "markAsRead": "Адзначыць як прачытанае",
+    "@markAsRead": {},
+    "reportUser": "Паскардзіцца на карыстальніка",
+    "@reportUser": {},
+    "dismiss": "Адхіліць",
+    "@dismiss": {},
+    "reactedWith": "{sender} рэагуе з {reaction}",
+    "@reactedWith": {
+        "type": "String",
+        "placeholders": {
+            "sender": {
+                "type": "String"
+            },
+            "reaction": {
+                "type": "String"
+            }
+        }
+    },
+    "pinMessage": "Прымацаваць да пакою",
+    "@pinMessage": {},
+    "confirmEventUnpin": "Вы ўпэўнены ў тым, што хаціце назаўсёды адмацаваць гэту падзею?",
+    "@confirmEventUnpin": {},
+    "emojis": "Эмодзі",
+    "@emojis": {},
+    "placeCall": "Здзейсніць выклік",
+    "@placeCall": {},
+    "voiceCall": "Галасавы выклік",
+    "@voiceCall": {},
+    "unsupportedAndroidVersion": "Непадтрымліваемая версія Android",
+    "@unsupportedAndroidVersion": {},
+    "unsupportedAndroidVersionLong": "Гэта функцыя патрабуе навейшай версіі Android. Калі ласка, праверце наяўнасць абнаўленняў ці падтрымку Linage OS.",
+    "@unsupportedAndroidVersionLong": {},
+    "videoCallsBetaWarning": "Звярніце ўвагу, што відэа-выклікі знаходзяцца ў бэце. Яны могуць працаваць некарэктна ці не на ўсіх платформах.",
+    "@videoCallsBetaWarning": {},
+    "experimentalVideoCalls": "Эксперыментальныя відэа-выклікі",
+    "@experimentalVideoCalls": {},
+    "emailOrUsername": "Email ці імя карыстальніка",
+    "@emailOrUsername": {},
+    "indexedDbErrorTitle": "Праблемы з прыватным рэжымам",
+    "@indexedDbErrorTitle": {},
+    "indexedDbErrorLong": "Сховішча паведамленняў, на жаль, не ўключана ў прыватным рэжыме па змаўчанні.\nКалі ласка, наведайце\n - about:config\n - што dom.indexedDB.privateBrowsing.enabled уключаны\nІнакш, FluffyChat будзе немагчыма запусціць.",
+    "@indexedDbErrorLong": {},
+    "switchToAccount": "Пераключыцца на ўліковы запіс {number}",
+    "@switchToAccount": {
+        "type": "number",
+        "placeholders": {
+            "number": {
+                "type": "String"
+            }
+        }
+    },
+    "nextAccount": "Наступны ўліковы запіс",
+    "@nextAccount": {},
+    "previousAccount": "Мінулы ўліковы запіс",
+    "@previousAccount": {},
+    "addWidget": "Дадаць віджэт",
+    "@addWidget": {},
+    "widgetVideo": "Відэа",
+    "@widgetVideo": {},
+    "widgetEtherpad": "Тэкставая нататка",
+    "@widgetEtherpad": {},
+    "widgetJitsi": "Jitsi Meet",
+    "@widgetJitsi": {},
+    "widgetCustom": "Карыстальніцкі",
+    "@widgetCustom": {},
+    "widgetName": "Імя",
+    "@widgetName": {},
+    "widgetUrlError": "Гэта хібны URL.",
+    "@widgetUrlError": {},
+    "widgetNameError": "Калі ласка, укажыце адлюстроўваемаем імя.",
+    "@widgetNameError": {},
+    "errorAddingWidget": "Памылка дадання віджэту.",
+    "@errorAddingWidget": {},
+    "youRejectedTheInvitation": "Вы скасавалі запрашэнне",
+    "@youRejectedTheInvitation": {},
+    "youJoinedTheChat": "Вы далучыліся да чату",
+    "@youJoinedTheChat": {},
+    "youAcceptedTheInvitation": "👍 Вы прынялі запрашэнне",
+    "@youAcceptedTheInvitation": {},
+    "youBannedUser": "Вы заблакіравалі {user}",
+    "@youBannedUser": {
+        "placeholders": {
+            "user": {
+                "type": "String"
+            }
+        }
+    },
+    "youHaveWithdrawnTheInvitationFor": "Вы адазвалі запрашэнне для {user}",
+    "@youHaveWithdrawnTheInvitationFor": {
+        "placeholders": {
+            "user": {
+                "type": "String"
+            }
+        }
+    },
+    "youInvitedToBy": "📩 Вы былі запрошаны па спасылцы на:\n{alias}",
+    "@youInvitedToBy": {
+        "placeholders": {
+            "alias": {
+                "type": "String"
+            }
+        }
+    },
+    "youInvitedBy": "📩 Вы былі запрошаны карыстальнікам {user}",
+    "@youInvitedBy": {
+        "placeholders": {
+            "user": {
+                "type": "String"
+            }
+        }
+    },
+    "invitedBy": "📩 Запрошаны(-а) {user}",
+    "@invitedBy": {
+        "placeholders": {
+            "user": {
+                "type": "String"
+            }
+        }
+    },
+    "youInvitedUser": "📩 Вы запрасілі {user}",
+    "@youInvitedUser": {
+        "placeholders": {
+            "user": {
+                "type": "String"
+            }
+        }
+    },
+    "youKicked": "👞 Вы выгналі {user}",
+    "@youKicked": {
+        "placeholders": {
+            "user": {
+                "type": "String"
+            }
+        }
+    },
+    "youKickedAndBanned": "🙅 Вы выгналі і заблакіравалі {user}",
+    "@youKickedAndBanned": {
+        "placeholders": {
+            "user": {
+                "type": "String"
+            }
+        }
+    },
+    "youUnbannedUser": "Вы разблакіравалі {user}",
+    "@youUnbannedUser": {
+        "placeholders": {
+            "user": {
+                "type": "String"
+            }
+        }
+    },
+    "hasKnocked": "🚪 {user} пагрукаўся",
+    "@hasKnocked": {
+        "placeholders": {
+            "user": {
+                "type": "String"
+            }
+        }
+    },
+    "usersMustKnock": "Карыстальнікі абавязаны пагрукацца",
+    "@usersMustKnock": {},
+    "noOneCanJoin": "Ніхто не можа далучыцца",
+    "@noOneCanJoin": {},
+    "userWouldLikeToChangeTheChat": "{user} хоча далучыцца да чату.",
+    "@userWouldLikeToChangeTheChat": {
+        "placeholders": {
+            "user": {
+                "type": "String"
+            }
+        }
+    },
+    "noPublicLinkHasBeenCreatedYet": "Публічны ключ яшчэ не створаны",
+    "@noPublicLinkHasBeenCreatedYet": {},
+    "knock": "Пагрукацца",
+    "@knock": {},
+    "users": "Карыстальнікі",
+    "@users": {},
+    "unlockOldMessages": "Адкрыць старыя паведамленні",
+    "@unlockOldMessages": {},
+    "storeInSecureStorageDescription": "Захаваць код аднаўлення ў бяспечным месцы на прыладзе.",
+    "@storeInSecureStorageDescription": {},
+    "saveKeyManuallyDescription": "Захаваць гэты ключ самастойна, выклікам сістэмнага акна Падзяліцца ці праз буфер.",
+    "@saveKeyManuallyDescription": {},
+    "storeInAndroidKeystore": "Захаваць у Android KeyStore",
+    "@storeInAndroidKeystore": {},
+    "storeInAppleKeyChain": "Захаваць у Apple KeyChain",
+    "@storeInAppleKeyChain": {},
+    "storeSecurlyOnThisDevice": "Захаваць на гэтай прыладзе",
+    "@storeSecurlyOnThisDevice": {},
+    "countFiles": "{count} файлаў",
+    "@countFiles": {
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "user": "Карыстальнік",
+    "@user": {},
+    "custom": "Карыстальніцкае",
+    "@custom": {},
+    "foregroundServiceRunning": "Гэта паведамленне з'явіцца, калі асноўныя службы запрацуюць.",
+    "@foregroundServiceRunning": {},
+    "screenSharingTitle": "падзяліцца экранам",
+    "@screenSharingTitle": {},
+    "screenSharingDetail": "Вы дзеліцеся экранам у FluffyChat",
+    "@screenSharingDetail": {},
+    "callingPermissions": "Дазволы на выклікі",
+    "@callingPermissions": {},
+    "callingAccount": "Уліковы запіс для выклікаў",
+    "@callingAccount": {},
+    "callingAccountDetails": "Дазваляе FluffyChat выкарыстоўваць сістэмную праграму для выклікаў.",
+    "@callingAccountDetails": {},
+    "appearOnTop": "З'яўляцца зверху",
+    "@appearOnTop": {},
+    "appearOnTopDetails": "Дазваляе праграму з'яўляцца наверсе (не патрэбна, калі FluffyChat наладжаны як уліковы запіс для выклікаў)",
+    "@appearOnTopDetails": {},
+    "otherCallingPermissions": "Мікрафон, камера і іншыя дазволы FluffyChat",
+    "@otherCallingPermissions": {},
+    "whyIsThisMessageEncrypted": "Чаму гэта паведамленне нельга прачытаць?",
+    "@whyIsThisMessageEncrypted": {},
+    "noKeyForThisMessage": "Гэта можа здарыцца з-за таго, што паведамленне было даслана да таго, як вы увайшлі ў уліковы запіс на гэтай прыладзе.\n\nТаксама верагодна, што адпраўшчык заблакіраваў вашу прыладу ці ў вас хібы з інтэрнэтам.\n\nВы можаце чытаць гэта паведамленне з іншага сеансу? Тад далліце паведамленне адтуль! Перайдзіце ў Налады > Прылады і пераканайцеся ў тым, што вашы прылады верыфікавалі адна адну. Калі вы адкрыеце пакой наступны раз і абодве сэсіі будуць запушчаны, ключы павінны сінхранізавацца аўтаматычна.\n\nВы не хаціце згубіць клбчы, калі будзеце выходзіць ці змяняць прылады? Пераканайцеся ў тым, што вы уключылі рэзервовае капіраванне чатаў у наладах.",
+    "@noKeyForThisMessage": {},
+    "newGroup": "Новая група",
+    "@newGroup": {},
+    "newSpace": "Новая прастора",
+    "@newSpace": {},
+    "enterSpace": "Увайсці ў прастору",
+    "@enterSpace": {},
+    "enterRoom": "Увайсці ў пакой",
+    "@enterRoom": {},
+    "allSpaces": "Усе прасторы",
+    "@allSpaces": {},
+    "numChats": "{number} чатаў",
+    "@numChats": {
+        "type": "number",
+        "placeholders": {
+            "number": {
+                "type": "String"
+            }
+        }
+    },
+    "hideUnimportantStateEvents": "Хаваць неабавязковыя падзеі статусу",
+    "@hideUnimportantStateEvents": {},
+    "hidePresences": "Хаваць спіс статусаў?",
+    "@hidePresences": {},
+    "doNotShowAgain": "Не паказваць зноў",
+    "@doNotShowAgain": {},
+    "wasDirectChatDisplayName": "Пусты чат (быў {oldDisplayName})",
+    "@wasDirectChatDisplayName": {
+        "type": "String",
+        "placeholders": {
+            "oldDisplayName": {
+                "type": "String"
+            }
+        }
+    },
+    "newSpaceDescription": "Прасторы дазваляюць аб'ядноўваць вашы чаты і ствараць агульныя ці асобныя супольнасці.",
+    "@newSpaceDescription": {},
+    "encryptThisChat": "Шывраваць гэты чат",
+    "@encryptThisChat": {},
+    "disableEncryptionWarning": "У мэтах бяспекі, вы не можаце адклбчауь шыфраванне ў гэтым чаце, дзе яно было ўключана.",
+    "@disableEncryptionWarning": {},
+    "sorryThatsNotPossible": "Прабачце... Гэта немагчыма",
+    "@sorryThatsNotPossible": {},
+    "deviceKeys": "Ключы прылад:",
+    "@deviceKeys": {},
+    "reopenChat": "Адкрыць чат зноў",
+    "@reopenChat": {},
+    "noBackupWarning": "Увага! Без уключэння рэзервовага капіравання чатаў, вы страціце доступ да вашых зашыфраваных паведамленняў. Настойліва рэкамендуецца уключыць фукнцыю да таго, як выйсці.",
+    "@noBackupWarning": {},
+    "noOtherDevicesFound": "Іншыя прылады не знойдзены",
+    "@noOtherDevicesFound": {},
+    "fileIsTooBigForServer": "Немагчыма даслаць! Сервер падтрымлівае файлы да {max}.",
+    "@fileIsTooBigForServer": {
+        "type": "String",
+        "placeholders": {
+            "max": {
+                "type": "String"
+            }
+        }
+    },
+    "fileHasBeenSavedAt": "Файл быў захаваны ў {path}",
+    "@fileHasBeenSavedAt": {
+        "type": "String",
+        "placeholders": {
+            "path": {
+                "type": "String"
+            }
+        }
+    },
+    "jumpToLastReadMessage": "Перайсці да апошняга паведамлення",
+    "@jumpToLastReadMessage": {},
+    "readUpToHere": "Чытаць тут",
+    "@readUpToHere": {},
+    "jump": "Перайсці",
+    "@jump": {},
+    "openLinkInBrowser": "Адкрыць спасылку ў браўзеры",
+    "@openLinkInBrowser": {},
+    "reportErrorDescription": "😭 О не, штосьці пайшло не так. Калі жадаеце, можаце падаць справаздачу аб памылке распрауоўшчыкам.",
+    "@reportErrorDescription": {},
+    "report": "паскардзіцца",
+    "@report": {},
+    "signInWithPassword": "Увайсці з паролем",
+    "@signInWithPassword": {},
+    "manageAccount": "Кіраванне ўліковым запісам",
+    "@manageAccount": {},
+    "noContactInformationProvided": "Сервер не мае ніякай вернай кантактнай інфармацыі",
+    "@noContactInformationProvided": {},
+    "contactServerAdmin": "Звязацца з адміністратарам сервера",
+    "@contactServerAdmin": {},
+    "contactServerSecurity": "Звязацца з сервернай бяспекай",
+    "@contactServerSecurity": {},
+    "supportPage": "Падтрымка",
+    "@supportPage": {},
+    "serverInformation": "Серверная інфармацыя:",
+    "@serverInformation": {},
+    "name": "Імя",
+    "@name": {},
+    "version": "Версія",
+    "@version": {},
+    "website": "Сайт",
+    "@website": {},
+    "compress": "Сцісканне",
+    "@compress": {},
+    "boldText": "Цёмны",
+    "@boldText": {},
+    "italicText": "Курсіў",
+    "@italicText": {},
+    "strikeThrough": "Перакрэслены",
+    "@strikeThrough": {},
+    "pleaseFillOut": "Калі ласка, запоўніце",
+    "@pleaseFillOut": {},
+    "invalidUrl": "Няслушны url",
+    "@invalidUrl": {},
+    "addLink": "Дадаць спасылку",
+    "@addLink": {},
+    "unableToJoinChat": "Немагчыма далучыцца да чату. Магчыма, іншы бок ужо скончыў размову.",
+    "@unableToJoinChat": {},
+    "previous": "Мінулы",
+    "@previous": {},
+    "otherPartyNotLoggedIn": "Іншы бок зараз не увайшоў, таму не можа атрымліваць паведамленні!",
+    "@otherPartyNotLoggedIn": {},
+    "appWantsToUseForLogin": "Выкарыстоўваць '{server}' для ўвахода",
+    "@appWantsToUseForLogin": {
+        "type": "String",
+        "placeholders": {
+            "server": {
+                "type": "String"
+            }
+        }
+    },
+    "appWantsToUseForLoginDescription": "Тым самым, вы дазваляеце праграме і сайту дзяліцца інфармацыяй пра вас.",
+    "@appWantsToUseForLoginDescription": {},
+    "open": "Адкрыць",
+    "@open": {},
+    "waitingForServer": "Чаканне сервера...",
+    "@waitingForServer": {},
+    "appIntroduction": "FluffyChat дазваляе вам і вашым сябрам размаўляць скрозь розныя мэсэнджары. Даведайцеся болей на https://matrix.org ці націсніце *Працягнуць*.",
+    "@appIntroduction": {},
+    "newChatRequest": "📩 Запыт новага чату",
+    "@newChatRequest": {},
+    "contentNotificationSettings": "Налады паведамленняў кантэнту",
+    "@contentNotificationSettings": {},
+    "generalNotificationSettings": "Агульныя налады паведамленняў",
+    "@generalNotificationSettings": {},
+    "roomNotificationSettings": "Налады паведамленняў пакою",
+    "@roomNotificationSettings": {},
+    "userSpecificNotificationSettings": "Налады паведамленняў карыстальніка",
+    "@userSpecificNotificationSettings": {},
+    "otherNotificationSettings": "Іншыя налады паведамленняў",
+    "@otherNotificationSettings": {},
+    "notificationRuleContainsUserName": "Змяшчае імя карыстальніка",
+    "@notificationRuleContainsUserName": {},
+    "notificationRuleContainsUserNameDescription": "Паведамляе пра тое, што паведамленне мае імя карыстальніка.",
+    "@notificationRuleContainsUserNameDescription": {},
+    "notificationRuleMaster": "Заглушыць усе паведамленні",
+    "@notificationRuleMaster": {},
+    "notificationRuleMasterDescription": "Перазапісвае ўсе іншыя правілы і адключае паведамленні.",
+    "@notificationRuleMasterDescription": {},
+    "notificationRuleSuppressNotices": "Адключыць аўтаматычныя паведамленні",
+    "@notificationRuleSuppressNotices": {},
+    "notificationRuleSuppressNoticesDescription": "Адключыць паведамленні ад аўтаматызаваных кліентаў, накшталт ботаў.",
+    "@notificationRuleSuppressNoticesDescription": {},
+    "notificationRuleInviteForMe": "Запрашэнне мяне",
+    "@notificationRuleInviteForMe": {},
+    "notificationRuleInviteForMeDescription": "Паведамляе карыстальніка, калі яго запрашаюць у пакой.",
+    "@notificationRuleInviteForMeDescription": {},
+    "allDevices": "Усе прылады",
+    "@allDevices": {},
+    "crossVerifiedDevicesIfEnabled": "Перакрыжавана пацверджаныя прылады, калі ўключана",
+    "@crossVerifiedDevicesIfEnabled": {},
+    "crossVerifiedDevices": "Перакрыжавана пацверджаныя прылады",
+    "@crossVerifiedDevices": {},
+    "verifiedDevicesOnly": "Толькі пацаерджаныя прылады",
+    "@verifiedDevicesOnly": {},
+    "takeAPhoto": "Зрабіць здымак",
+    "@takeAPhoto": {},
+    "recordAVideo": "Запісаць відэа",
+    "@recordAVideo": {},
+    "optionalMessage": "(Апцыянальна) паведамленне...",
+    "@optionalMessage": {},
+    "notSupportedOnThisDevice": "Не падтрымліваецца на гэтай прыладзе",
+    "@notSupportedOnThisDevice": {},
+    "enterNewChat": "Увядзіце новы чат",
+    "@enterNewChat": {},
+    "approve": "Пацвердзіць",
+    "@approve": {},
+    "youHaveKnocked": "Вы былі выгнаны",
+    "@youHaveKnocked": {},
+    "pleaseWaitUntilInvited": "Калі ласка, пачакайце, пакуль хтосьці з пакою вас не запрасіць.",
+    "@pleaseWaitUntilInvited": {},
+    "commandHint_logout": "Выйсці з бягуяай прылады",
+    "@commandHint_logout": {},
+    "commandHint_logoutall": "Выйсці на ўсіх актыўных прыладах",
+    "@commandHint_logoutall": {},
+    "displayNavigationRail": "Паказваць навігацыйны след на тэлефоне",
+    "@displayNavigationRail": {},
+    "customReaction": "Карыстальніцкая рэакцыя",
+    "@customReaction": {},
+    "moreEvents": "Больш падзей",
+    "@moreEvents": {},
+    "declineInvitation": "Скасаваць запрашэнне",
+    "@declineInvitation": {},
+    "notificationsEnabledForThisAccount": "Паведамленні ўклбчаны для гжтага ўліковага запісу",
+    "@notificationsEnabledForThisAccount": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "numUsersTyping": "{count} карвстальнікаў пішуць…",
+    "@numUsersTyping": {
+        "type": "String",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "obtainingLocation": "Атрыманне месцазнаходжання…",
+    "@obtainingLocation": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "offensive": "Абражальна",
+    "@offensive": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "offline": "Не ў сетцы",
+    "@offline": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "ok": "Ок",
+    "@ok": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "online": "У сетцы",
+    "@online": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "onlineKeyBackupEnabled": "Рэзервовае капіраванне ключэй уключана",
+    "@onlineKeyBackupEnabled": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "oopsPushError": "Упс! На жаль, пры наладжванні пуш-паведамленняў, адбылася памылка.",
+    "@oopsPushError": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "oopsSomethingWentWrong": "Упс, штосьці пайшло не так…",
+    "@oopsSomethingWentWrong": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "openAppToReadMessages": "Адкройце праграму, каб прачытаць паведамленні",
+    "@openAppToReadMessages": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "openCamera": "Адкрыць камеру",
+    "@openCamera": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "openVideoCamera": "Адкрыць камеру для відэа",
+    "@openVideoCamera": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "oneClientLoggedOut": "Адзін з вашых кліентаў выйшаў",
+    "@oneClientLoggedOut": {},
+    "addAccount": "Дадаць уліковы запіс",
+    "@addAccount": {},
+    "editBundlesForAccount": "Змяніць пакеты для гэтага ўліковага запісу",
+    "@editBundlesForAccount": {},
+    "addToBundle": "Дадаць у пакет",
+    "@addToBundle": {},
+    "removeFromBundle": "Выдаліць з пакета",
+    "@removeFromBundle": {},
+    "bundleName": "Назва пакета",
+    "@bundleName": {},
+    "openInMaps": "Адкрыць на картах",
+    "@openInMaps": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "link": "Спасылка",
+    "@link": {},
+    "serverRequiresEmail": "Гэты сервер павінен спраўдзіць ваш email для рэгістрацыі.",
+    "@serverRequiresEmail": {},
+    "or": "Ці",
+    "@or": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "participant": "Удзельнік",
+    "@participant": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passphraseOrKey": "фраза-пароль ці ключ аднаўлення",
+    "@passphraseOrKey": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "password": "Пароль",
+    "@password": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passwordForgotten": "Не памятаю пароль",
+    "@passwordForgotten": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "passwordHasBeenChanged": "Пароль быў зменены",
+    "@passwordHasBeenChanged": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "hideMemberChangesInPublicChats": "Хаваць змяненні ўдзельнікаў у публічных чатах",
+    "@hideMemberChangesInPublicChats": {},
+    "hideMemberChangesInPublicChatsBody": "Не паказваць далучэнні і выхады з чату ў шкале часу для лепшай чытальнасці.",
+    "@hideMemberChangesInPublicChatsBody": {},
+    "overview": "Агляд",
+    "@overview": {},
+    "notifyMeFor": "Паведамляць мяне пра",
+    "@notifyMeFor": {},
+    "passwordRecoverySettings": "Налады скіду пароля",
+    "@passwordRecoverySettings": {},
+    "passwordRecovery": "Аднаўленне пароля",
+    "@passwordRecovery": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "people": "Людзі",
+    "@people": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "pickImage": "Абраць выяву",
+    "@pickImage": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "pin": "Замацаваць",
+    "@pin": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "play": "Прайграць {fileName}",
+    "@play": {
+        "type": "String",
+        "placeholders": {
+            "fileName": {
+                "type": "String"
+            }
+        }
+    },
+    "pleaseChoose": "Калі ласка, выберыце",
+    "@pleaseChoose": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "pleaseChooseAPasscode": "Калі ласка, выберыце код доступу",
+    "@pleaseChooseAPasscode": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "pleaseClickOnLink": "Калі ласка, націсніце на спасылку ў лісце на email, каб працягнуць.",
+    "@pleaseClickOnLink": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "pleaseEnter4Digits": "Калі ласка, увядзіце 4 лічбы ці пакіньце пустым, каб адключыць код-пароль.",
+    "@pleaseEnter4Digits": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "pleaseEnterRecoveryKey": "Увядзіце ключ аднаўлення:",
+    "@pleaseEnterRecoveryKey": {},
+    "pleaseEnterYourPassword": "Калі ласка, увядзіце ваш пароль",
+    "@pleaseEnterYourPassword": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "pleaseEnterYourPin": "Калі ласка, увядзіце пін-код",
+    "@pleaseEnterYourPin": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "pleaseEnterYourUsername": "Калі ласка, увядзіце імя карыстальніка",
+    "@pleaseEnterYourUsername": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "pleaseFollowInstructionsOnWeb": "Калі ласка, сачыце за інстуркцыямі ў браўзеры і націсніце \"Далей\".",
+    "@pleaseFollowInstructionsOnWeb": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "privacy": "Прыватнасць",
+    "@privacy": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "publicRooms": "Публічныя пакоі",
+    "@publicRooms": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "pushRules": "Правілы пушэй",
+    "@pushRules": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "reason": "Прычына",
+    "@reason": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "recording": "Запіс",
+    "@recording": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "redactedBy": "Адрэдагавана {username}",
+    "@redactedBy": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "directChat": "Асобны чат",
+    "@directChat": {},
+    "redactedByBecause": "Адрэдагавана {username}, прычына: \"{reason}\"",
+    "@redactedByBecause": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "reason": {
+                "type": "String"
+            }
+        }
+    },
+    "redactedAnEvent": "{username} адрэдагаваў(-ла) падзею",
+    "@redactedAnEvent": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "redactMessage": "Адрэдагаваць паведамленне",
+    "@redactMessage": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "register": "Зарэгістравацца",
+    "@register": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "reject": "Адмовіць",
+    "@reject": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "rejectedTheInvitation": "{username} адмовіў запрашэнне",
+    "@rejectedTheInvitation": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "rejoin": "Далучыцца зноў",
+    "@rejoin": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "removeAllOtherDevices": "Выдаліць усе іншыя прылады",
+    "@removeAllOtherDevices": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "removedBy": "Выдалена {username}",
+    "@removedBy": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "removeDevice": "Выдаліць прыладу",
+    "@removeDevice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "unbanFromChat": "Разблакіраваць у чаце",
+    "@unbanFromChat": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "removeYourAvatar": "Выдаліць выяву ўліковага запісу",
+    "@removeYourAvatar": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "replaceRoomWithNewerVersion": "Замяніць пакой навейшай версіяй",
+    "@replaceRoomWithNewerVersion": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "reply": "Адказаць",
+    "@reply": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "reportMessage": "Паведаміць пра паведамленне",
+    "@reportMessage": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "requestPermission": "Запрасіць дазвол",
+    "@requestPermission": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "roomHasBeenUpgraded": "Пакой быў абноўлены",
+    "@roomHasBeenUpgraded": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "roomVersion": "Версія пакою",
+    "@roomVersion": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "saveFile": "Захаваць файл",
+    "@saveFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "search": "Пошук",
+    "@search": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "security": "Бяспека",
+    "@security": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "recoveryKey": "Ключ аднаўлення",
+    "@recoveryKey": {},
+    "recoveryKeyLost": "Ключ абнаўлення страчаны?",
+    "@recoveryKeyLost": {},
+    "seenByUser": "Прагледжана {username}",
+    "@seenByUser": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "send": "Даслаць",
+    "@send": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "sendAMessage": "Даслаць паведамленне",
+    "@sendAMessage": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "sendAsText": "Даслаць як тэкст",
+    "@sendAsText": {
+        "type": "String"
+    },
+    "sendAudio": "Даслаць аўдыё",
+    "@sendAudio": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "sendFile": "Даслаць файл",
+    "@sendFile": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "sendImage": "Даслаць выяву",
+    "@sendImage": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "sendImages": "Даслаць {count} выяў(-вы)",
+    "@sendImages": {
+        "type": "String",
+        "placeholders": {
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "sendMessages": "Даслаць паведамленні",
+    "@sendMessages": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "sendOriginal": "Даслаць арыгінал",
+    "@sendOriginal": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "sendSticker": "Даслаць стыкер",
+    "@sendSticker": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "sendVideo": "Даслаць відэа",
+    "@sendVideo": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "sentAFile": "📁 {username} даслаў файл",
+    "@sentAFile": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "sentAnAudio": "🎤 {username} даслаў аўдыё",
+    "@sentAnAudio": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "sentAPicture": "🖼️ {username} даслаў выяву",
+    "@sentAPicture": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "sentASticker": "😊 {username} даслаў стыкер",
+    "@sentASticker": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "sentAVideo": "🎥 {username} даслаў відэа",
+    "@sentAVideo": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "sentCallInformations": "{senderName} даслаў інфрамацыю пра выклік",
+    "@sentCallInformations": {
+        "type": "String",
+        "placeholders": {
+            "senderName": {
+                "type": "String"
+            }
+        }
+    },
+    "separateChatTypes": "Падзяляць асобныя чаты і групы",
+    "@separateChatTypes": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "setAsCanonicalAlias": "Задаць як асноўны псеўданім",
+    "@setAsCanonicalAlias": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "setCustomEmotes": "Задаць карыстальніцкі эмодзі",
+    "@setCustomEmotes": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "toggleUnread": "Пазначыць прачытаным/непрачытаным",
+    "@toggleUnread": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "tooManyRequestsWarning": "Занадта шмат запытаў. Паспрабуйце пазней!",
+    "@tooManyRequestsWarning": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "transferFromAnotherDevice": "Перанесці з іншай прылады",
+    "@transferFromAnotherDevice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "tryToSendAgain": "Паспрабуйце даслаць зноў",
+    "@tryToSendAgain": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "unavailable": "Недаступна",
+    "@unavailable": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "unbannedUser": "{username} разблакіраваў {targetName}",
+    "@unbannedUser": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "targetName": {
+                "type": "String"
+            }
+        }
+    },
+    "unblockDevice": "Разблакіраваць прыладу",
+    "@unblockDevice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "unknownDevice": "Невядомая прылада",
+    "@unknownDevice": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "unknownEncryptionAlgorithm": "Невядомы алгарытм шыфравання",
+    "@unknownEncryptionAlgorithm": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "unknownEvent": "Невядомая падзея '{type}'",
+    "@unknownEvent": {
+        "type": "String",
+        "placeholders": {
+            "type": {
+                "type": "String"
+            }
+        }
+    },
+    "unmuteChat": "Уключыць павдеамленні чата",
+    "@unmuteChat": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "unpin": "Адмацаваць",
+    "@unpin": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "unreadChats": "{unreadCount, plural, =1{1 непрачытаны чат} other{{unreadCount} непрачытаных чатаў}}",
+    "@unreadChats": {
+        "type": "String",
+        "placeholders": {
+            "unreadCount": {
+                "type": "int"
+            }
+        }
+    },
+    "userAndOthersAreTyping": "{username} і {count} іншых удзельнікаў друкуюць…",
+    "@userAndOthersAreTyping": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "count": {
+                "type": "int"
+            }
+        }
+    },
+    "userAndUserAreTyping": "{username} і {username2} друкуюць…",
+    "@userAndUserAreTyping": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "username2": {
+                "type": "String"
+            }
+        }
+    },
+    "userIsTyping": "{username} піша …",
+    "@userIsTyping": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "userLeftTheChat": "🚪 {username} пакінуў(-ла) чат",
+    "@userLeftTheChat": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            }
+        }
+    },
+    "username": "Імя карыстальніка",
+    "@username": {
+        "type": "String",
+        "placeholders": {}
+    },
+    "userSentUnknownEvent": "{username} даслаў падзею {type}",
+    "@userSentUnknownEvent": {
+        "type": "String",
+        "placeholders": {
+            "username": {
+                "type": "String"
+            },
+            "type": {
+                "type": "String"
+            }
+        }
+    }
 }
