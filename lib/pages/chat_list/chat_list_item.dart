@@ -4,6 +4,7 @@ import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/pages/chat_list/unread_bubble.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/room_status_extension.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
@@ -46,11 +47,6 @@ class ChatListItem extends StatelessWidget {
     final unread = room.isUnread;
     final directChatMatrixId = room.directChatMatrixID;
     final isDirectChat = directChatMatrixId != null;
-    final unreadBubbleSize = unread || room.hasNewMessages
-        ? room.notificationCount > 0
-            ? 20.0
-            : 14.0
-        : 0.0;
     final hasNotifications = room.notificationCount > 0;
     final backgroundColor =
         activeChat ? theme.colorScheme.secondaryContainer : null;
@@ -318,41 +314,7 @@ class ChatListItem extends StatelessWidget {
                               ),
                   ),
                   const SizedBox(width: 8),
-                  AnimatedContainer(
-                    duration: FluffyThemes.animationDuration,
-                    curve: FluffyThemes.animationCurve,
-                    alignment: Alignment.center,
-                    padding: const EdgeInsets.symmetric(horizontal: 7),
-                    height: unreadBubbleSize,
-                    width: !hasNotifications && !unread && !room.hasNewMessages
-                        ? 0
-                        : (unreadBubbleSize - 9) *
-                                room.notificationCount.toString().length +
-                            9,
-                    decoration: BoxDecoration(
-                      color: room.highlightCount > 0
-                          ? theme.colorScheme.error
-                          : hasNotifications || room.markedUnread
-                              ? theme.colorScheme.primary
-                              : theme.colorScheme.primaryContainer,
-                      borderRadius: BorderRadius.circular(7),
-                    ),
-                    child: hasNotifications
-                        ? Text(
-                            room.notificationCount.toString(),
-                            style: TextStyle(
-                              color: room.highlightCount > 0
-                                  ? theme.colorScheme.onError
-                                  : hasNotifications
-                                      ? theme.colorScheme.onPrimary
-                                      : theme.colorScheme.onPrimaryContainer,
-                              fontSize: 13,
-                              fontWeight: FontWeight.w500,
-                            ),
-                            textAlign: TextAlign.center,
-                          )
-                        : const SizedBox.shrink(),
-                  ),
+                  UnreadBubble(room: room),
                 ],
               ),
               onTap: onTap,

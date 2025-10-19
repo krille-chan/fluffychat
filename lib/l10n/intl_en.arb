@@ -3378,5 +3378,10 @@
   "noMessagesYet": "No messages yet",
   "longPressToRecordVoiceMessage": "Long press to record voice message.",
   "pause": "Pause",
-  "resume": "Resume"
+  "resume": "Resume",
+  "newSubSpace": "New sub space",
+  "moveToDifferentSpace": "Move to different space",
+  "moveUp": "Move up",
+  "moveDown": "Move down",
+  "removeFromSpaceDescription": "The chat will be removed from the space but still appear in your chat list."
 }
