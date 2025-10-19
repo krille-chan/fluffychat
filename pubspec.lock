@@ -1967,10 +1967,10 @@ packages:
     dependency: "direct main"
     description:
       name: unifiedpush_ui
-      sha256: cf86f0214f37debd41f25c0425c8489df85e27f9f8784fed571eb7a86d39ba11
+      sha256: "1b36b2aa0bc6b61577e2661c1183bd3442969ecf77b4c78174796d324f66dd1d"
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.0"
+    version: "0.2.0"
   universal_html:
     dependency: "direct main"
     description:
