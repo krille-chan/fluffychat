@@ -66,6 +66,8 @@ class PublicRoomDialog extends StatelessWidget {
     if (chunk?.roomType != 'm.space' &&
         !client.getRoomById(result.result!)!.isSpace) {
       context.go('/rooms/$roomId');
+    } else {
+      context.go('/rooms?spaceId=$roomId');
     }
     return;
   }

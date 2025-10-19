@@ -72,11 +72,13 @@ extension LocalizedActiveFilter on ActiveFilter {
 class ChatList extends StatefulWidget {
   static BuildContext? contextForVoip;
   final String? activeChat;
+  final String? activeSpace;
   final bool displayNavigationRail;
 
   const ChatList({
     super.key,
     required this.activeChat,
+    this.activeSpace,
     this.displayNavigationRail = false,
   });
 
@@ -400,6 +402,7 @@ class ChatListController extends State<ChatList>
   @override
   void initState() {
     _initReceiveSharingIntent();
+    _activeSpaceId = widget.activeSpace;
 
     scrollController.addListener(_onScroll);
     _waitForFirstSync();
