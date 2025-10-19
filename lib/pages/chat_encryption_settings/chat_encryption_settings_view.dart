@@ -9,6 +9,7 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_encryption_settings/chat_encryption_settings.dart';
 import 'package:fluffychat/utils/beautify_string_extension.dart';
+import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/layouts/max_width_body.dart';
 
 class ChatEncryptionSettingsView extends StatelessWidget {
@@ -58,7 +59,6 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                 size: 128,
                 color: theme.colorScheme.onInverseSurface,
               ),
-              const Divider(),
               if (room.isDirectChat)
                 Padding(
                   padding: const EdgeInsets.all(16.0),
@@ -107,72 +107,73 @@ class ChatEncryptionSettingsView extends StatelessWidget {
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
                         itemCount: deviceKeys.length,
-                        itemBuilder: (BuildContext context, int i) =>
-                            SwitchListTile(
-                          value: !deviceKeys[i].blocked,
-                          activeThumbColor: deviceKeys[i].verified
-                              ? Colors.green
-                              : Colors.orange,
-                          onChanged: (_) =>
-                              controller.toggleDeviceKey(deviceKeys[i]),
-                          title: Row(
-                            children: [
-                              Icon(
-                                deviceKeys[i].verified
-                                    ? Icons.verified_outlined
-                                    : deviceKeys[i].blocked
-                                        ? Icons.block_outlined
-                                        : Icons.info_outlined,
-                                color: deviceKeys[i].verified
-                                    ? Colors.green
-                                    : deviceKeys[i].blocked
-                                        ? Colors.red
-                                        : Colors.orange,
-                                size: 20,
-                              ),
-                              const SizedBox(width: 4),
-                              Text(
-                                deviceKeys[i].deviceId ??
-                                    L10n.of(context).unknownDevice,
-                              ),
-                              const SizedBox(width: 4),
-                              Flexible(
-                                fit: FlexFit.loose,
-                                child: Material(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(
-                                      AppConfig.borderRadius,
+                        itemBuilder: (BuildContext context, int i) => Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            if (i == 0 ||
+                                deviceKeys[i].userId !=
+                                    deviceKeys[i - 1].userId) ...[
+                              const Divider(),
+                              FutureBuilder(
+                                future: room.client
+                                    .getUserProfile(deviceKeys[i].userId),
+                                builder: (context, snapshot) {
+                                  final displayname =
+                                      snapshot.data?.displayname ??
+                                          deviceKeys[i].userId.localpart ??
+                                          deviceKeys[i].userId;
+                                  return ListTile(
+                                    leading: Avatar(
+                                      name: displayname,
+                                      mxContent: snapshot.data?.avatarUrl,
                                     ),
-                                    side: BorderSide(
-                                      color: theme.colorScheme.primary,
-                                    ),
-                                  ),
-                                  color: theme.colorScheme.primaryContainer,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(4.0),
-                                    child: Text(
-                                      deviceKeys[i].userId,
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(
-                                        color: theme.colorScheme.primary,
-                                        fontSize: 12,
-                                        fontStyle: FontStyle.italic,
-                                      ),
-                                    ),
-                                  ),
-                                ),
+                                    title: Text(displayname),
+                                    subtitle: Text(deviceKeys[i].userId),
+                                  );
+                                },
                               ),
                             ],
-                          ),
-                          subtitle: Text(
-                            deviceKeys[i].ed25519Key?.beautified ??
-                                L10n.of(context).unknownEncryptionAlgorithm,
-                            style: TextStyle(
-                              fontFamily: 'RobotoMono',
-                              color: theme.colorScheme.secondary,
+                            SwitchListTile(
+                              value: !deviceKeys[i].blocked,
+                              activeThumbColor: deviceKeys[i].verified
+                                  ? Colors.green
+                                  : Colors.orange,
+                              onChanged: (_) =>
+                                  controller.toggleDeviceKey(deviceKeys[i]),
+                              title: Row(
+                                children: [
+                                  Text(
+                                    deviceKeys[i].verified
+                                        ? L10n.of(context).verified
+                                        : deviceKeys[i].blocked
+                                            ? L10n.of(context).blocked
+                                            : L10n.of(context).unverified,
+                                    style: TextStyle(
+                                      color: deviceKeys[i].verified
+                                          ? Colors.green
+                                          : deviceKeys[i].blocked
+                                              ? Colors.red
+                                              : Colors.orange,
+                                    ),
+                                  ),
+                                  const Text(' | ID: '),
+                                  Text(
+                                    deviceKeys[i].deviceId ??
+                                        L10n.of(context).unknownDevice,
+                                  ),
+                                ],
+                              ),
+                              subtitle: Text(
+                                deviceKeys[i].ed25519Key?.beautified ??
+                                    L10n.of(context).unknownEncryptionAlgorithm,
+                                style: TextStyle(
+                                  fontFamily: 'RobotoMono',
+                                  color: theme.colorScheme.secondary,
+                                  fontSize: 11,
+                                ),
+                              ),
                             ),
-                          ),
+                          ],
                         ),
                       );
                     },

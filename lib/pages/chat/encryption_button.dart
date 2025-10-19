@@ -21,6 +21,7 @@ class EncryptionButton extends StatelessWidget {
           .stream
           .where((s) => s.deviceLists != null),
       builder: (context, snapshot) {
+        final shouldBeEncrypted = room.joinRules != JoinRules.public;
         return FutureBuilder<EncryptionHealthState>(
           future: room.encrypted
               ? room.calcEncryptionHealthState()
@@ -46,9 +47,13 @@ class EncryptionButton extends StatelessWidget {
                 ),
               ),
               child: Icon(
-                room.encrypted ? Icons.lock_outlined : Icons.lock_open_outlined,
+                room.encrypted
+                    ? Icons.lock_outlined
+                    : Icons.no_encryption_outlined,
                 size: 20,
-                color: theme.colorScheme.onSurface,
+                color: (shouldBeEncrypted && !room.encrypted)
+                    ? theme.colorScheme.error
+                    : theme.colorScheme.onSurface,
               ),
             ),
             onPressed: () => context.go('/rooms/${room.id}/encryption'),
