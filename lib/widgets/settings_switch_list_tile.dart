@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 
-import 'matrix.dart';
+import 'package:fluffychat/config/setting_keys.dart';
 
 class SettingsSwitchListTile extends StatefulWidget {
-  final bool defaultValue;
-  final String storeKey;
+  final AppSettings<bool> setting;
   final String title;
   final String? subtitle;
   final Function(bool)? onChanged;
 
   const SettingsSwitchListTile.adaptive({
     super.key,
-    this.defaultValue = false,
-    required this.storeKey,
+    required this.setting,
     required this.title,
     this.subtitle,
     this.onChanged,
@@ -27,13 +25,12 @@ class SettingsSwitchListTileState extends State<SettingsSwitchListTile> {
   Widget build(BuildContext context) {
     final subtitle = widget.subtitle;
     return SwitchListTile.adaptive(
-      value: Matrix.of(context).store.getBool(widget.storeKey) ??
-          widget.defaultValue,
+      value: widget.setting.value,
       title: Text(widget.title),
       subtitle: subtitle == null ? null : Text(subtitle),
       onChanged: (bool newValue) async {
         widget.onChanged?.call(newValue);
-        await Matrix.of(context).store.setBool(widget.storeKey, newValue);
+        await widget.setting.setItem(newValue);
         setState(() {});
       },
     );

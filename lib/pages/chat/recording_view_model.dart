@@ -15,7 +15,6 @@ import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
-import 'package:fluffychat/widgets/matrix.dart';
 import 'events/audio_player.dart';
 
 class RecordingViewModel extends StatefulWidget {
@@ -62,8 +61,6 @@ class RecordingViewModelState extends State<RecordingViewModel> {
     }
     if (await AudioRecorder().hasPermission() == false) return;
 
-    final store = Matrix.of(context).store;
-
     final audioRecorder = _audioRecorder ??= AudioRecorder();
     setState(() {});
 
@@ -93,12 +90,12 @@ class RecordingViewModelState extends State<RecordingViewModel> {
 
       await audioRecorder.start(
         RecordConfig(
-          bitRate: AppSettings.audioRecordingBitRate.getItem(store),
-          sampleRate: AppSettings.audioRecordingSamplingRate.getItem(store),
-          numChannels: AppSettings.audioRecordingNumChannels.getItem(store),
-          autoGain: AppSettings.audioRecordingAutoGain.getItem(store),
-          echoCancel: AppSettings.audioRecordingEchoCancel.getItem(store),
-          noiseSuppress: AppSettings.audioRecordingNoiseSuppress.getItem(store),
+          bitRate: AppSettings.audioRecordingBitRate.value,
+          sampleRate: AppSettings.audioRecordingSamplingRate.value,
+          numChannels: AppSettings.audioRecordingNumChannels.value,
+          autoGain: AppSettings.audioRecordingAutoGain.value,
+          echoCancel: AppSettings.audioRecordingEchoCancel.value,
+          noiseSuppress: AppSettings.audioRecordingNoiseSuppress.value,
           encoder: codec,
         ),
         path: path ?? '',

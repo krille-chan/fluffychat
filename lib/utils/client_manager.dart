@@ -11,7 +11,6 @@ import 'package:matrix/matrix.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:universal_html/html.dart' as html;
 
-import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/custom_http_client.dart';
@@ -101,8 +100,8 @@ abstract class ClientManager {
     String clientName,
     SharedPreferences store,
   ) async {
-    final shareKeysWith = AppSettings.shareKeysWith.getItem(store);
-    final enableSoftLogout = AppSettings.enableSoftLogout.getItem(store);
+    final shareKeysWith = AppSettings.shareKeysWith.value;
+    final enableSoftLogout = AppSettings.enableSoftLogout.value;
 
     return Client(
       clientName,
@@ -147,7 +146,7 @@ abstract class ClientManager {
       await NotificationsClient().notify(
         title,
         body: body,
-        appName: AppConfig.applicationName,
+        appName: AppSettings.applicationName.value,
         hints: [
           NotificationHint.soundName('message-new-instant'),
         ],

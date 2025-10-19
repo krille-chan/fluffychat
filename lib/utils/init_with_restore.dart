@@ -5,6 +5,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/client_manager.dart';
 import 'package:fluffychat/utils/platform_infos.dart';
@@ -57,13 +58,13 @@ extension InitWithRestoreExtension on Client {
         ? const FlutterSecureStorage()
         : null;
     await storage?.delete(
-      key: '${AppConfig.applicationName}_session_backup_$clientName',
+      key: '${AppSettings.applicationName.value}_session_backup_$clientName',
     );
   }
 
   Future<void> initWithRestore({void Function()? onMigration}) async {
     final storageKey =
-        '${AppConfig.applicationName}_session_backup_$clientName';
+        '${AppSettings.applicationName.value}_session_backup_$clientName';
     final storage = PlatformInfos.isMobile || PlatformInfos.isLinux
         ? const FlutterSecureStorage()
         : null;

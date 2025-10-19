@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
-import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/fluffy_share.dart';
@@ -244,7 +244,7 @@ class SettingsView extends StatelessWidget {
                   ListTile(
                     leading: const Icon(Icons.privacy_tip_outlined),
                     title: Text(L10n.of(context).privacy),
-                    onTap: () => launchUrlString(AppConfig.privacyUrl),
+                    onTap: () => launchUrlString(AppSettings.privacyUrl.value),
                   ),
                   ListTile(
                     leading: const Icon(Icons.info_outline_rounded),

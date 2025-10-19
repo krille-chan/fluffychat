@@ -12,7 +12,6 @@ import 'package:matrix/matrix.dart' as sdk;
 import 'package:matrix/matrix.dart';
 import 'package:receive_sharing_intent/receive_sharing_intent.dart';
 
-import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_view.dart';
 import 'package:fluffychat/utils/localized_exception_extension.dart';
@@ -94,9 +93,7 @@ class ChatListController extends State<ChatList>
 
   StreamSubscription? _intentUriStreamSubscription;
 
-  ActiveFilter activeFilter = AppConfig.separateChatTypes
-      ? ActiveFilter.messages
-      : ActiveFilter.allChats;
+  late ActiveFilter activeFilter;
 
   String? _activeSpaceId;
   String? get activeSpaceId => _activeSpaceId;
@@ -401,6 +398,9 @@ class ChatListController extends State<ChatList>
 
   @override
   void initState() {
+    activeFilter = AppSettings.separateChatTypes.value
+        ? ActiveFilter.messages
+        : ActiveFilter.allChats;
     _initReceiveSharingIntent();
     _activeSpaceId = widget.activeSpace;
 
@@ -713,8 +713,7 @@ class ChatListController extends State<ChatList>
       context: context,
     );
     if (result == OkCancelResult.ok) {
-      await Matrix.of(context).store.setBool(SettingKeys.showPresences, false);
-      AppConfig.showPresences = false;
+      AppSettings.showPresences.setItem(false);
       setState(() {});
     }
   }

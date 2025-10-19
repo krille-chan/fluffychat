@@ -11,6 +11,7 @@ import 'package:universal_html/html.dart' as html;
 import 'package:url_launcher/url_launcher_string.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/homeserver_picker/homeserver_picker_view.dart';
 import 'package:fluffychat/utils/file_selector.dart';
@@ -34,7 +35,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
   bool isLoading = false;
 
   final TextEditingController homeserverController = TextEditingController(
-    text: AppConfig.defaultHomeserver,
+    text: AppSettings.defaultHomeserver.value,
   );
 
   String? error;
@@ -211,7 +212,7 @@ class HomeserverPickerController extends State<HomeserverPicker> {
       case MoreLoginActions.importBackup:
         restoreBackup();
       case MoreLoginActions.privacy:
-        launchUrlString(AppConfig.privacyUrl);
+        launchUrlString(AppSettings.privacyUrl.value);
       case MoreLoginActions.about:
         PlatformInfos.showDialog(context);
     }

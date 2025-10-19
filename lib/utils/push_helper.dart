@@ -8,9 +8,9 @@ import 'package:collection/collection.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_shortcuts_new/flutter_shortcuts_new.dart';
 import 'package:matrix/matrix.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/client_download_content_extension.dart';
 import 'package:fluffychat/utils/client_manager.dart';
@@ -50,7 +50,7 @@ Future<void> pushHelper(
           l10n.incomingMessages,
           number: notification.counts?.unread,
           ticker: l10n.unreadChatsInApp(
-            AppConfig.applicationName,
+            AppSettings.applicationName.value,
             (notification.counts?.unread ?? 0).toString(),
           ),
           importance: Importance.high,
@@ -85,7 +85,7 @@ Future<void> _tryPushHelper(
 
   client ??= (await ClientManager.getClients(
     initialize: false,
-    store: await SharedPreferences.getInstance(),
+    store: await AppSettings.init(),
   ))
       .first;
   final event = await client.getEventByPushNotification(
