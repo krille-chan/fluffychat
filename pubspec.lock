@@ -1542,6 +1542,46 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.2"
+  screen_retriever:
+    dependency: transitive
+    description:
+      name: screen_retriever
+      sha256: "570dbc8e4f70bac451e0efc9c9bb19fa2d6799a11e6ef04f946d7886d2e23d0c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.0"
+  screen_retriever_linux:
+    dependency: transitive
+    description:
+      name: screen_retriever_linux
+      sha256: f7f8120c92ef0784e58491ab664d01efda79a922b025ff286e29aa123ea3dd18
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.0"
+  screen_retriever_macos:
+    dependency: transitive
+    description:
+      name: screen_retriever_macos
+      sha256: "71f956e65c97315dd661d71f828708bd97b6d358e776f1a30d5aa7d22d78a149"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.0"
+  screen_retriever_platform_interface:
+    dependency: transitive
+    description:
+      name: screen_retriever_platform_interface
+      sha256: ee197f4581ff0d5608587819af40490748e1e39e648d7680ecf95c05197240c0
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.0"
+  screen_retriever_windows:
+    dependency: transitive
+    description:
+      name: screen_retriever_windows
+      sha256: "449ee257f03ca98a57288ee526a301a430a344a161f9202b4fcc38576716fe13"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.0"
   scroll_to_index:
     dependency: "direct main"
     description:
@@ -1887,26 +1927,42 @@ packages:
     dependency: "direct main"
     description:
       name: unifiedpush
-      sha256: "1418375efb580af9640de4eaf4209cb6481f9a48792648ced3051f30e67d9568"
+      sha256: "8ed9767f750a1dc6159a77e2171641d0cb825dc87682d1ce1b8618689b79f58e"
       url: "https://pub.dev"
     source: hosted
-    version: "6.0.2"
+    version: "6.2.0"
   unifiedpush_android:
     dependency: transitive
     description:
       name: unifiedpush_android
-      sha256: "2f25db8eb2fc3183bf2e43db89fff20b2587adc1c361e1d1e06b223a0d45b50a"
+      sha256: "556796c81e8151ee8e4275baea2f7191119e8b1412ec35523cc2ac1c44c348bf"
       url: "https://pub.dev"
     source: hosted
-    version: "3.1.1"
+    version: "3.4.0"
+  unifiedpush_linux:
+    dependency: transitive
+    description:
+      name: unifiedpush_linux
+      sha256: c062d5eedd1cec70bcd33270cc4e01ae0ff6501f33d471167c06b34a968adfeb
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   unifiedpush_platform_interface:
     dependency: transitive
     description:
       name: unifiedpush_platform_interface
-      sha256: bb49d2748211520e35e0374ab816faa8a2c635267e71909d334ad868d532eba5
+      sha256: "83372bc8d794b8b12ef6993b518d7be907dcfc2191bdf6de0ece5c4445d89880"
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.1"
+    version: "4.0.0"
+  unifiedpush_storage_interface:
+    dependency: transitive
+    description:
+      name: unifiedpush_storage_interface
+      sha256: b8d423a4695efc616aa21d8ab48fb5ef99d6288c68b56282b8faac1579ceabd9
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   unifiedpush_ui:
     dependency: "direct main"
     description:
@@ -2139,6 +2195,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.3"
+  webcrypto:
+    dependency: transitive
+    description:
+      name: webcrypto
+      sha256: e393b3d0b01694a8f81efecf278ed7392877130e6e7b29f578863e4f2d0b2ebd
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.5.8"
   webdriver:
     dependency: transitive
     description:
@@ -2155,6 +2219,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.1"
+  webpush_encryption:
+    dependency: transitive
+    description:
+      name: webpush_encryption
+      sha256: "63046b7d6909f4a72ce3c153fa574726e257aaf21b1995ba063dc241a1b1520b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   webrtc_interface:
     dependency: "direct main"
     description:
@@ -2179,6 +2251,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.0"
+  window_manager:
+    dependency: transitive
+    description:
+      name: window_manager
+      sha256: "7eb6d6c4164ec08e1bf978d6e733f3cebe792e2a23fb07cbca25c2872bfdbdcd"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.5.1"
   window_to_front:
     dependency: transitive
     description:
