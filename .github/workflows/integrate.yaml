@@ -45,7 +45,7 @@ jobs:
           cache: true
       - uses: moonrepo/setup-rust@v1
       - run: flutter pub get
-      - run: flutter build apk --debug
+      - run: flutter build apk --debug --target-platform android-arm64
 
   build_debug_web:
     runs-on: ubuntu-latest
