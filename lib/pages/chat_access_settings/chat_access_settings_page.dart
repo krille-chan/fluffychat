@@ -88,7 +88,10 @@ class ChatAccessSettingsPageView extends StatelessWidget {
                             enabled: !controller.joinRulesLoading &&
                                 room.canChangeJoinRules,
                             title: Text(
-                              joinRule.localizedString(L10n.of(context)),
+                              joinRule.localizedString(
+                                L10n.of(context),
+                                controller.knownSpaceParents,
+                              ),
                             ),
                             value: joinRule,
                           ),
@@ -280,7 +283,7 @@ class _AliasListTile extends StatelessWidget {
 }
 
 extension JoinRulesDisplayString on JoinRules {
-  String localizedString(L10n l10n) {
+  String localizedString(L10n l10n, Set<Room> spaceParents) {
     switch (this) {
       case JoinRules.public:
         return l10n.anyoneCanJoin;
@@ -291,9 +294,17 @@ extension JoinRulesDisplayString on JoinRules {
       case JoinRules.private:
         return l10n.noOneCanJoin;
       case JoinRules.restricted:
-        return l10n.restricted;
+        return l10n.spaceMemberOf(
+          spaceParents
+              .map((space) => space.getLocalizedDisplayname(MatrixLocals(l10n)))
+              .join(', '),
+        );
       case JoinRules.knockRestricted:
-        return l10n.knockRestricted;
+        return l10n.spaceMemberOfCanKnock(
+          spaceParents
+              .map((space) => space.getLocalizedDisplayname(MatrixLocals(l10n)))
+              .join(', '),
+        );
     }
   }
 }

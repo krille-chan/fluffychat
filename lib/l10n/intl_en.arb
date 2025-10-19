@@ -3392,5 +3392,23 @@
         "type": "int"
       }
     }
+  },
+  "spaceMemberOf": "Space member of {spaces}",
+  "@spaceMemberOf": {
+    "type": "String",
+    "placeholders": {
+      "spaces": {
+        "type": "String"
+      }
+    }
+  },
+  "spaceMemberOfCanKnock": "Space member of {spaces} can knock",
+  "@spaceMemberOfCanKnock": {
+    "type": "String",
+    "placeholders": {
+      "spaces": {
+        "type": "String"
+      }
+    }
   }
 }
