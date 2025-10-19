@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
@@ -120,7 +120,8 @@ class ChatListViewBody extends StatelessWidget {
                               ),
                       ),
                     ],
-                    if (!controller.isSearchMode && AppConfig.showPresences)
+                    if (!controller.isSearchMode &&
+                        AppSettings.showPresences.value)
                       GestureDetector(
                         onLongPress: () => controller.dismissStatusList(),
                         child: StatusMessageList(
@@ -155,14 +156,14 @@ class ChatListViewBody extends StatelessWidget {
                           shrinkWrap: true,
                           scrollDirection: Axis.horizontal,
                           children: [
-                            if (AppConfig.separateChatTypes)
+                            if (AppSettings.separateChatTypes.value)
                               ActiveFilter.messages
                             else
                               ActiveFilter.allChats,
                             ActiveFilter.groups,
                             ActiveFilter.unread,
                             if (spaceDelegateCandidates.isNotEmpty &&
-                                !AppConfig.displayNavigationRail &&
+                                !AppSettings.displayNavigationRail.value &&
                                 !FluffyThemes.isColumnMode(context))
                               ActiveFilter.spaces,
                           ]

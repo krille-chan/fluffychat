@@ -4,6 +4,7 @@ import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/pages/image_viewer/image_viewer.dart';
 import 'package:fluffychat/utils/file_description.dart';
 import 'package:fluffychat/utils/url_launcher.dart';
@@ -139,14 +140,14 @@ class ImageBubble extends StatelessWidget {
                 textScaleFactor: MediaQuery.textScalerOf(context).scale(1),
                 style: TextStyle(
                   color: textColor,
-                  fontSize:
-                      AppConfig.fontSizeFactor * AppConfig.messageFontSize,
+                  fontSize: AppSettings.fontSizeFactor.value *
+                      AppConfig.messageFontSize,
                 ),
                 options: const LinkifyOptions(humanize: false),
                 linkStyle: TextStyle(
                   color: linkColor,
-                  fontSize:
-                      AppConfig.fontSizeFactor * AppConfig.messageFontSize,
+                  fontSize: AppSettings.fontSizeFactor.value *
+                      AppConfig.messageFontSize,
                   decoration: TextDecoration.underline,
                   decorationColor: linkColor,
                 ),

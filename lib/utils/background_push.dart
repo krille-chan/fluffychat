@@ -217,8 +217,7 @@ class BackgroundPush {
           currentPushers.first.lang == 'en' &&
           currentPushers.first.data.url.toString() == gatewayUrl &&
           currentPushers.first.data.format ==
-              AppSettings.pushNotificationsPusherFormat
-                  .getItem(matrix!.store) &&
+              AppSettings.pushNotificationsPusherFormat.value &&
           mapEquals(
             currentPushers.single.data.additionalProperties,
             {"data_message": pusherDataMessageFormat},
@@ -258,8 +257,7 @@ class BackgroundPush {
             lang: 'en',
             data: PusherData(
               url: Uri.parse(gatewayUrl!),
-              format: AppSettings.pushNotificationsPusherFormat
-                  .getItem(matrix!.store),
+              format: AppSettings.pushNotificationsPusherFormat.value,
               additionalProperties: {"data_message": pusherDataMessageFormat},
             ),
             kind: 'http',
@@ -325,7 +323,7 @@ class BackgroundPush {
     if (matrix == null) {
       return;
     }
-    if ((matrix?.store.getBool(SettingKeys.showNoGoogle) ?? false) == true) {
+    if (!AppSettings.showNoGoogle.value) {
       return;
     }
     await loadLocale();
@@ -356,8 +354,7 @@ class BackgroundPush {
       }
     }
     await setupPusher(
-      gatewayUrl:
-          AppSettings.pushNotificationsGatewayUrl.getItem(matrix!.store),
+      gatewayUrl: AppSettings.pushNotificationsGatewayUrl.value,
       token: _fcmToken,
     );
   }
@@ -414,18 +411,18 @@ class BackgroundPush {
       oldTokens: oldTokens,
       useDeviceSpecificAppId: true,
     );
-    await matrix?.store.setString(SettingKeys.unifiedPushEndpoint, newEndpoint);
-    await matrix?.store.setBool(SettingKeys.unifiedPushRegistered, true);
+    await AppSettings.unifiedPushEndpoint.setItem(newEndpoint);
+    await AppSettings.unifiedPushRegistered.setItem(true);
   }
 
   Future<void> _upUnregistered(String i) async {
     upAction = true;
     Logs().i('[Push] Removing UnifiedPush endpoint...');
-    final oldEndpoint =
-        matrix?.store.getString(SettingKeys.unifiedPushEndpoint);
-    await matrix?.store.setBool(SettingKeys.unifiedPushRegistered, false);
-    await matrix?.store.remove(SettingKeys.unifiedPushEndpoint);
-    if (oldEndpoint?.isNotEmpty ?? false) {
+    final oldEndpoint = AppSettings.unifiedPushEndpoint.value;
+    await AppSettings.unifiedPushEndpoint
+        .setItem(AppSettings.unifiedPushEndpoint.defaultValue);
+    await AppSettings.unifiedPushRegistered.setItem(false);
+    if (oldEndpoint.isNotEmpty) {
       // remove the old pusher
       await setupPusher(
         oldTokens: {oldEndpoint},
