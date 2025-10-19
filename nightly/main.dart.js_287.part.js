@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEF(){return new A.Fs(B.df("he"))},
-Fs:function Fs(d){this.a=d}}
+cEf(){return new A.Fw(B.df("he"))},
+Fw:function Fw(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[25],A)
-A.Fs.prototype={
+A.Fw.prototype={
 gl0(){return""},
 gjN(){return"\u05db\u05ea\u05d5\u05d1 \u05e9\u05d5\u05d1 \u05d0\u05ea \u05d4\u05e1\u05d9\u05e1\u05de\u05d4"},
 gmP(){return"\u05d4\u05e7\u05d5\u05d1\u05e5 \u05d0\u05d9\u05e0\u05d5 \u05ea\u05de\u05d5\u05e0\u05d4."},
@@ -537,7 +537,7 @@ gnv(){return"One of your devices is not verified"},
 gmR(){return"Note: When you connect all your devices to the chat backup, they are automatically verified."},
 gic(){return"Continue"},
 gl8(d){return"Blur:"},
-gbT(d){return"Opacity:"},
+gbU(d){return"Opacity:"},
 geU(){return"Set wallpaper"},
 gmy(){return"Manage account"},
 gjh(){return"Server does not provide any valid contact information"},
@@ -545,7 +545,7 @@ glA(){return"Contact server admin"},
 glB(){return"Contact server security"},
 gkR(){return"Support page"},
 gky(){return"Server information:"},
-gbG(d){return"Name"},
+gbH(d){return"Name"},
 gox(d){return"Version"},
 goI(){return"Website"},
 glx(){return"Compress"},
@@ -640,7 +640,7 @@ pl(d){return"Space member of "+d},
 pm(d){return"Space member of "+d+" can knock"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Fs,C.aF)})()
-B.dQ(b.typeUniverse,JSON.parse('{"Fs":{"aF":[]}}'))};
-(a=>{a["SRRhHUq2pjaFW+92orn3AtCkKxc="]=a.current})($__dart_deferred_initializers__);
+y(A.Fw,C.aF)})()
+B.dQ(b.typeUniverse,JSON.parse('{"Fw":{"aF":[]}}'))};
+(a=>{a["VezOdnmshWFv1l+xt2ZnH56K1aU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_287.part.js.map

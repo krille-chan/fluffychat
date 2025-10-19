@@ -1,15 +1,15 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cEV(d){return new A.AF(B.df(d))},
-cEW(){return new A.FI(B.df("pt_BR"))},
-cEX(){return new A.FJ(B.df("pt_PT"))},
-AF:function AF(d){this.a=d},
-FI:function FI(d){this.a=d},
-FJ:function FJ(d){this.a=d}},C
+cEv(d){return new A.AI(B.df(d))},
+cEw(){return new A.FM(B.df("pt_BR"))},
+cEx(){return new A.FN(B.df("pt_PT"))},
+AI:function AI(d){this.a=d},
+FM:function FM(d){this.a=d},
+FN:function FN(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[4],A)
 C=c[54]
-A.AF.prototype={
+A.AI.prototype={
 gl0(){return"true"},
 gjN(){return"Repita a senha"},
 gmP(){return"N\xe3o \xe9 um arquivo de imagem."},
@@ -541,7 +541,7 @@ gnv(){return"One of your devices is not verified"},
 gmR(){return"Note: When you connect all your devices to the chat backup, they are automatically verified."},
 gic(){return"Continue"},
 gl8(d){return"Blur:"},
-gbT(d){return"Opacity:"},
+gbU(d){return"Opacity:"},
 geU(){return"Set wallpaper"},
 gmy(){return"Manage account"},
 gjh(){return"Server does not provide any valid contact information"},
@@ -549,7 +549,7 @@ glA(){return"Contact server admin"},
 glB(){return"Contact server security"},
 gkR(){return"Support page"},
 gky(){return"Server information:"},
-gbG(d){return"Name"},
+gbH(d){return"Name"},
 gox(d){return"Version"},
 goI(){return"Website"},
 glx(){return"Compress"},
@@ -643,7 +643,7 @@ pn(d){return""+d+" chats"},
 pl(d){return"Space member of "+d},
 pm(d){return"Space member of "+d+" can knock"},
 A(d,e){return this.gbc(this).$1(e)}}
-A.FI.prototype={
+A.FM.prototype={
 gl0(){return"true"},
 gjN(){return"Repita a senha"},
 gmP(){return"N\xe3o \xe9 um arquivo de imagem."},
@@ -1175,7 +1175,7 @@ gnv(){return"Um dos seus dispositivos n\xe3o est\xe1 verificado"},
 gmR(){return"Observa\xe7\xe3o: Quando voc\xea conecta todos os seus dispositivos ao backup de conversas, eles s\xe3o verificados automaticamente."},
 gic(){return"Continuar"},
 gl8(d){return"Borrar:"},
-gbT(d){return"Opacidade:"},
+gbU(d){return"Opacidade:"},
 geU(){return"Definir plano de fundo"},
 gmy(){return"Gerenciar conta"},
 gjh(){return"O servidor n\xe3o fornece nenhuma informa\xe7\xe3o v\xe1lida de contato"},
@@ -1183,7 +1183,7 @@ glA(){return"Contatar o administrador do servidor"},
 glB(){return"Contatar a seguran\xe7a do servidor"},
 gkR(){return"P\xe1gina de ajuda"},
 gky(){return"Informa\xe7\xf5es do servidor:"},
-gbG(d){return"Nome"},
+gbH(d){return"Nome"},
 gox(d){return"Vers\xe3o"},
 goI(){return"Site"},
 glx(){return"Comprimir"},
@@ -1270,7 +1270,7 @@ glL(){return"Rea\xe7\xe3o personalizada"},
 gph(){return"Mais eventos"},
 glO(){return"Rejeitar convite"},
 A(d,e){return this.gbc(this).$1(e)}}
-A.FJ.prototype={
+A.FN.prototype={
 gjN(){return"Repete a palavra-passe"},
 gbc(d){return"Remover"},
 ges(){return"Acerca de"},
@@ -1519,9 +1519,9 @@ eT(d){return d+" enviou um autocolante"},
 h_(d){return d+" enviou um v\xeddeo"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit,w=a.inheritMany
-x(A.AF,C.aF)
-w(A.AF,[A.FI,A.FJ])})()
-B.dQ(b.typeUniverse,JSON.parse('{"AF":{"aF":[]},"FI":{"aF":[]},"FJ":{"aF":[]}}'))
+x(A.AI,C.aF)
+w(A.AI,[A.FM,A.FN])})()
+B.dQ(b.typeUniverse,JSON.parse('{"AI":{"aF":[]},"FM":{"aF":[]},"FN":{"aF":[]}}'))
 var y={h:" alterou a visibilidade do hist\xf3rico para: ",a:"(BETA) Ativar m\xfaltiplas contas neste dispositivo"}};
-(a=>{a["5Us2cuNnER628pOIRVx3bs/XE7I="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["xGPfzhbji31q6FpxRWd3Xh0ybKE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_16.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEx(){return new A.Fk(B.df("et"))},
-Fk:function Fk(d){this.a=d}}
+cE7(){return new A.Fo(B.df("et"))},
+Fo:function Fo(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[17],A)
-A.Fk.prototype={
+A.Fo.prototype={
 gl0(){return"false"},
 gjN(){return"Korda salas\xf5na"},
 gmP(){return"See pole pildifail."},
@@ -537,7 +537,7 @@ gnv(){return"\xdcks sinu seadmetest pole verifitseeritud"},
 gmR(){return"M\xe4rkus: kui liidad k\xf5ik oma seadmed vestluste varundamisega, siis on nad sellega ka automaatselt verifitseeritud."},
 gic(){return"J\xe4tka"},
 gl8(d){return"H\xe4gusus:"},
-gbT(d){return"L\xe4bipaistmatus:"},
+gbU(d){return"L\xe4bipaistmatus:"},
 geU(){return"M\xe4\xe4ra taustapildiks"},
 gmy(){return"Halda kasutajakontot"},
 gjh(){return"Server ei jaga asjakohast kontaktteavet"},
@@ -545,7 +545,7 @@ glA(){return"V\xf5ta \xfchendust serveri haldajaga"},
 glB(){return"V\xf5ta \xfchendust serveri andmeturbe eest vastutajaga"},
 gkR(){return"Kasutajatugi"},
 gky(){return"Serveri teave:"},
-gbG(d){return"Nimi"},
+gbH(d){return"Nimi"},
 gox(d){return"Versioon"},
 goI(){return"Veebisait"},
 glx(){return"Paki kokku"},
@@ -640,7 +640,7 @@ pl(d){return"Space member of "+d},
 pm(d){return"Space member of "+d+" can knock"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Fk,C.aF)})()
-B.dQ(b.typeUniverse,JSON.parse('{"Fk":{"aF":[]}}'))};
-(a=>{a["fMXiGzu6ntcb4Fmp7S2SG3AuQuI="]=a.current})($__dart_deferred_initializers__);
+y(A.Fo,C.aF)})()
+B.dQ(b.typeUniverse,JSON.parse('{"Fo":{"aF":[]}}'))};
+(a=>{a["wo6cb9kAhNSAEe7uzP3GAvl+rGw="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_271.part.js.map

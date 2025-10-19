@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEU(){return new A.FH(B.df("pl"))},
-FH:function FH(d){this.a=d}}
+cEu(){return new A.FL(B.df("pl"))},
+FL:function FL(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[40],A)
-A.FH.prototype={
+A.FL.prototype={
 gl0(){return"false"},
 gjN(){return"Powt\xf3rz has\u0142o"},
 gmP(){return"To nie jest plik obrazu."},
@@ -537,7 +537,7 @@ gnv(){return"Jedno z Twoich urz\u0105dze\u0144 nie jest zweryfikowane"},
 gmR(){return"Uwaga: Urz\u0105dzenia dodane do kopii zapasowej czatu automatycznie zostaj\u0105 zweryfikowane."},
 gic(){return"Kontynuuj"},
 gl8(d){return"Rozmazanie:"},
-gbT(d){return"Przezroczysto\u015b\u0107:"},
+gbU(d){return"Przezroczysto\u015b\u0107:"},
 geU(){return"Ustaw tapet\u0119"},
 gmy(){return"Zarz\u0105dzaj kontem"},
 gjh(){return"Serwer nie dostarcza \u017cadnych poprawnych danych kontaktowych"},
@@ -545,7 +545,7 @@ glA(){return"Skontaktuj si\u0119 z administratorem serwera"},
 glB(){return"Skontaktuj si\u0119 z dzia\u0142em bezpiecze\u0144stwa serwera"},
 gkR(){return"Strona obs\u0142ugi u\u017cytkownika"},
 gky(){return"Informacje o serwerze:"},
-gbG(d){return"Nazwa"},
+gbH(d){return"Nazwa"},
 gox(d){return"Wersja"},
 goI(){return"Strona internetowa"},
 glx(){return"Skompresuj"},
@@ -640,7 +640,7 @@ pl(d){return"Space member of "+d},
 pm(d){return"Space member of "+d+" can knock"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FH,C.aF)})()
-B.dQ(b.typeUniverse,JSON.parse('{"FH":{"aF":[]}}'))};
-(a=>{a["G1j56HO/X67dhYgJcCZoV78ka1Q="]=a.current})($__dart_deferred_initializers__);
+y(A.FL,C.aF)})()
+B.dQ(b.typeUniverse,JSON.parse('{"FL":{"aF":[]}}'))};
+(a=>{a["5ZO78sVNTMBnIpG0vPvSAE23d3E="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_316.part.js.map

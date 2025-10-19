@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEp(){return new A.Fc(B.df("ca"))},
-Fc:function Fc(d){this.a=d}}
+cE_(){return new A.Fg(B.df("ca"))},
+Fg:function Fg(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[9],A)
-A.Fc.prototype={
+A.Fg.prototype={
 gl0(){return"true"},
 gjN(){return"Repetiu la contrasenya"},
 gmP(){return"No \xe9s un arxiu d'image."},
@@ -537,7 +537,7 @@ gnv(){return"Un dels teus dispositius no est\xe0 verificat"},
 gmR(){return"Nota: quan connectes tots els dispositius al backup del xat, es verifiquen autom\xe0ticament."},
 gic(){return"Continua"},
 gl8(d){return"Difumina:"},
-gbT(d){return"Opacitat:"},
+gbU(d){return"Opacitat:"},
 geU(){return"Tria imatge de fons"},
 gmy(){return"Gestiona el compte"},
 gjh(){return"El servidor no ofereix cap informaci\xf3 de contacte v\xe0lida"},
@@ -545,7 +545,7 @@ glA(){return"Contacta l'admin del servidor"},
 glB(){return"Contacta l'equip de seguretat del servidor"},
 gkR(){return"P\xe0gina de suport"},
 gky(){return"Informaci\xf3 del servidor:"},
-gbG(d){return"Nom"},
+gbH(d){return"Nom"},
 gox(d){return"Versi\xf3"},
 goI(){return"Lloc web"},
 glx(){return"Comprimeix"},
@@ -640,7 +640,7 @@ pl(d){return"Space member of "+d},
 pm(d){return"Space member of "+d+" can knock"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Fc,C.aF)})()
-B.dQ(b.typeUniverse,JSON.parse('{"Fc":{"aF":[]}}'))};
-(a=>{a["eTJkd4EKZrAXpq9N6RPPB6ivyKk="]=a.current})($__dart_deferred_initializers__);
+y(A.Fg,C.aF)})()
+B.dQ(b.typeUniverse,JSON.parse('{"Fg":{"aF":[]}}'))};
+(a=>{a["vEVBMi7zJRWmLqSJe5uQ6D36gNY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_237.part.js.map

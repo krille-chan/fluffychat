@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEw(){return new A.Fj(B.df("es"))},
-Fj:function Fj(d){this.a=d}}
+cE6(){return new A.Fn(B.df("es"))},
+Fn:function Fn(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[16],A)
-A.Fj.prototype={
+A.Fn.prototype={
 gl0(){return"true"},
 gjN(){return"Repite la contrase\xf1a"},
 gmP(){return"El archivo no es una imagen."},
@@ -537,7 +537,7 @@ gnv(){return"Uno de tus dispositivos no est\xe1 verificado"},
 gmR(){return"Nota: Cuando conectas todos tus dispositivos a la copia de seguridad del chat, son verificados autom\xe1ticamente."},
 gic(){return"Continuar"},
 gl8(d){return"Difuminar:"},
-gbT(d){return"Opacidad:"},
+gbU(d){return"Opacidad:"},
 geU(){return"Poner fondo"},
 gmy(){return"Gestionar cuenta"},
 gjh(){return"El servidor no suministra ninguna informaci\xf3n de contacto v\xe1lida"},
@@ -545,7 +545,7 @@ glA(){return"Contactar con el administrador del servidor"},
 glB(){return"Contactar con seguridad del servidor"},
 gkR(){return"P\xe1gina de atenci\xf3n"},
 gky(){return"Informaci\xf3n del servidor:"},
-gbG(d){return"Nombre"},
+gbH(d){return"Nombre"},
 gox(d){return"Versi\xf3n"},
 goI(){return"Web"},
 glx(){return"Comprimir"},
@@ -640,7 +640,7 @@ pl(d){return"Space member of "+d},
 pm(d){return"Space member of "+d+" can knock"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Fj,C.aF)})()
-B.dQ(b.typeUniverse,JSON.parse('{"Fj":{"aF":[]}}'))};
-(a=>{a["delshlrnmNHnnzJAm2uX5VXyJVI="]=a.current})($__dart_deferred_initializers__);
+y(A.Fn,C.aF)})()
+B.dQ(b.typeUniverse,JSON.parse('{"Fn":{"aF":[]}}'))};
+(a=>{a["1jOGqb/2m5c0MEXV+/DKZCkZiPA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_267.part.js.map

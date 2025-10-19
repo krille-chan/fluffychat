@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cF2(){return new A.FP(B.df("sv"))},
-FP:function FP(d){this.a=d}}
+cED(){return new A.FT(B.df("sv"))},
+FT:function FT(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[46],A)
-A.FP.prototype={
+A.FT.prototype={
 gl0(){return"false"},
 gjN(){return"Upprepa l\xf6senord"},
 gmP(){return"Inte en bildfil."},
@@ -537,7 +537,7 @@ gnv(){return"One of your devices is not verified"},
 gmR(){return"Note: When you connect all your devices to the chat backup, they are automatically verified."},
 gic(){return"Continue"},
 gl8(d){return"Blur:"},
-gbT(d){return"Opacity:"},
+gbU(d){return"Opacity:"},
 geU(){return"Set wallpaper"},
 gmy(){return"Manage account"},
 gjh(){return"Server does not provide any valid contact information"},
@@ -545,7 +545,7 @@ glA(){return"Contact server admin"},
 glB(){return"Contact server security"},
 gkR(){return"Support page"},
 gky(){return"Server information:"},
-gbG(d){return"Name"},
+gbH(d){return"Name"},
 gox(d){return"Version"},
 goI(){return"Website"},
 glx(){return"Compress"},
@@ -640,7 +640,7 @@ pl(d){return"Space member of "+d},
 pm(d){return"Space member of "+d+" can knock"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FP,C.aF)})()
-B.dQ(b.typeUniverse,JSON.parse('{"FP":{"aF":[]}}'))};
-(a=>{a["oXK78gPVnJhmTYTvAYs28kGXPw0="]=a.current})($__dart_deferred_initializers__);
+y(A.FT,C.aF)})()
+B.dQ(b.typeUniverse,JSON.parse('{"FT":{"aF":[]}}'))};
+(a=>{a["vHa8HYbDZgaGl1MhpZY9clKVhRk="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_326.part.js.map

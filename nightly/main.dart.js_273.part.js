@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEy(){return new A.Fl(B.df("eu"))},
-Fl:function Fl(d){this.a=d}}
+cE8(){return new A.Fp(B.df("eu"))},
+Fp:function Fp(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[18],A)
-A.Fl.prototype={
+A.Fp.prototype={
 gl0(){return"false"},
 gjN(){return"Idatzi berriro pasahitza"},
 gmP(){return"Ez da irudi-fitxategia."},
@@ -537,7 +537,7 @@ gnv(){return"Zure gailuetako bat ez dago egiaztatuta"},
 gmR(){return"Oharra: gailu guztiak txat-babeskopiarekin konektatzen dituzunean, automatikoki egiaztatzen dira."},
 gic(){return"Jarraitu"},
 gl8(d){return"Lausotu:"},
-gbT(d){return"Opakutasuna:"},
+gbU(d){return"Opakutasuna:"},
 geU(){return"Ezarri horma-irudia"},
 gmy(){return"Kudeatu kontua"},
 gjh(){return"Zerbitzariak ez du harremanetarako informaziorik zehaztu"},
@@ -545,7 +545,7 @@ glA(){return"Jarri harremanetan zerbitzariaren administratzailearekin"},
 glB(){return"Jakinarazi segurtasun arazo bat"},
 gkR(){return"Laguntza orria"},
 gky(){return"Zerbitzariaren informazioa:"},
-gbG(d){return"Izena"},
+gbH(d){return"Izena"},
 gox(d){return"Bertsioa"},
 goI(){return"Webgunea"},
 glx(){return"Konprimatu"},
@@ -640,8 +640,8 @@ pl(d){return"Space member of "+d},
 pm(d){return"Space member of "+d+" can knock"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.Fl,C.aF)})()
-B.dQ(b.typeUniverse,JSON.parse('{"Fl":{"aF":[]}}'))
+x(A.Fp,C.aF)})()
+B.dQ(b.typeUniverse,JSON.parse('{"Fp":{"aF":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["qrix5Hx9WXM5WY78/3bTcbnKjXo="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["QhcHjiQ1nJI5jCIxXowBZzCGh7k="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_273.part.js.map

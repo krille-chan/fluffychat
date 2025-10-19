@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEE(){return new A.Fr(B.df("gl"))},
-Fr:function Fr(d){this.a=d}}
+cEe(){return new A.Fv(B.df("gl"))},
+Fv:function Fv(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[24],A)
-A.Fr.prototype={
+A.Fv.prototype={
 gl0(){return"falso"},
 gjN(){return"Repite o contrasinal"},
 gmP(){return"Non \xe9 un ficheiro de imaxe."},
@@ -537,7 +537,7 @@ gnv(){return"Un dos teus dispositivos non est\xe1 verificado"},
 gmR(){return"Nota: Cando conectas todos os teus dispositivos \xe1 copia de apoio da conversa quedan verificados automaticamente."},
 gic(){return"Continuar"},
 gl8(d){return"N\xe9boa:"},
-gbT(d){return"Opacidade:"},
+gbU(d){return"Opacidade:"},
 geU(){return"Establecer fondo"},
 gmy(){return"Xestionar conta"},
 gjh(){return"O servidor non proporciona informaci\xf3n de contacto v\xe1lida"},
@@ -545,7 +545,7 @@ glA(){return"Contacto con Admin do servidor"},
 glB(){return"Contacto con Seguridade do servidor"},
 gkR(){return"P\xe1xina de axuda"},
 gky(){return"Informaci\xf3n do servidor:"},
-gbG(d){return"Nome"},
+gbH(d){return"Nome"},
 gox(d){return"Versi\xf3n"},
 goI(){return"P\xe1xina web"},
 glx(){return"Comprimir"},
@@ -640,7 +640,7 @@ pl(d){return"Space member of "+d},
 pm(d){return"Space member of "+d+" can knock"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Fr,C.aF)})()
-B.dQ(b.typeUniverse,JSON.parse('{"Fr":{"aF":[]}}'))};
-(a=>{a["dN191EkbPVhV0pmO6yzb4kjZteo="]=a.current})($__dart_deferred_initializers__);
+y(A.Fv,C.aF)})()
+B.dQ(b.typeUniverse,JSON.parse('{"Fv":{"aF":[]}}'))};
+(a=>{a["rGxLkHpMmf/qeozWLNQyaqyMCf0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_284.part.js.map

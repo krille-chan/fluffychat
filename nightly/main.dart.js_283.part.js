@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cED(){return new A.Fq(B.df("ga"))},
-Fq:function Fq(d){this.a=d}}
+cEd(){return new A.Fu(B.df("ga"))},
+Fu:function Fu(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[23],A)
-A.Fq.prototype={
+A.Fu.prototype={
 gl0(){return"br\xe9agach"},
 gjN(){return"Scr\xedobh an pasfhocal ar\xeds"},
 gmP(){return"N\xed comhad \xedomh\xe1 \xe9."},
@@ -537,7 +537,7 @@ gnv(){return"N\xed fh\xedora\xedtear ceann de do ghl\xe9asanna"},
 gmR(){return"N\xf3ta: Nuair a nascann t\xfa do ghl\xe9asanna go l\xe9ir leis an gc\xfaltaca comhr\xe1, d\xe9antar iad a fh\xedor\xfa go huathoibr\xedoch."},
 gic(){return"Lean ar aghaidh"},
 gl8(d){return"Doil\xe9irigh:"},
-gbT(d){return"Teimhneacht:"},
+gbU(d){return"Teimhneacht:"},
 geU(){return"Socraigh c\xfalbhrat"},
 gmy(){return"Bainistigh cuntas"},
 gjh(){return"N\xed shol\xe1thra\xedonn an freastala\xed aon fhaisn\xe9is teagmh\xe1la bhail\xed"},
@@ -545,7 +545,7 @@ glA(){return"D\xe9an teagmh\xe1il le admin an fhreastala\xed"},
 glB(){return"D\xe9an teagmh\xe1il le sl\xe1nd\xe1il an fhreastala\xed"},
 gkR(){return"Leathanach taca\xedochta"},
 gky(){return"Eolas freastala\xed:"},
-gbG(d){return"Ainm"},
+gbH(d){return"Ainm"},
 gox(d){return"Leagan"},
 goI(){return"Su\xedomh Gr\xe9as\xe1in"},
 glx(){return"Comhbhr\xfaigh"},
@@ -640,8 +640,8 @@ pl(d){return"Space member of "+d},
 pm(d){return"Space member of "+d+" can knock"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.Fq,C.aF)})()
-B.dQ(b.typeUniverse,JSON.parse('{"Fq":{"aF":[]}}'))
+x(A.Fu,C.aF)})()
+B.dQ(b.typeUniverse,JSON.parse('{"Fu":{"aF":[]}}'))
 var y={a:"Cuir cosc ar an \xfas\xe1ideoir \xe1irithe \xf3n seomra seo"}};
-(a=>{a["Lowflm4fdCkgHdzNB75EZmnt8Ts="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["ANmTSO9UnZBwCm0MDNGIX/aPb1c="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_283.part.js.map
