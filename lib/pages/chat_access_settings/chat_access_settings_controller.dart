@@ -54,13 +54,12 @@ class ChatAccessSettingsController extends State<ChatAccessSettings> {
     // Knock is only supported for rooms up from version 7:
     if (roomVersionInt != null && roomVersionInt <= 6) {
       joinRules.remove(JoinRules.knock);
+      joinRules.remove(JoinRules.knockRestricted);
     }
 
     if (knownSpaceParents.isEmpty) {
       joinRules.remove(JoinRules.restricted);
-      if (roomVersionInt != null && roomVersionInt <= 6) {
-        joinRules.remove(JoinRules.knockRestricted);
-      }
+      joinRules.remove(JoinRules.knockRestricted);
     }
 
     // If an unsupported join rule is the current join rule, display it:
