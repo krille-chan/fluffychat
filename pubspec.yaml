@@ -1,7 +1,7 @@
 name: hermes
 description: Chat with your friends.
 publish_to: none
-version: 2.1.9
+version: 2.1.10
 
 environment:
   sdk: ">=3.0.0 <4.0.0"

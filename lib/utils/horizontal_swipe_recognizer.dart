@@ -32,6 +32,13 @@ class HorizontalSwipeRecognizer extends HorizontalDragGestureRecognizer {
   }
 
   @override
+  void addAllowedPointerPanZoom(PointerPanZoomStartEvent event) {
+    _resetState();
+    _pointerKind = event.kind;
+    super.addAllowedPointerPanZoom(event);
+  }
+
+  @override
   void handleEvent(PointerEvent event) {
     if (!_resolvedDirection &&
         (event is PointerMoveEvent || event is PointerPanZoomUpdateEvent)) {

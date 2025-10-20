@@ -220,6 +220,12 @@ class _FullScreenPopGestureDetectorState<T>
     _recognizer.addPointer(event);
   }
 
+  /// Begin tracking a pan/zoom gesture initiated from devices like trackpads.
+  void _handlePointerPanZoomStart(PointerPanZoomStartEvent event) {
+    if (!widget.route.popGestureEnabled) return;
+    _recognizer.addPointerPanZoom(event);
+  }
+
   /// Start a new gesture controller when the finger begins moving.
   void _handleDragStart(DragStartDetails details) {
     widget.route.popGestureController.stop();
@@ -268,6 +274,7 @@ class _FullScreenPopGestureDetectorState<T>
   Widget build(BuildContext context) {
     return Listener(
       onPointerDown: _handlePointerDown,
+      onPointerPanZoomStart: _handlePointerPanZoomStart,
       behavior: HitTestBehavior.deferToChild,
       child: widget.child,
     );
