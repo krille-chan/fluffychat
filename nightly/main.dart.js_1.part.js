@@ -634,13 +634,13 @@ glL(){return"\u81ea\u5b9a\u4e49\u56de\u5e94"},
 gph(){return"\u66f4\u591a\u4e8b\u4ef6"},
 glO(){return"\u62d2\u7edd\u9080\u8bf7"},
 gps(){return"\u5c1a\u65e0\u6d88\u606f"},
-gpi(){return"New sub space"},
-gpr(){return"Move to different space"},
-gpv(){return"The chat will be removed from the space but still appear in your chat list."},
-pn(d){return""+d+" chats"},
-pl(d){return"Space member of "+d},
-pm(d){return"Space member of "+d+" can knock"},
-gpo(){return"Donate"},
+gpi(){return"\u65b0\u5efa\u5b50\u7a7a\u95f4"},
+gpr(){return"\u79fb\u52a8\u5230\u522b\u7684\u7a7a\u95f4"},
+gpv(){return"\u5c06\u4ece\u7a7a\u95f4\u79fb\u9664\u8be5\u804a\u5929\uff0c\u4f46\u4ecd\u51fa\u73b0\u5728\u804a\u5929\u5217\u8868\u4e2d\u3002"},
+pn(d){return""+d+" \u4e2a\u804a\u5929"},
+pl(d){return d+" \u7684\u7a7a\u95f4\u6210\u5458"},
+pm(d){return d+" \u7684\u7a7a\u95f4\u6210\u5458\u53ef\u4ee5\u6572\u95e8"},
+gpo(){return"\u6350\u8d60"},
 A(d,e){return this.gbc(this).$1(e)}}
 A.G_.prototype={
 gl0(){return"false"},
@@ -1265,5 +1265,5 @@ var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.AJ,C.aF)
 y(A.G_,A.AJ)})()
 B.dR(b.typeUniverse,JSON.parse('{"AJ":{"aF":[]},"G_":{"aF":[]}}'))};
-(a=>{a["aTB2PAkptfRWgghugZViiMhBZSw="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["6+cYVpgM8RxlbI78yuiaRyxnyAI="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_1.part.js.map
