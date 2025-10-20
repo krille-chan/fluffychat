@@ -10,7 +10,7 @@ class DialogTextField extends StatelessWidget {
   final String? prefixText;
   final String? suffixText;
   final String? errorText;
-  final bool obscureText = false;
+  final bool obscureText;
   final bool isDestructive = false;
   final int? minLines;
   final int? maxLines;
@@ -32,6 +32,7 @@ class DialogTextField extends StatelessWidget {
     this.controller,
     this.counterText,
     this.errorText,
+    this.obscureText = false,
   });
 
   @override
