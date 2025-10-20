@@ -317,10 +317,10 @@ packages:
     dependency: "direct main"
     description:
       name: desktop_drop
-      sha256: "927511f590ce01ee90d0d80f79bc71b9c919d8522d01e495e89a00c6f4a4fb5b"
+      sha256: e70b46b2d61f1af7a81a40d1f79b43c28a879e30a4ef31e87e9c27bea4d784e8
       url: "https://pub.dev"
     source: hosted
-    version: "0.6.1"
+    version: "0.7.0"
   desktop_notifications:
     dependency: "direct main"
     description:
