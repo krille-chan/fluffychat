@@ -495,7 +495,7 @@ gm6(){return"Formatierte Nachrichteninhalte wie fettgedruckten Text mit Markdown
 got(){return"\ud83d\udd10 Anderen Benutzer verifizieren"},
 gou(){return"Wenn du einen anderen Benutzer verifizierst, kannst du sicher sein, dass du wei\xdft, an wen du wirklich schreibst. \ud83d\udcaa\n\nWenn du eine Verifizierung startest, wird dir und dem anderen Nutzer ein Popup in der App angezeigt. Dort siehst du dann eine Reihe von Emojis oder Zahlen, die ihr miteinander vergleichen m\xfcsst.\n\nDas geht am besten, wenn man sich trifft oder einen Videoanruf startet. \ud83d\udc6d"},
 gk_(){return"\ud83d\udd10 Anderes Ger\xe4t verifizieren"},
-gk0(){return"Wenn du ein anderes Ger\xe4t verifizierst, k\xf6nnen diese Ger\xe4te Schl\xfcssel austauschen, was die Sicherheit insgesamt erh\xf6ht. \ud83d\udcaa\n\nSobald du eine Verifizierung startest, erscheint ein Pop-up in der App auf beiden Ger\xe4ten. Dort siehst du dann eine Reihe von Emojis oder Zahlen, die du miteinander vergleichen musst.\n\nAm besten h\xe4ltst du beide Ger\xe4te bereit, bevor du die Verifizierung startest. \ud83e\udd33"},
+gk0(){return"Wenn du ein anderes Ger\xe4t verifizierst, k\xf6nnen diese Ger\xe4te Schl\xfcssel austauschen, was die Sicherheit insgesamt erh\xf6ht. \ud83d\udcaaSobald du eine Verifizierung startest, erscheint ein Pop-up in der App auf beiden Ger\xe4ten. Dort siehst du dann eine Reihe von Emojis oder Zahlen, die du miteinander vergleichen musst. Am besten h\xe4ltst du beide Ger\xe4te bereit, bevor du die Verifizierung startest. \ud83e\udd33"},
 kW(d){return d+" hat die Schl\xfcsselverifikation akzeptiert"},
 lc(d){return d+" hat die Schl\xfcsselverifikation abgebrochen"},
 lw(d){return d+" hat die Schl\xfcsselverifikation abgeschlossen"},
@@ -631,18 +631,18 @@ gpd(){return"Navigationsleiste auf dem Smartphone anzeigen"},
 glL(){return"Benutzerdefinierte Reaktion"},
 gph(){return"Weitere Ereignisse"},
 glO(){return"Einladung ablehnen"},
-gps(){return"No messages yet"},
-gpi(){return"New sub space"},
-gpr(){return"Move to different space"},
-gpv(){return"The chat will be removed from the space but still appear in your chat list."},
-pn(d){return""+d+" chats"},
-pl(d){return"Space member of "+d},
-pm(d){return"Space member of "+d+" can knock"},
-gpo(){return"Donate"},
+gps(){return"Noch keine Nachrichten"},
+gpi(){return"Neuer sub space"},
+gpr(){return"In einen anderen space wechseln"},
+gpv(){return"Der Chat wird aus dem Space entfernt, erscheint aber weiterhin in Ihrer Chatliste."},
+pn(d){return""+d+" Chats"},
+pl(d){return"Space-Mitglied von "+d},
+pm(d){return"Space-Mitglied von "+d+" kann klopfen"},
+gpo(){return"Spenden"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.Fi,C.aF)})()
 B.dR(b.typeUniverse,JSON.parse('{"Fi":{"aF":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
-(a=>{a["+dPJSTDapCxhX/8rDNDHKjndJRU="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["T2OPfHt1t7qhMDlI8gpP9gNEpbU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_256.part.js.map
