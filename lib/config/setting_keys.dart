@@ -52,10 +52,6 @@ enum AppSettings<T> {
   // AppConfig-mirrored settings
   applicationName<String>('chat.fluffy.application_name', 'FluffyChat'),
   defaultHomeserver<String>('chat.fluffy.default_homeserver', 'matrix.org'),
-  privacyUrl<String>(
-    'chat.fluffy.privacy_url',
-    'https://github.com/krille-chan/fluffychat/blob/main/PRIVACY.md',
-  ),
   // colorSchemeSeed stored as ARGB int
   colorSchemeSeedInt<int>(
     'chat.fluffy.color_scheme_seed',

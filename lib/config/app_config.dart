@@ -50,4 +50,10 @@ abstract class AppConfig {
     host: 'servers.joinmatrix.org',
     path: 'servers.json',
   );
+
+  static final Uri privacyUrl = Uri(
+    scheme: 'https',
+    host: 'github.com',
+    path: '/krille-chan/fluffychat/blob/main/PRIVACY.md',
+  );
 }
