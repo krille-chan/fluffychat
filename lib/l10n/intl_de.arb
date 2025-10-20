@@ -2838,7 +2838,7 @@
             }
         }
     },
-    "verifyOtherDeviceDescription": "Wenn du ein anderes Gerät verifizierst, können diese Geräte Schlüssel austauschen, was die Sicherheit insgesamt erhöht. 💪\n\nSobald du eine Verifizierung startest, erscheint ein Pop-up in der App auf beiden Geräten. Dort siehst du dann eine Reihe von Emojis oder Zahlen, die du miteinander vergleichen musst.\n\nAm besten hältst du beide Geräte bereit, bevor du die Verifizierung startest. 🤳",
+    "verifyOtherDeviceDescription": "Wenn du ein anderes Gerät verifizierst, können diese Geräte Schlüssel austauschen, was die Sicherheit insgesamt erhöht. 💪Sobald du eine Verifizierung startest, erscheint ein Pop-up in der App auf beiden Geräten. Dort siehst du dann eine Reihe von Emojis oder Zahlen, die du miteinander vergleichen musst. Am besten hältst du beide Geräte bereit, bevor du die Verifizierung startest. 🤳",
     "@verifyOtherDeviceDescription": {},
     "presenceStyle": "Statusmeldungen:",
     "@presenceStyle": {
@@ -3392,5 +3392,50 @@
     "moreEvents": "Weitere Ereignisse",
     "@moreEvents": {},
     "declineInvitation": "Einladung ablehnen",
-    "@declineInvitation": {}
+    "@declineInvitation": {},
+    "noMessagesYet": "Noch keine Nachrichten",
+    "@noMessagesYet": {},
+    "longPressToRecordVoiceMessage": "Lange drücken, um eine Sprachnachricht aufzunehmen.",
+    "@longPressToRecordVoiceMessage": {},
+    "pause": "Pause",
+    "@pause": {},
+    "newSubSpace": "Neuer sub space",
+    "@newSubSpace": {},
+    "moveToDifferentSpace": "In einen anderen space wechseln",
+    "@moveToDifferentSpace": {},
+    "moveUp": "Nach oben",
+    "@moveUp": {},
+    "moveDown": "Nach unten",
+    "@moveDown": {},
+    "removeFromSpaceDescription": "Der Chat wird aus dem Space entfernt, erscheint aber weiterhin in Ihrer Chatliste.",
+    "@removeFromSpaceDescription": {},
+    "countChats": "{chats} Chats",
+    "@countChats": {
+        "type": "String",
+        "placeholders": {
+            "chats": {
+                "type": "int"
+            }
+        }
+    },
+    "spaceMemberOf": "Space-Mitglied von {spaces}",
+    "@spaceMemberOf": {
+        "type": "String",
+        "placeholders": {
+            "spaces": {
+                "type": "String"
+            }
+        }
+    },
+    "spaceMemberOfCanKnock": "Space-Mitglied von {spaces} kann klopfen",
+    "@spaceMemberOfCanKnock": {
+        "type": "String",
+        "placeholders": {
+            "spaces": {
+                "type": "String"
+            }
+        }
+    },
+    "donate": "Spenden",
+    "@donate": {}
 }
