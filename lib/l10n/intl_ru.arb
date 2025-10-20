@@ -1087,7 +1087,7 @@
         "type": "String",
         "placeholders": {}
     },
-    "loadCountMoreParticipants": "{count, plural, one{Загрузить еще # участника} few{Загрузить еще # участников} other{Загрузить еще # участников}}",
+    "loadCountMoreParticipants": "",
     "@loadCountMoreParticipants": {
         "type": "String",
         "placeholders": {
@@ -1888,7 +1888,7 @@
             }
         }
     },
-    "userAndOthersAreTyping": "{username} и ещё {count, plural, =1{один участник} =2{двое} =3{трое} =4{четверо} =5{пятеро} =6{шестеро} =7{семеро} one{# участник} few{# участника} other{# участников}} печатают…",
+    "userAndOthersAreTyping": "",
     "@userAndOthersAreTyping": {
         "type": "String",
         "placeholders": {
@@ -2328,7 +2328,7 @@
     "@storeInAndroidKeystore": {},
     "storeInAppleKeyChain": "Сохранить в Apple KeyChain",
     "@storeInAppleKeyChain": {},
-    "countFiles": "{count, plural, one{# файл} few{# файла} other{# файлов}}",
+    "countFiles": "",
     "@countFiles": {
         "placeholders": {
             "count": {
@@ -2405,7 +2405,7 @@
     "@noKeyForThisMessage": {},
     "screenSharingTitle": "общий доступ к экрану",
     "@screenSharingTitle": {},
-    "numChats": "{number, plural, one{# чат} few{# чата} other{# чатов}}",
+    "numChats": "",
     "@numChats": {
         "type": "number",
         "placeholders": {
@@ -2598,7 +2598,7 @@
     "@inviteGroupChat": {},
     "invalidInput": "Недопустимый ввод!",
     "@invalidInput": {},
-    "wrongPinEntered": "Введён неверный пин-код! Повторите попытку через {seconds, plural, one{# секунду} few{# секунды} other {# секунд}}...",
+    "wrongPinEntered": "",
     "@wrongPinEntered": {
         "type": "String",
         "placeholders": {
@@ -2934,7 +2934,7 @@
     "@commandHint_ignore": {},
     "commandHint_unignore": "Не игнорировать данный matrix ID",
     "@commandHint_unignore": {},
-    "unreadChatsInApp": "{appname}: {unread, plural, one{# непрочитанный чат} few{# непрочитанных чата} other{# непрочитанных чатов}}",
+    "unreadChatsInApp": "",
     "@unreadChatsInApp": {
         "type": "String",
         "placeholders": {
@@ -2946,7 +2946,7 @@
             }
         }
     },
-    "thereAreCountUsersBlocked": "Сейчас {count, plural, one{заблокирован # пользователь} few{заблокированы # пользователя} other{заблокированы # пользователей}}.",
+    "thereAreCountUsersBlocked": "",
     "@thereAreCountUsersBlocked": {
         "type": "String",
         "count": {}
@@ -3009,7 +3009,7 @@
     "@inviteOtherUsers": {},
     "changeTheVisibilityOfChatHistory": "Изменить видимость истории чата",
     "@changeTheVisibilityOfChatHistory": {},
-    "countChatsAndCountParticipants": "{chats, plural, one{{participants, plural, one{# чат с # участником} few{# чат с {participants} участниками} other{# чат с {participants} участниками}}} few{{participants, plural, one{{chats} чата с # участником} few{{chats} чата с {participants} участниками} other{{chats} чата с {participants} участниками}}} other{{participants, plural, one{{chats} чатов с # участником} few{{chats} чатов с {participants} участниками} other{{chats} чатов с {participants} участниками}}}}",
+    "countChatsAndCountParticipants": "",
     "@countChatsAndCountParticipants": {
         "type": "String",
         "placeholders": {
@@ -3136,7 +3136,7 @@
     "@italicText": {},
     "unableToJoinChat": "Невозможно присоединиться к чату. Возможно, другая сторона уже закончила разговор.",
     "@unableToJoinChat": {},
-    "serverLimitReached": "Достигнуто ограничение сервера. Ожидаем {seconds, plural, one{# секунду} few{# секунды} other{# секунд}}...",
+    "serverLimitReached": "",
     "@serverLimitReached": {
         "type": "integer",
         "placeholders": {
@@ -3167,7 +3167,7 @@
     "@version": {},
     "website": "Сайт",
     "@website": {},
-    "sendImages": "Отправить {count, plural, =1{изображение} one{# изображение} few{# изображения} other{# изображений}}",
+    "sendImages": "",
     "@sendImages": {
         "type": "String",
         "placeholders": {
@@ -3284,7 +3284,7 @@
     "@commandHint_roomupgrade": {},
     "notificationRuleInviteForMeDescription": "Уведомляет пользователя, когда его приглашают в комнату.",
     "@notificationRuleInviteForMeDescription": {},
-    "countInvited": "{count, plural, one{Приглашён # участник} few{Приглашены # участника} other{Приглашены # участников}}",
+    "countInvited": "",
     "@countInvited": {
         "type": "String",
         "placeholders": {
