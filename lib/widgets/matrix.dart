@@ -199,6 +199,12 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
           });
     // #Pangea
     candidate.homeserver = Uri.parse("https://${AppConfig.defaultHomeserver}");
+
+    // This listener is not set for the new login client until the user is logged in,
+    // but if the user tries to sign up without this listener set, the signup UIA request
+    // will hang. So set the listener here.
+    onUiaRequest[candidate.clientName] ??=
+        candidate.onUiaRequest.stream.listen(uiaRequestHandler);
     // Pangea#
     if (widget.clients.isEmpty) widget.clients.add(candidate);
     return candidate;
@@ -411,6 +417,10 @@ class MatrixState extends State<Matrix> with WidgetsBindingObserver {
     onLoginStateChanged.remove(name);
     onNotification[name]?.cancel();
     onNotification.remove(name);
+    // #Pangea
+    onUiaRequest[name]?.cancel();
+    onUiaRequest.remove(name);
+    // Pangea#
   }
 
   void initMatrix() {
