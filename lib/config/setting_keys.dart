@@ -68,15 +68,17 @@ enum AppSettings<T> {
 
   const AppSettings(this.key, this.defaultValue);
 
-  static late final SharedPreferences store;
+  static SharedPreferences get store => _store!;
+  static SharedPreferences? _store;
 
   static Future<SharedPreferences> init({loadWebConfigFile = true}) async {
-    final store = AppSettings.store = await SharedPreferences.getInstance();
+    if (AppSettings._store != null) return AppSettings.store;
+
+    final store = AppSettings._store = await SharedPreferences.getInstance();
 
     if (store.getBool(AppSettings.sendOnEnter.key) == null) {
       await store.setBool(AppSettings.sendOnEnter.key, !PlatformInfos.isMobile);
     }
-
     if (kIsWeb && loadWebConfigFile) {
       try {
         final configJsonString =
@@ -85,7 +87,7 @@ enum AppSettings<T> {
             json.decode(configJsonString) as Map<String, Object?>;
         for (final setting in AppSettings.values) {
           if (store.get(setting.key) != null) continue;
-          final configValue = configJson[setting.key];
+          final configValue = configJson[setting.name];
           if (configValue == null) continue;
           if (configValue is bool) {
             await store.setBool(setting.key, configValue);
