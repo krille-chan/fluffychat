@@ -293,7 +293,7 @@ Future<void> _tryPushHelper(
         ? null
         : <AndroidNotificationAction>[
             AndroidNotificationAction(
-              hermesNotificationActions.reply.name,
+              HermesNotificationActions.reply.name,
               l10n.reply,
               inputs: [
                 AndroidNotificationActionInput(
@@ -305,7 +305,7 @@ Future<void> _tryPushHelper(
               semanticAction: SemanticAction.reply,
             ),
             AndroidNotificationAction(
-              hermesNotificationActions.markAsRead.name,
+              HermesNotificationActions.markAsRead.name,
               l10n.markAsRead,
               semanticAction: SemanticAction.markAsRead,
             ),

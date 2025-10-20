@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:hermes/config/app_config.dart';
 import 'package:hermes/config/setting_keys.dart';
-import 'package:hermes/widgets/matrix.dart';
 
 import 'settings_chat_view.dart';
 
@@ -22,58 +20,40 @@ class SettingsChatController extends State<SettingsChat> {
   @override
   void initState() {
     super.initState();
-    swipeDurationMs = AppConfig.swipePopDuration.inMilliseconds.toDouble();
-    swipeEnableFullScreenDrag = AppConfig.swipePopEnableFullScreenDrag;
-    swipeMinimumDragFraction = AppConfig.swipePopMinimumDragFraction;
-    swipeVelocityThreshold = AppConfig.swipePopVelocityThreshold;
-  }
-
-  void setSwipeEnableFullScreenDrag(bool value) {
-    setState(() => swipeEnableFullScreenDrag = value);
-    AppConfig.swipePopEnableFullScreenDrag = value;
-    Matrix.of(context)
-        .store
-        .setBool(SettingKeys.swipePopEnableFullScreenDrag, value);
+    swipeDurationMs = AppSettings.swipePopDuration.value.toDouble();
+    swipeMinimumDragFraction = AppSettings.swipePopMinimumDragFraction.value;
+    swipeVelocityThreshold = AppSettings.swipePopVelocityThreshold.value;
   }
 
   void updateSwipeDuration(double value) {
     setState(() => swipeDurationMs = value);
   }
 
-  Future<void> saveSwipeDuration(double value) async {
+  void saveSwipeDuration(double value) {
     final milliseconds = value.round().clamp(120, 600).toInt();
     final normalized = milliseconds.toDouble();
     setState(() => swipeDurationMs = normalized);
-    AppConfig.swipePopDurationMs = milliseconds;
-    await Matrix.of(context)
-        .store
-        .setInt(SettingKeys.swipePopDurationMs, milliseconds);
+    AppSettings.swipePopDuration.setItem(milliseconds);
   }
 
   void updateSwipeMinimumDragFraction(double value) {
     setState(() => swipeMinimumDragFraction = value);
   }
 
-  Future<void> saveSwipeMinimumDragFraction(double value) async {
+  saveSwipeMinimumDragFraction(double value) {
     final clamped = value.clamp(0.05, 1.0).toDouble();
     setState(() => swipeMinimumDragFraction = clamped);
-    AppConfig.swipePopMinimumDragFraction = clamped;
-    await Matrix.of(context)
-        .store
-        .setDouble(SettingKeys.swipePopMinimumDragFraction, clamped);
+    AppSettings.swipePopMinimumDragFraction.setItem(clamped);
   }
 
   void updateSwipeVelocityThreshold(double value) {
     setState(() => swipeVelocityThreshold = value);
   }
 
-  Future<void> saveSwipeVelocityThreshold(double value) async {
+  saveSwipeVelocityThreshold(double value) {
     final clamped = value.clamp(50.0, 2000.0).toDouble();
     setState(() => swipeVelocityThreshold = clamped);
-    AppConfig.swipePopVelocityThreshold = clamped;
-    await Matrix.of(context)
-        .store
-        .setDouble(SettingKeys.swipePopVelocityThreshold, clamped);
+    AppSettings.swipePopVelocityThreshold.setItem(clamped);
   }
 
   @override

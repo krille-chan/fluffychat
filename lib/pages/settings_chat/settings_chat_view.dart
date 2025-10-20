@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
 import 'package:hermes/l10n/l10n.dart';
-import 'package:hermes/config/app_config.dart';
 import 'package:hermes/config/setting_keys.dart';
 import 'package:hermes/config/themes.dart';
 import 'package:hermes/utils/platform_infos.dart';
@@ -30,21 +29,14 @@ class SettingsChatView extends StatelessWidget {
         child: MaxWidthBody(
           child: Column(
             children: [
-              const ListTile(
-                title: Text('Swipe back gesture'),
-                subtitle: Text(
-                  'Adjust how sensitive the back-swipe navigation should be.',
-                ),
-              ),
-              SwitchListTile.adaptive(
-                value: controller.swipeEnableFullScreenDrag,
-                title: const Text('Enable full-screen swipe back'),
-                onChanged: controller.setSwipeEnableFullScreenDrag,
+              SettingsSwitchListTile.adaptive(
+                title: L10n.of(context).enableFullScreenSwipe,
+                subtitle: L10n.of(context).enableFullScreenSwipeDescription,
+                setting: AppSettings.swipePopEnableFullScreenDrag,
               ),
               ListTile(
-                title: const Text('Swipe duration'),
-                subtitle:
-                    const Text('Controls how long the transition animates.'),
+                title: Text(L10n.of(context).swipeDuration),
+                subtitle: Text(L10n.of(context).swipeDuration),
                 trailing: Text('${controller.swipeDurationMs.round()} ms'),
               ),
               Slider.adaptive(
@@ -60,9 +52,9 @@ class SettingsChatView extends StatelessWidget {
                     : null,
               ),
               ListTile(
-                title: const Text('Required swipe distance'),
-                subtitle: const Text(
-                  'Percentage of the screen that must be swiped before popping.',
+                title: Text(L10n.of(context).swipeDistance),
+                subtitle: Text(
+                  L10n.of(context).swipeDistanceDescription,
                 ),
                 trailing: Text(
                   '${(controller.swipeMinimumDragFraction * 100).round()}%',
@@ -83,10 +75,8 @@ class SettingsChatView extends StatelessWidget {
                     : null,
               ),
               ListTile(
-                title: const Text('Swipe release velocity'),
-                subtitle: const Text(
-                  'Minimum fling speed needed when the drag is short.',
-                ),
+                title: Text(L10n.of(context).swipeVelocity),
+                subtitle: Text(L10n.of(context).swipeVelocityDescription),
                 trailing:
                     Text('${controller.swipeVelocityThreshold.round()} px/s'),
               ),

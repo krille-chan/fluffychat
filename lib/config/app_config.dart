@@ -38,19 +38,18 @@ abstract class AppConfig {
     host: 'github.com',
     path: '/allomanta/hermes/issues/new',
   );
-  static bool swipePopEnableFullScreenDrag = true;
-  static int swipePopDurationMs = 280;
-  static double swipePopMinimumDragFraction = 0.3;
-  static double swipePopVelocityThreshold = 350.0;
   static final Uri homeserverList = Uri(
     scheme: 'https',
     host: 'servers.joinmatrix.org',
     path: 'servers.json',
   );
 
-  static Duration get swipePopDuration =>
-      Duration(milliseconds: swipePopDurationMs);
-
+  // static bool swipePopEnableFullScreenDrag = true;
+  // static int swipePopDurationMs = 280;
+  // static double swipePopMinimumDragFraction = 0.3;
+  // static double swipePopVelocityThreshold = 350.0;
+  // static Duration get swipePopDuration =>
+  //     Duration(milliseconds: swipePopDurationMs);
 
   static final Uri privacyUrl = Uri(
     scheme: 'https',

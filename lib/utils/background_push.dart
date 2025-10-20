@@ -440,14 +440,10 @@ class BackgroundPush {
   }
 
   Future<String?> _resolveFirebaseGatewayUrl() async {
-    final store = matrix?.store;
-    if (store == null) {
-      return null;
-    }
-    final currentUrl = AppSettings.pushNotificationsGatewayUrl.value(store);
+    final currentUrl = AppSettings.pushNotificationsGatewayUrl.value;
     if (_legacyPushGatewayUrls.contains(currentUrl)) {
       final updatedUrl = AppSettings.pushNotificationsGatewayUrl.defaultValue;
-      await AppSettings.pushNotificationsGatewayUrl.setItem(store, updatedUrl);
+      await AppSettings.pushNotificationsGatewayUrl.setItem(updatedUrl);
       Logs().i('[Push] Migrated legacy push gateway URL to $updatedUrl');
       return updatedUrl;
     }

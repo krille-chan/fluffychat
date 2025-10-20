@@ -15,7 +15,6 @@ import 'package:hermes/config/setting_keys.dart';
 import 'package:hermes/l10n/l10n.dart';
 import 'package:hermes/utils/platform_infos.dart';
 import 'package:hermes/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
-import 'package:hermes/widgets/matrix.dart';
 import 'events/audio_player.dart';
 
 class RecordingViewModel extends StatefulWidget {

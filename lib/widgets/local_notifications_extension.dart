@@ -13,7 +13,6 @@ import 'package:hermes/config/setting_keys.dart';
 import 'package:hermes/l10n/l10n.dart';
 import 'package:hermes/utils/push_helper.dart';
 import 'package:hermes/widgets/hermes_app.dart';
-import 'package:hermes/config/app_config.dart';
 import 'package:hermes/utils/client_download_content_extension.dart';
 import 'package:hermes/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:hermes/utils/platform_infos.dart';

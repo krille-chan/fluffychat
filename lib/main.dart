@@ -6,7 +6,6 @@ import 'package:flutter_vodozemac/flutter_vodozemac.dart' as vod;
 import 'package:matrix/matrix.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'package:hermes/config/app_config.dart';
 import 'package:hermes/utils/client_manager.dart';
 import 'package:hermes/utils/platform_infos.dart';
 import 'config/setting_keys.dart';

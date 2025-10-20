@@ -1,4 +1,3 @@
-import 'package:hermes/config/setting_keys.dart';
 import 'package:hermes/pages/chat/chat_view.dart';
 import 'package:hermes/pages/chat_list/chat_list_body.dart';
 import 'package:hermes/pages/chat_list/search_title.dart';

@@ -3,6 +3,7 @@ import 'dart:math' as math;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:hermes/config/app_config.dart';
+import 'package:hermes/config/setting_keys.dart';
 import 'package:hermes/utils/horizontal_swipe_recognizer.dart';
 
 /// A [Page] that wraps content in a swipe-to-pop route.
@@ -20,14 +21,15 @@ class SwipePopPage<T> extends Page<T> {
     super.name,
     super.arguments,
     super.restorationId,
-  })  : duration = duration ?? AppConfig.swipePopDuration,
-        enableFullScreenDrag =
-            enableFullScreenDrag ?? AppConfig.swipePopEnableFullScreenDrag,
-        minimumDragFraction =
-            (minimumDragFraction ?? AppConfig.swipePopMinimumDragFraction)
-                .clamp(0.0, 1.0),
+  })  : duration = duration ??
+            Duration(milliseconds: AppSettings.swipePopDuration.value),
+        enableFullScreenDrag = enableFullScreenDrag ??
+            AppSettings.swipePopEnableFullScreenDrag.value,
+        minimumDragFraction = (minimumDragFraction ??
+                AppSettings.swipePopMinimumDragFraction.value)
+            .clamp(0.0, 1.0),
         velocityThreshold =
-            velocityThreshold ?? AppConfig.swipePopVelocityThreshold;
+            velocityThreshold ?? AppSettings.swipePopVelocityThreshold.value;
 
   final Widget child;
   final Duration duration;

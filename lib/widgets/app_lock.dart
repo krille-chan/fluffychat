@@ -4,7 +4,6 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:matrix/matrix.dart';
 import 'package:provider/provider.dart';
 
-import 'package:hermes/config/setting_keys.dart';
 import 'package:hermes/widgets/lock_screen.dart';
 
 class AppLockWidget extends StatefulWidget {

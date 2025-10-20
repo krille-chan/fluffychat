@@ -342,7 +342,7 @@ class Message extends StatelessWidget {
             ),
           ),
         ),
-        leftToRight: AppConfig.swipeRightToLeftToReply,
+        leftToRight: AppSettings.swipeRightToLeftToReply.value,
         onReply: onReply,
         child: Container(
           constraints: const BoxConstraints(
