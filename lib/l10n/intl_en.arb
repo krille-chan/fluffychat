@@ -3410,5 +3410,6 @@
         "type": "String"
       }
     }
-  }
+  },
+  "donate": "Donate"
 }

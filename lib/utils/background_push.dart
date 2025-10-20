@@ -66,6 +66,7 @@ class BackgroundPush {
   }
 
   final pendingTests = <String, Completer<void>>{};
+  bool firebaseEnabled = false;
 
   //<GOOGLE_SERVICES>final firebase = FcmSharedIsolate();
 
@@ -74,6 +75,7 @@ class BackgroundPush {
   bool upAction = false;
 
   void _init() async {
+    //<GOOGLE_SERVICES>firebaseEnabled = true;
     try {
       if (PlatformInfos.isAndroid) {
         final port = ReceivePort();

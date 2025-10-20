@@ -67,6 +67,17 @@ class ClientChooserButton extends StatelessWidget {
           ],
         ),
       ),
+      if (Matrix.of(context).backgroundPush?.firebaseEnabled == false)
+        PopupMenuItem(
+          value: SettingsAction.support,
+          child: Row(
+            children: [
+              const Icon(Icons.favorite, color: Colors.red),
+              const SizedBox(width: 18),
+              Text(L10n.of(context).donate),
+            ],
+          ),
+        ),
       PopupMenuItem(
         value: SettingsAction.settings,
         child: Row(
@@ -207,6 +218,9 @@ class ClientChooserButton extends StatelessWidget {
         case SettingsAction.invite:
           FluffyShare.shareInviteLink(context);
           break;
+        case SettingsAction.support:
+          // TODO: Implement me
+          break;
         case SettingsAction.settings:
           context.go('/rooms/settings');
           break;
@@ -226,6 +240,7 @@ enum SettingsAction {
   newGroup,
   setStatus,
   invite,
+  support,
   settings,
   archive,
 }
