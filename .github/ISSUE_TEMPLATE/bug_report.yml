@@ -43,14 +43,15 @@ body:
         - Android (PlayStore)
         - Android (F-Droid)
         - Android (Other)
-        - iOS
-        - iPadOS
+        - iOS (iPhone)
+        - iOS (iPad)
         - Web (Chrome(ium))
         - Web (Firefox)
         - Web (Safari)
         - Linux (Snap)
         - Linux (Flatpak)
         - Linux (Other)
+        - macOS (iOS/iPadOS version)
         - macOS (Self-compiled)
         - Windows (Self-compiled)
     validations:
