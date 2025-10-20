@@ -561,7 +561,7 @@
             }
         }
     },
-    "countParticipants": "{count, plural, one{# участник} few{# участника} other{# участников}}",
+    "countParticipants": "{count} участника(ов)",
     "@countParticipants": {
         "type": "String",
         "placeholders": {
