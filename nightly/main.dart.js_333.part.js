@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEK(){return new A.G_(B.df("yue"))},
-G_:function G_(d){this.a=d}}
+cEK(){return new A.FZ(B.df("yue"))},
+FZ:function FZ(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[53],A)
-A.G_.prototype={
+A.FZ.prototype={
 gl0(){return"false"},
 gjN(){return"\u8f38\u5165\u591a\u4e00\u6b21\u5bc6\u78bc"},
 gmP(){return"\u5514\u4fc2\u5716\u6a94\u3002"},
@@ -537,7 +537,7 @@ gnv(){return"One of your devices is not verified"},
 gmR(){return"Note: When you connect all your devices to the chat backup, they are automatically verified."},
 gic(){return"Continue"},
 gl8(d){return"Blur:"},
-gbU(d){return"Opacity:"},
+gbT(d){return"Opacity:"},
 geU(){return"Set wallpaper"},
 gmy(){return"Manage account"},
 gjh(){return"Server does not provide any valid contact information"},
@@ -545,7 +545,7 @@ glA(){return"Contact server admin"},
 glB(){return"Contact server security"},
 gkR(){return"Support page"},
 gky(){return"Server information:"},
-gbH(d){return"Name"},
+gbG(d){return"Name"},
 gox(d){return"Version"},
 goI(){return"Website"},
 glx(){return"Compress"},
@@ -631,16 +631,17 @@ gpd(){return"Show navigation rail on mobile"},
 glL(){return"Custom reaction"},
 gph(){return"More events"},
 glO(){return"Decline invitation"},
-gpr(){return"No messages yet"},
+gps(){return"No messages yet"},
 gpi(){return"New sub space"},
-gpq(){return"Move to different space"},
-gpu(){return"The chat will be removed from the space but still appear in your chat list."},
+gpr(){return"Move to different space"},
+gpv(){return"The chat will be removed from the space but still appear in your chat list."},
 pn(d){return""+d+" chats"},
 pl(d){return"Space member of "+d},
 pm(d){return"Space member of "+d+" can knock"},
+gpo(){return"Donate"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.G_,C.aF)})()
-B.dQ(b.typeUniverse,JSON.parse('{"G_":{"aF":[]}}'))};
-(a=>{a["K4imS+a2XI+Uw7AKleWZeawhLm8="]=a.current})($__dart_deferred_initializers__);
+y(A.FZ,C.aF)})()
+B.dR(b.typeUniverse,JSON.parse('{"FZ":{"aF":[]}}'))};
+(a=>{a["Q//dA2puLGpBuen4uP+L5JNLtM8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_333.part.js.map

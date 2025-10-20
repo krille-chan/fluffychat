@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEF(){return new A.FV(B.df("te"))},
-FV:function FV(d){this.a=d}}
+cEF(){return new A.FU(B.df("te"))},
+FU:function FU(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[48],A)
-A.FV.prototype={
+A.FU.prototype={
 gl0(){return""},
 gjN(){return"\u0c2a\u0c3e\u0c38\u0c4d\u200c\u0c35\u0c30\u0c4d\u0c21\u0c4d\u200c\u0c28\u0c41 \u0c2a\u0c41\u0c28\u0c30\u0c3e\u0c35\u0c43\u0c24\u0c02 \u0c1a\u0c47\u0c2f\u0c02\u0c21\u0c3f"},
 gmP(){return"\u0c07\u0c2e\u0c47\u0c1c\u0c4d \u0c2b\u0c48\u0c32\u0c4d \u0c15\u0c3e\u0c26\u0c41."},
@@ -537,7 +537,7 @@ gnv(){return"One of your devices is not verified"},
 gmR(){return"Note: When you connect all your devices to the chat backup, they are automatically verified."},
 gic(){return"Continue"},
 gl8(d){return"Blur:"},
-gbU(d){return"Opacity:"},
+gbT(d){return"Opacity:"},
 geU(){return"Set wallpaper"},
 gmy(){return"Manage account"},
 gjh(){return"Server does not provide any valid contact information"},
@@ -545,7 +545,7 @@ glA(){return"Contact server admin"},
 glB(){return"Contact server security"},
 gkR(){return"Support page"},
 gky(){return"Server information:"},
-gbH(d){return"Name"},
+gbG(d){return"Name"},
 gox(d){return"Version"},
 goI(){return"Website"},
 glx(){return"Compress"},
@@ -631,16 +631,17 @@ gpd(){return"Show navigation rail on mobile"},
 glL(){return"Custom reaction"},
 gph(){return"More events"},
 glO(){return"Decline invitation"},
-gpr(){return"No messages yet"},
+gps(){return"No messages yet"},
 gpi(){return"New sub space"},
-gpq(){return"Move to different space"},
-gpu(){return"The chat will be removed from the space but still appear in your chat list."},
+gpr(){return"Move to different space"},
+gpv(){return"The chat will be removed from the space but still appear in your chat list."},
 pn(d){return""+d+" chats"},
 pl(d){return"Space member of "+d},
 pm(d){return"Space member of "+d+" can knock"},
+gpo(){return"Donate"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FV,C.aF)})()
-B.dQ(b.typeUniverse,JSON.parse('{"FV":{"aF":[]}}'))};
-(a=>{a["KIi5u1BGdhSeMRYuvVNm4uMyc6s="]=a.current})($__dart_deferred_initializers__);
+y(A.FU,C.aF)})()
+B.dR(b.typeUniverse,JSON.parse('{"FU":{"aF":[]}}'))};
+(a=>{a["hcqz7wfZSSLOcECu93tjthjJMgE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_328.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEI(){return new A.FY(B.df("uk"))},
-FY:function FY(d){this.a=d}}
+cEI(){return new A.FX(B.df("uk"))},
+FX:function FX(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[51],A)
-A.FY.prototype={
+A.FX.prototype={
 gl0(){return"false"},
 gjN(){return"\u041f\u043e\u0432\u0442\u043e\u0440\u0456\u0442\u044c \u043f\u0430\u0440\u043e\u043b\u044c"},
 gmP(){return"\u041d\u0435 \u0444\u0430\u0439\u043b \u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u043d\u044f."},
@@ -537,7 +537,7 @@ gnv(){return"\u041e\u0434\u0438\u043d \u0456\u0437 \u0432\u0430\u0448\u0438\u044
 gmR(){return"\u041f\u0440\u0438\u043c\u0456\u0442\u043a\u0430: \u041a\u043e\u043b\u0438 \u0432\u0438 \u043f\u0456\u0434'\u0454\u0434\u043d\u0443\u0454\u0442\u0435 \u0432\u0441\u0456 \u0441\u0432\u043e\u0457 \u043f\u0440\u0438\u0441\u0442\u0440\u043e\u0457 \u0434\u043e \u0440\u0435\u0437\u0435\u0440\u0432\u043d\u043e\u0457 \u043a\u043e\u043f\u0456\u0457 \u0431\u0435\u0441\u0456\u0434\u0438, \u0432\u043e\u043d\u0438 \u0430\u0432\u0442\u043e\u043c\u0430\u0442\u0438\u0447\u043d\u043e \u0432\u0435\u0440\u0438\u0444\u0456\u043a\u0443\u044e\u0442\u044c\u0441\u044f."},
 gic(){return"\u041f\u0440\u043e\u0434\u043e\u0432\u0436\u0438\u0442\u0438"},
 gl8(d){return"\u0420\u043e\u0437\u043c\u0438\u0442\u0442\u044f:"},
-gbU(d){return"\u041f\u0440\u043e\u0437\u043e\u0440\u0456\u0441\u0442\u044c:"},
+gbT(d){return"\u041f\u0440\u043e\u0437\u043e\u0440\u0456\u0441\u0442\u044c:"},
 geU(){return"\u0412\u0441\u0442\u0430\u043d\u043e\u0432\u0438\u0442\u0438 \u0448\u043f\u0430\u043b\u0435\u0440\u0438"},
 gmy(){return"\u041a\u0435\u0440\u0443\u0432\u0430\u0442\u0438 \u043e\u0431\u043b\u0456\u043a\u043e\u0432\u0438\u043c \u0437\u0430\u043f\u0438\u0441\u043e\u043c"},
 gjh(){return"\u0421\u0435\u0440\u0432\u0435\u0440 \u043d\u0435 \u043d\u0430\u0434\u0430\u0454 \u0436\u043e\u0434\u043d\u043e\u0457 \u0434\u0456\u0439\u0441\u043d\u043e\u0457 \u043a\u043e\u043d\u0442\u0430\u043a\u0442\u043d\u043e\u0457 \u0456\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0456\u0457"},
@@ -545,7 +545,7 @@ glA(){return"\u0417\u0432\u2019\u044f\u0437\u0430\u0442\u0438\u0441\u044f \u0437
 glB(){return"\u0417\u0432\u2019\u044f\u0437\u0430\u0442\u0438\u0441\u044f \u0437 \u0432\u0456\u0434\u0434\u0456\u043b\u043e\u043c \u0431\u0435\u0437\u043f\u0435\u043a\u0438 \u0441\u0435\u0440\u0432\u0435\u0440\u0430"},
 gkR(){return"\u0421\u0442\u043e\u0440\u0456\u043d\u043a\u0430 \u043f\u0456\u0434\u0442\u0440\u0438\u043c\u043a\u0438"},
 gky(){return"\u0406\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0456\u044f \u043f\u0440\u043e \u0441\u0435\u0440\u0432\u0435\u0440:"},
-gbH(d){return"\u0406\u043c'\u044f"},
+gbG(d){return"\u0406\u043c'\u044f"},
 gox(d){return"\u0412\u0435\u0440\u0441\u0456\u044f"},
 goI(){return"\u0412\u0435\u0431\u0441\u0430\u0439\u0442"},
 glx(){return"\u0421\u0442\u0438\u0441\u043d\u0443\u0442\u0438"},
@@ -631,16 +631,17 @@ gpd(){return"\u041f\u043e\u043a\u0430\u0437\u0430\u0442\u0438 \u043d\u0430\u0432
 glL(){return"\u0412\u043b\u0430\u0441\u043d\u0456 \u0440\u0435\u0430\u043a\u0446\u0456\u0457"},
 gph(){return"\u0406\u043d\u0448\u0456 \u043f\u043e\u0434\u0456\u0457"},
 glO(){return"\u0412\u0456\u0434\u0445\u0438\u043b\u0438\u0442\u0438 \u0437\u0430\u043f\u0440\u043e\u0448\u0435\u043d\u043d\u044f"},
-gpr(){return"No messages yet"},
+gps(){return"No messages yet"},
 gpi(){return"New sub space"},
-gpq(){return"Move to different space"},
-gpu(){return"The chat will be removed from the space but still appear in your chat list."},
+gpr(){return"Move to different space"},
+gpv(){return"The chat will be removed from the space but still appear in your chat list."},
 pn(d){return""+d+" chats"},
 pl(d){return"Space member of "+d},
 pm(d){return"Space member of "+d+" can knock"},
+gpo(){return"Donate"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FY,C.aF)})()
-B.dQ(b.typeUniverse,JSON.parse('{"FY":{"aF":[]}}'))};
-(a=>{a["WXGErNHJNhWhK/0tFPiuHURL7O4="]=a.current})($__dart_deferred_initializers__);
+y(A.FX,C.aF)})()
+B.dR(b.typeUniverse,JSON.parse('{"FX":{"aF":[]}}'))};
+(a=>{a["W4x3rFzJyUujD6XnYImgDO6B3bE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_331.part.js.map

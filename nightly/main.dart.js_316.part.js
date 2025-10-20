@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEu(){return new A.FL(B.df("pl"))},
-FL:function FL(d){this.a=d}}
+cEu(){return new A.FK(B.df("pl"))},
+FK:function FK(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[40],A)
-A.FL.prototype={
+A.FK.prototype={
 gl0(){return"false"},
 gjN(){return"Powt\xf3rz has\u0142o"},
 gmP(){return"To nie jest plik obrazu."},
@@ -537,7 +537,7 @@ gnv(){return"Jedno z Twoich urz\u0105dze\u0144 nie jest zweryfikowane"},
 gmR(){return"Uwaga: Urz\u0105dzenia dodane do kopii zapasowej czatu automatycznie zostaj\u0105 zweryfikowane."},
 gic(){return"Kontynuuj"},
 gl8(d){return"Rozmazanie:"},
-gbU(d){return"Przezroczysto\u015b\u0107:"},
+gbT(d){return"Przezroczysto\u015b\u0107:"},
 geU(){return"Ustaw tapet\u0119"},
 gmy(){return"Zarz\u0105dzaj kontem"},
 gjh(){return"Serwer nie dostarcza \u017cadnych poprawnych danych kontaktowych"},
@@ -545,7 +545,7 @@ glA(){return"Skontaktuj si\u0119 z administratorem serwera"},
 glB(){return"Skontaktuj si\u0119 z dzia\u0142em bezpiecze\u0144stwa serwera"},
 gkR(){return"Strona obs\u0142ugi u\u017cytkownika"},
 gky(){return"Informacje o serwerze:"},
-gbH(d){return"Nazwa"},
+gbG(d){return"Nazwa"},
 gox(d){return"Wersja"},
 goI(){return"Strona internetowa"},
 glx(){return"Skompresuj"},
@@ -631,16 +631,17 @@ gpd(){return"Pokazuj pasek nawigacyjny na urz\u0105dzeniach mobilnych"},
 glL(){return"W\u0142asna reakcja"},
 gph(){return"Wi\u0119cej zdarze\u0144"},
 glO(){return"Odrzu\u0107 zaproszenie"},
-gpr(){return"No messages yet"},
+gps(){return"No messages yet"},
 gpi(){return"New sub space"},
-gpq(){return"Move to different space"},
-gpu(){return"The chat will be removed from the space but still appear in your chat list."},
+gpr(){return"Move to different space"},
+gpv(){return"The chat will be removed from the space but still appear in your chat list."},
 pn(d){return""+d+" chats"},
 pl(d){return"Space member of "+d},
 pm(d){return"Space member of "+d+" can knock"},
+gpo(){return"Donate"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FL,C.aF)})()
-B.dQ(b.typeUniverse,JSON.parse('{"FL":{"aF":[]}}'))};
-(a=>{a["5ZO78sVNTMBnIpG0vPvSAE23d3E="]=a.current})($__dart_deferred_initializers__);
+y(A.FK,C.aF)})()
+B.dR(b.typeUniverse,JSON.parse('{"FK":{"aF":[]}}'))};
+(a=>{a["pRUzlgd0PFLpm7ANzYTEOJW0TdA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_316.part.js.map

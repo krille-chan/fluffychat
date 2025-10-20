@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEk(){return new A.FB(B.df("id"))},
-FB:function FB(d){this.a=d}}
+cEk(){return new A.FA(B.df("id"))},
+FA:function FA(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[30],A)
-A.FB.prototype={
+A.FA.prototype={
 gl0(){return"tidak"},
 gjN(){return"Ulangi kata sandi"},
 gmP(){return"Bukan berkas gambar."},
@@ -537,7 +537,7 @@ gnv(){return"Salah satu perangkat Anda tidak terverifikasi"},
 gmR(){return"Catatan: Ketika Anda menghubungkan semua perangkat Anda ke cadangan chat, mereka akan diverifikasi secara otomatis."},
 gic(){return"Lanjutkan"},
 gl8(d){return"Buram:"},
-gbU(d){return"Opasitas:"},
+gbT(d){return"Opasitas:"},
 geU(){return"Atur later belakang"},
 gmy(){return"Kelola akun"},
 gjh(){return"Server tidak menyediakan informasi kontak valid apa pun"},
@@ -545,7 +545,7 @@ glA(){return"Hubungi admin server"},
 glB(){return"Hubungi keamanan server"},
 gkR(){return"Laman dukungan"},
 gky(){return"Informasi server:"},
-gbH(d){return"Nama"},
+gbG(d){return"Nama"},
 gox(d){return"Versi"},
 goI(){return"Situs Web"},
 glx(){return"Kompres"},
@@ -631,17 +631,18 @@ gpd(){return"Tampilkan jalur navigasi pada ponsel"},
 glL(){return"Reaksi khusus"},
 gph(){return"Peristiwa tambahan"},
 glO(){return"Tolak undangan"},
-gpr(){return"Belum ada pesan"},
+gps(){return"Belum ada pesan"},
 gpi(){return"New sub space"},
-gpq(){return"Move to different space"},
-gpu(){return"The chat will be removed from the space but still appear in your chat list."},
+gpr(){return"Move to different space"},
+gpv(){return"The chat will be removed from the space but still appear in your chat list."},
 pn(d){return""+d+" chats"},
 pl(d){return"Space member of "+d},
 pm(d){return"Space member of "+d+" can knock"},
+gpo(){return"Donate"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.FB,C.aF)})()
-B.dQ(b.typeUniverse,JSON.parse('{"FB":{"aF":[]}}'))
+x(A.FA,C.aF)})()
+B.dR(b.typeUniverse,JSON.parse('{"FA":{"aF":[]}}'))
 var y={a:"Memberi tahu pengguna tentang pesan dalam ruangan satu ke satu."}};
-(a=>{a["u5Wn7+1FRy74R/BKfnf+NpfnGHE="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["hQtrsa/oYQDhMVKg6UMXbcoeTwg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_298.part.js.map

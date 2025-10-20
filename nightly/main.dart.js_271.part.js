@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cE7(){return new A.Fo(B.df("et"))},
-Fo:function Fo(d){this.a=d}}
+cE7(){return new A.Fn(B.df("et"))},
+Fn:function Fn(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[17],A)
-A.Fo.prototype={
+A.Fn.prototype={
 gl0(){return"false"},
 gjN(){return"Korda salas\xf5na"},
 gmP(){return"See pole pildifail."},
@@ -537,7 +537,7 @@ gnv(){return"\xdcks sinu seadmetest pole verifitseeritud"},
 gmR(){return"M\xe4rkus: kui liidad k\xf5ik oma seadmed vestluste varundamisega, siis on nad sellega ka automaatselt verifitseeritud."},
 gic(){return"J\xe4tka"},
 gl8(d){return"H\xe4gusus:"},
-gbU(d){return"L\xe4bipaistmatus:"},
+gbT(d){return"L\xe4bipaistmatus:"},
 geU(){return"M\xe4\xe4ra taustapildiks"},
 gmy(){return"Halda kasutajakontot"},
 gjh(){return"Server ei jaga asjakohast kontaktteavet"},
@@ -545,7 +545,7 @@ glA(){return"V\xf5ta \xfchendust serveri haldajaga"},
 glB(){return"V\xf5ta \xfchendust serveri andmeturbe eest vastutajaga"},
 gkR(){return"Kasutajatugi"},
 gky(){return"Serveri teave:"},
-gbH(d){return"Nimi"},
+gbG(d){return"Nimi"},
 gox(d){return"Versioon"},
 goI(){return"Veebisait"},
 glx(){return"Paki kokku"},
@@ -631,16 +631,17 @@ gpd(){return"N\xe4ita mobiilis k\xfclgmist t\xf6\xf6riistariba"},
 glL(){return"Kohandatud reaktsioon"},
 gph(){return"Veel s\xfcndmusi"},
 glO(){return"Keeldu kutsest"},
-gpr(){return"Pole veel \xfchtegi s\xf5numit"},
+gps(){return"Pole veel \xfchtegi s\xf5numit"},
 gpi(){return"New sub space"},
-gpq(){return"Move to different space"},
-gpu(){return"The chat will be removed from the space but still appear in your chat list."},
+gpr(){return"Move to different space"},
+gpv(){return"The chat will be removed from the space but still appear in your chat list."},
 pn(d){return""+d+" chats"},
 pl(d){return"Space member of "+d},
 pm(d){return"Space member of "+d+" can knock"},
+gpo(){return"Donate"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Fo,C.aF)})()
-B.dQ(b.typeUniverse,JSON.parse('{"Fo":{"aF":[]}}'))};
-(a=>{a["wo6cb9kAhNSAEe7uzP3GAvl+rGw="]=a.current})($__dart_deferred_initializers__);
+y(A.Fn,C.aF)})()
+B.dR(b.typeUniverse,JSON.parse('{"Fn":{"aF":[]}}'))};
+(a=>{a["4QD5yiOg0fUPyE2TckBzof3aPpk="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_271.part.js.map

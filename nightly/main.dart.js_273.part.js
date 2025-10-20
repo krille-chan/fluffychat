@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cE8(){return new A.Fp(B.df("eu"))},
-Fp:function Fp(d){this.a=d}}
+cE8(){return new A.Fo(B.df("eu"))},
+Fo:function Fo(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[18],A)
-A.Fp.prototype={
+A.Fo.prototype={
 gl0(){return"false"},
 gjN(){return"Idatzi berriro pasahitza"},
 gmP(){return"Ez da irudi-fitxategia."},
@@ -537,7 +537,7 @@ gnv(){return"Zure gailuetako bat ez dago egiaztatuta"},
 gmR(){return"Oharra: gailu guztiak txat-babeskopiarekin konektatzen dituzunean, automatikoki egiaztatzen dira."},
 gic(){return"Jarraitu"},
 gl8(d){return"Lausotu:"},
-gbU(d){return"Opakutasuna:"},
+gbT(d){return"Opakutasuna:"},
 geU(){return"Ezarri horma-irudia"},
 gmy(){return"Kudeatu kontua"},
 gjh(){return"Zerbitzariak ez du harremanetarako informaziorik zehaztu"},
@@ -545,7 +545,7 @@ glA(){return"Jarri harremanetan zerbitzariaren administratzailearekin"},
 glB(){return"Jakinarazi segurtasun arazo bat"},
 gkR(){return"Laguntza orria"},
 gky(){return"Zerbitzariaren informazioa:"},
-gbH(d){return"Izena"},
+gbG(d){return"Izena"},
 gox(d){return"Bertsioa"},
 goI(){return"Webgunea"},
 glx(){return"Konprimatu"},
@@ -631,17 +631,18 @@ gpd(){return"Erakutsi nabigazio-barra mugikorrean"},
 glL(){return"Erreakzio pertsonalizatua"},
 gph(){return"Gertaera gehiago"},
 glO(){return"Uko egin gonbidapenari"},
-gpr(){return"Mezurik ez oraingoz"},
+gps(){return"Mezurik ez oraingoz"},
 gpi(){return"New sub space"},
-gpq(){return"Move to different space"},
-gpu(){return"The chat will be removed from the space but still appear in your chat list."},
+gpr(){return"Move to different space"},
+gpv(){return"The chat will be removed from the space but still appear in your chat list."},
 pn(d){return""+d+" chats"},
 pl(d){return"Space member of "+d},
 pm(d){return"Space member of "+d+" can knock"},
+gpo(){return"Donate"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.Fp,C.aF)})()
-B.dQ(b.typeUniverse,JSON.parse('{"Fp":{"aF":[]}}'))
+x(A.Fo,C.aF)})()
+B.dR(b.typeUniverse,JSON.parse('{"Fo":{"aF":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["QhcHjiQ1nJI5jCIxXowBZzCGh7k="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["iGHzCSP+FyJTCKIE3M1/ZFVJO1U="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_273.part.js.map

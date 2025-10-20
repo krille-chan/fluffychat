@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cE_(){return new A.Fg(B.df("ca"))},
-Fg:function Fg(d){this.a=d}}
+cE_(){return new A.Ff(B.df("ca"))},
+Ff:function Ff(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[9],A)
-A.Fg.prototype={
+A.Ff.prototype={
 gl0(){return"true"},
 gjN(){return"Repetiu la contrasenya"},
 gmP(){return"No \xe9s un arxiu d'image."},
@@ -537,7 +537,7 @@ gnv(){return"Un dels teus dispositius no est\xe0 verificat"},
 gmR(){return"Nota: quan connectes tots els dispositius al backup del xat, es verifiquen autom\xe0ticament."},
 gic(){return"Continua"},
 gl8(d){return"Difumina:"},
-gbU(d){return"Opacitat:"},
+gbT(d){return"Opacitat:"},
 geU(){return"Tria imatge de fons"},
 gmy(){return"Gestiona el compte"},
 gjh(){return"El servidor no ofereix cap informaci\xf3 de contacte v\xe0lida"},
@@ -545,7 +545,7 @@ glA(){return"Contacta l'admin del servidor"},
 glB(){return"Contacta l'equip de seguretat del servidor"},
 gkR(){return"P\xe0gina de suport"},
 gky(){return"Informaci\xf3 del servidor:"},
-gbH(d){return"Nom"},
+gbG(d){return"Nom"},
 gox(d){return"Versi\xf3"},
 goI(){return"Lloc web"},
 glx(){return"Comprimeix"},
@@ -631,16 +631,17 @@ gpd(){return"Show navigation rail on mobile"},
 glL(){return"Custom reaction"},
 gph(){return"More events"},
 glO(){return"Decline invitation"},
-gpr(){return"No messages yet"},
+gps(){return"No messages yet"},
 gpi(){return"New sub space"},
-gpq(){return"Move to different space"},
-gpu(){return"The chat will be removed from the space but still appear in your chat list."},
+gpr(){return"Move to different space"},
+gpv(){return"The chat will be removed from the space but still appear in your chat list."},
 pn(d){return""+d+" chats"},
 pl(d){return"Space member of "+d},
 pm(d){return"Space member of "+d+" can knock"},
+gpo(){return"Donate"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Fg,C.aF)})()
-B.dQ(b.typeUniverse,JSON.parse('{"Fg":{"aF":[]}}'))};
-(a=>{a["vEVBMi7zJRWmLqSJe5uQ6D36gNY="]=a.current})($__dart_deferred_initializers__);
+y(A.Ff,C.aF)})()
+B.dR(b.typeUniverse,JSON.parse('{"Ff":{"aF":[]}}'))};
+(a=>{a["jVOTzL3UDyiAtWwb0P1FRQqltGc="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_237.part.js.map

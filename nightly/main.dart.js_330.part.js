@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEH(){return new A.FX(B.df("tr"))},
-FX:function FX(d){this.a=d}}
+cEH(){return new A.FW(B.df("tr"))},
+FW:function FW(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[50],A)
-A.FX.prototype={
+A.FW.prototype={
 gl0(){return"false"},
 gjN(){return"Parolay\u0131 tekrarlay\u0131n"},
 gmP(){return"Bir resim dosyas\u0131 de\u011fil."},
@@ -537,7 +537,7 @@ gnv(){return"Ayg\u0131tlar\u0131n\u0131zdan biri do\u011frulanmad\u0131"},
 gmR(){return"Not: T\xfcm ayg\u0131tlar\u0131n\u0131z\u0131 sohbet yedeklemesine ba\u011flad\u0131\u011f\u0131n\u0131zda, otomatik olarak do\u011frulan\u0131rlar."},
 gic(){return"Devam et"},
 gl8(d){return"Blur:"},
-gbU(d){return"\u015eeffafl\u0131k:"},
+gbT(d){return"\u015eeffafl\u0131k:"},
 geU(){return"Duvar ka\u011f\u0131d\u0131 se\xe7"},
 gmy(){return"Hesab\u0131 y\xf6net"},
 gjh(){return"Sunucu ge\xe7erli bir ileti\u015fim bilgisi sunmad\u0131"},
@@ -545,7 +545,7 @@ glA(){return"Sunucu y\xf6neticisiyle ileti\u015fime ge\xe7in"},
 glB(){return"Sunucu g\xfcvenli\u011fiyle ileti\u015fime ge\xe7in"},
 gkR(){return"Destek sayfas\u0131"},
 gky(){return"Sunucu bilgisi:"},
-gbH(d){return"\u0130sim"},
+gbG(d){return"\u0130sim"},
 gox(d){return"Versiyon"},
 goI(){return"Web sitesi"},
 glx(){return"S\u0131k\u0131\u015ft\u0131rma"},
@@ -631,17 +631,18 @@ gpd(){return"Show navigation rail on mobile"},
 glL(){return"Custom reaction"},
 gph(){return"More events"},
 glO(){return"Decline invitation"},
-gpr(){return"No messages yet"},
+gps(){return"No messages yet"},
 gpi(){return"New sub space"},
-gpq(){return"Move to different space"},
-gpu(){return"The chat will be removed from the space but still appear in your chat list."},
+gpr(){return"Move to different space"},
+gpv(){return"The chat will be removed from the space but still appear in your chat list."},
 pn(d){return""+d+" chats"},
 pl(d){return"Space member of "+d},
 pm(d){return"Space member of "+d+" can knock"},
+gpo(){return"Donate"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.FX,C.aF)})()
-B.dQ(b.typeUniverse,JSON.parse('{"FX":{"aF":[]}}'))
+x(A.FW,C.aF)})()
+B.dR(b.typeUniverse,JSON.parse('{"FW":{"aF":[]}}'))
 var y={c:" adresinde geli\u015ftiricilere bildirin. Hata mesaj\u0131: "}};
-(a=>{a["7BWFwpoZV1gUDPp4Vq2RnnbK2aY="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["qgreeY9WVbiBPVMCXXmNcTzTsiU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_330.part.js.map

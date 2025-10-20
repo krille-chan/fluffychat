@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEe(){return new A.Fv(B.df("gl"))},
-Fv:function Fv(d){this.a=d}}
+cEe(){return new A.Fu(B.df("gl"))},
+Fu:function Fu(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[24],A)
-A.Fv.prototype={
+A.Fu.prototype={
 gl0(){return"falso"},
 gjN(){return"Repite o contrasinal"},
 gmP(){return"Non \xe9 un ficheiro de imaxe."},
@@ -537,7 +537,7 @@ gnv(){return"Un dos teus dispositivos non est\xe1 verificado"},
 gmR(){return"Nota: Cando conectas todos os teus dispositivos \xe1 copia de apoio da conversa quedan verificados automaticamente."},
 gic(){return"Continuar"},
 gl8(d){return"N\xe9boa:"},
-gbU(d){return"Opacidade:"},
+gbT(d){return"Opacidade:"},
 geU(){return"Establecer fondo"},
 gmy(){return"Xestionar conta"},
 gjh(){return"O servidor non proporciona informaci\xf3n de contacto v\xe1lida"},
@@ -545,7 +545,7 @@ glA(){return"Contacto con Admin do servidor"},
 glB(){return"Contacto con Seguridade do servidor"},
 gkR(){return"P\xe1xina de axuda"},
 gky(){return"Informaci\xf3n do servidor:"},
-gbH(d){return"Nome"},
+gbG(d){return"Nome"},
 gox(d){return"Versi\xf3n"},
 goI(){return"P\xe1xina web"},
 glx(){return"Comprimir"},
@@ -631,16 +631,17 @@ gpd(){return"Mostrar carril de navegaci\xf3n nos m\xf3biles"},
 glL(){return"Reacci\xf3n personalizada"},
 gph(){return"M\xe1is eventos"},
 glO(){return"Rexeitar o convite"},
-gpr(){return"A\xednda non hai mensaxes"},
+gps(){return"A\xednda non hai mensaxes"},
 gpi(){return"New sub space"},
-gpq(){return"Move to different space"},
-gpu(){return"The chat will be removed from the space but still appear in your chat list."},
+gpr(){return"Move to different space"},
+gpv(){return"The chat will be removed from the space but still appear in your chat list."},
 pn(d){return""+d+" chats"},
 pl(d){return"Space member of "+d},
 pm(d){return"Space member of "+d+" can knock"},
+gpo(){return"Donate"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Fv,C.aF)})()
-B.dQ(b.typeUniverse,JSON.parse('{"Fv":{"aF":[]}}'))};
-(a=>{a["rGxLkHpMmf/qeozWLNQyaqyMCf0="]=a.current})($__dart_deferred_initializers__);
+y(A.Fu,C.aF)})()
+B.dR(b.typeUniverse,JSON.parse('{"Fu":{"aF":[]}}'))};
+(a=>{a["iLdM4HlRUI+b0V8hMGZXmcpA+WA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_284.part.js.map

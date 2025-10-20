@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEq(){return new A.FH(B.df("lt"))},
-FH:function FH(d){this.a=d}}
+cEq(){return new A.FG(B.df("lt"))},
+FG:function FG(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[36],A)
-A.FH.prototype={
+A.FG.prototype={
 gl0(){return"false"},
 gjN(){return"Pakartokite slapta\u017eod\u012f"},
 gmP(){return"Not an image file."},
@@ -537,7 +537,7 @@ gnv(){return"One of your devices is not verified"},
 gmR(){return"Note: When you connect all your devices to the chat backup, they are automatically verified."},
 gic(){return"Continue"},
 gl8(d){return"Blur:"},
-gbU(d){return"Opacity:"},
+gbT(d){return"Opacity:"},
 geU(){return"Set wallpaper"},
 gmy(){return"Manage account"},
 gjh(){return"Server does not provide any valid contact information"},
@@ -545,7 +545,7 @@ glA(){return"Contact server admin"},
 glB(){return"Contact server security"},
 gkR(){return"Support page"},
 gky(){return"Server information:"},
-gbH(d){return"Name"},
+gbG(d){return"Name"},
 gox(d){return"Version"},
 goI(){return"Website"},
 glx(){return"Compress"},
@@ -631,16 +631,17 @@ gpd(){return"Show navigation rail on mobile"},
 glL(){return"Custom reaction"},
 gph(){return"More events"},
 glO(){return"Decline invitation"},
-gpr(){return"No messages yet"},
+gps(){return"No messages yet"},
 gpi(){return"New sub space"},
-gpq(){return"Move to different space"},
-gpu(){return"The chat will be removed from the space but still appear in your chat list."},
+gpr(){return"Move to different space"},
+gpv(){return"The chat will be removed from the space but still appear in your chat list."},
 pn(d){return""+d+" chats"},
 pl(d){return"Space member of "+d},
 pm(d){return"Space member of "+d+" can knock"},
+gpo(){return"Donate"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FH,C.aF)})()
-B.dQ(b.typeUniverse,JSON.parse('{"FH":{"aF":[]}}'))};
-(a=>{a["/S4rUBRCiRC8nlvYvDbLG+jKils="]=a.current})($__dart_deferred_initializers__);
+y(A.FG,C.aF)})()
+B.dR(b.typeUniverse,JSON.parse('{"FG":{"aF":[]}}'))};
+(a=>{a["KGGJcOf85xptpx61HFK9IfLqdF8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_311.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cE3(){return new A.Fk(B.df("el"))},
-Fk:function Fk(d){this.a=d}}
+cE3(){return new A.Fj(B.df("el"))},
+Fj:function Fj(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[13],A)
-A.Fk.prototype={
+A.Fj.prototype={
 gl0(){return"\u03a8\u03b5\u03c5\u03b4\u03ae\u03c2"},
 gjN(){return"\u0395\u03c0\u03b1\u03bd\u03ac\u03bb\u03b7\u03c8\u03b7 \u03ba\u03c9\u03b4\u03b9\u03ba\u03bf\u03cd \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03b7\u03c2"},
 gmP(){return"\u0394\u03b5\u03bd \u03b5\u03af\u03bd\u03b1\u03b9 \u03b1\u03c1\u03c7\u03b5\u03af\u03bf \u03b5\u03b9\u03ba\u03cc\u03bd\u03b1\u03c2."},
@@ -537,7 +537,7 @@ gnv(){return"One of your devices is not verified"},
 gmR(){return"Note: When you connect all your devices to the chat backup, they are automatically verified."},
 gic(){return"Continue"},
 gl8(d){return"Blur:"},
-gbU(d){return"Opacity:"},
+gbT(d){return"Opacity:"},
 geU(){return"Set wallpaper"},
 gmy(){return"Manage account"},
 gjh(){return"Server does not provide any valid contact information"},
@@ -545,7 +545,7 @@ glA(){return"Contact server admin"},
 glB(){return"Contact server security"},
 gkR(){return"Support page"},
 gky(){return"Server information:"},
-gbH(d){return"Name"},
+gbG(d){return"Name"},
 gox(d){return"Version"},
 goI(){return"Website"},
 glx(){return"Compress"},
@@ -631,16 +631,17 @@ gpd(){return"Show navigation rail on mobile"},
 glL(){return"Custom reaction"},
 gph(){return"More events"},
 glO(){return"Decline invitation"},
-gpr(){return"No messages yet"},
+gps(){return"No messages yet"},
 gpi(){return"New sub space"},
-gpq(){return"Move to different space"},
-gpu(){return"The chat will be removed from the space but still appear in your chat list."},
+gpr(){return"Move to different space"},
+gpv(){return"The chat will be removed from the space but still appear in your chat list."},
 pn(d){return""+d+" chats"},
 pl(d){return"Space member of "+d},
 pm(d){return"Space member of "+d+" can knock"},
+gpo(){return"Donate"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Fk,C.aF)})()
-B.dQ(b.typeUniverse,JSON.parse('{"Fk":{"aF":[]}}'))};
-(a=>{a["hLJB0CXeMLN36ggnOoAFI6XoGy4="]=a.current})($__dart_deferred_initializers__);
+y(A.Fj,C.aF)})()
+B.dR(b.typeUniverse,JSON.parse('{"Fj":{"aF":[]}}'))};
+(a=>{a["SjgvGHgN2l8JLbF+lTQ2LfWnWbU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_263.part.js.map

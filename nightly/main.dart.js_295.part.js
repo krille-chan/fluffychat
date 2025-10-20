@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEi(){return new A.Fz(B.df("hu"))},
-Fz:function Fz(d){this.a=d}}
+cEi(){return new A.Fy(B.df("hu"))},
+Fy:function Fy(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[28],A)
-A.Fz.prototype={
+A.Fy.prototype={
 gl0(){return""},
 gjN(){return"Jelsz\xf3 ism\xe9tl\xe9se"},
 gmP(){return"Nem k\xe9p f\xe1jl."},
@@ -537,7 +537,7 @@ gnv(){return"Egyik k\xe9sz\xfcl\xe9ke nem hiteles\xedtett"},
 gmR(){return"Megjegyz\xe9s: Minden eszk\xf6ze amit a cseveg\xe9s ment\xe9shez kapcsol, automatikusan hiteles\xedt\xe9sre ker\xfcl."},
 gic(){return"Folytat\xe1s"},
 gl8(d){return"Hom\xe1lyos\xedt:"},
-gbU(d){return"\xc1tl\xe1tsz\xf3s\xe1g:"},
+gbT(d){return"\xc1tl\xe1tsz\xf3s\xe1g:"},
 geU(){return"H\xe1tt\xe9r be\xe1ll\xedt\xe1s"},
 gmy(){return"Fi\xf3k kezel\xe9se"},
 gjh(){return"A szervert\u0151l nem \xe9rkezett vissza kapcsolati inform\xe1ci\xf3"},
@@ -545,7 +545,7 @@ glA(){return"Kapcsolatfelv\xe9tel a szerver adminnal"},
 glB(){return"Kapcsolatfelv\xe9tel a szerver biztons\xe1ggal"},
 gkR(){return"T\xe1mogat\xe1si oldal"},
 gky(){return"Szerver inform\xe1ci\xf3:"},
-gbH(d){return"N\xe9v"},
+gbG(d){return"N\xe9v"},
 gox(d){return"Verzi\xf3"},
 goI(){return"Weboldal"},
 glx(){return"T\xf6m\xf6r\xedt\xe9s"},
@@ -631,16 +631,17 @@ gpd(){return"Show navigation rail on mobile"},
 glL(){return"Custom reaction"},
 gph(){return"More events"},
 glO(){return"Decline invitation"},
-gpr(){return"No messages yet"},
+gps(){return"No messages yet"},
 gpi(){return"New sub space"},
-gpq(){return"Move to different space"},
-gpu(){return"The chat will be removed from the space but still appear in your chat list."},
+gpr(){return"Move to different space"},
+gpv(){return"The chat will be removed from the space but still appear in your chat list."},
 pn(d){return""+d+" chats"},
 pl(d){return"Space member of "+d},
 pm(d){return"Space member of "+d+" can knock"},
+gpo(){return"Donate"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Fz,C.aF)})()
-B.dQ(b.typeUniverse,JSON.parse('{"Fz":{"aF":[]}}'))};
-(a=>{a["mv4YUC3OaeOeSf5kpPxx9Zbn1rc="]=a.current})($__dart_deferred_initializers__);
+y(A.Fy,C.aF)})()
+B.dR(b.typeUniverse,JSON.parse('{"Fy":{"aF":[]}}'))};
+(a=>{a["dBxbOTXPrClgx5eX/vv+3QsS8Pw="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_295.part.js.map

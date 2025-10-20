@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cDX(){return new A.Fd(B.df("be"))},
-Fd:function Fd(d){this.a=d}}
+cDX(){return new A.Fc(B.df("be"))},
+Fc:function Fc(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[6],A)
-A.Fd.prototype={
+A.Fc.prototype={
 gl0(){return"\u0430\u0434\u043a\u043b\u044e\u0447\u0430\u043d\u0430"},
 gjN(){return"\u041f\u0430\u045e\u0442\u0430\u0440\u044b\u0446\u0435 \u043f\u0430\u0440\u043e\u043b\u044c"},
 gmP(){return"\u041d\u0435 \u0444\u0430\u0439\u043b \u0432\u044b\u044f\u0432\u044b."},
@@ -537,7 +537,7 @@ gnv(){return"One of your devices is not verified"},
 gmR(){return"Note: When you connect all your devices to the chat backup, they are automatically verified."},
 gic(){return"Continue"},
 gl8(d){return"Blur:"},
-gbU(d){return"Opacity:"},
+gbT(d){return"Opacity:"},
 geU(){return"Set wallpaper"},
 gmy(){return"\u041a\u0456\u0440\u0430\u0432\u0430\u043d\u043d\u0435 \u045e\u043b\u0456\u043a\u043e\u0432\u044b\u043c \u0437\u0430\u043f\u0456\u0441\u0430\u043c"},
 gjh(){return"\u0421\u0435\u0440\u0432\u0435\u0440 \u043d\u0435 \u043c\u0430\u0435 \u043d\u0456\u044f\u043a\u0430\u0439 \u0432\u0435\u0440\u043d\u0430\u0439 \u043a\u0430\u043d\u0442\u0430\u043a\u0442\u043d\u0430\u0439 \u0456\u043d\u0444\u0430\u0440\u043c\u0430\u0446\u044b\u0456"},
@@ -545,7 +545,7 @@ glA(){return"\u0417\u0432\u044f\u0437\u0430\u0446\u0446\u0430 \u0437 \u0430\u043
 glB(){return"\u0417\u0432\u044f\u0437\u0430\u0446\u0446\u0430 \u0437 \u0441\u0435\u0440\u0432\u0435\u0440\u043d\u0430\u0439 \u0431\u044f\u0441\u043f\u0435\u043a\u0430\u0439"},
 gkR(){return"\u041f\u0430\u0434\u0442\u0440\u044b\u043c\u043a\u0430"},
 gky(){return"\u0421\u0435\u0440\u0432\u0435\u0440\u043d\u0430\u044f \u0456\u043d\u0444\u0430\u0440\u043c\u0430\u0446\u044b\u044f:"},
-gbH(d){return"\u0406\u043c\u044f"},
+gbG(d){return"\u0406\u043c\u044f"},
 gox(d){return"\u0412\u0435\u0440\u0441\u0456\u044f"},
 goI(){return"\u0421\u0430\u0439\u0442"},
 glx(){return"\u0421\u0446\u0456\u0441\u043a\u0430\u043d\u043d\u0435"},
@@ -631,16 +631,17 @@ gpd(){return"\u041f\u0430\u043a\u0430\u0437\u0432\u0430\u0446\u044c \u043d\u0430
 glL(){return"\u041a\u0430\u0440\u044b\u0441\u0442\u0430\u043b\u044c\u043d\u0456\u0446\u043a\u0430\u044f \u0440\u044d\u0430\u043a\u0446\u044b\u044f"},
 gph(){return"\u0411\u043e\u043b\u044c\u0448 \u043f\u0430\u0434\u0437\u0435\u0439"},
 glO(){return"\u0421\u043a\u0430\u0441\u0430\u0432\u0430\u0446\u044c \u0437\u0430\u043f\u0440\u0430\u0448\u044d\u043d\u043d\u0435"},
-gpr(){return"\u041f\u0430\u0432\u0435\u0434\u0430\u043c\u043b\u0435\u043d\u043d\u044f\u045e \u043f\u0430\u043a\u0443\u043b\u044c \u0448\u0442\u043e \u043d\u044f\u043c\u0430"},
+gps(){return"\u041f\u0430\u0432\u0435\u0434\u0430\u043c\u043b\u0435\u043d\u043d\u044f\u045e \u043f\u0430\u043a\u0443\u043b\u044c \u0448\u0442\u043e \u043d\u044f\u043c\u0430"},
 gpi(){return"New sub space"},
-gpq(){return"Move to different space"},
-gpu(){return"The chat will be removed from the space but still appear in your chat list."},
+gpr(){return"Move to different space"},
+gpv(){return"The chat will be removed from the space but still appear in your chat list."},
 pn(d){return""+d+" chats"},
 pl(d){return"Space member of "+d},
 pm(d){return"Space member of "+d+" can knock"},
+gpo(){return"Donate"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Fd,C.aF)})()
-B.dQ(b.typeUniverse,JSON.parse('{"Fd":{"aF":[]}}'))};
-(a=>{a["dGiTDa4mNQRaJfkprOeFxHSCDzg="]=a.current})($__dart_deferred_initializers__);
+y(A.Fc,C.aF)})()
+B.dR(b.typeUniverse,JSON.parse('{"Fc":{"aF":[]}}'))};
+(a=>{a["APKzD5HN1/f/vbjeQp7A9424xeA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_216.part.js.map

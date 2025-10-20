@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cE2(){return new A.Fj(B.df("de"))},
-Fj:function Fj(d){this.a=d}}
+cE2(){return new A.Fi(B.df("de"))},
+Fi:function Fi(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[12],A)
-A.Fj.prototype={
+A.Fi.prototype={
 gl0(){return"true"},
 gjN(){return"Passwort wiederholen"},
 gmP(){return"Keine Bilddatei."},
@@ -537,7 +537,7 @@ gnv(){return"Eines deiner Ger\xe4te ist nicht verifiziert"},
 gmR(){return"Hinweis: Wenn du alle deine Ger\xe4te mit dem Chat-Backup verbindest, sind sie automatisch verifiziert."},
 gic(){return"Fortfahren"},
 gl8(d){return"Verwischen:"},
-gbU(d){return"Deckkraft:"},
+gbT(d){return"Deckkraft:"},
 geU(){return"Hintergrund \xe4ndern"},
 gmy(){return"Konto verwalten"},
 gjh(){return"Der Server stellt keine g\xfcltigen Kontaktinformationen bereit"},
@@ -545,7 +545,7 @@ glA(){return"Serveradministrator kontaktieren"},
 glB(){return"Server-Sicherheit kontaktieren"},
 gkR(){return"Support-Seite"},
 gky(){return"Server-Informationen:"},
-gbH(d){return"Name"},
+gbG(d){return"Name"},
 gox(d){return"Version"},
 goI(){return"Website"},
 glx(){return"Komprimieren"},
@@ -631,17 +631,18 @@ gpd(){return"Navigationsleiste auf dem Smartphone anzeigen"},
 glL(){return"Benutzerdefinierte Reaktion"},
 gph(){return"Weitere Ereignisse"},
 glO(){return"Einladung ablehnen"},
-gpr(){return"No messages yet"},
+gps(){return"No messages yet"},
 gpi(){return"New sub space"},
-gpq(){return"Move to different space"},
-gpu(){return"The chat will be removed from the space but still appear in your chat list."},
+gpr(){return"Move to different space"},
+gpv(){return"The chat will be removed from the space but still appear in your chat list."},
 pn(d){return""+d+" chats"},
 pl(d){return"Space member of "+d},
 pm(d){return"Space member of "+d+" can knock"},
+gpo(){return"Donate"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.Fj,C.aF)})()
-B.dQ(b.typeUniverse,JSON.parse('{"Fj":{"aF":[]}}'))
+x(A.Fi,C.aF)})()
+B.dR(b.typeUniverse,JSON.parse('{"Fi":{"aF":[]}}'))
 var y={b:"Die App versucht nun, deine Sitzung aus der Sicherung wiederherzustellen. Bitte melde diesen Fehler an die Entwickler unter "}};
-(a=>{a["alBkAaToTY8yslV8olDghuKmFms="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["+dPJSTDapCxhX/8rDNDHKjndJRU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_255.part.js.map

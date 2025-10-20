@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEm(){return new A.FD(B.df("it"))},
-FD:function FD(d){this.a=d}}
+cEm(){return new A.FC(B.df("it"))},
+FC:function FC(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[32],A)
-A.FD.prototype={
+A.FC.prototype={
 gl0(){return"disattivato"},
 gjN(){return"Ripeti password"},
 gmP(){return"Non \xe8 un file immagine."},
@@ -537,7 +537,7 @@ gnv(){return"Uno dei tuoi dispositivi non \xe8 verificato"},
 gmR(){return"Nota: quando colleghi tutti i tuoi dispositivi al backup della chat, vengono verificati automaticamente."},
 gic(){return"Continua"},
 gl8(d){return"Sfocatura:"},
-gbU(d){return"Opacit\xe0:"},
+gbT(d){return"Opacit\xe0:"},
 geU(){return"Imposta sfondo"},
 gmy(){return"Gestisci account"},
 gjh(){return"Il server non fornisce alcuna informazione di contatto valida"},
@@ -545,7 +545,7 @@ glA(){return"Contatta l'amministratore del server"},
 glB(){return"Contatta la sicurezza del server"},
 gkR(){return"Pagina di supporto"},
 gky(){return"Informazioni sul server:"},
-gbH(d){return"Nome"},
+gbG(d){return"Nome"},
 gox(d){return"Versione"},
 goI(){return"Sito web"},
 glx(){return"Comprimere"},
@@ -631,16 +631,17 @@ gpd(){return"Mostra barra di navigazione su mobile"},
 glL(){return"Reazione personalizzata"},
 gph(){return"Altri eventi"},
 glO(){return"Decline invitation"},
-gpr(){return"No messages yet"},
+gps(){return"No messages yet"},
 gpi(){return"New sub space"},
-gpq(){return"Move to different space"},
-gpu(){return"The chat will be removed from the space but still appear in your chat list."},
+gpr(){return"Move to different space"},
+gpv(){return"The chat will be removed from the space but still appear in your chat list."},
 pn(d){return""+d+" chats"},
 pl(d){return"Space member of "+d},
 pm(d){return"Space member of "+d+" can knock"},
+gpo(){return"Donate"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FD,C.aF)})()
-B.dQ(b.typeUniverse,JSON.parse('{"FD":{"aF":[]}}'))};
-(a=>{a["SPpaCjfszy1hfpVDQjvylo/z654="]=a.current})($__dart_deferred_initializers__);
+y(A.FC,C.aF)})()
+B.dR(b.typeUniverse,JSON.parse('{"FC":{"aF":[]}}'))};
+(a=>{a["Pcxe63oBJRhgEsUXavL81PgU0S4="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_305.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEt(){return new A.FK(B.df("nl"))},
-FK:function FK(d){this.a=d}}
+cEt(){return new A.FJ(B.df("nl"))},
+FJ:function FJ(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[39],A)
-A.FK.prototype={
+A.FJ.prototype={
 gl0(){return"true"},
 gjN(){return"Wachtwoord herhalen"},
 gmP(){return"Geen afbeeldingsbestand."},
@@ -537,7 +537,7 @@ gnv(){return"Een van jouw apparaten is niet geverifieerd"},
 gmR(){return"Opmerking: Als al je apparaten zijn verbonden met de chat back-up worden ze automatisch geverifieerd."},
 gic(){return"Doorgaan"},
 gl8(d){return"Vervaag:"},
-gbU(d){return"Doorzichtigheid:"},
+gbT(d){return"Doorzichtigheid:"},
 geU(){return"Achtergrond instellen"},
 gmy(){return"Account beheren"},
 gjh(){return"Server geeft geen geldige contactinformatie"},
@@ -545,7 +545,7 @@ glA(){return"Contact opnemen met serverbeheerder"},
 glB(){return"Contact opnemen met serverbeveiliger"},
 gkR(){return"Supportpagina"},
 gky(){return"Server-informatie:"},
-gbH(d){return"Naam"},
+gbG(d){return"Naam"},
 gox(d){return"Versie"},
 goI(){return"Website"},
 glx(){return"Comprimeren"},
@@ -631,16 +631,17 @@ gpd(){return"Navigatiebalk op mobiel tonen"},
 glL(){return"Aangepaste reactie"},
 gph(){return"Meer gebeurtenissen"},
 glO(){return"Uitnodiging afwijzen"},
-gpr(){return"Nog geen berichten"},
+gps(){return"Nog geen berichten"},
 gpi(){return"New sub space"},
-gpq(){return"Move to different space"},
-gpu(){return"The chat will be removed from the space but still appear in your chat list."},
+gpr(){return"Move to different space"},
+gpv(){return"The chat will be removed from the space but still appear in your chat list."},
 pn(d){return""+d+" chats"},
 pl(d){return"Space member of "+d},
 pm(d){return"Space member of "+d+" can knock"},
+gpo(){return"Donate"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FK,C.aF)})()
-B.dQ(b.typeUniverse,JSON.parse('{"FK":{"aF":[]}}'))};
-(a=>{a["b4FDtuBoEHBZHcuDwh2Q3SD+12E="]=a.current})($__dart_deferred_initializers__);
+y(A.FJ,C.aF)})()
+B.dR(b.typeUniverse,JSON.parse('{"FJ":{"aF":[]}}'))};
+(a=>{a["Oq4jsg8Uo7A7OE5lV6KCTRB03DA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_315.part.js.map

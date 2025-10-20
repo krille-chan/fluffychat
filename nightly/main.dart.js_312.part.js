@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEr(){return new A.FI(B.df("lv"))},
-FI:function FI(d){this.a=d}}
+cEr(){return new A.FH(B.df("lv"))},
+FH:function FH(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[37],A)
-A.FI.prototype={
+A.FH.prototype={
 gl0(){return"n\u0113"},
 gjN(){return"Atk\u0101rtot paroli"},
 gmP(){return"Nav att\u0113la datne."},
@@ -537,7 +537,7 @@ gnv(){return"Viena no ier\u012bc\u0113m nav apliecin\u0101ta"},
 gmR(){return"Piez\u012bme: kad visas ier\u012bces tiek savienotas ar t\u0113rz\u0113\u0161anu rezerves kopiju, t\u0101s tiek autom\u0101tiski apliecin\u0101tas."},
 gic(){return"Turpin\u0101t"},
 gl8(d){return"Aizmiglojums:"},
-gbU(d){return"Necaurredzam\u012bba:"},
+gbT(d){return"Necaurredzam\u012bba:"},
 geU(){return"Iestat\u012bt ekr\u0101ntapeti"},
 gmy(){return"P\u0101rvald\u012bt kontu"},
 gjh(){return"Serveris nesniedz nek\u0101du der\u012bgu sazi\u0146as inform\u0101ciju"},
@@ -545,7 +545,7 @@ glA(){return"Sazin\u0101ties ar servera p\u0101rvald\u012bt\u0101ju"},
 glB(){return"Sazin\u0101ties ar servera dro\u0161\u012bbas uztur\u0113t\u0101jiem"},
 gkR(){return"Atbalsta lapa"},
 gky(){return"Inform\u0101cija par serveri:"},
-gbH(d){return"Nosaukums"},
+gbG(d){return"Nosaukums"},
 gox(d){return"Versija"},
 goI(){return"T\u012bmek\u013cvietne"},
 glx(){return"Saspiest"},
@@ -631,16 +631,17 @@ gpd(){return"R\u0101d\u012bt p\u0101rvieto\u0161an\u0101s sliedi viedier\u012bc\
 glL(){return"Piel\u0101gota reakcija"},
 gph(){return"Vair\u0101k notikumu"},
 glO(){return"Noraid\u012bt uzaicin\u0101jumu"},
-gpr(){return"V\u0113l nav zi\u0146u"},
+gps(){return"V\u0113l nav zi\u0146u"},
 gpi(){return"New sub space"},
-gpq(){return"Move to different space"},
-gpu(){return"The chat will be removed from the space but still appear in your chat list."},
+gpr(){return"Move to different space"},
+gpv(){return"The chat will be removed from the space but still appear in your chat list."},
 pn(d){return""+d+" chats"},
 pl(d){return"Space member of "+d},
 pm(d){return"Space member of "+d+" can knock"},
+gpo(){return"Donate"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FI,C.aF)})()
-B.dQ(b.typeUniverse,JSON.parse('{"FI":{"aF":[]}}'))};
-(a=>{a["wVkjh8wN/fS+ee3EiLZ9HVPpq0w="]=a.current})($__dart_deferred_initializers__);
+y(A.FH,C.aF)})()
+B.dR(b.typeUniverse,JSON.parse('{"FH":{"aF":[]}}'))};
+(a=>{a["Fz8PyUUe3IM6hQrz96xtTR2C3SA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_312.part.js.map
