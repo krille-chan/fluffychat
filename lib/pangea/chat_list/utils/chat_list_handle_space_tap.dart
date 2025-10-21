@@ -50,7 +50,9 @@ void chatListHandleSpaceTap(
   Room space,
 ) {
   void setActiveSpaceAndCloseChat() {
-    context.go("/rooms/spaces/${space.id}/details");
+    // push to refresh space details
+    // https://github.com/pangeachat/client/issues/4292#issuecomment-3426794043
+    context.push("/rooms/spaces/${space.id}/details");
   }
 
   void autoJoin(Room space) {
