@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:matrix/matrix.dart';
 
-import 'package:fluffychat/config/app_config.dart';
+import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 
 class CuteContent extends StatefulWidget {
@@ -21,7 +21,7 @@ class _CuteContentState extends State<CuteContent> {
 
   @override
   void initState() {
-    if (AppConfig.autoplayImages && !_isOverlayShown) {
+    if (AppSettings.autoplayImages.value && !_isOverlayShown) {
       addOverlay();
     }
     super.initState();

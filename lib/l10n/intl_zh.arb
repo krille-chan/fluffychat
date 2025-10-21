@@ -3393,5 +3393,44 @@
     "pause": "暂停",
     "@pause": {},
     "resume": "继续",
-    "@resume": {}
+    "@resume": {},
+    "newSubSpace": "新建子空间",
+    "@newSubSpace": {},
+    "moveToDifferentSpace": "移动到别的空间",
+    "@moveToDifferentSpace": {},
+    "moveUp": "上移",
+    "@moveUp": {},
+    "moveDown": "下移",
+    "@moveDown": {},
+    "removeFromSpaceDescription": "将从空间移除该聊天，但仍出现在聊天列表中。",
+    "@removeFromSpaceDescription": {},
+    "countChats": "{chats} 个聊天",
+    "@countChats": {
+        "type": "String",
+        "placeholders": {
+            "chats": {
+                "type": "int"
+            }
+        }
+    },
+    "spaceMemberOf": "{spaces} 的空间成员",
+    "@spaceMemberOf": {
+        "type": "String",
+        "placeholders": {
+            "spaces": {
+                "type": "String"
+            }
+        }
+    },
+    "spaceMemberOfCanKnock": "{spaces} 的空间成员可以敲门",
+    "@spaceMemberOfCanKnock": {
+        "type": "String",
+        "placeholders": {
+            "spaces": {
+                "type": "String"
+            }
+        }
+    },
+    "donate": "捐赠",
+    "@donate": {}
 }

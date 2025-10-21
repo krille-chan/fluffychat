@@ -415,8 +415,7 @@ class InputBar extends StatelessWidget {
           // it sets the types for the callback incorrectly
           onSubmitted!(text);
         },
-        maxLength:
-            AppSettings.textMessageMaxLength.getItem(Matrix.of(context).store),
+        maxLength: AppSettings.textMessageMaxLength.value,
         decoration: decoration,
         onChanged: (text) {
           // fix for the library for now

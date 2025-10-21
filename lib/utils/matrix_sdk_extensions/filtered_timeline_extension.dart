@@ -1,9 +1,12 @@
 import 'package:matrix/matrix.dart';
 
-import '../../config/app_config.dart';
+import 'package:fluffychat/config/setting_keys.dart';
 
 extension VisibleInGuiExtension on List<Event> {
-  List<Event> filterByVisibleInGui({String? exceptionEventId}) => where(
+  List<Event> filterByVisibleInGui({
+    String? exceptionEventId,
+  }) =>
+      where(
         (event) => event.isVisibleInGui || event.eventId == exceptionEventId,
       ).toList();
 }
@@ -19,9 +22,9 @@ extension IsStateExtension on Event {
       // if a reaction has been redacted we also want it to be hidden in the timeline
       !{EventTypes.Reaction, EventTypes.Redaction}.contains(type) &&
       // if we enabled to hide all redacted events, don't show those
-      (!AppConfig.hideRedactedEvents || !redacted) &&
+      (!AppSettings.hideRedactedEvents.value || !redacted) &&
       // if we enabled to hide all unknown events, don't show those
-      (!AppConfig.hideUnknownEvents || isEventTypeKnown);
+      (!AppSettings.hideUnknownEvents.value || isEventTypeKnown);
 
   bool get isState => !{
         EventTypes.Message,

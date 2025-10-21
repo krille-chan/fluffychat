@@ -8,7 +8,7 @@ environment:
   sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
-  animations: ^2.0.11
+  animations: ^2.1.0
   app_links: ^6.4.1
   archive: ^4.0.7
   async: ^2.11.0
@@ -18,9 +18,9 @@ dependencies:
   collection: ^1.18.0
   cross_file: ^0.3.4+2
   cupertino_icons: any
-  desktop_drop: ^0.6.1
+  desktop_drop: ^0.7.0
   desktop_notifications: ^0.6.3
-  device_info_plus: ^12.1.0
+  device_info_plus: ^12.2.0
   dynamic_color: ^1.8.1
   emoji_picker_flutter: ^4.3.0
   emojis: ^0.9.9
@@ -31,7 +31,7 @@ dependencies:
   flutter_foreground_task: ^9.1.0
   flutter_highlighter: ^0.1.1
   flutter_linkify: ^6.0.0
-  flutter_local_notifications: ^19.4.2
+  flutter_local_notifications: ^19.5.0
   flutter_localizations:
     sdk: flutter
   flutter_map: ^8.2.2
@@ -75,8 +75,8 @@ dependencies:
   sqlcipher_flutter_libs: ^0.6.8
   swipe_to_action: ^0.3.0
   tor_detector_web: ^1.1.0
-  unifiedpush: ^6.0.2
-  unifiedpush_ui: ^0.1.0
+  unifiedpush: ^6.2.0
+  unifiedpush_ui: ^0.2.0
   universal_html: ^2.2.4
   url_launcher: ^6.3.2
   video_compress: ^3.1.4
@@ -86,7 +86,7 @@ dependencies:
 
 dev_dependencies:
   flutter_lints: ^3.0.0
-  flutter_native_splash: ^2.4.6
+  flutter_native_splash: ^2.4.7
   flutter_test:
     sdk: flutter
   import_sorter: ^4.6.0

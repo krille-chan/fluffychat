@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
 
-import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
@@ -34,41 +33,29 @@ class SettingsChatView extends StatelessWidget {
               SettingsSwitchListTile.adaptive(
                 title: L10n.of(context).formattedMessages,
                 subtitle: L10n.of(context).formattedMessagesDescription,
-                onChanged: (b) => AppConfig.renderHtml = b,
-                storeKey: SettingKeys.renderHtml,
-                defaultValue: AppConfig.renderHtml,
+                setting: AppSettings.renderHtml,
               ),
               SettingsSwitchListTile.adaptive(
                 title: L10n.of(context).hideRedactedMessages,
                 subtitle: L10n.of(context).hideRedactedMessagesBody,
-                onChanged: (b) => AppConfig.hideRedactedEvents = b,
-                storeKey: SettingKeys.hideRedactedEvents,
-                defaultValue: AppConfig.hideRedactedEvents,
+                setting: AppSettings.hideRedactedEvents,
               ),
               SettingsSwitchListTile.adaptive(
                 title: L10n.of(context).hideInvalidOrUnknownMessageFormats,
-                onChanged: (b) => AppConfig.hideUnknownEvents = b,
-                storeKey: SettingKeys.hideUnknownEvents,
-                defaultValue: AppConfig.hideUnknownEvents,
+                setting: AppSettings.hideUnknownEvents,
               ),
               if (PlatformInfos.isMobile)
                 SettingsSwitchListTile.adaptive(
                   title: L10n.of(context).autoplayImages,
-                  onChanged: (b) => AppConfig.autoplayImages = b,
-                  storeKey: SettingKeys.autoplayImages,
-                  defaultValue: AppConfig.autoplayImages,
+                  setting: AppSettings.autoplayImages,
                 ),
               SettingsSwitchListTile.adaptive(
                 title: L10n.of(context).sendOnEnter,
-                onChanged: (b) => AppConfig.sendOnEnter = b,
-                storeKey: SettingKeys.sendOnEnter,
-                defaultValue: AppConfig.sendOnEnter ?? !PlatformInfos.isMobile,
+                setting: AppSettings.sendOnEnter,
               ),
               SettingsSwitchListTile.adaptive(
                 title: L10n.of(context).swipeRightToLeftToReply,
-                onChanged: (b) => AppConfig.swipeRightToLeftToReply = b,
-                storeKey: SettingKeys.swipeRightToLeftToReply,
-                defaultValue: AppConfig.swipeRightToLeftToReply,
+                setting: AppSettings.swipeRightToLeftToReply,
               ),
               Divider(color: theme.dividerColor),
               ListTile(
@@ -102,12 +89,10 @@ class SettingsChatView extends StatelessWidget {
               SettingsSwitchListTile.adaptive(
                 title: L10n.of(context).experimentalVideoCalls,
                 onChanged: (b) {
-                  AppConfig.experimentalVoip = b;
                   Matrix.of(context).createVoipPlugin();
                   return;
                 },
-                storeKey: SettingKeys.experimentalVoip,
-                defaultValue: AppConfig.experimentalVoip,
+                setting: AppSettings.experimentalVoip,
               ),
             ],
           ),

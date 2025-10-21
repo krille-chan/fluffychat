@@ -1,4 +1,3 @@
-import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/pages/chat/chat_view.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_body.dart';
 import 'package:fluffychat/pages/chat_list/search_title.dart';
@@ -25,7 +24,7 @@ void main() {
         () async {
           // this random dialog popping up is super hard to cover in tests
           SharedPreferences.setMockInitialValues({
-            SettingKeys.showNoGoogle: false,
+            'chat.fluffy.show_no_google': false,
           });
         },
       );

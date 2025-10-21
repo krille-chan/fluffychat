@@ -21,7 +21,7 @@ class _ConfigViewerState extends State<ConfigViewer> {
     String initialValue,
   ) async {
     if (appSetting is AppSettings<bool>) {
-      await appSetting.setItem(store, !(initialValue == 'true'));
+      await appSetting.setItem(!(initialValue == 'true'));
       setState(() {});
       return;
     }
@@ -35,13 +35,13 @@ class _ConfigViewerState extends State<ConfigViewer> {
     if (value == null) return;
 
     if (appSetting is AppSettings<String>) {
-      await appSetting.setItem(store, value);
+      await appSetting.setItem(value);
     }
     if (appSetting is AppSettings<int>) {
-      await appSetting.setItem(store, int.parse(value));
+      await appSetting.setItem(int.parse(value));
     }
     if (appSetting is AppSettings<double>) {
-      await appSetting.setItem(store, double.parse(value));
+      await appSetting.setItem(double.parse(value));
     }
 
     setState(() {});
@@ -78,16 +78,16 @@ class _ConfigViewerState extends State<ConfigViewer> {
                 final appSetting = AppSettings.values[i];
                 var value = '';
                 if (appSetting is AppSettings<String>) {
-                  value = appSetting.getItem(store);
+                  value = appSetting.value;
                 }
                 if (appSetting is AppSettings<int>) {
-                  value = appSetting.getItem(store).toString();
+                  value = appSetting.value.toString();
                 }
                 if (appSetting is AppSettings<bool>) {
-                  value = appSetting.getItem(store).toString();
+                  value = appSetting.value.toString();
                 }
                 if (appSetting is AppSettings<double>) {
-                  value = appSetting.getItem(store).toString();
+                  value = appSetting.value.toString();
                 }
                 return ListTile(
                   title: Text(appSetting.name),

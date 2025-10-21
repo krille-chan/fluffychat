@@ -26,6 +26,16 @@ class ChatAccessSettingsController extends State<ChatAccessSettings> {
   bool historyVisibilityLoading = false;
   bool guestAccessLoading = false;
   Room get room => Matrix.of(context).client.getRoomById(widget.roomId)!;
+  Set<Room> get knownSpaceParents => {
+        ...room.client.rooms.where(
+          (space) =>
+              space.isSpace &&
+              space.spaceChildren.any((child) => child.roomId == room.id),
+        ),
+        ...room.spaceParents
+            .map((parent) => room.client.getRoomById(parent.roomId ?? ''))
+            .whereType<Room>(),
+      };
 
   String get roomVersion =>
       room
@@ -46,9 +56,20 @@ class ChatAccessSettingsController extends State<ChatAccessSettings> {
       joinRules.remove(JoinRules.knock);
     }
 
-    // Not yet supported in FluffyChat:
-    joinRules.remove(JoinRules.restricted);
-    joinRules.remove(JoinRules.knockRestricted);
+    // Restricted is only supported for rooms up from version 8:
+    if (roomVersionInt != null && roomVersionInt <= 7) {
+      joinRules.remove(JoinRules.restricted);
+    }
+
+    // Knock-Restricted is only supported for rooms up from version 10:
+    if (roomVersionInt != null && roomVersionInt <= 9) {
+      joinRules.remove(JoinRules.knockRestricted);
+    }
+
+    if (knownSpaceParents.isEmpty) {
+      joinRules.remove(JoinRules.restricted);
+      joinRules.remove(JoinRules.knockRestricted);
+    }
 
     // If an unsupported join rule is the current join rule, display it:
     final currentJoinRule = room.joinRules;
@@ -64,7 +85,13 @@ class ChatAccessSettingsController extends State<ChatAccessSettings> {
     });
 
     try {
-      await room.setJoinRules(newJoinRules);
+      await room.setJoinRules(
+        newJoinRules,
+        allowConditionRoomId: {JoinRules.restricted, JoinRules.knockRestricted}
+                .contains(newJoinRules)
+            ? knownSpaceParents.first.id
+            : null,
+      );
     } catch (e, s) {
       Logs().w('Unable to change join rules', e, s);
       if (mounted) {

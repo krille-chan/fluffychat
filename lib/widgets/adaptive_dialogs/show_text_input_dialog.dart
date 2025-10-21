@@ -34,76 +34,74 @@ Future<String?> showTextInputDialog({
     useRootNavigator: useRootNavigator,
     builder: (context) {
       final error = ValueNotifier<String?>(null);
-      return ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 512),
-        child: AlertDialog.adaptive(
-          title: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 256),
-            child: Text(title),
-          ),
-          content: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 256),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                if (message != null)
-                  SelectableLinkify(
-                    text: message,
-                    textScaleFactor: MediaQuery.textScalerOf(context).scale(1),
-                    linkStyle: TextStyle(
-                      color: Theme.of(context).colorScheme.primary,
-                      decorationColor: Theme.of(context).colorScheme.primary,
-                    ),
-                    options: const LinkifyOptions(humanize: false),
-                    onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
-                  ),
-                const SizedBox(height: 16),
-                ValueListenableBuilder<String?>(
-                  valueListenable: error,
-                  builder: (context, error, _) {
-                    return DialogTextField(
-                      hintText: hintText,
-                      errorText: error,
-                      labelText: labelText,
-                      controller: controller,
-                      initialText: initialText,
-                      prefixText: prefixText,
-                      suffixText: suffixText,
-                      minLines: minLines,
-                      maxLines: maxLines,
-                      maxLength: maxLength,
-                      keyboardType: keyboardType,
-                    );
-                  },
-                ),
-              ],
-            ),
-          ),
-          actions: [
-            AdaptiveDialogAction(
-              onPressed: () => Navigator.of(context).pop(null),
-              child: Text(cancelLabel ?? L10n.of(context).cancel),
-            ),
-            AdaptiveDialogAction(
-              onPressed: () {
-                final input = controller.text;
-                final errorText = validator?.call(input);
-                if (errorText != null) {
-                  error.value = errorText;
-                  return;
-                }
-                Navigator.of(context).pop<String>(input);
-              },
-              autofocus: true,
-              child: Text(
-                okLabel ?? L10n.of(context).ok,
-                style: isDestructive
-                    ? TextStyle(color: Theme.of(context).colorScheme.error)
-                    : null,
-              ),
-            ),
-          ],
+      return AlertDialog.adaptive(
+        title: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 256),
+          child: Text(title),
         ),
+        content: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 256),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              if (message != null)
+                SelectableLinkify(
+                  text: message,
+                  textScaleFactor: MediaQuery.textScalerOf(context).scale(1),
+                  linkStyle: TextStyle(
+                    color: Theme.of(context).colorScheme.primary,
+                    decorationColor: Theme.of(context).colorScheme.primary,
+                  ),
+                  options: const LinkifyOptions(humanize: false),
+                  onOpen: (url) => UrlLauncher(context, url.url).launchUrl(),
+                ),
+              const SizedBox(height: 16),
+              ValueListenableBuilder<String?>(
+                valueListenable: error,
+                builder: (context, error, _) {
+                  return DialogTextField(
+                    hintText: hintText,
+                    errorText: error,
+                    labelText: labelText,
+                    controller: controller,
+                    initialText: initialText,
+                    prefixText: prefixText,
+                    suffixText: suffixText,
+                    minLines: minLines,
+                    maxLines: maxLines,
+                    maxLength: maxLength,
+                    keyboardType: keyboardType,
+                    obscureText: obscureText,
+                  );
+                },
+              ),
+            ],
+          ),
+        ),
+        actions: [
+          AdaptiveDialogAction(
+            onPressed: () => Navigator.of(context).pop(null),
+            child: Text(cancelLabel ?? L10n.of(context).cancel),
+          ),
+          AdaptiveDialogAction(
+            onPressed: () {
+              final input = controller.text;
+              final errorText = validator?.call(input);
+              if (errorText != null) {
+                error.value = errorText;
+                return;
+              }
+              Navigator.of(context).pop<String>(input);
+            },
+            autofocus: true,
+            child: Text(
+              okLabel ?? L10n.of(context).ok,
+              style: isDestructive
+                  ? TextStyle(color: Theme.of(context).colorScheme.error)
+                  : null,
+            ),
+          ),
+        ],
       );
     },
   );

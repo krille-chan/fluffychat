@@ -18,6 +18,8 @@ class Avatar extends StatelessWidget {
   final BorderRadius? borderRadius;
   final IconData? icon;
   final BorderSide? border;
+  final Color? backgroundColor;
+  final Color? textColor;
 
   const Avatar({
     this.mxContent,
@@ -30,6 +32,8 @@ class Avatar extends StatelessWidget {
     this.borderRadius,
     this.border,
     this.icon,
+    this.backgroundColor,
+    this.textColor,
     super.key,
   });
 
@@ -71,14 +75,16 @@ class Avatar extends StatelessWidget {
               height: size,
               placeholder: (_) => noPic
                   ? Container(
-                      decoration: BoxDecoration(color: name?.lightColorAvatar),
+                      decoration: BoxDecoration(
+                        color: backgroundColor ?? name?.lightColorAvatar,
+                      ),
                       alignment: Alignment.center,
                       child: Text(
                         fallbackLetters,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontFamily: 'RobotoMono',
-                          color: Colors.white,
+                          color: textColor ?? Colors.white,
                           fontWeight: FontWeight.bold,
                           fontSize: (size / 2.5).roundToDouble(),
                         ),

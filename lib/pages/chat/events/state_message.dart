@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
@@ -68,7 +69,7 @@ class StateMessage extends StatelessWidget {
                         ),
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          fontSize: 12 * AppConfig.fontSizeFactor,
+                          fontSize: 12 * AppSettings.fontSizeFactor.value,
                           decoration: event.redacted
                               ? TextDecoration.lineThrough
                               : null,

@@ -18,7 +18,9 @@ class SettingsStyle extends StatefulWidget {
 
 class SettingsStyleController extends State<SettingsStyle> {
   void setChatColor(Color? color) async {
-    AppConfig.colorSchemeSeed = color;
+    AppSettings.colorSchemeSeedInt.setItem(
+      color?.toARGB32() ?? AppSettings.colorSchemeSeedInt.defaultValue,
+    );
     ThemeController.of(context).setPrimaryColor(color);
   }
 
@@ -156,11 +158,7 @@ class SettingsStyleController extends State<SettingsStyle> {
   }
 
   void changeFontSizeFactor(double d) {
-    setState(() => AppConfig.fontSizeFactor = d);
-    Matrix.of(context).store.setString(
-          SettingKeys.fontSizeFactor,
-          AppConfig.fontSizeFactor.toString(),
-        );
+    AppSettings.fontSizeFactor.setItem(d);
   }
 
   @override

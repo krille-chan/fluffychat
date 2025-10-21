@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/widgets/adaptive_dialogs/show_ok_cancel_alert_dialog.dart';
@@ -67,6 +69,17 @@ class ClientChooserButton extends StatelessWidget {
           ],
         ),
       ),
+      if (Matrix.of(context).backgroundPush?.firebaseEnabled != true)
+        PopupMenuItem(
+          value: SettingsAction.support,
+          child: Row(
+            children: [
+              const Icon(Icons.favorite, color: Colors.red),
+              const SizedBox(width: 18),
+              Text(L10n.of(context).donate),
+            ],
+          ),
+        ),
       PopupMenuItem(
         value: SettingsAction.settings,
         child: Row(
@@ -207,6 +220,9 @@ class ClientChooserButton extends StatelessWidget {
         case SettingsAction.invite:
           FluffyShare.shareInviteLink(context);
           break;
+        case SettingsAction.support:
+          launchUrlString(AppConfig.donationUrl);
+          break;
         case SettingsAction.settings:
           context.go('/rooms/settings');
           break;
@@ -226,6 +242,7 @@ enum SettingsAction {
   newGroup,
   setStatus,
   invite,
+  support,
   settings,
   archive,
 }

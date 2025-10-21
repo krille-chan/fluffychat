@@ -7,6 +7,7 @@ import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
 import 'package:matrix/matrix.dart';
 import 'package:swipe_to_action/swipe_to_action.dart';
 
+import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/events/room_creation_state_event.dart';
@@ -204,7 +205,7 @@ class Message extends StatelessWidget {
             child: Icon(Icons.check_outlined),
           ),
         ),
-        direction: AppConfig.swipeRightToLeftToReply
+        direction: AppSettings.swipeRightToLeftToReply.value
             ? SwipeDirection.endToStart
             : SwipeDirection.startToEnd,
         onSwipe: (_) => onSwipe(),
@@ -243,7 +244,7 @@ class Message extends StatelessWidget {
                           child: Text(
                             event.originServerTs.localizedTime(context),
                             style: TextStyle(
-                              fontSize: 12 * AppConfig.fontSizeFactor,
+                              fontSize: 12 * AppSettings.fontSizeFactor.value,
                               fontWeight: FontWeight.bold,
                               color: theme.colorScheme.secondary,
                             ),
@@ -890,7 +891,7 @@ class Message extends StatelessWidget {
                       child: Text(
                         L10n.of(context).readUpToHere,
                         style: TextStyle(
-                          fontSize: 12 * AppConfig.fontSizeFactor,
+                          fontSize: 12 * AppSettings.fontSizeFactor.value,
                         ),
                       ),
                     ),

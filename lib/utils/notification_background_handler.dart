@@ -6,7 +6,6 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_vodozemac/flutter_vodozemac.dart' as vod;
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/utils/client_download_content_extension.dart';
@@ -59,7 +58,7 @@ void notificationTapBackground(
     await vod.init();
     _vodInitialized = true;
   }
-  final store = await SharedPreferences.getInstance();
+  final store = await AppSettings.init();
   final client = (await ClientManager.getClients(
     initialize: false,
     store: store,
@@ -70,10 +69,6 @@ void notificationTapBackground(
     waitForFirstSync: false,
     waitUntilLoadCompletedLoaded: false,
   );
-
-  AppConfig.sendPublicReadReceipts =
-      store.getBool(SettingKeys.sendPublicReadReceipts) ??
-          AppConfig.sendPublicReadReceipts;
 
   if (!client.isLogged()) {
     throw Exception('Notification tab in background but not logged in!');
@@ -145,7 +140,7 @@ Future<void> notificationTap(
           await room.setReadMarker(
             payload.eventId ?? room.lastEvent!.eventId,
             mRead: payload.eventId ?? room.lastEvent!.eventId,
-            public: AppConfig.sendPublicReadReceipts,
+            public: AppSettings.sendPublicReadReceipts.value,
           );
         case FluffyChatNotificationActions.reply:
           final input = notificationResponse.input;

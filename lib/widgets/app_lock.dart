@@ -4,7 +4,6 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:matrix/matrix.dart';
 import 'package:provider/provider.dart';
 
-import 'package:fluffychat/config/setting_keys.dart';
 import 'package:fluffychat/widgets/lock_screen.dart';
 
 class AppLockWidget extends StatefulWidget {
@@ -65,7 +64,7 @@ class AppLock extends State<AppLockWidget> with WidgetsBindingObserver {
 
   Future<void> changePincode(String? pincode) async {
     await const FlutterSecureStorage().write(
-      key: SettingKeys.appLockKey,
+      key: 'chat.fluffy.app_lock',
       value: pincode,
     );
     _pincode = pincode;

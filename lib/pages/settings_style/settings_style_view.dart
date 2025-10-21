@@ -230,7 +230,7 @@ class SettingsStyleView extends StatelessWidget {
                                       style: TextStyle(
                                         color: theme.onBubbleColor,
                                         fontSize: AppConfig.messageFontSize *
-                                            AppConfig.fontSizeFactor,
+                                            AppSettings.fontSizeFactor.value,
                                       ),
                                     ),
                                   ),
@@ -263,7 +263,7 @@ class SettingsStyleView extends StatelessWidget {
                                         style: TextStyle(
                                           color: theme.colorScheme.onSurface,
                                           fontSize: AppConfig.messageFontSize *
-                                              AppConfig.fontSizeFactor,
+                                              AppSettings.fontSizeFactor.value,
                                         ),
                                       ),
                                     ),
@@ -325,13 +325,15 @@ class SettingsStyleView extends StatelessWidget {
             ),
             ListTile(
               title: Text(L10n.of(context).fontSize),
-              trailing: Text('× ${AppConfig.fontSizeFactor}'),
+              trailing: Text(
+                '× ${AppSettings.fontSizeFactor.value}',
+              ),
             ),
             Slider.adaptive(
               min: 0.5,
               max: 2.5,
               divisions: 20,
-              value: AppConfig.fontSizeFactor,
+              value: AppSettings.fontSizeFactor.value,
               semanticFormatterCallback: (d) => d.toString(),
               onChanged: controller.changeFontSizeFactor,
             ),
@@ -349,21 +351,15 @@ class SettingsStyleView extends StatelessWidget {
             ),
             SettingsSwitchListTile.adaptive(
               title: L10n.of(context).presencesToggle,
-              onChanged: (b) => AppConfig.showPresences = b,
-              storeKey: SettingKeys.showPresences,
-              defaultValue: AppConfig.showPresences,
+              setting: AppSettings.showPresences,
             ),
             SettingsSwitchListTile.adaptive(
               title: L10n.of(context).separateChatTypes,
-              onChanged: (b) => AppConfig.separateChatTypes = b,
-              storeKey: SettingKeys.separateChatTypes,
-              defaultValue: AppConfig.separateChatTypes,
+              setting: AppSettings.separateChatTypes,
             ),
             SettingsSwitchListTile.adaptive(
               title: L10n.of(context).displayNavigationRail,
-              onChanged: (b) => AppConfig.displayNavigationRail = b,
-              storeKey: SettingKeys.displayNavigationRail,
-              defaultValue: AppConfig.displayNavigationRail,
+              setting: AppSettings.displayNavigationRail,
             ),
           ],
         ),

@@ -112,7 +112,6 @@ class SettingsSecurityController extends State<SettingsSecurity> {
   void changeShareKeysWith(ShareKeysWith? shareKeysWith) async {
     if (shareKeysWith == null) return;
     AppSettings.shareKeysWith.setItem(
-      Matrix.of(context).store,
       shareKeysWith.name,
     );
     Matrix.of(context).client.shareKeysWith = shareKeysWith;

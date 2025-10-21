@@ -17,7 +17,6 @@
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.BIND_TELECOM_CONNECTION_SERVICE"/>
 
     <uses-permission android:name="android.permission.READ_PHONE_STATE"
                      android:maxSdkVersion="29" />
@@ -123,16 +122,6 @@
 
         <service android:name="com.pravera.flutter_foreground_task.service.ForegroundService"
              android:foregroundServiceType="camera|microphone|mediaProjection">
-        </service>
-
-        <service android:name="io.wazo.callkeep.VoiceConnectionService"
-          android:label="Wazo"
-          android:foregroundServiceType="camera|microphone|mediaProjection"
-          android:permission="android.permission.BIND_TELECOM_CONNECTION_SERVICE"
-          android:exported="true">
-          <intent-filter>
-              <action android:name="android.telecom.ConnectionService" />
-          </intent-filter>
         </service>
 
         <!-- From flutter_local_notifications package for notification actions -->

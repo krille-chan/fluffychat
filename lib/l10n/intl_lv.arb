@@ -1001,7 +1001,7 @@
     },
     "storeSecurlyOnThisDevice": "Droši uzglabāt šajā ierīcē",
     "@storeSecurlyOnThisDevice": {},
-    "yourChatBackupHasBeenSetUp": "Tērzēšanu rezerves kopēšana tika iestatīta.",
+    "yourChatBackupHasBeenSetUp": "Tērzēšanu rezerves kopēšana iestatīta.",
     "@yourChatBackupHasBeenSetUp": {},
     "chatBackup": "Tērzēšanu rezerves kopēšana",
     "@chatBackup": {

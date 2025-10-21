@@ -10,7 +10,7 @@ class DialogTextField extends StatelessWidget {
   final String? prefixText;
   final String? suffixText;
   final String? errorText;
-  final bool obscureText = false;
+  final bool obscureText;
   final bool isDestructive = false;
   final int? minLines;
   final int? maxLines;
@@ -32,6 +32,7 @@ class DialogTextField extends StatelessWidget {
     this.controller,
     this.counterText,
     this.errorText,
+    this.obscureText = false,
   });
 
   @override
@@ -64,20 +65,23 @@ class DialogTextField extends StatelessWidget {
         );
       case TargetPlatform.iOS:
       case TargetPlatform.macOS:
+        final placeholder = labelText ?? hintText;
         return Column(
-          mainAxisSize: MainAxisSize.min,
           children: [
-            CupertinoTextField(
-              controller: controller,
-              obscureText: obscureText,
-              minLines: minLines,
-              maxLines: maxLines,
-              maxLength: maxLength,
-              keyboardType: keyboardType,
-              autocorrect: autocorrect,
-              prefix: prefixText != null ? Text(prefixText) : null,
-              suffix: suffixText != null ? Text(suffixText) : null,
-              placeholder: labelText ?? hintText,
+            SizedBox(
+              height: placeholder == null ? null : ((maxLines ?? 1) + 1) * 20,
+              child: CupertinoTextField(
+                controller: controller,
+                obscureText: obscureText,
+                minLines: minLines,
+                maxLines: maxLines,
+                maxLength: maxLength,
+                keyboardType: keyboardType,
+                autocorrect: autocorrect,
+                prefix: prefixText != null ? Text(prefixText) : null,
+                suffix: suffixText != null ? Text(suffixText) : null,
+                placeholder: placeholder,
+              ),
             ),
             if (errorText != null)
               Text(

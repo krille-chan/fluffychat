@@ -30,7 +30,9 @@ class PublicRoomDialog extends StatelessWidget {
     final result = await showFutureLoadingDialog<String>(
       context: context,
       future: () async {
-        if (chunk != null && client.getRoomById(chunk.roomId) != null) {
+        if (chunk != null &&
+            client.getRoomById(chunk.roomId) != null &&
+            client.getRoomById(chunk.roomId)?.membership != Membership.leave) {
           return chunk.roomId;
         }
         final roomId = chunk != null && knock
@@ -64,6 +66,8 @@ class PublicRoomDialog extends StatelessWidget {
     if (chunk?.roomType != 'm.space' &&
         !client.getRoomById(result.result!)!.isSpace) {
       context.go('/rooms/$roomId');
+    } else {
+      context.go('/rooms?spaceId=$roomId');
     }
     return;
   }
