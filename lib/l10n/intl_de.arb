@@ -3399,7 +3399,7 @@
     "@longPressToRecordVoiceMessage": {},
     "pause": "Pause",
     "@pause": {},
-    "newSubSpace": "Neuer sub space",
+    "newSubSpace": "Neuer Sub-Space",
     "@newSubSpace": {},
     "moveToDifferentSpace": "In einen anderen space wechseln",
     "@moveToDifferentSpace": {},
@@ -3418,7 +3418,7 @@
             }
         }
     },
-    "spaceMemberOf": "Space-Mitglied von {spaces}",
+    "spaceMemberOf": "Space-Mitglieder von {spaces}",
     "@spaceMemberOf": {
         "type": "String",
         "placeholders": {
@@ -3427,7 +3427,7 @@
             }
         }
     },
-    "spaceMemberOfCanKnock": "Space-Mitglied von {spaces} kann klopfen",
+    "spaceMemberOfCanKnock": "Space-Mitglieder von {spaces} kann klopfen",
     "@spaceMemberOfCanKnock": {
         "type": "String",
         "placeholders": {

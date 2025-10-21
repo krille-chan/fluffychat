@@ -2970,7 +2970,7 @@
     "@gallery": {},
     "files": "Файлы",
     "@files": {},
-    "swipeRightToLeftToReply": "Для ответа проведите с права на лево",
+    "swipeRightToLeftToReply": "Для ответа проведите справа налево",
     "@swipeRightToLeftToReply": {},
     "userLevel": "{level} - Пользователь",
     "@userLevel": {

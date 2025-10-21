@@ -3393,5 +3393,44 @@
     "pause": "Peata",
     "@pause": {},
     "resume": "Jätka",
-    "@resume": {}
+    "@resume": {},
+    "newSubSpace": "Uus alamkogukond",
+    "@newSubSpace": {},
+    "moveToDifferentSpace": "Tõsta teise kogukonda",
+    "@moveToDifferentSpace": {},
+    "moveUp": "Liiguta ülespoole",
+    "@moveUp": {},
+    "moveDown": "Liiguta allapoole",
+    "@moveDown": {},
+    "removeFromSpaceDescription": "See vestlus eemaldatakse nüüd kogukonnast, kuid on jätkuvalt nähtav sinu vestluste loendis.",
+    "@removeFromSpaceDescription": {},
+    "countChats": "{chats} vestlust",
+    "@countChats": {
+        "type": "String",
+        "placeholders": {
+            "chats": {
+                "type": "int"
+            }
+        }
+    },
+    "spaceMemberOf": "Kogukonna liige: {spaces}",
+    "@spaceMemberOf": {
+        "type": "String",
+        "placeholders": {
+            "spaces": {
+                "type": "String"
+            }
+        }
+    },
+    "spaceMemberOfCanKnock": "{spaces} kogukonna liige võib uksele koputada",
+    "@spaceMemberOfCanKnock": {
+        "type": "String",
+        "placeholders": {
+            "spaces": {
+                "type": "String"
+            }
+        }
+    },
+    "donate": "Toeta meid rahaliselt",
+    "@donate": {}
 }
