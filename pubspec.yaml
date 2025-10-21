@@ -86,7 +86,7 @@ dependencies:
 
 dev_dependencies:
   flutter_lints: ^3.0.0
-  flutter_native_splash: ^2.4.6
+  flutter_native_splash: ^2.4.7
   flutter_test:
     sdk: flutter
   import_sorter: ^4.6.0
