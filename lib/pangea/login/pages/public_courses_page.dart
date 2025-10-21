@@ -256,90 +256,95 @@ class PublicCoursesPageState extends State<PublicCoursesPage> {
                             roomChunk.canonicalAlias ??
                             L10n.of(context).emptyChat;
 
-                        return InkWell(
-                          onTap: () => context.go(
-                            '/${widget.route}/course/public/$courseId',
-                            extra: roomChunk,
-                          ),
-                          borderRadius: BorderRadius.circular(12.0),
-                          child: Container(
-                            padding: const EdgeInsets.all(12.0),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12.0),
-                              border: Border.all(
-                                color: theme.colorScheme.primary,
-                              ),
+                        return Material(
+                          type: MaterialType.transparency,
+                          child: InkWell(
+                            onTap: () => context.go(
+                              '/${widget.route}/course/public/$courseId',
+                              extra: roomChunk,
                             ),
-                            child: Column(
-                              spacing: 4.0,
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  spacing: 8.0,
-                                  children: [
-                                    ImageByUrl(
-                                      imageUrl: roomChunk.avatarUrl?.toString(),
-                                      width: 58.0,
-                                      borderRadius: BorderRadius.circular(10.0),
-                                      replacement: Container(
-                                        height: 58.0,
+                            borderRadius: BorderRadius.circular(12.0),
+                            child: Container(
+                              padding: const EdgeInsets.all(12.0),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(12.0),
+                                border: Border.all(
+                                  color: theme.colorScheme.primary,
+                                ),
+                              ),
+                              child: Column(
+                                spacing: 4.0,
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    spacing: 8.0,
+                                    children: [
+                                      ImageByUrl(
+                                        imageUrl:
+                                            roomChunk.avatarUrl?.toString(),
                                         width: 58.0,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10.0),
-                                          color: theme
-                                              .colorScheme.surfaceContainer,
+                                        borderRadius:
+                                            BorderRadius.circular(10.0),
+                                        replacement: Container(
+                                          height: 58.0,
+                                          width: 58.0,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
+                                            color: theme
+                                                .colorScheme.surfaceContainer,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    Flexible(
-                                      child: Column(
-                                        spacing: 0.0,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            displayname,
-                                            style: theme.textTheme.bodyLarge,
-                                            maxLines: 2,
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
-                                          Row(
-                                            spacing: 4.0,
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              const Icon(
-                                                Icons.group,
-                                                size: 16.0,
-                                              ),
-                                              Text(
-                                                L10n.of(context)
-                                                    .countParticipants(
-                                                  roomChunk.numJoinedMembers,
+                                      Flexible(
+                                        child: Column(
+                                          spacing: 0.0,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              displayname,
+                                              style: theme.textTheme.bodyLarge,
+                                              maxLines: 2,
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                            Row(
+                                              spacing: 4.0,
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                const Icon(
+                                                  Icons.group,
+                                                  size: 16.0,
                                                 ),
-                                                style:
-                                                    theme.textTheme.bodyMedium,
-                                              ),
-                                            ],
-                                          ),
-                                        ],
+                                                Text(
+                                                  L10n.of(context)
+                                                      .countParticipants(
+                                                    roomChunk.numJoinedMembers,
+                                                  ),
+                                                  style: theme
+                                                      .textTheme.bodyMedium,
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
                                       ),
+                                    ],
+                                  ),
+                                  if (course != null) ...[
+                                    CourseInfoChips(
+                                      courseId,
+                                      iconSize: 12.0,
+                                      fontSize: 12.0,
+                                    ),
+                                    Text(
+                                      course.description,
+                                      style: theme.textTheme.bodyMedium,
                                     ),
                                   ],
-                                ),
-                                if (course != null) ...[
-                                  CourseInfoChips(
-                                    courseId,
-                                    iconSize: 12.0,
-                                    fontSize: 12.0,
-                                  ),
-                                  Text(
-                                    course.description,
-                                    style: theme.textTheme.bodyMedium,
-                                  ),
                                 ],
-                              ],
+                              ),
                             ),
                           ),
                         );

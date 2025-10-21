@@ -10,7 +10,6 @@ class CoursePlanFilter<T> extends StatefulWidget {
 
   final void Function(T?) onChanged;
   final String defaultName;
-  final String? shortName;
   final String Function(T) displayname;
 
   final bool enableSearch;
@@ -23,7 +22,6 @@ class CoursePlanFilter<T> extends StatefulWidget {
     required this.defaultName,
     required this.displayname,
     this.enableSearch = false,
-    this.shortName,
   });
 
   @override
@@ -75,7 +73,7 @@ class CoursePlanFilterState<T> extends State<CoursePlanFilter<T>> {
                 child: DropdownTextButton(
                   text: item != null
                       ? widget.displayname(item)
-                      : widget.shortName ?? widget.defaultName,
+                      : widget.defaultName,
                   isSelected: item == widget.value,
                 ),
               ),
