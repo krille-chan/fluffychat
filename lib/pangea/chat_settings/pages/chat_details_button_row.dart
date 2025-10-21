@@ -71,7 +71,8 @@ class ChatDetailsButtonRowState extends State<ChatDetailsButtonRow> {
         title: l10n.permissions,
         icon: const Icon(Icons.edit_attributes_outlined, size: 30.0),
         onPressed: () => context.go('/rooms/${room.id}/details/permissions'),
-        enabled: room.isRoomAdmin && !room.isDirectChat,
+        enabled: room.isRoomAdmin,
+        visible: !room.isDirectChat,
         showInMainView: false,
       ),
       ButtonDetails(
@@ -103,7 +104,8 @@ class ChatDetailsButtonRowState extends State<ChatDetailsButtonRow> {
           }
           context.go('/rooms/${room.id}/details/invite?filter=$filter');
         },
-        enabled: room.canInvite && !room.isDirectChat,
+        enabled: room.canInvite,
+        visible: !room.isDirectChat,
       ),
       ButtonDetails(
         title: l10n.download,
@@ -117,8 +119,8 @@ class ChatDetailsButtonRowState extends State<ChatDetailsButtonRow> {
         title: l10n.chatCapacity,
         icon: const Icon(Icons.reduce_capacity, size: 30.0),
         onPressed: widget.controller.setRoomCapacity,
-        visible: !room.showActivityChatUI,
-        enabled: !room.isDirectChat && room.canSendDefaultStates,
+        visible: !room.showActivityChatUI && !room.isDirectChat,
+        enabled: room.canSendDefaultStates,
         showInMainView: false,
       ),
       ButtonDetails(
@@ -167,7 +169,8 @@ class ChatDetailsButtonRowState extends State<ChatDetailsButtonRow> {
           if (resp.isError) return;
           context.go("/rooms");
         },
-        enabled: room.isRoomAdmin && !room.isDirectChat,
+        enabled: room.isRoomAdmin,
+        visible: !room.isDirectChat,
         showInMainView: false,
       ),
     ];
