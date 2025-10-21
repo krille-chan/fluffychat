@@ -3392,5 +3392,44 @@
     "pause": "Pauzeer",
     "@pause": {},
     "resume": "Hervat",
-    "@resume": {}
+    "@resume": {},
+    "donate": "Doneer",
+    "@donate": {},
+    "newSubSpace": "Nieuwe sub-space",
+    "@newSubSpace": {},
+    "moveToDifferentSpace": "Naar andere space verplaatsen",
+    "@moveToDifferentSpace": {},
+    "moveUp": "Omhoog verplaatsen",
+    "@moveUp": {},
+    "moveDown": "Omlaag verplaatsen",
+    "@moveDown": {},
+    "removeFromSpaceDescription": "De chat zal worden verwijderd uit de space, maar blijft in je chats.",
+    "@removeFromSpaceDescription": {},
+    "countChats": "{chats} chats",
+    "@countChats": {
+        "type": "String",
+        "placeholders": {
+            "chats": {
+                "type": "int"
+            }
+        }
+    },
+    "spaceMemberOf": "{spaces} personen in space",
+    "@spaceMemberOf": {
+        "type": "String",
+        "placeholders": {
+            "spaces": {
+                "type": "String"
+            }
+        }
+    },
+    "spaceMemberOfCanKnock": "{spaces} personen in space kunnen kloppen",
+    "@spaceMemberOfCanKnock": {
+        "type": "String",
+        "placeholders": {
+            "spaces": {
+                "type": "String"
+            }
+        }
+    }
 }
