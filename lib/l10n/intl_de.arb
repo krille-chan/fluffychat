@@ -3437,5 +3437,7 @@
         }
     },
     "donate": "Spenden",
-    "@donate": {}
+    "@donate": {},
+    "resume": "Fortsetzen",
+    "@resume": {}
 }
