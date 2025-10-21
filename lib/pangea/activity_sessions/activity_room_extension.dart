@@ -276,6 +276,7 @@ extension ActivityRoomExtension on Room {
           activityResults: messages,
           contentFeedback: [],
           analytics: analytics,
+          roleState: activityRoles,
         ),
       );
 

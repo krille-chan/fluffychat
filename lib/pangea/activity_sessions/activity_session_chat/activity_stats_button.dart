@@ -225,7 +225,7 @@ class _ActivityStatsButtonState extends State<ActivityStatsButton> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   _StatsBadge(
-                    icon: Icons.radar,
+                    icon: Icons.star,
                     value: "$_xpCount XP",
                   ),
                   _StatsBadge(

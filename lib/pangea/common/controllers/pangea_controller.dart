@@ -142,11 +142,11 @@ class PangeaController {
     await Future.wait(futures);
   }
 
-  Future<void> checkHomeServerAction() async {
+  Future<Client> checkHomeServerAction() async {
     final client = await matrixState.getLoginClient();
     if (client.homeserver != null) {
       await Future.delayed(Duration.zero);
-      return;
+      return client;
     }
 
     final String homeServer =
@@ -163,8 +163,7 @@ class PangeaController {
       matrixState.loginRegistrationSupported =
           e.requireAdditionalAuthentication;
     }
-
-    //  setState(() => error = (e).toLocalizedString(context));
+    return client;
   }
 
   /// check user information if not found then redirect to Date of birth page

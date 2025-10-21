@@ -61,24 +61,25 @@ class LoginController extends State<Login> {
     // TODO: implement initState
     super.initState();
     loadingSignIn = true;
-    pangeaController.checkHomeServerAction().then((value) {
-      setState(() {
-        loadingSignIn = false;
-      });
+    pangeaController.checkHomeServerAction().then((client) {
+      if (mounted) {
+        setState(() {
+          loadingSignIn = false;
+          this.client = client;
+        });
+      }
     }).catchError((e) {
       final String err = e.toString();
-      setState(() {
-        loadingSignIn = false;
-        passwordError = err.toLocalizedString(context);
-      });
+      if (mounted) {
+        setState(() {
+          loadingSignIn = false;
+          passwordError = err.toLocalizedString(context);
+        });
+      }
     });
 
     usernameController.addListener(() => setState(() {}));
     passwordController.addListener(() => setState(() {}));
-
-    Matrix.of(context).getLoginClient().then((client) {
-      if (mounted) setState(() => this.client = client);
-    });
   }
 
   @override
