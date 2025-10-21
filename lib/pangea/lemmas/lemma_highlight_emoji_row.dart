@@ -171,6 +171,9 @@ class EmojiChoiceItemState extends State<EmojiChoiceItem> {
 
   @override
   Widget build(BuildContext context) {
+    final shimmerColor = (Theme.of(context).brightness == Brightness.dark)
+        ? Colors.white
+        : Theme.of(context).colorScheme.primary;
     return MouseRegion(
       onEnter: (_) => setState(() => _isHovered = true),
       onExit: (_) => setState(() => _isHovered = false),
@@ -208,12 +211,12 @@ class EmojiChoiceItemState extends State<EmojiChoiceItem> {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(AppConfig.borderRadius),
                     child: Shimmer.fromColors(
-                      baseColor: Colors.white.withValues(alpha: 0.1),
-                      highlightColor: Colors.white.withValues(alpha: 0.6),
+                      baseColor: shimmerColor.withValues(alpha: 0.1),
+                      highlightColor: shimmerColor.withValues(alpha: 0.6),
                       direction: ShimmerDirection.ltr,
                       child: Container(
                         decoration: BoxDecoration(
-                          color: Colors.white.withValues(alpha: 0.3),
+                          color: shimmerColor.withValues(alpha: 0.3),
                           borderRadius:
                               BorderRadius.circular(AppConfig.borderRadius),
                         ),
