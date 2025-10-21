@@ -99,7 +99,7 @@ extension AnalyticsSummaryEnumExtension on SpaceAnalyticsSummaryEnum {
       case SpaceAnalyticsSummaryEnum.numChoicesIncorrect:
         return l10n.numIncorrectChoices;
       case SpaceAnalyticsSummaryEnum.numCompletedActivities:
-        return l10n.numCompletedActivities;
+        return l10n.numSavedActivities;
     }
   }
 }

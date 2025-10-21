@@ -5306,5 +5306,9 @@
   "joinCourseWithCode": "Join course with code",
   "joinPublicCourse": "Join public course",
   "vocabLevelsDesc": "This is where vocab words will go once you’ve leveled them up!",
-  "highlightVocabTooltip": "Highlight target vocab words below by sending them or practicing with them in the chat"
+  "highlightVocabTooltip": "Highlight target vocab words below by sending them or practicing with them in the chat",
+  "activityAnalyticsTooltipBody": "These are your saved activities for review and practice.",
+  "numSavedActivities": "Number of saved activities",
+  "saveActivityTitle": "Save activity",
+  "saveActivityDesc": "Good job! Save this activity for later review and practice"
 }

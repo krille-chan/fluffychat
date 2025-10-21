@@ -6,7 +6,6 @@ import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat/chat.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_room_extension.dart';
-import 'package:fluffychat/pangea/activity_sessions/activity_session_chat/saved_activity_analytics_dialog.dart';
 import 'package:fluffychat/pangea/activity_summary/activity_summary_model.dart';
 import 'package:fluffychat/pangea/common/widgets/error_indicator.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
@@ -28,18 +27,9 @@ class ActivityFinishedStatusMessage extends StatelessWidget {
       );
 
       if (!resp.isError) {
-        final navigate = await showDialog(
-          context: context,
-          builder: (context) {
-            return const SavedActivityAnalyticsDialog();
-          },
+        context.push(
+          "/rooms/spaces/${controller.room.courseParent!.id}/details?tab=course",
         );
-
-        if (navigate == true && controller.room.courseParent != null) {
-          context.push(
-            "/rooms/spaces/${controller.room.courseParent!.id}/details?tab=course",
-          );
-        }
       }
     }
   }
@@ -130,7 +120,14 @@ class ActivityFinishedStatusMessage extends StatelessWidget {
                           child: Text(L10n.of(context).requestSummaries),
                         ),
                       ],
-                      if (!controller.room.hasArchivedActivity)
+                      if (!controller.room.hasArchivedActivity) ...[
+                        Text(
+                          L10n.of(context).saveActivityDesc,
+                          style: const TextStyle(
+                            fontStyle: FontStyle.italic,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             padding: const EdgeInsets.symmetric(
@@ -149,12 +146,13 @@ class ActivityFinishedStatusMessage extends StatelessWidget {
                             children: [
                               const Icon(Icons.radar, size: 20.0),
                               Text(
-                                L10n.of(context).saveToCompletedActivities,
+                                L10n.of(context).saveActivityTitle,
                                 style: const TextStyle(fontSize: 12.0),
                               ),
                             ],
                           ),
                         ),
+                      ],
                     ]
                   : [
                       Text(

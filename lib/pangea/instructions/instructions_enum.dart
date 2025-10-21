@@ -96,7 +96,7 @@ extension InstructionsEnumExtension on InstructionsEnum {
       case InstructionsEnum.morphAnalyticsList:
         return l10n.morphAnalyticsListBody;
       case InstructionsEnum.activityAnalyticsList:
-        return l10n.activityAnalyticsListBody;
+        return l10n.activityAnalyticsTooltipBody;
       case InstructionsEnum.readingAssistanceOverview:
         return l10n.readingAssistanceOverviewBody;
       case InstructionsEnum.emptyChatWarning:

@@ -162,7 +162,9 @@ class PracticeSelection {
 
     //remove duplicates
     final seenTexts = <String>{};
-    tokens.retainWhere((token) => seenTexts.add(token.text.content.toLowerCase()));
+    tokens.retainWhere(
+      (token) => seenTexts.add(token.text.content.toLowerCase()),
+    );
 
     if (tokens.length > 8) {
       // Remove the last third (floored) of tokens, only greater than 8 items so at least 5 remain

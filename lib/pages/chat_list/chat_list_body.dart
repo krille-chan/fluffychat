@@ -67,11 +67,11 @@ class ChatListViewBody extends StatelessWidget {
     // final publicRooms = controller.roomSearchResult?.chunk
     //     .where((room) => room.roomType != 'm.space')
     //     .toList();
+    // final publicSpaces = controller.roomSearchResult?.chunk
+    //     .where((room) => room.roomType == 'm.space')
+    //     .toList();
+    // final userSearchResult = controller.userSearchResult;
     // Pangea#
-    final publicSpaces = controller.roomSearchResult?.chunk
-        .where((room) => room.roomType == 'm.space')
-        .toList();
-    final userSearchResult = controller.userSearchResult;
     const dummyChatCount = 4;
     final filter = controller.searchController.text.toLowerCase();
     return StreamBuilder(
