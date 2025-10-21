@@ -8,16 +8,15 @@ import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pages/chat_list/chat_list.dart';
 import 'package:fluffychat/pages/chat_list/chat_list_item.dart';
 import 'package:fluffychat/pages/chat_list/dummy_chat_list_item.dart';
-import 'package:fluffychat/pages/chat_list/search_title.dart';
 import 'package:fluffychat/pangea/bot/widgets/bot_face_svg.dart';
 import 'package:fluffychat/pangea/chat_list/widgets/pangea_chat_list_header.dart';
 import 'package:fluffychat/pangea/chat_settings/utils/bot_client_extension.dart';
 import 'package:fluffychat/pangea/course_chats/course_chats_page.dart';
 import 'package:fluffychat/pangea/instructions/instructions_enum.dart';
 import 'package:fluffychat/pangea/instructions/instructions_inline_tooltip.dart';
-import 'package:fluffychat/pangea/public_spaces/public_room_bottom_sheet.dart';
+import 'package:fluffychat/utils/matrix_sdk_extensions/matrix_locals.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
-import 'package:fluffychat/widgets/adaptive_dialogs/user_dialog.dart';
+import 'package:fluffychat/widgets/adaptive_dialogs/public_room_dialog.dart';
 import 'package:fluffychat/widgets/avatar.dart';
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import '../../config/themes.dart';
@@ -106,53 +105,44 @@ class ChatListViewBody extends StatelessWidget {
                       //   icon: const Icon(Icons.explore_outlined),
                       // ),
                       // PublicRoomsHorizontalList(publicRooms: publicRooms),
-                      // Pangea#
-                      SearchTitle(
-                        // #Pangea
-                        // title: L10n.of(context).publicSpaces,
-                        title: L10n.of(context).publicCourses,
-                        // icon: const Icon(Icons.workspaces_outlined),
-                        icon: const Icon(Icons.groups_outlined),
-                        // Pangea#
-                      ),
-                      PublicRoomsHorizontalList(publicRooms: publicSpaces),
-                      SearchTitle(
-                        title: L10n.of(context).users,
-                        icon: const Icon(Icons.group_outlined),
-                      ),
-                      AnimatedContainer(
-                        clipBehavior: Clip.hardEdge,
-                        decoration: const BoxDecoration(),
-                        height: userSearchResult == null ||
-                                userSearchResult.results.isEmpty
-                            ? 0
-                            : 106,
-                        duration: FluffyThemes.animationDuration,
-                        curve: FluffyThemes.animationCurve,
-                        child: userSearchResult == null
-                            ? null
-                            // #Pangea
-                            : UserSearchResultsList(
-                                userSearchResult: userSearchResult,
-                              ),
-                        // : ListView.builder(
-                        //     scrollDirection: Axis.horizontal,
-                        //     itemCount: userSearchResult.results.length,
-                        //     itemBuilder: (context, i) => _SearchItem(
-                        //       title:
-                        //           userSearchResult.results[i].displayName ??
-                        //               userSearchResult
-                        //                   .results[i].userId.localpart ??
-                        //               L10n.of(context).unknownDevice,
-                        //       avatar: userSearchResult.results[i].avatarUrl,
-                        //       onPressed: () => UserDialog.show(
-                        //         context: context,
-                        //         profile: userSearchResult.results[i],
-                        //       ),
-                        //     ),
-                        //   ),
-                        // Pangea#
-                      ),
+                      // SearchTitle(
+                      // title: L10n.of(context).publicSpaces,
+                      // icon: const Icon(Icons.workspaces_outlined),
+                      // ),
+                      // PublicRoomsHorizontalList(publicRooms: publicSpaces),
+                      // SearchTitle(
+                      //   title: L10n.of(context).users,
+                      //   icon: const Icon(Icons.group_outlined),
+                      // ),
+                      // AnimatedContainer(
+                      //   clipBehavior: Clip.hardEdge,
+                      //   decoration: const BoxDecoration(),
+                      //   height: userSearchResult == null ||
+                      //           userSearchResult.results.isEmpty
+                      //       ? 0
+                      //       : 106,
+                      //   duration: FluffyThemes.animationDuration,
+                      //   curve: FluffyThemes.animationCurve,
+                      //   child: userSearchResult == null
+                      //       ? null
+                      // : ListView.builder(
+                      //     scrollDirection: Axis.horizontal,
+                      //     itemCount: userSearchResult.results.length,
+                      //     itemBuilder: (context, i) => _SearchItem(
+                      //       title:
+                      //           userSearchResult.results[i].displayName ??
+                      //               userSearchResult
+                      //                   .results[i].userId.localpart ??
+                      //               L10n.of(context).unknownDevice,
+                      //       avatar: userSearchResult.results[i].avatarUrl,
+                      //       onPressed: () => UserDialog.show(
+                      //         context: context,
+                      //         profile: userSearchResult.results[i],
+                      //       ),
+                      //     ),
+                      //   ),
+                      //   ),
+                      //   Pangea#
                     ],
                     // #Pangea
                     // if (!controller.isSearchMode && AppConfig.showPresences)
@@ -220,21 +210,38 @@ class ChatListViewBody extends StatelessWidget {
                     //           .toList(),
                     //     ),
                     //   ),
-                    // Pangea#
-                    if (controller.isSearchMode)
-                      SearchTitle(
-                        title: L10n.of(context).chats,
-                        icon: const Icon(Icons.forum_outlined),
+                    // if (controller.isSearchMode)
+                    //   SearchTitle(
+                    //     title: L10n.of(context).chats,
+                    //     icon: const Icon(Icons.forum_outlined),
+                    //   ),
+                    if (!controller.isSearchMode)
+                      const InstructionsInlineTooltip(
+                        instructionsEnum: InstructionsEnum.chatListTooltip,
+                        padding: EdgeInsets.only(
+                          left: 16.0,
+                          right: 16.0,
+                          bottom: 16.0,
+                        ),
                       ),
-                    // #Pangea
-                    const InstructionsInlineTooltip(
-                      instructionsEnum: InstructionsEnum.chatListTooltip,
-                      padding: EdgeInsets.only(
-                        left: 16.0,
-                        right: 16.0,
-                        bottom: 16.0,
+                    if (controller.isSearchMode &&
+                        rooms
+                            .where(
+                              (room) => room
+                                  .getLocalizedDisplayname(
+                                    MatrixLocals(L10n.of(context)),
+                                  )
+                                  .toLowerCase()
+                                  .contains(filter),
+                            )
+                            .isEmpty)
+                      Padding(
+                        padding: const EdgeInsetsGeometry.all(16.0),
+                        child: Text(
+                          L10n.of(context).emptyChatSearch,
+                          textAlign: TextAlign.center,
+                        ),
                       ),
-                    ),
                     // if (client.prevBatch != null &&
                     //     rooms.isEmpty &&
                     //     !controller.isSearchMode) ...[
@@ -356,33 +363,13 @@ class ChatListViewBody extends StatelessWidget {
   }
 }
 
-// #Pangea
-// class PublicRoomsHorizontalList extends StatelessWidget {
-class PublicRoomsHorizontalList extends StatefulWidget {
-  // Pangea#
+class PublicRoomsHorizontalList extends StatelessWidget {
   const PublicRoomsHorizontalList({
     super.key,
     required this.publicRooms,
   });
 
   final List<PublicRoomsChunk>? publicRooms;
-
-  // #Pagngea
-  @override
-  PublicRoomsHorizontalListState createState() =>
-      PublicRoomsHorizontalListState();
-}
-
-class PublicRoomsHorizontalListState extends State<PublicRoomsHorizontalList> {
-  List<PublicRoomsChunk>? get publicRooms => widget.publicRooms;
-  final ScrollController _scrollController = ScrollController();
-
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
-  }
-  // Pangea#
 
   @override
   Widget build(BuildContext context) {
@@ -395,46 +382,21 @@ class PublicRoomsHorizontalListState extends State<PublicRoomsHorizontalList> {
       curve: FluffyThemes.animationCurve,
       child: publicRooms == null
           ? null
-          :
-          // #Pangea
-          Scrollbar(
-              thumbVisibility: true,
-              controller: _scrollController,
-              child:
-                  // Pangea#
-                  ListView.builder(
-                // #Pangea
-                controller: _scrollController,
-                // Pangea#
-                scrollDirection: Axis.horizontal,
-                itemCount: publicRooms.length,
-                itemBuilder: (context, i) => _SearchItem(
-                  title: publicRooms[i].name ??
-                      publicRooms[i].canonicalAlias?.localpart ??
-                      // #Pangea
-                      // L10n.of(context).group,
-                      L10n.of(context).chat,
-                  // Pangea#
-                  avatar: publicRooms[i].avatarUrl,
-                  // #Pangea
-                  onPressed: () => PublicRoomBottomSheet.show(
-                    context: context,
+          : ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: publicRooms.length,
+              itemBuilder: (context, i) => _SearchItem(
+                title: publicRooms[i].name ??
+                    publicRooms[i].canonicalAlias?.localpart ??
+                    L10n.of(context).group,
+                avatar: publicRooms[i].avatarUrl,
+                onPressed: () => showAdaptiveDialog(
+                  context: context,
+                  builder: (c) => PublicRoomDialog(
                     roomAlias:
                         publicRooms[i].canonicalAlias ?? publicRooms[i].roomId,
                     chunk: publicRooms[i],
                   ),
-                  // onPressed: () => showAdaptiveDialog(
-                  //   context: context,
-                  //   builder: (c) => PublicRoomDialog(
-                  //     roomAlias: publicRooms[i].canonicalAlias ??
-                  //         publicRooms[i].roomId,
-                  //     chunk: publicRooms[i],
-                  //   ),
-                  // ),
-                  radius: BorderRadius.circular(
-                    AppConfig.borderRadius / 2,
-                  ),
-                  // Pangea#
                 ),
               ),
             ),
@@ -446,19 +408,11 @@ class _SearchItem extends StatelessWidget {
   final String title;
   final Uri? avatar;
   final void Function() onPressed;
-  // #Pangea
-  final BorderRadius? radius;
-  final String? userId;
-  // Pangea#
 
   const _SearchItem({
     required this.title,
     this.avatar,
     required this.onPressed,
-    // #Pangea
-    this.radius,
-    this.userId,
-    // Pangea#
   });
 
   @override
@@ -473,10 +427,6 @@ class _SearchItem extends StatelessWidget {
               Avatar(
                 mxContent: avatar,
                 name: title,
-                // #Pangea
-                borderRadius: radius,
-                userId: userId,
-                // Pangea#
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -495,50 +445,3 @@ class _SearchItem extends StatelessWidget {
         ),
       );
 }
-
-// #Pangea
-class UserSearchResultsList extends StatefulWidget {
-  final SearchUserDirectoryResponse userSearchResult;
-  const UserSearchResultsList({
-    required this.userSearchResult,
-    super.key,
-  });
-
-  @override
-  UserSearchResultsListState createState() => UserSearchResultsListState();
-}
-
-class UserSearchResultsListState extends State<UserSearchResultsList> {
-  final ScrollController _scrollController = ScrollController();
-
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scrollbar(
-      thumbVisibility: true,
-      controller: _scrollController,
-      child: ListView.builder(
-        controller: _scrollController,
-        scrollDirection: Axis.horizontal,
-        itemCount: widget.userSearchResult.results.length,
-        itemBuilder: (context, i) => _SearchItem(
-          title: widget.userSearchResult.results[i].displayName ??
-              widget.userSearchResult.results[i].userId.localpart ??
-              L10n.of(context).unknownDevice,
-          avatar: widget.userSearchResult.results[i].avatarUrl,
-          userId: widget.userSearchResult.results[i].userId,
-          onPressed: () => UserDialog.show(
-            context: context,
-            profile: widget.userSearchResult.results[i],
-          ),
-        ),
-      ),
-    );
-  }
-}
-// Pangea#

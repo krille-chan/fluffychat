@@ -5284,6 +5284,7 @@
   "activityDropdownDesc": "When you’re done with this activity, click below",
   "activityAnalyticsListBody": "These are your completed activities! After finishing activities, you can view them here.",
   "languageMismatchTitle": "Language mismatch",
+  "emptyChatSearch": "No DMs or chats found. Make sure your search is spelled correctly.",
   "languageMismatchDesc": "Your target language doesn't match the language of this activity. Update your target language?",
   "reportWordIssueTooltip": "Report word information issue",
   "tokenInfoFeedbackDialogTitle": "Word Information Feedback",
