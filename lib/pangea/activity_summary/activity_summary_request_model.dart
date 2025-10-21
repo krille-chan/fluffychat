@@ -1,6 +1,7 @@
 // Add this import for the participant summary model
 
 import 'package:fluffychat/pangea/activity_planner/activity_plan_model.dart';
+import 'package:fluffychat/pangea/activity_sessions/activity_roles_model.dart';
 import 'package:fluffychat/pangea/activity_summary/activity_summary_analytics_model.dart';
 import 'package:fluffychat/pangea/activity_summary/activity_summary_response_model.dart';
 
@@ -66,6 +67,7 @@ class ContentFeedbackModel {
 
 class ActivitySummaryRequestModel {
   final ActivityPlanModel activity;
+  final ActivityRolesModel? roleState;
   final List<ActivitySummaryResultsMessage> activityResults;
   final List<ContentFeedbackModel> contentFeedback;
   final ActivitySummaryAnalyticsModel analytics;
@@ -75,6 +77,7 @@ class ActivitySummaryRequestModel {
     required this.activityResults,
     required this.contentFeedback,
     required this.analytics,
+    this.roleState,
   });
 
   Map<String, dynamic> toJson() {
@@ -83,6 +86,7 @@ class ActivitySummaryRequestModel {
       'activity_results': activityResults.map((e) => e.toJson()).toList(),
       'content_feedback': contentFeedback.map((e) => e.toJson()).toList(),
       'analytics': analytics.toJson(),
+      'role_state': roleState?.toJson() ?? {},
     };
   }
 }
