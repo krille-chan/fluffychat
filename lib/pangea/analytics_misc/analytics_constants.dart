@@ -12,7 +12,6 @@ class AnalyticsConstants {
   static const String emojiForFlower = "🌸";
   static const levelUpAudioFileName = "LevelUp_chime.mp3";
   static const levelUpImageFileName = "LvL_Up_Full_Banner.png";
-  static const popupDividerFileName = "divider.png";
   static const vocabIconFileName = "Vocabulary_icon.png";
   static const morphIconFileName = "grammar_icon.png";
 }

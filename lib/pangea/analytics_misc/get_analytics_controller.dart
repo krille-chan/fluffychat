@@ -110,7 +110,7 @@ class GetAnalyticsController extends BaseController {
       );
     } finally {
       _updateAnalyticsStream(
-        type: AnalyticsUpdateType.local,
+        type: AnalyticsUpdateType.init,
         points: 0,
         newConstructs: [],
       );

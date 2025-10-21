@@ -164,7 +164,7 @@ class MorphFeatureBox extends StatelessWidget {
                             morphTag: morphTag,
                             constructAnalytics: analytics,
                             onTap: () => context.go(
-                              "/rooms/analytics/${id.type.string}/${id.string}",
+                              "/rooms/analytics/${id.type.string}/${Uri.encodeComponent(id.string)}",
                             ),
                           );
                         },

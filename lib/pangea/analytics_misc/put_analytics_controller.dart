@@ -15,7 +15,7 @@ import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
-enum AnalyticsUpdateType { server, local, activities }
+enum AnalyticsUpdateType { server, local, activities, init }
 
 /// handles the processing of analytics for
 /// 1) messages sent by the user and

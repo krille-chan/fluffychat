@@ -22,6 +22,7 @@ enum InstructionsEnum {
   analyticsVocabList,
   morphAnalyticsList,
   activityAnalyticsList,
+  levelAnalytics,
   readingAssistanceOverview,
   emptyChatWarning,
   activityStatsMenu,
@@ -51,6 +52,7 @@ extension InstructionsEnumExtension on InstructionsEnum {
       case InstructionsEnum.activityStatsMenu:
       case InstructionsEnum.chatListTooltip:
       case InstructionsEnum.activityAnalyticsList:
+      case InstructionsEnum.levelAnalytics:
         ErrorHandler.logError(
           e: Exception("No title for this instruction"),
           m: 'InstructionsEnumExtension.title',
@@ -105,6 +107,8 @@ extension InstructionsEnumExtension on InstructionsEnum {
         return l10n.activityStatsButtonInstruction;
       case InstructionsEnum.chatListTooltip:
         return l10n.chatListTooltip;
+      case InstructionsEnum.levelAnalytics:
+        return l10n.levelInfoTooltip;
     }
   }
 

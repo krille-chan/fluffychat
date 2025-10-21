@@ -175,7 +175,7 @@ class VocabAnalyticsListView extends StatelessWidget {
                           final vocabItem = _filteredVocab[index];
                           return VocabAnalyticsListTile(
                             onTap: () => context.go(
-                              "/rooms/analytics/${vocabItem.id.type.string}/${vocabItem.id.string}",
+                              "/rooms/analytics/${vocabItem.id.type.string}/${Uri.encodeComponent(vocabItem.id.string)}",
                             ),
                             constructUse: vocabItem,
                             emoji: vocabItem.id.userSetEmoji.firstOrNull,

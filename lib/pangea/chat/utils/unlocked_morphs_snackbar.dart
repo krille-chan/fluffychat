@@ -168,7 +168,7 @@ class ConstructNotificationOverlayState
 
   void _showDetails() {
     context.go(
-      "/rooms/analytics/${ConstructTypeEnum.morph.string}/${widget.construct.string}",
+      "/rooms/analytics/${ConstructTypeEnum.morph.string}/${Uri.encodeComponent(widget.construct.string)}",
     );
   }
 

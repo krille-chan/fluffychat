@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:cached_network_image/cached_network_image.dart';
-
-import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/pangea/analytics_details_popup/lemma_usage_dots.dart';
 import 'package:fluffychat/pangea/analytics_details_popup/lemma_use_example_messages.dart';
-import 'package:fluffychat/pangea/analytics_misc/analytics_constants.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_use_model.dart';
 import 'package:fluffychat/pangea/analytics_misc/learning_skills_enum.dart';
 import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
@@ -43,14 +39,9 @@ class AnalyticsDetailsViewContent extends StatelessWidget {
           subtitle,
           const SizedBox(height: 16.0),
           headerContent,
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
-            child: CachedNetworkImage(
-              imageUrl:
-                  "${AppConfig.assetsBaseURL}/${AnalyticsConstants.popupDividerFileName}",
-              placeholder: (context, url) => const CircularProgressIndicator(),
-              errorWidget: (context, url, error) => const Icon(Icons.error),
-            ),
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 16.0),
+            child: Divider(),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,

@@ -7,6 +7,8 @@ import 'package:fluffychat/pangea/analytics_misc/construct_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/construct_use_type_enum.dart';
 import 'package:fluffychat/pangea/analytics_misc/constructs_model.dart';
 import 'package:fluffychat/pangea/analytics_misc/get_analytics_controller.dart';
+import 'package:fluffychat/pangea/instructions/instructions_enum.dart';
+import 'package:fluffychat/pangea/instructions/instructions_inline_tooltip.dart';
 import 'package:fluffychat/pangea/morphs/get_grammar_copy.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
@@ -72,8 +74,16 @@ class LevelDialogContent extends StatelessWidget {
             children: [
               Expanded(
                 child: ListView.builder(
-                  itemCount: uses.length,
+                  itemCount: uses.length + 1,
                   itemBuilder: (context, index) {
+                    if (index == 0) {
+                      return const InstructionsInlineTooltip(
+                        instructionsEnum: InstructionsEnum.levelAnalytics,
+                        padding: EdgeInsets.symmetric(vertical: 16.0),
+                      );
+                    }
+                    index--;
+
                     final use = uses[index];
                     String lemmaCopy = use.lemma;
                     if (use.constructType == ConstructTypeEnum.morph) {
