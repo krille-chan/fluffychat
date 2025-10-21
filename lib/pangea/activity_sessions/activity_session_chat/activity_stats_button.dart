@@ -208,9 +208,8 @@ class _ActivityStatsButtonState extends State<ActivityStatsButton> {
       depressed: !enabled || widget.controller.showActivityDropdown,
       child: AnimatedContainer(
         duration: FluffyThemes.animationDuration,
-        width: 300,
-        height: 55,
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        width: 280,
+        height: 40,
         decoration: BoxDecoration(
           color: enabled
               ? theme.brightness == Brightness.light
@@ -254,10 +253,9 @@ class _StatsBadge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final screenWidth = MediaQuery.of(context).size.width;
     final baseStyle = theme.textTheme.bodyMedium;
-    final double fontSize = (screenWidth < 400) ? 14 : 18;
-    final double iconSize = (screenWidth < 400) ? 18 : 22;
+    final double fontSize = FluffyThemes.isColumnMode(context) ? 18 : 14;
+    final double iconSize = FluffyThemes.isColumnMode(context) ? 22 : 18;
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
