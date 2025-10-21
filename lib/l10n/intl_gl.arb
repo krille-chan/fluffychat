@@ -3393,5 +3393,26 @@
     "pause": "Deter",
     "@pause": {},
     "resume": "Continuar",
-    "@resume": {}
+    "@resume": {},
+    "newSubSpace": "Novo sub espazo",
+    "@newSubSpace": {},
+    "moveToDifferentSpace": "Mover a outro espazo",
+    "@moveToDifferentSpace": {},
+    "moveUp": "Mover arriba",
+    "@moveUp": {},
+    "moveDown": "Mover abaixo",
+    "@moveDown": {},
+    "removeFromSpaceDescription": "Vaise quitar a conversa do espazo pero seguirá aparecendo na túa lista de conversas.",
+    "@removeFromSpaceDescription": {},
+    "countChats": "{chats} conversas",
+    "@countChats": {
+        "type": "String",
+        "placeholders": {
+            "chats": {
+                "type": "int"
+            }
+        }
+    },
+    "donate": "Doar",
+    "@donate": {}
 }
