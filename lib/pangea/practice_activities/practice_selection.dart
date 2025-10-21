@@ -160,18 +160,26 @@ class PracticeSelection {
       return [];
     }
 
-    final List<PangeaToken> activityTokens = [];
+    //remove duplicates
+    final seenTexts = <String>{};
+    tokens.retainWhere((token) => seenTexts.add(token.text.content.toLowerCase()));
+
+    if (tokens.length > 8) {
+      // Remove the last third (floored) of tokens, only greater than 8 items so at least 5 remain
+      final int removeCount = (tokens.length / 3).floor();
+      final int keepCount = tokens.length - removeCount;
+      tokens.removeRange(keepCount, tokens.length);
+    }
+
+    //shuffle leftover list so if there are enough, each activity gets different tokens
     tokens.shuffle();
+
+    final List<PangeaToken> activityTokens = [];
     for (final t in tokens) {
       if (activityTokens.length >= _maxQueueLength) {
         break;
       }
-      if (!activityTokens.any(
-        (token) =>
-            token.text.content.toLowerCase() == t.text.content.toLowerCase(),
-      )) {
-        activityTokens.add(t);
-      }
+      activityTokens.add(t);
     }
 
     return [
