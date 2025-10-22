@@ -2,11 +2,11 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
+import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import 'package:fluffychat/pangea/common/widgets/error_indicator.dart';
@@ -32,14 +32,6 @@ class CreatePangeaAccountPageState extends State<CreatePangeaAccountPage> {
   Object? _profileError;
   Object? _courseError;
 
-  final List<String> avatarPaths = const [
-    "assets/pangea/Avatar_1.png",
-    "assets/pangea/Avatar_2.png",
-    "assets/pangea/Avatar_3.png",
-    "assets/pangea/Avatar_4.png",
-    "assets/pangea/Avatar_5.png",
-  ];
-
   @override
   void initState() {
     super.initState();
@@ -48,6 +40,8 @@ class CreatePangeaAccountPageState extends State<CreatePangeaAccountPage> {
 
   String? _spaceId;
   String? _courseLangCode;
+
+  String avatarPath(int num) => "avatar_$num.png";
 
   Future<LanguageSettings?> get _cachedLangCode => LangCodeRepo.get();
 
@@ -122,16 +116,10 @@ class CreatePangeaAccountPageState extends State<CreatePangeaAccountPage> {
     final client = Matrix.of(context).client;
     try {
       final random = Random();
-      final selectedAvatarPath =
-          avatarPaths[random.nextInt(avatarPaths.length)];
-
-      final ByteData byteData = await rootBundle.load(selectedAvatarPath);
-      final Uint8List bytes = byteData.buffer.asUint8List();
-      final file = MatrixFile(
-        bytes: bytes,
-        name: selectedAvatarPath,
-      );
-      await client.setAvatar(file);
+      final selectedAvatarPath = avatarPath(random.nextInt(4) + 1);
+      final avatarUrl =
+          Uri.parse("${AppConfig.assetsBaseURL}/$selectedAvatarPath");
+      await client.setAvatarUrl(client.userID!, avatarUrl);
     } catch (err, s) {
       ErrorHandler.logError(
         e: err,

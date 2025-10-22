@@ -6,6 +6,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cached_network_image_platform_interface/cached_network_image_platform_interface.dart';
 import 'package:shimmer/shimmer.dart';
 
+import 'package:fluffychat/pangea/common/config/environment.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 import 'package:fluffychat/widgets/mxc_image.dart';
 
@@ -27,6 +28,12 @@ class ImageByUrl extends StatelessWidget {
   Widget build(BuildContext context) {
     if (imageUrl == null) {
       return replacement ?? const SizedBox();
+    }
+
+    final Map<String, String> headers = {};
+    if (imageUrl.toString().contains(Environment.cmsApi)) {
+      headers['Authorization'] =
+          'Bearer ${MatrixState.pangeaController.userController.accessToken}';
     }
 
     return SizedBox(
@@ -70,10 +77,7 @@ class ImageByUrl extends StatelessWidget {
                   error,
                 ) =>
                     replacement ?? const SizedBox(),
-                httpHeaders: {
-                  'Authorization':
-                      'Bearer ${MatrixState.pangeaController.userController.accessToken}',
-                },
+                httpHeaders: headers,
                 imageRenderMethodForWeb: ImageRenderMethodForWeb.HttpGet,
               ),
       ),
