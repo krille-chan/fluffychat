@@ -1,50 +1,20 @@
 import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 
 import 'package:fluffychat/pangea/choreographer/enums/span_data_type.dart';
 import 'package:fluffychat/pangea/common/utils/error_handler.dart';
 import '../constants/match_rule_ids.dart';
-import 'igc_text_data_model.dart';
 import 'span_data.dart';
 
-enum PangeaMatchStatus { open, ignored, accepted, automatic, unknown }
+enum PangeaMatchStatus {
+  open,
+  ignored,
+  accepted,
+  automatic,
+  unknown;
 
-class PangeaMatch {
-  SpanData match;
-
-  PangeaMatchStatus status;
-
-  // String source;
-
-  PangeaMatch({
-    required this.match,
-    required this.status,
-    // required this.source,
-  });
-
-  factory PangeaMatch.fromJson(Map<String, dynamic> json) {
-    // try {
-    return PangeaMatch(
-      match: SpanData.fromJson(json[_matchKey] as Map<String, dynamic>),
-      status: json[_statusKey] != null
-          ? _statusStringToEnum(json[_statusKey])
-          : PangeaMatchStatus.open,
-      // source: json[_matchKey]["source"] ?? "unk",
-    );
-    // } catch (err) {
-    //   debugger(when: kDebugMode);
-    //   ErrorHandler.logError(
-    //       m: "unknown error in PangeaMatch.fromJson", data: json);
-    //   rethrow;
-    // }
-  }
-
-  String _statusEnumToString(dynamic status) =>
-      status.toString().split('.').last;
-
-  static PangeaMatchStatus _statusStringToEnum(String status) {
+  static PangeaMatchStatus fromString(String status) {
     final String lastPart = status.toString().split('.').last;
     switch (lastPart) {
       case 'open':
@@ -53,15 +23,39 @@ class PangeaMatch {
         return PangeaMatchStatus.ignored;
       case 'accepted':
         return PangeaMatchStatus.accepted;
+      case 'automatic':
+        return PangeaMatchStatus.automatic;
       default:
         return PangeaMatchStatus.unknown;
     }
   }
+}
+
+class PangeaMatch {
+  SpanData match;
+  PangeaMatchStatus status;
+
+  PangeaMatch({
+    required this.match,
+    required this.status,
+  });
+
+  factory PangeaMatch.fromJson(Map<String, dynamic> json) {
+    return PangeaMatch(
+      match: SpanData.fromJson(json[_matchKey] as Map<String, dynamic>),
+      status: json[_statusKey] != null
+          ? PangeaMatchStatus.fromString(json[_statusKey] as String)
+          : PangeaMatchStatus.open,
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
+        _matchKey: match.toJson(),
+        _statusKey: status.name,
+      };
 
   static const _matchKey = "match";
   static const _statusKey = "status";
-
-  bool get isl1SpanMatch => needsTranslation;
 
   bool get isITStart =>
       match.rule?.id == MatchRuleIds.interactiveTranslation ||
@@ -78,12 +72,6 @@ class PangeaMatch {
   bool get isOutOfTargetMatch => isITStart || needsTranslation;
 
   bool get isGrammarMatch => !isOutOfTargetMatch;
-
-  Map<String, dynamic> toJson() => {
-        _matchKey: match.toJson(),
-        // _detectionsKey: detections.map((e) => e.toJson()).toList(),
-        _statusKey: _statusEnumToString(status),
-      };
 
   String get matchContent {
     late int beginning;
@@ -111,47 +99,5 @@ class PangeaMatch {
   bool isOffsetInMatchSpan(int offset) =>
       offset >= match.offset && offset < match.offset + match.length;
 
-  Color get underlineColor {
-    if (status == PangeaMatchStatus.automatic) {
-      return const Color.fromARGB(187, 132, 96, 224);
-    }
-
-    switch (match.rule?.id ?? "unknown") {
-      case MatchRuleIds.interactiveTranslation:
-        return const Color.fromARGB(187, 132, 96, 224);
-      case MatchRuleIds.tokenNeedsTranslation:
-      case MatchRuleIds.tokenSpanNeedsTranslation:
-        return const Color.fromARGB(186, 255, 132, 0);
-      default:
-        return const Color.fromARGB(149, 255, 17, 0);
-    }
-  }
-
-  TextStyle textStyle(
-    int matchIndex,
-    int? openMatchIndex,
-    TextStyle? existingStyle,
-  ) {
-    double opacityFactor = 1.0;
-    if (openMatchIndex != null && openMatchIndex != matchIndex) {
-      opacityFactor = 0.2;
-    }
-
-    final int alpha = (255 * opacityFactor).round();
-    return existingStyle?.merge(
-          IGCTextData.underlineStyle(
-            underlineColor.withAlpha(alpha),
-          ),
-        ) ??
-        IGCTextData.underlineStyle(
-          underlineColor.withAlpha(alpha),
-        );
-  }
-
   PangeaMatch get copyWith => PangeaMatch.fromJson(toJson());
-
-  int get beginning => match.offset < 0 ? 0 : match.offset;
-  int get end => match.offset + match.length > match.fullText.length
-      ? match.fullText.length
-      : match.offset + match.length;
 }
