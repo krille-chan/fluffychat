@@ -50,20 +50,25 @@ class ReadingAssistanceContent extends StatelessWidget {
       onClose: () => overlayController.updateSelectedSpan(null),
       langCode: overlayController.pangeaMessageEvent.messageDisplayLangCode,
       onDismissNewWordOverlay: () => overlayController.setState(() {}),
-      requestData: selectedTokenIndex >= 0
-          ? TokenInfoFeedbackRequestData(
-              userId: Matrix.of(context).client.userID!,
-              roomId: overlayController.event.room.id,
-              fullText: overlayController.pangeaMessageEvent.messageDisplayText,
-              detectedLanguage:
-                  overlayController.pangeaMessageEvent.messageDisplayLangCode,
-              tokens: tokens ?? [],
-              selectedToken: selectedTokenIndex,
-              wordCardL1: MatrixState.pangeaController.languageController
-                  .activeL1Code()!,
-            )
-          : null,
-      pangeaMessageEvent: overlayController.pangeaMessageEvent,
+      onFlagTokenInfo: () {
+        if (selectedTokenIndex < 0) return;
+        final requestData = TokenInfoFeedbackRequestData(
+          userId: Matrix.of(context).client.userID!,
+          roomId: overlayController.event.room.id,
+          fullText: overlayController.pangeaMessageEvent.messageDisplayText,
+          detectedLanguage:
+              overlayController.pangeaMessageEvent.messageDisplayLangCode,
+          tokens: tokens ?? [],
+          selectedToken: selectedTokenIndex,
+          wordCardL1:
+              MatrixState.pangeaController.languageController.activeL1Code()!,
+        );
+        overlayController.widget.chatController.showTokenFeedbackDialog(
+          requestData,
+          overlayController.pangeaMessageEvent.messageDisplayLangCode,
+          overlayController.pangeaMessageEvent,
+        );
+      },
     );
   }
 }

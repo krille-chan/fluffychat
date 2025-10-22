@@ -6,14 +6,11 @@ import 'package:fluffychat/config/app_config.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/common/widgets/error_indicator.dart';
 import 'package:fluffychat/pangea/constructs/construct_identifier.dart';
-import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_text_model.dart';
 import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
 import 'package:fluffychat/pangea/learning_settings/utils/p_language_store.dart';
 import 'package:fluffychat/pangea/lemmas/lemma_reaction_picker.dart';
 import 'package:fluffychat/pangea/phonetic_transcription/phonetic_transcription_widget.dart';
-import 'package:fluffychat/pangea/token_info_feedback/token_info_feedback_button.dart';
-import 'package:fluffychat/pangea/token_info_feedback/token_info_feedback_request.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_unsubscribed_card.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/practice_activity/word_audio_button.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/word_zoom/lemma_meaning_builder.dart';
@@ -28,11 +25,13 @@ class WordZoomWidget extends StatelessWidget {
   final VoidCallback? onClose;
 
   final bool wordIsNew;
-  final VoidCallback? onDismissNewWordOverlay;
   final Event? event;
 
-  final TokenInfoFeedbackRequestData? requestData;
-  final PangeaMessageEvent? pangeaMessageEvent;
+  final VoidCallback? onDismissNewWordOverlay;
+  final VoidCallback? onFlagTokenInfo;
+
+  // final TokenInfoFeedbackRequestData? requestData;
+  // final PangeaMessageEvent? pangeaMessageEvent;
 
   const WordZoomWidget({
     super.key,
@@ -41,10 +40,9 @@ class WordZoomWidget extends StatelessWidget {
     required this.langCode,
     this.onClose,
     this.wordIsNew = false,
-    this.onDismissNewWordOverlay,
     this.event,
-    this.requestData,
-    this.pangeaMessageEvent,
+    this.onDismissNewWordOverlay,
+    this.onFlagTokenInfo,
   });
 
   String get transformTargetId => "word-zoom-card-${token.uniqueKey}";
@@ -107,17 +105,12 @@ class WordZoomWidget extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            requestData != null && pangeaMessageEvent != null
-                                ? TokenInfoFeedbackButton(
-                                    requestData: requestData!,
-                                    langCode: langCode,
-                                    event: pangeaMessageEvent!,
-                                    onUpdate: () {
-                                      // close the zoom when updating
-                                      if (onClose != null) {
-                                        onClose!();
-                                      }
-                                    },
+                            onFlagTokenInfo != null
+                                ? IconButton(
+                                    icon: const Icon(Icons.flag_outlined),
+                                    onPressed: onFlagTokenInfo,
+                                    tooltip:
+                                        L10n.of(context).reportWordIssueTooltip,
                                   )
                                 : const SizedBox(
                                     width: 40.0,

@@ -142,13 +142,12 @@ class PracticeMatchItemState extends State<PracticeMatchItem> {
       ],
     );
 
-    return LongPressDraggable<PracticeChoice>(
+    return Draggable<PracticeChoice>(
       data: widget.constructForm,
       feedback: Material(
         type: MaterialType.transparency,
         child: content,
       ),
-      delay: const Duration(milliseconds: 50),
       onDragStarted: onTap,
       child: InkWell(
         onHover: (isHovered) => setState(() => _isHovered = isHovered),

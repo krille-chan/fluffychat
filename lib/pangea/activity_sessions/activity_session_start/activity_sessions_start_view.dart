@@ -6,11 +6,11 @@ import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/activity_feedback/activity_feedback_repo.dart';
 import 'package:fluffychat/pangea/activity_feedback/activity_feedback_request.dart';
-import 'package:fluffychat/pangea/activity_sessions/activity_session_start/activity_feedback_request_dialog.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_session_start/activity_feedback_response_dialog.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_session_start/activity_session_start_page.dart';
 import 'package:fluffychat/pangea/activity_sessions/activity_summary_widget.dart';
 import 'package:fluffychat/pangea/common/widgets/error_indicator.dart';
+import 'package:fluffychat/pangea/common/widgets/feedback_dialog.dart';
 import 'package:fluffychat/pangea/course_plans/course_activities/course_activity_repo.dart';
 import 'package:fluffychat/pangea/extensions/pangea_room_extension.dart';
 import 'package:fluffychat/utils/stream_extension.dart';
@@ -65,7 +65,13 @@ class ActivitySessionStartView extends StatelessWidget {
                   final feedback = await showDialog<String?>(
                     context: context,
                     builder: (context) {
-                      return const ActivityFeedbackRequestDialog();
+                      return FeedbackDialog(
+                        title: L10n.of(context).feedbackTitle,
+                        onSubmit: (feedback) {
+                          Navigator.of(context).pop(feedback);
+                        },
+                        scrollable: false,
+                      );
                     },
                   );
 

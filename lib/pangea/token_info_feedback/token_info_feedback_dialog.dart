@@ -1,8 +1,7 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 import 'package:fluffychat/l10n/l10n.dart';
+import 'package:fluffychat/pangea/common/widgets/feedback_dialog.dart';
 import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
 import 'package:fluffychat/pangea/events/models/pangea_token_model.dart';
 import 'package:fluffychat/pangea/events/models/tokens_event_content_model.dart';
@@ -21,45 +20,28 @@ import 'package:fluffychat/pangea/toolbar/widgets/word_zoom/word_zoom_widget.dar
 import 'package:fluffychat/widgets/future_loading_dialog.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
-class TokenInfoFeedbackDialog extends StatefulWidget {
+class TokenInfoFeedbackDialog extends StatelessWidget {
   final TokenInfoFeedbackRequestData requestData;
   final String langCode;
   final PangeaMessageEvent event;
-  final VoidCallback onUpdate;
 
   const TokenInfoFeedbackDialog({
     super.key,
     required this.requestData,
     required this.langCode,
     required this.event,
-    required this.onUpdate,
   });
 
-  @override
-  State<TokenInfoFeedbackDialog> createState() =>
-      _TokenInfoFeedbackDialogState();
-}
-
-class _TokenInfoFeedbackDialogState extends State<TokenInfoFeedbackDialog> {
-  final TextEditingController _feedbackController = TextEditingController();
-
-  @override
-  void dispose() {
-    _feedbackController.dispose();
-    super.dispose();
-  }
-
-  Future<String> _submitFeedback() async {
+  Future<String> _submitFeedback(String feedback) async {
     final request = TokenInfoFeedbackRequest(
-      userFeedback: _feedbackController.text,
-      data: widget.requestData,
+      userFeedback: feedback,
+      data: requestData,
     );
 
     final TokenInfoFeedbackResponse response =
         await TokenInfoFeedbackRepo.submitFeedback(request);
 
-    final originalToken =
-        widget.requestData.tokens[widget.requestData.selectedToken];
+    final originalToken = requestData.tokens[requestData.selectedToken];
     final token = response.updatedToken ?? originalToken;
 
     // first, update lemma info if changed
@@ -77,7 +59,7 @@ class _TokenInfoFeedbackDialogState extends State<TokenInfoFeedbackDialog> {
       );
     }
 
-    final originalSent = widget.event.originalSent;
+    final originalSent = event.originalSent;
 
     // if no other changes, just return the message
     final hasTokenUpdate = response.updatedToken != null;
@@ -86,45 +68,43 @@ class _TokenInfoFeedbackDialogState extends State<TokenInfoFeedbackDialog> {
         response.updatedLanguage != originalSent.langCode;
 
     if (!hasTokenUpdate && !hasLangUpdate) {
-      widget.onUpdate();
       return response.userFriendlyMessage;
     }
 
     // update the tokens to be sent in the message edit
-    final tokens = List<PangeaToken>.from(widget.requestData.tokens);
+    final tokens = List<PangeaToken>.from(requestData.tokens);
     if (hasTokenUpdate) {
-      tokens[widget.requestData.selectedToken] = response.updatedToken!;
+      tokens[requestData.selectedToken] = response.updatedToken!;
     }
 
     if (hasLangUpdate) {
       originalSent.content.langCode = response.updatedLanguage!;
     }
 
-    await widget.event.room.pangeaSendTextEvent(
-      widget.requestData.fullText,
-      editEventId: widget.event.eventId,
+    await event.room.pangeaSendTextEvent(
+      requestData.fullText,
+      editEventId: event.eventId,
       originalSent: originalSent?.content,
-      originalWritten: widget.event.originalWritten?.content,
+      originalWritten: event.originalWritten?.content,
       tokensSent: PangeaMessageTokens(
         tokens: tokens,
       ),
-      tokensWritten: widget.event.originalWritten?.tokens != null
+      tokensWritten: event.originalWritten?.tokens != null
           ? PangeaMessageTokens(
-              tokens: widget.event.originalWritten!.tokens!,
-              detections: widget.event.originalWritten?.detections,
+              tokens: event.originalWritten!.tokens!,
+              detections: event.originalWritten?.detections,
             )
           : null,
       choreo: originalSent?.choreo,
     );
 
-    widget.onUpdate();
     return response.userFriendlyMessage;
   }
 
-  Future<void> _submit() async {
+  Future<void> _submit(String feedback, BuildContext context) async {
     final resp = await showFutureLoadingDialog(
       context: context,
-      future: () => _submitFeedback(),
+      future: () => _submitFeedback(feedback),
     );
 
     if (!resp.isError) {
@@ -154,9 +134,9 @@ class _TokenInfoFeedbackDialogState extends State<TokenInfoFeedbackDialog> {
   ) async {
     final req = PhoneticTranscriptionRequest(
       arc: LanguageArc(
-        l1: PLanguageStore.byLangCode(widget.requestData.wordCardL1) ??
+        l1: PLanguageStore.byLangCode(requestData.wordCardL1) ??
             MatrixState.pangeaController.languageController.userL1!,
-        l2: PLanguageStore.byLangCode(widget.langCode) ??
+        l2: PLanguageStore.byLangCode(langCode) ??
             MatrixState.pangeaController.languageController.userL2!,
       ),
       content: response.content,
@@ -166,109 +146,14 @@ class _TokenInfoFeedbackDialogState extends State<TokenInfoFeedbackDialog> {
 
   @override
   Widget build(BuildContext context) {
-    final selectedToken =
-        widget.requestData.tokens[widget.requestData.selectedToken];
-    return BackdropFilter(
-      filter: ImageFilter.blur(sigmaX: 2.5, sigmaY: 2.5),
-      child: Dialog(
-        backgroundColor: Theme.of(context).colorScheme.surfaceContainerHigh,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20.0),
-        ),
-        child: Container(
-          width: 325.0,
-          constraints: const BoxConstraints(
-            maxHeight: 600.0,
-          ),
-          padding: const EdgeInsets.all(12.0),
-          child: Column(
-            spacing: 20.0,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              // Header with title and close button
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  IconButton(
-                    icon: const Icon(Icons.close),
-                    onPressed: () => Navigator.of(context).pop(),
-                  ),
-                  Expanded(
-                    child: Text(
-                      L10n.of(context).tokenInfoFeedbackDialogTitle,
-                      style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 40.0,
-                    height: 40.0,
-                    child: Center(
-                      child: Icon(Icons.flag_outlined),
-                    ),
-                  ),
-                ],
-              ),
-
-              // Content
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    spacing: 20.0,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      // Placeholder for word card
-                      Center(
-                        child: WordZoomWidget(
-                          token: selectedToken.text,
-                          construct: selectedToken.vocabConstructID,
-                          langCode: widget.langCode,
-                        ),
-                      ),
-                      // Description text
-                      Text(
-                        L10n.of(context).tokenInfoFeedbackDialogDesc,
-                        textAlign: TextAlign.center,
-                      ),
-                      // Feedback text field
-                      TextFormField(
-                        controller: _feedbackController,
-                        decoration: InputDecoration(
-                          hintText: L10n.of(context).feedbackHint,
-                        ),
-                        keyboardType: TextInputType.multiline,
-                        minLines: 1,
-                        maxLines: 5,
-                        onFieldSubmitted: _feedbackController.text.isNotEmpty
-                            ? (_) => _submit()
-                            : null,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-
-              ValueListenableBuilder<TextEditingValue>(
-                valueListenable: _feedbackController,
-                builder: (context, value, _) {
-                  final isNotEmpty = value.text.isNotEmpty;
-                  return ElevatedButton(
-                    onPressed: isNotEmpty ? _submit : null,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(L10n.of(context).feedbackButton),
-                      ],
-                    ),
-                  );
-                },
-              ),
-            ],
-          ),
-        ),
+    final selectedToken = requestData.tokens[requestData.selectedToken];
+    return FeedbackDialog(
+      title: L10n.of(context).tokenInfoFeedbackDialogTitle,
+      onSubmit: (feedback) => _submit(feedback, context),
+      extraContent: WordZoomWidget(
+        token: selectedToken.text,
+        construct: selectedToken.vocabConstructID,
+        langCode: langCode,
       ),
     );
   }

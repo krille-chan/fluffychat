@@ -3,82 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/bot/widgets/bot_face_svg.dart';
-import 'package:fluffychat/pangea/common/utils/overlay.dart';
-import 'package:fluffychat/pangea/events/event_wrappers/pangea_message_event.dart';
-import 'package:fluffychat/pangea/token_info_feedback/token_info_feedback_dialog.dart';
-import 'package:fluffychat/pangea/token_info_feedback/token_info_feedback_request.dart';
 import 'package:fluffychat/widgets/matrix.dart';
 
-class TokenInfoFeedbackButton extends StatelessWidget {
-  final TokenInfoFeedbackRequestData requestData;
-  final String langCode;
-  final PangeaMessageEvent event;
-  final VoidCallback onUpdate;
-
-  const TokenInfoFeedbackButton({
-    super.key,
-    required this.requestData,
-    required this.langCode,
-    required this.event,
-    required this.onUpdate,
-  });
-
-  Future<void> _submitFeedback(BuildContext context) async {
-    final resp = await showDialog(
-      context: context,
-      builder: (context) => TokenInfoFeedbackDialog(
-        requestData: requestData,
-        langCode: langCode,
-        event: event,
-        onUpdate: onUpdate,
-      ),
-    );
-
-    if (resp != null && resp is String) {
-      _showSuccessSnackBar(resp, context);
-    }
-  }
-
-  void _showSuccessSnackBar(String message, BuildContext context) {
-    OverlayUtil.showOverlay(
-      overlayKey: "token_feedback_snackbar",
-      context: context,
-      child: _TokenFeedbackNotification(message: message),
-      transformTargetId: '',
-      position: OverlayPositionEnum.top,
-      backDropToDismiss: false,
-      closePrevOverlay: false,
-      canPop: false,
-    );
-
-    Future.delayed(const Duration(seconds: 10), () {
-      MatrixState.pAnyState.closeOverlay("token_feedback_snackbar");
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      icon: const Icon(Icons.flag_outlined),
-      onPressed: () => _submitFeedback(context),
-      tooltip: L10n.of(context).reportWordIssueTooltip,
-    );
-  }
-}
-
-class _TokenFeedbackNotification extends StatefulWidget {
+class TokenFeedbackNotification extends StatefulWidget {
   final String message;
 
-  const _TokenFeedbackNotification({
+  const TokenFeedbackNotification({
+    super.key,
     required this.message,
   });
 
   @override
-  State<_TokenFeedbackNotification> createState() =>
+  State<TokenFeedbackNotification> createState() =>
       _TokenFeedbackNotificationState();
 }
 
-class _TokenFeedbackNotificationState extends State<_TokenFeedbackNotification>
+class _TokenFeedbackNotificationState extends State<TokenFeedbackNotification>
     with SingleTickerProviderStateMixin {
   late AnimationController _slideController;
   late Animation<Offset> _slideAnimation;

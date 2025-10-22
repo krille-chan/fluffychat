@@ -62,6 +62,9 @@ import 'package:fluffychat/pangea/learning_settings/constants/language_constants
 import 'package:fluffychat/pangea/learning_settings/widgets/p_language_dialog.dart';
 import 'package:fluffychat/pangea/message_token_text/tokens_util.dart';
 import 'package:fluffychat/pangea/spaces/utils/load_participants_util.dart';
+import 'package:fluffychat/pangea/token_info_feedback/token_info_feedback_dialog.dart';
+import 'package:fluffychat/pangea/token_info_feedback/token_info_feedback_notification.dart';
+import 'package:fluffychat/pangea/token_info_feedback/token_info_feedback_request.dart';
 import 'package:fluffychat/pangea/toolbar/enums/message_mode_enum.dart';
 import 'package:fluffychat/pangea/toolbar/widgets/message_selection_overlay.dart';
 import 'package:fluffychat/utils/error_reporter.dart';
@@ -2230,6 +2233,39 @@ class ChatController extends State<ChatPageWithRoom>
       ignorePointer: true,
       closePrevOverlay: false,
     );
+  }
+
+  Future<void> showTokenFeedbackDialog(
+    TokenInfoFeedbackRequestData requestData,
+    String langCode,
+    PangeaMessageEvent event,
+  ) async {
+    clearSelectedEvents();
+    final resp = await showDialog(
+      context: context,
+      builder: (context) => TokenInfoFeedbackDialog(
+        requestData: requestData,
+        langCode: langCode,
+        event: event,
+      ),
+    );
+
+    if (resp != null && resp is String) {
+      OverlayUtil.showOverlay(
+        overlayKey: "token_feedback_snackbar",
+        context: context,
+        child: TokenFeedbackNotification(message: resp),
+        transformTargetId: '',
+        position: OverlayPositionEnum.top,
+        backDropToDismiss: false,
+        closePrevOverlay: false,
+        canPop: false,
+      );
+
+      Future.delayed(const Duration(seconds: 10), () {
+        MatrixState.pAnyState.closeOverlay("token_feedback_snackbar");
+      });
+    }
   }
 
   final ScrollController carouselController = ScrollController();
