@@ -63,7 +63,7 @@ dependencies:
   pretty_qr_code: ^3.5.0
   provider: ^6.0.2
   punycode: ^1.0.0
-  qr_code_scanner_plus: ^2.0.12
+  qr_code_scanner_plus: ^2.0.13
   qr_image: ^1.0.0
   receive_sharing_intent: ^1.8.1
   record: ^6.1.1
