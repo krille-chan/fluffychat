@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cE4(){return new A.Fj(B.df("el"))},
-Fj:function Fj(d){this.a=d}}
+cEe(){return new A.Fl(B.dg("el"))},
+Fl:function Fl(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[13],A)
-A.Fj.prototype={
+A.Fl.prototype={
 gl0(){return"\u03a8\u03b5\u03c5\u03b4\u03ae\u03c2"},
 gjN(){return"\u0395\u03c0\u03b1\u03bd\u03ac\u03bb\u03b7\u03c8\u03b7 \u03ba\u03c9\u03b4\u03b9\u03ba\u03bf\u03cd \u03c0\u03c1\u03cc\u03c3\u03b2\u03b1\u03c3\u03b7\u03c2"},
 gmP(){return"\u0394\u03b5\u03bd \u03b5\u03af\u03bd\u03b1\u03b9 \u03b1\u03c1\u03c7\u03b5\u03af\u03bf \u03b5\u03b9\u03ba\u03cc\u03bd\u03b1\u03c2."},
@@ -641,7 +641,7 @@ pm(d){return"Space member of "+d+" can knock"},
 gpo(){return"Donate"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Fj,C.aF)})()
-B.dR(b.typeUniverse,JSON.parse('{"Fj":{"aF":[]}}'))};
-(a=>{a["H6dcx+JFEfMwJOv/t3FlxmMkEEU="]=a.current})($__dart_deferred_initializers__);
+y(A.Fl,C.aF)})()
+B.dR(b.typeUniverse,JSON.parse('{"Fl":{"aF":[]}}'))};
+(a=>{a["+eB2DtH7HN/JEhjZeUeP4pXWEoY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_265.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cE9(){return new A.Fo(B.df("eu"))},
-Fo:function Fo(d){this.a=d}}
+cEj(){return new A.Fq(B.dg("eu"))},
+Fq:function Fq(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[18],A)
-A.Fo.prototype={
+A.Fq.prototype={
 gl0(){return"false"},
 gjN(){return"Idatzi berriro pasahitza"},
 gmP(){return"Ez da irudi-fitxategia."},
@@ -641,8 +641,8 @@ pm(d){return"Space member of "+d+" can knock"},
 gpo(){return"Donate"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.Fo,C.aF)})()
-B.dR(b.typeUniverse,JSON.parse('{"Fo":{"aF":[]}}'))
+x(A.Fq,C.aF)})()
+B.dR(b.typeUniverse,JSON.parse('{"Fq":{"aF":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["d5F8ioHKTwCqWyy6vPDliW8+6NI="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["PMeiykl/c++vsvj8gZDDlFAvfjU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_275.part.js.map

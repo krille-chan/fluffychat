@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cE8(){return new A.Fn(B.df("et"))},
-Fn:function Fn(d){this.a=d}}
+cEi(){return new A.Fp(B.dg("et"))},
+Fp:function Fp(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[17],A)
-A.Fn.prototype={
+A.Fp.prototype={
 gl0(){return"false"},
 gjN(){return"Korda salas\xf5na"},
 gmP(){return"See pole pildifail."},
@@ -641,7 +641,7 @@ pm(d){return d+" kogukonna liige v\xf5ib uksele koputada"},
 gpo(){return"Toeta meid rahaliselt"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Fn,C.aF)})()
-B.dR(b.typeUniverse,JSON.parse('{"Fn":{"aF":[]}}'))};
-(a=>{a["CRRT962MEfC3mebq3RICq4dXrnw="]=a.current})($__dart_deferred_initializers__);
+y(A.Fp,C.aF)})()
+B.dR(b.typeUniverse,JSON.parse('{"Fp":{"aF":[]}}'))};
+(a=>{a["UUjFHpANIdc5RlW9hafzpADGHhE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_273.part.js.map

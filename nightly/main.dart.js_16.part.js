@@ -1,15 +1,15 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cEw(d){return new A.AI(B.df(d))},
-cEx(){return new A.FL(B.df("pt_BR"))},
-cEy(){return new A.FM(B.df("pt_PT"))},
-AI:function AI(d){this.a=d},
-FL:function FL(d){this.a=d},
-FM:function FM(d){this.a=d}},C
+cEG(d){return new A.AK(B.dg(d))},
+cEH(){return new A.FN(B.dg("pt_BR"))},
+cEI(){return new A.FO(B.dg("pt_PT"))},
+AK:function AK(d){this.a=d},
+FN:function FN(d){this.a=d},
+FO:function FO(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[4],A)
 C=c[54]
-A.AI.prototype={
+A.AK.prototype={
 gl0(){return"true"},
 gjN(){return"Repita a senha"},
 gmP(){return"N\xe3o \xe9 um arquivo de imagem."},
@@ -644,7 +644,7 @@ pl(d){return"Space member of "+d},
 pm(d){return"Space member of "+d+" can knock"},
 gpo(){return"Donate"},
 A(d,e){return this.gbc(this).$1(e)}}
-A.FL.prototype={
+A.FN.prototype={
 gl0(){return"true"},
 gjN(){return"Repita a senha"},
 gmP(){return"N\xe3o \xe9 um arquivo de imagem."},
@@ -1271,7 +1271,7 @@ glL(){return"Rea\xe7\xe3o personalizada"},
 gph(){return"Mais eventos"},
 glO(){return"Rejeitar convite"},
 A(d,e){return this.gbc(this).$1(e)}}
-A.FM.prototype={
+A.FO.prototype={
 gjN(){return"Repete a palavra-passe"},
 gbc(d){return"Remover"},
 ges(){return"Acerca de"},
@@ -1520,9 +1520,9 @@ eT(d){return d+" enviou um autocolante"},
 h_(d){return d+" enviou um v\xeddeo"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit,w=a.inheritMany
-x(A.AI,C.aF)
-w(A.AI,[A.FL,A.FM])})()
-B.dR(b.typeUniverse,JSON.parse('{"AI":{"aF":[]},"FL":{"aF":[]},"FM":{"aF":[]}}'))
+x(A.AK,C.aF)
+w(A.AK,[A.FN,A.FO])})()
+B.dR(b.typeUniverse,JSON.parse('{"AK":{"aF":[]},"FN":{"aF":[]},"FO":{"aF":[]}}'))
 var y={h:" alterou a visibilidade do hist\xf3rico para: ",a:"(BETA) Ativar m\xfaltiplas contas neste dispositivo"}};
-(a=>{a["1JErLqi7ePLZFcDz2scyravn0Vc="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["74jFCIfq5IQAgOURvtI216UxVvI="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_16.part.js.map

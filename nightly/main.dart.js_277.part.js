@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEa(){return new A.Fp(B.df("fa"))},
-Fp:function Fp(d){this.a=d}}
+cEk(){return new A.Fr(B.dg("fa"))},
+Fr:function Fr(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[19],A)
-A.Fp.prototype={
+A.Fr.prototype={
 gl0(){return"false"},
 gjN(){return"\u062a\u06a9\u0631\u0627\u0631 \u06af\u0630\u0631\u0648\u0627\u0698\u0647"},
 gmP(){return"\u06cc\u06a9 \u0641\u0627\u06cc\u0644 \u062a\u0635\u0648\u06cc\u0631\u06cc \u0646\u06cc\u0633\u062a."},
@@ -641,7 +641,7 @@ pm(d){return"Space member of "+d+" can knock"},
 gpo(){return"Donate"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Fp,C.aF)})()
-B.dR(b.typeUniverse,JSON.parse('{"Fp":{"aF":[]}}'))};
-(a=>{a["QGHePxHFVIvNANpvoRqW7mtlqyQ="]=a.current})($__dart_deferred_initializers__);
+y(A.Fr,C.aF)})()
+B.dR(b.typeUniverse,JSON.parse('{"Fr":{"aF":[]}}'))};
+(a=>{a["/TGallpI+ZMXwzyruwWIQ2bp6lM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_277.part.js.map
