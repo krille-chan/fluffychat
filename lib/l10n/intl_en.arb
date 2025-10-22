@@ -5311,5 +5311,7 @@
   "numSavedActivities": "Number of saved activities",
   "saveActivityTitle": "Save activity",
   "saveActivityDesc": "Good job! Save this activity for later review and practice",
-  "levelInfoTooltip": "Here you can see all the points you’ve earned and how!"
+  "levelInfoTooltip": "Here you can see all the points you’ve earned and how!",
+  "alreadyInCourseWithID": "You are already in a course with this plan. Do you want to create a course with the same plan, or go to the existing course?",
+  "goToExistingCourse": "Go to existing course"
 }

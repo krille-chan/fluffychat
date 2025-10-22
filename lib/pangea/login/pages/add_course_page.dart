@@ -72,7 +72,12 @@ class AddCoursePage extends StatelessWidget {
                               BlendMode.srcIn,
                             ),
                           ),
-                          Text(L10n.of(context).joinCourseWithCode),
+                          Flexible(
+                            child: Text(
+                              L10n.of(context).joinCourseWithCode,
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -93,7 +98,12 @@ class AddCoursePage extends StatelessWidget {
                             size: 24.0,
                             color: theme.colorScheme.onPrimaryContainer,
                           ),
-                          Text(L10n.of(context).joinPublicCourse),
+                          Flexible(
+                            child: Text(
+                              L10n.of(context).joinPublicCourse,
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -118,7 +128,12 @@ class AddCoursePage extends StatelessWidget {
                               BlendMode.srcIn,
                             ),
                           ),
-                          Text(L10n.of(context).startOwn),
+                          Flexible(
+                            child: Text(
+                              L10n.of(context).startOwn,
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
                         ],
                       ),
                     ),
