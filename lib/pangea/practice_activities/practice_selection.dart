@@ -162,8 +162,11 @@ class PracticeSelection {
 
     //remove duplicates
     final seenTexts = <String>{};
+    final seemLemmas = <String>{};
     tokens.retainWhere(
-      (token) => seenTexts.add(token.text.content.toLowerCase()),
+      (token) =>
+          seenTexts.add(token.text.content.toLowerCase()) &&
+          seemLemmas.add(token.lemma.text.toLowerCase()),
     );
 
     if (tokens.length > 8) {
@@ -183,6 +186,8 @@ class PracticeSelection {
       }
       activityTokens.add(t);
     }
+
+    debugPrint("TOKENS: ${activityTokens.map((e) => e.text.content).toList()}");
 
     return [
       PracticeTarget(
