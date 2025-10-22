@@ -207,73 +207,76 @@ class MorphTagChip extends StatelessWidget {
     final unlocked = constructAnalytics.points > 0 ||
         Matrix.of(context).client.userID == Environment.supportUserId;
 
-    return InkWell(
-      borderRadius: BorderRadius.circular(AppConfig.borderRadius),
-      onTap: onTap,
-      child: Opacity(
-        opacity: unlocked ? 1.0 : 0.3,
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(32.0),
-            gradient: unlocked
-                ? LinearGradient(
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight,
-                    colors: <Color>[
-                      constructAnalytics.lemmaCategory.color(context),
-                      Colors.transparent,
-                    ],
-                  )
-                : null,
-            color: unlocked ? null : theme.disabledColor,
-          ),
-          padding: const EdgeInsets.symmetric(
-            vertical: 4.0,
-            horizontal: 8.0,
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            spacing: 8.0,
-            children: [
-              SizedBox(
-                width: 28.0,
-                height: 28.0,
-                child: unlocked
-                    ? Container(
-                        decoration: BoxDecoration(
-                          color: theme.colorScheme.surface.withAlpha(180),
-                          borderRadius: BorderRadius.circular(20),
+    return Material(
+      type: MaterialType.transparency,
+      child: InkWell(
+        borderRadius: BorderRadius.circular(AppConfig.borderRadius),
+        onTap: onTap,
+        child: Opacity(
+          opacity: unlocked ? 1.0 : 0.3,
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(32.0),
+              gradient: unlocked
+                  ? LinearGradient(
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
+                      colors: <Color>[
+                        constructAnalytics.lemmaCategory.color(context),
+                        Colors.transparent,
+                      ],
+                    )
+                  : null,
+              color: unlocked ? null : theme.disabledColor,
+            ),
+            padding: const EdgeInsets.symmetric(
+              vertical: 4.0,
+              horizontal: 8.0,
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              spacing: 8.0,
+              children: [
+                SizedBox(
+                  width: 28.0,
+                  height: 28.0,
+                  child: unlocked
+                      ? Container(
+                          decoration: BoxDecoration(
+                            color: theme.colorScheme.surface.withAlpha(180),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          padding: const EdgeInsets.all(4),
+                          child: MorphIcon(
+                            morphFeature: feature,
+                            morphTag: morphTag,
+                          ),
+                        )
+                      : const Icon(
+                          Icons.lock,
+                          color: Colors.white,
                         ),
-                        padding: const EdgeInsets.all(4),
-                        child: MorphIcon(
-                          morphFeature: feature,
-                          morphTag: morphTag,
-                        ),
-                      )
-                    : const Icon(
-                        Icons.lock,
-                        color: Colors.white,
-                      ),
-              ),
-              Flexible(
-                child: Text(
-                  getGrammarCopy(
-                        category: morphFeature,
-                        lemma: morphTag,
-                        context: context,
-                      ) ??
-                      morphTag,
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: theme.brightness == Brightness.dark
-                        ? Colors.white
-                        : Colors.black,
-                  ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
                 ),
-              ),
-            ],
+                Flexible(
+                  child: Text(
+                    getGrammarCopy(
+                          category: morphFeature,
+                          lemma: morphTag,
+                          context: context,
+                        ) ??
+                        morphTag,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: theme.brightness == Brightness.dark
+                          ? Colors.white
+                          : Colors.black,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

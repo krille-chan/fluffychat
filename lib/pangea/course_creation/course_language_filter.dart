@@ -24,7 +24,7 @@ class CourseLanguageFilter extends StatelessWidget {
           MatrixState.pangeaController.pLanguageStore.unlocalizedTargetOptions,
       displayname: (v) => v.getDisplayName(context) ?? v.displayName,
       enableSearch: true,
-      defaultName: L10n.of(context).targetLanguageLabel,
+      defaultName: L10n.of(context).allLanguages,
     );
   }
 }

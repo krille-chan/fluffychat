@@ -320,43 +320,46 @@ class _MenuButton extends StatelessWidget {
 
     final height = !mini ? 36.0 : 26.0;
 
-    return InkWell(
-      borderRadius: BorderRadius.circular(40),
-      onTap: onPressed,
-      child: Container(
-        height: height,
-        width: hideLabel ?? mini ? height : null,
-        decoration: BoxDecoration(
-          color: theme.colorScheme.primaryContainer,
-          borderRadius: BorderRadius.circular(40),
-        ),
-        padding: EdgeInsets.symmetric(
-          horizontal: !mini ? 8.0 : 4.0,
-          vertical: 4.0,
-        ),
-        child: hideLabel ?? mini
-            ? Icon(
-                icon,
-                color: theme.colorScheme.onPrimaryContainer,
-                size: !mini ? 24.0 : 14.0,
-              )
-            : Row(
-                spacing: 4.0,
-                children: [
-                  Icon(
-                    icon,
-                    color: theme.colorScheme.onPrimaryContainer,
-                    size: !mini ? 24.0 : 14.0,
-                  ),
-                  Text(
-                    text,
-                    style: TextStyle(
+    return Material(
+      type: MaterialType.transparency,
+      child: InkWell(
+        borderRadius: BorderRadius.circular(40),
+        onTap: onPressed,
+        child: Container(
+          height: height,
+          width: hideLabel ?? mini ? height : null,
+          decoration: BoxDecoration(
+            color: theme.colorScheme.primaryContainer,
+            borderRadius: BorderRadius.circular(40),
+          ),
+          padding: EdgeInsets.symmetric(
+            horizontal: !mini ? 8.0 : 4.0,
+            vertical: 4.0,
+          ),
+          child: hideLabel ?? mini
+              ? Icon(
+                  icon,
+                  color: theme.colorScheme.onPrimaryContainer,
+                  size: !mini ? 24.0 : 14.0,
+                )
+              : Row(
+                  spacing: 4.0,
+                  children: [
+                    Icon(
+                      icon,
                       color: theme.colorScheme.onPrimaryContainer,
-                      fontSize: !mini ? 16.0 : 12.0,
+                      size: !mini ? 24.0 : 14.0,
                     ),
-                  ),
-                ],
-              ),
+                    Text(
+                      text,
+                      style: TextStyle(
+                        color: theme.colorScheme.onPrimaryContainer,
+                        fontSize: !mini ? 16.0 : 12.0,
+                      ),
+                    ),
+                  ],
+                ),
+        ),
       ),
     );
   }
