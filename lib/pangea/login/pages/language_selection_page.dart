@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
 import 'package:fluffychat/pangea/learning_settings/models/language_model.dart';
+import 'package:fluffychat/pangea/learning_settings/utils/p_language_store.dart';
 import 'package:fluffychat/pangea/learning_settings/widgets/p_language_dropdown.dart';
 import 'package:fluffychat/pangea/login/utils/lang_code_repo.dart';
 import 'package:fluffychat/widgets/matrix.dart';
@@ -29,6 +30,31 @@ class LanguageSelectionPageState extends State<LanguageSelectionPage> {
     super.initState();
     _baseLanguage =
         MatrixState.pangeaController.languageController.systemLanguage;
+
+    _setFromCache();
+  }
+
+  // The user may set their target language initally, then return to this page
+  // to change it again. Try and get the cached values if present.
+  void _setFromCache() {
+    LangCodeRepo.get().then((langSettings) {
+      if (langSettings == null) return;
+      final cachedTargetLang =
+          PLanguageStore.byLangCode(langSettings.targetLangCode);
+      final cachedBaseLang = langSettings.baseLangCode != null
+          ? PLanguageStore.byLangCode(langSettings.baseLangCode!)
+          : null;
+
+      if (cachedTargetLang == _selectedLanguage &&
+          cachedBaseLang == _baseLanguage) {
+        return;
+      }
+
+      setState(() {
+        _selectedLanguage = cachedTargetLang ?? _selectedLanguage;
+        _baseLanguage = cachedBaseLang ?? _baseLanguage;
+      });
+    });
   }
 
   void _setSelectedLanguage(LanguageModel? l) {
