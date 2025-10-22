@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:emoji_picker_flutter/emoji_picker_flutter.dart';
-import 'package:matrix/matrix.dart';
 
 import 'package:fluffychat/config/themes.dart';
 import 'package:fluffychat/l10n/l10n.dart';
-import 'package:fluffychat/pages/chat/sticker_picker_dialog.dart';
 import 'chat.dart';
 
 class ChatEmojiPicker extends StatelessWidget {
@@ -25,13 +23,18 @@ class ChatEmojiPicker extends StatelessWidget {
           : 0,
       child: controller.showEmojiPicker
           ? DefaultTabController(
-              length: 2,
+              // #Pangea
+              // length: 2,
+              length: 1,
+              // Pangea#
               child: Column(
                 children: [
                   TabBar(
                     tabs: [
                       Tab(text: L10n.of(context).emojis),
-                      Tab(text: L10n.of(context).stickers),
+                      // #Pangea
+                      // Tab(text: L10n.of(context).stickers),
+                      // Pangea#
                     ],
                   ),
                   Expanded(
@@ -67,20 +70,22 @@ class ChatEmojiPicker extends StatelessWidget {
                             ),
                           ),
                         ),
-                        StickerPickerDialog(
-                          room: controller.room,
-                          onSelected: (sticker) {
-                            controller.room.sendEvent(
-                              {
-                                'body': sticker.body,
-                                'info': sticker.info ?? {},
-                                'url': sticker.url.toString(),
-                              },
-                              type: EventTypes.Sticker,
-                            );
-                            controller.hideEmojiPicker();
-                          },
-                        ),
+                        // #Pangea
+                        // StickerPickerDialog(
+                        //   room: controller.room,
+                        //   onSelected: (sticker) {
+                        //     controller.room.sendEvent(
+                        //       {
+                        //         'body': sticker.body,
+                        //         'info': sticker.info ?? {},
+                        //         'url': sticker.url.toString(),
+                        //       },
+                        //       type: EventTypes.Sticker,
+                        //     );
+                        //     controller.hideEmojiPicker();
+                        //   },
+                        // ),
+                        // Pangea#
                       ],
                     ),
                   ),

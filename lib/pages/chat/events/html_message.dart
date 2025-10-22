@@ -1021,35 +1021,33 @@ class HtmlMessage extends StatelessWidget {
     //   overflow: TextOverflow.fade,
     // );
     final parsed = parser.parse(_addTokenTags()).body ?? dom.Element.html('');
-    return SelectionArea(
-      child: GestureDetector(
-        onTap: () {
-          if (overlayController == null) {
-            controller.showToolbar(
-              pangeaMessageEvent?.event ?? event,
-              pangeaMessageEvent: pangeaMessageEvent,
-              nextEvent: nextEvent,
-              prevEvent: prevEvent,
-            );
-          }
-        },
-        child: Text.rich(
-          textScaler: TextScaler.noScaling,
-          _renderHtml(
-            parsed,
-            context,
-            TextStyle(
-              fontSize: fontSize,
-              color: textColor,
-            ),
-          ),
-          style: TextStyle(
+    return GestureDetector(
+      onTap: () {
+        if (overlayController == null) {
+          controller.showToolbar(
+            pangeaMessageEvent?.event ?? event,
+            pangeaMessageEvent: pangeaMessageEvent,
+            nextEvent: nextEvent,
+            prevEvent: prevEvent,
+          );
+        }
+      },
+      child: Text.rich(
+        textScaler: TextScaler.noScaling,
+        _renderHtml(
+          parsed,
+          context,
+          TextStyle(
             fontSize: fontSize,
             color: textColor,
           ),
-          maxLines: limitHeight ? 64 : null,
-          overflow: TextOverflow.fade,
         ),
+        style: TextStyle(
+          fontSize: fontSize,
+          color: textColor,
+        ),
+        maxLines: limitHeight ? 64 : null,
+        overflow: TextOverflow.fade,
       ),
     );
   }
