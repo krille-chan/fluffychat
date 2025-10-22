@@ -3398,5 +3398,44 @@
     "pause": "Sos",
     "@pause": {},
     "resume": "Atosú",
-    "@resume": {}
+    "@resume": {},
+    "newSubSpace": "Fo-spás nua",
+    "@newSubSpace": {},
+    "moveToDifferentSpace": "Bog go spás difriúil",
+    "@moveToDifferentSpace": {},
+    "moveUp": "Bog suas",
+    "@moveUp": {},
+    "moveDown": "Bog síos",
+    "@moveDown": {},
+    "removeFromSpaceDescription": "Bainfear an comhrá as an spás ach beidh sé fós le feiceáil i do liosta comhrá.",
+    "@removeFromSpaceDescription": {},
+    "countChats": "comhráite {chats}",
+    "@countChats": {
+        "type": "String",
+        "placeholders": {
+            "chats": {
+                "type": "int"
+            }
+        }
+    },
+    "spaceMemberOf": "Ball spáis de {spaces}",
+    "@spaceMemberOf": {
+        "type": "String",
+        "placeholders": {
+            "spaces": {
+                "type": "String"
+            }
+        }
+    },
+    "spaceMemberOfCanKnock": "Is féidir le ball spáis de {spaces} cnagadh",
+    "@spaceMemberOfCanKnock": {
+        "type": "String",
+        "placeholders": {
+            "spaces": {
+                "type": "String"
+            }
+        }
+    },
+    "donate": "Tabhair Síntiús",
+    "@donate": {}
 }
