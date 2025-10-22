@@ -41,7 +41,8 @@ class PangeaRoomDetailsView extends StatelessWidget {
                         const Center(child: BackButton()),
                   ),
             body: Padding(
-              padding: const EdgeInsetsGeometry.all(16.0),
+              padding: const EdgeInsetsGeometry.only(
+                  top: 16.0, left: 16.0, right: 16.0),
               child: MaxWidthBody(
                 maxWidth: 900,
                 showBorder: false,

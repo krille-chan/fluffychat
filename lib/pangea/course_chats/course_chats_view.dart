@@ -51,9 +51,10 @@ class CourseChatsView extends StatelessWidget {
         final isColumnMode = FluffyThemes.isColumnMode(context);
         return Padding(
           padding: isColumnMode
-              ? const EdgeInsets.symmetric(
-                  vertical: 12.0,
-                  horizontal: 8.0,
+              ? const EdgeInsets.only(
+                  top: 12.0,
+                  left: 8.0,
+                  right: 8.0,
                 )
               : const EdgeInsets.all(0.0),
           child: ListView.builder(
