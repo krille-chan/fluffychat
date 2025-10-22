@@ -1,25 +1,25 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEc(){return new A.Fj(B.dg("da"))},
-Fj:function Fj(d){this.a=d}}
+cEf(){return new A.Fm(B.dg("en"))},
+Fm:function Fm(d){this.a=d}}
 B=c[0]
 C=c[54]
-A=a.updateHolder(c[11],A)
-A.Fj.prototype={
-gl0(){return"true"},
-gjN(){return"Gentag password"},
-gmP(){return"Ikke en billedfil."},
-gkC(){return"Indstil s\xe6rligt tilladelsesniveau"},
-gkD(){return"V\xe6lg en pr\xe6defineret rolle herunder eller indtaste et s\xe6rligt tilladelsesniveau mellem 0 og 100."},
-gmg(){return"Ignor\xe9r bruger"},
-gmO(){return"Normal bruger"},
-gbc(d){return"Fjern"},
-gmj(){return"Importer nu"},
-gmh(){return"Importer emojis"},
-gmi(){return"Importer fra .zip fil"},
-gm0(){return"Eksport\xe9r Emote-pakke som .zip-fil"},
-gnY(d){return"Erstat"},
-ges(){return"Om"},
+A=a.updateHolder(c[14],A)
+A.Fm.prototype={
+gl0(){return"false"},
+gjN(){return"Repeat password"},
+gmP(){return"Not an image file."},
+gkC(){return"Set custom permission level"},
+gkD(){return"Please choose a predefined role below or enter a custom permission level between 0 and 100."},
+gmg(){return"Ignore user"},
+gmO(){return"Normal user"},
+gbc(d){return"Remove"},
+gmj(){return"Import now"},
+gmh(){return"Import Emojis"},
+gmi(){return"Import from .zip file"},
+gm0(){return"Export Emote pack as .zip"},
+gnY(d){return"Replace"},
+ges(){return"About"},
 h9(d){return"About "+d},
 gha(d){return"Accept"},
 hb(d){return"\ud83d\udc4d "+d+" accepted the invitation"},
@@ -641,7 +641,7 @@ pm(d){return"Space member of "+d+" can knock"},
 gpo(){return"Donate"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Fj,C.aF)})()
-B.dR(b.typeUniverse,JSON.parse('{"Fj":{"aF":[]}}'))};
-(a=>{a["9h6w/5OWNDrn8FUx0F3bKERfJVw="]=a.current})($__dart_deferred_initializers__);
+y(A.Fm,C.aF)})()
+B.dR(b.typeUniverse,JSON.parse('{"Fm":{"aF":[]}}'))};
+(a=>{a["rNYON4nlO0Rdhzr4+85xuG/d74s="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_254.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cE8(){return new A.Ff(B.dg("bn"))},
-Ff:function Ff(d){this.a=d}}
+cE9(){return new A.Fg(B.dg("bo"))},
+Fg:function Fg(d){this.a=d}}
 B=c[0]
 C=c[54]
-A=a.updateHolder(c[7],A)
-A.Ff.prototype={
+A=a.updateHolder(c[8],A)
+A.Fg.prototype={
 gl0(){return"false"},
 gjN(){return"Repeat password"},
 gmP(){return"Not an image file."},
@@ -19,11 +19,11 @@ gmh(){return"Import Emojis"},
 gmi(){return"Import from .zip file"},
 gm0(){return"Export Emote pack as .zip"},
 gnY(d){return"Replace"},
-ges(){return"\u09b8\u09ae\u09cd\u09aa\u09b0\u09cd\u0995\u09c7"},
+ges(){return"About"},
 h9(d){return"About "+d},
-gha(d){return"\u09b8\u09cd\u09ac\u09c0\u0995\u09be\u09b0 \u0995\u09b0\u09bf"},
-hb(d){return d+" \u0986\u09ae\u09a8\u09cd\u09a4\u09cd\u09b0\u09a3 \u0997\u09cd\u09b0\u09b9\u09a3 \u0995\u09b0\u09c7\u099b\u09c7"},
-ghd(){return"\u0985\u09cd\u09af\u09be\u0995\u09be\u0989\u09a8\u09cd\u099f"},
+gha(d){return"Accept"},
+hb(d){return"\ud83d\udc4d "+d+" accepted the invitation"},
+ghd(){return"Account"},
 he(d){return"\ud83d\udd10 "+d+" activated end to end encryption"},
 ghf(){return"Add email"},
 glz(){return"Please confirm your Matrix ID in order to delete your account."},
@@ -641,7 +641,7 @@ pm(d){return"Space member of "+d+" can knock"},
 gpo(){return"Donate"},
 A(d,e){return this.gbc(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Ff,C.aF)})()
-B.dR(b.typeUniverse,JSON.parse('{"Ff":{"aF":[]}}'))};
-(a=>{a["l7UPyCTI7tpYNyuoY9r3iaJNWuk="]=a.current})($__dart_deferred_initializers__);
+y(A.Fg,C.aF)})()
+B.dR(b.typeUniverse,JSON.parse('{"Fg":{"aF":[]}}'))};
+(a=>{a["W4MKJGcYas7J8DCkjAhahSAcnro="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_224.part.js.map
