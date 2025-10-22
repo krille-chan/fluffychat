@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import 'package:collection/collection.dart';
@@ -55,11 +57,22 @@ class ChatDetailsController extends State<ChatDetails>
   bool loadingActivities = true;
   bool loadingCourseSummary = true;
 
+  // listen to language updates to refresh course info
+  StreamSubscription? _languageSubscription;
+
   @override
   void initState() {
     super.initState();
     _loadCourseInfo();
     _loadSummaries();
+
+    _languageSubscription = MatrixState
+        .pangeaController.userController.languageStream.stream
+        .listen((update) {
+      if (update.prevBaseLang != update.baseLang) {
+        _loadCourseInfo();
+      }
+    });
   }
 
   @override
@@ -69,6 +82,12 @@ class ChatDetailsController extends State<ChatDetails>
       _loadCourseInfo();
       _loadSummaries();
     }
+  }
+
+  @override
+  void dispose() {
+    _languageSubscription?.cancel();
+    super.dispose();
   }
 
   // Pangea#
