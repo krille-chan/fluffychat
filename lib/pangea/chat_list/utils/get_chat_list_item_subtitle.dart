@@ -68,8 +68,7 @@ class ChatListItemSubtitle extends StatelessWidget {
         return OpenRolesIndicator(
           totalSlots: room.activityPlan!.req.numberOfParticipants,
           userIds:
-              room.activityRoles?.roles.values.map((r) => r.userId).toList() ??
-                  [],
+              room.assignedRoles?.values.map((r) => r.userId).toList() ?? [],
           room: room,
           space: room.courseParent,
         );
