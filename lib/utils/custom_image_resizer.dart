@@ -18,12 +18,6 @@ import 'package:native_imaging/native_imaging.dart' as native;
 Future<MatrixImageFileResizedResponse?> customImageResizer(
   MatrixImageFileResizeArguments arguments,
 ) async {
-  if (kIsWeb) {
-    throw UnsupportedError(
-      'customImageResizer only supports non-web platforms.',
-    );
-  }
-
   await native.init();
 
   var imageBytes = arguments.bytes;
