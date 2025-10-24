@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEX(){return new A.FV(B.dg("ta"))},
-FV:function FV(d){this.a=d}}
+cF4(){return new A.FW(B.dg("ta"))},
+FW:function FW(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[47],A)
-A.FV.prototype={
+A.FW.prototype={
 gl1(){return"\u0ba4\u0bb5\u0bb1\u0bc1"},
 gjO(){return"\u0b95\u0b9f\u0bb5\u0bc1\u0b9a\u0bcd\u0b9a\u0bca\u0bb2\u0bcd\u0bb2\u0bc8 \u0bae\u0bc0\u0ba3\u0bcd\u0b9f\u0bc1\u0bae\u0bcd \u0b9a\u0bc6\u0baf\u0bcd\u0baf\u0bb5\u0bc1\u0bae\u0bcd"},
 gmQ(){return"\u0baa\u0b9f\u0b95\u0bcd \u0b95\u0bcb\u0baa\u0bcd\u0baa\u0bc1 \u0b85\u0bb2\u0bcd\u0bb2."},
@@ -641,8 +641,8 @@ pm(d){return"Space member of "+d+" can knock"},
 gpo(){return"Donate"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.FV,C.aF)})()
-B.dU(b.typeUniverse,JSON.parse('{"FV":{"aF":[]}}'))
+x(A.FW,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"FW":{"aF":[]}}'))
 var y={d:" \u0b87\u0bb2\u0bcd \u0b9f\u0bc6\u0bb5\u0bb2\u0baa\u0bcd\u0baa\u0bb0\u0bcd\u0b95\u0bb3\u0bbf\u0b9f\u0bae\u0bcd \u0b87\u0ba8\u0bcd\u0ba4\u0baa\u0bcd \u0baa\u0bbf\u0bb4\u0bc8\u0baf\u0bc8\u0baa\u0bcd \u0baa\u0bc1\u0b95\u0bbe\u0bb0\u0bb3\u0bbf\u0b95\u0bcd\u0b95\u0bb5\u0bc1\u0bae\u0bcd. \u0baa\u0bbf\u0bb4\u0bc8 \u0b9a\u0bc6\u0baf\u0bcd\u0ba4\u0bbf: "}};
-(a=>{a["Eqf45x3ra6Iz/Hes8PtO3jYJmho="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["8/OBY+ffjRTSleYXJMTGTQKJu7A="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_317.part.js.map

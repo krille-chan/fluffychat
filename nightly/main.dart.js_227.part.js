@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEi(){return new A.Fh(B.dg("ca"))},
-Fh:function Fh(d){this.a=d}}
+cEq(){return new A.Fi(B.dg("ca"))},
+Fi:function Fi(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[9],A)
-A.Fh.prototype={
+A.Fi.prototype={
 gl1(){return"true"},
 gjO(){return"Repetiu la contrasenya"},
 gmQ(){return"No \xe9s un arxiu d'image."},
@@ -641,7 +641,7 @@ pm(d){return"Space member of "+d+" can knock"},
 gpo(){return"Donate"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Fh,C.aF)})()
-B.dU(b.typeUniverse,JSON.parse('{"Fh":{"aF":[]}}'))};
-(a=>{a["2fSS75aDd4n2NsEAMrbdcNZTPSo="]=a.current})($__dart_deferred_initializers__);
+y(A.Fi,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"Fi":{"aF":[]}}'))};
+(a=>{a["CEmf/cGPOzL+Ou8lW9nbLCuYhDk="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_227.part.js.map

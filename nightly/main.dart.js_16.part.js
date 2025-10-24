@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cEO(d){return new A.AK(B.dg(d))},
-cEP(){return new A.FN(B.dg("pt_BR"))},
-cEQ(){return new A.FO(B.dg("pt_PT"))},
+cEW(d){return new A.AK(B.dg(d))},
+cEX(){return new A.FO(B.dg("pt_BR"))},
+cEY(){return new A.FP(B.dg("pt_PT"))},
 AK:function AK(d){this.a=d},
-FN:function FN(d){this.a=d},
-FO:function FO(d){this.a=d}},C
+FO:function FO(d){this.a=d},
+FP:function FP(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[4],A)
 C=c[54]
@@ -644,7 +644,7 @@ pl(d){return"Space member of "+d},
 pm(d){return"Space member of "+d+" can knock"},
 gpo(){return"Donate"},
 A(d,e){return this.gbd(this).$1(e)}}
-A.FN.prototype={
+A.FO.prototype={
 gl1(){return"true"},
 gjO(){return"Repita a senha"},
 gmQ(){return"N\xe3o \xe9 um arquivo de imagem."},
@@ -1271,7 +1271,7 @@ glM(){return"Rea\xe7\xe3o personalizada"},
 gph(){return"Mais eventos"},
 glP(){return"Rejeitar convite"},
 A(d,e){return this.gbd(this).$1(e)}}
-A.FO.prototype={
+A.FP.prototype={
 gjO(){return"Repete a palavra-passe"},
 gbd(d){return"Remover"},
 ges(){return"Acerca de"},
@@ -1521,8 +1521,8 @@ h_(d){return d+" enviou um v\xeddeo"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit,w=a.inheritMany
 x(A.AK,C.aF)
-w(A.AK,[A.FN,A.FO])})()
-B.dU(b.typeUniverse,JSON.parse('{"AK":{"aF":[]},"FN":{"aF":[]},"FO":{"aF":[]}}'))
+w(A.AK,[A.FO,A.FP])})()
+B.dV(b.typeUniverse,JSON.parse('{"AK":{"aF":[]},"FO":{"aF":[]},"FP":{"aF":[]}}'))
 var y={h:" alterou a visibilidade do hist\xf3rico para: ",a:"(BETA) Ativar m\xfaltiplas contas neste dispositivo"}};
-(a=>{a["wYSpInvgj0Em5PVFlmfsKJlv6I8="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["WxXX+0ZTnQ2D5pprZS/prgy+DAE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_16.part.js.map

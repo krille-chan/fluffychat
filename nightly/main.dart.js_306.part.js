@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEN(){return new A.FM(B.dg("pl"))},
-FM:function FM(d){this.a=d}}
+cEV(){return new A.FN(B.dg("pl"))},
+FN:function FN(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[40],A)
-A.FM.prototype={
+A.FN.prototype={
 gl1(){return"false"},
 gjO(){return"Powt\xf3rz has\u0142o"},
 gmQ(){return"To nie jest plik obrazu."},
@@ -641,7 +641,7 @@ pm(d){return"Space member of "+d+" can knock"},
 gpo(){return"Donate"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FM,C.aF)})()
-B.dU(b.typeUniverse,JSON.parse('{"FM":{"aF":[]}}'))};
-(a=>{a["cOrhv63memdXSA+wEhVAcBbo8S4="]=a.current})($__dart_deferred_initializers__);
+y(A.FN,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"FN":{"aF":[]}}'))};
+(a=>{a["6nVsdGZ+6IB/c8qru9ohGDw04sU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_306.part.js.map

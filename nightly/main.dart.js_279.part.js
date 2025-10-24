@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEA(){return new A.Fz(B.dg("hr"))},
-Fz:function Fz(d){this.a=d}}
+cEI(){return new A.FA(B.dg("hr"))},
+FA:function FA(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[27],A)
-A.Fz.prototype={
+A.FA.prototype={
 gl1(){return"true"},
 gjO(){return"Ponovi lozinku"},
 gmQ(){return"Nije slikovna datoteka."},
@@ -641,7 +641,7 @@ pm(d){return"Space member of "+d+" can knock"},
 gpo(){return"Donate"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Fz,C.aF)})()
-B.dU(b.typeUniverse,JSON.parse('{"Fz":{"aF":[]}}'))};
-(a=>{a["CAUiK6pn/vzehKlwvRinNfGPwrE="]=a.current})($__dart_deferred_initializers__);
+y(A.FA,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"FA":{"aF":[]}}'))};
+(a=>{a["W3XTYI9unJtd1MIk352FOGnhTEQ="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_279.part.js.map
