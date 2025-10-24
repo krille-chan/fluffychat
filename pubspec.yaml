@@ -38,7 +38,7 @@ dependencies:
   flutter_new_badger: ^1.1.1
   flutter_secure_storage: ^9.2.4
   flutter_shortcuts_new: ^2.0.0
-  flutter_vodozemac: ^0.3.0
+  flutter_vodozemac: ^0.4.0
   flutter_web_auth_2: ^3.1.1 # Version 4 blocked by https://github.com/MixinNetwork/flutter-plugins/issues/379
   flutter_webrtc: ^1.2.0
   geolocator: ^14.0.2
