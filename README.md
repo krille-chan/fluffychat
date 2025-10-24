@@ -1,6 +1,6 @@
-![Screenshot](https://github.com/krille-chan/fluffychat/blob/main/assets/banner_transparent.png?raw=true)
+![Screenshot](https://github.com/krille-chan/fluffychat-website/blob/main/assets/banner_transparent.png?raw=true)
 
-[FluffyChat](https://fluffychat.im) is an open source, nonprofit and cute [[matrix](https://matrix.org)] client written in [Flutter](https://flutter.dev). The goal of the app is to create an easy to use instant messenger which is open source and accessible for everyone.
+[FluffyChat](https://fluffy.chat) is an open source, nonprofit and cute [[matrix](https://matrix.org)] client written in [Flutter](https://flutter.dev). The goal of the app is to create an easy to use instant messenger which is open source and accessible for everyone.
 
 ### Links:
 
@@ -14,8 +14,8 @@
 
 ### Screenshots:
 
-<img src="https://github.com/krille-chan/fluffychat/blob/main/docs/screenshots/mobile.png?raw=true" height="300">
-<img src="https://github.com/krille-chan/fluffychat/blob/main/docs/screenshots/desktop.png?raw=true" height="300">
+<img src="https://github.com/krille-chan/fluffychat-website/blob/main/screenshots/mobile.png?raw=true" height="300">
+<img src="https://github.com/krille-chan/fluffychat-website/blob/main/screenshots/desktop.png?raw=true" height="300">
 
 # Features
 
@@ -44,7 +44,7 @@
 
 Please visit the website for installation instructions:
 
-- https://fluffychat.im
+- https://fluffy.chat
 
 # How to build
 
@@ -58,7 +58,7 @@ cd fluffychat
 3. Choose your target platform below and enable support for it.
 3.1 If you want, enable Googles Firebase Cloud Messaging:
 
-`git apply ./scripts/enable-android-google-services.patch`
+`./scripts/add-firebase-messaging.sh`
 
 4. Debug with: `flutter run`
 
