@@ -39,14 +39,13 @@ class SignInViewModel extends ValueNotifier<SignInState> {
             )
             .toList() ??
         [];
-    final splitted = filterText.split('.');
-    if (splitted.length >= 2 && !splitted.any((part) => part.isEmpty)) {
-      if (!filteredPublicHomeservers.any(
-        (homeserver) => homeserver.name == filterText,
-      )) {
-        filteredPublicHomeservers.add(PublicHomeserverData(name: filterText));
-      }
+    if (Uri.tryParse(filterText) != null &&
+        !filteredPublicHomeservers.any(
+          (homeserver) => homeserver.name == filterText,
+        )) {
+      filteredPublicHomeservers.add(PublicHomeserverData(name: filterText));
     }
+
     value = value.copyWith(
       filteredPublicHomeservers: filteredPublicHomeservers,
     );

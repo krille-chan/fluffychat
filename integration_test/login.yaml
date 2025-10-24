@@ -1,0 +1,31 @@
+appId: chat.fluffy.fluffychat
+---
+- assertVisible: "Sign in"
+- tapOn: "Sign in"
+- tapOn: "Search or enter homeserver address"
+- inputText: "http://${HOMESERVER}"
+- pressKey: "back"
+- tapOn:
+    id: "homeserver_tile_0"
+- tapOn:
+    id: "connect_to_homeserver_button"
+- assertVisible: "Log in to http://${HOMESERVER}"
+- inputText: "${USER1_NAME}"
+- tapOn: "Password"
+- inputText: "${USER1_PW}"
+- tapOn: "Login" # Click the login button
+- tapOn:
+    id: "store_in_secure_storage"
+- tapOn: "Next"
+- tapOn:
+    text: "Close"
+    index: 1
+- assertVisible: "Push notifications not available"
+- tapOn: "Do not show again"
+- tapOn:
+    id: "accounts_and_settings" # Open the popup menu
+- tapOn: "Settings"
+- scrollUntilVisible:
+    element: "Logout"
+- tapOn: "Logout"
+- tapOn: "Logout" # Confirm logout dialog
