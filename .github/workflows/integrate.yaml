@@ -62,7 +62,12 @@ jobs:
       - run: flutter pub get
       - name: Prepare web
         run: ./scripts/prepare-web.sh
-      - run: flutter build web
+      - run: flutter build web --dart-define=WITH_SEMANTICS=true
+      - name: Upload Web Build
+        uses: actions/upload-artifact@v5
+        with:
+          name: Web Build
+          path: build/web
 
   build_debug_linux:
     strategy:
@@ -101,3 +106,49 @@ jobs:
           sed -i '' 's,//<GOOGLE_SERVICES>,,g' lib/utils/background_push.dart
       - run: flutter pub get
       - run: flutter build ios --no-codesign
+
+  integration_test_web:
+    runs-on: ubuntu-latest
+    needs: [ build_debug_web ]
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Download build folder
+        uses: actions/download-artifact@v4
+        with:
+          name: Web Build
+          path: build/web
+      - uses: remarkablemark/setup-maestro-cli@v1
+      - name: Serve web app
+        run: npx --yes serve build/web/ -l 4567 &
+      - name: Run maestro test
+        run: |
+          source integration_test/data/integration_users.env
+          docker run -d --name synapse --tmpfs /data \
+          --volume="$(pwd)/integration_test/synapse/data/homeserver.yaml":/data/homeserver.yaml:rw \
+          --volume="$(pwd)/integration_test/synapse/data/localhost.log.config":/data/localhost.log.config:rw \
+          -p 80:80 matrixdotorg/synapse:latest
+          while ! curl -XGET "http://$HOMESERVER/_matrix/client/v3/login" >/dev/null 2>/dev/null; do
+          echo "Waiting for homeserver to be available... (GET http://$HOMESERVER/_matrix/client/v3/login)"
+            sleep 2
+          done
+
+          echo "Homeserver is online!"
+
+          # create users
+          curl -fS --retry 3 -XPOST -d "{\"username\":\"$USER1_NAME\", \"password\":\"$USER1_PW\", \"inhibit_login\":true, \"auth\": {\"type\":\"m.login.dummy\"}}" "http://$HOMESERVER/_matrix/client/r0/register"
+          curl -fS --retry 3 -XPOST -d "{\"username\":\"$USER2_NAME\", \"password\":\"$USER2_PW\", \"inhibit_login\":true, \"auth\": {\"type\":\"m.login.dummy\"}}" "http://$HOMESERVER/_matrix/client/r0/register"
+
+          touch chromedriver_logs.txt
+          export DISPLAY=:99
+          Xvfb :99 -screen 0 1280x1024x24 &
+          chromedriver --port=4444 --readable-timestamp --enable-chrome-logs 2>&1 | tee chromedriver_logs.txt &
+          maestro test integration_test/login.yaml --env HOMESERVER=${HOMESERVER} --env USER1_NAME=${USER1_NAME} --env USER1_PW=${USER1_PW}
+      - name: Upload logs
+        #if: ${{ failure() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: Logs
+          path: chromedriver_logs.txt
