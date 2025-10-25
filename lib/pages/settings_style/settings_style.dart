@@ -157,8 +157,9 @@ class SettingsStyleController extends State<SettingsStyle> {
     setState(() {});
   }
 
-  void changeFontSizeFactor(double d) {
-    AppSettings.fontSizeFactor.setItem(d);
+  void changeFontSizeFactor(double d) async {
+    await AppSettings.fontSizeFactor.setItem(d);
+    setState(() {});
   }
 
   @override
