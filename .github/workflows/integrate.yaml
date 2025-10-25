@@ -100,3 +100,110 @@ jobs:
           sed -i '' 's,//<GOOGLE_SERVICES>,,g' lib/utils/background_push.dart
       - run: flutter pub get
       - run: flutter build ios --no-codesign
+
+  integration_test_android:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      ANDROID_USER_HOME: /home/runner/.android
+      ANDROID_EMULATOR_HOME: /home/runner/.android
+      ANDROID_AVD_HOME: /home/runner/.android/avd
+      AVD_CONFIG_PATH: "~/.android/avd/test.avd/config.ini"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      # https://github.blog/changelog/2023-02-23-hardware-accelerated-android-virtualization-on-actions-windows-and-linux-larger-hosted-runners/
+      - name: Enable KVM group perms
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Gradle cache
+        uses: gradle/gradle-build-action@v3
+      - name: AVD cache
+        uses: actions/cache@v4
+        id: avd-cache
+        with:
+          path: ~/.android/*
+          key: avd-integration_docker
+      - name: Pub cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.pub-cache/*
+          key: ${{ runner.os }}-${{ hashFiles('**/pubspec.lock') }}
+      - name: create AVD and generate snapshot for caching
+        if: steps.avd-cache.outputs.cache-hit != 'true'
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 34
+          target: google_apis
+          arch: x86_64
+          cores: 16
+          ndk: 27.0.12077973
+          force-avd-creation: false
+          disk-size: 4096M
+          ram-size: 4096M
+          sdcard-path-or-size: 4096M
+          emulator-options: -no-window -wipe-data -accel on -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          script: |
+            cat ${{ env.AVD_CONFIG_PATH }}
+
+            sed -i.bak 's/hw.lcd.density = .*/hw.lcd.density=420/' ${{ env.AVD_CONFIG_PATH }}
+            sed -i.bak 's/hw.lcd.height = .*/hw.lcd.height=1920/' ${{ env.AVD_CONFIG_PATH }}
+            sed -i.bak 's/hw.lcd.width = .*/hw.lcd.width=1080/' ${{ env.AVD_CONFIG_PATH }}
+
+            if ! grep -q "hw.lcd.density"  ${{ env.AVD_CONFIG_PATH }} && echo "hw.lcd.density = 420" >>  ${{ env.AVD_CONFIG_PATH }}; then :; fi
+            if ! grep -q "hw.lcd.height"  ${{ env.AVD_CONFIG_PATH }} && echo "hw.lcd.height = 1920" >>  ${{ env.AVD_CONFIG_PATH }}; then :; fi
+            if ! grep -q "hw.lcd.width"  ${{ env.AVD_CONFIG_PATH }} && echo "hw.lcd.width = 1080" >>  ${{ env.AVD_CONFIG_PATH }}; then :; fi
+
+            echo "Emulator settings (${{ env.AVD_CONFIG_PATH }})"
+            cat ${{ env.AVD_CONFIG_PATH }}
+            echo "Generated AVD snapshot for caching."
+      - run: cat .github/workflows/versions.env >> $GITHUB_ENV
+      - run: cat integration_test/data/integration_users.env >> $GITHUB_ENV
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          cache: true
+      - uses: actions/setup-java@v5
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: "zulu"
+      - uses: moonrepo/setup-rust@v1
+      - uses: remarkablemark/setup-maestro-cli@v1
+      - run: pip install -U niet
+      - name: Add Firebase Messaging
+        run: |
+          echo '${{secrets.GOOGLE_SERVICES_JSON}}' | base64 -d > android/app/google-services.json
+          ./scripts/add-firebase-messaging.sh
+      - name: Build Android APK for emulator
+        run: flutter build apk --debug --target-platform android-x64
+      - name: Integration Test
+        id: integration_tests
+        env:
+          HOMESERVER: 127.0.0.1
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 34
+          target: google_apis
+          arch: x86_64
+          cores: 16
+          ndk: 27.0.12077973
+          force-avd-creation: false
+          disk-size: 4096M
+          ram-size: 4096M
+          sdcard-path-or-size: 4096M
+          emulator-options: -no-snapshot-save -no-window -wipe-data -accel on -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          script: |
+            cat ${{ env.AVD_CONFIG_PATH }}
+            scripts/integration-server-synapse.sh
+            scripts/integration-prepare-homeserver.sh
+            flutter install --use-application-binary=build/app/outputs/flutter-apk/app-debug.apk
+            maestro test integration_test/login.yaml --env HOMESERVER=10.0.2.2 --env USER1_NAME=${USER1_NAME} --env USER1_PW=${USER1_PW} integration_test_recording.mp4
+      - name: The job has failed
+        #if: ${{ failure() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: Test Record
+          path: integration_test_recording.mp4

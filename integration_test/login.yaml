@@ -1,0 +1,16 @@
+appId: chat.fluffy.fluffychat
+---
+- launchApp
+- tapOn: "Sign in with:"
+- eraseText: 20 # Erase the current text
+- inputText: "http://${HOMESERVER}"
+- tapOn: "Continue"
+- inputText: "${USER1_NAME}"
+- tapOn: "Password"
+- inputText: "${USER1_PW}"
+- tapOn: "Login" # Click the login button
+- tapOn:
+    id: "accounts_and_settings" # Open the popup menu
+- tapOn: "Settings"
+- tapOn: "Logout"
+- tapOn: "Logout" # Confirm logout dialog
