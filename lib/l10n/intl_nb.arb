@@ -3201,5 +3201,11 @@
     "notificationRuleSuppressEditsDescription": "Demper varsler for redigerte meldinger.",
     "@notificationRuleSuppressEditsDescription": {},
     "notificationRuleEncryptedDescription": "Varsler brukeren om meldinger i krypterte rom.",
-    "@notificationRuleEncryptedDescription": {}
+    "@notificationRuleEncryptedDescription": {},
+    "notificationRuleRoomServerAcl": "Romserverens tilgangskontrolliste",
+    "@notificationRuleRoomServerAcl": {},
+    "notificationRuleRoomOneToOneDescription": "Varsler brukeren om meldinger i én-til-én-rom.",
+    "@notificationRuleRoomOneToOneDescription": {},
+    "notificationRuleJitsiDescription": "Varsler brukeren om hendelser i Jitsi-widgeten.",
+    "@notificationRuleJitsiDescription": {}
 }
