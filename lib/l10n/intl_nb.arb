@@ -3178,5 +3178,34 @@
     "swipeRightToLeftToReply": "Sveip fra høyre mot venstre for å svare",
     "@swipeRightToLeftToReply": {},
     "startFirstChat": "Start din første chat",
-    "@startFirstChat": {}
+    "@startFirstChat": {},
+    "unlockOldMessages": "Lås opp gamle meldinger",
+    "@unlockOldMessages": {},
+    "storeInAndroidKeystore": "Lagre i Android KeyStore",
+    "@storeInAndroidKeystore": {},
+    "storeInAppleKeyChain": "Lagre i Apple nøkkelring",
+    "@storeInAppleKeyChain": {},
+    "storeSecurlyOnThisDevice": "Lagre sikkert på denne enheten",
+    "@storeSecurlyOnThisDevice": {},
+    "acceptedKeyVerification": "{sender} godtok nøkkelverifisering",
+    "@acceptedKeyVerification": {
+        "type": "String",
+        "placeholders": {
+            "sender": {
+                "type": "String"
+            }
+        }
+    },
+    "notificationRuleMessageDescription": "Varsler brukeren om generelle meldinger.",
+    "@notificationRuleMessageDescription": {},
+    "notificationRuleSuppressEditsDescription": "Demper varsler for redigerte meldinger.",
+    "@notificationRuleSuppressEditsDescription": {},
+    "notificationRuleEncryptedDescription": "Varsler brukeren om meldinger i krypterte rom.",
+    "@notificationRuleEncryptedDescription": {},
+    "notificationRuleRoomServerAcl": "Romserverens tilgangskontrolliste",
+    "@notificationRuleRoomServerAcl": {},
+    "notificationRuleRoomOneToOneDescription": "Varsler brukeren om meldinger i én-til-én-rom.",
+    "@notificationRuleRoomOneToOneDescription": {},
+    "notificationRuleJitsiDescription": "Varsler brukeren om hendelser i Jitsi-widgeten.",
+    "@notificationRuleJitsiDescription": {}
 }
