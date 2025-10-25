@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:async/async.dart';
 import 'package:flutter/foundation.dart';
 
 import 'package:http/http.dart' as http;
@@ -71,6 +72,20 @@ enum AppSettings<T> {
     if (AppSettings._store != null) return AppSettings.store;
 
     final store = AppSettings._store = await SharedPreferences.getInstance();
+
+    // Migrate wrong datatype for fontSizeFactor
+    final fontSizeFactorString =
+        Result(() => store.getString(AppSettings.fontSizeFactor.key))
+            .asValue
+            ?.value;
+    if (fontSizeFactorString != null) {
+      Logs().i('Migrate wrong datatype for fontSizeFactor!');
+      await store.remove(AppSettings.fontSizeFactor.key);
+      final fontSizeFactor = double.tryParse(fontSizeFactorString);
+      if (fontSizeFactor != null) {
+        await store.setDouble(AppSettings.fontSizeFactor.key, fontSizeFactor);
+      }
+    }
 
     if (store.getBool(AppSettings.sendOnEnter.key) == null) {
       await store.setBool(AppSettings.sendOnEnter.key, !PlatformInfos.isMobile);
