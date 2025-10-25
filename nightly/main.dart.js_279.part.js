@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEI(){return new A.FA(B.dg("hr"))},
-FA:function FA(d){this.a=d}}
+cEK(){return new A.FB(B.dg("hr"))},
+FB:function FB(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[27],A)
-A.FA.prototype={
+A.FB.prototype={
 gl1(){return"true"},
 gjO(){return"Ponovi lozinku"},
 gmQ(){return"Nije slikovna datoteka."},
@@ -125,7 +125,7 @@ gew(d){return"Kopiraj"},
 gig(){return"Kopiraj u me\u0111uspremnik"},
 ih(d){return"Neuspjelo de\u0161ifriranje poruke: "+d},
 gp9(){return"Check list"},
-dJ(d){return""+d+" sudionika"},
+dK(d){return""+d+" sudionika"},
 lF(d){return""+d+" invited"},
 gii(d){return"Stvori"},
 ij(d){return"\ud83d\udcac "+d+" je zapo\u010deo/la razgovor"},
@@ -264,7 +264,7 @@ gjL(){return"Ukloni iz ovog paketa"},
 gf2(){return"Ime paketa"},
 giG(){return"(BETA) Omogu\u0107i kori\u0161tenje vi\u0161e ra\u010duna na ovom ure\u0111aju"},
 gjr(){return"Otvori u kartama"},
-gdG(){return"Poveznica"},
+gdH(){return"Poveznica"},
 gh1(){return"Za registraciju ovaj poslu\u017eitelj mora potvrditi tvoju e-mail adresu."},
 gjs(){return"Ili"},
 gjt(){return"Sudionik"},
@@ -641,7 +641,7 @@ pm(d){return"Space member of "+d+" can knock"},
 gpo(){return"Donate"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FA,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"FA":{"aF":[]}}'))};
-(a=>{a["W3XTYI9unJtd1MIk352FOGnhTEQ="]=a.current})($__dart_deferred_initializers__);
+y(A.FB,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"FB":{"aF":[]}}'))};
+(a=>{a["pa3h1TTgNfvcFXiE0aofoIIgfyA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_279.part.js.map

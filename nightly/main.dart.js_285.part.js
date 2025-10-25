@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEJ(){return new A.FB(B.dg("hu"))},
-FB:function FB(d){this.a=d}}
+cEL(){return new A.FC(B.dg("hu"))},
+FC:function FC(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[28],A)
-A.FB.prototype={
+A.FC.prototype={
 gl1(){return""},
 gjO(){return"Jelsz\xf3 ism\xe9tl\xe9se"},
 gmQ(){return"Nem k\xe9p f\xe1jl."},
@@ -125,7 +125,7 @@ gew(d){return"M\xe1sol\xe1s"},
 gig(){return"V\xe1g\xf3lapra m\xe1sol\xe1s"},
 ih(d){return"Nem siker\xfclt visszafejteni az \xfczenetet: "+d},
 gp9(){return"Tennival\xf3k list\xe1ja"},
-dJ(d){return""+d+" r\xe9sztvev\u0151"},
+dK(d){return""+d+" r\xe9sztvev\u0151"},
 lF(d){return""+d+" megh\xedvott"},
 gii(d){return"L\xe9trehoz"},
 ij(d){return"\ud83d\udcac "+d+" cseveg\xe9st hozott l\xe9tre"},
@@ -264,7 +264,7 @@ gjL(){return"Elt\xe1vol\xedt\xe1s a fi\xf3kcsoportb\xf3l"},
 gf2(){return"Fi\xf3kcsoport neve"},
 giG(){return"(B\xc9TA) T\xf6bb fi\xf3k bekapcsol\xe1sa az eszk\xf6z\xf6n"},
 gjr(){return"Megnyit\xe1s t\xe9rk\xe9pen"},
-gdG(){return"Hivatkoz\xe1s"},
+gdH(){return"Hivatkoz\xe1s"},
 gh1(){return"Ehhez a szerverhez sz\xfcks\xe9ges az email c\xedm\xe9nek visszaigazol\xe1sa."},
 gjs(){return"Vagy"},
 gjt(){return"R\xe9sztvev\u0151"},
@@ -641,7 +641,7 @@ pm(d){return"Space member of "+d+" can knock"},
 gpo(){return"Donate"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FB,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"FB":{"aF":[]}}'))};
-(a=>{a["eIcnVQR9qz9sbGDy9qO9O17f1Us="]=a.current})($__dart_deferred_initializers__);
+y(A.FC,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"FC":{"aF":[]}}'))};
+(a=>{a["LjhDnSgtbacVS+ZVWOxJ9b7iAAY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_285.part.js.map

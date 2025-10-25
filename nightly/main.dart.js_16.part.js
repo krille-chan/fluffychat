@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,A={
-cEW(d){return new A.AK(B.dg(d))},
-cEX(){return new A.FO(B.dg("pt_BR"))},
-cEY(){return new A.FP(B.dg("pt_PT"))},
+cEY(d){return new A.AK(B.dg(d))},
+cEZ(){return new A.FP(B.dg("pt_BR"))},
+cF_(){return new A.FQ(B.dg("pt_PT"))},
 AK:function AK(d){this.a=d},
-FO:function FO(d){this.a=d},
-FP:function FP(d){this.a=d}},C
+FP:function FP(d){this.a=d},
+FQ:function FQ(d){this.a=d}},C
 B=c[0]
 A=a.updateHolder(c[4],A)
 C=c[54]
@@ -129,7 +129,7 @@ gew(d){return"Copy"},
 gig(){return"Copy to clipboard"},
 ih(d){return"Could not decrypt message: "+d},
 gp9(){return"Check list"},
-dJ(d){return""+d+" participants"},
+dK(d){return""+d+" participants"},
 lF(d){return""+d+" invited"},
 gii(d){return"Create"},
 ij(d){return"\ud83d\udcac "+d+" created the chat"},
@@ -268,7 +268,7 @@ gjL(){return"Remove from this bundle"},
 gf2(){return"Bundle name"},
 giG(){return"(BETA) Enable multi accounts on this device"},
 gjr(){return"Open in maps"},
-gdG(){return"Link"},
+gdH(){return"Link"},
 gh1(){return"This server needs to validate your email address for registration."},
 gjs(){return"Or"},
 gjt(){return"Participant"},
@@ -644,7 +644,7 @@ pl(d){return"Space member of "+d},
 pm(d){return"Space member of "+d+" can knock"},
 gpo(){return"Donate"},
 A(d,e){return this.gbd(this).$1(e)}}
-A.FO.prototype={
+A.FP.prototype={
 gl1(){return"true"},
 gjO(){return"Repita a senha"},
 gmQ(){return"N\xe3o \xe9 um arquivo de imagem."},
@@ -764,7 +764,7 @@ gew(d){return"Copiar"},
 gig(){return"Copiar para a \xe1rea de transfer\xeancia"},
 ih(d){return"N\xe3o foi poss\xedvel descriptografar a mensagem: "+d},
 gp9(){return"Lista de tarefas"},
-dJ(d){return""+d+" participantes"},
+dK(d){return""+d+" participantes"},
 lF(d){return""+d+" convidados"},
 gii(d){return"Criar"},
 ij(d){return"\ud83d\udcac "+d+" criou a conversa"},
@@ -903,7 +903,7 @@ gjL(){return"Remover desta cole\xe7\xe3o"},
 gf2(){return"Nome da cole\xe7\xe3o"},
 giG(){return y.a},
 gjr(){return"Abrir no mapa"},
-gdG(){return"Link"},
+gdH(){return"Link"},
 gh1(){return"Este servidor precisa validar seu e-mail para efetuar o cadastro."},
 gjs(){return"Ou"},
 gjt(){return"Participante"},
@@ -1271,7 +1271,7 @@ glM(){return"Rea\xe7\xe3o personalizada"},
 gph(){return"Mais eventos"},
 glP(){return"Rejeitar convite"},
 A(d,e){return this.gbd(this).$1(e)}}
-A.FP.prototype={
+A.FQ.prototype={
 gjO(){return"Repete a palavra-passe"},
 gbd(d){return"Remover"},
 ges(){return"Acerca de"},
@@ -1360,7 +1360,7 @@ gie(){return"Copiado para a \xe1rea de transfer\xeancia"},
 gew(d){return"Copiar"},
 gig(){return"Copiar para a \xe1rea de transfer\xeancia"},
 ih(d){return"N\xe3o foi poss\xedvel desencriptar mensagem: "+d},
-dJ(d){return""+d+" participantes"},
+dK(d){return""+d+" participantes"},
 gii(d){return"Criar"},
 ij(d){return d+" criou a conversa"},
 gfd(){return"Novo espa\xe7o"},
@@ -1471,7 +1471,7 @@ gjL(){return"Remover deste pacote"},
 gf2(){return"Nome do pacote"},
 giG(){return y.a},
 gjr(){return"Abrir nos mapas"},
-gdG(){return"Liga\xe7\xe3o"},
+gdH(){return"Liga\xe7\xe3o"},
 gh1(){return"Este servidor precisa de validar o teu endere\xe7o de correio eletr\xf3nico para o registo."},
 gjs(){return"Ou"},
 gjt(){return"Participante"},
@@ -1521,8 +1521,8 @@ h_(d){return d+" enviou um v\xeddeo"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit,w=a.inheritMany
 x(A.AK,C.aF)
-w(A.AK,[A.FO,A.FP])})()
-B.dV(b.typeUniverse,JSON.parse('{"AK":{"aF":[]},"FO":{"aF":[]},"FP":{"aF":[]}}'))
+w(A.AK,[A.FP,A.FQ])})()
+B.dV(b.typeUniverse,JSON.parse('{"AK":{"aF":[]},"FP":{"aF":[]},"FQ":{"aF":[]}}'))
 var y={h:" alterou a visibilidade do hist\xf3rico para: ",a:"(BETA) Ativar m\xfaltiplas contas neste dispositivo"}};
-(a=>{a["WxXX+0ZTnQ2D5pprZS/prgy+DAE="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["4HjLozGkF1QprVsOosRzPB9wNc8="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_16.part.js.map

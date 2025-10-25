@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEU(){return new A.FM(B.dg("nl"))},
-FM:function FM(d){this.a=d}}
+cEW(){return new A.FN(B.dg("nl"))},
+FN:function FN(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[39],A)
-A.FM.prototype={
+A.FN.prototype={
 gl1(){return"true"},
 gjO(){return"Wachtwoord herhalen"},
 gmQ(){return"Geen afbeeldingsbestand."},
@@ -125,7 +125,7 @@ gew(d){return"Bericht kopi\xebren"},
 gig(){return"Kopieer naar klembord"},
 ih(d){return"Kan het bericht niet ontsleutelen: "+d},
 gp9(){return"Checklist"},
-dJ(d){return""+d+" personen"},
+dK(d){return""+d+" personen"},
 lF(d){return""+d+" uitgenodigd"},
 gii(d){return"Aanmaken"},
 ij(d){return"\ud83d\udcac "+d+" heeft de chat gemaakt"},
@@ -264,7 +264,7 @@ gjL(){return"Van bundel verwijderen"},
 gf2(){return"Bundelnaam"},
 giG(){return"(BETA) Multi-accounts inschakelen op dit apparaat"},
 gjr(){return"In kaarten openen"},
-gdG(){return"Link"},
+gdH(){return"Link"},
 gh1(){return"Deze server wil je email laten bevestigen bij de registratie."},
 gjs(){return"Of"},
 gjt(){return"Personen"},
@@ -641,7 +641,7 @@ pm(d){return d+" personen in space kunnen kloppen"},
 gpo(){return"Doneer"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FM,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"FM":{"aF":[]}}'))};
-(a=>{a["JiERL90oC86lqrbERS//NWeMY9I="]=a.current})($__dart_deferred_initializers__);
+y(A.FN,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"FN":{"aF":[]}}'))};
+(a=>{a["5xO7j+7l80Qfj86nKYzF+ZKVAuk="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_305.part.js.map

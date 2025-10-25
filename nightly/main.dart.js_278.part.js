@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEH(){return new A.Fz(B.dg("hi"))},
-Fz:function Fz(d){this.a=d}}
+cEJ(){return new A.FA(B.dg("hi"))},
+FA:function FA(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[26],A)
-A.Fz.prototype={
+A.FA.prototype={
 gl1(){return"false"},
 gjO(){return"\u092a\u093e\u0938\u0935\u0930\u094d\u0921 \u0926\u094b\u0939\u0930\u093e\u090f\u0902"},
 gmQ(){return"\u0915\u094b\u0908 \u091b\u0935\u093f \u092b\u093c\u093e\u0907\u0932 \u0928\u0939\u0940\u0902\u0964"},
@@ -125,7 +125,7 @@ gew(d){return"Copy"},
 gig(){return"Copy to clipboard"},
 ih(d){return"Could not decrypt message: "+d},
 gp9(){return"Check list"},
-dJ(d){return""+d+" participants"},
+dK(d){return""+d+" participants"},
 lF(d){return""+d+" invited"},
 gii(d){return"Create"},
 ij(d){return"\ud83d\udcac "+d+" created the chat"},
@@ -264,7 +264,7 @@ gjL(){return"Remove from this bundle"},
 gf2(){return"Bundle name"},
 giG(){return"(BETA) Enable multi accounts on this device"},
 gjr(){return"Open in maps"},
-gdG(){return"Link"},
+gdH(){return"Link"},
 gh1(){return"This server needs to validate your email address for registration."},
 gjs(){return"Or"},
 gjt(){return"Participant"},
@@ -641,7 +641,7 @@ pm(d){return"Space member of "+d+" can knock"},
 gpo(){return"Donate"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Fz,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"Fz":{"aF":[]}}'))};
-(a=>{a["CrKzBpi275CDJdB12+KGwijuJbc="]=a.current})($__dart_deferred_initializers__);
+y(A.FA,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"FA":{"aF":[]}}'))};
+(a=>{a["3Y41YZNZWsFDaaFRC6a0uZLdP3Q="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_278.part.js.map

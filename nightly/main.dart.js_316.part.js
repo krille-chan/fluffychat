@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cF3(){return new A.FV(B.dg("sv"))},
-FV:function FV(d){this.a=d}}
+cF5(){return new A.FW(B.dg("sv"))},
+FW:function FW(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[46],A)
-A.FV.prototype={
+A.FW.prototype={
 gl1(){return"false"},
 gjO(){return"Upprepa l\xf6senord"},
 gmQ(){return"Inte en bildfil."},
@@ -125,7 +125,7 @@ gew(d){return"Kopiera"},
 gig(){return"Kopiera till urklipp"},
 ih(d){return"Kunde ej avkoda meddelande: "+d},
 gp9(){return"Check list"},
-dJ(d){return""+d+" deltagare"},
+dK(d){return""+d+" deltagare"},
 lF(d){return""+d+" invited"},
 gii(d){return"Skapa"},
 ij(d){return"\ud83d\udcac "+d+" skapade chatten"},
@@ -264,7 +264,7 @@ gjL(){return"Ta bort fr\xe5n paket"},
 gf2(){return"Paketnamn"},
 giG(){return"(BETA) Aktivera multi-konton p\xe5 denna enhet"},
 gjr(){return"\xd6ppna i karta"},
-gdG(){return"L\xe4nk"},
+gdH(){return"L\xe4nk"},
 gh1(){return"Servern beh\xf6ver validera din e-postadress f\xf6r registrering."},
 gjs(){return"Eller"},
 gjt(){return"Deltagare"},
@@ -641,7 +641,7 @@ pm(d){return"Space member of "+d+" can knock"},
 gpo(){return"Donate"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FV,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"FV":{"aF":[]}}'))};
-(a=>{a["rz27lSazVQrVjazaQvR/nLsm0IY="]=a.current})($__dart_deferred_initializers__);
+y(A.FW,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"FW":{"aF":[]}}'))};
+(a=>{a["J4yU2+eYmEJbqcKGjcciVMENJM4="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_316.part.js.map

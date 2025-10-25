@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cES(){return new A.FK(B.dg("lv"))},
-FK:function FK(d){this.a=d}}
+cEU(){return new A.FL(B.dg("lv"))},
+FL:function FL(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[37],A)
-A.FK.prototype={
+A.FL.prototype={
 gl1(){return"n\u0113"},
 gjO(){return"Atk\u0101rtot paroli"},
 gmQ(){return"Nav att\u0113la datne."},
@@ -125,7 +125,7 @@ gew(d){return"Ievietot starpliktuv\u0113"},
 gig(){return"Ievietot starpliktuv\u0113"},
 ih(d){return"Nevar\u0113ja at\u0161ifr\u0113t zi\u0146u: "+d},
 gp9(){return"P\u0101rbau\u017eu saraksts"},
-dJ(d){return""+d+" dal\u012bbnieki"},
+dK(d){return""+d+" dal\u012bbnieki"},
 lF(d){return""+d+" uzaicin\u0101ti"},
 gii(d){return"Izveidot"},
 ij(d){return"\ud83d\udcac "+d+" izveidoja t\u0113rz\u0113\u0161anu"},
@@ -264,7 +264,7 @@ gjL(){return"No\u0146emt no \u0161\u012b komplekta"},
 gf2(){return"Komplekta nosaukums"},
 giG(){return"(BETA) Iesp\u0113jot vair\u0101kus kontus \u0161aj\u0101 ier\u012bc\u0113"},
 gjr(){return"Atv\u0113rt kart\u0113s"},
-gdG(){return"Saite"},
+gdH(){return"Saite"},
 gh1(){return"\u0160im serverim ir nepiecie\u0161ams p\u0101rbaud\u012bt Tavu e-pasta adresi re\u0123istr\u0101cijai."},
 gjs(){return"Vai"},
 gjt(){return"Dal\u012bbnieks"},
@@ -641,7 +641,7 @@ pm(d){return d+" dal\u012bbnieks var pieklauv\u0113t"},
 gpo(){return"Ziedot"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FK,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"FK":{"aF":[]}}'))};
-(a=>{a["5JuFOfTT2Vz2p8q8lNGnorvAQqA="]=a.current})($__dart_deferred_initializers__);
+y(A.FL,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"FL":{"aF":[]}}'))};
+(a=>{a["4fPAfZSHcwLxxqnkUcf4t4GUqbg="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_302.part.js.map

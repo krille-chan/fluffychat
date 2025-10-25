@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEF(){return new A.Fx(B.dg("gl"))},
-Fx:function Fx(d){this.a=d}}
+cEH(){return new A.Fy(B.dg("gl"))},
+Fy:function Fy(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[24],A)
-A.Fx.prototype={
+A.Fy.prototype={
 gl1(){return"falso"},
 gjO(){return"Repite o contrasinal"},
 gmQ(){return"Non \xe9 un ficheiro de imaxe."},
@@ -125,7 +125,7 @@ gew(d){return"Copiar"},
 gig(){return"Copiar ao portapapeis"},
 ih(d){return"Non se descifrou a mensaxe: "+d},
 gp9(){return"Comprobar lista"},
-dJ(d){return""+d+" participantes"},
+dK(d){return""+d+" participantes"},
 lF(d){return""+d+" convidadas"},
 gii(d){return"Crear"},
 ij(d){return"\ud83d\udcac "+d+" creou a conversa"},
@@ -264,7 +264,7 @@ gjL(){return"Eliminar deste feixe"},
 gf2(){return"Nome do feixe"},
 giG(){return"(BETA) Activar varias contas neste dispositivo"},
 gjr(){return"Abrir en mapas"},
-gdG(){return"Ligaz\xf3n"},
+gdH(){return"Ligaz\xf3n"},
 gh1(){return"O servidor precisa validar o teu enderezo de email para rexistrarte."},
 gjs(){return"Ou"},
 gjt(){return"Participante"},
@@ -641,7 +641,7 @@ pm(d){return"Space member of "+d+" can knock"},
 gpo(){return"Doar"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Fx,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"Fx":{"aF":[]}}'))};
-(a=>{a["LIzi8WespuoI4/EiA7UfFl5pMGw="]=a.current})($__dart_deferred_initializers__);
+y(A.Fy,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"Fy":{"aF":[]}}'))};
+(a=>{a["4U58PBzRj851h2fAqNGs6m33RDc="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_274.part.js.map

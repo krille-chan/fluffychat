@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEq(){return new A.Fi(B.dg("ca"))},
-Fi:function Fi(d){this.a=d}}
+cEs(){return new A.Fj(B.dg("ca"))},
+Fj:function Fj(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[9],A)
-A.Fi.prototype={
+A.Fj.prototype={
 gl1(){return"true"},
 gjO(){return"Repetiu la contrasenya"},
 gmQ(){return"No \xe9s un arxiu d'image."},
@@ -125,7 +125,7 @@ gew(d){return"Copia"},
 gig(){return"Copia al porta-retalls"},
 ih(d){return"No s'ha pogut desxifrar el missatge: "+d},
 gp9(){return"Check list"},
-dJ(d){return""+d+" participants"},
+dK(d){return""+d+" participants"},
 lF(d){return""+d+" invited"},
 gii(d){return"Crea"},
 ij(d){return"\ud83d\udcac "+d+" ha creat el xat"},
@@ -264,7 +264,7 @@ gjL(){return"Esborra del paquet"},
 gf2(){return"Nom del paquet"},
 giG(){return"(Beta) Activa multi-compte en aquest dispositiu"},
 gjr(){return"Obre als mapes"},
-gdG(){return"Enlla\xe7"},
+gdH(){return"Enlla\xe7"},
 gh1(){return"Aquest servidor necessita validar la teva adre\xe7a per registrar-t'hi."},
 gjs(){return"O"},
 gjt(){return"Participant"},
@@ -641,7 +641,7 @@ pm(d){return"Space member of "+d+" can knock"},
 gpo(){return"Donate"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Fi,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"Fi":{"aF":[]}}'))};
-(a=>{a["CEmf/cGPOzL+Ou8lW9nbLCuYhDk="]=a.current})($__dart_deferred_initializers__);
+y(A.Fj,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"Fj":{"aF":[]}}'))};
+(a=>{a["E76uBtiN3x2aS3OETQ27M1fJuDE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_227.part.js.map

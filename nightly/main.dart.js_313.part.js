@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cF1(){return new A.FT(B.dg("sl"))},
-FT:function FT(d){this.a=d}}
+cF3(){return new A.FU(B.dg("sl"))},
+FU:function FU(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[44],A)
-A.FT.prototype={
+A.FU.prototype={
 gl1(){return"false"},
 gjO(){return"Ponovite geslo"},
 gmQ(){return"Not an image file."},
@@ -125,7 +125,7 @@ gew(d){return"Kopiraj"},
 gig(){return"Kopiraj v odlo\u017ei\u0161\u010de"},
 ih(d){return"Sporo\u010dila ni bilo mogo\u010de de\u0161ifrirati: "+d},
 gp9(){return"Check list"},
-dJ(d){return""+d+" udele\u017eencev"},
+dK(d){return""+d+" udele\u017eencev"},
 lF(d){return""+d+" invited"},
 gii(d){return"Ustvari"},
 ij(d){return d+" je ustvaril klepet"},
@@ -264,7 +264,7 @@ gjL(){return"Remove from this bundle"},
 gf2(){return"Bundle name"},
 giG(){return"(BETA) Enable multi accounts on this device"},
 gjr(){return"Open in maps"},
-gdG(){return"Link"},
+gdH(){return"Link"},
 gh1(){return"This server needs to validate your email address for registration."},
 gjs(){return"Or"},
 gjt(){return"Participant"},
@@ -641,7 +641,7 @@ pm(d){return"Space member of "+d+" can knock"},
 gpo(){return"Donate"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FT,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"FT":{"aF":[]}}'))};
-(a=>{a["dgdpi9t2H0AOcjbhY+ok4jbFZDQ="]=a.current})($__dart_deferred_initializers__);
+y(A.FU,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"FU":{"aF":[]}}'))};
+(a=>{a["PzLq6xbvPtxltgINTE43e8Mo7VA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_313.part.js.map

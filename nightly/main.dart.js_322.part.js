@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cF9(){return new A.G0(B.dg("vi"))},
-G0:function G0(d){this.a=d}}
+cFb(){return new A.G1(B.dg("vi"))},
+G1:function G1(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[52],A)
-A.G0.prototype={
+A.G1.prototype={
 gl1(){return"kh\xf4ng"},
 gjO(){return"Nh\u1eadp l\u1ea1i m\u1eadt kh\u1ea9u"},
 gmQ(){return"Kh\xf4ng ph\u1ea3i t\u1ec7p \u1ea3nh."},
@@ -125,7 +125,7 @@ gew(d){return"Sao ch\xe9p"},
 gig(){return"Copy to clipboard"},
 ih(d){return"Kh\xf4ng th\u1ec3 gi\u1ea3i m\xe3 tin nh\u1eafn: "+d},
 gp9(){return"Check list"},
-dJ(d){return""+d+" th\xe0nh vi\xean"},
+dK(d){return""+d+" th\xe0nh vi\xean"},
 lF(d){return""+d+" invited"},
 gii(d){return"T\u1ea1o"},
 ij(d){return d+" \u0111\xe3 t\u1ea1o cu\u1ed9c tr\xf2 chuy\u1ec7n"},
@@ -264,7 +264,7 @@ gjL(){return"Remove from this bundle"},
 gf2(){return"Bundle name"},
 giG(){return"(BETA) Enable multi accounts on this device"},
 gjr(){return"Open in maps"},
-gdG(){return"Link"},
+gdH(){return"Link"},
 gh1(){return"This server needs to validate your email address for registration."},
 gjs(){return"Or"},
 gjt(){return"Participant"},
@@ -641,7 +641,7 @@ pm(d){return"Space member of "+d+" can knock"},
 gpo(){return"Donate"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.G0,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"G0":{"aF":[]}}'))};
-(a=>{a["/eKYANMM9pjenUsB2xUxQ1fAH6o="]=a.current})($__dart_deferred_initializers__);
+y(A.G1,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"G1":{"aF":[]}}'))};
+(a=>{a["rBdpD3fSgwD0MojnYNRLbN8qMq0="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_322.part.js.map

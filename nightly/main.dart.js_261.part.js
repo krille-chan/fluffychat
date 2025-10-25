@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEy(){return new A.Fq(B.dg("et"))},
-Fq:function Fq(d){this.a=d}}
+cEA(){return new A.Fr(B.dg("et"))},
+Fr:function Fr(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[17],A)
-A.Fq.prototype={
+A.Fr.prototype={
 gl1(){return"false"},
 gjO(){return"Korda salas\xf5na"},
 gmQ(){return"See pole pildifail."},
@@ -125,7 +125,7 @@ gew(d){return"Kopeeri"},
 gig(){return"Kopeeri l\xf5ikelauale"},
 ih(d){return"S\xf5numi dekr\xfcptimine ei \xf5nnestunud: "+d},
 gp9(){return"Kontrollnimekiri"},
-dJ(d){return""+d+" osalejat"},
+dK(d){return""+d+" osalejat"},
 lF(d){return""+d+" kutsutut"},
 gii(d){return"Loo"},
 ij(d){return"\ud83d\udcac "+d+" algatas vestluse"},
@@ -264,7 +264,7 @@ gjL(){return"Eemalda sellest k\xf6itest"},
 gf2(){return"K\xf6ite nimi"},
 giG(){return"(KATSELINE) Pruugi selles seadmes mitut Matrix'i kasutajakontot"},
 gjr(){return"Ava kaardirakendusega"},
-gdG(){return"Link"},
+gdH(){return"Link"},
 gh1(){return"See koduserver eeldab registreerimisel kasutatava e-postiaadressi kinnitamist."},
 gjs(){return"v\xf5i"},
 gjt(){return"Osaleja"},
@@ -641,7 +641,7 @@ pm(d){return d+" kogukonna liige v\xf5ib uksele koputada"},
 gpo(){return"Toeta meid rahaliselt"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Fq,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"Fq":{"aF":[]}}'))};
-(a=>{a["EGCfAwmK+0j0c08DkF2ZpyPM7dQ="]=a.current})($__dart_deferred_initializers__);
+y(A.Fr,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"Fr":{"aF":[]}}'))};
+(a=>{a["pjCi1iHcpmEHrM9J4N7kKQWAGpA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_261.part.js.map

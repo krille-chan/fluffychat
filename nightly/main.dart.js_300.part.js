@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEQ(){return new A.FI(B.dg("ko"))},
-FI:function FI(d){this.a=d}}
+cES(){return new A.FJ(B.dg("ko"))},
+FJ:function FJ(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[35],A)
-A.FI.prototype={
+A.FJ.prototype={
 gl1(){return"false"},
 gjO(){return"\ube44\ubc00\ubc88\ud638 \ub2e4\uc2dc \uc785\ub825"},
 gmQ(){return"\uc774\ubbf8\uc9c0 \ud30c\uc77c\uc774 \uc544\ub2d9\ub2c8\ub2e4."},
@@ -125,7 +125,7 @@ gew(d){return"\ubcf5\uc0ac"},
 gig(){return"\ud074\ub9bd\ubcf4\ub4dc\uc5d0 \ubcf5\uc0ac"},
 ih(d){return"\uba54\uc2dc\uc9c0 \ubcf5\ud638\ud654\ud560 \uc218 \uc5c6\uc74c: "+d},
 gp9(){return"\uccb4\ud06c\ub9ac\uc2a4\ud2b8"},
-dJ(d){return""+d+" \ucc38\uc5ec\uc790"},
+dK(d){return""+d+" \ucc38\uc5ec\uc790"},
 lF(d){return""+d+"\ucd08\ub300\ubc1b\uc740"},
 gii(d){return"\uc0dd\uc131"},
 ij(d){return"\ud83d\udcac "+d+"\ub2d8\uc774 \ucc44\ud305\uc744 \uc0dd\uc131\ud568"},
@@ -264,7 +264,7 @@ gjL(){return"\uc774 \ubc88\ub4e4\uc5d0\uc11c \uc0ad\uc81c"},
 gf2(){return"\ubc88\ub4e4 \uc774\ub984"},
 giG(){return"(\ubca0\ud0c0) \uc774 \uae30\uae30\uc5d0\uc11c \ub2e4\uc911 \uacc4\uc815 \ud65c\uc131\ud654"},
 gjr(){return"\uc9c0\ub3c4\uc5d0\uc11c \uc5f4\uae30"},
-gdG(){return"\ub9c1\ud06c"},
+gdH(){return"\ub9c1\ud06c"},
 gh1(){return"\uc774 \uc11c\ubc84\ub294 \uac00\uc785\uc744 \uc704\ud574 \ub2f9\uc2e0\uc758 \uc774\uba54\uc77c\uc744 \ud655\uc778\ud574\uc57c \ud569\ub2c8\ub2e4."},
 gjs(){return"\uc774\ub098"},
 gjt(){return"\ucc38\uc5ec\uc790"},
@@ -641,7 +641,7 @@ pm(d){return"Space member of "+d+" can knock"},
 gpo(){return"Donate"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FI,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"FI":{"aF":[]}}'))};
-(a=>{a["0PGxIzJQW1G/JlNWSOISx5QB/I4="]=a.current})($__dart_deferred_initializers__);
+y(A.FJ,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"FJ":{"aF":[]}}'))};
+(a=>{a["KnwnAAqVvC/qyQYz3o+7xqglgSc="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_300.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEr(){return new A.Fj(B.dg("cs"))},
-Fj:function Fj(d){this.a=d}}
+cEt(){return new A.Fk(B.dg("cs"))},
+Fk:function Fk(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[10],A)
-A.Fj.prototype={
+A.Fk.prototype={
 gl1(){return""},
 gjO(){return"Zopakujte heslo"},
 gmQ(){return"Nen\xed obr\xe1zek."},
@@ -125,7 +125,7 @@ gew(d){return"Kop\xedrovat"},
 gig(){return"Zkop\xedrovat do schr\xe1nky"},
 ih(d){return"Nebylo mo\u017en\xe9 de\u0161ifrovat zpr\xe1vu: "+d},
 gp9(){return"Check list"},
-dJ(d){return""+d+" \xfa\u010dastn\xedk\u016f"},
+dK(d){return""+d+" \xfa\u010dastn\xedk\u016f"},
 lF(d){return""+d+" invited"},
 gii(d){return"Vytvo\u0159it"},
 ij(d){return"\ud83d\udcac "+d+" zalo\u017eil/a chat"},
@@ -264,7 +264,7 @@ gjL(){return"Odstranit z tohoto bal\xed\u010dku"},
 gf2(){return"N\xe1zev bal\xed\u010dku"},
 giG(){return"(BETA) Na tomto za\u0159\xedzen\xed povolte v\xedce \xfa\u010dt\u016f"},
 gjr(){return"Otev\u0159\xedt v map\xe1ch"},
-gdG(){return"Odkaz"},
+gdH(){return"Odkaz"},
 gh1(){return"Tento server pot\u0159ebuje k registraci ov\u011b\u0159it va\u0161i e -mailovou adresu."},
 gjs(){return"Nebo"},
 gjt(){return"\xda\u010dastn\xedk"},
@@ -641,7 +641,7 @@ pm(d){return"Space member of "+d+" can knock"},
 gpo(){return"Donate"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Fj,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"Fj":{"aF":[]}}'))};
-(a=>{a["NfUtBTEVnR5ABrw42RH9TZdYfP8="]=a.current})($__dart_deferred_initializers__);
+y(A.Fk,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"Fk":{"aF":[]}}'))};
+(a=>{a["E59e7bC6rGJPlBceZR/O98JyyaM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_236.part.js.map

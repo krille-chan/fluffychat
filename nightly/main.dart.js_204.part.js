@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEm(){return new A.Fe(B.dg("ar"))},
-Fe:function Fe(d){this.a=d}}
+cEo(){return new A.Ff(B.dg("ar"))},
+Ff:function Ff(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[5],A)
-A.Fe.prototype={
+A.Ff.prototype={
 gl1(){return"\u0639\u0644\u0651\u0645 \u0644\u0639\u0631\u0636 \u0627\u0644\u0648\u0642\u062a \u0628\u0646\u0633\u0642 24 \u0633\u0627\u0639\u0629 \u062f\u0627\u0626\u0645\u0627.\u200f"},
 gjO(){return"\u0643\u0631\u0651\u0631 \u0643\u0644\u0645\u0629 \u0627\u0644\u0633\u0631"},
 gmQ(){return"\u0644\u064a\u0633 \u0645\u0644\u0641 \u0635\u0648\u0631\u0629."},
@@ -125,7 +125,7 @@ gew(d){return"\u0627\u0646\u0633\u062e"},
 gig(){return"\u0627\u0646\u0633\u062e \u0627\u0644\u0649 \u0627\u0644\u062d\u0627\u0641\u0638\u0629"},
 ih(d){return"\u062a\u0639\u0630\u0631 \u0641\u0643 \u062a\u0634\u0641\u064a\u0631 \u0627\u0644\u0631\u0633\u0627\u0644\u0629: "+d},
 gp9(){return"Check list"},
-dJ(d){return""+d+" \u0645\u0646\u062a\u0633\u0628\u0627"},
+dK(d){return""+d+" \u0645\u0646\u062a\u0633\u0628\u0627"},
 lF(d){return""+d+" invited"},
 gii(d){return"\u0623\u0646\u0634\u0626"},
 ij(d){return"\ud83d\udcac \u0623\u0646\u0634\u0623 "+d+" \u0627\u0644\u0645\u062d\u0627\u062f\u062b\u0629"},
@@ -264,7 +264,7 @@ gjL(){return"\u0623\u0632\u0644\u0647 \u0645\u0646 \u0627\u0644\u062d\u0632\u064
 gf2(){return"\u0627\u0633\u0645 \u0627\u0644\u062d\u0632\u0645\u0629"},
 giG(){return"(\u0645\u064a\u0632\u0629 \u062a\u062c\u0631\u0628\u064a\u0629) \u0641\u0639\u0651\u0644 \u062a\u0639\u062f\u062f \u0627\u0644\u062d\u0633\u0627\u0628\u0627\u062a"},
 gjr(){return"\u0627\u0641\u062a\u062d \u0641\u064a \u0627\u0644\u062e\u0631\u064a\u0637\u0629"},
-gdG(){return"\u0631\u0627\u0628\u0637"},
+gdH(){return"\u0631\u0627\u0628\u0637"},
 gh1(){return"\u064a\u062a\u0637\u0644\u0628 \u0647\u0630\u0627 \u0627\u0644\u062e\u0627\u062f\u0645 \u0627\u0644\u062a\u062d\u0642\u0642 \u0645\u0646 \u0628\u0631\u064a\u062f\u0643 \u0627\u0644\u0625\u0644\u0643\u062a\u0631\u0648\u0646\u064a."},
 gjs(){return"\u0623\u0648"},
 gjt(){return"\u0645\u0646\u062a\u0633\u0628"},
@@ -641,7 +641,7 @@ pm(d){return"Space member of "+d+" can knock"},
 gpo(){return"Donate"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Fe,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"Fe":{"aF":[]}}'))};
-(a=>{a["HSUMpKduY34OzTfE1iaj69WsVr0="]=a.current})($__dart_deferred_initializers__);
+y(A.Ff,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"Ff":{"aF":[]}}'))};
+(a=>{a["igANvs96DuY7JR8awj1UecaR9nY="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_204.part.js.map

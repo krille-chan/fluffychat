@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEM(){return new A.FE(B.dg("ie"))},
-FE:function FE(d){this.a=d}}
+cEO(){return new A.FF(B.dg("ie"))},
+FF:function FF(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[31],A)
-A.FE.prototype={
+A.FF.prototype={
 gl1(){return"false"},
 gjO(){return"Repetir li contrasigne"},
 gmQ(){return"Not an image file."},
@@ -125,7 +125,7 @@ gew(d){return"Copiar"},
 gig(){return"Copiar al Paperiere"},
 ih(d){return"Could not decrypt message: "+d},
 gp9(){return"Check list"},
-dJ(d){return""+d+" participantes"},
+dK(d){return""+d+" participantes"},
 lF(d){return""+d+" invited"},
 gii(d){return"Crear"},
 ij(d){return"\ud83d\udcac "+d+" created the chat"},
@@ -264,7 +264,7 @@ gjL(){return"Remove from this bundle"},
 gf2(){return"Bundle name"},
 giG(){return"(BETA) Enable multi accounts on this device"},
 gjr(){return"Aperter in mappas"},
-gdG(){return"Ligament"},
+gdH(){return"Ligament"},
 gh1(){return"This server needs to validate your email address for registration."},
 gjs(){return"O"},
 gjt(){return"Participante"},
@@ -641,7 +641,7 @@ pm(d){return"Space member of "+d+" can knock"},
 gpo(){return"Donate"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FE,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"FE":{"aF":[]}}'))};
-(a=>{a["K0LUeTCCqo1SQfA9tqvCQBr+I/k="]=a.current})($__dart_deferred_initializers__);
+y(A.FF,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"FF":{"aF":[]}}'))};
+(a=>{a["4Tjz4+EbD2rFhepnDvMN0ZLZyz4="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_293.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cF2(){return new A.FU(B.dg("sr"))},
-FU:function FU(d){this.a=d}}
+cF4(){return new A.FV(B.dg("sr"))},
+FV:function FV(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[45],A)
-A.FU.prototype={
+A.FV.prototype={
 gl1(){return"false"},
 gjO(){return"Repeat password"},
 gmQ(){return"Not an image file."},
@@ -125,7 +125,7 @@ gew(d){return"\u041a\u043e\u043f\u0438\u0440\u0430\u0458"},
 gig(){return"\u041a\u043e\u043f\u0438\u0440\u0430\u0458 \u0443 \u043a\u043b\u0438\u043f\u0431\u043e\u0440\u0434"},
 ih(d){return"\u041d\u0435 \u043c\u043e\u0433\u0443 \u0434\u0430 \u0434\u0435\u0448\u0438\u0444\u0440\u0443\u0458\u0435\u043c \u043f\u043e\u0440\u0443\u043a\u0443: "+d},
 gp9(){return"Check list"},
-dJ(d){return"\u0443\u0447\u0435\u0441\u043d\u0438\u043a\u0430: "+d},
+dK(d){return"\u0443\u0447\u0435\u0441\u043d\u0438\u043a\u0430: "+d},
 lF(d){return""+d+" invited"},
 gii(d){return"\u041d\u0430\u043f\u0440\u0430\u0432\u0438"},
 ij(d){return d+" \u043d\u0430\u043f\u0440\u0430\u0432\u0438 \u045b\u0430\u0441\u043a\u0430\u045a\u0435"},
@@ -264,7 +264,7 @@ gjL(){return"Remove from this bundle"},
 gf2(){return"Bundle name"},
 giG(){return"(BETA) Enable multi accounts on this device"},
 gjr(){return"Open in maps"},
-gdG(){return"Link"},
+gdH(){return"Link"},
 gh1(){return"This server needs to validate your email address for registration."},
 gjs(){return"\u0438\u043b\u0438"},
 gjt(){return"\u0423\u0447\u0435\u0441\u043d\u0438\u043a"},
@@ -641,7 +641,7 @@ pm(d){return"Space member of "+d+" can knock"},
 gpo(){return"Donate"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FU,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"FU":{"aF":[]}}'))};
-(a=>{a["vwoKIWBtvjvhRrk8GJiZJRBSFjI="]=a.current})($__dart_deferred_initializers__);
+y(A.FV,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"FV":{"aF":[]}}'))};
+(a=>{a["r0bSrKV75QEJoCGHD4lTxhH5AgE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_314.part.js.map

@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEx(){return new A.Fp(B.dg("es"))},
-Fp:function Fp(d){this.a=d}}
+cEz(){return new A.Fq(B.dg("es"))},
+Fq:function Fq(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[16],A)
-A.Fp.prototype={
+A.Fq.prototype={
 gl1(){return"true"},
 gjO(){return"Repite la contrase\xf1a"},
 gmQ(){return"El archivo no es una imagen."},
@@ -125,7 +125,7 @@ gew(d){return"Copiar"},
 gig(){return"Copiar al portapapeles"},
 ih(d){return"No se pudo descifrar el mensaje: "+d},
 gp9(){return"Lista de tareas"},
-dJ(d){return""+d+" participantes"},
+dK(d){return""+d+" participantes"},
 lF(d){return""+d+" invitado"},
 gii(d){return"Crear"},
 ij(d){return"\ud83d\udcac"+d+" cre\xf3 el chat"},
@@ -264,7 +264,7 @@ gjL(){return"Quitar de este paquete"},
 gf2(){return"Nombre del paquete"},
 giG(){return"(BETA) habilite varias cuenta en este dispositivo"},
 gjr(){return"Abrir en maps"},
-gdG(){return"Link"},
+gdH(){return"Link"},
 gh1(){return"Este servidor necesita validar su direcci\xf3n de correo electr\xf3nico para registrarse."},
 gjs(){return"O"},
 gjt(){return"Participante"},
@@ -641,7 +641,7 @@ pm(d){return"Space member of "+d+" can knock"},
 gpo(){return"Donate"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Fp,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"Fp":{"aF":[]}}'))};
-(a=>{a["xUi63FpjLahzGWSx/ce93WyLpsE="]=a.current})($__dart_deferred_initializers__);
+y(A.Fq,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"Fq":{"aF":[]}}'))};
+(a=>{a["VEbEmV9WwfI5LHMdr2KGlAHba80="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_257.part.js.map

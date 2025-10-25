@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEz(){return new A.Fr(B.dg("eu"))},
-Fr:function Fr(d){this.a=d}}
+cEB(){return new A.Fs(B.dg("eu"))},
+Fs:function Fs(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[18],A)
-A.Fr.prototype={
+A.Fs.prototype={
 gl1(){return"false"},
 gjO(){return"Idatzi berriro pasahitza"},
 gmQ(){return"Ez da irudi-fitxategia."},
@@ -125,7 +125,7 @@ gew(d){return"Kopiatu"},
 gig(){return"Kopiatu arbelera"},
 ih(d){return"Ezin izan da mezua deszifratu: "+d},
 gp9(){return"Kontrol-zerrenda"},
-dJ(d){return""+d+" partaide"},
+dK(d){return""+d+" partaide"},
 lF(d){return""+d+" gonbidatu"},
 gii(d){return"Sortu"},
 ij(d){return"\ud83d\udcac "+d+"(e)k txata sortu du"},
@@ -264,7 +264,7 @@ gjL(){return"Kendu sorta honetatik"},
 gf2(){return"Sortaren izena"},
 giG(){return"(BETA) Gaitu kontu bat baino gehiago gailu honetan"},
 gjr(){return"Ireki mapen aplikazioan"},
-gdG(){return"Esteka"},
+gdH(){return"Esteka"},
 gh1(){return"Zerbitzari honek zure posta elektronikoa egiaztatu behar du izena eman dezazun."},
 gjs(){return"Edo"},
 gjt(){return"Partaide"},
@@ -641,8 +641,8 @@ pm(d){return"Space member of "+d+" can knock"},
 gpo(){return"Donate"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.Fr,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"Fr":{"aF":[]}}'))
+x(A.Fs,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"Fs":{"aF":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["h/nqBAlQSHZ8PnhB9rnucMH4pB8="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["VKXpfQKBRCQLuL1AyRQae0y+uoU="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_263.part.js.map

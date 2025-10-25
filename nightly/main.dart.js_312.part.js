@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cF0(){return new A.FS(B.dg("sk"))},
-FS:function FS(d){this.a=d}}
+cF2(){return new A.FT(B.dg("sk"))},
+FT:function FT(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[43],A)
-A.FS.prototype={
+A.FT.prototype={
 gl1(){return"false"},
 gjO(){return"Zopakujte heslo"},
 gmQ(){return"Not an image file."},
@@ -125,7 +125,7 @@ gew(d){return"Kop\xedrova\u0165"},
 gig(){return"Copy to clipboard"},
 ih(d){return"Nebolo mo\u017en\xe9 de\u0161ifrova\u0165 spr\xe1vu: "+d},
 gp9(){return"Check list"},
-dJ(d){return""+d+" \xfa\u010dastn\xedkov"},
+dK(d){return""+d+" \xfa\u010dastn\xedkov"},
 lF(d){return""+d+" invited"},
 gii(d){return"Vytvori\u0165"},
 ij(d){return d+" zalo\u017eili chat"},
@@ -264,7 +264,7 @@ gjL(){return"Remove from this bundle"},
 gf2(){return"Bundle name"},
 giG(){return"(BETA) Enable multi accounts on this device"},
 gjr(){return"Open in maps"},
-gdG(){return"Link"},
+gdH(){return"Link"},
 gh1(){return"This server needs to validate your email address for registration."},
 gjs(){return"Or"},
 gjt(){return"Participant"},
@@ -641,7 +641,7 @@ pm(d){return"Space member of "+d+" can knock"},
 gpo(){return"Donate"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FS,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"FS":{"aF":[]}}'))};
-(a=>{a["2xKKsF8On8+6zKSnGr3krJqSgRs="]=a.current})($__dart_deferred_initializers__);
+y(A.FT,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"FT":{"aF":[]}}'))};
+(a=>{a["+RMsgWtyaJfQukz0OPVTbO8beCw="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_312.part.js.map

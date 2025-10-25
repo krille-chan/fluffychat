@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEP(){return new A.FH(B.dg("ka"))},
-FH:function FH(d){this.a=d}}
+cER(){return new A.FI(B.dg("ka"))},
+FI:function FI(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[34],A)
-A.FH.prototype={
+A.FI.prototype={
 gl1(){return"false"},
 gjO(){return"\u10d2\u10d0\u10d8\u10db\u10d4\u10dd\u10e0\u10d4\u10d7 \u10de\u10d0\u10e0\u10dd\u10da\u10d8"},
 gmQ(){return"\u10e4\u10d0\u10d8\u10da\u10d8 \u10d0\u10e0\u10d0\u10d0 \u10e1\u10e3\u10e0\u10d0\u10d7\u10d8."},
@@ -125,7 +125,7 @@ gew(d){return"\u10d9\u10dd\u10de\u10d8\u10e0\u10d4\u10d1\u10d0"},
 gig(){return"\u10d9\u10dd\u10de\u10d8\u10e0\u10d4\u10d1\u10d0 \u10d1\u10e3\u10e4\u10d4\u10e0\u10e8\u10d8"},
 ih(d){return"\u10e8\u10d4\u10e2\u10e7\u10dd\u10d1\u10d8\u10dc\u10d4\u10d1\u10d8\u10e1 \u10d2\u10d0\u10e8\u10d8\u10e4\u10d5\u10e0\u10d8\u10e1 \u10e8\u10d4\u10ea\u10d3\u10dd\u10db\u10d0: "+d},
 gp9(){return"Check list"},
-dJ(d){return""+d+" \u10db\u10dd\u10dc\u10d0\u10ec\u10d8\u10da\u10d4"},
+dK(d){return""+d+" \u10db\u10dd\u10dc\u10d0\u10ec\u10d8\u10da\u10d4"},
 lF(d){return""+d+" invited"},
 gii(d){return"\u10e8\u10d4\u10e5\u10db\u10dc\u10d0"},
 ij(d){return"\ud83d\udcac "+d+" \u10e8\u10d4\u10e5\u10db\u10dc\u10d0 \u10e9\u10d0\u10e2\u10d8"},
@@ -264,7 +264,7 @@ gjL(){return"Remove from this bundle"},
 gf2(){return"Bundle name"},
 giG(){return"(BETA) Enable multi accounts on this device"},
 gjr(){return"Open in maps"},
-gdG(){return"Link"},
+gdH(){return"Link"},
 gh1(){return"This server needs to validate your email address for registration."},
 gjs(){return"Or"},
 gjt(){return"Participant"},
@@ -641,7 +641,7 @@ pm(d){return"Space member of "+d+" can knock"},
 gpo(){return"Donate"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FH,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"FH":{"aF":[]}}'))};
-(a=>{a["aa3sED0tmu5SfouZqcBkL8GKrAA="]=a.current})($__dart_deferred_initializers__);
+y(A.FI,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"FI":{"aF":[]}}'))};
+(a=>{a["IenvzKpukFC+C4LLpZe3w22SmnE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_299.part.js.map

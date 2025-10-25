@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cF7(){return new A.FZ(B.dg("tr"))},
-FZ:function FZ(d){this.a=d}}
+cF9(){return new A.G_(B.dg("tr"))},
+G_:function G_(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[50],A)
-A.FZ.prototype={
+A.G_.prototype={
 gl1(){return"false"},
 gjO(){return"Parolay\u0131 tekrarlay\u0131n"},
 gmQ(){return"Bir resim dosyas\u0131 de\u011fil."},
@@ -125,7 +125,7 @@ gew(d){return"Kopyala"},
 gig(){return"Panoya kopyala"},
 ih(d){return"Mesaj\u0131n \u015fifresi \xe7\xf6z\xfclemedi: "+d},
 gp9(){return"Kontrol listesi"},
-dJ(d){return""+d+" kat\u0131l\u0131mc\u0131"},
+dK(d){return""+d+" kat\u0131l\u0131mc\u0131"},
 lF(d){return""+d+" davet edildi"},
 gii(d){return"Olu\u015ftur"},
 ij(d){return"\ud83d\udcac "+d+" sohbeti olu\u015fturdu"},
@@ -264,7 +264,7 @@ gjL(){return"Bu paketten kald\u0131r"},
 gf2(){return"Paket ad\u0131"},
 giG(){return"(BETA) Bu ayg\u0131tta \xe7oklu hesaplar\u0131 etkinle\u015ftir"},
 gjr(){return"Haritalarda a\xe7"},
-gdG(){return"Ba\u011flant\u0131"},
+gdH(){return"Ba\u011flant\u0131"},
 gh1(){return"Bu sunucunun kay\u0131t i\xe7in e-posta adresinizi do\u011frulamas\u0131 gerekiyor."},
 gjs(){return"Veya"},
 gjt(){return"Kat\u0131l\u0131mc\u0131"},
@@ -641,8 +641,8 @@ pm(d){return"Space member of "+d+" can knock"},
 gpo(){return"Donate"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
-x(A.FZ,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"FZ":{"aF":[]}}'))
+x(A.G_,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"G_":{"aF":[]}}'))
 var y={c:" adresinde geli\u015ftiricilere bildirin. Hata mesaj\u0131: "}};
-(a=>{a["gSf5ZItAVcXAxh60iXWqbiXhUWY="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["IWw7ttB9q9CB2w3ZNNFZQ3njtd4="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_320.part.js.map

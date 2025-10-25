@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cET(){return new A.FL(B.dg("nb"))},
-FL:function FL(d){this.a=d}}
+cEV(){return new A.FM(B.dg("nb"))},
+FM:function FM(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[38],A)
-A.FL.prototype={
+A.FM.prototype={
 gl1(){return"false"},
 gjO(){return"Gjenta passord"},
 gmQ(){return"Ikke en bildefil."},
@@ -125,7 +125,7 @@ gew(d){return"Kopier"},
 gig(){return"Kopier til utklippstavle"},
 ih(d){return"Kunne ikke dekryptere melding: "+d},
 gp9(){return"Sjekkliste"},
-dJ(d){return""+d+" deltagere"},
+dK(d){return""+d+" deltagere"},
 lF(d){return""+d+" inviterte"},
 gii(d){return"Opprett"},
 ij(d){return d+" opprettet sludringen"},
@@ -264,7 +264,7 @@ gjL(){return"Remove from this bundle"},
 gf2(){return"Bundle name"},
 giG(){return"(BETA) Aktiver flere kontoer p\xe5 denne enheten"},
 gjr(){return"\xc5pne i kart"},
-gdG(){return"Lenke"},
+gdH(){return"Lenke"},
 gh1(){return"Denne serveren m\xe5 validere e-postadressen din for registrering."},
 gjs(){return"Eller"},
 gjt(){return"Deltager"},
@@ -641,7 +641,7 @@ pm(d){return"Space member of "+d+" can knock"},
 gpo(){return"Doner"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FL,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"FL":{"aF":[]}}'))};
-(a=>{a["OVa55GcTsoGciyrBb8dQ2OIkZdw="]=a.current})($__dart_deferred_initializers__);
+y(A.FM,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"FM":{"aF":[]}}'))};
+(a=>{a["3N/xJrA98/niMfQ9tyfYv/JLY/E="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_303.part.js.map

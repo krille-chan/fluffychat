@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEB(){return new A.Ft(B.dg("fi"))},
-Ft:function Ft(d){this.a=d}}
+cED(){return new A.Fu(B.dg("fi"))},
+Fu:function Fu(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[20],A)
-A.Ft.prototype={
+A.Fu.prototype={
 gl1(){return"false"},
 gjO(){return"Salasana uudelleen"},
 gmQ(){return"T\xe4m\xe4 ei ole kuvatiedosto."},
@@ -125,7 +125,7 @@ gew(d){return"Kopioi"},
 gig(){return"Kopioi leikep\xf6yd\xe4lle"},
 ih(d){return"Viestin salausta ei voitu purkaa: "+d},
 gp9(){return"Check list"},
-dJ(d){return""+d+" osallistujaa"},
+dK(d){return""+d+" osallistujaa"},
 lF(d){return""+d+" invited"},
 gii(d){return"Luo"},
 ij(d){return d+" loi keskustelun"},
@@ -264,7 +264,7 @@ gjL(){return"Poista t\xe4st\xe4 k\xe4\xe4reest\xe4"},
 gf2(){return"K\xe4\xe4reen nimi"},
 giG(){return"(BETA) Ota k\xe4ytt\xf6\xf6n tuki usealle tilille t\xe4ll\xe4 laitteella"},
 gjr(){return"Avaa kartoissa"},
-gdG(){return"Linkki"},
+gdH(){return"Linkki"},
 gh1(){return"T\xe4m\xe4n palvelimen t\xe4ytyy tarkistaa s\xe4hk\xf6posti-osoitteesi rekister\xf6itymist\xe4 varten."},
 gjs(){return"Tai"},
 gjt(){return"Osallistuja"},
@@ -641,7 +641,7 @@ pm(d){return"Space member of "+d+" can knock"},
 gpo(){return"Donate"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.Ft,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"Ft":{"aF":[]}}'))};
-(a=>{a["PxC4JKrGBa3a6AJ+gO62o/+2gDQ="]=a.current})($__dart_deferred_initializers__);
+y(A.Fu,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"Fu":{"aF":[]}}'))};
+(a=>{a["tAn9Rr8FJ8J0qYmhvJtIR9dPZFE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_267.part.js.map

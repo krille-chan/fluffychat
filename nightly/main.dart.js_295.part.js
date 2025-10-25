@@ -1,11 +1,11 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEN(){return new A.FF(B.dg("it"))},
-FF:function FF(d){this.a=d}}
+cEP(){return new A.FG(B.dg("it"))},
+FG:function FG(d){this.a=d}}
 B=c[0]
 C=c[54]
 A=a.updateHolder(c[32],A)
-A.FF.prototype={
+A.FG.prototype={
 gl1(){return"disattivato"},
 gjO(){return"Ripeti password"},
 gmQ(){return"Non \xe8 un file immagine."},
@@ -125,7 +125,7 @@ gew(d){return"Copia"},
 gig(){return"Copia negli appunti"},
 ih(d){return"Impossibile decriptare messaggio: "+d},
 gp9(){return"Checklist"},
-dJ(d){return""+d+" partecipanti"},
+dK(d){return""+d+" partecipanti"},
 lF(d){return""+d+" invitati"},
 gii(d){return"Crea"},
 ij(d){return"\ud83d\udcac "+d+" ha creato la chat"},
@@ -264,7 +264,7 @@ gjL(){return"Rimuovi da questo bundle"},
 gf2(){return"Nome del bundle"},
 giG(){return"(BETA) Abilita account multipli su questo dispositivo"},
 gjr(){return"Apri in maps"},
-gdG(){return"Link"},
+gdH(){return"Link"},
 gh1(){return"Questo server ha bisogno di validare la tua email per la registrazione."},
 gjs(){return"O"},
 gjt(){return"Partecipante"},
@@ -641,7 +641,7 @@ pm(d){return"Space member of "+d+" can knock"},
 gpo(){return"Donate"},
 A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(A.FF,C.aF)})()
-B.dV(b.typeUniverse,JSON.parse('{"FF":{"aF":[]}}'))};
-(a=>{a["7mC7j2nqVUIGrkM5b/cX4OuO2Kw="]=a.current})($__dart_deferred_initializers__);
+y(A.FG,C.aF)})()
+B.dV(b.typeUniverse,JSON.parse('{"FG":{"aF":[]}}'))};
+(a=>{a["A+WF54HmWSjIJzOVDhrbNWzEvnE="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_295.part.js.map
