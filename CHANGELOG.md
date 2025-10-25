@@ -1,3 +1,128 @@
+## v2.2.0
+
+FluffyChat 2.2.0 introduces a new UX for spaces and adds support for restricted
+join rules.
+
+The app also now has a new design for recording voice messages including a new
+pause button.
+
+You also now see the progress when downloading files.
+
+On web the performance for image compressing has been drastically improved. Also
+the config.json file loading has finally been fixed. Please be aware that the format
+has changed as the available configs are now generated automatically.
+
+Did you know that you can set a lot of additional configs in the new config viewer
+inside the app? This now supports much more options but please use with care!
+
+On Android FluffyChat now supports notification actions (reply and mark as read) and
+also now supports Android Auto integration. Please do not cause an accident when using
+the app while driving!
+
+On iOS the notifications are now localized. Stay tuned for more improvements on iOS
+notifications in the next releases!
+
+Besides that this release brings a ton of bug fixes and performance improvements and
+of course updated translations. Big thanks to all the volunteers who have helped on weblate!
+
+- feat: Add donation buttons except for PlayStore&AppStore version (Christian Kußowski)
+- feat: Add iOS Notification Service Extension for localizable push notifications (Christian Kußowski)
+- feat: Add notification actions (krille-chan)
+- feat: Add support for restricted join rule (Christian Kußowski)
+- feat: Display progress for downloading content (Christian Kußowski)
+- feat: Display progress on redact events and clear archive dialogs (Christian Kußowski)
+- feat: Enable native imaging for web (Christian Kußowski)
+- feat: Forward notifications to Android Auto (Christian Kußowski)
+- feat: Nicer record voice message UI with pause function (Christian Kußowski)
+- feat: Notification actions on android (krille-chan)
+- design: Improved spaces UX (Christian Kußowski)
+- fix: Correctly pass through obscure text (Christian Kußowski)
+- fix: Create a subdirectory in the tmp directory (Inex Code)
+- fix: Cupertino text dialogs (Christian Kußowski)
+- fix: Null pointer crash in chat list item (Christian Kußowski)
+- chore(translations): Translated using Weblate (Arabic) (jamazi)
+- chore(translations): Translated using Weblate (Basque) (xabirequejo)
+- chore(translations): Translated using Weblate (Belarusian) (Alex Katon)
+- chore(translations): Translated using Weblate (Chinese (Simplified Han script)) (大王叫我来巡山)
+- chore(translations): Translated using Weblate (Croatian) (Milo Ivir)
+- chore(translations): Translated using Weblate (Czech) (Flibble)
+- chore(translations): Translated using Weblate (Dutch) (Jelv)
+- chore(translations): Translated using Weblate (Esperanto) (Anonymous)
+- chore(translations): Translated using Weblate (Estonian) (Priit Jõerüüt)
+- chore(translations): Translated using Weblate (Finnish) (Aminda Suomalainen)
+- chore(translations): Translated using Weblate (Galician) (josé m)
+- chore(translations): Translated using Weblate (German) (Alex Katon)
+- chore(translations): Translated using Weblate (German) (cheese1)
+- chore(translations): Translated using Weblate (German) (Christian)
+- chore(translations): Translated using Weblate (German) (Jana)
+- chore(translations): Translated using Weblate (Greek) (Λευτέρης Τ)
+- chore(translations): Translated using Weblate (Hebrew) (Anonymous)
+- chore(translations): Translated using Weblate (Hungarian) (Balázs Meskó)
+- chore(translations): Translated using Weblate (Indonesian) (Linerly)
+- chore(translations): Translated using Weblate (Irish) (Aindriú Mac Giolla Eoin)
+- chore(translations): Translated using Weblate (Japanese) (Allan Nordhøy)
+- chore(translations): Translated using Weblate (Korean) (loyedison92)
+- chore(translations): Translated using Weblate (Latvian) (Edgars Andersons)
+- chore(translations): Translated using Weblate (Latvian) (ℂ𝕠𝕠𝕠𝕝 (𝕘𝕚𝕥𝕙𝕦𝕓.𝕔𝕠𝕞/ℂ𝕠𝕠𝕠𝕝))
+- chore(translations): Translated using Weblate (Lithuanian) (Anonymous)
+- chore(translations): Translated using Weblate (Norwegian Bokmål) (Frank Paul Silye)
+- chore(translations): Translated using Weblate (Norwegian Bokmål) (sunniva)
+- chore(translations): Translated using Weblate (Polish) (Paweł Gronowski)
+- chore(translations): Translated using Weblate (Portuguese (Brazil)) (LucasMZ)
+- chore(translations): Translated using Weblate (Portuguese (Portugal)) (Anonymous)
+- chore(translations): Translated using Weblate (Romanian) (Anonymous)
+- chore(translations): Translated using Weblate (Russian) (Christian)
+- chore(translations): Translated using Weblate (Russian) (Дмитрий Михирев)
+- chore(translations): Translated using Weblate (Russian) (Жора Змейкин)
+- chore(translations): Translated using Weblate (Serbian) (Anonymous)
+- chore(translations): Translated using Weblate (Slovak) (Anonymous)
+- chore(translations): Translated using Weblate (Spanish) (Kimby)
+- chore(translations): Translated using Weblate (Spanish) (LucasMZ)
+- chore(translations): Translated using Weblate (Turkish) (Christian)
+- chore(translations): Translated using Weblate (Turkish) (Ufuk Karal)
+- chore(translations): Translated using Weblate (Vietnamese) (desperadohp)
+- chore: add a link to the platforms' different behaviors for the 24h format (kaanelloed)
+- chore: Add ActionsPadding in column mode (Christian Kußowski)
+- chore: Add close icon to snackbar in column mode (Christian Kußowski)
+- chore: Adjust chat details button design (Christian Kußowski)
+- chore: Adjust encryption page design (Christian Kußowski)
+- chore: Adjust input bar button design (Christian Kußowski)
+- chore: Adjust material dialog button design (krille-chan)
+- chore: Adjust padding for status msg list (Christian Kußowski)
+- chore: Adjust status header design (krille-chan)
+- chore: Better display rooms without known messages (Christian Kußowski)
+- chore: Better routing to space id (Christian Kußowski)
+- chore: Correctly remove knockRestricted from possible join rules (Christian Kußowski)
+- chore: Fix load config.json (Christian Kußowski)
+- chore: Go back to pub.dev matrix dep (Christian Kußowski)
+- chore: Hide restricted and knock restricted for unsupported room versions (Christian Kußowski)
+- chore: Hide topic if empty and cannot be changed (Christian Kußowski)
+- chore: Improve chat details icon color design (Christian Kußowski)
+- chore: Improve ignore list UX (Christian Kußowski)
+- chore: Leave invites and DM rooms when blocking a user (Christian Kußowski)
+- chore: Make privacy url not configurable (Christian Kußowski)
+- chore: Make progress indicators rounder (Christian Kußowski)
+- chore: Mention rebases (Christian Kußowski)
+- chore: Move emote settings button to chat popup menu (Christian Kußowski)
+- chore: Move encryption button to input row (Christian Kußowski)
+- chore: Revert "refactor: Make ChatListItem cache lasteventbody for better performance" (Christian Kußowski)
+- chore: Translate iOS notifications into german (Christian Kußowski)
+- chore: Try out refactored user device keys update method (Christian Kußowski)
+- chore: Update matrix dart sdk (Christian Kußowski)
+- chore: use time format based on system settings (kaanelloed)
+- ci: Build only for arm64 (Christian Kußowski)
+- refactor: Make ChatListItem cache lasteventbody for better performance (Christian Kußowski)
+- refactor: Remove unused directories (Christian Kußowski)
+- refactor: Rename models for matrix spec 1.16 (Christian Kußowski)
+- refactor: Replace flutter typeahead with autocomplete to fix (Christian Kußowski)
+- refactor: Use AppSettings enum based configuration everywhere and fix load from json on web (Christian Kußowski)
+- build: Flutter upgrade 3.35.5 (Christian Kußowski)
+- build: Matrix version 3.0.0 (Christian Kußowski)
+- build: Remove dependency for telephony (Christian Kußowski)
+- build: Remove openssl dependency (Christian Kußowski)
+- build: Use correct fcm_shared_isolate version (Christian Kußowski)
+- build: Use correct version of vodozemac for web build (Christian Kußowski)
+
 ## v2.1.1
 Bugfix release to trigger flatpak arm64 release again.
 
