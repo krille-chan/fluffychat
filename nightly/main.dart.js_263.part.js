@@ -1,6 +1,6 @@
 ((a,b)=>{a[b]=a[b]||{}})(self,"$__dart_deferred_initializers__")
 $__dart_deferred_initializers__.current=function(a,b,c,$){var B,C,A={
-cEB(){return new A.Fs(B.dg("eu"))},
+cEG(){return new A.Fs(B.dg("eu"))},
 Fs:function Fs(d){this.a=d}}
 B=c[0]
 C=c[54]
@@ -644,5 +644,5 @@ var z=a.updateTypes([]);(function inheritance(){var x=a.inherit
 x(A.Fs,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"Fs":{"aF":[]}}'))
 var y={d:" helbidean. Errorearen mezua ondorengoa da: "}};
-(a=>{a["VKXpfQKBRCQLuL1AyRQae0y+uoU="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["E7dS22r6OlzNapZ6K/GX5EsAVmA="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_263.part.js.map
