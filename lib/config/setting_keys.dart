@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:async/async.dart';
 import 'package:flutter/foundation.dart';
 
+import 'package:async/async.dart';
 import 'package:http/http.dart' as http;
 import 'package:matrix/matrix_api_lite/utils/logs.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -125,25 +125,69 @@ enum AppSettings<T> {
 }
 
 extension AppSettingsBoolExtension on AppSettings<bool> {
-  bool get value => AppSettings.store.getBool(key) ?? defaultValue;
+  bool get value {
+    final value = Result(() => AppSettings.store.getBool(key));
+    final error = value.asError;
+    if (error != null) {
+      Logs().e(
+        'Unable to fetch $key from storage. Removing entry...',
+        error.error,
+        error.stackTrace,
+      );
+    }
+    return value.asValue?.value ?? defaultValue;
+  }
 
   Future<void> setItem(bool value) => AppSettings.store.setBool(key, value);
 }
 
 extension AppSettingsStringExtension on AppSettings<String> {
-  String get value => AppSettings.store.getString(key) ?? defaultValue;
+  String get value {
+    final value = Result(() => AppSettings.store.getString(key));
+    final error = value.asError;
+    if (error != null) {
+      Logs().e(
+        'Unable to fetch $key from storage. Removing entry...',
+        error.error,
+        error.stackTrace,
+      );
+    }
+    return value.asValue?.value ?? defaultValue;
+  }
 
   Future<void> setItem(String value) => AppSettings.store.setString(key, value);
 }
 
 extension AppSettingsIntExtension on AppSettings<int> {
-  int get value => AppSettings.store.getInt(key) ?? defaultValue;
+  int get value {
+    final value = Result(() => AppSettings.store.getInt(key));
+    final error = value.asError;
+    if (error != null) {
+      Logs().e(
+        'Unable to fetch $key from storage. Removing entry...',
+        error.error,
+        error.stackTrace,
+      );
+    }
+    return value.asValue?.value ?? defaultValue;
+  }
 
   Future<void> setItem(int value) => AppSettings.store.setInt(key, value);
 }
 
 extension AppSettingsDoubleExtension on AppSettings<double> {
-  double get value => AppSettings.store.getDouble(key) ?? defaultValue;
+  double get value {
+    final value = Result(() => AppSettings.store.getDouble(key));
+    final error = value.asError;
+    if (error != null) {
+      Logs().e(
+        'Unable to fetch $key from storage. Removing entry...',
+        error.error,
+        error.stackTrace,
+      );
+    }
+    return value.asValue?.value ?? defaultValue;
+  }
 
   Future<void> setItem(double value) => AppSettings.store.setDouble(key, value);
 }
