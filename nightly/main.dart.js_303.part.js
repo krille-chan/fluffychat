@@ -628,7 +628,7 @@ gnN(){return"Vennligst vent n\xe5, til noen fra rommet inviterer deg."},
 gpb(){return"Logg av din n\xe5v\xe6rende enhet"},
 gpc(){return"Logg ut alle aktive enheter"},
 gpd(){return"Show navigation rail on mobile"},
-glM(){return"Custom reaction"},
+glM(){return"Egendefinert reaksjon"},
 gph(){return"More events"},
 glP(){return"Avsl\xe5 invitasjon"},
 gps(){return"Ingen meldinger enda"},
@@ -643,5 +643,5 @@ A(d,e){return this.gbd(this).$1(e)}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(A.FM,C.aF)})()
 B.dV(b.typeUniverse,JSON.parse('{"FM":{"aF":[]}}'))};
-(a=>{a["KwUfgyg19lkzWBuCyC3o9j92SN8="]=a.current})($__dart_deferred_initializers__);
+(a=>{a["GXNUlGTYzlWxl3ytBAQPdDkobuM="]=a.current})($__dart_deferred_initializers__);
 //# sourceMappingURL=main.dart.js_303.part.js.map
