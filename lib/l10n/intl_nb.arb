@@ -3211,5 +3211,9 @@
     "customReaction": "Egendefinert reaksjon",
     "@customReaction": {},
     "pause": "Pause",
-    "@pause": {}
+    "@pause": {},
+    "moveToDifferentSpace": "Flytt til et annet område",
+    "@moveToDifferentSpace": {},
+    "moveUp": "Flytt opp",
+    "@moveUp": {}
 }
