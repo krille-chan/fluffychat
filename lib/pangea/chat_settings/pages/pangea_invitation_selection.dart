@@ -402,7 +402,11 @@ class PangeaInvitationSelectionController
       ScaffoldMessenger.of(context).hideCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(L10n.of(context).contactHasBeenInvitedToTheChat),
+          content: Text(
+            room.isSpace
+                ? L10n.of(context).contactHasBeenInvitedToTheCourse
+                : L10n.of(context).contactHasBeenInvitedToTheChat,
+          ),
         ),
       );
     }

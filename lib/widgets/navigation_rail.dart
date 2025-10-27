@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:badges/badges.dart' as b;
 import 'package:go_router/go_router.dart';
 import 'package:matrix/matrix.dart';
 
@@ -224,17 +225,36 @@ class SpacesNavigationRail extends StatelessWidget {
                           //     AppConfig.borderRadius / 2,
                           //   ),
                           // ),
-                          icon: ClipPath(
-                            clipper: MapClipper(),
-                            child: Avatar(
-                              mxContent: rootSpaces[i].avatar,
-                              name: displayname,
-                              border: BorderSide(
-                                width: 1,
-                                color: Theme.of(context).dividerColor,
+                          icon: b.Badge(
+                            showBadge:
+                                rootSpaces[i].membership == Membership.invite,
+                            badgeStyle: b.BadgeStyle(
+                              badgeColor: Theme.of(context).colorScheme.error,
+                              elevation: 4,
+                              borderSide: BorderSide.none,
+                              padding: const EdgeInsetsGeometry.all(0),
+                            ),
+                            badgeContent: Icon(
+                              Icons.error_outline,
+                              color: Theme.of(context).colorScheme.onPrimary,
+                              size: 16,
+                            ),
+                            position: b.BadgePosition.topEnd(
+                              top: -5,
+                              end: -7,
+                            ),
+                            child: ClipPath(
+                              clipper: MapClipper(),
+                              child: Avatar(
+                                mxContent: rootSpaces[i].avatar,
+                                name: displayname,
+                                border: BorderSide(
+                                  width: 1,
+                                  color: Theme.of(context).dividerColor,
+                                ),
+                                borderRadius: BorderRadius.circular(0),
+                                size: width - (isColumnMode ? 32.0 : 24.0),
                               ),
-                              borderRadius: BorderRadius.circular(0),
-                              size: width - (isColumnMode ? 32.0 : 24.0),
                             ),
                           ),
                           // Pangea#
